@@ -141,14 +141,11 @@ function autoCompleteQLBH(){
 				sfylrbwqk=item.sfylrbwqk;
 				if(item.sfylrbwqk=='是'){
 					sfkxg='是';
-					$("#sf1").attr('colspan','1');
-					$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;');
-					$("#sf3").attr('style','background-color: #ffffff; height: 20px;');
+					$("#sf1").attr('style','height: 30px;');
+					
 				}else{
 					sfkxg='否';
-					$("#sf1").attr('colspan','5');
-					$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;');
-					$("#sf3").attr('style','background-color: #ffffff; height: 20px;display: none;');
+					$("#sf1").attr('style','height: 30px;display: none;');
 				}
 				$("#qlmc").html(item.qlmc);
 				$("#qlzxzh").html(item.qlzxzh);
@@ -197,12 +194,26 @@ function saveWqgz(){
 	}else{
 		sfbk='否';
 	}
+	if($("#nsqbbz").val()==''||$("#ztz").val()==''){
+		alert("总投资或补助金额未填写正确");
+		return
+	}
+	var nsqbbz1=$("#nsqbbz").val();
+	if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
+		alert("请按提示填写正确的值");
+		$("#nsqbbz").val('');
+		return;
+	}
+	if(parseFloat($("#nsqbbz").val())>parseFloat($("#ztz").val())){
+		alert("总投资不能小于补助金额");
+		return;
+	}
 	var data ="jckwqgzsj.xmkid="+xmkid+"&jckwqgzsj.fapgdw="+$("#fapgdw").val()+"&jckwqgzsj.fascdw="+$("#fascdw").val()+
 	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+$("#tzgs").val()+
 	"&jckwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&jckwqgzsj.jsnr="+$("#jsnr").val()+"&jckwqgzsj.scbz="+$("#scbz").val()+
 	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
 	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
-	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.jsgmqc="+$("#jsgmqc").val()+"&jckwqgzsj.jsgmqk="+$("#jsgmqk").val()
+	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
@@ -341,33 +352,36 @@ function sjtdeleteFile(id){
 		});
 	}
 }
-
+var nsqbbz;
 function getBbz(){
-	$("#nsqbbz").val('');
 	 $.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/lwBzbz.do',
 			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jsxz").combobox('getValue'),
 			dataType:'json',
+			async:false,
 			success:function(data){
 				var bz=data.bz;
 				var bl=data.bl;
 				var fd=data.fd;
 				var bzzj=(parseFloat($('#scqlqc').val())*1000000000000000*parseFloat($('#scqlqk').val())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-				$("#nsqbbz").val(bzzj.toFixed(3));
+				nsqbbz=bzzj.toFixed(3);
+				setnsqbbz();
 			}
 		}); 
 }
 function getSbz(){
-	$("#nsqbbz").val('');
 	 $.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/lwBzsbz.do',
 			data:"planwqgzsj.tsdq="+$("#tsdq").html()+"&planwqgzsj.sck_qlbh="+$("#qlbh").val()+"&planwqgzsj.akjfl="+$("#akjfl").html()+"&planwqgzsj.jsxz="+$("#jsxz").combobox('getValue')
 			+"&planwqgzsj.scqlqc="+$("#scqlqc").val()+"&planwqgzsj.scqlqk="+$("#scqlqk").val(),
 			dataType:'json',
+			async:false,
 			success:function(data){
-				$("#nsqbbz").val(data.shengbz);
+				nsqbbz=data.shengbz;
+				trzjdx=data.shengbz;
+				$("#trzjdx").html("小于等于"+trzjdx);
 			}
 		}); 
 }
@@ -380,8 +394,32 @@ function setbz(){
 	}
 	if(sfbk=='是'){
 		getBbz();
+		
 	}else{
 		getSbz();
+	}
+	
+}
+var trzjdx;
+function setnsqbbz(){
+	var ztz=$("#ztz").val();
+	if(ztz!=null&&ztz!=''){
+		if(parseFloat(ztz)*0.6>parseFloat(nsqbbz)){
+			trzjdx=parseFloat(ztz)*0.6;
+		}
+		else{
+			trzjdx=parseFloat(nsqbbz);
+		}
+	}else{
+		trzjdx=parseFloat(nsqbbz);
+	}
+	$("#trzjdx").html("小于等于"+trzjdx);
+}
+function checksfzq(){
+	var nsqbbz1=$("#nsqbbz").val();
+	if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
+		alert("请按提示填写正确的值");
+		$("#nsqbbz").val('');
 	}
 }
 </script>
@@ -486,7 +524,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qljggcs"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥入库时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥添加时间：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmrksj"></span>
 				</td>
@@ -642,40 +680,29 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
-				</td>
 			</tr>
 			
+			
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位名称：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sjdwmc" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设规模桥长：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsgmqc" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设规模桥宽：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsgmqk" style="width: 150px" />
-				</td>
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">荷载等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="hzdj" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scsjhspl" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sck_sbjgxs" style="width: 150px" />
-				</td>
+				
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text"  id="kjzh" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总投资：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="ztz" style="width: 115px" />&nbsp;万元</td>
+					<input type="text" id="sck_sbjgxs" style="width: 150px" />
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">下部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sck_xbjgxs" style="width: 150px" />
@@ -718,9 +745,14 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总投资：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="nsqbbz" style="width: 150px" /></td>
+					<input type="text" id="ztz" style="width: 115px" onchange="setnsqbbz()"/>&nbsp;万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="nsqbbz" style="width: 150px" onblur="checksfzq()"/>&nbsp;&nbsp;<span style="color: red" id='trzjdx'></span></td>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scsqs" style="width: 150px" /></td>
@@ -728,14 +760,15 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scxsq" style="width: 150px" />
 				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">乡镇：</td>
-				<td id="sf1" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scszxz" style="width: 150px" />
 				</td>
-				<td id="sf2" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;" align="right">是否入部危桥库：</td>
-				<td id="sf3" colspan="3" style="background-color: #ffffff; height: 20px;display: none;" align="left">
+			</tr>
+			<tr id="sf1"  style="height: 30px;display: none">
+				
+				<td  style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%; " align="right">是否入部危桥库：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
 						<option value="否">否</option>
 						<option value="是" selected>是</option>

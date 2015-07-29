@@ -188,10 +188,11 @@
 		<if test="shengbz!=null">,shengbz=#{shengbz}</if>
 		<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
 		<if test="qlszxz!=null">,qlszxz=#{qlszxz}</if>
-		<if test="qljsgm!=null">,qljsgm=#{qljsgm}</if>
 		<if test="zyjsnr!=null">,zyjsnr=#{zyjsnr}</if>
 		<if test="sfylrbwqk!=null">,sfylrbwqk=#{sfylrbwqk}</if>
 		<if test="bz!=null">,bz=#{bz}</if>
+		<if test="jhqlqc!=null">,jhqlqc=#{jhqlqc}</if>
+		<if test="jhqlqk!=null">,jhqlqk=#{jhqlqk}</if>
 		where id=#{id}
 	</update>
 	<select id="selectwqjhksb" parameterType="planwqgzsj" resultType="planwqgzsj">

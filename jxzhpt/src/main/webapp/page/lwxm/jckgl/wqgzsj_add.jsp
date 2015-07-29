@@ -388,19 +388,11 @@ function newGuid()
 					<span id="tsdq"></span>
 				</td>
 			</tr>
+			
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
-                              	</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmtype"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qlyhgcs" /></td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sqs" />
@@ -409,15 +401,11 @@ function newGuid()
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xsq" />
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="szxz" />
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qljggcs" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按建筑材料和&nbsp;&nbsp;<br>使用年限分类：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
@@ -488,7 +476,19 @@ function newGuid()
 					</select><font color="red">&nbsp;* 该项填写后不可修改</font>
 				</td>
 			</tr>
-			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
+                   	</select></td>
+               	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qlyhgcs" /></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qljggcs" />
+				</td>
+			</tr>            	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">

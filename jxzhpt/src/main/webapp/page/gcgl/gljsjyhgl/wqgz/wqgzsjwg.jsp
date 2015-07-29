@@ -218,7 +218,7 @@ a:active {
                         </tr>
                   <tr style="height: 35px;">
                     <td colspan="6" style="background-color: #F1F8FF; height: 20px;margin-left: 50px;" align="left">
-                        <b><font color="red" >&nbsp;&nbsp;&nbsp;&nbsp;* 注意：您必须上传至少一张正面照片和一张侧面照片，并且保存后无法更改。</font></b>
+                        <b><font color="red" >&nbsp;&nbsp;&nbsp;&nbsp;* 注意：您必须上传至少一张正面照片和一张侧面照片。</font></b>
                     </td>
                  </tr>
                <tr>

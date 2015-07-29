@@ -56,7 +56,8 @@ function loadJhkxx(){
 				 $("#dfzc").html(accSub(msg.pfztz,msg.shengbz));
 			 }
 			 $("#qlszxz").html(msg.qlszxz);
-			 $("#qljsgm").html(msg.qljsgm);
+			 $("#jhqlqc").html(msg.jhqlqc);
+			 $("#jhqlqk").html(msg.jhqlqk);
 			 $("#zyjsnr").html(msg.zyjsnr);
 			 $("#jhbz").html(msg.bz);
 		 }
@@ -351,7 +352,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qljggcs"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥入库时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥添加时间：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmrksj"></span>
 				</td>
@@ -504,40 +505,28 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tzgs"></span>&nbsp;万元</td>
-				</td>
 			</tr>
-			
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjdwmc"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设规模桥长：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsgmqc"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设规模桥宽：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsgmqk"></span>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">荷载等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="hzdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scsjhspl"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sck_sbjgxs"></span>
-				</td>
+				
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="kjzh"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总投资：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="ztz"></span>&nbsp;万元</td>
+					<span id="sck_sbjgxs"></span>
+				</td>
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">下部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sck_xbjgxs"></span>
@@ -580,9 +569,14 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总投资：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="ztz"></span>&nbsp;万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="nsqbbz"></span></td>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scsqs"></span></td>
@@ -590,14 +584,11 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scxsq"></span>
 				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">乡镇：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scszxz"></span>
 				</td>
 			</tr>
-			
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
@@ -678,7 +669,7 @@ text-decoration:none;
 					<span id="qlszxz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qljsgm"></span></td>
+					长<span id="jhqlqc"></span>&nbsp;&nbsp;宽<span id="jhqlqk"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主要建设内容：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="zyjsnr"></span></td>

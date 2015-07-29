@@ -207,7 +207,21 @@ public class Planwqgzsj implements Serializable{
 	private String stz;//省投资
 	private String xmmc;//项目名称
 	private String lxxx;//路线信息
+	private String jhqlqc;
+	private String jhqlqk;
 	
+	public String getJhqlqc() {
+		return jhqlqc;
+	}
+	public void setJhqlqc(String jhqlqc) {
+		this.jhqlqc = jhqlqc;
+	}
+	public String getJhqlqk() {
+		return jhqlqk;
+	}
+	public void setJhqlqk(String jhqlqk) {
+		this.jhqlqk = jhqlqk;
+	}
 	public String getXmid() {
 		return xmid;
 	}

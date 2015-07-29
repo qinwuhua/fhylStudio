@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/wqsj.js"></script>
 	<script type="text/javascript">
 		var bz;
 		var bl;
@@ -30,8 +31,8 @@
 		$(function(){
 			sbnf("editjhnf");
 			$.ajax({
-				url:'../../../jhgl/queryWqgzById.do',
-				data:"jh.id="+xxId,
+				url:'/jxzhpt/jhgl/loadwqgzjhkbyid.do',
+				data:"id="+xxId,
 				dataType:'json',
 				success:function(data){
 					//计划
@@ -48,7 +49,7 @@
 					$('#pfsj').datebox('setValue',data.pfsj);
 					$('#jhztz').val(data.pfztz);
 					$('#bbz').val(data.jhsybzje);
-					$('#zfzc').html(data.jhsydfzcje);
+					$('#zfzc').html(accSub(data.pfztz,data.jhsybzje));
 					radioChecked("sfsqablbz",data.sfsqablbz);
 					if(data.sfsqablbz=="否"){
 						$('#ablbzwh').attr("disabled",'true');
@@ -238,9 +239,13 @@
 			
 			if(parseFloat($("#jhztz").val())*10000>=500*10000){
 				$("#sfsqablbz0").attr('checked','true');
+				$("#sfsqablbz0").removeAttr('disabled');
+				 $("#sfsqablbz1").removeAttr('disabled');
 				document.getElementById("ablbzwh").disabled=false;
 			}else{
 				$("#sfsqablbz1").attr('checked','true');
+				$("#sfsqablbz0").attr('disabled','true');
+				$("#sfsqablbz1").attr('disabled','true');
 				$("#ablbzwh").val("");
 				document.getElementById("ablbzwh").disabled=true;
 			}
