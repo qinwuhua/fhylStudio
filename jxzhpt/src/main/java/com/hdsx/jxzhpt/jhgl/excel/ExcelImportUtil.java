@@ -51,6 +51,30 @@ public class ExcelImportUtil {
 		return ExcelImportUtil.readerExcel(sheet, classType, 1, excel);
 	}
 	/**
+	 * 读取Excel中的数据
+	 * @param string 字段字符串，每个字段以"，"分隔，顺序与Excel文件中要对应，如：id,url,text
+	 * @param sheetIndex HSSFSheet的下标
+	 * @param startRow 开始行号
+	 * @param classType 返回集合的类型对象的Class属性
+	 * @param file 文件
+	 * @return 返回数组
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 * @throws Exception
+	 */
+	public static List readExcel(String string, int sheetIndex,int startRow, Class classType,File file)throws IOException, FileNotFoundException, Exception {
+		String[] split = string.split(",");
+		HSSFWorkbook readWork=new HSSFWorkbook(new FileInputStream(file));
+		HSSFSheet sheet = readWork.getSheetAt(sheetIndex);
+		ExcelEntity excel=new ExcelEntity();
+		Map<String, String> attribute=new HashMap<String, String>();
+		for (int i = 0; i < split.length; i++) {
+			attribute.put(new Integer(i).toString(), split[i]);
+		}
+		excel.setAttributes(attribute);
+		return ExcelImportUtil.readerExcel(sheet, classType, startRow, excel);
+	}
+	/**
 	 * 导入读取Excel
 	 * @param sheet HSSFSheet对象
 	 * @param classType 实体类class属性
@@ -70,7 +94,8 @@ public class ExcelImportUtil {
 			for (Entry<String, String> entry : entrySet) {
 				newObj = getData(newObj, entry, row);
 			}
-			result.add(newObj);
+			if(isNullRow(newObj,entrySet))
+				result.add(newObj);
 		}
 		return result;
 	}
@@ -159,8 +184,8 @@ public class ExcelImportUtil {
         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
         	}else{
-        		DecimalFormat df = new DecimalFormat("#.#");
-        		cellValue = new Double(cell.getNumericCellValue()).toString();  
+        		cell.setCellType(1);
+        		cellValue = cell.getStringCellValue();
         	}
             break;  
         case HSSFCell.CELL_TYPE_BOOLEAN:  

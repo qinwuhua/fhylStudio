@@ -1182,7 +1182,7 @@ public class LxshController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,19,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,30,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -1191,13 +1191,13 @@ public class LxshController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"'";
+				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("22").toString()+"'";
 				String xzqh=lxshServer.selectimportXmbm(xzqhdm);
 				if(xzqh==null||xzqh==""||"".equals(xzqh)){
 					response.getWriter().print(fileuploadFileName+"中  "+map.get("2").toString()+"  项目行政区划有误");
 					return;
 				}
-				String tiaojian="select max(substr(xmbm,-3)) from lxsh_sjgz where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"')"+"||'%' ";
+				String tiaojian="select max(substr(xmbm,-3)) from lxsh_sjgz where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("22").toString()+"')"+"||'%' ";
 				String xmbm=lxshServer.selectimportXmbm(tiaojian);
 				if(xmbm==null||xmbm==""||"".equals(xmbm)){
 					map.put("xmbm", map.get("0").toString()+xzqh+"1001");
@@ -1211,16 +1211,48 @@ public class LxshController extends BaseActionSupport{
 						xmbm=map.get("0").toString()+xzqh+"1"+xmbm;
 					map.put("xmbm", xmbm);
 				}
+				//计算补助测算
+				double bzcs=0;
 				Lxsh ll=new Lxsh();
 				ll.setXmlx("升级改造工程项目");
 				ll.setGldj(map.get("1").toString().substring(0, 1));
-				ll.setJsdj(map.get("12").toString());
+				if(map.get("14").toString()!=null && !map.get("14").toString().equals("")){
+					ll.setJsdj("一级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs= new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("15").toString()!=null && !map.get("15").toString().equals("")){
+					ll.setJsdj("二级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("16").toString()!=null && !map.get("16").toString().equals("")){
+					ll.setJsdj("三级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("17").toString()!=null && !map.get("17").toString().equals("")){
+					ll.setJsdj("四级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("18").toString()!=null && !map.get("18").toString().equals("")){
+					ll.setJsdj("等外");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("19").toString()!=null && !map.get("19").toString().equals("")){
+					ll.setJsdj("无路");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
 				Lxsh l = lxshServer.selectbzcs(ll);
+				
 				if(l==null){
 					response.getWriter().print(map.get("2").toString()+"  项目路线编码、建设技术等级有误");
 					return;
 				}
-				BigDecimal b1=new BigDecimal(l.getBzys());
+				BigDecimal b1=new BigDecimal(bzcs);
 				BigDecimal b2=new BigDecimal(map.get("5").toString()).subtract(new BigDecimal(map.get("4").toString()));
 				String bzys=b1.multiply(b2)+"";
 				map.put("bzys", bzys);
@@ -1248,7 +1280,7 @@ public class LxshController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,19,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,23,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -1257,13 +1289,13 @@ public class LxshController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"'";
+				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("16").toString()+"'";
 				String xzqh=lxshServer.selectimportXmbm(xzqhdm);
 				if(xzqh==null||xzqh==""||"".equals(xzqh)){
 					response.getWriter().print(fileuploadFileName+"中  "+map.get("2").toString()+"  项目行政区划有误");
 					return;
 				}
-				String tiaojian="select max(substr(xmbm,-3)) from lxsh_lmgz where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"')"+"||'%' ";
+				String tiaojian="select max(substr(xmbm,-3)) from lxsh_lmgz where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("16").toString()+"')"+"||'%' ";
 				String xmbm=lxshServer.selectimportXmbm(tiaojian);
 				if(xmbm==null||xmbm==""||"".equals(xmbm)){
 					map.put("xmbm", map.get("0").toString()+xzqh+"2001");
@@ -1277,16 +1309,47 @@ public class LxshController extends BaseActionSupport{
 						xmbm=map.get("0").toString()+xzqh+"2"+xmbm;
 					map.put("xmbm", xmbm);
 				}
+				//计算补助测算
+				double bzcs=0;
 				Lxsh ll=new Lxsh();
 				ll.setXmlx("路面改造工程项目");
 				ll.setGldj(map.get("1").toString().substring(0, 1));
-				ll.setJsdj(map.get("12").toString());
+				if(map.get("8").toString()!=null && !map.get("8").toString().equals("")){
+					ll.setJsdj("一级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs= new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("9").toString()!=null && !map.get("9").toString().equals("")){
+					ll.setJsdj("二级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("10").toString()!=null && !map.get("10").toString().equals("")){
+					ll.setJsdj("三级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("11").toString()!=null && !map.get("11").toString().equals("")){
+					ll.setJsdj("四级");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("12").toString()!=null && !map.get("12").toString().equals("")){
+					ll.setJsdj("等外");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
+				if(map.get("13").toString()!=null && !map.get("13").toString().equals("")){
+					ll.setJsdj("无路");
+					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
+					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
+				}
 				Lxsh l = lxshServer.selectbzcs(ll);
 				if(l==null){
 					response.getWriter().print(map.get("2").toString()+"  项目路线编码、建设技术等级有误");
 					return;
 				}
-				BigDecimal b1=new BigDecimal(l.getBzys());
+				BigDecimal b1=new BigDecimal(bzcs);
 				BigDecimal b2=new BigDecimal(map.get("5").toString()).subtract(new BigDecimal(map.get("4").toString()));
 				String bzys=b1.multiply(b2)+"";
 				map.put("bzys", bzys);
@@ -1314,7 +1377,7 @@ public class LxshController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,19,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,29,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -1323,13 +1386,13 @@ public class LxshController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"'";
+				String xzqhdm="select id from XTGL_XZQH where trim(name)='"+map.get("20").toString()+"'";
 				String xzqh=lxshServer.selectimportXmbm(xzqhdm);
 				if(xzqh==null||xzqh==""||"".equals(xzqh)){
 					response.getWriter().print(fileuploadFileName+"中  "+map.get("2").toString()+"  项目行政区划有误");
 					return;
 				}
-				String tiaojian="select max(substr(xmbm,-3)) from lxsh_xj where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("10").toString()+"')"+"||'%' ";
+				String tiaojian="select max(substr(xmbm,-3)) from lxsh_xj where xmbm like "+map.get("0").toString()+"||"+"(select id from XTGL_XZQH where trim(name)='"+map.get("20").toString()+"')"+"||'%' ";
 				String xmbm=lxshServer.selectimportXmbm(tiaojian);
 				if(xmbm==null||xmbm==""||"".equals(xmbm)){
 					map.put("xmbm", map.get("0").toString()+xzqh+"3001");
@@ -1343,7 +1406,7 @@ public class LxshController extends BaseActionSupport{
 						xmbm=map.get("0").toString()+xzqh+"3"+xmbm;
 					map.put("xmbm", xmbm);
 				}
-				map.put("bzys", map.get("17").toString());
+				map.put("bzys", map.get("27").toString());
 			}
 			boolean sfcg=true;
 			sfcg=lxshServer.importxjlxsh(data);

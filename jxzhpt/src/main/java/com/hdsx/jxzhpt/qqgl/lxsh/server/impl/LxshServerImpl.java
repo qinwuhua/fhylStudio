@@ -684,14 +684,14 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public boolean importlmgzlxsh(List<Map> data) {
-		if(insertBatch("importsjgzlxshlx", data)==data.size()&&insertBatch("importlmgzlxsh", data)==data.size())
+		if(insertBatch("importlmgzlxshlx", data)==data.size()&&insertBatch("importlmgzlxsh", data)==data.size())
 		return true;
 		else return false;
 	}
 	
 	@Override
 	public boolean importxjlxsh(List<Map> data) {
-		if(insertBatch("importsjgzlxshlx", data)==data.size()&&insertBatch("importxjlxsh", data)==data.size())
+		if(insertBatch("importxjlxshlx", data)==data.size()&&insertBatch("importxjlxsh", data)==data.size())
 		return true;
 		else return false;
 	}
