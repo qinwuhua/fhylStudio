@@ -745,7 +745,11 @@
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'升级改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_SJGZ t left join
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.yilc v_7,lx.erlc v_8,lx.sanlc v_9,lx.silc v_10,lx.dwlc v_11,lx.wllc v_12,
+		lx.jhyilc v_13,lx.jherlc v_14,lx.jhsanlc v_15,lx.jhsilc v_16,lx.jhdwlc v_17,lx.jhwllc v_18,
+		'升级改造' v_19,t.dq_m v_20,t.dq v_21,t.jsjsdj v_22,
+		t.sd_m v_23,t.sd v_24,t.jsdw v_25,t.kgny v_26,t.wgny v_27,t.bzdw v_28,t.tzgs v_29,t.dfzc v_30,
+		t.yhdk v_31,t.gkpfwh v_32,t.pfsj v_33 from KXXYJ_SJGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -773,8 +777,10 @@
 		</if>
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'路面改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_LMGZ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.yilc v_7,lx.erlc v_8,lx.sanlc v_9,lx.silc v_10,lx.dwlc v_11,
+	    lx.wllc v_12,'路面改造' v_13,t.dq_m v_14,t.dq v_15,t.jsjsdj v_16,
+	    t.sd_m v_17,t.sd v_18,t.jsdw v_19,t.kgny v_20,t.wgny v_21,t.bzdw v_22,t.tzgs v_23,t.dfzc v_24,t.yhdk v_25,t.gkpfwh v_26,t.pfsj v_27 
+	    from KXXYJ_LMGZ t left join (select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -801,7 +807,9 @@
 		</if>
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'新建' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_XJ t left join
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.xjlxbm v_7,lx.xjqdzh v_8,lx.xjzdzh v_9,lx.xjlc v_10,
+		lx.yilc v_11,lx.erlc v_12,lx.sanlc v_13,lx.silc v_14,lx.dwlc v_15,lx.wllc v_16,'新建' v_17,t.dq_m v_18,t.dq v_19,t.jsjsdj v_20,t.sd_m v_21,t.sd v_22,
+		t.jsdw v_23,t.kgny v_24,t.wgny v_25,t.bzdw v_26,t.tzgs v_27,t.dfzc v_28,t.yhdk v_29,t.gkpfwh v_30,t.pfsj v_31 from KXXYJ_XJ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

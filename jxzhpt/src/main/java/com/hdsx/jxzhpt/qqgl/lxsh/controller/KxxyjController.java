@@ -801,12 +801,16 @@ public class KxxyjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,20,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,34,fs,Plan_gcgj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Lx> lxlist=new ArrayList<Lx>();
+			for (Map map : data) {
+				
+			}
 			boolean sfcg=true;
 			sfcg=kxxyjServer.importsjgzkxx(data);
 			if(sfcg)
@@ -831,7 +835,7 @@ public class KxxyjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,20,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,28,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -862,7 +866,7 @@ public class KxxyjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,20,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,32,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");

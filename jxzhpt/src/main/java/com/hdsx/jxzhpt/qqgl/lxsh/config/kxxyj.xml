@@ -509,25 +509,36 @@
  	</insert>
  	
  	<update id="importsjgzkxx" parameterType="hashMap">
-		update kxxyj_sjgz set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
-		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		update kxxyj_sjgz set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{19},dq=#{21},
+		dq_m=#{20},jsjsdj=#{22},sd=#{24},sd_m=#{23},jsdw=#{25},sbthcd=7,tbbmbm='36',
+		kgny=#{26},wgny=#{27},bzdw=#{28},tzgs=#{29},dfzc=#{30},yhdk=#{31},gkpfwh=#{32},pfsj=#{33},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="updatesjgzkxxlx" parameterType="hashMap">
-		update lxsh_lx set qdzh=#{3},zdzh=#{4},xzqh=#{2},lc=#{4}-#{3},jsjsdj=#{8},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
-		where xmid=#{0} and jdbs='1' and sffirst='1'
+		update lxsh_lx set qdzh=#{4},zdzh=#{5},xzqh=#{2},lc=to_number(#{5})-to_number(#{4}),yilc=#{7},erlc=#{8},sanlc=#{9},
+		silc=#{10},dwlc=#{11},wllc=#{12},jhyilc=#{13},jherlc=#{14},jhsanlc=#{15},jhsilc=#{16},jhdwlc=#{17},jhwllc=#{18},
+		jsjsdj=#{22},xzqhdm=substr(#{0},5,6) where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>
 	<update id="importlmgzkxx" parameterType="hashMap">
-		update kxxyj_lmgz set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
-		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		update kxxyj_lmgz set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{13},dq=#{15},
+		dq_m=#{14},jsjsdj=#{16},sd=#{18},sd_m=#{17},jsdw=#{19},sbthcd=7,tbbmbm='36',
+		kgny=#{20},wgny=#{21},bzdw=#{22},tzgs=#{23},dfzc=#{24},yhdk=#{25},gkpfwh=#{26},pfsj=#{27},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
+	<update id="updatelmgzkxxlx" parameterType="hashMap">
+		update lxsh_lx set qdzh=#{4},zdzh=#{5},xzqh=#{2},lc=#{6},yilc=#{7},erlc=#{8},sanlc=#{9},silc=#{10},dwlc=#{11},wllc=#{12},
+		jsjsdj=#{16},xzqhdm=substr(#{0},5,6)
+		where xmid=#{0} and jdbs='1' and sffirst='1'
+	</update>
 	<update id="importxjkxx" parameterType="hashMap">
-		update kxxyj_xj set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
-		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		update kxxyj_xj set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{17},dq=#{19},
+		dq_m=#{18},jsjsdj=#{20},sd=#{22},sd_m=#{21},jsdw=#{23},sbthcd=7,tbbmbm='36',
+		kgny=#{24},wgny=#{25},bzdw=#{26},tzgs=#{27},dfzc=#{28},yhdk=#{29},gkpfwh=#{30},pfsj=#{31},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
+	</update>
+	<update id="updatexjkxxlx" parameterType="hashMap">
+		update lxsh_lx set qdzh=#{4},zdzh=#{5},xzqh=#{2},lc=#{6},xjlxbm=#{7},xjqdzh=#{8},xjzdzh=#{9},xjlc=#{10},
+		yilc=#{11},erlc=#{12},sanlc=#{13},silc=#{14},dwlc=#{15},wllc=#{16},jsjsdj=#{20},xzqhdm=substr(#{0},5,6)
+		where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>
 </mapper>

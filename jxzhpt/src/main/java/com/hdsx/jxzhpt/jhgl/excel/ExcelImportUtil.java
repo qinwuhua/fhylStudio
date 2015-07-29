@@ -160,7 +160,7 @@ public class ExcelImportUtil {
         		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
         	}else{
         		DecimalFormat df = new DecimalFormat("#.#");
-        		cellValue = df.format(cell.getNumericCellValue()).toString();  
+        		cellValue = new Double(cell.getNumericCellValue()).toString();  
         	}
             break;  
         case HSSFCell.CELL_TYPE_BOOLEAN:  

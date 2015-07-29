@@ -304,10 +304,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			ExcelTitleCell [] title=null;
 			Map<String, String> attribute=null;
 			String fileTitle="";
-			if(cbsj.getXmlx()<=2){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+			if(cbsj.getXmlx()==1){
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=建设后一级公路,fieid=jhyilc>,<title=建设后二级公路,fieid=jherlc>,<title=建设后三级公路,fieid=jhsanlc>,<title=建设后四级公路,fieid=jhsilc>,<title=建设后等外公路,fieid=jhdwlc>,<title=建设后无路,fieid=jhwllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+			}else if(cbsj.getXmlx()==2){
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else if(cbsj.getXmlx()==3){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else{
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=讫点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建设方案,fieid=jsfa>";
 			}
@@ -431,7 +433,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelLmgzCbsj(){
-		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
 				"sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,dfzc,yhdk";
 		
 		HashMap<String, String> attribute = new HashMap<String, String>();
@@ -449,6 +451,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				lx.setXmid(cbsj.getXmbm());
 //				lx.setQdmc(cbsj.getQdmc());
 //				lx.setZdmc(cbsj.getZdmc());
+				lx.setYilc(cbsj.getYilc());
+				lx.setErlc(cbsj.getErlc());
+				lx.setSanlc(cbsj.getSanlc());
+				lx.setSilc(cbsj.getSilc());
+				lx.setDwlc(cbsj.getDwlc());
+				lx.setWllc(cbsj.getWllc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -467,7 +475,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelLmsjCbsj(){
-		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
 				"sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,dfzc,yhdk";
 		
 		HashMap<String, String> attribute = new HashMap<String, String>();
@@ -486,6 +494,18 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				lx.setLc(cbsj.getLc());
 //				lx.setQdmc(cbsj.getQdmc());
 //				lx.setZdmc(cbsj.getZdmc());
+				lx.setYilc(cbsj.getYilc());
+				lx.setErlc(cbsj.getErlc());
+				lx.setSanlc(cbsj.getSanlc());
+				lx.setSilc(cbsj.getSilc());
+				lx.setDwlc(cbsj.getDwlc());
+				lx.setWllc(cbsj.getWllc());
+				lx.setJhyilc(cbsj.getJhyilc());
+				lx.setJherlc(cbsj.getJherlc());
+				lx.setJhsanlc(cbsj.getJhsanlc());
+				lx.setJhsilc(cbsj.getJhsilc());
+				lx.setJhdwlc(cbsj.getJhdwlc());
+				lx.setJhwllc(cbsj.getJhwllc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -504,7 +524,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelXjCbsj(){
-		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,xjlxbm,xjqdzh,xjzdzh,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc,sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jaf,dfzc,yhdk";
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,xjlxbm,xjqdzh,xjzdzh,yilc,erlc,sanlc,silc,dwlc,wllc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc,sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jaf,dfzc,yhdk";
 		HashMap<String, String> attribute = new HashMap<String, String>();
 		
 		ExcelEntity excel=new ExcelEntity();
@@ -520,6 +540,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				lx.setXmid(cbsj.getXmbm());
 				lx.setQdmc(cbsj.getQdmc());
 				lx.setZdmc(cbsj.getZdmc());
+				lx.setXjlxbm(cbsj.getXjlxbm());
+				lx.setXjqdzh(cbsj.getXjqdzh());
+				lx.setXjzdzh(cbsj.getXjzdzh());
+				lx.setYilc(cbsj.getYilc());
+				lx.setErlc(cbsj.getErlc());
+				lx.setSanlc(cbsj.getSanlc());
+				lx.setSilc(cbsj.getSilc());
+				lx.setDwlc(cbsj.getDwlc());
+				lx.setWllc(cbsj.getWllc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);

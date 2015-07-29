@@ -408,14 +408,14 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 
 	@Override
 	public boolean importlmgzkxx(List<Map> data) {
-		if(updateBatch("updatesjgzkxxlx", data)==data.size()&&updateBatch("importlmgzkxx", data)==data.size())
+		if(updateBatch("updatelmgzkxxlx", data)==data.size()&&updateBatch("importlmgzkxx", data)==data.size())
 			return true;
 			else return false;
 	}
 
 	@Override
 	public boolean importxjkxx(List<Map> data) {
-		if(updateBatch("updatesjgzkxxlx", data)==data.size()&&updateBatch("importxjkxx", data)==data.size())
+		if(updateBatch("updatexjkxxlx", data)==data.size()&&updateBatch("importxjkxx", data)==data.size())
 			return true;
 			else return false;
 	}

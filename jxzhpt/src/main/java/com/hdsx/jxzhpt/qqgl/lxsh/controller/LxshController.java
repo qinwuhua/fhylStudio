@@ -1046,15 +1046,111 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			if("sjgz".equals(lxsh.getXmlx())){
 				xmbt="升级改造";
 				elist=lxshServer.querykxxSjgz(lxsh);
+				et.clear();
+				et.add(new Excel_tilte("项目编码",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("行政区划",1,1,2,2));
+				et.add(new Excel_tilte("路线编码",1,1,3,3));
+				et.add(new Excel_tilte("起点桩号",1,1,4,4));
+				et.add(new Excel_tilte("止点桩号",1,1,5,5));
+				et.add(new Excel_tilte("里程",1,1,6,6));
+				et.add(new Excel_tilte("一级公路",1,1,7,7));
+				et.add(new Excel_tilte("二级公路",1,1,8,8));
+				et.add(new Excel_tilte("三级公路",1,1,9,9));
+				et.add(new Excel_tilte("四级公路",1,1,10,10));
+				et.add(new Excel_tilte("等外公路",1,1,11,11));
+				et.add(new Excel_tilte("无路",1,1,12,12));
+				et.add(new Excel_tilte("建设后一级公路",1,1,13,13));
+				et.add(new Excel_tilte("建设后二级公路",1,1,14,14));
+				et.add(new Excel_tilte("建设后三级公路",1,1,15,15));
+				et.add(new Excel_tilte("建设后四级公路",1,1,16,16));
+				et.add(new Excel_tilte("建设后等外公路",1,1,17,17));
+				et.add(new Excel_tilte("建设后无路",1,1,18,18));
+				et.add(new Excel_tilte("建设性质",1,1,19,19));
+				et.add(new Excel_tilte("大桥(米)",1,1,20,20));
+				et.add(new Excel_tilte("大桥(座)",1,1,21,21));
+				et.add(new Excel_tilte("建设技术等级",1,1,22,22));
+				et.add(new Excel_tilte("隧道(米)",1,1,23,23));		
+				et.add(new Excel_tilte("隧道(座)",1,1,24,24));
+				et.add(new Excel_tilte("建设单位",1,1,25,25));
+				et.add(new Excel_tilte("开工年月",1,1,26,26));
+				et.add(new Excel_tilte("完工年月",1,1,27,27));
+				et.add(new Excel_tilte("编制单位",1,1,28,28));
+				et.add(new Excel_tilte("投资估算",1,1,29,29));
+				et.add(new Excel_tilte("地方自筹",1,1,30,30));
+				et.add(new Excel_tilte("银行贷款",1,1,31,31));
+				et.add(new Excel_tilte("工可批复文号",1,1,32,32));
+				et.add(new Excel_tilte("批复时间",1,1,33,33));
 			}
 			if("lmgz".equals(lxsh.getXmlx())){
+				et.add(new Excel_tilte("项目编码",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("行政区划",1,1,2,2));
+				et.add(new Excel_tilte("路线编码",1,1,3,3));
+				et.add(new Excel_tilte("起点桩号",1,1,4,4));
+				et.add(new Excel_tilte("止点桩号",1,1,5,5));
+				et.add(new Excel_tilte("里程",1,1,6,6));
+				et.add(new Excel_tilte("一级公路",1,1,7,7));
+				et.add(new Excel_tilte("二级公路",1,1,8,8));
+				et.add(new Excel_tilte("三级公路",1,1,9,9));
+				et.add(new Excel_tilte("四级公路",1,1,10,10));
+				et.add(new Excel_tilte("等外公路",1,1,11,11));
+				et.add(new Excel_tilte("无路",1,1,12,12));
+				et.add(new Excel_tilte("建设性质",1,1,13,13));
+				et.add(new Excel_tilte("大桥(米)",1,1,14,14));
+				et.add(new Excel_tilte("大桥(座)",1,1,15,15));
+				et.add(new Excel_tilte("建设技术等级",1,1,16,16));
+				et.add(new Excel_tilte("隧道(米)",1,1,17,17));		
+				et.add(new Excel_tilte("隧道(座)",1,1,18,18));
+				et.add(new Excel_tilte("建设单位",1,1,19,19));
+				et.add(new Excel_tilte("开工年月",1,1,20,20));
+				et.add(new Excel_tilte("完工年月",1,1,21,21));
+				et.add(new Excel_tilte("编制单位",1,1,22,22));
+				et.add(new Excel_tilte("投资估算",1,1,23,23));
+				et.add(new Excel_tilte("地方自筹",1,1,24,24));
+				et.add(new Excel_tilte("银行贷款",1,1,25,25));
+				et.add(new Excel_tilte("工可批复文号",1,1,26,26));
+				et.add(new Excel_tilte("批复时间",1,1,27,27));
 				xmbt="路面改造";
 				elist=lxshServer.querykxxLmgz(lxsh);
 			}
 			if("xj".equals(lxsh.getXmlx())){
+				et.add(new Excel_tilte("项目编码",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("行政区划",1,1,2,2));
+				et.add(new Excel_tilte("路线编码",1,1,3,3));
+				et.add(new Excel_tilte("起点桩号",1,1,4,4));
+				et.add(new Excel_tilte("止点桩号",1,1,5,5));
+				et.add(new Excel_tilte("里程",1,1,6,6));
+				et.add(new Excel_tilte("新建路线编码",1,1,7,7));
+				et.add(new Excel_tilte("新建起点桩号",1,1,8,8));
+				et.add(new Excel_tilte("新建止点桩号",1,1,9,9));
+				et.add(new Excel_tilte("新建里程",1,1,10,10));
+				et.add(new Excel_tilte("一级公路",1,1,11,11));
+				et.add(new Excel_tilte("二级公路",1,1,12,12));
+				et.add(new Excel_tilte("三级公路",1,1,13,13));
+				et.add(new Excel_tilte("四级公路",1,1,14,14));
+				et.add(new Excel_tilte("等外公路",1,1,15,15));
+				et.add(new Excel_tilte("无路",1,1,16,16));
+				et.add(new Excel_tilte("建设性质",1,1,17,17));
+				et.add(new Excel_tilte("大桥(米)",1,1,18,18));
+				et.add(new Excel_tilte("大桥(座)",1,1,19,19));
+				et.add(new Excel_tilte("建设技术等级",1,1,20,20));
+				et.add(new Excel_tilte("隧道(米)",1,1,21,21));		
+				et.add(new Excel_tilte("隧道(座)",1,1,22,22));
+				et.add(new Excel_tilte("建设单位",1,1,23,23));
+				et.add(new Excel_tilte("开工年月",1,1,24,24));
+				et.add(new Excel_tilte("完工年月",1,1,25,25));
+				et.add(new Excel_tilte("编制单位",1,1,26,26));
+				et.add(new Excel_tilte("投资估算",1,1,27,27));
+				et.add(new Excel_tilte("地方自筹",1,1,28,28));
+				et.add(new Excel_tilte("银行贷款",1,1,29,29));
+				et.add(new Excel_tilte("工可批复文号",1,1,30,30));
+				et.add(new Excel_tilte("批复时间",1,1,31,31));
 				xmbt="新建";
 				elist=lxshServer.querykxxXj(lxsh);
 			}
@@ -1064,27 +1160,7 @@ public class LxshController extends BaseActionSupport{
 			eldata.setSheetName("工可信息");//设置sheeet名
 			eldata.setFileName(xmbt+"工程项目工可信息表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
-			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-			et.add(new Excel_tilte("项目编码",1,1,0,0));
-			et.add(new Excel_tilte("项目名称",1,1,1,1));
-			et.add(new Excel_tilte("行政区划",1,1,2,2));
-			et.add(new Excel_tilte("起点桩号",1,1,3,3));
-			et.add(new Excel_tilte("止点桩号",1,1,4,4));
-			et.add(new Excel_tilte("建设性质",1,1,5,5));
-			et.add(new Excel_tilte("大桥(米)",1,1,6,6));
-			et.add(new Excel_tilte("大桥(座)",1,1,7,7));
-			et.add(new Excel_tilte("建设技术等级",1,1,8,8));
-			et.add(new Excel_tilte("隧道(米)",1,1,9,9));		
-			et.add(new Excel_tilte("隧道(座)",1,1,10,10));
-			et.add(new Excel_tilte("建设单位",1,1,11,11));
-			et.add(new Excel_tilte("开工年月",1,1,12,12));
-			et.add(new Excel_tilte("完工年月",1,1,13,13));
-			et.add(new Excel_tilte("编制单位",1,1,14,14));
-			et.add(new Excel_tilte("投资估算",1,1,15,15));
-			et.add(new Excel_tilte("地方自筹",1,1,16,16));
-			et.add(new Excel_tilte("银行贷款",1,1,17,17));
-			et.add(new Excel_tilte("工可批复文号",1,1,18,18));
-			et.add(new Excel_tilte("批复时间",1,1,19,19));
+			
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);
