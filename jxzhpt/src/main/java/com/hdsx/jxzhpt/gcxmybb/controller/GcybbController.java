@@ -770,7 +770,137 @@ public class GcybbController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel
 	}
 	
-	
+	public void getWqlntjb(){
+		try{
+		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		String tableName="wq_lntjb";
+		String[] arr=gcglwqgz.getXmnf().split(",");
+		String sql="select xzqhmc";
+		String in="";
+		for(int j=0;j<arr.length;j++){
+			if(j==0)
+			    in=in+"'"+arr[j]+"'";
+			else
+				in=in+",'"+arr[j]+"'";
+			sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+					",decode(sum(decode(jhnf,'"+arr[j]+"',ym)),null,0,sum(decode(jhnf,'"+arr[j]+"',ym))) ym"+arr[j]+
+		        ",decode(sum(decode(jhnf,'"+arr[j]+"',dw)),null,0,sum(decode(jhnf,'"+arr[j]+"',dw))) dw"+arr[j]+
+		        ",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+"";
+		}
+		sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
+		System.out.println(sql);
+		list=gcybbServer.getGjxjmxbsj(sql);
+		for(int i=0;i<list.size();i++){
+			HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+			double xmsl=0;
+			double ym=0;
+			double dw=0;
+			double wc=0;
+			for(int j=arr.length-1;j>=0;j--){
+				xmsl=xmsl+Double.valueOf(hm.get("XMSL"+arr[j]).toString());
+				ym=ym+Double.valueOf(hm.get("YM"+arr[j]).toString());
+				dw=dw+Double.valueOf(hm.get("DW"+arr[j]).toString());
+				wc=wc+Double.valueOf(hm.get("WC"+arr[j]).toString());
+			}
+		   hm.put("XMSL",xmsl);
+		   hm.put("YM",ym);
+		   hm.put("DW",dw);
+		   hm.put("WC",wc);
+		   hm.put("XH", i);
+		}
+		if("flag".equals(flag)){
+			String[] nf = gcglwqgz.getXmnf().split(",");
+			Arrays.sort(nf);
+			List<Excel_list> elist=new ArrayList<Excel_list>();
+			int cd=(nf.length+1)*6+3;
+			NumberFormat nfs = NumberFormat.getInstance(); 
+	        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+	        nfs.setMinimumFractionDigits(2);//设置最小保留几位小数 
+	        nfs.setMaximumFractionDigits(2);//设置最大保留几位小数
+			for(int i=0;i<list.size();i++){
+				Excel_list l = new Excel_list();
+				Class cl = l.getClass();
+				if("0".equals(list.get(i).get("XH").toString())){
+					Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
+					method.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
+				}else{
+					Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
+					method.invoke(l, new Object[]{list.get(i).get("XH").toString()});
+				}
+				
+				Method method1 = cl.getMethod("setV_"+1, new Class[]{String.class});
+				method1.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
+				Method method3 = cl.getMethod("setV_"+2, new Class[]{String.class});
+				method3.invoke(l, new Object[]{list.get(i).get("XMSL").toString().substring(0, list.get(i).get("XMSL").toString().length()-2)});
+				Method method4 = cl.getMethod("setV_"+3, new Class[]{String.class});
+				method4.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("YM").toString()))});
+				Method method5 = cl.getMethod("setV_"+4, new Class[]{String.class});
+				method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("DW").toString()))});
+				Method method6 = cl.getMethod("setV_"+5, new Class[]{String.class});
+				method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC").toString()))});
+				int k=6;
+				for (int j = 0; j < nf.length; j++) {
+					Method method9 = cl.getMethod("setV_"+k, new Class[]{String.class});
+					method9.invoke(l, new Object[]{list.get(i).get("XMSL"+nf[j]).toString()});
+					Method method10 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
+					method10.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("YM"+nf[j]).toString()))});
+					Method method11 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
+					method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("DW"+nf[j]).toString()))});
+					Method method12 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
+					method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC"+nf[j]).toString()))});
+					k+=4;
+				}
+				Method method15 = cl.getMethod("setV_"+cd, new Class[]{String.class});
+				method15.invoke(l, new Object[]{""});
+				elist.add(l);
+			}
+			elist=qddh(elist);
+			//把数据放入elist
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("危桥改造项目(交通局)历年统计报表");//设置第一行 
+			eldata.setSheetName("历年统计报表");//设置sheeet名
+			eldata.setFileName("危桥改造项目(交通局)历年统计报表");//设置文件名
+			eldata.setEl(elist);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,3,0,0));
+			et.add(new Excel_tilte("设区市",1,3,1,1));
+			et.add(new Excel_tilte("计划下达及完成情况",1,1,2,5));
+			int sj1=6;
+			for (int i = 0; i < nf.length; i++) {
+				et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+3));
+				sj1=sj1+4;
+			}
+			et.add(new Excel_tilte("备注",1,3,sj1,sj1));
+			et.add(new Excel_tilte(nf[0]+"-"+nf[nf.length-1]+"年度",2,2,2,3));
+			et.add(new Excel_tilte("到位资金(万元)",2,3,4,4));
+			et.add(new Excel_tilte("完成资金(万元)",2,3,5,5));
+			int sj2=6;
+			for (int i = 0; i < nf.length; i++) {
+				et.add(new Excel_tilte(nf[i]+"年度",2,2,sj2,sj2+1));
+				et.add(new Excel_tilte("到位资金(万元)",2,3,sj2+2,sj2+2));
+				et.add(new Excel_tilte("完成资金(万元)",2,3,sj2+3,sj2+3));
+				sj2=sj2+4;
+			}
+			et.add(new Excel_tilte("桥梁数量(座)",3,3,2,2));
+			et.add(new Excel_tilte("延米(米)",3,3,3,3));
+			
+			int sj3=6;
+			for (int i = 0; i < nf.length; i++) {
+				et.add(new Excel_tilte("桥梁数量(座)",3,3,sj3,sj3));
+				et.add(new Excel_tilte("延米(米)",3,3,sj3+1,sj3+1));
+				sj3=sj3+4;
+			}
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_exportmxb(eldata,response);
+			
+		}else{
+			JsonUtils.write(list, getresponse().getWriter());
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//
 	public void getGjxjmxb(){
 		//System.out.println(gcglwqgz.getTiaojian()+"---"+gcglwqgz.getXmnf());
@@ -881,6 +1011,7 @@ public class GcybbController extends BaseActionSupport{
 						method15.invoke(l, new Object[]{""});
 						elist.add(l);
 					}
+					elist=qddh(elist);
 					//把数据放入elist
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("公路改造工程新上、续建工程项目完成情况汇总表");//设置第一行 
@@ -1162,5 +1293,61 @@ public class GcybbController extends BaseActionSupport{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		//去掉逗号
+		public List<Excel_list> qddh(List<Excel_list> list){
+			for (int i = 0; i < list.size(); i++) {
+				list.get(i).setV_0(list.get(i).getV_0()==null? " ":list.get(i).getV_0().replaceAll(",", ""));
+				list.get(i).setV_1(list.get(i).getV_1()==null? " ":list.get(i).getV_1().replaceAll(",", ""));
+				list.get(i).setV_2(list.get(i).getV_2()==null? " ":list.get(i).getV_2().replaceAll(",", ""));
+				list.get(i).setV_3(list.get(i).getV_3()==null? " ":list.get(i).getV_3().replaceAll(",", ""));
+				list.get(i).setV_4(list.get(i).getV_4()==null? " ":list.get(i).getV_4().replaceAll(",", ""));
+				list.get(i).setV_5(list.get(i).getV_5()==null? " ":list.get(i).getV_5().replaceAll(",", ""));
+				list.get(i).setV_6(list.get(i).getV_6()==null? " ":list.get(i).getV_6().replaceAll(",", ""));
+				list.get(i).setV_7(list.get(i).getV_7()==null? " ":list.get(i).getV_7().replaceAll(",", ""));
+				list.get(i).setV_8(list.get(i).getV_8()==null? " ":list.get(i).getV_8().replaceAll(",", ""));
+				list.get(i).setV_9(list.get(i).getV_9()==null? " ":list.get(i).getV_9().replaceAll(",", ""));
+				list.get(i).setV_10(list.get(i).getV_10()==null? " ":list.get(i).getV_10().replaceAll(",", ""));
+				list.get(i).setV_11(list.get(i).getV_11()==null? " ":list.get(i).getV_11().replaceAll(",", ""));
+				list.get(i).setV_12(list.get(i).getV_12()==null? " ":list.get(i).getV_12().replaceAll(",", ""));
+				list.get(i).setV_13(list.get(i).getV_13()==null? " ":list.get(i).getV_13().replaceAll(",", ""));
+				list.get(i).setV_14(list.get(i).getV_14()==null? " ":list.get(i).getV_14().replaceAll(",", ""));
+				list.get(i).setV_15(list.get(i).getV_15()==null? " ":list.get(i).getV_15().replaceAll(",", ""));
+				list.get(i).setV_16(list.get(i).getV_16()==null? " ":list.get(i).getV_16().replaceAll(",", ""));
+				list.get(i).setV_17(list.get(i).getV_17()==null? " ":list.get(i).getV_17().replaceAll(",", ""));
+				list.get(i).setV_18(list.get(i).getV_18()==null? " ":list.get(i).getV_18().replaceAll(",", ""));
+				list.get(i).setV_19(list.get(i).getV_19()==null? " ":list.get(i).getV_19().replaceAll(",", ""));
+				list.get(i).setV_20(list.get(i).getV_20()==null? " ":list.get(i).getV_20().replaceAll(",", ""));
+				list.get(i).setV_21(list.get(i).getV_21()==null? " ":list.get(i).getV_21().replaceAll(",", ""));
+				list.get(i).setV_22(list.get(i).getV_22()==null? " ":list.get(i).getV_22().replaceAll(",", ""));
+				list.get(i).setV_23(list.get(i).getV_23()==null? " ":list.get(i).getV_23().replaceAll(",", ""));
+				list.get(i).setV_24(list.get(i).getV_24()==null? " ":list.get(i).getV_24().replaceAll(",", ""));
+				list.get(i).setV_25(list.get(i).getV_25()==null? " ":list.get(i).getV_25().replaceAll(",", ""));
+				list.get(i).setV_26(list.get(i).getV_26()==null? " ":list.get(i).getV_26().replaceAll(",", ""));
+				list.get(i).setV_27(list.get(i).getV_27()==null? " ":list.get(i).getV_27().replaceAll(",", ""));
+				list.get(i).setV_28(list.get(i).getV_28()==null? " ":list.get(i).getV_28().replaceAll(",", ""));
+				list.get(i).setV_29(list.get(i).getV_29()==null? " ":list.get(i).getV_29().replaceAll(",", ""));
+				list.get(i).setV_30(list.get(i).getV_30()==null? " ":list.get(i).getV_30().replaceAll(",", ""));
+				list.get(i).setV_31(list.get(i).getV_31()==null? " ":list.get(i).getV_31().replaceAll(",", ""));
+				list.get(i).setV_32(list.get(i).getV_32()==null? " ":list.get(i).getV_32().replaceAll(",", ""));
+				list.get(i).setV_33(list.get(i).getV_33()==null? " ":list.get(i).getV_33().replaceAll(",", ""));
+				list.get(i).setV_34(list.get(i).getV_34()==null? " ":list.get(i).getV_34().replaceAll(",", ""));
+				list.get(i).setV_35(list.get(i).getV_35()==null? " ":list.get(i).getV_35().replaceAll(",", ""));
+				list.get(i).setV_36(list.get(i).getV_36()==null? " ":list.get(i).getV_36().replaceAll(",", ""));
+				list.get(i).setV_37(list.get(i).getV_37()==null? " ":list.get(i).getV_37().replaceAll(",", ""));
+				list.get(i).setV_38(list.get(i).getV_38()==null? " ":list.get(i).getV_38().replaceAll(",", ""));
+				list.get(i).setV_39(list.get(i).getV_39()==null? " ":list.get(i).getV_39().replaceAll(",", ""));
+				list.get(i).setV_40(list.get(i).getV_40()==null? " ":list.get(i).getV_40().replaceAll(",", ""));
+				list.get(i).setV_41(list.get(i).getV_41()==null? " ":list.get(i).getV_41().replaceAll(",", ""));
+				list.get(i).setV_42(list.get(i).getV_42()==null? " ":list.get(i).getV_42().replaceAll(",", ""));
+				list.get(i).setV_43(list.get(i).getV_43()==null? " ":list.get(i).getV_43().replaceAll(",", ""));
+				list.get(i).setV_44(list.get(i).getV_44()==null? " ":list.get(i).getV_44().replaceAll(",", ""));
+				list.get(i).setV_45(list.get(i).getV_45()==null? " ":list.get(i).getV_45().replaceAll(",", ""));
+				list.get(i).setV_46(list.get(i).getV_46()==null? " ":list.get(i).getV_46().replaceAll(",", ""));
+				list.get(i).setV_47(list.get(i).getV_47()==null? " ":list.get(i).getV_47().replaceAll(",", ""));
+				list.get(i).setV_48(list.get(i).getV_48()==null? " ":list.get(i).getV_48().replaceAll(",", ""));
+				list.get(i).setV_49(list.get(i).getV_49()==null? " ":list.get(i).getV_49().replaceAll(",", ""));
+			}
+			return list;
 		}
 }

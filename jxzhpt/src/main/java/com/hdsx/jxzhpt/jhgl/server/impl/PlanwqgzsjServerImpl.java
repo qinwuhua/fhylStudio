@@ -21,6 +21,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
@@ -225,6 +226,10 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			e.printStackTrace();
 		}
 		return planwqgzsj.getShengbz();
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhExcel",planwqgzsj);
 	}
 		
 }

@@ -13,6 +13,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 /**
@@ -54,5 +55,7 @@ public interface PlanwqgzsjServer {
 	boolean shbtyWqgzshById(Planwqgzsj planwqgzsj);
 
 	String lwBzsbz(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj);
 	
 }

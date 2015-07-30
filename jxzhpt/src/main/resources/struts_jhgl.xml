@@ -192,6 +192,7 @@
 		<action name="shtyWqgzshById" class="planwqgzsjController" method="shtyWqgzshById"></action>
 		<action name="shbtyWqgzshById" class="planwqgzsjController" method="shbtyWqgzshById"></action>
 		<action name="lwBzsbz" class="planwqgzsjController" method="lwBzsbz"></action>
+		<action name="dcwqgzsjjhExcel" class="planwqgzsjController" method="dcwqgzsjjhExcel"></action>
 		<!-- qwh -->
 	 </package>
 </struts>
