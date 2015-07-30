@@ -400,6 +400,13 @@ $(function() {
 		href:'../sjcx/jhkgl/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101030511',
+		title:'危桥改造项目(交通局)',
+		imgSrc:'../../images/wq_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/wqgzsj.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101030502',
 		title:'安保工程项目',
 		imgSrc:'../../images/ab_s.png',

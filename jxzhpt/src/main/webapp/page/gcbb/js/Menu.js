@@ -145,6 +145,13 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxjmxb.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050210',
+		title:'危桥改造项目(交通局)历年统计报表',
+		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/wqgzsj.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050301',
