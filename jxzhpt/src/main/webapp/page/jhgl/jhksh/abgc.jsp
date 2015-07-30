@@ -12,10 +12,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_abxm.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_abxm.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
@@ -124,19 +128,42 @@
 			});
 			return result;
 		}
+		function dcExcel(){
+			var param="lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh');
+			param+="&jh.jhnf="+$('#sbnf').combobox("getValue");
+			if($('#ddlSHZT').combobox('getValue')=="未审核"){
+				param+="&jh.jh_sbthcd=4";
+			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
+				param+="&jh.jh_sbthcd=6";
+			}else{
+				param+="&jh.jh_sbthcd=4&jh.sbzt=1";
+			}
+			
+			window.location.href="/jxzhpt/jhgl/exportExcelAbgcJhSh.do?"+param;
+		}
+		function importAbgcSh(){
+			var weatherDlg = new J.dialog( {
+				id : 'id1',
+				title : '请选择EXCEL文档！',
+				page : '/jxzhpt/js/uploader/upload.jsp?url='+"/jxzhpt/jhgl/importExcelAbgcJhSh.do"+'&flag='+"wqgzjhsh",
+				width : 450,
+				height : 400,
+				top : 0,
+				rang : true,
+				resize : false,
+				cover : true
+			});
+			weatherDlg.ShowDialog();
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-					<style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
-.abgc_td td{padding-right:5px;}
-</style>
+	<style type="text/css">
+		TD {font-size: 12px;}
+		a{text-decoration:none;}
+		.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
@@ -182,14 +209,15 @@ text-decoration:none;
 								</select></td>
         					</tr>
         					<tr height="32">
-                              <td colspan="10">
-        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
-        								<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
-        								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-                                	</td>
-                                </tr>
-        					</table>
-        				</div>
+                              	<td colspan="10">
+        							<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
+        							<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
+        							<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        							<img id="drExcel" onclick="importAbgcSh()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+                             	</td>
+                           	</tr>
+        				</table>
+        			</div>
         			</fieldset>
         		</td>
         	</tr>

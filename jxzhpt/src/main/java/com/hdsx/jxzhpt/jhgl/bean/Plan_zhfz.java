@@ -10,11 +10,14 @@ public class Plan_zhfz {
 	private String sckid;
 	private String sbnf;//计划年份
 	private Date jhkgsj;//计划开工时间
+	private String jhkgsj1;//计划审核导入Excel
 	private Date jhwgsj;//计划完工时间
+	private String jhwgsj1;//计划审核导入Excel
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
 	private Date pfsj;//批复时间
+	private String pfsj1;//计划审核导入Excel
 	private String pfztz;//批复总投资
 	private String jhsybzje;//计划使用部补助金额
 	private String jhsydfzcje;//计划使用地方自筹资金
@@ -72,8 +75,82 @@ public class Plan_zhfz {
 	private String scqdzh;
 	private String sczdzh;
 	private String sczlc;
+	private String tzgs;
+	private String spwh;
+	private String fapgdw;
+	private String fascdw;
+	private String faspsj;
+	private String jsxz;
+	private String jsnr;
+	private String scbz;
 	private String scyhlc;
 	private String gjxjnd;
+	public String getJhkgsj1() {
+		return jhkgsj1;
+	}
+	public void setJhkgsj1(String jhkgsj1) {
+		this.jhkgsj1 = jhkgsj1;
+	}
+	public String getJhwgsj1() {
+		return jhwgsj1;
+	}
+	public void setJhwgsj1(String jhwgsj1) {
+		this.jhwgsj1 = jhwgsj1;
+	}
+	public String getPfsj1() {
+		return pfsj1;
+	}
+	public void setPfsj1(String pfsj1) {
+		this.pfsj1 = pfsj1;
+	}
+	public String getTzgs() {
+		return tzgs;
+	}
+	public void setTzgs(String tzgs) {
+		this.tzgs = tzgs;
+	}
+	public String getSpwh() {
+		return spwh;
+	}
+	public void setSpwh(String spwh) {
+		this.spwh = spwh;
+	}
+	public String getFapgdw() {
+		return fapgdw;
+	}
+	public void setFapgdw(String fapgdw) {
+		this.fapgdw = fapgdw;
+	}
+	public String getFascdw() {
+		return fascdw;
+	}
+	public void setFascdw(String fascdw) {
+		this.fascdw = fascdw;
+	}
+	public String getFaspsj() {
+		return faspsj;
+	}
+	public void setFaspsj(String faspsj) {
+		this.faspsj = faspsj;
+	}
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getJsnr() {
+		return jsnr;
+	}
+	public void setJsnr(String jsnr) {
+		this.jsnr = jsnr;
+	}
+	public String getScbz() {
+		return scbz;
+	}
+	public void setScbz(String scbz) {
+		this.scbz = scbz;
+	}
 	public Sckzhfz getJckzhfz() {
 		return jckzhfz;
 	}

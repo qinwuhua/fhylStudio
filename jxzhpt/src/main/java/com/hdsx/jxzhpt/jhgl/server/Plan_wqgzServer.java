@@ -123,4 +123,17 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_wqgz jh);
-}
+	/**
+	 * 计划库审查导出EXCEL
+	 * @param jh
+	 * @param lx
+	 * @return
+	 */
+	List<Object> exportExcelWqgzJhSh(Plan_wqgz jh, Jckwqgz lx);
+	/**
+	 * 导入危桥改造计划审核
+	 * @param list
+	 * @return
+	 */
+	boolean updateImportWqgzJh(List<Plan_wqgz> list);
+}	

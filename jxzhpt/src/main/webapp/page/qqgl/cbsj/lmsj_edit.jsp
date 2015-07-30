@@ -77,6 +77,13 @@
 		}
 		function uploadLmzj(){
 			var submit=true;
+			var zlc=parseFloat($('#jhyilc').val()=="" ? "0": $('#jhyilc').val())+parseFloat($('#jherlc').val()=="" ? "0" : $('#jherlc').val())
+			+parseFloat($('#jhsanlc').val()=="" ? "0" : $('#jhsanlc').val())+parseFloat($('#jhsilc').val()=="" ? "" : $('#jhsilc').val())
+			+parseFloat($('#jhdwlc').val()=="" ? "0" : $('#jhdwlc').val())+parseFloat($('#jhwllc').val()=="" ? "0" : $('#jhwllc').val());
+			if(zlc.toFixed(3)!=parseFloat($('#lc').val())){
+				alert("对不起，建设技术等级及里程的总和应等于里程");
+				submit = false;
+			}
 			submit=validateText('qdzh','number',submit);
 			submit=validateText('zdzh','number',submit);
 			submit=validateText('mc_lc','number',submit);

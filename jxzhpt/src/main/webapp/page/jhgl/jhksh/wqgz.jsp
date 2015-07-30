@@ -78,8 +78,8 @@
 		}
 		function spBatch(){
 			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:filterGydwdm($.cookie("unit")),
-					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:getgydw($.cookie("unit")),
+					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:getxzqhdm('xzqh'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
 			var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,
@@ -116,19 +116,42 @@
 				searchWqgz();
 			}
 		}
+		function dcExcel(){
+			var param="lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh');
+			param+="&jh.sbnf="+$('#sbnf').combobox("getValue");
+			if($('#ddlSHZT').combobox('getValue')=="未审核"){
+				param+="&jh.jh_sbthcd=4";
+			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
+				param+="&jh.jh_sbthcd=6";
+			}else{
+				param+="&jh.jh_sbthcd=4&jh.sbzt=1";
+			}
+			
+			window.location.href="/jxzhpt/jhgl/exportExcelWqgzJhSh.do?"+param;
+		}
+		function importWqtzSh(){
+			var weatherDlg = new J.dialog( {
+				id : 'id1',
+				title : '请选择EXCEL文档！',
+				page : '/jxzhpt/js/uploader/upload.jsp?url='+"/jxzhpt/jhgl/importWqgzJhSh.do"+'&flag='+"wqgzjhsh",
+				width : 450,
+				height : 400,
+				top : 0,
+				rang : true,
+				resize : false,
+				cover : true
+			});
+			weatherDlg.ShowDialog();
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-					<style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
-.abgc_td td{padding-right:5px;}
-</style>
+	<style type="text/css">
+		TD {font-size: 12px;}
+		a{text-decoration:none;}
+		.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
@@ -190,7 +213,8 @@ text-decoration:none;
 								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
         						<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
-        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img id="drExcel" onclick="importWqtzSh()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 							</td>
                                 </tr>
         					</table>

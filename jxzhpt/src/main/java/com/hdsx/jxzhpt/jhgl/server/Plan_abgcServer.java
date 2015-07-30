@@ -130,4 +130,17 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_abgc jh);
+	/**
+	 * 到处计划审核Excel
+	 * @param jh
+	 * @param lx
+	 * @return
+	 */
+	List<Object> exportExcelAbgcJhSh(Plan_abgc jh, Jckabgc lx);
+	/**
+	 * 导入计划审核Excel
+	 * @param list
+	 * @return
+	 */
+	boolean updateImportAbgcJhSh(List<Plan_abgc> list);
 }

@@ -58,6 +58,8 @@
 		<action name="deleteFile" class="plan_abgcController" method="deleteFile"/>
 		<action name="exportAbgcZjxdExcel" class="plan_abgcController" method="exportAbgcZjxdExcel"/>
 		<action name="editAbZj" class="plan_abgcController" method="editAbZj"/>
+		<action name="exportExcelAbgcJhSh" class="plan_abgcController" method="exportExcelAbgcJhSh"/>
+		<action name="importExcelAbgcJhSh" class="plan_abgcController" method="importExcelAbgcJhSh"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
@@ -72,6 +74,8 @@
 		<action name="queryZhfzByStatus" class="plan_zhfzController" method="queryZhfzByStatus"/>
 		<action name="exportZhfzZjxdExcel" class="plan_zhfzController" method="exportZhfzZjxdExcel"/>
 		<action name="editZhZj" class="plan_zhfzController" method="editZhZj"/>
+		<action name="exportExcelZhfzJhSh" class="plan_zhfzController" method="exportExcelZhfzJhSh"/>
+		<action name="importExcelZhfzJhSh" class="plan_zhfzController" method="importExcelZhfzJhSh"/>
 		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
@@ -87,6 +91,8 @@
 		<action name="exportWqgzZjxdExcel" class="plan_wqgzController" method="exportWqgzZjxdExcel"/>
 		<action name="queryWqLs" class="plan_wqgzController" method="queryWqLs"/>
 		<action name="editWqZj" class="plan_wqgzController" method="editWqZj"/>
+		<action name="exportExcelWqgzJhSh" class="plan_wqgzController" method="exportExcelWqgzJhSh"/>
+		<action name="importWqgzJhSh" class="plan_wqgzController" method="importWqgzJhSh"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>

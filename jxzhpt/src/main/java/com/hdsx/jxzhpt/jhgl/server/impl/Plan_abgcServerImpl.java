@@ -266,4 +266,15 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean editZjById(Plan_abgc jh) {
 		return update("editZjById", jh)>0;
 	}
+	@Override
+	public List<Object> exportExcelAbgcJhSh(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("exportExcelAbgcJhSh",params);
+	}
+	@Override
+	public boolean updateImportAbgcJhSh(List<Plan_abgc> list) {
+		return (updateBatch("updateImportAbgcJh",list)==list.size() && updateBatch("updateImportAbgcSh",list)==list.size());
+	}
 }

@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -160,6 +162,34 @@ public class Plan_wqgzController extends BaseActionSupport {
 		ee.initStyle(ee.workbook, stylefileName);
 		HttpServletResponse response= getresponse();
 		ee.makeExcel(tableName, sheetBeans, response);
+	}
+	/**
+	 * 计划库审核导出Excel
+	 */
+	public void exportExcelWqgzJhSh(){
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+		String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=桥梁编号,fieid=qlbh>,<title=桥梁名称,fieid=qlmc>,<title=桥梁中心桩号,fieid=qlzxzh>,<title=审查桥梁全长,fieid=scqlqc>,<title=审查桥梁全宽,fieid=scqlqk>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=sbnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybzje>,<title=地方自筹,fieid=jhsydfzcje>,<title=计划备注,fieid=bz>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
+		String fileName="危桥改造工程计划库审核";
+		List<Object> excelData=new ArrayList<Object>();
+		excelData =wqgzServer.exportExcelWqgzJhSh(jh, lx);
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+	}
+	/**
+	 * 导入计划库审核Excel
+	 */
+	public void importWqgzJhSh(){
+		String str="xzqhmc,gydw,lxbm,lxmc,qlbh,qlmc,qlzxzh,scqlqc,scqlqk,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sbnf,jhkgsj1,jhwgsj1,sjdw,sjpfdw,pfwh,pfsj1,sfsqablbz,ablbzsqwh,pfztz,jhsybzje,jhsydfzcje,bz,id,sckid";
+		try {
+			List<Plan_wqgz> list = ExcelImportUtil.readExcel(str, 0, Plan_wqgz.class,fileupload);
+			if(wqgzServer.updateImportWqgzJh(list)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 导入危桥计划Excel

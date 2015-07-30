@@ -351,11 +351,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelYhdzxCbsj(){
-		HashMap<String, String> attribute = new HashMap<String, String>();
-		
 		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,mc,mc_lc,jc,jc_lc,dc,dc_lc,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jsfa";
-		ExcelEntity excel=new ExcelEntity();
-		excel.setAttributes(attribute);
 		try{
 			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist =new ArrayList<Lx>();

@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -347,6 +348,28 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		}
 		ExcelEntity excel=new ExcelEntity("灾害防治",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "灾害防治-资金下达", getresponse());
+	}
+	public void exportExcelZhfzJhSh(){
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+		String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=审查起点桩号,fieid=scqdzh>,<title=审查止点桩号,fieid=sczdzh>,<title=审查总里程,fieid=sczlc>,<title=审查隐患里程,fieid=scyhlc>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=sbnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=设计单位,fieid=sjdw>,<title=设计批复单位,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助申请文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybzje>,<title=地方自筹,fieid=jhsydfzcje>,<title=备注,fieid=bz>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
+		String fileName="灾害防治计划库审核";
+		List<Object> excelData=new ArrayList<Object>();
+		excelData =zhfzServer.exportExcelZhfzJhSh(jh, lx);
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+	}
+	public void importExcelZhfzJhSh(){
+		String str="xzqhmc,gydw,lxbm,lxmc,scqdzh,sczdzh,sczlc,scyhlc,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sbnf,jhkgsj1,jhwgsj1,sjdw,sjpfdw,pfwh,pfsj1,sfsqablbz,ablbzsqwh,pfztz,jhsybzje,jhsydfzcje,bz,id,sckid";
+		try {
+			List<Plan_zhfz> list = ExcelImportUtil.readExcel(str, 0, Plan_zhfz.class,fileupload);
+			if(zhfzServer.updateimportExcelZhfzJhSh(list)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 管养单位或行政区划代码处理

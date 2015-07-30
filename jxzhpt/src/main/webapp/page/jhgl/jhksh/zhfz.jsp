@@ -110,6 +110,33 @@
 				searchZhfz();
 			}
 		}
+		function dcExcel(){
+			var param="lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh');
+			param+="&jh.sbnf="+$('#sbnf').combobox("getValue");
+			if($('#ddlSHZT').combobox('getValue')=="未审核"){
+				param+="&jh.jh_sbthcd=4";
+			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
+				param+="&jh.jh_sbthcd=6";
+			}else{
+				param+="&jh.jh_sbthcd=4&jh.sbzt=1";
+			}
+			
+			window.location.href="/jxzhpt/jhgl/exportExcelZhfzJhSh.do?"+param;
+		}
+		function importZhfzSh(){
+			var weatherDlg = new J.dialog( {
+				id : 'id1',
+				title : '请选择EXCEL文档！',
+				page : '/jxzhpt/js/uploader/upload.jsp?url='+"/jxzhpt/jhgl/importExcelZhfzJhSh.do"+'&flag='+"wqgzjhsh",
+				width : 450,
+				height : 400,
+				top : 0,
+				rang : true,
+				resize : false,
+				cover : true
+			});
+			weatherDlg.ShowDialog();
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -169,11 +196,12 @@ text-decoration:none;
         					</tr>
         					<tr height="32">
                               <td colspan="10">
-        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchZhfz()" style="vertical-align:middle;padding-left: 10px;"/>
-        								<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
-        								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-                                	</td>
-                                </tr>
+        							<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchZhfz()" style="vertical-align:middle;padding-left: 10px;"/>
+        							<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
+        							<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        							<img id="drExcel" onclick="importZhfzSh()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+                                </td>
+                            </tr>
         					</table>
         				</div>
         			</fieldset>

@@ -44,7 +44,6 @@ public class ExcelImportUtil {
 		ExcelEntity excel=new ExcelEntity();
 		Map<String, String> attribute=new HashMap<String, String>();
 		for (int i = 0; i < split.length; i++) {
-			System.out.println("split："+i+"   "+split[i]);
 			attribute.put(new Integer(i).toString(), split[i]);
 		}
 		excel.setAttributes(attribute);

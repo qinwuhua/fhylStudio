@@ -548,4 +548,95 @@
 		update plan_abgc jh set jh.pfztz=#{pfztz},jh.jhsybbzje=#{jhsybbzje},jh.jhsydfzczj=#{jhsydfzczj}
 		where jh.id=#{id}
 	</update>
+	<select id="exportExcelAbgcJhSh" parameterType="java.util.Map" resultType="plan_abgc">
+		select * from 
+			(
+				select rownum as num,t.* from 
+				(
+					select lx.lxbm,lx.lxmc,lx.gydw,lx.xzqhmc,sc.scqdzh,sc.sczdzh,sc.sczlc,sc.scyhlc,sc.fapgdw,sc.fascdw,sc.faspsj,sc.spwh,sc.tzgs,sc.jsxz,sc.jsnr,sc.scbz,
+					jh.id,jh.sckid,jh.jhnf,to_char(jh.jhkgsj,'yyyy-mm-dd') jhkgsj1,to_char(jh.jhwgsj,'yyyy-mm-dd') jhwgsj1,jh.jhwc_c,jh.sjdw,jh.sjpfdw,jh.pfwh,to_char(jh.pfsj,'yyyy-mm-dd') pfsj1,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,jh.ablbzsqwh,jh.remarks
+					from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
+					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+					<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+				 		and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and ${lx.gydwbm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and ${lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsdj}
+				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
+	    			order by jh.jhnf desc,jh.jh_sbthcd
+	    		) t order by t.jhnf desc
+    		)
+	</select>
+	<update id="updateImportAbgcJh" parameterType="plan_abgc">
+		update plan_abgc set
+		<if test="jhnf!=null">jhnf=#{jhnf},</if>
+		<if test="jhkgsj1!=null">jhkgsj=to_date(#{jhkgsj1},'yyyy-mm-dd'),</if>
+		<if test="jhwgsj1!=null">jhwgsj=to_date(#{jhwgsj1},'yyyy-mm-dd'),</if>
+		<if test="jhwc_c!=null">jhwc_c=#{jhwc_c},</if>
+		<if test="sjdw!=null">sjdw=#{sjdw},</if>
+		<if test="sjpfdw!=null">sjpfdw=#{sjpfdw},</if>
+		<if test="pfwh!=null">pfwh=#{pfwh},</if>
+		<if test="pfsj1!=null">pfsj=to_date(#{pfsj1},'yyyy-mm-dd'),</if>
+		<if test="sfsqablbz!=null">sfsqablbz=#{sfsqablbz},</if>
+		<if test="ablbzsqwh!=null">ablbzsqwh=#{ablbzsqwh},</if>
+		<if test="pfztz!=null">pfztz=#{pfztz},</if>
+		<if test="jhsybbzje!=null">jhsybbzje=#{jhsybbzje},</if>
+		<if test="jhsydfzczj!=null">jhsydfzczj=#{jhsydfzczj},</if>
+		<if test="remarks!=null">remarks=#{remarks},</if>
+		id=#{id}
+		where id=#{id}
+	</update>
+	<update id="updateImportAbgcSh" parameterType="plan_abgc">
+		update sck_abgc set
+		<if test="scqdzh!=null">scqdzh=#{scqdzh},</if>
+		<if test="sczdzh!=null">sczdzh=#{sczdzh},</if>
+		<if test="sczlc!=null">sczlc=#{sczlc},</if>
+		<if test="scyhlc!=null">scyhlc=#{scyhlc},</if>
+		<if test="fapgdw!=null">fapgdw=#{fapgdw},</if>
+		<if test="fascdw!=null">fascdw=#{fascdw},</if>
+		<if test="faspsj!=null">faspsj=#{faspsj},</if>
+		<if test="spwh!=null">spwh=#{spwh},</if>
+		<if test="tzgs!=null">tzgs=#{tzgs},</if>
+		<if test="jsxz!=null">jsxz=#{jsxz},</if>
+		<if test="jsnr!=null">jsnr=#{jsnr},</if>
+		<if test="scbz!=null">scbz=#{scbz},</if>
+		sckid=#{sckid}
+		where sckid=#{sckid}
+	</update>
 </mapper>

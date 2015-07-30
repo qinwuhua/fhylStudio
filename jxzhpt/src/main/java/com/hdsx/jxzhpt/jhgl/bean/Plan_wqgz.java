@@ -9,11 +9,14 @@ public class Plan_wqgz {
 	private String sckid;//危桥改造项目库ID
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
+	private String jhkgsj1;//计划审核导入Excel
 	private Date jhwgsj;//计划完工时间
+	private String jhwgsj1;//计划审核导入Excel
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
 	private Date pfsj;//批复时间
+	private String pfsj1;//批复时间，用于计划库审核导入数据时使用
 	private String pfztz;//批复总投资
 	private String jhsybzje;//计划使用部不住金额
 	private String jhsydfzcje;//计划使用地方自筹金额
@@ -64,7 +67,7 @@ public class Plan_wqgz {
 	private String qlkd;
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
-	
+	//路线和审查库信息
 	private String gydw;
 	private String xzqhdm;
 	private String xzqhmc;
@@ -73,9 +76,97 @@ public class Plan_wqgz {
 	private String qlbh;
 	private String qlmc;
 	private String qlzxzh;
+	private String scqlqc;
+	private String scqlqk;
+	private String fapgdw;
+	private String fascdw;
+	private String faspsj;
+	private String tzgs;
+	private String spwh;
+	private String jsxz;
+	private String jsnr;
+	private String scbz;
 	private String xjgjnd;
 	private String sfylrbwqk;
 	
+	public String getJhkgsj1() {
+		return jhkgsj1;
+	}
+	public void setJhkgsj1(String jhkgsj1) {
+		this.jhkgsj1 = jhkgsj1;
+	}
+	public String getJhwgsj1() {
+		return jhwgsj1;
+	}
+	public void setJhwgsj1(String jhwgsj1) {
+		this.jhwgsj1 = jhwgsj1;
+	}
+	public String getPfsj1() {
+		return pfsj1;
+	}
+	public void setPfsj1(String pfsj1) {
+		this.pfsj1 = pfsj1;
+	}
+	public String getFapgdw() {
+		return fapgdw;
+	}
+	public void setFapgdw(String fapgdw) {
+		this.fapgdw = fapgdw;
+	}
+	public String getFascdw() {
+		return fascdw;
+	}
+	public void setFascdw(String fascdw) {
+		this.fascdw = fascdw;
+	}
+	public String getFaspsj() {
+		return faspsj;
+	}
+	public void setFaspsj(String faspsj) {
+		this.faspsj = faspsj;
+	}
+	public String getTzgs() {
+		return tzgs;
+	}
+	public void setTzgs(String tzgs) {
+		this.tzgs = tzgs;
+	}
+	public String getSpwh() {
+		return spwh;
+	}
+	public void setSpwh(String spwh) {
+		this.spwh = spwh;
+	}
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getJsnr() {
+		return jsnr;
+	}
+	public void setJsnr(String jsnr) {
+		this.jsnr = jsnr;
+	}
+	public String getScbz() {
+		return scbz;
+	}
+	public void setScbz(String scbz) {
+		this.scbz = scbz;
+	}
+	public String getScqlqc() {
+		return scqlqc;
+	}
+	public void setScqlqc(String scqlqc) {
+		this.scqlqc = scqlqc;
+	}
+	public String getScqlqk() {
+		return scqlqk;
+	}
+	public void setScqlqk(String scqlqk) {
+		this.scqlqk = scqlqk;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}

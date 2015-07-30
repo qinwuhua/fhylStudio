@@ -300,6 +300,11 @@ function wqxm_sh(jh,lx){
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+		        {field:'gydwbm',title:'交通局/公路局',width:150,align:'center',
+		        	formatter:function(value, row, index){
+		        		return row.jckwqgz.gydwbm.substring(0,1)=="1" ? "交通局" : "公路局";
+		        	}
+		        },
 		        {field:'gydw',title:'管养单位',width:150,align:'center',
 		        	formatter:function(value, row, index){
 		        		return row.jckwqgz.gydw;
@@ -325,12 +330,22 @@ function wqxm_sh(jh,lx){
 			        	return row.jckwqgz.qlbh;
 		        	}
 		       },
-		        {field:'qlmc',title:'桥梁名称',width:60,align:'center',
+		       {field:'qlmc',title:'桥梁名称',width:60,align:'center',
 		    	   formatter:function(value,row,index){
-			        	return row.jckwqgz.qlmc;
-		        	}
-		    	},
-		        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		    		   return row.jckwqgz.qlmc;
+		    	   }
+		       },
+		       {field:'scqlqc',title:'审查桥梁全长',width:60,align:'center',
+		    	   formatter:function(value,row,index){
+		    		   return row.jckwqgz.scqlqc;
+		    	   }
+		       },
+		       {field:'scqlqk',title:'审查桥梁全宽',width:60,align:'center',
+		    	   formatter:function(value,row,index){
+		    		   return row.jckwqgz.scqlqk;
+		    	   }
+		       },
+		       {field:'pfztz',title:'批复总投资',width:80,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){

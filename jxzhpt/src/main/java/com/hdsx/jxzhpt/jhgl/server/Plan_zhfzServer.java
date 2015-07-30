@@ -110,4 +110,17 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_zhfz jh);
+	/**
+	 * 计划审核导出Excel
+	 * @param jh
+	 * @param lx
+	 * @return
+	 */
+	List<Object> exportExcelZhfzJhSh(Plan_zhfz jh, Jckzhfz lx);
+	/**
+	 * 计划审核导入Excel
+	 * @param list
+	 * @return
+	 */
+	boolean updateimportExcelZhfzJhSh(List<Plan_zhfz> list);
 }
