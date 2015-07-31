@@ -288,7 +288,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030309',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu3',
 		href:'../qqgl/jhsh/xjgc.jsp'
 	});
@@ -309,7 +309,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030308',
 		title:'公路建设下达计划',
-		imgSrc:'../../images/sh_s.png',
+		imgSrc:'../../images/gljsxdjh.png',
 		renderTo:'left_menu3',
 		href:'./jhksh/xdjh.jsp'
 	});
@@ -360,7 +360,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030410',
 		title:'新建工程项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu4',
 		href:'../qqgl/zjxd/xjgc.jsp'
 	});
@@ -437,7 +437,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030510',
 		title:'新建工程项目',
-		imgSrc:'../../images/sj_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu5',
 		href:'../qqgl/jhcx/xjgc.jsp'
 	});
@@ -480,7 +480,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030603',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu6',
 		href:'./jhkgl/wqgz.jsp'
 	});
@@ -509,7 +509,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030703',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu7',
 		href:'./jhkgl/wqgz.jsp'
 	});
@@ -538,7 +538,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030803',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu8',
 		href:'./jhkgl/wqgz.jsp'
 	});
@@ -567,7 +567,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030903',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu9',
 		href:'./jhkgl/wqgz.jsp'
 	});
@@ -596,7 +596,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101031003',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu10',
 		href:'./jhkgl/wqgz.jsp'
 	});
@@ -625,7 +625,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101031103',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgc.png',
 		renderTo:'left_menu11',
 		href:'./jhkgl/wqgz.jsp'
 	});

@@ -54,21 +54,21 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101050103',
 		title:'路网结构改造工程进展情况',
-		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
+		imgSrc:'../../images/menubutton/lwjggz.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gcjz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050104',
 		title:'市农村公路危桥改造工程项目建设表',
-		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
+		imgSrc:'../../images/menubutton/sncglwq.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/wqgzjsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050105',
 		title:'市农村公路安保工程项目建设表',
-		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
+		imgSrc:'../../images/menubutton/sncglab.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/abgcjsb.jsp'
 	});
@@ -176,82 +176,82 @@ $(function() {
 	});
 	
 	
-	createMenu2('LeftMenu',{
-		id:'menu1',
+	createMenux('LeftMenu',{
+		id:'menu_0101050401',
 		title:'危桥基础库报表',
-		imgSrc:'../../images/menubutton/wq.png',
+		imgSrc:'../../images/menubutton/wqjckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqbb/wqjc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu3',
+	createMenux('LeftMenu',{
+		id:'menu_0101050402',
 		title:'危桥审查库报表',
-		imgSrc:'../../images/menubutton/zh.png',
+		imgSrc:'../../images/menubutton/wqsckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqbb/wqsc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu2',
+	createMenux('LeftMenu',{
+		id:'menu_0101050403',
 		title:'危桥计划库报表',
-		imgSrc:'../../images/menubutton/ab.png',
+		imgSrc:'../../images/menubutton/wqjhkbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqbb/wqjh.jsp'
 	});
 
-	createMenu2('LeftMenu',{
-		id:'menu4',
+	createMenux('LeftMenu',{
+		id:'menu_0101050404',
 		title:'安保基础库报表',
-		imgSrc:'../../images/menubutton/yh.png',
+		imgSrc:'../../images/menubutton/abjckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abbb/abjc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu7',
+	createMenux('LeftMenu',{
+		id:'menu_0101050405',
 		title:'安保审查库报表',
-		imgSrc:'../../images/menubutton/sj.png',
+		imgSrc:'../../images/menubutton/absckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abbb/absc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu6',
+	createMenux('LeftMenu',{
+		id:'menu_0101050406',
 		title:'安保计划库报表',
-		imgSrc:'../../images/menubutton/gj.png',
+		imgSrc:'../../images/menubutton/abjhkbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abbb/abjh.jsp'
 	});
 
-	createMenu2('LeftMenu',{
-		id:'menu8',
+	createMenux('LeftMenu',{
+		id:'menu_0101050407',
 		title:'灾害基础库报表',
-		imgSrc:'../../images/menubutton/hs.png',
+		imgSrc:'../../images/menubutton/zhjckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhbb/zhjc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
+	createMenux('LeftMenu',{
+		id:'menu_0101050408',
 		title:'灾害审查库报表',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/zhsckbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhbb/zhsc.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu9',
+	createMenux('LeftMenu',{
+		id:'menu_0101050409',
 		title:'灾害计划库报表',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/zhjhkbb.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhbb/zhjh.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu12',
+	createMenux('LeftMenu',{
+		id:'menu_0101050410',
 		title:'危桥进度库开工信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/wqjdkkg.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqkg.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
+	createMenux('LeftMenu',{
+		id:'menu_0101050411',
 		title:'危桥进度库进展信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/wqjdkjz.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqjz.jsp'
 	});
@@ -269,17 +269,17 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqkn.jsp'
 	});*/
-	createMenu2('LeftMenu',{
-		id:'menu16',
+	createMenux('LeftMenu',{
+		id:'menu_0101050412',
 		title:'安保进度库开工信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/abjdkkg.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abkg.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu15',
+	createMenux('LeftMenu',{
+		id:'menu_0101050413',
 		title:'安保进度库进展信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/abjdkjz.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abjz.jsp'
 	});
@@ -297,17 +297,17 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abkn.jsp'
 	});*/
-	createMenu2('LeftMenu',{
-		id:'menu20',
+	createMenux('LeftMenu',{
+		id:'menu_0101050414',
 		title:'灾害进度库开工信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/zhjdkkg.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhkg.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu19',
+	createMenux('LeftMenu',{
+		id:'menu_0101050415',
 		title:'灾害进度库进展信息模板',
-		imgSrc:'../../images/menubutton/left_kj.png',
+		imgSrc:'../../images/menubutton/zhjdkjz.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhjz.jsp'
 	});

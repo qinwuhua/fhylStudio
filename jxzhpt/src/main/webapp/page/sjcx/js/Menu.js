@@ -245,91 +245,91 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101060501',
 		title:'升级改造工程立项审核',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/sjgzlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060502',
 		title:'路面改造工程立项审核',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/lmgzlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmgz_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060503',
 		title:'新建工程立项审核',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/xjlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/xjxm_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060504',
 		title:'养护大中修工程立项审核',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/yhlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/yhdzx_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060505',
 		title:'灾毁重建项目立项审核',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/zhlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/shxm_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060506',
 		title:'升级改造工程可行性研究',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/sjgzkxxyj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_kxxyj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060507',
 		title:'路面改造工程可行性研究',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/lmgzkxxyj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmgz_kxxyj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060508',
 		title:'新建工程可行性研究',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/xjkxxyj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/xjxm_kxxyj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060509',
 		title:'升级改造工程初步设计',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/sjgzcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_cbsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060510',
 		title:'路面改造工程初步设计',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/lmgzcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmgz_cbsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060511',
 		title:'新建工程初步设计',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/xjcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/xjxm_cbsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060512',
 		title:'养护大中修工程初步设计',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/yhcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/yhdzx_cbsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060513',
 		title:'灾毁重建项目初步设计',
-		imgSrc:'../../images/zdycx.png',
+		imgSrc:'../../images/zhcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/shxm_cbsj.jsp'
 	});

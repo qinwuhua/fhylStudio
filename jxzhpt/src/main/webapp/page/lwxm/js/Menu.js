@@ -47,7 +47,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101020104',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq.png',
+		imgSrc:'../../images/wqgz_jtj.png',
 		renderTo:'left_menu1',
 		href:'./jckgl/wqgzsj.jsp'
 	});
