@@ -36,7 +36,7 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:$(window).height()-$(window).height()*0.22,
-	    width:$(window).width()-$(window).width()*0.019,
+	    width:$(window).width()-$(window).width()*0.016,
 	    queryParams: {
 	    	gydw: gydw,
 	    	kssj:kssj,
@@ -52,8 +52,8 @@ function showAll(){
 
 	        }},
 	        {field:'title',title:'信息名称',width:200,align:'center'},
-	        {field:'contens',title:'信息内容',width:500,align:'center'},
-	        {field:'reportper',title:'发布人',width:100,align:'center'},
+	        {field:'contens',title:'信息内容',width:900,align:'center'},
+	        {field:'reportper',title:'发布人',width:200,align:'center'},
 	        {field:'reporttime',title:'时间',width:95,align:'center'}
 	    ]]    
 	}); 
