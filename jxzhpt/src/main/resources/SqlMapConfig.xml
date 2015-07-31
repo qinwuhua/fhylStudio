@@ -26,6 +26,7 @@
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys" alias="gcgl_jgys"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgltz" alias="gcgltz"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Trqk" alias="trqk"/>
+       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Wjgl" alias="wjgl"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lkmxb" alias="lkmxb"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lktjb" alias="lktjb"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Jtlhz" alias="jtlhz"/>
@@ -145,6 +146,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglhsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglaqyb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/trqk.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/wjxt/config/wjgl.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/zhqk.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/zdxx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/dbyh.xml"/>

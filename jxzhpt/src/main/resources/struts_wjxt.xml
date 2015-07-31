@@ -3,6 +3,22 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="wjxt" extends="struts-default" namespace="/wjxt">
+	<action name="uploadWjFile" class="wjglController" method="uploadWjFile"/>
+	<action name="deleteWjfile" class="wjglController" method="deleteWjfile"/>
+	<action name="deleteWjfile1" class="wjglController" method="deleteWjfile1"/>
+	<action name="deleteQtWjfile1" class="wjglController" method="deleteQtWjfile1"/>
+	<action name="insertZcwj" class="wjglController" method="insertZcwj"/>
+	<action name="insertQtwj" class="wjglController" method="insertQtwj"/>
+	<action name="updateZcwj" class="wjglController" method="updateZcwj"/>
+	<action name="updateQtwj" class="wjglController" method="updateQtwj"/>
+	<action name="deleteZcwj" class="wjglController" method="deleteZcwj"/>
+	<action name="deleteQtwj" class="wjglController" method="deleteQtwj"/>
+	<action name="selectzcwjlist" class="wjglController" method="selectzcwjlist"/>
+	<action name="selectqtwjlist" class="wjglController" method="selectqtwjlist"/>
+	<action name="selectWjfile" class="wjglController" method="selectWjfile"/>
+	<action name="downWjFile" class="wjglController" method="downWjFile"/>
+	
+	
 	<action name="insertTrqk" class="trqkController" method="insertTrqk"/>
 	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
 	<action name="deletetrqk" class="trqkController" method="deletetrqk"/>

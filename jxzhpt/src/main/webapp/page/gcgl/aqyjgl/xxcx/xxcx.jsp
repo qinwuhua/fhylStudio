@@ -50,8 +50,18 @@
 			$("#jssj").datebox({    
 		    
 			});  
-			$('#kssj').datebox('setValue', y1+"-"+m1+"-"+d);
 			$('#jssj').datebox('setValue',  y+"-"+m+"-"+d);
+			if(m1==4||m1==6||m1==9||m1==11){
+				if(d==31){
+					d=30;
+				}
+			}
+			if(m1==2){
+				if(d==29||d==30||d==31){
+					d=28
+				}
+			}
+			$('#kssj').datebox('setValue', y1+"-"+m1+"-"+d);
 			showAll();
 		});
 	</script>

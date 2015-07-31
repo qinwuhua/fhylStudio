@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcgltz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface GcglaqybServer {
@@ -101,5 +102,9 @@ public interface GcglaqybServer {
 	Gcgl_jgys queryJGYS(Gcgl_jgys gcgl_jgys);
 
 	boolean loadWqgzwgzp(Gcgl_jgys gcgl_jgys);
+
+	Wjgl selectzcwjById(Gcgltz gcgltz);
+
+	Wjgl selectqtwjById(Gcgltz gcgltz);
 
 }

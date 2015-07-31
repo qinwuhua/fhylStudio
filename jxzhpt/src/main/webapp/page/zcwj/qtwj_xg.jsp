@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript"src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
@@ -45,7 +45,7 @@
 			//和以下input的name属性一致 
 			'auto' : false,
 			//是否自动开始 
-			'multi' : true,
+			'multi' : true, 
 			//是否支持多文件上传 
 			//'buttonText' : '浏览...',
 			'buttonImg': '${pageContext.request.contextPath }/js/uploader/btn_view.png',
@@ -105,45 +105,28 @@
    	} 
 </script>
 <script type="text/javascript">
-	$(function(){
-		setGydw("tj_tjdepartmentcode","36");
-		var data=parent.obj1;
-		$("#tj_title").val(data.title);
-		$("#tj_contens").val(data.contens);
-		var data="id="+request('id');
-		$.ajax({
-			type:'post',
-			url:'../../../../gcgl/selectTzfile.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				for(var i=0;i<msg.length;i++)
-				$('<li></li>').appendTo('.files').html(msg[i].filename+'                   <a href="javascript:DelTz('+"'"+msg[i].id+"'"+')"  style="text-decoration:none;"> 删除 </a> ');
-			}
-		});	
-	});
 	function addaqyb(){
-		if($("#tjdepartmentcode").val()==''){
+		if($("#jsdw").val()==''){
 			alert("请选择接收单位");
 			return;
 		}
-		if($("#tj_title").val()==''){
+		if($("#wjmc").val()==''){
 			alert("请添加通知名称");
 			return;
 		}
-		if($("#tj_contens").val()==''){
+		if($("#wjgy").val()==''){
 			alert("请添加通知内容");
 			return;
 		}
 		if(!confirm("确认保存吗？")){
 			return;
 		}
-		var data= "gcgltz.tjdepartmentcode="+$("#tjdepartmentcode").val()+"&gcgltz.title="+$("#tj_title").val()+"&gcgltz.contens="+$("#tj_contens").val()
-		+"&gcgltz.id="+request('id');
+		var data= "wjgl.jsdw="+$("#jsdw").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+$("#wjgy").val()+"&wjgl.fbdw="+$.cookie("unit")
+		+"&wjgl.id="+request('id')+"&wjgl.fbr="+$.cookie("truename");
 		//alert(data);
 		$.ajax({
 				type:'post',
-				url:'../../../../gcgl/insertTz1.do',
+				url:'/jxzhpt/wjxt/updateQtwj.do',
 				data:data,
 				dataType:'json',
 				async:false,
@@ -169,66 +152,87 @@
 			uploadifyUpload();
 		}
 		addaqyb();
+		//uploadifyUpload();
 	}
 	function uploadifyUpload() {
 		$('#fileupload').uploadifyUpload();
 	}
 	function fanhui() {
-// 		var data="id="+request('id');
-// 		$.ajax({
-// 			type:'post',
-// 			url:'../../../../gcgl/deleteTzfile1.do',
-// 			data:data,
-// 			dataType:'json',
-// 			success:function(msg){
+		var data="id="+request('id');
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/wjxt/deleteQtWjfile1.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
 				
-// 			}
-// 		});	
+			}
+		});	
 		var flag=request('flag');
-		parent.window.location = '/jxzhpt/page/gcgl/'+flag+'.jsp';
+		parent.window.location = '/jxzhpt/page/zcwj/'+flag;
  		dg.cancel();
 	}
-	
+	$(function(){
+		var data=parent.obj;
+		$("#wjmc").val(data.wjmc);
+		$("#wjgy").val(data.wjgy);
+		var data1="id="+data.id;
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/wjxt/selectWjfile.do',
+			data:data1,
+			dataType:'json',
+			success:function(msg){
+				if(msg.length==0){
+					$('<li></li>').appendTo('.files').html("无附件");
+				}
+				for(var i=0;i<msg.length;i++)  
+				$('<li></li>').appendTo('.files').html(msg[i].wjname+'                 <a id="'+msg[i].id+'" href="javascript:DelTz('+"'"+msg[i].id+"'"+')"  style="text-decoration:none;"> 删除 </a> '  );
+			}
+		});	
+		setGydw("jsdw","36");
+		var data1="yhdw="+$.cookie("unit");
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xtgl/selAllBm.do',
+			data:data1,
+			dataType:'json',
+			success:function(msg){
+				$("#fsdwmc").val(msg[0].text);
+			}
+		});	
+	});
 	function setGydw(id, dwbm){
 			$('#' + id).tree(
 			{
 				checkbox : true,
-				cascadeCheck : false, 
+				//cascadeCheck : false, 
 				multiple:true,
-				url : '/jxzhpt/gcgl/selAllBm5.do?id=' + parent.obj1.id,
+				url : '/jxzhpt/gcgl/selAllBm7.do?id=' + parent.obj.id,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
 					var codes='';
-					$('#tjdepartmentcode').val('');
+					$('#jsdw').val('');
 					for(var i=0;i<nodes.length;i++){
 						codes+=nodes[i].id+',';
 					}
-					$('#tjdepartmentcode').val(codes);
-				},onLoadSuccess: function (node){
-				var nodes=$('#' + id).tree('getChecked');
-				var codes='';
-				$('#tjdepartmentcode').val('');
-				for(var i=0;i<nodes.length;i++){
-					codes+=nodes[i].id+',';
-				}
-				$('#tjdepartmentcode').val(codes);
-				}
+					$('#jsdw').val(codes);
+				},
 			});
 
 	}
 	function DelTz(str){
 //		alert(str);
-		var data="gcgltz.id="+str;
+		var data="wjgl.id="+str;
 		if(confirm("确认删除吗？")){
 			$.ajax({
 				type:'post',
-				url:'../../../../gcgl/deleteTzfile.do',
+				url:'/jxzhpt/wjxt/deleteWjfile.do',
 				data:data,
 				dataType:'json',
 				success:function(msg){
 					if(Boolean(msg)){
 						alert('删除成功！');
-						$("#ybgrid").datagrid('reload');
 						$("#"+str).attr("href","#");
 						$("#"+str).attr("style","cursor: default;color: #CCCCCC;text-decoration:none;");
 						$("#"+str).text("已删除");
@@ -258,31 +262,30 @@
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                               		<ul id="tj_tjdepartmentcode"></ul>
-                             	  <input type="hidden" id="fsdwmc">
-                                   <input type="hidden" id="tjdepartmentcode">
+                               		<ul id="jsdw"></ul>
+                                   <input type="hidden" id="jsdw">
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="font-size: 12px">通知名称 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">文件名称 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                                 <input type="text" id="tj_title"  style="width: 300px;">
+                                 <input type="text" id="wjmc"  style="width: 300px;">
                                 </td>
                             </tr>
                               <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="font-size: 12px">通知内容 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">文件概要 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                                  <textarea rows="5" cols="50" id="tj_contens"></textarea>
+                                  <textarea rows="5" cols="50" id="wjgy"></textarea>
                                 </td>
                                 
                             </tr>
@@ -307,7 +310,7 @@
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
                                   <div id="fileQueue"></div>
                                  <ul style="list-style: none;" class=files>
-								</ul>
+								 </ul>
                                 </td>
                             </tr>
                         </table>
@@ -316,7 +319,6 @@
 				class="as" > 保存 </a> 
             <a href="#" class="easyui-linkbutton" iconCls="back" onclick="fanhui()" >返回 </a>
            </p>
-		
 		</center>
 	</form>
 </body>

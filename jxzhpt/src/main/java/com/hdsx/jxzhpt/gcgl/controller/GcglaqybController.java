@@ -45,6 +45,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -719,7 +720,6 @@ public class GcglaqybController extends BaseActionSupport{
 		}
 	}
 	public void insertTz(){
-		;
 		Date riqi = null;
 		try {
 			riqi = new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -784,6 +784,44 @@ public class GcglaqybController extends BaseActionSupport{
 		gcgltz.setId(id);
 		Gcgltz gcglaqyb1 = gcglaqybServer.selecttzById(gcgltz);
 		String [] dwbm=gcglaqyb1.getTjdepartmentcode().split(",");
+		List<String> list=new ArrayList<String>();
+		for (int i = 0; i < dwbm.length; i++) {
+			list.add(dwbm[i]);
+		}
+		TreeNode root = returnRoot1(l,l.get(0),list);
+		List<TreeNode> children = root.getChildren();
+		try{
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllBm6(){
+		List<TreeNode> l=gcglaqybServer.selAllBm3(yhdw);
+		gcgltz.setId(id);
+		Wjgl gcglaqyb1 = gcglaqybServer.selectzcwjById(gcgltz);
+		String [] dwbm=gcglaqyb1.getJsdw().split(",");
+		List<String> list=new ArrayList<String>();
+		for (int i = 0; i < dwbm.length; i++) {
+			list.add(dwbm[i]);
+		}
+		TreeNode root = returnRoot1(l,l.get(0),list);
+		List<TreeNode> children = root.getChildren();
+		try{
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllBm7(){
+		List<TreeNode> l=gcglaqybServer.selAllBm3(yhdw);
+		gcgltz.setId(id);
+		Wjgl gcglaqyb1 = gcglaqybServer.selectqtwjById(gcgltz);
+		String [] dwbm=gcglaqyb1.getJsdw().split(",");
 		List<String> list=new ArrayList<String>();
 		for (int i = 0; i < dwbm.length; i++) {
 			list.add(dwbm[i]);

@@ -15,13 +15,13 @@
 	<script type="text/javascript" src="js/xxcx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var data=parent.obj1;
-			$("#title").text(data.title);
-			$("#contens").text(data.contens);
+			var data=parent.obj;
+			$("#wjmc").text(data.wjmc);
+			$("#wjgy").text(data.wjgy);
 			var data1="id="+data.id;
 			$.ajax({
 				type:'post',
-				url:'../../../../gcgl/selectTzfile.do',
+				url:'/jxzhpt/wjxt/selectWjfile.do',
 				data:data1,
 				dataType:'json',
 				success:function(msg){
@@ -29,10 +29,11 @@
 						$('<li></li>').appendTo('.files').html("无附件");
 					}
 					for(var i=0;i<msg.length;i++)
-					$('<li></li>').appendTo('.files').html(msg[i].filename+'                   <a href="/jxzhpt/gcgl/downXxtzFile.do?id='+msg[i].id+'"  style="text-decoration:none;"> 下载 </a> ');
+					$('<li></li>').appendTo('.files').html(msg[i].wjname+'                   <a href="/jxzhpt/wjxt/downWjFile.do?id='+msg[i].id+'"  style="text-decoration:none;"> 下载 </a> ');
 				}
 			});	
 		});
+		
 	</script>
 	<style type="text/css">
 <!--
@@ -60,37 +61,37 @@ a:active {
                 <tr>
                     <td>
                         <br />
-                        <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
+                        <table width="700px;" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                    padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style=" font-size: 12px">通知名称 </font></b>
+                                    padding-right: 5px; vertical-align: middle;" width="200px;">
+                                    <b><font color="#009ACD" style=" font-size: 12px">文件名称 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <span id="title"></span>
+                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" width="500px;">
+                                <span id="wjmc"></span>
                                 </td>
                             </tr>
                             
                             <tr style="height: 105px;">
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                    width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style=" font-size: 12px">通知内容 </font></b>
+                                    width: 200px; padding-right: 5px; vertical-align: middle;">
+                                    <b><font color="#009ACD" style=" font-size: 12px">文件概要</font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                  <span id="contens"></span>
+                                  <span id="wjgy"></span>
                                 </td>
                             </tr>
                        		<tr style="height: 35px;">
                                  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                    width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style=" font-size: 12px">附件 </font></b>
+                                    width: 200px; padding-right: 5px; vertical-align: middle;">
+                                    <b><font color="#009ACD" style=" font-size: 12px">文件 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
@@ -99,12 +100,12 @@ a:active {
                                 </td>
                             </tr>
                         </table>
-                        <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
+                        <table width="700px" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
                             cellspacing="0" cellpadding="0">
                             <tr style="height: 30px;">
                                 <td align="center">
-                                    <input onclick="closes('wqxx')" type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" style="border-width:0px;" />
+                                    <input onclick=" parent.$('#zcwj').window('destroy');" type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" style="border-width:0px;" />
                                 </td>
                             </tr>
                         </table>

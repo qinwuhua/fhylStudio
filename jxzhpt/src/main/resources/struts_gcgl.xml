@@ -239,6 +239,8 @@
 	<action name="selAllUnit1" class="gcglaqybController" method="selAllUnit1"/>
 	<action name="selAllBm4" class="gcglaqybController" method="selAllBm4"/>
 	<action name="selAllBm5" class="gcglaqybController" method="selAllBm5"/>
+	<action name="selAllBm6" class="gcglaqybController" method="selAllBm6"/>
+	<action name="selAllBm7" class="gcglaqybController" method="selAllBm7"/>
 	<action name="deleteAqybb" class="gcglaqybController" method="deleteAqybb"/>
 	<action name="downAqybbFile" class="gcglaqybController" method="downAqybbFile"/>
 	

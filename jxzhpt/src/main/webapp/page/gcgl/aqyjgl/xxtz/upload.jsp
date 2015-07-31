@@ -295,8 +295,8 @@
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
                                   <div id="fileQueue"></div>
-                                 <ol class=files>
-								</ol>
+                                 <ul style="list-style: none;" class=files>
+								</ul>
                                 </td>
                             </tr>
                         </table>

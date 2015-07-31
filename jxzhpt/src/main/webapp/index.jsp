@@ -82,6 +82,7 @@ function menuQx(_location,_flag){
             <td><a href="javascript:void(0)" onclick="menuQx('./jhgl_index.jsp','0101')"><img src="images/xz_1.png" width="182" height="250"/></a></td>
             <td style="display:none;"><a href="javascript:void(0)" onclick="menuQx('./dlxx_index.jsp','0102')"><img src="images/xz_2.png" width="182" height="250" /></a></td>
             <td><a href="javascript:void(0)" onclick="menuQx('./wjsj_index.jsp','0103')"><img src="images/xz_3.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./zcwj_index.jsp','0102')"><img src="images/xz_5.png" width="182" height="250" /></a></td>
             <td><a href="javascript:void(0)" onclick="menuQx('./xtgl_index.jsp','0104')"><img src="images/xz_4.png" width="182" height="250" /></a></td>
             </tr>
             </table>
