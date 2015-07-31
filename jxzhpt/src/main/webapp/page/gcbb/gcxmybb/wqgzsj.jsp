@@ -63,12 +63,12 @@
 			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
 				str1=str1+'<td colspan="4">计划下达及完成情况</td>';
-				str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完位资金（万元）</td>';
+				str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完成资金（万元）</td>';
 				str3=str3+'<td>桥梁数量（座）</td><td>延米（米）</td>';
 			}
 			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="4">计划下达及完成情况</td>'
 			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完位资金（万元）</td>'
+			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完成资金（万元）</td>'
 			+str2+'</tr>'
 			+'<td>桥梁数量（座）</td><td>延米（米）</td>'
 			+str3+'</tr>';
