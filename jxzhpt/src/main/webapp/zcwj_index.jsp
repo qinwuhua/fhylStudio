@@ -59,7 +59,7 @@ function edit(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
-			<div class="header_content3">
+			<div class="header_content5">
 			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
 			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>

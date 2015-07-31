@@ -23,6 +23,7 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 .header_content2{position:relative;height:96px;background:url(../images/top_bg2.jpg) 0 0 no-repeat;}
 .header_content3{position:relative;height:96px;background:url(../images/top_bg3.jpg) 0 0 no-repeat;}
 .header_content4{position:relative;height:96px;background:url(../images/top_bg4.jpg) 0 0 no-repeat;}
+.header_content5{position:relative;height:96px;background:url(../images/top_bg5.jpg) 0 0 no-repeat;}
 
 .date{position:absolute;top:16px;right:178px;color:#d3dfee;}
 .system{position:absolute;top:16px;right:17px;}
