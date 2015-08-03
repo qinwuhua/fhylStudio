@@ -62,9 +62,11 @@ text-decoration:none;
 			return;
 		}
 		var sbthcd;
-		if($.cookie("unit2").length==11) sbthcd=0;
-	 	else if($.cookie("unit2").length==9) sbthcd=2;
- 		else sbthcd=4;
+		if(parent.tsdq1.indexOf('省直管试点县')>0){
+			sbthcd=2;
+		}else{
+			sbthcd=4;
+		}
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/jhgl/shbtyWqgzshById.do",

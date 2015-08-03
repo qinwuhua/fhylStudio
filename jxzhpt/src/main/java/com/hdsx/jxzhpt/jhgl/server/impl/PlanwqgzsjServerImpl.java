@@ -157,12 +157,13 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public boolean sbWqgzjh(Planwqgzsj planwqgzsj) {
 		String[] strs = planwqgzsj.getId().split(",");
+		String[] sbth=planwqgzsj.getSbthcd().split(",");
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("id", strs[i]);
 			hm.put("sbbm", planwqgzsj.getSbbm());
-			hm.put("sbthcd", planwqgzsj.getSbthcd());
+			hm.put("sbthcd", sbth[i]);
 			lm.add(hm);
 		}
 		if(updateBatch("sbWqgzjh", lm)>0) return true;

@@ -94,7 +94,7 @@
 					}},    
 					 {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
 								 if(row.spzt=='0')
-								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+								 return '<a href=javascript:shangb1('+"'"+row.id+"','"+row.tsdq+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 								 else  return "已审核";
 					}}, 
 		 		{field:'sfylsjl',title:'是否有修建记录',width:120,align:'center',formatter:function(value,row,index){
@@ -146,9 +146,10 @@
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
 		}
-
-		function shangb1(id){
+		var tsdq1;
+		function shangb1(id,tsdq){
 			obj=id;
+			tsdq1=tsdq;
 			YMLib.UI.createWindow('wq_edit','省级审核',"/jxzhpt/page/jhgl/jhksh/wqgzsj_sh.jsp",'wq_edit',500,300);
 		}
 	</script>

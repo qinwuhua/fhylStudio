@@ -58,11 +58,17 @@ text-decoration:none;
 			alert("请填入不同意原因");
 			return;
 		}
+		var sbthcd;
+		if(parent.obj.tsdq.indexOf('省直管试点县')>0){
+			sbthcd=11;
+		}else{
+			sbthcd=$.cookie("unit2").length+2;
+		}
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/sjshbtyWqgzsjwqgz.do",
 			 dataType : 'json',
-			 data : 'jckwqgzsj.id=' +parent.obj.sckid+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length+2)+"&jckwqgzsj.shyj2="+$("#shyj2").val(),
+			 data : 'jckwqgzsj.id=' +parent.obj.sckid+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.shyj2="+$("#shyj2").val(),
 			 success : function(msg){
 				 if(msg){
 					 alert('审核成功！');

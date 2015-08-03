@@ -106,11 +106,21 @@
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    
 					 {field:'sbzt2',title:czzt,width:180,align:'center',formatter:function(value,row,index){
+						 var sbthcd;
+						 if(row.tsdq.indexOf('省直管试点县')>0){
+								sbthcd=4;
+							}else{
+								sbthcd=2;
+							}
 						 if(row.sbzt2=='未上报'&&row.jh_sbthcd==0&&czzt!='审核状态'){
 							 if(row.shzt1=='未审核'){
-								 return '<a href=javascript:shangb('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+								 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 							 }
-							 return '<a href=javascript:shangb('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+							 if(row.tsdq.indexOf('省直管试点县')>0){
+								 if(row.shzt=='未审核')
+									 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+							 }
+							 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 						 }else if(row.sbzt2=='未上报'&&row.jh_sbthcd==2&&czzt!='审核状态'){
 							 if(row.shzt=='未审核'){
 								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
@@ -197,18 +207,29 @@
 					return ;
 				}
 			}
+			var sbthcd;
+			var sbthcd1;
+			if($.cookie("unit2").length==11) sbthcd=2;
+		 	else if($.cookie("unit2").length==9) sbthcd=4;
+	 		else sbthcd=6;
+			if(rows[0].tsdq.indexOf('省直管试点县')>0){
+				sbthcd1=4;
+			}else{
+				sbthcd1=sbthcd;
+			}
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
+				if(rows[i].tsdq.indexOf('省直管试点县')>0){
+					sbthcd1=","+4;
+				}else{
+					sbthcd1=","+sbthcd;
+				}
 			}
-			shangb(id);
+			shangb(id,sbthcd1);
 		}
-		function shangb(id){
-			var sbthcd;
-			if($.cookie("unit2").length==11) sbthcd=0;
-		 	else if($.cookie("unit2").length==9) sbthcd=2;
-	 		else sbthcd=4;
+		function shangb(id,sbthcd){
 			if(confirm('您确定上报该项目？')){
-				var data = "planwqgzsj.id="+id+"&planwqgzsj.sbbm="+$.cookie("unit")+"&planwqgzsj.sbthcd="+(sbthcd+2);
+				var data = "planwqgzsj.id="+id+"&planwqgzsj.sbbm="+$.cookie("unit")+"&planwqgzsj.sbthcd="+sbthcd;
 				$.ajax({
 					 type : "POST",
 					 url : "/jxzhpt/jhgl/sbWqgzjh.do",

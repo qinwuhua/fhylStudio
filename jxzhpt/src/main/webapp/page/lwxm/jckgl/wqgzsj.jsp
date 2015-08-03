@@ -131,6 +131,12 @@ function shangB(){
 		alert("请选择要上报项目！");
 		return;
 	}
+	var sbthcd;
+	if(rows[0].tsdq.indexOf('省直管试点县')>0){
+		sbthcd=7;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
 	var id=rows[0].id;
 	if($.cookie("unit2")=='______36'){
 		alert("对不起，您无法上报！");
@@ -146,11 +152,18 @@ function shangB(){
 			return ;
 		}
 	}
+	
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
+		if(rows[i].tsdq.indexOf('省直管试点县')>0){
+			sbthcd=","+7;
+		}else{
+			sbthcd=","+$.cookie("unit2").length-2;
+		}
 	}
+
 	if(confirm('您确定上报该项目？')){
-		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length-2);
+		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd1="+sbthcd;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/xgJckWqgzSbzt.do",
@@ -172,8 +185,14 @@ function shangB(){
 } 
 function shangB1(index){
 	var id=$("#grid").datagrid('getRows')[index].id;
+	var sbthcd;
+		if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')>0){
+			sbthcd=7;
+		}else{
+			sbthcd=$.cookie("unit2").length-2;
+		}
 	if(confirm('您确定上报该项目？')){
-		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length-2);
+		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd1="+sbthcd;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/xgJckWqgzSbzt.do",
@@ -275,7 +294,11 @@ var xzqhstr;
 				{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd==11){
 						if(row.shzt1=='未审核'){
+							if(row.tsdq.indexOf('省直管试点县')>0){
+								return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+							}
 							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+							
 						}else
 						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 						}

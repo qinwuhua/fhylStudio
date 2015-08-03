@@ -137,7 +137,21 @@ public class Jckwqgzsj implements Serializable{
 	private String scsjhspl;  
 	private String sfylrbwqk;
 	private String sfkxg;
+	private String sbthcd1;
+	private String sck_sbthcd1;
 	
+	public String getSck_sbthcd1() {
+		return sck_sbthcd1;
+	}
+	public void setSck_sbthcd1(String sck_sbthcd1) {
+		this.sck_sbthcd1 = sck_sbthcd1;
+	}
+	public String getSbthcd1() {
+		return sbthcd1;
+	}
+	public void setSbthcd1(String sbthcd1) {
+		this.sbthcd1 = sbthcd1;
+	}
 	public String getSfkxg() {
 		return sfkxg;
 	}

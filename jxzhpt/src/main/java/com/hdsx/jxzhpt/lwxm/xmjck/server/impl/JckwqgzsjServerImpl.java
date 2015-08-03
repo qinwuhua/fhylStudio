@@ -76,12 +76,13 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	@Override
 	public boolean xgJckWqgzSbzt(Jckwqgzsj jckwqgzsj) {
 		String[] strs = jckwqgzsj.getId().split(",");
+		String[] sbth = jckwqgzsj.getSbthcd1().split(",");
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("id", strs[i]);
 			hm.put("sbbm", jckwqgzsj.getSbbm());
-			hm.put("sbthcd", jckwqgzsj.getSbthcd());
+			hm.put("sbthcd", sbth[i]);
 			lm.add(hm);
 		}
 		if(updateBatch("xgJckwqgzSbzt", lm)>0) return true;
@@ -175,12 +176,13 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	@Override
 	public boolean xgSckWqgzSbzt(Jckwqgzsj jckwqgzsj) {
 		String[] strs = jckwqgzsj.getId().split(",");
+		String[] sbth = jckwqgzsj.getSck_sbthcd1().split(",");
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("id", strs[i]);
 			hm.put("sbbm", jckwqgzsj.getSck_sbbm());
-			hm.put("sbthcd", jckwqgzsj.getSck_sbthcd());
+			hm.put("sbthcd", sbth[i]);
 			lm.add(hm);
 		}
 		if(updateBatch("xgSckWqgzSbzt", lm)>0) return true;
