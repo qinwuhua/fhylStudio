@@ -53,7 +53,8 @@
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {
-					'jhsh.xmbm':parent.YMLib.Var.xmbm
+					'jhsh.xmbm':parent.YMLib.Var.xmbm,
+					'jhsh.xdwh':$('#xdwh').val()
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
 					alert(response);
@@ -89,6 +90,15 @@
 					alert("修改失败！");
 				}
 			});
+		}
+		function upload(){
+			if($('#xdwh').val()==""){
+				alert("请填写计划下达文号！");
+				return;
+			}else{
+				$("#uploadJhxd").uploadifySettings('scriptData',{'jhsh.xmbm':parent.YMLib.Var.xmbm,'jhsh.xdwh':$('#xdwh').val()});
+				$('#uploadJhxd').uploadifyUpload();
+			}
 		}
 	</script>
 </head>
@@ -153,7 +163,7 @@
 									</tr>
 									<tr>
 										<td rowspan="2">
-											<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadJhxd').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+											<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
 										</td>
 									</tr>
 								</table>

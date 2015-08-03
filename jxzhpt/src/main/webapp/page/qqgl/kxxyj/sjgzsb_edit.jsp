@@ -49,44 +49,6 @@ text-decoration:none;
 				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
 			}
 		});
-		/*
-		$("#xmmc").val(data.xmmc);
-		$('#lxbh').val(data.lxbh);
-		$("#qdzh").val(data.qdzh);
-		$("#zdzh").val(data.zdzh);
-		$("#jsxz").val(data.jsxz);
-		$("#xzqh").html(data.xzqh);
-		$("#jsjsdj").val(data.jsjsdj);
-		$("#xmbm").html(data.xmbm);
-		$("#dq").val(data.dq);
-		$("#dq_m").val(data.dq_m);
-		$("#sd").val(data.sd);
-		$("#sd_m").val(data.sd_m);
-		$("#jsdw").val(data.jsdw);
-		$("#bzdw").val(data.bzdw);
-		$("#tzgs").val(data.tzgs);
-		$("#gkpfwh").val(data.gkpfwh);
-		$("#kgny").datebox('setValue',data.kgny);
-		$("#wgny").datebox('setValue',data.wgny);
-		$("#pfsj").datebox('setValue',data.pfsj);
-		$('#lc').val(data.lc);
-		$('#yilc').val(data.yilc);
-		$('#erlc').val(data.erlc);
-		$('#sanlc').val(data.sanlc);
-		$('#silc').val(data.silc);
-		$('#dwlc').val(data.dwlc);
-		$('#wllc').val(data.wllc);
-		
-		$('#jhyilc').val(data.jhyilc);
-		$('#jherlc').val(data.jherlc);
-		$('#jhsanlc').val(data.jhsanlc);
-		$('#jhsilc').val(data.jhsilc);
-		$('#jhdwlc').val(data.jhdwlc);
-		$('#jhwllc').val(data.jhwllc);
-		$('#dfzc').val(data.dfzc);
-		$('#yhdk').val(data.yhdk);
-		$('#qdmc').val(data.qdmc);
-		$('#zdmc').val(data.zdmc);*/
 		fileShow(parent.obj.xmbm,"工可批复文件");
 		var data1="lxsh.ghlxbh="+data.lxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
@@ -223,7 +185,7 @@ text-decoration:none;
 			'height' : 30,
 			'width' : 92,
 			'scriptData' : {
-				'lxsh.xmbm':parent.obj.xmbm
+				'kxxyj.xmbm':parent.obj.xmbm
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
 				alert(response);
@@ -238,6 +200,16 @@ text-decoration:none;
 				alert("最多支持上传文件数为：" + queueSizeLimit);
 			}
 		});
+	}
+	function upload(){
+		if($('#gkpfwh').val()==""){
+			alert("请填写计划下达文号！");
+			return;
+		}else{
+			alert($('#gkpfwh').val());
+			$("#uploadGkpf").uploadifySettings('scriptData',{'kxxyj.xmbm':parent.YMLib.Var.xmbm,'kxxyj.gkpfwh':$('#gkpfwh').val()});
+			$('#uploadGkpf').uploadifyUpload();
+		}
 	}
 </script>
 <form action="" id="kxxyj">
@@ -391,7 +363,7 @@ text-decoration:none;
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGkpf').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>

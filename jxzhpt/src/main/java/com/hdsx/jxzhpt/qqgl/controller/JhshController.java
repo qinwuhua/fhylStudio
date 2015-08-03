@@ -4,14 +4,22 @@ package com.hdsx.jxzhpt.qqgl.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,6 +30,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
+import com.hdsx.jxzhpt.module.ExcelModule;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
@@ -30,6 +39,7 @@ import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.util.io.FileUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -186,36 +196,54 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 * @throws Exception
 	 */
 	@SuppressWarnings("resource")
-	public void uploadJhsh() throws Exception{
+	public void uploadJhsh(){
+		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			System.out.println("项目编码："+jhsh.getXmbm());
-			HttpServletResponse response = ServletActionContext.getResponse();
-			Plan_upload uploads;
-			response.setCharacterEncoding("utf-8"); 
-			FileInputStream inputStream = null;
-			byte [] file=new byte[(int)uploadJhxd.length()];
-			inputStream=new FileInputStream(uploadJhxd);
-			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
-			int index=0;
-			while((index=inputStream.read(file))!=-1){
-				byteOutpu.write(file, 0, index);
-			}
-			uploads=new Plan_upload();
-			uploads.setParentid(jhsh.getXmbm());
-			uploads.setFiledata(file);
-			uploads.setFiletype("计划下达文件");
-			uploads.setFilename(uploadJhxdFileName);
-			CbsjServer cbsjServer =new CbsjServerImpl();
-			boolean result = cbsjServer.insertFile(uploads);
-			if(result){
-				response.getWriter().print(uploadJhxdFileName+"导入成功");
+			File file =new File(this.getClass().getResource("/").getPath()+"jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/");
+			if(uploadJhxd!=null){
+				String fid=UUID.randomUUID().toString();
+				Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", jhsh.getXmbm(), 
+						"jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/"+jhsh.getXdwh() + uploadJhxdFileName.substring(uploadJhxdFileName.lastIndexOf(".")), jhsh.getXdwh());
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				uploads.setFid(fid);
+				Plan_upload result = cbsjServer.queryFileByWh(uploads);
+				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
+					uploadFile(file,jhsh.getXdwh() + uploadJhxdFileName.substring(uploadJhxdFileName.lastIndexOf(".")));
+					response.getWriter().print(uploadJhxdFileName+"上传成功！");
+				}else{
+					uploads.setFid(result.getId());
+					cbsjServer.insertFileJl(uploads);
+					response.getWriter().print(uploadJhxdFileName+"上传成功！");
+				}
 			}else{
-				response.getWriter().print(uploadJhxdFileName+"导入成功");
+				System.out.println("已存在");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
+			try {
+				response.getWriter().print(uploadJhxdFileName+"上传失败！");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
+	}
+	private void uploadFile(File file,String fileName) throws FileNotFoundException,
+			IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(uploadJhxd); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	
 	/**

@@ -51,7 +51,9 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
+import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
@@ -426,39 +428,48 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	//
-	public void uploadGkpf() throws IOException{
+	public void uploadGkpf() throws Exception{
 		HttpServletResponse response = ServletActionContext.getResponse();
-		Plan_upload uploads;
-		response.setCharacterEncoding("utf-8"); 
-		FileInputStream inputStream = null;
-		byte [] file=new byte[(int)uploadGkpf.length()];
 		try {
-			inputStream=new FileInputStream(uploadGkpf);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			throw e;
-		}
-		ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
-		int index=0;
-		try {
-			while((index=inputStream.read(file))!=-1){
-				byteOutpu.write(file, 0, index);
+			File file =new File(this.getClass().getResource("/").getPath()+"gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/");
+			if(uploadGkpf!=null){
+				String fid=UUID.randomUUID().toString();
+				Plan_upload uploads =new Plan_upload(fid,uploadGkpfFileName, "工可批复文件", kxxyj.getXmbm(), 
+						"gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/"+kxxyj.getGkpfwh() + uploadGkpfFileName.substring(uploadGkpfFileName.lastIndexOf(".")), kxxyj.getGkpfwh());
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				uploads.setFid(fid);
+				Plan_upload result = cbsjServer.queryFileByWh(uploads);
+				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
+					uploadFile(file,kxxyj.getGkpfwh() + uploadGkpfFileName.substring(uploadGkpfFileName.lastIndexOf(".")));
+					response.getWriter().print(uploadGkpfFileName+"上传成功！");
+				}else{
+					uploads.setFid(result.getId());
+					cbsjServer.insertFileJl(uploads);
+					response.getWriter().print(uploadGkpfFileName+"上传成功！");
+				}
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			response.getWriter().print(uploadGkpfFileName+"上传失败！");
 			throw e;
 		}
-		uploads=new Plan_upload();
-		uploads.setParentid(lxsh.getXmbm());
-		uploads.setFiledata(file);
-		uploads.setFiletype("工可批复文件");
-		uploads.setFilename(uploadGkpfFileName);
-		boolean result = kxxyjServer.insertFile(uploads);
-		if(result){
-			response.getWriter().print(uploadGkpfFileName+"导入成功");
-		}else{
-			response.getWriter().print(uploadGkpfFileName+"导入成功");
+	}
+	private void uploadFile(File file,String fileName) throws FileNotFoundException,IOException {
+		if(!file.exists()){
+			file.mkdirs();
 		}
+		InputStream is = new FileInputStream(uploadGkpf); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	//
 	public void uploadJGYSFile() throws Exception{

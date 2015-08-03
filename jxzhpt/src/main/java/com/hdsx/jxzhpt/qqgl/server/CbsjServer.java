@@ -47,6 +47,12 @@ public interface CbsjServer {
 	 */
 	public boolean insertFile(Plan_upload uploads);
 	/**
+	 * 根据文号查询此文件是否已经上传过
+	 * @param uploads
+	 * @return
+	 */
+	public Plan_upload queryFileByWh(Plan_upload uploads);
+	/**
 	 * 查询此项目所包含的文件
 	 * @param xmbm 项目编码
 	 * @return 返回文件对象集合
@@ -262,5 +268,11 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public boolean updateCbsjXj(List<Cbsj> list);
+	/**
+	 * 添加文件和项目关联
+	 * @param uploads
+	 * @return
+	 */
+	public boolean insertFileJl(Plan_upload uploads);
 	
 }

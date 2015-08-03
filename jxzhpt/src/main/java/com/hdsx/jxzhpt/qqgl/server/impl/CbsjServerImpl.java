@@ -302,5 +302,13 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public boolean updateCbsjXj(List<Cbsj> list) {
 		return updateBatch("updateCbsjXj",list)==list.size();
 	}
+	@Override
+	public Plan_upload queryFileByWh(Plan_upload uploads) {
+		return queryOne("queryFileByWh", uploads);
+	}
+	@Override
+	public boolean insertFileJl(Plan_upload uploads) {
+		return insert("insertFileJl", uploads)>0;
+	}
 
 }

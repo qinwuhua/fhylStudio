@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -327,15 +328,20 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void downAbgcFile(){
         try {
-        	Plan_upload file= abgcServer.queryFjById(uploads.getId());
+        	File file =new File(this.getClass().getResource("/").getPath()+uploads.getFileurl());
         	HttpServletResponse response = getresponse();
-        	response.setContentType("application/x-download"); 
-        		OutputStream out = response.getOutputStream();
-        		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= file.getFiledata();              
-                out.write(buffer);
-                out.flush();
-                out.close();
+        	OutputStream out = response.getOutputStream();
+        	response.setContentType("application/x-download");
+        	response.addHeader("Content-Disposition", "attachment;filename="+new String(uploads.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        	byte[] buffer = new byte[1024];
+        	InputStream is = new FileInputStream(file);
+        	int length = 0;
+    		while((length= is.read(buffer))>0){
+    			out.write(buffer,0,length);
+    		}
+        	out.write(buffer);
+        	out.flush();
+        	out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

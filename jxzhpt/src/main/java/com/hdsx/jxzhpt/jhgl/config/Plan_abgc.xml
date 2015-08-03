@@ -456,10 +456,11 @@
 		select  * from plan_upload where id=#{id}
 	</select>
 	<select id="queryFjByParentId"  parameterType="plan_upload"  resultType="plan_upload">
-		select  id,filename,parentid,filetype from plan_upload where parentid=#{id} order by filename desc
+		select f.id,filename,xmbm,filetype,fileurl,filewh from plan_file f left join plan_upload u on f.fid=u.id 
+		where xmbm=#{id} order by filename desc
 	</select>
 	<delete id="deleteFile" parameterType="plan_upload" >
-		delete from plan_upload where id=#{id}
+		delete from plan_file where id=#{id}
 	</delete>
 	<select id="queryTsdq" resultType="treenode">
 		select t.id,t.name as text from xtgl_tsdq t

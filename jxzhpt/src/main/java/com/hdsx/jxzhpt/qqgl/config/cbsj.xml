@@ -523,12 +523,18 @@
 	
 	<!-- 文件操作部分 -->
 	<select id="queryFileByXmbm" parameterType="plan_upload" resultType="plan_upload">
-		select id,filename,parentid,filetype from plan_upload where parentid=#{parentid} and filetype=#{filetype}
+		select f.id,filename,xmbm,filetype,fileurl,filewh from plan_file f left join plan_upload u on f.fid=u.id
+		where xmbm=#{parentid} and filetype=#{filetype}
 	</select>
 	<insert id="insertFile" parameterType="plan_upload">
-		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
+		insert into plan_upload(id,filename,filewh,filetype,fileurl) values(#{id},#{filename},#{filewh},#{filetype},#{fileurl})
 	</insert>
-	
+	<select id="queryFileByWh" parameterType="plan_upload" resultType="plan_upload">
+		select * from plan_upload where filetype=#{filetype} and filewh=#{filewh}
+	</select>
+	<insert id="insertFileJl" parameterType="plan_upload">
+		insert into plan_file (id,xmbm,fid) values (sys_guid(),#{xmbm},#{fid})
+	</insert>
 	<select id="queryLmgzExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (

@@ -298,7 +298,9 @@ function fileShow(xmbm,type){
 		success:function(data){
 			$("#sjpfTable").empty();
 			for ( var i = 0; i < data.length; i++) {
-				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+				'<a href="javascript:downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>  |  ' +
+				"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
 				$("#sjpfTable").append(tr);
 			}
 		}
@@ -329,8 +331,8 @@ function fileShow1(id,xmbm,type){
  * 下载文件
  * @param id 文件ID
  */
-function downFile(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+function downFile(fileurl,filename){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
 }
 /**
  * 删除文件

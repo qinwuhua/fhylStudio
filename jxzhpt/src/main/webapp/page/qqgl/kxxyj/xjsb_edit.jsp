@@ -209,6 +209,15 @@ text-decoration:none;
 			}
 		});
 	}
+	function upload(){
+		if($('#gkpfwh').val()==""){
+			alert("请填写计划下达文号！");
+			return;
+		}else{
+			$("#uploadGkpf").uploadifySettings('scriptData',{'kxxyj.xmbm':parent.obj.xmbm,'kxxyj.gkpfwh':$('#gkpfwh').val()});
+			$('#uploadGkpf').uploadifyUpload();
+		}
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -372,7 +381,7 @@ text-decoration:none;
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGkpf').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>
