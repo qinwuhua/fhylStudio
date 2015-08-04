@@ -61,7 +61,7 @@
 			dataType:"JSON",
 			success:function(msg){
 				$("#"+id+" #tbdw").text(msg.tbdw);
-				$("#"+id+" #bt").html(msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5);
+				$("#"+id+" #bt").html("<pre>"+msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5+"</pre>");
 				$("#"+id+" #tbnf").text(msg.tbnf);
 				$("#"+id+" #dwfzr").text(msg.dwfzr);
 				$("#"+id+" #tjfzr").text(msg.tjfzr);
@@ -93,8 +93,8 @@
                                             <span id="lblFBT">——高速公路、普通国道级省道</span>
                                         </td>
                                         <td rowspan="2" align="right" style="width: 20%; margin: 0px; padding: 0px;">
-                                            <textarea id='bt' name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">表    号：交  公  路 29-1 表
- </textarea>
+                                            <div  id="bt" style="text-align: left; width: 200px;"></div>
+<!--                                             <textarea id='bt' name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;"></textarea> -->
                                         </td>
                                     </tr>
                                     <tr style="vertical-align: bottom;">
@@ -113,22 +113,22 @@
                                 <table cellpadding="1" cellspacing="1" style="vertical-align: middle; text-align: center;
                                     background-color: #4B4B4B" border="1">
                                     <tr style="background-color: #999999; height: 12px;">
-                                        <td rowspan="2" style="width: 130px;">
+                                        <td rowspan="2" style="width: 140px;">
                                             路线编码
                                         </td>
-                                        <td rowspan="2" style="width: 150px;">
+                                        <td rowspan="2" style="width: 160px;">
                                             路线名称
                                         </td>
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 100px;">
                                             起点桩号
                                         </td>
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 100px;">
                                             止点桩号
                                         </td>
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 100px;">
                                             前进方向
                                         </td>
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 100px;">
                                             评定历程<br />
                                             （公里）
                                         </td>

@@ -60,7 +60,7 @@
 			dataType:"JSON",
 			success:function(msg){
 				$("#"+id+" #tbdw").text(msg.tbdw);
-				$("#"+id+" #bt").html(msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5);
+				$("#"+id+" #bt").html("<pre>"+msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5+"</pre>");
 				$("#"+id+" #tbnf").text(msg.tbnf);
 				$("#"+id+" #dwfzr").text(msg.dwfzr);
 				$("#"+id+" #tjfzr").text(msg.tjfzr);
@@ -71,6 +71,7 @@
 			});
 		
 	</script>
+	
     <div style="text-align: left; vertical-align: top; margin: 0px; height: 100%;">
         <table border="0" style="margin-top: 1px; margin-left: 1px; width: 99.9%;" cellspacing="0"
             cellpadding="0">

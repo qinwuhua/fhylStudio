@@ -56,7 +56,7 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
-				$("#"+id+" #bt").html(msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5);
+				$("#"+id+" #bt").html("<pre>"+msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5+"</pre>");
 				$("#"+id+" #tbdw").text(msg.tbdw);
 				$("#"+id+" #tbnf").text(msg.tbnf);
 				$("#"+id+" #dwfzr").text(msg.dwfzr);
@@ -89,8 +89,8 @@
                                             <span id="lblFBT">—县道、乡道、村道、专用公路</span>
                                         </td>
                                         <td rowspan="2" align="right" style="width: 30%; margin: 0px; padding: 0px;padding-right: 0px;">
-										<textarea id='bt' name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:80px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">
-
+											<div  id="bt" style="text-align: left; width: 200px;"></div>
+<!-- 										<textarea id='bt' name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:80px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;"> -->
 										 </textarea>
                                         </td>
                                     </tr>
