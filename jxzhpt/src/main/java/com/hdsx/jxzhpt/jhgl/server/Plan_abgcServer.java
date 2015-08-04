@@ -143,4 +143,8 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	boolean updateImportAbgcJhSh(List<Plan_abgc> list);
+
+	List<Plan_upload> queryFjByParentId2(Plan_upload uploads);
+
+	boolean deleteFile2(Plan_upload uploads);
 }

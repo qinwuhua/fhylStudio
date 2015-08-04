@@ -54,8 +54,11 @@
 		<action name="lwBzbz" class="plan_abgcController" method="lwBzbz"/>
 		<action name="uploadAbgcFile" class="plan_abgcController" method="uploadAbgcFile"/>
 		<action name="downAbgcFile" class="plan_abgcController" method="downAbgcFile"/>
+		<action name="downAbgcFile2" class="plan_abgcController" method="downAbgcFile2"/>
 		<action name="queryFjByParentId" class="plan_abgcController" method="queryFjByParentId"/>
+		<action name="queryFjByParentId2" class="plan_abgcController" method="queryFjByParentId2"/>
 		<action name="deleteFile" class="plan_abgcController" method="deleteFile"/>
+		<action name="deleteFile2" class="plan_abgcController" method="deleteFile2"/>
 		<action name="exportAbgcZjxdExcel" class="plan_abgcController" method="exportAbgcZjxdExcel"/>
 		<action name="editAbZj" class="plan_abgcController" method="editAbZj"/>
 		<action name="exportExcelAbgcJhSh" class="plan_abgcController" method="exportExcelAbgcJhSh"/>

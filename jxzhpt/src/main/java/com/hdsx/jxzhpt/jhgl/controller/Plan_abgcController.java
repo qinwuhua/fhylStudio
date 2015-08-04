@@ -367,6 +367,29 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryFjByParentId2(){
+		List<Plan_upload> filelist = abgcServer.queryFjByParentId2(uploads);
+		try {
+			JsonUtils.write(filelist, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downAbgcFile2(){
+		try {
+        	HttpServletResponse response = getresponse();
+        	Plan_upload queryFjById = abgcServer.queryFjById(uploads.getId());
+        	OutputStream out = response.getOutputStream();
+        	response.setContentType("application/x-download");
+        	response.addHeader("Content-Disposition", "attachment;filename="+new String(queryFjById.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        	byte[] buffer = queryFjById.getFiledata();
+        	out.write(buffer);
+        	out.flush();
+        	out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 查询特殊地区
 	 */
@@ -398,6 +421,13 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void deleteFile(){
 		try {
 			JsonUtils.write(abgcServer.deleteFile(uploads),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteFile2(){
+		try {
+			JsonUtils.write(abgcServer.deleteFile2(uploads),getresponse().getWriter());
 		}  catch (Exception e) {
 			e.printStackTrace();
 		}

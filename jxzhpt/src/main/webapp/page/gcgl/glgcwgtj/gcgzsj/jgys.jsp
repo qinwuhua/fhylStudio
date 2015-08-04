@@ -149,7 +149,7 @@
 		//加载文件
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/jhgl/queryFjByParentId.do',
+			url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 			dataType:'json',
 			data:'uploads.id='+xxId,
 			success:function(data){
@@ -179,13 +179,13 @@
 		});
 	}
 	function downFile(id){
-		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile2.do?uploads.id="+id;
 	}
 	function deleteFile(id){
 		if(confirm('确定删除所选数据？')){
 			$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/jhgl/deleteFile.do",
+				 url : "/jxzhpt/jhgl/deleteFile2.do",
 				 dataType : 'json',
 				 data : 'uploads.id=' +id,
 				 success : function(msg){

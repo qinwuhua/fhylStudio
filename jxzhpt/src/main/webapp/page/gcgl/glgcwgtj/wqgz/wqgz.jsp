@@ -76,7 +76,7 @@ a:active {
         						<span>桥梁名称：</span>
         							<input type="text" id="qlmc" >
         						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 60px;">
         						<option value="">全部</option>
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
