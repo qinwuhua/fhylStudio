@@ -20,217 +20,224 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
-$(function(){
-	xmnf1("scxmnf");
-	selWqgzById();
-	loadUploadify();
-	fileShow();
-	$("#save_button").click(function(){
-		if($("#scqlqc").val()==null || $("#scqlqc").val()=='' || isNaN($("#scqlqc").val()) || parseFloat($("#scqlqc").val())<=0){
-			alert("请填写正确的桥梁全长！");
-			$("#scqlqc").focus();
-			return false;
-		}
-		if($("#scqlqk").val()==null || $("#scqlqk").val()=='' || isNaN($("#scqlqk").val()) || parseFloat($("#scqlqk").val())<=0){
-			alert("请填写正确的桥梁全宽！");
-			$("#scqlqk").focus();
-			return false;
-		}
-		if(isNaN($("#tzgs").val()) || parseFloat($("#tzgs").val())<=0){
-			alert("请填写正确的投资估算金额！");
-			$("#tzgs").focus();
-			return false;
-		}
-		var data ="sckid="+parent.rowid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
-		"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-		"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
-		"&scqlqc="+$("#scqlqc").val()+"&scqlqk="+$("#scqlqk").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/xmsck/updateSckwqgz.do',
-	        data:data,
-			dataType:'json',
-			success:function(msg){
-				if(Boolean(msg)){
-					parent.$("#grid").datagrid('reload');
-					alert("修改成功！");
-					parent.$('#sck_xg').window('destroy');
-					
-				}else{
-					alert('保存失败！');
-				}
+	$(function(){
+		xmnf1("scxmnf");
+		selWqgzById();
+		loadUploadify();
+		fileShow();
+		$("#save_button").click(function(){
+			if($("#scqlqc").val()==null || $("#scqlqc").val()=='' || isNaN($("#scqlqc").val()) || parseFloat($("#scqlqc").val())<=0){
+				alert("请填写正确的桥梁全长！");
+				$("#scqlqc").focus();
+				return false;
 			}
-		});  
-	});
-	$("#qx_window").click(function(){
-		parent.$('#sck_xg').window('destroy');
-	});	
-});
-
-function selWqgzById(){
-	$.ajax({
-		type : 'post',
-		url : '/jxzhpt/xmsck/selectSckwqgzById.do',
-		data :"sckid="+parent.rowid,
-		dataType:'json',
-		success : function(msg) {
-		$("#qlbh").html(msg.qlbh);
-		$("#qlmc").html(msg.qlmc);
-		$("#qlzxzh").html(msg.qlzxzh);
-		$("#gydw").html(msg.gydw);
-		$("#xzqhdm").html(msg.xzqhdm);
-		$("#xzqhmc").html(msg.xzqhmc);
-		$("#lxmc").html(msg.lxmc);
-		$("#lxbm").html(msg.lxbm);
-		$("#kjzc").html(msg.kjzc);
-		$("#qlqc").html(msg.qlqc);
-		$("#qlkd").html(msg.qlkd);
-		$("#dkzdkj").html(msg.dkzdkj);
-		$("#jsdj").html(msg.jsdj);
-		$("#pddj").html(msg.pddj);
-		$("#xjgjnd").html(msg.xjgjnd);
-		$("#akjfl").html(msg.akjfl);
-		$("#sbjgxs").html(msg.sbjgxs);
-		$("#xmnf").html(msg.xmnf);
-		$("#xmtype").html(msg.xmtype);
-		$("#bhnr").html(msg.bhnr);
-		$("#bz").html(msg.bz);
-		$("#tsdq").html(msg.tsdq);
-		$("#scqlqc").val(msg.scqlqc);
-		$("#scqlqk").val(msg.scqlqk);
-		$("#scxmnf").combobox("setValue",msg.scxmnf);
-		$("#fapgdw").val(msg.fapgdw);
-		$("#fascdw").val(msg.fascdw);
-		$("#faspsj").datebox('setValue',msg.faspsj);
-		$("#spwh").val(msg.spwh);
-		$("#tzgs").val(msg.tzgs);
-		$("#jsxz").combobox("setValue",msg.jsxz);
-		$("#jsnr").val(msg.jsnr);
-		$("#scbz").val(msg.scbz);
-		}
-	});
-}	
-var xxId=parent.rowid;
-function loadUploadify(){
-	$("#uploadGk").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadWqgzFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue',
-		'fileDataName' : 'uploadGk',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/bdll.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'jh.id':xxId,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			fileShow();
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
+			if($("#scqlqk").val()==null || $("#scqlqk").val()=='' || isNaN($("#scqlqk").val()) || parseFloat($("#scqlqk").val())<=0){
+				alert("请填写正确的桥梁全宽！");
+				$("#scqlqk").focus();
+				return false;
+			}
+			if(isNaN($("#tzgs").val()) || parseFloat($("#tzgs").val())<=0){
+				alert("请填写正确的投资估算金额！");
+				$("#tzgs").focus();
+				return false;
+			}
+			var data ="sckid="+parent.rowid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
+			"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
+			"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
+			"&scqlqc="+$("#scqlqc").val()+"&scqlqk="+$("#scqlqk").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmsck/updateSckwqgz.do',
+		        data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						parent.$("#grid").datagrid('reload');
+						alert("修改成功！");
+						parent.$('#sck_xg').window('destroy');
+						
+					}else{
+						alert('保存失败！');
+					}
+				}
+			});  
+		});
+		$("#qx_window").click(function(){
+			parent.$('#sck_xg').window('destroy');
+		});	
 	});
 	
-	$("#uploadSjt").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadWqgzFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue1',
-		'fileDataName' : 'uploadSjt',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/bdll.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'jh.id':xxId,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			fileShow();
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
-	});
-}
-function fileShow(){
-	//加载文件
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryFjByParentId.do',
-		dataType:'json',
-		data:'uploads.id='+xxId,
-		success:function(data){
-	/* 		var data=datas.rows; */
-		/* 	alert(data); */
-			$("#gkbgTable").empty();
-			$("#sjsgtTable").empty();
-			var gkbg="";
-			var sjsgt="";
-			for ( var i = 0; i < data.length; i++) {
-				if(data[i].filetype=="工可报告"){
-					gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-				}if(data[i].filetype=="设计施工图"){
-					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-				}
-				}
-			$("#gkbgTable").append(gkbg);
-			$("#sjsgtTable").append(sjsgt);
-		}
-	});
-}
-function downFile(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
-}
-function deleteFile(id){
-	if(confirm('确定删除所选数据？')){
+	function selWqgzById(){
 		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/jhgl/deleteFile.do",
-			 dataType : 'json',
-			 data : 'uploads.id=' +id,
-			 success : function(msg){
-				 if(msg){
-					 alert('删除成功！');
-					 fileShow();
-				 }else{
-					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
+			type : 'post',
+			url : '/jxzhpt/xmsck/selectSckwqgzById.do',
+			data :"sckid="+parent.rowid,
+			dataType:'json',
+			success : function(msg) {
+			$("#qlbh").html(msg.qlbh);
+			$("#qlmc").html(msg.qlmc);
+			$("#qlzxzh").html(msg.qlzxzh);
+			$("#gydw").html(msg.gydw);
+			$("#xzqhdm").html(msg.xzqhdm);
+			$("#xzqhmc").html(msg.xzqhmc);
+			$("#lxmc").html(msg.lxmc);
+			$("#lxbm").html(msg.lxbm);
+			$("#kjzc").html(msg.kjzc);
+			$("#qlqc").html(msg.qlqc);
+			$("#qlkd").html(msg.qlkd);
+			$("#dkzdkj").html(msg.dkzdkj);
+			$("#jsdj").html(msg.jsdj);
+			$("#pddj").html(msg.pddj);
+			$("#xjgjnd").html(msg.xjgjnd);
+			$("#akjfl").html(msg.akjfl);
+			$("#sbjgxs").html(msg.sbjgxs);
+			$("#xmnf").html(msg.xmnf);
+			$("#xmtype").html(msg.xmtype);
+			$("#bhnr").html(msg.bhnr);
+			$("#bz").html(msg.bz);
+			$("#tsdq").html(msg.tsdq);
+			$("#scqlqc").val(msg.scqlqc);
+			$("#scqlqk").val(msg.scqlqk);
+			$("#scxmnf").combobox("setValue",msg.scxmnf);
+			$("#fapgdw").val(msg.fapgdw);
+			$("#fascdw").val(msg.fascdw);
+			$("#faspsj").datebox('setValue',msg.faspsj);
+			$("#spwh").val(msg.spwh);
+			$("#tzgs").val(msg.tzgs);
+			$("#jsxz").combobox("setValue",msg.jsxz);
+			$("#jsnr").val(msg.jsnr);
+			$("#scbz").val(msg.scbz);
+			}
+		});
+	}	
+	var xxId=parent.rowid;
+	function loadUploadify(){
+		$("#uploadGk").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadWqgzFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue',
+			'fileDataName' : 'uploadGk',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/bdll.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'jh.id':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				fileShow();
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+	
+			}
+		});
+		
+		$("#uploadSjt").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadWqgzFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue1',
+			'fileDataName' : 'uploadSjt',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/bdll.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'jh.id':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				fileShow();
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+	
+			}
 		});
 	}
-}
-
+	function fileShow(){
+		//加载文件
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryFjByParentId.do',
+			dataType:'json',
+			data:'uploads.id='+xxId,
+			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
+				$("#gkbgTable").empty();
+				$("#sjsgtTable").empty();
+				var gkbg="";
+				var sjsgt="";
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].filetype=="工可报告"){
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+						"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}if(data[i].filetype=="设计施工图"){
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+						"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}
+				}
+				$("#gkbgTable").append(gkbg);
+				$("#sjsgtTable").append(sjsgt);
+			}
+		});
+	}
+	function downFile(fileurl,filename){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
+	}
+	function deleteFile(id){
+		if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/jhgl/deleteFile.do",
+				 dataType : 'json',
+				 data : 'uploads.id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 fileShow();
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+	}
+	function upload(id){
+		$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
+		$('#'+id).uploadifyUpload();
+	}
 </script>
 <style type="text/css">
 TD {
@@ -406,7 +413,7 @@ text-decoration:none;
 						</tr>
 						<tr>
 							<td rowspan="2">
-								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadGk')"  style="border-width:0px;cursor: hand;" />
 							</td>
 						</tr>
 					</table>
@@ -426,7 +433,7 @@ text-decoration:none;
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadSjt')"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>

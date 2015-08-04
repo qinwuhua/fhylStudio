@@ -232,7 +232,10 @@ function loadUploadify(){
 		}
 	});
 }
-
+function upload(id){
+	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
+	$('#'+id).uploadifyUpload();
+}
 var xxId;
 
 function sjtfileShow(){
@@ -250,15 +253,17 @@ function sjtfileShow(){
 			var sjsgt="";
 			for ( var i = 0; i < data.length; i++) {
 				if(data[i].filetype=="设计施工图"){
-					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=sjtdownFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=sjtdeleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="sjtdownFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+					"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=sjtdeleteFile('"+data[i].id+"')>删除</a></td></tr>";
 				}
-				}
+			}
 			$("#sjsgtTable").append(sjsgt);
 		}
 	});
 }
-function sjtdownFile(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+function sjtdownFile(fileurl,filename){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
 }
 function sjtdeleteFile(id){
 	if(confirm('确定删除所选数据？')){
@@ -727,7 +732,7 @@ text-decoration:none;
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadSjt')"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>

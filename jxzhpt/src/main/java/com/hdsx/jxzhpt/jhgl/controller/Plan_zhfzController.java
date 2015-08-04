@@ -1,30 +1,27 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
@@ -38,6 +35,8 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
+import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -245,37 +244,52 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		}
 	}
 	public void uploadZhfzFile() throws Exception{
-		FileInputStream fs=null;
-		byte[] data;
+		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			HttpServletResponse response = ServletActionContext.getResponse();
-			response.setCharacterEncoding("utf-8");
-			uploads=new Plan_upload();
+			response.setCharacterEncoding("utf-8"); 	
+			String fid=UUID.randomUUID().toString();
 			if((uploadGk!=null)){
-				fs=new FileInputStream(this.uploadGk);
-				data=new byte[(int) this.uploadGk.length()];
-				fs.read(data);
-				uploads.setFiledata(data);
-				uploads.setFilename(uploadGkFileName);
-				uploads.setFiletype("工可报告");
+				String fileurl = "kgbg/"+ jh.getSbnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadGkFileName, "工可报告", uploads.getParentid(), fileurl+uploadGkFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadGkFileName,uploadGk);
+					response.getWriter().print(uploadGkFileName+"上传成功！");
+				}
 			}else{
-				fs=new FileInputStream(this.uploadSjt);
-				data=new byte[(int) this.uploadSjt.length()];
-				fs.read(data);
-				uploads.setFiledata(data);
-				uploads.setFilename(uploadSjtFileName);
-				uploads.setFiletype("设计施工图");
+				String fileurl = "sjsgt/"+ jh.getSbnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadSjtFileName, "设计施工图", uploads.getParentid(), fileurl+uploadSjtFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadSjtFileName,uploadSjt);
+					response.getWriter().print(uploadSjtFileName+"上传成功！");
+				}
 			}
-			uploads.setParentid(jh.getId());
-			if(zhfzServer.insertZhFile(uploads))
-				response.getWriter().print(uploadGkFileName+"导入成功");
-			else 
-				response.getWriter().print(uploadGkFileName+"导入失败");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			fs.close();
+			response.getWriter().print((uploadSjtFileName==null ? uploadGkFileName : uploadSjtFileName) +"上传成功！");
 		}
+	}
+	private void uploadFile(File file,String fileName,File filewj) throws FileNotFoundException,IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(filewj); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	public void downZhfzFile(){
         try {

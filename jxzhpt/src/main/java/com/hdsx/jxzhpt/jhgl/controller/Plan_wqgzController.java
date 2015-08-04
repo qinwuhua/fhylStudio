@@ -6,13 +6,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -40,6 +43,8 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
+import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -295,41 +300,52 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 * @throws Exception
 	 */
 	public void uploadWqgzFile() throws Exception{
-		FileInputStream fs=null;
-		byte[] data;
+		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8");
-				uploads =new Plan_upload();
-				if((uploadGk!=null)){
-					fs=new FileInputStream(this.uploadGk);
-					data=new byte[(int) this.uploadGk.length()];
-					fs.read(data);
-					System.out.println("文件是否为空:"+(uploadGk!=null));
-					System.out.println("文件名称："+uploadGkFileName);
-					System.out.println((uploadGkFileName==null) +"    "+(uploadGkFileName==null)+"   "+(fileuploadFileName==null));
-					uploads.setFilename(uploadGkFileName);
-					uploads.setFiledata(data);
-					uploads.setFiletype("工可报告");
-				}else{
-					fs=new FileInputStream(this.uploadSjt);
-					data=new byte[(int) this.uploadSjt.length()];
-					fs.read(data);
-					uploads.setFilename(uploadSjtFileName);
-					uploads.setFiledata(data);
-					uploads.setFiletype("设计施工图");
+			response.setCharacterEncoding("utf-8"); 	
+			String fid=UUID.randomUUID().toString();
+			if((uploadGk!=null)){
+				String fileurl = "kgbg/"+ jh.getSbnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadGkFileName, "工可报告", uploads.getParentid(), fileurl+uploadGkFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadGkFileName,uploadGk);
+					response.getWriter().print(uploadGkFileName+"上传成功！");
 				}
-				uploads.setParentid(jh.getId());
-				if(wqgzServer.insertwqFile(uploads)){
-					response.getWriter().print(uploadSjtFileName+"导入成功");
-				}else{
-					response.getWriter().print(uploadSjtFileName+"导入失败");
+			}else{
+				String fileurl = "sjsgt/"+ jh.getSbnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadSjtFileName, "设计施工图", uploads.getParentid(), fileurl+uploadSjtFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadSjtFileName,uploadSjt);
+					response.getWriter().print(uploadSjtFileName+"上传成功！");
 				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			fs.close();
+			response.getWriter().print((uploadSjtFileName==null ? uploadGkFileName : uploadSjtFileName) +"上传成功！");
 		}
+	}
+	private void uploadFile(File file,String fileName,File filewj) throws FileNotFoundException,IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(filewj); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	/**
 	 * 下载危桥的文件
