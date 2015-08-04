@@ -109,7 +109,7 @@ public class Planwqgzsj implements Serializable{
 	private String sck_qlbh;
 	private String shibz;
 	private String shengbz;
-	
+	private String sck_qlzxzh;
 	private String szxz;
 	private String synf;
 	private String qxjkuan;
@@ -210,6 +210,12 @@ public class Planwqgzsj implements Serializable{
 	private String jhqlqc;
 	private String jhqlqk;
 	
+	public String getSck_qlzxzh() {
+		return sck_qlzxzh;
+	}
+	public void setSck_qlzxzh(String sck_qlzxzh) {
+		this.sck_qlzxzh = sck_qlzxzh;
+	}
 	public String getJhqlqc() {
 		return jhqlqc;
 	}
