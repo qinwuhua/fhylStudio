@@ -527,7 +527,10 @@
 		where xmbm=#{parentid} and filetype=#{filetype}
 	</select>
 	<insert id="insertFile" parameterType="plan_upload">
-		insert into plan_upload(id,filename,filewh,filetype,fileurl) values(#{id},#{filename},#{filewh},#{filetype},#{fileurl})
+		insert into plan_upload(id,filename,
+		<if test="filewh!=null">filewh,</if>
+		filetype,fileurl) values(#{id},#{filename},
+		<if test="filewh!=null">#{filewh},</if>#{filetype},#{fileurl})
 	</insert>
 	<select id="queryFileByWh" parameterType="plan_upload" resultType="plan_upload">
 		select * from plan_upload where filetype=#{filetype} and filewh=#{filewh}

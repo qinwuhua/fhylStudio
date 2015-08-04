@@ -4,6 +4,7 @@ package com.hdsx.jxzhpt.jhgl.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +40,8 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -293,35 +297,52 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * @throws Exception
 	 */
 	public void uploadAbgcFile() throws Exception{
-		FileInputStream fs=null;
-		byte[] data;
+		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8"); 		
-				if((uploadGk!=null)){
-						fs=new FileInputStream(this.uploadGk);
-						data=new byte[(int) this.uploadGk.length()];
-						fs.read(data);
-					   uploads.setFilename(uploadGkFileName);
-					   uploads.setFiledata(data);
-					   if(abgcServer.updateGkbg(uploads))
-						   response.getWriter().print(uploadGkFileName+"导入成功");
-					   else response.getWriter().print(uploadGkFileName+"导入失败");
-				}else{
-					fs=new FileInputStream(this.uploadSjt);
-					data=new byte[(int) this.uploadSjt.length()];
-					fs.read(data);
-					uploads.setFilename(uploadSjtFileName);
-					uploads.setFiledata(data);
-					if(abgcServer.updateSjsgt(uploads))
-						response.getWriter().print(uploadSjtFileName+"导入成功");
-					   else response.getWriter().print(uploadSjtFileName+"导入失败");
-				}	
+			response.setCharacterEncoding("utf-8"); 	
+			String fid=UUID.randomUUID().toString();
+			if((uploadGk!=null)){
+				String fileurl = "kgbg/"+ jh.getJhnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadGkFileName, "工可报告", uploads.getParentid(), fileurl+uploadGkFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadGkFileName,uploadGk);
+					response.getWriter().print(uploadGkFileName+"上传成功！");
+				}
+			}else{
+				String fileurl = "sjsgt/"+ jh.getJhnf() +"/";
+				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				Plan_upload upload =new Plan_upload(fid,uploadSjtFileName, "设计施工图", uploads.getParentid(), fileurl+uploadSjtFileName, null);
+				CbsjServer cbsjServer =new CbsjServerImpl();
+				upload.setFid(fid);
+				if(cbsjServer.insertFile(upload) && cbsjServer.insertFileJl(upload)){
+					uploadFile(file,uploadSjtFileName,uploadSjt);
+					response.getWriter().print(uploadSjtFileName+"上传成功！");
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			fs.close();
+			response.getWriter().print((uploadSjtFileName==null ? uploadGkFileName : uploadSjtFileName) +"上传成功！");
 		}
+	}
+	private void uploadFile(File file,String fileName,File filewj) throws FileNotFoundException,IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(filewj); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	/**
 	 * 下载文件
@@ -339,6 +360,29 @@ public class Plan_abgcController extends BaseActionSupport{
     		while((length= is.read(buffer))>0){
     			out.write(buffer,0,length);
     		}
+        	out.write(buffer);
+        	out.flush();
+        	out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryFjByParentId2(){
+		List<Plan_upload> filelist = abgcServer.queryFjByParentId2(uploads);
+		try {
+			JsonUtils.write(filelist, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downAbgcFile2(){
+		try {
+        	HttpServletResponse response = getresponse();
+        	Plan_upload queryFjById = abgcServer.queryFjById(uploads.getId());
+        	OutputStream out = response.getOutputStream();
+        	response.setContentType("application/x-download");
+        	response.addHeader("Content-Disposition", "attachment;filename="+new String(queryFjById.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        	byte[] buffer = queryFjById.getFiledata();
         	out.write(buffer);
         	out.flush();
         	out.close();
@@ -377,6 +421,13 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void deleteFile(){
 		try {
 			JsonUtils.write(abgcServer.deleteFile(uploads),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteFile2(){
+		try {
+			JsonUtils.write(abgcServer.deleteFile2(uploads),getresponse().getWriter());
 		}  catch (Exception e) {
 			e.printStackTrace();
 		}

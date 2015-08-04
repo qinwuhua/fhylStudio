@@ -277,4 +277,12 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean updateImportAbgcJhSh(List<Plan_abgc> list) {
 		return (updateBatch("updateImportAbgcJh",list)==list.size() && updateBatch("updateImportAbgcSh",list)==list.size());
 	}
+	@Override
+	public List<Plan_upload> queryFjByParentId2(Plan_upload uploads) {
+		return queryList("queryFjByParentId2",uploads);
+	}
+	@Override
+	public boolean deleteFile2(Plan_upload uploads) {
+		return delete("deleteFile2", uploads)>0 ? true:false;
+	}
 }

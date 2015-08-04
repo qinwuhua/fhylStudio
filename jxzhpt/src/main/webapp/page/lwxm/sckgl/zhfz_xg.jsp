@@ -221,18 +221,22 @@ var zdStr;
 				var sjsgt="";
 				for ( var i = 0; i < data.length; i++) {
 					if(data[i].filetype=="工可报告"){
-						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+						"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
 					}if(data[i].filetype=="设计施工图"){
-						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+						"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
 					}
-					}
+				}
 				$("#gkbgTable").append(gkbg);
 				$("#sjsgtTable").append(sjsgt);
 			}
 		});
 	}
-	function downFile(id){
-		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	function downFile(fileurl,filename){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
 	}
 	function deleteFile(id){
 		if(confirm('确定删除所选数据？')){
@@ -255,7 +259,10 @@ var zdStr;
 			});
 		}
 	}
-
+	function upload(id){
+		$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
+		$('#'+id).uploadifyUpload();
+	}
 </script>
 <style type="text/css">
 TD {
@@ -422,7 +429,7 @@ text-decoration:none;
 						</tr>
 						<tr>
 							<td rowspan="2">
-								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadGk')"  style="border-width:0px;cursor: hand;" />
 							</td>
 						</tr>
 					</table>
@@ -442,7 +449,7 @@ text-decoration:none;
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadSjt')"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>
