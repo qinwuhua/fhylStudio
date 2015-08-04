@@ -41,6 +41,14 @@ public class Jtlhzgd implements Serializable {
 	private String tiaojian;
 	private int page;
 	private int rows;
+	private byte[] wjfile;
+	
+	public byte[] getWjfile() {
+		return wjfile;
+	}
+	public void setWjfile(byte[] wjfile) {
+		this.wjfile = wjfile;
+	}
 	public String getId() {
 		return id;
 	}

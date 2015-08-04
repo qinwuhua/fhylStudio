@@ -25,6 +25,11 @@
 	<action name="updateTrqk" class="trqkController" method="updateTrqk"/>
 	<action name="exportExcel_trqk" class="trqkController" method="exportExcel_trqk"/>
 	<!--  -->
+	<action name="downjtqkhzbsdFile" class="lkpdController" method="downjtqkhzbsdFile"/>
+	<action name="downjtqkhzbgdFile" class="lkpdController" method="downjtqkhzbgdFile"/>
+	<action name="downjtqkhzbFile" class="lkpdController" method="downjtqkhzbFile"/>
+	<action name="downLkpdtjbFile" class="lkpdController" method="downLkpdtjbFile"/>
+	<action name="downLkpdmxbFile" class="lkpdController" method="downLkpdmxbFile"/>
 	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
 	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
 	<action name="getMxbDataList" class="lkpdController" method="getMxbDataList"/>

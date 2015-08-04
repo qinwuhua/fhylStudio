@@ -95,6 +95,9 @@ function delete_ylb(){
 		});
 	}
 }
+function dcmb(){
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName=gllxjszkylb";
+}
 </script>
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
@@ -128,7 +131,9 @@ function delete_ylb(){
 						</select>
  						 <a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="import_ylb('ylb')">导入Excel</a>
- 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="delete_ylb()">删除</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-no" onclick="delete_ylb()">删除</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="dcmb()">导出模板</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="export_ylb()">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>

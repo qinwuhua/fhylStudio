@@ -53,6 +53,9 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 	<select id="selectList2" parameterType="zdxx" resultType="hashmap">
 		select * from YHTJ_YBB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
 	</select>
+	<select id="export_ybb" parameterType="zdxx" resultType="elist">
+		select * from YHTJ_YBB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
+	</select>
 	
 	 <insert id="insertXHBData" parameterType="hashMap">
 		insert into YHTJ_CLXHB(id,ybyf,xh,v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30)
@@ -62,6 +65,9 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 		select * from YHTJ_CLXHB where ybyf=#{value}
 	</select>
 	<select id="selectxhbList1" parameterType="zdxx" resultType="hashmap">  
+    	select * from YHTJ_CLXHB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
+  </select> 
+  <select id="export_xhb" parameterType="zdxx" resultType="elist">  
     	select * from YHTJ_CLXHB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
   </select> 
   <delete id="delete_xhb" parameterType="String">
@@ -78,6 +84,9 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 	<select id="selectfxbList1" parameterType="zdxx" resultType="hashmap">  
    		select * from YHTJ_FXB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
   	</select>  
+  	<select id="export_fxb" parameterType="zdxx" resultType="elist">  
+   		select * from YHTJ_FXB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
+  	</select>
   	<delete id="delete_fxb" parameterType="String">
 		delete from YHTJ_FXB where ybyf=#{value}
 	</delete>
@@ -89,7 +98,10 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 	<select id="selectpdbbyYf" parameterType="String" resultType="hashmap">
 		select * from YHTJ_PDB where ybyf=#{value}
 	</select>
-	<select id="selectPdbList" statementType="CALLABLE" resultType="hashmap">  
+	<select id="selectPdbList" parameterType="zdxx" resultType="hashmap">  
+   		select * from YHTJ_PDB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
+ 	 </select>  
+ 	 <select id="export_pdb" parameterType="zdxx" resultType="elist">  
    		select * from YHTJ_PDB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
  	 </select>  
 	<delete id="delete_pdb" parameterType="String">
@@ -103,7 +115,10 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 	<select id="selectylbbyYf" parameterType="String" resultType="hashmap">
 		select * from YHTJ_YLB where ybyf=#{value}
 	</select>
-	 <select id="selectYlbList" statementType="CALLABLE" resultType="hashmap">  
+	 <select id="selectYlbList" parameterType="zdxx" resultType="hashmap">  
+    	select * from YHTJ_YLB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
+ 	</select> 
+ 	<select id="export_ylb" parameterType="zdxx" resultType="elist">  
     	select * from YHTJ_YLB where ybyf=#{nian}||'-'||#{yue} order by to_number(xh)
  	</select> 
  	<delete id="delete_ylb" parameterType="String">

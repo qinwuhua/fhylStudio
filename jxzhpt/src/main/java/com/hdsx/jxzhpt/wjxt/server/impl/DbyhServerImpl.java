@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
@@ -37,7 +38,11 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 		// TODO Auto-generated method stub
 		return queryList("selectList2",zdxx);
 	}
-
+	@Override
+	public List<Excel_list> export_ybb(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("export_ybb",zdxx);
+	}
 	@Override
 	public List<Zdxx> selectList3(Zdxx zdxx) {
 		// TODO Auto-generated method stub
@@ -61,7 +66,11 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 		// TODO Auto-generated method stub
 		return queryList("selectxhbList1",zdxx);
 	}
-
+	@Override
+	public List<Excel_list> export_xhb(Zdxx zdxx) {
+		return queryList("export_xhb",zdxx);
+	}
+	
 	@Override
 	public List<Map<String, Object>> selectxhbList4(Zdxx zdxx) {
 		// TODO Auto-generated method stub
@@ -79,17 +88,29 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 		// TODO Auto-generated method stub
 		return queryList("selectfxbList1",zdxx);
 	}
+	@Override
+	public List<Excel_list> export_fxb(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("export_fxb",zdxx);
+	}
 
 	@Override
 	public List<Map<String, Object>> selectPdbList(Zdxx zdxx) {
 		// TODO Auto-generated method stub
 		return queryList("selectPdbList",zdxx);
 	}
-
+	@Override
+	public List<Excel_list> export_pdb(Zdxx zdxx) {
+		return queryList("export_pdb",zdxx);
+	}
+	
 	@Override
 	public List<Map<String, Object>> selectYlbList(Zdxx zdxx) {
-		// TODO Auto-generated method stub
 		return queryList("selectYlbList",zdxx);
+	}
+	@Override
+	public List<Excel_list> export_ylb(Zdxx zdxx) {
+		return queryList("export_ylb",zdxx);
 	}
 
 	@Override

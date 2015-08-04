@@ -113,6 +113,9 @@ function delete_xhb(){
 		});
 	}
 }
+function dcmb(){
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName=glyhxxbyclxhb";
+}
 </script>
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
@@ -147,7 +150,9 @@ function delete_xhb(){
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
 <!-- 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="export_ybb()">导入Excel</a> -->
 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="import_xhb('clxhb')">导入Excel</a>
- 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="delete_xhb()">删除</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-no" onclick="delete_xhb()">删除</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="dcmb()">导出模板</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="export_xhb()">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>

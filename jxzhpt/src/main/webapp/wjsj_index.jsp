@@ -30,13 +30,13 @@ $(function(){
 	$("#index_user").html($.cookie("truename"));
 	
 	
-	$("#Menu_1,#Menu_2,#Menu_3").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_3").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4").removeClass('now');
 		$("#" + this.id).addClass('now');
 	});
     
     $("#Menu_1").click(function () {
-        $("#c2,#c3").hide();
+        $("#c2,#c3,#c4").hide();
         $("#c1").show();
         if (c1){
             $("#c1f").attr("src", "page/lkpd/Menu.jsp");
@@ -44,7 +44,7 @@ $(function(){
     });
 
     $("#Menu_2").click(function () {
-        $("#c1,#c3").hide();
+        $("#c1,#c3,#c4").hide();
         $("#c2").show();
         if (c2) {
             $("#c2f").attr("src", "page/jtltj/Menu.jsp");
@@ -52,10 +52,19 @@ $(function(){
     });
     //计划管理
     $("#Menu_3").click(function () {
-        $("#c1,#c2").hide();
+        $("#c1,#c2,#c4").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/yhtj/Menu.jsp");
+        }
+    });
+    //计划管理
+    $("#Menu_4").click(function () {
+        $("#c1,#c2,#c3").hide();
+        $("#c4").show();
+        if (c4) {
+            $("#c4f").attr("src", "page/lkpd/Menu1.jsp");
+            window.open("http://111.75.227.172/cbms2014jxgl/login.aspx");
         }
     });
     menuQx();
@@ -96,6 +105,7 @@ function edit(){
 					<li id="menu_010301" style="display:none;"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
 					<li id="menu_010302" style="display:none;"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 
 					<li id="menu_010303" style="display:none;"><a id="Menu_3" href="javascript:void(0)">养护统计</a></li>
+					<li id="menu_010304" style="display:none;"><a id="Menu_4" href="javascript:void(0)">桥梁管理</a></li>
 				</ul>
 			</div>
 		</div>
@@ -109,6 +119,9 @@ function edit(){
 		</div>
 		<div id="c3" style="width:100%;height:100%;display:none">
 			<iframe id="c3f" name="c3f"src="" frameborder='0' height='100%' width='100%'></iframe>
+		</div>
+		<div id="c4" style="width:100%;height:100%;display:none">
+			<iframe id="c4f" name="c4f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
     </div>
     <div data-options="region:'south',border:false,split:false" style="height: 25px;color:#FFF;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">

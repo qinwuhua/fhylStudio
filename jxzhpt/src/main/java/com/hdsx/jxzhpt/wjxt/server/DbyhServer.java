@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface DbyhServer {
 
@@ -66,5 +67,15 @@ public interface DbyhServer {
 	boolean insertYLBData(List<Map> data);
 
 	boolean delete_ylb(String string);
+
+	List<Excel_list> export_ybb(Zdxx zdxx);
+
+	List<Excel_list> export_xhb(Zdxx zdxx);
+
+	List<Excel_list> export_fxb(Zdxx zdxx);
+
+	List<Excel_list> export_pdb(Zdxx zdxx);
+
+	List<Excel_list> export_ylb(Zdxx zdxx);
 
 }

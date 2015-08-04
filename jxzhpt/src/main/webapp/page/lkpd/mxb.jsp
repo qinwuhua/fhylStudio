@@ -79,7 +79,8 @@ function showMxbAll(){
 			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+"&nbsp;&nbsp;&nbsp;"+
+				return '<input onclick=download("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=下载 />'+"&nbsp;&nbsp;&nbsp;"+
+				'<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+"&nbsp;&nbsp;&nbsp;"+
 				'<input onclick=Deletemxb("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
 			}
 		},
@@ -87,6 +88,12 @@ function showMxbAll(){
 		{field : 'tbdw',title : '填报单位',width : 300,align : 'center'}
 		]]
 	});
+}
+function download(id){
+	window.location.href="/jxzhpt/wjxt/downLkpdmxbFile.do?id="+id
+}
+function dcmb(){
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName=gljszkpdmxb";
 }
 </script>
 <div style="width:100%;">
@@ -107,6 +114,7 @@ function showMxbAll(){
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showMxbAll()">查　询</a>&nbsp;
 	 					<a id="yhgl_btn_add" href="javascript:void(0);" class="easyui-linkbutton" plain="true" iconCls="icon-add"  onclick="insertData('mxb')">导入数据</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0);" class="easyui-linkbutton" plain="true" iconCls="icon-remove"  onclick="dcmb()">导出模板</a>
  					</p>
  				</div>
  			</fieldset>

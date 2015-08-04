@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
+import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 
 @Service
@@ -310,5 +311,31 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 	public Jtlhzgd selectJtlhzsddata(Jtlhzgd jtlhz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectJtlhzsddata", jtlhz);
+	}
+
+	@Override
+	public Wjgl downLkpdmxbFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downLkpdmxbFile", lkmxb);
+	}
+	@Override
+	public Wjgl downLkpdtjbFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downLkpdtjbFile", lkmxb);
+	}
+	@Override
+	public Wjgl downjtqkhzbFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downjtqkhzbFile", lkmxb);
+	}
+	@Override
+	public Wjgl downjtqkhzbgdFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downjtqkhzbgdFile", lkmxb);
+	}
+	@Override
+	public Wjgl downjtqkhzbsdFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downjtqkhzbsdFile", lkmxb);
 	}
 }

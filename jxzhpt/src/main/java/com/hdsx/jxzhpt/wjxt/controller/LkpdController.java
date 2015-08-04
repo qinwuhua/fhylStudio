@@ -38,6 +38,7 @@ import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
+import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
@@ -154,7 +155,6 @@ public class LkpdController extends BaseActionSupport{
 			List<Map>[] dataMapArray;
 			try{
 				dataMapArray = ExcelReader1.readExcelContent(2,17,fs,Plan_gcgj.class);
-
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -167,19 +167,21 @@ public class LkpdController extends BaseActionSupport{
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 			lkmxb1.setTbdw(data.get(0).get("1").toString());
 			lkmxb1.setTbnf(data.get(0).get("7").toString());
-			if(data.get(data.size()-1).get("0").toString().split("：").length>1)
-			lkmxb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("0").toString().split("：").length>1)
+			lkmxb1.setDwfzr(data.get(data.size()-2).get("0").toString().split("：")[1]);
 			else lkmxb1.setDwfzr("");
-			if(data.get(data.size()-1).get("4").toString().split("：").length>1)
-			lkmxb1.setTjfzr(data.get(data.size()-1).get("4").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("4").toString().split("：").length>1)
+			lkmxb1.setTjfzr(data.get(data.size()-2).get("4").toString().split("：")[1]);
 			else lkmxb1.setTjfzr("");
-			if(data.get(data.size()-1).get("8").toString().split("：").length>1)
-			lkmxb1.setTjf(data.get(data.size()-1).get("8").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("8").toString().split("：").length>1)
+			lkmxb1.setTjf(data.get(data.size()-2).get("8").toString().split("：")[1]);
 			else lkmxb1.setTjf("");
-			if(data.get(data.size()-1).get("12").toString().split("：").length>1)
-			lkmxb1.setTbrq(data.get(data.size()-1).get("12").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("12").toString().split("：").length>1)
+			lkmxb1.setTbrq(data.get(data.size()-2).get("12").toString().split("：")[1]);
 			else lkmxb1.setTbrq("");
 			lkmxb1.setId(s1);
+			InputStream inputStream = new FileInputStream(fileupload);
+			lkmxb1.setWjfile(inputStreamToByte(inputStream));
 			try {
 				Integer.parseInt(lkmxb1.getTbnf().substring(0,4));
 			} catch (Exception e) {
@@ -196,6 +198,7 @@ public class LkpdController extends BaseActionSupport{
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
+			data.remove(data.size()-1);
 			data.remove(data.size()-1);
 			int i=1;
 			for (Map map : data) {
@@ -220,6 +223,231 @@ public class LkpdController extends BaseActionSupport{
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	public void downjtqkhzbsdFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downjtqkhzbsdFile(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路交通情况调查汇总表(省道).xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downjtqkhzbgdFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downjtqkhzbgdFile(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路交通情况调查汇总表(国道).xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downjtqkhzbFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downjtqkhzbFile(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路交通情况调查汇总表.xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downLkpdtjbFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downLkpdtjbFile(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路技术状况评定统计表.xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downLkpdmxbFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downLkpdmxbFile(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路技术状况评定明细表.xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void getMxbDataList(){
@@ -274,20 +502,22 @@ public class LkpdController extends BaseActionSupport{
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 			Lktjb lktjb1=new Lktjb();
+			InputStream inputStream = new FileInputStream(fileupload);
+			lktjb1.setWjfile(inputStreamToByte(inputStream));
 			lktjb1.setId(s1);
 			lktjb1.setTbdw(data.get(0).get("1").toString());
 			lktjb1.setTbnf(data.get(0).get("4").toString());
-			if(data.get(data.size()-1).get("0").toString().split("：").length>1)
-			lktjb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("0").toString().split("：").length>1)
+			lktjb1.setDwfzr(data.get(data.size()-2).get("0").toString().split("：")[1]);
 			else lktjb1.setDwfzr("");
-			if(data.get(data.size()-1).get("2").toString().split("：").length>1)
-			lktjb1.setFzr(data.get(data.size()-1).get("2").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("2").toString().split("：").length>1)
+			lktjb1.setFzr(data.get(data.size()-2).get("2").toString().split("：")[1]);
 			else lktjb1.setFzr("");
-			if(data.get(data.size()-1).get("5").toString().split("：").length>1)
-			lktjb1.setTbr(data.get(data.size()-1).get("5").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("5").toString().split("：").length>1)
+			lktjb1.setTbr(data.get(data.size()-2).get("5").toString().split("：")[1]);
 			else lktjb1.setTbr("");
-			if(data.get(data.size()-1).get("8").toString().split("：").length>1)
-			lktjb1.setTbrq(data.get(data.size()-1).get("8").toString().split("：")[1]);
+			if(data.get(data.size()-2).get("8").toString().split("：").length>1)
+			lktjb1.setTbrq(data.get(data.size()-2).get("8").toString().split("：")[1]);
 			else lktjb1.setTbrq("");
 			boolean booltb=false,booldata=false;
 			try {
@@ -306,6 +536,7 @@ public class LkpdController extends BaseActionSupport{
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
+			data.remove(data.size()-1);
 			data.remove(data.size()-1);
 			int i=1;
 			for (Map map : data) {
@@ -384,4 +615,17 @@ public class LkpdController extends BaseActionSupport{
 		}
 	}
 	
+	
+	//
+	private byte [] inputStreamToByte(InputStream is) throws IOException { 
+	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    byte [] arr = new byte[1024*10];
+	    int ch; 
+	    while((ch = is.read(arr) ) != -1){ 
+	        bAOutputStream.write(arr,0,ch); 
+	    } 
+	    byte data [] =bAOutputStream.toByteArray(); 
+	    bAOutputStream.close(); 
+	    return data; 
+	}
 }

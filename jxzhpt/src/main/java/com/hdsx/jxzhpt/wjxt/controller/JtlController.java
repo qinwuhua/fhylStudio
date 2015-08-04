@@ -160,14 +160,16 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");
 			jtlhz1.setTbnf(data.get(0).get("10").toString());
-			if(data.get(data.size()-1).get("0").toString().split(":").length>1)
-			jtlhz1.setDwfzr(data.get(data.size()-1).get("0").toString().split(":")[1]);
+			if(data.get(data.size()-2).get("0").toString().split(":").length>1)
+			jtlhz1.setDwfzr(data.get(data.size()-2).get("0").toString().split(":")[1]);
 			else jtlhz1.setDwfzr("");
-			jtlhz1.setTjfzr(data.get(data.size()-1).get("4").toString());
-			jtlhz1.setTbr(data.get(data.size()-1).get("8").toString());
-			jtlhz1.setLxdh(data.get(data.size()-1).get("20").toString());
-			jtlhz1.setBcrq(data.get(data.size()-1).get("33").toString());
+			jtlhz1.setTjfzr(data.get(data.size()-2).get("4").toString());
+			jtlhz1.setTbr(data.get(data.size()-2).get("8").toString());
+			jtlhz1.setLxdh(data.get(data.size()-2).get("20").toString());
+			jtlhz1.setBcrq(data.get(data.size()-2).get("33").toString());
 			jtlhz1.setId(s1);
+			InputStream inputStream = new FileInputStream(fileupload);
+			jtlhz1.setWjfile(inputStreamToByte(inputStream));
 			try {
 				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
 			} catch (Exception e) {
@@ -185,6 +187,7 @@ public class JtlController extends BaseActionSupport{
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
+			data.remove(data.size()-1);
 			data.remove(data.size()-1);
 			int i=1;
 			for (Map map : data) {
@@ -267,16 +270,18 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");
 			jtlhz1.setTbnf(data.get(0).get("8").toString());
-			if(data.get(data.size()-1).get("0").toString().split(":").length>1)
-			jtlhz1.setDwfzr(data.get(data.size()-1).get("0").toString().split(":")[1]);
+			if(data.get(data.size()-2).get("0").toString().split(":").length>1)
+			jtlhz1.setDwfzr(data.get(data.size()-2).get("0").toString().split(":")[1]);
 			else jtlhz1.setDwfzr("");
-			if(data.get(data.size()-1).get("3").toString().split(":").length>1)
-			jtlhz1.setTjfzr(data.get(data.size()-1).get("3").toString().split(":")[1]);
+			if(data.get(data.size()-2).get("3").toString().split(":").length>1)
+			jtlhz1.setTjfzr(data.get(data.size()-2).get("3").toString().split(":")[1]);
 			else jtlhz1.setTjfzr("");
-			jtlhz1.setTbr(data.get(data.size()-1).get("9").toString());
-			jtlhz1.setLxdh(data.get(data.size()-1).get("13").toString());
-			jtlhz1.setRq(data.get(data.size()-1).get("18").toString());
+			jtlhz1.setTbr(data.get(data.size()-2).get("9").toString());
+			jtlhz1.setLxdh(data.get(data.size()-2).get("13").toString());
+			jtlhz1.setRq(data.get(data.size()-2).get("18").toString());
 			jtlhz1.setId(s1);
+			InputStream inputStream = new FileInputStream(fileupload);
+			jtlhz1.setWjfile(inputStreamToByte(inputStream));
 			try {
 				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
 			} catch (Exception e) {
@@ -294,6 +299,7 @@ public class JtlController extends BaseActionSupport{
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
+			data.remove(data.size()-1);
 			data.remove(data.size()-1);
 			int i=1;
 			for (Map map : data) {
@@ -375,16 +381,18 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");
 			jtlhz1.setTbnf(data.get(0).get("8").toString());
-			if(data.get(data.size()-1).get("0").toString().split(":").length>1)
-			jtlhz1.setDwfzr(data.get(data.size()-1).get("0").toString().split(":")[1]);
+			if(data.get(data.size()-2).get("0").toString().split(":").length>1)
+			jtlhz1.setDwfzr(data.get(data.size()-2).get("0").toString().split(":")[1]);
 			else jtlhz1.setDwfzr("");
-			if(data.get(data.size()-1).get("3").toString().split(":").length>1)
-			jtlhz1.setTjfzr(data.get(data.size()-1).get("3").toString().split(":")[1]);
+			if(data.get(data.size()-2).get("3").toString().split(":").length>1)
+			jtlhz1.setTjfzr(data.get(data.size()-2).get("3").toString().split(":")[1]);
 			else jtlhz1.setTjfzr("");
-			jtlhz1.setTbr(data.get(data.size()-1).get("9").toString());
-			jtlhz1.setLxdh(data.get(data.size()-1).get("13").toString());
-			jtlhz1.setRq(data.get(data.size()-1).get("18").toString());
+			jtlhz1.setTbr(data.get(data.size()-2).get("9").toString());
+			jtlhz1.setLxdh(data.get(data.size()-2).get("13").toString());
+			jtlhz1.setRq(data.get(data.size()-2).get("18").toString());
 			jtlhz1.setId(s1);
+			InputStream inputStream = new FileInputStream(fileupload);
+			jtlhz1.setWjfile(inputStreamToByte(inputStream));
 			try {
 				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
 			} catch (Exception e) {
@@ -403,13 +411,13 @@ public class JtlController extends BaseActionSupport{
 			data.remove(0);
 			data.remove(0);
 			data.remove(data.size()-1);
+			data.remove(data.size()-1);
 			int i=1;
 			for (Map map : data) {
 				map.put("id", i);
 				i++;
 				map.put("hzb_id", s1);
 			}
-			System.out.println(data);
 			booldata=trqkServer.insertJtlhzsddata(data);
 			if(booltb && booldata)
 				response.getWriter().print(fileuploadFileName+"导入成功");
@@ -454,4 +462,18 @@ public class JtlController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}	
+	
+	
+	//
+	private byte [] inputStreamToByte(InputStream is) throws IOException { 
+	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    byte [] arr = new byte[1024*10];
+	    int ch; 
+	    while((ch = is.read(arr) ) != -1){ 
+	        bAOutputStream.write(arr,0,ch); 
+	    } 
+	    byte data [] =bAOutputStream.toByteArray(); 
+	    bAOutputStream.close(); 
+	    return data; 
+	}
 }

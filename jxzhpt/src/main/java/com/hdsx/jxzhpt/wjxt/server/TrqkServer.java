@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
+import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 
 public interface TrqkServer {
 
@@ -96,5 +97,15 @@ public interface TrqkServer {
 	Jtlhzgd selectJtlhzgddata(Jtlhzgd jtlhz);
 
 	Jtlhzgd selectJtlhzsddata(Jtlhzgd jtlhz);
+
+	Wjgl downLkpdmxbFile(Lkmxb lkmxb);
+
+	Wjgl downLkpdtjbFile(Lkmxb lkmxb);
+
+	Wjgl downjtqkhzbFile(Lkmxb lkmxb);
+
+	Wjgl downjtqkhzbsdFile(Lkmxb lkmxb);
+
+	Wjgl downjtqkhzbgdFile(Lkmxb lkmxb);
 
 }
