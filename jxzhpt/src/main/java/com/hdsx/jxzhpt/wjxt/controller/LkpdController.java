@@ -154,17 +154,25 @@ public class LkpdController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,17,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(1,17,fs,Plan_gcgj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			
 			String strVerify="";
 			boolean booltb=false,booldata=false;
 			Lkmxb lkmxb1=new Lkmxb();
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			String[] ss=data.get(0).get("13").toString().split("\n");
+			lkmxb1.setBt1(ss[0]);
+			lkmxb1.setBt2(ss[1]);
+			lkmxb1.setBt3(ss[2]);
+			lkmxb1.setBt4(ss[3]);
+			lkmxb1.setBt5(ss[4]);
+			data.remove(0);
 			lkmxb1.setTbdw(data.get(0).get("1").toString());
 			lkmxb1.setTbnf(data.get(0).get("7").toString());
 			if(data.get(data.size()-2).get("0").toString().split("：").length>1)
@@ -194,6 +202,7 @@ public class LkpdController extends BaseActionSupport{
 				return;
 			}
 			booltb=trqkServer.insertLqpdmxb(lkmxb1);
+			
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
@@ -492,18 +501,27 @@ public class LkpdController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,11,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(1,11,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+
+			
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 			Lktjb lktjb1=new Lktjb();
 			InputStream inputStream = new FileInputStream(fileupload);
 			lktjb1.setWjfile(inputStreamToByte(inputStream));
+			String[] bt=data.get(0).get("8").toString().split("\n");
+			lktjb1.setBt1(bt[0]);
+			lktjb1.setBt2(bt[1]);
+			lktjb1.setBt3(bt[2]);
+			lktjb1.setBt4(bt[3]);
+			lktjb1.setBt5(bt[4]);
+			data.remove(0);
 			lktjb1.setId(s1);
 			lktjb1.setTbdw(data.get(0).get("1").toString());
 			lktjb1.setTbnf(data.get(0).get("4").toString());

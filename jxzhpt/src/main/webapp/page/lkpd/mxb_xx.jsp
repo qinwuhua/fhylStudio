@@ -61,6 +61,7 @@
 			dataType:"JSON",
 			success:function(msg){
 				$("#"+id+" #tbdw").text(msg.tbdw);
+				$("#"+id+" #bt").html(msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5);
 				$("#"+id+" #tbnf").text(msg.tbnf);
 				$("#"+id+" #dwfzr").text(msg.dwfzr);
 				$("#"+id+" #tjfzr").text(msg.tjfzr);
@@ -92,11 +93,8 @@
                                             <span id="lblFBT">——高速公路、普通国道级省道</span>
                                         </td>
                                         <td rowspan="2" align="right" style="width: 20%; margin: 0px; padding: 0px;">
-                                            <textarea name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">表    号：交  公  路 29-1 表
-制表机关：交  通  运  输  部
-备案机关：国  家  统  计  局
-批准文号：国统制（2012）131号
-有效期至：2014   年   11  月   </textarea>
+                                            <textarea id='bt' name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">表    号：交  公  路 29-1 表
+ </textarea>
                                         </td>
                                     </tr>
                                     <tr style="vertical-align: bottom;">

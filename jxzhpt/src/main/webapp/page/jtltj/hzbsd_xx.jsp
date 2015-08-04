@@ -75,6 +75,7 @@
 			dataType:"JSON",
 			success:function(msg){
 				$("#"+id+" #tbdw").text(msg.tbdw);
+				$("#"+id+" #bt").html(msg.bt1+"<br>"+msg.bt2+"<br>"+msg.bt3+"<br>"+msg.bt4+"<br>"+msg.bt5);
 				$("#"+id+" #tbnf").text(msg.tbnf);
 				$("#"+id+" #dwfzr").text(msg.dwfzr);
 				$("#"+id+" #tjfzr").text(msg.tjfzr);
@@ -115,7 +116,7 @@
                                             <span id="tbnf"></span>
                                         </td>
                                         <td align="center" style="font-size: 12px;">
-                                            <div id="divReport" style="text-align: left; width: 200px;">表    号：交调统4表<br/>制表机关：交通运输部<br/>备案机关：国家统计局<br/>备案文号：国统办函〔2011〕167号<br/>有效期限：2014年11月</div>
+                                            <div id="bt" style="text-align: left; width: 200px;"></div>
                                         </td>
                                     </tr>
                                 </table>

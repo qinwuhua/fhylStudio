@@ -145,7 +145,7 @@ public class JtlController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(5,35,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(1,35,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -156,6 +156,15 @@ public class JtlController extends BaseActionSupport{
 			Jtlhz jtlhz1=new Jtlhz();
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			jtlhz1.setBt1(data.get(0).get("30").toString()+data.get(0).get("32").toString());
+			jtlhz1.setBt2(data.get(1).get("30").toString()+data.get(1).get("32").toString());
+			jtlhz1.setBt3(data.get(2).get("30").toString()+data.get(2).get("32").toString());
+			jtlhz1.setBt4(data.get(3).get("30").toString()+data.get(3).get("32").toString());
+			jtlhz1.setBt5(data.get(4).get("30").toString()+data.get(4).get("32").toString());
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
 			if(data.get(0).get("0").toString().split("：").length>1)
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");
@@ -255,7 +264,7 @@ public class JtlController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(5,20,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(1,20,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -266,6 +275,15 @@ public class JtlController extends BaseActionSupport{
 			Jtlhzgd jtlhz1=new Jtlhzgd();
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			jtlhz1.setBt1(data.get(0).get("17").toString()+data.get(0).get("18").toString());
+			jtlhz1.setBt2(data.get(1).get("17").toString()+data.get(1).get("18").toString());
+			jtlhz1.setBt3(data.get(2).get("17").toString()+data.get(2).get("18").toString());
+			jtlhz1.setBt4(data.get(3).get("17").toString()+data.get(3).get("18").toString());
+			jtlhz1.setBt5(data.get(4).get("17").toString()+data.get(4).get("18").toString());
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
 			if(data.get(0).get("0").toString().split("：").length>1)
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");
@@ -366,7 +384,7 @@ public class JtlController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(5,20,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(1,20,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -377,6 +395,15 @@ public class JtlController extends BaseActionSupport{
 			Jtlhzgd jtlhz1=new Jtlhzgd();
 			String s = UUID.randomUUID().toString(); 
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			jtlhz1.setBt1(data.get(0).get("17").toString()+data.get(0).get("18").toString());
+			jtlhz1.setBt2(data.get(1).get("17").toString()+data.get(1).get("18").toString());
+			jtlhz1.setBt3(data.get(2).get("17").toString()+data.get(2).get("18").toString());
+			jtlhz1.setBt4(data.get(3).get("17").toString()+data.get(3).get("18").toString());
+			jtlhz1.setBt5(data.get(4).get("17").toString()+data.get(4).get("18").toString());
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
 			if(data.get(0).get("0").toString().split("：").length>1)
 			jtlhz1.setTbdw(data.get(0).get("0").toString().split("：")[1]);
 			else jtlhz1.setTbdw("");

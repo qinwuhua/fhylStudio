@@ -238,7 +238,7 @@ public class ExcelReader1 {
                     //cellvalue = String.valueOf(cell.getNumericCellValue());
                 	cell.setCellType(cell.CELL_TYPE_STRING);
                 	cellvalue = cell.getRichStringCellValue().getString();
-                    System.out.println("-----------"+cellvalue);
+                   // System.out.println("-----------"+cellvalue);
                 }
                 break;
             }

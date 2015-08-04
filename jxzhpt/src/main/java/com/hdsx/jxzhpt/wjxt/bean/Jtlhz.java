@@ -51,7 +51,42 @@ public class Jtlhz implements Serializable {
 	private int page;
 	private int rows;
 	private byte[] wjfile;
+	private String bt1;
+	private String bt2;
+	private String bt3;
+	private String bt4;
+	private String bt5;
 	
+	public String getBt1() {
+		return bt1;
+	}
+	public void setBt1(String bt1) {
+		this.bt1 = bt1;
+	}
+	public String getBt2() {
+		return bt2;
+	}
+	public void setBt2(String bt2) {
+		this.bt2 = bt2;
+	}
+	public String getBt3() {
+		return bt3;
+	}
+	public void setBt3(String bt3) {
+		this.bt3 = bt3;
+	}
+	public String getBt4() {
+		return bt4;
+	}
+	public void setBt4(String bt4) {
+		this.bt4 = bt4;
+	}
+	public String getBt5() {
+		return bt5;
+	}
+	public void setBt5(String bt5) {
+		this.bt5 = bt5;
+	}
 	public byte[] getWjfile() {
 		return wjfile;
 	}
