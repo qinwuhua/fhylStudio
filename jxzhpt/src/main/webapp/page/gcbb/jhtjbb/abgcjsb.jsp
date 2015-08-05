@@ -254,8 +254,7 @@ table tbody tr td {
 										<td colspan="14" >计划情况</td>
 										<td colspan="13">建设进展情况</td>
 										<td colspan="6" >资金落实情况</td>
-										<td rowspan="3">备注</td>
-										
+										<td rowspan="3" width="100px">备注</td>
 									</tr>	
 									<tr>
 										<td rowspan="2" style="width: 125px">行政区划代码</td>

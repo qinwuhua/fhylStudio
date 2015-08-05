@@ -249,7 +249,7 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="4800px" >
+							<table width="5000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">市农村公路危桥改造工程项目建设表 </caption>
 								<thead>
 									<tr>
@@ -261,7 +261,7 @@ table tbody tr td {
 										<td colspan="18" >计划情况</td>
 										<td colspan="20">建设进展情况</td>
 										<td colspan="10" >资金落实情况</td>
-										<td rowspan="3">备注</td>
+										<td rowspan="3" width="100px">备注</td>
 										
 									</tr>	
 									<tr>
