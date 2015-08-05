@@ -44,7 +44,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
-import com.hdsx.jxzhpt.utile.ExcelReader1;
+import com.hdsx.jxzhpt.utile.ExcelReader2;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -497,20 +497,20 @@ public class DbyhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(3,41,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader2.readExcelContent(3,41,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Map> data = ExcelReader2.removeBlankRow(dataMapArray[0]);
 			int num=1;
 			
 			String niany=data.get(data.size()-2).get("1").toString();
 			//验证是否为时间
 			try{
 				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
-				d.parse(niany);
+				d.parse(niany+"-01");
 				//System.out.println(d);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
@@ -575,20 +575,20 @@ public class DbyhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(3,31,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader2.readExcelContent(3,31,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Map> data = ExcelReader2.removeBlankRow(dataMapArray[0]);
 			int num=1;
 			
 			String niany=data.get(data.size()-2).get("1").toString();
 			//验证是否为时间
 			try{
 				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
-				d.parse(niany);
+				d.parse(niany+"-01");
 				//System.out.println(d);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
@@ -654,20 +654,20 @@ public class DbyhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(4,12,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader2.readExcelContent(4,12,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Map> data = ExcelReader2.removeBlankRow(dataMapArray[0]);
 			int num=1;
 			
 			String niany=data.get(data.size()-2).get("1").toString();
 			//验证是否为时间
 			try{
 				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
-				d.parse(niany);
+				d.parse(niany+"-01");
 				//System.out.println(d);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
@@ -733,20 +733,20 @@ public class DbyhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(4,31,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader2.readExcelContent(4,31,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Map> data = ExcelReader2.removeBlankRow(dataMapArray[0]);
 			int num=1;
 			
 			String niany=data.get(data.size()-2).get("1").toString();
 			//验证是否为时间
 			try{
 				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
-				d.parse(niany);
+				d.parse(niany+"-01");
 				//System.out.println(d);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
@@ -812,20 +812,20 @@ public class DbyhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(3,14,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader2.readExcelContent(3,14,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			List<Map> data = ExcelReader2.removeBlankRow(dataMapArray[0]);
 			int num=1;
 			
 			String niany=data.get(data.size()-2).get("1").toString();
 			//验证是否为时间
 			try{
 				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
-				d.parse(niany);
+				d.parse(niany+"-01");
 				//System.out.println(d);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");

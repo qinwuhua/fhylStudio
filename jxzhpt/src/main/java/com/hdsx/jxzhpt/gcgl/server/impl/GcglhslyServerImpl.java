@@ -294,4 +294,9 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzjhList1", gcglhsly);
 	}
+
+	@Override
+	public boolean thxmwgtj(String sql) {
+		return update("thxmwgtj", sql)==1;
+	}
 }

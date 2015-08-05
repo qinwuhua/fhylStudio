@@ -223,6 +223,7 @@
 	<action name="deleteHslyFile" class="gcglhslyController" method="deleteHslyFile"/>
 	<action name="sbHslyYb" class="gcglhslyController" method="sbHslyYb"/>
 	<action name="selectHslyjhList1" class="gcglhslyController" method="selectHslyjhList1"/>
+	<action name="thxmwgtj" class="gcglhslyController" method="thxmwgtj"/>
 	
 	<!-- aqyb -->
 	<action name="loadWqgzwgzp" class="gcglaqybController" method="loadWqgzwgzp"/>

@@ -71,7 +71,21 @@ public class GcglhslyController extends BaseActionSupport{
 	private String bfyf;
 	private String bfzt;
 	private String xmnf;
+	private String id;
+	private String xmlx;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getBfyf() {
 		return bfyf;
 	}
@@ -564,5 +578,38 @@ public class GcglhslyController extends BaseActionSupport{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		}		
+		}	
+		public void thxmwgtj(){
+			String sql="";
+			if("abgc".equals(xmlx)){
+				sql="update plan_abgc set jgzt='0' where id='"+id+"'";
+			}
+			if("wqgz".equals(xmlx)){
+				sql="update plan_wqgz set jgzt='0' where id='"+id+"'";
+			}
+			if("zhfz".equals(xmlx)){
+				sql="update plan_zhfz set jgzt='0' where id='"+id+"'";
+			}
+			if("hsly".equals(xmlx)){
+				sql="update plan_hsly set jgzt='0' where id='"+id+"'";
+			}
+			if("sjgz".equals(xmlx)){
+				sql="update jhsh_sjgz set jgzt='0' where xmbm='"+id+"'";
+			}
+			if("lmgz".equals(xmlx)){
+				sql="update jhsh_lmgz set jgzt='0' where xmbm='"+id+"'";
+			}
+			if("xj".equals(xmlx)){
+				sql="update jhsh_xj set jgzt='0' where xmbm='"+id+"'";
+			}
+			if("sh".equals(xmlx)){
+				sql="update jhsh_sh set jgzt='0' where xmbm='"+id+"'";
+			}
+			if("yhdzx".equals(xmlx)){
+				sql="update jhsh_yhdzx set jgzt='0' where xmbm='"+id+"'";
+			}
+			
+			boolean bl=gcglhslyServer.thxmwgtj(sql);
+			ResponseUtils.write(getresponse(), bl+"");
+		}
 }

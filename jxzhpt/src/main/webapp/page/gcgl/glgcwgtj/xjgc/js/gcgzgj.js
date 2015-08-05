@@ -1,5 +1,24 @@
 var obj=new Object();
 var obj1=new Object();
+function thxm(index){
+	var data="id="+$("#datagrid").datagrid('getRows')[index].XMBM+"&xmlx=xj";
+	if(confirm("确定退回吗？")){
+		$.ajax({
+			data:data,
+			type:'post',
+			dataType:'json',
+			url:'/jxzhpt/gcgl/thxmwgtj.do',
+			success:function(msg){
+				if(msg){
+					alert("退回成功");
+					$("#datagrid").datagrid('reload');
+				}else{
+					alert("退回失败");
+				}
+			}
+		})
+	}
+}
 function jgys(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
@@ -96,7 +115,7 @@ function showAll(){
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:320,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">交工验收</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">交工验收</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="thxm('+index+')">退回</a>  ';
 	        }},
 	        {field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'XMBM',title : '项目编码',width : 120,align : 'center'},

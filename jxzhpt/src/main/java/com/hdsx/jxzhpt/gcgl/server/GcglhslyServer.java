@@ -62,5 +62,7 @@ public interface GcglhslyServer {
 	int selectWqgzjhListCount1(Gcglhsly gcglhsly);
 
 	List<Gcglhsly> selectWqgzjhList1(Gcglhsly gcglhsly);
+
+	boolean thxmwgtj(String sql);
 	
 }

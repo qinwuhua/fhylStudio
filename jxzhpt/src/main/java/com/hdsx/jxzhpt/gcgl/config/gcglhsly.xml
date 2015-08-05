@@ -302,4 +302,7 @@
 				</if>
 	</if>
 	 </select>
+	 <update id="thxmwgtj" parameterType="string">
+	 	${value}
+	 </update>
 </mapper>

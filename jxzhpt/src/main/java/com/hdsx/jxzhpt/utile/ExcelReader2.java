@@ -23,7 +23,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 /**
  * 操作Excel表格的功能类
  */
-public class ExcelReader1 {
+public class ExcelReader2 {
     private static POIFSFileSystem fs;
     private static HSSFWorkbook wb;
     private static HSSFSheet sheet;
@@ -221,7 +221,7 @@ public class ExcelReader1 {
             case HSSFCell.CELL_TYPE_FORMULA: {
                 // 判断当前的cell是否为Date
             	
- /*               if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                if (HSSFDateUtil.isCellDateFormatted(cell)) {
                     // 如果是Date类型则，转化为Data格式
                     
                     //方法1：这样子的data格式是带时分秒的：2011-10-12 0:00:00
@@ -232,7 +232,7 @@ public class ExcelReader1 {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     cellvalue = sdf.format(date);
                     
-                }*/
+                }
                 // 如果是纯数字
 //                else {
                     // 取得当前Cell的数值
