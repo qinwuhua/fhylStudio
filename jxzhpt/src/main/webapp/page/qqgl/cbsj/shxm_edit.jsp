@@ -109,6 +109,15 @@
 				return true;
 			}
 		}
+		function upload(){
+			if($('#sjpfwh').val()==""){
+				alert("请填写计划下达文号！");
+				return;
+			}else{
+				$("#uploadSjpf").uploadifySettings('scriptData',{'cbsj.xmbm':parent.YMLib.Var.xmbm,'cbsj.sjpfwh':$('#sjpfwh').val()});
+				$('#uploadSjpf').uploadifyUpload();
+			}
+		}
 	</script>
 </head>
 <body style="font-size: 12px;">
@@ -333,7 +342,7 @@
 							</tr>
 							<tr>
 								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjpf').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
 								</td>
 							</tr>
 						</table>

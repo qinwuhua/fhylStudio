@@ -310,5 +310,13 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public boolean insertFileJl(Plan_upload uploads) {
 		return insert("insertFileJl", uploads)>0;
 	}
+	@Override
+	public List<Plan_upload> queryFj() {
+		return queryList("queryFj");
+	}
+	@Override
+	public Plan_upload queryFjByName(Plan_upload file) {
+		return queryOne("queryFjByName",file);
+	}
 
 }

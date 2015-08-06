@@ -274,5 +274,9 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public boolean insertFileJl(Plan_upload uploads);
+
+	public List<Plan_upload> queryFj();
+
+	public Plan_upload queryFjByName(Plan_upload file);
 	
 }

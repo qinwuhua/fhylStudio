@@ -533,7 +533,7 @@
 		<if test="filewh!=null">#{filewh},</if>#{filetype},#{fileurl})
 	</insert>
 	<select id="queryFileByWh" parameterType="plan_upload" resultType="plan_upload">
-		select * from plan_upload where filetype=#{filetype} and filewh=#{filewh}
+		select * from plan_upload where filetype=#{filetype} and filewh=#{filewh} and filename=#{filename}
 	</select>
 	<insert id="insertFileJl" parameterType="plan_upload">
 		insert into plan_file (id,xmbm,fid) values (sys_guid(),#{xmbm},#{fid})
@@ -713,5 +713,12 @@
 				</if>
 				order by c.shzt,c.xmbm desc) t 
 		)
+	</select>
+	<select id="queryFj" resultType="plan_upload">
+		select filename,substr(parentid,0,4) xmbm from plan_upload where fileurl is null and filetype='设计批复文件' group by filename,substr(parentid,0,4)
+	</select>
+	<select id="queryFjByName" resultType="plan_upload">
+		select * from plan_upload where filename=#{filename} and
+		parentid = (select max(parentid) from plan_upload where filename=#{filename} and parentid like #{xmbm}||'%')
 	</select>
 </mapper>

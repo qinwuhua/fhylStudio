@@ -5,11 +5,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +33,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -242,7 +247,23 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void uploadSjpf() throws Exception{
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
-			Plan_upload uploads;
+			File file =new File(this.getClass().getResource("/").getPath()+"sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/");
+			if(uploadSjpf!=null){
+				String fid=UUID.randomUUID().toString();
+				Plan_upload uploads =new Plan_upload(fid,uploadSjpfFileName, "设计批复文件", cbsj.getXmbm(), 
+						"sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/"+uploadSjpfFileName, cbsj.getSjpfwh());
+				uploads.setFid(fid);
+				Plan_upload result = cbsjServer.queryFileByWh(uploads);
+				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
+					uploadFile(file,uploadSjpfFileName);
+					response.getWriter().print(uploadSjpfFileName+"上传成功！");
+				}else{
+					uploads.setFid(result.getId());
+					cbsjServer.insertFileJl(uploads);
+					response.getWriter().print(uploadSjpfFileName+"上传成功！");
+				}
+			}
+			/*Plan_upload uploads;
 			response.setCharacterEncoding("utf-8"); 
 			FileInputStream inputStream = null;
 			byte [] file=new byte[(int)uploadSjpf.length()];
@@ -262,11 +283,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				response.getWriter().print(uploadSjpfFileName+"导入成功");
 			}else{
 				response.getWriter().print(uploadSjpfFileName+"导入成功");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	private void uploadFile(File file,String fileName) throws FileNotFoundException,IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(uploadSjpf); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
 	}
 	public void queryFileByXmbm() throws Exception{
 		try {
@@ -622,5 +660,37 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public void queryFile(){
+		List<Plan_upload> filelist = cbsjServer.queryFj();
+		Map<String, Object> result =new HashMap<String, Object>();
+		result.put("rows", filelist);
+		result.put("total", filelist.size());
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void down(){
+		try {
+        	HttpServletResponse response = getresponse();
+        	file.setFilename(file.getFilename().replace("加号", "+"));
+        	Plan_upload queryFjById = cbsjServer.queryFjByName(file);
+        	File wj =new File(this.getClass().getResource("/").getPath()+"sjpfwj/"+file.getXmbm()+"/");
+        	if(!wj.exists()){
+        		wj.mkdirs();
+        	}
+        	File save =new File(wj,queryFjById.getFilename());
+        	OutputStream out = new FileOutputStream(save);
+        	response.setContentType("application/x-download");
+        	response.addHeader("Content-Disposition", "attachment;filename="+new String(queryFjById.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        	byte[] buffer = queryFjById.getFiledata();
+        	out.write(buffer);
+        	out.flush();
+        	out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
