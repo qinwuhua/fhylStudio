@@ -31,6 +31,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.module.ExcelModule;
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
@@ -377,130 +378,33 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
 	public void exportJhshYhdzx(){
-		//设置表头
-		ExcelTitleCell [] title=new ExcelTitleCell[32];
-		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
-		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
-		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-		title[3]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)3), null,20);
-		title[4]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)4), null,20);
-		title[5]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)5), null,20);
-		title[6]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)6), null,20);
-		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,20);
-		title[8]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)8), null,20);
-		title[9]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)9), null,20);
-		title[10]=new ExcelTitleCell("省以上助资金",false, new ExcelCoordinate(0, (short)10), null,20);
-		title[11]=new ExcelTitleCell("已确定部车购税",false, new ExcelCoordinate(0, (short)11), null,20);
-		title[12]=new ExcelTitleCell("原路线编号",false, new ExcelCoordinate(0, (short)12), null,20);
-		title[13]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)13), null,20);
-		title[14]=new ExcelTitleCell("止点名称",false, new ExcelCoordinate(0, (short)14), null,20);
-		title[15]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)15), null,20);
-		title[16]=new ExcelTitleCell("止点桩号",false, new ExcelCoordinate(0, (short)16), null,20);
-		title[17]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)17), null,20);
-		title[18]=new ExcelTitleCell("面层路面类型",false, new ExcelCoordinate(0, (short)18), null,20);
-		title[19]=new ExcelTitleCell("面层材料类型",false, new ExcelCoordinate(0, (short)19), null,20);
-		title[20]=new ExcelTitleCell("面层数量",false, new ExcelCoordinate(0, (short)20), null,20);
-		title[21]=new ExcelTitleCell("面层金额",false, new ExcelCoordinate(0, (short)21), null,20);
-		title[22]=new ExcelTitleCell("基层类型",false, new ExcelCoordinate(0, (short)22), null,20);
-		title[23]=new ExcelTitleCell("基层数量",false, new ExcelCoordinate(0, (short)23), null,20);
-		title[24]=new ExcelTitleCell("基层金额",false, new ExcelCoordinate(0, (short)24), null,20);
-		title[25]=new ExcelTitleCell("下封层数量",false, new ExcelCoordinate(0, (short)25), null,20);
-		title[26]=new ExcelTitleCell("下封层金额",false, new ExcelCoordinate(0, (short)26), null,20);
-		title[27]=new ExcelTitleCell("标线数量",false, new ExcelCoordinate(0, (short)27), null,20);
-		title[28]=new ExcelTitleCell("标线金额",false, new ExcelCoordinate(0, (short)28), null,20);
-		title[29]=new ExcelTitleCell("灌缝数量",false, new ExcelCoordinate(0, (short)29), null,20);
-		title[30]=new ExcelTitleCell("灌缝金额",false, new ExcelCoordinate(0, (short)30), null,20);
-		title[31]=new ExcelTitleCell("老路处理",false, new ExcelCoordinate(0, (short)31), null,20);
-		
-		//设置列与字段对应
-		Map<String, String> attribute=new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "kgsj");//开工时间
-		attribute.put("4", "wgsj");//完工时间
-		attribute.put("5", "gq");//工期
-		attribute.put("6", "sjpfwh");//设计批复文号
-		attribute.put("7", "xdwh");//计划下达文号
-		attribute.put("8", "xdsj");//计划下达时间
-		attribute.put("9", "ztz");//总投资
-		attribute.put("10", "sysbbzj");//省以上资金
-		attribute.put("11", "yqdbcgs");//以确定资金
-		attribute.put("12", "ylxbh");
-		attribute.put("13", "qdmc");
-		attribute.put("14", "zdmc");
-		attribute.put("15", "qdzh");
-		attribute.put("16", "zdzh");
-		attribute.put("17", "lc");
-		attribute.put("18", "mclmlx");
-		attribute.put("19", "mclx");
-		attribute.put("20", "mcsl");
-		attribute.put("21", "mcje");
-		attribute.put("22", "jclx");
-		attribute.put("23", "jcsl");
-		attribute.put("24", "jcje");
-		attribute.put("25", "xfcsl");
-		attribute.put("26", "xfcje");
-		attribute.put("27", "bxsl");
-		attribute.put("28", "bxje");
-		attribute.put("29", "gfcd");
-		attribute.put("30", "gfje");
-		attribute.put("31", "llcl");
+		//设置表头、列与字段对应
+		String fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区号,fieid=xzqh>,<title=开工时间,fieid=kgsj>," +
+				"<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=下达文号,fieid=xdwh>,<title=下达时间,fieid=xdsj>," +
+				"<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=以确定部车购税,fieid=yqdbcgs>,<title=原路线编号,fieid=ylxbh>," +
+				"<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
+				"<title=里程,fieid=lc>,<title=面层路面类型,fieid=mclmlx>,<title=面层材料类型,fieid=mclx>,<title=面层数量,fieid=mcsl>," +
+				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
+				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
+				"<title=灌封长度,fieid=gfcd>,<title=灌封金额,fieid=gfje>,<title=老路处理,fieid=llcl>,";
 		
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
-		String titleName="";
 		String fileName="";
 		if(jhsh.getXmlx()==4){
 			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
-			titleName="养护大中修项目";
 			fileName="养护大中修项目-计划下达";
 		}
-		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
 	/**
 	 * 导入养护大中修计划审核信息
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelJhxdYhdzx(){
-		ExcelEntity excel=new ExcelEntity();
-		Map<String, String> attribute=new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "kgsj");//开工时间
-		attribute.put("4", "wgsj");//完工时间
-		attribute.put("5", "gq");//工期
-		attribute.put("6", "sjpfwh");//设计批复文号
-		attribute.put("7", "xdwh");//计划下达文号
-		attribute.put("8", "xdsj");//计划下达时间
-		attribute.put("9", "ztz");//总投资
-		attribute.put("10", "sysbbzj");//省以上资金
-		attribute.put("11", "yqdbcgs");//以确定资金
-		attribute.put("12", "ylxbh");
-		attribute.put("13", "qdmc");
-		attribute.put("14", "zdmc");
-		attribute.put("15", "qdzh");
-		attribute.put("16", "zdzh");
-		attribute.put("17", "lc");
-		attribute.put("18", "mclmlx");
-		attribute.put("19", "mclx");
-		attribute.put("20", "mcsl");
-		attribute.put("21", "mcje");
-		attribute.put("22", "jclx");
-		attribute.put("23", "jcsl");
-		attribute.put("24", "jcje");
-		attribute.put("25", "xfcsl");
-		attribute.put("26", "xfcje");
-		attribute.put("27", "bxsl");
-		attribute.put("28", "bxje");
-		attribute.put("29", "gfcd");
-		attribute.put("30", "gfje");
-		attribute.put("31", "llcl");
-		excel.setAttributes(attribute);
+		String str ="xmmc,xmbm,xzqh,kgsj,wgsj,gq,xdwh,xdsj,ztz,sysbbzj,yqdbcgs,ylxbh,qdmc,zdmc,qdzh,zdzh,lc,mclmlx,mclx,mcsl,mcje,jclx,jcsl,jcje,xfcsl,xfcje,bxsl,bxje,gfcd,gfje,llcl";
 		try {
-			List<Jhsh> readerExcel = ExcelImportUtil.readerExcel(fileupload, Jhsh.class, 1, excel);
+			List<Jhsh> readerExcel = ExcelImportUtil.readExcel(str, 0, Jhsh.class,fileupload);
 			List<Lx> lxlist =new ArrayList<Lx>();
 			for (Jhsh item : readerExcel) {
 				item.setXdzt(1);

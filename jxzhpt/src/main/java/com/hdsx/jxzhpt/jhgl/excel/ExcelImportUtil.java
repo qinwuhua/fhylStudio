@@ -84,6 +84,13 @@ public class ExcelImportUtil {
 	 */
 	public static List readerExcel(HSSFSheet sheet, Class classType,int startRowNumber,ExcelEntity excel) throws Exception{
 		List result=new ArrayList();
+		HSSFCell rowOne = sheet.getRow(0).getCell(0);
+		if(rowOne.getStringCellValue().length()<10){
+			startRowNumber=1;
+		}else{
+			int indexLast=excel.getAttributes().size()-1;
+			excel.getAttributes().remove(new Integer(indexLast).toString());
+		}
 		for (int i = startRowNumber; i <= sheet.getLastRowNum(); i++) {
 			HSSFRow row = sheet.getRow(i);
 			Map<String, String> attributes = excel.getAttributes();

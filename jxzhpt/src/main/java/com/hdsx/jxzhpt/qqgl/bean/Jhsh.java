@@ -8,8 +8,20 @@ public class Jhsh {
 				+ ", kgsj=" + kgsj + ", wgsj=" + wgsj + ", gq=" + gq
 				+ ", gkpfwh=" + gkpfwh + ", sjpfwh=" + sjpfwh + ", xdwh="
 				+ xdwh + ", xdsj=" + xdsj + ", pfztz=" + pfztz + ", bbzzj="
-				+ bbzzj + ", sbzzj=" + sbzzj + ", ghlxbh=" + ghlxbh
-				+ ", xzqhdm=" + xzqhdm + ", xmlx=" + xmlx + "]";
+				+ bbzzj + ", sbzzj=" + sbzzj + ", xdzt=" + xdzt + ", ghlxbh="
+				+ ghlxbh + ", xzqhdm=" + xzqhdm + ", lsjl=" + lsjl + ", xmlx="
+				+ xmlx + ", tsdq=" + tsdq + ", ylxbh=" + ylxbh + ", gcfl="
+				+ gcfl + ", jhkgsj=" + jhkgsj + ", jhwgsj=" + jhwgsj + ", lc="
+				+ lc + ", ztz=" + ztz + ", sysbbzj=" + sysbbzj + ", yqdbcgs="
+				+ yqdbcgs + ", mclmlx=" + mclmlx + ", mclx=" + mclx + ", mcsl="
+				+ mcsl + ", mcje=" + mcje + ", jclx=" + jclx + ", jcsl=" + jcsl
+				+ ", jcje=" + jcje + ", xfcsl=" + xfcsl + ", xfcje=" + xfcje
+				+ ", bxsl=" + bxsl + ", bxje=" + bxje + ", gfcd=" + gfcd
+				+ ", gfje=" + gfje + ", llcl=" + llcl + ", jsdj=" + jsdj
+				+ ", gydw=" + gydw + ", qdmc=" + qdmc + ", zdmc=" + zdmc
+				+ ", gpsqdzh=" + gpsqdzh + ", gpszdzh=" + gpszdzh + ", yilc="
+				+ yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc="
+				+ silc + ", dwlc=" + dwlc + ", wllc=" + wllc + "]";
 	}
 	private String id;//ID
 	private String xmmc;//项目名称

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xmsq">
 	<select id="queryYhdzxNextXmbm" resultType="string">
-		select NVL(max(substr(c.xmbm,11)),4000)+1 from xmsq_yhdzx c where c.xmbm like to_char(sysdate,'yyyy')||'%'
+		select NVL(max(substr(c.xmbm,11)),4000)+1 from xmsq_yhdzx c where c.xmbm like to_char(sysdate,'yyyy')||#{xzqhdm}||'%'
 	</select>
 	<select id="queryShNextXmbm" resultType="string">
-		select NVL(max(substr(c.xmbm,11)),5000)+1 from xmsq_sh c where c.xmbm like to_char(sysdate,'yyyy')||'%'
+		select NVL(max(substr(c.xmbm,11)),5000)+1 from xmsq_sh c where c.xmbm like to_char(sysdate,'yyyy')||#{xzqhdm}||'%'
 	</select>
 	
 	<select id="queryAutoList" parameterType="xmsq" resultType="lx">

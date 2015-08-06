@@ -23,12 +23,12 @@ public interface XmsqServer {
 	 * 获取下一个项目编码
 	 * @return 项目编码
 	 */
-	public String queryYhdzxNextXmbm();
+	public String queryYhdzxNextXmbm(Xmsq xmsq);
 	/**
 	 * 获取下一个项目编码
 	 * @return 项目编码
 	 */
-	public String queryShNextXmbm();
+	public String queryShNextXmbm(Xmsq xmsq);
 	/**
 	 * 根据路线名称和行政区划查询列表
 	 * @param xmsq 
@@ -133,6 +133,12 @@ public interface XmsqServer {
 	 * @return 执行结果
 	 */
 	public boolean updateYhdzx(Xmsq xmsq);
+	/**
+	 * 修改养护大中修信息
+	 * @param xmsq 项目申请信息
+	 * @return 执行结果
+	 */
+	public boolean updateYhdzx(List<Xmsq> xmsq);
 	/**
 	 * 修改水毁项目信息
 	 * @param xmsq 项目申请信息

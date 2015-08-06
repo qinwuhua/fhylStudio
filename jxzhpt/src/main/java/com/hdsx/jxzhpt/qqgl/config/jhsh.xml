@@ -336,29 +336,29 @@
 	</update>
 	<update id="updateJhshxxYhdzx" parameterType="jhsh">
 		update jhsh_yhdzx c set 
-		<if test="ztz!=null">ztz=#{ztz}</if>
-		<if test="yqdbcgs!=null">,yqdbcgs=#{yqdbcgs}</if>
-		<if test="sysbbzj!=null">,sysbbzj=#{sysbbzj}</if>
-		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
-		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
-		<if test="lc!=null">,lc=#{lc}</if>
-		<if test="mclmlx!=null">,mclmlx=#{mclmlx}</if>
-		<if test="mclx!=null">,mclx=#{mclx}</if>
-		<if test="mcsl!=null">,mcsl=#{mcsl}</if>
-		<if test="mcje!=null">,mcje=#{mcje}</if>
-		<if test="jclx!=null">,jclx=#{jclx}</if>
-		<if test="jcsl!=null">,jcsl=#{jcsl}</if>
-		<if test="jcje!=null">,jcje=#{jcje}</if>
-		<if test="xfcsl!=null">,xfcsl=#{xfcsl}</if>
-		<if test="xfcje!=null">,xfcje=#{xfcje}</if>
-		<if test="bxsl!=null">,bxsl=#{bxsl}</if>
-		<if test="bxje!=null">,bxje=#{bxje}</if>
-		<if test="gfcd!=null">,gfcd=#{gfcd}</if>
-		<if test="gfje!=null">,gfje=#{gfje}</if>
-		<if test="llcl!=null">,llcl=#{llcl}</if>
-		<if test="xdwh!=null">,xdwh=#{xdwh}</if>
-		<if test="xdsj!=null">,xdsj=#{xdsj}</if>
-		,xdzt=${xdzt} where c.xmbm=#{xmbm}
+		<if test="ztz!=null">ztz=#{ztz},</if>
+		<if test="yqdbcgs!=null">yqdbcgs=#{yqdbcgs},</if>
+		<if test="sysbbzj!=null">sysbbzj=#{sysbbzj},</if>
+		<if test="qdzh!=null">qdzh=#{qdzh},</if>
+		<if test="zdzh!=null">zdzh=#{zdzh},</if>
+		<if test="lc!=null">lc=#{lc},</if>
+		<if test="mclmlx!=null">mclmlx=#{mclmlx},</if>
+		<if test="mclx!=null">mclx=#{mclx},</if>
+		<if test="mcsl!=null">mcsl=#{mcsl},</if>
+		<if test="mcje!=null">mcje=#{mcje},</if>
+		<if test="jclx!=null">jclx=#{jclx},</if>
+		<if test="jcsl!=null">jcsl=#{jcsl},</if>
+		<if test="jcje!=null">jcje=#{jcje},</if>
+		<if test="xfcsl!=null">xfcsl=#{xfcsl},</if>
+		<if test="xfcje!=null">xfcje=#{xfcje},</if>
+		<if test="bxsl!=null">bxsl=#{bxsl},</if>
+		<if test="bxje!=null">bxje=#{bxje},</if>
+		<if test="gfcd!=null">gfcd=#{gfcd},</if>
+		<if test="gfje!=null">gfje=#{gfje},</if>
+		<if test="llcl!=null">llcl=#{llcl},</if>
+		<if test="xdwh!=null">xdwh=#{xdwh},</if>
+		<if test="xdsj!=null">xdsj=#{xdsj},</if>
+		xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateJhshxxSh" parameterType="jhsh">
 		update jhsh_sh c set 

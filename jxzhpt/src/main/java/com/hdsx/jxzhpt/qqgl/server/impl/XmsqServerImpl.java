@@ -27,11 +27,11 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return insertBatch("insertXmsqSh",list)==list.size();
 	}
 	@Override
-	public String queryYhdzxNextXmbm() {
-		return queryOne("queryYhdzxNextXmbm", null);
+	public String queryYhdzxNextXmbm(Xmsq xmsq) {
+		return queryOne("queryYhdzxNextXmbm", xmsq);
 	}
 	@Override
-	public String queryShNextXmbm() {
+	public String queryShNextXmbm(Xmsq xmsq) {
 		return queryOne("queryShNextXmbm", null);
 	}
 	@Override
@@ -145,6 +145,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public boolean updateYhdzx(Xmsq xmsq) {
 		return update("updateYhdzx", xmsq)>0;
+	}
+	@Override
+	public boolean updateYhdzx(List<Xmsq> xmsq) {
+		return updateBatch("updateYhdzx", xmsq)==xmsq.size();
 	}
 	@Override
 	public boolean updateSh(Xmsq xmsq) {

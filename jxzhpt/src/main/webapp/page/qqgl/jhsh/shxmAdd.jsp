@@ -23,7 +23,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryNextXmbm.do',
-				data:'xmsq.xmlx='+5,
+				data:'xmsq.xmlx='+5+'&xmsq.xzqhdm='+$.cookie('dist'),
 				dataType:'json',
 				success:function(msg){
 					var date=new Date();
