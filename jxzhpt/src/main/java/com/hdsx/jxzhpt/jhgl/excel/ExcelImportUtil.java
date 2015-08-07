@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -190,8 +191,8 @@ public class ExcelImportUtil {
         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
         	}else{
-        		cell.setCellType(1);
-        		cellValue = cell.getStringCellValue();
+        		DecimalFormat df = new DecimalFormat("#.#");
+        		cellValue = df.format(cell.getNumericCellValue());
         	}
             break;  
         case HSSFCell.CELL_TYPE_BOOLEAN:  
@@ -205,16 +206,4 @@ public class ExcelImportUtil {
         }  
         return cellValue;  
     }  
-//	public List readerExcel(Class classType){
-//		List list=new ArrayList<>();
-//		try{
-//			ExcelCoordinate one=new ExcelCoordinate(1, (short)2);
-//			ExcelCoordinate two=new ExcelCoordinate(2, (short)2);
-//			list.add(one);
-//			list.add(two);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}
 }

@@ -1,7 +1,6 @@
 package com.hdsx.jxzhpt.qqgl.controller;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,8 +17,6 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,8 +27,6 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
-import com.hdsx.jxzhpt.module.ExcelModule;
-import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
@@ -40,7 +35,6 @@ import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
-import com.hdsx.util.io.FileUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")

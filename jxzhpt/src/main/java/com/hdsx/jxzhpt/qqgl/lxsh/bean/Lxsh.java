@@ -76,49 +76,49 @@ public class Lxsh implements Serializable {
 		return yhdk;
 	}
 	public void setYhdk(String yhdk) {
-		this.yhdk = yhdk;
+		this.yhdk = yhdk.trim();
 	}
 	public String getBz() {
 		return bz;
 	}
 	public void setBz(String bz) {
-		this.bz = bz;
+		this.bz = bz.trim();
 	}
 	public String getJhyilc() {
 		return jhyilc;
 	}
 	public void setJhyilc(String jhyilc) {
-		this.jhyilc = jhyilc;
+		this.jhyilc = jhyilc.trim();
 	}
 	public String getJherlc() {
 		return jherlc;
 	}
 	public void setJherlc(String jherlc) {
-		this.jherlc = jherlc;
+		this.jherlc = jherlc.trim();
 	}
 	public String getJhsanlc() {
 		return jhsanlc;
 	}
 	public void setJhsanlc(String jhsanlc) {
-		this.jhsanlc = jhsanlc;
+		this.jhsanlc = jhsanlc.trim();
 	}
 	public String getJhsilc() {
 		return jhsilc;
 	}
 	public void setJhsilc(String jhsilc) {
-		this.jhsilc = jhsilc;
+		this.jhsilc = jhsilc.trim();
 	}
 	public String getJhdwlc() {
 		return jhdwlc;
 	}
 	public void setJhdwlc(String jhdwlc) {
-		this.jhdwlc = jhdwlc;
+		this.jhdwlc = jhdwlc.trim();
 	}
 	public String getJhwllc() {
 		return jhwllc;
 	}
 	public void setJhwllc(String jhwllc) {
-		this.jhwllc = jhwllc;
+		this.jhwllc = jhwllc.trim();
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -127,97 +127,97 @@ public class Lxsh implements Serializable {
 		return yilc;
 	}
 	public void setYilc(String yilc) {
-		this.yilc = yilc;
+		this.yilc = yilc.trim();
 	}
 	public String getErlc() {
 		return erlc;
 	}
 	public void setErlc(String erlc) {
-		this.erlc = erlc;
+		this.erlc = erlc.trim();
 	}
 	public String getSanlc() {
 		return sanlc;
 	}
 	public void setSanlc(String sanlc) {
-		this.sanlc = sanlc;
+		this.sanlc = sanlc.trim();
 	}
 	public String getSilc() {
 		return silc;
 	}
 	public void setSilc(String silc) {
-		this.silc = silc;
+		this.silc = silc.trim();
 	}
 	public String getDwlc() {
 		return dwlc;
 	}
 	public void setDwlc(String dwlc) {
-		this.dwlc = dwlc;
+		this.dwlc = dwlc.trim();
 	}
 	public String getWllc() {
 		return wllc;
 	}
 	public void setWllc(String wllc) {
-		this.wllc = wllc;
+		this.wllc = wllc.trim();
 	}
 	public String getXjlxbm() {
 		return xjlxbm;
 	}
 	public void setXjlxbm(String xjlxbm) {
-		this.xjlxbm = xjlxbm;
+		this.xjlxbm = xjlxbm.trim();
 	}
 	public String getXjqdzh() {
 		return xjqdzh;
 	}
 	public void setXjqdzh(String xjqdzh) {
-		this.xjqdzh = xjqdzh;
+		this.xjqdzh = xjqdzh.trim();
 	}
 	public String getXjzdzh() {
 		return xjzdzh;
 	}
 	public void setXjzdzh(String xjzdzh) {
-		this.xjzdzh = xjzdzh;
+		this.xjzdzh = xjzdzh.trim();
 	}
 	public String getXjlc() {
 		return xjlc;
 	}
 	public void setXjlc(String xjlc) {
-		this.xjlc = xjlc;
+		this.xjlc = xjlc.trim();
 	}
 	public String getMinqdzh() {
 		return minqdzh;
 	}
 	public void setMinqdzh(String minqdzh) {
-		this.minqdzh = minqdzh;
+		this.minqdzh = minqdzh.trim();
 	}
 	public String getMaxzdzh() {
 		return maxzdzh;
 	}
 	public void setMaxzdzh(String maxzdzh) {
-		this.maxzdzh = maxzdzh;
+		this.maxzdzh = maxzdzh.trim();
 	}
 	public String getLxbm() {
 		return lxbm;
 	}
 	public void setLxbm(String lxbm) {
-		this.lxbm = lxbm;
+		this.lxbm = lxbm.trim();
 	}
 	public String getBzys1() {
 		return bzys1;
 	}
 	public void setBzys1(String bzys1) {
-		this.bzys1 = bzys1;
+		this.bzys1 = bzys1.trim();
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}
 	public void setGpsqdzh(String gpsqdzh) {
-		this.gpsqdzh = gpsqdzh;
+		this.gpsqdzh = gpsqdzh.trim();
 	}
 	public String getGpszdzh() {
 		return gpszdzh;
 	}
 	public void setGpszdzh(String gpszdzh) {
-		this.gpszdzh = gpszdzh;
+		this.gpszdzh = gpszdzh.trim();
 	}
 	public String getLsjl() {
 		return lsjl;
@@ -235,7 +235,7 @@ public class Lxsh implements Serializable {
 		return lxmc;
 	}
 	public void setLxmc(String lxmc) {
-		this.lxmc = lxmc;
+		this.lxmc = lxmc.trim();
 	}
 	public int getSbthcd() {
 		return sbthcd;
@@ -290,49 +290,49 @@ public class Lxsh implements Serializable {
 		return xmmc;
 	}
 	public void setXmmc(String xmmc) {
-		this.xmmc = xmmc;
+		this.xmmc = xmmc.trim();
 	}
 	public String getGhlxbh() {
 		return ghlxbh;
 	}
 	public void setGhlxbh(String ghlxbh) {
-		this.ghlxbh = ghlxbh;
+		this.ghlxbh = ghlxbh.trim();
 	}
 	public String getLc() {
 		return lc;
 	}
 	public void setLc(String lc) {
-		this.lc = lc;
+		this.lc = lc.trim();
 	}
 	public String getJsxz() {
 		return jsxz;
 	}
 	public void setJsxz(String jsxz) {
-		this.jsxz = jsxz;
+		this.jsxz = jsxz.trim();
 	}
 	public String getQdzh() {
 		return qdzh;
 	}
 	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh;
+		this.qdzh = qdzh.trim();
 	}
 	public String getZdzh() {
 		return zdzh;
 	}
 	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh;
+		this.zdzh = zdzh.trim();
 	}
 	public String getQdmc() {
 		return qdmc;
 	}
 	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
+		this.qdmc = qdmc.trim();
 	}
 	public String getZdmc() {
 		return zdmc;
 	}
 	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
+		this.zdmc = zdmc.trim();
 	}
 	public String getJhkgn() {
 		return jhkgn;
@@ -350,13 +350,13 @@ public class Lxsh implements Serializable {
 		return jsjsdj;
 	}
 	public void setJsjsdj(String jsjsdj) {
-		this.jsjsdj = jsjsdj;
+		this.jsjsdj = jsjsdj.trim();
 	}
 	public String getXjsdj() {
 		return xjsdj;
 	}
 	public void setXjsdj(String xjsdj) {
-		this.xjsdj = xjsdj;
+		this.xjsdj = xjsdj.trim();
 	}
 	public String getXmbm() {
 		return xmbm;
@@ -368,19 +368,19 @@ public class Lxsh implements Serializable {
 		return tz;
 	}
 	public void setTz(String tz) {
-		this.tz = tz;
+		this.tz = tz.trim();
 	}
 	public String getBzys() {
 		return bzys;
 	}
 	public void setBzys(String bzys) {
-		this.bzys = bzys;
+		this.bzys = bzys.trim();
 	}
 	public String getDfzc() {
 		return dfzc;
 	}
 	public void setDfzc(String dfzc) {
-		this.dfzc = dfzc;
+		this.dfzc = dfzc.trim();
 	}
 	public String getTsdq() {
 		return tsdq;

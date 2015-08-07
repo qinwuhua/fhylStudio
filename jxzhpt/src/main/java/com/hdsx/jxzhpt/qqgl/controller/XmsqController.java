@@ -347,12 +347,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			
 			Calendar cal = Calendar.getInstance();
 			boolean inserOrUpdate=true;
+			int num=0;
 			for (Xmsq xmsq : list) {
 				if(xmsq.getXmbm()!=null && !xmsq.getXmbm().equals("")){
 					inserOrUpdate=false;
 				}else{
 					String nextXmbm = xmsqServer.queryYhdzxNextXmbm(xmsq);
-					int num = new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue();
+					num = num==0 ? new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue() : num+1;
 					xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
 					xmsq.setGydwdm(tbbmbm2);
 					xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");

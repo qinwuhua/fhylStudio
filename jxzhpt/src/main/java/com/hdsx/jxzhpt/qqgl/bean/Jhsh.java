@@ -87,55 +87,55 @@ public class Jhsh {
 		return yilc;
 	}
 	public void setYilc(String yilc) {
-		this.yilc = yilc;
+		this.yilc = yilc.trim();
 	}
 	public String getErlc() {
 		return erlc;
 	}
 	public void setErlc(String erlc) {
-		this.erlc = erlc;
+		this.erlc = erlc.trim();
 	}
 	public String getSanlc() {
 		return sanlc;
 	}
 	public void setSanlc(String sanlc) {
-		this.sanlc = sanlc;
+		this.sanlc = sanlc.trim();
 	}
 	public String getSilc() {
 		return silc;
 	}
 	public void setSilc(String silc) {
-		this.silc = silc;
+		this.silc = silc.trim();
 	}
 	public String getDwlc() {
 		return dwlc;
 	}
 	public void setDwlc(String dwlc) {
-		this.dwlc = dwlc;
+		this.dwlc = dwlc.trim();
 	}
 	public String getWllc() {
 		return wllc;
 	}
 	public void setWllc(String wllc) {
-		this.wllc = wllc;
+		this.wllc = wllc.trim();
 	}
 	public String getGydw() {
 		return gydw;
 	}
 	public void setGydw(String gydw) {
-		this.gydw = gydw;
+		this.gydw = gydw.trim();
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}
 	public void setGpsqdzh(String gpsqdzh) {
-		this.gpsqdzh = gpsqdzh;
+		this.gpsqdzh = gpsqdzh.trim();
 	}
 	public String getGpszdzh() {
 		return gpszdzh;
 	}
 	public void setGpszdzh(String gpszdzh) {
-		this.gpszdzh = gpszdzh;
+		this.gpszdzh = gpszdzh.trim();
 	}
 	public String getQdmc() {
 		return qdmc;
@@ -171,19 +171,19 @@ public class Jhsh {
 		return xzqh;
 	}
 	public void setXzqh(String xzqh) {
-		this.xzqh = xzqh;
+		this.xzqh = xzqh.trim();
 	}
 	public String getQdzh() {
 		return qdzh;
 	}
 	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh;
+		this.qdzh = qdzh.trim();
 	}
 	public String getZdzh() {
 		return zdzh;
 	}
 	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh;
+		this.zdzh = zdzh.trim();
 	}
 	public String getKgsj() {
 		return kgsj;
@@ -207,19 +207,19 @@ public class Jhsh {
 		return gkpfwh;
 	}
 	public void setGkpfwh(String gkpfwh) {
-		this.gkpfwh = gkpfwh;
+		this.gkpfwh = gkpfwh.trim();
 	}
 	public String getSjpfwh() {
 		return sjpfwh;
 	}
 	public void setSjpfwh(String sjpfwh) {
-		this.sjpfwh = sjpfwh;
+		this.sjpfwh = sjpfwh.trim();
 	}
 	public String getXdwh() {
 		return xdwh;
 	}
 	public void setXdwh(String xdwh) {
-		this.xdwh = xdwh;
+		this.xdwh = xdwh.trim();
 	}
 	public String getXdsj() {
 		return xdsj;
@@ -231,31 +231,31 @@ public class Jhsh {
 		return pfztz;
 	}
 	public void setPfztz(String pfztz) {
-		this.pfztz = pfztz;
+		this.pfztz = pfztz.trim();
 	}
 	public String getBbzzj() {
 		return bbzzj;
 	}
 	public void setBbzzj(String bbzzj) {
-		this.bbzzj = bbzzj;
+		this.bbzzj = bbzzj.trim();
 	}
 	public String getSbzzj() {
 		return sbzzj;
 	}
 	public void setSbzzj(String sbzzj) {
-		this.sbzzj = sbzzj;
+		this.sbzzj = sbzzj.trim();
 	}
 	public String getGhlxbh() {
 		return ghlxbh;
 	}
 	public void setGhlxbh(String ghlxbh) {
-		this.ghlxbh = ghlxbh;
+		this.ghlxbh = ghlxbh.trim();
 	}
 	public String getXzqhdm() {
 		return xzqhdm;
 	}
 	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
+		this.xzqhdm = xzqhdm.trim();
 	}
 	public int getXmlx() {
 		return xmlx;
@@ -279,13 +279,13 @@ public class Jhsh {
 		return ylxbh;
 	}
 	public void setYlxbh(String ylxbh) {
-		this.ylxbh = ylxbh;
+		this.ylxbh = ylxbh.trim();
 	}
 	public String getGcfl() {
 		return gcfl;
 	}
 	public void setGcfl(String gcfl) {
-		this.gcfl = gcfl;
+		this.gcfl = gcfl.trim();
 	}
 	public String getJhkgsj() {
 		return jhkgsj;
@@ -303,91 +303,91 @@ public class Jhsh {
 		return lc;
 	}
 	public void setLc(String lc) {
-		this.lc = lc;
+		this.lc = lc.trim();
 	}
 	public String getZtz() {
 		return ztz;
 	}
 	public void setZtz(String ztz) {
-		this.ztz = ztz;
+		this.ztz = ztz.trim();
 	}
 	public String getSysbbzj() {
 		return sysbbzj;
 	}
 	public void setSysbbzj(String sysbbzj) {
-		this.sysbbzj = sysbbzj;
+		this.sysbbzj = sysbbzj.trim();
 	}
 	public String getYqdbcgs() {
 		return yqdbcgs;
 	}
 	public void setYqdbcgs(String yqdbcgs) {
-		this.yqdbcgs = yqdbcgs;
+		this.yqdbcgs = yqdbcgs.trim();
 	}
 	public String getMclmlx() {
 		return mclmlx;
 	}
 	public void setMclmlx(String mclmlx) {
-		this.mclmlx = mclmlx;
+		this.mclmlx = mclmlx.trim();
 	}
 	public String getMclx() {
 		return mclx;
 	}
 	public void setMclx(String mclx) {
-		this.mclx = mclx;
+		this.mclx = mclx.trim();
 	}
 	public String getMcsl() {
 		return mcsl;
 	}
 	public void setMcsl(String mcsl) {
-		this.mcsl = mcsl;
+		this.mcsl = mcsl.trim();
 	}
 	public String getMcje() {
 		return mcje;
 	}
 	public void setMcje(String mcje) {
-		this.mcje = mcje;
+		this.mcje = mcje.trim();
 	}
 	public String getJclx() {
 		return jclx;
 	}
 	public void setJclx(String jclx) {
-		this.jclx = jclx;
+		this.jclx = jclx.trim();
 	}
 	public String getJcsl() {
 		return jcsl;
 	}
 	public void setJcsl(String jcsl) {
-		this.jcsl = jcsl;
+		this.jcsl = jcsl.trim();
 	}
 	public String getJcje() {
 		return jcje;
 	}
 	public void setJcje(String jcje) {
-		this.jcje = jcje;
+		this.jcje = jcje.trim();
 	}
 	public String getXfcsl() {
 		return xfcsl;
 	}
 	public void setXfcsl(String xfcsl) {
-		this.xfcsl = xfcsl;
+		this.xfcsl = xfcsl.trim();
 	}
 	public String getXfcje() {
 		return xfcje;
 	}
 	public void setXfcje(String xfcje) {
-		this.xfcje = xfcje;
+		this.xfcje = xfcje.trim();
 	}
 	public String getBxsl() {
 		return bxsl;
 	}
 	public void setBxsl(String bxsl) {
-		this.bxsl = bxsl;
+		this.bxsl = bxsl.trim();
 	}
 	public String getBxje() {
 		return bxje;
 	}
 	public void setBxje(String bxje) {
-		this.bxje = bxje;
+		this.bxje = bxje.trim();
 	}
 	public String getGfcd() {
 		return gfcd;
@@ -399,19 +399,19 @@ public class Jhsh {
 		return gfje;
 	}
 	public void setGfje(String gfje) {
-		this.gfje = gfje;
+		this.gfje = gfje.trim();
 	}
 	public String getLlcl() {
 		return llcl;
 	}
 	public void setLlcl(String llcl) {
-		this.llcl = llcl;
+		this.llcl = llcl.trim();
 	}
 	public String getJsdj() {
 		return jsdj;
 	}
 	public void setJsdj(String jsdj) {
-		this.jsdj = jsdj;
+		this.jsdj = jsdj.trim();
 	}
 	public String getLsjl() {
 		return lsjl;
