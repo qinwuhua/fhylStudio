@@ -43,7 +43,84 @@ public class Lkmxb implements Serializable {
 	private String bt3;
 	private String bt4;
 	private String bt5;
+	private String bw;
+	private String jcfx;
+	private String jsdj;
+	private String lmlx;
+	private String ldcd;
+	private String pci;
+	private String rqi;
+	private String rdi;
+	private String sri;
+	private String pssi;
+	private String bz;
 	
+	public String getJcfx() {
+		return jcfx;
+	}
+	public void setJcfx(String jcfx) {
+		this.jcfx = jcfx;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getLmlx() {
+		return lmlx;
+	}
+	public void setLmlx(String lmlx) {
+		this.lmlx = lmlx;
+	}
+	public String getLdcd() {
+		return ldcd;
+	}
+	public void setLdcd(String ldcd) {
+		this.ldcd = ldcd;
+	}
+	public String getPci() {
+		return pci;
+	}
+	public void setPci(String pci) {
+		this.pci = pci;
+	}
+	public String getRqi() {
+		return rqi;
+	}
+	public void setRqi(String rqi) {
+		this.rqi = rqi;
+	}
+	public String getRdi() {
+		return rdi;
+	}
+	public void setRdi(String rdi) {
+		this.rdi = rdi;
+	}
+	public String getSri() {
+		return sri;
+	}
+	public void setSri(String sri) {
+		this.sri = sri;
+	}
+	public String getPssi() {
+		return pssi;
+	}
+	public void setPssi(String pssi) {
+		this.pssi = pssi;
+	}
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+	public String getBw() {
+		return bw;
+	}
+	public void setBw(String bw) {
+		this.bw = bw;
+	}
 	public String getBt2() {
 		return bt2;
 	}

@@ -108,4 +108,20 @@ public interface TrqkServer {
 
 	Wjgl downjtqkhzbgdFile(Lkmxb lkmxb);
 
+	Lkmxb selectLqpdmxbdata1(Lkmxb lkmxb1);
+
+	boolean insertLqpdmxb1(Lkmxb lkmxb1);
+
+	boolean insertLqpdmxbdata1(List<Map> data);
+
+	List<Lkmxb> selectMxbList1(Lkmxb lkmxb);
+
+	Wjgl downLkpdmxbFile1(Lkmxb lkmxb);
+
+	Boolean deletemxb1(Lkmxb lkmxb);
+
+	List<Lkmxb> getMxbDataList2(Lkmxb lkmxb);
+
+	Lkmxb getMxbDataList3(Lkmxb lkmxb);
+
 }

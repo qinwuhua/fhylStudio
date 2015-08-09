@@ -57,13 +57,22 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		// TODO Auto-generated method stub
 		return insertBatch("insertLqpdmxbdata", data)==data.size();
 	}
-
+	@Override
+	public boolean insertLqpdmxbdata1(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertLqpdmxbdata1", data)==data.size();
+	}
 	@Override
 	public List<Lkmxb> selectMxbList(Lkmxb lkmxb) {
 		// TODO Auto-generated method stub
 		return queryList("selectMxbList",lkmxb);
 	}
-
+	@Override
+	public List<Lkmxb> selectMxbList1(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryList("selectMxbList1",lkmxb);
+	}
+	
 	@Override
 	public List<Lkmxb> getMxbDataList(Lkmxb lkmxb) {
 		// TODO Auto-generated method stub
@@ -75,7 +84,15 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		// TODO Auto-generated method stub
 		return queryOne("getMxbDataList1", lkmxb);
 	}
+	@Override
+	public List<Lkmxb> getMxbDataList2(Lkmxb lkmxb) {
+		return queryList("getMxbDataList2",lkmxb);
+	}
 
+	@Override
+	public Lkmxb getMxbDataList3(Lkmxb lkmxb) {
+		return queryOne("getMxbDataList3", lkmxb);
+	}
 	@Override
 	public Boolean deletemxb(Lkmxb lkmxb) {
 		if(delete("deletemxb", lkmxb)>0 && delete("deletemxb1", lkmxb)>0){
@@ -85,6 +102,14 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		}
 	}
 
+	@Override
+	public Boolean deletemxb1(Lkmxb lkmxb) {
+		if(delete("deletemxb2", lkmxb)>0 && delete("deletemxb3", lkmxb)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	@Override
 	public boolean insertLktjb(Lktjb lktjb1) {
 		if(insert("insertLktjb", lktjb1)>0){
@@ -288,7 +313,11 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		// TODO Auto-generated method stub
 		return queryOne("selectLqpdmxbdata", lkmxb);
 	}
-
+	@Override
+	public Lkmxb selectLqpdmxbdata1(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLqpdmxbdata1", lkmxb);
+	}
 	@Override
 	public Lktjb selectLktjbdata(Lktjb lktjb) {
 		// TODO Auto-generated method stub
@@ -319,6 +348,11 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		return queryOne("downLkpdmxbFile", lkmxb);
 	}
 	@Override
+	public Wjgl downLkpdmxbFile1(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downLkpdmxbFile1", lkmxb);
+	}
+	@Override
 	public Wjgl downLkpdtjbFile(Lkmxb lkmxb) {
 		// TODO Auto-generated method stub
 		return queryOne("downLkpdtjbFile", lkmxb);
@@ -338,4 +372,10 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		// TODO Auto-generated method stub
 		return queryOne("downjtqkhzbsdFile", lkmxb);
 	}
+
+	@Override
+	public boolean insertLqpdmxb1(Lkmxb lkmxb1) {
+		return insert("insertLqpdmxb1", lkmxb1)==1;
+	}
+
 }

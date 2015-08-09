@@ -30,11 +30,17 @@
 	<action name="downjtqkhzbFile" class="lkpdController" method="downjtqkhzbFile"/>
 	<action name="downLkpdtjbFile" class="lkpdController" method="downLkpdtjbFile"/>
 	<action name="downLkpdmxbFile" class="lkpdController" method="downLkpdmxbFile"/>
+	<action name="downLkpdmxb2014File" class="lkpdController" method="downLkpdmxb2014File"/>
 	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
+	<action name="insertLkpdData1" class="lkpdController" method="insertLkpdData1"/>
 	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
+	<action name="selectMxbList1" class="lkpdController" method="selectMxbList1"/>
 	<action name="getMxbDataList" class="lkpdController" method="getMxbDataList"/>
 	<action name="getMxbDataList1" class="lkpdController" method="getMxbDataList1"/>
+	<action name="getMxbDataList2" class="lkpdController" method="getMxbDataList2"/>
+	<action name="getMxbDataList3" class="lkpdController" method="getMxbDataList3"/>
 	<action name="deletemxb" class="lkpdController" method="deletemxb"/>
+	<action name="deletemxb1" class="lkpdController" method="deletemxb1"/>
 	
 	<action name="getPqiList" class="lkpdController" method="getPqiList"/>
 	

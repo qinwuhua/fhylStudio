@@ -226,6 +226,85 @@ public class LkpdController extends BaseActionSupport{
 		}
 	}
 
+	public void insertLkpdData1(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(1,19,fs,Plan_gcgj.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			
+			String strVerify="";
+			boolean booltb=false,booldata=false;
+			Lkmxb lkmxb1=new Lkmxb();
+			String s = UUID.randomUUID().toString(); 
+			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			String[] ss=data.get(0).get("17").toString().split("\n");
+			lkmxb1.setBt1(ss[0]);
+			lkmxb1.setBt2(ss[1]);
+			lkmxb1.setBt3(ss[2]);
+			lkmxb1.setBt4(ss[3]);
+			lkmxb1.setBt5(ss[4]);
+			data.remove(0);
+			String nf = data.get(0).get("0").toString();
+			System.out.println(nf.substring(nf.lastIndexOf("年")-10, nf.lastIndexOf("年")).replaceAll(" ", ""));
+			System.out.println(nf.substring(nf.indexOf("：")+1, nf.indexOf("：")+40).replaceAll(" ", ""));
+			
+			lkmxb1.setTbdw(nf.substring(nf.indexOf("：")+1, nf.indexOf("：")+40).replaceAll(" ", ""));
+			lkmxb1.setTbnf(nf.substring(nf.lastIndexOf("年")-10, nf.lastIndexOf("年")).replaceAll(" ", ""));
+			lkmxb1.setBw(data.get(data.size()-1).get("0").toString());
+			lkmxb1.setId(s1);
+			InputStream inputStream = new FileInputStream(fileupload);
+			lkmxb1.setWjfile(inputStreamToByte(inputStream));
+			try {
+				Integer.parseInt(lkmxb1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Lkmxb l=trqkServer.selectLqpdmxbdata1(lkmxb1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
+			booltb=trqkServer.insertLqpdmxb1(lkmxb1);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(data.size()-1);
+			int i=1;
+			for (Map map : data) {
+				map.put("id", i);
+				i++;
+				map.put("mxb_id", s1);
+				System.out.println(map);
+			}
+			
+			booldata=trqkServer.insertLqpdmxbdata1(data);
+			if(booltb && booldata)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+		else 
+			response.getWriter().print(fileuploadFileName+"导入失败\r"+strVerify);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void selectMxbList(){
 		List<Lkmxb> list = trqkServer.selectMxbList(lkmxb);
 		try {
@@ -234,6 +313,15 @@ public class LkpdController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectMxbList1(){
+		List<Lkmxb> list = trqkServer.selectMxbList1(lkmxb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public void downjtqkhzbsdFile(){
 		try {
 			HttpServletResponse response = getresponse();
@@ -459,6 +547,52 @@ public class LkpdController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void downLkpdmxb2014File(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			lkmxb.setId(id);
+			Wjgl wjgl1=trqkServer.downLkpdmxbFile1(lkmxb);
+			byte[] data = wjgl1.getWjfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename="公路技术状况评定明细表.xls";
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+wjgl1.getWjname());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void getMxbDataList(){
 		System.out.println("开始"+id);
 		lkmxb.setId(id);
@@ -478,6 +612,26 @@ public class LkpdController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	public void getMxbDataList2(){
+		System.out.println("开始"+id);
+		lkmxb.setId(id);
+		List<Lkmxb> list = trqkServer.getMxbDataList2(lkmxb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void getMxbDataList3(){
+		lkmxb.setId(id);
+		Lkmxb lkmxb1 = trqkServer.getMxbDataList3(lkmxb);
+		try {
+			JsonUtils.write(lkmxb1, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	public void deletemxb(){
 		Boolean bl=trqkServer.deletemxb(lkmxb);
 		if(bl){
@@ -486,7 +640,14 @@ public class LkpdController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	
+	public void deletemxb1(){
+		Boolean bl=trqkServer.deletemxb1(lkmxb);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	//
 	public void insertLkpdtjData(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
