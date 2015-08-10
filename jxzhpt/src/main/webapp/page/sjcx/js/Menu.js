@@ -99,7 +99,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101060210',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu2',
 		href:'./jhkgl/wqgzsj.jsp'
 	});
@@ -200,7 +200,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101060309',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu3',
 		href:'./gcgl/xj.jsp'
 	});

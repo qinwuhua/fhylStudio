@@ -75,7 +75,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080103',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu1',
 		href:'./lxsh/xjsb.jsp'
 	});
@@ -111,7 +111,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080203',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu2',
 		href:'./lxsh/xjsh.jsp'
 	});
@@ -148,7 +148,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080303',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu3',
 		href:'./kxxyj/xjsb.jsp'
 	});
@@ -177,7 +177,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080403',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu4',
 		href:'./kxxyj/xjsh.jsp'
 	});
@@ -206,7 +206,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080503',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu5',
 		href:'./cbsj/xjgc.jsp'
 	});
@@ -242,7 +242,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080603',
 		title:'新建工程项目',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu6',
 		href:'./cbsj/xjgc_sh.jsp'
 	});
