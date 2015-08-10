@@ -187,17 +187,17 @@ a:hover {
 a:active {
  text-decoration: none;
 }
-table {
+#bbtable {
 	border-collapse:collapse;
 }
-table thead tr td {
+#bbtable thead tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
-table tbody tr td {
+#bbtable tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 /* 	font-weight:bold; */
@@ -284,7 +284,7 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3800px" >
+							<table id='bbtable' width="3800px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（一）   危桥工程（<span id="yue" style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
