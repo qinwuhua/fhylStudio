@@ -247,11 +247,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void uploadSjpf() throws Exception{
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
-			File file =new File(this.getClass().getResource("/").getPath()+"sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/");
+			String fileurl="D:\\江西综合平台上传文件\\sjpfwj\\"+cbsj.getXmbm().substring(0,4)+"\\";
+			File file =new File(fileurl);
 			if(uploadSjpf!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadSjpfFileName, "设计批复文件", cbsj.getXmbm(), 
-						"sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/"+uploadSjpfFileName, cbsj.getSjpfwh());
+						"D:/江西综合平台上传文件/sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/"+uploadSjpfFileName, cbsj.getSjpfwh());
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
 				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
@@ -263,27 +264,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 					response.getWriter().print(uploadSjpfFileName+"上传成功！");
 				}
 			}
-			/*Plan_upload uploads;
-			response.setCharacterEncoding("utf-8"); 
-			FileInputStream inputStream = null;
-			byte [] file=new byte[(int)uploadSjpf.length()];
-			inputStream=new FileInputStream(uploadSjpf);
-			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
-			int index=0;
-			while((index=inputStream.read(file))!=-1){
-				byteOutpu.write(file, 0, index);
-			}
-			uploads=new Plan_upload();
-			uploads.setParentid(cbsj.getXmbm());
-			uploads.setFiledata(file);
-			uploads.setFiletype("设计批复文件");
-			uploads.setFilename(uploadSjpfFileName);
-			boolean result = cbsjServer.insertFile(uploads);
-			if(result){
-				response.getWriter().print(uploadSjpfFileName+"导入成功");
-			}else{
-				response.getWriter().print(uploadSjpfFileName+"导入成功");
-			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

@@ -122,7 +122,8 @@
 		<if test="lsjl!=null">,LSJL</if>
 		<if test="qdmc!=null">,qdmc</if>
 		<if test="zdmc!=null">,zdmc</if>
-		<if test="lxmc!=null">,lxmc</if>) 
+		<if test="lxmc!=null">,lxmc</if>
+		<if test="bz!=null">,bz</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -147,7 +148,8 @@
 		<if test="lsjl!=null">,#{lsjl}</if>
 		<if test="qdmc!=null">,#{qdmc}</if>
 		<if test="zdmc!=null">,#{zdmc}</if>
-		<if test="lxmc!=null">,#{lxmc}</if>)
+		<if test="lxmc!=null">,#{lxmc}</if>
+		<if test="bz!=null">,#{bz}</if>)
 	</insert>
 	<insert id="insertXmsqSh" parameterType="java.util.List">
 		insert into xmsq_sh (
@@ -374,13 +376,13 @@
 	</insert>
 	
 	<insert id="insertCbsjYhdzx" parameterType="xmsq">
-		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc)
-		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc 
+		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa 
 		from xmsq_yhdzx x where x.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertCbsjSh" parameterType="xmsq">
-		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc)
-		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc 
+		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa 
 		from xmsq_sh x where x.xmbm in (${xmbm})
 	</insert>
 	
@@ -417,6 +419,7 @@
 		<if test="gydw!=null">,gydw=#{gydw}</if>
 		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		<if test="bz!=null">,bz=#{bz}</if>
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateSh" parameterType="xmsq">

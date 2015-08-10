@@ -191,8 +191,8 @@ public class ExcelImportUtil {
         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
         	}else{
-        		DecimalFormat df = new DecimalFormat("#.#");
-        		cellValue = df.format(cell.getNumericCellValue());
+        		DecimalFormat dfDouble = new DecimalFormat("#0.000#");
+        		cellValue = dfDouble.format(cell.getNumericCellValue()).replace(".000", "");
         	}
             break;  
         case HSSFCell.CELL_TYPE_BOOLEAN:  

@@ -194,16 +194,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void uploadJhsh(){
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			File file =new File(this.getClass().getResource("/").getPath()+"jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/");
+			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\"+jhsh.getXmbm().substring(0,4)+"\\";
+			File file =new File(fileurl);
 			if(uploadJhxd!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", jhsh.getXmbm(), 
-						"jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/"+jhsh.getXdwh() + uploadJhxdFileName.substring(uploadJhxdFileName.lastIndexOf(".")), jhsh.getXdwh());
+						"D:/江西综合平台上传文件/jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/"+uploadJhxdFileName, jhsh.getXdwh());
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
 				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
-					uploadFile(file,jhsh.getXdwh() + uploadJhxdFileName.substring(uploadJhxdFileName.lastIndexOf(".")));
+					uploadFile(file,uploadJhxdFileName);
 					response.getWriter().print(uploadJhxdFileName+"上传成功！");
 				}else{
 					uploads.setFid(result.getId());
