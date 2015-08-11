@@ -292,9 +292,9 @@ public class GcybbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("公路建设下达计划（国省道改造项目）");//设置第一行
-			eldata.setSheetName("公路建设下达计划表");//设置sheeet名
-			eldata.setFileName("公路建设下达计划表");//设置文件名
+			eldata.setTitleName("江西省公路路网结构改造工程统计月报表（一） 危桥工程");//设置第一行
+			eldata.setSheetName("危桥改造月报表");//设置sheeet名
+			eldata.setFileName("危桥改造月报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("桥梁名称",1,3,0,0));
@@ -466,9 +466,9 @@ public class GcybbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("公路建设下达计划（国省道改造项目）");//设置第一行
-			eldata.setSheetName("公路建设下达计划表");//设置sheeet名
-			eldata.setFileName("公路建设下达计划表");//设置文件名
+			eldata.setTitleName("江西省公路路网结构改造工程统计月报表（二）安保工程");//设置第一行
+			eldata.setSheetName("安保工程月报表");//设置sheeet名
+			eldata.setFileName("安保工程月报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("路线编码",1,2,0,0));
@@ -618,9 +618,9 @@ public class GcybbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("公路建设下达计划（国省道改造项目）");//设置第一行
-			eldata.setSheetName("公路建设下达计划表");//设置sheeet名
-			eldata.setFileName("公路建设下达计划表");//设置文件名
+			eldata.setTitleName("江西省公路路网结构改造工程统计月报表（三） 灾害防治");//设置第一行
+			eldata.setSheetName("灾害防治月报表");//设置sheeet名
+			eldata.setFileName("灾害防治月报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("路线编码",1,2,0,0));
