@@ -77,7 +77,7 @@ function del(id){
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;危桥补助标准</div>
 		</div>
     </div>
-    <div style="height:700px;margin-top:10px;margin-left:10px;overflow: auto;" >
+    <div style="height:450px;margin-top:10px;margin-left:10px;overflow: auto;" >
     	<table width="100%" class="bgg" border="0" cellpadding="0" cellspacing="1">
     		<tr style="font-weight:700;font-size:16px;"><td width="16%">操作</td><td width="14%">桥梁类型</td><td width="14%">建设性质</td><td width="14%">技术等级</td><td width="14%">最大宽度</td><td width="14%">补助金额(元/每平方米)</td><td width="14%">补助级别</td></tr>
     		<tbody id="wqbztable"></tbody>
