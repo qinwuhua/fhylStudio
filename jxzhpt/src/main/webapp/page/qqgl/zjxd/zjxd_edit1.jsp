@@ -33,11 +33,11 @@
 			$('#ystz').val(parent.YMLib.Var.row.stz);
 		});
 		function updateZjxd(){
-			isNumber($('#xdzj'));
-			isNumber($('#btzzj'));
-			isNumber($('#stz'));
 			var tj=true;
-			$.ajax({
+			tj = validateText('xdzj','number',tj);
+			tj = validateText('btzzj','number',tj);
+			tj = validateText('stz','number',tj);
+			/*$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjxdSumByXmid.do',
 				dataType:'json',
@@ -60,7 +60,7 @@
 						}
 					}
 				}
-			});
+			});*/
 			if(!tj){
 				return;
 			}
@@ -79,7 +79,7 @@
 			});
 		}
 		function isNumber(obj){
-			var number=/^[0-9]*$/;
+			var number=/^[0-9]*.[0-9]*$/;
 			if(!number.test($(obj).val())){
 				alert("请输入数字！");
 				$(obj).focus();

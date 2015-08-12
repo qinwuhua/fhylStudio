@@ -116,9 +116,12 @@
 							});
 						}
 					}
-				]
+				],
+				onLoadSuccess:function(){
+					loadFdbz();
+				}
 			});
-			loadFdbz();
+			
 		});
 		function addFlwbzbz(){
 			var bzbz={'flwbzbz.xmlx':$('#selxmlx').val(),

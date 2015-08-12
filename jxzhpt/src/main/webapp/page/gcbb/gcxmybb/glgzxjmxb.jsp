@@ -160,17 +160,17 @@ a:hover {
 a:active {
  text-decoration: none;
 }
-table {
+#kdtb {
 	border-collapse:collapse;
 }
-table thead tr td {
+#kdtb thead tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
-table tbody tr td {
+#kdtb tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 /* 	font-weight:bold; */

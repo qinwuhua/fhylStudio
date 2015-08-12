@@ -75,163 +75,163 @@ public class Kxxyj implements Serializable {
 		return lxmc;
 	}
 	public void setLxmc(String lxmc) {
-		this.lxmc = lxmc;
+		this.lxmc = lxmc.trim();
 	}
 	public String getQdmc() {
 		return qdmc;
 	}
 	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
+		this.qdmc = qdmc.trim();
 	}
 	public String getZdmc() {
 		return zdmc;
 	}
 	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
+		this.zdmc = zdmc.trim();
 	}
 	public String getLxbm() {
 		return lxbm;
 	}
 	public void setLxbm(String lxbm) {
-		this.lxbm = lxbm;
+		this.lxbm = lxbm.trim();
 	}
 	public String getYhdk() {
 		return yhdk;
 	}
 	public void setYhdk(String yhdk) {
-		this.yhdk = yhdk;
+		this.yhdk = yhdk.trim();
 	}
 	public String getDfzc() {
 		return dfzc;
 	}
 	public void setDfzc(String dfzc) {
-		this.dfzc = dfzc;
+		this.dfzc = dfzc.trim();
 	}
 	public String getXjlc() {
 		return xjlc;
 	}
 	public void setXjlc(String xjlc) {
-		this.xjlc = xjlc;
+		this.xjlc = xjlc.trim();
 	}
 	public String getXjlxbm() {
 		return xjlxbm;
 	}
 	public void setXjlxbm(String xjlxbm) {
-		this.xjlxbm = xjlxbm;
+		this.xjlxbm = xjlxbm.trim();
 	}
 	public String getXjqdzh() {
 		return xjqdzh;
 	}
 	public void setXjqdzh(String xjqdzh) {
-		this.xjqdzh = xjqdzh;
+		this.xjqdzh = xjqdzh.trim();
 	}
 	public String getXjzdzh() {
 		return xjzdzh;
 	}
 	public void setXjzdzh(String xjzdzh) {
-		this.xjzdzh = xjzdzh;
+		this.xjzdzh = xjzdzh.trim();
 	}
 	public String getYilc() {
 		return yilc;
 	}
 	public void setYilc(String yilc) {
-		this.yilc = yilc;
+		this.yilc = yilc.trim();
 	}
 	public String getErlc() {
 		return erlc;
 	}
 	public void setErlc(String erlc) {
-		this.erlc = erlc;
+		this.erlc = erlc.trim();
 	}
 	public String getSanlc() {
 		return sanlc;
 	}
 	public void setSanlc(String sanlc) {
-		this.sanlc = sanlc;
+		this.sanlc = sanlc.trim();
 	}
 	public String getSilc() {
 		return silc;
 	}
 	public void setSilc(String silc) {
-		this.silc = silc;
+		this.silc = silc.trim();
 	}
 	public String getDwlc() {
 		return dwlc;
 	}
 	public void setDwlc(String dwlc) {
-		this.dwlc = dwlc;
+		this.dwlc = dwlc.trim();
 	}
 	public String getWllc() {
 		return wllc;
 	}
 	public void setWllc(String wllc) {
-		this.wllc = wllc;
+		this.wllc = wllc.trim();
 	}
 	public String getJhyilc() {
 		return jhyilc;
 	}
 	public void setJhyilc(String jhyilc) {
-		this.jhyilc = jhyilc;
+		this.jhyilc = jhyilc.trim();
 	}
 	public String getJherlc() {
 		return jherlc;
 	}
 	public void setJherlc(String jherlc) {
-		this.jherlc = jherlc;
+		this.jherlc = jherlc.trim();
 	}
 	public String getJhsanlc() {
 		return jhsanlc;
 	}
 	public void setJhsanlc(String jhsanlc) {
-		this.jhsanlc = jhsanlc;
+		this.jhsanlc = jhsanlc.trim();
 	}
 	public String getJhsilc() {
 		return jhsilc;
 	}
 	public void setJhsilc(String jhsilc) {
-		this.jhsilc = jhsilc;
+		this.jhsilc = jhsilc.trim();
 	}
 	public String getJhdwlc() {
 		return jhdwlc;
 	}
 	public void setJhdwlc(String jhdwlc) {
-		this.jhdwlc = jhdwlc;
+		this.jhdwlc = jhdwlc.trim();
 	}
 	public String getJhwllc() {
 		return jhwllc;
 	}
 	public void setJhwllc(String jhwllc) {
-		this.jhwllc = jhwllc;
+		this.jhwllc = jhwllc.trim();
 	}
 	public String getMinqdzh() {
 		return minqdzh;
 	}
 	public void setMinqdzh(String minqdzh) {
-		this.minqdzh = minqdzh;
+		this.minqdzh = minqdzh.trim();
 	}
 	public String getMaxzdzh() {
 		return maxzdzh;
 	}
 	public void setMaxzdzh(String maxzdzh) {
-		this.maxzdzh = maxzdzh;
+		this.maxzdzh = maxzdzh.trim();
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}
 	public void setGpsqdzh(String gpsqdzh) {
-		this.gpsqdzh = gpsqdzh;
+		this.gpsqdzh = gpsqdzh.trim();
 	}
 	public String getGpszdzh() {
 		return gpszdzh;
 	}
 	public void setGpszdzh(String gpszdzh) {
-		this.gpszdzh = gpszdzh;
+		this.gpszdzh = gpszdzh.trim();
 	}
 	public String getLsjl() {
 		return lsjl;
 	}
 	public void setLsjl(String lsjl) {
-		this.lsjl = lsjl;
+		this.lsjl = lsjl.trim();
 	}
 	public String getJdbs() {
 		return jdbs;
@@ -243,13 +243,13 @@ public class Kxxyj implements Serializable {
 		return gydwdm;
 	}
 	public void setGydwdm(String gydwdm) {
-		this.gydwdm = gydwdm;
+		this.gydwdm = gydwdm.trim();
 	}
 	public String getLxbh() {
 		return lxbh;
 	}
 	public void setLxbh(String lxbh) {
-		this.lxbh = lxbh;
+		this.lxbh = lxbh.trim();
 	}
 	public String getId() {
 		return id;
@@ -261,49 +261,49 @@ public class Kxxyj implements Serializable {
 		return xmmc;
 	}
 	public void setXmmc(String xmmc) {
-		this.xmmc = xmmc;
+		this.xmmc = xmmc.trim();
 	}
 	public String getXmbm() {
 		return xmbm;
 	}
 	public void setXmbm(String xmbm) {
-		this.xmbm = xmbm;
+		this.xmbm = xmbm.trim();
 	}
 	public String getJsdw() {
 		return jsdw;
 	}
 	public void setJsdw(String jsdw) {
-		this.jsdw = jsdw;
+		this.jsdw = jsdw.trim();
 	}
 	public String getXzqh() {
 		return xzqh;
 	}
 	public void setXzqh(String xzqh) {
-		this.xzqh = xzqh;
+		this.xzqh = xzqh.trim();
 	}
 	public String getQdzh() {
 		return qdzh;
 	}
 	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh;
+		this.qdzh = qdzh.trim();
 	}
 	public String getZdzh() {
 		return zdzh;
 	}
 	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh;
+		this.zdzh = zdzh.trim();
 	}
 	public String getDq() {
 		return dq;
 	}
 	public void setDq(String dq) {
-		this.dq = dq;
+		this.dq = dq.trim();
 	}
 	public String getSd() {
 		return sd;
 	}
 	public void setSd(String sd) {
-		this.sd = sd;
+		this.sd = sd.trim();
 	}
 	public String getKgny() {
 		return kgny;
@@ -321,19 +321,19 @@ public class Kxxyj implements Serializable {
 		return jsjsdj;
 	}
 	public void setJsjsdj(String jsjsdj) {
-		this.jsjsdj = jsjsdj;
+		this.jsjsdj = jsjsdj.trim();
 	}
 	public String getJsxz() {
 		return jsxz;
 	}
 	public void setJsxz(String jsxz) {
-		this.jsxz = jsxz;
+		this.jsxz = jsxz.trim();
 	}
 	public String getGkpfwh() {
 		return gkpfwh;
 	}
 	public void setGkpfwh(String gkpfwh) {
-		this.gkpfwh = gkpfwh;
+		this.gkpfwh = gkpfwh.trim();
 	}
 	public String getPfsj() {
 		return pfsj;
@@ -345,19 +345,19 @@ public class Kxxyj implements Serializable {
 		return tzgs;
 	}
 	public void setTzgs(String tzgs) {
-		this.tzgs = tzgs;
+		this.tzgs = tzgs.trim();
 	}
 	public String getBzdw() {
 		return bzdw;
 	}
 	public void setBzdw(String bzdw) {
-		this.bzdw = bzdw;
+		this.bzdw = bzdw.trim();
 	}
 	public String getXzqhdm() {
 		return xzqhdm;
 	}
 	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
+		this.xzqhdm = xzqhdm.trim();
 	}
 	public int getShzt() {
 		return shzt;
@@ -375,19 +375,19 @@ public class Kxxyj implements Serializable {
 		return dq_m;
 	}
 	public void setDq_m(String dq_m) {
-		this.dq_m = dq_m;
+		this.dq_m = dq_m.trim();
 	}
 	public String getSd_m() {
 		return sd_m;
 	}
 	public void setSd_m(String sd_m) {
-		this.sd_m = sd_m;
+		this.sd_m = sd_m.trim();
 	}
 	public String getTbbmbm() {
 		return tbbmbm;
 	}
 	public void setTbbmbm(String tbbmbm) {
-		this.tbbmbm = tbbmbm;
+		this.tbbmbm = tbbmbm.trim();
 	}
 	public int getPage() {
 		return page;
@@ -411,13 +411,13 @@ public class Kxxyj implements Serializable {
 		return gldj;
 	}
 	public void setGldj(String gldj) {
-		this.gldj = gldj;
+		this.gldj = gldj.trim();
 	}
 	public String getJsdj() {
 		return jsdj;
 	}
 	public void setJsdj(String jsdj) {
-		this.jsdj = jsdj;
+		this.jsdj = jsdj.trim();
 	}
 	public String getXmlx() {
 		return xmlx;

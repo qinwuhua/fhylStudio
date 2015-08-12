@@ -76,7 +76,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101020204',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq.png',
+		imgSrc:'../../images/wqgz_jtj.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/wqgzsj.jsp'
 	});
@@ -105,7 +105,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101020304',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq.png',
+		imgSrc:'../../images/wqgz_jtj.png',
 		renderTo:'left_menu3',
 		href:'./sckgl/wqgzsj.jsp'
 	});
@@ -134,7 +134,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101020404',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq.png',
+		imgSrc:'../../images/wqgz_jtj.png',
 		renderTo:'left_menu4',
 		href:'./scksh/wqgzsj.jsp'
 	});

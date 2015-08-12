@@ -2,14 +2,14 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_01020101',
 		title:'政策文件',
-		imgSrc:'../../images/menubutton/gljszkpdmxb.png',
+		imgSrc:'../../images/zcwj.png',
 		renderTo:'left_menu1',
 		href:'./zcwj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_01020102',
 		title:'其它文件',
-		imgSrc:'../../images/menubutton/gljszkpdtjb.png',
+		imgSrc:'../../images/qtwj.png',
 		renderTo:'left_menu1',
 		href:'./qtwj.jsp'
 	});

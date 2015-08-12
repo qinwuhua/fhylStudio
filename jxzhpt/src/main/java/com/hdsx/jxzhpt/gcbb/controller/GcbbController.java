@@ -764,8 +764,13 @@ public class GcbbController extends BaseActionSupport{
 			xmbb.setGydw(tiaojian1);
 			xmbb.setXzqh(tiaojian2);
 
-			List<Gcbb5> s=gcbbServer.selGcbb5(xmbb);
-
+			List<Gcbb5> s=null;
+			
+			try {
+				s = gcbbServer.selGcbb5(xmbb);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			if("flag".equals(flag)){
 				List<Excel_list> elist=new ArrayList<Excel_list>();
 				for (Gcbb5 gb : s) {

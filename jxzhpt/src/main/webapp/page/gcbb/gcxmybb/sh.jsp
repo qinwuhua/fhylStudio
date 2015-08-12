@@ -25,9 +25,9 @@
 		a:visited {text-decoration: none;}
 		a:hover {text-decoration: none;}
 		a:active {text-decoration: none;}
-		table {border-collapse:collapse;}
-		table thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
-		table tbody tr td {text-align:center;font-size:1em;border:1px solid black;padding:3px 7px 2px 7px;}
+		#bbtable {border-collapse:collapse;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid black;padding:3px 7px 2px 7px;}
 		-->
 	</style>
 	<script type="text/javascript">
@@ -258,7 +258,7 @@
                 		</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="5000px" >
+							<table id='bbtable' width="5000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年灾毁重建进度报表 </caption>
 								<thead>
 									<tr>

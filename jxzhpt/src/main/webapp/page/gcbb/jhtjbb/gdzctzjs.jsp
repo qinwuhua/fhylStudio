@@ -29,17 +29,17 @@ a:hover {
 a:active {
  text-decoration: none;
 }
-table {
+#bbtable {
 	border-collapse:collapse;
 }
-table thead tr td {
+#bbtable thead tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
-table tbody tr td {
+#bbtable tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 /* 	font-weight:bold; */
@@ -178,7 +178,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table class="table_body" width="2700px" >
+							<table id="bbtable" class="table_body" width="2700px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年交通固定资产投资建设计划(路网结构改造)</caption>
 								<thead>
 									<tr>

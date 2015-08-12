@@ -49,12 +49,28 @@
 		insert into LKPD_MXB(id,tbdw,tbnf,dwfzr,tjfzr,tjf,tbrq,wjfile,bt1,bt2,bt3,bt4,bt5)
 		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{tjfzr},#{tjf},#{tbrq},#{wjfile},#{bt1},#{bt2},#{bt3},#{bt4},#{bt5})
 	</insert>
+	<insert id="insertLqpdmxb1" parameterType="lkmxb">
+		insert into LKPD_MXB2014(id,tbdw,tbnf,bw,wjfile,bt1,bt2,bt3,bt4,bt5)
+		values(#{id},#{tbdw},#{tbnf},#{bw},#{wjfile},#{bt1},#{bt2},#{bt3},#{bt4},#{bt5})
+	</insert>
 	<insert id="insertLqpdmxbdata" parameterType="hashMap">
 		insert into LKPD_MXB_DATA(id,mxb_id,lxbh,lxmc,qdzh,zdzh,qjfx,pdlc,mqi,pqi,sci,bci,tci,ydl,ldl,zdl,cdl,cadl,yllv)
 		values(#{id},#{mxb_id},#{0},#{1},#{2},#{3},#{4},#{5},round(#{6},1),round(#{7},1),round(#{8},1),round(#{9},1),round(#{10},1),#{11},#{12},#{13},#{14},#{15},#{16})
 	</insert>
+	<insert id="insertLqpdmxbdata1" parameterType="hashMap">
+		insert into LKPD_MXB_DATA_2014
+		values(#{id},#{mxb_id},#{0},#{1},#{2},#{3},#{4},#{5},round(#{8},1),round(#{9},1),round(#{15},1),round(#{16},1),round(#{17},1),#{6},#{7},round(#{10},1),round(#{11},1),round(#{12},1),round(#{13},1),round(#{14},1),#{18})
+	</insert>
 	<select id="selectMxbList" parameterType="lkmxb" resultType="lkmxb">
 		select id,tbdw,tbnf,dwfzr,tjfzr,tjf,tbrq,mxbbt,mxbym,bt1,bt2,bt3,bt4,bt5 from LKPD_MXB where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	
+	<select id="selectMxbList1" parameterType="lkmxb" resultType="lkmxb">
+		select id,tbdw,tbnf,bw,bt1,bt2,bt3,bt4,bt5 from LKPD_MXB2014 where 1=1
 		<if test="tbnf != null and  tbnf != ''">
 			and tbnf = #{tbnf}
 		</if>
@@ -66,11 +82,24 @@
 	<select id="getMxbDataList1" parameterType="lkmxb" resultType="lkmxb">
 		select * from LKPD_MXB where id=#{id}
 	</select>
+	<select id="getMxbDataList2" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB_DATA_2014  where mxb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getMxbDataList3" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB2014 where id=#{id}
+	</select>
 	<delete id="deletemxb" parameterType="lkmxb" >
 		delete from LKPD_MXB_DATA  where mxb_id=#{id}
 	</delete>
 	<delete id="deletemxb1" parameterType="lkmxb" >
 		delete from LKPD_MXB where id=#{id}
+	</delete>
+	
+	<delete id="deletemxb2" parameterType="lkmxb" >
+		delete from LKPD_MXB_DATA_2014  where mxb_id=#{id}
+	</delete>
+	<delete id="deletemxb3" parameterType="lkmxb" >
+		delete from LKPD_MXB2014 where id=#{id}
 	</delete>
 	
 	<insert id="insertLktjb" parameterType="lktjb">
@@ -208,6 +237,9 @@
 	<select id="selectLqpdmxbdata" parameterType="lkmxb" resultType="lkmxb">
 		select * from lkpd_mxb where tbnf=#{tbnf} and tbdw=#{tbdw}
 	</select>
+	<select id="selectLqpdmxbdata1" parameterType="lkmxb" resultType="lkmxb">
+		select * from lkpd_mxb2014 where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
 	<select id="selectLktjbdata" parameterType="lktjb" resultType="lktjb">
 		select * from lkpd_tjb where tbnf=#{tbnf} and tbdw=#{tbdw}
 	</select>
@@ -222,6 +254,9 @@
 	</select>
 	<select id="downLkpdmxbFile" parameterType="lkmxb" resultType="wjgl">
 		select * from LKPD_MXB where id=#{id}
+	</select>
+	<select id="downLkpdmxbFile1" parameterType="lkmxb" resultType="wjgl">
+		select * from LKPD_MXB2014 where id=#{id}
 	</select>
 	<select id="downLkpdtjbFile" parameterType="lkmxb" resultType="wjgl">
 		select * from LKPD_TJB where id=#{id}

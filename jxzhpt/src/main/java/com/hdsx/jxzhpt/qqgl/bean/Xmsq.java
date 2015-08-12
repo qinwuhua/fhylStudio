@@ -28,6 +28,7 @@ public class Xmsq {
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
 	private String jdbs;//阶段标示
+	private String bz;//备注
 	//----------------附加属性、路线表中的字段
 	private String lxmc;//路线名称
 	private String gpsqdzh;//GPSRoad中的起点桩号
@@ -39,53 +40,59 @@ public class Xmsq {
 	private String silc;//四级公路里程
 	private String dwlc;//等外公路里程
 	private String wllc;//高速公路里程
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
 	public String getYilc() {
 		return yilc;
 	}
 	public void setYilc(String yilc) {
-		this.yilc = yilc;
+		this.yilc = yilc.trim();
 	}
 	public String getErlc() {
 		return erlc;
 	}
 	public void setErlc(String erlc) {
-		this.erlc = erlc;
+		this.erlc = erlc.trim();
 	}
 	public String getSanlc() {
 		return sanlc;
 	}
 	public void setSanlc(String sanlc) {
-		this.sanlc = sanlc;
+		this.sanlc = sanlc.trim();
 	}
 	public String getSilc() {
 		return silc;
 	}
 	public void setSilc(String silc) {
-		this.silc = silc;
+		this.silc = silc.trim();
 	}
 	public String getDwlc() {
 		return dwlc;
 	}
 	public void setDwlc(String dwlc) {
-		this.dwlc = dwlc;
+		this.dwlc = dwlc.trim();
 	}
 	public String getWllc() {
 		return wllc;
 	}
 	public void setWllc(String wllc) {
-		this.wllc = wllc;
+		this.wllc = wllc.trim();
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}
 	public void setGpsqdzh(String gpsqdzh) {
-		this.gpsqdzh = gpsqdzh;
+		this.gpsqdzh = gpsqdzh.trim();
 	}
 	public String getGpszdzh() {
 		return gpszdzh;
 	}
 	public void setGpszdzh(String gpszdzh) {
-		this.gpszdzh = gpszdzh;
+		this.gpszdzh = gpszdzh.trim();
 	}
 	public String getLxmc() {
 		return lxmc;
@@ -133,61 +140,61 @@ public class Xmsq {
 		return ghlxbh;
 	}
 	public void setGhlxbh(String ghlxbh) {
-		this.ghlxbh = ghlxbh;
+		this.ghlxbh = ghlxbh.trim();
 	}
 	public String getYlxbh() {
 		return ylxbh;
 	}
 	public void setYlxbh(String ylxbh) {
-		this.ylxbh = ylxbh;
+		this.ylxbh = ylxbh.trim();
 	}
 	public String getXzqh() {
 		return xzqh;
 	}
 	public void setXzqh(String xzqh) {
-		this.xzqh = xzqh;
+		this.xzqh = xzqh.trim();
 	}
 	public String getXzqhdm() {
 		return xzqhdm;
 	}
 	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
+		this.xzqhdm = xzqhdm.trim();
 	}
 	public String getQdzh() {
 		return qdzh;
 	}
 	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh;
+		this.qdzh = qdzh.trim();
 	}
 	public String getZdzh() {
 		return zdzh;
 	}
 	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh;
+		this.zdzh = zdzh.trim();
 	}
 	public String getLc() {
 		return lc;
 	}
 	public void setLc(String lc) {
-		this.lc = lc;
+		this.lc = lc.trim();
 	}
 	public String getLmkd() {
 		return lmkd;
 	}
 	public void setLmkd(String lmkd) {
-		this.lmkd = lmkd;
+		this.lmkd = lmkd.trim();
 	}
 	public String getJsdj() {
 		return jsdj;
 	}
 	public void setJsdj(String jsdj) {
-		this.jsdj = jsdj;
+		this.jsdj = jsdj.trim();
 	}
 	public String getNtz() {
 		return ntz;
 	}
 	public void setNtz(String ntz) {
-		this.ntz = ntz;
+		this.ntz = ntz.trim();
 	}
 	public String getJhkgsj() {
 		return jhkgsj;
@@ -217,13 +224,13 @@ public class Xmsq {
 		return gydw;
 	}
 	public void setGydw(String gydw) {
-		this.gydw = gydw;
+		this.gydw = gydw.trim();
 	}
 	public String getGydwdm() {
 		return gydwdm;
 	}
 	public void setGydwdm(String gydwdm) {
-		this.gydwdm = gydwdm;
+		this.gydwdm = gydwdm.trim();
 	}
 	public String getJsfa() {
 		return jsfa;

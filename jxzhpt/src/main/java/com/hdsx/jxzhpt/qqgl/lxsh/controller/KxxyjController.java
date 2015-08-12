@@ -431,16 +431,17 @@ public class KxxyjController extends BaseActionSupport{
 	public void uploadGkpf() throws Exception{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			File file =new File(this.getClass().getResource("/").getPath()+"gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/");
+			String fileurl="D:\\江西综合平台上传文件\\gkpfwj\\"+kxxyj.getXmbm().substring(0,4)+"\\";
+			File file =new File(fileurl);
 			if(uploadGkpf!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadGkpfFileName, "工可批复文件", kxxyj.getXmbm(), 
-						"gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/"+kxxyj.getGkpfwh() + uploadGkpfFileName.substring(uploadGkpfFileName.lastIndexOf(".")), kxxyj.getGkpfwh());
+						"D:/江西综合平台上传文件/gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/"+uploadGkpfFileName, kxxyj.getGkpfwh());
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
 				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
-					uploadFile(file,kxxyj.getGkpfwh() + uploadGkpfFileName.substring(uploadGkpfFileName.lastIndexOf(".")));
+					uploadFile(file,uploadGkpfFileName);
 					response.getWriter().print(uploadGkpfFileName+"上传成功！");
 				}else{
 					uploads.setFid(result.getId());

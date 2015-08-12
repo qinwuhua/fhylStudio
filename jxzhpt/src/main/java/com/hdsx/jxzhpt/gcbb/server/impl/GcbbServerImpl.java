@@ -119,7 +119,7 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 				double sumyhlc=0;
 				String[] yhlc = sj.getYhlc().split("、");
 				String[] yjsdj = sj.getYjsdj().split("、");
-				for(int i=0;i<yhlc.length;i++){
+				for(int i=0;i<yjsdj.length;i++){
 					sumyhlc=sumyhlc+new Double(yhlc[i]).doubleValue();
 					if(yjsdj[i].equals("1") || yjsdj[i].equals("一级") || yjsdj[i].equals("一级公路")){
 						sj.setBngzl1(new Double(sj.getBnwcgzl()).toString());

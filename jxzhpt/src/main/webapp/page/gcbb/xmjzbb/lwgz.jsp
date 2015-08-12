@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -169,17 +168,17 @@ a:active {
  text-decoration: none;
 }
 
-table {
+#bbtable {
 	border-collapse:collapse;
 }
-table thead tr td {
+#bbtable thead tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
-table tbody tr td {
+#bbtable tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 /* 	font-weight:bold; */
@@ -261,7 +260,7 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table id='bbtable' width="3000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">路网结构改造工程项目资金拔付情况表</caption>
 								<thead>
 									<tr>

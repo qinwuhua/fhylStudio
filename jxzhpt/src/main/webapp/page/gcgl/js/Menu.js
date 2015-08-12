@@ -56,7 +56,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040110',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/wqgz/wqgzsj.jsp'
 	});
@@ -91,7 +91,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040109',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/xjgc/xjgc.jsp'
 	});
@@ -150,7 +150,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040210',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu2',
 		href:'./ybjdsh/wqgz/wqgzsj.jsp'
 	});
@@ -186,7 +186,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040209',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu2',
 		href:'./ybjdsh/xjgc/xjgc.jsp'
 	});
@@ -245,7 +245,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040310',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu3',
 		href:'./cgszjdw/wqgz/wqgzsj.jsp'
 	});
@@ -281,7 +281,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040309',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu3',
 		href:'./cgszjdw/xjgc/xjgc.jsp'
 	});
@@ -340,7 +340,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040410',
 		title:'危桥改造项目(交通局)',
-		imgSrc:'../../images/wq_s.png',
+		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/wqgz/wqgzsj.jsp'
 	});
@@ -375,7 +375,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101040409',
 		title:'新建工程项目',
-		imgSrc:'../../images/gj_s.png',
+		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/xjgc/xjgc.jsp'
 	});
