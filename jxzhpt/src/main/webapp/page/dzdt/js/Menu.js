@@ -34,6 +34,7 @@ function onFeatureSelect(feature) {
 }
 
 function loadDataunit(){
+	var right=parent.window.document.getElementById("rightContent").contentWindow; //获取右侧frame对象
 	$("#dataunit_tree").treegrid({
 		border : false,
 		rownumbers: false,
@@ -80,9 +81,9 @@ function loadDataunit(){
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){
-			if(row.bmid!="") attrQuery(row.id);
+			if(row.bmid!="") right.attrQuery(row.id);
 		},onClickRow:function(row){
-			if(row.bmid!="") attrQuery(row.id);
+			if(row.bmid!="") right.attrQuery(row.id);
 		}
 	});
 }

@@ -25,7 +25,7 @@ $(function(){
         $("#c2,#c8,#c3,#c4,#c5,#c6,#c7").hide();
         $("#c1").show();
         if (c1){
-            $("#c1f").attr("src", "page/dzdt/Menu.jsp");
+            $("#c1f").attr("src", "page/dzdt/dzdt.jsp");
         }
     });
 
@@ -103,7 +103,7 @@ function menuQx(){
 			if(flag==false){
 				var url="";
 				switch(qx[i].substr(qx[i].length-1)){
-				case "1": url="page/dzdt/Menu.jsp";break;
+				case "1": url="page/dzdt/dzdt.jsp";break;
 				case "2": url="page/lwxm/Menu.jsp";break;
 				case "8": url="page/qqgl/Menu.jsp";break;
 				case "3": url="page/jhgl/Menu.jsp";break;
