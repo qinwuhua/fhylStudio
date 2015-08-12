@@ -40,8 +40,8 @@
 			 		[
 						{field:'name',title:'行政区划',width:100,align:'center',rowspan:2},
 						{title:'合计',colspan:4},
-						{title:'路面升级',colspan:4},
-						{title:'路面改建',colspan:4},
+						{title:'改建工程',colspan:4},
+						{title:'路面改造',colspan:4},
 						{title:'新建工程',colspan:4},
 						{title:'灾毁重建',colspan:4},
 						{title:'养护大中修',colspan:4},
