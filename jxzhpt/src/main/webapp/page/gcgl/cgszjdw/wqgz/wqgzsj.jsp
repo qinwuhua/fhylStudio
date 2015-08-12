@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -147,7 +146,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+        			<fieldset style="height:80px;width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -170,7 +169,9 @@ a:active {
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
-								</select> 
+								</select>
+								</p> 
+								<p style="margin: 1% 0% 1% 2%;">
 								<span>是否部库：</span>
         						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
 								<option value="">全部</option>
@@ -178,7 +179,7 @@ a:active {
 								<option value="是">是</option>
 								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -55%;" onclick="showAll1()"/>        					
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll1()"/>        					
                                        <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						 <img onclick="importData_yb('cgszjdw/wqgz/wqgz')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> 
                                         </p>

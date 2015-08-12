@@ -65,7 +65,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1%  0px 0px 0px;">
+        			<fieldset style="height:80px;width:99.7%; text-align: left; vertical-align: middle;margin: 1%  0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -87,6 +87,8 @@ a:active {
         							<option value="已审核">已审核</option>
         							<option value="未审核">未审核</option>
         						</select>
+        						</p>
+        						<p style="margin: 1% 0% 1% 2%;">
         						<span>是否部库：</span>
         						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
 								<option value="">全部</option>

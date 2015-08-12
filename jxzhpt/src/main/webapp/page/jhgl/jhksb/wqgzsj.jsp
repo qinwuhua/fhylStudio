@@ -283,32 +283,14 @@ text-decoration:none;
 					<tr height="32">
         						<td>管养单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
-        						<td>行政区划：</td>
-        						<td  colspan="3" style="width:230px;"><select id="xzqh" style="width:230px;"></select></td>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="lxmc" style="width:90px;" /></td>
-        						<td>桥梁名称：</td>
-        						<td><input name="txtBridge" type="text" id="qlmc" style="width:90px;" /></td>
-        						<td>是否有补助历史：</td>
-        						<td>
-									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
-									<option value="" selected="selected">全部</option>
-									<option value="无">否</option>
-									<option value="有">是</option>
-									</select>
-								</td>
-        					</tr>
-        					<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 80px;"></select></td>
         						<td>上报状态：</td>
-        						<td><select name="ddlSHZT" id="jhzt" style="width:70px;" class="easyui-combobox">
+        						<td><select name="ddlSHZT" id="jhzt" style="width:60px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 								</select></td>
 								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
+								<td><select name="tsdq" id="tsdq" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -317,28 +299,50 @@ text-decoration:none;
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select></td>
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="jsdj" style="width:65px;" class="easyui-combobox">
-								</select></td>
-								<td>公路等级：</td>
-								<td><select name="ddlGldj" id="gldj" style="width:94px;" class="easyui-combobox">
-								</select></td>
 								<td>跨径分类：</td>
-        						<td><select name="ddlAKJFL" id="akjfl" style="width:94px;" class="easyui-combobox">
+        						<td><select name="ddlAKJFL" id="akjfl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select></td>
+        						
+        						<td>桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="qlmc" style="width:80px;" /></td>
+        						
+        					</tr>
+        					<tr height="32">
+        					<td>行政区划：</td>
+        						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 60px;"></select></td>
+        						
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" id="jsdj" style="width:70px;" class="easyui-combobox">
+								</select></td>
+								<td>公路等级：</td>
+								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
+								</select></td>
+								<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
+								
+        					</tr>
+								<tr height="32">
+								<td>是否有补助历史：</td>
+        						<td>
+									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
+									<option value="" selected="selected">全部</option>
+									<option value="无">否</option>
+									<option value="有">是</option>
+									</select>
+								</td>
 								<td>是否部库：</td>
-                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
+                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="">全部</option>
 								<option value="否" selected>否</option>
 								<option value="是">是</option>
 								</select></td>
-        					</tr>
-								<tr height="32">
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />
