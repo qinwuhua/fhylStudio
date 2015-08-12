@@ -33,7 +33,6 @@
 				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$("#yf"+m).attr("selected","selected");
-			showAll();
 		});
 		function setjhxdnf(){
 			$("#ddlYear1").combotree({    
@@ -41,7 +40,10 @@
 				async: false,
 			    url: '/jxzhpt/xmjzbb/setjhxdnf1.do',    
 			    required: false,
-			    multiple:true
+			    multiple:true,
+			    onLoadSuccess:function(node, data){
+			    	showAll();
+			    }
 			});
 			
 		}
