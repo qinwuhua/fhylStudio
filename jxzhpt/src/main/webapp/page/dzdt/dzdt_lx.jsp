@@ -126,7 +126,7 @@ function filterXzqhdm(xzqhdm){
 function onclickXx(xmlx,xmid){
 	parent.YMLib.Var.xmbm=xmid;
 	if(xmid.substring(10,11)=="1"){
-		parent.YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+		parent.YMLib.UI.createWindow('lmsjxx','改建工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
 	}else if(xmid.substring(10,11)=="2"){
 		parent.YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
 	}else if(xmid.substring(10,11)=="3"){
