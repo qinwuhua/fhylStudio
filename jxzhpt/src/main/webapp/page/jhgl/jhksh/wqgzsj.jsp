@@ -25,7 +25,7 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
+			//loadBmbm2('jsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
@@ -212,10 +212,15 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>
-        						
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="jsdj" style="width:70px;" class="easyui-combobox">
-								</select></td>
+        						<td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:65px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
 								<td>公路等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
@@ -235,8 +240,8 @@ text-decoration:none;
 								</td>
 								<td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select></td>
                               <td colspan="10">

@@ -35,7 +35,7 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
+	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
@@ -325,7 +325,34 @@ function sckglWqgz(){
 		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'scqlqc',title:'桥梁全长(米)',width:140,align:'center'},
+		        {field:'scqlqk',title:'桥梁全宽(米)',width:140,align:'center'},
+		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'fapgdw',title:'方案评估(设计)单位',width:140,align:'center'},
+		        {field:'fascdw',title:'方案审核(批复)单位',width:140,align:'center'},
+		        {field:'faspsj',title:'方案审批时间',width:140,align:'center'},
+		        {field:'spwh',title:'审批文号',width:140,align:'center'},
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'tzgs',title:'投资估算',width:140,align:'center'},
+		        {field:'hzdj',title:'荷载等级',width:140,align:'center'},
+		        {field:'scsjhspl',title:'设计洪水频率',width:140,align:'center'},
+		        {field:'kjzh',title:'跨径组合',width:140,align:'center'},
+		        {field:'sck_sbjgxs',title:'上部结构形式',width:140,align:'center'},
+		        {field:'sck_xbjgxs',title:'下部结构形式',width:140,align:'center'},
+		        {field:'sgtpfsj',title:'施工图批复时间',width:140,align:'center'},
+		        {field:'pfwh',title:'批复文号',width:140,align:'center'},
+		        {field:'zgq',title:'总工期',width:140,align:'center'},
+		        {field:'cjqz1',title:'重建桥址',width:140,align:'center',formatter:function(value,row,index){
+		        	if(row.cjqz!=''||row.cjqz!=null)
+		        	return row.cjqz+"米";
+		        	else return '-';
+		        }},
+		        {field:'scthdj',title:'通航等级',width:140,align:'center'},
+		        {field:'qljc',title:'桥梁基础',width:140,align:'center'},
+		        {field:'ydgldj',title:'引道公路等级',width:140,align:'center'},
+		        {field:'sjsd',title:'设计速度',width:140,align:'center'},
+		        {field:'ztz',title:'总投资',width:140,align:'center'},
+		        {field:'nsqbbz',title:'拟申请部（省）级补助资金（万元）',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;
@@ -404,10 +431,16 @@ text-decoration:none;
                               	<td><select id="xmnf" style="width:70px">
                               	</select>
                               </td>
-                              
-                              <td>技术等级：</td>
-                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
-                              	</select></td>
+                             <td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:70px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
+
                               	<td>按跨径分类：</td>
                               	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
                               	</select></td>
@@ -422,8 +455,8 @@ text-decoration:none;
                               	</select></td>
                              <td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 52px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select></td>
 								
