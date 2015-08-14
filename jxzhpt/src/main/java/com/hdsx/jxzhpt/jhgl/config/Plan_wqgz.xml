@@ -16,6 +16,7 @@
 		<result property="kgzt" column="kgzt"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="sfylrbwqk" column="sfylrbwqk"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<association property="jckwqgz"  resultMap="wqgz_lx" ></association>
 	</resultMap>
@@ -101,7 +102,10 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 
+					<if test="jh.sfylrbwqk!=null and jh.sfylrbwqk!=''">
+	 					and jh.sfylrbwqk=#{jh.sfylrbwqk}
+	 				</if>
 					<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
