@@ -72,6 +72,21 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhtjbb/abgcjsb.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050106',
+		title:'公路路网结构改造工程建设计划（危桥改造项目）',
+		imgSrc:'../../images/menubutton/wqgztjybb.png',
+		renderTo:'left_menu1',
+		href:'./jhtjbb/wqgzjh.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050107',
+		title:'公路路网结构改造工程建设计划（安保工程项目）',
+		imgSrc:'../../images/menubutton/abgctjybb.png',
+		renderTo:'left_menu1',
+		href:'./jhtjbb/abgcjh.jsp'
+	});
+	
 //	createMenux('LeftMenu',{
 //		id:'menu_0101050104',
 //		title:'公路建设下达计划',

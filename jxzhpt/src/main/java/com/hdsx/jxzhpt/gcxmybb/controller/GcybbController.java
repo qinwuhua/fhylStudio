@@ -60,7 +60,16 @@ public class GcybbController extends BaseActionSupport{
 	private Gcglzhfz gcglzhfz=new Gcglzhfz();
 	private Gcglsh gcglsh=new Gcglsh();
 	private String flag;
+	private String sfylrbwqk;
 	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
+
 	public String getFlag() {
 		return flag;
 	}
@@ -1349,5 +1358,155 @@ public class GcybbController extends BaseActionSupport{
 				list.get(i).setV_49(list.get(i).getV_49()==null? " ":list.get(i).getV_49().replaceAll(",", ""));
 			}
 			return list;
+		}
+		
+		//危桥计划
+		public void getWqgzjh(){
+			String tiaojian1="";
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("flag".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			gydwdm = gydw;
+			xzqhdm = xzqh;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			}
+			gcglwqgz.setGydw(tiaojian1);
+			gcglwqgz.setTiaojian(xzdj);
+			gcglwqgz.setXzqhdm(tiaojian2);
+			gcglwqgz.setXmnf(xmnf);
+			gcglwqgz.setSfylrbwqk(sfylrbwqk);
+			List<Excel_list> list=gcybbServer.getWqgzjh(gcglwqgz);
+			if("flag".equals(flag)){
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName(xmnf+"年公路路网结构改造工程建设计划（危桥改造项目）");//设置第一行
+				eldata.setSheetName("危桥");//设置sheeet名
+				eldata.setFileName(xmnf+"年公路路网结构改造工程建设计划（危桥改造项目）");//设置文件名
+				eldata.setEl(list);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("设区市",1,1,1,1));
+				et.add(new Excel_tilte("县（市、区）",1,1,2,2));
+				et.add(new Excel_tilte("乡镇名称",1,1,3,3));
+				et.add(new Excel_tilte("桥梁编码",1,1,4,4));
+				et.add(new Excel_tilte("桥梁名称",1,1,5,5));
+				et.add(new Excel_tilte("桥长（米）",1,1,6,6));
+				et.add(new Excel_tilte("桥宽（米）",1,1,7,7));
+				et.add(new Excel_tilte("建设性质",1,1,8,8));
+				et.add(new Excel_tilte("建设内容",1,1,9,9));
+				et.add(new Excel_tilte("总投资（万元）",1,1,10,10));
+				et.add(new Excel_tilte("安排省级补助资金（万元）",1,1,11,11));
+				et.add(new Excel_tilte("地方自筹资金  （万元）",1,1,12,12));
+				et.add(new Excel_tilte("开工年",1,1,13,13));
+				et.add(new Excel_tilte("完工年",1,1,14,14));
+				et.add(new Excel_tilte("路线编码",1,1,15,15));
+				et.add(new Excel_tilte("路线名称",1,1,16,16));
+				et.add(new Excel_tilte("中心桩号",1,1,17,17));
+				et.add(new Excel_tilte("批复文号",1,1,18,18));
+				et.add(new Excel_tilte("备注",1,1,19,19));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				try {
+					Excel_export.excel_exportwqjh(eldata,response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					JsonUtils.write(list, getresponse().getWriter());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		
+		//abjh
+		public void getAbgcjh(){
+			String tiaojian1="";
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("flag".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			gydwdm = gydw;
+			xzqhdm = xzqh;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			}
+			gcglwqgz.setGydw(tiaojian1);
+			gcglwqgz.setTiaojian(xzdj);
+			gcglwqgz.setXzqhdm(tiaojian2);
+			gcglwqgz.setXmnf(xmnf);
+			List<Excel_list> list=gcybbServer.getAbgcjh(gcglwqgz);
+			if("flag".equals(flag)){
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName(xmnf+"年公路路网结构改造工程建设计划（安全生命防护工程）");//设置第一行
+				eldata.setSheetName("安保");//设置sheeet名
+				eldata.setFileName(xmnf+"年公路路网结构改造工程建设计划（安全生命防护工程）");//设置文件名
+				eldata.setEl(list);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,2,0,0));
+				et.add(new Excel_tilte("行政区划代码",1,2,1,1));
+				et.add(new Excel_tilte("管养单位",1,2,2,2));
+				et.add(new Excel_tilte("项目名称",1,1,3,6));
+				et.add(new Excel_tilte("建设性质",1,2,7,7));
+				et.add(new Excel_tilte("处治隐患里程（公里）",1,2,8,8));
+				et.add(new Excel_tilte("建设年限",1,1,9,10));
+				et.add(new Excel_tilte("总投资（万元）",1,2,11,11));
+				et.add(new Excel_tilte("中央投资（万元）",1,2,12,12));
+				et.add(new Excel_tilte(xmnf+"年 计 划 （ 万 元 ）",1,1,13,16));
+				et.add(new Excel_tilte("备注",1,2,17,17));
+				et.add(new Excel_tilte("路线编号",2,2,3,3));
+				et.add(new Excel_tilte("项目名称",2,2,4,4));
+				et.add(new Excel_tilte("起点桩号",2,2,5,5));
+				et.add(new Excel_tilte("止点桩号",2,2,6,6));
+				et.add(new Excel_tilte("开工年",2,2,9,9));
+				et.add(new Excel_tilte("完工年",2,2,10,10));
+				et.add(new Excel_tilte("合计",2,2,13,13));
+				et.add(new Excel_tilte("中央投资车购税",2,2,14,14));
+				et.add(new Excel_tilte("地方自筹",2,2,15,15));
+				et.add(new Excel_tilte("主要建设内容",2,2,16,16));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				try {
+					Excel_export.excel_exportabjh(eldata,response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					JsonUtils.write(list, getresponse().getWriter());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
 		}
 }
