@@ -664,7 +664,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
     decode(ztz,null,' ',ztz) ztz,decode(btz,null,' ',btz) btz,decode(stz,null,' ',stz) stz,decode(snhj,null,' ',snhj) snhj,decode(snbtz,null,' ',snbtz) snbtz,
     decode(bnhj,null,' ',bnhj) bnhj,decode(bnbtz,null,' ',bnbtz) bnbtz,decode(gkpfwh,null,' ',gkpfwh) gkpfwh,decode(sjpfwh,null,' ',sjpfwh) sjpfwh,decode(jhxdwh,null,' ',jhxdwh) jhxdwh
 	from(	
-		select '升级改造' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'升级改造' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
+		select '改建工程' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'升级改造' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
       lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,cbsj.dq dqiao,cbsj.sd sdao,' ' lmkd,' ' jsfa,p.pfztz ztz,p.bbzzj btz,p.sbzzj stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
       gk.gkpfwh gkpfwh,cbsj.sjpfwh,zj1.jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
       from jhsh_sjgz p,lxsh_sjgz lxsh,cbsj_sjgz cbsj,kxxyj_sjgz gk,

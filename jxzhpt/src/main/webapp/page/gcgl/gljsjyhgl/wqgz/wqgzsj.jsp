@@ -66,7 +66,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.8%;text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+        			<fieldset style="height:80px;width:99.8%;text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -91,12 +91,16 @@ a:active {
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select>
-        						<span>是否部库：</span>
-        						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
-								<option value="是">是</option>
-								</select>
+        						
+								</p>
+								
+								<p style="margin: 1% 0% 1% 2%;">
+									<span>是否部库：</span>
+	        						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
+									<option value="">全部</option>
+									<option value="否" selected>否</option>
+									<option value="是">是</option>
+									</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll1()"/>        					</p>
         				</div>

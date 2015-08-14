@@ -155,7 +155,17 @@ function autoCompleteLXBM(){
 					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
 					dataType:'json',
 					success : function(msg) {
-					$("#jsdj").html(msg.jsdj);
+						if($.trim(msg.jsdj)=='一级公路')
+							$("#jsdj").html('一类');
+						else	if($.trim(msg.jsdj)=='二级公路')
+							$("#jsdj").html('二类');
+						else if($.trim(msg.jsdj)=='三级公路')
+							$("#jsdj").html('三类');
+						else if($.trim(msg.jsdj)=='四级公路')
+							$("#jsdj").html('四类');
+						else{
+							$("#jsdj").html('五类');
+						}	
 					}
 				}); 
 				$("#pddj").html(item.pddj);
@@ -469,23 +479,24 @@ function newGuid()
 					<input type="text" id="pzlx" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否入部危桥库：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
 						<option value="否"selected>否</option>
 						<option value="是">是</option>
-					</select><font color="red">&nbsp;* 该项填写后不可修改</font>
+					</select>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
                    	</select></td>
+			</tr>
+			<tr style="height: 35px;">
+				
                	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qlyhgcs" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qljggcs" />
 				</td>
 			</tr>            	

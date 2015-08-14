@@ -35,7 +35,7 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
+	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
@@ -285,7 +285,27 @@ $("#grid").datagrid({
 		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
-		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'tzgs',title:'投资估算',width:140,align:'center'},
+		        {field:'hzdj',title:'荷载等级',width:140,align:'center'},
+		        {field:'scsjhspl',title:'设计洪水频率',width:140,align:'center'},
+		        {field:'kjzh',title:'跨径组合',width:140,align:'center'},
+		        {field:'sck_sbjgxs',title:'上部结构形式',width:140,align:'center'},
+		        {field:'sck_xbjgxs',title:'下部结构形式',width:140,align:'center'},
+		        {field:'sgtpfsj',title:'施工图批复时间',width:140,align:'center'},
+		        {field:'pfwh',title:'批复文号',width:140,align:'center'},
+		        {field:'zgq',title:'总工期',width:140,align:'center'},
+		        {field:'cjqz1',title:'重建桥址',width:140,align:'center',formatter:function(value,row,index){
+		        	if(row.cjqz!=''||row.cjqz!=null)
+		        	return row.cjqz+"米";
+		        	else return '-';
+		        }},
+		        {field:'scthdj',title:'通航等级',width:140,align:'center'},
+		        {field:'qljc',title:'桥梁基础',width:140,align:'center'},
+		        {field:'ydgldj',title:'引道公路等级',width:140,align:'center'},
+		        {field:'sjsd',title:'设计速度',width:140,align:'center'},
+		        {field:'ztz',title:'总投资',width:140,align:'center'},
+		        {field:'nsqbbz',title:'拟申请部（省）级补助资金（万元）',width:140,align:'center'}
 	    	]]    
 		});  
 		var sbthcd;
@@ -344,48 +364,55 @@ text-decoration:none;
 								<td>管养（监管）单位：</td>
                               	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
                               	</select></td>
-                             	<td>行政区划：</td>
-                              	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
-                              	</select></td>
-                               <td align="right">桥梁编号：</td>
-        						<td><input type="text" id="qlbh" style="width:70px;" /></td>
-                              	<td>桥梁名称：</td>
-                              	<td><input id="qlmc" type="text" style="width:76px"/></td>
-                              	<td>路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:70px;" /></td>
-						</tr>
-                       <tr height="32">
-							  <td>项目年份：</span>
-                              	<td><select id="xmnf" style="width:70px">
-                              	</select>
-                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px;display: none;">
-                              	</select></td>
-                               <td>审核状态：</td>
+                             	<td>审核状态：</td>
                               	<td><select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               <td>特殊地区：</td>
                               	<td><select id="tsdq" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                             <td>技术等级：</td>
-                              <td>	<select id="jsdj" style="width:70px"class="easyui-combobox">
+                               <td align="right">桥梁编号：</td>
+        						<td><input type="text" id="qlbh" style="width:70px;" /></td>
+                              	<td>桥梁名称：</td>
+                              	<td><input id="qlmc" type="text" style="width:76px"/></td>
+                              	
+						</tr>
+                       <tr height="32">
+                      		 <td>行政区划：</td>
+                              	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
                               	</select></td>
-                              	<td>按跨径分类：</td>
-                              	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
+							  <td>项目年份：</td>
+							  <td><select id="xmnf" style="width:70px">
                               	</select>
-                              	<td>补助历史：</td>
-                              	<td><select id="bzls" style="width:80px"class="easyui-combobox">
-                              	</select></td>
-                              	<td>路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
-        						 <td>是否部库：</td>
-                              	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
-								<option value="是">是</option>
-								</select></td>
+                             	</td>
+                               
+                            <td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:70px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
+                              	<td>按跨径分类：</td>
+                              	<td><select id="akjfl" style="width:72px"class="easyui-combobox">
+                              	</select>
+                              	<td>路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:76px;" /></td>
+            
                              </tr>
                             <tr height="32">
+                            <td>补助历史：</td>
+                              	<td><select id="bzls" style="width:74px"class="easyui-combobox">
+                              	</select></td>
+                             <td>是否部库：</td>
+                              	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 52px">
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
+								<option value="是">是</option>
+								</select></td>
+								<td>路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" /> -->

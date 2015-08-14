@@ -34,7 +34,6 @@ text-decoration:none;
 <script type="text/javascript">
 var xmbm=parent.obj.id;
 $(function(){
-	loadUploadify();
 	fileShow2(xmbm,"桥梁正面文件");
 	fileShow3(xmbm,"桥梁侧面文件");
  	loadxx();
@@ -96,98 +95,7 @@ function selectTSDQ(str){
 	});	
 }
 
-function loadUploadify(){
-	$("#uploadJGTC").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '/jxzhpt/js/uploader/uploadify.swf',
-		'script' : '/jxzhpt/qqgl/uploadJGYSFile.do',
-		'cancelImg' : '/jxzhpt/js/uploader/cancel.png',
-		'queueID' : 'fileQueue1',
-		'fileDataName' : 'uploadJGTC',
-		'auto' : false,
-		'multi' : true,
-		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'gcgl_jgys.jhid':xmbm,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			alert(response);
-			fileShow(xmbm,"桥梁正面文件");
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
 
-		}
-	});
-	
-	$("#uploadWGYS").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '/jxzhpt/js/uploader/uploadify.swf',
-		'script' : '/jxzhpt/qqgl/uploadJGYSFile.do',
-		'cancelImg' : '/jxzhpt/js/uploader/cancel.png',
-		'queueID' : 'fileQueue2',
-		'fileDataName' : 'uploadWGYS',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'gcgl_jgys.jhid':xmbm,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			alert(response);
-			fileShow1(xmbm,"桥梁侧面文件");
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
-	});
-}
-
-function saveWqgz(){
-	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm;
-	//alert(data);
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/wqgzsj/updateWqgz.do',
-        data:data,
-		dataType:'json',
-		success:function(msg){
-			if(Boolean(msg)){
-				alert("保存成功！");
-				parent.jckglWqgz();
-				parent.$('#lxxx').window('destroy');
-			}else{
-				alert('保存失败！');
-			}
-		}
-	});
-}
 </script>
 
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
@@ -264,26 +172,7 @@ function saveWqgz(){
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmtype"></span></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmnf"></span>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qlyhgcs"></span></td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qljggcs"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥添加时间：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmrksj"></span>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sqs"></span>
 				</td>
@@ -291,12 +180,13 @@ function saveWqgz(){
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xsq"></span>
 				</td>
+			</tr>
+			
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="szxz"></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按建筑材料和&nbsp;&nbsp;<br>使用年限分类：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="synf"></span>
@@ -305,12 +195,12 @@ function saveWqgz(){
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjhspl"></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净宽（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qxjkuan"></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净空（米）：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qxjkong"></span>
@@ -319,12 +209,12 @@ function saveWqgz(){
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="zqks"></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥面净宽（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qmjk"></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨越地物类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="kydwlx"></span>
@@ -333,12 +223,12 @@ function saveWqgz(){
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="thdj"></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路桥梁用途：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="glqlyt"></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥墩类型：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qdlx"></span>
@@ -347,10 +237,26 @@ function saveWqgz(){
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qtlx"></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">铺装类型：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="pzlx"></span>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xmnf"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qlyhgcs"></span></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qljggcs"></span>
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>

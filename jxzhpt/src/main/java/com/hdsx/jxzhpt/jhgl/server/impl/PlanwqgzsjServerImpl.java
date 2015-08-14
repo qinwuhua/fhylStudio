@@ -202,7 +202,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		}
 		Wqbzbz wq1=queryOne("selectshengbz", planwqgzsj);
 		if(wq1==null){
-			System.out.println("未查出市级补助，请在审核时检查代码");
+			System.out.println("未查出省级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
 				System.out.println(planwqgzsj.getScqlqk());

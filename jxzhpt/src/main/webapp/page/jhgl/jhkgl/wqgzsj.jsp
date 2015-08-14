@@ -25,7 +25,7 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
+		//	loadBmbm2('jsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
@@ -189,24 +189,6 @@ text-decoration:none;
 					<tr height="32">
         						<td>管养单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
-        						<td>行政区划：</td>
-        						<td  colspan="3" style="width:230px;"><select id="xzqh" style="width:230px;"></select></td>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="lxmc" style="width:90px;" /></td>
-        						<td>桥梁名称：</td>
-        						<td><input name="txtBridge" type="text" id="qlmc" style="width:90px;" /></td>
-        						<td>是否有补助历史：</td>
-        						<td>
-									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
-									<option value="" selected="selected">全部</option>
-									<option value="无">否</option>
-									<option value="有">是</option>
-									</select>
-								</td>
-        					</tr>
-        					<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 80px;"></select></td>
         						<td>计划状态：</td>
         						<td><select name="ddlSHZT" id="jhzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -225,28 +207,54 @@ text-decoration:none;
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select></td>
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="jsdj" style="width:65px;" class="easyui-combobox">
-								</select></td>
+								<td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:65px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="lxmc" style="width:90px;" /></td>
+        						
+        						
+        					</tr>
+        					<tr height="32">
+        						<td>行政区划：</td>
+        						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 70px;"></select></td>
 								<td>公路等级：</td>
-								<td><select name="ddlGldj" id="gldj" style="width:94px;" class="easyui-combobox">
+								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>
-        						<td><select name="ddlAKJFL" id="akjfl" style="width:94px;" class="easyui-combobox">
+        						<td><select name="ddlAKJFL" id="akjfl" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select></td>
-								<td>是否部库：</td>
-                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
-								<option value="是">是</option>
-								</select></td>
+								<td>桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="qlmc" style="width:90px;" /></td>
         					</tr>
 								<tr height="32">
+								<td>是否有补助历史：</td>
+        						<td>
+									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
+									<option value="" selected="selected">全部</option>
+									<option value="无">否</option>
+									<option value="有">是</option>
+									</select>
+								</td>
+								<td>是否部库：</td>
+                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
+								<option value="是">是</option>
+								</select></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>

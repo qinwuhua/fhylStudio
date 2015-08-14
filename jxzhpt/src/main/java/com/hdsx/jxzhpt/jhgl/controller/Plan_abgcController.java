@@ -375,6 +375,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
 	public void downAbgcFile2(){
 		try {
         	HttpServletResponse response = getresponse();
