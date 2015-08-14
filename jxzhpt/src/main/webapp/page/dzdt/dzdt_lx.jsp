@@ -55,22 +55,22 @@ $(function(){
 	for (var o in feature.attributes) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
 	    if(o=="ROADCODE"){
-	    	html+="<tr><td>路线编码：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<tr><td>路线编码：</td><td style='padding-right:20px;'>"+feature.attributes[o]+"</td>";
 	    }
 	    if(o=="ROADNAME"){
-	    	html+="<tr><td>路线名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<td>路线名称：</td><td style='padding-right:20px;'>"+feature.attributes[o]+"</td>";
 	    }
 	    if(o=="ROADSTART"){
-	    	html+="<tr><td>起点桩号：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<td>起点桩号：</td><td style='padding-right:20px;>"+feature.attributes[o]+"</td>";
 	    }
 	    if(o=="ROADENDS"){
-	    	html+="<tr><td>止点桩号：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<td>止点桩号：</td><td style='padding-right:20px;'>"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="F006"){
-	    	html+="<tr><td>起点名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<tr><td>起点名称：</td><td style='padding-right:20px;' >"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="F010"){
-	    	html+="<tr><td>止点名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<tr><td>止点名称：</td><td style='padding-right:20px;'>"+feature.attributes[o]+"</td></tr>";
 	    }
 	}
 	$("#lxjcsj").html(html);
@@ -163,12 +163,31 @@ function onclickXx(xmlx,xmid){
 }
 
 </script>
+<style>
+.lxxx{padding:8px; line-height:23px;}
+.table{ width:100%; margin:0 auto;
+ margin-top:10px;scroll:no;
+SCROLLBAR-HIGHLIGHT-COLOR: white; 
+SCROLLBAR-SHADOW-COLOR: #81c2ee; 
+SCROLLBAR-3DLIGHT-COLOR: #81c2ee; 
+SCROLLBAR-ARROW-COLOR: #81c2ee; 
+SCROLLBAR-TRACK-COLOR: white; 
+SCROLLBAR-DARKSHADOW-COLOR: #81c2ee; 
+}
+
+.bt{ background-color:#e9f4fc; overflow:hidden; padding-top:20px;}
+.table { width:100%;
+border-collapse: collapse; border:1px solid #cde0f3; margin:0 auto;}
+.table td{border:1px solid #cde0f3; height:26px; line-height:26px; text-align:center;}
+.lxxx span{font-weight:700;line-height:30px;color:#0b77c9;}
+</style>
 <div style="width:100%;">
-	<div>
+	<div class="lxxx">
 		<span>路段基本信息</span>
-    	<table id="lxjcsj"></table>
+    	<table id="lxjcsj" class="table"></table>
     </div>
     <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <span style="font-weight:700;line-height:30px;color:#0b77c9;margin-left:8px;">计划项目信息</span>
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>
