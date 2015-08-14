@@ -28,7 +28,7 @@
 $(function(){
 	var LeftHeight = $(window).height();
 	loadDataunit();
-	$('#tab01').css('height', LeftHeight-39);
+	$('#tab01').css('height', LeftHeight-30);
 	$(".datagrid-header").css("display","none");
 });
 </script>
@@ -37,8 +37,12 @@ $(function(){
 	<div region="center" iconCls="icon-table"  split="true" href="" style="width:250px;">
 		<div border="false" class="easyui-tabs" fit="true">
 			<div title="定位" class="tab_content" style="overflow:hidden;height:500px;"  id="tab01">
-				<table id="dataunit_tree" cellspacing="0" cellpadding="0"></table>
+				<table id="dataunit_tree" cellspacing="0" cellpadding="0">
+				</table>
 			</div>
+			<!-- <div title="搜索" class="tab_content" style="overflow:hidden;height:500px;"  id="tab02">
+				
+			</div> -->
     	</div>
     </div>
 </body>
