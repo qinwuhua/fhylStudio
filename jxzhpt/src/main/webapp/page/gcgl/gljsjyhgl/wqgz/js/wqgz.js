@@ -383,7 +383,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglwqgz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglwqgz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglwqgz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglwqgz.sgdw="+$("#tj_sgdw").val()+"&gcglwqgz.jldw="+$("#tj_jldw").val()+"&gcglwqgz.jsdw="+$("#tj_jsdw").val()+"&gcglwqgz.xdwh="+$("#tj_xdwh").val()
+	+"&gcglwqgz.sgdw="+$("#tj_sgdw").val()+"&gcglwqgz.jldw="+$("#tj_jldw").val()+"&gcglwqgz.jsdw="+$("#tj_jsdw").val()+"&gcglwqgz.xdwh="+$("#tj_xdwh").val()+"&gcglwqgz.zljdwj="+$("#tj_zljdwj").val()
 	+"&gcglwqgz.htje="+$("#tj_htje").val()+"&gcglwqgz.gys="+$("#tj_gys").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
@@ -600,7 +600,9 @@ function showAll1(){
 	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'},
 	        {field:'sbnf',title:'计划下达年度',width:100,align:'center'},
 	        {field:'jhxdwh',title:'计划下达文号',width:100,align:'center'},
-	        {field:'qljsgm',title:'计划下达规模',width:100,align:'center'},
+	        {field:'qljsgm',title:'计划下达规模',width:100,align:'center',formatter:function(value,row,index){
+	        	return "长"+row.jhqlqc+"m--宽"+row.jhqlqk+"m";
+	        }},
 	        {field:'jszt',title:'建设状态',width:120,align:'center',formatter:function(value,row,index){
 	        	if(row.kgzt=='0')
 	        		return '未开工';
@@ -899,10 +901,7 @@ function thsjyb(index){
 function fileShow11(xmbm,type){
 	$.ajax({
 		type:'post',
-//		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
-//		data:'file.parentid='+xmbm+'&file.filetype='+type,
-//		dataType:'json',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -919,10 +918,7 @@ function fileShow11(xmbm,type){
 function fileShow12(xmbm,type){
 	$.ajax({
 		type:'post',
-//		url:'../../../qqgl/queryFileByXmbm.do',
-//		data:'file.parentid='+xmbm+'&file.filetype='+type,
-//		dataType:'json',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -941,7 +937,7 @@ function fileShow12(xmbm,type){
  * @param id 文件ID
  */
 function downFile11(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile2.do?uploads.id="+id;
 }
 /**
  * 删除文件
@@ -951,7 +947,7 @@ function deleteFile11(id){
 	if(confirm('确定删除所选数据？')){
 		$.ajax({
 			 type : "POST",
-			 url : "/jxzhpt/jhgl/deleteFile.do",
+			 url : "/jxzhpt/jhgl/deleteFile2.do",
 			 dataType : 'json',
 			 data : 'uploads.id=' +id,
 			 success : function(msg){

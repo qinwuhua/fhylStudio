@@ -94,7 +94,7 @@
 					"&lx.lxmc="+$('#txtRoad').val()+"&lx.akjfl="+$('#ddlAKJFL').combobox('getValue')+
 					"&lx.qlmc="+$('#txtBridge').val()+"&lx.tsdq="+$('#ddlTSDQ').combo("getValue")+
 					"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
-					"&jh.sbnf="+$('#sbnf').combobox('getValue');
+					"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&jh.sfylrbwqk=是";
 			if($('#ddlSHZT').combo("getValue")=="未开工"){
 				param+="&jh.kgzt=0";
 			}else if($('#ddlSHZT').combo("getValue")=="在建"){
