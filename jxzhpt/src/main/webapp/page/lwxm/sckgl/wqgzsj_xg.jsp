@@ -153,14 +153,13 @@ function saveWqgz(){
 	"&jckwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&jckwqgzsj.jsnr="+$("#jsnr").val()+"&jckwqgzsj.scbz="+$("#scbz").val()+
 	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
 	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
-	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()
+	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.zdezj="+$("#zdezj").val()
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+cjqz
 	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()
 	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
-	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/wqgzsj/updateSckwqgz.do',
@@ -290,6 +289,7 @@ function sjtdeleteFile(id){
 	}
 }
 var nsqbbz;
+var zdezj;
 function getBbz(){
 	 $.ajax({
 			type:'post',
@@ -303,6 +303,7 @@ function getBbz(){
 				var fd=data.fd;
 				var bzzj=(parseFloat($('#scqlqc').val())*1000000000000000*parseFloat($('#scqlqk').val())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 				nsqbbz=bzzj.toFixed(3);
+				zdezj=bzzj.toFixed(3);
 				setnsqbbz();
 			}
 		}); 
@@ -318,6 +319,7 @@ function getSbz(){
 			success:function(data){
 				nsqbbz=data.shengbz;
 				trzjdx=data.shengbz;
+				zdezj=data.shengbz;
 				$("#trzjdx").html("小于等于"+trzjdx);
 			}
 		}); 

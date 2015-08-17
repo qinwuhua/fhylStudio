@@ -1379,4 +1379,90 @@
 		</if>
 		order by  v_20
 	</select>
+	
+	
+	<select id="getWqgzjy1" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_6,'全省合计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
+	(
+	select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+	) t
+	</select>
+	<select id="getWqgzjy2" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_5,v_29,max(v_30)||'小计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
+		(
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		) t
+		group by t.v_29 order by v_29
+	
+	</select>
+	<select id="getWqgzjy3" parameterType="gcglwqgz" resultType="elist">
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		order by v_29
+	</select>
 </mapper>

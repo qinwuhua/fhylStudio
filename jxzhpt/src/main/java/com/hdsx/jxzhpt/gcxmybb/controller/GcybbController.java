@@ -1509,4 +1509,88 @@ public class GcybbController extends BaseActionSupport{
 			}
 			
 		}
+		
+		public void getWqgzjy(){
+			String tiaojian1="";
+			String tiaojian2="";
+			String xzqhdm = "";
+			String gydwdm = "";
+			if("flag".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+			}else{
+			gydwdm = gydw;
+			xzqhdm = xzqh;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			}
+			gcglwqgz.setGydw(tiaojian1);
+			gcglwqgz.setTiaojian(xzdj);
+			gcglwqgz.setXzqhdm(tiaojian2);
+			gcglwqgz.setXmnf(xmnf);
+			gcglwqgz.setSfylrbwqk(sfylrbwqk);
+			List<Excel_list> list=gcybbServer.getWqgzjy(gcglwqgz);
+			if("flag".equals(flag)){
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName(xmnf+"年农村公路危桥改造工程建议计划（第二批）");//设置第一行
+				eldata.setSheetName("危桥");//设置sheeet名
+				eldata.setFileName(xmnf+"年农村公路危桥改造工程建议计划（第二批）");//设置文件名
+				eldata.setEl(list);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("设区市",1,1,1,1));
+				et.add(new Excel_tilte("县（市、区）",1,1,2,2));
+				et.add(new Excel_tilte("路线编码",1,1,3,3));
+				et.add(new Excel_tilte("路线名称",1,1,4,4));
+				et.add(new Excel_tilte("桥梁编码",1,1,5,5));
+				et.add(new Excel_tilte("桥梁名称",1,1,6,6));
+				et.add(new Excel_tilte("中心桩号",1,1,7,7));
+				et.add(new Excel_tilte("设计单位",1,1,8,8));
+				et.add(new Excel_tilte("设计批复单位",1,1,9,9));
+				et.add(new Excel_tilte("批复文号",1,1,10,10));
+				et.add(new Excel_tilte("批复总投资（万元）",1,1,11,11));
+				et.add(new Excel_tilte("计划使用部（省）补助金额（万元）",1,1,12,12));
+				et.add(new Excel_tilte("计划使用地方自筹资金（万元）",1,1,13,13));
+				et.add(new Excel_tilte("是否申请按比例补助",1,1,14,14));
+				et.add(new Excel_tilte("按比例补助申请文号",1,1,15,15));
+				et.add(new Excel_tilte("建设性质",1,1,16,16));
+				et.add(new Excel_tilte("建设内容",1,1,17,17));
+				et.add(new Excel_tilte("开工年",1,1,18,18));
+				et.add(new Excel_tilte("完工年",1,1,19,19));
+				et.add(new Excel_tilte("设区市名称",1,1,20,20));
+				et.add(new Excel_tilte("县市区名称",1,1,21,21));
+				et.add(new Excel_tilte("乡镇名称",1,1,22,22));
+				et.add(new Excel_tilte("预算60%（万元）",1,1,23,23));
+				et.add(new Excel_tilte("按定额计算（万元）",1,1,24,24));
+				et.add(new Excel_tilte("实际补助（万元）",1,1,25,25));
+				et.add(new Excel_tilte("桥长（米）",1,1,26,26));
+				et.add(new Excel_tilte("桥宽（米）",1,1,27,27));
+				et.add(new Excel_tilte("备注",1,1,28,28));
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				try {
+					Excel_export.excel_exportwqjh(eldata,response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					JsonUtils.write(list, getresponse().getWriter());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
 }

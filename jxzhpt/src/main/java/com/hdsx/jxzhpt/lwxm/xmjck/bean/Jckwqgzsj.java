@@ -139,7 +139,14 @@ public class Jckwqgzsj implements Serializable{
 	private String sfkxg;
 	private String sbthcd1;
 	private String sck_sbthcd1;
+	private String zdezj;
 	
+	public String getZdezj() {
+		return zdezj;
+	}
+	public void setZdezj(String zdezj) {
+		this.zdezj = zdezj;
+	}
 	public String getSck_sbthcd1() {
 		return sck_sbthcd1;
 	}

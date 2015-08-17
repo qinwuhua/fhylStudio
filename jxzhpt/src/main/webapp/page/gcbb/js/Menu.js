@@ -87,6 +87,14 @@ $(function() {
 		href:'./jhtjbb/abgcjh.jsp'
 	});
 	
+	createMenux('LeftMenu',{
+		id:'menu_0101050108',
+		title:'农村公路危桥改造工程建议计划（第二批）',
+		imgSrc:'../../images/wqgz_jtj_s.png',
+		renderTo:'left_menu1',
+		href:'./jhtjbb/wqgzjy.jsp'
+	});
+	
 //	createMenux('LeftMenu',{
 //		id:'menu_0101050104',
 //		title:'公路建设下达计划',
