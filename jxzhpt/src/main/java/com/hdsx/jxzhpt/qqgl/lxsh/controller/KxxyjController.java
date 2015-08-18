@@ -431,12 +431,12 @@ public class KxxyjController extends BaseActionSupport{
 	public void uploadGkpf() throws Exception{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			String fileurl="D:\\江西综合平台上传文件\\gkpfwj\\"+kxxyj.getXmbm().substring(0,4)+"\\";
+			String fileurl="D:\\江西综合平台上传文件\\gkpfwj\\";
 			File file =new File(fileurl);
 			if(uploadGkpf!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadGkpfFileName, "工可批复文件", kxxyj.getXmbm(), 
-						"D:/江西综合平台上传文件/gkpfwj/"+kxxyj.getXmbm().substring(0,4)+"/"+uploadGkpfFileName, kxxyj.getGkpfwh());
+						"D:/江西综合平台上传文件/gkpfwj/"+uploadGkpfFileName, kxxyj.getGkpfwh());
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);

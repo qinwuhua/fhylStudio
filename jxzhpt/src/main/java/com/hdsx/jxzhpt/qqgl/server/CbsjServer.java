@@ -278,5 +278,16 @@ public interface CbsjServer {
 	public List<Plan_upload> queryFj();
 
 	public Plan_upload queryFjByName(Plan_upload file);
+	/**
+	 * 根据工可批复文号查询到用到此文号的项目
+	 * @param substring
+	 */
+	public List<Plan_upload> queryGkXm(String substring);
+	/**
+	 * 根据计划下达问好查询用到此文号的项目
+	 * @param substring
+	 * @return
+	 */
+	public List<Plan_upload> queryJhXm(String substring);
 	
 }

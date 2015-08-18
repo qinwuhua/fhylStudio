@@ -318,5 +318,15 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public Plan_upload queryFjByName(Plan_upload file) {
 		return queryOne("queryFjByName",file);
 	}
+	@Override
+	public List<Plan_upload> queryGkXm(String gkwh) {
+		params.put("gkwh", gkwh);
+		return queryList("queryGkXm",params);
+	}
+	@Override
+	public List<Plan_upload> queryJhXm(String jhwh) {
+		params.put("jhwh", jhwh);
+		return queryList("queryJhXm",params);
+	}
 
 }

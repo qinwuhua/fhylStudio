@@ -152,6 +152,7 @@
 		<action name="importExcelXjCbsj" class="cbsjController" method="importExcelXjCbsj"></action>
 		
 		<action name="readFile" class="cbsjController" method="readFile"></action>
+		<action name="readJhxdFile" class="cbsjController" method="readJhxdFile"></action>
 	<!-- rh -->
 	</package>
 </struts>

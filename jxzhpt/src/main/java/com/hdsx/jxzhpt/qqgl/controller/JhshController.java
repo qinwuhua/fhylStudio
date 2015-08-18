@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -195,12 +197,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void uploadJhsh(){
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\"+jhsh.getXmbm().substring(0,4)+"\\";
+			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\";
 			File file =new File(fileurl);
 			if(uploadJhxd!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", jhsh.getXmbm(), 
-						"D:/江西综合平台上传文件/jhxdwj/"+jhsh.getXmbm().substring(0,4)+"/"+uploadJhxdFileName, jhsh.getXdwh());
+						"D:/江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
@@ -727,11 +729,21 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	public void zdyQuery(){
-		List<Map<String, String>> result = new ArrayList<Map<String,String>>();
+		List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
 		if(jhsh.getXmlx()==1){
-			result = jhshServer.zdyQueryLmsj(filed,jhsh);
+			resultlist = jhshServer.zdyQueryLmsj(filed,jhsh);
+		}else if(jhsh.getXmlx()==2){
+			resultlist = jhshServer.zdyQueryLmgz(filed, jhsh);
+		}else if(jhsh.getXmlx()==3){
+			resultlist = jhshServer.zdyQueryXj(filed, jhsh);
+		}else if(jhsh.getXmlx()==4){
+			resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh);
+		}else if(jhsh.getXmlx()==5){
+			resultlist = jhshServer.zdyQuerySh(filed, jhsh);
 		}
 		try {
+			result.put("rows", resultlist);
+			result.put("total", resultlist.size());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

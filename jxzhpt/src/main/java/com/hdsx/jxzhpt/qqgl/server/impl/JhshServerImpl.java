@@ -276,4 +276,28 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("jhsh", jhsh);
 		return queryList("zdyQueryLmsj",params);
 	}
+	@Override
+	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryList("zdyQueryLmgz",params);
+	}
+	@Override
+	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryList("zdyQueryXj",params);
+	}
+	@Override
+	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryList("zdyQueryYhdzx",params);
+	}
+	@Override
+	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryList("zdyQuerySh",params);
+	}
 }

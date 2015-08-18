@@ -721,4 +721,24 @@
 		select * from plan_upload where filename=#{filename} and
 		parentid = (select max(parentid) from plan_upload where filename=#{filename} and parentid like #{xmbm}||'%')
 	</select>
+	<select id="queryGkXm" resultType="plan_upload" parameterType="java.util.Map">
+		select * from (
+		select k.xmbm parentid,k.gkpfwh filewh from kxxyj_lmgz k
+		union all
+		select k.xmbm,k.gkpfwh from kxxyj_sjgz k
+		union all
+		select k.xmbm,k.gkpfwh from kxxyj_xj k) where filewh like '%'||#{gkwh}||'%'
+	</select>
+	<select id="queryJhXm" resultType="plan_upload" parameterType="java.util.Map">
+		select * from (
+		select j.xmbm parentid,j.xdwh filewh from jhsh_lmgz j
+		union all
+		select j.xmbm,j.xdwh from jhsh_sjgz j
+		union all
+		select xj.xmbm,xj.xdwh from jhsh_xj xj
+		union all
+		select yh.xmbm,yh.xdwh from jhsh_yhdzx yh
+		union all
+		select sh.xmbm,sh.xdwh from jhsh_sh sh) where filewh like '%'||#{jhwh}||'%'
+	</select>
 </mapper>

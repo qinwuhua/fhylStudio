@@ -674,14 +674,69 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		}
 	}
 	
-	public void readFile(){
+	public void readFile() throws FileNotFoundException, IOException{
 		File file = new File("E://前期及批复文件数据//工可批复文件");
 		if(file.exists()){
 			File[] listFiles = file.listFiles();
+			System.out.println("开始");
 			for (File item : listFiles) {
-				System.out.println(item.getName());
+				List<Plan_upload> queryGkXm = cbsjServer.queryGkXm(item.getName().substring(0, item.getName().indexOf(".")));
+				if(queryGkXm.size()>0){
+					for (Plan_upload itemGk : queryGkXm) {
+						String fid=UUID.randomUUID().toString();
+						Plan_upload uploads =new Plan_upload(fid,item.getName(), "工可批复文件", itemGk.getParentid(), 
+								"D:/江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+						uploads.setFid(fid);
+						Plan_upload result = cbsjServer.queryFileByWh(uploads);
+						if(result==null){
+							cbsjServer.insertFile(uploads);
+							cbsjServer.insertFileJl(uploads);
+						}else{
+							uploads.setFid(result.getId());
+							cbsjServer.insertFileJl(uploads);
+						}
+					}
+				}else{
+					String fid=UUID.randomUUID().toString();
+					Plan_upload uploads =new Plan_upload(fid,item.getName(), "工可批复文件", null, 
+							"D:/江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+					uploads.setFid(fid);
+					cbsjServer.insertFile(uploads);
+				}
 			}
 		}
 	}
 	
+	public void readJhxdFile(){
+		File file =new File("E://前期及批复文件数据//2011-2015年计划下达文件");
+		if(file.exists()){
+			File[] listFiles = file.listFiles();
+			for (File item : listFiles) {
+				List<Plan_upload> queryJhXm = cbsjServer.queryJhXm(item.getName().substring(0, item.getName().indexOf(".")));
+				if(queryJhXm.size()>0){
+					for (Plan_upload itemp : queryJhXm) {
+						String fid=UUID.randomUUID().toString();
+						Plan_upload uploads =new Plan_upload(fid,item.getName(), "计划下达文件", itemp.getParentid(), 
+								"D:/江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+						uploads.setFid(fid);
+						Plan_upload result = cbsjServer.queryFileByWh(uploads);
+						if(result==null){
+							cbsjServer.insertFile(uploads);
+							cbsjServer.insertFileJl(uploads);
+						}else{
+							uploads.setFid(result.getId());
+							cbsjServer.insertFileJl(uploads);
+						}
+					}
+				}else{
+					String fid=UUID.randomUUID().toString();
+					Plan_upload uploads =new Plan_upload(fid,item.getName(), "计划下达文件", null, 
+							"D:/江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+					uploads.setFid(fid);
+					cbsjServer.insertFile(uploads);
+				}
+				
+			}
+		}
+	}
 }

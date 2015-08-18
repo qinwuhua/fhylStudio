@@ -18,7 +18,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/YMLib.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <script type="text/javascript">
-	var lxshCount=0,kxxyjCount=0,cbsjCount=0,jhshCount=0;
+	
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
@@ -30,6 +30,7 @@
 			$('#dd').dialog('open');
 		});
 		$("#save_button").click(function(){
+			var lxshCount=0,kxxyjCount=0,cbsjCount=0,jhshCount=0;
 			var filedArray = new Array();
 			var nameArray = new Array();
 			lxshCount=$("input[name='lxsh']:checked").length;
@@ -49,22 +50,22 @@
 				nameArray.push($(item).val().substring($(item).val().indexOf("-")+1));
 			});
 			$.each($("input[name='jhsh']:checked"),function(index,item){
-				filedArray.push($(item).val().substring(0,$(item).val().indexOf("-")) +" as cb"+$(item).val().substring($(item).val().indexOf(".")+1,$(item).val().indexOf("-")));
+				filedArray.push($(item).val().substring(0,$(item).val().indexOf("-")) +" as jh"+$(item).val().substring($(item).val().indexOf(".")+1,$(item).val().indexOf("-")));
 				nameArray.push($(item).val().substring($(item).val().indexOf("-")+1));
 			});
 			var cols = new Array();
 			var title = new Array();
 			if(lxshCount>0){
-				title.push({colspan:lxshCount,title:"立项审核信息",width:100,align:'center'});
+				title.push({colspan:lxshCount,title:"立项审核信息",align:'center'});
 			}
 			if(kxxyjCount>0){
-				title.push({colspan:kxxyjCount,title:"可行性研究信息",width:100,align:'center'});
+				title.push({colspan:kxxyjCount,title:"可行性研究信息",align:'center'});
 			}
 			if(cbsjCount>0){
-				title.push({colspan:cbsjCount,title:"初步设计信息",width:100,align:'center'});
+				title.push({colspan:cbsjCount,title:"初步设计信息",align:'center'});
 			}
 			if(jhshCount>0){
-				title.push({colspan:jhshCount,title:"计划审核信息",width:100,align:'center'});
+				title.push({colspan:jhshCount,title:"计划审核信息",align:'center'});
 			}
 			$.each(nameArray,function(index,item){
 				var col = {field:filedArray[index].substring(filedArray[index].indexOf("as ")+3).toUpperCase(),
@@ -73,7 +74,6 @@
 			});
 			var gydw=$('#gydw').combotree("getValue");
 			var xzqhdm=$('#xzqhmc').combotree("getValue");
-			
 			$('#grid').datagrid({
 				url:'/jxzhpt/qqgl/zdyQuery.do',
 				queryParams:{
@@ -103,15 +103,18 @@
 				 	kgzt:$('#kgzt').combobox("getValue")
 				},
 				striped:true,
-			    pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
 			    height:345,
-			    width:1070,
-			    columns:[title,cols]
+			    width:1070
 			});
 			$('#dd').dialog('close');
+			var options = $("#grid").datagrid("options");
+			var c = new Array();
+			c.push(title);
+			c.push(cols);
+			options.columns=c;
+			$('#grid').datagrid(options);
 		});
 	});
 	function qx(id){
@@ -126,6 +129,21 @@
 	}
 	function bx(id){
 		$.each($("input[name='"+id+"']"),function(index,item){
+			$(item).attr("checked", false);
+		});
+	}
+	function qx1(){
+		$.each($("input[type='checkbox']"),function(index,item){
+			$(item).attr("checked", true);
+		});
+	}
+	function fx1(){
+		$.each($("input[type='checkbox']"),function(index,item){
+			$(item).attr("checked", !$(this).attr("checked"));
+		});
+	}
+	function bx1(){
+		$.each($("input[type='checkbox']"),function(index,item){
 			$(item).attr("checked", false);
 		});
 	}
@@ -197,9 +215,9 @@ a{text-decoration:none;}
 				<table style="width: 100%; background-color: #aacbf8; font-size: 12px;" border="1" cellpadding="2" cellspacing="1">
 					<tr  style="height: 30px;">
 						<td colspan="9" style="background-color: #ffffff;"align="center" >
-							<input  type="radio" value="qx" name="radio" id="qx"/>全选
-							<input  type="radio" value="fx" name="radio" id="fx"/>反选
-							<input  type="radio" value="bx" name="radio" id="bx"/>不选
+							<input  type="radio" onclick="qx1()" value="qx" name="radio" id="qx"/>全选
+							<input  type="radio" onclick="fx1()" value="fx" name="radio" id="fx"/>反选
+							<input  type="radio" onclick="bx1()" value="bx" name="radio" id="bx"/>不选
 						</td>
 					</tr>
 					<tr  style="height: 30px;">
@@ -282,7 +300,7 @@ a{text-decoration:none;}
 						<td colspan="2" style="background-color: #ffffff;" align="center">
 							<table>
 								<tr>
-									<td><input type="checkbox" id="k.xzqh" name="kxxyj" value="k.xzqh-行政区划"/>行政区划</td>
+									<td><input type="checkbox" id="k.xmbm" name="kxxyj" value="k.xmbm-项目编码"/>项目编码</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="k.qdzh" name="kxxyj" value="k.qdzh-起点桩号"/>起点桩号</td>
 								</tr>
 								<tr>
@@ -317,8 +335,7 @@ a{text-decoration:none;}
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="k.pfsj" name="kxxyj" value="k.pfsj-批复时间"/>批复时间</td>
-									<td style="padding-left: 10px;"></td>
-									
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.xzqh" name="kxxyj" value="k.xzqh-行政区划"/>行政区划</td>
 								</tr>
 							</table>
 						</td>

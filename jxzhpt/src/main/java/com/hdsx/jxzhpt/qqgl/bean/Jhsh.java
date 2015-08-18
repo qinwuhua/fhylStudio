@@ -91,19 +91,19 @@ public class Jhsh {
 		return kgzt;
 	}
 	public void setKgzt(String kgzt) {
-		this.kgzt = kgzt;
+		this.kgzt = kgzt==null ? "" : kgzt;
 	}
 	public String getLxmc() {
 		return lxmc;
 	}
 	public void setLxmc(String lxmc) {
-		this.lxmc = lxmc;
+		this.lxmc = lxmc==null ? "" :lxmc;
 	}
 	public String getLxbm() {
 		return lxbm;
 	}
 	public void setLxbm(String lxbm) {
-		this.lxbm = lxbm;
+		this.lxbm = lxbm == null ? "" : lxbm;
 	}
 	public String getYilc() {
 		return yilc;
@@ -145,7 +145,7 @@ public class Jhsh {
 		return gydw;
 	}
 	public void setGydw(String gydw) {
-		this.gydw = gydw.trim();
+		this.gydw = gydw==null ? "" : gydw.trim();
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;

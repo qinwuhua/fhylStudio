@@ -277,5 +277,33 @@ public interface JhshServer {
 	 * @return
 	 */
 	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh);
+	/**
+	 * 自定义查询改造项目
+	 * @param filed 字段
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询新建项目
+	 * @param filed 字段
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询养护大中修项目
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询灾毁重建
+	 * @param filed 字段
+	 * @param jhsh
+	 * @return
+	 */
+	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh);
 	
 }
