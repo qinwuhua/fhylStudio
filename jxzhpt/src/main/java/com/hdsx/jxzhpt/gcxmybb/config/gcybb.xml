@@ -722,12 +722,12 @@
 			substr(xzqhdm,0,4) xzqh,t.*
 		from
 			(select
-        xm.qlmc,xm.qlbh qldm,xm.qlzxzh,xm.lxbm,xm.lxmc,xm.jsdj,sc.scqlqc qlqc,xm.kjzc,xm.dkzdkj,sc.scqlqk qlqk,xm.sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
-        xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,decode(zj1.bnhj,null,0,zj1.bnhj) bnhj,decode(zj1.bnbtz,null,0,zj1.bnbtz) bnbtz,decode(zj1.bnstz,null,0,zj1.bnstz) bnstz,
+        decode(xm.qlmc,null,' ',xm.qlmc) qlmc,decode(xm.qlbh,null,' ',xm.qlbh) qldm,decode(xm.qlzxzh,null,' ',xm.qlzxzh) qlzxzh,decode(xm.lxbm,null,' ',xm.lxbm) lxbm,decode(xm.lxmc,null,' ',xm.lxmc) lxmc,decode(xm.jsdj,null,' ',xm.jsdj) jsdj,decode(sc.scqlqc,null,' ',sc.scqlqc) qlqc,decode(xm.kjzc,null,' ',xm.kjzc) kjzc,decode(xm.dkzdkj,null,' ',xm.dkzdkj) dkzdkj,decode(sc.scqlqk,null,' ',sc.scqlqk) qlqk,decode(xm.sbjgxs,null,' ',xm.sbjgxs) sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
+        decode(xm.xjgjnd,null,' ',xm.xjgjnd) xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,decode(zj1.bnhj,null,0,zj1.bnhj) bnhj,decode(zj1.bnbtz,null,0,zj1.bnbtz) bnbtz,decode(zj1.bnstz,null,0,zj1.bnstz) bnstz,
         decode(jz1.byhj,null,0,jz1.byhj) byhj,decode(jz1.bybtz,null,0,jz1.bybtz) bybtz,decode(jz1.bystz,null,0,jz1.bystz) bystz,decode(jz2.yyhj,null,0,jz2.yyhj) yyhj,decode(jz2.yybtz,null,0,jz2.yybtz) yybtz,decode(jz2.yystz,null,0,jz2.yystz) yystz,decode(jz3.kghj,null,0,jz3.kghj) kghj,decode(jz3.kgbtz,null,0,jz3.kgbtz) kgbtz,decode(jz3.kgstz,null,0,jz3.kgstz) kgstz,decode(decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yyjgqk,
         decode(decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yygjqk,decode(decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yycjqk,decode(decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0)) zjgqk,
-        decode(decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0)) zgjqk,decode(decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0)) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
-        to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
+        decode(decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0)) zgjqk,decode(decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0)) zcjqk,sc.jsxz,decode(to_char(p.jhkgsj,'yyyy'),null,' ',to_char(p.jhkgsj,'yyyy')) jhkgn,
+        decode(to_char(p.jhwgsj,'yyyy'),null,' ',to_char(p.jhwgsj,'yyyy')) jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
       from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
       (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,pl.sbnf xdnf,zj.xmid from plan_zjxd zj left join plan_wqgz pl on zj.xmid=pl.id where 1=1 group by zj.xmid,pl.sbnf) zj1,
       (select jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_wqgz jz where jz.sbyf=#{sbyf}) jz1,
@@ -1280,7 +1280,7 @@
 	select 
 	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
 	decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,to_char(pl.jhkgsj,'yyyy') v_13,
-	to_char(pl.jhwgsj,'yyyy') v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21
+	to_char(pl.jhwgsj,'yyyy') v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,sc.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21
 	from plan_wqgz pl,
 	sck_wqgz sc,
 	xmk_wqgz xm
@@ -1385,7 +1385,7 @@
 	select count(*) v_6,'全省合计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
 	(
 	select 
-		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.fapgdw v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
 		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
 		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
 		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
@@ -1413,7 +1413,7 @@
 	select count(*) v_5,v_29,max(v_30)||'小计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
 		(
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.fapgdw v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
 		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
 		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
 		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
@@ -1441,7 +1441,7 @@
 	</select>
 	<select id="getWqgzjy3" parameterType="gcglwqgz" resultType="elist">
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,decode(sc.fapgdw,null,'',sc.fapgdw) v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
 		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
 		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
 		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30

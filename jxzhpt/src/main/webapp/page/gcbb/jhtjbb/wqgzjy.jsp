@@ -265,7 +265,7 @@ a:active {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id='bbtable' width="2000px" >
+							<table id='bbtable' width="4000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="btnf" style="font-size: x-large;"></span>年农村公路危桥改造工程建议计划（第二批）</caption>
 								<thead>
 									<tr>
