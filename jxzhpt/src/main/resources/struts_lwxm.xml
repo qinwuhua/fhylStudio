@@ -125,8 +125,10 @@
 	<action name="lrjhZhfz" class="sckzhfzController" method="lrjhZhfz"/>
  </package>
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
- <action name="selZdy" class="zdycxController" method="selZdy"/>
-  <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>
+	 <action name="selwqgzsjZdy" class="zdycxController" method="selwqgzsjZdy"/>
+	 <action name="exportExcel_wqsjzdy" class="zdycxController" method="exportExcel_wqsjzdy"/>
+	 <action name="selZdy" class="zdycxController" method="selZdy"/>
+     <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>
  </package>
  <package name="wqgzsj" extends="struts-default" namespace="/wqgzsj">
 	 <action name="deleteqlzpbyxmbm" class="jckwqgzsjController" method="deleteqlzpbyxmbm"/>

@@ -56,6 +56,22 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	private Zdycx zdycx=new Zdycx();
 	private String xmlx;
 	
+	
+	public void selwqgzsjZdy(){
+		try {
+		zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
+		List<Gcglwqgz> list = zdycxServer.selwqgzsjZdy(zdycx);
+		int count = zdycxServer.selwqgzsjZdyCount(zdycx);
+		
+		EasyUIPage<Gcglwqgz> eui=new EasyUIPage<Gcglwqgz>();
+		eui.setRows(list);
+		eui.setTotal(count);
+		
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selZdy() throws IOException, Exception{
 		xmlx=zdycx.getXmlx();
 		if("wqgz".equals(xmlx)){
@@ -150,10 +166,42 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+	public void exportExcel_wqsjzdy(){
+		try {
+			//先得到导出的数据集
+			zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
+			List <SjbbMessage> list=zdycxServer.exportExcel_wqsjzdy(zdycx);
+			System.out.println("------------"+list.size()+"--------------");
+			//导出设置
+			String excelHtml="<tr>";
+			String[] col=null;
+			col=zdycx.getTableName().split(",");
+			for(int i=0;i<col.length;i++){
+				excelHtml+="<td>"+col[i]+"</td>";
+			}
+			excelHtml+="</tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("危桥改造项目自定义导出数据");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("危桥改造项目自定义表格");
+			sheetb.setList(list);
+			sheetb.setColnum((short)col.length);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName=zdycx.getXmName()+"项目自定义导出数据";//excel 文件的名字
+			//导出excel
+			ExportExcel_new ee = new ExportExcel_new();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			e.printStackTrace();
+		}
+	}
+
 	
 	@Override
 	public Zdycx getModel() {

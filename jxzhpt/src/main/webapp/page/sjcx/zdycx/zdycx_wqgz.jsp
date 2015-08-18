@@ -108,12 +108,21 @@
 			}
 			for ( var i = 0; i < nameValue.length; i++) {
 				var obj;
-				obj = {
-					field : colValue[i],
-					title : nameValue[i],
-					align : 'center',
-					width : this_width
-				};
+				if(colValue[i]=='t1.pfwh'){
+					obj = {
+							field : 'pfwh',
+							title : nameValue[i],
+							align : 'center',
+							width : this_width
+						};
+				}else{
+					obj = {
+						field : colValue[i],
+						title : nameValue[i],
+						align : 'center',
+						width : this_width
+					};
+				}
 				tableValue.push(obj);
 			}
 		 	var options =parent.$("#grid").datagrid("options");
@@ -250,7 +259,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="xzqhmc" name="checkbox1" class="part1"/>行政区划</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="pfwh" name="checkbox2" class="part2"/>批复文号</td>
+					<input  type="checkbox" value="t1.pfwh" name="checkbox2" class="part2"/>批复文号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="pfsj" name="checkbox2" class="part2"/>批复时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">

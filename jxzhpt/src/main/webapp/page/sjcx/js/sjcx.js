@@ -3,6 +3,9 @@ var gydw=parent.YMLib.Var.gydw;
 function Wqgz(){
 	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgz.jsp','zd_wqgz','900','380');
 }
+function Wqgzsj(){
+	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgzsj.jsp','zd_wqgz','900','380');
+}
 function Abgc(){
 	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_abgc.jsp','zd_xz','900','380');
 }
@@ -93,17 +96,21 @@ function exportExcel_zdy(){
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
 }
-/*function exportExcel_zdy(){
-	var param="gydw="+$("#gydw").combobox("getValue")+
-	"&xzqhdm="+$("#xzqhmc").combobox("getValue")+
-	"&kgzt="+$("#kgzt").combobox("getValue")+
-	"&lxmc="+$("#lxmc").val()+
-	"&lxbm="+$("#lxbm").val()+
-	"&xmlx="+$("#xmlx").combobox("getValue")+
-	"&xmName="+$("#xmlx").combobox("getText")+
+function exportExcel_wqsjzdy(){
+	if(YMLib.Var.sqlcol==null||YMLib.Var.sqlcol==''){
+		alert("请勾选要导出的列");
+		return ;
+	}
+	var param="gydw="+YMLib.Var.gydw+
+	"&xzqhdm="+YMLib.Var.xzqhdm+
+	"&kgzt="+YMLib.Var.kgzt+
+	"&lxmc="+YMLib.Var.lxmc+
+	"&lxbm="+YMLib.Var.lxbm+
+	"&xmlx="+YMLib.Var.xmlx+
+	"&xmnf="+YMLib.Var.xmnf+
+	"&xmName="+YMLib.Var.xmName+
 	"&colName="+YMLib.Var.sqlcol+
 	"&tableName="+YMLib.Var.tablecol;
 	//特殊地区 条件	
-	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
+	window.location.href="/jxzhpt/zdycx/exportExcel_wqsjzdy.do?"+param;
 }
-*/

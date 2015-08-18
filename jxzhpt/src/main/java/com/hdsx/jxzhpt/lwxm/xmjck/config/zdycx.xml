@@ -638,4 +638,116 @@ where  1=1
 	</if>
 	order by t1.lxbm
 	 </select>
+	 
+	 <select id="selwqgzsjZdy" parameterType="zdycx" resultType="zdycx">
+	 	select * from
+	 	(select m.*,rownum rn
+	 	from (select * from (select 
+		sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
+		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj,sc.pfwh scpfwh,sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,
+		sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,
+		pl.sbnf,pl.jhkgsj,pl.jhwgsj,pl.sjdw,pl.sjpfdw,pl.pfwh jhpfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,
+		pl.pfztz,pl.jhsybzje jhbbz,pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,
+		pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,
+		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id) t
+		where 1=1
+			<if test="gydw != null and  gydw != ''">
+				and gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like #{xzqhdm}||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and sbnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="xmlx != null and  xmlx != ''">
+					and sfylrbwqk like '%'||trim(#{xmlx})||'%'
+			</if>
+			)m where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	 </select>
+	 
+	 <select id="selwqgzsjZdyCount" parameterType="zdycx" resultType="int">
+	 	select count(*)
+	 	from (select 
+		sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
+		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj,sc.pfwh scpfwh,sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,
+		sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,
+		pl.sbnf,pl.jhkgsj,pl.jhwgsj,pl.sjdw,pl.sjpfdw,pl.pfwh pfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,
+		pl.pfztz,pl.jhsybzje jhbbz,pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,
+		pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,
+		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id) t
+		where 1=1
+			<if test="gydw != null and  gydw != ''">
+				and gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like #{xzqhdm}||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and sbnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="xmlx != null and  xmlx != ''">
+					and sfylrbwqk like '%'||trim(#{xmlx})||'%'
+			</if>
+	 </select>
+	 
+	 
+	 <select id="exportExcel_wqsjzdy" parameterType="zdycx" resultType="sjbb">
+	 select ${colName} from (select 
+		sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
+		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj,sc.pfwh scpfwh,sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,
+		sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,
+		pl.sbnf,pl.jhkgsj,pl.jhwgsj,pl.sjdw,pl.sjpfdw,pl.pfwh pfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,
+		pl.pfztz,pl.jhsybzje jhbbz,pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,
+		pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,
+		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id)
+	 	where 1=1
+		 	<if test="gydw != null and  gydw != ''">
+				and gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like #{xzqhdm}||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and sbnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="xmlx != null and  xmlx != ''">
+					and sfylrbwqk like '%'||trim(#{xmlx})||'%'
+			</if>
+	 </select>
 </mapper>

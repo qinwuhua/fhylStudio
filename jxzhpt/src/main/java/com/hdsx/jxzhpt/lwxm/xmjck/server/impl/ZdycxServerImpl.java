@@ -9,6 +9,7 @@ import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.ZdycxServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -55,4 +56,17 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 		else if("shxm".equals(xmlx)) return queryList("selZdyShxmList", zdycx);
 		else return queryList("selZdyHslyList", zdycx);
 	}
+	@Override
+	public List<Gcglwqgz> selwqgzsjZdy(Zdycx zdycx) {
+		return queryList("selwqgzsjZdy",zdycx);
+	}
+	@Override
+	public int selwqgzsjZdyCount(Zdycx zdycx) {
+		return queryOne("selwqgzsjZdyCount", zdycx);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_wqsjzdy(Zdycx zdycx) {
+		return queryList("exportExcel_wqsjzdy",zdycx);
+	}
+	
 }

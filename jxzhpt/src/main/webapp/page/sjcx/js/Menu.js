@@ -262,6 +262,13 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./zdycx/zdycx2.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060404',
+		title:'危桥改造（交通局）',
+		imgSrc:'../../images/wqgz_jtj_s.png',
+		renderTo:'left_menu4',
+		href:'./zdycx/zdycx4.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101060501',
