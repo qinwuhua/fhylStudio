@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
@@ -270,5 +271,11 @@ public interface JhshServer {
 	 * @return 路线等级和里程
 	 */
 	public Lx queryJsdjAndLcByStartAndEnd(Lx lx);
+	/**
+	 * 自定义查询升级项目
+	 * @param filed 字段
+	 * @return
+	 */
+	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh);
 	
 }

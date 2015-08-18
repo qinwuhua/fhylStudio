@@ -270,4 +270,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public Lx queryJsdjAndLcByStartAndEnd(Lx lx) {
 		return queryOne("queryJsdjAndLcByStartAndEnd",lx);
 	}
+	@Override
+	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryList("zdyQueryLmsj",params);
+	}
 }

@@ -105,7 +105,7 @@ $(function() {
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050207',
-		title:'升级改造进度报表',
+		title:'改建进度报表',
 		imgSrc:'../../images/menubutton/glgcgzjdqkwchzb.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzjd.jsp'

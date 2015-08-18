@@ -10,7 +10,10 @@ $(function() {
 				iconCls:'icon-note'
 			});
 			j++;
-		}else if(qx[i]=='01010605'){
+		}
+    }
+    for(var i=0;i<qx.length;i++){
+    	if(qx[i]=='01010605'){
 			$('#aa').accordion('add', {
 				id:"left_menu5",
 				title: '前期管理',
@@ -18,7 +21,11 @@ $(function() {
 				iconCls:'icon-note'
 			});
 			j++;
-		}else if(qx[i]=='01010602'){
+		}
+    }
+		
+    for(var i=0;i<qx.length;i++){
+    	if(qx[i]=='01010602'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
 				title: '计划管理',
@@ -119,7 +126,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060205',
-		title:'升级改造工程项目',
+		title:'改建工程项目',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhcx/lmsj.jsp'
@@ -185,7 +192,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060304',
-		title:'升级改造工程项目',
+		title:'改建工程项目',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu3',
 		href:'./gcgl/gcgzsj.jsp'
@@ -241,10 +248,24 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./zdycx/zdycx.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060402',
+		title:'改建、路面改造、新建',
+		imgSrc:'../../images/zdycx.png',
+		renderTo:'left_menu4',
+		href:'./zdycx/zdycx1.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060403',
+		title:'养护大中修、灾毁重建',
+		imgSrc:'../../images/zdycx.png',
+		renderTo:'left_menu4',
+		href:'./zdycx/zdycx2.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101060501',
-		title:'升级改造工程立项审核',
+		title:'改建工程立项审核',
 		imgSrc:'../../images/sjgzlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_lxsh.jsp'
@@ -279,7 +300,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060506',
-		title:'升级改造工程可行性研究',
+		title:'改建工程可行性研究',
 		imgSrc:'../../images/sjgzkxxyj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_kxxyj.jsp'
@@ -300,7 +321,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060509',
-		title:'升级改造工程初步设计',
+		title:'改建工程初步设计',
 		imgSrc:'../../images/sjgzcbsj.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/lmsj_cbsj.jsp'

@@ -83,6 +83,28 @@ public class Jhsh {
 	private String silc;//四级公路里程
 	private String dwlc;//等外公路里程
 	private String wllc;//高速公路里程
+	//查询条件字段
+	private String lxmc;//路线名称
+	private String lxbm;//路线编码
+	private String kgzt;//开工竣工
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public String getYilc() {
 		return yilc;
 	}

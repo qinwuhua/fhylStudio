@@ -62,6 +62,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private JhshServer jhshServer;
 	//其他参数
 	private String jdbs;//阶段标示，用于表明在计划的哪一阶段
+	private String filed;//自定义查询的字段
 	
 	/**
 	 * 查询计划审核列表
@@ -725,6 +726,19 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void zdyQuery(){
+		List<Map<String, String>> result = new ArrayList<Map<String,String>>();
+		if(jhsh.getXmlx()==1){
+			result = jhshServer.zdyQueryLmsj(filed,jhsh);
+		}
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 处理行政区划编码为条件语句
 	 * @param bh
@@ -801,5 +815,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void setJdbs(String jdbs) {
 		this.jdbs = jdbs;
+	}
+	public String getFiled() {
+		return filed;
+	}
+	public void setFiled(String filed) {
+		this.filed = filed;
 	}
 }

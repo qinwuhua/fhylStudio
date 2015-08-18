@@ -673,4 +673,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			e.printStackTrace();
 		}
 	}
+	
+	public void readFile(){
+		File file = new File("E://前期及批复文件数据//工可批复文件");
+		if(file.exists()){
+			File[] listFiles = file.listFiles();
+			for (File item : listFiles) {
+				System.out.println(item.getName());
+			}
+		}
+	}
+	
 }

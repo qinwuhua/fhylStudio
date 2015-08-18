@@ -75,10 +75,14 @@
 					    		}
 					    		return gydw;
 					    	},
-					    	xzqhdm:function(){
-						 		if("360000"==xzqhdm){
-						 			return "";
-						 		}else return xzqhdm;
+					    	xzqh:function(){
+					    		if(gydw.substr(gydw.length-2,2)=='00'){
+					    			gydw=gydw.substr(0,gydw.length-2);
+					    			if(gydw.substr(gydw.length-2,2)=='00'){
+					    				gydw=gydw.substr(0,gydw.length-2);
+					    			}
+					    		}
+					    		return gydw;
 						 	},
 					    	kgzt: kgzt,
 					    	lxmc:lxmc,
