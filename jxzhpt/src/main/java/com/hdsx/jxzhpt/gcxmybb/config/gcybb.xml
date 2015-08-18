@@ -1217,4 +1217,252 @@
 		</if>
 		order by xzqhdm
 	</select>
+	<!-- wqjh -->
+	<select id="getWqgzjh1" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_5,'全省合计' v_1,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12 from 
+	(
+	select 
+	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
+	decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,to_char(pl.jhkgsj,'yyyy') v_13,
+	to_char(pl.jhwgsj,'yyyy') v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21
+	from plan_wqgz pl,
+	sck_wqgz sc,
+	xmk_wqgz xm
+	where pl.sckid=sc.sckid and sc.xmkid=xm.id 
+	<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+	) t
+	</select>
+	<select id="getWqgzjh2" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_5,v_20,max(v_21)||'小计' v_1,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_1,sum(v_12) v_12 from 
+		(
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
+		decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,to_char(pl.jhkgsj,'yyyy') v_13,
+		to_char(pl.jhwgsj,'yyyy') v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21
+		from plan_wqgz pl,
+		sck_wqgz sc,
+		xmk_wqgz xm
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id 
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		) t
+		group by t.v_20 order by v_20
+	
+	</select>
+	<select id="getWqgzjh3" parameterType="gcglwqgz" resultType="elist">
+	select 
+	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
+	decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,to_char(pl.jhkgsj,'yyyy') v_13,
+	to_char(pl.jhwgsj,'yyyy') v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21
+	from plan_wqgz pl,
+	sck_wqgz sc,
+	xmk_wqgz xm
+	where pl.sckid=sc.sckid and sc.xmkid=xm.id
+	<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+	order by v_20
+	</select>
+	<select id="getAbgcjh1" parameterType="gcglwqgz" resultType="elist">
+		select 
+		 '合计' v_0,count(*) v_4,sum(v_8) v_8,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15
+		from (
+		select 
+		xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
+		sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+		from plan_abgc pl,
+		sck_abgc sc,
+		xmk_abgc xm,
+		(select t.xmid,t.xdzj ztz,t.btzzj btz,to_char(to_number(t.xdzj)-to_number(t.btzzj)) dftz from plan_zjxd t where t.xdnf=${xmnf}) zj
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=zj.xmid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and pl.jhnf =${xmnf}
+		</if>
+		) tt
+	</select>
+	<select id="getAbgcjh2" parameterType="gcglwqgz" resultType="elist">
+	select 
+	 v_20,max(v_21) v_0,count(*) v_4,sum(v_8) v_8,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15
+	from (
+	select 
+	xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
+	sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+	from plan_abgc pl,
+	sck_abgc sc,
+	xmk_abgc xm,
+	(select t.xmid,t.xdzj ztz,t.btzzj btz,to_char(to_number(t.xdzj)-to_number(t.btzzj)) dftz from plan_zjxd t where t.xdnf=${xmnf}) zj
+	where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=zj.xmid
+	<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and pl.jhnf =${xmnf}
+		</if>
+	) tt
+	group by tt.v_20
+	order by tt.v_20
+	</select>
+	<select id="getAbgcjh3" parameterType="gcglwqgz" resultType="elist">
+		select 
+		xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
+		sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+		from plan_abgc pl,
+		sck_abgc sc,
+		xmk_abgc xm,
+		(select t.xmid,t.xdzj ztz,t.btzzj btz,to_char(to_number(t.xdzj)-to_number(t.btzzj)) dftz from plan_zjxd t where t.xdnf=${xmnf}) zj
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=zj.xmid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and pl.jhnf =${xmnf}
+		</if>
+		order by  v_20
+	</select>
+	
+	
+	<select id="getWqgzjy1" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_6,'全省合计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
+	(
+	select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+	) t
+	</select>
+	<select id="getWqgzjy2" parameterType="gcglwqgz" resultType="elist">
+	select count(*) v_5,v_29,max(v_30)||'小计' v_1,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26 from 
+		(
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		) t
+		group by t.v_29 order by v_29
+	
+	</select>
+	<select id="getWqgzjy3" parameterType="gcglwqgz" resultType="elist">
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qlbh v_5,xm.qlmc v_6,sc.sck_qlzxzh v_7,sc.sjdwmc v_8,pl.sjpfdw v_9,sc.pfwh v_10,pl1.ztz v_11,pl1.btz v_12,pl1.dftz v_13,
+		pl.sfsqablbz v_14,pl.ablbzsqwh v_15,sc.jsxz v_16,sc.jsnr v_17,to_char(pl.jhkgsj, 'yyyy') v_18,to_char(pl.jhwgsj, 'yyyy') v_19,sc.scsqs v_20,sc.scxsq v_21,sc.scszxz v_22,
+		to_number(pl1.ztz)*0.6 v_23,sc.zdezj v_24,pl1.btz v_25,sc.scqlqk v_26,sc.scqlqk v_27,sc.scbz v_28, substr(xm.xzqhdm, 0, 4) || '00' v_29,
+		(select name from xtgl_xzqh where id = substr(xm.xzqhdm, 0, 4) || '00') v_30
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,
+		(select sckid,p.ztz ztz,p.nsqbbz btz,to_char(to_number(p.ztz)-to_number(p.nsqbbz)) dftz from sck_wqgz p) pl1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.sckid=pl1.sckid
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf =${xmnf}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and pl.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		order by v_29
+	</select>
 </mapper>

@@ -1,11 +1,12 @@
 //
 function fileShow(xmbm,type){
+	
 	$.ajax({
 		type:'post',
 //		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 //		data:'file.parentid='+xmbm+'&file.filetype='+type,
 //		dataType:'json',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -25,7 +26,7 @@ function fileShow1(xmbm,type){
 //		url:'../../../qqgl/queryFileByXmbm.do',
 //		data:'file.parentid='+xmbm+'&file.filetype='+type,
 //		dataType:'json',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -40,9 +41,10 @@ function fileShow1(xmbm,type){
 	});
 }
 function fileShow2(xmbm,type){
+	
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -59,7 +61,7 @@ function fileShow2(xmbm,type){
 function fileShow3(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
 		success:function(data){
@@ -78,7 +80,7 @@ function fileShow3(xmbm,type){
  * @param id 文件ID
  */
 function downFile(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile2.do?uploads.id="+id;
 }
 /**
  * 删除文件
@@ -88,7 +90,7 @@ function deleteFile(id){
 	if(confirm('确定删除所选数据？')){
 		$.ajax({
 			 type : "POST",
-			 url : "/jxzhpt/jhgl/deleteFile.do",
+			 url : "/jxzhpt/jhgl/deleteFile2.do",
 			 dataType : 'json',
 			 data : 'uploads.id=' +id,
 			 success : function(msg){

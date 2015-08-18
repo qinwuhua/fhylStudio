@@ -42,7 +42,7 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
+	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
 	tsdq("tsdq");
 	if(getParam("t")=='1') {
@@ -279,7 +279,7 @@ var xzqhstr;
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
-					}if(row.sbzt2=="未上报" && row.sbthcd==7 && row.shzt=="未审核"){
+					}if(row.sbzt2=="未上报" && row.sbthcd==7&&(row.shzt=='未审核'||row.shzt==''||row.shzt==null)){
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -393,8 +393,15 @@ text-decoration:none;
                               	<td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
 							 <td>项目年份：</td>
                              <td style="width:70px"><select id="xmnf"  style="width:70px"></select></td>       
-                             <td>技术等级：</td>
-                              <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
+                             <td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:70px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
                               <td>按跨径分类：</td>
                               <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
                               <td>桥梁编号：</td>
@@ -408,8 +415,8 @@ text-decoration:none;
                            	<td><input type="text" id="qlmc"style="width:74px"/></td>
                            	<td>是否部库：</td>
                            	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 50px">
-							<option value="">全部</option>
-							<option value="否"selected>否</option>
+							<option value="" selected>全部</option>
+							<option value="否">否</option>
 							<option value="是">是</option>
 							</select></td>
                               <td colspan="6">

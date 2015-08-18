@@ -321,6 +321,7 @@
         		if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
         		else YMLib.Var.bm=feature.attributes.ROADBM;
         	}
+        	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
         	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
          	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,330);
@@ -670,7 +671,23 @@
             if(resultLayer!=undefined) resultLayer.removeAllFeatures();
             //console.info("点击清楚按钮");
         }
-
+        
+        //带基础数据的弹出方法
+		function onFeatureSelect2(feature) {
+            selectedFeature = feature;
+            var html = [];
+            for (var o in feature.attributes) {
+                //此处可过滤需要显示的属性字段，并且翻译字段名称等
+                html.push("<b>" + o + "</b>：" + feature.attributes[o]);
+            }
+            var popup = new OpenLayers.Popup.FramedCloud("chicken", feature.geometry
+                            .getBounds().getCenterLonLat(), null,
+                    "<div style='font-size:.8em'>" + html.join("<br/>") + "</div>",
+                    null, true, onPopupClose);
+            popup.autoSize = true;
+            feature.popup = popup;
+            map.addPopup(popup);
+        }
 </script>
 </head>
 <body class="easyui-layout" style="background:#fafafa;" scroll="no">

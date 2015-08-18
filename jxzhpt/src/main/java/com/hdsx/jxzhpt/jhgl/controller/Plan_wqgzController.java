@@ -380,7 +380,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void exportWqgzZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[9];
-		title[0]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)0), null,50);
+		title[0]=new ExcelTitleCell("桥梁信息",false, new ExcelCoordinate(0, (short)0), null,50);
 		title[1]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)1), null,15);
 		title[2]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)2), null,15);
 		title[3]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)3), null,15);

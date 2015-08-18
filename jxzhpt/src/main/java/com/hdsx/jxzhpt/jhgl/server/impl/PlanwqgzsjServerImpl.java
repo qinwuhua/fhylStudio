@@ -104,7 +104,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public Planwqgzsj loadwqgzsbzbyid(String id) {
 		Planwqgzsj jck=queryOne("cxtiaojian", id);
-		if("省直管试点县".equals(jck.getTsdq())){
+		if("省直管试点县".indexOf(jck.getTsdq())!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", jck);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
@@ -190,7 +190,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public String lwBzsbz(Planwqgzsj planwqgzsj) {
 		try{
-		if("省直管试点县".equals(planwqgzsj.getTsdq())){
+		if("省直管试点县".indexOf(planwqgzsj.getTsdq())!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", planwqgzsj);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
@@ -202,7 +202,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		}
 		Wqbzbz wq1=queryOne("selectshengbz", planwqgzsj);
 		if(wq1==null){
-			System.out.println("未查出市级补助，请在审核时检查代码");
+			System.out.println("未查出省级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
 				System.out.println(planwqgzsj.getScqlqk());

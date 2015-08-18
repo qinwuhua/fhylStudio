@@ -249,6 +249,73 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		return queryList("getAbgcJsb1", gcglwqgz);
 	}
 
+	@Override
+	public List<Excel_list> getWqgzjh(Gcglwqgz gcglwqgz) {
+		List<Excel_list> l1=queryList("getWqgzjh1",gcglwqgz);
+		List<Excel_list> l2=queryList("getWqgzjh2",gcglwqgz);
+		List<Excel_list> l3=queryList("getWqgzjh3",gcglwqgz);
+		int k=0;
+		for (int i = 0; i < l2.size(); i++) {
+			if(i==0){l2.get(i).setV_0("一");}if(i==1){l2.get(i).setV_0("二");}if(i==2){l2.get(i).setV_0("三");}if(i==3){l2.get(i).setV_0("四");}if(i==4){l2.get(i).setV_0("五");}if(i==5){l2.get(i).setV_0("六");}if(i==6){l2.get(i).setV_0("七");}if(i==7){l2.get(i).setV_0("八");}if(i==8){l2.get(i).setV_0("九");}if(i==9){l2.get(i).setV_0("十");}if(i==10){l2.get(i).setV_0("十一");}if(i==11){l2.get(i).setV_0("十二");}if(i==12){l2.get(i).setV_0("十三");}
+			if(i==13){l2.get(i).setV_0("十四");}if(i==14){l2.get(i).setV_0("十五");}if(i==15){l2.get(i).setV_0("十六");}if(i==16){l2.get(i).setV_0("十七");}if(i==17){l2.get(i).setV_0("十八");}if(i==18){l2.get(i).setV_0("十九");}if(i==19){l2.get(i).setV_0("二十");}
+			l1.add(l2.get(i));
+			k=0;
+			for (int j = 0; j < l3.size(); j++) {
+				if(l2.get(i).getV_20().equals(l3.get(j).getV_20())){
+					l3.get(j).setV_0(k+1+""); 
+					k++;
+					l1.add(l3.get(j));
+				}
+			}
+		}
+		if(l2.size()==0)return null;
+		return l1;
+	}
+
+	@Override
+	public List<Excel_list> getAbgcjh(Gcglwqgz gcglwqgz) {
+		List<Excel_list> l1=queryList("getAbgcjh1",gcglwqgz);
+		List<Excel_list> l2=queryList("getAbgcjh2",gcglwqgz);
+		List<Excel_list> l3=queryList("getAbgcjh3",gcglwqgz);
+		int k=0;
+		for (int i = 0; i < l2.size(); i++) {
+			l1.add(l2.get(i));
+			k=0;
+			for (int j = 0; j < l3.size(); j++) {
+				if(l2.get(i).getV_20().equals(l3.get(j).getV_20())){
+					l3.get(j).setV_0(k+1+""); 
+					k++;
+					l1.add(l3.get(j));
+				}
+			}
+		}
+		if(l2.size()==0)return null;
+		return l1;
+	}
+
+	@Override
+	public List<Excel_list> getWqgzjy(Gcglwqgz gcglwqgz) {
+		List<Excel_list> l1=queryList("getWqgzjy1",gcglwqgz);
+		List<Excel_list> l2=queryList("getWqgzjy2",gcglwqgz);
+		List<Excel_list> l3=queryList("getWqgzjy3",gcglwqgz);
+		int k=0;
+		for (int i = 0; i < l2.size(); i++) {
+			if(i==0){l2.get(i).setV_0("一");}if(i==1){l2.get(i).setV_0("二");}if(i==2){l2.get(i).setV_0("三");}if(i==3){l2.get(i).setV_0("四");}if(i==4){l2.get(i).setV_0("五");}if(i==5){l2.get(i).setV_0("六");}if(i==6){l2.get(i).setV_0("七");}if(i==7){l2.get(i).setV_0("八");}if(i==8){l2.get(i).setV_0("九");}if(i==9){l2.get(i).setV_0("十");}if(i==10){l2.get(i).setV_0("十一");}if(i==11){l2.get(i).setV_0("十二");}if(i==12){l2.get(i).setV_0("十三");}
+			if(i==13){l2.get(i).setV_0("十四");}if(i==14){l2.get(i).setV_0("十五");}if(i==15){l2.get(i).setV_0("十六");}if(i==16){l2.get(i).setV_0("十七");}if(i==17){l2.get(i).setV_0("十八");}if(i==18){l2.get(i).setV_0("十九");}if(i==19){l2.get(i).setV_0("二十");}
+			l1.add(l2.get(i));
+			k=0;
+			for (int j = 0; j < l3.size(); j++) {
+				if(l2.get(i).getV_29().equals(l3.get(j).getV_29())){
+					l3.get(j).setV_0(k+1+""); 
+					k++;
+					l1.add(l3.get(j));
+				}
+			}
+		}
+		if(l2.size()==0)return null;
+		return l1;
+	}
+
 	
 
 }

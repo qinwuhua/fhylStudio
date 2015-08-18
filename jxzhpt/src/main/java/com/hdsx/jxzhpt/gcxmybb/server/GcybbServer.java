@@ -90,5 +90,11 @@ public interface GcybbServer {
 
 	List<Excel_list> getAbgcJsb1(Gcglwqgz gcglwqgz);
 
+	List<Excel_list> getWqgzjh(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getAbgcjh(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getWqgzjy(Gcglwqgz gcglwqgz);
+
 	
 }

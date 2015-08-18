@@ -231,8 +231,8 @@
  		<update id="updateWqgz" parameterType="jckwqgzsj">
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},
- 			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},
- 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq}
+ 			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},jsdj=#{jsdj},
+ 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk}
  			where id=#{id}
  		</update>
  		
@@ -346,10 +346,10 @@
 		insert into
 		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_qlbh,sck_qlzxzh,
 		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,hzdj,scsjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq,sfylrbwqk,
-		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz,sfkxg)
+		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz,sfkxg,zdezj)
 		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{hzdj},#{scsjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},#{sfylrbwqk},
-		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg})
+		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg},#{zdezj})
 	</insert>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
 	 	delete from sck_wqgz where sckid =#{String}
@@ -367,7 +367,7 @@
 		update sck_wqgz
 		set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},
 		scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk},sjdwmc=#{sjdwmc},hzdj=#{hzdj},scsjhspl=#{scsjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
-		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq}, 
+		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq}, zdezj=#{zdezj},
 		rksj=#{rksj},cjqz=#{cjqz},scthdj=#{scthdj},qljc=#{qljc},ydgldj=#{ydgldj},sjsd=#{sjsd},scsqs=#{scsqs},scxsq=#{scxsq},scszxz=#{scszxz},nsqbbz=#{nsqbbz},sfylrbwqk=#{sfylrbwqk}
 		where sckid=#{sckid}
 	</update>

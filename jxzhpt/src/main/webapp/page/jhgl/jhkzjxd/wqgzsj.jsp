@@ -25,7 +25,7 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
+			//loadBmbm2('jsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
@@ -162,6 +162,47 @@
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造资金下达',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_zj.jsp",'wq_edit',1000,500);
 		}
+		
+		function exportExcelZjxd(){
+			var gydwdm=$.cookie("unit");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwstr+"&lx.xzqhdm="+xzqhstr+
+					"&lx.lxmc="+$('#lxmc').val()+"&lx.akjfl="+$('#akjfl').combobox('getValue')+
+					"&lx.qlmc="+$('#qlmc').val()+"&lx.tsdq="+$('#tsdq').combobox("getValue")+
+					"&lx.lxjsdj="+$('#jsdj').combobox('getValue')+
+					"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&jh.sfylrbwqk="+$('#sfylrbwqk').combobox('getValue');
+/* 			if($('#ddlSHZT').combo("getValue")=="未开工"){
+				param+="&jh.kgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="在建"){
+				param+="&jh.kgzt=1&jh.jgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="竣工"){
+				param+="&jh.jgzt=1";
+			} */
+			alert(param);
+			window.location.href="/jxzhpt/jhgl/exportWqgzZjxdExcel.do?"+param;
+		}
 	</script>
 <style type="text/css">
 TD {
@@ -218,9 +259,15 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>    
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="jsdj" style="width:70px;" class="easyui-combobox">
-								</select></td>
+								<td>技术等级状况：</td>
+                              <td><select id="jsdj" style="width:65px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								<option value="一类">一类</option>
+								<option value="二类">二类</option>
+								<option value="三类">三类</option>
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
 								<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
         						<td>特殊地区：</td>
@@ -237,17 +284,14 @@ text-decoration:none;
 								<tr height="32">
 								<td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
-								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
-								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
-				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/> --%>
-								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
+								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img alt="导入" onclick="importData_jh('wqgz_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 							</td>
                             </tr></table>
         				</div>

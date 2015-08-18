@@ -21,7 +21,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			setjhxdnf();
+			xmnf('ddlYear1');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("xzdj","公路等级");
@@ -32,24 +32,28 @@
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
-			//$("#yf"+m).attr("selected","selected");
 			showAll();
 		});
-		function setjhxdnf(){
-			$("#ddlYear1").combotree({    
-				checkbox: true,
-				async: false,
-			    url: '/jxzhpt/xmjzbb/setjhxdnf.do',    
-			    required: false,
-			    multiple:true
+		function xmnf(id){
+			var myDate = new Date();
+			var years=[];
+			var first;
+			for(var i=0;i<=10;i++){
+				if(i==0)
+					first=myDate.getFullYear()-i;
+				years.push({text:(myDate.getFullYear()-i)});
+			}
+			$('#'+id).combobox({    
+			    data:years,
+			    valueField:'text',    
+			    textField:'text'   
 			});
-			
+			$('#'+id).combobox("setValue",first);
 		}
 		var fls=1;
 		function showAll(){
 			var myDate = new Date();
 			var y = myDate.getFullYear();
-			var nf=$("#ddlYear").val();
 			var xmnf=$("#ddlYear1").combotree("getValues");
 			if(fls==1){
 				xmnf=y;
@@ -83,37 +87,40 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xzdj=$("#xzdj").combobox("getValue");
-			var data="nf="+nf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
+			var data="gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
 			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
+			$("#btnf").html(xmnf);
+			$("#btnf1").html(xmnf);
 			$.ajax({
-				url:"/jxzhpt/gcybb/getAbgcjsb.do",
+				url:"/jxzhpt/gcybb/getAbgcjh.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-								tbody.append("<tr><td>"+(i+1)+"</td><td>"+msg[i].XIAN+"</td><td>"+msg[i].SFLXS+"</td><td>"
-										+msg[i].SFPKX+"</td><td>"+msg[i].SFYZY+"</td><td>"
-										+msg[i].XZQHDM+"</td><td>"+msg[i].XZQHMC+"</td><td>"
-										+msg[i].LXBM+"</td><td>"+msg[i].LXMC+"</td><td>"
-										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
-										+msg[i].YHLC+"</td><td>"+msg[i].JSXZ+"</td><td>"
-										+msg[i].XDSJ+"</td><td>"+msg[i].JHKGSJ+"</td><td>"
-										+msg[i].JHWCSJ+"</td><td>"+msg[i].YJJGSJ+"</td><td>"
-										+msg[i].ZTZ+"</td><td>"+msg[i].ZYTZ+"</td><td>"
-										+msg[i].SJKGSJ+"</td><td>"+msg[i].SJWGSJ+"</td><td>"
-										+msg[i].JSDW+"</td><td>"+msg[i].SJDW+"</td><td>"
-										+msg[i].SGDW+"</td><td>"+msg[i].JLDW+"</td><td>"
-										+msg[i].WCZLC+"</td><td>"+msg[i].BNWCLC+"</td><td>"
-										+msg[i].WCZTZ+"</td><td>"+msg[i].WCBTZ+"</td><td>"
-										+msg[i].WCQTTZ+"</td><td>"+msg[i].BNWCZTZ+"</td><td>"
-										+msg[i].XMYSLC+"</td><td>"+msg[i].XDBTZ+"</td><td>"
-										+msg[i].DWBTZ+"</td><td>"+msg[i].BDWL+"</td><td>"
-										+msg[i].XDDFZJ+"</td><td>"+msg[i].DWDFZJ+"</td><td>"
-										+msg[i].DFDWL+"</td><td>"+msg[i].BZ+"</td></tr>");
+								if(msg[i].v_1==''){
+									tbody.append("<tr><td colspan='4'>"+msg[i].v_0+"</td><td  >"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td></tr>");
+								}else{
+									tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
+											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td></tr>");
+								}
 							}
 						}
 					}
@@ -122,7 +129,7 @@
 	function exportWqgzyb(){
 		var myDate = new Date();
 		var y = myDate.getFullYear();
-		var nf=$("#ddlYear").val();
+		
 		var xmnf=$("#ddlYear1").combotree("getValues");
 		if(fls==1){
 			xmnf=y;
@@ -156,9 +163,9 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
-		var data="flag=flag&nf="+nf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
+		var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getAbgcjsb.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getAbgcjh.do?'+data;
 		 });
 	}	
 	</script>
@@ -201,7 +208,7 @@ a:active {
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  style="height: 30px">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;市农村公路安保工程项目建设表 </div>
+						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路路网结构改造工程建设计划（安全生命防护工程）</div>
 					</div>
         	</tr>
         	<tr>
@@ -218,16 +225,13 @@ a:active {
         						<select id="xzqh" style="width:150px;"></select>
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
-        						<span>截止年份：</span>
-		 						<select name="ddlYear" id="ddlYear" style="width: 50px;">
-								</select>
         						<span>行政等级：</span>
         						<input type="text" id="xzdj" style="width:50px;">
 
        								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
 								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: middle;" />
         					</p>         					
         				</div>
         			</fieldset>
@@ -242,58 +246,34 @@ a:active {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id="bbtable" width="4800px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">市农村公路安保工程项目建设表 </caption>
+							<table id='bbtable' width="2000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="btnf" style="font-size: x-large;"></span>年公路路网结构改造工程建设计划（安全生命防护工程）</caption>
 								<thead>
 									<tr>
-										<td rowspan="3" style="width: 125px">序号</td>
-										<td rowspan="3" style="width: 125px">县（市、区）</td>
-										<td rowspan="3" style="width: 125px">是否17个罗宵山区连片特困县</td>
-										<td rowspan="3" style="width: 125px">是否38个原中央苏区和特困片区县</td>
-										<td rowspan="3" style="width: 125px">是否54个赣南等原中央苏区县</td>
-										<td colspan="14" >计划情况</td>
-										<td colspan="13">建设进展情况</td>
-										<td colspan="6" >资金落实情况</td>
-										<td rowspan="3" width="100px">备注</td>
+										<td rowspan="2" style="width: 125px">序号</td>
+										<td rowspan="2" style="width: 125px">行政区划代码</td>
+										<td rowspan="2" style="width: 125px">管养单位</td>
+										<td colspan="4" style="width: 500px">项目名称</td>
+										<td rowspan="2" style="width: 125px">建设性质</td>
+										<td rowspan="2" style="width: 125px">处治隐患里程（公里）</td>
+										<td colspan="2" style="width: 250px">建设年限</td>
+										<td rowspan="2" style="width: 125px">总投资（万元）</td>
+										<td rowspan="2" style="width: 125px">中央投资（万元）</td>
+										<td colspan="4" style="width: 675px"><span id="btnf1" ></span>年计划（ 万 元 ）</td>
+										<td rowspan="2" style="width: 125px">备注</td>
+																			
 									</tr>	
 									<tr>
-										<td rowspan="2" style="width: 125px">行政区划代码</td>
-										<td rowspan="2" style="width: 125px">行政区划名称</td>
-										<td rowspan="2" style="width: 125px">路线编码</td>
-										<td rowspan="2" style="width: 125px">路线名称</td>
-										<td rowspan="2" style="width: 125px">起点桩号</td>
-										<td rowspan="2" style="width: 125px">止点桩号</td>
-										<td rowspan="2" style="width: 125px">处理隐患里程（公里）</td>
-										<td rowspan="2" style="width: 125px">建设性质</td>
-										<td rowspan="2" style="width: 125px">计划下达时间</td>
-										<td rowspan="2" style="width: 125px">计划开工时间</td>
-										<td rowspan="2" style="width: 125px">计划完成时间</td>
-										<td rowspan="2" style="width: 125px">预计竣工时间</td>
-										<td rowspan="2" style="width: 125px">总投资(万元)</td>
-										<td rowspan="2" style="width: 125px">其中中央投资(万元)</td>
-										<td rowspan="2" style="width: 125px">实际开工时间</td>
-										<td rowspan="2" style="width: 125px">工程竣工时间</td>
-										<td rowspan="2" style="width: 125px">建设单位</td>
-										<td rowspan="2" style="width: 125px">设计单位</td>
-										<td rowspan="2" style="width: 125px">施工单位</td>
-										<td rowspan="2" style="width: 125px">监理单位</td>
-										<td rowspan="2" style="width: 125px">完成总里程（公里）</td>
-										<td rowspan="2" style="width: 125px">本年完成里程（公里）</td>
-										<td rowspan="2" style="width: 125px">完成总投资（万元）</td>
-										<td rowspan="2" style="width: 125px">完成中央投资(万元)</td>
-										<td rowspan="2" style="width: 125px">完成地方自筹(万元)</td>
-										<td rowspan="2" style="width: 125px">本年完成投资（万元）</td>
-										<td rowspan="2" style="width: 125px">项目验收里程(公里)</td>
-										<td colspan="3" style="width: 125px">车购税补助资金</td>
-										<td colspan="3" style="width: 125px">地方配套资金</td>
-									</tr>
-									<tr>
-										<td style="width: 80px">计划补助资金</td>
-										<td style="width: 80px">到位金额(万元)</td>
-										<td style="width: 80px">到位率(%)</td>
-										<td style="width: 80px">应配套资金(万元)</td>
-										<td style="width: 80px">到位金额(万元)</td>
-										<td style="width: 80px">到位率(%)</td>
+										<td style="width: 125px">路线编号</td>
+										<td style="width: 125px">项目名称</td>
+										<td style="width: 125px">起点桩号</td>
+										<td style="width: 125px">止点桩号</td>
+										<td style="width: 125px">开工年</td>
+										<td style="width: 125px">完工年</td>	
+										<td style="width: 125px">合计</td>
+										<td style="width: 125px">中央投资车购税</td>
+										<td style="width: 125px">地方自筹</td>
+										<td style="width: 300px">主要建设内容</td>
 									</tr>
 								</thead>
 								<tbody id="wqgzlist">

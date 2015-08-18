@@ -11,20 +11,18 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
+	<script type="text/javascript" src="/jxzhpt/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
 	var sbsj;
 	var sbyf;
 	$(function(){
+		fileShow11(parent.obj1.id,"施工许可");
+		loadUploadify();
 		$("#tj_xdwh").val(parent.obj1.jhxdwh);
-// 			var myDate = new Date();
-// 			var y = myDate.getFullYear();
-// 			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-// 			var d = myDate.getDate();
-// 			sbsj = y+"-"+m+"-"+d;
-// 			sbyf = y+"-"+m;
-// 			$("#tj_sbsj").text(sbsj);
-// 			$("#tj_sbyf").text(sbyf);
 			$("#tj_xdsj").datebox({        
 			});  
 			$("#tj_sjkgsj").datebox({      
@@ -54,7 +52,43 @@
 	    }
 	}
 		
-		
+	function loadUploadify(){
+		$("#uploadJGTC").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '/jxzhpt/js/uploader/uploadify.swf',
+			'script' : '/jxzhpt/qqgl/uploadJGYSFile.do',
+			'cancelImg' : '/jxzhpt/js/uploader/cancel.png',
+			'queueID' : 'fileQueue1',
+			'fileDataName' : 'uploadJGTC',
+			'auto' : false,
+			'multi' : true,
+			'buttonImg': '/jxzhpt/js/uploader/bdll.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'gcgl_jgys.jhid':parent.obj1.id,
+				'gcgl_jgys.name':'wgqlzsgxk',
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				alert(response);
+				fileShow11(parent.obj1.id,"施工许可");
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+
+			}
+		});
+	}
 	</script>
 	<style type="text/css">
 <!--
@@ -154,8 +188,17 @@ a:active {
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">建设单位：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
                                 <input style="width: 100px" type="text" id="tj_jsdw" />
+                            </td>
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                 padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">质量监督文件（单位）：</font></b>
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                <input style="width: 100px" type="text" id="tj_zljdwj" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -178,6 +221,26 @@ a:active {
                                 <input style="width: 100px" type="text" id="tj_gys"  onblur="checkZJ1(this)"/>
                             </td>
                         </tr>
+                        <tr>
+							<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可（附件上传）：</td>
+							<td id="td_jgtc" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+								<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+											cellpadding="1" cellspacing="1">
+									<tbody id="qlzmTable"></tbody>
+								</table>
+								<table>
+										<tr>
+											<td><input type="file" value="选择图片" style="background-image: url('${pageContext.request.contextPath }/js/uploader/bdll.png');" name="uploadSjt" id="uploadJGTC" /></td>
+											<td><div id="fileQueue1" ></div></td>
+										</tr>
+										<tr>
+											<td rowspan="2">
+												<img name="uploadFile" id="uploadFile" src="${pageContext.request.contextPath }/js/uploader/upload.png" onclick="$('#uploadJGTC').uploadifyUpload()"  style="border-width:0px;" />
+											</td>
+										</tr>
+									</table>
+							</td>
+						</tr>
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

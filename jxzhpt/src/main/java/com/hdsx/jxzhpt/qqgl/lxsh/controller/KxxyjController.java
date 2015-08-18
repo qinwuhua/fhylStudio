@@ -485,6 +485,8 @@ public class KxxyjController extends BaseActionSupport{
 			gcgl_jgys.setFiletype("完工桥梁正面文件");
 		if("wgqlcmwj".equals(gcgl_jgys.getName()))
 			gcgl_jgys.setFiletype("完工桥梁侧面文件");
+		if("wgqlzsgxk".equals(gcgl_jgys.getName()))
+			gcgl_jgys.setFiletype("施工许可");
 		try {
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setCharacterEncoding("utf-8"); 		

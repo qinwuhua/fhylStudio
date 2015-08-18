@@ -24,14 +24,6 @@
 		fileShow11(parent.obj1.id,"完工桥梁正面文件");
 		fileShow12(parent.obj1.id,"完工桥梁侧面文件");
 		loadUploadify();
-/* 			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-			var d = myDate.getDate();
-			sbsj = y+"-"+m+"-"+d;
-			sbyf = y+"-"+m;
-			$("#tj_sbsj").text(sbsj);
-			$("#tj_sbyf").text(sbyf); */
 			$("#tj_sjwgsj").datebox({      
 			});  
 			var date=new Date();
