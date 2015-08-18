@@ -497,8 +497,8 @@
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_wqgz sc on
- 			 		(gc.jhid=sc.sckid)  left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
+ 					 group by jhid )gc left join plan_wqgz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
 				<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
 				</if>
@@ -511,8 +511,8 @@
  		<select id="selectWqjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_wqgz sc on
- 			 		(gc.jhid=sc.sckid) left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
+ 					 group by jhid )gc left join plan_wqgz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz jc on sc.xmkid=jc.id
 		 		<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
 				</if>
@@ -523,8 +523,8 @@
 			gc.wc_qttz v_9,jh.sjwgsj v_10,jh.bz v_11
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_wqgz sc on
- 			 		(gc.jhid=sc.sckid) left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz lx on sc.xmkid=lx.id
+ 					 group by jhid )gc left join plan_wqgz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz lx on sc.xmkid=lx.id
 		<if test="gydw!='' and gydw!= null "  >
  			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
  		</if>
@@ -539,8 +539,8 @@
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_abgc sc on
- 			 		(gc.jhid=sc.sckid)  left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
+ 					 group by jhid )gc left join plan_abgc jh  on
+ 			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
 				<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 				</if>
@@ -553,8 +553,8 @@
  		<select id="selectAbjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid)gc left join sck_abgc sc on
- 			 		(gc.jhid=sc.sckid) left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
+ 					 group by jhid)gc left join plan_abgc jh  on
+ 			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
 		 		<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 				</if>
@@ -565,8 +565,8 @@
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_abgc sc on
- 			 		(gc.jhid=sc.sckid) left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc lx on sc.xmkid=lx.id
+ 					 group by jhid )gc left join plan_abgc jh  on
+ 			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc lx on sc.xmkid=lx.id
 		<if test="gydw!='' and gydw!= null "  >
  			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
@@ -581,8 +581,8 @@
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_zhfz sc on
- 			 		(gc.jhid=sc.sckid)  left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
+ 					 group by jhid )gc left join plan_zhfz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
 				<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 				</if>
@@ -595,8 +595,8 @@
  		<select id="selectZhjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid)gc left join sck_zhfz sc on
- 			 		(gc.jhid=sc.sckid) left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
+ 					 group by jhid)gc left join plan_zhfz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
 		 		<if test="gydw!='' and gydw!= null ">
 					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 				</if>
@@ -607,8 +607,8 @@
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
- 					 group by jhid )gc left join sck_zhfz sc on
- 			 		(gc.jhid=sc.sckid) left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz lx on sc.xmkid=lx.id
+ 					 group by jhid )gc left join plan_zhfz jh  on
+ 			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz lx on sc.xmkid=lx.id
 		<if test="gydw!='' and gydw!= null "  >
  			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
