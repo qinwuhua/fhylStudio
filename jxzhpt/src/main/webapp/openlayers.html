@@ -3,9 +3,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Openlayer</title>
+    <link rel="stylesheet" type="text/css" href="./easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="./easyui/themes/icon.css" />
     <script src="2.x/OpenLayers.js"></script>
     <script src="framework/jquery-1.8.0.min.js"></script>
     <script src="framework/jquery.tabletojson.js"></script>
+    <script src="./easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="./js/YMLib.js"></script>
     <style>
         html, body, #map {
@@ -309,13 +312,15 @@
         //构造弹出窗口的函数
         var selectedFeature = null;
         function onFeatureSelect(feature) {
-        	if(parent.YMLib.Var.bm==undefined){
-        		if(feature.attributes.ROADBM==undefined) parent.YMLib.Var.bm=feature.attributes.ROADCODE;
-        		else parent.YMLib.Var.bm=feature.attributes.ROADBM;
-        	}
-        	YMLib.Var.bm=parent.YMLib.Var.bm;
-        	if(parent.YMLib.Var.type=='2') parent.YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
-         	else parent.YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,330);
+        	for (var o in feature.attributes) {
+        		if(o=="ROADCODE"||o=="ROADBM"){
+        			YMLib.Var.bm=feature.attributes[o];
+        			break;
+        		}
+            }
+        	YMLib.Var.feature=feature;
+        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
+         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,330);
         	
         }
         //销毁弹出窗口的函数
@@ -478,9 +483,9 @@
             }
 
             resultLayer.addFeatures(new OpenLayers.Feature.Vector(lineStrings, {
-                "路线编码": param.BM,
-                "起点桩号": param.ROADSTART,
-                "止点桩号": param.ROADENDS
+                "ROADCODE": param.BM,
+                "ROADSTART": param.ROADSTART,
+                "ROADENDS": param.ROADENDS
             }));
 
             if (resultLayer.features && resultLayer.features.length > 0) {
@@ -614,16 +619,16 @@
 </head>
 <body>
 <div style="position: absolute;top: 10px;right:10px;z-index: 9999">
-	<a href="#" onclick="IQuery()"><img src="./images/iSearch.png"/></a>
+	<!-- <a href="#" onclick="IQuery()"><img src="./images/iSearch.png"/></a>
 	
 
-	<!-- <button onclick="test()">test</button>
+	<button onclick="test()">test</button>
     <button onclick="attrQuery()">行政区划查询</button>
     <button onclick="IQuery()">I查询</button>
     <button onclick="testQueryByLXBMZH()">根据路线编码和起止桩号查询</button>
     <button onclick="testQueryQLByLXMBZH()">根据路线编码桩号查询桥梁</button>-->
 </div>
-<div id="map" style="width:900px;height:800px">
+<div id="map" style="width:100%;height:100%">
 
 </div>
 </body>
