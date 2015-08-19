@@ -276,34 +276,69 @@ public interface JhshServer {
 	 * @param filed 字段
 	 * @return
 	 */
-	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh);
+	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh,int page,int rows);
 	/**
 	 * 自定义查询改造项目
 	 * @param filed 字段
 	 * @param jhsh
 	 * @return
 	 */
-	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh);
+	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh,int page,int rows);
 	/**
 	 * 自定义查询新建项目
 	 * @param filed 字段
 	 * @param jhsh
 	 * @return
 	 */
-	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh);
+	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh,int page,int rows);
 	/**
 	 * 自定义查询养护大中修项目
 	 * @param filed
 	 * @param jhsh
 	 * @return
 	 */
-	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh);
+	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh,int page,int rows);
 	/**
 	 * 自定义查询灾毁重建
 	 * @param filed 字段
 	 * @param jhsh
 	 * @return
 	 */
-	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh);
+	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh,int page,int rows);
+	/**
+	 * 自定义查询路面升级个数
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public int zdyQueryLmsjTotal(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询路面改造数量
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public int zdyQueryLmgzTotal(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询新建数量
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public int zdyQueryXjTotal(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询养护数量
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public int zdyQueryYhdzxTotal(String filed, Jhsh jhsh);
+	/**
+	 * 自定义查询水毁数量
+	 * @param filed
+	 * @param jhsh
+	 * @return
+	 */
+	public int zdyQueryShTotal(String filed, Jhsh jhsh);
 	
 }

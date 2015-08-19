@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 
@@ -802,6 +803,7 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unused" })
 	public void importsjgzkxx(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
@@ -822,8 +824,8 @@ public class KxxyjController extends BaseActionSupport{
 			}
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			List<Lx> lxlist=new ArrayList<Lx>();
+			int i=1;
 			for (Map map : data) {
-				
 			}
 			boolean sfcg=true;
 			sfcg=kxxyjServer.importsjgzkxx(data);

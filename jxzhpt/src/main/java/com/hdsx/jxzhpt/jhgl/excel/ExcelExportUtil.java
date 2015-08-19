@@ -1,6 +1,8 @@
 package com.hdsx.jxzhpt.jhgl.excel;
 
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -62,6 +64,51 @@ public class ExcelExportUtil {
 		}
 		ExcelEntity excel=new ExcelEntity(fileName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, response);
+	}
+	/**
+	 * Map的List集合导出Excel
+	 * @param fileds 字段
+	 * @param filedNames 字段名称
+	 * @param fileName 文件名称
+	 * @param data 数据
+	 * @throws UnsupportedEncodingException 
+	 */
+	public static void excelWriter(String fileds,String filedNames,String fileName,List<Map<String, String>> data,HttpServletResponse response) throws UnsupportedEncodingException{
+		try {
+			String[] filedArray = fileds.split(",");
+			String[] filedNameArray = filedNames.split(",");
+			ExcelTitleCell [] title= new ExcelTitleCell[filedArray.length];//表头标题数组
+			for (int i = 0; i < filedNameArray.length; i++) {
+				title[i]= new ExcelTitleCell(filedNameArray[i], true, new ExcelCoordinate(0,(short)i));
+			}
+			//创建Excel工作对象
+			HSSFWorkbook wb = new HSSFWorkbook();
+			//设置Excel的sheet对象
+			HSSFSheet sheet = wb.createSheet(fileName);
+			int rowNumber=0;
+			//居中样式
+			HSSFCellStyle styleCenter = wb.createCellStyle(); 
+			styleCenter.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			rowNumber = createTitle(sheet,title,rowNumber,styleCenter);
+			rowNumber++;
+			for(int i= 0;i<data.size();i++){
+				HSSFRow row = sheet.createRow(i+rowNumber);
+				Map<String, String> item = data.get(i);
+				for (int j = 0; j < filedArray.length; j++) {
+					HSSFCell createCell = row.createCell(i);
+					createCell.setCellValue(item.get(filedArray[j].toUpperCase()));
+					createCell.setCellStyle(styleCenter);
+				}
+			}
+			response.setContentType("octets/stream");
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(fileName.getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+			OutputStream out = response.getOutputStream();
+			wb.write(out);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

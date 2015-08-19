@@ -243,7 +243,7 @@ $(function() {
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101060401',
-		title:'自定义查询',
+		title:'路网项目',
 		imgSrc:'../../images/zdycx.png',
 		renderTo:'left_menu4',
 		href:'./zdycx/zdycx.jsp'

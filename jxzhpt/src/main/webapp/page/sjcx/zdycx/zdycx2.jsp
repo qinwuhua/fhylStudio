@@ -102,8 +102,10 @@
 				 	kgzt:$('#kgzt').combobox("getValue")
 				},
 				striped:true,
+				pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
+			    pageSize:10,
 			    height:345,
 			    width:1070,
 			    columns:[title,cols]
@@ -233,8 +235,8 @@ a{text-decoration:none;}
 			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
-						<img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
+					<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
+					<!-- <img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" /> -->
 				</td>
 			</tr>
 			</table><br/>
@@ -345,12 +347,8 @@ a{text-decoration:none;}
 									<td style="padding-left: 10px;"><input type="checkbox" id="c.dc" name="cbsj" value="c.dc-垫层结构"/>垫层结构</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="c.jc" name="cbsj" value="c.jc-基层结构"/>基层结构</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="c.dc" name="cbsj" value="c.dc-垫层结构"/>垫层结构</td>
-								</tr>
-								<tr>
 									<td><input type="checkbox" id="c.mc_lc" name="cbsj" value="c.mc_lc-面层里程"/>面层里程</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="c.jc_lc" name="cbsj" value="c.jc_lc-基层结构"/>基层结构</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="c.jc_lc" name="cbsj" value="c.jc_lc-基层里程"/>基层里程</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="c.dc_lc" name="cbsj" value="c.dc_lc-垫层里程"/>垫层里程</td>

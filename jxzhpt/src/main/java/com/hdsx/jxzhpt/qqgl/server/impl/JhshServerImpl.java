@@ -271,33 +271,73 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryJsdjAndLcByStartAndEnd",lx);
 	}
 	@Override
-	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh) {
+	public List<Map<String, String>> zdyQueryLmsj(String filed,Jhsh jhsh,int page,int rows) {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
+		params.put("page",page);
+		params.put("rows", rows);
 		return queryList("zdyQueryLmsj",params);
 	}
 	@Override
-	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh) {
+	public List<Map<String, String>> zdyQueryLmgz(String filed, Jhsh jhsh,int page,int rows) {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
+		params.put("page",page);
+		params.put("rows", rows);
 		return queryList("zdyQueryLmgz",params);
 	}
 	@Override
-	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh) {
+	public List<Map<String, String>> zdyQueryXj(String filed, Jhsh jhsh,int page,int rows) {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
+		params.put("page",page);
+		params.put("rows", rows);
 		return queryList("zdyQueryXj",params);
 	}
 	@Override
-	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh) {
+	public List<Map<String, String>> zdyQueryYhdzx(String filed, Jhsh jhsh,int page,int rows) {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
+		params.put("page",page);
+		params.put("rows", rows);
 		return queryList("zdyQueryYhdzx",params);
 	}
 	@Override
-	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh) {
+	public List<Map<String, String>> zdyQuerySh(String filed, Jhsh jhsh,int page,int rows) {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
+		params.put("page",page);
+		params.put("rows", rows);
 		return queryList("zdyQuerySh",params);
+	}
+	@Override
+	public int zdyQueryLmsjTotal(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryOne("zdyQueryLmsjTotal",params);
+	}
+	@Override
+	public int zdyQueryLmgzTotal(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryOne("zdyQueryLmgzTotal",params);
+	}
+	@Override
+	public int zdyQueryXjTotal(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryOne("zdyQueryXjTotal",params);
+	}
+	@Override
+	public int zdyQueryYhdzxTotal(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryOne("zdyQueryYhdzxTotal",params);
+	}
+	@Override
+	public int zdyQueryShTotal(String filed, Jhsh jhsh) {
+		params.put("filed", filed);
+		params.put("jhsh", jhsh);
+		return queryOne("zdyQueryShTotal",params);
 	}
 }

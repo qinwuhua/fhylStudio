@@ -142,7 +142,7 @@ function filterXzqhdm(xzqhdm){
 	}else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
 		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	}else{
-		result=xzqhdm;
+		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	}
 	//result = xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	return result;

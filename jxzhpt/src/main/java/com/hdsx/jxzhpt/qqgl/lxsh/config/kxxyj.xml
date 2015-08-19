@@ -515,7 +515,7 @@
 		where xmbm=#{0}
 	</update>
 	<update id="updatesjgzkxxlx" parameterType="hashMap">
-		update lxsh_lx set qdzh=#{4},zdzh=#{5},xzqh=#{2},lc=to_number(#{5})-to_number(#{4}),yilc=#{7},erlc=#{8},sanlc=#{9},
+		update lxsh_lx set qdzh=#{4},zdzh=#{5},xzqh=#{2},lc=to_number(#{6}),yilc=#{7},erlc=#{8},sanlc=#{9},
 		silc=#{10},dwlc=#{11},wllc=#{12},jhyilc=#{13},jherlc=#{14},jhsanlc=#{15},jhsilc=#{16},jhdwlc=#{17},jhwllc=#{18},
 		jsjsdj=#{22},xzqhdm=substr(#{0},5,6) where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>

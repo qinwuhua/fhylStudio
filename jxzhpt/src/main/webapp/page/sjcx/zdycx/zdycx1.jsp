@@ -18,7 +18,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/YMLib.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <script type="text/javascript">
-	
+	var filedArray = new Array();
+	var nameArray = new Array();
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
@@ -30,9 +31,10 @@
 			$('#dd').dialog('open');
 		});
 		$("#save_button").click(function(){
+			filedArray.splice(0,filedArray.length);
+			nameArray.splice(0,nameArray.length);
 			var lxshCount=0,kxxyjCount=0,cbsjCount=0,jhshCount=0;
-			var filedArray = new Array();
-			var nameArray = new Array();
+			
 			lxshCount=$("input[name='lxsh']:checked").length;
 			kxxyjCount=$("input[name='kxxyj']:checked").length;
 			cbsjCount=$("input[name='cbsj']:checked").length;
@@ -103,8 +105,10 @@
 				 	kgzt:$('#kgzt').combobox("getValue")
 				},
 				striped:true,
+				pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
+			    pageSize:10,
 			    height:345,
 			    width:1070
 			});
@@ -147,6 +151,11 @@
 			$(item).attr("checked", false);
 		});
 	}
+	function exportExcel(){
+		alert("sssssss");
+		var param="filed="+filedArray.join(",")+"&filedName="+nameArray.join(",")+"&xmlx="+$('#xmlx').combobox("getValue");
+		window.location.href='/jxzhpt/qqgl/zdyExportExcel.do?'+param;
+	}
 </script>
 <style type="text/css">
 TD {font-size: 12px;}
@@ -156,7 +165,7 @@ a{text-decoration:none;}
 <body>
 	
 		<div id="righttop">
-		<div id="p_top">数据查询>&nbsp;自定义查询>&nbsp;当前位置</div>
+		<div id="p_top">数据查询>&nbsp;自定义查询>&nbsp;改建、改造、新建自定义查询</div>
 		</div>
 
 <center>
@@ -203,8 +212,8 @@ a{text-decoration:none;}
 			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
-						<img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
+					<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
+					<img  onclick="exportExcel()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>
 			</tr>
 			</table><br/>

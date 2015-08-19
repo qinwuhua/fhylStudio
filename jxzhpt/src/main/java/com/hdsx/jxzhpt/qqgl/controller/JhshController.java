@@ -65,7 +65,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	//其他参数
 	private String jdbs;//阶段标示，用于表明在计划的哪一阶段
 	private String filed;//自定义查询的字段
-	
+	private String filedName;//字段名称
 	/**
 	 * 查询计划审核列表
 	 * @throws Exception 
@@ -729,25 +729,60 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	public void zdyQuery(){
-		List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
-		if(jhsh.getXmlx()==1){
-			resultlist = jhshServer.zdyQueryLmsj(filed,jhsh);
-		}else if(jhsh.getXmlx()==2){
-			resultlist = jhshServer.zdyQueryLmgz(filed, jhsh);
-		}else if(jhsh.getXmlx()==3){
-			resultlist = jhshServer.zdyQueryXj(filed, jhsh);
-		}else if(jhsh.getXmlx()==4){
-			resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh);
-		}else if(jhsh.getXmlx()==5){
-			resultlist = jhshServer.zdyQuerySh(filed, jhsh);
-		}
 		try {
+			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
+			int total = 0;
+			if(jhsh.getXmlx()==1){
+				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,page,rows);
+				total = jhshServer.zdyQueryLmsjTotal(filed,jhsh);
+			}else if(jhsh.getXmlx()==2){
+				resultlist = jhshServer.zdyQueryLmgz(filed, jhsh,page,rows);
+				total = jhshServer.zdyQueryLmgzTotal(filed,jhsh);
+			}else if(jhsh.getXmlx()==3){
+				resultlist = jhshServer.zdyQueryXj(filed, jhsh,page,rows);
+				total = jhshServer.zdyQueryXjTotal(filed,jhsh);
+			}else if(jhsh.getXmlx()==4){
+				resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh,page,rows);
+				total = jhshServer.zdyQueryYhdzxTotal(filed,jhsh);
+			}else if(jhsh.getXmlx()==5){
+				resultlist = jhshServer.zdyQuerySh(filed, jhsh,page,rows);
+				total = jhshServer.zdyQueryShTotal(filed,jhsh);
+			}
 			result.put("rows", resultlist);
-			result.put("total", resultlist.size());
+			result.put("total", total);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void zdyExportExcel(){
+		try{
+			System.out.println(jhsh.getXmlx());
+			System.out.println(filed);
+			System.out.println(filedName);
+			String fileName="";
+			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
+			if(jhsh.getXmlx()==1){
+				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,0,0);
+				fileName="改建自定义查询";
+			}else if(jhsh.getXmlx()==2){
+				resultlist = jhshServer.zdyQueryLmgz(filed, jhsh,0,0);
+				fileName="路面改造自定义查询";
+			}else if(jhsh.getXmlx()==3){
+				resultlist = jhshServer.zdyQueryXj(filed, jhsh,0,0);
+				fileName="新建自定义查询";
+			}else if(jhsh.getXmlx()==4){
+				resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh,0,0);
+				fileName="养护大中修自定义查询";
+			}else if(jhsh.getXmlx()==5){
+				resultlist = jhshServer.zdyQuerySh(filed, jhsh,0,0);
+				fileName="灾毁重建自定义查询";
+			}
+			System.out.println("总数："+resultlist.size());
+			ExcelExportUtil.excelWriter(filed, filedName, fileName, resultlist, getresponse());
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
@@ -833,5 +868,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void setFiled(String filed) {
 		this.filed = filed;
+	}
+	public String getFiledName() {
+		return filedName;
+	}
+	public void setFiledName(String filedName) {
+		this.filedName = filedName;
 	}
 }

@@ -81,10 +81,6 @@ text-decoration:none;
 						<option value="wqgz">危桥改造</option>
 						<option value="abgc">安保工程</option>
 						<option value="zhfz">灾害防治</option>
-						<option value="lmsj">工程改造路面升级</option>
-						<option value="lmgj">工程改造路面改建</option>
-						<option value="yhdzx">养护大中修</option>
-						<option value="shxm">水毁</option>
 					</select></td>
 				<!-- <td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">

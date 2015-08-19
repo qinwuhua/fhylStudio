@@ -142,6 +142,7 @@
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
 		<action name="updateLx" class="jhshController" method="updateLx"></action>
 		<action name="zdyQuery" class="jhshController" method="zdyQuery"></action>
+		<action name="zdyExportExcel" class="jhshController" method="zdyExportExcel"></action>
 		
 		<action name="importExcelYhdzx" class="xmsqController" method="importExcelYhdzx"></action>
 		<action name="importExcelYhdzxCbsj" class="cbsjController" method="importExcelYhdzxCbsj"></action>
