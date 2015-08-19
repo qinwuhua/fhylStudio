@@ -23,16 +23,16 @@ $(function(){
 	for (var o in feature.attributes) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
 	    if(o=="ROADCODE"){
-	    	html+="<tr><td>路线编码：</td><td>"+feature.attributes[o]+"</td>";
+	    	html+="<tr><td>路线编码：</td><td>"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="ROADNAME"){
-	    	html+="<td>路线名称：</td><td>"+feature.attributes[o]+"</td>";
+	    	html+="<tr><td>路线名称：</td><td>"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="ROADBM"){
-	    	html+="<td>桥梁编码：</td><td>"+feature.attributes[o]+"</td>";
+	    	html+="<tr><td>桥梁编码：</td><td>"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="F002"){
-	    	html+="<td>桥梁名称：</td><td>"+feature.attributes[o]+"</td></tr>";
+	    	html+="<tr><td>桥梁名称：</td><td>"+feature.attributes[o]+"</td></tr>";
 	    }
 	    if(o=="ROADPOS"){
 	    	html+="<tr><td>中心桩号：</td><td>"+feature.attributes[o]+"</td></tr>";
