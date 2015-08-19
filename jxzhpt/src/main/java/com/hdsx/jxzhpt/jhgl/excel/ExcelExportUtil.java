@@ -79,7 +79,7 @@ public class ExcelExportUtil {
 			String[] filedNameArray = filedNames.split(",");
 			ExcelTitleCell [] title= new ExcelTitleCell[filedArray.length];//表头标题数组
 			for (int i = 0; i < filedNameArray.length; i++) {
-				title[i]= new ExcelTitleCell(filedNameArray[i], true, new ExcelCoordinate(0,(short)i));
+				title[i]= new ExcelTitleCell(filedNameArray[i], false, new ExcelCoordinate(0,(short)i),15);
 			}
 			//创建Excel工作对象
 			HSSFWorkbook wb = new HSSFWorkbook();
@@ -95,8 +95,8 @@ public class ExcelExportUtil {
 				HSSFRow row = sheet.createRow(i+rowNumber);
 				Map<String, String> item = data.get(i);
 				for (int j = 0; j < filedArray.length; j++) {
-					HSSFCell createCell = row.createCell(i);
-					createCell.setCellValue(item.get(filedArray[j].toUpperCase()));
+					HSSFCell createCell = row.createCell(j);
+					createCell.setCellValue(item.get(filedArray[j].substring(filedArray[j].indexOf("as ")+3).toUpperCase()));
 					createCell.setCellStyle(styleCenter);
 				}
 			}

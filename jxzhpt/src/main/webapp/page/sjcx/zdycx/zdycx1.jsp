@@ -152,8 +152,27 @@
 		});
 	}
 	function exportExcel(){
-		alert("sssssss");
+		var gydw=$('#gydw').combotree("getValue");
+		var xzqhdm=$('#xzqhmc').combotree("getValue");
 		var param="filed="+filedArray.join(",")+"&filedName="+nameArray.join(",")+"&xmlx="+$('#xmlx').combobox("getValue");
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
+		param+="&gydw="+gydw;
+		if(xzqhdm.substr(xzqhdm.length-2,2)=='00'){
+ 			xzqhdm=xzqhdm.substr(0,xzqhdm.length-2);
+			if(xzqhdm.substr(xzqhdm.length-2,2)=='00'){
+				xzqhdm=xzqhdm.substr(0,xzqhdm.length-2);
+			}
+		}
+		param+="&xzqh="+xzqhdm;
+		param+="&lxmc="+$('#lxmc').val();
+		param+="&lxbm="+$('#lxbm').val();
+		param+="&xmbm="+$('#xmnf').combobox("getValue");
+		param+="&kgzt="+$('#kgzt').combobox("getValue");
 		window.location.href='/jxzhpt/qqgl/zdyExportExcel.do?'+param;
 	}
 </script>
@@ -310,41 +329,41 @@ a{text-decoration:none;}
 							<table>
 								<tr>
 									<td><input type="checkbox" id="k.xmbm" name="kxxyj" value="k.xmbm-项目编码"/>项目编码</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.qdzh" name="kxxyj" value="k.qdzh-起点桩号"/>起点桩号</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.zdzh" name="kxxyj" value="k.zdzh-止点桩号"/>止点桩号</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.lc" name="kxxyj" value="k.lc-里程"/>里程</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.jsxz" name="kxxyj" value="k.jsxz-建设性质"/>建设性质</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.jsjsdj" name="kxxyj" value="k.jsjsdj-建设技术等级"/>建设技术等级</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.jsdw" name="kxxyj" value="k.jsdw-建设单位"/>建设单位</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.dq_m" name="kxxyj" value="k.dq_m-大桥长度"/>大桥长度</td>
-									
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.dq" name="kxxyj" value="k.dq-大桥数量"/>大桥数量</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.sd_m" name="kxxyj" value="k.sd_m-隧道长度"/>隧道长度</td>
-								</tr>
-								<tr>
-									
-									<td><input type="checkbox" id="k.sd" name="kxxyj" value="k.sd-隧道数量"/>隧道数量</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.kgny" name="kxxyj" value="k.kgny-开工年月"/>开工年月</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.wgny" name="kxxyj" value="k.wgny-完工年月"/>完工年月</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.bzdw" name="kxxyj" value="k.bzdw-编制单位"/>编制单位</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.tzgs" name="kxxyj" value="k.tzgs-投资估算"/>投资估算</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="k.gkpfwh" name="kxxyj" value="k.gkpfwh-工可批复文号"/>工可批复文号</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="k.pfsj" name="kxxyj" value="k.pfsj-批复时间"/>批复时间</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="k.xzqh" name="kxxyj" value="k.xzqh-行政区划"/>行政区划</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.qdzh" name="kxxyj" value="k.qdzh-起点桩号"/>起点桩号</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.zdzh" name="kxxyj" value="k.zdzh-止点桩号"/>止点桩号</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.lc" name="kxxyj" value="k.lc-里程"/>里程</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.jsxz" name="kxxyj" value="k.jsxz-建设性质"/>建设性质</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.jsjsdj" name="kxxyj" value="k.jsjsdj-建设技术等级"/>建设技术等级</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.jsdw" name="kxxyj" value="k.jsdw-建设单位"/>建设单位</td>
+									
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.dq_m" name="kxxyj" value="k.dq_m-大桥长度"/>大桥长度</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.dq" name="kxxyj" value="k.dq-大桥数量"/>大桥数量</td>
+								</tr>
+								<tr>
+									
+									<td><input type="checkbox" id="k.sd_m" name="kxxyj" value="k.sd_m-隧道长度"/>隧道长度</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.sd" name="kxxyj" value="k.sd-隧道数量"/>隧道数量</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.kgny" name="kxxyj" value="k.kgny-开工年月"/>开工年月</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.wgny" name="kxxyj" value="k.wgny-完工年月"/>完工年月</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.bzdw" name="kxxyj" value="k.bzdw-编制单位"/>编制单位</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.tzgs" name="kxxyj" value="k.tzgs-投资估算"/>投资估算</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="k.gkpfwh" name="kxxyj" value="k.gkpfwh-工可批复文号"/>工可批复文号</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="k.pfsj" name="kxxyj" value="k.pfsj-批复时间"/>批复时间</td>
 								</tr>
 							</table>
 						</td>

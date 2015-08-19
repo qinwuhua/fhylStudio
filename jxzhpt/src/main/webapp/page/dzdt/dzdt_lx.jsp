@@ -91,6 +91,7 @@ $(function(){
 		rownumbers : true,
 		pageNumber : 1,
 		pageSize : 10,
+		height:100,
 		columns : [[
 		{
 			field : 'mx',
@@ -144,6 +145,9 @@ function filterXzqhdm(xzqhdm){
 	}else{
 		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	}
+	if(result=="__"){
+		result="";
+	}
 	//result = xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	return result;
 }
@@ -188,7 +192,7 @@ border-collapse: collapse; border:1px solid #cde0f3; margin:0 auto;}
     </div>
     <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     <span style="font-weight:700;line-height:30px;color:#0b77c9;margin-left:8px;">计划项目信息</span>
-    	<table id="jsgl_table" style="height:100%;" ></table>
+    	<table id="jsgl_table" ></table>
     </div>
 </div>
 </body>

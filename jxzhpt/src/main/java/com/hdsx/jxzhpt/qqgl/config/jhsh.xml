@@ -727,7 +727,9 @@
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
 			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>)
-		where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="zdyQueryLmgzTotal" parameterType="java.util.List" resultType="int">
 		select count(*) from lxsh_lmgz l left join 
@@ -755,7 +757,9 @@
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
 			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>)
-		where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="zdyQueryXjTotal" parameterType="java.util.List" resultType="int">
 		select count(*) from lxsh_xj l left join 
@@ -780,7 +784,9 @@
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
 			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>)
-		where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="zdyQueryYhdzxTotal" parameterType="java.util.List" resultType="int">
 		select count(*) from xmsq_yhdzx x left join cbsj_yhdzx c on x.xmbm=c.xmbm left join jhsh_yhdzx j on c.xmbm=j.xmbm
@@ -802,7 +808,9 @@
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
 			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>)
-		where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="zdyQueryShTotal" parameterType="java.util.List" resultType="int">
 		select count(*) from xmsq_sh x left join cbsj_sh c on x.xmbm=c.xmbm left join jhsh_sh j on c.xmbm=j.xmbm

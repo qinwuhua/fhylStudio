@@ -19,6 +19,8 @@
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <script type="text/javascript">
 	var lxshCount=0,kxxyjCount=0,cbsjCount=0,jhshCount=0;
+	var filedArray = new Array();
+	var nameArray = new Array();
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
@@ -37,8 +39,8 @@
 			$('#dd').dialog('open');
 		});
 		$("#save_button").click(function(){
-			var filedArray = new Array();
-			var nameArray = new Array();
+			filedArray.splice(0,filedArray.length);
+			nameArray.splice(0,nameArray.length);
 			lxshCount=$("input[name='xmsq']:checked").length;
 			cbsjCount=$("input[name='cbsj']:checked").length;
 			jhshCount=$("input[name='jhsh']:checked").length;
@@ -180,6 +182,30 @@
 			$(item).attr("checked", false);
 		});
 	}
+	function exportExcel(){
+		var gydw=$('#gydw').combotree("getValue");
+		var xzqhdm=$('#xzqhmc').combotree("getValue");
+		var param="filed="+filedArray.join(",")+"&filedName="+nameArray.join(",")+"&xmlx="+$('#xmlx').combobox("getValue");
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
+		param+="&gydw="+gydw;
+		if(xzqhdm.substr(xzqhdm.length-2,2)=='00'){
+ 			xzqhdm=xzqhdm.substr(0,xzqhdm.length-2);
+			if(xzqhdm.substr(xzqhdm.length-2,2)=='00'){
+				xzqhdm=xzqhdm.substr(0,xzqhdm.length-2);
+			}
+		}
+		param+="&xzqh="+xzqhdm;
+		param+="&lxmc="+$('#lxmc').val();
+		param+="&lxbm="+$('#lxbm').val();
+		param+="&xmbm="+$('#xmnf').combobox("getValue");
+		param+="&kgzt="+$('#kgzt').combobox("getValue");
+		window.location.href='/jxzhpt/qqgl/zdyExportExcel.do?'+param;
+	}
 </script>
 <style type="text/css">
 TD {font-size: 12px;}
@@ -236,7 +262,7 @@ a{text-decoration:none;}
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
-					<!-- <img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" /> -->
+					<img  onclick="exportExcel()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>
 			</tr>
 			</table><br/>
@@ -299,15 +325,7 @@ a{text-decoration:none;}
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.gydw" name="xmsq" value="x.gydw-管养单位"/>管养单位</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="x.xzqh" name="xmsq" value="x.xzqh-行政区划"/>行政区划</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="x.gydw" name="xmsq" value="x.gydw-管养单位"/>管养单位</td>
-								</tr>
-								<tr>
 									<td><input type="checkbox" id="x.xmbm" name="xmsq" value="x.xmbm-项目编码"/>项目编码</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="x.xmmc" name="xmsq" value="x.xmmc-项目名称"/>项目名称</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" id="x.ntz" name="xmsq" value="x.ntz-拟投资"/>拟投资</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.xmmc" name="xmsq" value="x.xmmc-项目名称"/>项目名称</td>
 								</tr>
 								<tr>
@@ -321,6 +339,10 @@ a{text-decoration:none;}
 								<tr>
 									<td><input type="checkbox" id="x.tsdq" name="xmsq" value="x.tsdq-工期"/>特殊地区</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.jsfa" name="xmsq" value="x.jsfa-建设方案"/>建设方案</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" id="x.ntz" name="xmsq" value="x.ntz-拟投资"/>拟投资</td>
+									<td style="padding-left: 10px;"></td>
 								</tr>
 							</table>
 						</td>
