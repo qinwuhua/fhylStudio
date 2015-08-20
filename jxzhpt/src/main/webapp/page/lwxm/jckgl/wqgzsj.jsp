@@ -285,6 +285,12 @@ var xzqhstr;
 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
+						if(row.sbthcd==7&&row.shzt!='已审核'){
+							return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
+						}else
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<span style="color:grey;">编辑</span>  '+

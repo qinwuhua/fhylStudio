@@ -243,8 +243,8 @@ text-decoration:none;
 								<tr height="32">
 								<td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select></td>
                               <td colspan="10">

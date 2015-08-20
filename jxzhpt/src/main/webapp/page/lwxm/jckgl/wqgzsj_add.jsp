@@ -149,7 +149,8 @@ function autoCompleteLXBM(){
 				$("#qlqc").html(item.qlqc);
 				$("#qlkd").html(item.qlkd);
 				$("#dkzdkj").html(item.dkzdkj);
-				 $.ajax({
+				$("#jsdj").html(item.pddj);
+				 /* $.ajax({
 					type : 'post',
 					url : '/jxzhpt/xmjck/selJsdj.do',
 					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
@@ -167,11 +168,10 @@ function autoCompleteLXBM(){
 							$("#jsdj").html('五类');
 						}	
 					}
-				}); 
-				$("#pddj").html(item.pddj);
+				});  */
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
-				$("#sbjgxs").html(item.sbjgxs);
+				$("#sbjgxs").val(item.sbjgxs);
 				$("#xmtype").html('待上报');
 				$("#bhnr").val(item.bhnr);
 				$("#bz").val(item.bz);
@@ -195,8 +195,8 @@ function saveWqgz(){
 	}
 	var data ="jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.qlmc="+$("#qlmc").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.gydwbm="+$("#gydwbm").val()+"&jckwqgzsj.gydw="+$("#gydw").html()
 	+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.xzqhmc="+$("#xzqhmc").html()+"&jckwqgzsj.lxmc="+$("#lxmc").html()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.kjzc="+$("#kjzc").html()+
-	"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.qlkd="+$("#qlkd").html()+"&jckwqgzsj.dkzdkj="+$("#dkzdkj").html()+"&jckwqgzsj.jsdj="+$("#jsdj").html()+"&jckwqgzsj.pddj="+$("#pddj").html()+"&&jckwqgzsj.xjgjnd="+$("#xjgjnd").html()+"&&jckwqgzsj.tsdq="+$("#tsdq").html()
-	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").html()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
+	"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.qlkd="+$("#qlkd").html()+"&jckwqgzsj.dkzdkj="+$("#dkzdkj").html()+"&jckwqgzsj.jsdj="+$("#jsdj").html()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&&jckwqgzsj.xjgjnd="+$("#xjgjnd").html()+"&&jckwqgzsj.tsdq="+$("#tsdq").html()
+	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
 	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
@@ -381,7 +381,11 @@ function newGuid()
 					<span id="jsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pddj"></span></td>
+					<select id='pddj' class="easyui-combobox" data-options="panelHeight:'70'" >
+						<option value="四类">四类</option>
+						<option value="五类">五类</option>
+					</select>	
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xjgjnd"></span></td>
@@ -392,7 +396,8 @@ function newGuid()
 					<span id="akjfl"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sbjgxs"></span></td>
+					<input type="text" id="sbjgxs" />
+					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>

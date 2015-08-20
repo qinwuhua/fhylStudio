@@ -67,18 +67,9 @@ function loadxx(){
 	$("#gydw").html(item.gydw);$("#xzqhdm").html(item.xzqhdm);$("#xzqhmc").html(item.xzqhmc);
 	$("#lxmc").html(item.lxmc);$("#lxbm").html(item.lxbm);$("#kjzc").html(item.kjzc);
 	$("#qlqc").html(item.qlqc);$("#qlkd").html(item.qlkd);$("#dkzdkj").html(item.dkzdkj);
-	if($.trim(item.jsdj)=='一级公路')
-		$("#jsdj").html('一类');
-	else	if($.trim(item.jsdj)=='二级公路')
-		$("#jsdj").html('二类');
-	else if($.trim(item.jsdj)=='三级公路')
-		$("#jsdj").html('三类');
-	else if($.trim(item.jsdj)=='四级公路')
-		$("#jsdj").html('四类');
-	else{
-		$("#jsdj").html('五类');
-	}$("#pddj").html(item.pddj);$("#xjgjnd").html(item.xjgjnd);
-	$("#akjfl").html(item.akjfl);$("#sbjgxs").html(item.sbjgxs);$("#xmtype").html(item.xmtype);
+		$("#jsdj").html(item.jsdj);
+	$("#pddj").combobox('setValue',item.pddj);$("#xjgjnd").html(item.xjgjnd);
+	$("#akjfl").html(item.akjfl);$("#sbjgxs").val(item.sbjgxs);$("#xmtype").html(item.xmtype);
 	$("#bhnr").val(item.bhnr);$("#bz").val(item.bz);$("#qlyhgcs").val(item.qlyhgcs);
 	$("#qljggcs").val(item.qljggcs);$("#czyjhjy").val(item.czyjhjy);
 	$("#sqs").val(item.sqs);$("#xsq").val(item.xsq);$("#szxz").val(item.szxz);
@@ -190,7 +181,7 @@ function saveWqgz(){
 	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
-	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
+	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()+"&jckwqgzsj.jsdj="+$("#jsdj").html()
 	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
@@ -265,7 +256,11 @@ function saveWqgz(){
 					<span id="jsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pddj"></span></td>
+					<select id='pddj' class="easyui-combobox" data-options="panelHeight:'70'" >
+						<option value="四类">四类</option>
+						<option value="五类">五类</option>
+					</select>	
+					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xjgjnd"></span></td>
@@ -276,7 +271,7 @@ function saveWqgz(){
 					<span id="akjfl"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sbjgxs"></span></td>
+					<input type="text" id="sbjgxs" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>

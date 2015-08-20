@@ -230,7 +230,7 @@
  		</update>
  		<update id="updateWqgz" parameterType="jckwqgzsj">
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
- 			czyjhjy=#{czyjhjy},
+ 			czyjhjy=#{czyjhjy},pddj=#{pddj},sbjgxs=#{sbjgxs},
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},jsdj=#{jsdj},
  			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk}
  			where id=#{id}

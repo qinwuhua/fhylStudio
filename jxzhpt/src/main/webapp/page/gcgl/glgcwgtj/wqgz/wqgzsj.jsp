@@ -83,8 +83,8 @@ a:active {
         						<p style="margin: 1% 0px 1% 2%;">
         						<span>是否部库：</span>
         						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value="">全部</option>
-								<option value="否" selected>否</option>
+								<option value="" selected>全部</option>
+								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select>
        							&nbsp;&nbsp;&nbsp;&nbsp;
