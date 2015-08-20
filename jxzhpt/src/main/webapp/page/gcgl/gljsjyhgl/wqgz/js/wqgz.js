@@ -209,10 +209,10 @@ function tjwqgzyb1(){
 		alert("请您填入本月到位其他投资");
 		return;
 	}
-	if($("#tj_bywcmc").val()==''||$("#tj_bywcmc").val()==null){
+/*	if($("#tj_bywcmc").val()==''||$("#tj_bywcmc").val()==null){
 		alert("请您填入本月完成面层");
 		return;
-	}
+	}*/
 	if($("#tj_kgdl").val()==''||$("#tj_kgdl").val()==null){
 		alert("请您填入截至开工段落");
 		return;
@@ -274,10 +274,10 @@ function xgwqgzyb(){
 		alert("请您填入本月到位其他投资");
 		return;
 	}
-	if($("#xg_bywcmc").val()==''||$("#xg_bywcmc").val()==null){
+/*	if($("#xg_bywcmc").val()==''||$("#xg_bywcmc").val()==null){
 		alert("请您填入本月完成面层");
 		return;
-	}
+	}*/
 	if($("#xg_kgdl").val()==''||$("#xg_kgdl").val()==null){
 		alert("请您填入截至开工段落");
 		return;
@@ -324,10 +324,10 @@ function xgwqgzyb1(){
 		alert("请您填入本月到位其他投资");
 		return;
 	}
-	if($("#xg_bywcmc").val()==''||$("#xg_bywcmc").val()==null){
+/*	if($("#xg_bywcmc").val()==''||$("#xg_bywcmc").val()==null){
 		alert("请您填入本月完成面层");
 		return;
-	}
+	}*/
 	if($("#xg_kgdl").val()==''||$("#xg_kgdl").val()==null){
 		alert("请您填入截至开工段落");
 		return;
@@ -749,7 +749,7 @@ function showYBlist1(){
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:70,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:82,align:'center',rowspan:2},
-			        {field:'bywcmc',title:'本月完成面层（公里）',width:122,align:'center',rowspan:2},
+//			        {field:'bywcmc',title:'本月完成面层（公里）',width:122,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:85,align:'center',rowspan:2},
 			        {title:'本月完成投资（万元）',colspan:3},
 			        {title:'本月资金到位（万元）',colspan:3},

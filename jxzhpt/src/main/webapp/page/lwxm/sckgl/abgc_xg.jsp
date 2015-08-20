@@ -140,8 +140,7 @@ var zdStr;
 	}
 	
 	function loadUploadify(){
-		$("#uploadGk").uploadify({
-			/*注意前面需要书写path的代码*/
+		/* $("#uploadGk").uploadify({
 			'uploader' : '../../../js/uploader/uploadify.swf',
 			'script' : '../../../jhgl/uploadAbgcFile.do',
 			'cancelImg' : '../../../js/uploader/cancel.png',
@@ -173,7 +172,7 @@ var zdStr;
 				alert("最多支持上传文件数为：" + queueSizeLimit);
 
 			}
-		});
+		}); */
 		
 		$("#uploadSjt").uploadify({
 			/*注意前面需要书写path的代码*/
@@ -423,7 +422,7 @@ text-decoration:none;
 				</td>
 			</tr>
 			
-			<tr>
+<!-- 			<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可报告：</td>
 				<td id="td_gkbg" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
@@ -441,7 +440,7 @@ text-decoration:none;
 						</tr>
 					</table>
 				</td>
-			</tr>
+			</tr> -->
 				<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计施工图：</td>
 				<td id="td_sjsgt" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">

@@ -259,14 +259,14 @@ text-decoration:none;
 					<span id="scbz"></span>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<!-- <tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可报告：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 						<tbody id="gkbgTable"></tbody>
 					</table>
 				</td>
-			</tr>
+			</tr> -->
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工设计图：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">

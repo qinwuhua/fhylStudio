@@ -198,7 +198,7 @@ a:active {
                             </td>
                         </tr>
  					 <tr style="height: 35px;">
-                           <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                           <!-- <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style=" font-size: 12px">本月完成（处）</font></b>
@@ -206,17 +206,17 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
                                 <input name="BYWCMC" type="text" id="xg_bywc_c" style="width: 50px;" /><font color='red' size='2'>*&nbsp;</font>
-                            </td>
+                            </td> -->
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">本月完成<br>（公里）</font></b>
+                                <b><font color="#009ACD" style=" font-size: 12px">本月完成（公里）</font></b>
                             </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                            <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input name="BYWCMC" type="text" id="xg_bywc_gl" style="width: 50px;" /><font color='red' size='2'>*&nbsp;</font>
+                                <input name="BYWCMC" type="text" id="xg_bywc_gl" style="width: 150px;" /><font color='red' size='2'>*&nbsp;</font>
                             </td>
-                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                             <!-- <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style=" font-size: 12px">截至开工段落：</font></b>
@@ -224,7 +224,7 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
                                 <input name="JZKGDL" type="text" id="xg_kgdl" style="width: 50px;" />
-                            </td>
+                            </td> -->
                         </tr>
                          <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;

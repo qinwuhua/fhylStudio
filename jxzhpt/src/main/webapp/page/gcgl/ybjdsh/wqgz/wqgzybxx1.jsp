@@ -172,7 +172,7 @@ a:active {
                                 </div>
                             </td>
                         </tr>
-                        <tr style="height: 35px;">
+                       <!--  <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
@@ -183,7 +183,7 @@ a:active {
                                 <label id="bywcmc"></label>
                                 公里
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

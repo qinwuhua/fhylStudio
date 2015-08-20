@@ -259,7 +259,7 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>    
-								<td>技术等级状况：</td>
+								<td>技术状况评定：</td>
                               <td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
 								<option value="一类">一类</option>
