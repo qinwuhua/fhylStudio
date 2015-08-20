@@ -47,7 +47,8 @@ a:active {
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
-                    已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元。
+                    已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
+                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元。
                 </td>
             </tr>
             <tr>

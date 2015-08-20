@@ -119,6 +119,7 @@ function Delyb(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
+					shezhi();
 					$("#ybgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');
@@ -154,6 +155,17 @@ function tjwqgzyb(){
 		alert("请您填入截至开工段落");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -185,6 +197,7 @@ function tjwqgzyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxxtj');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -217,6 +230,18 @@ function tjwqgzyb1(){
 		alert("请您填入截至开工段落");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
+	
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -236,7 +261,7 @@ function tjwqgzyb1(){
 	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
+	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
 	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data +"----");
@@ -249,6 +274,7 @@ function tjwqgzyb1(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxxtj');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -286,6 +312,18 @@ function xgwqgzyb(){
 		alert("请您等待上级拨付车购税再上报");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#xg_wc_btz").val();
+	var stz=$("#xg_wc_stz").val();
+	var qttz=$("#xg_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
+	
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
@@ -300,6 +338,7 @@ function xgwqgzyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -336,9 +375,21 @@ function xgwqgzyb1(){
 		alert("请您等待上级拨付车购税再上报");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#xg_wc_btz").val();
+	var stz=$("#xg_wc_stz").val();
+	var qttz=$("#xg_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
+	
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
+	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
 	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").val()
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data);
@@ -351,6 +402,7 @@ function xgwqgzyb1(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -737,7 +789,7 @@ function showYBlist1(){
 	              		}
 	              		if(yhtype=='市级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==9)
-	    			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'未审核    ';
+	    			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=9)
 	    	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    '+'退回    '+'未审核    ';
 	              			if(row.shzt=='已审核')

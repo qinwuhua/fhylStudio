@@ -248,6 +248,12 @@
 	 <select id="selectwqzj4" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sum(btzzj)+sum(stz) zxdzj from PLAN_ZJXD where xmid=#{id}
 	 </select>
+	 <select id="selectwqzj5" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj from ${tablename} where jhid=#{id}
+	 </select>
+	 <select id="selectwqzj6" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(bywctze) zwczj from ${tablename} where jhid=#{id}
+	 </select>
 	 <update id="updateSjZT" parameterType="gcglwqgz" >
 	 update PLAN_WQGZ set sjzt=#{sjzt} where id=#{jhid}
 	 </update>

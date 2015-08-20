@@ -358,6 +358,12 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		Gcglwqgz gcglwqgz2 = queryOne("selectwqzj2", gcglwqgz);
 		Gcglwqgz gcglwqgz3 = queryOne("selectwqzj3", gcglwqgz);
 		Gcglwqgz gcglwqgz4 = queryOne("selectwqzj4", gcglwqgz);
+		Gcglwqgz gcglwqgz5=null;
+		if("gcgl_gcgzsj".equals(gcglwqgz.getTablename())){
+			gcglwqgz5 = queryOne("selectwqzj6", gcglwqgz);
+		}else{
+			gcglwqgz5 = queryOne("selectwqzj5", gcglwqgz);
+		}
 		if(gcglwqgz1!=null)
 		gcglwqgz.setZbfzj(gcglwqgz1.getZbfzj());
 		if(gcglwqgz2!=null)
@@ -366,6 +372,8 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		gcglwqgz.setNxdzj(gcglwqgz3.getNxdzj());
 		if(gcglwqgz4!=null)
 			gcglwqgz.setZxdzj(gcglwqgz4.getZxdzj());
+		if(gcglwqgz5!=null)
+			gcglwqgz.setZwczj(gcglwqgz5.getZwczj());
 		return gcglwqgz;
 	}
 

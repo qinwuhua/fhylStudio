@@ -107,6 +107,8 @@ public class Gcglwqgz implements Serializable {
 	private String nbfzj;
 	private String yhtype;
 	private String zxdzj;
+	private String zwczj;
+	private String tablename;
 	
 	private String sgxkwj;
 	private String jgtcwj;
@@ -139,6 +141,18 @@ public class Gcglwqgz implements Serializable {
 	private String jhqlqc;
 	private String jhqlqk;
 	
+	public String getTablename() {
+		return tablename;
+	}
+	public void setTablename(String tablename) {
+		this.tablename = tablename;
+	}
+	public String getZwczj() {
+		return zwczj;
+	}
+	public void setZwczj(String zwczj) {
+		this.zwczj = zwczj;
+	}
 	public String getJhqlqc() {
 		return jhqlqc;
 	}

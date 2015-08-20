@@ -91,7 +91,7 @@ var bzls;
 		var url = "/jxzhpt/xmjck/selectJckRoad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :2,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

@@ -17,12 +17,11 @@
 	<script type="text/javascript">
 	$(function(){
 			showYBlist();
-			
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
 		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
+			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id+"&gcglwqgz.tablename=gcgl_wqgz";
 			$.ajax({
 				type:'post',
 				url:'../../../../gcgl/selectWqgzbzzj.do',
@@ -45,6 +44,10 @@
 						$("#jhxdzj").text('0');
 					else
 						$("#jhxdzj").text(msg.zxdzj);
+					if(msg.zwczj=='')
+						$("#zwczj").text('0');
+					else
+						$("#zwczj").text(msg.zwczj);
 				}
 			});	
 		}
@@ -75,7 +78,8 @@ a:active {
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
-                    已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元。
+                    已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元,
+                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元。
                 </td>
             </tr>
             <tr>
