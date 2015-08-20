@@ -30,6 +30,7 @@
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryYhdzx();
+			loadFileUpload();
 		});
 		function queryYhdzx(){
 			grid.id="grid";
@@ -122,6 +123,53 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
+		
+		function loadFileUpload(){
+			$("#uploadJhxd").uploadify({
+				/*注意前面需要书写path的代码*/
+				'uploader' : '../../../js/uploader/uploadify.swf',
+				'script' : '../../../qqgl/batchUploadJhsh.do',
+				'cancelImg' : '../../../js/uploader/cancel.png',
+				'queueID' : 'fileQueue',
+				'fileDataName' : 'uploadJhxd',
+				'auto' : false,
+				'multi' : false,
+				'buttonImg': '../../../js/uploader/bdll.png',
+				'simUploadLimit' : 3,
+				'sizeLimit' : 20000000,
+				'queueSizeLimit' : 5,
+				'fileDesc' : '支持格式:xls',
+				'fileExt' : '',
+				'height' : 30,
+				'width' : 92,
+				'scriptData' : {
+					'jhsh.xdwh':$('#plgkpfwh').val()
+				},
+				onComplete : function(event, queueID, fileObj, response, data) {
+					alert(response);
+					fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
+				},
+				onError : function(event, queueID, fileObj) {
+					alert("文件:" + fileObj.name + "上传失败");
+				},
+				onCancel : function(event, queueID, fileObj) {
+				},
+				onQueueFull : function(event, queueSizeLimit) {
+					alert("最多支持上传文件数为：" + queueSizeLimit);
+				}
+			});
+		}
+		function plscbtn(){
+			$('#plsc').dialog("open");
+		}
+		function upload(){
+			if($('#plgkpfwh').val()!=""){
+				$("#uploadJhxd").uploadifySettings('scriptData',{'jhsh.xdwh':$('#plgkpfwh').val()});
+				$('#uploadJhxd').uploadifyUpload();
+			}else{
+				alert("必须填写计划下达文号！");
+			}
+		}
 	</script>
 	<style type="text/css">
 TD {
@@ -153,14 +201,12 @@ text-decoration:none;
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
 							<td>技术等级:</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-							<td>下达状态：</td>
-       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
-       							<option value="-1">全部</option>
-       							<option value="0" selected="selected">未下达</option>
-       							<option value="1">已下达</option>
-       						</select></td>
        						<td>项目年份：</td>
-        					<td><select id="xmnf" style="width: 60px;"></select></td>
+        					<td><select id="xmnf" style="width: 70px;"></select></td>
+        					<td colspan="2">
+        						<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
+        					</td>
        					</tr>
        					<tr height="32">
        						<td>项目名称：</td>
@@ -173,14 +219,23 @@ text-decoration:none;
 								<option value="是">是</option>
 								<option value="否">否</option>
 							</select></td>
-							<td colspan="3">
+							<td>下达状态：</td>
+       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
+       							<option value="-1">全部</option>
+       							<option value="0" selected="selected">未下达</option>
+       							<option value="1">已下达</option>
+       						</select></td>
+							<td colspan="2">
+								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<!-- 
 								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								 -->
 							</td>
        					</tr>
-       					
-        					</table>
+        				</table>
        				</div>
        			</fieldset>
        		</td>
@@ -193,5 +248,36 @@ text-decoration:none;
            	</td>
        	</tr>
 	</table>
+	<div id="plsc" class="easyui-dialog" title="批量上传计划下达文件" style="width:500px;height:150px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+			<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						工可批复文号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="plgkpfwh" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						工可批复文件</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="sjpfTable"></tbody>
+						</table>
+						<table>
+							<tr>
+								<td colspan="2">待上传：<div id="fileQueue" ></div></td>
+							</tr>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadJhxd" id="uploadJhxd" /></td>
+								<td>
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
 </body>
 </html>
