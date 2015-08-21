@@ -50,7 +50,9 @@ text-decoration:none;
 				$("#tsdq").val(msg.tsdq);
 				$("#xjsdj").html(msg.xjsdj);
 				$("#xmbm").html(msg.xmbm);
-				$("#xmnf").html(msg.xmnf);
+				$("#xmnf").combobox("setValue",msg.xmnf);
+				$("#jhkgn").combobox("setValue",msg.jhkgn);
+				$("#jhwgn").combobox("setValue",msg.jhwgn);
 			}
 		});
 		/*$("#lxbm").val(data.ghlxbh);

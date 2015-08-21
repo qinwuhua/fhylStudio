@@ -977,7 +977,7 @@ public class LxshController extends BaseActionSupport{
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("sjgz".equals(lxsh.getXmlx())){
-				xmbt="新建";
+				xmbt="改建";
 				elist=lxshServer.querylxshSjgz(lxsh);
 			}
 			if("lmgz".equals(lxsh.getXmlx())){
