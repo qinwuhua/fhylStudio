@@ -59,18 +59,18 @@
 			var str3='';
 			var min=xmnf[xmnf.length-1];
 			var max=xmnf[0];
-			var len=(xmnf.length+1)*1000+"px";
+			var len=(xmnf.length+1)*500+"px";
 			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
-				str1=str1+'<td colspan="4">计划下达及完成情况</td>';
-				str2=str2+'<td rowspan="1" colspan="2">'+xmnf[i]+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完成资金（万元）</td>';
-				str3=str3+'<td>桥梁数量（座）</td><td>延米（米）</td>';
+				str1=str1+'<td colspan="7">'+xmnf[i]+'年度</td>';
+				str2=str2+'<td colspan="2">计划项目</td><td colspan="2">完工项目</td><td rowspan="2">完成投资(万元)</td><td rowspan="2">本年完成投资(万元)</td><td rowspan="2">完成率(%)</td>';
+				str3=str3+'<td>座</td><td>延米</td><td>座</td><td>延米</td>';
 			}
-			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td colspan="4">计划下达及完成情况</td>'
-			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="2">'+min+'-'+max+'年度</td><td rowspan="2">到位资金（万元）</td><td rowspan="2">完成资金（万元）</td>'
+			biaotstr='<tr><td rowspan="3">设区市交通局</td><td colspan="7">合计</td>'
+			+str1+'</tr>'
+			+'<td rowspan="1" colspan="2">计划项目</td><td colspan="2">完工项目</td><td rowspan="2">完成投资(万元)</td><td rowspan="2">本年完成投资(万元)</td><td rowspan="2">完成率(%)</td>'
 			+str2+'</tr>'
-			+'<td>桥梁数量（座）</td><td>延米（米）</td>'
+			+'<td>座</td><td>延米</td><td>座</td><td>延米</td>'
 			+str3+'</tr>';
 			biaotou.empty();
 			biaotou.append(biaotstr);
@@ -79,48 +79,41 @@
 			var data="gcglwqgz.xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
-				url:"/jxzhpt/gcybb/getWqlntjb.do",
+				url:"/jxzhpt/gcybb/getWqgzhzb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					
 					var tbodystr="";
-					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(i==0){
 										var strs="";
 										for(var j=xmnf.length-1;j>=0;j--){
 											var s1="XMSL"+xmnf[j];
 											var s2="YM"+xmnf[j];
-											var s3="DW"+xmnf[j];
-											var s4="WC"+xmnf[j];
+											var s3="WCXMSL"+xmnf[j];
+											var s4="WCYM"+xmnf[j];
+											var s5="WC"+xmnf[j];
+											var s6="BNWC"+xmnf[j];
+											var s7="WCL"+xmnf[j];
+											if(j==0)
+												strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
+												+msg[i][s3]+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+												+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+												+msg[i][s7]+"</td>";
+											else
 											strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
-											+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>";
-											
+											+msg[i][s3]+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+											+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+											+msg[i][s7]+"</td><td>";
 										}
-										tbodystr=tbodystr+"<tr><td colspan='2'>"+msg[i].XZQHMC+"</td><td>"
+										tbodystr=tbodystr+"<tr><td>"+msg[i].XZQHMC+"</td><td>"
 										+msg[i].XMSL+"</td><td>"+msg[i].YM.toFixed(2)+"</td><td>"
-										+msg[i].DW.toFixed(2)+"</td><td>"+msg[i].WC.toFixed(2)+"</td><td>"
-										+strs+"</tr>";
-							}else{
-								var strs="";
-								for(var j=xmnf.length-1;j>=0;j--){
-									var s1="XMSL"+xmnf[j];
-									var s2="YM"+xmnf[j];
-									var s3="DW"+xmnf[j];
-									var s4="WC"+xmnf[j];
-									strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
-									+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>";
-								}
-								tbodystr=tbodystr+"<tr><td>"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
-								+msg[i].XMSL+"</td><td>"+msg[i].YM.toFixed(2)+"</td><td>"
-								+msg[i].DW.toFixed(2)+"</td><td>"+msg[i].WC.toFixed(2)+"</td><td>"
-								+strs+"</tr>";
-							}
-						}
-						tbody.append(tbodystr);
+										+msg[i].WCXMSL+"</td><td>"+msg[i].WCYM.toFixed(2)+"</td><td>"
+										+msg[i].WC.toFixed(2)+"</td><td>"+msg[i].BNWC.toFixed(2)+"</td><td>"
+										+msg[i].WCL+"</td><td>"+strs+"</tr>";
+						
 					}
+						tbody.append(tbodystr);
 				}
 			});
 		}
@@ -132,7 +125,7 @@
 			return;
 		}
 		var data="flag=flag&gcglwqgz.xmnf="+xmnf;
-		window.location.href="/jxzhpt/gcybb/getWqlntjb.do?"+data;
+		window.location.href="/jxzhpt/gcybb/getWqgzhzb.do?"+data;
 	}	
 	</script>
 	<style type="text/css">
@@ -174,7 +167,7 @@ a:active {
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  style="height: 30px">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;危桥改造项目(交通局)历年统计报表</div>
+						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;全省危桥改造项目汇总表</div>
 					</div>
         	</tr>
         	<tr>
@@ -213,52 +206,65 @@ a:active {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id="kdtb" width="4000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">危桥改造项目(交通局)历年统计报表</caption>
+							<table id="kdtb" width="2000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">全省危桥改造项目汇总表</caption>
 								<thead id="biaotou">
 									<tr>
-										<td rowspan="3" style="width: 100px;">序号</td>
-										<td rowspan="3" style="width: 125px;">设区市</td>
-										<td colspan="4">计划下达及完成情况</td>
-										<td colspan="4">计划下达及完成情况</td>
-										<td colspan="4">计划下达及完成情况</td>
-										<td colspan="4">计划下达及完成情况</td>
-										<td colspan="4">计划下达及完成情况</td>
-										<td rowspan="3" style="width: 125px;">备注</td>
+										<td rowspan="3" style="width: 100px;">设区市交通局</td>
+										<td rowspan="3" style="width: 125px;">合计</td>
+										<td colspan="7">2011年度</td>
+										<td colspan="7">2012年度</td>
+										<td colspan="7">2013年度</td>
+										<td colspan="7">2014年度</td>
 										</tr>
 									<tr>
-										<td rowspan="1" colspan="4">2011-2014年度</td>
-										
-										<td rowspan="1" colspan="4">2011年度</td>
-										
-										<td rowspan="1" colspan="4">2012年度</td>
-										
-										<td rowspan="1" colspan="4">2013年度</td>
-										
-										<td rowspan="1" colspan="4">2014年度</td>
-										
+										<td rowspan="1" colspan="2">计划项目</td>
+										<td rowspan="1" colspan="2">完工项目</td>
+										<td rowspan="1" >完成投资(万元)</td>
+										<td rowspan="1" >本年完成投资(万元)</td>
+										<td rowspan="1" >完成率(%)</td>
+										<td rowspan="1" colspan="2">计划项目</td>
+										<td rowspan="1" colspan="2">完工项目</td>
+										<td rowspan="1" >完成投资(万元)</td>
+										<td rowspan="1" >本年完成投资(万元)</td>
+										<td rowspan="1" >完成率(%)</td>
+										<td rowspan="1" colspan="2">计划项目</td>
+										<td rowspan="1" colspan="2">完工项目</td>
+										<td rowspan="1" >完成投资(万元)</td>
+										<td rowspan="1" >本年完成投资(万元)</td>
+										<td rowspan="1" >完成率(%)</td>
+										<td rowspan="1" colspan="2">计划项目</td>
+										<td rowspan="1" colspan="2">完工项目</td>
+										<td rowspan="1" >完成投资(万元)</td>
+										<td rowspan="1" >本年完成投资(万元)</td>
+										<td rowspan="1" >完成率(%)</td>
+										<td rowspan="1" colspan="2">计划项目</td>
+										<td rowspan="1" colspan="2">完工项目</td>
+										<td rowspan="1" >完成投资(万元)</td>
+										<td rowspan="1" >本年完成投资(万元)</td>
+										<td rowspan="1" >完成率(%)</td>
 									</tr>
 									<tr>
-										<td>桥梁数量（座）</td>
-										<td>延米（米）</td>
-										<td>到位资金（万元）</td>
-										<td>完成资金（万元）</td>
-										<td>桥梁数量（座）</td>
-										<td>延米（米）</td>
-										<td>到位资金（万元）</td>
-										<td>完成资金（万元）</td>
-										<td>桥梁数量（座）</td>
-										<td>延米（米）</td>
-										<td>到位资金（万元）</td>
-										<td>完成资金（万元）</td>
-										<td>桥梁数量（座）</td>
-										<td>延米（米）</td>
-										<td>到位资金（万元）</td>
-										<td>完成资金（万元）</td>
-										<td>桥梁数量（座）</td>
-										<td>延米（米）</td>
-										<td>到位资金（万元）</td>
-										<td>完成资金（万元）</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
+										<td>座</td>
+										<td>延米</td>
 									</tr>
 								</thead>
 								<tbody id="wqgzlist">

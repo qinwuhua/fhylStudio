@@ -58,7 +58,7 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gcjz.jsp'
 	});
-	createMenux('LeftMenu',{
+/*	createMenux('LeftMenu',{
 		id:'menu_0101050104',
 		title:'市农村公路危桥改造工程项目建设表',
 		imgSrc:'../../images/menubutton/sncglwq.png',
@@ -71,7 +71,7 @@ $(function() {
 		imgSrc:'../../images/menubutton/sncglab.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/abgcjsb.jsp'
-	});
+	});*/
 	createMenux('LeftMenu',{
 		id:'menu_0101050106',
 		title:'公路路网结构改造工程建设计划（危桥改造项目）',
@@ -168,13 +168,28 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxjmxb.jsp'
 	});
-	createMenux('LeftMenu',{
+/*	createMenux('LeftMenu',{
 		id:'menu_0101050210',
 		title:'危桥改造项目(交通局)历年统计报表',
 		imgSrc:'../../images/wqgz_jtj_s.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/wqgzsj.jsp'
+	});*/
+	createMenux('LeftMenu',{
+		id:'menu_0101050211',
+		title:'全省危桥改造项目汇总表',
+		imgSrc:'../../images/wqgz_jtj_s.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/wqgzhzb.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050212',
+		title:'全省安保改造项目汇总表',
+		imgSrc:'../../images/menubutton/abgctjybb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/abgchzb.jsp'
+	});
+	
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050301',

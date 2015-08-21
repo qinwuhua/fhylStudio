@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.gcxmybb.controller;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -910,6 +911,289 @@ public class GcybbController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	//
+	public void getWqgzhzb(){
+		try{
+			List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+			String tableName="wqgzhzb";
+			String[] arr=gcglwqgz.getXmnf().split(",");
+			String sql="select xzqhmc";
+			String in="";
+			for(int j=0;j<arr.length;j++){
+				if(j==0)
+				    in=in+"'"+arr[j]+"'";
+				else
+					in=in+",'"+arr[j]+"'";
+				sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl))) xmsl"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',ym)),null,0,sum(decode(jhnf,'"+arr[j]+"',ym))) ym"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',wcxmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wcxmsl))) wcxmsl"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',wcym)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcym))) wcym"+arr[j]+
+			        ",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+
+			        ",decode(sum(decode(jhnf,'"+arr[j]+"',bnwc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnwc))) bnwc"+arr[j]+""+
+			        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcl)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcl))) wcl"+arr[j]+"";
+			}
+			sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
+			System.out.println(sql);
+			list=gcybbServer.getGjxjmxbsj(sql);
+			
+			for(int i=0;i<list.size();i++){
+				HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+				double xmsl=0;
+				double ym=0;
+				double wcxmsl=0;
+				double wcym=0;
+				double wc=0;
+				double bnwc=0;
+				String wcl="";
+				for(int j=arr.length-1;j>=0;j--){
+					xmsl=xmsl+Double.valueOf(hm.get("XMSL"+arr[j]).toString());
+					ym=ym+Double.valueOf(hm.get("YM"+arr[j]).toString());
+					wcxmsl=wcxmsl+Double.valueOf(hm.get("WCXMSL"+arr[j]).toString());
+					wcym=wcym+Double.valueOf(hm.get("WCYM"+arr[j]).toString());
+					wc=wc+Double.valueOf(hm.get("WC"+arr[j]).toString());
+					bnwc=bnwc+Double.valueOf(hm.get("BNWC"+arr[j]).toString());
+				}
+				if(xmsl!=0){
+					wcl=new BigDecimal(wcxmsl).divide(new BigDecimal(xmsl),3).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).toString(); 
+				}else{
+					wcl="0";
+				}
+			   hm.put("WCL",wcl);
+			   hm.put("XMSL",xmsl);
+			   hm.put("YM",ym);
+			   hm.put("WCXMSL",wcxmsl);
+			   hm.put("WCYM",wcym);
+			   hm.put("WC",wc);
+			   hm.put("BNWC",wc);
+			}
+			if("flag".equals(flag)){
+				String[] nf = gcglwqgz.getXmnf().split(",");
+				Arrays.sort(nf);
+				List<Excel_list> elist=new ArrayList<Excel_list>();
+				int cd=(nf.length+1)*6+3;
+				NumberFormat nfs = NumberFormat.getInstance(); 
+		        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+		        nfs.setMinimumFractionDigits(2);//设置最小保留几位小数 
+		        nfs.setMaximumFractionDigits(2);//设置最大保留几位小数
+				for(int i=0;i<list.size();i++){
+					Excel_list l = new Excel_list();
+					Class cl = l.getClass();
+					Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
+					method.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
+					Method method1 = cl.getMethod("setV_"+1, new Class[]{String.class});
+					method1.invoke(l, new Object[]{list.get(i).get("XMSL").toString()});
+					Method method2 = cl.getMethod("setV_"+2, new Class[]{String.class});
+					method2.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("YM").toString()))});
+					Method method3 = cl.getMethod("setV_"+3, new Class[]{String.class});
+					method3.invoke(l, new Object[]{list.get(i).get("WCXMSL").toString()});
+					Method method4 = cl.getMethod("setV_"+4, new Class[]{String.class});
+					method4.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCYM").toString()))});
+					Method method5 = cl.getMethod("setV_"+5, new Class[]{String.class});
+					method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC").toString()))});
+					Method method6 = cl.getMethod("setV_"+6, new Class[]{String.class});
+					method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC").toString()))});
+					Method method7 = cl.getMethod("setV_"+7, new Class[]{String.class});
+					method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL").toString()))});
+					int k=8;
+					for (int j = 0; j < nf.length; j++) {
+						Method method8 = cl.getMethod("setV_"+k, new Class[]{String.class});
+						method8.invoke(l, new Object[]{list.get(i).get("XMSL"+nf[j]).toString()});
+						Method method9 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
+						method9.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("YM"+nf[j]).toString()))});
+						Method method10 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
+						method10.invoke(l, new Object[]{list.get(i).get("WCXMSL"+nf[j]).toString()});
+						Method method11 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
+						method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCYM"+nf[j]).toString()))});
+						Method method12 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
+						method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC"+nf[j]).toString()))});
+						Method method13 = cl.getMethod("setV_"+(k+5), new Class[]{String.class});
+						method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC"+nf[j]).toString()))});
+						Method method14 = cl.getMethod("setV_"+(k+6), new Class[]{String.class});
+						method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL"+nf[j]).toString()))});
+						k+=7;
+					}
+					elist.add(l);
+				}
+				elist=qddh(elist);
+				//把数据放入elist
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("全省危桥改造项目汇总表");//设置第一行 
+				eldata.setSheetName("危桥");//设置sheeet名
+				eldata.setFileName("全省危桥改造项目汇总表");//设置文件名
+				eldata.setEl(elist);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("设区市交通局",1,3,0,0));
+				et.add(new Excel_tilte("合计",1,1,1,7));
+				int sj1=8;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte(nf[i]+"年度",1,1,sj1,sj1+6));
+					sj1=sj1+7;
+				}
+				et.add(new Excel_tilte("计划项目",2,2,1,2));
+				et.add(new Excel_tilte("完工项目",2,2,3,4));
+				et.add(new Excel_tilte("完成投资(万元)",2,3,5,5));
+				et.add(new Excel_tilte("本年完成投资(万元)",2,3,6,6));
+				et.add(new Excel_tilte("完成率(%)",2,3,7,7));
+				int sj2=7;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte("计划项目",2,2,sj2+1,sj2+2));
+					et.add(new Excel_tilte("完工项目",2,2,sj2+3,sj2+4));
+					et.add(new Excel_tilte("完成投资(万元)",2,3,sj2+5,sj2+5));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+6,sj2+6));
+					et.add(new Excel_tilte("完成率(%)",2,3,sj2+7,sj2+7));
+					sj2=sj2+7;
+				}
+				et.add(new Excel_tilte("座",3,3,1,1));
+				et.add(new Excel_tilte("延米",3,3,2,2));
+				et.add(new Excel_tilte("座",3,3,3,3));
+				et.add(new Excel_tilte("延米",3,3,4,4));
+				int sj3=8;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte("座",3,3,sj3,sj3));
+					et.add(new Excel_tilte("延米",3,3,sj3+1,sj3+1));
+					et.add(new Excel_tilte("座",3,3,sj3+2,sj3+2));
+					et.add(new Excel_tilte("延米",3,3,sj3+3,sj3+3));
+					sj3=sj3+7;
+				}
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_exportmxb(eldata,response);
+				
+			}else{
+				JsonUtils.write(list, getresponse().getWriter());
+			}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+
+	public void getAbgchzb(){
+		try{
+			List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+			String tableName="abgchzb";
+			String[] arr=gcglwqgz.getXmnf().split(",");
+			String sql="select xzqhmc";
+			String in="";
+			for(int j=0;j<arr.length;j++){
+				if(j==0)
+				    in=in+"'"+arr[j]+"'";
+				else
+					in=in+",'"+arr[j]+"'";
+				sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',jh)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',jh))) jh"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wcjh)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcjh))) wcjh"+arr[j]+
+					        ",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+
+					        ",decode(sum(decode(jhnf,'"+arr[j]+"',bnwc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnwc))) bnwc"+arr[j]+""+
+					        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcl)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcl))) wcl"+arr[j]+"";
+			}
+			sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
+			System.out.println(sql);
+			list=gcybbServer.getGjxjmxbsj(sql);
+			
+			for(int i=0;i<list.size();i++){
+				HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+				double jh=0;
+				double wcjh=0;
+				double wc=0;
+				double bnwc=0;
+				String wcl="";
+				for(int j=arr.length-1;j>=0;j--){
+					jh=jh+Double.valueOf(hm.get("JH"+arr[j]).toString());
+					wcjh=wcjh+Double.valueOf(hm.get("WCJH"+arr[j]).toString());
+					wc=wc+Double.valueOf(hm.get("WC"+arr[j]).toString());
+					bnwc=bnwc+Double.valueOf(hm.get("BNWC"+arr[j]).toString());
+				}
+				if(jh!=0){
+					wcl=new BigDecimal(wcjh).divide(new BigDecimal(jh),3).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).toString(); 
+				}else{
+					wcl="0";
+				}
+			   hm.put("WCL",wcl);
+			   hm.put("JH",jh);
+			   hm.put("WCJH",wcjh);
+			   hm.put("WC",wc);
+			   hm.put("BNWC",wc);
+			}
+			if("flag".equals(flag)){
+				String[] nf = gcglwqgz.getXmnf().split(",");
+				Arrays.sort(nf);
+				List<Excel_list> elist=new ArrayList<Excel_list>();
+				int cd=(nf.length+1)*6+3;
+				NumberFormat nfs = NumberFormat.getInstance(); 
+		        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+		        nfs.setMinimumFractionDigits(2);//设置最小保留几位小数 
+		        nfs.setMaximumFractionDigits(2);//设置最大保留几位小数
+				for(int i=0;i<list.size();i++){
+					Excel_list l = new Excel_list();
+					Class cl = l.getClass();
+					Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
+					method.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
+					Method method1 = cl.getMethod("setV_"+1, new Class[]{String.class});
+					method1.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JH").toString()))});
+					Method method2 = cl.getMethod("setV_"+2, new Class[]{String.class});
+					method2.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCJH").toString()))});
+					Method method5 = cl.getMethod("setV_"+3, new Class[]{String.class});
+					method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC").toString()))});
+					Method method6 = cl.getMethod("setV_"+4, new Class[]{String.class});
+					method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC").toString()))});
+					Method method7 = cl.getMethod("setV_"+5, new Class[]{String.class});
+					method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL").toString()))});
+					int k=6;
+					for (int j = 0; j < nf.length; j++) {
+						Method method8 = cl.getMethod("setV_"+k, new Class[]{String.class});
+						method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JH"+nf[j]).toString()))});
+						Method method9 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
+						method9.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCJH"+nf[j]).toString()))});
+						Method method12 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
+						method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC"+nf[j]).toString()))});
+						Method method13 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
+						method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC"+nf[j]).toString()))});
+						Method method14 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
+						method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL"+nf[j]).toString()))});
+						k+=5;
+					}
+					elist.add(l);
+				}
+				elist=qddh(elist);
+				//把数据放入elist
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("全省安保工程项目汇总表");//设置第一行 
+				eldata.setSheetName("危桥");//设置sheeet名
+				eldata.setFileName("全省安保工程项目汇总表");//设置文件名
+				eldata.setEl(elist);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("设区市交通局",1,2,0,0));
+				et.add(new Excel_tilte("合计",1,1,1,5));
+				int sj1=6;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte(nf[i]+"年度",1,1,sj1,sj1+4));
+					sj1=sj1+5;
+				}
+				et.add(new Excel_tilte("计划(公里)",2,2,1,1));
+				et.add(new Excel_tilte("完成情况(公里)",2,2,2,2));
+				et.add(new Excel_tilte("完成投资(万元)",2,2,3,3));
+				et.add(new Excel_tilte("本年完成投资(万元)",2,2,4,4));
+				et.add(new Excel_tilte("完成率(%)",2,2,5,5));
+				int sj2=5;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte("计划(公里)",2,2,sj2+1,sj2+1));
+					et.add(new Excel_tilte("完成情况(公里)",2,2,sj2+2,sj2+2));
+					et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+3,sj2+3));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,2,sj2+4,sj2+4));
+					et.add(new Excel_tilte("完成率(%)",2,2,sj2+5,sj2+5));
+					sj2=sj2+5;
+				}
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_exportmxb(eldata,response);
+				
+			}else{
+				JsonUtils.write(list, getresponse().getWriter());
+			}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+	
 	//
 	public void getGjxjmxb(){
 		//System.out.println(gcglwqgz.getTiaojian()+"---"+gcglwqgz.getXmnf());

@@ -23,6 +23,10 @@
 	<action name="getWqgzjh" class="gcybbController" method="getWqgzjh"/>
 	<action name="getAbgcjh" class="gcybbController" method="getAbgcjh"/>
 	
-		<action name="getWqgzjy" class="gcybbController" method="getWqgzjy"/>
+	<action name="getWqgzjy" class="gcybbController" method="getWqgzjy"/>
+	<action name="getWqgzhzb" class="gcybbController" method="getWqgzhzb"/>
+	<action name="getAbgchzb" class="gcybbController" method="getAbgchzb"/>
+	
+	
  </package>
 </struts>
