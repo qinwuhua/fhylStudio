@@ -505,8 +505,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("7", "xdwh");//计划下达文号
 		attribute.put("8", "xdsj");//计划下达时间
 		attribute.put("9", "pfztz");//批复总投资
-		attribute.put("10", "bbzzj");//部补助资金
-		attribute.put("11", "sbzzj");//省补助资金
+		attribute.put("10", "sbzzj");//部补助资金
+		attribute.put("11", "bbzzj");//省补助资金
 		attribute.put("12", "ylxbh");
 		attribute.put("13", "qdmc");
 		attribute.put("14", "zdmc");
