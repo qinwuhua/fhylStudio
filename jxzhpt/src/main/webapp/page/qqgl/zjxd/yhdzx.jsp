@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -32,7 +36,8 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
+					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue"),
+					'jhsh.ghlxbh':$('#ylxbh').val()};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -82,11 +87,24 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
+		
+		function exportZjxd(){
+			var param='jhsh.xmlx=4&xdzt=1&xzqhdm='+getxzqhdm('xzqh')+'&xmmc='+$('#xmmc').val()
+				+'&ylxbh='+$('#ylxbh').val()+'&tsdq='+$('#tsdq').combo("getText")+'&jsdj='+$('#jsdj').combobox("getValue")
+				+'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue")+
+				'&jhsh.ghlxbh='+$('#ylxbh').val();
+			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
+		}
 	</script>
+	<style type="text/css">
+		TD {font-size: 12px;}
+		a{text-decoration:none;}
+		.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;养护大中修项目</div>
+		<div id="p_top">计划管理>&nbsp;计划资金下达>&nbsp;养护大中修项目</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
@@ -96,29 +114,37 @@
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       					<p style="margin:8px 0px 8px 20px;">
-       						<span>行政区划：</span>
-       						<select id="xzqh" style="width:170px;"></select>
-       						<span>&nbsp;特殊地区：</span>
-							<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select>
-							<span>&nbsp;技术等级:</span>
-							<select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select>
-							<span>&nbsp;项目名称：</span>
-       						<input name="xmmc" id="xmmc" style="width:100px;" type="text"/>
-       					</p>
-       					<p style="margin:8px 0px 8px 20px;">
-       						<span>项目年份：</span>
-        					<select id="xmnf" style="width: 60px;"></select>
-       						<span>原路线编号：</span>
-       						<input name="ylxbh" id="ylxbh" style="width:100px;" type="text"/>
-       						<span>&nbsp;补助历史：</span>
-								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       					<tr>
+       						<td>项目年份：</td>
+       						<td><select id="xmnf" style="width: 70px;"></select></td>
+       						<td align="right">行政区划：</td>
+       						<td><select id="xzqh" style="width:124px;"></select></td>
+       						<td align="right">特殊地区：</td>
+       						<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:124px;"></select></td>
+       						<td align="right">技术等级：</td>
+       						<td style="width: 300px;"><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+       					</tr>
+       					<tr style="padding-top: 10px;margin-top: 10px;">
+       						<td>补助历史：</td>
+       						<td>
+       							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:70px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
-							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-       					</p>
+       						</td>
+       						<td align="right">项目名称：</td>
+       						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
+       						<td align="right">原路线编号：</td>
+       						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
+       						<td colspan="2">
+       							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhshZjzj(7)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+       						</td>
+       					</tr>
+       				</table>
        				</div>
        			</fieldset>
        		</td>

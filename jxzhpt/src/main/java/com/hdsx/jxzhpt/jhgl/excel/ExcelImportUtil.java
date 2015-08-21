@@ -181,7 +181,10 @@ public class ExcelImportUtil {
 	 * @return 值
 	 */
 	private static String getCellValue(HSSFCell cell) {  
-        String cellValue = "";  
+        String cellValue = "";
+        if(cell==null){
+        	return null;
+        }
         switch (cell.getCellType()) {  
         case HSSFCell.CELL_TYPE_STRING:  
             cellValue = cell.getRichStringCellValue().getString().trim();  
@@ -204,6 +207,6 @@ public class ExcelImportUtil {
         default:  
             cellValue = "";  
         }  
-        return cellValue;  
+        return cellValue;
     }  
 }

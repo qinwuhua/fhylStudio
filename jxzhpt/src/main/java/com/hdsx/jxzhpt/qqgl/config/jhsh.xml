@@ -53,6 +53,12 @@
 				<if test="jhsh.xdzt>=0">
 					and j.xdzt=${jhsh.xdzt}
 				</if>
+				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+					and l.xjsdj =#{jhsh.jsdj}
+				</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+					and l.lsjl=#{jhsh.lsjl}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -115,6 +121,12 @@
 				</if>
 				<if test="jhsh.xdzt>=0">
 					and j.xdzt=${jhsh.xdzt}
+				</if>
+				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+					and l.xjsdj =#{jhsh.jsdj}
+				</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+					and l.lsjl=#{jhsh.lsjl}
 				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
@@ -262,6 +274,12 @@
 		<if test="jhsh.xdzt>=0">
 			and j.xdzt=${jhsh.xdzt}
 		</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+			and l.xjsdj =#{jhsh.jsdj}
+		</if>
+		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+			and l.lsjl=#{jhsh.lsjl}
+		</if>
 	</select>
 	<select id="queryJhshCountLmgz" parameterType="java.util.Map" resultType="int">
 		select count(j.xmbm) from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm where 1=1
@@ -303,6 +321,12 @@
 		</if>
 		<if test="jhsh.xdzt>=0">
 			and j.xdzt=${jhsh.xdzt}
+		</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+			and l.xjsdj =#{jhsh.jsdj}
+		</if>
+		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+			and l.lsjl=#{jhsh.lsjl}
 		</if>
 	</select>
 	

@@ -35,7 +35,7 @@
 		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
-			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
+			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ghlxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
 					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue"),
 					'xmbm':$('#xmnf').combobox("getValue")};
@@ -194,21 +194,27 @@ text-decoration:none;
        				</legend>
        				<div>
        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+						<tr height="32">
+							<td>项目年份：</td>
+        					<td><select id="xmnf" style="width: 70px;"></select></td>
        						<td>行政区划：</td>
        						<td><select id="xzqh" style="width:115px;"></select></td>
        						<td align="right">特殊地区：</td>
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
 							<td>技术等级:</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-       						<td>项目年份：</td>
-        					<td><select id="xmnf" style="width: 70px;"></select></td>
-        					<td colspan="2">
+							<td colspan="2">
         						<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
         					</td>
        					</tr>
        					<tr height="32">
+       						<td>下达状态：</td>
+       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
+       							<option value="-1">全部</option>
+       							<option value="0" selected="selected">未下达</option>
+       							<option value="1">已下达</option>
+       						</select></td>
        						<td>项目名称：</td>
        						<td><input name="xmmc" id="xmmc" style="width:110px;" type="text"/></td>
        						<td>原路线编号：</td>
@@ -219,12 +225,6 @@ text-decoration:none;
 								<option value="是">是</option>
 								<option value="否">否</option>
 							</select></td>
-							<td>下达状态：</td>
-       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
-       							<option value="-1">全部</option>
-       							<option value="0" selected="selected">未下达</option>
-       							<option value="1">已下达</option>
-       						</select></td>
 							<td colspan="2">
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>

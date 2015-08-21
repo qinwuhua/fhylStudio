@@ -87,6 +87,35 @@ public class Jhsh {
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
 	private String kgzt;//开工竣工
+	//资金下达字段
+	private String xdnf;
+	private String xdzj;
+	private String btzzj;
+	private String stz;
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBtzzj() {
+		return btzzj;
+	}
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getKgzt() {
 		return kgzt;
 	}

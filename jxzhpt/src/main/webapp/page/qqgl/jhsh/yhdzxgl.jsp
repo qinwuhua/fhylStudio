@@ -299,22 +299,23 @@
        				<div>
        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
        						<tr height="32">
-       							<td>管养单位：</td>
+       							<td>项目年份：</td>
+       							<td><select id="xmnf" style="width: 70px;"></select></td>
+       							<td>&nbsp;管养单位：</td>
        							<td><select id="gydw" style="width:170px;"></select></td>
        							<td>&nbsp;行政区划：</td>
-       							<td><select id="xzqh" style="width:150px;"></select></td>
-       							<td>&nbsp;项目年份：</td>
-       							<td><select id="xmnf" style="width: 70px;"></select></td>
+       							<td><select id="xzqh" style="width:124px;"></select></td>
        							<td>&nbsp;技术等级:</td>
        							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
        						</tr>
        						<tr height="32">
-       							<td>特殊地区：</td>
+       							<td><span id="ztspan">上报状态</span>：</td>
+       							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
+       							<td>&nbsp;特殊地区：</td>
        							<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
        							<td>&nbsp;项目名称：</td>
-       							<td><input name="xmmc" id="xmmc" style="width:100px;" type="text"/></td>
-       							<td>&nbsp;<span id="ztspan">上报状态</span>：</td>
-       							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
+       							<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
+       							
        							<td>&nbsp;历史记录：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 81px;">
@@ -332,9 +333,9 @@
 									<img id="sc" name="dishi" alt="删除" onclick="deleteYhdzx()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 					                <img id="th" name="sheng" alt="退回" onclick="" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
-					                <img id="dcExcel" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-					                <img id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-					                <img id="dcmoban" onclick="exportTemplet('Lxsh_Yhdzx')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Yhdzx')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
        							</td>
        						</tr>
        					</table>

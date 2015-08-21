@@ -977,7 +977,7 @@ public class LxshController extends BaseActionSupport{
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("sjgz".equals(lxsh.getXmlx())){
-				xmbt="升级改造";
+				xmbt="新建";
 				elist=lxshServer.querylxshSjgz(lxsh);
 			}
 			if("lmgz".equals(lxsh.getXmlx())){
@@ -1048,7 +1048,7 @@ public class LxshController extends BaseActionSupport{
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			if("sjgz".equals(lxsh.getXmlx())){
-				xmbt="升级改造";
+				xmbt="改建";
 				elist=lxshServer.querykxxSjgz(lxsh);
 				et.clear();
 				et.add(new Excel_tilte("项目编码",1,1,0,0));
