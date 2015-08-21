@@ -95,6 +95,7 @@ function Delyb(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
+					shezhi();
 					$("#ybgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');
@@ -149,6 +150,18 @@ function tjhslyyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
+	
 	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglhsly.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglhsly.bywcdc="+$("#tj_bywcdc").val()+"&gcglhsly.bywcjc="+$("#tj_bywcjc").val()+"&gcglhsly.bywcmc="+$("#tj_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
@@ -164,6 +177,7 @@ function tjhslyyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -202,7 +216,17 @@ function xghslyyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglhsly.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 		+"&gcglhsly.bywcdc="+$("#xg_bywcdc").val()+"&gcglhsly.bywcjc="+$("#xg_bywcjc").val()+"&gcglhsly.bywcmc="+$("#xg_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
@@ -218,6 +242,7 @@ function xghslyyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');

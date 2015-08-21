@@ -98,7 +98,7 @@ function Delyb(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
-					parent.shezhi();
+					shezhi();
 					$("#ybgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');
@@ -155,7 +155,17 @@ function tjyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-	
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var data = "gcglyhdzx.wc_btz="+$("#tj_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#tj_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#tj_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#tj_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#tj_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#tj_kgdl").val()
@@ -209,7 +219,17 @@ function xgyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-	
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#xg_wc_btz").val();
+	var stz=$("#xg_wc_stz").val();
+	var qttz=$("#xg_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var data = "gcglyhdzx.wc_btz="+$("#xg_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#xg_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#xg_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#xg_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#xg_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#xg_kgdl").val()
@@ -628,7 +648,7 @@ function thsjyb(index){
 	}	
 }
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM;
+	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM+"&gcglwqgz.tablename=gcgl_yhdzx";
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',
@@ -651,6 +671,10 @@ function shezhi(){
 				$("#jhxdzj").text('0');
 			else
 				$("#jhxdzj").text(msg.zxdzj);
+			if(msg.zwczj=='')
+				$("#zwczj").text('0');
+			else
+				$("#zwczj").text(msg.zwczj);
 		}
 	});	
 }

@@ -61,7 +61,7 @@ function autoCompleteLXBM(){
 	var url = "/jxzhpt/xmjck/wqgzGpsroad.do";
 	$("#qlbh").autocomplete(url, {
 		multiple : false,
-		minChars :2,
+		minChars :4,
 		multipleSeparator : ' ',
 		mustMatch: true,
   		cacheLength : 0,

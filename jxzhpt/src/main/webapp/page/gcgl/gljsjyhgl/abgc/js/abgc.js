@@ -77,6 +77,7 @@ function Delyb(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
+					shezhi();
 					$("#ybgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');
@@ -129,9 +130,20 @@ function tjabgcyb(){
 		alert("请填入本月完成公里");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#tj_wc_btz").val();
+	var stz=$("#tj_wc_stz").val();
+	var qttz=$("#tj_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var data = "gcglabgc.wc_btz="+$("#tj_wc_btz").val()+"&gcglabgc.wc_stz="+$("#tj_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglabgc.bywc_c="+$("#tj_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+$("#tj_kgdl").val()+"&gcglabgc.qksm="+$("#tj_qksm").val()+"&gcglabgc.wcqk="+$("#tj_wcqk").text()
+	+"&gcglabgc.bywc_c="+0+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+0+"&gcglabgc.qksm="+$("#tj_qksm").val()+"&gcglabgc.wcqk="+$("#tj_wcqk").text()
 	+"&gcglabgc.sbsj="+sbsj+"&gcglabgc.sbyf="+$("#tj_sbyf").val()+"&gcglabgc.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
@@ -143,7 +155,7 @@ function tjabgcyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -177,9 +189,20 @@ function xgabgcyb(){
 		alert("请填入本月完成公里");
 		return;
 	}
+	var zwczj=parent.$("#zwczj").html(); 
+	var btz=$("#xg_wc_btz").val();
+	var stz=$("#xg_wc_stz").val();
+	var qttz=$("#xg_wc_qttz").val();
+	var zbfzj=parent.$("#zbfzj").html(); 
+	var zbf=parseFloat(zbfzj);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	if(zbf<zwc){
+		alert("总完成资金不能大于总拨付资金");
+		return;
+	}
 	var data = "gcglabgc.wc_btz="+$("#xg_wc_btz").val()+"&gcglabgc.wc_stz="+$("#xg_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglabgc.bywc_c="+$("#xg_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#xg_bywc_gl").val()+"&gcglabgc.kgdl="+$("#xg_kgdl").val()+"&gcglabgc.qksm="+$("#xg_qksm").val()+"&gcglabgc.wcqk="+$("#xg_wcqk").text()
+	+"&gcglabgc.bywc_c="+0+"&gcglabgc.bywc_gl="+$("#xg_bywc_gl").val()+"&gcglabgc.kgdl="+0+"&gcglabgc.qksm="+$("#xg_qksm").val()+"&gcglabgc.wcqk="+$("#xg_wcqk").text()
 	+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.sbyf="+$("#xg_sbyf").val();
 	//alert(data);
 	$.ajax({
@@ -191,7 +214,7 @@ function xgabgcyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -565,7 +588,7 @@ function showYBlist(){
 	}
 	
 	function shezhi(){
-		var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
+		var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id+"&gcglwqgz.tablename=gcgl_abgc";
 		$.ajax({
 			type:'post',
 			url:'../../../../gcgl/selectWqgzbzzj.do',
@@ -588,6 +611,10 @@ function showYBlist(){
 					$("#jhxdzj").text('0');
 				else
 					$("#jhxdzj").text(msg.zxdzj);
+				if(msg.zwczj=='')
+					$("#zwczj").text('0');
+				else
+					$("#zwczj").text(msg.zwczj);
 			}
 		});	
 	}
