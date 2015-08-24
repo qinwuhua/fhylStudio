@@ -171,7 +171,7 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 70px;"></select></td>
         						<td>行政区划：</td>
         						<td><select id="xzqh" style="width:124px;"></select></td>
-        						<td>特殊地区：</td>
+        						<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
 								<td>技术等级:</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
@@ -191,7 +191,7 @@ text-decoration:none;
 	       						</td>
 	       						<td>项目名称：</td>
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
-        						<td>路线编码：</td>
+        						<td>原路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
         						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
@@ -231,14 +231,14 @@ text-decoration:none;
 			<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						工可批复文号</td>
+						批复文号</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="plgkpfwh" type="text"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						工可批复文件</td>
+						批复文件</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 							<tbody id="sjpfTable"></tbody>

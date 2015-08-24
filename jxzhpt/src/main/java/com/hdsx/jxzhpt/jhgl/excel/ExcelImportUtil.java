@@ -166,11 +166,13 @@ public class ExcelImportUtil {
 	 */
 	public static Object getData(Object obj,Entry<String,String> entry,HSSFRow row) throws Exception{
 		HSSFCell cell = row.getCell(new Integer(entry.getKey()));
-		Object cellValue = getCellValue(cell);
-		String getMethodName="set"+entry.getValue().substring(0,1).toUpperCase()+entry.getValue().substring(1);
-		Method method = obj.getClass().getMethod(getMethodName,cellValue.getClass());
-		if(cellValue!=null && !cellValue.toString().equals("")){
-			Object invoke = method.invoke(obj, cellValue);
+		if(cell!=null){
+			Object cellValue = getCellValue(cell);
+			String getMethodName="set"+entry.getValue().substring(0,1).toUpperCase()+entry.getValue().substring(1);
+			Method method = obj.getClass().getMethod(getMethodName,cellValue.getClass());
+			if(cellValue!=null && !cellValue.toString().equals("")){
+				Object invoke = method.invoke(obj, cellValue);
+			}
 		}
 		return obj;
 	}

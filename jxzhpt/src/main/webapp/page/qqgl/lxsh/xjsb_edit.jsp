@@ -316,7 +316,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>里程：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
+					<input id="lc" name="lc" value="0" style="font-size: 14px;width: 100px;">&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 35px;">

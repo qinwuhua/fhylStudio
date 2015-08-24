@@ -203,7 +203,7 @@ text-decoration:none;
 		$("#lc").html(zlc);
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		cesuan2();
+		//cesuan2();
 		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 		if($("#qdzh").val()!='')
 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
@@ -243,7 +243,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="lc" name="lc" style="font-size: 14px">0</span>&nbsp;公里
+					<input id="lc" name="lc" style="font-size: 14px;width: 100px;" type="text"/>&nbsp;公里
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
