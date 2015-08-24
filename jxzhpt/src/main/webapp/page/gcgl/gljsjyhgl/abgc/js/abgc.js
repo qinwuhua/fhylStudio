@@ -136,11 +136,21 @@ function tjabgcyb(){
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	if(stz!='0'){
+		alert("安保工程项目没有省投资");
 		return;
 	}
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
+	if(parent.pfbtz<zbtz){
+		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		return;
+	}
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		return;
+	}
+
 	var data = "gcglabgc.wc_btz="+$("#tj_wc_btz").val()+"&gcglabgc.wc_stz="+$("#tj_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglabgc.bywc_c="+0+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+0+"&gcglabgc.qksm="+$("#tj_qksm").val()+"&gcglabgc.wcqk="+$("#tj_wcqk").text()
@@ -192,12 +202,21 @@ function xgabgcyb(){
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
+	if(stz!='0'){
+		alert("安保工程项目没有省投资");
+		return;
+	}
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
+	if(parent.pfbtz<zbtz){
+		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		return;
+	}
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	var data = "gcglabgc.wc_btz="+$("#xg_wc_btz").val()+"&gcglabgc.wc_stz="+$("#xg_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#xg_wc_qttz").val()
@@ -586,8 +605,15 @@ function showYBlist(){
 			});	
 		}	
 	}
-	
+	var pfztz=0;
+	var pfbtz=0;
+	var pfstz=0;
+	var zwcbtz=0;
 	function shezhi(){
+		pfztz=parent.obj1.pfztz;
+		pfbtz=parent.obj1.jhsybzje;
+		$("#pfztz").text(pfztz);
+		$("#pfbtz").text(pfbtz);
 		var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id+"&gcglwqgz.tablename=gcgl_abgc";
 		$.ajax({
 			type:'post',
@@ -615,6 +641,10 @@ function showYBlist(){
 					$("#zwczj").text('0');
 				else
 					$("#zwczj").text(msg.zwczj);
+				if(msg.zwcbtz=='')
+					$("#zwcbtz").text('0');
+				else
+					$("#zwcbtz").text(msg.zwcbtz);
 			}
 		});	
 	}

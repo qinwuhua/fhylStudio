@@ -20,7 +20,10 @@
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
+		var pfztz=0;
 		function shezhi(){
+			pfztz=parent.obj1.PFZTZ;
+			$("#pfztz").text(pfztz);
 			var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM+"&gcglwqgz.tablename=gcgl_gcgzsj";
 			$.ajax({
 				type:'post',
@@ -74,6 +77,7 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
+                		项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，

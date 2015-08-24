@@ -156,7 +156,7 @@ a:active {
                                 <table>
                                 <tr>
                                 <td style="width: 157px;">部投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
-                                <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
+                                <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)' value="0"/><font color='red' size='2'>*&nbsp;</font></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 </tr>
                                 </table>

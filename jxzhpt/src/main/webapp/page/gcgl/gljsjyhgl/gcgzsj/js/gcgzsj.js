@@ -161,8 +161,8 @@ function tjgcgzsjyb(){
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	
@@ -202,8 +202,8 @@ function xggcgzsjyb(){
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz)-parseFloat(parent.obj.bywctze);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	

@@ -153,7 +153,7 @@
 		select m.*,rownum rn from (
 		select 
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
-		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm
 		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select decode(max(jhxdwh),null,'-',max(jhxdwh)) jhxdwh,xmid from plan_zjxd group by xmid) zj on t1.id=zj.xmid
@@ -249,10 +249,10 @@
 	 	select sum(btzzj)+sum(stz) zxdzj from PLAN_ZJXD where xmid=#{id}
 	 </select>
 	 <select id="selectwqzj5" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj from ${tablename} where jhid=#{id}
+	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz from ${tablename} where jhid=#{id}
 	 </select>
 	 <select id="selectwqzj6" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(bywctze) zwczj from ${tablename} where jhid=#{id}
+	 	select sum(bywctze) zwczj,'0' zwcbtz,'0' zwcstz from ${tablename} where jhid=#{id}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglwqgz" >
 	 update PLAN_WQGZ set sjzt=#{sjzt} where id=#{jhid}
@@ -277,7 +277,7 @@
 		select m.*,rownum rn from (
 		select 
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
-		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid

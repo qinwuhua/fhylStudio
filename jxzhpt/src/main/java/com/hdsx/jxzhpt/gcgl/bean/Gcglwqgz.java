@@ -140,7 +140,28 @@ public class Gcglwqgz implements Serializable {
 	private String zljdwj;
 	private String jhqlqc;
 	private String jhqlqk;
+	private String zwcbtz;
+	private String zwcstz;
+	private String shengbz;
 	
+	public String getShengbz() {
+		return shengbz;
+	}
+	public void setShengbz(String shengbz) {
+		this.shengbz = shengbz;
+	}
+	public String getZwcstz() {
+		return zwcstz;
+	}
+	public void setZwcstz(String zwcstz) {
+		this.zwcstz = zwcstz;
+	}
+	public String getZwcbtz() {
+		return zwcbtz;
+	}
+	public void setZwcbtz(String zwcbtz) {
+		this.zwcbtz = zwcbtz;
+	}
 	public String getTablename() {
 		return tablename;
 	}

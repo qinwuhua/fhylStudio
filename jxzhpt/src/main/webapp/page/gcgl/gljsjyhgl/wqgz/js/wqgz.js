@@ -161,9 +161,18 @@ function tjwqgzyb(){
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
+	if(stz!='0'){
+		alert("危桥改造项目没有省投资");
+		return;
+	}
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
+	if(parent.pfbtz<zbtz){
+		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		return;
+	}
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	var myDate = new Date();
@@ -236,11 +245,38 @@ function tjwqgzyb1(){
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
-		return;
+	if(parent.sfylrbwqk=='是'){
+		if(stz!='0'){
+			alert("部危桥改造项目没有省投资");
+			return;
+		}
+		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+		var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
+		if(parent.pfbtz<zbtz){
+			alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+			return;
+		}
+		if(parent.pfztz<zwc){
+			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			return;
+		}
+	}else{
+		if(btz!='0'){
+			alert("省危桥改造项目没有部投资");
+			return;
+		}
+		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+		var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(stz);
+		if(parent.pfstz<zbtz){
+			alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元");
+			return;
+		}
+		if(parent.pfztz<zwc){
+			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			return;
+		}
 	}
+	
 	
 	var myDate = new Date();
 	var y = myDate.getFullYear();
@@ -315,12 +351,21 @@ function xgwqgzyb(){
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
+	if(stz!='0'){
+		alert("危桥改造项目没有省投资");
+		return;
+	}
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
+	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
+	if(parent.pfbtz<zbtz){
+		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		return;
+	}
+	if(parent.pfztz<zwc){
+		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	
@@ -380,12 +425,38 @@ function xgwqgzyb1(){
 	var stz=$("#xg_wc_stz").val();
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
-	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
-	if(zbf<zwc){
-		alert("总完成资金不能大于总拨付资金");
-		return;
+	if(parent.sfylrbwqk=='是'){
+		if(stz!='0'){
+			alert("部危桥改造项目没有省投资");
+			return;
+		}
+		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+		var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
+		if(parent.pfbtz<zbtz){
+			alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+			return;
+		}
+		if(parent.pfztz<zwc){
+			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			return;
+		}
+	}else{
+		if(btz!='0'){
+			alert("省危桥改造项目没有部投资");
+			return;
+		}
+		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+		var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_stz)+parseFloat(stz);
+		if(parent.pfstz<zbtz){
+			alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元");
+			return;
+		}
+		if(parent.pfztz<zwc){
+			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			return;
+		}
 	}
+	
 	
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()

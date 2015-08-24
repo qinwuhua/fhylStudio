@@ -372,8 +372,11 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		gcglwqgz.setNxdzj(gcglwqgz3.getNxdzj());
 		if(gcglwqgz4!=null)
 			gcglwqgz.setZxdzj(gcglwqgz4.getZxdzj());
-		if(gcglwqgz5!=null)
+		if(gcglwqgz5!=null){
 			gcglwqgz.setZwczj(gcglwqgz5.getZwczj());
+			gcglwqgz.setZwcbtz(gcglwqgz5.getZwcbtz());
+			gcglwqgz.setZwcstz(gcglwqgz5.getZwcstz());
+		}
 		return gcglwqgz;
 	}
 

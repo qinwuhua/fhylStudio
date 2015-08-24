@@ -20,7 +20,16 @@
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
+		var pfztz=0;
+		var pfbtz=0;
+		var pfstz=0;
 		function shezhi(){
+			pfztz=parent.obj1.PFZTZ;
+			pfbtz=parent.obj1.BBZZJ;
+			pfstz=parent.obj1.SBZZJ;
+			$("#pfztz").text(pfztz);
+			$("#pfbtz").text(pfbtz);
+			$("#pfstz").text(pfstz);
 			var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM+"&gcglwqgz.tablename=gcgl_sh";
 			$.ajax({
 				type:'post',
@@ -48,6 +57,14 @@
 						$("#zwczj").text('0');
 					else
 						$("#zwczj").text(msg.zwczj);
+					if(msg.zwcbtz=='')
+						$("#zwcbtz").text('0');
+					else
+						$("#zwcbtz").text(msg.zwcbtz);
+					if(msg.zwcstz=='')
+						$("#zwcstz").text('0');
+					else
+						$("#zwcstz").text(msg.zwcstz);
 				}
 			});	
 		}
@@ -75,11 +92,14 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
             <tr>
                  <td height="30" align="left" style="font-size: 12px;">
+                 项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
+                	  其中部投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="pfstz" style="color: Red; font-weight: bold;"></span>】万元,
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
-                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元。
+                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元，
+                    其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="zwcstz" style="color: Red; font-weight: bold;"></span>】万元。
                 </td>
             </tr>
             <tr>

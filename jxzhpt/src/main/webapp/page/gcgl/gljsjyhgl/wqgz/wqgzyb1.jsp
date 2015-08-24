@@ -20,7 +20,30 @@
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
+		var pfztz=0;
+		var pfbtz=0;
+		var pfstz=0;
+		var zwcbtz=0;
+		var sfylrbwqk='';
+		
 		function shezhi(){
+			pfztz=parent.obj1.pfztz;
+			pfbtz=parent.obj1.jhsybzje;
+			pfstz=parent.obj1.shengbz;
+			sfylrbwqk=parent.obj1.sfylrbwqk;
+			if(parent.obj1.sfylrbwqk=='是'){
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfbtz);
+				$("#btext").attr('style','');
+				$("#stext").attr('style','display: none');
+			}else{
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfstz);
+				$("#btext").attr('style','display: none');
+				$("#stext").attr('style','');
+			}
+			
+			
 			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id+"&gcglwqgz.tablename=gcgl_wqgz";
 			$.ajax({
 				type:'post',
@@ -48,6 +71,21 @@
 						$("#zwczj").text('0');
 					else
 						$("#zwczj").text(msg.zwczj);
+					if(parent.obj1.sfylrbwqk=='是'){
+						if(msg.zwcbtz=='')
+							$("#zwcbtz").text('0');
+						else
+							$("#zwcbtz").text(msg.zwcbtz);
+						$("#btext1").attr('style','');
+						$("#stext1").attr('style','display: none');
+					}else{
+						if(msg.zwcstz=='')
+							$("#zwcbtz").text('0');
+						else
+							$("#zwcbtz").text(msg.zwcstz);
+						$("#btext1").attr('style','display: none');
+						$("#stext1").attr('style','');
+					}
 				}
 			});	
 		}
@@ -75,11 +113,15 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">         
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
+                		项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
+                	   其中<span id='btext' style="display: none">部</span><span id='stext' style="display: none">省</span>投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
-                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元。
+                    累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元，
+                    其中<span id='btext1' style="display: none">部</span><span id='stext1' style="display: none">省</span>投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。
+                    。
                 </td>
             </tr>
             <tr>
