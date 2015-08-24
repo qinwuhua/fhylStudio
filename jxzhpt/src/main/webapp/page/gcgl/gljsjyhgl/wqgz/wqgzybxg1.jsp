@@ -83,6 +83,34 @@
 			$("#xbgz").val(data.xbgz);
 			$("#sbjg").val(data.sbjg);
 			getYuefen();
+			
+			if(parent.parent.obj1.sfylrbwqk=='是'){
+				pfztz=parent.parent.obj1.pfztz;
+				pfbtz=parent.parent.obj1.jhsybzje;
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfbtz);
+				var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+				$("#zwczj").text(zwczj);
+				var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+				$("#zwcbtz").text(zwcbtz);
+				$("#btext").attr('style','');
+				$("#stext").attr('style','display: none');
+				$("#btext1").attr('style','');
+				$("#stext1").attr('style','display: none');
+			}else{
+				pfztz=parent.parent.obj1.pfztz;
+				pfbtz=parent.parent.obj1.shengbz;
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfbtz);
+				var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+				$("#zwczj").text(zwczj);
+				var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+				$("#zwcbtz").text(zwcbtz);
+				$("#btext").attr('style','display: none');
+				$("#stext").attr('style','');
+				$("#btext1").attr('style','display: none');
+				$("#stext1").attr('style','');
+			}
 		});
 		function check(str){
 			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;

@@ -80,6 +80,15 @@
 			$("#xg_sbyf").val(data.sbyf);
 			$("#xg_wcqk").text(data.wcqk);
 			getYuefen();
+			
+			pfztz=parent.parent.obj1.pfztz;
+			pfbtz=parent.parent.obj1.jhsybzje;
+			$("#pfztz").text(pfztz);
+			$("#pfbtz").text(pfbtz);
+			var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+			$("#zwczj").text(zwczj);
+			var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+			$("#zwcbtz").text(zwcbtz);
 		});
 	function check(str){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -151,7 +160,13 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-
+			<tr>
+                      	<td colspan="6" >
+                      	项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
+              	   		其中部投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，
+						除去本月，累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
+                  		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。
+                      	</td>
             <tr>
                 <td>
                     <br />

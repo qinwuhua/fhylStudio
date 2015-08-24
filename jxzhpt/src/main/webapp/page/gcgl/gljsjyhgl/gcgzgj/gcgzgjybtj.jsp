@@ -66,6 +66,16 @@
 		$("#tj_sbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		$("#tj_sbsj").text(sbsj);
 		getYuefen();
+		
+		pfztz=parent.parent.obj1.PFZTZ;
+		pfbtz=parent.parent.obj1.BBZZJ;
+		pfstz=parent.parent.obj1.SBZZJ;
+		$("#pfztz").text(pfztz);
+		$("#pfbtz").text(pfbtz);
+		$("#pfstz").text(pfstz);
+		$("#zwczj").text(parent.$("#zwczj").text());
+		$("#zwcbtz").text(parent.$("#zwcbtz").text());
+		$("#zwcstz").text(parent.$("#zwcstz").text());
 	});
 function check(str){
 	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -138,7 +148,14 @@ text-decoration: none;
 <body>
 <div style="text-align: left; font-size: 12px; margin: 0px;">
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-
+		<tr>
+                  	<td colspan="6" >
+                  	 项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
+          	  		其中部投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="pfstz" style="color: Red; font-weight: bold;"></span>】万元,
+					除去本月，累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
+              		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="zwcstz" style="color: Red; font-weight: bold;"></span>】万元。
+                  	</td>
+                  </tr>
        <tr>
                 <td>
                     <br />

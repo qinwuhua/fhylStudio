@@ -121,7 +121,6 @@ a:active {
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元，
                     其中<span id='btext1' style="display: none">部</span><span id='stext1' style="display: none">省</span>投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。
-                    。
                 </td>
             </tr>
             <tr>

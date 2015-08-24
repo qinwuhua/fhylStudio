@@ -85,6 +85,15 @@
 			$("#tj_wc_stz").val(data.wcstz);
 			$("#tj_wc_qttz").val(data.wcqttz);
 			getYuefen();
+			
+			pfztz=parent.parent.obj1.ztz;
+			pfbtz=parent.parent.obj1.zytz;
+			$("#pfztz").text(pfztz);
+			$("#pfbtz").text(pfbtz);
+			var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+			$("#zwczj").text(zwczj);
+			var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+			$("#zwcbtz").text(zwcbtz);
 		});
 	function check(str){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;

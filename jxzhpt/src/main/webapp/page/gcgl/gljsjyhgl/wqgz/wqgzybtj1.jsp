@@ -65,6 +65,34 @@
 			$("#tj_sbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 			$("#tj_sbsj").text(sbsj);
 			getYuefen();
+			
+			if(parent.parent.obj1.sfylrbwqk=='是'){
+				pfztz=parent.parent.obj1.pfztz;
+				pfbtz=parent.parent.obj1.jhsybzje;
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfbtz);
+				//var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+				$("#zwczj").text(parent.$("#zwczj").html());
+				//var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+				$("#zwcbtz").text(parent.$("#zwcbtz").html());
+				$("#btext").attr('style','');
+				$("#stext").attr('style','display: none');
+				$("#btext1").attr('style','');
+				$("#stext1").attr('style','display: none');
+			}else{
+				pfztz=parent.parent.obj1.pfztz;
+				pfbtz=parent.parent.obj1.shengbz;
+				$("#pfztz").text(pfztz);
+				$("#pfbtz").text(pfbtz);
+				//var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+				$("#zwczj").text(parent.$("#zwczj").html());
+				//var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
+				$("#zwcbtz").text(parent.$("#zwcbtz").html());
+				$("#btext").attr('style','display: none');
+				$("#stext").attr('style','');
+				$("#btext1").attr('style','display: none');
+				$("#stext1").attr('style','');
+			}
 		});
 	function check(str){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -136,7 +164,14 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-
+		<tr>
+                        	<td colspan="6" >
+                        	项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
+                	   		其中<span id='btext' style="display: none">部</span><span id='stext' style="display: none">省</span>投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，
+							除去本月，累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元，
+                    		其中<span id='btext1' style="display: none">部</span><span id='stext1' style="display: none">省</span>投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。
+                        	</td>
+                        </tr>
             <tr>
                 <td>
                     <br />

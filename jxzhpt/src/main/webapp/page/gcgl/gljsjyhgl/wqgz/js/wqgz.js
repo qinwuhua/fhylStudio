@@ -168,11 +168,13 @@ function tjwqgzyb(){
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
 	if(parent.pfbtz<zbtz){
-		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+		}else
 		return;
 	}
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
 		return;
 	}
 	var myDate = new Date();
@@ -253,11 +255,13 @@ function tjwqgzyb1(){
 		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
 		var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
 		if(parent.pfbtz<zbtz){
-			alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+			if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+			}else
 			return;
 		}
 		if(parent.pfztz<zwc){
-			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+			}else
 			return;
 		}
 	}else{
@@ -268,11 +272,15 @@ function tjwqgzyb1(){
 		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
 		var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(stz);
 		if(parent.pfstz<zbtz){
-			alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元");
+			if(confirm("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗")){
+			}else
+			//alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
 			return;
 		}
 		if(parent.pfztz<zwc){
-			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+			}else
+			//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 			return;
 		}
 	}
@@ -344,10 +352,6 @@ function xgwqgzyb(){
 		alert("请您填入截至开工段落");
 		return;
 	}
-	if($("#xg_sbyf").val()==''||$("#xg_sbyf").val()==null){
-		alert("请您等待上级拨付车购税再上报");
-		return;
-	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
@@ -361,11 +365,15 @@ function xgwqgzyb(){
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
 	if(parent.pfbtz<zbtz){
-		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+		}else
+		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
+		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
 	
@@ -416,10 +424,6 @@ function xgwqgzyb1(){
 		alert("请您填入截至开工段落");
 		return;
 	}
-	if($("#xg_sbyf").val()==''||$("#xg_sbyf").val()==null){
-		alert("请您等待上级拨付车购税再上报");
-		return;
-	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
@@ -433,11 +437,15 @@ function xgwqgzyb1(){
 		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
 		var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
 		if(parent.pfbtz<zbtz){
-			alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+			if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+			}else
+			//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 			return;
 		}
 		if(parent.pfztz<zwc){
-			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+			}else
+			//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 			return;
 		}
 	}else{
@@ -448,11 +456,11 @@ function xgwqgzyb1(){
 		var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
 		var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_stz)+parseFloat(stz);
 		if(parent.pfstz<zbtz){
-			alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元");
+			alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
 			return;
 		}
 		if(parent.pfztz<zwc){
-			alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+			alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 			return;
 		}
 	}

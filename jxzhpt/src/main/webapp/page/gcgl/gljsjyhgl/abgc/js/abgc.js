@@ -143,11 +143,15 @@ function tjabgcyb(){
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
 	if(parent.pfbtz<zbtz){
-		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+		}else
+		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
+		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
 
@@ -212,11 +216,15 @@ function xgabgcyb(){
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
 	if(parent.pfbtz<zbtz){
-		alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元");
+		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
+		}else
+		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
+		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
 	var data = "gcglabgc.wc_btz="+$("#xg_wc_btz").val()+"&gcglabgc.wc_stz="+$("#xg_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#xg_wc_qttz").val()
