@@ -47,9 +47,9 @@ text-decoration:none;
 				$("#dfzc").html(msg.dfzc);
 				$("#lxmc").html(msg.lxmc);
 				$("#lxbm").val(msg.ghlxbh);
-				$("#jsjsdj").html(msg.jsjsdj);
+				$("#jsjsdj").val(msg.jsjsdj);
 				$("#tsdq").html(msg.tsdq);
-				$("#xjsdj").html(msg.xjsdj);
+				$("#xjsdj").val(msg.xjsdj);
 				$("#xmbm").html(msg.xmbm);
 				$("#xmnf").combobox("setValue",msg.xmnf);
 				$("#jhkgn").combobox("setValue",msg.jhkgn);
@@ -168,7 +168,7 @@ text-decoration:none;
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").html()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		//alert(data);
@@ -260,12 +260,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsjsdj"></span>
+					<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xjsdj"></span>
+					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -271,7 +271,8 @@ text-decoration:none;
 					<input type="text" id="dq" name="dq" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id='jsjsdj'></span></td>
+					<input type="text" id="jsjsdj" name="jsjsdj" style="width: 120px;"/>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>

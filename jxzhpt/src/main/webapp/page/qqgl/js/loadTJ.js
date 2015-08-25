@@ -12,10 +12,10 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 			$('#silc').val(msg.silc);
 			$('#dwlc').val(msg.dwlc);
 			$('#wllc').val(msg.wllc);
-			$('#xjsdj').html(msg.xjsdj);
-			var spjsdj = $("span[id='jsjsdj']");
+			$('#xjsdj').val(msg.xjsdj);
+			var spjsdj = $("input[id='jsjsdj']");
 			if(spjsdj.length>0){
-				$("#jsjsdj").html(msg.xjsdj);
+				$("#jsjsdj").val(msg.xjsdj);
 			}
 		}
 	});

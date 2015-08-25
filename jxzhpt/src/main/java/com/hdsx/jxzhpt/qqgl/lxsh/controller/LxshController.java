@@ -614,6 +614,8 @@ public class LxshController extends BaseActionSupport{
 		lx.setZdzh(lxsh.getZdzh());
 		lx.setQdmc(lxsh.getQdmc());
 		lx.setZdmc(lxsh.getZdmc());
+		lx.setXjsdj(lxsh.getXjsdj());
+		lx.setJsjsdj(lxsh.getJsjsdj());
 		lx.setSffirst("1");
 		lx.setJdbs("0");
 		if(bl){
@@ -633,6 +635,8 @@ public class LxshController extends BaseActionSupport{
 			lx.setZdzh(lxsh.getZdzh());
 			lx.setQdmc(lxsh.getQdmc());
 			lx.setZdmc(lxsh.getZdmc());
+			lx.setXjsdj(lxsh.getXjsdj());
+			lx.setJsjsdj(lxsh.getJsjsdj());
 			lx.setSffirst("1");
 			lx.setJdbs("0");
 			jhshServer.updateLx(lx);

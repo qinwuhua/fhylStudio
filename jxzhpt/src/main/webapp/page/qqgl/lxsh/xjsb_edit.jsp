@@ -193,7 +193,7 @@ text-decoration:none;
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").val()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="
 		+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
@@ -395,27 +395,12 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>建设技术等级：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<select id="jsjsdj" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'">
-						<option value="一级公路">一级公路</option>
-						<option value="二级公路">二级公路</option>
-						<option value="三级公路">三级公路</option>
-						<option value="四级公路">四级公路</option>
-						<option value="等外公路">等外公路</option>
-						<option value="高速公路">高速公路</option>
-					</select>
+					<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
-					<!-- <select id="xjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						<option value="一级公路">一级公路</option>
-						<option value="二级公路">二级公路</option>
-						<option value="三级公路">三级公路</option>
-						<option value="四级公路">四级公路</option>
-						<option value="等外公路">等外公路</option>
-						<option value="高速公路">高速公路</option>
-					</select> -->
 				</td>
 			</tr>
 			<tr style="height: 35px;">
