@@ -194,8 +194,8 @@ text-decoration:none;
         						<td align="right">下达状态：</td>
 								<td>
 	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
-		       							<option value="-1">全部</option>
-		       							<option value="0" selected="selected">未下达</option>
+		       							<option value="-1" selected="selected">全部</option>
+		       							<option value="0">未下达</option>
 		       							<option value="1">已下达</option>
 	       							</select>
 	       						</td>
