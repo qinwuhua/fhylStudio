@@ -162,7 +162,9 @@ function tjgcgzsjyb(){
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz);
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
+		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	
@@ -203,7 +205,9 @@ function xggcgzsjyb(){
 	var zbf=parseFloat(zbfzj);
 	var zwc=parseFloat(zwczj)+parseFloat(btz)-parseFloat(parent.obj.bywctze);
 	if(parent.pfztz<zwc){
-		alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
+		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
+		}else
+		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元");
 		return;
 	}
 	
