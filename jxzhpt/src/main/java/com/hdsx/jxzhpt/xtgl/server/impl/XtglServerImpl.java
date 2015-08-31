@@ -552,4 +552,10 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		}
 		return deleteBatch("dropYhdzxcsById", list)==list.size();
 	}
+
+	@Override
+	public HashMap<String, String> loginCheck(HashMap hm) {
+		HashMap lhm=queryOne("loginCheck",hm);
+		return lhm;
+	}
 }

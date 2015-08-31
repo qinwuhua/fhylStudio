@@ -16,8 +16,12 @@
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript">
 $(function(){
-	selSes();
-	selQxByUser();
+	if(getParam("userName")!=""){
+		loginCheck(getParam("userName"));
+	}else{
+		selSes();
+		selQxByUser();
+	}
 });
 function selQxByUser(){
 	$.ajax({

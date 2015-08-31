@@ -16,6 +16,9 @@
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
 	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
+	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
+	select * from xtgl_master M WHERE M.truename=#{truename}
+	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
 	    select distinct x.id ,x.name text,'closed' state from xtgl_xzqh x where  x.id = #{yhdw} order by id
 	</select>

@@ -165,6 +165,25 @@ public class XtglController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	
+	public void loginCheck(){
+		HashMap hm=new HashMap();
+		hm.put("truename", master.getTruename());
+		HashMap<String,String> bl = xtglServer.loginCheck(hm);
+		if(bl!=null){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			session.setAttribute("truename", bl.get("TRUENAME"));
+			try {
+				JsonUtils.write(bl, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 	/**
 	 * 行政区划级联查询
 	 */

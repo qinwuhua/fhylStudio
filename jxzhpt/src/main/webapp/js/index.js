@@ -60,7 +60,40 @@ function login(){
 	
 }
 
-function selSes(){
+function loginCheck(name){
+		$.ajax({
+			type : "POST",
+			url : "xtgl/loginCheck.do",
+			dataType : 'json',
+			data :"master.truename="+name,
+			success : function(msg){
+				if(msg){
+		     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
+		     		$.cookie("unit",msg.UNIT, {expires: 1});
+		     		var unit2=msg.UNIT;
+		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+		     		if(msg.UNIT=="36") $.cookie("unit2","_____36", {expires: 1});
+		     			else $.cookie("unit2",unit2, {expires: 1});
+		     		
+		     		if(msg.UNIT=="36") $.cookie("dist","360000", {expires: 1});
+		     		else $.cookie("dist",msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length), {expires: 1});
+		     		
+		     		var dist2=msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length);
+		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);
+		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);		     		
+		     		$.cookie("dist2",dist2, {expires: 1});
+		     		
+		     		$.cookie("roleid",msg.ROLEID, {expires: 1});
+		     		selQxByUser();
+		     	 }
+			 },error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+}
+
+function selSes(type){
 	$.ajax({
 		 type : "POST",
 		 url : "xtgl/selQx.do",
@@ -71,7 +104,8 @@ function selSes(){
 	    		//$.cookie("QX",qx, {expires: 1});//设置权限
 	    		// loadMenu(qx);
 	    	 }else{
-	    		 document.location.href="login.jsp";
+	    		 if(type!=null&&type!="") document.location.href="login.jsp";//w
+	    		 else document.location.href="login.jsp";
 		     	 alert("session失效，请重新登录！！");
 	     	 }
 		  },

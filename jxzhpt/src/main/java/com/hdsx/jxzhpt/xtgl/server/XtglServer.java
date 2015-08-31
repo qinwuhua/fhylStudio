@@ -164,4 +164,6 @@ public interface XtglServer {
 	List<Param> selJsUsedById(Param param);
 
 	boolean dropYhdzxcsById(String id);
+
+	HashMap<String, String> loginCheck(HashMap hm);
 }
