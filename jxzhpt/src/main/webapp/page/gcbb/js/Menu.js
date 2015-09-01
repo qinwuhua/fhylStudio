@@ -111,13 +111,13 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/wqgz.jsp'
 	});
-	createMenux('LeftMenu',{
+/*	createMenux('LeftMenu',{
 		id:'menu_0101050202',
 		title:'安保工程统计月报表',
 		imgSrc:'../../images/menubutton/abgctjybb.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/abgc.jsp'
-	});
+	});*/
 	createMenux('LeftMenu',{
 		id:'menu_0101050203',
 		title:'灾害防治统计月报表',

@@ -928,16 +928,16 @@
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr
 		from  (
 		      select
-		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
-		      jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,nvl(zj1.bnhj,'0') bnhj,nvl(zj1.bnbtz,'0') bnbtz,nvl(zj1.bnstz,'0') bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+		      nvl(jz1.byhj,'0') byhj,nvl(jz1.bybtz,'0') bybtz,nvl(jz1.bystz,'0') bystz,nvl(jz2.yyhj,'0') yyhj,nvl(jz2.yybtz,'0') yybtz,nvl(jz2.yystz,'0') yystz,nvl(jz3.kghj,'0') kghj,nvl(jz3.kgbtz,'0') kgbtz,nvl(jz3.kgstz,'0') kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
 		      xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
 		    from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
-		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(pl.sbnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
+		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
 		    (select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
 		    (select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from  gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
 		    (select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
 		    (select jhid,sbyf from gcgl_zhfz where sbyf=#{sbyf} group by jhid,sbyf) y
-		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid=p.id(+) 
+		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id 
 		    )
 		where 1=1 
 		<if test="xmnf != null and  xmnf != ''">
@@ -968,16 +968,16 @@
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from  (
 		      select
-		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
-		      jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,nvl(zj1.bnhj,'0') bnhj,nvl(zj1.bnbtz,'0') bnbtz,nvl(zj1.bnstz,'0') bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+		      nvl(jz1.byhj,'0') byhj,nvl(jz1.bybtz,'0') bybtz,nvl(jz1.bystz,'0') bystz,nvl(jz2.yyhj,'0') yyhj,nvl(jz2.yybtz,'0') yybtz,nvl(jz2.yystz,'0') yystz,nvl(jz3.kghj,'0') kghj,nvl(jz3.kgbtz,'0') kgbtz,nvl(jz3.kgstz,'0') kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
 		      xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
 		    from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
-		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(pl.sbnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
+		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
 		    (select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
 		    (select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from  gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
 		    (select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
 		    (select jhid,sbyf from gcgl_zhfz where sbyf=#{sbyf} group by jhid,sbyf) y
-		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid=p.id(+) 
+		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id 
 		    )
 		where 1=1 
 		<if test="xmnf != null and  xmnf != ''">
@@ -1009,16 +1009,16 @@
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
 			from  (
 		      select
-		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
-		      jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,nvl(zj1.bnhj,'0') bnhj,nvl(zj1.bnbtz,'0') bnbtz,nvl(zj1.bnstz,'0') bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+		      nvl(jz1.byhj,'0') byhj,nvl(jz1.bybtz,'0') bybtz,nvl(jz1.bystz,'0') bystz,nvl(jz2.yyhj,'0') yyhj,nvl(jz2.yybtz,'0') yybtz,nvl(jz2.yystz,'0') yystz,nvl(jz3.kghj,'0') kghj,nvl(jz3.kgbtz,'0') kgbtz,nvl(jz3.kgstz,'0') kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
 		      xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
 		    from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
-		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(pl.sbnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
+		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
 		    (select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
 		    (select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from  gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
 		    (select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
 		    (select jhid,sbyf from gcgl_zhfz where sbyf=#{sbyf} group by jhid,sbyf) y
-		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid=p.id(+) 
+		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id 
 		    )
 		where 1=1 
 		<if test="xmnf != null and  xmnf != ''">
@@ -1046,16 +1046,16 @@
 			substr(xzqhdm,0,4) xzqh,tt.*
 		from  (
 		      select
-		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
-		      jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,nvl(zj1.bnhj,'0') bnhj,nvl(zj1.bnbtz,'0') bnbtz,nvl(zj1.bnstz,'0') bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+		      nvl(jz1.byhj,'0') byhj,nvl(jz1.bybtz,'0') bybtz,nvl(jz1.bystz,'0') bystz,nvl(jz2.yyhj,'0') yyhj,nvl(jz2.yybtz,'0') yybtz,nvl(jz2.yystz,'0') yystz,nvl(jz3.kghj,'0') kghj,nvl(jz3.kgbtz,'0') kgbtz,nvl(jz3.kgstz,'0') kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
 		      xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
 		    from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
-		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(pl.sbnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
+		    (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj left join plan_zhfz pl on zj.xmid=pl.id where 1=1 group by zj.xmid) zj1,
 		    (select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
 		    (select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from  gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
 		    (select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
 		    (select jhid,sbyf from gcgl_zhfz where sbyf=#{sbyf} group by jhid,sbyf) y
-		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid=p.id(+) 
+		    where xm.id=sc.xmkid and sc.sckid(+)=p.sckid and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id 
 		    ) tt
 		where 1=1 
 		<if test="xmnf != null and  xmnf != ''">

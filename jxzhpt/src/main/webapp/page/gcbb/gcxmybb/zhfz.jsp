@@ -272,7 +272,7 @@ a:active {
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="3000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（三）    灾害防治（<span id="yue" style="font-size: large;"></span>月） </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省<span id="nian" style="font-size: x-large;"></span>年公路路网结构改造工程统计月报表（三）    灾害防治（<span id="yue" style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
 										<td rowspan="2" style="width: 125px">路线编码</td>
