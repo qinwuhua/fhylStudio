@@ -467,8 +467,8 @@
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,lx.*  from LXSH_LMGZ t left join 
-		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
+		select rownum num ,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,lx.*  from LXSH_LMGZ t left join 
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc from lxsh_lx where jdbs='0' group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -884,5 +884,20 @@
 	<delete id="delwqbzbz" parameterType="wqbzbz">
 		delete from xtgl_wqbzbz where id=#{id}
 	</delete>
+	<select id="queryXmQqfx" parameterType="java.util.Map" resultType="kxxyj">
+		select distinct * from table(funlxjdbs('','')) 
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">and xmbm like '%'||#{xzqhdm}</if>
+		<if test="shzt!=null and shzt!=''">and shzt = #{shzt}</if>
+		<if test="jsxz!=null and jsxz!=''">and jsxz = #{jsxz}</if>
+		<if test="lxbm!=null and lxbm!=''">and lxbm like '%'||#{lxbm}||'%' </if>
+		order by xmbm
+	</select>
+	<select id="queryBeformXm" parameterType="java.util.Map" resultType="java.util.Map">
+		select substr(roadcode,1,4) roadcode,min(roadstart) roadstart,max(roadends) roadends,max(decode(f026,null,f025,f026)) wgnf,
+		sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
+		sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL
+		from gpsroad  WHERE substr(roadcode,1,4) in(${lxbm}) group by substr(roadcode,1,4)
+	</select>
 </mapper>
 

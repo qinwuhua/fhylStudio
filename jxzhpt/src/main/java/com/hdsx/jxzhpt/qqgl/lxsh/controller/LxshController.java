@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
@@ -107,11 +109,32 @@ public class LxshController extends BaseActionSupport{
 	private String lsjl;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String lxbm;
+	private String jsxz;
+	private String shzt1;
 	private Lx lx;
 	private Wqbzbz wqbzbz=new Wqbzbz();
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
 	
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getShzt1() {
+		return shzt1;
+	}
+	public void setShzt1(String shzt1) {
+		this.shzt1 = shzt1;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public File getFileupload() {
 		return fileupload;
 	}
@@ -1455,6 +1478,44 @@ public class LxshController extends BaseActionSupport{
 	public void delwqbzbz(){
 		boolean bl=lxshServer.delwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void queryXmQqfx(){
+		try{
+			if(xzqh.equals("360000")){
+				xzqh = xzqh.substring(0,2)+"%";
+			}else if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				xzqh = xzqh.substring(0,4)+"%";
+			}
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("xzqhdm", xzqh);
+			params.put("shzt", shzt1);
+			params.put("jsxz", jsxz);
+			params.put("lxbm", lxbm);
+			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
+			List<String> lxArray = new ArrayList<String>();
+			for (Kxxyj kxxyj : list) {
+				double lc = Double.valueOf(kxxyj.getYilc()).doubleValue()+Double.valueOf(kxxyj.getErlc()).doubleValue()+
+						Double.valueOf(kxxyj.getSanlc()).doubleValue()+Double.valueOf(kxxyj.getSilc()).doubleValue()+
+						Double.valueOf(kxxyj.getWllc()).doubleValue();
+				kxxyj.setLc(String.valueOf(lc));
+				lxArray.add(kxxyj.getLxbm());
+			}
+			HashSet<String> hsl = new HashSet<String>(lxArray);
+			StringBuffer sb = new StringBuffer();
+			int i=0;
+			for (String lx : hsl) {
+				sb.append(i==hsl.size()-1 ? "'"+lx+"'" : "'"+lx+"',");
+				i++;
+			}
+			System.out.println(sb.toString());
+			List<Map<String, String>> beform = lxshServer.queryBeformXm(sb.toString());
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("xjxm", list);
+			result.put("befrom", beform);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public Lx getLx() {
 		return lx;

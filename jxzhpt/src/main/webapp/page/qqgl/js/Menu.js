@@ -129,6 +129,13 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/shxmgl.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080206',
+		title:'项目前期数据分析',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/lxsh/xmqqsjfx.jsp'
+	});
 	
 	/**
 	createMenux('LeftMenu',{

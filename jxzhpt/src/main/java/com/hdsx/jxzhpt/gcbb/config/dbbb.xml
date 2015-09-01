@@ -681,7 +681,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			union all
 			select '路面改造' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'路面改造' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
       lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,cbsj.dq dqiao,cbsj.sd sdao,' ' lmkd,' ' jsfa,p.pfztz ztz,p.bbzzj btz,p.sbzzj stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
-      gk.gkpfwh gkpfwh,cbsj.sjpfwh,zj1.jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
+      gk.gkpfwh gkpfwh,cbsj.sjpfwh,p.xdwh jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
       from jhsh_lmgz p,lxsh_lmgz lxsh,cbsj_lmgz cbsj,kxxyj_lmgz gk,
       (select xmid jhid,min(xzqh) xzqhmc,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(decode(substr(to_char(lxbm),0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道')),',','、') xzdj,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbh,
       replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,0,instr(xzqh, '市')))),',','、') shi,replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh, '市')+1,instr(xzqh, '县')))),',','、') xian,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',','、') jsdj
