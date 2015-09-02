@@ -887,10 +887,11 @@
 	<select id="queryXmQqfx" parameterType="java.util.Map" resultType="kxxyj">
 		select distinct * from table(funlxjdbs('','')) 
 		where 1=1
-		<if test="xzqhdm!=null and xzqhdm!=''">and xmbm like '%'||#{xzqhdm}</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="shzt!=null and shzt!=''">and shzt = #{shzt}</if>
 		<if test="jsxz!=null and jsxz!=''">and jsxz = #{jsxz}</if>
 		<if test="lxbm!=null and lxbm!=''">and lxbm like '%'||#{lxbm}||'%' </if>
+		<if test="wgny!=null and wgny!=''">and (wgny = #{wgny} or wgny = to_char(to_date(#{wgny},'yyyy-mm-ss'),'yyyy') or wgny = to_char( to_date(#{wgny},'yyyy-MM-ss'),'yyyy-mm'))</if>
 		order by xmbm
 	</select>
 	<select id="queryBeformXm" parameterType="java.util.Map" resultType="java.util.Map">
@@ -898,6 +899,12 @@
 		sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
 		sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL
 		from gpsroad  WHERE substr(roadcode,1,4) in(${lxbm}) group by substr(roadcode,1,4)
+	</select>
+	<select id="queryBeformXmByXzqh" parameterType="java.util.Map" resultType="java.util.Map">
+		select substr(roadcode,0,1) roadcode,min(roadstart) roadstart,max(roadends) roadends,max(decode(f026,null,f025,f026)) wgnf,
+	    sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
+	    sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL,#{xzqhmc} xzqhmc
+	    from gpsroad  WHERE substr(roadcode,0,1) in('S','G') and (roadcode like '%'||#{xzqhdm}||'%') group by substr(roadcode,0,1)
 	</select>
 </mapper>
 

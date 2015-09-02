@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 
@@ -48,6 +49,8 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
+import com.hdsx.jxzhpt.jhgl.server.impl.Plan_zjqfServerImpl;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -74,6 +77,7 @@ import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
 import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -112,6 +116,7 @@ public class LxshController extends BaseActionSupport{
 	private String lxbm;
 	private String jsxz;
 	private String shzt1;
+	private String wgny;
 	private Lx lx;
 	private Wqbzbz wqbzbz=new Wqbzbz();
 	@Resource(name="jhshServerImpl")
@@ -122,6 +127,12 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void setJsxz(String jsxz) {
 		this.jsxz = jsxz;
+	}
+	public String getWgny() {
+		return wgny;
+	}
+	public void setWgny(String wgny) {
+		this.wgny = wgny;
 	}
 	public String getShzt1() {
 		return shzt1;
@@ -1481,25 +1492,42 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void queryXmQqfx(){
 		try{
+			Map<String, Object> result = new HashMap<String, Object>();
+			//处理行政区划查询参数
 			if(xzqh.equals("360000")){
 				xzqh = xzqh.substring(0,2)+"%";
 			}else if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
 				xzqh = xzqh.substring(0,4)+"%";
 			}
 			Map<String, String> params = new HashMap<String, String>();
+			if(xzqh.indexOf(",")==-1){
+				int i=0;
+				if(xzqh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(xzqh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				xzqh=xzqh.substring(0,xzqh.length()-i);
+			}
+			xzqh= xzqh.indexOf(",")==-1 ? " substr(xmbm,5,6)"+" like '%"+xzqh+"%'": " substr(xmbm,5,6)"+" in ("+xzqh+")";
 			params.put("xzqhdm", xzqh);
 			params.put("shzt", shzt1);
 			params.put("jsxz", jsxz);
 			params.put("lxbm", lxbm);
+			params.put("wgny", wgny);
+			//查询新增项目信息
 			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
+			result.put("xjxm", list);
 			List<String> lxArray = new ArrayList<String>();
+			List<String> xzqhArray = new ArrayList<String>();
+			Map<String, String> xzqhMap = new HashMap<String, String>();
+			//获取新增项目的路线和行政区划，为下面的查询做准备
 			for (Kxxyj kxxyj : list) {
-				double lc = Double.valueOf(kxxyj.getYilc()).doubleValue()+Double.valueOf(kxxyj.getErlc()).doubleValue()+
-						Double.valueOf(kxxyj.getSanlc()).doubleValue()+Double.valueOf(kxxyj.getSilc()).doubleValue()+
-						Double.valueOf(kxxyj.getWllc()).doubleValue();
-				kxxyj.setLc(String.valueOf(lc));
 				lxArray.add(kxxyj.getLxbm());
+				xzqhArray.add(kxxyj.getXmbm().substring(4,10));
+				xzqhMap.put(kxxyj.getXmbm().substring(4,10), kxxyj.getXzqh());
 			}
+			//处理获取到的路线编码
 			HashSet<String> hsl = new HashSet<String>(lxArray);
 			StringBuffer sb = new StringBuffer();
 			int i=0;
@@ -1507,11 +1535,24 @@ public class LxshController extends BaseActionSupport{
 				sb.append(i==hsl.size()-1 ? "'"+lx+"'" : "'"+lx+"',");
 				i++;
 			}
-			System.out.println(sb.toString());
-			List<Map<String, String>> beform = lxshServer.queryBeformXm(sb.toString());
-			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("xjxm", list);
-			result.put("befrom", beform);
+			//获取之前的这些路线的信息
+			if(!sb.toString().equals("")){
+				List<Map<String, String>> beform = lxshServer.queryBeformXm(sb.toString());
+				result.put("befrom", beform);
+			}
+			//获取对应行政区划之前的G、S道的总计
+			List<Map<String, String>> beformXzqh = new ArrayList<Map<String,String>>();
+			for (Entry<String, String> map : xzqhMap.entrySet()) {
+				if(map.getKey().matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(map.getKey().matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				String xz =map.getKey().substring(0,map.getKey().length()-i);
+				beformXzqh.addAll(lxshServer.queryBeformXmByXzqh(xz,map.getValue()));
+			}
+			beformXzqh.addAll(lxshServer.queryBeformXmByXzqh("36","江西省"));
+			result.put("befrom2", beformXzqh);
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

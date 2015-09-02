@@ -49,27 +49,29 @@ a:active {
 </style>
 <script type="text/javascript">
 $(function(){
-	loadDist("xzqh",$.cookie("dist"));
+	loadDist1("xzqh",$.cookie("dist"));
 	//queryDate();
 });
 function queryDate(){
 	$('#table_tbody').html("");
+	var xz = $("#xzqh").combotree("getValues");
+	var xzqh =xz.join(',');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryXmQqfx.do',
-		data:'xzqh='+$("#xzqh").combotree("getValue")+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val(),
+		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').datebox("getValue"),
 		dataType:'json',
 		success:function(msg){
-			loadbeform(msg.befrom);
+			loadbeform(Number(msg.befrom.length)+Number(msg.befrom2.length),msg.befrom,msg.befrom2);
 			loadXjxm(msg.xjxm);
 		}
 	});
 }
-function loadbeform(befrom){
+function loadbeform(rows,befrom,befrom2){
 	$.each(befrom,function(index,item){
 		var tr='<tr>';
 		if(index==0){
-			tr+='<td align="center" rowspan="'+befrom.length+'">新增项目</td>';
+			tr+='<td align="center" rowspan="'+rows+'">截止2014年底</td>';
 		}
 		tr+='<td align="center">'+item.ROADCODE+'</td>';
 		tr+='<td align="center">/</td>';
@@ -90,7 +92,42 @@ function loadbeform(befrom){
 		tr+='<td align="center">'+Math.round(item.SIJ/item.LC*10000)/100+'%</td>';
 		tr+='<td align="center">/</td>';
 		tr+='<td align="center">'+item.WL+'</td>';
-		tr+='<td align="center">'+Math.round(item.WJ/item.LC*10000)/100+'%</td>';
+		tr+='<td align="center">'+Math.round(item.WL/item.LC*10000)/100+'%</td>';
+		tr+='<td align="center">/</td>';
+		tr+='</tr>';
+		$('#table_tbody').append(tr);
+	});
+	loadbeform2(befrom2);
+}
+function loadbeform2(beform2){
+	$.each(beform2,function(index,item){
+		var tr='<tr>';
+		var xz="";
+		if(item.ROADCODE=="G"){
+			xz=item.XZQHMC+"国道合计";
+		}else{
+			xz=item.XZQHMC+"省道合计";
+		}
+		tr+='<td align="center">'+xz+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.YJ+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.EJ+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.SJ+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.SIJ+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.WL+'</td>';
+		tr+='<td align="center">/</td>';
 		tr+='<td align="center">/</td>';
 		tr+='</tr>';
 		$('#table_tbody').append(tr);
@@ -161,7 +198,7 @@ function loadXjxm(xjxm){
         							<option value="改建">改建</option>
         						</select>
         						<span>完工时间：</span>
-        						<input id="wgsj" type="text" width="100"/>
+        						<input id="wgsj" class="easyui-datebox" type="text" width="100"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>路线编码：</span>

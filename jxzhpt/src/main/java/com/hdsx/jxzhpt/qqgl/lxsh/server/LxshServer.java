@@ -159,5 +159,7 @@ public interface LxshServer {
 
 	List<Map<String, String>> queryBeformXm(String string);
 
+	List<Map<String, String>> queryBeformXmByXzqh(String xz,String xzqhmc);
+
 
 }
