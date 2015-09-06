@@ -184,7 +184,7 @@ a:active {
                                 公里
                             </td>
                         </tr> -->
-                        <tr style="height: 35px;">
+<!--                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
@@ -194,7 +194,7 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
                                 <label id="kgdl"></label>
                             </td>
-                        </tr>
+                        </tr> -->
                            <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

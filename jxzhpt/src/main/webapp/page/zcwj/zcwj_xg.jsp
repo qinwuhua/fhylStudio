@@ -121,7 +121,7 @@
 		if(!confirm("确认保存吗？")){
 			return;
 		}
-		var data= "wjgl.jsdw="+$("#jsdw").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+$("#wjgy").val()+"&wjgl.fbdw="+$.cookie("unit")
+		var data= "wjgl.jsdw="+$("#fbdwmc").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+''+"&wjgl.fbdw="+$.cookie("unit")
 		+"&wjgl.id="+request('id')+"&wjgl.fbr="+$.cookie("truename");
 		//alert(data);
 		$.ajax({
@@ -148,10 +148,8 @@
 		uploadifyUpload();
 	}
 	function tianjia(){
-		if($("#fileQueue").text()!=''){
 			uploadifyUpload();
-		}
-		addaqyb();
+			addaqyb();
 		//uploadifyUpload();
 	}
 	function uploadifyUpload() {
@@ -175,7 +173,8 @@
 	$(function(){
 		var data=parent.obj;
 		$("#wjmc").val(data.wjmc);
-		$("#wjgy").val(data.wjgy);
+		$("#fbdwmc").val(data.jsdw);
+		//$("#wjgy").val(data.wjgy);
 		var data1="id="+data.id;
 		$.ajax({
 			type:'post',
@@ -190,19 +189,9 @@
 				$('<li></li>').appendTo('.files').html(msg[i].wjname+'                 <a id="'+msg[i].id+'" href="javascript:DelTz('+"'"+msg[i].id+"'"+')"  style="text-decoration:none;"> 删除 </a> '  );
 			}
 		});	
-		setGydw("jsdw","36");
-		var data1="yhdw="+$.cookie("unit");
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/xtgl/selAllBm.do',
-			data:data1,
-			dataType:'json',
-			success:function(msg){
-				$("#fsdwmc").val(msg[0].text);
-			}
-		});	
+		
 	});
-	function setGydw(id, dwbm){
+	/* function setGydw(id, dwbm){
 			$('#' + id).tree(
 			{
 				checkbox : true,
@@ -220,7 +209,7 @@
 				},
 			});
 
-	}
+	} */
 	function DelTz(str){
 //		alert(str);
 		var data="wjgl.id="+str;
@@ -258,12 +247,12 @@
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="font-size: 12px;">接收单位 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px;">发布单位 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                               		<ul id="jsdw"></ul>
-                                   <input type="hidden" id="jsdw">
+                               		
+                                   <input type="text" id="fbdwmc">
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
@@ -277,7 +266,7 @@
                                  <input type="text" id="wjmc"  style="width: 300px;">
                                 </td>
                             </tr>
-                              <tr style="height: 35px;">
+                              <!-- <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
@@ -288,7 +277,7 @@
                                   <textarea rows="5" cols="50" id="wjgy"></textarea>
                                 </td>
                                 
-                            </tr>
+                            </tr> -->
 
                        	 <tr style="height: 35px;" >
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -300,10 +289,10 @@
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="1">
                                    <input type="file" name="fileupload" id="fileupload" /><span style="font-size: x-small;vertical-align: 120%">(小于20M)</span>
                                 </td>
-                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                               <!--  <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="2">
                                    <a href="javascript:;" onClick="shangchuan()"  class="easyui-linkbutton" > 上传 </a> 
-                                </td>
+                                </td> -->
                             </tr>
                             <tr style="height: 64px;" >
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;

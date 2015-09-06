@@ -72,7 +72,7 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
+        						<span>管养（监管）单位：</span>
         						<input id="gydw" style="width: 150px;">
         						
         						<span>开工状态：</span>

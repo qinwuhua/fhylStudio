@@ -237,10 +237,6 @@ function tjwqgzyb1(){
 		alert("请您填入本月完成面层");
 		return;
 	}*/
-	if($("#tj_kgdl").val()==''||$("#tj_kgdl").val()==null){
-		alert("请您填入截至开工段落");
-		return;
-	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#tj_wc_btz").val();
 	var stz=$("#tj_wc_stz").val();
@@ -305,7 +301,7 @@ function tjwqgzyb1(){
 	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
+	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+''+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
 	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data +"----");
@@ -420,10 +416,7 @@ function xgwqgzyb1(){
 		alert("请您填入本月完成面层");
 		return;
 	}*/
-	if($("#xg_kgdl").val()==''||$("#xg_kgdl").val()==null){
-		alert("请您填入截至开工段落");
-		return;
-	}
+
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
@@ -468,7 +461,7 @@ function xgwqgzyb1(){
 	
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
+	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+''+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
 	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").val()
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data);
@@ -719,7 +712,7 @@ function showAll1(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb1('+index+')">月报</a>   '+'完工   未完工';
 	        }},
 	       
-	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
@@ -881,7 +874,7 @@ function showYBlist1(){
 			        {field:'sbyf',title:'上报月份',width:70,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:82,align:'center',rowspan:2},
 //			        {field:'bywcmc',title:'本月完成面层（公里）',width:122,align:'center',rowspan:2},
-			        {field:'kgdl',title:'截至开工段落',width:85,align:'center',rowspan:2},
+//			        {field:'kgdl',title:'截至开工段落',width:85,align:'center',rowspan:2},
 			        {title:'本月完成投资（万元）',colspan:3},
 			        {title:'本月资金到位（万元）',colspan:3},
 			        {field:'qksm',title:'情况说明',width:90,align:'center',rowspan:2}

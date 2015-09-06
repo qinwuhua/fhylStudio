@@ -89,14 +89,14 @@
 				},
 			    columns:[[
 			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-			        	if(row.fbdw==$.cookie("unit"))
+			        	if($.cookie("unit").substr(0,row.fbdw.length)==row.fbdw)
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editwj('+index+')">编辑</a>        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
 			        	else	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    ';
 			        }},
-			        {field:'wjmc',title:'文件名称',width:200,align:'center'},
-			        {field:'wjgy',title:'文件概要',width:1000,align:'center'},
-			        {field:'fbr',title:'发布人',width:200,align:'center'},
-			        {field:'fbsj',title:'发布时间',width:96,align:'center'}
+			        {field:'wjmc',title:'文件名称',width:300,align:'center'},
+			        {field:'jsdw',title:'发布单位',width:300,align:'center'},
+			        {field:'fbr',title:'发布人',width:300,align:'center'},
+			        {field:'fbsj',title:'发布时间',width:300,align:'center'}
 			    ]]    
 			}); 
 		}
@@ -108,7 +108,7 @@
 				title : '政策文件添加',
 				page : 'zcwj_add.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=zcwj.jsp'+'&id='+new Date().getTime(),
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -126,7 +126,7 @@
 				title : '政策文件编辑',
 				page : 'zcwj_xg.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=zcwj.jsp'+'&id='+data.id,
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -161,7 +161,7 @@
 		function ckwj(index){
 			var data=$("#datagrid").datagrid('getRows')[index];
 			obj=data;
-			YMLib.UI.createWindow('zcwj','政策文件详情','zcwj_ck.jsp','zcwj',730,400);
+			YMLib.UI.createWindow('zcwj','政策文件详情','zcwj_ck.jsp','zcwj',730,300);
 		}
 	</script>
 	<style type="text/css">

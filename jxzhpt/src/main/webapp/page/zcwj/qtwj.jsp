@@ -94,7 +94,7 @@
 			        	else	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    ';
 			        }},
 			        {field:'wjmc',title:'文件名称',width:200,align:'center'},
-			        {field:'wjgy',title:'文件概要',width:1000,align:'center'},
+			        /* {field:'wjgy',title:'文件概要',width:1000,align:'center'}, */
 			        {field:'fbr',title:'发布人',width:200,align:'center'},
 			        {field:'fbsj',title:'发布时间',width:96,align:'center'}
 			    ]]    
@@ -108,7 +108,7 @@
 				title : '其它文件添加',
 				page : 'qtwj_add.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=qtwj.jsp'+'&id='+new Date().getTime(),
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -126,7 +126,7 @@
 				title : '其它文件编辑',
 				page : 'qtwj_xg.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=qtwj.jsp'+'&id='+data.id,
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -161,7 +161,7 @@
 		function ckwj(index){
 			var data=$("#datagrid").datagrid('getRows')[index];
 			obj=data;
-			YMLib.UI.createWindow('zcwj','其它文件详情','qtwj_ck.jsp','zcwj',730,400);
+			YMLib.UI.createWindow('zcwj','其它文件详情','qtwj_ck.jsp','zcwj',730,300);
 		}
 	</script>
 	<style type="text/css">

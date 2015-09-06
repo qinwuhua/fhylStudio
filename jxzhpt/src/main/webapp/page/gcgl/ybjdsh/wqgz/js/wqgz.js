@@ -234,7 +234,7 @@ function showAll1(){
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb1('+index+')">月报审核</a>    ';
 	        }},
-	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
@@ -304,7 +304,7 @@ function showYBlist1(){
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
 //			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
-			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+//			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
 			        {title:'本月完成投资（万元）',colspan:3},
 			        {title:'本月资金到位（万元）',colspan:3},
 			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
