@@ -446,8 +446,8 @@
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">
 		update lxsh_lx l set 
-		<if test="qdmc!=null and qdmc!=''">l.qdmc=#{qdmc},</if>
-		<if test="zdmc!=null and zdmc!=''">l.zdmc=#{zdmc},</if>
+		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
+		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
 		<if test="yilc!=null and yilc!=''">l.yilc=#{yilc},</if>
 		<if test="erlc!=null and erlc!=''">l.erlc=#{erlc},</if>
 		<if test="sanlc!=null and sanlc!=''">l.sanlc=#{sanlc},</if>
@@ -461,8 +461,8 @@
 		<if test="jhdwlc!=null and jhdwlc!=''">l.jhdwlc=#{jhdwlc},</if>
 		<if test="jhwllc!=null and jhwllc!=''">l.jhwllc=#{jhwllc},</if>
 		<if test="xjlxbm!=null and xjlxbm!=''">l.xjlxbm=#{xjlxbm},</if>
-		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
-		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
+		<if test="xjqdzh!=null">l.xjqdzh=#{xjqdzh},</if>
+		<if test="xjzdzh!=null">l.xjzdzh=#{xjzdzh},</if>
 		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
 		<if test="lxbm!=null and lxbm!=''">l.lxbm=#{lxbm},</if>
 		<if test="qdzh!=null and qdzh!=''">l.qdzh=#{qdzh},</if>
