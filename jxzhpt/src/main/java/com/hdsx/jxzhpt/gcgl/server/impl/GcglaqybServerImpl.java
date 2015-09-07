@@ -235,7 +235,7 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	@Override
 	public Boolean deleteTzByid1(Gcgltz gcgltz) {
 		gcgltz.setTzid(gcgltz.getId());
-		if(delete("deleteTzByid", gcgltz)>0 && delete("deleteTzfile1", gcgltz)>0){
+		if(delete("deleteTzByid", gcgltz)>0){
 			return true;
 		}else{
 			return false;

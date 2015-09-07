@@ -71,6 +71,9 @@
 // 					addaqyb(response);
 // 				}
 //				alert(response);
+				$("#message").attr('color','green');
+				$("#message").html("文件上传成功");
+				addaqyb();
 				var arr=response.substr(response.length-32,response.length);
 //				alert(response.substr(response.length-32,response.length).length);
 				$('<li></li>').appendTo('.files').html(response.substr(0,response.length-32)+'                   <a id="'+arr+'" href="javascript:DelTz('+"'"+arr+"'"+')"  style="text-decoration:none;"> 删除 </a> ');
@@ -118,9 +121,9 @@
 			alert("请添加通知内容");
 			return;
 		}
-		if(!confirm("确认保存吗？")){
+/* 		if(!confirm("确认保存吗？")){
 			return;
-		}
+		} */
 		var data= "wjgl.jsdw="+$("#fsdwmc").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+''+"&wjgl.fbdw="+$.cookie("unit")
 		+"&wjgl.id="+request('id')+"&wjgl.fbr="+$.cookie("truename");
 		//alert(data);
@@ -148,28 +151,29 @@
 		uploadifyUpload();
 	}
 	function tianjia(){
+		$("#message").html("正在上传，请勿关闭窗口！");
 		uploadifyUpload();
-		addaqyb();
+		//addaqyb();
 		//uploadifyUpload();
 	}
 	function uploadifyUpload() {
 		$('#fileupload').uploadifyUpload();
 	}
 	function fanhui() {
-		var data="id="+request('id');
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/wjxt/deleteWjfile1.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				
-			}
-		});	
 		var flag=request('flag');
 		parent.window.location = '/jxzhpt/page/zcwj/'+flag;
  		dg.cancel();
 	}
+/* 	var flagadd=false;
+	var flagsc=false;
+	function closeck(){
+		alert("1");
+		if(flagadd==true&&flagsc==true){
+			fanhui();
+		}else{
+			setTime('closeck',1000);
+		}
+	} */
 	$(function(){
 		/* setGydw("jsdw","36");*/
 		var data1="yhdw="+$.cookie("unit"); 
@@ -281,10 +285,10 @@
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="1">
                                    <input type="file" name="fileupload" id="fileupload" /><span style="font-size: x-small;vertical-align: 120%">(小于20M)</span>
                                 </td>
-<!--                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="2">
-                                   <a href="javascript:;" onClick="shangchuan()"  class="easyui-linkbutton" > 上传 </a> 
-                                </td> -->
+                                   <font id="message" color="red"></font>
+                                </td>
                             </tr>
                             <tr style="height: 64px;" >
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;

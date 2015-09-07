@@ -90,7 +90,8 @@
 			    columns:[[
 			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 			        	if(row.fbdw==$.cookie("unit"))
-			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editwj('+index+')">编辑</a>        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
+			        		//+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editwj('+index+')">编辑</a>        '
+			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
 			        	else	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    ';
 			        }},
 			        {field:'wjmc',title:'文件名称',width:200,align:'center'},
