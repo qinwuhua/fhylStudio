@@ -1519,13 +1519,13 @@ public class LxshController extends BaseActionSupport{
 			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
 			result.put("xjxm", list);
 			List<String> lxArray = new ArrayList<String>();
-			List<String> xzqhArray = new ArrayList<String>();
+			Map<String,String> xmbmArray = new HashMap<String, String>();
 			Map<String, String> xzqhMap = new HashMap<String, String>();
 			//获取新增项目的路线和行政区划，为下面的查询做准备
 			for (Kxxyj kxxyj : list) {
 				lxArray.add(kxxyj.getLxbm());
-				xzqhArray.add(kxxyj.getXmbm().substring(4,10));
 				xzqhMap.put(kxxyj.getXmbm().substring(4,10), kxxyj.getXzqh());
+				xmbmArray.put(kxxyj.getXmbm(),kxxyj.getJdbs());
 			}
 			//处理获取到的路线编码
 			HashSet<String> hsl = new HashSet<String>(lxArray);
@@ -1536,10 +1536,20 @@ public class LxshController extends BaseActionSupport{
 				i++;
 			}
 			//获取之前的这些路线的信息
+			List<Map<String, String>> beform=null;
 			if(!sb.toString().equals("")){
-				List<Map<String, String>> beform = lxshServer.queryBeformXm(sb.toString());
+				beform = lxshServer.queryBeformXm(sb.toString());
 				result.put("befrom", beform);
 			}
+			//计算本年年底的里程的条件
+			StringBuffer sbXmbm = new StringBuffer();
+			int m =0;
+			for (Entry<String, String> xmbm : xmbmArray.entrySet()) {
+				sbXmbm.append(m==xmbmArray.size()-1 ? "(xmid ='"+ xmbm.getKey()+"' and jdbs='"+xmbm.getValue()+"')" :
+					"(xmid ='"+ xmbm.getKey()+"' and jdbs='"+xmbm.getValue()+"') or ");	
+				m++;
+			}
+			List<Map<String,String>> ndwgXzqh = lxshServer.queryNdwgXzqh(sbXmbm.toString(),false);
 			//获取对应行政区划之前的G、S道的总计
 			List<Map<String, String>> beformXzqh = new ArrayList<Map<String,String>>();
 			for (Entry<String, String> map : xzqhMap.entrySet()) {
@@ -1549,10 +1559,56 @@ public class LxshController extends BaseActionSupport{
 					i=4;
 				}
 				String xz =map.getKey().substring(0,map.getKey().length()-i);
-				beformXzqh.addAll(lxshServer.queryBeformXmByXzqh(xz,map.getValue()));
+				List<Map<String,String>> queryBeformXmByXzqh = lxshServer.queryBeformXmByXzqh(xz,map.getValue());
+				beformXzqh.addAll(queryBeformXmByXzqh);
+				for (Map<String, String> item : ndwgXzqh) {
+					if(map.getKey().equals(item.get("XZQHDM").toString())){
+						for (Map<String, String> item2 : queryBeformXmByXzqh) {
+							if(item.get("LXBM").equals(item2.get("ROADCODE"))){
+								double yi = Double.valueOf(String.valueOf(item2.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHYILC"))) - Double.valueOf(String.valueOf(item.get("YILC")));
+								double er = Double.valueOf(String.valueOf(item2.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHERLC"))) - Double.valueOf(String.valueOf(item.get("ERLC")));
+								double san = Double.valueOf(String.valueOf(item2.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHSANLC"))) - Double.valueOf(String.valueOf(item.get("SANLC")));
+								double si = Double.valueOf(String.valueOf(item2.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHSILC"))) - Double.valueOf(String.valueOf(item.get("SILC")));
+								double wl = Double.valueOf(String.valueOf(item2.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHWLLC"))) - Double.valueOf(String.valueOf(item.get("WLLC")));
+								item.put("JHYILC", String.valueOf(String.format("%.3f", yi)));
+								item.put("JHERLC", String.valueOf(String.format("%.3f", er)));
+								item.put("JHSANLC", String.valueOf(String.format("%.3f", san)));
+								item.put("JHSILC", String.valueOf(String.format("%.3f", si)));
+								item.put("JHWLLC", String.valueOf(String.format("%.3f", wl)));
+								item.put("XZQHMC", item2.get("XZQHMC"));
+								break;
+							}
+						}
+					}
+				}
 			}
 			beformXzqh.addAll(lxshServer.queryBeformXmByXzqh("36","江西省"));
 			result.put("befrom2", beformXzqh);
+			ndwgXzqh.addAll(lxshServer.queryNdwgXzqh(sbXmbm.toString(),true));
+			result.put("ndwgxzqh", ndwgXzqh);
+			//计算年底完工后的路线里程
+			List<Map<String, String>> ndwglx = new ArrayList<Map<String,String>>(beform);
+			List<Map<String, String>> list2 = lxshServer.queryNdwg(sbXmbm.toString());
+			for (Map<String, String> item : ndwglx) {
+				for (Map<String, String> item2 : list2) {
+					if(item2.get("LXBM")!=null){
+						if(item.get("ROADCODE").toString().equals(item2.get("LXBM").toString())){
+							double yi = Double.valueOf(String.valueOf(item.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHYILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("YILC"))).doubleValue();
+							double er = Double.valueOf(String.valueOf(item.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHERLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("ERLC"))).doubleValue();
+							double san = Double.valueOf(String.valueOf(item.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSANLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SANLC"))).doubleValue();
+							double si = Double.valueOf(String.valueOf(item.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SILC"))).doubleValue();
+							double wl = Double.valueOf(String.valueOf(item.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHWLLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("WLLC"))).doubleValue();
+							item.put("YJ", String.format("%.3f", yi));
+							item.put("ER", String.format("%.3f", er));
+							item.put("SJ", String.format("%.3f", san));
+							item.put("SIJ", String.format("%.3f", si));
+							item.put("WL", String.format("%.3f", wl));
+							break;
+						}
+					}
+				}
+			}
+			result.put("ndwglx", ndwglx);
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

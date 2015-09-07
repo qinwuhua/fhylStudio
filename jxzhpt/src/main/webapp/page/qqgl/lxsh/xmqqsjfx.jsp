@@ -62,41 +62,48 @@ function queryDate(){
 		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').datebox("getValue"),
 		dataType:'json',
 		success:function(msg){
-			loadbeform(Number(msg.befrom.length)+Number(msg.befrom2.length),msg.befrom,msg.befrom2);
+			var befromLen=0;
+			if(msg.befrom!=null){
+				befromLen=msg.befrom.length;
+			}
+			loadbeform(Number(befromLen)+Number(msg.befrom2.length),msg.befrom,msg.befrom2);
 			loadXjxm(msg.xjxm);
+			loadNdwg(Number(msg.ndwglx.length)+Number(msg.ndwgxzqh.length),msg.ndwglx,msg.ndwgxzqh);
 		}
 	});
 }
 function loadbeform(rows,befrom,befrom2){
-	$.each(befrom,function(index,item){
-		var tr='<tr>';
-		if(index==0){
-			tr+='<td align="center" rowspan="'+rows+'">截止2014年底</td>';
-		}
-		tr+='<td align="center">'+item.ROADCODE+'</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.ROADSTART+'</td>';
-		tr+='<td align="center">'+item.ROADENDS+'</td>';
-		tr+='<td align="center">'+item.WGNF+'</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.YJ+'</td>';
-		tr+='<td align="center">'+Math.round(item.YJ/item.LC*10000)/100+'%</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.EJ+'</td>';
-		tr+='<td align="center">'+Math.round(item.EJ/item.LC*10000)/100+'%</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.SJ+'</td>';
-		tr+='<td align="center">'+Math.round(item.SJ/item.LC*10000)/100+'%</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.SIJ+'</td>';
-		tr+='<td align="center">'+Math.round(item.SIJ/item.LC*10000)/100+'%</td>';
-		tr+='<td align="center">/</td>';
-		tr+='<td align="center">'+item.WL+'</td>';
-		tr+='<td align="center">'+Math.round(item.WL/item.LC*10000)/100+'%</td>';
-		tr+='<td align="center">/</td>';
-		tr+='</tr>';
-		$('#table_tbody').append(tr);
-	});
+	if(befrom!=null){
+		$.each(befrom,function(index,item){
+			var tr='<tr>';
+			if(index==0){
+				tr+='<td align="center" rowspan="'+rows+'">截止2014年底</td>';
+			}
+			tr+='<td align="center">'+item.ROADCODE+'</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.ROADSTART+'</td>';
+			tr+='<td align="center">'+item.ROADENDS+'</td>';
+			tr+='<td align="center">'+item.WGNF+'</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.YJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.YJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.EJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.EJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.SJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.SJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.SIJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.SIJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.WL+'</td>';
+			tr+='<td align="center">'+Math.round(item.WL/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='</tr>';
+			$('#table_tbody').append(tr);
+		});
+	}
 	loadbeform2(befrom2);
 }
 function loadbeform2(beform2){
@@ -164,7 +171,74 @@ function loadXjxm(xjxm){
 		$('#table_tbody').append(tr);
 	});
 }
-
+function loadNdwg(rows,befrom,befrom2){
+	if(befrom!=null){
+		$.each(befrom,function(index,item){
+			var tr='<tr>';
+			if(index==0){
+				tr+='<td align="center" rowspan="'+rows+'">截止完工年底</td>';
+			}
+			tr+='<td align="center">'+item.ROADCODE+'</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.ROADSTART+'</td>';
+			tr+='<td align="center">'+item.ROADENDS+'</td>';
+			tr+='<td align="center">'+item.WGNF+'</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.YJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.YJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.EJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.EJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.SJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.SJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.SIJ+'</td>';
+			tr+='<td align="center">'+Math.round(item.SIJ/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='<td align="center">'+item.WL+'</td>';
+			tr+='<td align="center">'+Math.round(item.WL/item.LC*10000)/100+'%</td>';
+			tr+='<td align="center">/</td>';
+			tr+='</tr>';
+			$('#table_tbody').append(tr);
+		});
+	}
+	loadNdwg2(befrom2);
+}
+function loadNdwg2(beform2){
+	$.each(beform2,function(index,item){
+		var tr='<tr>';
+		var xz="";
+		if(item.LXBM=="G"){
+			xz=item.XZQHMC+"国道合计";
+		}else{
+			xz=item.XZQHMC+"省道合计";
+		}
+		tr+='<td align="center">'+xz+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.JHYILC+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.JHERLC+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.JHSANLC+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.JHSILC+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">'+item.JHWLLC+'</td>';
+		tr+='<td align="center">/</td>';
+		tr+='<td align="center">/</td>';
+		tr+='</tr>';
+		$('#table_tbody').append(tr);
+	});
+}
 </script>
 </head>
 <body  style="padding-right:1px">

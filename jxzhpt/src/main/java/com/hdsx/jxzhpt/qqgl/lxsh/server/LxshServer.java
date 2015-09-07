@@ -161,5 +161,7 @@ public interface LxshServer {
 
 	List<Map<String, String>> queryBeformXmByXzqh(String xz,String xzqhmc);
 
+	List<Map<String, String>> queryNdwg(String xmbm);
 
+	List<Map<String, String>> queryNdwgXzqh(String xmbm,boolean qb);
 }

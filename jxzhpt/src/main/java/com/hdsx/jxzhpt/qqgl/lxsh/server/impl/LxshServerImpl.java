@@ -707,4 +707,19 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		params.put("xzqhmc", xzqhmc);
 		return queryList("queryBeformXmByXzqh",params);
 	}
+
+	@Override
+	public List<Map<String, String>> queryNdwg(String xmbm) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("xmbm", xmbm);
+		return queryList("queryNdwg",params);
+	}
+
+	@Override
+	public List<Map<String, String>> queryNdwgXzqh(String xmbm,boolean qb) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xmbm", xmbm);
+		params.put("qb", qb);
+		return queryList("queryNdwgXzqh",params);
+	}
 }
