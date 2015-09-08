@@ -104,7 +104,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public Planwqgzsj loadwqgzsbzbyid(String id) {
 		Planwqgzsj jck=queryOne("cxtiaojian", id);
-		if("省直管试点县".indexOf(jck.getTsdq())!=-1){
+		if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", jck);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
@@ -190,7 +190,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public String lwBzsbz(Planwqgzsj planwqgzsj) {
 		try{
-		if("省直管试点县".indexOf(planwqgzsj.getTsdq())!=-1){
+		if(planwqgzsj.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", planwqgzsj);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");

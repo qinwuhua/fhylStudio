@@ -59,7 +59,7 @@ text-decoration:none;
 			return;
 		}
 		var sbthcd;
-		if(parent.obj.tsdq.indexOf('省直管试点县')>0){
+		if(parent.obj.tsdq.indexOf('省直管试点县')!=-1){
 			sbthcd=11;
 		}else{
 			sbthcd=$.cookie("unit2").length+2;

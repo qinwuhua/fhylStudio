@@ -227,7 +227,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 				jckwqgzsj.setBz("0");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
-			if("省直管试点县".equals(jck.getTsdq())){
+			if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 				Wqbzbz wq1=queryOne("selectshibz", jck);
 				if(wq1==null){
 					System.out.println("未查出市级补助，请在审核时检查代码");

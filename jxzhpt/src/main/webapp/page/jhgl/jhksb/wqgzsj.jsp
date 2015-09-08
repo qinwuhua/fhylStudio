@@ -107,7 +107,7 @@
 					}},    
 					 {field:'sbzt2',title:czzt,width:180,align:'center',formatter:function(value,row,index){
 						 var sbthcd;
-						 if(row.tsdq.indexOf('省直管试点县')>0){
+						 if(row.tsdq.indexOf('省直管试点县')!=-1){
 								sbthcd=4;
 							}else{
 								sbthcd=2;
@@ -116,7 +116,7 @@
 							 if(row.shzt1=='未审核'){
 								 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 							 }
-							 if(row.tsdq.indexOf('省直管试点县')>0){
+							 if(row.tsdq.indexOf('省直管试点县')!=-1){
 								 if(row.shzt=='未审核')
 									 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 							 }
@@ -212,14 +212,14 @@
 			if($.cookie("unit2").length==11) sbthcd=2;
 		 	else if($.cookie("unit2").length==9) sbthcd=4;
 	 		else sbthcd=6;
-			if(rows[0].tsdq.indexOf('省直管试点县')>0){
+			if(rows[0].tsdq.indexOf('省直管试点县')!=-1){
 				sbthcd1=4;
 			}else{
 				sbthcd1=sbthcd;
 			}
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
-				if(rows[i].tsdq.indexOf('省直管试点县')>0){
+				if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
 					sbthcd1=","+4;
 				}else{
 					sbthcd1=","+sbthcd;
