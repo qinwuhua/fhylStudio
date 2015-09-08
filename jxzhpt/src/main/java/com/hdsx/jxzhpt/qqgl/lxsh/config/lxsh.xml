@@ -886,7 +886,7 @@
 	</delete>
 	<select id="queryXmQqfx" parameterType="java.util.Map" resultType="kxxyj">
 		select distinct * from table(funlxjdbs('','')) 
-		where 1=1
+		where xmbm like to_char(sysdate,'yyyy')||'%'
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="shzt!=null and shzt!=''">and shzt = #{shzt}</if>
 		<if test="jsxz!=null and jsxz!=''">and jsxz = #{jsxz}</if>
@@ -905,6 +905,39 @@
 	    sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
 	    sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL,#{xzqhmc} xzqhmc
 	    from gpsroad  WHERE substr(roadcode,0,1) in('S','G') and (roadcode like '%'||#{xzqhdm}||'%') group by substr(roadcode,0,1)
+	</select>
+	<select id="queryNdwg" parameterType="java.util.Map" resultType="java.util.Map">
+		select xmid,lxbm
+		,decode(substr(xmid,11,1),1,sum(l.yilc),3,0) yilc
+		,decode(substr(xmid,11,1),1,sum(l.erlc),3,0) erlc
+		,decode(substr(xmid,11,1),1,sum(l.sanlc),3,0) sanlc
+		,decode(substr(xmid,11,1),1,sum(l.silc),3,0) silc
+		,decode(substr(xmid,11,1),1,sum(l.dwlc),3,0) dwlc
+		,decode(substr(xmid,11,1),1,sum(l.wllc),3,0) wllc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jhyilc),0),3,nvl(sum(l.yilc),0)) jhyilc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jherlc),0),3,nvl(sum(l.erlc),0)) jherlc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jhsanlc),0),3,nvl(sum(l.sanlc),0)) jhsanlc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jhsilc),0),3,nvl(sum(l.silc),0)) jhsilc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jhdwlc),0),3,nvl(sum(l.dwlc),0)) jhdwlc
+		,decode(substr(xmid,11,1),1,nvl(sum(l.jhwllc),0),3,nvl(sum(l.wllc),0)) jhwllc
+		from lxsh_lx l where ${xmbm} group by xmid,lxbm 
+	</select>
+	<select id="queryNdwgXzqh" parameterType="java.util.Map" resultType="java.util.Map">
+		select 
+		<if test="qb==false">substr(xmid,5,6) xzqhdm,</if>
+		<if test="qb==true">'江西省' xzqhmc,</if>
+		substr(lxbm,0,1) lxbm
+		,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc
+		,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(sanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc 
+		from(select xmid,lxbm
+		,decode(substr(xmid,11,1),1,l.yilc,3,0) yilc,decode(substr(xmid,11,1),1,l.erlc,3,0) erlc
+		,decode(substr(xmid,11,1),1,l.sanlc,3,0) sanlc,decode(substr(xmid,11,1),1,l.silc,3,0) silc
+		,decode(substr(xmid,11,1),1,l.dwlc,3,0) dwlc,decode(substr(xmid,11,1),1,l.wllc,3,0) wllc
+		,decode(substr(xmid,11,1),1,nvl(l.jhyilc,0),3,nvl(l.yilc,0)) jhyilc,decode(substr(xmid,11,1),1,nvl(l.jherlc,0),3,nvl(l.erlc,0)) jherlc
+		,decode(substr(xmid,11,1),1,nvl(l.jhsanlc,0),3,nvl(l.sanlc,0)) jhsanlc,decode(substr(xmid,11,1),1,nvl(l.jhsilc,0),3,nvl(l.silc,0)) jhsilc
+		,decode(substr(xmid,11,1),1,nvl(l.jhdwlc,0),3,nvl(l.dwlc,0)) jhdwlc,decode(substr(xmid,11,1),1,nvl(l.jhwllc,0),3,nvl(l.wllc,0)) jhwllc
+		from lxsh_lx l where substr(lxbm,0,1) in('S','G') and (${xmbm})) 
+		group by <if test="qb==false">substr(xmid,5,6),</if>substr(lxbm,0,1)
 	</select>
 </mapper>
 
