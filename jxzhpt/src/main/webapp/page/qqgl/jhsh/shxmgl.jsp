@@ -270,7 +270,13 @@
 			}
 		}
 		function exportXmsq(){
-			var param='xmlx=5&sqzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
+			var sqzt = $('#sqzt').combobox("getValue");
+			if(userPanduan($.cookie("unit2"))!="省"){
+				sqzt=sqzt=='' ? -1 : sqzt;
+			}else{
+				sqzt=sqzt=='' ? -1 : sqzt;
+			}
+			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
 			'&xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue")+
 			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;

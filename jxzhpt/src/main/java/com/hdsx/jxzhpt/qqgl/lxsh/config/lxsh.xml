@@ -892,6 +892,7 @@
 		<if test="jsxz!=null and jsxz!=''">and jsxz = #{jsxz}</if>
 		<if test="lxbm!=null and lxbm!=''">and lxbm like '%'||#{lxbm}||'%' </if>
 		<if test="wgny!=null and wgny!=''">and (wgny = #{wgny} or wgny = to_char(to_date(#{wgny},'yyyy-mm-ss'),'yyyy') or wgny = to_char( to_date(#{wgny},'yyyy-MM-ss'),'yyyy-mm'))</if>
+		<if test="xmbm!=null and xmbm!=''">and xmbm in (${xmbm})</if>
 		order by xmbm
 	</select>
 	<select id="queryBeformXm" parameterType="java.util.Map" resultType="java.util.Map">

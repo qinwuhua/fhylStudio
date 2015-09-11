@@ -1490,6 +1490,38 @@ public class LxshController extends BaseActionSupport{
 		boolean bl=lxshServer.delwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	public void queryXmqq(){
+		try{
+			Map<String, Object> result = new HashMap<String, Object>();
+			//处理行政区划查询参数
+			if(xzqh.equals("360000")){
+				xzqh = xzqh.substring(0,2)+"%";
+			}else if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				xzqh = xzqh.substring(0,4)+"%";
+			}
+			Map<String, String> params = new HashMap<String, String>();
+			if(xzqh.indexOf(",")==-1){
+				int i=0;
+				if(xzqh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(xzqh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				xzqh=xzqh.substring(0,xzqh.length()-i);
+			}
+			xzqh= xzqh.indexOf(",")==-1 ? " substr(xmbm,5,6)"+" like '%"+xzqh+"%'": " substr(xmbm,5,6)"+" in ("+xzqh+")";
+			params.put("xzqhdm", xzqh);
+			params.put("shzt", shzt1);
+			params.put("jsxz", jsxz);
+			params.put("lxbm", lxbm);
+			params.put("wgny", wgny);
+			//查询新增项目信息
+			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
+			JsonUtils.write(list, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public void queryXmQqfx(){
 		try{
 			Map<String, Object> result = new HashMap<String, Object>();
@@ -1515,6 +1547,7 @@ public class LxshController extends BaseActionSupport{
 			params.put("jsxz", jsxz);
 			params.put("lxbm", lxbm);
 			params.put("wgny", wgny);
+			params.put("xmbm", xmbm);
 			//查询新增项目信息
 			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
 			result.put("xjxm", list);

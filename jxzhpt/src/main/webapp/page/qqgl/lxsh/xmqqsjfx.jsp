@@ -52,14 +52,56 @@ $(function(){
 	loadDist1("xzqh",$.cookie("dist"));
 	//queryDate();
 });
-function queryDate(){
+function selXm(){
+	$('#dd').dialog("open");
+	var xz = $("#xzqh").combotree("getValues");
+	var xzqh =xz.join(',');
+	$('#sel_table').datagrid({
+		url:'/jxzhpt/qqgl/queryXmqq.do',
+	    striped:true,
+	    rownumbers:true,
+	    height:330,
+	    width:785,
+	    queryParams: {
+	    	xzqh:xzqh,
+	    	jsxz:$('#jsxz').val(),
+	    	shzt1:$('#shzt').val(),
+	    	lxbm:$('#lxbm').val(),
+	    	wgny:$('#wgsj').datebox("getValue")
+	    },
+	    columns:[[
+			{field:'xmmc',title:'项目名称',width:110,align:'center'},
+			{field:'xzqh',title:'行政区划',width:110,align:'center'},
+			{field:'lxbm',title:'路线编码',width:110,align:'center'},
+			{field:'qdzh',title:'起点桩号',width:110,align:'center'},
+			{field:'zdzh',title:'止点桩号',width:110,align:'center'},
+			{field:'wgny',title:'完工年月',width:110,align:'center'},
+			{field:'jsxz',title:'建设性质',width:110,align:'center'},
+			{field:'yilc',title:'一级里程',width:110,align:'center'},
+			{field:'erlc',title:'二级里程',width:110,align:'center'},
+			{field:'sanlc',title:'三级里程',width:110,align:'center'},
+			{field:'silc',title:'四级里程',width:110,align:'center'},
+			{field:'wllc',title:'无路里程',width:110,align:'center'}
+	    ]]
+	});
+}
+function search(){
+	var sels = $('#sel_table').datagrid("getSelections");
+	var xmbm="";
+	for(var i=0;i<sels.length;i++){
+		xmbm+= i==sels.length-1 ? "'"+sels[i].xmbm+"'" : "'"+sels[i].xmbm+"',";
+	}
+	queryDate(xmbm);
+	$('#dd').dialog("close");
+}
+function queryDate(xmbm){
 	$('#table_tbody').html("");
 	var xz = $("#xzqh").combotree("getValues");
 	var xzqh =xz.join(',');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryXmQqfx.do',
-		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').datebox("getValue"),
+		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').datebox("getValue")+'&xmbm='+xmbm,
 		dataType:'json',
 		success:function(msg){
 			var befromLen=0;
@@ -278,7 +320,7 @@ function loadNdwg2(beform2){
         						<span>路线编码：</span>
         						<input id="lxbm" type="text" style="width: 145px;"/>
 								<img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-									 onclick="queryDate()" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+									 onclick="selXm()" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 								<img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
         					</p>
@@ -344,5 +386,17 @@ function loadNdwg2(beform2){
 			</tr>
 		</table>
 	</div>
+	<div id="dd" class="easyui-dialog" title="选择项目" style="width:800px;height:400px;" 
+		data-options="iconCls:'icon-save',resizable:true,modal:true,closed: true,toolbar:[{
+				text:'查询',
+				iconCls:'icon-search',
+				handler:function(){search()}
+			}]">
+		<!-- <div style="height: 20px;">
+			<img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
+				onclick="" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+		</div> -->
+		<table id="sel_table"></table>
+	</div>  
 </body>
 </html>

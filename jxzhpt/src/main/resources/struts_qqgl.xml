@@ -156,6 +156,7 @@
 		<action name="readFile" class="cbsjController" method="readFile"></action>
 		<action name="readJhxdFile" class="cbsjController" method="readJhxdFile"></action>
 		<action name="queryXmQqfx" class="lxshController" method="queryXmQqfx"></action>
+		<action name="queryXmqq" class="lxshController" method="queryXmqq"></action>
 	<!-- rh -->
 	</package>
 </struts>
