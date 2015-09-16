@@ -22,7 +22,7 @@
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -57,7 +57,7 @@
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -89,7 +89,7 @@
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -123,8 +123,11 @@
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
+				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">
+					and ${cbsj.gcfl}
+				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -159,7 +162,7 @@
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -187,7 +190,7 @@
 			and l.xjsdj = #{cbsj.xjsdj}
 		</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
+			and ${cbsj.xmbm}
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -215,7 +218,7 @@
 			and l.xjsdj = #{cbsj.xjsdj}
 		</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
+			and ${cbsj.xmbm}
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -243,7 +246,7 @@
 			and l.xjsdj = #{cbsj.xjsdj}
 		</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
+			and ${cbsj.xmbm}
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -270,8 +273,11 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 					and l.xjsdj = #{cbsj.xjsdj}
 				</if>
+				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">
+					and ${cbsj.gcfl}
+				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
+					and ${cbsj.xmbm}
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -299,7 +305,7 @@
 			and l.xjsdj = #{cbsj.xjsdj}
 		</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
+			and ${cbsj.xmbm}
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -740,5 +746,60 @@
 		select yh.xmbm,yh.xdwh from jhsh_yhdzx yh
 		union all
 		select sh.xmbm,sh.xdwh from jhsh_sh sh) where filewh like '%'||#{jhwh}||'%'
+	</select>
+	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
+		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="xjsdj!=null and xjsdj!=''">
+			and l.xjsdj = #{xjsdj}
+		</if>
+		<if test="gcfl!=null and gcfl!=''">
+			and ${gcfl}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="jsjsdj!=null and jsjsdj!=''">
+			and c.jsjsdj=#{jsjsdj}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and l.TSDQ like '%'||#{tsdq}||'%' 
+		</if>
+		<if test="shzt>=0">
+			and c.shzt=${shzt}
+		</if>
+	</select>
+	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
+		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="xjsdj!=null and xjsdj!=''">
+			and l.xjsdj = #{xjsdj}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="jsjsdj!=null and jsjsdj!=''">
+			and c.jsjsdj=#{jsjsdj}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and l.TSDQ like '%'||#{tsdq}||'%' 
+		</if>
+		<if test="shzt>=0">
+			and c.shzt=${shzt}
+		</if>
 	</select>
 </mapper>

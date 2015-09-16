@@ -248,7 +248,10 @@
 					and sqzt=${xmsq.sqzt}
 				</if>
 				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
-					and x.xmbm like #{xmsq.xmbm}||'%'
+					and ${xmsq.xmbm}
+				</if>
+				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">
+					and ${xmsq.gcfl}
 				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
@@ -281,7 +284,10 @@
 					and sqzt=${xmsq.sqzt}
 				</if>
 				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
-					and x.xmbm like #{xmsq.xmbm}||'%'
+					and ${xmsq.xmbm}
+				</if>
+				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">
+					and ${xmsq.gcfl}
 				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
@@ -313,7 +319,10 @@
 			and sqzt=${sqzt}
 		</if>
 		<if test="xmbm!=null and xmbm!=''">
-			and x.xmbm like #{xmbm}||'%'
+			and ${xmbm}
+		</if>
+		<if test="gcfl!=null and gcfl!=''">
+			and ${gcfl}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'
@@ -340,7 +349,10 @@
 			and sqzt=${sqzt}
 		</if>
 		<if test="xmbm!=null and xmbm!=''">
-			and x.xmbm like #{xmbm}||'%'
+			and ${xmbm}
+		</if>
+		<if test="gcfl!=null and gcfl!=''">
+			and ${gcfl}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'
@@ -519,5 +531,70 @@
 	</select>
 	<select id="queryAllGydw" parameterType="string" resultType="treenode">
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||#{value}||'%' order by to_number(id)
+	</select>
+	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
+		select sum(ntz) ntz,sum(lc) lc from (
+			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
+			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
+			<if test="gydwdm!=null and gydwdm!=''">
+				and ${gydwdm}
+			</if>
+			<if test="xzqhdm!=null and xzqhdm!=''">
+				and ${xzqhdm}
+			</if>
+			<if test="xmmc!=null and xmmc!=''">
+				and xmmc like '%'||#{xmmc}||'%'
+			</if>
+			<if test="jsdj!=null and jsdj!=''">
+				and (jsdj=#{jsdj})
+			</if>
+			<if test="sqzt>=0">
+				and sqzt=${sqzt}
+			</if>
+			<if test="xmbm!=null and xmbm!=''">
+				and ${xmbm}
+			</if>
+			<if test="gcfl!=null and gcfl!=''">
+				and ${gcfl}
+			</if>
+			<if test="tsdq!=null and tsdq!=''">
+				and x.tsdq like '%'||#{tsdq}||'%'
+			</if>
+			<if test="lsjl!=null and lsjl!=''">
+				and x.lsjl=#{lsjl}
+			</if>)
+	</select>
+	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
+		select sum(ntz) ntz,sum(lc) lc from (
+		select xmbm,ntz,l.lc from xmsq_sh x left join 
+		(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
+		on x.xmbm=l.xmid where 1=1
+		<if test="gydwdm!=null and gydwdm!=''">
+			and ${gydwdm}
+		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and (jsdj=#{jsdj})
+		</if>
+		<if test="sqzt>=0">
+			and sqzt=${sqzt}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="gcfl!=null and gcfl!=''">
+			and ${gcfl}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and x.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and x.lsjl=#{lsjl}
+		</if>)
 	</select>
 </mapper>

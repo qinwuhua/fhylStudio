@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
@@ -289,5 +290,17 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public List<Plan_upload> queryJhXm(String substring);
+	/**
+	 * 初步设计养护累计查询
+	 * @param cbsj
+	 * @return
+	 */
+	public Map<String, String> queryCbsjLjYhdzx(Cbsj cbsj);
+	/**
+	 * 初步设计灾毁累计查询
+	 * @param cbsj
+	 * @return
+	 */
+	public Map<String, String> queryCbsjLjSh(Cbsj cbsj);
 	
 }

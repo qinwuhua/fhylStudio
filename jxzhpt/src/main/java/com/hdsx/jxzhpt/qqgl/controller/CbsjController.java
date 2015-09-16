@@ -66,6 +66,22 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void queryCbsj() throws Exception{
 		try {
 			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			String xmbm = cbsj.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or c.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(c.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or c.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "c.xmbm like '" + xmbm + "%' ";
+			}
+			cbsj.setXmbm(xmbm);
 			List<Cbsj> resultData=null;
 			int total=0;
 			if(cbsj.getXmlx()==1){
@@ -78,6 +94,22 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				resultData = cbsjServer.queryCbsjXj(cbsj, page, rows);
 				total = cbsjServer.queryCbsjXjCount(cbsj);
 			}else if(cbsj.getXmlx()==4){
+				String gcfl = cbsj.getGcfl();
+				if(gcfl.indexOf(",")>-1){
+					String[] gcflArray = gcfl.split(",");
+					for (int i = 0; i < gcflArray.length; i++) {
+						if(i==0){
+							gcfl = "(l.gcfl like '%"+gcflArray[i]+"%'";
+						}else if(i==gcflArray.length-1){
+							gcfl += " or l.gcfl like '%"+ gcflArray[i] +"%' )";
+						}else{
+							gcfl += " or l.gcfl like '%" + gcflArray[i] + "%'";
+						}
+					}
+				}else{
+					gcfl = "l.gcfl like '%" + gcfl + "%'";
+				}
+				cbsj.setGcfl(gcfl);
 				resultData = cbsjServer.queryCbsjYhdzx(cbsj, page, rows);
 				total = cbsjServer.queryCbsjYhdzxCount(cbsj);
 			}else if(cbsj.getXmlx()==5){
@@ -90,6 +122,55 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	public void queryCbsjLj(){
+		String xmbm = cbsj.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or c.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(c.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or c.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "c.xmbm like '" + xmbm + "%' ";
+		}
+		cbsj.setXmbm(xmbm);
+		cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(), "xzqhdm"));
+		Map<String, String> result = null;
+		
+		if(cbsj.getXmlx()==4){
+			String gcfl = cbsj.getGcfl();
+			if(gcfl.indexOf(",")>-1){
+				String[] gcflArray = gcfl.split(",");
+				for (int i = 0; i < gcflArray.length; i++) {
+					if(i==0){
+						gcfl = "(l.gcfl like '%"+gcflArray[i]+"%'";
+					}else if(i==gcflArray.length-1){
+						gcfl += " or l.gcfl like '%"+ gcflArray[i] +"%' )";
+					}else{
+						gcfl += " or l.gcfl like '%" + gcflArray[i] + "%'";
+					}
+				}
+			}else{
+				gcfl = "l.gcfl like '%" + gcfl + "%'";
+			}
+			cbsj.setGcfl(gcfl);
+			result = cbsjServer.queryCbsjLjYhdzx(cbsj);
+		}else if(cbsj.getXmlx()==5){
+			result = cbsjServer.queryCbsjLjSh(cbsj);
+		}
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	/**

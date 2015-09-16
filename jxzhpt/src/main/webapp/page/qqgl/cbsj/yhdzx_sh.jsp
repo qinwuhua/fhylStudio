@@ -27,6 +27,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			loadGcfl('gcfl','工程分类');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -35,15 +36,34 @@
 			}
 			queryYhdzx();
 		});
+		function loadGcfl(id,name){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+				data:'yhm='+ encodeURI(encodeURI(name)),
+				dataType:'json',
+				success:function(msg){
+					$('#' + id).combobox({
+						data:msg,
+						valueField : 'bmid',
+						textField : 'name',
+						panelHeight:'auto',
+						multiple:true
+					});
+				}
+			});
+		}
 		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':4,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
-					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
+					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")
+					,"jdbs":2,'gcfl':$('#gcfl').combobox("getValues").join(",")};
+			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-165;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -98,6 +118,18 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryCbsjLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function sh(xmbm){
 			$.ajax({
@@ -210,11 +242,13 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:71px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
+								<td align="right">&nbsp;工程分类：</td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
 							</tr>
 							<tr height="32">
 								<td colspan="10">
@@ -242,9 +276,8 @@ text-decoration:none;
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
-            		</div>
+            		<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            		<div><table id="grid"></table></div>
             	</td>
         	</tr>
 		</table>

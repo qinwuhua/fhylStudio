@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,17 +13,11 @@ import javax.annotation.Resource;
 
 import net.sf.json.JSONArray;
 
-import org.codehaus.jackson.map.util.JSONWrappedObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
-import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
-import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
-import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
-import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -157,12 +150,44 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void queryXmsq(){
 		try {
+			String xmbm = xmsq.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "x.xmbm like '" + xmbm + "%' ";
+			}
+			xmsq.setXmbm(xmbm);
+			
 			List<Xmsq> list=null;
 			int total=0;
-			System.out.println("阶段："+xmsq.getJdbs());
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
+				String gcfl = xmsq.getGcfl();
+				if(gcfl.indexOf(",")>-1){
+					String[] gcflArray = gcfl.split(",");
+					for (int i = 0; i < gcflArray.length; i++) {
+						if(i==0){
+							gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+						}else if(i==gcflArray.length-1){
+							gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+						}else{
+							gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+						}
+					}
+				}else{
+					gcfl = "x.gcfl like '%" + gcfl + "%'";
+				}
+				xmsq.setGcfl(gcfl);
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -172,6 +197,56 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			result.put("rows", list);
 			result.put("total", total);
 			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryLj(){
+		String xmbm = xmsq.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "x.xmbm like '" + xmbm + "%' ";
+		}
+		xmsq.setXmbm(xmbm);
+		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+		
+		Map<String, String> result = null;
+		if(xmsq.getXmlx()==4){
+			String gcfl = xmsq.getGcfl();
+			if(gcfl.indexOf(",")>-1){
+				String[] gcflArray = gcfl.split(",");
+				for (int i = 0; i < gcflArray.length; i++) {
+					if(i==0){
+						gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+					}else if(i==gcflArray.length-1){
+						gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+					}else{
+						gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+					}
+				}
+			}else{
+				gcfl = "x.gcfl like '%" + gcfl + "%'";
+			}
+			xmsq.setGcfl(gcfl);
+			result = xmsqServer.queryLjYhdzx(xmsq);
+		}else if(xmsq.getXmlx()==5){
+			result = xmsqServer.queryLjSh(xmsq);
+		}
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

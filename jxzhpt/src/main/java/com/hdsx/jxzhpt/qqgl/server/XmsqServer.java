@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
@@ -182,5 +183,17 @@ public interface XmsqServer {
 	 */
 	public List<TreeNode> queryAllXzqh(String xzqhdm);
 	public List<TreeNode> queryAllGydw(String gydwdm);
+	/**
+	 * 养护大中修查询累计信息
+	 * @param xmsq 查询条件
+	 * @return
+	 */
+	public Map<String, String> queryLjYhdzx(Xmsq xmsq);
+	/**
+	 * 水毁查询累计信息
+	 * @param xmsq
+	 * @return
+	 */
+	public Map<String, String> queryLjSh(Xmsq xmsq);
 
 }

@@ -31,6 +31,7 @@
 					$(item).hide();
 				});
 				$('#ztspan').html("审核状态");
+				$('#项目计划库管理').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				$.each($("[name='sheng']"),function(index,item){
 					$(item).hide();
@@ -45,6 +46,7 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2('jsdj','技术等级');
+			loadGcfl('gcfl','工程分类');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
@@ -57,9 +59,11 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,
-					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,"jdbs":1,
+					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
+					,'gcfl':$('#gcfl').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
+			loadLj(params);
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
@@ -141,6 +145,18 @@
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function deleteYhdzx(){
 			var selRow = $('#grid').datagrid("getSelections");
@@ -286,6 +302,23 @@
 		function openYhdzx(){
 			openWindow("yhdzxadd","添加养护大中修项目","yhdzxAdd.jsp",980,400);
 		}
+		function loadGcfl(id,name){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+				data:'yhm='+ encodeURI(encodeURI(name)),
+				dataType:'json',
+				success:function(msg){
+					$('#' + id).combobox({
+						data:msg,
+						valueField : 'bmid',
+						textField : 'name',
+						panelHeight:'auto',
+						multiple:true
+					});
+				}
+			});
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
@@ -293,7 +326,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;养护大中修项目</div>
+		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目立项申请</span>>&nbsp;养护大中修项目</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
@@ -313,6 +346,8 @@
        							<td><select id="xzqh" style="width:124px;"></select></td>
        							<td>&nbsp;技术等级:</td>
        							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+       							<td>&nbsp;工程分类:</td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:81px;"></select></td>
        						</tr>
        						<tr height="32">
        							<td><span id="ztspan">上报状态</span>：</td>
@@ -352,6 +387,7 @@
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
            		<div>
+           			<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
            			<table id="grid"></table>
            		</div>
            	</td>

@@ -328,5 +328,13 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		params.put("jhwh", jhwh);
 		return queryList("queryJhXm",params);
 	}
+	@Override
+	public Map<String, String> queryCbsjLjYhdzx(Cbsj cbsj) {
+		return queryOne("queryCbsjLjYhdzx", cbsj);
+	}
+	@Override
+	public Map<String, String> queryCbsjLjSh(Cbsj cbsj) {
+		return queryOne("queryCbsjLjSh", cbsj);
+	}
 
 }

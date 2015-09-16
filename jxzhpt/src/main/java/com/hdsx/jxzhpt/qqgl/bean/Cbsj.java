@@ -22,6 +22,7 @@ public class Cbsj {
 				+ ", jdbs=" + jdbs + ", gpsqdzh=" + gpsqdzh + ", gpszdzh="
 				+ gpszdzh + "]";
 	}
+	private String gcfl;//工程分类
 	private String id;//唯一ID
 	private String xmbm;//项目编码
 	private String xmmc;//项目名称
@@ -522,5 +523,11 @@ public class Cbsj {
 	}
 	public void setLc(String lc) {
 		this.lc = lc.trim();
+	}
+	public String getGcfl() {
+		return gcfl;
+	}
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
 	}
 }

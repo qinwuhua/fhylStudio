@@ -182,5 +182,13 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public List<TreeNode> queryAllGydw(String gydwdm) {
 		return queryList("queryAllGydw",gydwdm);
 	}
+	@Override
+	public Map<String, String> queryLjYhdzx(Xmsq xmsq) {
+		return queryOne("queryLjYhdzx", xmsq);
+	}
+	@Override
+	public Map<String, String> queryLjSh(Xmsq xmsq) {
+		return queryOne("queryLjSh", xmsq);
+	}
 
 }

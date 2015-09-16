@@ -101,7 +101,7 @@
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
 		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
 		<action name="exportExcelCbsj" class="cbsjController" method="exportExcelCbsj"></action>
-		
+		<action name="queryCbsjLj" class="cbsjController" method="queryCbsjLj"></action>
 		<action name="queryFile" class="cbsjController" method="queryFile"></action>
 		<action name="down" class="cbsjController" method="down"></action>
 		
@@ -128,6 +128,7 @@
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
+		<action name="queryLj" class="xmsqController" method="queryLj"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>

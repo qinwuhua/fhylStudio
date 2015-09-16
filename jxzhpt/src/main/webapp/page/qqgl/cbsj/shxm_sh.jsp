@@ -38,12 +38,13 @@
 		function queryShxm(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':5,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':5,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),"cbsj.jdbs":2,
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
+					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
 					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
+			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-$('#searchField').height();
+			grid.height=$(window).height()-$('#searchField').height()-55;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -98,6 +99,18 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryCbsjLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function sh(xmbm){
 			$.ajax({
@@ -210,7 +223,7 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
@@ -231,21 +244,10 @@ text-decoration:none;
         			</fieldset>
         		</td>
         	</tr>
-        	<!-- <tr>
-        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
-        			共有【 <span id="lblCount" style="font-weight: bold; color: #FF0000">0</span> 】个路面升级项目，总里程共
-        			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，其中中央车购税【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，省投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
-        		</td>
-        	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
-            		</div>
+            		<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            		<div><table id="grid"></table></div>
             	</td>
         	</tr>
 		</table>

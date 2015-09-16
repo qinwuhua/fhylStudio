@@ -31,6 +31,7 @@
 					$(item).hide();
 				});
 				$('#ztspan').html("审核状态");
+				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				$.each($("img[name='sheng']"),function(index,item){
 					$(item).hide();
@@ -58,14 +59,15 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,
-					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,"jdbs":1,
+					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
+			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -142,6 +144,18 @@
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function deleteSh(){
 			var selRow = $('#grid').datagrid("getSelections");
@@ -294,7 +308,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;灾毁重建项目管理</div>
+		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目计划库管理</span>>&nbsp;灾毁重建项目管理</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         <tr>
@@ -351,6 +365,7 @@
         </tr>
         <tr>
             <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
             	<div><table id="grid"></table></div>
     		</td>
     	</tr>
