@@ -340,4 +340,24 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("jhsh", jhsh);
 		return queryOne("zdyQueryShTotal",params);
 	}
+	@Override
+	public Map<String, String> queryJhshLjLmsj(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmsj",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjLmgz(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmgz",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjXj(Jhsh jhsh) {
+		return queryOne("queryJhshLjXj",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjYhdzx(Jhsh jhsh) {
+		return queryOne("queryJhshLjYhdzx",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjSh(Jhsh jhsh) {
+		return queryOne("queryJhshLjSh",jhsh);
+	}
 }

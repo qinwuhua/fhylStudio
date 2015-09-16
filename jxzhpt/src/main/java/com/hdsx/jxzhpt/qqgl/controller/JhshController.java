@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -74,6 +72,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,page,rows);
@@ -93,6 +107,44 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryJhshLj(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx()==1){
+				result = jhshServer.queryJhshLjLmsj(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				result = jhshServer.queryJhshLjLmgz(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				result = jhshServer.queryJhshLjXj(jhsh);
+			}else if(jhsh.getXmlx()==4){
+				result = jhshServer.queryJhshLjYhdzx(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				result = jhshServer.queryJhshLjSh(jhsh);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 查询计划审核列表 养护和水毁
 	 * @throws Exception
@@ -101,6 +153,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try{
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
 				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
@@ -395,6 +463,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("12", "pfztz");//批复总投资
 		attribute.put("13", "bbzzj");//部补助资金
 		attribute.put("14", "sbzzj");//省补助资金
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -427,7 +511,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
 				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
 				"<title=灌封长度,fieid=gfcd>,<title=灌封金额,fieid=gfje>,<title=老路处理,fieid=llcl>,";
-		
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
@@ -514,7 +613,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("15", "qdzh");
 		attribute.put("16", "zdzh");
 		attribute.put("17", "lc");
-		
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";

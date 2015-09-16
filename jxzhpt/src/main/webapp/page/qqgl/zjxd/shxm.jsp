@@ -32,8 +32,9 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ghlxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
+					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')};
 			grid.queryParams=params;
+			loadLj(params);
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -77,6 +78,19 @@
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanbbz').html(msg.BBZZJ);
+					$('#spansbz').html(msg.SBZZJ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
@@ -143,9 +157,8 @@
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>
-           			<table id="grid"></table>
-           		</div>
+           		<div>部补助资金累计：<span id="spanbbz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+           		<div><table id="grid"></table></div>
            	</td>
        	</tr>
 	</table>

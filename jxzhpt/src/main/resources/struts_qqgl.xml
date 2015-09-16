@@ -116,6 +116,7 @@
 		<action name="importExcelJhxdYhdzx" class="jhshController" method="importExcelJhxdYhdzx"></action>
 		<action name="importExcelJhxdSh" class="jhshController" method="importExcelJhxdSh"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
+		<action name="queryJhshLj" class="jhshController" method="queryJhshLj"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>

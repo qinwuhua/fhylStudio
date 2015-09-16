@@ -36,9 +36,10 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue"),
+					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(','),
 					'jhsh.ghlxbh':$('#ylxbh').val()};
 			grid.queryParams=params;
+			loadLj(params);
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -84,6 +85,20 @@
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
 		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanztz').html(msg.ZTZ);
+					$('#spansbz').html(msg.SYSBB);
+					$('#spanbcgs').html(msg.YQDBCGS);
+					$('#spanlc').html(msg.LC);
+				}
+			});
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
@@ -91,7 +106,7 @@
 		function exportZjxd(){
 			var param='jhsh.xmlx=4&xdzt=1&xzqhdm='+getxzqhdm('xzqh')+'&xmmc='+$('#xmmc').val()
 				+'&ylxbh='+$('#ylxbh').val()+'&tsdq='+$('#tsdq').combo("getText")+'&jsdj='+$('#jsdj').combobox("getValue")
-				+'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue")+
+				+'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 				'&jhsh.ghlxbh='+$('#ylxbh').val();
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
@@ -151,6 +166,8 @@
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+           		<div>总投资累计：<span id="spanztz" style="color: red;">0</span>;省以上补助资金累计：<span id="spansbz" style="color: red;">0</span>;
+           		以确定部车购税累计：<span id="spanbcgs" style="color: red;">0</span>里程累计：<span id="spanlc" style="color: red;">0</span></div>
            		<div>
            			<table id="grid"></table>
            		</div>

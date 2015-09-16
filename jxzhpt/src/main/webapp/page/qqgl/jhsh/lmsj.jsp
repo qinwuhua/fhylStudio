@@ -35,9 +35,10 @@
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':$('#xdzt').combobox("getValue"),
-					'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValue"),
+					'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
 					'jhsh.jsdj':$('#jsdj').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
+			loadLj(params);
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -95,8 +96,21 @@
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			gridBind(grid);
 		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanbbz').html(msg.BBZZJ);
+					$('#spansbz').html(msg.SBZZJ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
+		}
 		function exportJhshxx(){
-			var param='jhsh.xmbm='+$('#xmnf').combobox("getValue")+'&jhsh.xmlx=1&jhsh.xdzt='+$('#xdzt').combobox("getValue")
+			var param='jhsh.xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.xmlx=1&jhsh.xdzt='+$('#xdzt').combobox("getValue")
 				+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()
 				+'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")
 				+'&jhsh.jsdj='+$('#jsdj').combobox("getValue")+'&lsjl='+$('#lsjl').combobox("getValue");
@@ -231,9 +245,8 @@ text-decoration:none;
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
-            		</div>
+            		<div>部补助资金累计：<span id="spanbbz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            		<div><table id="grid"></table></div>
             	</td>
         	</tr>
 		</table>

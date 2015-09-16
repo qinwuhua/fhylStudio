@@ -38,8 +38,9 @@
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
 					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue"),
-					'xmbm':$('#xmnf').combobox("getValue")};
+					'xmbm':$('#xmnf').combobox("getValues").join(',')};
 			grid.queryParams=params;
+			loadLj(params);
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -90,10 +91,23 @@
 			]];
 			gridBind(grid);
 		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanbbz').html(msg.BBZZJ);
+					$('#spansbz').html(msg.SBZZJ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
+		}
 		function exportJhshxx(){
 			var param='jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$('#ylxbh').val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
-			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue");
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
 		}
 		function importJhsh(){
@@ -218,9 +232,8 @@ text-decoration:none;
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>
-           			<table id="grid"></table>
-           		</div>
+           		<div>部补助资金累计：<span id="spanbbz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+           		<div><table id="grid"></table></div>
            	</td>
        	</tr>
 	</table>
