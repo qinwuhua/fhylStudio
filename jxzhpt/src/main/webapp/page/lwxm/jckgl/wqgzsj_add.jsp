@@ -193,11 +193,12 @@ function saveWqgz(){
 	if($.cookie("unit2")=="______36"){
 		sbthcd=7;
 	}
+	var bhnr=$("#bhnr").val().replace(/%/g, "%25");
 	var data ="jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.qlmc="+$("#qlmc").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.gydwbm="+$("#gydwbm").val()+"&jckwqgzsj.gydw="+$("#gydw").html()
 	+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.xzqhmc="+$("#xzqhmc").html()+"&jckwqgzsj.lxmc="+$("#lxmc").html()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.kjzc="+$("#kjzc").html()+
 	"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.qlkd="+$("#qlkd").html()+"&jckwqgzsj.dkzdkj="+$("#dkzdkj").html()+"&jckwqgzsj.jsdj="+$("#jsdj").html()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&&jckwqgzsj.xjgjnd="+$("#xjgjnd").html()+"&&jckwqgzsj.tsdq="+$("#tsdq").html()
-	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
+	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+bhnr+"&jckwqgzsj.bz="+$("#bz").val().replace(/%/g, "%25")+
+	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val().replace(/%/g, "%25")+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()

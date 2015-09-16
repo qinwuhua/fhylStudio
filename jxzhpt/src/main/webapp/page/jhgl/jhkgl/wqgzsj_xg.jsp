@@ -595,7 +595,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道公路等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="ydgldj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度(km/h)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjsd"></span>
 				</td>

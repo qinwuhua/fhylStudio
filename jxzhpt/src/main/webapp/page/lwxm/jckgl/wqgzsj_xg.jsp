@@ -177,8 +177,8 @@ function loadUploadify(){
 }
 
 function saveWqgz(){
-	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
+	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val().replace(/%/g, "%25")+"&jckwqgzsj.bz="+$("#bz").val().replace(/%/g, "%25")+
+	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val().replace(/%/g, "%25")+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()

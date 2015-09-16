@@ -303,7 +303,7 @@ $("#grid").datagrid({
 		        {field:'scthdj',title:'通航等级',width:140,align:'center'},
 		        {field:'qljc',title:'桥梁基础',width:140,align:'center'},
 		        {field:'ydgldj',title:'引道公路等级',width:140,align:'center'},
-		        {field:'sjsd',title:'设计速度',width:140,align:'center'},
+		        {field:'sjsd',title:'设计速度(km/h)',width:140,align:'center'},
 		        {field:'ztz',title:'总投资',width:140,align:'center'},
 		        {field:'nsqbbz',title:'拟申请部（省）级补助资金（万元）',width:140,align:'center'}
 	    	]]    
