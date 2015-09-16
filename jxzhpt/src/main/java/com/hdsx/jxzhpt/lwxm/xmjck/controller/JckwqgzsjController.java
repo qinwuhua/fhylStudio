@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -28,6 +30,10 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
@@ -572,6 +578,173 @@ public class JckwqgzsjController extends BaseActionSupport{
 		try {
 			JsonUtils.write(jckwqgzsjServer.sjshbtyWqgzsjwqgz(jckwqgzsj),getresponse().getWriter());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dcwqgzsjxmkExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			jckwqgzsj.setGydw("and gydwbm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+		}
+		jckwqgzsj.setSbthcd(sbthcd);
+		jckwqgzsj.setLxmc(lxmc);
+		jckwqgzsj.setQlmc(qlmc);
+		jckwqgzsj.setXmnf(xmnf);
+		jckwqgzsj.setSbzt(sbzt);
+		jckwqgzsj.setJsdj(jsdj);
+		jckwqgzsj.setAkjfl(akjfl);
+		jckwqgzsj.setLxbm(lxbm);
+		jckwqgzsj.setQlbh(qlbh);
+		jckwqgzsj.setTsdq(tsdq);
+		jckwqgzsj.setSfylrbwqk(sfylrbwqk);
+		List<Excel_list> l = jckwqgzsjServer.dcwqgzsjjhExcel(jckwqgzsj);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("危桥改造（交通局）");//设置第一行
+		eldata.setSheetName("危桥改造（交通局）");//设置sheeet名
+		eldata.setFileName("危桥改造（交通局）");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号 ",1,1,0,0));
+		et.add(new Excel_tilte("管养（监管）单位 ",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("桥梁编号",1,1,3,3));
+		et.add(new Excel_tilte("桥梁名称",1,1,4,4));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
+		et.add(new Excel_tilte("路线编码",1,1,6,6));
+		et.add(new Excel_tilte("路线名称",1,1,7,7));
+		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
+		et.add(new Excel_tilte("入库时间",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_exportbyXH(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void dcwqgzsjxmkshExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			jckwqgzsj.setGydw("and gydwbm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+		}
+		jckwqgzsj.setSbthcd(sbthcd);
+		jckwqgzsj.setLxmc(lxmc);
+		jckwqgzsj.setQlmc(qlmc);
+		jckwqgzsj.setXmnf(xmnf);
+		jckwqgzsj.setShzt(sbzt);
+		jckwqgzsj.setJsdj(jsdj);
+		jckwqgzsj.setAkjfl(akjfl);
+		jckwqgzsj.setLxbm(lxbm);
+		jckwqgzsj.setQlbh(qlbh);
+		jckwqgzsj.setTsdq(tsdq);
+		jckwqgzsj.setSfylrbwqk(sfylrbwqk);
+		List<Excel_list> l = jckwqgzsjServer.dcwqgzsjxmkshExcel(jckwqgzsj);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("危桥改造（交通局）");//设置第一行
+		eldata.setSheetName("危桥改造（交通局）");//设置sheeet名
+		eldata.setFileName("危桥改造（交通局）");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号 ",1,1,0,0));
+		et.add(new Excel_tilte("管养（监管）单位 ",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("桥梁编号",1,1,3,3));
+		et.add(new Excel_tilte("桥梁名称",1,1,4,4));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
+		et.add(new Excel_tilte("路线编码",1,1,6,6));
+		et.add(new Excel_tilte("路线名称",1,1,7,7));
+		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
+		et.add(new Excel_tilte("入库时间",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_exportbyXH(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void dcwqgzsjsckExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			jckwqgzsj.setGydw("and gydwbm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+		}
+		jckwqgzsj.setSck_sbthcd(sbthcd);
+		jckwqgzsj.setLxmc(lxmc);
+		jckwqgzsj.setQlmc(qlmc);
+		jckwqgzsj.setXmnf(xmnf);
+		jckwqgzsj.setSbzt(sbzt);
+		jckwqgzsj.setJsdj(jsdj);
+		jckwqgzsj.setAkjfl(akjfl);
+		jckwqgzsj.setLxbm(lxbm);
+		jckwqgzsj.setQlbh(qlbh);
+		jckwqgzsj.setTsdq(tsdq);
+		jckwqgzsj.setBzls(bzls);
+		jckwqgzsj.setSfylrbwqk(sfylrbwqk);
+		List<Excel_list> l = jckwqgzsjServer.dcwqgzsjsckExcel(jckwqgzsj);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("危桥改造（交通局）");//设置第一行
+		eldata.setSheetName("危桥改造（交通局）");//设置sheeet名
+		eldata.setFileName("危桥改造（交通局）");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号 ",1,1,0,0));
+		et.add(new Excel_tilte("管养（监管）单位 ",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("桥梁编号",1,1,3,3));
+		et.add(new Excel_tilte("桥梁名称",1,1,4,4));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
+		et.add(new Excel_tilte("路线编码",1,1,6,6));
+		et.add(new Excel_tilte("路线名称",1,1,7,7));
+		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
+		et.add(new Excel_tilte("入库时间",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_exportbyXH(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

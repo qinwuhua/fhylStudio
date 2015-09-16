@@ -180,6 +180,7 @@
 		<action name="queryZjqfByZjqf" class="plan_zjqfController" method="queryZjqfByZjqf"></action>
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
 		<!-- qwh -->
+		<action name="editwqgzsj1" class="planwqgzsjController" method="editwqgzsj1"></action>
 		<action name="selectwqjhkgl" class="planwqgzsjController" method="selectwqjhkgl"></action>
 		<action name="loadwqjhkglCount" class="planwqgzsjController" method="loadwqjhkglCount"></action>
 		<action name="loadwqgzjhkbyid" class="planwqgzsjController" method="loadwqgzjhkbyid"></action>

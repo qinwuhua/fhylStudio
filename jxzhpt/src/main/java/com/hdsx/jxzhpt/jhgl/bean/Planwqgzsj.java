@@ -61,6 +61,7 @@ public class Planwqgzsj implements Serializable{
 	private String shyj1;
 	private String shyj2;
 	private String xmrksj;
+	private String jhjsxz;
 	
 	private String sckid;
 	private String xmkid;
@@ -210,6 +211,12 @@ public class Planwqgzsj implements Serializable{
 	private String jhqlqc;
 	private String jhqlqk;
 	
+	public String getJhjsxz() {
+		return jhjsxz;
+	}
+	public void setJhjsxz(String jhjsxz) {
+		this.jhjsxz = jhjsxz;
+	}
 	public String getSck_qlzxzh() {
 		return sck_qlzxzh;
 	}

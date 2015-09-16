@@ -193,6 +193,28 @@
 		<if test="bz!=null">,bz=#{bz}</if>
 		<if test="jhqlqc!=null">,jhqlqc=#{jhqlqc}</if>
 		<if test="jhqlqk!=null">,jhqlqk=#{jhqlqk}</if>
+		<if test="jhjsxz!=null">,jhjsxz=#{jhjsxz}</if>
+		where id=#{id}
+	</update>
+	<update id="editwqgzsj1" parameterType="planwqgzsj">
+		update plan_wqgz set sbnf=#{sbnf}
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+		<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+		<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+		<if test="pfsj!=null">,pfsj=#{pfsj}</if>
+		<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+		<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+		<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+		<if test="shengbz!=null">,jhsybzje=#{shengbz}</if>
+		<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
+		<if test="qlszxz!=null">,qlszxz=#{qlszxz}</if>
+		<if test="zyjsnr!=null">,zyjsnr=#{zyjsnr}</if>
+		<if test="sfylrbwqk!=null">,sfylrbwqk=#{sfylrbwqk}</if>
+		<if test="bz!=null">,bz=#{bz}</if>
+		<if test="jhqlqc!=null">,jhqlqc=#{jhqlqc}</if>
+		<if test="jhqlqk!=null">,jhqlqk=#{jhqlqk}</if>
 		where id=#{id}
 	</update>
 	<select id="selectwqjhksb" parameterType="planwqgzsj" resultType="planwqgzsj">

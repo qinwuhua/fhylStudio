@@ -159,5 +159,8 @@
  	 <action name="sjshtyWqgzsjwqgz" class="jckwqgzsjController" method="sjshtyWqgzsjwqgz"/>
  	 <action name="sjshbtyWqgzsjwqgz" class="jckwqgzsjController" method="sjshbtyWqgzsjwqgz"/>
  	 
+ 	 <action name="dcwqgzsjxmkExcel" class="jckwqgzsjController" method="dcwqgzsjxmkExcel"/>
+ 	 <action name="dcwqgzsjxmkshExcel" class="jckwqgzsjController" method="dcwqgzsjxmkshExcel"/>
+ 	  <action name="dcwqgzsjsckExcel" class="jckwqgzsjController" method="dcwqgzsjsckExcel"/>
  </package>
 </struts>

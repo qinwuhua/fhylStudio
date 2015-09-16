@@ -7,12 +7,12 @@
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理危桥改造项目</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/themes/icon.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/autocomplete/jquery.autocomplete.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
+<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
@@ -24,65 +24,85 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/wqsj.js"></script>
 <script type="text/javascript">
 $(function(){
+	xmnf1("sbnf");
 	loadJhkxx();
-	loadZjxdList();
-	loadJzxx();
-	fileShow22(parent.obj1.id,'完工桥梁正面文件');
-	fileShow23(parent.obj1.id,'完工桥梁侧面文件');
-	fileShow24(parent.obj1.id,'施工许可');
+	$('#jhjsxz').combobox({
+		onChange: function(group){
+			loadSbz();
+		}
+	});
 });
-function loadJzxx(){
-	var data=parent.obj1;
-	$('#xdsj').html(data.xdsj);
-	$('#sjkgsj').html(data.sjkgsj);
-	$('#yjwgsj').html(data.yjjgsj);
-	$('#xdwh').html(data.xdwh);
-	$('#sgdw').html(data.sgdw);
-	$('#jldw').html(data.jldw);
-	$('#jsdw').html(data.jsdw);
-	$('#zljdwj').html(data.zljdwj);
-	$('#htje').html(data.htje);
-	$('#gys').html(data.gys);
-	$('#sjwgsj').html(data.sjwgsj);
-}
 function loadJhkxx(){
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/jhgl/loadwqgzjhkbyid.do",
 		 dataType : 'json',
-		 data : 'id='+parent.obj1.id,
+		 data : 'id='+parent.obj,
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
-			 $("#jhjsxz").html(msg.jhjsxz);
-			 $("#sfylrbwqk").html(msg.sfylrbwqk);
-			 $("#sbnf").html(msg.sbnf);
-			 $("#jhkgsj").html(msg.jhkgsj);
-			 $("#jhwgsj").html(msg.jhwgsj);
-			 $("#sjdw").html(msg.sjdw);
-			 $("#sjpfdw").html(msg.sjpfdw);
-			 $("#jhpfwh").html(msg.pfwh);
-			 $("#pfsj").html(msg.pfsj);
-			 $("#sfsqablbz").html(msg.sfsqablbz);
-			 $("#ablbzwh").html(msg.ablbzwh);
-			 $("#pfztz").html(msg.pfztz);
-			 if(msg.sfylrbwqk=='是'){
-				 $("#wenz").html('计划使用部补助金额(万元)：');
-				 $("#shengbz").html(msg.jhsybzje);
-				 $("#dfzc").html(accSub(msg.pfztz,msg.jhsybzje));
+			 $("#jhqlqc").val(msg.jhqlqc);
+			 $("#jhqlqk").val(msg.jhqlqk);
+			 jhqlqc=msg.jhqlqc;
+		     jhqlqk=msg.jhqlqk;
+			 if(msg.sfkxg=='是'){
+				 $("#sftr").attr('style','height: 30px;');
+				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
 			 }else{
-				 $("#wenz").html('计划使用省补助金额(万元)：');
-				 $("#shengbz").html(msg.shengbz);
-				 $("#dfzc").html(accSub(msg.pfztz,msg.shengbz));
+				 $("#sftr").attr('style','height: 30px;display: none;');
+				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
 			 }
-			 $("#qlszxz").html(msg.qlszxz);
-			 $("#jhqlqc").html(msg.jhqlqc);
-			 $("#jhqlqk").html(msg.jhqlqk);
-			 $("#zyjsnr").html(msg.zyjsnr);
-			 $("#jhbz").html(msg.bz);
+			 $("#jhjsxz").combobox('setValue',msg.jhjsxz);
+			 $("#sbnf").combobox('setValue',msg.sbnf);
+			 $("#jhkgsj").datebox('setValue',msg.jhkgsj);
+			 $("#jhwgsj").datebox('setValue',msg.jhwgsj);
+			 $("#sjdw").val(msg.sjdw);
+			 $("#sjpfdw").val(msg.sjpfdw);
+			 $("#jhpfwh").val(msg.pfwh);
+			 $("#pfsj").datebox('setValue',msg.pfsj);
+			 radioChecked("sfsqablbz",msg.sfsqablbz);
+			if(msg.sfsqablbz=="否"){
+				$('#ablbzwh').attr("disabled",'true');
+			}
+			 $("#ablbzwh").val(msg.ablbzsqwh);
+			 $("#pfztz").val(msg.pfztz);
+			 $("#shengbz").val(msg.jhsybzje);
+			 $("#dfzc").html(msg.jhsydfzcje);
+			 $("#qlszxz").val(msg.qlszxz);
+			 $("#qljsgm").val(msg.qljsgm);
+			 $("#zyjsnr").val(msg.zyjsnr);
+			 $("#jhbz").val(msg.bz);
+			 
+			 bzSum();
+			 loadSbz(msg.sckid);
 		 }
 	});
 }
-
+var sbz;
+var jhqlqc;
+var jhqlqk;
+function loadSbz(id){
+	$.ajax({
+		 type:'post',
+			url:'/jxzhpt/jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jhjsxz").combobox('getValue'),
+			dataType:'json',
+			async:false,
+			success:function(data){
+				var bz=data.bz;
+				var bl=data.bl;
+				var fd=data.fd;
+				if($('#jhqlqc').val()!=''||$('#jhqlqc').val()!=null){
+					jhqlqc=$('#jhqlqc').val();
+				}
+				if($('#jhqlqk').val()!=''||$('#jhqlqk').val()!=null){
+					jhqlqk=$('#jhqlqk').val();
+				}
+				var bzzj=(parseFloat(jhqlqc)*1000000000000000*parseFloat(jhqlqk)*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+				 sbz=bzzj.toFixed(3);
+				 $("#trshengbz").html("小于等于"+bzzj.toFixed(3));
+		 }
+	 })
+}
 function loadJckxx(id){
 	$.ajax({
 		 type : "POST",
@@ -135,6 +155,15 @@ function loadSckxx(id){
 		 success : function(item){
 			 loadJckxx(item.xmkid);
 			 sjtfileShow(item.sckid);
+			 if($("#jhqlqc").val()==''){
+				 $("#jhqlqc").val(item.scqlqc);
+			 }
+			 if($("#jhqlqk").val()==''){
+				 $("#jhqlqk").val(item.scqlqk);
+			 }
+			 if($("#qlszxz").val()==''){
+				 $("#qlszxz").val(item.scszxz);
+			 }
 			 $("#scqlqc").html(item.scqlqc);
 				$("#scqlqk").html(item.scqlqk);
 				$("#scxmnf").html(item.scxmnf);
@@ -169,7 +198,7 @@ function sjtfileShow(id){
 	//加载文件
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		url:'../../../jhgl/queryFjByParentId.do',
 		dataType:'json',
 		data:'uploads.id='+id,
 		success:function(data){
@@ -180,115 +209,95 @@ function sjtfileShow(id){
 			var sjsgt="";
 			for ( var i = 0; i < data.length; i++) {
 				if(data[i].filetype=="设计施工图"){
-					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
-					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="sjtdownFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  '+
-					"</td></tr>";
+					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=sjtdownFile('"+data[i].id+"')>下载</a></td></tr>";
 				}
 				}
 			$("#sjsgtTable").append(sjsgt);
 		}
 	});
 }
-function sjtdownFile(fileurl,filename){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
+function sjtdownFile(id){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 }
-function loadZjxdList(){
-	var params={'zjxd.xmid':parent.obj1.id};
-	loadZjxdSumByXmid();
-	$('#zjxfgrid').datagrid({
-		url : '/jxzhpt/jhgl/queryZjxdByXmId.do',
-		queryParams : params,
-		striped : true,
-		pagination : true,
-		rownumbers : true,
-		pageNumber : 1,
-		pageSize : 3,
-		height : 140,
-		fitColumns:true,
-		columns : [[
-		
-		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
-			formatter : function(value, row, index) {
-				if (row.sfzj == "0") {
-					return "否";
-				} else {
-					return "是";
-				}
-			}
-		},
-		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
-		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
-		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
-		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
-		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
-		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
-		]]
-	});
-}
-function loadZjxdSumByXmid(){
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/jhgl/queryZjxdSumByXmid.do',
-		data:'zjxd.xmid='+parent.obj1.id,
-		dataType:'json',
-		success:function(data){
-			if(data!=null){
-				$('#sl').html(data.xmid);
-				$('#xdzj').html(data.xdzj);
-			}
+function radioChecked(name,value){
+	$.each($("input[name='"+name+"']"),function(index,item){
+		if($(item).val()==value){
+			$(item).attr('checked','true');
 		}
 	});
+}
+function ablwhDis(value){
+	if(value=="是"){
+		$('#ablbzwh').removeAttr("disabled");
+	}else{
+		$('#ablbzwh').attr("disabled",'true');
+	}
 }
 
-function fileShow22(xmbm,type){
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
-		dataType:'json',
-		data:'uploads.id='+xmbm,
-		success:function(data){
-			$("#wgqlzmTable").empty();
-			for ( var i = 0; i < data.length; i++) {
-				if(data[i].filetype==type){
-					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
-				$("#wgqlzmTable").append(tr);
-				}
-			}
-		}
-	});
+function bzSum(){
+	var pfztz;
+	 if($("#pfztz").val()==null||$("#pfztz").val()==''){
+		 pfztz=0;
+	 }else{
+		 pfztz=$("#pfztz").val();
+	 }
+	 if(parseFloat(pfztz)<parseFloat(500)){
+		 $("#sfsqablbz1").attr('checked','true');
+			$("#sfsqablbz0").attr('disabled','true');
+			$("#sfsqablbz1").attr('disabled','true');
+			document.getElementById("ablbzwh").disabled=true;
+	 }else{
+		 $("#sfsqablbz0").attr('checked','true');
+		 $("#sfsqablbz0").removeAttr('disabled');
+		 $("#sfsqablbz1").removeAttr('disabled');
+		 document.getElementById("ablbzwh").disabled=false;
+	 }
+	 if($("#shengbz").val()!='')
+	 $("#dfzc").html(accSub(pfztz, $("#shengbz").val()));
 }
-function fileShow23(xmbm,type){
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
-		dataType:'json',
-		data:'uploads.id='+xmbm,
-		success:function(data){
-			$("#wgqlcmTable").empty();
-			for ( var i = 0; i < data.length; i++) {
-				if(data[i].filetype==type){
-					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
-				$("#wgqlcmTable").append(tr);
-				}
-			}
+function setshengbz(){
+	if($("#shengbz").val()!=''){
+		if(parseFloat($("#shengbz").val())>parseFloat(sbz)){
+			alert("请按照提示填写补助金额");
+			$("#shengbz").val('');
 		}
-	});
+		bzSum();
+	}
 }
 
-function fileShow24(xmbm,type){
+function editWqgz(){
+	if($("#shengbz").val()==''||$("#pfztz").val()==''){
+		alert("批复总投资或补助金额未填写正确");
+		return
+	}
+	var nsqbbz1=$("#shengbz").val();
+	if(parseFloat(nsqbbz1)>parseFloat(sbz)){
+		alert("请按提示填写正确的补助金额");
+		$("#shengbz").val('');
+		return;
+	}
+	if(parseFloat($("#shengbz").val())>parseFloat($("#pfztz").val())){
+		alert("总投资不能小于补助金额");
+		return;
+	}
+	
+	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
+	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')+"&planwqgzsj.sjdw="+$("#sjdw").val()+"&planwqgzsj.sjpfdw="+$("#sjpfdw").val()
+	+"&planwqgzsj.pfwh="+$("#jhpfwh").val()+"&planwqgzsj.pfsj="+$("#pfsj").datebox('getValue')+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
+	+"&planwqgzsj.ablbzsqwh="+$("#ablbzwh").val()+"&planwqgzsj.pfztz="+$("#pfztz").val()+"&planwqgzsj.shengbz="+$("#shengbz").val()+"&planwqgzsj.jhsydfzcje="+$("#dfzc").html()
+	+"&planwqgzsj.qlszxz="+$("#qlszxz").val()+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
+	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val()+"&planwqgzsj.jhjsxz="+$("#jhjsxz").combobox('getValue')
+	+"&planwqgzsj.jhqlqc="+$("#jhqlqc").val()+"&planwqgzsj.jhqlqk="+$("#jhqlqk").val();
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/jhgl/queryFjByParentId2.do',
+		url:'/jxzhpt/jhgl/editwqgzsj1.do',
 		dataType:'json',
-		data:'uploads.id='+xmbm,
-		success:function(data){
-			$("#sgxkTable").empty();
-			for ( var i = 0; i < data.length; i++) {
-				if(data[i].filetype==type){
-					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
-				$("#sgxkTable").append(tr);
-				}
+		data:data,
+		success:function(msg){
+			if(msg){
+				alert("保存成功");
+				parent.loadwqjhkgl();
+				parent.$('#wq_edit').window('destroy');
 			}
 		}
 	});
@@ -641,164 +650,93 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上报年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sbnf"></span></td>
+					<input id="sbnf" type="text" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jhkgsj"></span></td>
+					<input id="jhkgsj" type="text" class="easyui-datebox"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jhwgsj"></span>
+					<input id="jhwgsj" type="text" class="easyui-datebox"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sjdw"></span></td>
+					<input id="sjdw" type="text" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计批复单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sjpfdw"></span></td>
+					<input id="sjpfdw" type="text" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jhpfwh"></span>
+					<input id="jhpfwh" type="text" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pfsj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
+					<input id="pfsj" type="text" class="easyui-datebox"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sfsqablbz"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
+					长<input type="text" id="jhqlqc" style="width: 53px"/> 宽<input type="text" id="jhqlqk" style="width: 53px"/></td>	
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="ablbzwh"></span>
+					<select id="jhjsxz" class="easyui-combobox" data-options="panelHeight:'50'" >
+						<option value="加固改造" selected>加固改造</option>
+						<option value="拆除重建">拆除重建</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pfztz"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font id="wenz">计划使用省补助金额(万元)：</font></td>
+					<input type="text" id="pfztz" onchange="bzSum()"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="shengbz"></span></td>
+					<input type="radio" name="sfsqablbz" onchange="ablwhDis('是')" id="sfsqablbz0" value="是"/>是
+					<input type="radio" name="sfsqablbz" onchange="ablwhDis('否')" id="sfsqablbz1" value="否"/>否</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="ablbzwh" style="display:;"/>
+				</td>
+				
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用部补助金额(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id='shengbz'  onchange="setshengbz()"/><br><span id="trshengbz" style="color: red"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用地方自筹资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qlszxz"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					长<span id="jhqlqc"></span>&nbsp;&nbsp;宽<span id="jhqlqk"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jhjsxz"></span></td>
+					<input type="text" id="qlszxz" /></td>
 			</tr>
-			<tr id="sftr" style="height: 30px;">
+			<tr id="sftr" style="height: 30px;display: none;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sfylrbwqk"></span>
-				</td>
+					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
+						<option value="否">否</option>
+						<option value="是" selected>是</option>
+					</select></td>
+				
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">主要建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zyjsnr"></span></td>
+					<textarea id="zyjsnr" style="width: 700px;height:40px;"></textarea></td>
+				
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">备注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jhbz"></span></td>
-			</tr>
-			<tr style="height: 25px;">
-				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					危桥改造项目资金下发信息
-				</td>
+					<textarea id="jhbz" style="width: 700px;height:40px;"></textarea></td>
 				
-			</tr>
-			<tr style="margin: 0px;">
-				<td colspan="6" style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;background-color:#ffffff; ">
-				共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个下发信息，
-				下发资金共【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
-				</td>
 			</tr>
 			<tr  style="height: 30px;">
-				<td colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:100%;" align="center">
-					<div>
-            			<table id="zjxfgrid" ></table>
-            		</div>
-				</td>
-			</tr>
-			<tr style="height: 25px;">
-				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					危桥改造项目工程进展信息
-				</td>
-				
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际开工时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sjkgsj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">预计完工时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="yjwgsj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sgdw"></span></td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">监理单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jldw"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsdw"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">质量监督文件（单位）：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zljdwj"></span></td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">合同金额（万元）：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="htje"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">概预算（万元）：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left" >
-					<span id="gys"></span></td>
-			 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sjwgsj"></span></td> 
-			</tr>
-			<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可（附件上传）：</td>
-				<td id="td_sgxk" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="1">
-						<tbody id="sgxkTable"></tbody>
-					</table>
-					
-				</td>
-			</tr>
-			<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工桥梁正面照片：</td>
-				<td id="td_jgtc" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="1">
-						<tbody id="wgqlzmTable"></tbody>
-					</table>
-					
-				</td>
-			</tr>
-			<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工桥梁侧面照片：</td>
-				<td id="td_wgys" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="2">
-						<tbody id="wgqlcmTable"></tbody>
-					</table>
-				</td>
+				<td align="center" colspan="6" style="background-color: #ffffff; height: 20px;" >
+                	<img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " onclick="editWqgz()" />
+                </td>
 			</tr>
 		</table>
 	</body>

@@ -13,6 +13,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer {
 	private Map<String, Object> hm;
@@ -227,13 +228,14 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 				jckwqgzsj.setBz("0");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
+			if(jck.getTsdq()!=null)
 			if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 				Wqbzbz wq1=queryOne("selectshibz", jck);
 				if(wq1==null){
 					System.out.println("未查出市级补助，请在审核时检查代码");
 				}else{
-					BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
-					BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+					BigDecimal b1=new BigDecimal(jck.getScqlqc().trim()).multiply(new BigDecimal(jck.getScqlqk().trim()));
+					BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 					jckwqgzsj.setShibz(b2+"");
 				}
 			}
@@ -253,8 +255,8 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 				}
 			}
 			jckwqgzsj.setScqlqc(jck.getScqlqc());
-			BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc()).multiply(new BigDecimal(jckwqgzsj.getScqlqk()));
-			BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+			BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(jckwqgzsj.getScqlqk().trim()));
+			BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 			if(jckwqgzsj.getShibz()==null){
 				jckwqgzsj.setShibz("0");
 			}
@@ -262,6 +264,12 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			jckwqgzsj.setShibz("0");
 			jckwqgzsj.setSfylrbwqk(jck.getSfylrbwqk());
 			jckwqgzsj.setBzls(jck.getBzls());
+			jckwqgzsj.setScsqs(jck.getScsqs());
+			jckwqgzsj.setScxsq(jck.getScxsq());
+			jckwqgzsj.setScszxz(jck.getScszxz());
+			jckwqgzsj.setJsnr(jck.getJsnr());
+			jckwqgzsj.setJsxz(jck.getJsxz());
+			jckwqgzsj.setFaspsj(jck.getFaspsj());
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;
@@ -275,5 +283,20 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			return true;
 		}
 		else return false;
+	}
+
+	@Override
+	public List<Excel_list> dcwqgzsjjhExcel(Jckwqgzsj jckwqgzsj) {
+		return queryList("dcwqgzsjjhExcel",jckwqgzsj);
+	}
+
+	@Override
+	public List<Excel_list> dcwqgzsjxmkshExcel(Jckwqgzsj jckwqgzsj) {
+		return queryList("dcwqgzsjxmkshExcel", jckwqgzsj);
+	}
+
+	@Override
+	public List<Excel_list> dcwqgzsjsckExcel(Jckwqgzsj jckwqgzsj) {
+		return queryList("dcwqgzsjsckExcel", jckwqgzsj);
 	}
 }

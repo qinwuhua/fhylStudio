@@ -102,15 +102,17 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return queryOne("loadwqgzxmkbyid", id);
 	}
 	@Override
-	public Planwqgzsj loadwqgzsbzbyid(String id) {
+	public Planwqgzsj loadwqgzsbzbyid(String id,String jsxz) {
 		Planwqgzsj jck=queryOne("cxtiaojian", id);
+		jck.setJsxz(jsxz);
+		if(jck.getTsdq()!=null)
 		if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", jck);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
 			}else{
-				BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
-				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+				BigDecimal b1=new BigDecimal(jck.getScqlqc().trim()).multiply(new BigDecimal(jck.getScqlqk().trim()));
+				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 				jck.setShibz(b2+"");
 			}
 		}
@@ -119,7 +121,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			System.out.println("未查出市级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
-				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(jck.getScqlqk())){
+				if(Double.parseDouble(wq1.getZdkd().trim())<Double.parseDouble(jck.getScqlqk().trim())){
 					jck.setScqlqk(wq1.getZdkd());
 				}else{
 					jck.setScqlqk(jck.getScqlqk());
@@ -130,8 +132,8 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			}
 		}
 		jck.setScqlqc(jck.getScqlqc());
-		BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
-		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+		BigDecimal b1=new BigDecimal(jck.getScqlqc().trim()).multiply(new BigDecimal(jck.getScqlqk().trim()));
+		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 		if(jck.getShibz()==null){
 			jck.setShibz("0");
 		}
@@ -143,6 +145,10 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public boolean editwqgzsj(Planwqgzsj planwqgzsj) {
 		return update("editwqgzsj", planwqgzsj)==1;
+	}
+	@Override
+	public boolean editwqgzsj1(Planwqgzsj planwqgzsj) {
+		return update("editwqgzsj1", planwqgzsj)==1;
 	}
 	@Override
 	public List<Planwqgzsj> selectwqjhksb(Planwqgzsj planwqgzsj) {
@@ -190,13 +196,14 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public String lwBzsbz(Planwqgzsj planwqgzsj) {
 		try{
+		if(planwqgzsj.getTsdq()!=null)
 		if(planwqgzsj.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", planwqgzsj);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
 			}else{
-				BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
-				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+				BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(planwqgzsj.getScqlqk().trim()));
+				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 				planwqgzsj.setShibz(b2+"");
 			}
 		}
@@ -205,11 +212,10 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			System.out.println("未查出省级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
-				System.out.println(planwqgzsj.getScqlqk());
-				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(planwqgzsj.getScqlqk())){
-					planwqgzsj.setScqlqk(wq1.getZdkd());
+				if(Double.parseDouble(wq1.getZdkd().trim())<Double.parseDouble(planwqgzsj.getScqlqk().trim())){
+					planwqgzsj.setScqlqk(wq1.getZdkd().trim());
 				}else{
-					planwqgzsj.setScqlqk(planwqgzsj.getScqlqk());
+					planwqgzsj.setScqlqk(planwqgzsj.getScqlqk().trim());
 				}
 			}
 			else{
@@ -217,8 +223,8 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			}
 		}
 		planwqgzsj.setScqlqc(planwqgzsj.getScqlqc());
-		BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
-		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+		BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(planwqgzsj.getScqlqk().trim()));
+		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 		if(planwqgzsj.getShibz()==null){
 			planwqgzsj.setShibz("0");
 		}

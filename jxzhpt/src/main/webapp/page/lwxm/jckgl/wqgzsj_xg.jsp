@@ -147,7 +147,7 @@ function loadUploadify(){
 		'queueID' : 'fileQueue2',
 		'fileDataName' : 'uploadWGYS',
 		'auto' : false,
-		'multi' : false,
+		'multi' : true,
 		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,

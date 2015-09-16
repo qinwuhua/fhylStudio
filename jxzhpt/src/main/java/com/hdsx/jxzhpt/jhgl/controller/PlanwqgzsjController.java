@@ -46,7 +46,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
  	private String sbthcd;
  	private String gldj;
  	private String id;
+ 	private String jsxz;
  	
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
 	public String getId() {
 		return id;
 	}
@@ -256,20 +263,25 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	}
 	public void loadwqgzsbzbyid(){
 		try{
-			Planwqgzsj p = planwqgzsjServer.loadwqgzsbzbyid(id);
+			Planwqgzsj p = planwqgzsjServer.loadwqgzsbzbyid(id,jsxz);
 			JsonUtils.write(p, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void editwqgzsj(){
-		
 		if(planwqgzsj.getAblbzsqwh()==null)
 			planwqgzsj.setAblbzsqwh("");
 		boolean bl=planwqgzsjServer.editwqgzsj(planwqgzsj);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
-	
+	public void editwqgzsj1(){
+			
+			if(planwqgzsj.getAblbzsqwh()==null)
+				planwqgzsj.setAblbzsqwh("");
+			boolean bl=planwqgzsjServer.editwqgzsj1(planwqgzsj);
+			ResponseUtils.write(getresponse(), bl+"");
+		}
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){

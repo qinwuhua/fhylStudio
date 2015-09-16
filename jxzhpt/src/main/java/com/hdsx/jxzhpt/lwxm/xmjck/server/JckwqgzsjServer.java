@@ -7,6 +7,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JckwqgzsjServer {
 
@@ -63,4 +64,10 @@ public interface JckwqgzsjServer {
 	boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj);
 
 	boolean sjshbtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhExcel(Jckwqgzsj jckwqgzsj);
+
+	List<Excel_list> dcwqgzsjxmkshExcel(Jckwqgzsj jckwqgzsj);
+
+	List<Excel_list> dcwqgzsjsckExcel(Jckwqgzsj jckwqgzsj);
 }

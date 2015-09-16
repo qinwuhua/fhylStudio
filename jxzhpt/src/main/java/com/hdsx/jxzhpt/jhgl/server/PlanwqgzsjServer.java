@@ -34,7 +34,7 @@ public interface PlanwqgzsjServer {
 
 	Planwqgzsj loadwqgzxmkbyid(String id);
 
-	Planwqgzsj loadwqgzsbzbyid(String id);
+	Planwqgzsj loadwqgzsbzbyid(String id,String jsxz);
 
 	boolean editwqgzsj(Planwqgzsj planwqgzsj);
 
@@ -57,5 +57,7 @@ public interface PlanwqgzsjServer {
 	String lwBzsbz(Planwqgzsj planwqgzsj);
 
 	List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj);
+
+	boolean editwqgzsj1(Planwqgzsj planwqgzsj);
 	
 }
