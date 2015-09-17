@@ -1,56 +1,22 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
-import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
-import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
-import com.hdsx.jxzhpt.jhgl.server.impl.Plan_zjqfServerImpl;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -64,22 +30,11 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
-import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
-import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
-import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
-import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
-import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
-import com.ibm.icu.text.SimpleDateFormat;
 
 
 /**
@@ -462,14 +417,36 @@ public class LxshController extends BaseActionSupport{
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2="andx zqhdm in ("+xzqh+")";
+				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf=" xmnf in ("+xmnf+")";
+			}
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
+			}
+			if(!jsdj.equals("") && jsdj!=null){
+				if(jsdj.indexOf(",")>-1){
+					String[] split = jsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							jsdj = "(xjsdj like '%"+split[i]+"%'";
+						}else if(i==split.length-1){
+							jsdj += " or xjsdj like '%"+split[i]+"%')";
+						}else{
+							jsdj += " or xjsdj like '%"+split[i]+"%'";
+						}
+					}
+				}else{
+					jsdj = "(xjsdj like '%"+jsdj+"%'";
+				}
+				lxsh.setJsdj(jsdj);
 			}
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
@@ -505,6 +482,11 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf= "xmnf in ("+xmnf+")";
+		}else{
+			xmnf= "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -512,6 +494,22 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "xjsdj like '%"+jsdj+"%'";
+			}
+		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
@@ -717,12 +715,33 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "xjsdj like '%"+jsdj+"%'";
+			}
+		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -754,12 +773,33 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf ="xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "xjsdj like '%"+jsdj+"%'";
+			}
+		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -791,12 +831,33 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "xjsdj like '%"+jsdj+"%'";
+			}
+		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
@@ -875,6 +936,11 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -882,6 +948,22 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "xjsdj like '%"+jsdj+"%'";
+			}
+		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -1010,6 +1092,29 @@ public class LxshController extends BaseActionSupport{
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
+			if(lxsh.getXmnf().indexOf(",")>-1){
+				lxsh.setXmnf("xmnf in ("+lxsh.getXmnf()+")");
+			}else{
+				lxsh.setXmnf("xmnf = '"+lxsh.getXmnf()+"'");
+			}
+			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
+				String xjsdj ="";
+				if(lxsh.getJsdj().indexOf(",")>-1){
+					String[] split = lxsh.getJsdj().split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xjsdj = "(lx.xjsdj like '%"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xjsdj += " or lx.xjsdj like '%"+split[i]+"%')";
+						}else{
+							xjsdj += " or lx.xjsdj like '%"+split[i]+"%'";
+						}
+					}
+				}else{
+					xjsdj = "lx.xjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(xjsdj);
+			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
@@ -1082,6 +1187,42 @@ public class LxshController extends BaseActionSupport{
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
+			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
+				String jsdj1 ="";
+				if(lxsh.getJsdj().indexOf(",")>-1){
+					String[] jsdj2 = lxsh.getJsdj().split(",");
+					for (int i = 0; i < jsdj2.length; i++) {
+						if(i==0){
+							jsdj1 = "(xjsdj like '%"+jsdj2[i]+"%'";
+						}else if(i==jsdj2.length-1){
+							jsdj1 += " or xjsdj like '%"+jsdj2[i]+"%')";
+						}else{
+							jsdj1 = " or xjsdj like '%"+jsdj2[i]+"%'";
+						}
+					}
+				}else{
+					jsdj1 = "xjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(jsdj1);
+			}
+			if(!lxsh.getXmnf().equals("") && lxsh.getXmnf()!=null){
+				String xmnf1 ="";
+				if(lxsh.getXmnf().indexOf(",")>-1){
+					String[] split = lxsh.getXmnf().split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xmnf1 = "(xmbm like '"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xmnf1 += " or xmbm like '"+split[i]+"%')";
+						}else{
+							xmnf1 += " or xmbm like '"+split[i]+"%'";
+						}
+					}
+				}else{
+					xmnf1 = "xmbm like '"+lxsh.getXmnf()+"%'";
+				}
+				lxsh.setXmnf(xmnf1);
+			}
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头

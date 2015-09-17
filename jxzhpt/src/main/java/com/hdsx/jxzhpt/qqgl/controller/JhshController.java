@@ -88,6 +88,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 			jhsh.setXmbm(xmbm);
+			if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+				String xjsdj = jhsh.getJsdj();
+				if(xjsdj.indexOf(",")>-1){
+					String[] split = xjsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+						}else{
+							xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+						}
+						if(split.length==1){
+							xjsdj +=")";
+						}
+					}
+				}else{
+					xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+				}
+				jhsh.setJsdj(xjsdj);
+			}
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,page,rows);
@@ -126,6 +147,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 			jhsh.setXmbm(xmbm);
+			if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+				String xjsdj = jhsh.getJsdj();
+				if(xjsdj.indexOf(",")>-1){
+					String[] split = xjsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+						}else{
+							xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+						}
+						if(split.length==1){
+							xjsdj +=")";
+						}
+					}
+				}else{
+					xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+				}
+				jhsh.setJsdj(xjsdj);
+			}
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				result = jhshServer.queryJhshLjLmsj(jhsh);
@@ -134,8 +176,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==3){
 				result = jhshServer.queryJhshLjXj(jhsh);
 			}else if(jhsh.getXmlx()==4){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
@@ -169,6 +213,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 			jhsh.setXmbm(xmbm);
+			if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+				String xjsdj = jhsh.getJsdj();
+				if(xjsdj.indexOf(",")>-1){
+					String[] split = xjsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xjsdj = "(l.jsdj like '"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xjsdj += " or l.jsdj like '"+split[i]+"%')";
+						}else{
+							xjsdj += " or l.jsdj like '"+split[i]+"%'";
+						}
+						if(split.length==1){
+							xjsdj +=")";
+						}
+					}
+				}else{
+					xjsdj = "l.jsdj like '"+xjsdj+"%'";
+				}
+				jhsh.setJsdj(xjsdj);
+			}
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
 				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
@@ -479,6 +544,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
+		if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+					}
+				}
+			}else{
+				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -527,6 +610,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
+		if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.jsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.jsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.jsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "l.jsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
@@ -629,6 +733,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
+		if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.jsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.jsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.jsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "l.jsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";

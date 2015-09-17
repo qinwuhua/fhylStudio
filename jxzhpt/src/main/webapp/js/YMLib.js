@@ -1359,6 +1359,24 @@ function loadBmbm2(id, name) {
 		}
 	});
 }
+function loadBmbm3(id, name) {
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+		data:'yhm='+ encodeURI(encodeURI(name)),
+		dataType:'json',
+		success:function(msg){
+			$('#' + id).combobox({
+				data:msg,
+				valueField : 'bmid',
+				textField : 'name',
+				panelHeight:'auto',
+				multiple:true
+			});
+		}
+	});
+}
 // 获取url中参数
 function getParam(paras) {
 

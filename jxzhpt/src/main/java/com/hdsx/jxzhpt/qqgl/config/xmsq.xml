@@ -242,7 +242,7 @@
 					and xmmc like '%'||#{xmsq.xmmc}||'%'
 				</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
-					and (jsdj=#{xmsq.jsdj})
+					and ${xmsq.jsdj}
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
@@ -258,6 +258,9 @@
 				</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
+				</if>
+				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
+					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
@@ -278,7 +281,7 @@
 					and xmmc like '%'||#{xmsq.xmmc}||'%'
 				</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
-					and (jsdj=#{xmsq.jsdj})
+					and ${xmsq.jsdj}
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
@@ -294,6 +297,9 @@
 				</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
+				</if>
+				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
+					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%5___')
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
@@ -313,7 +319,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="jsdj!=null and jsdj!=''">
-			and (jsdj=#{jsdj})
+			and ${jsdj}
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
@@ -329,6 +335,9 @@
 		</if>
 		<if test="lsjl!=null and lsjl!=''">
 			and x.lsjl=#{lsjl}
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 		</if>
 	</select>
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
@@ -343,7 +352,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="jsdj!=null and jsdj!=''">
-			and (jsdj=#{jsdj})
+			and ${jsdj}
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
@@ -359,6 +368,9 @@
 		</if>
 		<if test="lsjl!=null and lsjl!=''">
 			and x.lsjl=#{lsjl}
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
 		</if>
 	</select>
 	
@@ -468,29 +480,16 @@
 				select x.xmbm,x.xmmc,x.xzqh,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,x.ghlxbh,x.xzqhdm,l.*
 				from xmsq_yhdzx x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
 				lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
-				<if test="gydwdm!=null and gydwdm!=''">
-					and ${gydwdm}
-				</if>
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
-				<if test="xmmc!=null and xmmc!=''">
-					and xmmc like '%'||#{xmmc}||'%'
-				</if>
-				<if test="jsdj!=null and jsdj!=''">
-					and (jsdj=#{jsdj})
-				</if>
-				<if test="sqzt>=0">
-					and sqzt=${sqzt}
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and x.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and x.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and x.lsjl=#{lsjl}
+				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="sqzt>=0">and sqzt=${sqzt}</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
+				<if test="ylxbh!=null and ylxbh!=''">
+					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 	</select>
@@ -500,29 +499,16 @@
 				select x.xmbm,x.xmmc,x.xzqh,x.ghlxbh,x.xzqhdm,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,l.*
 		        from xmsq_sh x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
 		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
-				<if test="gydwdm!=null and gydwdm!=''">
-					and ${gydwdm}
-				</if>
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
-				<if test="xmmc!=null and xmmc!=''">
-					and xmmc like '%'||#{xmmc}||'%'
-				</if>
-				<if test="jsdj!=null and jsdj!=''">
-					and (jsdj=#{jsdj})
-				</if>
-				<if test="sqzt>=0">
-					and sqzt=${sqzt}
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and x.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and x.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and x.lsjl=#{lsjl}
+				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and (jsdj=#{jsdj})</if>
+				<if test="sqzt>=0">and sqzt=${sqzt}</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
+				<if test="ylxbh!=null and ylxbh!=''">
+					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 	</select>
@@ -545,9 +531,7 @@
 			<if test="xmmc!=null and xmmc!=''">
 				and xmmc like '%'||#{xmmc}||'%'
 			</if>
-			<if test="jsdj!=null and jsdj!=''">
-				and (jsdj=#{jsdj})
-			</if>
+			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 			<if test="sqzt>=0">
 				and sqzt=${sqzt}
 			</if>
@@ -569,32 +553,14 @@
 		select xmbm,ntz,l.lc from xmsq_sh x left join 
 		(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
 		on x.xmbm=l.xmid where 1=1
-		<if test="gydwdm!=null and gydwdm!=''">
-			and ${gydwdm}
-		</if>
-		<if test="xzqhdm!=null and xzqhdm!=''">
-			and ${xzqhdm}
-		</if>
-		<if test="xmmc!=null and xmmc!=''">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="jsdj!=null and jsdj!=''">
-			and (jsdj=#{jsdj})
-		</if>
-		<if test="sqzt>=0">
-			and sqzt=${sqzt}
-		</if>
-		<if test="xmbm!=null and xmbm!=''">
-			and ${xmbm}
-		</if>
-		<if test="gcfl!=null and gcfl!=''">
-			and ${gcfl}
-		</if>
-		<if test="tsdq!=null and tsdq!=''">
-			and x.tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="lsjl!=null and lsjl!=''">
-			and x.lsjl=#{lsjl}
-		</if>)
+		<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="sqzt>=0">and sqzt=${sqzt}</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+		<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>)
 	</select>
 </mapper>

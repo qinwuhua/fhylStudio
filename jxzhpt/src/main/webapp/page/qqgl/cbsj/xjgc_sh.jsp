@@ -24,8 +24,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
-			loadBmbm2('yjsdj','技术等级');
-			loadBmbm2('gjhjsdj','技术等级');
+			loadBmbm3('yjsdj','技术等级');
+			loadBmbm3('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
@@ -39,7 +39,7 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
-					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
+					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'tsdq':$('#tsdq').combo("getText"),'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),};
 			grid.queryParams=params;
@@ -203,9 +203,9 @@
 			}
 		}
 		function exportCbsj(){
-			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValue")+
-			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValue")+'&jsjsdj='+$('#gjhjsdj').combo("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText");
+			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+
+			'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+'&tsdq='+$('#tsdq').combo("getText");
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -254,7 +254,7 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">上报状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>

@@ -616,13 +616,13 @@ function showAllsjsh(){
 	}
 	
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
 	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
@@ -746,13 +746,13 @@ function showAlllmsh(){
 	}
 	
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
 	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
@@ -876,13 +876,13 @@ function showAllxjsh(){
 	}
 	
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
 	
 	$('#datagrid').datagrid({    

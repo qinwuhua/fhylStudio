@@ -45,8 +45,9 @@
 			xmnf("xmnf");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
 			loadGcfl('gcfl','工程分类');
+			loadGldj('gldj','公路等级');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
@@ -59,9 +60,9 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,"jdbs":1,
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
 					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
-					,'gcfl':$('#gcfl').combobox("getValues").join(",")};
+					,'gcfl':$('#gcfl').combobox("getValues").join(","),"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
 			loadLj(params);
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -292,8 +293,9 @@
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
-			'&xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
+			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
@@ -308,6 +310,7 @@
 				url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
 				data:'yhm='+ encodeURI(encodeURI(name)),
 				dataType:'json',
+				async:false,
 				success:function(msg){
 					$('#' + id).combobox({
 						data:msg,
@@ -344,9 +347,9 @@
        							<td><select id="gydw" style="width:170px;"></select></td>
        							<td>&nbsp;行政区划：</td>
        							<td><select id="xzqh" style="width:124px;"></select></td>
-       							<td>&nbsp;技术等级:</td>
+       							<td>&nbsp;技术等级：</td>
        							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-       							<td>&nbsp;工程分类:</td>
+       							<td>&nbsp;工程分类：</td>
 	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:81px;"></select></td>
        						</tr>
        						<tr height="32">
@@ -356,7 +359,6 @@
        							<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
        							<td>&nbsp;项目名称：</td>
        							<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
-       							
        							<td>&nbsp;历史记录：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 81px;">
@@ -365,6 +367,8 @@
 		       							<option value="否">否</option>
 	       							</select>
        							</td>
+       							<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
        						</tr>
        						<tr>
        							<td colspan="8">

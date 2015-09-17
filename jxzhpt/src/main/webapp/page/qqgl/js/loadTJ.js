@@ -53,7 +53,8 @@ function xmnf(id){
 	$('#'+id).combobox({
 	    data:years,
 	    valueField:'value',
-	    textField:'text'
+	    textField:'text',
+	    multiple:true
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
@@ -170,7 +171,7 @@ function dclxshModule(str){
 		sbthcd=7;
 	}
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
 	var lsjl="";
 	if(str!='xj'){
@@ -180,7 +181,7 @@ function dclxshModule(str){
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
 	var data="lxsh.xmlx="+str+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.sbzt="+sbzt+"&lxsh.lsjl="+lsjl+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
@@ -224,12 +225,12 @@ function dclxshModule(str){
 			sbthcd=7;
 		}
 		var xmmc=$("#xmmc").val();
-		var xmnf=$("#xmnf").combobox('getValue');
+		var xmnf=$("#xmnf").combobox('getValues').join(",");
 		var tsdq=$("#tsdq").combobox('getText');
 		if(tsdq=='全部'){
 			tsdq="";
 		}
-		var jsdj=$("#jsdj").combobox('getValue');
+		var jsdj=$("#jsdj").combobox('getValues').join(",");
 		var gldj=$("#gldj").combobox('getValue');
 		var lsjl="";
 		if(str!='xj'){

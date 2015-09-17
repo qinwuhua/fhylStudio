@@ -24,7 +24,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryXj();
@@ -36,7 +36,7 @@
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),
 					'jhsh.xdzt':$('#xdzt').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'jhsh.jsdj':$('#jsdj').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
+					'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-160;
@@ -75,6 +75,7 @@
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
+				{field:'lc',title:'里程',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
@@ -104,7 +105,7 @@
 			var param='jhsh.xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.xmlx=3&jhsh.xdzt='+$('#xdzt').combobox("getValue")
 					+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()
 					+'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")
-					+'&jhsh.jsdj='+$('#jsdj').combobox("getValue")+'&lsjl='+$('#lsjl').combobox("getValue");
+					+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
 		}
 		$(window).resize(function () { 

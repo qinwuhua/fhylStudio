@@ -13,6 +13,31 @@ function userPanduan(unit2){
 		return "县";
 	}
 }
+/**
+ * 加载公路等级
+ * @param id
+ * @param name
+ * @returns
+ */
+function loadGldj(id, name) {
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+		data:'yhm='+ encodeURI(encodeURI(name)),
+		dataType:'json',
+		async:false,
+		success:function(msg){
+			$('#' + id).combobox({
+				data:msg,
+				valueField : 'bmid',
+				textField : 'name',
+				panelHeight:'auto',
+				multiple:true
+			});
+		}
+	});
+}
 //--------------------------------------------------路线操作--------------------------------------
 /**
  * 项目年份

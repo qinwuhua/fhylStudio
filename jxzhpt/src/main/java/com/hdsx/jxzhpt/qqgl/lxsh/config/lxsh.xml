@@ -96,7 +96,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
@@ -105,7 +105,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -119,18 +119,10 @@
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_SJGZ where 1=1
 		and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
@@ -138,7 +130,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -242,7 +234,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and  shzt=#{sbzt1}
@@ -251,7 +243,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -275,7 +267,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
@@ -284,7 +276,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -309,7 +301,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
@@ -318,7 +310,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -342,7 +334,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
@@ -351,7 +343,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -378,7 +370,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
@@ -387,7 +379,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -408,7 +400,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
@@ -417,7 +409,7 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
+			and ${jsdj}
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
@@ -471,66 +463,34 @@
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc from lxsh_lx where jdbs='0' group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
 	<select id="selectLmgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_LMGZ where 1=1
 		and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
@@ -539,29 +499,16 @@
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,xjlxbm,xjqdzh,xjzdzh,xjlc 
 		from lxsh_lx where jdbs='0' group by xmid,xjlxbm,xjqdzh,xjzdzh,xjlc) lx1 on t.xmbm=lx1.xmid
-		where 1=1
-			and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		where 1=1 and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -580,18 +527,14 @@
 		<if test="xmmc!='' and xmmc!= null ">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -651,94 +594,48 @@
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_SJGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_LMGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_XJ t,
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx  where 1=1 and t.xmbm=lx.xmid(+)
 		and sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl like '%'||#{lsjl}||'%'
 		</if>
@@ -760,15 +657,11 @@
 		<if test="xmmc!='' and xmmc!= null ">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmbm like #{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -781,24 +674,16 @@
 	    lx.wllc v_12,'路面改造' v_13,t.dq_m v_14,t.dq v_15,t.jsjsdj v_16,
 	    t.sd_m v_17,t.sd v_18,t.jsdw v_19,t.kgny v_20,t.wgny v_21,t.bzdw v_22,t.tzgs v_23,t.dfzc v_24,t.yhdk v_25,t.gkpfwh v_26,t.pfsj v_27 
 	    from KXXYJ_LMGZ t left join (select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmbm like #{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -811,24 +696,16 @@
 		lx.yilc v_11,lx.erlc v_12,lx.sanlc v_13,lx.silc v_14,lx.dwlc v_15,lx.wllc v_16,'新建' v_17,t.dq_m v_18,t.dq v_19,t.jsjsdj v_20,t.sd_m v_21,t.sd v_22,
 		t.jsdw v_23,t.kgny v_24,t.wgny v_25,t.bzdw v_26,t.tzgs v_27,t.dfzc v_28,t.yhdk v_29,t.gkpfwh v_30,t.pfsj v_31 from KXXYJ_XJ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and xmbm like #{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>

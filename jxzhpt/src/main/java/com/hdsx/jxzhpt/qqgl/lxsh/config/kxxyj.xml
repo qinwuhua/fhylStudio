@@ -10,27 +10,19 @@
     	sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc
     	from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if> 
@@ -44,31 +36,17 @@
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
 		and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and t.xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and t1.lsjl like '%'||#{lsjl}||'%'
 		</if>
@@ -81,27 +59,19 @@
 		sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc from lxsh_lx where jdbs='1' 
 		group by xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -114,27 +84,19 @@
 	<select id="selectLmgzkxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm where 1=1
 		and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -150,27 +112,19 @@
 		sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc,xjlxbm,xjqdzh,xjzdzh  
 		from lxsh_lx where jdbs='1' group by qdmc,zdmc,lxmc,xmid,xjlxbm,xjqdzh,xjzdzh,xjlc ) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -180,30 +134,16 @@
 	<select id="selectXjkxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
 		and (t.sbthcd &lt;=7 or t.sbthcd is null) 
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and t.xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
-		</if>
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
 	</select>
 	
 	<insert id="insertFile" parameterType="plan_upload">

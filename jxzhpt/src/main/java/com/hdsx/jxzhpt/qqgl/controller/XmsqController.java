@@ -1,6 +1,5 @@
 package com.hdsx.jxzhpt.qqgl.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,14 +7,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
-
 import net.sf.json.JSONArray;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
@@ -166,28 +161,65 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmbm = "x.xmbm like '" + xmbm + "%' ";
 			}
 			xmsq.setXmbm(xmbm);
-			
+			String jsdj = xmsq.getJsdj();
+			if(jsdj!=null && !jsdj.equals("")){
+				if(jsdj.indexOf(",")>-1){
+					String[] split = jsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							jsdj = "(jsdj like '%"+split[i]+"%'";
+						}else if(i==split.length-1){
+							jsdj += " or jsdj like '%"+split[i]+"%')";
+						}else{
+							jsdj += " or jsdj like '%"+split[i]+"%'";
+						}
+					}
+				}else{
+					jsdj = "jsdj like '%"+jsdj+"%'";
+				}
+				xmsq.setJsdj(jsdj);
+			}
+			String ylxbh = xmsq.getYlxbh();
+			if(!ylxbh.equals("") && ylxbh!=null){
+				if(ylxbh.indexOf(",")>-1){
+					String[] gcdjArray = ylxbh.split(",");
+					for (int i = 0; i < gcdjArray.length; i++) {
+						if(i==0){
+							ylxbh = "(lxbm like '%"+gcdjArray[i]+"%' ";
+						}else if(i==gcdjArray.length-1){
+							ylxbh += " or lxbm like '%"+gcdjArray[i]+"%')";
+						}else{
+							ylxbh += " or lxbm like '%" + gcdjArray[i] + "%'";
+						}
+					}
+				}else{
+					ylxbh = "lxbm like '%" + ylxbh + "%'";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
 			List<Xmsq> list=null;
 			int total=0;
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
 				String gcfl = xmsq.getGcfl();
-				if(gcfl.indexOf(",")>-1){
-					String[] gcflArray = gcfl.split(",");
-					for (int i = 0; i < gcflArray.length; i++) {
-						if(i==0){
-							gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
-						}else if(i==gcflArray.length-1){
-							gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
-						}else{
-							gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+				if(!gcfl.equals("") && gcfl!=null){
+					if(gcfl.indexOf(",")>-1){
+						String[] gcflArray = gcfl.split(",");
+						for (int i = 0; i < gcflArray.length; i++) {
+							if(i==0){
+								gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+							}else if(i==gcflArray.length-1){
+								gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+							}else{
+								gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+							}
 						}
+					}else{
+						gcfl = "x.gcfl like '%" + gcfl + "%'";
 					}
-				}else{
-					gcfl = "x.gcfl like '%" + gcfl + "%'";
+					xmsq.setGcfl(gcfl);
 				}
-				xmsq.setGcfl(gcfl);
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -218,6 +250,24 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmbm = "x.xmbm like '" + xmbm + "%' ";
 		}
 		xmsq.setXmbm(xmbm);
+		String jsdj = xmsq.getJsdj();
+		if(jsdj!=null && !jsdj.equals("")){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(jsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or jsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or jsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				jsdj = "jsdj like '%"+jsdj+"%'";
+			}
+			xmsq.setJsdj(jsdj);
+		}
 		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 		
@@ -392,6 +442,58 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			//设置标题、文件名称
 			String titleName="";
 			String fileName="";
+			String xmbm = xmsq.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "x.xmbm like '" + xmbm + "%' ";
+			}
+			xmsq.setXmbm(xmbm);
+			String ylxbh = xmsq.getYlxbh();
+			if(!ylxbh.equals("") && ylxbh!=null){
+				if(ylxbh.indexOf(",")>-1){
+					String[] gcdjArray = ylxbh.split(",");
+					for (int i = 0; i < gcdjArray.length; i++) {
+						if(i==0){
+							ylxbh = "(lxbm like '%"+gcdjArray[i]+"%' ";
+						}else if(i==gcdjArray.length-1){
+							ylxbh += " or lxbm like '%"+gcdjArray[i]+"%')";
+						}else{
+							ylxbh += " or lxbm like '%" + gcdjArray[i] + "%'";
+						}
+					}
+				}else{
+					ylxbh = "lxbm like '%" + ylxbh + "%'";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
+			String jsdj = xmsq.getJsdj();
+			if(jsdj!=null && !jsdj.equals("")){
+				if(jsdj.indexOf(",")>-1){
+					String[] split = jsdj.split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							jsdj = "(jsdj like '%"+split[i]+"%'";
+						}else if(i==split.length-1){
+							jsdj += " or jsdj like '%"+split[i]+"%')";
+						}else{
+							jsdj += " or jsdj like '%"+split[i]+"%'";
+						}
+					}
+				}else{
+					jsdj = "jsdj like '%"+jsdj+"%'";
+				}
+				xmsq.setJsdj(jsdj);
+			}
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
@@ -586,6 +688,14 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
 		}
 		return result;
+	}
+	
+	public void loadGldj(){
+		List<TreeNode> gldjList = new ArrayList<TreeNode>();
+		TreeNode g = new TreeNode();
+		g.setText("国道");
+		g.setId("G");
+		//List<TreeNode> gChildren = xmsqServer.queryLxFromGpsroad("G");
 	}
 	//get set
 	public Xmsq getXmsq() {

@@ -45,7 +45,8 @@
 			loadTsdq("tsdq");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
+			loadGldj('gldj','公路等级');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
@@ -59,8 +60,9 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,"jdbs":1,
-					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
+					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
+					,"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
@@ -291,8 +293,9 @@
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
-			'&xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
+			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
@@ -328,6 +331,8 @@
 	       						<td><select id="xzqh" style="width:124px;"></select></td>
 	       						<td>&nbsp;技术等级:</td>
 	       						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+	       						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 	       					</tr>
 	       					<tr height="32">
 	       						<td><span id="ztspan">上报状态</span>：</td>
