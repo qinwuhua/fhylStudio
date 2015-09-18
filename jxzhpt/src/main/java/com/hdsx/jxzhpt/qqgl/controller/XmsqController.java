@@ -181,19 +181,17 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			String ylxbh = xmsq.getYlxbh();
 			if(!ylxbh.equals("") && ylxbh!=null){
-				if(ylxbh.indexOf(",")>-1){
-					String[] gcdjArray = ylxbh.split(",");
-					for (int i = 0; i < gcdjArray.length; i++) {
-						if(i==0){
-							ylxbh = "(lxbm like '%"+gcdjArray[i]+"%' ";
-						}else if(i==gcdjArray.length-1){
-							ylxbh += " or lxbm like '%"+gcdjArray[i]+"%')";
-						}else{
-							ylxbh += " or lxbm like '%" + gcdjArray[i] + "%'";
-						}
+				if(ylxbh.indexOf("G,")>-1){
+					ylxbh = "lxbm like 'G%'";
+				}else if(ylxbh.indexOf(",")>-1){
+					String[] split = ylxbh.split(",");
+					ylxbh="";
+					for (String s : split) {
+						ylxbh+="'"+s+"'";
 					}
+					ylxbh = "lxbm in ("+ylxbh+")";
 				}else{
-					ylxbh = "lxbm like '%" + ylxbh + "%'";
+					ylxbh = "lxbm = '" + ylxbh + "'";
 				}
 				xmsq.setYlxbh(ylxbh);
 			}
@@ -693,12 +691,27 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void loadGldj(){
 		try {
 			List<TreeNode> resultList = new ArrayList<TreeNode>();
-			List<TreeNode> gChildren = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			List<Map<String, String>> gd = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			List<TreeNode> gChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : gd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				gChildren.add(lx);
+			}
 			TreeNode g = new TreeNode("G","国道",null,gChildren);
 			g.setState("closed");
 			resultList.add(g);
-			List<TreeNode> sChildren = xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			List<Map<String, String>> sd =  xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			List<TreeNode> sChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : sd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				sChildren.add(lx);
+			}
 			TreeNode s = new TreeNode("S","省道",null,sChildren);
+			s.setState("closed");
 			resultList.add(s);
 			TreeNode x = new TreeNode("X", "县道", null, null);
 			resultList.add(x);
