@@ -47,7 +47,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm3('jsdj','技术等级');
 			loadGcfl('gcfl','工程分类');
-			loadGldj('gldj','公路等级');
+			loadGldj('gldj');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');

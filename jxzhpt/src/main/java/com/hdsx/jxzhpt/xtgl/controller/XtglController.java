@@ -191,6 +191,7 @@ public class XtglController extends BaseActionSupport{
 		try {
 		    List<TreeNode> l=xtglServer.selAllXzqh2(yhdw);
             String s=JSONArray.fromObject(l).toString();
+            System.out.println(s);
 			ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
 			e.printStackTrace();

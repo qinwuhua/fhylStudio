@@ -19,23 +19,11 @@ function userPanduan(unit2){
  * @param name
  * @returns
  */
-function loadGldj(id, name) {
-	$.ajax({
-		type:'post',
-		async:false,
-		url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
-		data:'yhm='+ encodeURI(encodeURI(name)),
-		dataType:'json',
-		async:false,
-		success:function(msg){
-			$('#' + id).combobox({
-				data:msg,
-				valueField : 'bmid',
-				textField : 'name',
-				panelHeight:'auto',
-				multiple:true
-			});
-		}
+function loadGldj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
+		panelHeight:'auto',
+		multiple:true
 	});
 }
 //--------------------------------------------------路线操作--------------------------------------
