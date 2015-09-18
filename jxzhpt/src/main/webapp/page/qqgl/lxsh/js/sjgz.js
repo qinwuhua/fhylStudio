@@ -400,7 +400,7 @@ function showAll(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combotree('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmsj.do',

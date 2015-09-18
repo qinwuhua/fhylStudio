@@ -350,7 +350,7 @@
        							<td>&nbsp;技术等级：</td>
        							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
        							<td>&nbsp;工程分类：</td>
-	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:81px;"></select></td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:100px;"></select></td>
        						</tr>
        						<tr height="32">
        							<td><span id="ztspan">上报状态</span>：</td>
@@ -368,7 +368,7 @@
 	       							</select>
        							</td>
        							<td>&nbsp;公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        						</tr>
        						<tr>
        							<td colspan="8">

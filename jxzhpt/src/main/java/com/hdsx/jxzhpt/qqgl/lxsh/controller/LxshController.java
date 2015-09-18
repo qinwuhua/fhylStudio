@@ -408,6 +408,7 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void selectSjgzList(){
+		try {
 			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
@@ -437,31 +438,46 @@ public class LxshController extends BaseActionSupport{
 					String[] split = jsdj.split(",");
 					for (int i = 0; i < split.length; i++) {
 						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
+							jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
 						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
+							jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
 						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
+							jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
 						}
 					}
 				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
+					jsdj = "lx.xjsdj like '%"+jsdj+"%'";
 				}
 				lxsh.setJsdj(jsdj);
 			}
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
+			if(gldj!=null && !gldj.equals("")){
+				if(gldj.indexOf("G,")>-1){
+					gldj = "lxbm like 'G%'";
+				}else if(gldj.indexOf("S,")>-1){
+					gldj = "lxbm like 'S%'";
+				}else if(gldj.indexOf(",")>-1){
+					String[] split = gldj.split(",");
+					gldj="";
+					for (int i = 0; i < split.length; i++) {
+						gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+					}
+					gldj = "lxbm in ("+gldj+")";
+				}else{
+					gldj = "lxbm = '" + gldj + "'";
+				}
+			}
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-		List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
-		int count=lxshServer.selectSjgzListCount(lxsh);
-		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
-		e.setRows(list);
-		e.setTotal(count);
-		try {
+			List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
+			int count=lxshServer.selectSjgzListCount(lxsh);
+			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+			e.setRows(list);
+			e.setTotal(count);
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -496,7 +512,7 @@ public class LxshController extends BaseActionSupport{
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
-			if(!jsdj.equals("") && jsdj!=null){
+			if(jsdj!=null && !jsdj.equals("")){
 				if(jsdj.indexOf(",")>-1){
 					String[] split = jsdj.split(",");
 					for (int i = 0; i < split.length; i++) {
@@ -515,6 +531,22 @@ public class LxshController extends BaseActionSupport{
 			}
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
+			if(gldj!=null && !gldj.equals("")){
+				if(gldj.indexOf("G,")>-1){
+					gldj = "lxbm like 'G%'";
+				}else if(gldj.indexOf("S,")>-1){
+					gldj = "lxbm like 'S%'";
+				}else if(gldj.indexOf(",")>-1){
+					String[] split = gldj.split(",");
+					gldj="";
+					for (int i = 0; i < split.length; i++) {
+						gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+					}
+					gldj = "lxbm in ("+gldj+")";
+				}else{
+					gldj = "lxbm = '" + gldj + "'";
+				}
+			}
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);

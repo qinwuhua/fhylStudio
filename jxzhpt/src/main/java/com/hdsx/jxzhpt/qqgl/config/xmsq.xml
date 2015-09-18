@@ -563,7 +563,7 @@
 		<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>)
 	</select>
-	<select id="queryLxFromGpsroadByLevel" parameterType="treenode" resultType="java.util.Map">
+	<select id="queryLxFromGpsroadByLevel" parameterType="java.util.Map" resultType="java.util.Map">
 		select substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6) text
 		<!-- ,min(g.roadstart),max(g.roadends) --> from gpsroad g where g.roadcode like #{level}||'%' 
 		and substr(roadcode,length(roadcode)-5) like #{xzqhdm}||'%' 

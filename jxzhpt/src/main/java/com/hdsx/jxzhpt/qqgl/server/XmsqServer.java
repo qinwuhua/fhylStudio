@@ -201,6 +201,6 @@ public interface XmsqServer {
 	 * @param xzqhdm 行政区划
 	 * @return
 	 */
-	public List<TreeNode> queryLxFromGpsroadByLevel(String level,String xzqhdm);
+	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm);
 
 }

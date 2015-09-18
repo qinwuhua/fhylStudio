@@ -28,7 +28,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadGldj('gldj');
 			tsdq("tsdq");
 			xmnf("xmnf");
 			showAll();

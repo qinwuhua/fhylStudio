@@ -22,7 +22,7 @@ function userPanduan(unit2){
 function loadGldj(id) {
 	$('#' + id).combotree({
 		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
-		panelHeight:'auto',
+		panelHeight:200,
 		multiple:true
 	});
 }

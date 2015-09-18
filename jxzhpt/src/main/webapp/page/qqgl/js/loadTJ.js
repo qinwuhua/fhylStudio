@@ -20,14 +20,21 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 		}
 	});
 }
+function loadGldj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
+		panelHeight:200,
+		multiple:true
+	});
+}
 function tsdq(id){
-			$("#"+id).combobox({    
-			    url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),
-			    valueField:'id',    
-			    textField:'text'   
-			})
-			$("#"+id).combobox('setValue','全部');
-	}
+	$("#"+id).combobox({    
+		url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),
+		valueField:'id',    
+		textField:'text'   
+	});
+	$("#"+id).combobox('setValue','全部');
+}
 function tsdq1(id,value){
 	$("#"+id).combotree({   
 		checkbox : true,
