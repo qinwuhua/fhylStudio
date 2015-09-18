@@ -482,7 +482,7 @@
 		<if test="xzqhdm!=null and xzqhdm!=''">l.xzqhdm=#{xzqhdm},</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">l.jsjsdj=#{jsjsdj},</if>
 		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
-		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if>
+<!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
 		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if>
 		where l.xmid=#{xmid} 
