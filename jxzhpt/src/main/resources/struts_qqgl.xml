@@ -89,6 +89,25 @@
 	      <action name="tjwqbzbz" class="lxshController" method="tjwqbzbz"/>
 	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>
 	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
+	      
+	      <action name="selectGjwnjh" class="wnjhController" method="selectGjwnjh"/>
+	       <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
+	      <action name="wnjhGpsroad" class="wnjhController" method="wnjhGpsroad"/>
+	      <action name="insertGjwnjh" class="wnjhController" method="insertGjwnjh"/>
+	      <action name="importsjgzwnjh" class="wnjhController" method="importsjgzwnjh"/>
+	      <action name="dcwnjhExcel" class="wnjhController" method="dcwnjhExcel"/>
+	       <action name="delwnjhSjgz" class="wnjhController" method="delwnjhSjgz"/>
+	      <action name="cxwnghsjByid" class="wnjhController" method="cxwnghsjByid"/>
+	      <action name="updatewnjhsj" class="wnjhController" method="updatewnjhsj"/>
+	      <action name="selectwnlxbyxmid" class="wnjhController" method="selectwnlxbyxmid"/>
+	      <action name="sfywnlx" class="wnjhController" method="sfywnlx"/>
+	      <action name="selectwnSjlxList" class="wnjhController" method="selectwnSjlxList"/>
+	      
+	      
+	      
+	      
+	      
+	      
 	 <!-- qwh -->
 	<!-- rh -->
 		
