@@ -164,4 +164,16 @@ public interface LxshServer {
 	List<Map<String, String>> queryNdwg(String xmbm);
 
 	List<Map<String, String>> queryNdwgXzqh(String xmbm,boolean qb);
+
+	Map<String, String> queryLxshLjLmsj(Lxsh lxsh);
+	
+	Map<String, String> queryLxshShLjLmsj(Lxsh lxsh);
+
+	Map<String, String> queryLxshLjLmgz(Lxsh lxsh);
+
+	Map<String, String> queryLxshLjXj(Lxsh lxsh);
+
+	Map<String, String> queryLxshShLjLmgz(Lxsh lxsh);
+
+	Map<String, String> queryLxshShLjXj(Lxsh lxsh);
 }

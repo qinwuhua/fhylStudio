@@ -828,7 +828,41 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}else if(jhsh.getXmlx()==4){
 			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总投资资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省投资,fieid=stz>";
 		}
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+					}
+				}
+			}else{
+				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
@@ -848,11 +882,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			fileName="新建工程项目-资金下达";
 		}
 		else if(jhsh.getXmlx()==4){
+			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
 			titleName="养护大中修项目";
 			fileName="养护大中修项目-资金下达";
 		}
 		else if(jhsh.getXmlx()==5){
+			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
 			titleName="灾毁重建项目";
 			fileName="灾毁重建项目-资金下达";

@@ -21,7 +21,7 @@
 			loadTsdq("tsdq");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
 			loadBmbm2('sqzt','申请状态省');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
@@ -31,7 +31,7 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ghlxbh':$('#ylxbh').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),
 					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			loadLj(params);
@@ -97,8 +97,8 @@
 		});
 		function exportZjxd(){
 			var param='jhsh.xmlx=5&xdzt=1&xzqhdm='+getxzqhdm('xzqh')+'&xmmc='+$('#xmmc').val()
-				+'&ghlxbh='+$('#ylxbh').val()+'&tsdq='+$('#tsdq').combo("getText")+'&jsdj='+$('#jsdj').combobox("getValue")
-				+'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue");
+				+'&ghlxbh='+$('#ylxbh').val()+'&tsdq='+$('#tsdq').combo("getText")+'&jsdj='+$('#jsdj').combobox("getValues").join(",")
+				+'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
 	</script>

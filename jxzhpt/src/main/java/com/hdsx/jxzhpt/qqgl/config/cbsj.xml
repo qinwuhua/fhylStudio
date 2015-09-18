@@ -105,8 +105,7 @@
 	<select id="queryCbsjYhdzx" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_yhdzx c left join 
-				(select x.*,lx.xjsdj from xmsq_yhdzx x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm
+				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
 				where 1=1
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 					and ${cbsj.xzqhdm}
@@ -144,8 +143,7 @@
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_sh c left join 
-				(select x.*,lx.xjsdj from xmsq_sh x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm
+				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
 				where 1=1
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 					and ${cbsj.xzqhdm}
@@ -251,8 +249,7 @@
 		</if>
 	</select>
 	<select id="queryCbsjYhdzxCount" parameterType="java.util.Map" resultType="int">
-		select count(c.xmbm) from cbsj_yhdzx c left join 
-		(select x.*,lx.xjsdj from xmsq_yhdzx x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm
+		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
 				where 1=1
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 					and ${cbsj.xzqhdm}
@@ -283,8 +280,7 @@
 				</if>
 	</select>
 	<select id="queryCbsjShCount" parameterType="java.util.Map" resultType="int">
-		select count(c.xmbm) from cbsj_sh c left join 
-		(select x.*,lx.xjsdj from xmsq_sh x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm
+		select count(c.xmbm) from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 			and ${cbsj.xzqhdm}
@@ -614,8 +610,7 @@
 		select * from (
 			select rownum num,t.* from (
 			select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
-			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join 
-			(select x.*,lx.xjsdj from xmsq_sh x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm left join 
+			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join 
 			(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx 
 			on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
@@ -744,7 +739,7 @@
 	</select>
 	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx c left join 
-		(select x.*,lx.xjsdj from xmsq_yhdzx x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm left join 
+		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
 		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">
@@ -774,7 +769,7 @@
 	</select>
 	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh c left join 
-		(select x.*,lx.xjsdj from xmsq_sh x left join lxsh_lx lx on x.xmbm=lx.xmid) l on c.xmbm=l.xmbm left join 
+		xmsq_sh l on c.xmbm=l.xmbm left join 
 		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
