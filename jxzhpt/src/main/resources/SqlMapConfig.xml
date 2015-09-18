@@ -154,6 +154,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/xmbb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/lxsh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/kxxyj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/wnjh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckwqgzsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/planwqgzsj.xml"/>
 	<!-- qwh end -->

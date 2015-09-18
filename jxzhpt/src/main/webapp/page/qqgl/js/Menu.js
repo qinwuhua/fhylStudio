@@ -2,7 +2,15 @@ $(function() {
 	var qx=parent.$.cookie("qx3").split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-		 if(qx[i]=='01010801'){
+    	if(qx[i]=='01010800'){
+			$('#aa').accordion('add', {
+				id:"left_menu7",
+				title: '五年规划库',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010801'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
 				title: '项目立项申请',
@@ -274,6 +282,28 @@ $(function() {
 //		renderTo:'left_menu5',
 //		href:'../sjcx/jhkgl/zbgl.jsp'
 //	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080001',
+		title:'改建工程项目',
+		imgSrc:'../../images/sj_s.png',
+		renderTo:'left_menu7',
+		href:'./wnjh/sjgz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080002',
+		title:'路面改造工程项目',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu7',
+		href:'./wnjh/lmgz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080003',
+		title:'新建工程项目',
+		imgSrc:'../../images/xjgcxm.png',
+		renderTo:'left_menu7',
+		href:'./wnjh/xj.jsp'
+	});
+	
 	menuQx();
 	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010801"){
 		if(getParam("sj")=="0"){

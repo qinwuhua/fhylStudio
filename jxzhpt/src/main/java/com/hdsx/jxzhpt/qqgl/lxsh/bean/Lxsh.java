@@ -72,6 +72,28 @@ public class Lxsh implements Serializable {
 	private String jhwllc;//建设后无路里程
 	private String bz;//备注
 	private String yhdk;//银行贷款
+	private String bzcs;//补助测算
+
+	private String jsfa;//建设方案
+	//历史数据字段
+	private String ylxbm;//原路线编码
+	private String yqdzh;//原起点桩号
+	private String yzdzh;//原止点桩号
+	private String jhlc;
+	private String sl;
+	
+	public String getSl() {
+		return sl;
+	}
+	public void setSl(String sl) {
+		this.sl = sl;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}
@@ -447,6 +469,36 @@ public class Lxsh implements Serializable {
 	}
 	public void setJdbs(String jdbs) {
 		this.jdbs = jdbs;
+	}
+	public String getBzcs() {
+		return bzcs;
+	}
+	public void setBzcs(String bzcs) {
+		this.bzcs = bzcs;
+	}
+	public String getJsfa() {
+		return jsfa;
+	}
+	public void setJsfa(String jsfa) {
+		this.jsfa = jsfa;
+	}
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
 	}
 
 }

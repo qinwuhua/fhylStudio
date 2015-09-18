@@ -97,17 +97,23 @@
 	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
 	      
 	      <action name="selectGjwnjh" class="wnjhController" method="selectGjwnjh"/>
-	       <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
+	      <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
+	      <action name="selectXjwnjh" class="wnjhController" method="selectXjwnjh"/>
 	      <action name="wnjhGpsroad" class="wnjhController" method="wnjhGpsroad"/>
 	      <action name="insertGjwnjh" class="wnjhController" method="insertGjwnjh"/>
 	      <action name="insertLmwnjh" class="wnjhController" method="insertLmwnjh"/>
+	      <action name="insertXjwnjh" class="wnjhController" method="insertXjwnjh"/>
 	      <action name="importsjgzwnjh" class="wnjhController" method="importsjgzwnjh"/>
 	      <action name="importlmgzwnjh" class="wnjhController" method="importlmgzwnjh"/>
+	      <action name="importxjwnjh" class="wnjhController" method="importxjwnjh"/>
 	      <action name="dcwnjhExcel" class="wnjhController" method="dcwnjhExcel"/>
 	      <action name="delwnjhSjgz" class="wnjhController" method="delwnjhSjgz"/>
           <action name="delwnjhLmgz" class="wnjhController" method="delwnjhLmgz"/>
+          <action name="delwnjhXj" class="wnjhController" method="delwnjhXj"/>
 	      <action name="cxwnghsjByid" class="wnjhController" method="cxwnghsjByid"/>
 	      <action name="updatewnjhsj" class="wnjhController" method="updatewnjhsj"/>
+	      <action name="updatewnjhlm" class="wnjhController" method="updatewnjhlm"/>
+	      <action name="updatewnjhxj" class="wnjhController" method="updatewnjhxj"/>
 	      <action name="selectwnlxbyxmid" class="wnjhController" method="selectwnlxbyxmid"/>
 	      <action name="sfywnlx" class="wnjhController" method="sfywnlx"/>
 	      <action name="selectwnSjlxList" class="wnjhController" method="selectwnSjlxList"/>
