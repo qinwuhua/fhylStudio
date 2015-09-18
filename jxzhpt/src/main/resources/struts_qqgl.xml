@@ -6,6 +6,7 @@
 		<!-- qwh -->
 		  <action name="selectlxbyxmid" class="lxshController" method="selectlxbyxmid"/>
 		  <action name="qqglGpszh" class="lxshController" method="qqglGpszh"/>
+		  <action name="qqglGpszh1" class="wnjhController" method="qqglGpszh1"/>
 		  <action name="sfylx" class="lxshController" method="sfylx"/>
 		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
 		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
@@ -99,9 +100,12 @@
 	       <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
 	      <action name="wnjhGpsroad" class="wnjhController" method="wnjhGpsroad"/>
 	      <action name="insertGjwnjh" class="wnjhController" method="insertGjwnjh"/>
+	      <action name="insertLmwnjh" class="wnjhController" method="insertLmwnjh"/>
 	      <action name="importsjgzwnjh" class="wnjhController" method="importsjgzwnjh"/>
+	      <action name="importlmgzwnjh" class="wnjhController" method="importlmgzwnjh"/>
 	      <action name="dcwnjhExcel" class="wnjhController" method="dcwnjhExcel"/>
-	       <action name="delwnjhSjgz" class="wnjhController" method="delwnjhSjgz"/>
+	      <action name="delwnjhSjgz" class="wnjhController" method="delwnjhSjgz"/>
+          <action name="delwnjhLmgz" class="wnjhController" method="delwnjhLmgz"/>
 	      <action name="cxwnghsjByid" class="wnjhController" method="cxwnghsjByid"/>
 	      <action name="updatewnjhsj" class="wnjhController" method="updatewnjhsj"/>
 	      <action name="selectwnlxbyxmid" class="wnjhController" method="selectwnlxbyxmid"/>
