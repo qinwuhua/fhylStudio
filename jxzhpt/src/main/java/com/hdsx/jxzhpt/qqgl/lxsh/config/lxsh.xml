@@ -354,12 +354,12 @@
 	</select>
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
-		select * from (
-		select rownum num ,t.*,lx.*  from LXSH_XJ t left join 
+		select * from (select rownum num ,t.*,lx.*,xj.xjlxbm,xj.xjqdzh,xj.xjzdzh,xj.xjlc  from LXSH_XJ t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,
-		sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc,xjlxbm,xjqdzh,xjzdzh,xjlc 
-		from lxsh_lx where jdbs='0' group by xmid,xjlxbm,xjqdzh,xjzdzh,xjlc) lx on t.xmbm=lx.xmid where 1=1
-			and  sbthcd=7
+		sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc 
+		from lxsh_lx where jdbs='0' group by xmid) lx on t.xmbm=lx.xmid 
+    	left join (select xmid,xjlxbm,xjqdzh,xjzdzh,xjlc from lxsh_lx where jdbs='0' and sffirst='1') xj on t.xmbm=xj.xmid 
+    	where 1=1 and  sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -816,6 +816,102 @@
 		,decode(substr(xmid,11,1),1,nvl(l.jhdwlc,0),3,nvl(l.dwlc,0)) jhdwlc,decode(substr(xmid,11,1),1,nvl(l.jhwllc,0),3,nvl(l.wllc,0)) jhwllc
 		from lxsh_lx l where substr(lxbm,0,1) in('S','G') and (${xmbm})) 
 		group by <if test="qb==false">substr(xmid,5,6),</if>substr(lxbm,0,1)
+	</select>
+	<select id="queryLxshLjLmsj" resultType="java.util.Map" parameterType="lxsh">
+    	select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_SJGZ t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%1___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+	</select>
+	<select id="queryLxshShLjLmsj" resultType="java.util.Map" parameterType="lxsh">
+    	select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_SJGZ t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%1___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1 and sbthcd=7
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+	</select>
+	<select id="queryLxshLjLmgz" resultType="java.util.Map" parameterType="lxsh">
+		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_LMGZ t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%2___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+	</select>
+	<select id="queryLxshShLjLmgz" resultType="java.util.Map" parameterType="lxsh">
+		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_LMGZ t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%2___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1 and sbthcd=7
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+	</select>
+	<select id="queryLxshLjXj" resultType="java.util.Map" parameterType="lxsh">
+		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_xj t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%3___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+	</select>
+	<select id="queryLxshShLjXj" resultType="java.util.Map" parameterType="lxsh">
+		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_xj t left join
+    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%3___' group by xmid) lx on t.xmbm=lx.xmid
+    	where 1=1 and sbthcd=7
+    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 </mapper>
 

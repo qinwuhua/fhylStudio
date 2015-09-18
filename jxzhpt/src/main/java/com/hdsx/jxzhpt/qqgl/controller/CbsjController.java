@@ -161,9 +161,11 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 					gcfl = "l.gcfl like '%" + gcfl + "%'";
 				}
 				cbsj.setGcfl(gcfl);
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				resultData = cbsjServer.queryCbsjYhdzx(cbsj, page, rows);
 				total = cbsjServer.queryCbsjYhdzxCount(cbsj);
 			}else if(cbsj.getXmlx()==5){
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				resultData = cbsjServer.queryCbsjSh(cbsj, page, rows);
 				total = cbsjServer.queryCbsjShCount(cbsj);
 			}
@@ -248,8 +250,10 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				gcfl = "l.gcfl like '%" + gcfl + "%'";
 			}
 			cbsj.setGcfl(gcfl);
+			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 			result = cbsjServer.queryCbsjLjYhdzx(cbsj);
 		}else if(cbsj.getXmlx()==5){
+			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 			result = cbsjServer.queryCbsjLjSh(cbsj);
 		}
 		try {
@@ -601,10 +605,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==4){
 				titleName="养护大中修";
 				fileName="养护大中修初步设计或施工图设计";
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				excelData = cbsjServer.queryYhdzxExcel(cbsj);
 			}else if(cbsj.getXmlx()==5){
 				titleName="灾毁重建";
 				fileName="灾毁重建初步设计或施工图设计";
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				excelData = cbsjServer.queryShExcel(cbsj);
 			}
 			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());

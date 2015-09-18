@@ -401,7 +401,18 @@ function showAll(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshLjLmsj.do',
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectSjgzList.do',
 	    striped:true,
@@ -410,7 +421,7 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-180,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -631,8 +642,19 @@ function showAllsjsh(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
-	$('#datagrid').datagrid({    
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshShLjLmsj.do',
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
+	$('#datagrid').datagrid({
 	    url:'/jxzhpt/qqgl/selectSjgzshList.do',
 	    striped:true,
 	    pagination:true,
@@ -778,7 +800,18 @@ function showAlllmgz(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshLjLmgz.do',
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzList.do',
 	    striped:true,
@@ -787,7 +820,7 @@ function showAlllmgz(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-180,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -921,7 +954,18 @@ function showAlllmsh(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshShLjLmgz.do',
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzshList.do',
 	    striped:true,
@@ -1067,7 +1111,18 @@ function showAllxj(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshLjXj.do',
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjList.do',
 	    striped:true,
@@ -1076,7 +1131,7 @@ function showAllxj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-180,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	xzqh:xzqhstr,
@@ -1205,7 +1260,18 @@ function showAllxjsh(){
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValue');
-	
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryLxshShLjXj.do',
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		dataType:'json',
+		success:function(msg){
+			$('#xmsl').html(msg.XMSL);
+			$('#tz').html(msg.TZ);
+			$('#lc').html(msg.LC);
+		}
+	});
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjshList.do',
 	    striped:true,
@@ -1214,7 +1280,7 @@ function showAllxjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-180,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	xzqh:xzqhstr,

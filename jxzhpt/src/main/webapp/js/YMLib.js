@@ -1372,7 +1372,61 @@ function loadBmbm3(id, name) {
 				valueField : 'bmid',
 				textField : 'name',
 				panelHeight:'auto',
-				multiple:true
+				multiple:true,
+				formatter:function(row){
+					var opts = $(this).combobox('options');
+					return '<input id="'+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				},
+				onSelect:function(record){
+					var opts = $(this).combobox('options');
+					if(record[opts.valueField]==""){
+						var values =new Array();
+						var datas = $('#' +id).combobox("getData");
+						$.each(datas,function(index,item){
+							values.push(item.bmid);
+							$('#'+item.id).attr('checked', true);
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$('#'+record.id).attr('checked', true);
+					}
+				},
+				onUnselect:function(record){
+					var opts = $(this).combobox('options');
+					var datas = $('#' +id).combobox("getData");
+					var values = $('#' +id).combobox("getValues");
+					$('#' +id).combobox("clear");
+					if(record[opts.valueField]!=""){
+						if(jQuery.inArray("",values)>=0){
+							values.splice(jQuery.inArray("",values),1);
+						}
+						$.each(datas,function(index,item){
+							if(jQuery.inArray(item.bmid,values)<0){
+								$('#'+item.id).attr('checked', false);
+							}
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$.each(datas,function(index,item){
+							$('#'+item.id).attr('checked', false);
+						});
+					}
+//					if(record[opts.valueField]==""){
+//						$.each(datas,function(index,item){
+//							if(item.bmid!=""){
+//								$('#'+id).combobox("unselect",item.bmid);
+//							}
+//							$('#'+item.id).attr('checked', false);
+//						});
+//					}else{
+//						$.each(datas,function(index,item){
+//							alert(item.id);
+//							if(record[opts.valueField]==item.bmid || record[opts.valueField]==""){
+//								$('#'+item.id).attr('checked', false);
+//							}
+//						});
+//					}
+				}
 			});
 		}
 	});

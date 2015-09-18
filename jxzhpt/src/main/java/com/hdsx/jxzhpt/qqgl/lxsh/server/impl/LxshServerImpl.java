@@ -722,4 +722,34 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		params.put("qb", qb);
 		return queryList("queryNdwgXzqh",params);
 	}
+
+	@Override
+	public Map<String, String> queryLxshLjLmsj(Lxsh lxsh) {
+		return queryOne("queryLxshLjLmsj",lxsh);
+	}
+	
+	@Override
+	public Map<String, String> queryLxshShLjLmsj(Lxsh lxsh) {
+		return queryOne("queryLxshShLjLmsj",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshLjLmgz(Lxsh lxsh) {
+		return queryOne("queryLxshLjLmgz",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshLjXj(Lxsh lxsh) {
+		return queryOne("queryLxshLjXj",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshShLjLmgz(Lxsh lxsh) {
+		return queryOne("queryLxshShLjLmgz",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshShLjXj(Lxsh lxsh) {
+		return queryOne("queryLxshShLjXj",lxsh);
+	}
 }
