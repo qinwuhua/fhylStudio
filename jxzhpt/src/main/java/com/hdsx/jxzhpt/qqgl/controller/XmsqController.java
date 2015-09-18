@@ -691,11 +691,28 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	
 	public void loadGldj(){
-		List<TreeNode> gldjList = new ArrayList<TreeNode>();
-		TreeNode g = new TreeNode();
-		g.setText("国道");
-		g.setId("G");
-		//List<TreeNode> gChildren = xmsqServer.queryLxFromGpsroad("G");
+		try {
+			List<TreeNode> resultList = new ArrayList<TreeNode>();
+			List<TreeNode> gChildren = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			TreeNode g = new TreeNode("G","国道",null,gChildren);
+			g.setState("closed");
+			resultList.add(g);
+			List<TreeNode> sChildren = xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			TreeNode s = new TreeNode("S","省道",null,sChildren);
+			resultList.add(s);
+			TreeNode x = new TreeNode("X", "县道", null, null);
+			resultList.add(x);
+			TreeNode xiang = new TreeNode("Y", "乡道", null, null);
+			resultList.add(xiang);
+			TreeNode c = new TreeNode("C", "村道", null, null);
+			resultList.add(c);
+			TreeNode z = new TreeNode("Z", "专道", null, null);
+			resultList.add(z);
+			System.out.println(JSONArray.fromObject(resultList).toString());
+			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	//get set
 	public Xmsq getXmsq() {

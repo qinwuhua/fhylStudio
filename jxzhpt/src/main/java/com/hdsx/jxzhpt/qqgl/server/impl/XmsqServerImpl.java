@@ -190,5 +190,11 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public Map<String, String> queryLjSh(Xmsq xmsq) {
 		return queryOne("queryLjSh", xmsq);
 	}
+	@Override
+	public List<TreeNode> queryLxFromGpsroadByLevel(String level,String xzqhdm) {
+		params.put("level", level);
+		params.put("xzqhdm", xzqhdm);
+		return queryList("queryLxFromGpsroadByLevel", params);
+	}
 
 }

@@ -158,6 +158,7 @@
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
+		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
