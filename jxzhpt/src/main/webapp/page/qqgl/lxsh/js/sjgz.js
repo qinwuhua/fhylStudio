@@ -411,6 +411,7 @@ function showAll(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -505,7 +506,7 @@ function showAll(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -641,7 +642,7 @@ function showAllsjsh(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmsj.do',
@@ -662,7 +663,7 @@ function showAllsjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-180,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -799,7 +800,7 @@ function showAlllmgz(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combotree('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmgz.do',
@@ -810,6 +811,7 @@ function showAlllmgz(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -905,7 +907,7 @@ function showAlllmgz(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -953,7 +955,7 @@ function showAlllmsh(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmgz.do',
@@ -1110,7 +1112,7 @@ function showAllxj(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjXj.do',
@@ -1121,6 +1123,7 @@ function showAllxj(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1212,7 +1215,7 @@ function showAllxj(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -1259,7 +1262,7 @@ function showAllxjsh(){
 		tsdq="";
 	}
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjXj.do',

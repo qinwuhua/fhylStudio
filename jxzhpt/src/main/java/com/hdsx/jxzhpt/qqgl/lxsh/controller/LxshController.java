@@ -191,12 +191,42 @@ public class LxshController extends BaseActionSupport{
 		return jsdj;
 	}
 	public void setJsdj(String jsdj) {
+		if(jsdj.indexOf(",")>-1){
+			String[] split = jsdj.split(",");
+			for (int i = 0; i < split.length; i++) {
+				if(i==0){
+					jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
+				}else if(i==split.length-1){
+					jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
+				}else{
+					jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
+				}
+			}
+		}else{
+			jsdj = "lx.xjsdj like '%"+jsdj+"%'";
+		}
 		this.jsdj = jsdj;
 	}
 	public String getGldj() {
 		return gldj;
 	}
 	public void setGldj(String gldj) {
+		if(gldj.indexOf("G,")>-1){
+			gldj = "lxbm like 'G%'";
+		}else if(gldj.indexOf("S,")>-1){
+			gldj = "lxbm like 'S%'";
+		}else if(gldj.indexOf(",")>-1){
+			String[] split = gldj.split(",");
+			gldj="";
+			for (int i = 0; i < split.length; i++) {
+				gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+			}
+			gldj = "lxbm in ("+gldj+")";
+		}else if(gldj.equals("")){
+			gldj=null;
+		}else{
+			gldj = "lxbm = '" + gldj + "'";
+		}
 		this.gldj = gldj;
 	}
 
@@ -433,41 +463,9 @@ public class LxshController extends BaseActionSupport{
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "lx.xjsdj like '%"+jsdj+"%'";
-				}
-				lxsh.setJsdj(jsdj);
-			}
+			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
-			if(gldj!=null && !gldj.equals("")){
-				if(gldj.indexOf("G,")>-1){
-					gldj = "lxbm like 'G%'";
-				}else if(gldj.indexOf("S,")>-1){
-					gldj = "lxbm like 'S%'";
-				}else if(gldj.indexOf(",")>-1){
-					String[] split = gldj.split(",");
-					gldj="";
-					for (int i = 0; i < split.length; i++) {
-						gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
-					}
-					gldj = "lxbm in ("+gldj+")";
-				}else{
-					gldj = "lxbm = '" + gldj + "'";
-				}
-			}
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
@@ -512,41 +510,9 @@ public class LxshController extends BaseActionSupport{
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
-			if(jsdj!=null && !jsdj.equals("")){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-				lxsh.setJsdj(jsdj);
-			}
+			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
-			if(gldj!=null && !gldj.equals("")){
-				if(gldj.indexOf("G,")>-1){
-					gldj = "lxbm like 'G%'";
-				}else if(gldj.indexOf("S,")>-1){
-					gldj = "lxbm like 'S%'";
-				}else if(gldj.indexOf(",")>-1){
-					String[] split = gldj.split(",");
-					gldj="";
-					for (int i = 0; i < split.length; i++) {
-						gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
-					}
-					gldj = "lxbm in ("+gldj+")";
-				}else{
-					gldj = "lxbm = '" + gldj + "'";
-				}
-			}
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
@@ -583,23 +549,6 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
-			}
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-				lxsh.setJsdj(jsdj);
 			}
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
@@ -642,22 +591,6 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
-		if(!jsdj.equals("") && jsdj!=null){
-			if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				jsdj = "xjsdj like '%"+jsdj+"%'";
-			}
-		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
@@ -701,22 +634,6 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-			}
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
@@ -757,22 +674,6 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-			}
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
@@ -986,26 +887,11 @@ public class LxshController extends BaseActionSupport{
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
-		if(!jsdj.equals("") && jsdj!=null){
-			if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				jsdj = "xjsdj like '%"+jsdj+"%'";
-			}
-		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		System.out.println(lxsh.getSbzt1());
 		List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
 		int count=lxshServer.selectSjgzshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1044,22 +930,6 @@ public class LxshController extends BaseActionSupport{
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
-		if(!jsdj.equals("") && jsdj!=null){
-			if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				jsdj = "xjsdj like '%"+jsdj+"%'";
-			}
-		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -1102,22 +972,6 @@ public class LxshController extends BaseActionSupport{
 		}
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
-		if(!jsdj.equals("") && jsdj!=null){
-			if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				jsdj = "xjsdj like '%"+jsdj+"%'";
-			}
-		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
@@ -1208,22 +1062,6 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
-		if(!jsdj.equals("") && jsdj!=null){
-			if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				jsdj = "xjsdj like '%"+jsdj+"%'";
-			}
-		}
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -1268,22 +1106,6 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-			}
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
@@ -1325,22 +1147,6 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
-			if(!jsdj.equals("") && jsdj!=null){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(xjsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or xjsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or xjsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "xjsdj like '%"+jsdj+"%'";
-				}
-			}
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
@@ -1488,6 +1294,25 @@ public class LxshController extends BaseActionSupport{
 					xjsdj = "lx.xjsdj like '%"+lxsh.getJsdj()+"%'";
 				}
 				lxsh.setJsdj(xjsdj);
+			}
+			if(lxsh.getGldj()!=null){
+				if(lxsh.getGldj().indexOf("G,")>-1){
+					lxsh.setGldj("lxbm like 'G%'");
+				}else if(lxsh.getGldj().indexOf("S,")>-1){
+					lxsh.setGldj("lxbm like 'S%'");
+				}else if(lxsh.getGldj().indexOf(",")>-1){
+					String[] split = lxsh.getGldj().split(",");
+					String g="";
+					for (int i = 0; i < split.length; i++) {
+						g+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+					}
+					g = "lxbm in ("+g+")";
+					lxsh.setGldj(g);
+				}else if(lxsh.getGldj().equals("")){
+					lxsh.setGldj(null);
+				}else{
+					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
+				}
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);

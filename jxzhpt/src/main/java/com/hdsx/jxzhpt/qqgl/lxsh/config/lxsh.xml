@@ -100,8 +100,7 @@
 		order by sbzt1,xmbm
 	</select>
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
-		select count(t.xmbm) from LXSH_SJGZ t left join
-		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
+		select count(t.xmbm) from LXSH_SJGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
 		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -194,202 +193,110 @@
 		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
-		select * from (
-		select rownum num ,t.*,lx.*  from LXSH_SJGZ t left join 
-		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,
-		sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc 
-		from lxsh_lx where jdbs='0' group by xmid) lx on t.xmbm=lx.xmid where 1=1
-			and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and  shzt=#{sbzt1}
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by shzt,xmbm
-	</select>
-	<select id="selectSjgzshListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_SJGZ where 1=1
-		and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
+		select * from (select rownum num ,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*  from LXSH_SJGZ t left join
+		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
+		where 1=1 and  sbthcd =7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and shzt=#{sbzt1}
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by sbzt1,xmbm
+	</select>
+	<select id="selectSjgzshListCount" parameterType="lxsh" resultType="int">
+		select count(t.xmbm) from LXSH_SJGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and sbthcd =7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*  from LXSH_LMGZ t left join 
-		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc 
-		from lxsh_lx where jdbs='0' group by xmid) 
-		lx on t.xmbm=lx.xmid where 1=1 and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
+		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.* from LXSH_LMGZ t left join 
+		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and sbthcd =7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt=#{sbzt1}
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by shzt,xmbm
+		order by sbzt1,xmbm
 	</select>
 	<select id="selectLmgzshListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_LMGZ where 1=1
-		and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
+		select count(t.xmbm) from LXSH_LMGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and  sbthcd =7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt=#{sbzt1}
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.*,lx.*,xj.xjlxbm,xj.xjqdzh,xj.xjzdzh,xj.xjlc  from LXSH_XJ t left join 
-		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,
-		sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc 
-		from lxsh_lx where jdbs='0' group by xmid) lx on t.xmbm=lx.xmid 
-    	left join (select xmid,xjlxbm,xjqdzh,xjzdzh,xjlc from lxsh_lx where jdbs='0' and sffirst='1') xj on t.xmbm=xj.xmid 
-    	where 1=1 and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
+		select * from (
+		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.* from LXSH_XJ t left join 
+		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
+		where 1=1 and  sbthcd = 7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt=#{sbzt1}
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by shzt,xmbm
+		order by sbzt1,xmbm
 	</select>
 	<select id="selectXjshListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_XJ where 1=1
-		and  sbthcd=7
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
-		<if test="xmnf!='' and xmnf!= null ">
-			and ${xmnf}
-		</if>
+		select count(t.xmbm) from LXSH_XJ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid 
+		where 1=1 and  sbthcd =7
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt=#{sbzt1}
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 	</select>
 	<delete id="delSjgz" parameterType="hashmap">
 		delete from LXSH_SJGZ where xmbm=#{xmbm}
@@ -435,8 +342,26 @@
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,lx.*  from LXSH_LMGZ t left join 
-		(select qdzh minqdzh,zdzh maxzdzh,xmid,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
+		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.* from LXSH_LMGZ t left join 
+		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by sbzt1,xmbm
+	</select>
+	<select id="selectLmgzListCount" parameterType="lxsh" resultType="int">
+		select count(t.xmbm) from LXSH_LMGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
 		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1 and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -447,33 +372,16 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by sbzt1,xmbm
-	</select>
-	<select id="selectLmgzListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_LMGZ where 1=1
-		and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,tt.bzys1,lx1.* from LXSH_XJ t 
-		left join (select xmid,sum(bzcs) bzys1 from lxsh_lx where sffirst='1' and jdbs='0' group by xmid) tt on t.xmbm=tt.xmid 
-	    left join (select qdzh minqdzh,zdzh maxzdzh,xmid,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh,xjlc from lxsh_lx 
-	    where sffirst='1' and jdbs='0' and xmid like '%3___') lx1 on t.xmbm=lx1.xmid 
+		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.* from LXSH_XJ t left join 
+		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
 		where 1=1 and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -484,35 +392,24 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
 	<select id="selectXjListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_XJ where 1=1
-		and  sbthcd &lt;=#{sbthcd}
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqh!='' and xzqh!= null ">
-			${xzqh}
-		</if>
-		<if test="xmmc!='' and xmmc!= null ">
-			and xmmc like '%'||#{xmmc}||'%'
-		</if>
+		select count(t.xmbm) from LXSH_XJ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid 
+		where 1=1 and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
-		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
-		</if>
+		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">
-			and ghlxbh like #{gldj}||'%'
-		</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 	</select>
 	<select id="Lmgzsfkxx" parameterType="string" resultType="lxsh">
 		select * from kxxyj_lmgz where 1=1 and ${value} and sbthcd is not null
@@ -578,7 +475,7 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
@@ -594,7 +491,7 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
@@ -610,10 +507,8 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">
-			and lsjl like '%'||#{lsjl}||'%'
-		</if>
+		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
@@ -796,7 +691,7 @@
     	select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
 			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_SJGZ t left join 
 			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
-			on t.xmbm=lx.xmid where 1=1 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -810,102 +705,101 @@
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 			group by xmbm,tz
 		)
-		<!-- 
-    	select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_SJGZ t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%1___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
-		 -->
 	</select>
 	<select id="queryLxshShLjLmsj" resultType="java.util.Map" parameterType="lxsh">
-    	select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_SJGZ t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%1___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1 and sbthcd=7
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+    	select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_SJGZ t left join 
+			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd = 7
+			<if test="gydw!='' and gydw!= null ">${gydw}</if>
+			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+			<if test="sbzt1!='' and sbzt1!= null ">
+				and shzt=#{sbzt1}
+			</if>
+			<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
+			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			group by xmbm,tz
+		)
 	</select>
 	<select id="queryLxshLjLmgz" resultType="java.util.Map" parameterType="lxsh">
-		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_LMGZ t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%2___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_LMGZ t left join 
+			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
+			<if test="gydw!='' and gydw!= null ">${gydw}</if>
+			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+			<if test="sbzt1!='' and sbzt1!= null ">
+				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			</if>
+			<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
+			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			group by xmbm,tz
+		)
 	</select>
 	<select id="queryLxshShLjLmgz" resultType="java.util.Map" parameterType="lxsh">
-		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_LMGZ t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%2___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1 and sbthcd=7
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_LMGZ t left join 
+			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd =7
+			<if test="gydw!='' and gydw!= null ">${gydw}</if>
+			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+			<if test="sbzt1!='' and sbzt1!= null ">
+				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			</if>
+			<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
+			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			group by xmbm,tz
+		)
 	</select>
 	<select id="queryLxshLjXj" resultType="java.util.Map" parameterType="lxsh">
-		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_xj t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%3___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_XJ t left join 
+			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
+			<if test="gydw!='' and gydw!= null ">${gydw}</if>
+			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+			<if test="sbzt1!='' and sbzt1!= null ">
+				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			</if>
+			<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			group by xmbm,tz
+		)
 	</select>
 	<select id="queryLxshShLjXj" resultType="java.util.Map" parameterType="lxsh">
-		select count(xmbm) xmsl,nvl(sum(t.tz),0) tz,nvl(sum(lx.lc),0) lc from LXSH_xj t left join
-    	(select xmid,sum(lc) lc from lxsh_lx where jdbs='0' and xmid like '%3___' group by xmid) lx on t.xmbm=lx.xmid
-    	where 1=1 and sbthcd=7
-    	<if test="gydw!='' and gydw!= null ">${gydw}</if>
-		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
-		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
-		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="gldj!='' and gldj!= null ">and ghlxbh like #{gldj}||'%'</if>
-		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_XJ t left join 
+			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+			on t.xmbm=lx.xmid where 1=1 and sbthcd =7
+			<if test="gydw!='' and gydw!= null ">${gydw}</if>
+			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+			<if test="sbzt1!='' and sbzt1!= null ">
+				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			</if>
+			<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			group by xmbm,tz
+		)
 	</select>
 </mapper>
 

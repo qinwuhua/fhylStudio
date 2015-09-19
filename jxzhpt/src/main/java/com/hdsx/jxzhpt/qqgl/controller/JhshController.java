@@ -996,7 +996,6 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 */
 	public void selectlxList() throws Exception{
 		try {
-			System.out.println("是否"+lx.getSffirst());
 			JsonUtils.write(jhshServer.selectlxList(lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
