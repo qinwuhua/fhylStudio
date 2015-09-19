@@ -161,37 +161,16 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmbm = "x.xmbm like '" + xmbm + "%' ";
 			}
 			xmsq.setXmbm(xmbm);
-			String jsdj = xmsq.getJsdj();
-			if(jsdj!=null && !jsdj.equals("")){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(jsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or jsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or jsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "jsdj like '%"+jsdj+"%'";
-				}
-				xmsq.setJsdj(jsdj);
-			}
+			jsdjHandle();
 			String ylxbh = xmsq.getYlxbh();
-			if(!ylxbh.equals("") && ylxbh!=null){
-				if(ylxbh.indexOf("G,")>-1){
-					ylxbh = "lxbm like 'G%'";
-				}else if(ylxbh.indexOf(",")>-1){
-					String[] split = ylxbh.split(",");
-					ylxbh="";
-					for (String s : split) {
-						ylxbh+="'"+s+"'";
-					}
-					ylxbh = "lxbm in ("+ylxbh+")";
-				}else{
-					ylxbh = "lxbm = '" + ylxbh + "'";
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
 				}
 				xmsq.setYlxbh(ylxbh);
 			}
@@ -201,7 +180,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
 				String gcfl = xmsq.getGcfl();
-				if(!gcfl.equals("") && gcfl!=null){
+				if(gcfl!=null && !gcfl.equals("")){
 					if(gcfl.indexOf(",")>-1){
 						String[] gcflArray = gcfl.split(",");
 						for (int i = 0; i < gcflArray.length; i++) {
@@ -231,23 +210,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
-	public void queryLj(){
-		String xmbm = xmsq.getXmbm();
-		if(xmbm.indexOf(",")>-1){
-			String[] xmnfArray = xmbm.split(",");
-			for (int i = 0; i < xmnfArray.length; i++) {
-				if(i==xmnfArray.length-1){
-					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
-				}else if(i==0){
-					xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
-				}else{
-					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
-				}
-			}
-		}else{
-			xmbm = "x.xmbm like '" + xmbm + "%' ";
-		}
-		xmsq.setXmbm(xmbm);
+	private void jsdjHandle() {
 		String jsdj = xmsq.getJsdj();
 		if(jsdj!=null && !jsdj.equals("")){
 			if(jsdj.indexOf(",")>-1){
@@ -266,6 +229,25 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			xmsq.setJsdj(jsdj);
 		}
+	}
+	public void queryLj(){
+		String xmbm = xmsq.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "x.xmbm like '" + xmbm + "%' ";
+		}
+		xmsq.setXmbm(xmbm);
+		jsdjHandle();
 		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 		
@@ -474,24 +456,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setYlxbh(ylxbh);
 			}
-			String jsdj = xmsq.getJsdj();
-			if(jsdj!=null && !jsdj.equals("")){
-				if(jsdj.indexOf(",")>-1){
-					String[] split = jsdj.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							jsdj = "(jsdj like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							jsdj += " or jsdj like '%"+split[i]+"%')";
-						}else{
-							jsdj += " or jsdj like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					jsdj = "jsdj like '%"+jsdj+"%'";
-				}
-				xmsq.setJsdj(jsdj);
-			}
+			jsdjHandle();
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){

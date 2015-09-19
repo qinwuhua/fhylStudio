@@ -211,21 +211,13 @@ public class LxshController extends BaseActionSupport{
 		return gldj;
 	}
 	public void setGldj(String gldj) {
-		if(gldj.indexOf("G,")>-1){
-			gldj = "lxbm like 'G%'";
-		}else if(gldj.indexOf("S,")>-1){
-			gldj = "lxbm like 'S%'";
-		}else if(gldj.indexOf(",")>-1){
-			String[] split = gldj.split(",");
+		if(gldj!=null && !gldj.equals("")){
+			String[] split1 = gldj.split(",");
 			gldj="";
-			for (int i = 0; i < split.length; i++) {
-				gldj+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+			for (int i = 0; i < split1.length; i++) {
+				gldj+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
 			}
-			gldj = "lxbm in ("+gldj+")";
-		}else if(gldj.equals("")){
-			gldj=null;
-		}else{
-			gldj = "lxbm = '" + gldj + "'";
+			gldj = "("+gldj+")";
 		}
 		this.gldj = gldj;
 	}

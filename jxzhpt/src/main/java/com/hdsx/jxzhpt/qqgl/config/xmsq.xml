@@ -232,33 +232,15 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.* from xmsq_yhdzx x where 1=1
-				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
-					and ${xmsq.gydwdm}
-				</if>
-				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">
-					and ${xmsq.xzqhdm}
-				</if>
-				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
-					and xmmc like '%'||#{xmsq.xmmc}||'%'
-				</if>
-				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
-					and ${xmsq.jsdj}
-				</if>
-				<if test="xmsq.sqzt>=0">
-					and sqzt=${xmsq.sqzt}
-				</if>
-				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
-					and ${xmsq.xmbm}
-				</if>
-				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">
-					and ${xmsq.gcfl}
-				</if>
-				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
-					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
-				</if>
-				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
-					and x.lsjl=#{xmsq.lsjl}
-				</if>
+				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">and ${xmsq.gydwdm}</if>
+				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">and ${xmsq.xzqhdm}</if>
+				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">and xmmc like '%'||#{xmsq.xmmc}||'%'</if>
+				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">and ${xmsq.jsdj}</if>
+				<if test="xmsq.sqzt>=0">and sqzt=${xmsq.sqzt}</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">and ${xmsq.xmbm}</if>
+				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">and ${xmsq.gcfl}</if>
+				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">and x.tsdq like '%'||#{xmsq.tsdq}||'%'</if>
+				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">and x.lsjl=#{xmsq.lsjl}</if>
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
 				</if>
