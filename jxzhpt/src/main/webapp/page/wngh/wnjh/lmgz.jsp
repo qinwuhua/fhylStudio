@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/wnjh/js/wnjh.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
@@ -29,10 +29,9 @@
 			setJsdj('jsdj');
 			loadGldj('gldj');
 			tsdq("tsdq");
-			xmnfs("xmnf");
-			showAllgj();
+			setxmnf("xmnf");
+			showAlllm();
 		});
-		
 		
 		function delsjgz(){
 			var rows=$('#datagrid').datagrid('getSelections');
@@ -40,15 +39,15 @@
 				alert("请选择要删除项目！");
 				return;
 			}
-			var id=rows[0].id;
+			var id=rows[0].id;			
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
-			}
+			}			
 			var data="lxsh.xmbm="+id;
 			if(confirm('您确定删除该项目？')){
 					$.ajax({
 						 type : "POST",
-						 url : "/jxzhpt/qqgl/delwnjhSjgz.do",
+						 url : "/jxzhpt/qqgl/delwnjhLmgz.do",
 						 dataType : 'json',
 						 data : data,
 						 success : function(msg){
@@ -78,12 +77,12 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项申请>&nbsp;改建工程项目</div>
+		<div id="p_top">五年规划库>&nbsp;十三五规划>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px; padding-bottom:10px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -91,42 +90,47 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
         						<td>管养单位：</td>
-        						<td colspan="3" ><select id="gydw" style="width:230px;"></select></td>
+        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:230px;"></select></td>
         						<td>行政区划：</td>
-        						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
+        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:230px;"></select></td>
         					</tr>
         					<tr height="32">
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width:65px;">
-								</select></td>       					
+								</select></td>		
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:80px;" >
 								</select></td>
 								<td>技术等级：</td>
-								<td><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:80px;" ></select></td>
-        						<!-- <td>是否有历史记录：</td>
-        						<td><select id="lsjl" style="width:97px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-								</select></td> -->
+								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
+        						
         					</tr>
         					<tr height="32">
                               <td colspan="10">
-        						<img onclick="showAllgj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('sjgz_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
-				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcwnjhExcel('sjgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
-								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="import_sjgz('sjgz')" style="border-width:0px;vertical-align:middle;" />
-				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dcMoBan('sjgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+        						<img onclick="showAlllm()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('lmgz_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
+				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="dcwnjhExcel('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="import_lmgz('lmgz')" style="border-width:0px;vertical-align:middle;" />
+								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dcMoBan('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;">
-				             </td>
+				              </td>
                             </tr></table>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
+<!--         	<tr> -->
+<!--         		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;"> -->
+<!--         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目， -->
+<!--         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里， -->
+<!--         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里， -->
+<!--         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元， -->
+<!--         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元， -->
+<!--         			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。 -->
+<!--         		</td> -->
+<!--         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
@@ -135,6 +139,8 @@ text-decoration:none;
             	</td>
         	</tr>
 		</table>
+	
+	<!-- <div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 	<div id="abgc_add" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

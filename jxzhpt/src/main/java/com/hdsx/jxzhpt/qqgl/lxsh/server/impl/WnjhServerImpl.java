@@ -222,6 +222,18 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public int selectXjwnjhCount(Lxsh lxsh) {
 		return queryOne("selectXjwnjhCount", lxsh);
 	}
+	@Override
+	public Lxsh selectGjwnjhcf(Lxsh lxsh) {
+		return queryOne("selectGjwnjhcf", lxsh);
+	}
+	@Override
+	public Lxsh selectLmwnjhcf(Lxsh lxsh) {
+		return queryOne("selectLmwnjhcf", lxsh);
+	}
+	@Override
+	public Lxsh selectXjwnjhcf(Lxsh lxsh) {
+		return queryOne("selectXjwnjhcf", lxsh);
+	}
 	
 
 }

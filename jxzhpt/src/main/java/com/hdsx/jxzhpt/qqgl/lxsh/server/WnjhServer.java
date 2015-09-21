@@ -39,5 +39,8 @@ public interface WnjhServer {
 	boolean insertXjwnjh(Lxsh lxsh);
 	boolean importxjwnjh(List<Map> data);
 	boolean delwnjhXj(Lxsh lxsh);
+	Lxsh selectGjwnjhcf(Lxsh lxsh);
+	Lxsh selectLmwnjhcf(Lxsh lxsh);
+	Lxsh selectXjwnjhcf(Lxsh lxsh);
 
 }

@@ -101,7 +101,7 @@
 	}
 	function fanhui() {
 		var flag=request('flag');
-			parent.window.location = '/jxzhpt/page/qqgl/wnjh/'+flag+'.jsp';
+			parent.window.location = '/jxzhpt/page/wngh/wnjh/'+flag+'.jsp';
  		dg.cancel();
 	}
 </script>

@@ -616,7 +616,7 @@ public class WnjhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,29,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,30,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -625,57 +625,9 @@ public class WnjhController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				LxshServer lxshServer=new LxshServerImpl();
 				String s = UUID.randomUUID().toString(); 
 				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 				map.put("xmbm", s1);
-				
-				//计算补助测算
-				double bzcs=0;
-				Lxsh ll=new Lxsh();
-				ll.setXmlx("升级改造工程项目");
-				ll.setGldj(map.get("1").toString().substring(0, 1));
-				if(map.get("13").toString()!=null && !map.get("13").toString().equals("")){
-					ll.setJsdj("一级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs= new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("14").toString()!=null && !map.get("14").toString().equals("")){
-					ll.setJsdj("二级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("15").toString()!=null && !map.get("15").toString().equals("")){
-					ll.setJsdj("三级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("16").toString()!=null && !map.get("16").toString().equals("")){
-					ll.setJsdj("四级");
-
-					bzcs=bzcs+ 0;
-				}
-				if(map.get("17").toString()!=null && !map.get("17").toString().equals("")){
-					ll.setJsdj("等外");
-
-					bzcs=bzcs+ 0;
-				}
-				if(map.get("18").toString()!=null && !map.get("18").toString().equals("")){
-					ll.setJsdj("无路");
-
-					bzcs=bzcs+0;
-				}
-				ll.setJsdj("一级");
-				Lxsh l = lxshServer.selectbzcs(ll);
-				
-				if(l==null){
-					response.getWriter().print(map.get("2").toString()+"  项目路线编码、建设技术等级有误");
-					return;
-				}
-				BigDecimal b1=new BigDecimal(bzcs);
-				BigDecimal b2=new BigDecimal(map.get("4").toString().trim()).subtract(new BigDecimal(map.get("3").toString().trim()));
-				String bzys=b1.multiply(b2)+"";
-				map.put("bzys", bzys);
 			}
 			boolean sfcg=true;
 			sfcg=wnjhServer.importsjgzwnjh(data);
@@ -700,8 +652,7 @@ public class WnjhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,29,fs,Plan_gcgj.class);
-
+				dataMapArray = ExcelReader1.readExcelContent(2,25,fs,Plan_gcgj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -709,54 +660,9 @@ public class WnjhController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				LxshServer lxshServer=new LxshServerImpl();
 				String s = UUID.randomUUID().toString(); 
 				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 				map.put("xmbm", s1);
-				
-				//计算补助测算
-				double bzcs=0;
-				Lxsh ll=new Lxsh();
-				ll.setXmlx("路面改造工程项目");
-				ll.setGldj(map.get("1").toString().substring(0, 1));
-				if(map.get("7").toString()!=null && !map.get("7").toString().equals("")){
-					ll.setJsdj("一级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs= new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("8").toString()!=null && !map.get("8").toString().equals("")){
-					ll.setJsdj("二级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("9").toString()!=null && !map.get("9").toString().equals("")){
-					ll.setJsdj("三级");
-					Lxsh selectbzcs = lxshServer.selectbzcs(ll);
-					bzcs=bzcs+ new Double(selectbzcs.getBzys()).doubleValue();
-				}
-				if(map.get("10").toString()!=null && !map.get("10").toString().equals("")){
-					ll.setJsdj("四级");
-					bzcs=bzcs+ 0;
-				}
-				if(map.get("11").toString()!=null && !map.get("11").toString().equals("")){
-					ll.setJsdj("等外");
-					bzcs=bzcs+ 0;
-				}
-				if(map.get("12").toString()!=null && !map.get("12").toString().equals("")){
-					ll.setJsdj("无路");
-					bzcs=bzcs+0;
-				}
-				ll.setJsdj("一级");
-				Lxsh l = lxshServer.selectbzcs(ll);
-				
-				if(l==null){
-					response.getWriter().print(map.get("2").toString()+"  项目路线编码、建设技术等级有误");
-					return;
-				}
-				BigDecimal b1=new BigDecimal(bzcs);
-				BigDecimal b2=new BigDecimal(map.get("4").toString().trim()).subtract(new BigDecimal(map.get("3").toString().trim()));
-				String bzys=b1.multiply(b2)+"";
-				map.put("bzys", bzys);
 			}
 			boolean sfcg=true;
 			sfcg=wnjhServer.importlmgzwnjh(data);
@@ -790,7 +696,6 @@ public class WnjhController extends BaseActionSupport{
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			//获取项目编码
 			for (Map map : data) {
-				LxshServer lxshServer=new LxshServerImpl();
 				String s = UUID.randomUUID().toString(); 
 				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 				map.put("xmbm", s1);
@@ -828,6 +733,31 @@ public class WnjhController extends BaseActionSupport{
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
+			String gldjtj="";
+			if((!"".equals(lxsh.getGldj()))&&lxsh.getGldj()!=null){
+				String[] jsdjs = lxsh.getGldj().split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+					else
+						gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				}
+				gldjtj=gldjtj+")";
+			}
+			lxsh.setGldj(gldjtj);
+			String jsdjtj="";
+			if((!"".equals(lxsh.getJsdj()))&&lxsh.getJsdj()!=null){
+				String[] jsdjs = lxsh.getJsdj().split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsdjtj=jsdjtj+")";
+			}
+			
+			lxsh.setJsdj(jsdjtj);
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("sjgz".equals(lxsh.getXmlx())){
@@ -908,14 +838,12 @@ public class WnjhController extends BaseActionSupport{
 	public void setJsdj(){
 		String json="";
 		String json1="[";
-
 				json=json+"{id:"+"'一级'"+",text:"+"'一级'"+",iconCls:'icon-none'},"
 				+"{id:"+"'二级'"+",text:"+"'二级'"+",iconCls:'icon-none'},"
 				+"{id:"+"'三级'"+",text:"+"'三级'"+",iconCls:'icon-none'},"		
 				+"{id:"+"'四级'"+",text:"+"'四级'"+",iconCls:'icon-none'},"
 				+"{id:"+"'等外'"+",text:"+"'等外'"+",iconCls:'icon-none'},"
 				+"{id:"+"'高速'"+",text:"+"'高速'"+",iconCls:'icon-none'}";
-System.out.println(json1);
 		try {
 			JsonUtils.write(json1+json+"]", getresponse().getWriter());
 		} catch (Exception e) {
@@ -923,6 +851,55 @@ System.out.println(json1);
 			e.printStackTrace();
 		}
 		
+	}
+	public void setXmnf(){
+		Calendar a=Calendar.getInstance();
+		int nian=a.get(Calendar.YEAR);
+		int nian1=nian-10;
+		String json="";
+		String json1="[";
+		for (int i = nian; i >= nian1; i--) {
+			if(i==nian)
+				json=json+"{id:"+i+",text:"+i+",iconCls:'icon-none',checked:'true'},";
+			else if(i==nian1)
+				json=json+"{id:"+i+",text:"+i+",iconCls:'icon-none'}";
+			else
+				json=json+"{id:"+i+",text:"+i+",iconCls:'icon-none'},";
+		}
+		try {
+			JsonUtils.write(json1+json+"]", getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectGjwnjhcf(){
+		Lxsh l=wnjhServer.selectGjwnjhcf(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void selectLmwnjhcf(){
+		Lxsh l=wnjhServer.selectLmwnjhcf(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void selectXjwnjhcf(){
+		Lxsh l=wnjhServer.selectXjwnjhcf(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 

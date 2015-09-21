@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/wnjh/js/wnjh.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 
 <style type="text/css">
 TD {font-size: 12px;} 
@@ -61,7 +61,7 @@ a{text-decoration:none;}
 				alert("请填写地方自筹！");
 				return false;
 			}
-			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
+			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
 				alert("未能正确计算出补助测算");
 				return false;
 			}
@@ -98,7 +98,19 @@ a{text-decoration:none;}
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-			saveLxsh();
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/selectLmwnjhcf.do',
+		        data:'lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.qdzh='+$("#qdzh").val()+'&lxsh.zdzh='+$("#qdzh").val(),
+				dataType:'json',
+				success:function(msg){
+					if(msg!=null){
+						alert("该段路已添加为"+msg.xmnf+"项目,起止桩号为("+msg.qdzh+","+msg.zdzh+")");
+					}else{
+						saveLxsh();
+					}
+				}
+			});
 		});
 		autoCompleteLXBM();
 	});
@@ -164,8 +176,8 @@ a{text-decoration:none;}
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
-		if($("#bzcs").html()!='')
-			bzcs=parseFloat($("#bzcs").html());
+		if($("#bzcs").val()!='')
+			bzcs=parseFloat($("#bzcs").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
 			return
@@ -175,13 +187,13 @@ a{text-decoration:none;}
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+' '
+		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+id
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
@@ -279,10 +291,9 @@ a{text-decoration:none;}
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<!-- <font color='red' size='2'>*&nbsp;</font>止点名称： --></td>
+					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-<!-- 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/> -->
-				</td>
+					<input type="text" id="xmmc" style="width: 120px"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -331,7 +342,7 @@ a{text-decoration:none;}
 					<input type="text" id="tz" onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<span id="bzcs"></span></td>
+				<input type="text" id="bzcs" onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>

@@ -13,6 +13,13 @@ function setJsdj(id) {
 		multiple:true
 	});
 }
+function setxmnf(id){
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/setXmnf.do',
+		panelHeight:200,
+		multiple:true
+	});
+}
 function sjxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
@@ -128,8 +135,8 @@ function checkdfzc(str){
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')
 		tz=parseFloat($("#tz").val());
-	if($("#bzcs").html()!='')
-		bzcs=parseFloat($("#bzcs").html());
+	if($("#bzcs").val()!='')
+		bzcs=parseFloat($("#bzcs").val());
 	if(bzcs>tz){
 		alert("投资不能小于补助测算");
 		return
@@ -181,27 +188,6 @@ function cesuan(){
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#jhlc').html(hj5);
-	var yi=0;
-	if($('#jhyilc').val()!="" && $('#jhyilc').val()!="0")
-		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
-	var er=0;
-	if($('#jherlc').val()!="" && $('#jherlc').val()!="0")
-		er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#jherlc').val(),'升级改造工程项目');
-	var san=0;
-	if($('#jhsanlc').val()!="" && $('#jhsanlc').val()!="0")
-		san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#jhsanlc').val(),'升级改造工程项目');
-	var si=0;
-	if($('#jhsilc').val()!="" && $('#jhsilc').val()!="0")
-		si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#jhsilc').val(),'升级改造工程项目');
-	var dw=0;
-	if($('#jhdwlc').val()!="" && $('#jhdwlc').val()!="0")
-		dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#jhdwlc').val(),'升级改造工程项目');
-	var wl=0;
-	if($('#jhwllc').val()!="" && $('#jhwllc').val()!="0")
-		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
-	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
-	$('#bzcs').html(zcs);
-	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
 }
 function cesuan2(){
 	var yilc=parseFloat($('#yilc').val());
@@ -213,27 +199,6 @@ function cesuan2(){
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
-	var yi=0;
-	if($('#yilc').val()!="" && $('#yilc').val()!="0" && $('#yilc').val()!="0.0")
-		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#yilc').val(),'路面改造工程项目');
-	var er=0;
-	if($('#erlc').val()!="" && $('#erlc').val()!="0" && $('#erlc').val()!="0.0")
-		er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#erlc').val(),'路面改造工程项目');
-	var san=0;
-	if($('#sanlc').val()!="" && $('#sanlc').val()!="0" && $('#sanlc').val()!="0.0")
-		san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#sanlc').val(),'路面改造工程项目');
-	var si=0;
-	if($('#silc').val()!="" && $('#silc').val()!="0" && $('#silc').val()!="0.0")
-		si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#silc').val(),'路面改造工程项目');
-	var dw=0;
-	if($('#dwlc').val()!="" && $('#dwlc').val()!="0" && $('#dwlc').val()!="0.0")
-		dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#dwlc').val(),'路面改造工程项目');
-	var wl=0;
-	if($('#wllc').val()!="" && $('#wllc').val()!="0" && $('#wllc').val()!="0.0")
-		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#wllc').val(),'路面改造工程项目');
-	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
-	$('#bzcs').html(zcs);
-	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
 }
 function getbzcs(gldj,jsdj,lc,xmlx){
 	var data="lxsh.xmlx="+xmlx+"&lxsh.gldj="+gldj+"&lxsh.jsdj="+jsdj+"&lxsh.lc="+lc;
@@ -482,7 +447,7 @@ function dclxshModule(str){
 	
 	
 function dcMoBan(str){
-	var lxstr="wnjh_"+str;
+	var lxstr="wngh_"+str;
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+lxstr;
 }
 function import_sjgz(flag){
@@ -555,7 +520,9 @@ function showAllgj(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	if(xmnf=='')
+		xmnf=new Date().getFullYear();
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -667,6 +634,8 @@ function showAlllm(){
 		xzqhstr= xzqhdm.join(',');
 	}
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	if(xmnf=='')
+		xmnf=new Date().getFullYear();
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -780,6 +749,8 @@ function showAllxj(){
 		xzqhstr= xzqhdm.join(',');
 	}
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	if(xmnf=='')
+		xmnf=new Date().getFullYear();
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -887,15 +858,16 @@ function dcwnjhExcel(str){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	if(xmnf=='')
+		xmnf=new Date().getFullYear();
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
-	var gldj=$("#gldj").combobox('getValue');
-	var data="lxsh.xmlx="+str+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj;
+	var jsdj=$("#jsdj").combotree('getText');
+	var gldj=$("#gldj").combobox('getValues').join(",");
+	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcwnjhExcel.do?'+data;
 	 });

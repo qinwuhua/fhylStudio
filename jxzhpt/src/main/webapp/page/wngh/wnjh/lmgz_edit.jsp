@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/wnjh/js/wnjh.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 
 <style type="text/css">
 TD {
@@ -43,9 +43,10 @@ text-decoration:none;
 				loadUnit3("gydw",msg.gydwdm,$.cookie("unit"));
 				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
 				$('#lc').html(msg.lc);
-				$('#bzcs').html(msg.bzys);
+				$('#bzcs').val(msg.bzys);
 				$("#dfzc").html(msg.dfzc);
 				$("#lxmc").html(msg.lxmc);
+				$("#xmmc").val(msg.xmmc);
 				$("#lxbm").val(msg.ghlxbh);
 				$("#jsjsdj").val(msg.jsjsdj);
 				$("#tsdq").html(msg.tsdq);
@@ -103,7 +104,7 @@ text-decoration:none;
 				alert("请填写地方自筹！");
 				return false;
 			}
-			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
+			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
 				alert("未能正确计算出补助测算");
 				return false;
 			}
@@ -150,8 +151,8 @@ text-decoration:none;
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
-		if($("#bzcs").html()!='')
-			bzcs=parseFloat($("#bzcs").html());
+		if($("#bzcs").val()!='')
+			bzcs=parseFloat($("#bzcs").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
 			return
@@ -160,13 +161,13 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		var data ="lxsh.xmmc="+' '+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.xmbm="+parent.obj.id
+		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.xmbm="+parent.obj.id
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		//alert(data);
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+
 			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val();
@@ -265,9 +266,9 @@ text-decoration:none;
 					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<!-- <font color='red' size='2'>*&nbsp;</font>止点名称： --></td>
+					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-<!-- 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/> -->
+					<input type="text" id="xmmc" style="width: 120px"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -318,7 +319,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="bzcs"></span></td>
+					<input type="text" id="bzcs" onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

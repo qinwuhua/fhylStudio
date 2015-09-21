@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/wnjh/js/wnjh.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
@@ -29,7 +29,7 @@
 			setJsdj('jsdj');
 			loadGldj('gldj');
 			tsdq("tsdq");
-			xmnfs("xmnf");
+			setxmnf("xmnf");
 			showAllxj();
 		});
 	
@@ -77,7 +77,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项申请>&nbsp;新建工程项目</div>
+		<div id="p_top">五年规划库>&nbsp;十三五规划>&nbsp;新建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

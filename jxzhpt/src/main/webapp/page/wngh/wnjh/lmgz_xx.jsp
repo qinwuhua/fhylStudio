@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/wnjh/js/wnjh.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 
 <style type="text/css">
 TD {
@@ -159,9 +159,9 @@ text-decoration:none;
 					<span id="xjsdj"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				<!-- 	<font color='red' size='2'>*&nbsp;</font>止点名称： --></td>
+					<font color='red' size='2'>*&nbsp;</font>项目名称： </td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<!-- <span id="zdmc"></span> -->
+					<span id="xmmc" style="font-size: 14px"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
