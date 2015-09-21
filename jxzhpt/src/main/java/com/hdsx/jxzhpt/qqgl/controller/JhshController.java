@@ -87,28 +87,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else{
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
-			jhsh.setXmbm(xmbm);
-			if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
-				String xjsdj = jhsh.getJsdj();
-				if(xjsdj.indexOf(",")>-1){
-					String[] split = xjsdj.split(",");
+			String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				if(ylxbh.indexOf(",")>-1){
+					String[] split = ylxbh.split(",");
 					for (int i = 0; i < split.length; i++) {
 						if(i==0){
-							xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+							ylxbh = "(lxbm like '%"+split[i]+"%'";
 						}else if(i==split.length-1){
-							xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+							ylxbh += " or lxbm like '%"+split[i]+"%')";
 						}else{
-							xjsdj += " or l.xjsdj like '"+split[i]+"%'";
-						}
-						if(split.length==1){
-							xjsdj +=")";
+							ylxbh += " or lxbm like '%"+split[i]+"%'";
 						}
 					}
 				}else{
-					xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+					ylxbh = " lxbm like '%"+ylxbh+"%'";
 				}
-				jhsh.setJsdj(xjsdj);
+				jhsh.setYlxbh(ylxbh);
 			}
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,page,rows);
@@ -147,27 +145,25 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 			jhsh.setXmbm(xmbm);
-			if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
-				String xjsdj = jhsh.getJsdj();
-				if(xjsdj.indexOf(",")>-1){
-					String[] split = xjsdj.split(",");
+			String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				if(ylxbh.indexOf(",")>-1){
+					String[] split = ylxbh.split(",");
 					for (int i = 0; i < split.length; i++) {
 						if(i==0){
-							xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+							ylxbh = "(lxbm like '%"+split[i]+"%'";
 						}else if(i==split.length-1){
-							xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+							ylxbh += " or lxbm like '%"+split[i]+"%')";
 						}else{
-							xjsdj += " or l.xjsdj like '"+split[i]+"%'";
-						}
-						if(split.length==1){
-							xjsdj +=")";
+							ylxbh += " or lxbm like '%"+split[i]+"%'";
 						}
 					}
 				}else{
-					xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+					ylxbh = " lxbm like '%"+ylxbh+"%'";
 				}
-				jhsh.setJsdj(xjsdj);
+				jhsh.setYlxbh(ylxbh);
 			}
+			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				result = jhshServer.queryJhshLjLmsj(jhsh);
@@ -187,6 +183,29 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	private void jsdjHandle() {
+		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
 		}
 	}
 	/**
@@ -561,6 +580,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
 			}
 			jhsh.setJsdj(xjsdj);
+		}
+		String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh.indexOf(",")>-1){
+				String[] split = ylxbh.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						ylxbh = "(lxbm like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						ylxbh += " or lxbm like '%"+split[i]+"%')";
+					}else{
+						ylxbh += " or lxbm like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				ylxbh = " lxbm like '%"+ylxbh+"%'";
+			}
+			jhsh.setYlxbh(ylxbh);
 		}
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();

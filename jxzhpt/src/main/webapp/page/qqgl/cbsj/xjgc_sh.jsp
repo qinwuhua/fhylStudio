@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadGldj('gldj');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -41,7 +41,7 @@
 			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'tsdq':$('#tsdq').combo("getText"),'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),
-					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),};
+					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
 			grid.width=$('#searchField').width();
@@ -205,7 +205,8 @@
 		function exportCbsj(){
 			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+
-			'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+'&tsdq='+$('#tsdq').combo("getText");
+			'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+'&tsdq='+$('#tsdq').combo("getText")+
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -259,8 +260,10 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-								</tr>
-								<tr height="32">
+								<td style="text-align: right;">公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+							</tr>
+							<tr height="32">
                               <td colspan="10">
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadGldj('gldj');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -41,7 +41,8 @@
 			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue"),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
 			grid.width=$('#searchField').width();
@@ -205,7 +206,7 @@
 		function exportCbsj(){
 			var param='xmlx=2&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+
-			'&tsdq='+$('#tsdq').combo("getText");
+			'&tsdq='+$('#tsdq').combo("getText")+'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -260,14 +261,16 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-								</tr>
-									<tr height="32">
-                              <td colspan="10">
+								<td style="text-align: right;">公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+							</tr>
+							<tr height="32">
+								<td colspan="10">
 								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

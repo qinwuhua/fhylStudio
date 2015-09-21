@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadGldj('gldj');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -41,7 +41,8 @@
 			var params={'cbsj.xmlx':5,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),"cbsj.jdbs":2,
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue"),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-$('#searchField').height()-55;
@@ -91,6 +92,7 @@
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
+				{field:'lc',title:'里程',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
@@ -168,7 +170,7 @@
 		function exportCbsj(){
 			var param='xmlx=5&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue");
+			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -202,15 +204,15 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>行政区划：</td>
+        						<td style="text-align: right;">行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td>规划路线编码：</td>
+        						<td style="text-align: right;">规划路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-								<td>原技术等级：</td>
+								<td style="text-align: right;">原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>建设技术等级：</td>
+								<td style="text-align: right;">建设技术等级：</td>
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>补助历史：</td>
+								<td style="text-align: right;">补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -228,6 +230,8 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
+								<td style="text-align: right;">公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">
 								<td colspan="10">

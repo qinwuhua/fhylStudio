@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
-			loadGldj('gldj','公路等级');
+			loadGldj('gldj');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -267,7 +267,7 @@ text-decoration:none;
 									<option value="1">已审核</option>
 								</select></td>
 								<td>&nbsp;公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:70px;" class="easyui-combobox"></select></td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">
 								<td colspan="10">

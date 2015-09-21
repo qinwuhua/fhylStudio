@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadGldj('gldj');
 			loadGcfl('gcfl','工程分类');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
@@ -60,7 +60,7 @@
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
 					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")
-					,"jdbs":2,'gcfl':$('#gcfl').combobox("getValues").join(",")};
+					,"jdbs":2,'gcfl':$('#gcfl').combobox("getValues").join(","),'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
@@ -187,7 +187,7 @@
 		function exportCbsj(){
 			var param='xmlx=4&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue");
+			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -249,6 +249,8 @@ text-decoration:none;
 								</select></td>
 								<td align="right">&nbsp;工程分类：</td>
 	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
+	       						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">
 								<td colspan="10">
