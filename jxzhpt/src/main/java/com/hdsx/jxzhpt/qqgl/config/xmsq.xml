@@ -504,46 +504,38 @@
 		select sum(ntz) ntz,sum(lc) lc from (
 			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
 			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
-			<if test="gydwdm!=null and gydwdm!=''">
-				and ${gydwdm}
-			</if>
-			<if test="xzqhdm!=null and xzqhdm!=''">
-				and ${xzqhdm}
-			</if>
-			<if test="xmmc!=null and xmmc!=''">
-				and xmmc like '%'||#{xmmc}||'%'
-			</if>
+			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-			<if test="sqzt>=0">
-				and sqzt=${sqzt}
+			<if test="sqzt>=0">and sqzt=${sqzt}</if>
+			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+			<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
+			<if test="ylxbh!=null and ylxbh!=''">
+				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 			</if>
-			<if test="xmbm!=null and xmbm!=''">
-				and ${xmbm}
-			</if>
-			<if test="gcfl!=null and gcfl!=''">
-				and ${gcfl}
-			</if>
-			<if test="tsdq!=null and tsdq!=''">
-				and x.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="lsjl!=null and lsjl!=''">
-				and x.lsjl=#{lsjl}
-			</if>)
+		)
 	</select>
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
 		select sum(ntz) ntz,sum(lc) lc from (
-		select xmbm,ntz,l.lc from xmsq_sh x left join 
-		(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
-		on x.xmbm=l.xmid where 1=1
-		<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
-		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-		<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-		<if test="sqzt>=0">and sqzt=${sqzt}</if>
-		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
-		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
-		<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
-		<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>)
+			select xmbm,ntz,l.lc from xmsq_sh x left join 
+			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
+			on x.xmbm=l.xmid where 1=1
+			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+			<if test="sqzt>=0">and sqzt=${sqzt}</if>
+			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+			<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
+			<if test="ylxbh!=null and ylxbh!=''">
+				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
+			</if>
+		)
 	</select>
 	<select id="queryLxFromGpsroadByLevel" parameterType="java.util.Map" resultType="java.util.Map">
 		select substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6) text

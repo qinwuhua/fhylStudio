@@ -1414,6 +1414,15 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setXmnf(xmnf1);
 			}
+			if(lxsh.getGldj()!=null && !lxsh.getGldj().equals("")){
+				String[] split1 = lxsh.getGldj().split(",");
+				String g="";
+				for (int i = 0; i < split1.length; i++) {
+					g+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				g = "("+g+")";
+				lxsh.setGldj(g);
+			}
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头

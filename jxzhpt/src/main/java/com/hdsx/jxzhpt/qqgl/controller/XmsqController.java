@@ -268,6 +268,19 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				gcfl = "x.gcfl like '%" + gcfl + "%'";
 			}
+			
+			String ylxbh = xmsq.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
 			xmsq.setGcfl(gcfl);
 			result = xmsqServer.queryLjYhdzx(xmsq);
 		}else if(xmsq.getXmlx()==5){
@@ -439,20 +452,14 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			xmsq.setXmbm(xmbm);
 			String ylxbh = xmsq.getYlxbh();
-			if(!ylxbh.equals("") && ylxbh!=null){
-				if(ylxbh.indexOf(",")>-1){
-					String[] gcdjArray = ylxbh.split(",");
-					for (int i = 0; i < gcdjArray.length; i++) {
-						if(i==0){
-							ylxbh = "(lxbm like '%"+gcdjArray[i]+"%' ";
-						}else if(i==gcdjArray.length-1){
-							ylxbh += " or lxbm like '%"+gcdjArray[i]+"%')";
-						}else{
-							ylxbh += " or lxbm like '%" + gcdjArray[i] + "%'";
-						}
-					}
-				}else{
-					ylxbh = "lxbm like '%" + ylxbh + "%'";
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
 				}
 				xmsq.setYlxbh(ylxbh);
 			}

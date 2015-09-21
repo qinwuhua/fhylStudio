@@ -237,6 +237,14 @@ public class KxxyjController extends BaseActionSupport{
 		return gldj;
 	}
 	public void setGldj(String gldj) {
+		if(gldj!=null && !gldj.equals("")){
+			String[] split1 = gldj.split(",");
+			gldj="";
+			for (int i = 0; i < split1.length; i++) {
+				gldj+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+			}
+			gldj = "("+gldj+")";
+		}
 		this.gldj = gldj;
 	}
 

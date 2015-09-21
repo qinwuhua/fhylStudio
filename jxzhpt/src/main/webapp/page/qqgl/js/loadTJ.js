@@ -238,7 +238,7 @@ function dclxshModule(str){
 			tsdq="";
 		}
 		var jsdj=$("#jsdj").combobox('getValues').join(",");
-		var gldj=$("#gldj").combobox('getValue');
+		var gldj=$("#gldj").combobox('getValues').join(",");
 		var lsjl="";
 		if(str!='xj'){
 			lsjl=$("#lsjl").combobox('getValue');
