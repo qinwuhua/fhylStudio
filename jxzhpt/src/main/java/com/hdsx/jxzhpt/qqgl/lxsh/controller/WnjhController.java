@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -343,8 +344,31 @@ public class WnjhController extends BaseActionSupport{
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmnf(xmnf);
 		lxsh.setTsdq(tsdq);
-		lxsh.setGldj(gldj);
-		lxsh.setJsdj(jsdj);
+		String gldjtj="";
+		if((!"".equals(gldj))&&gldj!=null){
+			String[] jsdjs = gldj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				else
+					gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+			}
+			gldjtj=gldjtj+")";
+		}
+		lxsh.setGldj(gldjtj);
+		String jsdjtj="";
+		if((!"".equals(jsdj))&&jsdj!=null){
+			String[] jsdjs = jsdj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				else
+					jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+			}
+			jsdjtj=jsdjtj+")";
+		}
+		
+		lxsh.setJsdj(jsdjtj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		List<Lxsh> list=wnjhServer.selectGjwnjh(lxsh);
@@ -375,8 +399,31 @@ public class WnjhController extends BaseActionSupport{
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmnf(xmnf);
 		lxsh.setTsdq(tsdq);
-		lxsh.setGldj(gldj);
-		lxsh.setJsdj(jsdj);
+		String gldjtj="";
+		if((!"".equals(gldj))&&gldj!=null){
+			String[] jsdjs = gldj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				else
+					gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+			}
+			gldjtj=gldjtj+")";
+		}
+		lxsh.setGldj(gldjtj);
+		String jsdjtj="";
+		if((!"".equals(jsdj))&&jsdj!=null){
+			String[] jsdjs = jsdj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				else
+					jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+			}
+			jsdjtj=jsdjtj+")";
+		}
+		
+		lxsh.setJsdj(jsdjtj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		List<Lxsh> list=wnjhServer.selectLmwnjh(lxsh);
@@ -409,8 +456,31 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmnf(xmnf);
 			lxsh.setTsdq(tsdq);
-			lxsh.setGldj(gldj);
-			lxsh.setJsdj(jsdj);
+			String gldjtj="";
+			if((!"".equals(gldj))&&gldj!=null){
+				String[] jsdjs = gldj.split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+					else
+						gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				}
+				gldjtj=gldjtj+")";
+			}
+			lxsh.setGldj(gldjtj);
+			String jsdjtj="";
+			if((!"".equals(jsdj))&&jsdj!=null){
+				String[] jsdjs = jsdj.split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsdjtj=jsdjtj+")";
+			}
+			
+			lxsh.setJsdj(jsdjtj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			List<Lxsh> list=wnjhServer.selectXjwnjh(lxsh);
@@ -834,6 +904,25 @@ public class WnjhController extends BaseActionSupport{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+	}
+	public void setJsdj(){
+		String json="";
+		String json1="[";
+
+				json=json+"{id:"+"'一级'"+",text:"+"'一级'"+",iconCls:'icon-none'},"
+				+"{id:"+"'二级'"+",text:"+"'二级'"+",iconCls:'icon-none'},"
+				+"{id:"+"'三级'"+",text:"+"'三级'"+",iconCls:'icon-none'},"		
+				+"{id:"+"'四级'"+",text:"+"'四级'"+",iconCls:'icon-none'},"
+				+"{id:"+"'等外'"+",text:"+"'等外'"+",iconCls:'icon-none'},"
+				+"{id:"+"'高速'"+",text:"+"'高速'"+",iconCls:'icon-none'}";
+System.out.println(json1);
+		try {
+			JsonUtils.write(json1+json+"]", getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
 

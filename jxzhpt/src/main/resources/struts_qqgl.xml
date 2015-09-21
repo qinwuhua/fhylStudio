@@ -117,7 +117,7 @@
 	      <action name="selectwnlxbyxmid" class="wnjhController" method="selectwnlxbyxmid"/>
 	      <action name="sfywnlx" class="wnjhController" method="sfywnlx"/>
 	      <action name="selectwnSjlxList" class="wnjhController" method="selectwnSjlxList"/>
-	      
+	      <action name="setJsdj" class="wnjhController" method="setJsdj"/>
 	      
 	      
 	      

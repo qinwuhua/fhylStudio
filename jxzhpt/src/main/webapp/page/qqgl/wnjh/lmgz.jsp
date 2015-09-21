@@ -26,8 +26,8 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			setJsdj('jsdj');
+			loadGldj('gldj');
 			tsdq("tsdq");
 			xmnfs("xmnf");
 			showAlllm();
@@ -109,7 +109,7 @@ text-decoration:none;
         					</tr>
         					<tr height="32">
                               <td colspan="10">
-        						<img onclick="showAlllmgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="showAlllm()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('lmgz_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
 				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="dcwnjhExcel('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="import_lmgz('lmgz')" style="border-width:0px;vertical-align:middle;" />

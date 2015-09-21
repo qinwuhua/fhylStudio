@@ -1,4 +1,18 @@
 var obj=new Object();
+function loadGldj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
+		panelHeight:200,
+		multiple:true
+	});
+}
+function setJsdj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/setJsdj.do',
+		panelHeight:200,
+		multiple:true
+	});
+}
 function sjxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
@@ -546,9 +560,8 @@ function showAllgj(){
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
-	var gldj=$("#gldj").combobox('getValue');
-	
+	var jsdj=$("#jsdj").combotree('getText');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectGjwnjh.do',
 	    striped:true,
@@ -658,9 +671,8 @@ function showAlllm(){
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');
-	
+	var jsdj=$("#jsdj").combotree('getText');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmwnjh.do',
 	    striped:true,
@@ -772,8 +784,8 @@ function showAllxj(){
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValues').join(",");
-	var gldj=$("#gldj").combobox('getValue');	
+	var jsdj=$("#jsdj").combotree('getText');
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjwnjh.do',
 	    striped:true,
