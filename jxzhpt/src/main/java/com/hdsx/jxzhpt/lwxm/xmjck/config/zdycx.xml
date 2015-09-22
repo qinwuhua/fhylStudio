@@ -652,7 +652,7 @@ where  1=1
 		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
 		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id) t
-		where 1=1
+		where 1=1 and gydwbm like '1%'
 			<if test="gydw != null and  gydw != ''">
 				and gydwbm like '%'||trim(#{gydw})||'%'
 			</if>

@@ -5,7 +5,7 @@ $(function() {
     	if(qx[i]=='01010901'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '五年规划库',
+				title: '十三五规划',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

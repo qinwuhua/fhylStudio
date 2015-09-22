@@ -95,7 +95,7 @@
  </select>
  <select id="selectWqgzCount1" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1 
- 			and  sbthcd &lt;=#{sbthcd}
+ 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>

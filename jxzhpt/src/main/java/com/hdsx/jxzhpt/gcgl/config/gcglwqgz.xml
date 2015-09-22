@@ -161,6 +161,9 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
+			<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
+			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}
 			</if>
@@ -193,6 +196,9 @@
 		where  t1.spzt='1' 
 	<if test="gydw != null and  gydw != ''">
 			${gydw}
+	</if>
+	<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
 	</if>
 	<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 			and t1.sfylrbwqk = #{sfylrbwqk}
@@ -291,6 +297,9 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
+			<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
@@ -328,6 +337,9 @@
 			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'

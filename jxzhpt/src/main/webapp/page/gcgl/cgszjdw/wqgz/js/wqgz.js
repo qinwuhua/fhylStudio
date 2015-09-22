@@ -156,7 +156,8 @@ function showAll(){
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
-	    	sfylrbwqk:'是'
+	    	sfylrbwqk:'是',
+	    	gydwtj:"and 1=1"
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -215,7 +216,8 @@ function showAll1(){
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
-	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue')
+	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
+	    	gydwtj:"and gydwbm like '1%'"
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

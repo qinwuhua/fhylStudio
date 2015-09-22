@@ -59,9 +59,16 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
-	private String gydw1;
+
 	private String sfylrbwqk;
+	private String gydwtj;
 	
+	public String getGydwtj() {
+		return gydwtj;
+	}
+	public void setGydwtj(String gydwtj) {
+		this.gydwtj = gydwtj;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}
@@ -467,6 +474,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setShzt(ybzt);
 			gcglwqgz.setXmnf(xmnf);
 			gcglwqgz.setSfylrbwqk(sfylrbwqk);
+			gcglwqgz.setGydwtj(gydwtj);
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}
@@ -590,6 +598,7 @@ public class GcglwqgzController extends BaseActionSupport{
 		gcglwqgz.setTiaojian(bfzt);
 		gcglwqgz.setXmnf(xmnf);
 		gcglwqgz.setSfylrbwqk(sfylrbwqk);
+		gcglwqgz.setGydwtj(gydwtj);
 		try{
 		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList1(gcglwqgz);
 		int count=gcglwqgzServer.selectWqgzjhListcount1(gcglwqgz);

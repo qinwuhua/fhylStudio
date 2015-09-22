@@ -18,7 +18,7 @@
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 	 	select * from (
 	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd}
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -66,7 +66,7 @@
 	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
 	 	 from (
 	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd}
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -111,7 +111,7 @@
 	 
 	  <select id="selectWqgzCount" parameterType="jckwqgzsj" resultType="int">
 	 		select count(*) from xmk_wqgz t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd}
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -175,7 +175,7 @@
 	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
 	 	 from (
 	 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
-			and sbthcd>=#{sbthcd}
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -225,7 +225,7 @@
  		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
  	select * from (
  		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
-			and sbthcd>=#{sbthcd}
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -275,7 +275,7 @@
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where sbthcd=7 
-			and sbthcd>=#{sbthcd}
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -350,7 +350,7 @@
  				<if test="tsdq!='' and tsdq!= null ">
  					and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd}
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -399,7 +399,7 @@
  				<if test="tsdq!='' and tsdq!= null ">
  					and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd}
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -448,7 +448,7 @@
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
-			where sck_sbthcd &lt;=#{sck_sbthcd}
+			where sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -534,7 +534,7 @@
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
-			sck_sbthcd &lt;=7
+			sck_sbthcd &lt;=7 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -588,7 +588,7 @@
  				<if test="tsdq!='' and tsdq!= null "> 
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
-			where sck_sbthcd &lt;=7
+			where sck_sbthcd &lt;=7 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
