@@ -26,12 +26,8 @@
 $(function(){
 	xmnf1("sbnf");
 	loadJhkxx();
-	$('#jhjsxz').combobox({
-		onChange: function(group){
-			loadSbz();
-		}
-	});
-
+	$('#jhjsxz').combobox({onChange: function(group){loadBz();}});
+	$('#sfylrbwqk').combobox({onChange: function(group){loadBz();}});
 });
 function loadJhkxx(){
 	$.ajax({
@@ -41,13 +37,7 @@ function loadJhkxx(){
 		 data : 'id='+parent.obj,
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
-			 if(msg.sfkxg=='是'){
-				 $("#sftr").attr('style','height: 30px;');
-				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
-			 }else{
-				 $("#sftr").attr('style','height: 30px;display: none;');
-				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
-			 }
+			 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
 			 $("#jhjsxz").combobox('setValue',msg.jhjsxz);
 			 $("#sbnf").combobox('setValue',msg.sbnf);
 			 $("#jhkgsj").datebox('setValue',msg.jhkgsj);
@@ -73,12 +63,20 @@ function loadJhkxx(){
 			 bzSum();
 			// loadSbz(msg.sckid);
 			sckid=msg.sckid;
-			loadSbz();
+			loadBz();
 		 }
 	});
 }
 var sbz;
 var sckid;
+function loadBz(){
+	var sfbk=$("#sfylrbwqk").combobox('getValue');
+	if(sfbk=='是'){
+		loadBbz();
+	}else{
+		loadSbz();
+	}
+}
 function loadSbz(){
 	$.ajax({
 		 type : "POST",
@@ -91,6 +89,30 @@ function loadSbz(){
 		 }
 	 })
 }
+function loadBbz(id){
+	$.ajax({
+		 type:'post',
+			url:'/jxzhpt/jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jhjsxz").combobox('getValue'),
+			dataType:'json',
+			async:false,
+			success:function(data){
+				var bz=data.bz;
+				var bl=data.bl;
+				var fd=data.fd;
+				if($('#jhqlqc').val()!=''||$('#jhqlqc').val()!=null){
+					jhqlqc=$('#jhqlqc').val();
+				}
+				if($('#jhqlqk').val()!=''||$('#jhqlqk').val()!=null){
+					jhqlqk=$('#jhqlqk').val();
+				}
+				var bzzj=(parseFloat(jhqlqc)*1000000000000000*parseFloat(jhqlqk)*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+				 sbz=bzzj.toFixed(3);
+				 $("#trshengbz").html("小于等于"+bzzj.toFixed(3));
+		 }
+	 })
+}
+
 function loadJckxx(id){
 	$.ajax({
 		 type : "POST",
@@ -268,11 +290,16 @@ function editWqgz(){
 		alert("总投资不能小于补助金额");
 		return;
 	}
-	
+	var jhsybzje=0;
+	var shengbz=0;
+	if($("#sfylrbwqk").combobox('getValue')=='是'){
+		jhsybzje=$("#shengbz").val();
+	}
+		
 	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
 	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')+"&planwqgzsj.sjdw="+$("#sjdw").val()+"&planwqgzsj.sjpfdw="+$("#sjpfdw").val()
 	+"&planwqgzsj.pfwh="+$("#jhpfwh").val()+"&planwqgzsj.pfsj="+$("#pfsj").datebox('getValue')+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
-	+"&planwqgzsj.ablbzsqwh="+$("#ablbzwh").val()+"&planwqgzsj.pfztz="+$("#pfztz").val()+"&planwqgzsj.shengbz="+$("#shengbz").val()+"&planwqgzsj.jhsydfzcje="+$("#dfzc").html()
+	+"&planwqgzsj.ablbzsqwh="+$("#ablbzwh").val()+"&planwqgzsj.pfztz="+$("#pfztz").val()+"&planwqgzsj.shengbz="+shengbz+"&planwqgzsj.jhsybzje="+jhsybzje+"&planwqgzsj.jhsydfzcje="+$("#dfzc").html()
 	+"&planwqgzsj.qlszxz="+$("#qlszxz").val()+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
 	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val()+"&planwqgzsj.jhjsxz="+$("#jhjsxz").combobox('getValue')
 	+"&planwqgzsj.jhqlqc="+$("#jhqlqc").val()+"&planwqgzsj.jhqlqk="+$("#jhqlqk").val();
@@ -693,7 +720,7 @@ text-decoration:none;
 				
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用省补助金额(万元)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用部(省)补助金额(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id='shengbz'  onchange="setshengbz()"/><br><span id="trshengbz" style="color: red"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用地方自筹资金(万元)：</td>
@@ -704,7 +731,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qlszxz" /></td>
 			</tr>
-			<tr id="sftr" style="height: 30px;display: none;">
+			<tr id="sftr" style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">

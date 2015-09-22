@@ -40,8 +40,8 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				$('#lxsh').form("load",msg);
-				loadUnit3("gydw",msg.gydwdm,$.cookie("unit"));
-				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+				loadUnit5("gydw",msg.gydwdm,$.cookie("unit"));
+				loadDist5("xzqh",msg.xzqhdm,$.cookie("dist"));
 				$('#lc').html(msg.lc);
 				$('#bzcs').val(msg.bzys);
 				$("#dfzc").html(msg.dfzc);
@@ -76,7 +76,7 @@ text-decoration:none;
 	}
 	
 	$(function(){
-		xmnf2("xmnf");
+		xmnf1("xmnf");
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		load();
@@ -331,7 +331,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" name="yhdk" style="width: 120px;"/>
+					<input type="text" id="yhdk" name="yhdk" onblur="checkdfzc(this)" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>

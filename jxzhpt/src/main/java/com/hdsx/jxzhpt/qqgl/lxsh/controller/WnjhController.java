@@ -51,6 +51,10 @@ import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzServerImpl;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -119,7 +123,7 @@ public class WnjhController extends BaseActionSupport{
 	private String lsjl;
 	private String fileuploadFileName;
 	private File fileupload;
-	private Lx lx;
+	private Lx lx=new Lx();
 	private String name;
 	
 	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
@@ -616,7 +620,7 @@ public class WnjhController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,30,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,31,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -628,6 +632,42 @@ public class WnjhController extends BaseActionSupport{
 				String s = UUID.randomUUID().toString(); 
 				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 				map.put("xmbm", s1);
+				Jckwqgz jckwqgz=new Jckwqgz();
+				lxsh.setGhlxbh(map.get("2").toString().trim());
+				lx.setLxbm(map.get("2").toString().trim());
+				jckwqgz.setLxbm(map.get("2").toString().trim());
+				lxsh.setXzqh(map.get("12").toString().trim());
+				lxsh.setQdzh(map.get("3").toString().trim());
+				lx.setQdzh(map.get("3").toString().trim());
+				jckwqgz.setQdzh(map.get("3").toString().trim());
+				lxsh.setZdzh(map.get("4").toString().trim());
+				lx.setZdzh(map.get("4").toString().trim());
+				jckwqgz.setZdzh(map.get("4").toString().trim());
+				Lxsh l=wnjhServer.wnjhGpsroad1(lxsh);
+				map.put("lxmc", l.getLxmc());
+				LxshServer lxshServer=new LxshServerImpl();
+				Lxsh qdmc=lxshServer.cxqdmc(lxsh);
+				Lxsh zdmc=lxshServer.cxzdmc(lxsh);
+				map.put("qdmc", qdmc.getQdmc());
+				map.put("zdmc", zdmc.getZdmc());
+				JckwqgzServer wqgzServer=new JckwqgzServerImpl();
+				JhshServer jhshServer=new JhshServerImpl();
+				Lx result = jhshServer.queryJsdjAndLcByStartAndEnd(lx);
+				List<String> tsdqstr=wqgzServer.selectTSDQ(jckwqgz);
+				String tsdq=" ";
+				if(tsdqstr.size()>0){
+				for (String string : tsdqstr) {
+					tsdq=tsdq+"、"+string;
+				}
+				tsdq=tsdq.substring(2);
+				}
+				map.put("tsdq",tsdq);
+				map.put("yilc", result.getYilc());
+				map.put("erlc", result.getErlc());
+				map.put("sanlc", result.getSanlc());
+				map.put("silc", result.getSilc());
+				map.put("dwlc", result.getDwlc());
+				map.put("wllc", result.getWllc());
 			}
 			boolean sfcg=true;
 			sfcg=wnjhServer.importsjgzwnjh(data);
@@ -663,6 +703,42 @@ public class WnjhController extends BaseActionSupport{
 				String s = UUID.randomUUID().toString(); 
 				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 				map.put("xmbm", s1);
+				Jckwqgz jckwqgz=new Jckwqgz();
+				lxsh.setGhlxbh(map.get("2").toString().trim());
+				lx.setLxbm(map.get("2").toString().trim());
+				jckwqgz.setLxbm(map.get("2").toString().trim());
+				lxsh.setXzqh(map.get("7").toString().trim());
+				lxsh.setQdzh(map.get("3").toString().trim());
+				lx.setQdzh(map.get("3").toString().trim());
+				jckwqgz.setQdzh(map.get("3").toString().trim());
+				lxsh.setZdzh(map.get("4").toString().trim());
+				lx.setZdzh(map.get("4").toString().trim());
+				jckwqgz.setZdzh(map.get("4").toString().trim());
+				Lxsh l=wnjhServer.wnjhGpsroad1(lxsh);
+				map.put("lxmc", l.getLxmc());
+				LxshServer lxshServer=new LxshServerImpl();
+				Lxsh qdmc=lxshServer.cxqdmc(lxsh);
+				Lxsh zdmc=lxshServer.cxzdmc(lxsh);
+				map.put("qdmc", qdmc.getQdmc());
+				map.put("zdmc", zdmc.getZdmc());
+				JckwqgzServer wqgzServer=new JckwqgzServerImpl();
+				JhshServer jhshServer=new JhshServerImpl();
+				Lx result = jhshServer.queryJsdjAndLcByStartAndEnd(lx);
+				List<String> tsdqstr=wqgzServer.selectTSDQ(jckwqgz);
+				String tsdq=" ";
+				if(tsdqstr.size()>0){
+				for (String string : tsdqstr) {
+					tsdq=tsdq+"、"+string;
+				}
+				tsdq=tsdq.substring(2);
+				}
+				map.put("tsdq",tsdq);
+				map.put("yilc", result.getYilc());
+				map.put("erlc", result.getErlc());
+				map.put("sanlc", result.getSanlc());
+				map.put("silc", result.getSilc());
+				map.put("dwlc", result.getDwlc());
+				map.put("wllc", result.getWllc());
 			}
 			boolean sfcg=true;
 			sfcg=wnjhServer.importlmgzwnjh(data);
@@ -672,6 +748,11 @@ public class WnjhController extends BaseActionSupport{
 				response.getWriter().print(fileuploadFileName+"导入失败\r");
 		}catch(Exception e){
 			e.printStackTrace();
+			try {
+				response.getWriter().print(fileuploadFileName+"导入失败，请检查路线编码、起点桩号、止点桩号和行政区划\r");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 	public void importxjwnjh(){
@@ -858,7 +939,7 @@ public class WnjhController extends BaseActionSupport{
 		int nian1=nian-10;
 		String json="";
 		String json1="[";
-		for (int i = nian; i >= nian1; i--) {
+		for (int i = 2015; i <= 2020; i++) {
 			if(i==nian)
 				json=json+"{id:"+i+",text:"+i+",iconCls:'icon-none',checked:'true'},";
 			else if(i==nian1)

@@ -75,6 +75,7 @@ function loadSckxx(){
 	$("#spwh").html(item.spwh);
 	$("#jsxz").html(item.jsxz);
 	$("#tzgs").html(item.tzgs);
+	$("#scakjfl").html(item.scakjfl);
 	$("#sjdwmc").html(item.sjdwmc);
 	$("#jsgmqc").html(item.jsgmqc);
 	$("#jsgmqk").html(item.jsgmqk);
@@ -438,6 +439,18 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scszxz"></span>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id='scakjfl' ></span>
+				</td>
+				<td  style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%; " align="right"></td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
 			<tr style="height: 30px;">

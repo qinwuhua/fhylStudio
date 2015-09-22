@@ -231,7 +231,10 @@
 		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj
 		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
 	</select>
-	
+	<select id="wnjhGpsroad1" parameterType="lxsh" resultType="lxsh">
+		select max(lxmc) lxmc
+		from table(funNoLmlx(#{ghlxbh},(select id from XTGL_XZQH where name=#{xzqh}))) order by lxbm,qdzh
+	</select>
 	
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -465,30 +468,30 @@
 	</select>
 
 	<insert id="importsjgzwnjh" parameterType="hashMap">
-		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,tsdq)
-		values(#{xmbm},#{3},#{1},#{2},to_char(to_number(#{5})-to_number(#{4})),#{20},#{4},#{5},#{6},#{7},#{26},#{27},#{24},#{25},#{xmbm},#{28},#{29},to_char(to_number(#{28})-to_number(#{29})),#{22},#{21},(select id from XTGL_XZQH where trim(name) = #{22}),(select id from XTGL_DEPARTMENT where trim(name) = #{21}),#{0},'7',(select id from XTGL_DEPARTMENT where trim(name) = #{21}),#{23})
+		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,tsdq,yhdk)
+		values(#{xmbm},#{lxmc},#{1},#{2},to_char(to_number(#{4})-to_number(#{3})),#{11},#{3},#{4},#{qdmc},#{zdmc},#{16},#{17},#{14},#{15},#{xmbm},#{18},#{19},to_char(to_number(#{18})-to_number(#{19})),#{13},#{12},(select id from XTGL_XZQH where trim(name) = #{13}),(select id from XTGL_DEPARTMENT where trim(name) = #{12}),#{0},'7',(select id from XTGL_DEPARTMENT where trim(name) = #{12}),#{tsdq},'0')
 	</insert>
 	<insert id="importlmgzwnjh" parameterType="hashMap">
-		insert into WNJH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,tsdq)
-		values(#{xmbm},#{3},#{1},#{2},to_char(to_number(#{5})-to_number(#{4})),#{14},#{4},#{5},#{6},#{7},#{20},#{21},#{18},#{19},#{xmbm},#{22},#{23},to_char(to_number(#{22})-to_number(#{23})),#{16},#{15},(select id from XTGL_XZQH where trim(name) = #{16}),(select id from XTGL_DEPARTMENT where trim(name) = #{15}),#{0},'7',(select id from XTGL_DEPARTMENT where trim(name) = #{15}),#{17})
+		insert into WNJH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,tsdq,yhdk)
+		values(#{xmbm},#{lxmc},#{1},#{2},to_char(to_number(#{4})-to_number(#{3})),#{5},#{3},#{4},#{qdmc},#{zdmc},#{10},#{11},#{8},#{9},#{xmbm},#{12},#{13},to_char(to_number(#{12})-to_number(#{13})),#{7},#{6},(select id from XTGL_XZQH where trim(name) = #{7}),(select id from XTGL_DEPARTMENT where trim(name) = #{6}),#{0},'7',(select id from XTGL_DEPARTMENT where trim(name) = #{6}),#{tsdq},'0')
 	</insert>
 	<insert id="importxjwnjh" parameterType="hashMap">
 		insert into WNJH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,
-		tsdq)
+		tsdq,yhdk)
 		values(#{xmbm},#{3},#{1},#{2},to_char(to_number(#{5})-to_number(#{4})),#{18},#{4},#{5},#{6},#{7},#{24},#{25},#{22},#{23},#{xmbm},#{26},#{27},to_char(to_number(#{26})-to_number(#{27})),#{20},#{19},(select id from XTGL_XZQH where trim(name) = #{20}),(select id from XTGL_DEPARTMENT where trim(name) = #{19}),#{0},'7',(select id from XTGL_DEPARTMENT where trim(name) = #{19}),
-		#{21})
+		#{21},'0')
 	</insert>
 	<insert id="importsjgzwnjhlx" parameterType="hashMap">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,
 		yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,jhlc)
-		values(sys_guid(),#{xmbm},#{2},#{3},#{22},(select id from XTGL_XZQH where trim(name) = #{22}),#{21},(select id from XTGL_DEPARTMENT where trim(name) = #{21}),#{4},#{5},#{24},to_char(to_number(#{5})-to_number(#{4})),#{25},#{20},#{6},#{7},#{29},'1','0',#{4},#{5},
-		#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},(#{14}+#{15}+#{16}+#{17}+#{18}+#{19}))
+		values(sys_guid(),#{xmbm},#{2},#{lxmc},#{13},(select id from XTGL_XZQH where trim(name) = #{13}),#{12},(select id from XTGL_DEPARTMENT where trim(name) = #{12}),#{3},#{4},#{14},to_char(to_number(#{4})-to_number(#{3})),#{15},#{11},#{qdmc},#{zdmc},#{19},'1','0',#{3},#{4},
+		#{yilc},#{erlc},#{sanlc},#{silc},#{dwlc},#{wllc},#{5},#{6},#{7},#{8},#{9},#{10},(#{5}+#{6}+#{7}+#{8}+#{9}+#{10}))
 	</insert>
 	<insert id="importlmgzwnjhlx" parameterType="hashMap">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,
 		yilc,erlc,sanlc,silc,dwlc,wllc)
-		values(sys_guid(),#{xmbm},#{2},#{3},#{16},(select id from XTGL_XZQH where trim(name) = #{16}),#{15},(select id from XTGL_DEPARTMENT where trim(name) = #{14}),#{4},#{5},#{18},to_char(to_number(#{5})-to_number(#{4})),#{20},#{14},#{6},#{7},#{23},'1','0',#{4},#{5},
-		#{8},#{9},#{10},#{11},#{12},#{13})
+		values(sys_guid(),#{xmbm},#{2},#{lxmc},#{7},(select id from XTGL_XZQH where trim(name) = #{7}),#{6},(select id from XTGL_DEPARTMENT where trim(name) = #{6}),#{3},#{4},#{8},to_char(to_number(#{4})-to_number(#{3})),#{9},#{5},#{qdmc},#{zdmc},#{13},'1','0',#{3},#{4},
+		#{yilc},#{erlc},#{sanlc},#{silc},#{dwlc},#{wllc})
 	</insert>
 	<insert id="importxjwnjhlx" parameterType="hashMap">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,

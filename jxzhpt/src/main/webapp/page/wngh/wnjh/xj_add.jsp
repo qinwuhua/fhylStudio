@@ -32,9 +32,9 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
-		loadUnit("gydw",$.cookie("unit"));
-		loadDist("xzqh",$.cookie("dist"));
-		xmnf1("xmnf",'xj');
+		loadUnit4("gydw",$.cookie("unit"));
+		loadDist4("xzqh",$.cookie("dist"));
+		xmnf1("xmnf");
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		tsdq1('tsdq','');
@@ -424,7 +424,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" style="width: 120px;"/>
+					<input type="text" id="yhdk" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>

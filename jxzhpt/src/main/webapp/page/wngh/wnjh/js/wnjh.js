@@ -65,30 +65,46 @@ function dingwei(index){
 	});	
 	
 }
-function loadDist3(id, dwbm,yhdw) {
-	$('#' + id)
-			.combotree(
-					{
-						checkbox : true,
-						url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + yhdw,
-						onBeforeExpand : function(node, param) {
-							$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
-									+ node.id;
-						},
-						onSelect : function(node) {
-							YMLib.Var.DistName = node.text;
-						}
-					});
-	$('#' + id).combotree('setValue', dwbm);
-}
-function loadUnit3(id, dwbm,yhdw) {
-	$('#' + id).combotree({
-		checkbox : false,
-		url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + yhdw,
+function loadDist4(id,yhdw) {
+	$('#' + id).combotree(
+	{
+		checkbox : true,
+		url : '/jxzhpt/gcgl/selAllXzqh11.do?yhdw=' + yhdw,
 		onBeforeExpand : function(node, param) {
-			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
+			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh22.do?yhdw="
 					+ node.id;
 		},
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	$('#' + id).combotree('setValue', '360000');
+}
+function loadUnit4(id,yhdw) {
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + yhdw,
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	$('#' + id).combotree('setValue', '21101360000');
+}
+function loadDist5(id, dwbm,yhdw) {
+	$('#' + id).combotree(
+	{
+		checkbox : true,
+		url : '/jxzhpt/gcgl/selAllXzqh11.do?yhdw=' + yhdw,
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	$('#' + id).combotree('setValue', dwbm);
+}
+function loadUnit5(id, dwbm,yhdw) {
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + yhdw,
 		onSelect : function(node) {
 			YMLib.Var.DistName = node.text
 		}
@@ -132,31 +148,37 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 function checkdfzc(str){
 	checkSZ(str);
 	$("#dfzc").html('');
-	var tz=0;var bzcs=0;
+	var tz=0;var bzcs=0;var yhdk=0;
 	if($("#tz").val()!='')
 		tz=parseFloat($("#tz").val());
 	if($("#bzcs").val()!='')
 		bzcs=parseFloat($("#bzcs").val());
+	if($("#yhdk").val()!='')
+		yhdk=parseFloat($("#yhdk").val());
 	if(bzcs>tz){
 		alert("投资不能小于补助测算");
 		return
 	}
-	var dfzc=accSub(tz,bzcs);
+	var zh=accSub(tz,bzcs);
+	var dfzc=accSub(zh,yhdk);
 	$("#dfzc").html(dfzc);
 }
 function checkdfzc1(str){
 	checkSZ(str);
 	$("#dfzc").html('');
-	var tz=0;var bzcs=0;
+	var tz=0;var bzcs=0;var yhdk=0;
 	if($("#tz").val()!='')
 		tz=parseFloat($("#tz").val());
 	if($("#bzcs").val()!='')
 		bzcs=parseFloat($("#bzcs").val());
+	if($("#yhdk").val()!='')
+		yhdk=parseFloat($("#yhdk").val());
 	if(bzcs>tz){
 		alert("投资不能小于补助测算");
 		return
 	}
-	var dfzc=accSub(tz,bzcs);
+	var zh=accSub(tz,bzcs);
+	var dfzc=accSub(zh,yhdk);
 	$("#dfzc").html(dfzc);
 }
 function tsdq(id){
@@ -275,10 +297,8 @@ function xmnf1(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	for(var i=2015;i<=2020;i++){
+		years.push({text:(i),value:(i)});
 	}
 	$('#'+id).combobox({
 	    data:years,

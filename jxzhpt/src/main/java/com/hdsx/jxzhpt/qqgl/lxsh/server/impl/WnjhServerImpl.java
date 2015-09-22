@@ -48,6 +48,10 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		return queryList("wnjhGpsroad", lxsh);
 	}
 	@Override
+	public Lxsh wnjhGpsroad1(Lxsh lxsh) {
+		return queryOne("wnjhGpsroad1", lxsh);
+	}
+	@Override
 	public boolean insertGjwnjh(Lxsh lxsh) {
 		return insert("insertGjwnjh", lxsh)==1&&insert("insertlx", lxsh)==1;
 	}

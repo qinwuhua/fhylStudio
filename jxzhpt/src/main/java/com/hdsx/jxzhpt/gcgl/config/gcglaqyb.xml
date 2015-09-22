@@ -235,10 +235,15 @@
 	<select id="selAllXzqh1" parameterType="String" resultType="treenode">
 	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
 	</select>	
+	<select id="selAllXzqh11" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  parent='360000' or id='360000' order by to_number(id)
+	</select>
 	<select id="selAllUnit1" parameterType="String" resultType="treenode">
 	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||${value}||'%' order by to_number(id)
 	</select>	
-	
+	<select id="selAllUnit11" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where (name like '%公路管理局' or name  like '%公路局') and( parent='21101360000' or id='21101360000') order by to_number(id)
+	</select>	
 	
 	
 	<select id="selectmbgllist1" parameterType="gcglaqyb" resultType="gcglaqyb">

@@ -76,6 +76,7 @@ function loadSckxx(){
 	$("#jsxz").html(item.jsxz);
 	$("#tzgs").html(item.tzgs);
 	$("#sjdwmc").html(item.sjdwmc);
+	$("#scakjfl").html(item.scakjfl);
 	$("#jsgmqc").html(item.jsgmqc);
 	$("#jsgmqk").html(item.jsgmqk);
 	$("#hzdj").html(item.hzdj);
@@ -414,6 +415,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="ydgldj"></span></td>
 			</tr>
+			
 			<tr style="height: 30px;">
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度(km/h)：</td>
@@ -438,6 +440,18 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scszxz"></span>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id='scakjfl' ></span>
+				</td>
+				<td  style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%; " align="right"></td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
 			<tr style="height: 30px;">
