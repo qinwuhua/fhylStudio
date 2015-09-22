@@ -24,6 +24,9 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			xmnf("xmnf");
+			loadBmbm3('jsdj','技术等级');
+			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryLmsj();
 		});
@@ -31,8 +34,9 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),
-					'jhsh.xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -101,31 +105,37 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:160px;"></select>
-        						<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
-								<span>&nbsp;项目名称：</span>
-        						<input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" />
-        						<span>&nbsp;路线编码：</span>
-        						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;下达状态：</span>
-        						<select id="xdzt" class="easyui-combobox">
-        							<option value="-1">全部</option>
-        							<option value="0">未下达</option>
-        							<option value="1">已下达</option>
-        						</select>
-        						<span>&nbsp;补助历史：</span>
-								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
-									<option value="" selected="selected">全部</option>
-									<option value="否">否</option>
-									<option value="是">是</option>
-								</select>
-								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-        					</p>
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<tr height="32">
+        						<td>项目年份：</td>
+        						<td><select id="xmnf" style="width: 70px;"></select></td>
+        						<td align="right">&nbsp;行政区划：</td>
+        						<td><select id="xzqh" style="width:124px;"></select></td>
+        						<td align="right">&nbsp;特殊地区：</td>
+        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
+        						<td align="right">&nbsp;技术等级：</td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        					</tr>
+        					<tr height="32">
+        						<td align="right">补助历史：</td>
+        						<td>
+        							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+										<option value="" selected="selected">全部</option>
+										<option value="否">否</option>
+										<option value="是">是</option>
+									</select>
+        						</td>
+        						<td align="right">&nbsp;项目名称：</td>
+        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
+        						<td align="right">&nbsp;路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
+        						<td colspan="4">
+        							&nbsp;<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						</td>
+        					</tr>
+        				</table>
         				</div>
         			</fieldset>
         		</td>
