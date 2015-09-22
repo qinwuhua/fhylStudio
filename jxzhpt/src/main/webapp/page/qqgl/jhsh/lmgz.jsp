@@ -40,7 +40,7 @@
 					'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
-			loadLj(params)
+			loadLj(params);
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;

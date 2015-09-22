@@ -26,6 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('jsdj','技术等级');
 			xmnf("xmnf");
+			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryXj();
 			loadFileUpload();
@@ -36,10 +37,11 @@
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),
 					'jhsh.xdzt':$('#xdzt').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue")};
+					'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue"),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			loadLj(params);
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -105,7 +107,8 @@
 			var param='jhsh.xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.xmlx=3&jhsh.xdzt='+$('#xdzt').combobox("getValue")
 					+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()
 					+'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")
-					+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue");
+					+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
+					+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -191,10 +194,8 @@ text-decoration:none;
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
 								<td>技术等级:</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-								<td colspan="2">
-									<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
-        						</td>
+								<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">
 								<td align="right">下达状态：</td>
@@ -215,10 +216,14 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-                            	<td colspan="2">
-									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+                            </tr>
+                            <tr height="32">
+                            	<td colspan="8">
+                            		<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
+                            		<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<img onclick="importJhsh(3)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-        						</td>
+                            	</td>
                             </tr>
         				</table>
         				</div>

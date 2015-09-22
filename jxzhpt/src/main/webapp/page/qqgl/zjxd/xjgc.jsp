@@ -26,6 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm3('jsdj','技术等级');
 			xmnf("xmnf");
+			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryXj();
 		});
@@ -35,7 +36,7 @@
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':1,
 					'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),'lsjl':$('#lsjl').combobox("getValue"),
-					'jsdj':$('#jsdj').combobox("getValues").join(",")};
+					'jsdj':$('#jsdj').combobox("getValues").join(","),'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-160;
@@ -102,7 +103,7 @@
 			var param='jhsh.xmlx=3&jhsh.xdzt=1&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
 			'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
 			'&jhsh.xmbm='+$('#xmnf').combobox("getValues").join(',')+'&lsjl='+$('#lsjl').combobox("getValue")+
-			'&jsdj='+$('#jsdj').combobox("getValues").join(",");
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -128,7 +129,7 @@
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-        					<tr>
+        					<tr height="32">
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 70px;"></select></td>
         						<td align="right">行政区划：</td>
@@ -136,9 +137,11 @@
         						<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						<td align="right">技术等级：</td>
-        						<td style="width: 300px;"><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td>公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         					</tr>
-        					<tr>
+        					<tr height="32">
         						<td align="right">补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
@@ -151,7 +154,7 @@
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
         						<td align="right">路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
-        						<td colspan="2">
+        						<td colspan="4">
         							<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<img onclick="importJhshZjzj(6)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>

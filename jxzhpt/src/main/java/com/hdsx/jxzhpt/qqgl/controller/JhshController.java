@@ -87,24 +87,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else{
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
-			String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
-			if(ylxbh!=null && !ylxbh.equals("")){
-				if(ylxbh.indexOf(",")>-1){
-					String[] split = ylxbh.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							ylxbh = "(lxbm like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							ylxbh += " or lxbm like '%"+split[i]+"%')";
-						}else{
-							ylxbh += " or lxbm like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					ylxbh = " lxbm like '%"+ylxbh+"%'";
-				}
-				jhsh.setYlxbh(ylxbh);
-			}
+			ylxbhHandle();
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
@@ -145,24 +128,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 			jhsh.setXmbm(xmbm);
-			String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
-			if(ylxbh!=null && !ylxbh.equals("")){
-				if(ylxbh.indexOf(",")>-1){
-					String[] split = ylxbh.split(",");
-					for (int i = 0; i < split.length; i++) {
-						if(i==0){
-							ylxbh = "(lxbm like '%"+split[i]+"%'";
-						}else if(i==split.length-1){
-							ylxbh += " or lxbm like '%"+split[i]+"%')";
-						}else{
-							ylxbh += " or lxbm like '%"+split[i]+"%'";
-						}
-					}
-				}else{
-					ylxbh = " lxbm like '%"+ylxbh+"%'";
-				}
-				jhsh.setYlxbh(ylxbh);
-			}
+			ylxbhHandle();
 			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
@@ -253,6 +219,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				}
 				jhsh.setJsdj(xjsdj);
 			}
+			ylxbhHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
 				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
@@ -267,6 +234,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	private void ylxbhHandle() {
+		String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh.indexOf(",")>-1){
+				String[] split = ylxbh.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						ylxbh = "(lxbm like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						ylxbh += " or lxbm like '%"+split[i]+"%')";
+					}else{
+						ylxbh += " or lxbm like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				ylxbh = " lxbm like '%"+ylxbh+"%'";
+			}
+			jhsh.setYlxbh(ylxbh);
 		}
 	}
 	/**
@@ -581,24 +568,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			jhsh.setJsdj(xjsdj);
 		}
-		String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
-		if(ylxbh!=null && !ylxbh.equals("")){
-			if(ylxbh.indexOf(",")>-1){
-				String[] split = ylxbh.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						ylxbh = "(lxbm like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						ylxbh += " or lxbm like '%"+split[i]+"%')";
-					}else{
-						ylxbh += " or lxbm like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				ylxbh = " lxbm like '%"+ylxbh+"%'";
-			}
-			jhsh.setYlxbh(ylxbh);
-		}
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -647,7 +617,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
-		if(!jhsh.getJsdj().equals("") && jhsh.getJsdj()!=null){
+		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
 			String xjsdj = jhsh.getJsdj();
 			if(xjsdj.indexOf(",")>-1){
 				String[] split = xjsdj.split(",");
@@ -668,6 +638,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			jhsh.setJsdj(xjsdj);
 		}
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
@@ -791,6 +762,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			jhsh.setJsdj(xjsdj);
 		}
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -900,6 +872,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			jhsh.setJsdj(xjsdj);
 		}
+		ylxbhHandle();
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
