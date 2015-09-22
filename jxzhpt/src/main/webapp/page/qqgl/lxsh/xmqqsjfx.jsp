@@ -50,8 +50,27 @@ a:active {
 <script type="text/javascript">
 $(function(){
 	loadDist1("xzqh",$.cookie("dist"));
+	xmnf1("wgsj");
 	//queryDate();
 });
+function xmnf1(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+}
 function selXm(){
 	$('#dd').dialog("open");
 	var xz = $("#xzqh").combotree("getValues");
@@ -67,7 +86,7 @@ function selXm(){
 	    	jsxz:$('#jsxz').val(),
 	    	shzt1:$('#shzt').val(),
 	    	lxbm:$('#lxbm').val(),
-	    	wgny:$('#wgsj').datebox("getValue")
+	    	wgny:$('#wgsj').combobox("getValue")
 	    },
 	    columns:[[
 			{field:'xmmc',title:'项目名称',width:110,align:'center'},
@@ -101,7 +120,7 @@ function queryDate(xmbm){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryXmQqfx.do',
-		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').datebox("getValue")+'&xmbm='+xmbm,
+		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').combobox("getValue")+'&xmbm='+xmbm,
 		dataType:'json',
 		success:function(msg){
 			var befromLen=0;
@@ -314,7 +333,7 @@ function loadNdwg2(beform2){
         							<option value="改建">改建</option>
         						</select>
         						<span>完工时间：</span>
-        						<input id="wgsj" class="easyui-datebox" type="text" width="100"/>
+        						<input id="wgsj" type="text" width="100"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>路线编码：</span>
