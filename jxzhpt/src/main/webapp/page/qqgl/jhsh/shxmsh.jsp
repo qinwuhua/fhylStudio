@@ -90,6 +90,7 @@
 				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}
 			]];
+			bindLxGrid();
 			gridBind(grid);
 		}
 		function loadLj(params){

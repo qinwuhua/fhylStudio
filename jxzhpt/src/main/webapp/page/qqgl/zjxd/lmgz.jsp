@@ -84,6 +84,7 @@
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
+			bindLxGrid();
 			gridBind(grid);
 		}
 		function loadLj(params){
