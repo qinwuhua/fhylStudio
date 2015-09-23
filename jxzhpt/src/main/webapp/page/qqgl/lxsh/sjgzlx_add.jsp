@@ -183,11 +183,11 @@
 					现技术等<br/>级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
@@ -196,11 +196,11 @@
 					建设技术<br/>等级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="jhyilc" name="jhyilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					二级公路：<input id="jherlc" name="jherlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					三级公路：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					四级公路：<input id="jhsilc" name="jhsilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					等外公路：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					一级：<input id="jhyilc" name="jhyilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					二级：<input id="jherlc" name="jherlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					三级：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					四级：<input id="jhsilc" name="jhsilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					等外：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
 					无路：<input id="jhwllc" name="jhwllc" onchange="cesuan()" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>

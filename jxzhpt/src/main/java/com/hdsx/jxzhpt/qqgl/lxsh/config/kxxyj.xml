@@ -113,7 +113,7 @@
 		update kxxyj_sjgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
-		dfzc=#{dfzc},yhdk=#{yhdk}
+		dfzc=#{dfzc},yhdk=#{yhdk},jszlc=#{jszlc}
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateLmgzkxx" parameterType="kxxyj">
@@ -337,8 +337,8 @@
 		select * from KXXYJ_SJGZ where ${value}
 	</select>
 	<insert id="insertsjgzcb" parameterType="kxxyj">
-		insert into cbsj_sjgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw},#{dfzc},#{yhdk})
+		insert into cbsj_sjgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,jszlc)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw},#{dfzc},#{yhdk},#{jszlc})
 	</insert>
 	<update id="shlmgzkxx" parameterType="hashmap">
 		update KXXYJ_LMGZ set shzt=1 where id=#{id}

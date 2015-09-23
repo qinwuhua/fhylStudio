@@ -217,22 +217,20 @@
 				</tr>
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						里程
-					</td>
-					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="lc" name="lc" type="text" style="width: 120px;"/>
-					</td>
-					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						起点名称
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="qdmc" name="qdmc" value="" type="text" style="width: 120px;"/>
 					</td>
-					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						止点名称
 					</td>
-					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="zdmc" name="zdmc" value="" type="text" style="width: 120px;"/>
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -240,12 +238,13 @@
 						现技术等<br/>级及里程
 					</td>
 					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-						二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-						三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-						四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-						等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -253,12 +252,13 @@
 						建设技术<br/>等级及里程
 					</td>
 					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						一级公路：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-						二级公路：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
-						三级公路：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-						四级公路：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-						等外公路：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">

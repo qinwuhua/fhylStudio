@@ -98,6 +98,14 @@ public class Cbsj {
 	private String jhwllc;//建设后无路里程
 	private String dfzc;//地方自筹
 	private String yhdk;//银行贷款
+	private String jszlc;//建设总里程
+	
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
 	public String getDfzc() {
 		return dfzc;
 	}

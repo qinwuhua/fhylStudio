@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
-		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
-		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
+		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
+		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
 		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
@@ -371,7 +371,7 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, 
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, l.jszlc,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 

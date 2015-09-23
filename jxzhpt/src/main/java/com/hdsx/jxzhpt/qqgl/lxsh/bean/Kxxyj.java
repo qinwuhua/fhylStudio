@@ -71,6 +71,13 @@ public class Kxxyj implements Serializable {
 	private String lxmc;//路线名称
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
+	private String jszlc;//建设总里程
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
 	public String getLxmc() {
 		return lxmc;
 	}

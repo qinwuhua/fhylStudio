@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
@@ -61,7 +60,6 @@
 					});
 				}
 			});
-			queryZjxd1(parent.YMLib.Var.xmbm);
 		});
 	</script>
 </head>
@@ -71,8 +69,19 @@
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 立项申请
+						改建工程项目 — 立项申请
 					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+					<td style="background-color: #ffffff; height: 25px;" align="left">
+						<input name="gydw" style="font-size: 14px;width:120px;" type="text"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
+					<td style="background-color: #ffffff; height: 25px;" align="left">
+						<input name="xzqh" style="width: 120px;" type="text"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
+					<td style="background-color: #ffffff; height: 25px;" align="left">
+						<input name="tsdq" type="text" style="font-size: 14px;width: 120px;"/></td>
 				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
@@ -92,33 +101,51 @@
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdzh" style="width: 120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
-					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="lc" type="text" style="font-size: 14px;width: 120px;"/>&nbsp;公里</td>
-				</tr>
-				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="qdmc" type="text" style="width:120px;"/><br/>
-						</td>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点名称：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdmc" type="text" style="width:120px;"/><br/>
-						</td>
+					</td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="jsxz" style="width:120px;" type="text"/></td>
+						<input name="jsxz" style="width:120px;" type="text"/>
+					</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+					<td style="background-color: #ffffff; height: 20px;" align="left">
+					</td>
 				</tr>
 				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="gydw" style="font-size: 14px;width:120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="xzqh" style="width: 120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="tsdq" type="text" style="font-size: 14px;width: 120px;"/></td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+					</td>
 				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
@@ -162,7 +189,7 @@
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 可行性研究
+						改建工程项目 — 可行性研究
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -187,6 +214,34 @@
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input type="text" id="jsxz" name="jsxz" style="width: 120px;"/></td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+					</td>
 				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
@@ -252,7 +307,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 初步设计或施工图设计
+						改建工程项目 — 初步设计或施工图设计
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -313,6 +368,34 @@
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="lj" name="lj" style="width: 120px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff;border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -466,7 +549,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 计划审核填报信息
+						改建工程项目 — 计划审核填报信息
 					</td>
 				</tr>
 				<tr>
@@ -512,21 +595,6 @@
 					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 							<tbody id="jhxdTable"></tbody>
-						</table>
-					</td>
-				</tr>
-			</table>
-		</form>
-		<form id="zjxd">
-			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
-				<tr style="height: 25px;">
-					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 资金下发
-					</td>
-				</tr>
-				<tr>
-					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
 						</table>
 					</td>
 				</tr>
