@@ -231,19 +231,9 @@ text-decoration:none;
         			</fieldset>
         		</td>
         	</tr>
-        	<!-- <tr>
-        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
-        			共有【 <span id="lblCount" style="font-weight: bold; color: #FF0000">0</span> 】个路面升级项目，总里程共
-        			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，其中中央车购税【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，省投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
-        		</td>
-        	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>部补助资金累计：<span id="spanbbz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            		<div>部补助资金累计【<span id="spanbbz" style="color: red;">0</span>】,省补助资金累计【<span id="spansbz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
             		<div><table id="grid"></table></div>
             	</td>
         	</tr>
