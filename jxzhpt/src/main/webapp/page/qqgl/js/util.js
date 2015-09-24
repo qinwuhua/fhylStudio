@@ -45,7 +45,25 @@ function xmnf(id){
 	    data:years,
 	    valueField:'value',
 	    textField:'text',
-	    multiple:true
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.bmid);
+					$('#id'+item.id).attr('checked', true);
+				});
+				$('#id' +id).combobox("setValues",values);
+			}else{ 
+				$('#id'+record.id).attr('checked', true);
+			}
+		}
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }

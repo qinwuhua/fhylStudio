@@ -254,7 +254,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
 			String gcfl = xmsq.getGcfl();
-			if(gcfl.indexOf(",")>-1){
+			if(gcfl!=null && gcfl.equals("")){
+				gcfl=null;
+			}else if(gcfl.indexOf(",")>-1){
 				String[] gcflArray = gcfl.split(",");
 				for (int i = 0; i < gcflArray.length; i++) {
 					if(i==0){
@@ -268,7 +270,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				gcfl = "x.gcfl like '%" + gcfl + "%'";
 			}
-			
+			xmsq.setGcfl(gcfl);
 			String ylxbh = xmsq.getYlxbh();
 			if(ylxbh!=null && !ylxbh.equals("")){
 				String[] split1 = ylxbh.split(",");
@@ -281,7 +283,6 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				xmsq.setYlxbh(ylxbh);
 			}
-			xmsq.setGcfl(gcfl);
 			result = xmsqServer.queryLjYhdzx(xmsq);
 		}else if(xmsq.getXmlx()==5){
 			result = xmsqServer.queryLjSh(xmsq);

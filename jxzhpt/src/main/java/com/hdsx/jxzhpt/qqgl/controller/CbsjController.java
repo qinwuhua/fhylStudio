@@ -80,7 +80,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				total = cbsjServer.queryCbsjXjCount(cbsj);
 			}else if(cbsj.getXmlx()==4){
 				String gcfl = cbsj.getGcfl();
-				if(gcfl.indexOf(",")>-1){
+				if(gcfl.equals("")){
+					gcfl=null;
+				}else if(gcfl.indexOf(",")>-1){
 					String[] gcflArray = gcfl.split(",");
 					for (int i = 0; i < gcflArray.length; i++) {
 						if(i==0){
@@ -121,7 +123,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		
 		if(cbsj.getXmlx()==4){
 			String gcfl = cbsj.getGcfl();
-			if(gcfl.indexOf(",")>-1){
+			if(gcfl.equals("")){
+				gcfl=null;
+			}else if(gcfl.indexOf(",")>-1){
 				String[] gcflArray = gcfl.split(",");
 				for (int i = 0; i < gcflArray.length; i++) {
 					if(i==0){
