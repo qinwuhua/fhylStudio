@@ -238,6 +238,14 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public Lxsh selectXjwnjhcf(Lxsh lxsh) {
 		return queryOne("selectXjwnjhcf", lxsh);
 	}
+	@Override
+	public boolean insertGjlxwnjh(Lxsh lxsh) {
+		return insert("insertGjlxwnjh", lxsh)==1;
+	}
+	@Override
+	public boolean updatewnjhsjlx(Lxsh lxsh) {
+		return update("updatewnjhsjlx", lxsh)==1;
+	}
 	
 
 }

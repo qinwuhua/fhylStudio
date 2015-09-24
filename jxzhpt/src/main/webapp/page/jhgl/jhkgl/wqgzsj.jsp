@@ -85,10 +85,10 @@
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-						if(row.sfylrbwqk=='是')
+						/* if(row.sfylrbwqk=='是')
 							return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
-							else
+							else */
 								return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    

@@ -65,16 +65,35 @@
 		<if test="jhwllc!=null">,#{jhwllc}</if>
 		<if test="jhlc!=null">,#{jhlc}</if>)
 	</insert>
-	<insert id="insertLx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs},#{gpsqdzh},#{gpszdzh})
+	<insert id="insertGjlxwnjh" parameterType="lxsh">
+		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,gpsqdzh,gpszdzh
+		<if test="xjlxbm!='' and xjlxbm!=null">,xjlxbm</if>
+		<if test="xjqdzh!='' and xjqdzh!=null">,xjqdzh</if>
+		<if test="xjzdzh!='' and xjzdzh!=null">,xjzdzh</if>
+		<if test="xjlc!='' and xjlc!=null">,xjlc</if>
+		,yilc,erlc,sanlc,silc,dwlc,wllc
+		<if test="jhyilc!=null">,jhyilc</if>
+		<if test="jherlc!=null">,jherlc</if>
+		<if test="jhsanlc!=null">,jhsanlc</if>
+		<if test="jhsilc!=null">,jhsilc</if>
+		<if test="jhdwlc!=null">,jhdwlc</if>
+		<if test="jhwllc!=null">,jhwllc</if>
+		<if test="jhlc!=null">,jhlc</if>)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},'0','0',#{gpsqdzh},#{gpszdzh}
+		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
+		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
+		<if test="xjzdzh!='' and xjzdzh!=null">,#{xjzdzh}</if>
+		<if test="xjlc!='' and xjlc!=null">,#{xjlc}</if>
+		,#{yilc},#{erlc},#{sanlc},#{silc},#{dwlc},#{wllc}
+		<if test="jhyilc!=null">,#{jhyilc}</if>
+		<if test="jherlc!=null">,#{jherlc}</if>
+		<if test="jhsanlc!=null">,#{jhsanlc}</if>
+		<if test="jhsilc!=null">,#{jhsilc}</if>
+		<if test="jhdwlc!=null">,#{jhdwlc}</if>
+		<if test="jhwllc!=null">,#{jhwllc}</if>
+		<if test="jhlc!=null">,#{jhlc}</if>)
 	</insert>
-	<insert id="insertLx1" parameterType="lxsh">
-		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
-		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
-	</insert>
+	
 	<select id="querylxlist" parameterType="lxsh" resultType="lxsh">
 		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
@@ -84,7 +103,7 @@
 		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl from WNJH_SJGZ t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
-		from WNJH_LX group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid  where 1=1
+		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid  where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -117,7 +136,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||#{xmnf}||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
@@ -133,7 +152,7 @@
 		select * from (
 		select rownum num ,t.xmnf,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid where 1=1
+		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -178,10 +197,10 @@
 	
 	<select id="selectXjwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,tt.bzys1,lx1.* from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid left join 
+		select rownum num ,t.*,tt.bzys1,lx1.*,lx2.sl from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
-		from wnjh_lx group by xmid) lx1 on t.id=lx1.xmid
+		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -238,7 +257,7 @@
 	
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc,t.bzcs bzys  from WNJH_LX t where 1=1 and sffirst!='1'
+		select rownum num ,xmid xmbm,lxbm ghlxbh,t.*  from WNJH_LX t where 1=1 and sffirst!='1'
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
@@ -291,6 +310,25 @@
 		<if test="jhlc!=null">,jhlc=#{jhlc}</if>
 		where xmid=#{xmbm} and sffirst='1' 
 	</update>
+	<update id="updatewnjhsjlx" parameterType="lxsh">
+		update WNJH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj}
+		<if test="xjlxbm!='' and xjlxbm!=null">,xjlxbm=#{xjlxbm}</if>
+		<if test="xjqdzh!='' and xjqdzh!=null">,xjqdzh=#{xjqdzh}</if>
+		<if test="xjzdzh!='' and xjzdzh!=null">,xjzdzh=#{xjzdzh}</if>
+		<if test="xjlc!='' and xjlc!=null">,xjlc=#{xjlc}</if>
+		<if test="yilc!='' and yilc!=null">,yilc=#{yilc}</if><if test="erlc!='' and erlc!=null">,erlc=#{erlc}</if>
+		<if test="xjlc!='' and xjlc!=null">,sanlc=#{sanlc}</if><if test="silc!='' and silc!=null">,silc=#{silc}</if>
+		<if test="dwlc!='' and dwlc!=null">,dwlc=#{dwlc}</if><if test="wllc!='' and wllc!=null">,wllc=#{wllc}</if>
+		<if test="jhyilc!=null">,jhyilc=#{jhyilc}</if>
+		<if test="jherlc!=null">,jherlc=#{jherlc}</if>
+		<if test="jhsanlc!=null">,jhsanlc=#{jhsanlc}</if>
+		<if test="jhsilc!=null">,jhsilc=#{jhsilc}</if>
+		<if test="jhdwlc!=null">,jhdwlc=#{jhdwlc}</if>
+		<if test="jhwllc!=null">,jhwllc=#{jhwllc}</if>
+		<if test="jhlc!=null">,jhlc=#{jhlc}</if>
+		where xmid=#{xmbm} and id=#{id} 
+	</update>
+	
 	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
 		select sum(to_number(bzcs)) from WNJH_LX where xmid=#{xmbm} 
 	</select>

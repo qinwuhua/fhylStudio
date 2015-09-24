@@ -33,41 +33,18 @@ text-decoration:none;
 	$(function(){
 		loadUnit4("gydw",$.cookie("unit"));
 		loadDist4("xzqh",$.cookie("dist"));
-		xmnf1("xmnf");
-		xmnf2("jhkgn");
-		xmnf2("jhwgn");
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
 				return false;
 			}
-			
 			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
 				alert("请填写起点名称！");
 				return false;
 			}
 			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
 				alert("请填写止点名称！");
-				return false;
-			}
-			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
-				alert("请填写建设性质！");
-				$("#jsxz").focus();
-				return false;
-			}
-			if($("#tz").val()=="" || $("#tz").val()==null){
-				alert("请填写投资！");
-				$("#tz").focus();
-				return false;
-			}
-			if($("#dfzc").html()=="" || $("#dfzc").html()==null){
-				alert("请填写地方自筹！");
-				$("#dfzc").focus();
-				return false;
-			}
-			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
-				alert("请填写补助测算");
 				return false;
 			}
 			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
@@ -95,14 +72,7 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
-				alert("对不起，开工年不能小于项目年份！");
-				return false;
-			}
-			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
-				alert("对不起，开工年不能大于完工年！");
-				return false;
-			}
+		
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/selectGjwnjhcf.do',
@@ -178,37 +148,21 @@ text-decoration:none;
 				});
 	}
 	function saveLxsh(){
-		$("#dfzc").html('');
-		var tz=0;var bzcs=0;
-		if($("#tz").val()!='')
-			tz=parseFloat($("#tz").val());
-		if($("#bzcs").val()!='')
-			bzcs=parseFloat($("#bzcs").val());
-		if(bzcs>tz){
-			alert("投资不能小于补助测算");
-			return
-		}
-		var id=newGuid();
-		var sbthcd=$.cookie("unit2").length;
-		if($.cookie("unit2")=="______36"){
+		var id=parent.obj.id;		
 			sbthcd=7;
-		}
-		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
-		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()+"&lxsh.jhlc="+$("#jhlc").html()
-		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
+		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()
+		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.jhlc="+$("#jhlc").html()+"&lxsh.lc="+$("#lc").html()
+		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+'改建'
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+id
-		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
-		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
+		+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
-		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val();
+		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val();
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/insertGjwnjh.do',
+			url:'/jxzhpt/qqgl/insertGjlxwnjh.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
@@ -233,7 +187,6 @@ text-decoration:none;
 		}
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").html(zlc);
-		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
@@ -269,11 +222,6 @@ text-decoration:none;
 					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span>
 				</td>
-				<!-- <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
-				</td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -298,9 +246,9 @@ text-decoration:none;
 					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xmmc" style="width: 120px"/>
+					
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -331,22 +279,7 @@ text-decoration:none;
 					总计：<span id="jhlc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
-<!-- 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>项目编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmbm"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xmmc" style="width: 120px"/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 120px" value='升级改造'/></td>
-			</tr> -->
+
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>管养单位：</td>
@@ -356,70 +289,10 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<input type='text' id='xzqh' style="width: 124px;"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="tsdq" style="font-size: 14px"></span></td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>项目年份：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>计划开工年：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jhkgn" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>计划完工年：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jhwgn" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>投资(万元)：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="bzcs"  onblur="checkdfzc(this)" style="width: 120px;"/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="dfzc">0</span>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" style="width: 120px;" onblur="checkdfzc(this)"/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 120px" value='改建'/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color: #ffffff; height: 25px;" align="left">
+					</td>
 			</tr>
-			<tr style="height: 60px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="bz" style="width: 580px;height: 50px;"></textarea>
-				</td>
-			</tr>
-			
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>

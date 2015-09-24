@@ -186,6 +186,7 @@
 		<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
 		<if test="pfztz!=null">,pfztz=#{pfztz}</if>
 		<if test="shengbz!=null">,shengbz=#{shengbz}</if>
+		<if test="jhsybzje!=null">,jhsybzje=#{jhsybzje}</if>
 		<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
 		<if test="qlszxz!=null">,qlszxz=#{qlszxz}</if>
 		<if test="zyjsnr!=null">,zyjsnr=#{zyjsnr}</if>

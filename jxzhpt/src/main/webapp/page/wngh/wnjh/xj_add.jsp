@@ -102,7 +102,7 @@ text-decoration:none;
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/selectXjwnjhcf.do',
-		        data:'lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.qdzh='+$("#qdzh").val()+'&lxsh.zdzh='+$("#qdzh").val(),
+		        data:'lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.qdzh='+$("#qdzh").val()+'&lxsh.zdzh='+$("#zdzh").val(),
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){

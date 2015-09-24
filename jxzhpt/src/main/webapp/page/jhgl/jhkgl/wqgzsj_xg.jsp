@@ -23,7 +23,25 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/lwxm/js/wqsj.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/wqsj.js"></script>
 <script type="text/javascript">
+function xmnf2(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	});
+	$('#'+id).combobox("setValue",first);
+}
 $(function(){
+	xmnf2("jhkgsj");
+	xmnf2("jhwgsj");
 	xmnf1("sbnf");
 	loadJhkxx();
 	$('#jhjsxz').combobox({onChange: function(group){loadBz();}});
@@ -40,8 +58,8 @@ function loadJhkxx(){
 			 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
 			 $("#jhjsxz").combobox('setValue',msg.jhjsxz);
 			 $("#sbnf").combobox('setValue',msg.sbnf);
-			 $("#jhkgsj").datebox('setValue',msg.jhkgsj);
-			 $("#jhwgsj").datebox('setValue',msg.jhwgsj);
+			 $("#jhkgsj").combobox('setValue',msg.jhkgsj);
+			 $("#jhwgsj").combobox('setValue',msg.jhwgsj);
 			 $("#sjdw").val(msg.sjdw);
 			 $("#sjpfdw").val(msg.sjpfdw);
 			 $("#jhpfwh").val(msg.pfwh);
@@ -52,7 +70,11 @@ function loadJhkxx(){
 			}
 			 $("#ablbzwh").val(msg.ablbzsqwh);
 			 $("#pfztz").val(msg.pfztz);
-			 $("#shengbz").val(msg.shengbz);
+			 if(msg.sfylrbwqk=='是'){
+				 $("#shengbz").val(msg.jhsybzje);
+			 }else{
+				 $("#shengbz").val(msg.shengbz);
+			 }
 			 $("#dfzc").html(msg.jhsydfzcje);
 			 $("#qlszxz").val(msg.qlszxz);
 			 $("#qljsgm").val(msg.qljsgm);
@@ -294,8 +316,9 @@ function editWqgz(){
 	var shengbz=0;
 	if($("#sfylrbwqk").combobox('getValue')=='是'){
 		jhsybzje=$("#shengbz").val();
+	}else{
+		shengbz=$("#shengbz").val();
 	}
-		
 	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
 	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')+"&planwqgzsj.sjdw="+$("#sjdw").val()+"&planwqgzsj.sjpfdw="+$("#sjpfdw").val()
 	+"&planwqgzsj.pfwh="+$("#jhpfwh").val()+"&planwqgzsj.pfsj="+$("#pfsj").datebox('getValue')+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
@@ -670,12 +693,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上报年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="sbnf" type="text" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工年：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jhkgsj" type="text" class="easyui-datebox"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工时间：</td>
+					<input id="jhkgsj" type="text" class="easyui-combobox"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工年：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jhwgsj" type="text" class="easyui-datebox"/>
+					<input id="jhwgsj" type="text" class="easyui-combobox"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

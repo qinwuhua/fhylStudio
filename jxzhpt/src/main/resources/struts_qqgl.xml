@@ -122,6 +122,8 @@
 	      <action name="selectGjwnjhcf" class="wnjhController" method="selectGjwnjhcf"/>
 	      <action name="selectLmwnjhcf" class="wnjhController" method="selectLmwnjhcf"/>
 	      <action name="selectXjwnjhcf" class="wnjhController" method="selectXjwnjhcf"/>
+	      <action name="insertGjlxwnjh" class="wnjhController" method="insertGjlxwnjh"/>
+	      <action name="updatewnjhsjlx" class="wnjhController" method="updatewnjhsjlx"/>
 	      
 	      
 	 <!-- qwh -->

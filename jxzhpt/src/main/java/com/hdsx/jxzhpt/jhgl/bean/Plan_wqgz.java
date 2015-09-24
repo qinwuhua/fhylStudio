@@ -8,9 +8,9 @@ public class Plan_wqgz {
 	private String id;//唯一ID
 	private String sckid;//危桥改造项目库ID
 	private String sbnf;//上报年份
-	private Date jhkgsj;//计划开工时间
+	private String jhkgsj;//计划开工时间
 	private String jhkgsj1;//计划审核导入Excel
-	private Date jhwgsj;//计划完工时间
+	private String jhwgsj;//计划完工时间
 	private String jhwgsj1;//计划审核导入Excel
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
@@ -215,16 +215,17 @@ public class Plan_wqgz {
 	public void setSbnf(String sbnf) {
 		this.sbnf = sbnf;
 	}
-	public Date getJhkgsj() {
+
+	public String getJhkgsj() {
 		return jhkgsj;
 	}
-	public void setJhkgsj(Date jhkgsj) {
+	public void setJhkgsj(String jhkgsj) {
 		this.jhkgsj = jhkgsj;
 	}
-	public Date getJhwgsj() {
+	public String getJhwgsj() {
 		return jhwgsj;
 	}
-	public void setJhwgsj(Date jhwgsj) {
+	public void setJhwgsj(String jhwgsj) {
 		this.jhwgsj = jhwgsj;
 	}
 	public String getSjdw() {

@@ -982,5 +982,12 @@ public class WnjhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void insertGjlxwnjh(){
+		ResponseUtils.write(getresponse(), wnjhServer.insertGjlxwnjh(lxsh)+"");
+	}
+	public void updatewnjhsjlx(){
+		ResponseUtils.write(getresponse(), wnjhServer.updatewnjhsjlx(lxsh)+"");
+	}
 }
 

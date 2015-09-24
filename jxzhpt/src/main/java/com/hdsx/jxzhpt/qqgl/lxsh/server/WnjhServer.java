@@ -43,5 +43,7 @@ public interface WnjhServer {
 	Lxsh selectLmwnjhcf(Lxsh lxsh);
 	Lxsh selectXjwnjhcf(Lxsh lxsh);
 	Lxsh wnjhGpsroad1(Lxsh lxsh);
+	boolean insertGjlxwnjh(Lxsh lxsh);
+	boolean updatewnjhsjlx(Lxsh lxsh);
 
 }
