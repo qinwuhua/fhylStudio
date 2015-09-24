@@ -48,7 +48,7 @@ function xmnf(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -56,16 +56,38 @@ function xmnf(id){
 				var values =new Array();
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
-					values.push(item.bmid);
-					$('#id'+item.id).attr('checked', true);
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
 				});
-				$('#id' +id).combobox("setValues",values);
-			}else{ 
-				$('#id'+record.id).attr('checked', true);
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
 			}
 		}
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
 /**
  * 判断项目类型，返回文字

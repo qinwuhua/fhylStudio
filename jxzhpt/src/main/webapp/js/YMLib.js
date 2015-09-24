@@ -1375,7 +1375,7 @@ function loadBmbm3(id, name) {
 				multiple:true,
 				formatter:function(row){
 					var opts = $(this).combobox('options');
-					return '<input id="'+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+					return '<input id="'+id+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
 				onSelect:function(record){
 					var opts = $(this).combobox('options');
@@ -1384,11 +1384,11 @@ function loadBmbm3(id, name) {
 						var datas = $('#' +id).combobox("getData");
 						$.each(datas,function(index,item){
 							values.push(item.bmid);
-							$('#'+item.id).attr('checked', true);
+							$('#'+id+item.id).attr('checked', true);
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
-						$('#'+record.id).attr('checked', true);
+						$('#'+id+record.id).attr('checked', true);
 					}
 				},
 				onUnselect:function(record){
@@ -1402,30 +1402,15 @@ function loadBmbm3(id, name) {
 						}
 						$.each(datas,function(index,item){
 							if(jQuery.inArray(item.bmid,values)<0){
-								$('#'+item.id).attr('checked', false);
+								$('#'+id+item.id).attr('checked', false);
 							}
 						});
 						$('#' +id).combobox("setValues",values);
 					}else{
 						$.each(datas,function(index,item){
-							$('#'+item.id).attr('checked', false);
+							$('#'+id+item.id).attr('checked', false);
 						});
 					}
-//					if(record[opts.valueField]==""){
-//						$.each(datas,function(index,item){
-//							if(item.bmid!=""){
-//								$('#'+id).combobox("unselect",item.bmid);
-//							}
-//							$('#'+item.id).attr('checked', false);
-//						});
-//					}else{
-//						$.each(datas,function(index,item){
-//							alert(item.id);
-//							if(record[opts.valueField]==item.bmid || record[opts.valueField]==""){
-//								$('#'+item.id).attr('checked', false);
-//							}
-//						});
-//					}
 				}
 			});
 		}
