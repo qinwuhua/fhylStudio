@@ -94,7 +94,7 @@ text-decoration:none;
     		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
     		 queryParams: {
     			 	jdbs:0,
-    		    	xmbm:parent.obj.id
+    			 	'lxsh.xmbm':parent.obj.id
     			},
 			columns:[[
 			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -107,7 +107,7 @@ text-decoration:none;
 			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-			    {field:'lc',title:'里程',width:60,align:'center'}
+			    {field:'jhlc',title:'里程',width:60,align:'center'}
 			]]
     	});
 

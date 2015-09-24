@@ -144,12 +144,6 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhsj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if(update("updateSjgz", lxsh)>0){
 			return true;
 		}
@@ -159,12 +153,6 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhlm(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if(update("updateLmgz", lxsh)>0){
 			return true;
 		}
@@ -174,12 +162,6 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhxj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if(update("updateXj", lxsh)>0){
 			return true;
 		}
@@ -245,6 +227,22 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhsjlx(Lxsh lxsh) {
 		return update("updatewnjhsjlx", lxsh)==1;
+	}
+	@Override
+	public boolean deleteWnlx(Lxsh lxsh) {
+		return update("deleteWnlx", lxsh)==1;
+	}
+	@Override
+	public Lxsh showgjtj(Lxsh lxsh) {
+		return queryOne("showgjtj", lxsh);
+	}
+	@Override
+	public Lxsh showlmtj(Lxsh lxsh) {
+		return queryOne("showlmtj", lxsh);
+	}
+	@Override
+	public Lxsh showxjtj(Lxsh lxsh) {
+		return queryOne("showxjtj", lxsh);
 	}
 	
 

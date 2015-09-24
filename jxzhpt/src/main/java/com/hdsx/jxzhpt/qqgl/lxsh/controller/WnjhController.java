@@ -134,7 +134,14 @@ public class WnjhController extends BaseActionSupport{
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
 	private String lxbm;
+	private String xmlx;
 	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getLxbm() {
 		return lxbm;
 	}
@@ -365,9 +372,9 @@ public class WnjhController extends BaseActionSupport{
 			String[] jsdjs = jsdj.split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
-					jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 				else
-					jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 			}
 			jsdjtj=jsdjtj+")";
 		}
@@ -420,9 +427,9 @@ public class WnjhController extends BaseActionSupport{
 			String[] jsdjs = jsdj.split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
-					jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 				else
-					jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 			}
 			jsdjtj=jsdjtj+")";
 		}
@@ -477,9 +484,9 @@ public class WnjhController extends BaseActionSupport{
 				String[] jsdjs = jsdj.split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
-						jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+						jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 					else
-						jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+						jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
 				}
 				jsdjtj=jsdjtj+")";
 			}
@@ -902,7 +909,6 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 	public void selectwnSjlxList(){
-			lxsh.setXmbm(xmbm);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			List<Lxsh> list=wnjhServer.selectSjgzlxList(lxsh);
@@ -988,6 +994,65 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void updatewnjhsjlx(){
 		ResponseUtils.write(getresponse(), wnjhServer.updatewnjhsjlx(lxsh)+"");
+	}
+	public void deleteWnlx(){
+		ResponseUtils.write(getresponse(), wnjhServer.deleteWnlx(lxsh)+"");
+	}
+	public void showgjtj(){
+	try {
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="andx zqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmnf(xmnf);
+		lxsh.setTsdq(tsdq);
+		String gldjtj="";
+		if((!"".equals(gldj))&&gldj!=null){
+			String[] jsdjs = gldj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				else
+					gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+			}
+			gldjtj=gldjtj+")";
+		}
+		lxsh.setGldj(gldjtj);
+		String jsdjtj="";
+		if((!"".equals(jsdj))&&jsdj!=null){
+			String[] jsdjs = jsdj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				else
+					jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+			}
+			jsdjtj=jsdjtj+")";
+		}
+		
+		lxsh.setJsdj(jsdjtj);
+		
+		Lxsh l=new Lxsh();
+		if("sjgz".equals(xmlx))
+				l=wnjhServer.showgjtj(lxsh);
+		if("lmgz".equals(xmlx))
+			l=wnjhServer.showlmtj(lxsh);
+		if("xj".equals(xmlx))
+			l=wnjhServer.showxjtj(lxsh);
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 }
 

@@ -190,34 +190,55 @@ function tsdq(id){
 	$("#"+id).combobox('setValue','全部');
 }
 function jslc(){
-	var yilc=parseFloat($('#yilc').val());
-	var erlc=parseFloat($('#erlc').val());
-	var salc=parseFloat($('#sanlc').val());
-	var silc=parseFloat($('#silc').val());
-	var wulc=parseFloat($('#wllc').val());
-	var dwlc=parseFloat($('#dwlc').val());
+	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#yilc').val()!='')
+		yilc=parseFloat($('#yilc').val());
+	if($('#erlc').val()!='')
+		erlc=parseFloat($('#erlc').val());
+	if($('#sanlc').val()!='')
+		sanlc=parseFloat($('#sanlc').val());
+	if($('#silc').val()!='')
+		silc=parseFloat($('#silc').val());
+	if($('#wllc').val()!='')
+		wllc=parseFloat($('#wllc').val());
+	if($('#dwlc').val()!='')
+		dwlc=parseFloat($('#dwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
 }
 function cesuan(){
-	var yilc=parseFloat($('#jhyilc').val());
-	var erlc=parseFloat($('#jherlc').val());
-	var salc=parseFloat($('#jhsanlc').val());
-	var silc=parseFloat($('#jhsilc').val());
-	var wulc=parseFloat($('#jhwllc').val());
-	var dwlc=parseFloat($('#jhdwlc').val());
+	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#jhyilc').val()!='')
+		yilc=parseFloat($('#jhyilc').val());
+	if($('#jherlc').val()!='')
+		erlc=parseFloat($('#jherlc').val());
+	if($('#jhsanlc').val()!='')
+		sanlc=parseFloat($('#jhsanlc').val());
+	if($('#jhsilc').val()!='')
+		silc=parseFloat($('#jhsilc').val());
+	if($('#jhwllc').val()!='')
+		wllc=parseFloat($('#jhwllc').val());
+	if($('#jhdwlc').val()!='')
+		dwlc=parseFloat($('#jhdwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#jhlc').html(hj5);
 }
 function cesuan2(){
-	var yilc=parseFloat($('#yilc').val());
-	var erlc=parseFloat($('#erlc').val());
-	var salc=parseFloat($('#sanlc').val());
-	var silc=parseFloat($('#silc').val());
-	var wulc=parseFloat($('#wllc').val());
-	var dwlc=parseFloat($('#dwlc').val());
+	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#yilc').val()!='')
+		yilc=parseFloat($('#yilc').val());
+	if($('#erlc').val()!='')
+		erlc=parseFloat($('#erlc').val());
+	if($('#sanlc').val()!='')
+		sanlc=parseFloat($('#sanlc').val());
+	if($('#silc').val()!='')
+		silc=parseFloat($('#silc').val());
+	if($('#wllc').val()!='')
+		wllc=parseFloat($('#wllc').val());
+	if($('#dwlc').val()!='')
+		dwlc=parseFloat($('#dwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
@@ -456,7 +477,56 @@ function import_xj(flag){
 	return false;
 }
 //------------------------------------------------------------------------------------------------------------------------------------
+function showgjtj(xmlx){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	if(xmnf=='')
+		xmnf=new Date().getFullYear();
+	var tsdq=$("#tsdq").combobox('getText');
+	if(tsdq=='全部'){
+		tsdq="";
+	}
+	var jsdj=$("#jsdj").combotree('getText');
+	var gldj=$("#gldj").combobox('getValues').join(",");
+	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
+	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc'+$("#xmmc").val()+"&xmlx="+xmlx;
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/qqgl/showgjtj.do",
+		 dataType : 'json',
+		 data : data,
+		 success : function(msg){
+			 $("#xmsl").html(msg.sl);
+			 $("#tz").html(msg.tz);
+			 $("#bzcs").html(msg.bzys);
+			 $("#lc").html(msg.lc);
+		 }
+		 });
+}
 function showAllgj(){
+	showgjtj('sjgz');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -505,7 +575,8 @@ function showAllgj(){
 			xmnf:xmnf,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -513,14 +584,16 @@ function showAllgj(){
  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsj('+index+')">编辑</a>  '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsj('+index+')">删除</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">     添加路线</a>  ';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmnf',title : '项目年份',width : 180,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'lxmc',title : '路线名称',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'jhlc',title : '里程',width : 100,align : 'center'},
 		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
@@ -530,16 +603,16 @@ function showAllgj(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){  
-				return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
+				return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
 	    	parentindex=index;
 	    	if(row.sl!=0){
-	    		$('#table_lx'+row.xmbm).datagrid({
+	    		$('#table_lx'+row.id).datagrid({
 		    		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
 		    		 queryParams: {
-		    			 'lx.xmid':row.id,
-		    			 'lx.sffirst':'1'
+		    			 'lxsh.xmbm':row.id,
+		    			 'lxsh.sffirst':'1'
 		    			},
 	    			columns:[[
 			           {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
@@ -555,7 +628,7 @@ function showAllgj(){
 	    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 	    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 	    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-	    			    {field:'lc',title:'里程',width:60,align:'center'}
+	    			    {field:'jhlc',title:'里程',width:60,align:'center'}
 	    			]]
 		    	});
 	    	}
@@ -564,6 +637,7 @@ function showAllgj(){
 	}); 
 }
 function showAlllm(){
+	showgjtj('lmgz');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -612,17 +686,21 @@ function showAlllm(){
 			tsdq:tsdq,
 			xmnf:xmnf,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="lmxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlm('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellm('+index+')">删除</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="lmxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlm('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellm('+index+')">删除</a>  '
+	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">     添加路线</a>  ';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmnf',title : '项目年份',width : 180,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'lxmc',title : '路线名称',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -637,27 +715,20 @@ function showAlllm(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
 	    	if(row.sl!=0){
 	    		var parentindex=index;
-		    	$('#table_lx'+row.xmbm).datagrid({
+		    	$('#table_lx'+row.id).datagrid({
 		    		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
 		    		 queryParams: {
-		    			 'lx.jdbs':0,
-		    			 'lx.xmid':row.xmbm,
-		    			 'lx.sffirst':'1'
+		    			 'lxsh.xmbm':row.xmbm,
+		    			 'lxsh.sffirst':'1'
 		    			},
 	    			columns:[[
-						{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
-							var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-								result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
-							}
-							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-								result+='&nbsp;删除';
-							return result;
+						{field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
+				        	   return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlmlx('+parentindex+','+index+')">编辑</a>   '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
 						}},
 	    			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
 	    			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
@@ -678,6 +749,7 @@ function showAlllm(){
 	}); 
 }
 function showAllxj(){
+	showgjtj('xj');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -726,22 +798,26 @@ function showAllxj(){
 			xmnf:xmnf,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxj('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxj('+index+')">删除</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxj('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxj('+index+')">删除</a>  '
+	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">     添加路线</a>  ';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmnf',title : '项目年份',width : 180,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'lxmc',title : '路线名称',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'xjlc',title : '里程',width : 100,align : 'center'},
 		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
@@ -751,24 +827,20 @@ function showAllxj(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
 	    	var parentindex=index;
 	    	if(row.sl!=0){
-	    		$('#table_lx'+index).datagrid({
+	    		$('#table_lx'+row.id).datagrid({
 		    		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
 		    		 queryParams: {
-		    			 'lx.jdbs':0,
-		    			 'lx.xmid':row.xmbm,
-		    			 'lx.sffirst':'1'
+		    			 'lxsh.xmbm':row.xmbm,
+		    			 'lxsh.sffirst':'1'
 		    			},
 	    			columns:[[
-						{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
-							   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-							return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxjlx('+parentindex+','+index+')">删除</a>   ';
-							   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-								   return '删除';
+						{field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
+				        	   return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxjlx('+parentindex+','+index+')">编辑</a>   '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
 						}},
 	    			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
 	    			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
@@ -844,6 +916,7 @@ function delsj(index){
 			 if(msg){
 				 alert('删除成功！');
 				 $("#datagrid").datagrid('reload');
+				 showgjtj('sjgz');
 			 }else{
 				 alert('删除失败！');
 			 }
@@ -867,6 +940,7 @@ function dellm(index){
 			 if(msg){
 				 alert('删除成功！');
 				 $("#datagrid").datagrid('reload');
+				 showgjtj('lmgz');
 			 }else{
 				 alert('删除失败！');
 			 }
@@ -890,6 +964,7 @@ function delxj(index){
 			 if(msg){
 				 alert('删除成功！');
 				 $("#datagrid").datagrid('reload');
+				 showgjtj('xj');
 			 }else{
 				 alert('删除失败！');
 			 }
@@ -921,8 +996,19 @@ function tjsjlx(index){
 	obj=data;
 	YMLib.UI.createWindow('lxxx','添加路线','sjgzlx_add.jsp','lxxx',900,380);
 }
+function tjlmlx(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','添加路线','lmgzlx_add.jsp','lxxx',900,380);
+}
+function tjxjlx(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','添加路线','xjlx_add.jsp','lxxx',900,380);
+}
 function delsjlx(index1,index){
-	var data=$("#table_lx"+index1).datagrid('getRows')[index];
+	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteWnlx.do',
@@ -931,7 +1017,7 @@ function delsjlx(index1,index){
 		success:function(msg){
 			if(Boolean(msg)){
 				alert("删除成功！");
-				showAll();
+				$("#table_lx"+xmbm).datagrid("reload");
 				removes('lxxx');
 			}else{
 				alert('删除失败！');
@@ -940,8 +1026,20 @@ function delsjlx(index1,index){
 	});
 }
 function editsjlx(index1,index){
-	var xmbm=$("#datagrid").datagrid('getRows')[index1].xmbm;
+	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('lxxx','编辑路线','sjgzlx_xg.jsp','lxxx',900,380);
+}
+function editlmlx(index1,index){
+	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线','lmgzlx_xg.jsp','lxxx',900,380);
+}
+function editxjlx(index1,index){
+	var xmbm=$("#datagrid").datagrid('getRows')[index1].id;
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线','xjlx_xg.jsp','lxxx',900,380);
 }

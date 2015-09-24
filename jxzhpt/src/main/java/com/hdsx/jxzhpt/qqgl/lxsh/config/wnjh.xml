@@ -100,10 +100,13 @@
 	<!--  华丽的分割线________________________________________________________华丽的分割线 -->
 	<select id="selectGjwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl from WNJH_SJGZ t left join
+		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from WNJH_SJGZ t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
-		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid  where 1=1
+		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
+		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
+		left join (select xmid,sum(jhlc) zjhlc from WNJH_LX group by xmid) lx2 on t.id=lx2.xmid
+		where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -122,6 +125,10 @@
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
 		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectGjwnjhCount" parameterType="lxsh" resultType="int">
@@ -147,6 +154,9 @@
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
 		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
 	</select>
 	<select id="selectLmwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -171,6 +181,10 @@
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
 		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectLmwnjhCount" parameterType="lxsh" resultType="int">
@@ -192,6 +206,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 	</select>
 	
@@ -220,6 +237,10 @@
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
 		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectXjwnjhCount" parameterType="lxsh" resultType="int">
@@ -241,6 +262,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 	</select>
 	
@@ -281,19 +305,23 @@
 	</delete>
 
 	<update id="updateSjgz" parameterType="lxsh">
-		update wnjh_sjgz set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc}  
+		update wnjh_sjgz set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}  
 		where id=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
-		update wnjh_LMGZ set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc}    
+		update wnjh_LMGZ set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}      
 		where id=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
-		update wnjh_XJ set ghlxbh=#{ghlxbh},lxmc=#{lxmc},xjsdj=#{xjsdj},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk},xmmc=#{xmmc}    
+		update wnjh_XJ set ghlxbh=#{ghlxbh},lxmc=#{lxmc},xjsdj=#{xjsdj},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk},xmmc=#{xmmc},xmnf=#{xmnf}      
 		where id=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
 		update WNJH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},bzcs=#{bzys}
+		<if test="xzqh!='' and xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="gydw!='' and gydw!=null">,gydw=#{gydw}</if>
+		<if test="xzqhdm!='' and xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="gydwdm!='' and gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="xjlxbm!='' and xjlxbm!=null">,xjlxbm=#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,xjqdzh=#{xjqdzh}</if>
 		<if test="xjzdzh!='' and xjzdzh!=null">,xjzdzh=#{xjzdzh}</if>
@@ -312,6 +340,10 @@
 	</update>
 	<update id="updatewnjhsjlx" parameterType="lxsh">
 		update WNJH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj}
+		<if test="xzqh!='' and xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="gydw!='' and gydw!=null">,gydw=#{gydw}</if>
+		<if test="xzqhdm!='' and xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="gydwdm!='' and gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="xjlxbm!='' and xjlxbm!=null">,xjlxbm=#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,xjqdzh=#{xjqdzh}</if>
 		<if test="xjzdzh!='' and xjzdzh!=null">,xjzdzh=#{xjzdzh}</if>
@@ -367,6 +399,9 @@
 	</delete>
 	<delete id="delwnjhSjgzlx" parameterType="hashmap">
 		delete from WNJH_LX where xmid=#{xmbm}
+	</delete>	
+	<delete id="deleteWnlx" parameterType="lxsh">
+		delete from WNJH_LX where id=#{id}
 	</delete>	
 	<select id="queryshsjgz" parameterType="string" resultType="lxsh">
 		select * from LXSH_SJGZ where ${value}
@@ -609,5 +644,87 @@
 		from lxsh_lx l where substr(lxbm,0,1) in('S','G') and (${xmbm})) 
 		group by <if test="qb==false">substr(xmid,5,6),</if>substr(lxbm,0,1)
 	</select>
+	<select id="showgjtj" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_sjgz sj left join (select xmid,sum(jhlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf in (${xmnf})
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+	</select>
+	<select id="showlmtj" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_lmgz sj left join (select xmid,sum(lc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf in (${xmnf})
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+	</select>
+	<select id="showxjtj" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_xj sj left join (select xmid,sum(xjlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf in (${xmnf})
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+	</select>
+	
 </mapper>
 

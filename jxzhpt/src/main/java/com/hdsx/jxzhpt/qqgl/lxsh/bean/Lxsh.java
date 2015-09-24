@@ -82,7 +82,14 @@ public class Lxsh implements Serializable {
 	private String yzdzh;//原止点桩号
 	private String jhlc;
 	private String sl;
+	private String zjhlc;
 	
+	public String getZjhlc() {
+		return zjhlc;
+	}
+	public void setZjhlc(String zjhlc) {
+		this.zjhlc = zjhlc;
+	}
 	public String getSl() {
 		return sl;
 	}

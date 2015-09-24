@@ -87,7 +87,7 @@ text-decoration:none;
     		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
     		 queryParams: {
     			 	jdbs:0,
-    		    	xmbm:parent.obj.id
+    			 	'lxsh.xmbm':parent.obj.id
     			},
 			columns:[[
 			    {field:'gydw',title:'管养单位',width:150,align:'center'},    

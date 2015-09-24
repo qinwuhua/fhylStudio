@@ -94,6 +94,8 @@ text-decoration:none;
         						<td colspan="3" ><select id="gydw" style="width:230px;"></select></td>
         						<td>行政区划：</td>
         						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
+        						<td>项目名称：</td>
+        						<td><input id='xmmc' type="text" /></td>
         					</tr>
         					<tr height="32">
         						<td>项目年份：</td>
@@ -106,12 +108,7 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
 								<td>公路等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" ></select></td>
-        						<!-- <td>是否有历史记录：</td>
-        						<td><select id="lsjl" style="width:97px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-								</select></td> -->
+        						
         					</tr>
         					<tr height="32">
                               <td colspan="10">
@@ -129,12 +126,16 @@ text-decoration:none;
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            		<div>项目数量【<span id="xmsl" style="color: red;">0</span>】个,投资额累计【<span id="tz" style="color: red;">0</span>】万元,补助测算累计【<span id="bzcs" style="color: red;">0</span>】万元,里程累计【<span id="lc" style="color: red;">0</span>】公里</div>
+            	</td>
+        	</tr>
+        	<tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
             			<table id="datagrid"></table>
             		</div>
             	</td>
         	</tr>
 		</table>
-	<div id="abgc_add" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>
