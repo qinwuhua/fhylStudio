@@ -76,6 +76,7 @@
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+			bindLxGrid();
 			gridBind(grid);
 		}
 		$(window).resize(function () { 

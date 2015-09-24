@@ -73,6 +73,7 @@ public class Lxsh implements Serializable {
 	private String bz;//备注
 	private String yhdk;//银行贷款
 	private String bzcs;//补助测算
+	private String jszlc;//建设总里程
 
 	private String jsfa;//建设方案
 	//历史数据字段
@@ -499,6 +500,12 @@ public class Lxsh implements Serializable {
 	}
 	public void setYzdzh(String yzdzh) {
 		this.yzdzh = yzdzh;
+	}
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
 	}
 
 }

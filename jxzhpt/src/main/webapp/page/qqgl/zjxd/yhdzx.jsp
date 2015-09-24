@@ -169,8 +169,8 @@
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>总投资累计：<span id="spanztz" style="color: red;">0</span>;省以上补助资金累计：<span id="spansbz" style="color: red;">0</span>;
-           		以确定部车购税累计：<span id="spanbcgs" style="color: red;">0</span>里程累计：<span id="spanlc" style="color: red;">0</span></div>
+           		<div>总投资累计【<span id="spanztz" style="color: red;">0</span>】,省以上补助资金累计【<span id="spansbz" style="color: red;">0</span>】,
+           		以确定部车购税累计【<span id="spanbcgs" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
            		<div>
            			<table id="grid"></table>
            		</div>

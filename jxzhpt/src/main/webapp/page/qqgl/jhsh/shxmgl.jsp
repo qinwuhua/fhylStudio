@@ -314,7 +314,7 @@
 		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目计划库管理</span>>&nbsp;灾毁重建项目管理</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-        <tr>
+		<tr>
         	<td align="left" style="padding-left: 10px; padding-right: 10px;">
         		<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
 	       			<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
@@ -370,7 +370,7 @@
         </tr>
         <tr>
             <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            	<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            	<div>投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
             	<div><table id="grid"></table></div>
     		</td>
     	</tr>

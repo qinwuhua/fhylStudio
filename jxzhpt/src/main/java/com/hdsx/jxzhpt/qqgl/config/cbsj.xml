@@ -315,6 +315,7 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="jszlc!=null">c.jszlc=#{jszlc},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>

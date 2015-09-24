@@ -86,22 +86,17 @@
 					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="lc" name="lc" style="width: 120px;" type="text"/>&nbsp;公里
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="qdmc" name="qdmc" style="width: 120px;" type="text"/>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="zdmc" name="zdmc" style="width: 120px;" type="text"/>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -112,18 +107,21 @@
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					现状总里程：<input id="lc" name="lc" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -131,12 +129,13 @@
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-					二级公路：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
-					三级公路：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-					四级公路：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-					等外公路：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+					一级：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+					二级：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+					三级：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

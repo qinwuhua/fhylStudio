@@ -129,7 +129,8 @@ text-decoration:none;
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="+$('#jsdw').val()
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')
-		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.lxbh="+$('#lxbh').val();
+		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.lxbh="+$('#lxbh').val()
+		+"&kxxyj.jszlc="+$('#jszlc').val();
 		//alert(data);
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()
 		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.lc="+$('#lc').val()
@@ -246,10 +247,6 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input name="lc" id="lc" type="text" style="width: 120px;"/>
-				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="qdmc" name="qdmc" style="width: 120px;"/>
@@ -258,18 +255,21 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					现状总里程：<input name="lc" id="lc" type="text" style="width: 50px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -277,12 +277,13 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-					二级公路：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
-					三级公路：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-					四级公路：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-					等外公路：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+					一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+					二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+					三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+					四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+					等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 					无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
