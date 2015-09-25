@@ -70,4 +70,6 @@ public interface JckwqgzsjServer {
 	List<Excel_list> dcwqgzsjxmkshExcel(Jckwqgzsj jckwqgzsj);
 
 	List<Excel_list> dcwqgzsjsckExcel(Jckwqgzsj jckwqgzsj);
+
+	List<Excel_list> dcwqgzsjsckshExcel(Jckwqgzsj jckwqgzsj);
 }

@@ -417,5 +417,157 @@
 			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
 		</if>
 	</select>
+	<select id="dcwqgzsjjhshExcel3" parameterType="planwqgzsj" resultType="elist">
+	select 
+	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
+	pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
+	pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
+	pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+	where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and xm.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+		order by v_30
+	</select>
+	<select id="dcwqgzsjjhshExcel2" parameterType="planwqgzsj" resultType="elist"> 
+	select t.xzqhmc||'小计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12,t.xzqhdm v_30
+	from (
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
+		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
+		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
+		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and xm.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+		) t group by t.xzqhmc,t.xzqhdm order by xzqhdm
 	
+	</select>
+	<select id="dcwqgzsjjhshExcel1" parameterType="planwqgzsj" resultType="elist"> 
+	select '全省合计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12
+	from (
+		select 
+		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
+		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
+		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
+		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and xm.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+		) t 
+	
+	</select>
 </mapper>

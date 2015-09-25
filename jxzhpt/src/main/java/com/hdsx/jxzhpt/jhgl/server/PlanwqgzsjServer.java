@@ -59,5 +59,11 @@ public interface PlanwqgzsjServer {
 	List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj);
 
 	boolean editwqgzsj1(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel1(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel2(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel3(Planwqgzsj planwqgzsj);
 	
 }

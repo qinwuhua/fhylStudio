@@ -161,6 +161,7 @@
  	 
  	 <action name="dcwqgzsjxmkExcel" class="jckwqgzsjController" method="dcwqgzsjxmkExcel"/>
  	 <action name="dcwqgzsjxmkshExcel" class="jckwqgzsjController" method="dcwqgzsjxmkshExcel"/>
- 	  <action name="dcwqgzsjsckExcel" class="jckwqgzsjController" method="dcwqgzsjsckExcel"/>
+ 	 <action name="dcwqgzsjsckExcel" class="jckwqgzsjController" method="dcwqgzsjsckExcel"/>
+ 	 <action name="dcwqgzsjsckshExcel" class="jckwqgzsjController" method="dcwqgzsjsckshExcel"/>
  </package>
 </struts>

@@ -238,5 +238,17 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	public List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj) {
 		return queryList("dcwqgzsjjhExcel",planwqgzsj);
 	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel1(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel1",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel2(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel2",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel3(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel3",planwqgzsj);
+	}
 		
 }
