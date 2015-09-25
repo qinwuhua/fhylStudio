@@ -206,7 +206,7 @@ text-decoration:none;
 					<tr height="32">
         						<td style="text-align: right;">行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td style="text-align: right;">规划路线编码：</td>
+        						<td style="text-align: right;">路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
 								<td style="text-align: right;">原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>

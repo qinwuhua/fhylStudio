@@ -196,21 +196,22 @@ text-decoration:none;
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="32">
+								<td>行政区划：</td>
+        						<td><select id="xzqh" style="width:124px;"></select></td>
+								<td style="text-align: right;">项目名称：</td>
+        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 70px;"></select></td>
-        						<td>行政区划：</td>
-        						<td><select id="xzqh" style="width:124px;"></select></td>
-        						<td align="right">特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
 								<td>&nbsp;公路等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-								<td colspan="2">
-									
-        						</td>
         					</tr>
         					<tr height="32">
+        						<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:124px;"></select></td>
+								<td>原路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:120px;" /></td>
         						<td align="right">下达状态：</td>
 								<td>
 	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
@@ -219,22 +220,15 @@ text-decoration:none;
 		       							<option value="1">已下达</option>
 	       							</select>
 	       						</td>
-	       						<td>项目名称：</td>
-        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
-        						<td>原路线编码：</td>
-        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
         						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-                            	<td colspan="2">
-									
-        						</td>
                             </tr>
                             <tr height="32">
-                            	<td colspan="10">
+                            	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
 									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

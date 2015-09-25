@@ -191,18 +191,22 @@ text-decoration:none;
        				<div>
        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 						<tr height="32">
+							<td>行政区划：</td>
+       						<td><select id="xzqh" style="width:135px;"></select></td>
+							<td style="text-align: right;">项目名称：</td>
+       						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
 							<td>项目年份：</td>
         					<td><select id="xmnf" style="width: 70px;"></select></td>
-       						<td>行政区划：</td>
-       						<td><select id="xzqh" style="width:115px;"></select></td>
-       						<td align="right">特殊地区：</td>
-							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
 							<td>技术等级：</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
 							<td>&nbsp;公路等级：</td>
 							<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        					</tr>
        					<tr height="32">
+       						<td align="right">特殊地区：</td>
+							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:135px;"></select></td>
+							<td>原路线编号：</td>
+       						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td align="right">下达状态：</td>
 							<td>
        							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
@@ -211,10 +215,6 @@ text-decoration:none;
 	       							<option value="1">已下达</option>
        							</select>
        						</td>
-       						<td>项目名称：</td>
-       						<td><input name="xmmc" id="xmmc" style="width:110px;" type="text"/></td>
-       						<td>原路线编号：</td>
-       						<td><input name="ylxbh" id="ylxbh" style="width:150px;" type="text"/></td>
        						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
 									<option value="" selected="selected">全部</option>

@@ -99,19 +99,21 @@
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
         					<tr height="32">
-        						<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 70px;"></select></td>
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:124px;"></select></td>
-        						<td align="right">特殊地区：</td>
-        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
-        						<td align="right">技术等级：</td>
-        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-        						<td>公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        						<td align="right">&nbsp;项目名称：</td>
+        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
+        						<td>&nbsp;项目年份：</td>
+        						<td><select id="xmnf" style="width: 70px;"></select></td>
+        						<td align="right">&nbsp;技术等级：</td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:100px;"></select></td>
         					</tr>
         					<tr height="32">
-        						<td align="right">补助历史：</td>
+        						<td align="right">特殊地区：</td>
+        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:124px;"></select></td>
+        						<td align="right">&nbsp;路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:120px;" /></td>
+        						<td align="right">&nbsp;补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 										<option value="" selected="selected">全部</option>
@@ -119,12 +121,10 @@
 										<option value="是">是</option>
 									</select>
         						</td>
-        						<td align="right">项目名称：</td>
-        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
-        						<td align="right">路线编码：</td>
-        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
-        						<td colspan="4">
-        							<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        						<td>
+        							&nbsp;<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         						</td>
         					</tr>
         				</table>
