@@ -511,7 +511,7 @@ function showgjtj(xmlx){
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
-	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc'+$("#xmmc").val()+"&xmlx="+xmlx;
+	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+"&xmlx="+xmlx;
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/showgjtj.do",

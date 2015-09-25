@@ -270,6 +270,10 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			jckwqgzsj.setJsnr(jck.getJsnr());
 			jckwqgzsj.setJsxz(jck.getJsxz());
 			jckwqgzsj.setFaspsj(jck.getFaspsj());
+			jckwqgzsj.setSjdwmc(jck.getFapgdw());
+			jckwqgzsj.setFascdw(jck.getFascdw());
+			jckwqgzsj.setPfwh(jck.getSpwh());
+			jckwqgzsj.setZtz(jck.getZtz());
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;

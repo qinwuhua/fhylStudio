@@ -651,10 +651,10 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上报年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="sbnf" type="text" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工年：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jhkgsj" type="text" class="easyui-datebox"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工年：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jhwgsj" type="text" class="easyui-datebox"/>
 				</td>

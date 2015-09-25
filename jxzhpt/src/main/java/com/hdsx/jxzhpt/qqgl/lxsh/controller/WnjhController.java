@@ -349,8 +349,9 @@ public class WnjhController extends BaseActionSupport{
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 		}else{
-			tiaojian2="andx zqhdm in ("+xzqh+")";
+			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
+		System.out.println(tiaojian2);
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmnf(xmnf);
@@ -404,7 +405,7 @@ public class WnjhController extends BaseActionSupport{
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 		}else{
-			tiaojian2="andx zqhdm in ("+xzqh+")";
+			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
@@ -460,7 +461,7 @@ public class WnjhController extends BaseActionSupport{
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2="andx zqhdm in ("+xzqh+")";
+				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
 			System.out.println(xmnf);
 			lxsh.setXzqh(tiaojian2);
@@ -1010,7 +1011,7 @@ public class WnjhController extends BaseActionSupport{
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 		}else{
-			tiaojian2="andx zqhdm in ("+xzqh+")";
+			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);

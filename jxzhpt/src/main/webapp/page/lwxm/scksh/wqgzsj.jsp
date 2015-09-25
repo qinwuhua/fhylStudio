@@ -196,7 +196,7 @@ function shangb(index){
 	if($.cookie("unit2").length==7){
 		var data=$("#grid").datagrid('getRows')[index];
 		obj=data;
-		YMLib.UI.createWindow('lxxx','市级初审','wqgzsj_sh.jsp','lxxx',500,300);
+		YMLib.UI.createWindow('lxxx','省级审核','wqgzsj_sh.jsp','lxxx',500,300);
 	}
 }
 

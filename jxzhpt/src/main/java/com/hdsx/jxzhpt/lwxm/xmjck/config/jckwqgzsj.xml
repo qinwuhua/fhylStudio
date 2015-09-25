@@ -642,11 +642,11 @@
 	</update>
 	
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk,sfkxg,sfylsjl,qlszxz,zyjsnr,jhjsxz,pfsj) 
-		values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},#{sfylrbwqk},decode(#{sfylrbwqk},'是','是','否','否'),#{bzls},#{scszxz},#{jsnr},#{jsxz},to_date(#{faspsj},'yyyy-mm-dd'))
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk,sfkxg,sfylsjl,qlszxz,zyjsnr,jhjsxz,pfsj,sjdw,sjpfdw,pfwh<!-- ,pfztz -->) 
+		values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},#{sfylrbwqk},decode(#{sfylrbwqk},'是','是','否','否'),#{bzls},#{scszxz},#{jsnr},#{jsxz},to_date(#{faspsj},'yyyy-mm-dd'),#{sjdwmc},#{fascdw},#{pfwh}<!-- ,#{ztz} -->)
 	</insert>
 	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
-		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,sc.scsqs,sc.scxsq,sc.scszxz,decode(sc.jsnr,null,' ',sc.jsnr) jsnr,decode(sc.jsxz,null,' ',sc.jsxz) jsxz,decode(sc.faspsj,null,to_char(sysdate,'yyyy-mm-dd') ,sc.faspsj) faspsj from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
+		select sckid,sc.sck_qlbh,fapgdw,fascdw,spwh,ztz,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,sc.scsqs,sc.scxsq,sc.scszxz,decode(sc.jsnr,null,' ',sc.jsnr) jsnr,decode(sc.jsxz,null,' ',sc.jsxz) jsxz,decode(sc.faspsj,null,to_char(sysdate,'yyyy-mm-dd') ,sc.faspsj) faspsj from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
 		where sckid=#{id}
 	</select>
 	<select id="selectshibz" parameterType="jckwqgzsj" resultType="wqbzbz">
