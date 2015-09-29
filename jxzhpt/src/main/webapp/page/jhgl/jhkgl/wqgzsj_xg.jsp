@@ -755,11 +755,11 @@ text-decoration:none;
 					<input type="text" id="qlszxz" /></td>
 			</tr>
 			<tr id="sftr" style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">计划类别：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
-						<option value="否">否</option>
-						<option value="是" selected>是</option>
+						<option value="是" selected>车购税</option>
+						<option value="否">省补</option>
 					</select></td>
 				
 			</tr>

@@ -32,152 +32,183 @@
 		-->
 	</style>
 	<script type="text/javascript">
-		$(function(){
-			var myDate = new Date();
-			loadUnit1("gydw",$.cookie("unit"));
-			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('xzdj','公路等级');
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=y-10;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
-			}
-			$('#ddlMonth').val(m);
-			search();
+	$(function(){
+		setjhxdnf();
+		loadUnit1("gydw",$.cookie("unit"));
+		loadDist1("xzqh",$.cookie("dist"));
+		loadBmbm2("xzdj","公路等级");
+		var myDate = new Date();
+		var y = myDate.getFullYear();
+		var m = myDate.getMonth()+1; 
+		for(var x=y;x>=2010;x--){
+			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
+		}
+		$("#yf"+m).attr("selected","selected");
+	});
+	function setjhxdnf(){
+		$("#ddlYear1").combotree({    
+			checkbox: true,
+			async: false,
+		    url: '/jxzhpt/xmjzbb/setjhxdnf1.do',    
+		    required: false,
+		    multiple:true,
+		    onLoadSuccess:function(node, data){
+		    	showAll();
+		    }
 		});
-		function search(){
-			$('#tbody_gcgj').empty();
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
-			}
-		var xzqhdm=$("#xzqh").combotree("getValues");
-			if(xzqhdm.length==0){
-				xzqhstr= $.cookie("dist2");
-				
-			}else if(xzqhdm.length==1){
-				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		xzqhstr=xzqhdm[0] ;
-			}else{
-				xzqhstr= xzqhdm.join(',');
-			}
-
-			var xmbb = 'flag=""&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
-			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xzqh="+xzqhstr+"&xmbb.gydw="+gydwstr+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/gcbb/selGcbb5.do',
-				dataType:'json',
-				data:xmbb,
-				success:function(data){
-					$.each(data,function(index,item){
-						var tr="<tr style='height:20px;'>";
-						tr+="<td>"+item.jsdd+"</td>";
-						//bmmc:项目名称【路线编码(起点-止点)】
-						//yjsdj:原技术等级;xmlc:项目里程
-						var bmmc=item.xmmc+'【'+item.lxbm+'】',yjsdj=item.yjsdj,xmlc=item.yhlc;
-						tr+="<td>"+bmmc+"</td>";
-						tr+="<td>"+item.qdzh+"</td>";
-						tr+="<td>"+item.zdzh+"</td>";
-						tr+="<td>"+yjsdj+"</td>";
-						tr+="<td>"+item.jsjsbz+"</td>";
-						tr+="<td>"+xmlc+"</td>";
-						tr+="<td>"+item.pfztz+"</td>";
-						tr+="<td>"+item.cgs+"</td>";
-						tr+="<td>"+item.dfpt+"</td>";
-						var zj="0",wg="0",wkg="0";
-						if(item.kgzt=="0"){
-							wkg="1";
-						}else if(item.kgzt=="1" && item.jgzt=="0"){
-							zj="1";
-						}else if(item.kgzt=="1" && item.jgzt=="1"){
-							wg="0";
+		
+	}
+	function showAll(){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var xmnf=$("#ddlYear1").combotree("getValues");
+		var gydw1=$("#gydw").combotree("getValues");
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var xzdj=$("#xzdj").combobox("getValue");
+		var lxmc=$("#lxmc").val();
+		var data="flag=''&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+		//alert(data);
+		var tbody = $("#abgclist");
+				tbody.empty();
+		$.ajax({
+			url:"/jxzhpt/gcybb/getGlgzxj.do",
+			data:data,
+			type:"post",
+			dataType:"JSON",
+			success:function(msg){
+				$("#nian").text($("#ddlYear").val());
+				if (msg != null) {
+					for ( var i = 0; i < msg.length; i++) {
+						if(msg[i].v_2==' '){
+							tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
+									+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+									+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+									+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+									+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+									+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+									+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+									+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+									+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+									+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+									+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+									+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+									+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+									+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+									+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+									+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+									+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+									+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
+									+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
+									+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+									+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+									+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+									+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"
+									+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"
+									+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
+									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
+									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
+									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td></tr>"
+							);
+						}else{
+							tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
+									+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+									+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+									+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+									+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+									+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+									+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+									+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+									+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+									+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+									+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+									+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+									+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+									+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+									+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+									+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+									+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+									+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
+									+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
+									+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+									+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+									+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+									+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"
+									+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"
+									+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
+									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
+									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
+									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td></tr>"
+							);
 						}
-						tr+="<td>"+zj+"</td>";
-						tr+="<td>"+wg+"</td>";
-						tr+="<td>"+wkg+"</td>";
-						tr+="<td>"+item.kgsj+"</td>";
-						tr+="<td>"+item.jgsj+"</td>";
-						tr+="<td>"+item.bndsslc+"</td>";
-						tr+="<td>"+item.bndjhtz+"</td>";
-						tr+="<td>"+item.bnzycgs+"</td>";
-						tr+="<td>"+item.bnwctz+"</td>";
-						tr+="<td>"+item.bnzycgs1+"</td>";
-						tr+="<td>"+item.bndfpt+"</td>";
-						tr+="<td>"+item.bnyhdk+"</td>";
-						tr+="<td>"+item.jsjsbz+"</td>";
-						tr+="<td>"+item.bnqtzj+"</td>";
-						tr+="<td>"+item.bnwctz+"</td>";
-						var a = Number(item.bnwctz)==0 ? "0" : Number(Number(item.bnwctz)/Number(item.bnwctz)*100).toFixed(2);
-						tr+="<td>"+a+"</td>";
-						tr+="<td>"+item.bnwcgzl+"</td>";
-						tr+="<td>"+item.bngzl1+"</td>";
-						tr+="<td>"+item.bngzl2+"</td>";
-						tr+="<td>"+item.bngzl3+"</td>";
-						tr+="<td>"+item.bngzl4+"</td>";
-						tr+="<td>"+item.bnlqlmwcqk+"</td>";
-						tr+="<td>"+item.bnsnlmwcqk+"</td>";
-						tr+="<td>"+item.ssdctc+"</td>";
-						tr+="<td>"+item.zjwctz+"</td>";
-						tr+="<td>"+item.zjwcgzl+"</td>";
-						tr+="<td>"+item.zjgzl1+"</td>";
-						tr+="<td>"+item.zjgzl2+"</td>";
-						tr+="<td>"+item.zjgzl3+"</td>";
-						tr+="<td>"+item.zjgzl4+"</td>";
-						tr+="<td>"+item.zjlqlmwcqk+"</td>";
-						tr+="<td>"+item.zjsnlmwcqk+"</td>";
-						tr+="<td>"+item.ssdctc+"</td>";
-						tr+="<td>"+(Number(xmlc)-Number(item.zjwcgzl)).toFixed(3)+"</td>";
-						tr+="</tr>";
-						$('#tbody_gcgj').append(tr);
-					});
-				},
-				error:function(e){
-					alert("系统错误！");
+					}
 				}
-			});
-		}
-		function exportExcel(){
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
 			}
-		var xzqhdm=$("#xzqh").combotree("getValues");
-			if(xzqhdm.length==0){
-				xzqhstr= $.cookie("dist2");
-				
-			}else if(xzqhdm.length==1){
-				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		xzqhstr=xzqhdm[0] ;
-			}else{
-				xzqhstr= xzqhdm.join(',');
-			}
-
-			var data = 'flag=flag&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
-			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
-			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-				window.location.href='/jxzhpt/gcbb/selGcbb5.do?'+data;
-			 });
+		});
+	}
+	function exportExcel(){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var xmnf=$("#ddlYear1").combotree("getValues");
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
 		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+			xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var xzdj=$("#xzdj").combobox("getValue");
+		var lxmc=$("#lxmc").val();
+		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+		
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
+		 });
+	}	
 	</script>
 </head>
 <body style="padding-right:1px">
@@ -218,7 +249,7 @@
 								</select>
 		        				<span>项目名称：</span>
 		        				<input id="xmmc" type="text"  style="width: 100px">
-		        				<img onclick="search()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+		        				<img onclick="showAll()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
@@ -246,8 +277,8 @@
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table id='bbtable' width="4000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表(三)    灾害防治 </caption>
+							<table id='bbtable' width="8000px">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 公路局<span id='nian' style="font-size: x-large;"></span>年公路改造工程项目完成情况表</caption>
 								<thead>
 									<tr>
 										<td colspan="23">一、 项 目 计 划</td>
@@ -267,6 +298,7 @@
 										<td rowspan="3" style="width: 125px;">讫点桩号</td>
 										<td rowspan="3" style="width: 125px;">原技术等级</td>
 										<td rowspan="3" style="width: 125px;">建设技术标准</td>
+										<td rowspan="3" style="width: 125px;">公路建设类型</td>
 										<td rowspan="3" style="width: 125px;">项目里程<br>(公里)</td>
 										<td rowspan="3" style="width: 125px;">总投资<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">中央车购税<br>(万元)</td>
@@ -334,7 +366,7 @@
 										<td style="width: 100px;">水泥砼</td>
 									</tr>
 								</thead>
-								<tbody id="tbody_gcgj"></tbody>
+								<tbody id="abgclist"></tbody>
 							</table>
 							</div>
 						</div>

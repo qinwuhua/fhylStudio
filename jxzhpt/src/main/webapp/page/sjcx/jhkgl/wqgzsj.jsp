@@ -113,6 +113,12 @@
 		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
+		        {field:'sfbk',title:'计划类别',width:120,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylrbwqk=='是')
+		        		return '车购税';
+		        	else if(row.sfylrbwqk=='否')
+		        		return '省补';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},

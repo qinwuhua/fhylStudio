@@ -146,6 +146,12 @@
 		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
+		        {field:'sfbk',title:'计划类别',width:120,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylrbwqk=='是')
+		        		return '车购税';
+		        	else if(row.sfylrbwqk=='否')
+		        		return '省补';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
@@ -346,11 +352,11 @@ text-decoration:none;
 									<option value="有">是</option>
 									</select>
 								</td>
-								<td>是否部库：</td>
+								<td>计划类别：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="" selected>全部</option>
-								<option value="否" >否</option>
-								<option value="是">是</option>
+								<option value="是" >车购税</option>
+								<option value="否">省补</option>
 								</select></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
