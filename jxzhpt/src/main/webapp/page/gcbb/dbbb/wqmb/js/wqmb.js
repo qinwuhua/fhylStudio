@@ -21,7 +21,7 @@ function showAlljz(){
 	    		}
 	    		return gydw;
 	    	},
-		 	'xmnf':$("#xmnf").val(),
+		 	'xmnf':$("#xmnf").combobox('getValues').join(","),
 		},
 	    striped:true,
 	    pagination:true,
@@ -30,7 +30,6 @@ function showAlljz(){
 	    pageSize:10,
 	    height:$(window).height()-140,
 		width:$(window).width()-25,
-
 	    columns:[[
 	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
 	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
@@ -60,7 +59,7 @@ function exportExcel_wqjz(){
 			}
 		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
- 	'&xmnf='+$('#xmnf').val();
+ 	'&xmnf='+$('#xmnf').combobox('getValues').join(",");
 	window.location.href="/jxzhpt/dbbb/exportExcel_wqjz.do?"+param;
 }
 
@@ -83,7 +82,7 @@ function showAllkg(){
 	    		}
 	    		return gydw;
 	    	},
-		 	'xmnf':$("#xmnf").val(),
+		 	'xmnf':$("#xmnf").combobox('getValues').join(","),
 		},
 	    striped:true,
 	    pagination:true,
@@ -126,7 +125,7 @@ function exportExcel_wqkg(){
 			}
 		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
- 	'&xmnf='+$('#xmnf').val();
+ 	'&xmnf='+$('#xmnf').combobox('getValues').join(",");
 	window.location.href="/jxzhpt/dbbb/exportExcel_wqkg.do?"+param;
 }
 

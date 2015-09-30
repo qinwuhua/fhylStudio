@@ -21,7 +21,7 @@ function showAlljz(){
 	    		}
 	    		return gydw;
 	    	},
-		 	'xmnf':$("#xmnf").val(),
+		 	'xmnf':$("#xmnf").combobox('getValues').join(","),
 		},
 	    striped:true,
 	    pagination:true,
@@ -59,7 +59,7 @@ function exportExcel_abjz(){
 			}
 		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
- 	'&xmnf='+$('#xmnf').val();
+ 	'&xmnf='+$('#xmnf').combobox('getValues').join(",");
 	window.location.href="/jxzhpt/dbbb/exportExcel_abjz.do?"+param;
 }
 
@@ -82,7 +82,7 @@ function showAllkg(){
 	    		}
 	    		return gydw;
 	    	},
-		 	'xmnf':$("#xmnf").val(),
+		 	'xmnf':$("#xmnf").combobox('getValues').join(","),
 		},
 	    striped:true,
 	    pagination:true,
@@ -125,7 +125,7 @@ function exportExcel_abkg(){
 			}
 		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
- 	'&xmnf='+$('#xmnf').val();
+ 	'&xmnf='+$('#xmnf').combobox('getValues').join(",");
 	window.location.href="/jxzhpt/dbbb/exportExcel_abkg.do?"+param;
 }
 

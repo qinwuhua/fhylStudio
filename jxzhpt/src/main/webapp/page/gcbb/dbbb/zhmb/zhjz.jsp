@@ -23,8 +23,22 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			setjhxdnf()
 			showAlljz();
 		});
+		function setjhxdnf(){
+			$("#xmnf").combotree({    
+				checkbox: true,
+				async: false,
+			    url: '/jxzhpt/xmjzbb/setjhxdnf1.do',    
+			    required: false,
+			    multiple:true,
+			    onLoadSuccess:function(node, data){
+			    	showAll();
+			    }
+			});
+			
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -71,20 +85,9 @@ table thead tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>单位名称：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>截止到本年：</span>
+        						<span>项目年份：</span>
         						<select id="xmnf" style="width:80px;">
-        							 <option value="1">1月</option>
-        							<option value="2">2月</option>
-        							<option value="3">3月</option>
-        							<option value="4">4月</option>
-        							<option value="5">5月</option>
-        							<option value="6">6月</option>
-        							<option value="7">7月</option>
-        							<option value="8">8月</option>
-        							<option value="9">9月</option>
-        							<option value="10">10月</option>
-        							<option value="11">11月</option>
-        							<option value="12">12月</option> 
+        							
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
