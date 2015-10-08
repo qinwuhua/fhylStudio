@@ -41,8 +41,8 @@
 	 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
-	 			and jsdj like '%'||(#{jsdj})||'%'
-	 		</if>
+ 			and pddj like '%'||(#{jsdj})||'%'
+ 			</if> 
 	 		<if test="akjfl!='' and akjfl!= null ">
 	 			and akjfl like '%'||(#{akjfl})||'%'
 	 		</if>
@@ -89,7 +89,7 @@
 	 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
-	 			and jsdj like '%'||(#{jsdj})||'%'
+	 			and pddj like '%'||(#{jsdj})||'%'
 	 		</if>
 	 		<if test="akjfl!='' and akjfl!= null ">
 	 			and akjfl like '%'||(#{akjfl})||'%'
@@ -134,7 +134,7 @@
 	 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
-	 			and jsdj like '%'||(#{jsdj})||'%'
+	 			and pddj like '%'||(#{jsdj})||'%'
 	 		</if>
 	 		<if test="akjfl!='' and akjfl!= null ">
 	 			and akjfl like '%'||(#{akjfl})||'%'
@@ -203,7 +203,7 @@
  			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
+ 			and pddj like '%'||(#{jsdj})||'%'
  		</if>
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
@@ -253,7 +253,7 @@
  			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
+ 			and pddj like '%'||(#{jsdj})||'%'
  		</if>
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
@@ -303,7 +303,7 @@
  			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
+ 			and pddj like '%'||(#{jsdj})||'%'
  		</if>
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
@@ -373,7 +373,7 @@
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -431,7 +431,7 @@
  			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -481,7 +481,7 @@
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -530,7 +530,7 @@
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -624,7 +624,7 @@
  			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -678,7 +678,7 @@
  			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj like '%'||(#{jsdj})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'

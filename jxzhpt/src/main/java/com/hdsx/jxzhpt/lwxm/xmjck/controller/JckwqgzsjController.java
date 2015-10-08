@@ -624,7 +624,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
 		et.add(new Excel_tilte("路线编码",1,1,6,6));
 		et.add(new Excel_tilte("路线名称",1,1,7,7));
-		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("评定等级",1,1,8,8));
 		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
 		et.add(new Excel_tilte("入库时间",1,1,10,10));
 		
@@ -679,7 +679,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
 		et.add(new Excel_tilte("路线编码",1,1,6,6));
 		et.add(new Excel_tilte("路线名称",1,1,7,7));
-		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("评定等级",1,1,8,8));
 		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
 		et.add(new Excel_tilte("入库时间",1,1,10,10));
 		
@@ -735,7 +735,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
 		et.add(new Excel_tilte("路线编码",1,1,6,6));
 		et.add(new Excel_tilte("路线名称",1,1,7,7));
-		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("评定等级",1,1,8,8));
 		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
 		et.add(new Excel_tilte("入库时间",1,1,10,10));
 		
@@ -791,7 +791,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("桥梁中心桩号",1,1,5,5));
 		et.add(new Excel_tilte("路线编码",1,1,6,6));
 		et.add(new Excel_tilte("路线名称",1,1,7,7));
-		et.add(new Excel_tilte("桥梁评定等级",1,1,8,8));
+		et.add(new Excel_tilte("评定等级",1,1,8,8));
 		et.add(new Excel_tilte("修建/改建年度",1,1,9,9));
 		et.add(new Excel_tilte("入库时间",1,1,10,10));
 		

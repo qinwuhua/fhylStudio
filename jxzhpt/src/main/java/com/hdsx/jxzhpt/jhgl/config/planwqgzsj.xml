@@ -12,7 +12,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+				and pddj = #{jsdj}
+				</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -25,9 +28,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -58,7 +59,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+			and pddj = #{jsdj}
+		</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -71,9 +75,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -101,7 +103,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+			and pddj = #{jsdj}
+		</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -114,9 +119,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -229,7 +232,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+			and pddj = #{jsdj}
+		</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -242,9 +248,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -275,7 +279,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+			and pddj = #{jsdj}
+		</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -288,9 +295,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -318,7 +323,10 @@
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  					and xm.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1 and gydwbm like '1%'
+ 				</if>
+ 				<if test="jsdj!='' and jsdj!= null ">
+			and pddj = #{jsdj}
+		</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -331,9 +339,7 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -396,7 +402,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -444,7 +450,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -495,7 +501,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
@@ -547,7 +553,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and jsdj like '%'||(#{jsdj})||'%'
+			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'

@@ -117,9 +117,9 @@
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
  		</if>
-<!--  		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
- 		</if> -->
+		<if test="jsdj!='' and jsdj!= null ">
+ 			and pddj like '%'||(#{jsdj})||'%'
+ 		</if> 
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>

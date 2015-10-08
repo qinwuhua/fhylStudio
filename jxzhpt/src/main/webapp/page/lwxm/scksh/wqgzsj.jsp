@@ -282,7 +282,7 @@ $("#grid").datagrid({
 		        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
+		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
@@ -399,12 +399,10 @@ text-decoration:none;
                               	</select>
                              	</td>
                                
-                            <td>技术状况评定：</td>
+                            <td>评定等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>

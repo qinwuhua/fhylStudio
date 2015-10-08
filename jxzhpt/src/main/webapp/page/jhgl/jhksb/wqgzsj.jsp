@@ -330,9 +330,7 @@ text-decoration:none;
         						<td>技术状况评定：</td>
                               <td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>

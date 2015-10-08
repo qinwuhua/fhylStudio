@@ -217,12 +217,10 @@ text-decoration:none;
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select></td>
-								<td>技术状况评定：</td>
+								<td>评定等级：</td>
                               <td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
