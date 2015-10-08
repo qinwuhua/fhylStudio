@@ -23,7 +23,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit10("gydw",$.cookie("unit"));
 			xmnf('xmnf');
 			showAlljc();
 		});

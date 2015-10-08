@@ -67,6 +67,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	//危桥
 	public void selectWqjc(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Jckwqgz> selectWqjc = dbServer.selectWqjc(jckwqgz);
 		int count = dbServer.selectWqjcCount(jckwqgz);
 		EasyUIPage<Jckwqgz> eui =new EasyUIPage<Jckwqgz>();
@@ -81,6 +88,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_wqjc(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List <SjbbMessage> list=dbServer.exportExcel_wqjc(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -110,6 +127,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 	}
 	public void selectWqsc(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Sckwqgz> selectWqsc = dbServer.selectWqsc(jckwqgz);
 		int count = dbServer.selectWqscCount(jckwqgz);
 		EasyUIPage<Sckwqgz> eui =new EasyUIPage<Sckwqgz>();
@@ -124,6 +148,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_wqsc(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List <SjbbMessage> list=dbServer.exportExcel_wqsc(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -152,6 +186,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 	}
 	public void selectWqjh(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Plan_wqgz> selectWqjh = dbServer.selectWqjh(jckwqgz);
 		int count = dbServer.selectWqjhCount(jckwqgz);
 		EasyUIPage<Plan_wqgz> eui =new EasyUIPage<Plan_wqgz>();
@@ -166,6 +207,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_wqjh(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List <SjbbMessage> list=dbServer.exportExcel_wqjh(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -197,6 +248,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	//安保
 	public void selectAbjc(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Jckabgc> selectAbjc = dbServer.selectAbjc(jckwqgz);
 		int count = dbServer.selectAbjcCount(jckwqgz);
 		EasyUIPage<Jckabgc> eui =new EasyUIPage<Jckabgc>();
@@ -211,6 +269,17 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_abjc(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
+			
 			List <SjbbMessage> list=dbServer.exportExcel_abjc(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -235,10 +304,18 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			ee.makeExcel(tableName, sheetBeans, response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
+			e.printStackTrace();
 			throw new RuntimeException();
 		}
 	}
 	public void selectAbsc(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Sckabgc> selectAbsc = dbServer.selectAbsc(jckwqgz);
 		int count = dbServer.selectAbscCount(jckwqgz);
 		EasyUIPage<Sckabgc> eui =new EasyUIPage<Sckabgc>();
@@ -253,6 +330,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_absc(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List <SjbbMessage> list=dbServer.exportExcel_absc(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -282,6 +369,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 	}
 	public void selectAbjh(){
+		String tiaojian1="";
+		if(jckwqgz.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+		}else{
+			tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+		}
+		jckwqgz.setGydw(tiaojian1);
 		List<Plan_abgc> selectAbjh = dbServer.selectAbjh(jckwqgz);
 		int count = dbServer.selectAbjhCount(jckwqgz);
 		EasyUIPage<Plan_abgc> eui =new EasyUIPage<Plan_abgc>();
@@ -296,6 +390,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public void exportExcel_abjh(){
 		try {
 			//先得到导出的数据集
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List <SjbbMessage> list=dbServer.exportExcel_abjh(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
@@ -327,6 +431,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	//灾害
 		public void selectZhjc(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Jckzhfz> selectZhjc = dbServer.selectZhjc(jckwqgz);
 			int count = dbServer.selectZhjcCount(jckwqgz);
 			EasyUIPage<Jckzhfz> eui =new EasyUIPage<Jckzhfz>();
@@ -341,6 +452,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_zhjc(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_zhjc(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -369,6 +490,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectZhsc(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Sckzhfz> selectZhsc = dbServer.selectZhsc(jckwqgz);
 			int count = dbServer.selectZhscCount(jckwqgz);
 			EasyUIPage<Sckzhfz> eui =new EasyUIPage<Sckzhfz>();
@@ -383,6 +511,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_zhsc(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_zhsc(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -412,6 +550,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectZhjh(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Plan_zhfz> selectZhjh = dbServer.selectZhjh(jckwqgz);
 			int count = dbServer.selectZhjhCount(jckwqgz);
 			EasyUIPage<Plan_zhfz> eui =new EasyUIPage<Plan_zhfz>();
@@ -426,6 +571,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_zhjh(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_zhjh(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -456,6 +611,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectWqkg(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Plan_wqgz> selectWqkg = dbServer.selectWqkg(jckwqgz);
 			int count = dbServer.selectWqkgCount(jckwqgz);
 			EasyUIPage<Plan_wqgz> eui =new EasyUIPage<Plan_wqgz>();
@@ -470,6 +632,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_wqkg(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_wqkg(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -499,6 +671,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectAbkg(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Plan_abgc> selectAbkg = dbServer.selectAbkg(jckwqgz);
 			int count = dbServer.selectAbkgCount(jckwqgz);
 			EasyUIPage<Plan_abgc> eui =new EasyUIPage<Plan_abgc>();
@@ -513,6 +692,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_abkg(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_abkg(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -542,6 +731,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectZhkg(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Plan_zhfz> selectZhkg = dbServer.selectZhkg(jckwqgz);
 			int count = dbServer.selectZhkgCount(jckwqgz);
 			EasyUIPage<Plan_zhfz> eui =new EasyUIPage<Plan_zhfz>();
@@ -556,6 +752,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_zhkg(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_zhkg(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -585,6 +791,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void selectWqjz(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Gcglwqgz> selectWqjd = dbServer.selectWqjz(jckwqgz);
 			int count = dbServer.selectWqjzCount(jckwqgz);
 			EasyUIPage<Gcglwqgz> eui =new EasyUIPage<Gcglwqgz>();
@@ -599,6 +812,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_wqjz(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_wqjz(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -628,6 +851,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 		
 		public void selectAbjz(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Gcglabgc> selectWqjd = dbServer.selectAbjz(jckwqgz);
 			int count = dbServer.selectAbjzCount(jckwqgz);
 			EasyUIPage<Gcglabgc> eui =new EasyUIPage<Gcglabgc>();
@@ -642,6 +872,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_abjz(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_abjz(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置
@@ -671,6 +911,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 		
 		public void selectZhjz(){
+			String tiaojian1="";
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+			}else{
+				tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+			}
+			jckwqgz.setGydw(tiaojian1);
 			List<Gcglzhfz> selectWqjd = dbServer.selectZhjz(jckwqgz);
 			int count = dbServer.selectZhjzCount(jckwqgz);
 			EasyUIPage<Gcglzhfz> eui =new EasyUIPage<Gcglzhfz>();
@@ -685,6 +932,16 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		public void exportExcel_zhjz(){
 			try {
 				//先得到导出的数据集
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				jckwqgz.setGydw((String) session.getAttribute("gydwbb"));	
+				String tiaojian1="";
+				if(jckwqgz.getGydw().indexOf(",")==-1){
+					tiaojian1="and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'";
+				}else{
+					tiaojian1="and gydwbm in ("+jckwqgz.getGydw()+")";
+				}
+				jckwqgz.setGydw(tiaojian1);
 				List <SjbbMessage> list=dbServer.exportExcel_zhjz(jckwqgz);
 				System.out.println("------------"+list.size()+"--------------");
 				//导出设置

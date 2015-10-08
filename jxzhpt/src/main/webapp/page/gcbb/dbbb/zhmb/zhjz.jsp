@@ -22,8 +22,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			setjhxdnf()
+			loadUnit10("gydw",$.cookie("unit"));
+			setjhxdnf();
 			showAlljz();
 		});
 		function setjhxdnf(){
@@ -34,7 +34,7 @@
 			    required: false,
 			    multiple:true,
 			    onLoadSuccess:function(node, data){
-			    	showAll();
+			    	showAlljz();
 			    }
 			});
 			
