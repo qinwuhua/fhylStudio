@@ -27,6 +27,7 @@ a{text-decoration:none;}
 <script type="text/javascript">
 	var qdStr;
 	var zdStr;
+	var xzqh;
 	$(function(){
 		loadUnit4("gydw",$.cookie("unit"));
 		loadDist4("xzqh",$.cookie("dist"));
@@ -118,7 +119,7 @@ a{text-decoration:none;}
 		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :2,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,
@@ -152,6 +153,7 @@ a{text-decoration:none;}
 	  		}
 	  	}).result(
 				function(e, item) {
+					xzqh=item.xzqh;
 					if(item==undefined) return ;
 					$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
 					$("#lxmc").html(item.lxmc);

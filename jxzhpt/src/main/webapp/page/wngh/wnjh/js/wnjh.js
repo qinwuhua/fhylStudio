@@ -124,6 +124,8 @@ function newGuid()
     return guid;    
 }
 function queryJsdjAndLc(lxbm,qdzh,zdzh){
+	if(lxbm.substr(0,1)=='Y' || lxbm.substr(0,1)=='C')
+		lxbm=lxbm+xzqh;
 	$.ajax({
 		type:'post',
 		async:false,
@@ -190,7 +192,7 @@ function tsdq(id){
 	$("#"+id).combobox('setValue','全部');
 }
 function jslc(){
-	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
 	if($('#yilc').val()!='')
 		yilc=parseFloat($('#yilc').val());
 	if($('#erlc').val()!='')
@@ -203,12 +205,12 @@ function jslc(){
 		wllc=parseFloat($('#wllc').val());
 	if($('#dwlc').val()!='')
 		dwlc=parseFloat($('#dwlc').val());
-	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
 }
 function cesuan(){
-	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
 	if($('#jhyilc').val()!='')
 		yilc=parseFloat($('#jhyilc').val());
 	if($('#jherlc').val()!='')
@@ -221,12 +223,12 @@ function cesuan(){
 		wllc=parseFloat($('#jhwllc').val());
 	if($('#jhdwlc').val()!='')
 		dwlc=parseFloat($('#jhdwlc').val());
-	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#jhlc').html(hj5);
 }
 function cesuan2(){
-	var yilc=0;var erlc=0;var salc=0;var silc=0;var wulc=0;var dwlc=0;
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
 	if($('#yilc').val()!='')
 		yilc=parseFloat($('#yilc').val());
 	if($('#erlc').val()!='')
@@ -239,7 +241,7 @@ function cesuan2(){
 		wllc=parseFloat($('#wllc').val());
 	if($('#dwlc').val()!='')
 		dwlc=parseFloat($('#dwlc').val());
-	var hj1=accAdd(yilc,erlc);var hj2=accAdd(salc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
 }

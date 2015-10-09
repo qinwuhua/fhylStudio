@@ -271,7 +271,7 @@
 	
 	
 	<select id="wnjhGpsroad" parameterType="lxsh" resultType="lxsh">
-		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj
+		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj,xzqhdm xzqh
 		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
 	</select>
 	<select id="wnjhGpsroad1" parameterType="lxsh" resultType="lxsh">
