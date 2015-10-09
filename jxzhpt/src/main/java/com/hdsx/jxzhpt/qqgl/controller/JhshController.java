@@ -987,10 +987,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void zdyExportExcel(){
 		try{
-			System.out.println(jhsh.getXmlx());
-			System.out.println(filed);
-			System.out.println(filedName);
 			String fileName="";
+			jsdjHandle();
+			ylxbhHandle();
 			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
 			if(jhsh.getXmlx()==1){
 				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,0,0);

@@ -52,12 +52,8 @@
 	});
 </script>
 <style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
+TD {font-size: 12px;}
+a{text-decoration:none;}
 </style>
 </head>
 <body>

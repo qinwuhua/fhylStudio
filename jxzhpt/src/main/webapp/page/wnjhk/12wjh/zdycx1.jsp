@@ -180,6 +180,10 @@
 		param+="&lxbm="+$('#lxbm').val();
 		param+="&xmbm="+$('#xmnf').combobox("getValue");
 		param+="&kgzt="+$('#kgzt').combobox("getValue");
+		param+="&xmmc="+$('#xmmc').val();
+		param+="&tsdq="+$('#tsdq').combo("getText");
+		param+="&ylxbh="+$('#gldj').combobox("getValues").join(',');
+		param+="&jsdj="+$('#jsdj').combobox("getValues").join(",");
 		window.location.href='/jxzhpt/qqgl/zdyExportExcel.do?'+param;
 	}
 </script>

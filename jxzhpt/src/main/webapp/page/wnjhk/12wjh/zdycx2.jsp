@@ -211,6 +211,10 @@
 		param+="&lxbm="+$('#lxbm').val();
 		param+="&xmbm="+$('#xmnf').combobox("getValue");
 		param+="&kgzt="+$('#kgzt').combobox("getValue");
+		param+="&tsdq="+$('#tsdq').combo("getText");
+		param+="&ylxbh="+$('#gldj').combobox("getValues").join(',');
+		param+="&jsdj="+$('#jsdj').combobox("getValues").join(",");
+		param+="&xmmc="+$('#xmmc').val();
 		window.location.href='/jxzhpt/qqgl/zdyExportExcel.do?'+param;
 	}
 </script>
@@ -220,11 +224,9 @@ a{text-decoration:none;}
 </style>
 </head>
 <body>
-	
-		<div id="righttop">
+	<div id="righttop">
 		<div id="p_top">五年计划库>&nbsp;十二五计划库>&nbsp;养护大中修、灾毁自定义查询</div>
-		</div>
-
+	</div>
 <center>
 <table style="width: 80%; margin-top: 15px; background-color: #aacbf8; font-size: 12px;"
 			border="0" cellpadding="3" cellspacing="1">

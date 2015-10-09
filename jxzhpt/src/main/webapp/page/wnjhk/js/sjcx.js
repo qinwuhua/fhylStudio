@@ -99,6 +99,9 @@ function exportExcel_zdy(){
 	"&xmName="+YMLib.Var.xmName+
 	"&colName="+YMLib.Var.sqlcol+
 	"&tableName="+YMLib.Var.tablecol;
+	param+="&tsdq="+$('#tsdq').combo("getText");
+	param+="&gldj="+$('#gldj').combobox("getValues").join(',');
+	param+="&jsdj="+$('#jsdj').combobox("getValues").join(",");
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
 }

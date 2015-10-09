@@ -1,21 +1,12 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
@@ -24,16 +15,11 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
-import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.ZdycxServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
-import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
-import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -180,6 +166,8 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	}
 	public void exportExcel_zdy(){
 		try {
+			gldjHandle();
+			jsdjHandle();
 			//先得到导出的数据集
 			List <SjbbMessage> list=zdycxServer.exportExcel_zdy(zdycx);
 			System.out.println("------------"+list.size()+"--------------");

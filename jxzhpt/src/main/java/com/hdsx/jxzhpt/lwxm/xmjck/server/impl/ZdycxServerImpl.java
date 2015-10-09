@@ -47,14 +47,18 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 	}
 	@Override
 	public List<SjbbMessage> exportExcel_zdy(Zdycx zdycx) {
-		if("wqgz".equals(xmlx)) return queryList("selZdyWqgzList", zdycx);
+		if("wqgz".equals(xmlx)) {
+			zdycx.getJsdj().replaceAll("lxjsdj", "jsdj");
+			return queryList("selZdyWqgzList", zdycx);
+		}
 		else if("abgc".equals(xmlx)) return queryList("selZdyAbgcList", zdycx);
 		else if("zhfz".equals(xmlx)) return queryList("selZdyZhfzList", zdycx);
 		else if("lmsj".equals(xmlx)) return queryList("selZdyLmsjList", zdycx);
 		else if("lmgj".equals(xmlx)) return queryList("selZdyLmgjList", zdycx);
 		else if("yhdzx".equals(xmlx)) return queryList("selZdyYhdzxList", zdycx);
 		else if("shxm".equals(xmlx)) return queryList("selZdyShxmList", zdycx);
-		else return queryList("selZdyHslyList", zdycx);
+		else return new ArrayList<SjbbMessage>();
+		//else return queryList("selZdyHslyList", zdycx);
 	}
 	@Override
 	public List<Gcglwqgz> selwqgzsjZdy(Zdycx zdycx) {
