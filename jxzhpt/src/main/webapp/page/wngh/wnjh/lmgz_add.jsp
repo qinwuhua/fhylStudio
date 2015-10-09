@@ -118,7 +118,7 @@ a{text-decoration:none;}
 		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :1,
+			minChars :2,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

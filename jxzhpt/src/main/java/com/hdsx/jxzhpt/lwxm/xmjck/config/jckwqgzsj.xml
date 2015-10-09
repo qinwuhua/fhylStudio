@@ -63,7 +63,10 @@
 	 </select>
 	 <select id="dcwqgzsjjhExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+      sqs v_1,xsq v_2,szxz v_3,qlmc v_4,qlbh v_5,lxbm v_6,lxmc v_7,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_8,
+      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_9,qlzxzh v_10,ptx v_11,pty v_12,xjgjnd v_13,
+      qlqc v_14,akjfl v_15,synf v_16,jsdj v_17,kjzc v_18,dkzdkj v_19,sjhspl v_20,qxjkuan v_21,qxjkong v_22,zqks v_23,
+      qlkd v_24,qmjk v_25,kydwlx v_26,thdj v_27,glqlyt v_28,sbjgxs v_29,qdlx v_30,qtlx v_31,pzlx v_32,pddj v_33,sfylrbwqk v_34
 	 	 from (
 	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
@@ -172,7 +175,10 @@
  		</update>
  		 <select id="dcwqgzsjxmkshExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+      sqs v_1,xsq v_2,szxz v_3,qlmc v_4,qlbh v_5,lxbm v_6,lxmc v_7,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_8,
+      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_9,qlzxzh v_10,ptx v_11,pty v_12,xjgjnd v_13,
+      qlqc v_14,akjfl v_15,synf v_16,jsdj v_17,kjzc v_18,dkzdkj v_19,sjhspl v_20,qxjkuan v_21,qxjkong v_22,zqks v_23,
+      qlkd v_24,qmjk v_25,kydwlx v_26,thdj v_27,glqlyt v_28,sbjgxs v_29,qdlx v_30,qtlx v_31,pzlx v_32,pddj v_33,sfylrbwqk v_34
 	 	 from (
 	 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
 			and sbthcd>=#{sbthcd} and gydwbm like '1%'
@@ -338,9 +344,8 @@
  		
  		<select id="dcwqgzsjsckExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,sck_qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10,scqlqc v_11,
-	 		scqlqk v_12,scxmnf v_13,fapgdw v_14,fascdw v_15,faspsj v_16,spwh v_17,jsxz v_18,tzgs v_19,hzdj v_20,scsjhspl v_21,
-	 		kjzh v_22,sck_sbjgxs v_23,sck_xbjgxs v_24,sgtpfsj v_25,pfwh v_26,zgq v_27
+      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,qlmc v_5,sck_qlzxzh v_6,scqlqc v_7,scqlqk v_8,fapgdw v_9,fascdw v_10,faspsj v_11,
+      spwh v_12,round(to_number(ztz),0) v_13,jsxz v_14,jsnr v_15,scxmnf v_16,round(to_number(nsqbbz),0) v_17,bz v_18
 	 	 from (
 	 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
@@ -391,9 +396,8 @@
 	 </select>
 	 <select id="dcwqgzsjsckshExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-	 		gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,sck_qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10,scqlqc v_11,
-	 		scqlqk v_12,scxmnf v_13,fapgdw v_14,fascdw v_15,faspsj v_16,spwh v_17,jsxz v_18,tzgs v_19,hzdj v_20,scsjhspl v_21,
-	 		kjzh v_22,sck_sbjgxs v_23,sck_xbjgxs v_24,sgtpfsj v_25,pfwh v_26,zgq v_27
+      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,qlmc v_5,sck_qlzxzh v_6,scqlqc v_7,scqlqk v_8,fapgdw v_9,fascdw v_10,faspsj v_11,
+      spwh v_12,round(to_number(ztz),0) v_13,jsxz v_14,jsnr v_15,scxmnf v_16,round(to_number(nsqbbz),0) v_17,bz v_18
 	 	 from (
 	 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
