@@ -1,198 +1,103 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.zdycx">
-<select id="selZdyWqgz" parameterType="zdycx" resultType="gcglwqgz">
-select * from (
-select m.*,rownum rn from (
-select 
-t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
-t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.sbnf,
-t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.qlkd,t3.qlqc,t3.xjgjnd,t3.xmnf,t2.faspsj,t2.jsxz
-from PLAN_WQGZ t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
-where  1=1
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
-	order by t3.qlbh
-	) m
-			where <![CDATA[rownum<=(#{page} * #{rows})]]>
-		) 
-			where RN>((#{page} - 1) * #{rows})
+	<select id="selZdyWqgz" parameterType="zdycx" resultType="gcglwqgz">
+		select * from (select m.*,rownum rn from (select t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
+		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.sbnf,
+		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.qlkd,t3.qlqc,t3.xjgjnd,t3.xmnf,t2.faspsj,t2.jsxz
+		from PLAN_WQGZ t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+		where  1=1
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
+		order by t3.qlbh) m where <![CDATA[rownum<=(#{page} * #{rows})]]>) where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selZdyWqgzCount" parameterType="zdycx" resultType="int">
 	 	select count(*) from  PLAN_WQGZ t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
 		where  1=1
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
 	 </select>
 
 	<select id="selZdyAbgc" parameterType="zdycx" resultType="gcglabgc">
-select * from (
-select m.*,rownum rn from (
-select 
-t1.jhnf ,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybbzje ,t1.jhsydfzczj ,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
-t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.tbbmbm,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
-t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
-from PLAN_ABGC t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
-where 1=1
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.jhnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
-	order by t3.lxbm
-	) m
-			where <![CDATA[rownum<=(#{page} * #{rows})]]>
-		) 
-			where RN>((#{page} - 1) * #{rows})
+		select * from (select m.*,rownum rn from (
+		select t1.jhnf ,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybbzje ,t1.jhsydfzczj ,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
+		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.tbbmbm,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+		from PLAN_ABGC t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+		where 1=1
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="jsdj != null and  jsdj != ''">and ${jsdj}</if>
+		<if test="tsdq != null and  tsdq != ''">and tsdq like '%'||${tsdq}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.jhnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
+		order by t3.lxbm) m where <![CDATA[rownum<=(#{page} * #{rows})]]>) where RN>((#{page} - 1) * #{rows})
 	</select>
-	 <select id="selZdyAbgcCount" parameterType="zdycx" resultType="int">
+	<select id="selZdyAbgcCount" parameterType="zdycx" resultType="int">
 	 	select count(*) from PLAN_ABGC t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 	 	where 1=1 
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.jhnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="jsdj != null and  jsdj != ''">and ${jsdj}</if>
+		<if test="tsdq != null and  tsdq != ''">and tsdq like '%'||${tsdq}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.jhnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
 	 </select>
 	
 	<select id="selZdyZhfz" parameterType="zdycx" resultType="gcglzhfz">
-select * from (
-select m.*,rownum rn from (
-select 
-t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
-t1.yjwgsj ,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
-t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
-from PLAN_ZHFZ t1 left join plan_zjxd xd on t1.id=xd.xmid  left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
-where  1=1
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
-	order by t3.lxbm
-	) m
-			where <![CDATA[rownum<=(#{page} * #{rows})]]>
-		) 
-			where RN>((#{page} - 1) * #{rows})
+		select * from (select m.*,rownum rn from (
+		select t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
+		t1.yjwgsj ,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+		from PLAN_ZHFZ t1 left join plan_zjxd xd on t1.id=xd.xmid  left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+		where  1=1
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="jsdj != null and  jsdj != ''">and ${jsdj}</if>
+		<if test="tsdq != null and  tsdq != ''">and tsdq like '%'||${tsdq}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
+		order by t3.lxbm) m where <![CDATA[rownum<=(#{page} * #{rows})]]>) where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selZdyZhfzCount" parameterType="zdycx" resultType="int">
 	 	select count(*) from PLAN_ZHFZ t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
 		where  1=1
-	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-			and t3.xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhdm} or parent=#{xzqhdm})
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="lxbm != null and  lxbm != ''">
-			and t3.lxbm like '%'||trim(#{lxbm})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="jhnf != null and  jhnf != ''">
-			and xd.xdnf like '%'||trim(#{jhnf})||'%'
-	</if>
+		<if test="gydw != null and  gydw != ''">and t3.gydwbm like '%'||trim(#{gydw})||'%'</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">and t3.xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})</if>
+		<if test="kgzt != null and  kgzt != ''">and t1.kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="lxmc != null and  lxmc != ''">and t3.lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and t3.lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="gldj != null and  gldj != ''">and ${gldj}</if>
+		<if test="jsdj != null and  jsdj != ''">and ${jsdj}</if>
+		<if test="tsdq != null and  tsdq != ''">and tsdq like '%'||${tsdq}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and t1.sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="jhnf != null and  jhnf != ''">and xd.xdnf like '%'||trim(#{jhnf})||'%'</if>
 	 </select>
 	 <select id="selZdyLmsj" parameterType="zdycx" resultType="gcglgcgzsj">
 		select * from (

@@ -16,8 +16,8 @@ $(function(){
 	$("#index_user").html($.cookie("truename"));
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10").removeClass('now');
 		$("#" + this.id).addClass('now');
 	});
     
@@ -57,7 +57,7 @@ $(function(){
     
     //计划管理
     $("#Menu_3").click(function () {
-        $("#c1,#c2,#c9,#c8,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c9,#c8,#c4,#c5,#c6,#c7,#c10").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/jhgl/Menu.jsp");
@@ -65,7 +65,7 @@ $(function(){
     });
 
     $("#Menu_4").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c5,#c6,#c7,#c10").hide();
         $("#c4").show();
         if (c4) {
             $("#c4f").attr("src", "page/gcgl/Menu.jsp");
@@ -73,7 +73,7 @@ $(function(){
     });
 
     $("#Menu_5").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c6,#c7").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c6,#c7,#c10").hide();
         $("#c5").show();
         if (c5) {
             $("#c5f").attr("src", "page/gcbb/Menu.jsp");
@@ -83,7 +83,7 @@ $(function(){
 
    
     $("#Menu_6").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c7").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c7,#c10").hide();
         $("#c6").show();
         if (c6) {
             $("#c6f").attr("src", "page/sjcx/Menu.jsp");
@@ -92,10 +92,18 @@ $(function(){
     
 
     $("#Menu_7").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c10").hide();
         $("#c7").show();
         if (c7) {
             $("#c7f").attr("src", "page/tjfx/Menu.jsp");
+        }
+    });
+    
+    $("#Menu_10").click(function () {
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c10").show();
+        if (c7) {
+            $("#c10f").attr("src", "page/wnjhk/Menu.jsp");
         }
     });
 });
@@ -120,6 +128,7 @@ function menuQx(){
 				case "5": url="page/gcbb/Menu.jsp";break;
 				case "6": url="page/sjcx/Menu.jsp";break;
 				case "7": url="page/tjfx/Menu.jsp";break;
+				case "10": url="page/wnjhk/Menu.jsp";break;
 				}
 				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
 				$("#c1f").attr("src", url);

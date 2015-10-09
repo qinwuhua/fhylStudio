@@ -33,6 +33,7 @@
 					<li id="menu_010104" style="display:none;"><a id="Menu_4" href="javascript:void(0)">工程管理</a></li>
 					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">工程报表</a></li>
 					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">数据查询</a></li>
+					<li id="menu_010110" style="display:none;"><a id="Menu_10" href="javascript:void(0)">五年计划库</a></li>
 					<li id="menu_010107" style="display:none;"><a id="Menu_7" href="javascript:void(0)" >统计分析</a></li>
 				</ul>
 			</div>
@@ -62,7 +63,10 @@
 		</div>
 		<div id="c6" style="width:100%;height:100%;display:none">
 			<iframe id="c6f" name="c6f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>           
+		</div>
+		<div id="c10" style="width:100%;height:100%;display:none">
+			<iframe id="c10f" name="c10f"src="" frameborder='0' height='100%' width='100%'></iframe>
+		</div>
 		<div id="c7" style="width:100%;height:100%;display:none">
 			<iframe id="c7f" name="c7f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>

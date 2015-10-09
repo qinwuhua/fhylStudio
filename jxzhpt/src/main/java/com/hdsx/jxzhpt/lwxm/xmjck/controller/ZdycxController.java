@@ -72,9 +72,55 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 			e.printStackTrace();
 		}
 	}
+	private void gldjHandle() {
+		String ylxbh = zdycx.getGldj()==null ? "" : zdycx.getGldj();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh.indexOf(",")>-1){
+				String[] split = ylxbh.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						ylxbh = "(lxbm like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						ylxbh += " or lxbm like '%"+split[i]+"%')";
+					}else{
+						ylxbh += " or lxbm like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				ylxbh = " lxbm like '%"+ylxbh+"%'";
+			}
+			zdycx.setGldj(ylxbh);
+		}
+	}
+	private void jsdjHandle() {
+		if(zdycx.getJsdj()!=null && !zdycx.getJsdj().equals("")){
+			String xjsdj = zdycx.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(lxjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or lxjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or lxjsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "lxjsdj like '"+xjsdj+"%'";
+			}
+			zdycx.setJsdj(xjsdj);
+		}
+	}
 	public void selZdy() throws IOException, Exception{
 		xmlx=zdycx.getXmlx();
+		gldjHandle();
+		jsdjHandle();
 		if("wqgz".equals(xmlx)){
+			zdycx.getJsdj().replaceAll("lxjsdj", "jsdj");
 			List<Gcglwqgz> list = zdycxServer.selZdyList(zdycx);
 			EasyUIPage<Gcglwqgz> eui=new EasyUIPage<Gcglwqgz>();
 			int count = zdycxServer.selZdyCount(zdycx);
