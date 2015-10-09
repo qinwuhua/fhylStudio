@@ -107,6 +107,21 @@ public class Zdycx {
 		private String sfylrbwqk;
 		private String gydwbm;
 		
+		private String xmmc;
+		private String gldj;
+		
+		public String getGldj() {
+			return gldj;
+		}
+		public void setGldj(String gldj) {
+			this.gldj = gldj;
+		}
+		public String getXmmc() {
+			return xmmc;
+		}
+		public void setXmmc(String xmmc) {
+			this.xmmc = xmmc;
+		}
 		public String getScsqs() {
 			return scsqs;
 		}

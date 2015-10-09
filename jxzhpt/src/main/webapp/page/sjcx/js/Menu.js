@@ -23,7 +23,6 @@ $(function() {
 			j++;
 		}
     }
-		
     for(var i=0;i<qx.length;i++){
     	if(qx[i]=='01010602'){
 			$('#aa').accordion('add', {
@@ -44,7 +43,7 @@ $(function() {
 		}else if(qx[i]=='01010604'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
-				title: '自定义查询',
+				title: '十二五计划库',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
