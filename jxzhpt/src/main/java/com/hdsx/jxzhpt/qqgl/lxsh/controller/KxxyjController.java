@@ -285,7 +285,8 @@ public class KxxyjController extends BaseActionSupport{
 		this.nf = nf;
 	}
 	public void selectSjgzkxList(){
-		String tiaojian1="";
+		try {
+			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
 				tiaojian1="and gydwdm like '%"+gydw+"%'";
@@ -323,12 +324,11 @@ public class KxxyjController extends BaseActionSupport{
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
 			e.setRows(list);
 			e.setTotal(count);
-			try {
-				JsonUtils.write(e, getresponse().getWriter());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
+	}
 	private void jsdjHandle() {
 		if(jsdj!=null && !jsdj.equals("")){
 			if(jsdj.indexOf(",")>-1){

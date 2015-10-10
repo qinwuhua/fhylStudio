@@ -661,6 +661,7 @@ function showAllsjsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({
@@ -990,6 +991,7 @@ function showAlllmsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1313,6 +1315,7 @@ function showAllxjsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
