@@ -47,55 +47,74 @@ text-decoration:none;
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
 				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
 	}
-	
+	function autoCompleteLXBM(){
+		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
+		$("#lxbm").autocomplete(url, {
+			multiple : false,
+			minChars :4,
+			multipleSeparator : ' ',
+			mustMatch: true,
+	  		cacheLength : 0,
+	  		delay : 200,
+	  		max : 50,
+	  		extraParams : {
+	  			lxbm:function() {
+	  				var d = $("#lxbm").val();
+	  				return d;
+	  			},
+	  			xzqh:function() {
+	  				var d = $.cookie("dist");
+	  				return d;
+	  			}
+	  		},
+	  		dataType : 'json',// 返回类型
+	  		// 对返回的json对象进行解析函数，函数返回一个数组
+	  		parse : function(data) {
+	  			var aa = [];
+	  			aa = $.map(eval(data), function(row) {
+	  					return {
+	  						data : row,
+	  						value : row.ghlxbh.replace(/(\s*$)/g,""),
+	  						result : row.ghlxbh.replace(/(\s*$)/g,"")
+	  					};
+	  				});
+	  			return aa;
+	  		},
+	  		formatItem : function(row, i, max) {
+	  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  		}
+	  	}).result(
+				function(e, item) {
+					if(item==undefined) return ;
+					xzqh=item.xzqh;
+					$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
+					$("#lxmc").html(item.lxmc);
+					$("#qdzh").val(parseFloat(item.qdzh));
+					$("#zdzh").val(parseFloat(item.zdzh));
+					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					$("#qdmc").val(item.qdmc);
+					$("#zdmc").val(item.zdmc);
+					qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
+					cesuan2();
+				});
+	}
 	$(function(){
 		xmnf1("xmnf");
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
+		autoCompleteLXBM();
 		load();
 			$("#save_button").click(function(){
-			
-			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
-				alert("请填写起点名称！");
-				return false;
-			}
-			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
-				alert("请填写止点名称！");
-				return false;
-			}
-			
-			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
-				alert("请填写正确的起点桩号！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
-				alert("请填写正确的止点桩号！");
-				$("#zdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
-				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
-				alert("对不起，止点桩号不能大于"+zdStr+"！");
-				$("#zdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
-				alert("对不起，起点桩号不能大于止点桩号！");
-				$("#qdzh").focus();
-				return false;
-			}
 			saveLxsh();
 		});
 
 	});
 	
 	function saveLxsh(){
-
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.xmbm="+parent.obj.xmbm+"&lxsh.id="+parent.obj.id
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+'路面改造'

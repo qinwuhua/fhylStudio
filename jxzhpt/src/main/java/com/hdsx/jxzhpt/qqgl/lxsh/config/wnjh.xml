@@ -305,11 +305,11 @@
 	</delete>
 
 	<update id="updateSjgz" parameterType="lxsh">
-		update wnjh_sjgz set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}  
+		update wnjh_sjgz set lxmc=#{lxmc},ghlxbh=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}  
 		where id=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
-		update wnjh_LMGZ set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}      
+		update wnjh_LMGZ set lxmc=#{lxmc},ghlxbh=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf}      
 		where id=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
@@ -317,7 +317,7 @@
 		where id=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
-		update WNJH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},bzcs=#{bzys}
+		update WNJH_LX set lxbm=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},bzcs=#{bzys},xjsdj=#{xjsdj}
 		<if test="xzqh!='' and xzqh!=null">,xzqh=#{xzqh}</if>
 		<if test="gydw!='' and gydw!=null">,gydw=#{gydw}</if>
 		<if test="xzqhdm!='' and xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
@@ -339,7 +339,7 @@
 		where xmid=#{xmbm} and sffirst='1' 
 	</update>
 	<update id="updatewnjhsjlx" parameterType="lxsh">
-		update WNJH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj}
+		update WNJH_LX set lxbm=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj}
 		<if test="xzqh!='' and xzqh!=null">,xzqh=#{xzqh}</if>
 		<if test="gydw!='' and gydw!=null">,gydw=#{gydw}</if>
 		<if test="xzqhdm!='' and xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
