@@ -83,7 +83,14 @@ public class Lxsh implements Serializable {
 	private String jhlc;
 	private String sl;
 	private String zjhlc;
+	private String xmsl;
 	
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
 	public String getZjhlc() {
 		return zjhlc;
 	}

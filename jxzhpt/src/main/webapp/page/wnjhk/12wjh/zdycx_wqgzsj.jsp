@@ -16,12 +16,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/YMLib.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
+TD {font-size: 12px;}
+a{text-decoration:none;}
 </style>
 </head>
 <body>
@@ -101,8 +97,8 @@ text-decoration:none;
 				    rownumbers:true,
 				    pageNumber:1,
 				    pageSize:10,
-				    height:345,
-				    width:1154,
+				    height:330,
+				    width:1050,
 			}); 
  			var this_width;
 			if (nameValue.length > 7) {

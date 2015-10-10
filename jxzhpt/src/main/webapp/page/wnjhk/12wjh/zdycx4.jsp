@@ -22,6 +22,8 @@
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
 		loadBmbm2("kgzt","开工状态");
+		loadBmbm3('jsdj','技术等级');
+		loadGldj('gldj');
 		xmnf("xmnf");
 		//xmnf("jhnf");
 		
@@ -35,7 +37,7 @@
 			YMLib.Var.xmnf=$("#xmnf").combobox("getValue");
 			//YMLib.Var.jhnf=$("#jhnf").combobox("getValue");
 			YMLib.Var.xmName=$("#xmlx").combobox("getValue");
-			 Wqgzsj();
+			Wqgzsj();
 		});
 	});
 </script>
@@ -94,13 +96,17 @@ text-decoration:none;
 				<!-- <td style="background-color: #ffffff;width:15%" align="right">计划年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select id="jhnf" style="width:160px"></select></td> -->
-				<td style="background-color: #ffffff;width:15%" align="right"></td>
-				<td style="background-color: #ffffff;" align="left"></td>
-				<td style="background-color: #ffffff;width:15%" align="right"></td>
-				<td style="background-color: #ffffff;" align="left"></td>
+				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select name="jsdj" id="jsdj" style="width:160px;" class="easyui-combobox"></select>
+				</td>
+				<td style="background-color: #ffffff;width:15%" align="right">公路等级：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select name="gldj" id="gldj" style="width:149px;" class="easyui-combobox"></select>
+				</td>
 			</tr>
 			<tr  style="height: 30px;">
-				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">
 						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
 						<img  onclick="exportExcel_wqsjzdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>

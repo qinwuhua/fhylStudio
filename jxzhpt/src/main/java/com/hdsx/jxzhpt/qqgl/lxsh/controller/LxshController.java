@@ -572,6 +572,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
 		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			xmnf= "xmnf in ("+xmnf+")";
 		}else{
 			xmnf= "xmnf ='"+xmnf+"'";
@@ -615,6 +616,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
 			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 				xmnf= "xmnf in ("+xmnf+")";
 			}else{
 				xmnf= "xmnf ='"+xmnf+"'";
