@@ -55,6 +55,8 @@ text-decoration:none;
 				$("#jhkgn").combobox("setValue",msg.jhkgn);
 				$("#jhwgn").combobox("setValue",msg.jhwgn);
 				$("#xjlc").val(msg.xjlc);
+				$("#gz").val(msg.gz);
+				$("#sz").val(msg.sz);
 			}
 		});
 		
@@ -151,7 +153,7 @@ text-decoration:none;
 		+"&lxsh.xjlc="+$('#xjlc').val()+"&lxsh.bz="+$('#bz').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -382,10 +384,18 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="yhdk" name="yhdk" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>国债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="gz" style="width: 120px;" onblur="checkdfzc1(this)"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>省债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="sz" style="width: 120px;" onblur="checkdfzc1(this)"/>
+				</td>
 			</tr>
 			<tr style="height: 60px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>

@@ -47,6 +47,9 @@ text-decoration:none;
 				$("#lxmc").html(msg.lxmc);
 				$("#lxbm").val(msg.ghlxbh);
 				$("#xmmc").val(msg.xmmc);
+				$("#yhdk").val(msg.yhdk);
+				$("#gz").val(msg.gz);
+				$("#sz").val(msg.sz);
 				loadUnit5("gydw",msg.gydwdm,$.cookie("unit"));
 				loadDist5("xzqh",msg.xzqhdm,$.cookie("dist"));
 				$("#tsdq").html(msg.tsdq);
@@ -205,17 +208,6 @@ text-decoration:none;
 	});
 	
 	function saveLxsh(){
-		$("#dfzc").html('');
-		var tz=0;var bzcs=0;
-		if($("#tz").val()!='')
-			tz=parseFloat($("#tz").val());
-		if($("#bzcs").val()!='')
-			bzcs=parseFloat($("#bzcs").val());
-		if(bzcs>tz){
-			alert("投资不能小于补助测算");
-			return
-		}
-		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
@@ -230,7 +222,7 @@ text-decoration:none;
 			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
 		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updatewnjhsj.do',
@@ -413,14 +405,32 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" name="yhdk" onblur="checkdfzc(this)" style="width: 120px;"/>
+					<input type="text" id="yhdk" style="width: 120px;" onblur="checkdfzc(this)"/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>国债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="gz" style="width: 120px;" onblur="checkdfzc(this)"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>省债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="sz" style="width: 120px;" onblur="checkdfzc(this)"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" name="jsxz" style="width: 120px" value='改建'/></td>
+					<input type="text" id="jsxz" style="width: 120px" value='改建'/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
 			</tr>
 			<tr style="height: 60px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>

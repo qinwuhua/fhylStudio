@@ -868,23 +868,24 @@ public class WnjhController extends BaseActionSupport{
 			eldata.setFileName(xmbt+"工程项目五年规划信息表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-			et.add(new Excel_tilte("路线编码",1,1,0,0));
-			et.add(new Excel_tilte("路线名称",1,1,1,1));
-			et.add(new Excel_tilte("起点桩号",1,1,2,2));
-			et.add(new Excel_tilte("止点桩号",1,1,3,3));
-			et.add(new Excel_tilte("起点名称",1,1,4,4));
-			et.add(new Excel_tilte("止点名称",1,1,5,5));
-			et.add(new Excel_tilte("建设性质",1,1,6,6));
-			et.add(new Excel_tilte("管养单位",1,1,7,7));		
-			et.add(new Excel_tilte("行政区划",1,1,8,8));
-			et.add(new Excel_tilte("特殊地区",1,1,9,9));
-			et.add(new Excel_tilte("建设技术等级",1,1,10,10));
-			et.add(new Excel_tilte("现技术等级",1,1,11,11));
-			et.add(new Excel_tilte("项目年份",1,1,12,12));
-			et.add(new Excel_tilte("计划开工年",1,1,13,13));
-			et.add(new Excel_tilte("计划完工年",1,1,14,14));
-			et.add(new Excel_tilte("投资(万元)",1,1,15,15));
-			et.add(new Excel_tilte("补助测算(万元)",1,1,16,16));
+			et.add(new Excel_tilte("项目名称",1,1,0,0));
+			et.add(new Excel_tilte("路线编码",1,1,1,1));
+			et.add(new Excel_tilte("路线名称",1,1,2,2));
+			et.add(new Excel_tilte("起点桩号",1,1,3,3));
+			et.add(new Excel_tilte("止点桩号",1,1,4,4));
+			et.add(new Excel_tilte("起点名称",1,1,5,5));
+			et.add(new Excel_tilte("止点名称",1,1,6,6));
+			et.add(new Excel_tilte("建设性质",1,1,7,7));
+			et.add(new Excel_tilte("管养单位",1,1,8,8));		
+			et.add(new Excel_tilte("行政区划",1,1,9,9));
+			et.add(new Excel_tilte("特殊地区",1,1,10,10));
+			et.add(new Excel_tilte("建设技术等级",1,1,11,11));
+			et.add(new Excel_tilte("现技术等级",1,1,12,12));
+			et.add(new Excel_tilte("项目年份",1,1,13,13));
+			et.add(new Excel_tilte("计划开工年",1,1,14,14));
+			et.add(new Excel_tilte("计划完工年",1,1,15,15));
+			et.add(new Excel_tilte("投资(万元)",1,1,16,16));
+			et.add(new Excel_tilte("补助测算(万元)",1,1,17,17));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);

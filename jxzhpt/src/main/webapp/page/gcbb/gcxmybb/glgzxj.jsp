@@ -102,9 +102,9 @@
 				$("#nian").text($("#ddlYear").val());
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
-						if(msg[i].v_2==' '){
-							tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
-									+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+						if(msg[i].v_0==''){
+							tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"
+									+msg[i].v_1+"</td><td colspan='2'>"+msg[i].v_2+"</td><td>"
 									+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
 									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
 									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"

@@ -173,15 +173,25 @@ text-decoration:none;
 				});
 	}
 	function saveLxsh(){
-		var tz=0;var bzcs=0;
+		var tz=0;var bzcs=0;var yhdk=0;var gz=0;var sz=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
 		if($("#bzcs").val()!='')
 			bzcs=parseFloat($("#bzcs").val());
+		if($("#yhdk").val()!='')
+			yhdk=parseFloat($("#yhdk").val());
+		if($("#gz").val()!='')
+			gz=parseFloat($("#gz").val());
+		if($("#sz").val()!='')
+			sz=parseFloat($("#sz").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
-			return;
+			return
 		}
+		var zh=accSub(tz,bzcs);
+		var dfzc=accSub(zh,yhdk);
+		var dfzc1=accSub(dfzc,gz);
+		var dfzc2=accSub(dfzc1,sz);
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
@@ -193,12 +203,12 @@ text-decoration:none;
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").combotree('getValues')
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+id
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+dfzc2+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').val()+"&lxsh.bz="+$('#bz').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
-		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val();
+		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -410,10 +420,18 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="yhdk" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>国债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="gz" style="width: 120px;" onblur="checkdfzc1(this)"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>省债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="sz" style="width: 120px;" onblur="checkdfzc1(this)"/>
+				</td>
 			</tr>
 			
 			<tr style="height: 60px;">

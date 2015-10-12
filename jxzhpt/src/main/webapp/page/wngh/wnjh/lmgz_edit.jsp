@@ -49,6 +49,9 @@ text-decoration:none;
 				$("#xmmc").val(msg.xmmc);
 				$("#lxbm").val(msg.ghlxbh);
 				$("#jsjsdj").val(msg.jsjsdj);
+				$("#yhdk").val(msg.yhdk);
+				$("#gz").val(msg.gz);
+				$("#sz").val(msg.sz);
 				$("#tsdq").html(msg.tsdq);
 				$("#xjsdj").val(msg.xjsdj);
 				$("#xmbm").html(msg.xmbm);
@@ -204,7 +207,6 @@ text-decoration:none;
 	});
 	
 	function saveLxsh(){
-		$("#dfzc").html('');
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
@@ -227,7 +229,7 @@ text-decoration:none;
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		//alert(data);
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+
-			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val();
+			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updatewnjhlm.do',
@@ -389,13 +391,29 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" name="yhdk" onblur="checkdfzc(this)" style="width: 120px;"/>
+					<input type="text" id="yhdk" style="width: 120px;" onblur="checkdfzc(this)"/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>国债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="gz" style="width: 120px;" onblur="checkdfzc(this)"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>省债(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="sz" style="width: 120px;" onblur="checkdfzc(this)"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz" name="jsxz" style="width: 120px"  value='路面改造'/>
+					<input type="text" id="jsxz" style="width: 120px"  value='路面改造'/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>

@@ -1475,7 +1475,7 @@
 		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' v_63
 		    from jhsh_lmgz jh,
 		    cbsj_lmgz cb,
 		    kxxyj_lmgz kx,
@@ -1522,7 +1522,7 @@
 		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq||'' v_36,jz1.sn||'' v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz||'' v_44,jz4.yhdk||'' v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq||'' v_54,jz4.sn||'' v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' v_63
 		    from jhsh_sjgz jh,
 		    cbsj_sjgz cb,
 		    kxxyj_sjgz kx,
@@ -1569,7 +1569,7 @@
 		    decode(l.jsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' v_63
 		    from jhsh_sh jh,
 		    cbsj_sh cb,
 		    xmsq_sh l,
@@ -1607,16 +1607,15 @@
 		        and lx.lxbm like trim(#{tiaojian})||'%'
 		    </if>   
 		    )
-		    order by v_62,v_10
+		    order by v_62,v_63
 	</select>
 	<select id="getGlgzxj1" parameterType="gcglabgc" resultType="elist">
 	select 
-		max(tb.v_2)||'合计' v_2,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-	 	sum(v_20) v_20,sum(v_21) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-	 	sum(v_20) v_30,sum(v_31) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-	 	sum(v_20) v_40,sum(v_41) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-	 	sum(v_20) v_50,sum(v_51) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-	 	sum(v_20) v_60
+		max(tb.v_1)||'合计' v_2,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
+	 	sum(v_20) v_20,' ' v_21,' ' v_22,sum(v_23) v_23,sum(v_24) v_24,' ' v_25,' ' v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+	 	'0' v_30,sum(v_33) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,' ' v_36,' ' v_37,sum(v_38) v_38,sum(v_39) v_39,
+	 	sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,' ' v_44,' ' v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,
+	 	sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,' ' v_54,' ' v_55,sum(v_56) v_56,sum(v_57) v_57,v_62,max(v_63) v_63
 	 from(
 	select * from(
 		    select 
@@ -1627,7 +1626,7 @@
 		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' v_63
 		    from jhsh_lmgz jh,
 		    cbsj_lmgz cb,
 		    kxxyj_lmgz kx,
@@ -1674,7 +1673,7 @@
 		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq||'' v_36,jz1.sn||'' v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz||'' v_44,jz4.yhdk||'' v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq||'' v_54,jz4.sn||'' v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' v_63
 		    from jhsh_sjgz jh,
 		    cbsj_sjgz cb,
 		    kxxyj_sjgz kx,
@@ -1721,7 +1720,7 @@
 		    decode(l.jsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
 		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsdj,'一级',jz4.wcmc,'0') v_50,
 		    decode(l.jsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
-		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' xmlx
+		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' v_63
 		    from jhsh_sh jh,
 		    cbsj_sh cb,
 		    xmsq_sh l,
@@ -1759,8 +1758,464 @@
 		        and lx.lxbm like trim(#{tiaojian})||'%'
 		    </if>   
 		    )
-		    order by v_62,v_10
-		    )tb group by v_62 order by v_62
+		    order by v_62,v_63
+		    )tb group by v_62 order by v_62,v_63
+	</select>
+	<select id="getGlgzxj2" parameterType="gcglabgc" resultType="elist">
+	select 
+		max(tb.v_63) v_2,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
+	 	sum(v_20) v_20,' ' v_21,' ' v_22,sum(v_23) v_23,sum(v_24) v_24,' ' v_25,' ' v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+	 	'0' v_30,sum(v_33) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,' ' v_36,' ' v_37,sum(v_38) v_38,sum(v_39) v_39,
+	 	sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,' ' v_44,' ' v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,
+	 	sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,' ' v_54,' ' v_55,sum(v_56) v_56,sum(v_57) v_57,v_62,v_63
+	 from(
+	select * from(
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' v_63
+		    from jhsh_lmgz jh,
+		    cbsj_lmgz cb,
+		    kxxyj_lmgz kx,
+		    lxsh_lmgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf=substr(#{sbyf},0,4) group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzgj g where sbyf=#{sbyf} group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzgj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz||'' v_25,jz1.yhdk||'' v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq||'' v_36,jz1.sn||'' v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz||'' v_44,jz4.yhdk||'' v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq||'' v_54,jz4.sn||'' v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' v_63
+		    from jhsh_sjgz jh,
+		    cbsj_sjgz cb,
+		    kxxyj_sjgz kx,
+		    lxsh_sjgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.bywctze) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzsj g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzsj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    cb.kgsj v_21,cb.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' v_63
+		    from jhsh_sh jh,
+		    cbsj_sh cb,
+		    xmsq_sh l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_sh g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_sh g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>   
+		    )
+		    order by v_62,v_63
+		    )tb group by v_62,v_63 order by v_62,v_63
 	</select>
 	
+		<select id="getGlgzxj3" parameterType="gcglabgc" resultType="elist">
+	select 
+		'总计' v_2,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
+	 	sum(v_20) v_20,' ' v_21,' ' v_22,sum(v_23) v_23,sum(v_24) v_24,' ' v_25,' ' v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+	 	'0' v_30,sum(v_33) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,' ' v_36,' ' v_37,sum(v_38) v_38,sum(v_39) v_39,
+	 	sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,' ' v_44,' ' v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,
+	 	sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,' ' v_54,' ' v_55,sum(v_56) v_56,sum(v_57) v_57
+	 from(
+	select * from(
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' v_63
+		    from jhsh_lmgz jh,
+		    cbsj_lmgz cb,
+		    kxxyj_lmgz kx,
+		    lxsh_lmgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf=substr(#{sbyf},0,4) group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzgj g where sbyf=#{sbyf} group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzgj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz||'' v_25,jz1.yhdk||'' v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq||'' v_36,jz1.sn||'' v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz||'' v_44,jz4.yhdk||'' v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq||'' v_54,jz4.sn||'' v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' v_63
+		    from jhsh_sjgz jh,
+		    cbsj_sjgz cb,
+		    kxxyj_sjgz kx,
+		    lxsh_sjgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.bywctze) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzsj g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzsj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    cb.kgsj v_21,cb.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' v_63
+		    from jhsh_sh jh,
+		    cbsj_sh cb,
+		    xmsq_sh l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_sh g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_sh g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>   
+		    )
+		    order by v_62,v_63
+		    )tb order by v_63
+	</select>
+	<select id="getGlgzxj4" parameterType="gcglabgc" resultType="elist">
+	select 
+		max(tb.v_63) v_2,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
+	 	sum(v_20) v_20,' ' v_21,' ' v_22,sum(v_23) v_23,sum(v_24) v_24,' ' v_25,' ' v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+	 	'0' v_30,sum(v_33) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,' ' v_36,' ' v_37,sum(v_38) v_38,sum(v_39) v_39,
+	 	sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,' ' v_44,' ' v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,
+	 	sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,' ' v_54,' ' v_55,sum(v_56) v_56,sum(v_57) v_57,v_63
+	 from(
+	select * from(
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'路面改造' v_63
+		    from jhsh_lmgz jh,
+		    cbsj_lmgz cb,
+		    kxxyj_lmgz kx,
+		    lxsh_lmgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf=substr(#{sbyf},0,4) group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g where substr(sbyf,0,4)=substr(#{sbyf},0,4) group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzgj g where sbyf=#{sbyf} group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzgj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_gcgzgj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    jh.kgsj v_21,jh.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz||'' v_25,jz1.yhdk||'' v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsjsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsjsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsjsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsjsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq||'' v_36,jz1.sn||'' v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz||'' v_44,jz4.yhdk||'' v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsjsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsjsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsjsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsjsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq||'' v_54,jz4.sn||'' v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,round(jz4.wcmc/lx.xmlc*100,0)||'%' v_58,round(jz4.zycgs/jh.bbzzj*100,0)||'%' v_59,round(jz4.ztz/jh.pfztz*100,0)||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'改建' v_63
+		    from jhsh_sjgz jh,
+		    cbsj_sjgz cb,
+		    kxxyj_sjgz kx,
+		    lxsh_sjgz l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.bywctze) wctze,sum(g.bywcmc) bywcmc from gcgl_gcgzsj g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_gcgzsj g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zycgs)+sum(g.dfbz)+sum(g.sttxdk)+sum(g.qtzj)) ztz,sum(g.zycgs) zycgs,sum(g.dfbz) dfbz,sum(g.yhdk) yhdk,
+		    sum(g.sttxdk) sttx,sum(g.qtzj) qttz,sum(g.bywctze) xmwc,sum(g.bywcmc) wcmc,sum(g.lqlmwcqk) lq,sum(g.snlmwcqk) sn
+		     from gcgl_gcgzsj g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=kx.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>
+		    union all
+		    select 
+		    (select name from xtgl_xzqh where id=lx.xzqhdm) v_1,substr(instr(xzqhmc, '市'),length(xzqhmc)) v_2,lx.lxbm||'  '||cb.xmmc v_3,substr(cb.xmbm,0,4) v_4,
+		    lx.xzdj v_5,lx.qdzh v_6,lx.zdzh v_7,lx.yjsdj v_8,lx.jsjsdj v_9,cb.jsxz v_10,lx.xmlc v_11,jh.pfztz v_12,jh.bbzzj v_13,(jh.pfztz-jh.bbzzj) v_14,xd.bnjh v_15,xd.qzbtz v_16,jz.bndsslc v_17,
+		    (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_18,(case when jh.jgzt='1' then '1' else '0' end) v_19,(case when jh.kgzt='0' then '1' else '0' end) v_20,
+		    cb.kgsj v_21,cb.wgsj v_22,jz1.ztz v_23,jz1.zycgs v_24,jz1.dfbz v_25,jz1.yhdk v_26,jz1.sttx v_27,jz1.qttz v_28,jz1.xmwc v_29,'0' v_30,jz1.wcmc v_31,decode(l.jsdj,'一级',jz1.wcmc,'0') v_32,
+		    decode(l.jsdj,'二级',jz1.wcmc,'0') v_33,decode(l.jsdj,'三级',jz1.wcmc,'0') v_34,decode(l.jsdj,'四级',jz1.wcmc,'0') v_35,jz1.lq v_36,jz1.sn v_37,
+		    jz.ssdctc v_38,jz2.ztz v_39,jz2.bywcmc v_40,jz2.wctze v_41,jz4.ztz v_42,jz4.zycgs v_43,jz4.dfbz v_44,jz4.yhdk v_45,jz4.sttx v_46,jz4.qttz v_47,jz4.xmwc v_48,jz4.wcmc v_49,decode(l.jsdj,'一级',jz4.wcmc,'0') v_50,
+		    decode(l.jsdj,'二级',jz4.wcmc,'0') v_51,decode(l.jsdj,'三级',jz4.wcmc,'0') v_52,decode(l.jsdj,'四级',jz4.wcmc,'0') v_53,jz4.lq v_54,jz4.sn v_55,
+		    jz3.ssdctc v_56,jz3.wkglc v_57,decode(lx.xmlc,'0','0',null,'0',round(jz4.wcmc/lx.xmlc*100,0))||'%' v_58,decode(jh.bbzzj,'0','0',null,'0',round(jz4.zycgs/jh.bbzzj*100,0))||'%' v_59,decode(jh.pfztz,'0','0',null,'0',round(jz4.ztz/jh.pfztz*100,0))||'%' v_60,l.bz v_61,lx.xzqhdm v_62,'新建' v_63
+		    from jhsh_sh jh,
+		    cbsj_sh cb,
+		    xmsq_sh l,
+		    (select xmid jhid,min(xzqh) xzqhmc,min(gydwdm) gydw,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbm,replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,
+		    replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,SUM(lc) xmlc,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',',',') yjsdj,replace(WMSYS.WM_CONCAT(to_char(jsjsdj)),',',',') jsjsdj,replace(WMSYS.WM_CONCAT(to_char(decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道'))),',',',') xzdj,
+		    replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh,'市')+1,length(xzqh)))),',','、') szxs
+		    from lxsh_lx where jdbs='2' group by xmid) lx,
+		    (select zj.xmid,sum(zj.xdzj) bnjh,sum(zj.btzzj) qzbtz from plan_zjxd zj where zj.xdnf='2015' group by zj.xmid) xd,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g where substr(sbyf,0,4)='2015' group by g.jhid) jz1,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) wctze,sum(g.bywcmc) bywcmc from gcgl_sh g where sbyf='2015-9' group by g.jhid) jz2,
+		    (select g.jhid,max(g.bndsslc) bndsslc,max(g.ssdctc) ssdctc,min(g.wkglc) wkglc from gcgl_sh g group by g.jhid) jz3,
+		    (select g.jhid,(sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz)) ztz,sum(g.zjdw_btz) zycgs,' ' dfbz,' ' yhdk,
+		    sum(g.zjdw_stz) sttx,sum(g.zjdw_qttz) qttz,sum(g.wc_btz+g.wc_stz+g.wc_qttz) xmwc,sum(g.bywcmc) wcmc,' ' lq,' ' sn
+		     from gcgl_sh g group by g.jhid) jz4
+		    where jh.xmbm=cb.xmbm and jh.xmbm=l.xmbm and jh.xmbm=lx.jhid(+) and jh.xmbm=xd.xmid(+) and jh.xmbm=jz.jhid(+) and jh.xmbm=jz1.jhid(+) and jh.xmbm=jz2.jhid(+) and jh.xmbm=jz3.jhid(+) and jh.xmbm=jz4.jhid(+)
+		    <if test="xmnf != null and  xmnf != ''">
+		        and substr(jh.xmbm,0,4) in (${xmnf})
+		    </if>
+		    <if test="gydw != null and  gydw != ''">
+		        ${gydw}
+		    </if>
+		    <if test="xzqhdm != null and  xzqhdm != ''">
+		        ${xzqhdm}
+		    </if>
+		    <if test="lxmc != null and  lxmc != ''">
+		        and lx.lxmc like '%'||trim(#{lxmc})||'%'
+		    </if>
+		    <if test="xmmc != null and  xmmc != ''">
+		        and jh.xmmc like '%'||trim(#{xmmc})||'%'
+		    </if>
+		    <if test="tiaojian != null and  tiaojian != ''">
+		        and lx.lxbm like trim(#{tiaojian})||'%'
+		    </if>   
+		    )
+		    order by v_62,v_63
+		    )tb group by v_63 order by v_63
+	</select>
 </mapper>

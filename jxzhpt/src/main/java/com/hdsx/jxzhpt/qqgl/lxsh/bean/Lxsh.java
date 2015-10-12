@@ -83,7 +83,21 @@ public class Lxsh implements Serializable {
 	private String jhlc;
 	private String sl;
 	private String zjhlc;
+	private String gz;
+	private String sz;
 	
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	public String getZjhlc() {
 		return zjhlc;
 	}
