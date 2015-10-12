@@ -99,7 +99,13 @@ public class Cbsj {
 	private String dfzc;//地方自筹
 	private String yhdk;//银行贷款
 	private String jszlc;//建设总里程
-	
+	private String xmsl;//路线数量
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
 	public String getJszlc() {
 		return jszlc;
 	}

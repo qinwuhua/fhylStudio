@@ -668,7 +668,15 @@ function showAllsjsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
@@ -798,7 +806,15 @@ function showAlllmsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
@@ -927,7 +943,15 @@ function showAllxjsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},

@@ -85,7 +85,8 @@ public class Lxsh implements Serializable {
 	private String zjhlc;
 	private String gz;
 	private String sz;
-	
+	private String xmsl;
+
 	public String getGz() {
 		return gz;
 	}
@@ -97,6 +98,12 @@ public class Lxsh implements Serializable {
 	}
 	public void setSz(String sz) {
 		this.sz = sz;
+	}
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
 	}
 	public String getZjhlc() {
 		return zjhlc;

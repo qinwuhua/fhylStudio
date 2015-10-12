@@ -43,7 +43,7 @@ $(function() {
 		}else if(qx[i]=='01010604'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
-				title: '十二五计划库',
+				title: '自定义查询',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

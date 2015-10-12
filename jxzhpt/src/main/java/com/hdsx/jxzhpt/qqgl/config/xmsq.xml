@@ -232,8 +232,10 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc 
-				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where l.jdbs='1' and l.sffirst='1' 
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc ,sl.xmsl
+				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
+				where l.jdbs='1' and l.sffirst='1' 
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">and ${xmsq.gydwdm}</if>
 				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">and ${xmsq.xzqhdm}</if>
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">and xmmc like '%'||#{xmsq.xmmc}||'%'</if>
@@ -255,8 +257,10 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc 
-				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where l.jdbs='1' and l.sffirst='1' 
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc ,sl.xmsl
+				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
+				where l.jdbs='1' and l.sffirst='1' 
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>

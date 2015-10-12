@@ -45,14 +45,13 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	
 	public void selwqgzsjZdy(){
 		try {
-		zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
-		List<Gcglwqgz> list = zdycxServer.selwqgzsjZdy(zdycx);
-		int count = zdycxServer.selwqgzsjZdyCount(zdycx);
-		
-		EasyUIPage<Gcglwqgz> eui=new EasyUIPage<Gcglwqgz>();
-		eui.setRows(list);
-		eui.setTotal(count);
-		
+			zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
+			List<Gcglwqgz> list = zdycxServer.selwqgzsjZdy(zdycx);
+			int count = zdycxServer.selwqgzsjZdyCount(zdycx);
+			
+			EasyUIPage<Gcglwqgz> eui=new EasyUIPage<Gcglwqgz>();
+			eui.setRows(list);
+			eui.setTotal(count);
 			JsonUtils.write(eui, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

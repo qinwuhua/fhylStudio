@@ -464,7 +464,15 @@ function showAll(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
+	        	formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -653,6 +661,7 @@ function showAllsjsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({
@@ -698,7 +707,15 @@ function showAllsjsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -864,7 +881,15 @@ function showAlllmgz(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -966,6 +991,7 @@ function showAlllmsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1011,7 +1037,15 @@ function showAlllmsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -1175,7 +1209,15 @@ function showAllxj(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
+				formatter: function(value,row,index){
+	        		if(Number(row.xmsl)>1){
+	        			return '<label style="color:red;">'+value+'</label>';
+	        		}else{
+	        			return value;
+	        		}
+	        	}
+	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -1273,6 +1315,7 @@ function showAllxjsh(){
 			$('#xmsl').html(msg.XMSL);
 			$('#tz').html(msg.TZ);
 			$('#lc').html(msg.LC);
+			$('#bzcs').html(msg.BZCS);
 		}
 	});
 	$('#datagrid').datagrid({    
