@@ -1012,11 +1012,15 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void shsjgzSbzt(){
-		boolean bl=lxshServer.shsjgzSbzt(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
+		try{
+			boolean bl=lxshServer.shsjgzSbzt(lxsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	public void shlmgzSbzt(){

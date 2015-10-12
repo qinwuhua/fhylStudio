@@ -80,7 +80,7 @@
 		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,
+		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
 		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
@@ -98,7 +98,7 @@
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by sbzt1,xmbm
+		order by xmbm desc,sbzt1 
 	</select>
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(t.xmbm) from LXSH_SJGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
@@ -194,7 +194,7 @@
 		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,
+		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
 		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
@@ -231,7 +231,7 @@
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid 
@@ -269,7 +269,7 @@
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.* from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
@@ -346,7 +346,7 @@
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid 
@@ -384,7 +384,7 @@
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid

@@ -56,6 +56,7 @@
 				id+=","+rows[i].id ;
 				xmbm+=','+rows[i].xmbm;
 			}
+			alert("xmbm="+xmbm+"    id="+id);
 			if(confirm('您确定审核该项目？')){
 				var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
 				$.ajax({
