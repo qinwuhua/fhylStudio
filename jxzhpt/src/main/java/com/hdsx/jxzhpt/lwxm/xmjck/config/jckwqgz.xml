@@ -203,7 +203,7 @@
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd<!-- ,F010 akjfl -->,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
- 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,trunc(ptx,6) ptx,trunc(pty,6) pty,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '跨越地物类型%' and F002=f006) kydwlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '通航等级%' and F002=F037) thdj,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,

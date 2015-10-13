@@ -46,6 +46,43 @@ $(function(){
 	jckglWqgz();
 });
 
+function tuihui(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要删除项目！");
+		return;
+	}
+	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt!='已审核'){
+			alert('请勾选已审核的项目！');
+			return;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+	}
+	if(confirm('确定退回到未审核状态？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/wqgzsj/tuihuiWqgzsjById.do",
+			 dataType : 'json',
+			 data : 'jckwqgzsj.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 jckglWqgz();
+				 }else{
+					 YMLib.Tools.Show('退回失败！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+
 function delJckwqgz(){
 	var rows=$('#grid').datagrid('getSelections');
 	if(rows.length==0) {
@@ -138,8 +175,10 @@ function shangB(){
 		});
 	}
 } 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj2);
 }
 
 var gydwstr;
@@ -202,12 +241,17 @@ var xzqhstr;
 					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.shzt=="已审核"){
-					return '<span style="color:grey;">已审核</span>';
+				if(row.sbthcd!=7){
+					return '<a href=javascript:shenghwtg('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
 				}else{
-					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-				//return '已审核  ';
+					if(row.shzt=="已审核"){
+						return '<span style="color:grey;">已审核</span>';
+					}else{
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					//return '已审核  ';
+					}
 				}
+				
 			}},
 			 	{field:'gydw',title:'管养（监管）单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -333,7 +377,7 @@ text-decoration:none;
                               <td colspan="6">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangb()"  style="border-width:0px;" /> -->
-<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />
 <!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" /> -->
 <!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" /> -->
 <!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgzsj_add.jsp','900','450');" style="border-width:0px;" /> -->

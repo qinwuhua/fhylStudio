@@ -138,6 +138,8 @@ function autoCompleteLXBM(){
 				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
 				ptx=item.ptx;
 				pty=item.pty;
+				$("#jd").val(item.ptx);
+				$("#wd").val(item.pty);
 				$("#qlmc").html(item.qlmc);
 				$("#qlzxzh").html(parseFloat(item.qlzxzh));
 				$("#gydw").html(item.gydw);
@@ -150,25 +152,6 @@ function autoCompleteLXBM(){
 				$("#qlkd").html(item.qlkd);
 				$("#dkzdkj").html(item.dkzdkj);
 				$("#jsdj").html(item.pddj);
-				 /* $.ajax({
-					type : 'post',
-					url : '/jxzhpt/xmjck/selJsdj.do',
-					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
-					dataType:'json',
-					success : function(msg) {
-						if($.trim(msg.jsdj)=='一级公路')
-							$("#jsdj").html('一类');
-						else	if($.trim(msg.jsdj)=='二级公路')
-							$("#jsdj").html('二类');
-						else if($.trim(msg.jsdj)=='三级公路')
-							$("#jsdj").html('三类');
-						else if($.trim(msg.jsdj)=='四级公路')
-							$("#jsdj").html('四类');
-						else{
-							$("#jsdj").html('五类');
-						}	
-					}
-				});  */
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#sbjgxs").val(item.sbjgxs);
@@ -203,8 +186,8 @@ function saveWqgz(){
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()
-	+"&jckwqgzsj.ptx="+ptx+"&jckwqgzsj.pty="+pty+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
 	 $.ajax({
 		type:'post',
@@ -405,6 +388,31 @@ function newGuid()
 				</td>
 			</tr>
 			
+				<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xlxbm" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xqlbm" />
+					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xzxzh" />
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">经度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="jd" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">纬度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="wd" />
+					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
+			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

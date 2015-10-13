@@ -63,7 +63,18 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			else return false;
 		
 	}
-
+	@Override
+	public boolean tuihuiWqgzsjById(Jckwqgzsj jckwqgzsj) {
+			String[] strs = jckwqgzsj.getId().split(",");
+			list = new ArrayList<String>();
+			for (int i = 0; i < strs.length; i++) {
+				list.add(strs[i]);
+			}
+			if(deleteBatch("tuihuiWqgzsjById", list)>0) return true;
+			else return false;
+		
+	}
+	
 	@Override
 	public boolean getwqgzZP(Jckwqgzsj jckwqgzsj) {
 		List<Plan_upload> pl1=queryList("getwqgzZP1", jckwqgzsj);
