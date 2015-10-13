@@ -176,6 +176,11 @@
 				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;
 			 });
 		}
+		function shenghwtg(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj);
+		}
 	</script>
 <style type="text/css">
 TD {

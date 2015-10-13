@@ -188,8 +188,10 @@ function shangB1(index){
 	}
 }
 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj2);
 }
 
 function shangb(index){

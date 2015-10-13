@@ -205,10 +205,16 @@ function shangB1(index){
 	}
 }
 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg1(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj1);
 }
-
+function shenghwtg2(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj2);
+}
 var gydwstr;
 var xzqhstr;
 //审查库管理
@@ -290,15 +296,15 @@ function sckglWqgz(){
 				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==11){
 					if(row.sck_shzt1=='未审核'){
 						if(row.tsdq.indexOf('省直管试点县')!=-1){
-							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 						}
-						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg1('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 					}else
 					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==9){
 					if(row.sck_shzt=='未审核'){
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 					}else
 					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 					}
