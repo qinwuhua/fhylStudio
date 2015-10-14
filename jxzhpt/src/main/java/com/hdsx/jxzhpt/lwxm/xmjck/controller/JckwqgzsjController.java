@@ -247,6 +247,14 @@ public class JckwqgzsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void tuihuiWqgzsjsckById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.tuihuiWqgzsjsckById(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void getwqgzZP(){
 		try {
 			ResponseUtils.write(getresponse(), jckwqgzsjServer.getwqgzZP(jckwqgzsj)+"");

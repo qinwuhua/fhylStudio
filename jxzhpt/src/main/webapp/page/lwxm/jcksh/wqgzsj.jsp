@@ -49,7 +49,7 @@ $(function(){
 function tuihui(){
 	var rows=$('#grid').datagrid('getSelections');
 	if(rows.length==0) {
-		alert("请选择要删除项目！");
+		alert("请选择要退回的项目！");
 		return;
 	}
 	var id=rows[0].id;

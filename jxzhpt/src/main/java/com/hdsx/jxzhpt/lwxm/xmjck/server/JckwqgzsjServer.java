@@ -74,4 +74,6 @@ public interface JckwqgzsjServer {
 	List<Excel_list> dcwqgzsjsckshExcel(Jckwqgzsj jckwqgzsj);
 
 	boolean tuihuiWqgzsjById(Jckwqgzsj jckwqgzsj);
+
+	boolean tuihuiWqgzsjsckById(Jckwqgzsj jckwqgzsj);
 }

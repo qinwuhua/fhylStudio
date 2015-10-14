@@ -162,6 +162,10 @@
 		 <update id="tuihuiWqgzsjById" parameterType="java.util.List">
 		 	update xmk_wqgz set shzt='未审核' where id=#{String}
 		 </update>
+		  <update id="tuihuiWqgzsjsckById" parameterType="java.util.List">
+		 	update sck_wqgz set sck_shzt='未审核' where sckid=#{String}
+		 </update>
+		 
 		 <select id="getwqgzZP1" resultType="plan_upload" parameterType="jckwqgzsj">
 		 	select id from plan_upload where parentid=#{id} and filetype='桥梁正面文件'
 		 </select>
@@ -604,7 +608,7 @@
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
-			sck_sbthcd &lt;=7 and gydwbm like '1%'
+			(sck_sbthcd &lt;=7 or sck_shyj2 is not null) and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -658,7 +662,7 @@
  				<if test="tsdq!='' and tsdq!= null "> 
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
-			where sck_sbthcd &lt;=7 and gydwbm like '1%'
+			where (sck_sbthcd &lt;=7 or sck_shyj2 is not null) and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -701,6 +705,9 @@
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
 	</select>	
+	<select id="cxplanwqgzbyid" parameterType="jckwqgzsj" resultType="planwqgzsj">
+	select * from plan_wqgz where sckid=#{id}
+	</select>
 	<update id="sjshtyWqgzsjwqgz" parameterType="jckwqgzsj" >
 		update sck_wqgz set sck_shzt='已审核',lrjh='已列入',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shyj2='同意' where sckid =#{id} 
 	</update>

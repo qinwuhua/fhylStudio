@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.jhgl.bean.Planwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
@@ -74,7 +75,17 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			else return false;
 		
 	}
-	
+	@Override
+	public boolean tuihuiWqgzsjsckById(Jckwqgzsj jckwqgzsj) {
+			String[] strs = jckwqgzsj.getId().split(",");
+			list = new ArrayList<String>();
+			for (int i = 0; i < strs.length; i++) {
+				list.add(strs[i]);
+			}
+			if(deleteBatch("tuihuiWqgzsjsckById", list)>0) return true;
+			else return false;
+		
+	}	
 	@Override
 	public boolean getwqgzZP(Jckwqgzsj jckwqgzsj) {
 		List<Plan_upload> pl1=queryList("getwqgzZP1", jckwqgzsj);
@@ -233,6 +244,10 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	@Override
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
+			Planwqgzsj planwqgzsj = queryOne("cxplanwqgzbyid", jckwqgzsj);
+			if(planwqgzsj!=null){
+				return true;
+			}
 			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
 				jckwqgzsj.setBz("0");
 			}else {
