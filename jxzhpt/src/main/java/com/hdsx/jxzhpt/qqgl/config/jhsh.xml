@@ -530,6 +530,9 @@
 		select * from lxsh_lx where xmid=#{xmid} and 
 		jdbs= (select max(jdbs) from lxsh_lx x where x.xmid = #{xmid})
 	</select>
+	<select id="queryLxMaxJdbs1" parameterType="lx" resultType="lx">
+		select * from wnjh_lx where xmid=#{xmid}
+	</select>
 	<select id="queryYLx" parameterType="lx" resultType="lx">
 		<![CDATA[select ylxbm ylxbm,(case when Xqdzh<${qdzh} then YQDZH+${qdzh}-XQDZH else yqdzh end) yqdzh,
 		(case when ${zdzh}<Xzdzh then YZDZH-XZDZH+${zdzh} else yzdzh end ) yzdzh ,

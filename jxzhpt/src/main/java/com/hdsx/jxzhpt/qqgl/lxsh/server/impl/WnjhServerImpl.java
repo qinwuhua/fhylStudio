@@ -222,6 +222,9 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	}
 	@Override
 	public boolean insertGjlxwnjh(Lxsh lxsh) {
+		if("是".equals(lxsh.getLsjl())){
+			update("updateGjlsjl", lxsh);
+		}
 		return insert("insertGjlxwnjh", lxsh)==1;
 	}
 	@Override

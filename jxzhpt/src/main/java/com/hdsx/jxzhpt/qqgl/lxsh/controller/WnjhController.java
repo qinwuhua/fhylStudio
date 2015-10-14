@@ -526,6 +526,8 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void insertGjwnjh(){
 		try {
+			XmsqServer xmsqServer=new XmsqServerImpl();
+			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
 			boolean bl=wnjhServer.insertGjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -534,6 +536,8 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void insertLmwnjh(){
 		try {
+			XmsqServer xmsqServer=new XmsqServerImpl();
+			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
 			boolean bl=wnjhServer.insertLmwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -542,6 +546,8 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void insertXjwnjh(){
 		try {
+			XmsqServer xmsqServer=new XmsqServerImpl();
+			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
 			boolean bl=wnjhServer.insertXjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -992,6 +998,8 @@ public class WnjhController extends BaseActionSupport{
 	}
 	
 	public void insertGjlxwnjh(){
+		XmsqServer xmsqServer=new XmsqServerImpl();
+		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
 		ResponseUtils.write(getresponse(), wnjhServer.insertGjlxwnjh(lxsh)+"");
 	}
 	public void updatewnjhsjlx(){
