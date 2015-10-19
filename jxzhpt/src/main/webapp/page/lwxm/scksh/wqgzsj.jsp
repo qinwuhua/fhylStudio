@@ -108,6 +108,44 @@ function delSckwqgz1(index){
 		}
 }
 
+function tuihui(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	var id=rows[0].sckid;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sck_shzt!='已审核'){
+			alert('请勾选已审核的项目！');
+			return;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].sckid ;
+	}
+	alert(id);
+	if(confirm('确定退回到未审核状态？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/wqgzsj/tuihuiWqgzsjsckById.do",
+			 dataType : 'json',
+			 data : 'jckwqgzsj.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 sckglWqgz();
+				 }else{
+					 YMLib.Tools.Show('退回失败！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	if(rows.length==0) {
@@ -188,8 +226,10 @@ function shangB1(index){
 	}
 }
 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.sck_shyj2);
 }
 
 function shangb(index){
@@ -267,11 +307,16 @@ $("#grid").datagrid({
 				}
 			}},    
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_shzt=="已审核"){
-					return '<span style="color:grey;">已审核</span>';
+				if(row.sck_sbthcd!=7){
+					return '<a href=javascript:shenghwtg('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
 				}else{
-					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					if(row.sck_shzt=="已审核"){
+						return '<span style="color:grey;">已审核</span>';
+					}else{
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					}
 				}
+
 			}},
 // 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 				{field:'bzls',title:'补助历史',width:60,align:'center'},
@@ -427,6 +472,7 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>		
 								</td>
                             </tr></table>

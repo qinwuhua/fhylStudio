@@ -240,6 +240,21 @@ public class JckwqgzsjController extends BaseActionSupport{
 		}
 	}
 	
+	public void tuihuiWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.tuihuiWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void tuihuiWqgzsjsckById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.tuihuiWqgzsjsckById(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void getwqgzZP(){
 		try {
 			ResponseUtils.write(getresponse(), jckwqgzsjServer.getwqgzZP(jckwqgzsj)+"");
@@ -643,8 +658,10 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("通航等级",1,2,27,27));
 		et.add(new Excel_tilte("公路桥梁用途",1,2,28,28));
 		et.add(new Excel_tilte("桥梁结构",1,1,29,32));
-		et.add(new Excel_tilte("评定等级分类",1,2,33,33));
-		et.add(new Excel_tilte("是否已列入部危桥库",1,2,34,34));
+		et.add(new Excel_tilte("主要病害",1,2,33,33));
+		et.add(new Excel_tilte("评定等级分类",1,2,34,34));
+		et.add(new Excel_tilte("备注",1,2,35,35));
+		et.add(new Excel_tilte("是否已列入部危桥库",1,2,36,36));
 		et.add(new Excel_tilte("经度",2,2,11,11));
 		et.add(new Excel_tilte("纬度",2,2,12,12));
 		et.add(new Excel_tilte("按跨径分类",2,2,15,15));
@@ -725,8 +742,10 @@ public class JckwqgzsjController extends BaseActionSupport{
 		et.add(new Excel_tilte("通航等级",1,2,27,27));
 		et.add(new Excel_tilte("公路桥梁用途",1,2,28,28));
 		et.add(new Excel_tilte("桥梁结构",1,1,29,32));
-		et.add(new Excel_tilte("评定等级分类",1,2,33,33));
-		et.add(new Excel_tilte("是否已列入部危桥库",1,2,34,34));
+		et.add(new Excel_tilte("主要病害",1,2,33,33));
+		et.add(new Excel_tilte("评定等级分类",1,2,34,34));
+		et.add(new Excel_tilte("备注",1,2,35,35));
+		et.add(new Excel_tilte("是否已列入部危桥库",1,2,36,36));
 		et.add(new Excel_tilte("经度",2,2,11,11));
 		et.add(new Excel_tilte("纬度",2,2,12,12));
 		et.add(new Excel_tilte("按跨径分类",2,2,15,15));

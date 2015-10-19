@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.PlanwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -90,6 +91,33 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return p;
 	}
 	@Override
+	public Planwqgzsj loadwqjhksbCount1(Planwqgzsj planwqgzsj) {
+		List<Planwqgzsj> list=queryList("loadwqjhksbCount1", planwqgzsj);
+		Planwqgzsj p=new Planwqgzsj();
+		BigDecimal pfztz=new BigDecimal("0");
+		BigDecimal btz=new BigDecimal("0");
+		BigDecimal stz=new BigDecimal("0");
+		BigDecimal qttz=new BigDecimal("0");
+		BigDecimal xdzj=new BigDecimal("0");
+		int sl=0;
+		for (Planwqgzsj pl : list) {
+			sl=sl+pl.getSl();
+			pfztz=pfztz.add(new BigDecimal(pl.getPfztz()==null ? "0":pl.getPfztz()));
+			btz=btz.add(new BigDecimal(pl.getJhsybzje()==null ? "0":pl.getJhsybzje()));
+			stz=stz.add(new BigDecimal(pl.getShengbz()==null ? "0":pl.getShengbz()));
+			qttz=qttz.add(new BigDecimal(pl.getJhsydfzcje()==null ? "0":pl.getJhsydfzcje()));
+			xdzj=xdzj.add(new BigDecimal(pl.getXdzj()==null ? "0":pl.getXdzj()));
+		}
+		p.setPfztz(pfztz+"");
+		p.setJhsybzje(btz+"");
+		p.setShengbz(stz+"");
+		p.setJhsydfzcje(qttz+"");
+		p.setXdzj(xdzj+"");
+		p.setSl(sl);
+		return p;
+	}
+	
+	@Override
 	public Planwqgzsj loadwqgzjhkbyid(String id) {
 		return queryOne("loadwqgzjhkbyid", id);
 	}
@@ -156,10 +184,22 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return queryList("selectwqjhksb",planwqgzsj);
 	}
 	@Override
+	public int selectwqjhksbcount1(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectwqjhksbcount1", planwqgzsj);
+	}
+	
+	@Override
+	public List<Planwqgzsj> selectwqjhksb1(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectwqjhksb1",planwqgzsj);
+	}
+	@Override
 	public int selectwqjhksbcount(Planwqgzsj planwqgzsj) {
 		// TODO Auto-generated method stub
 		return queryOne("selectwqjhksbcount", planwqgzsj);
 	}
+	
 	@Override
 	public boolean sbWqgzjh(Planwqgzsj planwqgzsj) {
 		String[] strs = planwqgzsj.getId().split(",");
@@ -250,5 +290,17 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	public List<Excel_list> dcwqgzsjjhshExcel3(Planwqgzsj planwqgzsj) {
 		return queryList("dcwqgzsjjhshExcel3",planwqgzsj);
 	}
+	
+	@Override
+	public boolean tuihuiWqgzsjById(Planwqgzsj planwqgzsj) {
+			String[] strs = planwqgzsj.getId().split(",");
+			list = new ArrayList<String>();
+			for (int i = 0; i < strs.length; i++) {
+				list.add(strs[i]);
+			}
+			if(deleteBatch("tuihuiWqgzsjById", list)>0) return true;
+			else return false;
 		
+	}
+	
 }

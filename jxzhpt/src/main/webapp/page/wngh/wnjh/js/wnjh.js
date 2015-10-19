@@ -1,4 +1,9 @@
 var obj=new Object();
+function Lsjl(xmbm){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.UI.createWindow('lsjlwindow','历史记录','lsjl.jsp','lsjlwindow',980,300);
+	//openWindow('lsjlwindow','历史记录','/jxzhpt/page/wngh/wnjh/lsjl.jsp',980,300);
+}
 function loadGldj(id) {
 	$('#' + id).combotree({
 		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
@@ -525,7 +530,7 @@ function showgjtj(xmlx){
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
-	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+"&xmlx="+xmlx;
+	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+"&xmlx="+xmlx+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -590,6 +595,7 @@ function showAllgj(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
+			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
@@ -597,6 +603,15 @@ function showAllgj(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsj('+index+')">编辑</a>  '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsj('+index+')">删除</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">     添加路线</a>  ';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
@@ -705,6 +720,7 @@ function showAlllm(){
 			xmnf:xmnf,
 			jsdj:jsdj,
 			gldj:gldj,
+			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
@@ -713,6 +729,15 @@ function showAlllm(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="lmxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlm('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellm('+index+')">删除</a>  '
 	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">     添加路线</a>  ';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
@@ -821,6 +846,7 @@ function showAllxj(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
+			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val()
 		},
 	    columns:[[
@@ -829,6 +855,15 @@ function showAllxj(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxj('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxj('+index+')">删除</a>  '
 	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">     添加路线</a>  ';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
@@ -920,7 +955,7 @@ function dcwnjhExcel(str){
 	}
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
-	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj;
+	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcwnjhExcel.do?'+data;
 	 });

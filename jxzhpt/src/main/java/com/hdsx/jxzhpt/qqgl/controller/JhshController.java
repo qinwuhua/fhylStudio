@@ -928,6 +928,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx1(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx1(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 查询历史数据信息
 	 */

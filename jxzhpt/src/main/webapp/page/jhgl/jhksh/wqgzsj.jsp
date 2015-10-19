@@ -30,6 +30,44 @@
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
+		
+		function tuihui(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要退回的项目！");
+				return;
+			}
+			var id=rows[0].id;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].spzt!='1'){
+					alert('请勾选已审核的项目！');
+					return;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+			}
+			if(confirm('确定退回到未审核状态？')){
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/jhgl/tuihuiWqgzsjById.do",
+					 dataType : 'json',
+					 data : 'planwqgzsj.id=' +id,
+					 success : function(msg){
+						 if(msg){
+							 alert('退回成功！');
+							 loadwqjhkgl();
+						 }else{
+							 YMLib.Tools.Show('退回失败！',3000);
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+			}
+		}
+		
 		function loadwqjhkgl(){
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
@@ -55,7 +93,7 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 		$("#grid").datagrid({    
-			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
+			 url:'/jxzhpt/jhgl/selectwqjhksb1.do',
 			 queryParams : {
 				 'sbthcd':function(){
 					 if($.cookie("unit2").length==11) return 0;
@@ -93,9 +131,13 @@
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    
 					 {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
-								 if(row.spzt=='0')
-								 return '<a href=javascript:shangb1('+"'"+row.id+"','"+row.tsdq+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-								 else  return "已审核";
+						 	if(row.jh_sbthcd<4){
+								return '<a href=javascript:shenghwtg('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
+							}else{
+								if(row.spzt=='0')
+									 return '<a href=javascript:shangb1('+"'"+row.id+"','"+row.tsdq+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+									 else  return "已审核";
+							} 
 					}}, 
 		 		{field:'sfylsjl',title:'是否有修建记录',width:120,align:'center',formatter:function(value,row,index){
 		        	if(row.sfylsjl=='无')
@@ -131,7 +173,7 @@
 				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
 				$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
+				 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
 				 dataType : 'json',
 				 data : data,
 				 success : function(msg){
@@ -175,6 +217,11 @@
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;
 			 });
+		}
+		function shenghwtg(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj);
 		}
 	</script>
 <style type="text/css">
@@ -268,6 +315,7 @@ text-decoration:none;
 								</select></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />
 								 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="dcExcel()"/>
 							</td>
                             </tr></table>

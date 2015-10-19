@@ -141,7 +141,28 @@ public class Jckwqgzsj implements Serializable{
 	private String sck_sbthcd1;
 	private String zdezj;
 	private String scakjfl;
+	private String xlxbm;
+	private String xqlbm;
+	private String xzxzh;
 	
+	public String getXlxbm() {
+		return xlxbm;
+	}
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+	public String getXqlbm() {
+		return xqlbm;
+	}
+	public void setXqlbm(String xqlbm) {
+		this.xqlbm = xqlbm;
+	}
+	public String getXzxzh() {
+		return xzxzh;
+	}
+	public void setXzxzh(String xzxzh) {
+		this.xzxzh = xzxzh;
+	}
 	public String getScakjfl() {
 		return scakjfl;
 	}

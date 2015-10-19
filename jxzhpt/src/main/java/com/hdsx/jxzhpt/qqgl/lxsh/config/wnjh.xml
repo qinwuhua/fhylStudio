@@ -27,15 +27,15 @@
 	</select>
 	<insert id="insertGjwnjh" parameterType="lxsh">
 		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},' ',#{bz},#{yhdk},#{gz},#{sz})
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz})
 	</insert>
 	<insert id="insertLmwnjh" parameterType="lxsh">
 		insert into WNJH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},' ',#{bz},#{yhdk},#{gz},#{sz})
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz})
 	</insert>
 	<insert id="insertXjwnjh" parameterType="lxsh">
 		insert into WNJH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},' ',#{bz},#{yhdk},#{gz},#{sz})
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh
@@ -65,6 +65,9 @@
 		<if test="jhwllc!=null">,#{jhwllc}</if>
 		<if test="jhlc!=null">,#{jhlc}</if>)
 	</insert>
+	<update id="updateGjlsjl" parameterType="lxsh">
+	update ${xmlx} set lsjl=#{lsjl} where id=#{xmbm}
+	</update>
 	<insert id="insertGjlxwnjh" parameterType="lxsh">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,gpsqdzh,gpszdzh
 		<if test="xjlxbm!='' and xjlxbm!=null">,xjlxbm</if>
@@ -122,6 +125,9 @@
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="gldj!='' and gldj!= null ">
 			${gldj}
 		</if>
@@ -148,6 +154,9 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
@@ -160,7 +169,7 @@
 	</select>
 	<select id="selectLmwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl  from wnjh_lmgz t left join 
+		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
@@ -174,6 +183,9 @@
 		</if>		
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -200,6 +212,9 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -231,6 +246,9 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
@@ -256,6 +274,9 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -491,6 +512,9 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
@@ -509,6 +533,9 @@
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf in (${xmnf})
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -531,6 +558,9 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -661,6 +691,9 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
@@ -688,6 +721,9 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
 		</if>
@@ -714,6 +750,9 @@
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}

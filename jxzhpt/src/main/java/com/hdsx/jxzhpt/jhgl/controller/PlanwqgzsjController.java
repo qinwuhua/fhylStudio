@@ -282,6 +282,84 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			boolean bl=planwqgzsjServer.editwqgzsj1(planwqgzsj);
 			ResponseUtils.write(getresponse(), bl+"");
 		}
+	public void selectwqjhksb1(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
+			}else{
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			List<Planwqgzsj> list = planwqgzsjServer.selectwqjhksb1(planwqgzsj);
+			int count = planwqgzsjServer.selectwqjhksbcount1(planwqgzsj);
+			
+			EasyUIPage<Planwqgzsj> eui = new EasyUIPage<Planwqgzsj>();
+			eui.setRows(list);
+			eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadwqjhksbCount1(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
+			}else{
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			Planwqgzsj p = planwqgzsjServer.loadwqjhksbCount1(planwqgzsj);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){
@@ -359,6 +437,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
 	public void sbWqgzjh(){
 		boolean bl=planwqgzsjServer.sbWqgzjh(planwqgzsj);
 		ResponseUtils.write(getresponse(), bl+"");
@@ -607,6 +686,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			Excel_export.excel_exportjhsh(eldata,response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void tuihuiWqgzsjById(){
+		try {
+			JsonUtils.write(planwqgzsjServer.tuihuiWqgzsjById(planwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

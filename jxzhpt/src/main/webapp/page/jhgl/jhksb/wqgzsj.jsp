@@ -114,16 +114,16 @@
 							}
 						 if(row.sbzt2=='未上报'&&row.jh_sbthcd==0&&czzt!='审核状态'){
 							 if(row.shzt1=='未审核'){
-								 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+								 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg1("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 							 }
 							 if(row.tsdq.indexOf('省直管试点县')!=-1){
 								 if(row.shzt=='未审核')
-									 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+									 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg2("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 							 }
 							 return '<a href=javascript:shangb('+"'"+row.id+"','"+sbthcd+"'"+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 						 }else if(row.sbzt2=='未上报'&&row.jh_sbthcd==2&&czzt!='审核状态'){
 							 if(row.shzt=='未审核'){
-								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg2("'+row.shyj+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 							 }
 							 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 						 }else{
@@ -263,8 +263,15 @@
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','市级初审',"/jxzhpt/page/jhgl/jhksb/wqgzsj_sh.jsp",'wq_edit',500,300);
 		}
-		function shenghwtg(str){
-			alert("未通过原因："+str);
+		function shenghwtg1(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj1);
+		}
+		function shenghwtg2(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj);
 		}
 	</script>
 <style type="text/css">

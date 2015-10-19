@@ -180,6 +180,7 @@
 		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
+		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>

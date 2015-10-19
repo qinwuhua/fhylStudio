@@ -107,7 +107,12 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
-        						
+        						<td>是否有历史记录：</td>
+        						<td><select id="lsjl" style="width:127px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select></td>
         					</tr>
         					<tr height="32">
                               <td colspan="10">

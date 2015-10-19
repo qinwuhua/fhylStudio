@@ -371,5 +371,6 @@ public interface JhshServer {
 	 * @return
 	 */
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
+	public List<Lx> queryLsxx1(Jhsh jhsh);
 	
 }
