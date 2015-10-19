@@ -545,10 +545,8 @@
 		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(
-			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
-	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
-	    )
+		((to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+		(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh)))
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -571,10 +569,8 @@
 		union all
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(
-			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
-	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
-	    )
+		((to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh)))
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -597,10 +593,8 @@
 		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(
-			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
-	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
-	    )
+		((to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh)))
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -623,10 +617,8 @@
 		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(
-			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
-	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
-	    )
+		((to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh)))
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -649,10 +641,8 @@
 		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(
-			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
-	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
-	    )
+		((to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh)))
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
