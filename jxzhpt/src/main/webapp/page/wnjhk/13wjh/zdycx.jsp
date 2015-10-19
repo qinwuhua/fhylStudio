@@ -21,9 +21,10 @@
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
-		loadBmbm2("kgzt","开工状态");
+		tsdq("tsdq");
 		loadBmbm3('jsdj','技术等级');
 		loadGldj('gldj');
+		loadBmbm2("kgzt","开工状态");
 		//xmnf("xmnf");
 		//xmnf("jhnf");
 		
@@ -35,25 +36,30 @@
 			YMLib.Var.lxbm=$("#lxbm").val();
 			YMLib.Var.xmlx=$("#xmlx").combobox("getValue");
 			YMLib.Var.xmnf=$("#xmnf").combobox("getValue");
-			//YMLib.Var.jhnf=$("#jhnf").combobox("getValue");
-			YMLib.Var.xmName=$("#xmlx").combobox("getValue");
-			Wqgzsj();
+			YMLib.Var.jhnf=$("#jhnf").combobox("getValue");
+			YMLib.Var.xmName=$("#xmlx").combobox("getText");
+			YMLib.Var.tsdq = $('#tsdq').combo("getText");
+			YMLib.Var.gldj = $('#gldj').combobox("getValues").join(',');
+			YMLib.Var.jsdj = $('#jsdj').combobox("getValues").join(",");
+			if($("#xmlx").combobox("getValue")=='wqgz') Wqgz();
+			else if($("#xmlx").combobox("getValue")=='abgc') Abgc();	
+			else if($("#xmlx").combobox("getValue")=='zhfz') Zhfz();
+			else if($("#xmlx").combobox("getValue")=='lmgj') Gcgj();
+			else if($("#xmlx").combobox("getValue")=='lmsj')	Gcsj();
+			else if($("#xmlx").combobox("getValue")=='yhdzx') Yhdzx();
+			else Sh();
 		});
 	});
 </script>
 <style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
+TD {font-size: 12px;}
+a{text-decoration:none;}
 </style>
 </head>
 <body>
 	
 		<div id="righttop">
-		<div id="p_top">数据查询>&nbsp;自定义查询>&nbsp;危桥改造（交通局）</div>
+		<div id="p_top">五年计划库>&nbsp;十二五计划库>&nbsp;路网项目</div>
 		</div>
 
 <center>
@@ -71,19 +77,26 @@ text-decoration:none;
 					<input type="text" id="lxmc" style="width: 145px"/></td>
 			</tr>
 			<tr  style="height: 30px;">
-				<td style="background-color: #ffffff;width:15%" align="right">是否部库：</td>
+				<td style="background-color: #ffffff;width:15%" align="right">项目类型：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select  id="xmlx" style="width: 160px" class="easyui-combobox" >
-						<option value="">全部</option>
-						<option value="是">是</option>
-						<option value="否">否</option>
+						<option value="wqgz">危桥改造</option>
+						<option value="abgc">安保工程</option>
+						<option value="zhfz">灾害防治</option>
 					</select></td>
+				<!-- <td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select  id="cc" style="width: 160px" class="easyui-combobox" >
+							<option selected="selected" value="">全部</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
+									</select></td> -->
 					<td style="background-color: #ffffff;width:15%" align="right">开工状态：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select  id="kgzt" style="width: 160px">
-						<option value="">全部</option>
-						<option value="未开工">未开工</option>
-						<option value="已开工">已开工</option>
 					</select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -93,29 +106,46 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select  id="xmnf" class="easyui-combobox" style="width:160px">
-						<option value="2015">2015</option>
-						<option value="2014">2014</option>
-						<option value="2013">2013</option>
-						<option value="2012">2012</option>
-						<option value="2011">2011</option>
+						<option value="">--请选择--</option>
+						<option value="2015">2020</option>
+						<option value="2014">2019</option>
+						<option value="2013">2018</option>
+						<option value="2012">2017</option>
+						<option value="2011">2016</option>
 					</select>
 				</td>
-				<!-- <td style="background-color: #ffffff;width:15%" align="right">计划年份：</td>
+				<td style="background-color: #ffffff;width:15%" align="right">计划年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select id="jhnf" style="width:160px"></select></td> -->
-				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
-				<td style="background-color: #ffffff;" align="left">
-					<select name="jsdj" id="jsdj" style="width:160px;" class="easyui-combobox"></select>
+					<select id="jhnf" class="easyui-combobox" style="width:160px">
+						<option value="">--请选择--</option>
+						<option value="2015">2020</option>
+						<option value="2014">2019</option>
+						<option value="2013">2018</option>
+						<option value="2012">2017</option>
+						<option value="2011">2016</option>
+					</select>
 				</td>
 				<td style="background-color: #ffffff;width:15%" align="right">公路等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select name="gldj" id="gldj" style="width:149px;" class="easyui-combobox"></select>
 				</td>
 			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color: #ffffff;width:15%" align="right">特殊地区：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
+				</td>
+				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select name="jsdj" id="jsdj" style="width:160px;" class="easyui-combobox"></select>
+				</td>
+				<td style="background-color: #ffffff;width:15%" align="right"></td>
+				<td style="background-color: #ffffff;" align="left"></td>
+			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">
 						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
-						<img  onclick="exportExcel_wqsjzdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
+						<img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>
 			</tr>
 			</table><br/>

@@ -25,8 +25,8 @@
 		loadBmbm3('jsdj','技术等级');
 		loadGldj('gldj');
 		loadBmbm2("kgzt","开工状态");
-		xmnf("xmnf");
-		xmnf("jhnf");
+		//xmnf("xmnf");
+		//xmnf("jhnf");
 		
 		$("#btnSelect").click(function(){
 			YMLib.Var.gydw=$("#gydw").combobox("getValue");
@@ -105,10 +105,26 @@ a{text-decoration:none;}
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select  id="xmnf" style="width:160px"></select></td>
+					<select  id="xmnf" class="easyui-combobox" style="width:160px">
+						<option value="">--请选择--</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+					</select>
+				</td>
 				<td style="background-color: #ffffff;width:15%" align="right">计划年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select id="jhnf" style="width:160px"></select></td>
+					<select id="jhnf" class="easyui-combobox" style="width:160px">
+						<option value="">--请选择--</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+					</select>
+				</td>
 				<td style="background-color: #ffffff;width:15%" align="right">公路等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select name="gldj" id="gldj" style="width:149px;" class="easyui-combobox"></select>
