@@ -111,7 +111,8 @@
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -247,9 +248,9 @@ text-decoration:none;
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+							<tr height="32">
         						<td>管养（监管）单位：</td>
-        						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<td  colspan="3" style="width:120px;"><select id="gydw" style="width:220px;"></select></td>
         						<td>审核状态：</td>
         						<td><select name="ddlSHZT" id="jhzt" style="width:60px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -279,8 +280,8 @@ text-decoration:none;
         						
         					</tr>
         					<tr height="32">
-        					<td>行政区划：</td>
-        						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>行政区划：</td>
+        						<td  colspan="3" style="width:120px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>
         						<td>评定等级：</td>
@@ -296,7 +297,8 @@ text-decoration:none;
 								
 								<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
-								
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
         					</tr>
 								<tr height="32">
 								<td>是否有补助历史：</td>
