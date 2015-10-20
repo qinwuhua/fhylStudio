@@ -86,7 +86,8 @@
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -171,7 +172,8 @@
 				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
 				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
 				$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
@@ -346,7 +348,8 @@ text-decoration:none;
 								</select></td>
 								<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
-								
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
         					</tr>
 								<tr height="32">
 								<td>是否有补助历史：</td>

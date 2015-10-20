@@ -109,7 +109,7 @@ function loadSbz(){
 			 sbz=item.shengbz;
 			 $("#trshengbz").html("小于等于"+item.shengbz);
 		 }
-	 })
+	 });
 }
 function loadBbz(id){
 	$.ajax({
@@ -129,10 +129,10 @@ function loadBbz(id){
 					jhqlqk=$('#jhqlqk').val();
 				}
 				var bzzj=(parseFloat(jhqlqc)*1000000000000000*parseFloat(jhqlqk)*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-				 sbz=bzzj.toFixed(3);
-				 $("#trshengbz").html("小于等于"+bzzj.toFixed(3));
+				sbz=bzzj.toFixed(3);
+				$("#trshengbz").html("小于等于"+bzzj.toFixed(3));
 		 }
-	 })
+	 });
 }
 
 function loadJckxx(id){
@@ -268,24 +268,24 @@ function ablwhDis(value){
 
 function bzSum(){
 	var pfztz;
-	 if($("#pfztz").val()==null||$("#pfztz").val()==''){
-		 pfztz=0;
-	 }else{
-		 pfztz=$("#pfztz").val();
-	 }
-	 if(parseFloat(pfztz)<parseFloat(500)){
-		 $("#sfsqablbz1").attr('checked','true');
-			$("#sfsqablbz0").attr('disabled','true');
-			$("#sfsqablbz1").attr('disabled','true');
-			document.getElementById("ablbzwh").disabled=true;
-	 }else{
-		 $("#sfsqablbz0").attr('checked','true');
-		 $("#sfsqablbz0").removeAttr('disabled');
-		 $("#sfsqablbz1").removeAttr('disabled');
-		 document.getElementById("ablbzwh").disabled=false;
-	 }
-	 if($("#shengbz").val()!='')
-	 $("#dfzc").html(accSub(pfztz, $("#shengbz").val()));
+	if($("#pfztz").val()==null||$("#pfztz").val()==''){
+		pfztz=0;
+	}else{
+		pfztz=$("#pfztz").val();
+	}
+	if(parseFloat(pfztz)<parseFloat(500)){
+		$("#sfsqablbz1").attr('checked','true');
+		$("#sfsqablbz0").attr('disabled','true');
+		$("#sfsqablbz1").attr('disabled','true');
+		document.getElementById("ablbzwh").disabled=true;
+	}else{
+		$("#sfsqablbz0").attr('checked','true');
+		$("#sfsqablbz0").removeAttr('disabled');
+		$("#sfsqablbz1").removeAttr('disabled');
+		document.getElementById("ablbzwh").disabled=false;
+	}
+	if($("#shengbz").val()!='')
+	$("#dfzc").html(accSub(pfztz, $("#shengbz").val()));
 }
 function setshengbz(){
 	if($("#shengbz").val()!=''){

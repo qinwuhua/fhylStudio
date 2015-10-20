@@ -539,7 +539,7 @@
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
-		<![CDATA[
+		
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
@@ -547,7 +547,7 @@
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
+		
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -564,7 +564,7 @@
 		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
-		<![CDATA[
+		
 		union all
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
@@ -573,7 +573,7 @@
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
+		
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -591,7 +591,7 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
+		
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
@@ -599,7 +599,7 @@
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
+		
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -617,7 +617,7 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
+		
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
@@ -625,7 +625,7 @@
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
+		
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -643,7 +643,7 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
+		
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
@@ -651,7 +651,7 @@
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
+		
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
