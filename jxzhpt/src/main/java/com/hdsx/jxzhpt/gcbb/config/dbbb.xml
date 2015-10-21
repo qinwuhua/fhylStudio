@@ -25,8 +25,8 @@
  </select>
 	<select id="exportExcel_wqjc" parameterType="jckwqgz"	resultType="sjbb">
 		select
-		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qlbh v_5,qlmc v_6,qlzxzh v_7,xjgjnd v_8,qlqc v_9,qlkd v_10,
-		kjzc v_11,dkzdkj v_12,akjfl v_13,sbjgxs v_14,pddj v_15,bhnr v_16,bz v_17
+		gydw v_0,xzqhdm v_1,xzqhmc v_2,xlxbm v_3,xqlbm v_4,xzxzh v_5,ptx v_6,pty v_7,lxbm v_8,lxmc v_9,qlbh v_10,qlmc v_11,qlzxzh v_12,xjgjnd v_13,qlqc v_14,qlkd v_15,
+		kjzc v_16,dkzdkj v_17,akjfl v_18,sbjgxs v_19,pddj v_20,bhnr v_21,bz v_22
 		from xmk_wqgz where 1=1 and sfylrbwqk='是'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}

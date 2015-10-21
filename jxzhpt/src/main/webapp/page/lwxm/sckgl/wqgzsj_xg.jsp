@@ -67,7 +67,7 @@ function loadxx(){
 	$("#scakjfl").combobox('setValue',item.scakjfl);
 	$("#scqlqc").val(item.scqlqc);
 	$("#scqlqk").val(item.scqlqk);
-	$("#scxmnf").combobox('setValue',item.scxmnf);
+	$("#scxmnf").val(item.scxmnf);
 	$("#fapgdw").val(item.fapgdw);
 	$("#fascdw").val(item.fascdw);
 	$("#faspsj").datebox('setValue',item.faspsj);
@@ -98,7 +98,7 @@ function loadxx(){
 $(function(){
 	xxId=parent.obj.sckid;
 	sjtfileShow();
-	xmnf1("scxmnf");
+// 	xmnf1("scxmnf");
 	loadxx();
 	loadUploadify();
 	$("#save_button").click(function(){
@@ -143,7 +143,7 @@ function saveWqgz(){
 	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+''+
 	"&jckwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&jckwqgzsj.jsnr="+$("#jsnr").val()+"&jckwqgzsj.scbz="+$("#scbz").val()+
 	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
-	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
+	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").val()+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
 	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.zdezj="+$("#zdezj").val()+"&jckwqgzsj.scakjfl="+$("#scakjfl").combobox('getValue')
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
@@ -226,7 +226,7 @@ function loadUploadify(){
 	});
 }
 function upload(id){
-	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
+	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').val(),'uploads.parentid':xxId});
 	$('#'+id).uploadifyUpload();
 }
 var xxId;
@@ -575,7 +575,7 @@ text-decoration:none;
 					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="scxmnf" class="easyui-combobox"/>
+					<input id="scxmnf" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">

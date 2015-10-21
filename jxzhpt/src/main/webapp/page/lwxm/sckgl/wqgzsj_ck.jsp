@@ -63,7 +63,7 @@ function loadJckxx(){
 	$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
 	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
 	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
-	$("#xlxbm").html(item.xlxbm);$("#xqlbm").html(item.xqlbm);$("#xzxzh").html(item.xzxzh);$("#jd").html(item.ptx);$("#wd").html(item.pty);
+	$("#xlxmc").html(item.xlxmc);$("#xlxbm").html(item.xlxbm);$("#xqlbm").html(item.xqlbm);$("#xzxzh").html(item.xzxzh);$("#jd").html(item.ptx);$("#wd").html(item.pty);
 
 }
 function loadSckxx(){
@@ -214,16 +214,20 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xlxbm" ></span> </td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xlxmc" ></span> </td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xqlbm" ></span>
 					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				
+			</tr>
+			<tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xzxzh" ></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">经度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jd" > </span></td>
@@ -231,9 +235,6 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="wd" ></span>
 					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>

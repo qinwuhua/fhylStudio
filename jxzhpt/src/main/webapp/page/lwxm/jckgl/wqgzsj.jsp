@@ -300,7 +300,7 @@ var xzqhstr;
 						}else
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<span style="color:grey;">编辑</span>  '+
+						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<span style="color:grey;">删除</span>';
 					}
 				}},    
@@ -325,7 +325,7 @@ var xzqhstr;
 						return '已初审  ';
 						}
 					else if(row.sbzt2=="未上报" && row.sbthcd==7){
-							return '<span style="color:grey;">未上报</span>';
+							return '<span style="color:grey;">         </span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}

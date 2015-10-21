@@ -31,7 +31,7 @@ $(function(){
 	$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#scakjfl").combobox({onChange:function (n,o) {setbz();}});
 	xxId=newGuid();
-	xmnf1("scxmnf");
+// 	xmnf1("scxmnf");
 	autoCompleteQLBH();
 	loadUploadify();
 	var str,time;
@@ -53,7 +53,7 @@ $(function(){
 			$("#scqlqk").focus();
 			return false;
 		}
-		var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
+		var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val()+"&scxmnf="+$("#scxmnf").val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/onceSckWqgz.do',
@@ -222,7 +222,7 @@ function saveWqgz(){
 	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+''+
 	"&jckwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&jckwqgzsj.jsnr="+$("#jsnr").val()+"&jckwqgzsj.scbz="+$("#scbz").val()+
 	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
-	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
+	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").val()+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
 	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.scakjfl="+$("#scakjfl").combobox('getValue')
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
@@ -431,7 +431,7 @@ function checksfzq(){
 	}
 }
 function upload(id){
-	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
+	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').val(),'uploads.parentid':xxId});
 	$('#'+id).uploadifyUpload();
 }
 </script>

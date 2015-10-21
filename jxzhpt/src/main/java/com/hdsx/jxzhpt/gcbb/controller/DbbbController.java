@@ -101,7 +101,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			List <SjbbMessage> list=dbServer.exportExcel_wqjc(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
-			String excelHtml="<tr><td>管养单位</td><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+			String excelHtml="<tr><td>管养单位</td><td>行政区划代码</td><td>行政区划名称</td><td>新路线编码 </td><td>新桥梁编码</td><td>新中心桩号</td><td>经度</td><td>纬度</td><td>路线编码</td>" +
 					"<td>路线名称</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>修建/改建年度</td>" +
 					"<td>桥梁全长</td><td>桥梁全宽</td><td>跨径总长</td><td>单孔最大跨径</td><td>按跨径分类</td><td>" +
 					"上部结构形式</td><td>评定等级</td><td>病害内容</td><td>备注</td>";

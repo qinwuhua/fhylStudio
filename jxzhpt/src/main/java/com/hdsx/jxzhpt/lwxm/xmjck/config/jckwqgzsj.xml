@@ -7,12 +7,12 @@
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
 		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,
-		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xqlbm,xzxzh) 
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
 		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},
-		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xqlbm},#{xzxzh})
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh})
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -63,10 +63,10 @@
 	 </select>
 	 <select id="dcwqgzsjjhExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-      sqs v_1,xsq v_2,szxz v_3,qlmc v_4,qlbh v_5,lxbm v_6,lxmc v_7,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_8,
-      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_9,qlzxzh v_10,ptx v_11,pty v_12,xjgjnd v_13,
-      qlqc v_14,akjfl v_15,synf v_16,jsdj v_17,kjzc v_18,dkzdkj v_19,sjhspl v_20,qxjkuan v_21,qxjkong v_22,zqks v_23,
-      qlkd v_24,qmjk v_25,kydwlx v_26,thdj v_27,glqlyt v_28,sbjgxs v_29,qdlx v_30,qtlx v_31,pzlx v_32,bhnr v_33,pddj v_34,bz v_35,sfylrbwqk v_36
+      sqs v_1,xsq v_2,szxz v_3,xzqhdm v_4,qlmc v_5,xlxbm v_6,xlxmc v_7,xqlbm v_8,xzxzh v_9,qlbh v_10,lxbm v_11,lxmc v_12,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_13,
+      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_14,qlzxzh v_15,ptx v_16,pty v_17,xjgjnd v_18,
+      qlqc v_19,akjfl v_20,synf v_21,jsdj v_22,kjzc v_23,dkzdkj v_24,sjhspl v_25,qxjkuan v_26,qxjkong v_27,zqks v_28,
+      qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
 	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
@@ -183,10 +183,10 @@
  		</update>
  		 <select id="dcwqgzsjxmkshExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-      sqs v_1,xsq v_2,szxz v_3,qlmc v_4,qlbh v_5,lxbm v_6,lxmc v_7,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_8,
-      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_9,qlzxzh v_10,ptx v_11,pty v_12,xjgjnd v_13,
-      qlqc v_14,akjfl v_15,synf v_16,jsdj v_17,kjzc v_18,dkzdkj v_19,sjhspl v_20,qxjkuan v_21,qxjkong v_22,zqks v_23,
-      qlkd v_24,qmjk v_25,kydwlx v_26,thdj v_27,glqlyt v_28,sbjgxs v_29,qdlx v_30,qtlx v_31,pzlx v_32,bhnr v_33,pddj v_34,bz v_35,sfylrbwqk v_36
+       sqs v_1,xsq v_2,szxz v_3,xzqhdm v_4,qlmc v_5,xlxbm v_6,xlxmc v_7,xqlbm v_8,xzxzh v_9,qlbh v_10,lxbm v_11,lxmc v_12,decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道') v_13,
+      decode(substr(jsdj,0,1),'一','一级','二','二级','三','三级','四','四级','五','五级') v_14,qlzxzh v_15,ptx v_16,pty v_17,xjgjnd v_18,
+      qlqc v_19,akjfl v_20,synf v_21,jsdj v_22,kjzc v_23,dkzdkj v_24,sjhspl v_25,qxjkuan v_26,qxjkong v_27,zqks v_28,
+      qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
 	 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
 			and sbthcd>=#{sbthcd} and gydwbm like '1%'
@@ -260,7 +260,7 @@
  		</if>
  		<if test="shzt!='' and shzt!= null ">
  			<if test="shzt == '未审核'">
- 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ')
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ') and sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
  			and shzt like '%'||(#{shzt})||'%'
@@ -310,7 +310,7 @@
  		</if>
  		<if test="shzt!='' and shzt!= null ">
  			<if test="shzt == '未审核'">
- 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ')
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ') and sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
  			and shzt like '%'||(#{shzt})||'%'
@@ -346,7 +346,7 @@
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},pddj=#{pddj},sbjgxs=#{sbjgxs},
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},jsdj=#{jsdj},
- 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk},xlxbm=#{xlxbm},xqlbm=#{xqlbm},xzxzh=#{xzxzh},ptx=#{ptx},pty=#{pty}
+ 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk},xlxbm=#{xlxbm},xlxmc=#{xlxmc},xqlbm=#{xqlbm},xzxzh=#{xzxzh},ptx=#{ptx},pty=#{pty}
  			where id=#{id}
  		</update>
  		
@@ -629,7 +629,7 @@
 		</if>
 		<if test="shzt!='' and shzt!= null ">
 			<if test="shzt == '未审核'">
- 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null)
+ 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null) and sck_sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
  			and sck_shzt like '%'||(#{shzt})||'%'
@@ -683,7 +683,7 @@
 		</if>
 		<if test="shzt!='' and shzt!= null ">
 			<if test="shzt == '未审核'">
- 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null)
+ 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null) and sck_sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
  			and sck_shzt like '%'||(#{shzt})||'%'
