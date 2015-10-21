@@ -55,6 +55,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzServerImpl;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -598,6 +599,11 @@ public class WnjhController extends BaseActionSupport{
 	
 	
 	public void updatewnjhsj(){
+		JhshServer jhsh = new JhshServerImpl();
+		Jhsh j = new Jhsh();
+		j.setXmbm(lxsh.getXmbm());
+		List<Lx> ls = jhsh.queryLsxx1(j);
+		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
 		boolean bl=wnjhServer.updatewnjhsj(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -606,6 +612,11 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 	public void updatewnjhlm(){
+		JhshServer jhsh = new JhshServerImpl();
+		Jhsh j = new Jhsh();
+		j.setXmbm(lxsh.getXmbm());
+		List<Lx> ls = jhsh.queryLsxx1(j);
+		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
 		boolean bl=wnjhServer.updatewnjhlm(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -614,6 +625,11 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 	public void updatewnjhxj(){
+		JhshServer jhsh = new JhshServerImpl();
+		Jhsh j = new Jhsh();
+		j.setXmbm(lxsh.getXmbm());
+		List<Lx> ls = jhsh.queryLsxx1(j);
+		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
 		boolean bl=wnjhServer.updatewnjhxj(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
