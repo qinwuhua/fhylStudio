@@ -313,7 +313,7 @@
 	</resultMap>
 	<select id="queryGcgjList"  parameterType="gcglgcgzgj" resultType="hashmap">	
 		select * from (
-		select rownum num ,t.*,lxsh.ghlxbh  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm where 1=1
+		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm where 1=1
 		
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
@@ -367,7 +367,7 @@
 	<!-- 拨付列表 -->
 	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*,lxsh.ghlxbh  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">

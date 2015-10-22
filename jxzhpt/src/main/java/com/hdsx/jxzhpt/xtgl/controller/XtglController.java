@@ -1132,5 +1132,20 @@ public class XtglController extends BaseActionSupport{
 	public void setAnyXml(String anyXml) {
 		this.anyXml = anyXml;
 	}
+	public void userlogin(){
+		try {
+			List<Master> l = xtglServer.userlogin(name);
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }

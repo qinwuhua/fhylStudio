@@ -603,7 +603,7 @@ function showAllgj(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsj('+index+')">编辑</a>  '+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsj('+index+')">删除</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">     添加路线</a>  ';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:120,align:'center',
+	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
@@ -612,15 +612,15 @@ function showAllgj(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 120,align : 'center',formatter:function(value,row,index){
+	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
 	        	else return  row.xmmc;
 	        }},
 	        {field : 'xmnf',title : '项目年份',width : 80,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},
-		    {field : 'xzqh',title : '行政区划',width : 120,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 80,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
+		    {field : 'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
 		    {field : 'lxmc',title : '路线名称',width : 100,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
@@ -729,7 +729,7 @@ function showAlllm(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="lmxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editlm('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellm('+index+')">删除</a>  '
 	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">     添加路线</a>  ';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:120,align:'center',
+	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
@@ -738,15 +738,15 @@ function showAlllm(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 120,align : 'center',formatter:function(value,row,index){
+	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
 	        	else return  row.xmmc;
 	        }},
 	        {field : 'xmnf',title : '项目年份',width : 80,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},
-		    {field : 'xzqh',title : '行政区划',width : 120,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 80,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
+		    {field : 'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
 		    {field : 'lxmc',title : '路线名称',width : 120,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
@@ -855,7 +855,7 @@ function showAllxj(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xjxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editxj('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxj('+index+')">删除</a>  '
 	        	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">     添加路线</a>  ';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:120,align:'center',
+	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
@@ -864,15 +864,15 @@ function showAllxj(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 120,align : 'center',formatter:function(value,row,index){
+	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
 	        	if(row.sl>0)
 	        	return '<font color="red">'+row.xmmc+'</font>';
 	        	else return  row.xmmc;
 	        }},
 	        {field : 'xmnf',title : '项目年份',width : 80,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},
-		    {field : 'xzqh',title : '行政区划',width : 120,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 80,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
+		    {field : 'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
 		    {field : 'lxmc',title : '路线名称',width : 100,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},

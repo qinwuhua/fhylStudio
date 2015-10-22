@@ -5,8 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>江西省公路业务综合管理平台</title>
 <link rel="stylesheet" type="text/css" href="css/Login.css" />
+<link rel="stylesheet" type="text/css" href="/jxzhpt/js/autocomplete/jquery.autocomplete.css" />
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
 </head>
@@ -21,11 +23,46 @@
 //-->
 $(function(){
 	$("#name").focus();
+	autoCompletelogin();
 });
 function rewrite(){
 	$("#name").val("");
 	$("#password").val("");
 	$("#name").focus();
+}
+function autoCompletelogin(){
+	$("#name").autocomplete("/jxzhpt/xtgl/userlogin.do", {
+		multiple : false,
+		minChars :2,
+		multipleSeparator : ' ',
+		mustMatch: true,
+  		cacheLength : 0,
+  		delay : 0,
+  		max : 50,
+  		extraParams : {
+				name:function() {
+  				var d = $("#name").val();
+  				return d;
+  			}
+  		},
+  		dataType : 'json',// 返回类型
+  		// 对返回的json对象进行解析函数，函数返回一个数组
+  		parse : function(data) {
+  			var aa = [];
+  			aa = $.map(eval(data), function(row) {
+  					return {
+  						data : row,
+  						value : row.truename.replace(/(\s*$)/g,""),
+  						result : row.truename.replace(/(\s*$)/g,"")
+  					};
+  				});
+  			return aa;
+  		},formatItem : function(row, i, max) {
+  			return row.truename.replace(/(\s*$)/g,"");
+  		}
+  	}).result(function(e, item) {
+  		$("#name").val(item.truename)
+	});
 }
 </script>
 

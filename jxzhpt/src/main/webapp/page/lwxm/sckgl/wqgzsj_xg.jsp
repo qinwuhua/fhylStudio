@@ -329,7 +329,7 @@ var trzjdx;
 function setnsqbbz(){
 	var ztz=$("#ztz").val();
 	if(ztz!=null&&ztz!=''){
-		if(parseFloat(ztz)*0.6>parseFloat(nsqbbz)){
+		if(parseFloat(ztz)*0.6<parseFloat(nsqbbz)){
 			trzjdx=parseFloat(ztz)*0.6;
 		}
 		else{
@@ -338,7 +338,10 @@ function setnsqbbz(){
 	}else{
 		trzjdx=parseFloat(nsqbbz);
 	}
-	$("#trzjdx").html("小于等于"+trzjdx);
+	if($("#sfylrbwqk").combobox('getValue')=='是')
+		$("#trzjdx").html("小于等于"+trzjdx);
+		else
+			$("#trzjdx").html("小于等于"+nsqbbz);
 }
 function checksfzq(){
 	var nsqbbz1=$("#nsqbbz").val();

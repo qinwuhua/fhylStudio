@@ -130,6 +130,9 @@ function loadBbz(id){
 				}
 				var bzzj=(parseFloat(jhqlqc)*1000000000000000*parseFloat(jhqlqk)*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 				sbz=bzzj.toFixed(3);
+				 if(parseFloat($("#pfztz").val())*0.6<parseFloat(sbz)){
+					 $("#trshengbz").html("小于等于"+parseFloat($("#pfztz").val())*0.6);
+					}else
 				$("#trshengbz").html("小于等于"+bzzj.toFixed(3));
 		 }
 	 });
@@ -267,12 +270,27 @@ function ablwhDis(value){
 }
 
 function bzSum(){
-	var pfztz;
+	var pfztz;var sbz;var trzjdx;
 	if($("#pfztz").val()==null||$("#pfztz").val()==''){
 		pfztz=0;
 	}else{
 		pfztz=$("#pfztz").val();
 	}
+	if($("#shengbz").val()!=''){
+		sbz=$("#shengbz").val();
+	}else{
+		sbz=0;
+	}
+	if(parseFloat(pfztz)*0.6<parseFloat(sbz)){
+		trzjdx=parseFloat(pfztz)*0.6;
+	}
+	else{
+		trzjdx=parseFloat(sbz);
+	}
+	if($("#sfylrbwqk").combobox('getValue')=='是')
+	$("#trshengbz").html("小于等于"+trzjdx);
+	else
+		$("#trshengbz").html("小于等于"+sbz);
 	if(parseFloat(pfztz)<parseFloat(500)){
 		$("#sfsqablbz1").attr('checked','true');
 		$("#sfsqablbz0").attr('disabled','true');

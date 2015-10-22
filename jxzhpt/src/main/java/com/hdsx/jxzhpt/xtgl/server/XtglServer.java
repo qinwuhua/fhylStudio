@@ -166,4 +166,6 @@ public interface XtglServer {
 	boolean dropYhdzxcsById(String id);
 
 	HashMap<String, String> loginCheck(HashMap hm);
+
+	List<Master> userlogin(String master);
 }

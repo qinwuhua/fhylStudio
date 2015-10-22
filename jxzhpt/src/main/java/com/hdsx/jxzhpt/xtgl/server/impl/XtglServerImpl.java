@@ -558,4 +558,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		HashMap lhm=queryOne("loginCheck",hm);
 		return lhm;
 	}
+
+	@Override
+	public List<Master> userlogin(String master) {
+		return queryList("userlogin", master);
+	}
 }
