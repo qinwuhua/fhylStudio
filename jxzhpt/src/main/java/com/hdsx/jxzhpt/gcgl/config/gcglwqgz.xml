@@ -182,6 +182,9 @@
 			<if test="qlmc != null and  qlmc != ''">
 					and t3.qlmc like '%'||trim(#{qlmc})||'%'
 			</if>
+			<if test="qlbh != null and  qlbh != ''">
+					and t3.qlbh like '%'||trim(#{qlbh})||'%'
+			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
@@ -217,6 +220,9 @@
 	</if>
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
+	</if>
+	<if test="qlbh != null and  qlbh != ''">
+			and t3.qlbh like '%'||trim(#{qlbh})||'%'
 	</if>
 	 <if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
@@ -312,6 +318,9 @@
 			<if test="qlmc != null and  qlmc != ''">
 					and t3.qlmc like '%'||trim(#{qlmc})||'%'
 			</if>
+			<if test="qlbh != null and  qlbh != ''">
+			and t3.qlbh like '%'||trim(#{qlbh})||'%'
+			</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -349,6 +358,9 @@
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="qlbh != null and  qlbh != ''">
+					and t3.qlbh like '%'||trim(#{qlbh})||'%'
 			</if>
 			<if test="qlmc != null and  qlmc != ''">
 					and t3.qlmc like '%'||trim(#{qlmc})||'%'

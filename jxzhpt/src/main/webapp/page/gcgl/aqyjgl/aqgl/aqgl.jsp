@@ -105,11 +105,11 @@ a:active {
 									</select>
 									&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
 									 <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="aqgltj()" style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="aqgltj()" style="border-width:0px;cursor: hand;vertical-align: middle;" />
                                     <img alt="下载模板" src="${pageContext.request.contextPath}/images/Button/XZMB1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/XZMB2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/XZMB1.gif' " onclick="aqmbgl()" style="border-width:0px;cursor: hand;vertical-align: -40%;"/>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/XZMB1.gif' " onclick="aqmbgl()" style="border-width:0px;cursor: hand;vertical-align: middle;"/>
         					</p>
         				</div>
         			</fieldset>

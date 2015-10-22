@@ -248,8 +248,7 @@ text-decoration:none;
 								</select></td>
 								<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="qlmc" style="width:90px;" /></td>
-        						<td>桥梁编码：</td>
-        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+        						
         					</tr>
 								<tr height="32">
 								<td>是否有补助历史：</td>
@@ -266,6 +265,8 @@ text-decoration:none;
 								<option value="是" >车购税</option>
 								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>

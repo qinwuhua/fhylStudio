@@ -348,10 +348,10 @@ text-decoration:none;
 								</select></td>
 								<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
-								<td>桥梁编码：</td>
-        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+								
         					</tr>
 								<tr height="32">
+								
 								<td>是否有补助历史：</td>
         						<td>
 									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
@@ -360,12 +360,15 @@ text-decoration:none;
 									<option value="有">是</option>
 									</select>
 								</td>
+								
 								<td>计划类别：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="" selected>全部</option>
 								<option value="是" >车购税</option>
 								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />

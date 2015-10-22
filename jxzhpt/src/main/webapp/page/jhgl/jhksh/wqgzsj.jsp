@@ -298,8 +298,7 @@ text-decoration:none;
 								
 								<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
-								<td>桥梁编码：</td>
-        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+								
         					</tr>
 								<tr height="32">
 								<td>是否有补助历史：</td>
@@ -316,6 +315,8 @@ text-decoration:none;
 								<option value="是" >车购税</option>
 								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />
