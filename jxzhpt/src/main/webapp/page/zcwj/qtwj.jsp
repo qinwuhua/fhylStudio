@@ -94,7 +94,7 @@
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
 			        	else	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    ';
 			        }},
-			        {field:'wjmc',title:'文件名称',width:200,align:'center'},
+			        {field:'wjmc',title:'文件名称',width:600,align:'center'},
 			        /* {field:'wjgy',title:'文件概要',width:1000,align:'center'}, */
 			        {field:'fbr',title:'发布人',width:200,align:'center'},
 			        {field:'fbsj',title:'发布时间',width:96,align:'center'}

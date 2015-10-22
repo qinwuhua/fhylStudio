@@ -312,7 +312,7 @@ function sckglWqgz(){
 					return '已初审  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
-						return '<span style="color:grey;">未上报</span>';
+						return '<span style="color:grey;">     </span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
