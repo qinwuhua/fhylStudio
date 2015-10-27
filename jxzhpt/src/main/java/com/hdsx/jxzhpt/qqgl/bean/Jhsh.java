@@ -93,6 +93,14 @@ public class Jhsh {
 	private String xdzj;
 	private String btzzj;
 	private String stz;
+	//判断是否有多条路线
+	private String xmsl;
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
 	public String getJszlc() {
 		return jszlc;
 	}

@@ -107,12 +107,14 @@
 				success:function(msg){
 					if(msg.result=="true"){
 						alert("保存成功!");
-						if(parent.YMLib.Var.Obj.xmid.substring(10,11)=="4"){
+						if(parent.YMLib.Var.xmbm.substring(10,11)=="4"){
 							parent.queryYhdzx();
-						}else if(parent.YMLib.Var.Obj.xmid.substring(10,11)=="5"){
+						}else if(parent.YMLib.Var.xmbm.substring(10,11)=="5"){
 							parent.queryShxm();
 						}
 						closeWindow(parent.YMLib.Var.id);
+					}else if(msg.result=="have"){
+						alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 					}else{
 						alert("保存失败！");
 					}

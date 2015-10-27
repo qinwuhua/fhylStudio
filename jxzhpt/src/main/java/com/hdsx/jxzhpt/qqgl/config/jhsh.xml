@@ -30,8 +30,9 @@
 	<select id="queryJhshLmsj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl xmsl from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm
 				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%1___' and sffirst=1) lx on j.xmbm = lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
@@ -57,8 +58,9 @@
 	<select id="queryJhshLmgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl xmsl from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm
 				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%2___' and sffirst=1) lx on j.xmbm = lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
 					and ${jhsh.xzqhdm}
@@ -97,8 +99,9 @@
 	<select id="queryJhshXj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
 				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%3___' and sffirst=1) lx 
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				on j.xmbm = lx.xmid where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
@@ -123,8 +126,9 @@
 	<select id="queryJhshYhdzx" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,c.kgsj,c.wgsj,c.gq,l.lsjl,l.gydw,l.qdmc,l.zdmc,l.jsdj 
+				select j.*,c.kgsj,c.wgsj,c.gq,l.lsjl,l.gydw,l.qdmc,l.zdmc,l.jsdj,sl.xmsl 
 				from jhsh_yhdzx j left join cbsj_yhdzx c on j.xmbm=c.xmbm left join xmsq_yhdzx l on c.xmbm = l.xmbm
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
 					and ${jhsh2.xzqhdm}
@@ -163,8 +167,9 @@
 	<select id="queryJhshSh" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*, c.kgsj,c.wgsj,c.gq,l.lsjl, l.gydw, l.qdmc, l.zdmc,l.jsdj  
+				select j.*, c.kgsj,c.wgsj,c.gq,l.lsjl, l.gydw, l.qdmc, l.zdmc,l.jsdj,sl.xmsl  
 				from jhsh_sh j left join cbsj_sh c on j.xmbm=c.xmbm left join xmsq_sh l on c.xmbm = l.xmbm
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">and ${jhsh2.xzqhdm}</if>
 				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
