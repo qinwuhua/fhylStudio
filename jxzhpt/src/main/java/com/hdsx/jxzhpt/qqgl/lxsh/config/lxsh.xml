@@ -67,8 +67,15 @@
 		<if test="jhwllc!=null">,#{jhwllc}</if>)
 	</insert>
 	<insert id="insertLx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs},#{gpsqdzh},#{gpszdzh})
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh
+		<if test="xjlxbm!=null">,xjlxbm</if> <if test="xjqdzh!=null">,xjqdzh</if> <if test="xjzdzh!=null">,xjzdzh</if>
+		<if test="yilc!=null">,yilc</if> <if test="erlc!=null">,erlc</if> <if test="sanlc!=null">,sanlc</if> <if test="silc!=null">,silc</if> <if test="dwlc!=null">,dwlc</if> <if test="wllc!=null">,wllc</if>
+		<if test="jhyilc!=null">,jhyilc</if> <if test="jherlc!=null">,jherlc</if> <if test="jhsanlc!=null">,jhsanlc</if> <if test="jhsilc!=null">,jhsilc</if> <if test="jhdwlc!=null">,jhdwlc</if> <if test="jhwllc!=null">,jhwllc</if>
+		)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs},#{gpsqdzh},#{gpszdzh}
+		<if test="xjlxbm!=null">,#{xjlxbm}</if> <if test="xjqdzh!=null">,#{xjqdzh}</if> <if test="xjzdzh!=null">,#{xjzdzh}</if>
+		<if test="yilc!=null">,#{yilc}</if> <if test="erlc!=null">,#{erlc}</if> <if test="sanlc!=null">,#{sanlc}</if> <if test="silc!=null">,#{silc}</if> <if test="dwlc!=null">,#{dwlc}</if> <if test="wllc!=null">,#{wllc}</if>
+		<if test="jhyilc!=null">,#{jhyilc}</if> <if test="jherlc!=null">,#{jherlc}</if> <if test="jhsanlc!=null">,#{jhsanlc}</if> <if test="jhsilc!=null">,#{jhsilc}</if> <if test="jhdwlc!=null">,#{jhdwlc}</if> <if test="jhwllc!=null">,#{jhwllc}</if>)
 	</insert>
 	<insert id="insertLx1" parameterType="lxsh">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc)

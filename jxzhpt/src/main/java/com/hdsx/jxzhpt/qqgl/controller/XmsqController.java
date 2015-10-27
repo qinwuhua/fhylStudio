@@ -557,10 +557,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			List<Xmsq> list = ExcelImportUtil.readExcel(str, 0, 2, Xmsq.class,fileupload);
 			List<Lx> lxlist=new ArrayList<Lx>();
 			Calendar cal = Calendar.getInstance();
+			String nextXmbm=null;
+			int num = 0;
 			for (Xmsq xmsq : list) {
-				String nextXmbm = xmsqServer.queryShNextXmbm(xmsq);
-				int num = new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue();
+				nextXmbm = num == 0 ? xmsqServer.queryShNextXmbm(xmsq) : nextXmbm;
+				num = num==0 ? new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue() : num;
 				xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
+				num++;
 				xmsq.setGydwdm(tbbmbm2);
 				xmsq.setGpsqdzh(xmsq.getQdzh());
 				xmsq.setGpszdzh(xmsq.getZdzh());

@@ -119,7 +119,7 @@ function openLxAdd(id,xmbm,jdbs){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.jdbs=jdbs;
 	YMLib.Var.id=id;
-	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add.jsp',980,400);
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add2.jsp',980,400);
 }
 /**
  * 初步设计添加路线弹窗
