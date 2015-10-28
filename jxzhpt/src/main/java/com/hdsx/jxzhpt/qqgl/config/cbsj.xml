@@ -118,7 +118,7 @@
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,
+				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,lx.lc,
 				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'

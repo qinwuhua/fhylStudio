@@ -100,9 +100,9 @@
 		select * from (	
 			select rownum num,t.* from (
 				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
-				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%3___' and sffirst=1) lx 
+				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%3___' and sffirst=1) lx on j.xmbm = lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
-				on j.xmbm = lx.xmid where 1=1
+				where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
@@ -481,7 +481,19 @@
 		<if test="jdbs!=null">,jdbs</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
 		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>
-		<if test="jsfa!=null and jsfa!=''">,jsfa</if>)
+		<if test="jsfa!=null and jsfa!=''">,jsfa</if>
+		<if test="yilc!=null">,yilc</if>
+		<if test="erlc!=null">,erlc</if>
+		<if test="sanlc!=null">,sanlc</if>
+		<if test="silc!=null">,silc</if>
+		<if test="dwlc!=null">,dwlc</if>
+		<if test="wllc!=null">,wllc</if>
+		<if test="jhyilc!=null">,jhyilc</if>
+		<if test="jherlc!=null">,jherlc</if>
+		<if test="jhsanlc!=null">,jhsanlc</if>
+		<if test="jhsilc!=null">,jhsilc</if>
+		<if test="jhdwlc!=null">,jhdwlc</if>
+		<if test="jhwllc!=null">,jhwllc</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -502,7 +514,19 @@
 		<if test="jdbs!=null">,#{jdbs}</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
 		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>
-		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>)
+		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>
+		<if test="yilc!=null">,#{yilc}</if>
+		<if test="erlc!=null">,#{erlc}</if>
+		<if test="sanlc!=null">,#{sanlc}</if>
+		<if test="silc!=null">,#{silc}</if>
+		<if test="dwlc!=null">,#{dwlc}</if>
+		<if test="wllc!=null">,#{wllc}</if>
+		<if test="jhyilc!=null">,#{jhyilc}</if>
+		<if test="jherlc!=null">,#{jherlc}</if>
+		<if test="jhsanlc!=null">,#{jhsanlc}</if>
+		<if test="jhsilc!=null">,#{jhsilc}</if>
+		<if test="jhdwlc!=null">,#{jhdwlc}</if>
+		<if test="jhwllc!=null">,#{jhwllc}</if>)
 	</insert>
 	<delete id="deleteLx" parameterType="lx">
 		delete from lxsh_lx where id=#{id}

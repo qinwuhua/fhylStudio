@@ -877,7 +877,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void insertLx() throws Exception{
 		try {
 			lx.setSffirst("0");
-			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = lx.getXmid().substring(10, 11).equals("5") ? null : jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				boolean b = jhshServer.insertLx(lx);
 				result.put("result", new Boolean(b).toString());
