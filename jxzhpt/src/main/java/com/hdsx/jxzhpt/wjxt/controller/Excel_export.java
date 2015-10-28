@@ -4511,12 +4511,18 @@ public class Excel_export {
             	}
 			}
         }  
-		CellRangeAddress range1 = new CellRangeAddress(2,4,0,0);
+		CellRangeAddress range1 = new CellRangeAddress(3,6,0,0);
 		sheet.addMergedRegion(range1);
 		setRegionStyle(style,range1,sheet);
-		CellRangeAddress range2 = new CellRangeAddress(5,7,0,0);
+		CellRangeAddress range2 = new CellRangeAddress(7,9,0,0);
 		sheet.addMergedRegion(range2);
 		setRegionStyle(style,range2,sheet);
+		CellRangeAddress range3 = new CellRangeAddress(10,12,0,0);
+		sheet.addMergedRegion(range3);
+		setRegionStyle(style,range3,sheet);
+		CellRangeAddress range4 = new CellRangeAddress(2,2,0,1);
+		sheet.addMergedRegion(range4);
+		setRegionStyle(style,range4,sheet);
 		
 		wb.write(out);
  		out.close();

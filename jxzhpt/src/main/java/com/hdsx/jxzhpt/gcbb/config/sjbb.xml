@@ -3,32 +3,37 @@
 <mapper namespace="com.hdsx.jxzhpt.gcbb">
 	<select id="getLwjgjsgzb" parameterType="sjbb" resultType="sjbb">
 		select b.v_0,b.v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
-		decode(a.v_6,null,0,a.v_6) v_6,decode(a.v_7,null,0,a.v_7) v_7 from 
-		(select decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') c,count(lxbm) v_2,
-		    sum(sc.scqlqc) v_3,0 v_4,sum(decode(JHSYDFZCJE,null,0,JHSYDFZCJE))  v_5,sum(decode(JHSYBZJE,null,0,JHSYBZJE)) v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		decode(a.v_6,null,0,a.v_6) v_6 from 
+		(select decode(substr(qlbh,11,1),'U','国道隧道',decode(substr(lxbm,0,1),'G','国省道危桥','S','国省道危桥','农村公路危桥')) c,count(lxbm) v_2,
+		    sum(sc.scqlqc) v_3,0 v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE)) v_5,sum(decode(PFZTZ,null,0,PFZTZ)) v_6 from 
 		    XMK_WQGZ lx left join sck_wqgz sc on lx.id=sc.xmkid 
 		    left join plan_wqgz jh on sc.sckid=jh.sckid
 		    where 1=1 ${unit} ${dist} and SBNF=#{nf}
-		    group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')) a,
-		    (select '国省道小计' v_1,'危桥改造' v_0 from dual union all select '县乡道（含专道）小计' v_1,'危桥改造' v_0 from dual) b
+		    group by decode(substr(qlbh,11,1),'U','国道隧道',decode(substr(lxbm,0,1),'G','国省道危桥','S','国省道危桥','农村公路危桥'))) a,
+		    (select '国省道危桥' v_1,'危桥改造' v_0 from dual union all select '国道隧道' v_1,'危桥改造' v_0 from dual union all select '农村公路危桥' v_1,'危桥改造' v_0 from dual) b
 		    where b.v_1=a.c(+)
 		    union all
 		    select b.v_0,b.v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
-		    decode(a.v_6,null,0,a.v_6) v_6,decode(a.v_7,null,0,a.v_7) v_7 from 
-		    (select  decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') c,count(lxbm) v_2,
-		    0 v_3,sum(jh.jhyhlc) v_4,sum(decode(JHSYDFZCZJ,null,0,JHSYDFZCZJ)) v_5,sum(decode(JHSYBBZJE,null,0,JHSYBBZJE)) v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		    decode(a.v_6,null,0,a.v_6) v_6 from 
+		    (select  decode(substr(lxbm,0,1),'G','国省道','S','国省道','县乡道') c,count(lxbm) v_2,
+		    0 v_3,sum(jh.jhyhlc) v_4,sum(decode(JHSYBBZJE,null,0,JHSYBBZJE)) v_5,sum(decode(PFZTZ,null,0,PFZTZ)) v_6 from 
 		    Xmk_Abgc lx left join sck_abgc sc on lx.id=sc.xmkid 
 		    left join plan_abgc jh on sc.sckid=jh.sckid
 		    where 1=1 ${unit} ${dist} and jhnf=#{nf}
-		    group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')) a,
-		    (select '国省道小计' v_1,'安保工程' v_0 from dual union all select '县乡道（含专道）小计' v_1,'安保工程' v_0 from dual) b
+		    group by decode(substr(lxbm,0,1),'G','国省道','S','国省道','县乡道')) a,
+		    (select '国省道' v_1,'安保工程' v_0 from dual union all select '县乡道' v_1,'安保工程' v_0 from dual) b
 		    where b.v_1=a.c(+)
 		    union all
-		    select '灾害防治' v_0,'国省道小计' v_1,count(lxbm) v_2,
-		    0 v_3,decode(sum(jh.jhyhlc),null,0,sum(jh.jhyhlc)) v_4,sum(decode(JHSYDFZCJE,null,0,JHSYDFZCJE)) v_5,decode(sum(JHSYBZJE),null,0,sum(JHSYBZJE))  v_6,decode(sum(PFZTZ),null,0,sum(PFZTZ)) v_7 from 
-		    Xmk_Zhfz lx left join sck_zhfz sc on lx.id=sc.xmkid 
+		    select b.v_0,b.v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
+		    decode(a.v_6,null,0,a.v_6) v_6 from 
+		    (select  decode(substr(lxbm,0,1),'G','国省道','S','国省道','县乡道') c,count(lxbm) v_2,
+		    0 v_3,sum(jh.jhyhlc) v_4,sum(decode(jhsybzje,null,0,jhsybzje)) v_5,sum(decode(PFZTZ,null,0,PFZTZ)) v_6 from 
+		    Xmk_zhfz lx left join sck_zhfz sc on lx.id=sc.xmkid 
 		    left join plan_zhfz jh on sc.sckid=jh.sckid
-		    where 1=1 ${unit} ${dist} and SBNF=#{nf}
+		    where 1=1 ${unit} ${dist} and sbnf=#{nf}
+		    group by decode(substr(lxbm,0,1),'G','国省道','S','国省道','县乡道')) a,
+		    (select '国省道' v_1,'灾害防治' v_0 from dual union all select '县乡道' v_1,'灾害防治' v_0 from dual) b
+		    where b.v_1=a.c(+)
 		    
 		    order by v_0,v_1
 	 </select>
@@ -117,60 +122,80 @@ where  d.v_1=c.xmbm(+) and d.v_0=c.a (+)
 order by v_0,v_1
 	 </select>
 	 <select id="getGdzctzjs" resultType="sjbb" parameterType="sjbb">
-		
 select 
 to_char(b.v_0) v_0,decode(a.v_1,null,0,a.v_1) v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
     decode(a.v_6,null,0,a.v_6) v_6,decode(a.v_7,null,0,a.v_7) v_7,decode(a.v_8,null,0,a.v_8) v_8,decode(a.v_9,null,0,a.v_9) v_9,
     decode(a.v_10,null,0,a.v_10) v_10,decode(a.v_11,null,0,a.v_11) v_11,decode(a.v_12,null,0,a.v_12) v_12,decode(a.v_13,null,0,a.v_13) v_13,
     decode(a.v_14,null,0,a.v_14) v_14,decode(a.v_15,null,0,a.v_15) v_15,decode(a.v_16,null,0,a.v_16) v_16,decode(a.v_17,null,0,a.v_17) v_17,
-    decode(a.v_18,null,0,a.v_18) v_18,decode(a.v_19,null,0,a.v_19) v_19,decode(a.v_20,null,0,a.v_20) v_20,decode(a.v_21,null,0,a.v_21) v_21,to_char(id) id
+    decode(a.v_18,null,0,a.v_18) v_18,decode(a.v_19,null,0,a.v_19) v_19,decode(a.v_20,null,0,a.v_20) v_20,decode(a.v_21,null,0,a.v_21) v_21,
+    decode(a.v_22,null,0,a.v_22) v_22,decode(a.v_23,null,0,a.v_23) v_23,decode(a.v_24,null,0,a.v_24) v_24,decode(a.v_25,null,0,a.v_25) v_25,
+    decode(a.v_26,null,0,a.v_26) v_26,decode(a.v_27,null,0,a.v_27) v_27,decode(a.v_28,null,0,a.v_28) v_28,decode(a.v_29,null,0,a.v_29) v_29,decode(a.v_30,null,0,a.v_30) v_30,
+    decode(a.v_31,null,0,a.v_31) v_31,decode(a.v_32,null,0,a.v_32) v_32,decode(a.v_33,null,0,a.v_33) v_33,decode(a.v_34,null,0,a.v_34) v_34,decode(a.v_35,null,0,a.v_35) v_35,
+    decode(a.v_36,null,0,a.v_36) v_36,decode(a.v_37,null,0,a.v_37) v_37,decode(a.v_38,null,0,a.v_38) v_38,decode(a.v_39,null,0,a.v_39) v_39,to_char(id) id
     
 from 
 (
      select dist,count(decode(a,'危桥',decode(unit,'2',xm,null),null)) v_1,
-     sum(decode(a,'危桥',decode(unit,'2',zj,0),0)) v_2,
-     count(decode(a,'危桥',decode(unit,'1',xm,null),null)) v_3,
-     sum(decode(a,'危桥',decode(unit,'1',zj,0),0)) v_4,
-     count(decode(a,'危桥',xm,null)) v_5,
-     sum(decode(a,'危桥',zj,0)) v_6,
+     sum(decode(a,'危桥',decode(unit,'2',ym,0),0)) v_2,
+     sum(decode(a,'危桥',decode(unit,'2',ztz,0),0)) v_3,
+     sum(decode(a,'危桥',decode(unit,'2',zj,0),0)) v_4,
+     count(decode(a,'危桥',decode(unit,'1',xm,null),null)) v_5,
+     sum(decode(a,'危桥',decode(unit,'1',ym,0),0)) v_6,
+     sum(decode(a,'危桥',decode(unit,'1',ztz,0),0)) v_7,
+     sum(decode(a,'危桥',decode(unit,'1',zj,0),0)) v_8,
+     count(decode(a,'危桥',xm,null)) v_9,
+     sum(decode(a,'危桥',ym,0)) v_10,
+     sum(decode(a,'危桥',ztz,0)) v_11,
+     sum(decode(a,'危桥',zj,0)) v_12,
      
-     sum(decode(a,'安保',decode(unit,'2',xm,null),null)) v_7,
-     sum(decode(a,'安保',decode(unit,'2',zj,0),0)) v_8,
-     sum(decode(a,'安保',decode(unit,'1',xm,null),null)) v_9,
-     sum(decode(a,'安保',decode(unit,'1',zj,0),0)) v_10,
-     sum(decode(a,'安保',xm,null)) v_11,
-     sum(decode(a,'安保',zj,0)) v_12,
+     count(decode(a,'安保',decode(unit,'2',xm,null),null)) v_13,
+     sum(decode(a,'安保',decode(unit,'2',xm,null),null)) v_14,
+     sum(decode(a,'安保',decode(unit,'2',ztz,0),0)) v_15,
+     sum(decode(a,'安保',decode(unit,'2',zj,0),0)) v_16,
+     count(decode(a,'安保',decode(unit,'1',xm,null),null)) v_17,
+     sum(decode(a,'安保',decode(unit,'1',xm,null),null)) v_18,
+     sum(decode(a,'安保',decode(unit,'1',ztz,0),0)) v_19,
+     sum(decode(a,'安保',decode(unit,'1',zj,0),0)) v_20,
+     count(decode(a,'安保',xm,null)) v_21,
+     sum(decode(a,'安保',xm,null)) v_22,
+     sum(decode(a,'安保',ztz,0)) v_23,
+     sum(decode(a,'安保',zj,0)) v_24,
      
-     sum(decode(a,'灾害',decode(unit,'2',xm,null),null)) v_13,
-     sum(decode(a,'灾害',decode(unit,'2',zj,0),0)) v_14,
-     sum(decode(a,'灾害',decode(unit,'1',xm,null),null)) v_15,
-     sum(decode(a,'灾害',decode(unit,'1',zj,0),0)) v_16,
-     sum(decode(a,'灾害',xm,null)) v_17,
-     sum(decode(a,'灾害',zj,0)) v_18,
-     
-     sum(decode(unit,'2',zj,0)) v_19,
-     sum(decode(unit,'1',zj,0)) v_20,
-     sum(zj) v_21
+     count(decode(a,'灾害',decode(unit,'2',xm,null),null)) v_25,
+     sum(decode(a,'灾害',decode(unit,'2',xm,null),null)) v_26,
+     sum(decode(a,'灾害',decode(unit,'2',ztz,0),0)) v_27,
+     sum(decode(a,'灾害',decode(unit,'2',zj,0),0)) v_28,
+     count(decode(a,'灾害',decode(unit,'1',xm,null),null)) v_29,
+     sum(decode(a,'灾害',decode(unit,'1',xm,null),null)) v_30,
+     sum(decode(a,'灾害',decode(unit,'1',ztz,0),0)) v_31,
+     sum(decode(a,'灾害',decode(unit,'1',zj,0),0)) v_32,
+     count(decode(a,'灾害',xm,null)) v_33,
+     sum(decode(a,'灾害',xm,null)) v_34,
+     sum(decode(a,'灾害',ztz,0)) v_35,
+     sum(decode(a,'灾害',zj,0)) v_36,
+     sum(decode(unit,'2',zj,0)) v_37,
+     sum(decode(unit,'1',zj,0)) v_38,
+     sum(zj) v_39
      
      from
      (
-     select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
+     select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(jh.sfylrbwqk,'是',decode(JHSYBZJE,null,0,JHSYBZJE),decode(jh.shengbz,null,0,shengbz)) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,to_char(decode(jh.jhqlqc,null,0,jh.jhqlqc)) ym
      from plan_wqgz jh left join sck_wqgz sc on sc.sckid=jh.sckid
         left join XMK_WQGZ lx   on lx.id=sc.xmkid
      where  sbnf=#{nf} ${unit}  ${dist}
      
      union all
      
-     select '安保' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
+     select '安保' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,decode(jh.id,null,'0',jh.id) ym 
      from plan_abgc jh left join sck_abgc sc on  sc.sckid=jh.sckid
-		    left join Xmk_Abgc lx on lx.id=sc.xmkid
-	where  jhnf=#{nf} ${unit}  ${dist}
+        left join Xmk_Abgc lx on lx.id=sc.xmkid
+  where  jhnf=#{nf} ${unit}  ${dist}
      union all
      
-     select '灾害' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
-    	from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
-		left join Xmk_Zhfz lx on lx.id=sc.xmkid 
-	where  sbnf=#{nf} ${unit}  ${dist}
+     select '灾害' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,decode(jh.id,null,'0',jh.id) ym  
+      from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
+    left join Xmk_Zhfz lx on lx.id=sc.xmkid 
+  where  sbnf=#{nf} ${unit}  ${dist}
      )
      group by dist
     
@@ -183,49 +208,66 @@ where b.id=a.dist(+)
 union all 
 
 select '合计' v_0,count(decode(a,'危桥',decode(unit,'2',xm,null),null)) v_1,
-     sum(decode(a,'危桥',decode(unit,'2',zj,0),0)) v_2,
-     count(decode(a,'危桥',decode(unit,'1',xm,null),null)) v_3,
-     sum(decode(a,'危桥',decode(unit,'1',zj,0),0)) v_4,
-     count(decode(a,'危桥',xm,null)) v_5,
-     sum(decode(a,'危桥',zj,0)) v_6,
+     sum(decode(a,'危桥',decode(unit,'2',ym,0),0)) v_2,
+     sum(decode(a,'危桥',decode(unit,'2',ztz,0),0)) v_3,
+     sum(decode(a,'危桥',decode(unit,'2',zj,0),0)) v_4,
+     count(decode(a,'危桥',decode(unit,'1',xm,null),null)) v_5,
+     sum(decode(a,'危桥',decode(unit,'1',ym,0),0)) v_6,
+     sum(decode(a,'危桥',decode(unit,'1',ztz,0),0)) v_7,
+     sum(decode(a,'危桥',decode(unit,'1',zj,0),0)) v_8,
+     count(decode(a,'危桥',xm,null)) v_9,
+     sum(decode(a,'危桥',ym,0)) v_10,
+     sum(decode(a,'危桥',ztz,0)) v_11,
+     sum(decode(a,'危桥',zj,0)) v_12,
      
-     sum(decode(a,'安保',decode(unit,'2',xm,null),0)) v_7,
-     sum(decode(a,'安保',decode(unit,'2',zj,0),0)) v_8,
-     sum(decode(a,'安保',decode(unit,'1',xm,null),0)) v_9,
-     sum(decode(a,'安保',decode(unit,'1',zj,0),0)) v_10,
-     sum(decode(a,'安保',xm,null)) v_11,
-     sum(decode(a,'安保',zj,0)) v_12,
+     count(decode(a,'安保',decode(unit,'2',xm,null),null)) v_13,
+     sum(decode(a,'安保',decode(unit,'2',xm,null),null)) v_14,
+     sum(decode(a,'安保',decode(unit,'2',ztz,0),0)) v_15,
+     sum(decode(a,'安保',decode(unit,'2',zj,0),0)) v_16,
+     count(decode(a,'安保',decode(unit,'1',xm,null),null)) v_17,
+     sum(decode(a,'安保',decode(unit,'1',xm,null),null)) v_18,
+     sum(decode(a,'安保',decode(unit,'1',ztz,0),0)) v_19,
+     sum(decode(a,'安保',decode(unit,'1',zj,0),0)) v_20,
+     count(decode(a,'安保',xm,null)) v_21,
+     sum(decode(a,'安保',xm,null)) v_22,
+     sum(decode(a,'安保',ztz,0)) v_23,
+     sum(decode(a,'安保',zj,0)) v_24,
      
-     sum(decode(a,'灾害',decode(unit,'2',xm,null),0)) v_13,
-     sum(decode(a,'灾害',decode(unit,'2',zj,0),0)) v_14,
-     sum(decode(a,'灾害',decode(unit,'1',xm,null),0)) v_15,
-     sum(decode(a,'灾害',decode(unit,'1',zj,0),0)) v_16,
-     sum(decode(a,'灾害',xm,null)) v_17,
-     sum(decode(a,'灾害',zj,0)) v_18,
-     
-     sum(decode(unit,'2',zj,0)) v_19,
-     sum(decode(unit,'1',zj,0)) v_20,
-     sum(zj) v_21,'4000' id
+     count(decode(a,'灾害',decode(unit,'2',xm,null),null)) v_25,
+     sum(decode(a,'灾害',decode(unit,'2',xm,null),null)) v_26,
+     sum(decode(a,'灾害',decode(unit,'2',ztz,0),0)) v_27,
+     sum(decode(a,'灾害',decode(unit,'2',zj,0),0)) v_28,
+     count(decode(a,'灾害',decode(unit,'1',xm,null),null)) v_29,
+     sum(decode(a,'灾害',decode(unit,'1',xm,null),null)) v_30,
+     sum(decode(a,'灾害',decode(unit,'1',ztz,0),0)) v_31,
+     sum(decode(a,'灾害',decode(unit,'1',zj,0),0)) v_32,
+     count(decode(a,'灾害',xm,null)) v_33,
+     sum(decode(a,'灾害',xm,null)) v_34,
+     sum(decode(a,'灾害',ztz,0)) v_35,
+     sum(decode(a,'灾害',zj,0)) v_36,
+     sum(decode(unit,'2',zj,0)) v_37,
+     sum(decode(unit,'1',zj,0)) v_38,
+     sum(zj) v_39,'4000' id
      
      from
      (
-     select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
+     select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(jh.sfylrbwqk,'是',decode(JHSYBZJE,null,0,JHSYBZJE),decode(jh.shengbz,null,0,shengbz)) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,to_char(decode(jh.jhqlqc,null,0,jh.jhqlqc)) ym
      from plan_wqgz jh left join sck_wqgz sc on sc.sckid=jh.sckid
         left join XMK_WQGZ lx   on lx.id=sc.xmkid
      where  sbnf=#{nf} ${unit}  ${dist}
      
      union all
      
-     select '安保' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
+     select '安保' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,decode(jh.id,null,'0',jh.id) ym 
      from plan_abgc jh left join sck_abgc sc on  sc.sckid=jh.sckid
-		    left join Xmk_Abgc lx on lx.id=sc.xmkid
-	where  jhnf=#{nf} ${unit}  ${dist}
+        left join Xmk_Abgc lx on lx.id=sc.xmkid
+  where  jhnf=#{nf} ${unit}  ${dist}
      union all
      
-     select '灾害' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
-    	from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
-		left join Xmk_Zhfz lx on lx.id=sc.xmkid 
-	where  sbnf=#{nf} ${unit}  ${dist}
+     select '灾害' a,to_char(jh.jhYHLC) xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist,decode(jh.pfztz,null,0,jh.pfztz) ztz,decode(jh.id,null,'0',jh.id) ym  
+      from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
+    left join Xmk_Zhfz lx on lx.id=sc.xmkid 
+  where  sbnf=#{nf} ${unit}  ${dist}
      )
 order by id
 	 </select>

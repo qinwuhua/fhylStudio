@@ -1200,9 +1200,8 @@ public class GcybbController extends BaseActionSupport{
 		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 		String tableName="";
 		try{
-			    if("升级改造".equals(gcglwqgz.getTiaojian()))
+			    if("改建工程".equals(gcglwqgz.getTiaojian()))
 			    	tableName="yb_sj";
-				
 				if("路面改造".equals(gcglwqgz.getTiaojian()))
 					tableName="yb_gj";
 				if("灾毁重建".equals(gcglwqgz.getTiaojian()))
@@ -1220,6 +1219,8 @@ public class GcybbController extends BaseActionSupport{
 							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
 				        ",decode(sum(decode(jhnf,'"+arr[j]+"',xmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmzj))) xmzj"+arr[j]+
 				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wclc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wclc))) wclc"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',bbz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bbz))) bbz"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',bbzorsbz)),null,0,sum(decode(jhnf,'"+arr[j]+"',bbzorsbz))) bbzorsbz"+arr[j]+
 				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcxmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcxmzj))) wcxmzj"+arr[j]+"";
 				}
 				sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
@@ -1232,19 +1233,29 @@ public class GcybbController extends BaseActionSupport{
 					double xmzj=0;
 					double wclc=0;
 					double wcxmzj=0;
+					double bbzorsbz=0;
+					double bbz=0;
 					for(int j=arr.length-1;j>=0;j--){
 						xmsl=xmsl+Double.valueOf(hm.get("XMSL"+arr[j]).toString());
 						xmlc=xmlc+Double.valueOf(hm.get("XMLC"+arr[j]).toString());
 						xmzj=xmzj+Double.valueOf(hm.get("XMZJ"+arr[j]).toString());
 						wclc=wclc+Double.valueOf(hm.get("WCLC"+arr[j]).toString());
+						bbz=bbz+Double.valueOf(hm.get("BBZ"+arr[j]).toString());
+						bbzorsbz=bbzorsbz+Double.valueOf(hm.get("BBZORSBZ"+arr[j]).toString());
 						wcxmzj=wcxmzj+Double.valueOf(hm.get("WCXMZJ"+arr[j]).toString());
 						hm.put("LJWCLC"+arr[j],xmlc);
+						hm.put("LJWCBBZ"+arr[j],bbz);
+						hm.put("LJWCZJ"+arr[j],wcxmzj);
 					}
 				   hm.put("XMSL",xmsl);
 				   hm.put("XMLC",xmlc);
 				   hm.put("XMZJ",xmzj);
 				   hm.put("WCLC",wclc);
+				   hm.put("BBZ",bbz);
 				   hm.put("WCXMZJ",wcxmzj);
+				   hm.put("LJWCBBZ",bbz);
+				   hm.put("BBZORSBZ",bbzorsbz);
+				   hm.put("LJWCZJ",wcxmzj);
 				   hm.put("LJWCLC",wclc);
 				   hm.put("XH", i);
 				}
@@ -1252,7 +1263,7 @@ public class GcybbController extends BaseActionSupport{
 					String[] nf = gcglwqgz.getXmnf().split(",");
 					Arrays.sort(nf);
 					List<Excel_list> elist=new ArrayList<Excel_list>();
-					int cd=(nf.length+1)*6+3;
+					int cd=(nf.length+1)*9+3;
 					NumberFormat nfs = NumberFormat.getInstance(); 
 			        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
 			        nfs.setMinimumFractionDigits(2);//设置最小保留几位小数 
@@ -1277,31 +1288,43 @@ public class GcybbController extends BaseActionSupport{
 						Method method4 = cl.getMethod("setV_"+4, new Class[]{String.class});
 						method4.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMLC").toString()))});
 						Method method5 = cl.getMethod("setV_"+5, new Class[]{String.class});
-						method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMZJ").toString()))});
+						method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BBZORSBZ").toString()))});
 						Method method6 = cl.getMethod("setV_"+6, new Class[]{String.class});
 						method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCLC").toString()))});
 						Method method7 = cl.getMethod("setV_"+7, new Class[]{String.class});
 						method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCLC").toString()))});
 						Method method8 = cl.getMethod("setV_"+8, new Class[]{String.class});
-						method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ").toString()))});
-						int k=9;
+						method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BBZ").toString()))});
+						Method method9 = cl.getMethod("setV_"+9, new Class[]{String.class});
+						method9.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCBBZ").toString()))});
+						Method method10 = cl.getMethod("setV_"+10, new Class[]{String.class});
+						method10.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ").toString()))});
+						Method method11 = cl.getMethod("setV_"+11, new Class[]{String.class});
+						method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCZJ").toString()))});
+						int k=12;
 						for (int j = 0; j < nf.length; j++) {
-							Method method9 = cl.getMethod("setV_"+k, new Class[]{String.class});
-							method9.invoke(l, new Object[]{list.get(i).get("XMSL"+nf[j]).toString()});
-							Method method10 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
-							method10.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMLC"+nf[j]).toString()))});
-							Method method11 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
-							method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMZJ"+nf[j]).toString()))});
-							Method method12 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
-							method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCLC"+nf[j]).toString()))});
-							Method method13 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
-							method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCLC"+nf[j]).toString()))});
-							Method method14 = cl.getMethod("setV_"+(k+5), new Class[]{String.class});
-							method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ"+nf[j]).toString()))});
-							k+=6;
+							Method method12 = cl.getMethod("setV_"+k, new Class[]{String.class});
+							method12.invoke(l, new Object[]{list.get(i).get("XMSL"+nf[j]).toString()});
+							Method method13 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
+							method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMLC"+nf[j]).toString()))});
+							Method method14 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
+							method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BBZORSBZ"+nf[j]).toString()))});
+							Method method15 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
+							method15.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCLC"+nf[j]).toString()))});
+							Method method16 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
+							method16.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCLC"+nf[j]).toString()))});
+							Method method17 = cl.getMethod("setV_"+(k+5), new Class[]{String.class});
+							method17.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BBZ"+nf[j]).toString()))});
+							Method method18 = cl.getMethod("setV_"+(k+6), new Class[]{String.class});
+							method18.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCBBZ"+nf[j]).toString()))});
+							Method method19 = cl.getMethod("setV_"+(k+7), new Class[]{String.class});
+							method19.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ"+nf[j]).toString()))});
+							Method method20 = cl.getMethod("setV_"+(k+8), new Class[]{String.class});
+							method20.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCZJ"+nf[j]).toString()))});
+							k+=9;
 						}
-						Method method15 = cl.getMethod("setV_"+cd, new Class[]{String.class});
-						method15.invoke(l, new Object[]{""});
+						Method method21 = cl.getMethod("setV_"+cd, new Class[]{String.class});
+						method21.invoke(l, new Object[]{""});
 						elist.add(l);
 					}
 					elist=qddh(elist);
@@ -1315,34 +1338,40 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("序号",1,3,0,0));
 					et.add(new Excel_tilte("设区市",1,3,1,1));
 					et.add(new Excel_tilte("项目类型",1,3,2,2));
-					et.add(new Excel_tilte("计划下达及完成情况",1,1,3,8));
-					int sj1=9;
+					et.add(new Excel_tilte("计划下达及完成情况",1,1,3,11));
+					int sj1=12;
 					for (int i = 0; i < nf.length; i++) {
-						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+5));
-						sj1=sj1+6;
+						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+8));
+						sj1=sj1+9;
 					}
 					et.add(new Excel_tilte("备注",1,3,sj1,sj1));
 					et.add(new Excel_tilte(nf[0]+"-"+nf[nf.length-1]+"年度",2,2,3,5));
 					et.add(new Excel_tilte("本年完成里程(公里)",2,3,6,6));
 					et.add(new Excel_tilte("累计完成里程(公里)",2,3,7,7));
-					et.add(new Excel_tilte("本年完成投资(万元)",2,3,8,8));
-					int sj2=9;
+					et.add(new Excel_tilte("本年车购税到位(万元)",2,3,8,8));
+					et.add(new Excel_tilte("累计车购税到位(万元)",2,3,9,9));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,10,10));
+					et.add(new Excel_tilte("累计完成投资(万元)",2,3,11,11));
+					int sj2=12;
 					for (int i = 0; i < nf.length; i++) {
 						et.add(new Excel_tilte(nf[i]+"年度",2,2,sj2,sj2+2));
 						et.add(new Excel_tilte("本年完成里程(公里)",2,3,sj2+3,sj2+3));
 						et.add(new Excel_tilte("累计完成里程(公里)",2,3,sj2+4,sj2+4));
-						et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+5,sj2+5));
-						sj2=sj2+6;
+						et.add(new Excel_tilte("本年车购税到位(万元)",2,3,sj2+5,sj2+5));
+						et.add(new Excel_tilte("累计车购税到位(万元)",2,3,sj2+6,sj2+6));
+						et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+7,sj2+7));
+						et.add(new Excel_tilte("累计完成投资(万元)",2,3,sj2+8,sj2+8));
+						sj2=sj2+9;
 					}
 					et.add(new Excel_tilte("项目数量",3,3,3,3));
 					et.add(new Excel_tilte("计划里程(公里)",3,3,4,4));
 					et.add(new Excel_tilte("中央或省统筹资金(万元)含续建",3,3,5,5));
-					int sj3=9;
+					int sj3=12;
 					for (int i = 0; i < nf.length; i++) {
 						et.add(new Excel_tilte("项目数量",3,3,sj3,sj3));
 						et.add(new Excel_tilte("计划里程(公里)",3,3,sj3+1,sj3+1));
 						et.add(new Excel_tilte("中央或省统筹资金(万元)含续建",3,3,sj3+2,sj3+2));
-						sj3=sj3+6;
+						sj3=sj3+9;
 					}
 					eldata.setEt(et);//将表头内容设置到类里面
 					HttpServletResponse response= getresponse();//获得一个HttpServletResponse

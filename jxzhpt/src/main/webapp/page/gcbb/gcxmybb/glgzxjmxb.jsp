@@ -49,7 +49,7 @@
 		}
 		function showAll(){
 			var xmnf=$("#jhxdnf").combotree("getValues");
-			var xmlx=$("#xmlx").combobox("getValue");
+			var xmlx=$("#xmlx").combobox("getText");
 			if(xmnf==''){
 				alert("请选择年份");
 				return;
@@ -63,15 +63,15 @@
 			var len=(xmnf.length+1)*1000+"px";
 			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
-				str1=str1+'<td colspan="6">计划下达及完成情况</td>';
-				str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td>';
-				str3=str3+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>';
+				str1=str1+'<td colspan="9">计划下达及完成情况</td>';
+				str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>';
+				str3=str3+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>';
 			}
-			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td rowspan="3">项目类型</td><td colspan="6">计划下达及完成情况</td>'
+			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td rowspan="3">项目类型</td><td colspan="9">计划下达及完成情况</td>'
 			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="3">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td>'
+			+'<td rowspan="1" colspan="3">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>'
 			+str2+'</tr>'
-			+'<td>项目数量</td><td>计划里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>'
+			+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>'
 			+str3+'</tr>';
 			biaotou.empty();
 			biaotou.append(biaotstr);
@@ -94,39 +94,52 @@
 										for(var j=xmnf.length-1;j>=0;j--){
 											var s1="XMSL"+xmnf[j];
 											var s2="XMLC"+xmnf[j];
-											var s3="XMZJ"+xmnf[j];
+											var s3="BBZORSBZ"+xmnf[j];
 											var s4="WCLC"+xmnf[j];
 											var s5="LJWCLC"+xmnf[j];
-											var s6="WCXMZJ"+xmnf[j];
+											var s6="BBZ"+xmnf[j];
+											var s7="LJWCBBZ"+xmnf[j];
+											var s8="WCXMZJ"+xmnf[j];
+											var s9="LJWCZJ"+xmnf[j];
 											strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
 											+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
-											+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>";
-											
+											+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+											+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
+											+msg[i][s9].toFixed(2)+"</td><td>";
 										}
 										tbodystr=tbodystr+"<tr><td colspan='2'>"+msg[i].XZQHMC+"</td><td>"
-										+$("#xmlx").combobox("getValue")+"</td><td>"
+										+$("#xmlx").combobox("getText")+"</td><td>"
 										+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
-										+msg[i].XMZJ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
-										+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
+										+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+										+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].BBZ.toFixed(2)+"</td><td>"
+										+msg[i].LJWCBBZ.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
+										+msg[i].LJWCZJ.toFixed(2)+"</td><td>"
 										+strs+"</tr>";
 							}else{
 								var strs="";
 								for(var j=xmnf.length-1;j>=0;j--){
 									var s1="XMSL"+xmnf[j];
 									var s2="XMLC"+xmnf[j];
-									var s3="XMZJ"+xmnf[j];
+									var s3="BBZORSBZ"+xmnf[j];
 									var s4="WCLC"+xmnf[j];
 									var s5="LJWCLC"+xmnf[j];
-									var s6="WCXMZJ"+xmnf[j];
+									var s6="BBZ"+xmnf[j];
+									var s7="LJWCBBZ"+xmnf[j];
+									var s8="WCXMZJ"+xmnf[j];
+									var s9="LJWCZJ"+xmnf[j];
 									strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
 									+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
-									+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>";
+									+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+									+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
+									+msg[i][s9].toFixed(2)+"</td><td>";
 								}
 								tbodystr=tbodystr+"<tr><td>"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
-								+$("#xmlx").combobox("getValue")+"</td><td>"
+								+$("#xmlx").combobox("getText")+"</td><td>"
 								+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
-								+msg[i].XMZJ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
-								+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
+								+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+								+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].BBZ.toFixed(2)+"</td><td>"
+								+msg[i].LJWCBBZ.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
+								+msg[i].LJWCZJ.toFixed(2)+"</td><td>"
 								+strs+"</tr>";
 							}
 						}
@@ -137,7 +150,7 @@
 		}
 	function exportWqgzyb(){
 		var xmnf=$("#jhxdnf").combotree("getValues");
-		var xmlx=$("#xmlx").combobox("getValue");
+		var xmlx=$("#xmlx").combobox("getText");
 		if(xmnf==''){
 			alert("请选择年份");
 			return;
@@ -262,19 +275,19 @@ a:active {
 									</tr>
 									<tr>
 										<td>项目数量</td>
-										<td>计划里程（公里）</td>
+										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
 										<td>项目数量</td>
-										<td>计划里程（公里）</td>
+										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
 										<td>项目数量</td>
-										<td>计划里程（公里）</td>
+										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
 										<td>项目数量</td>
-										<td>计划里程（公里）</td>
+										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
 										<td>项目数量</td>
-										<td>计划里程（公里）</td>
+										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
 									</tr>
 								</thead>
