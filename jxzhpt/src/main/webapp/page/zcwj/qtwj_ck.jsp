@@ -75,7 +75,7 @@ a:active {
                                 <span id="wjmc"></span>
                                 </td>
                             </tr>
-                            
+                         <!--    
                             <tr style="height: 105px;">
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -86,7 +86,7 @@ a:active {
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
                                   <span id="wjgy"></span>
                                 </td>
-                            </tr>
+                            </tr> -->
                        		<tr style="height: 35px;">
                                  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

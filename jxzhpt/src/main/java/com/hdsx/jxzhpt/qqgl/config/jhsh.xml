@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
-		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
-		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
+		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
+		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
 		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
@@ -30,35 +30,24 @@
 	<select id="queryJhshLmsj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl xmsl from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm
+				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%1___' and sffirst=1) lx on j.xmbm = lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
-				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
-					and ${jhsh.xzqhdm}
-				</if>
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
 				</if>
-				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
-					and l.lsjl=#{jhsh.lsjl}
+				<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%1___' and jdbs='2')
 				</if>
-				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
-				</if>
-				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-					and j.xmbm like #{jhsh.xmbm}||'%'
-				</if>
-				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
-				</if>
-				<if test="jhsh.xdzt>=0">
-					and j.xdzt=${jhsh.xdzt}
-				</if>
-				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
-					and l.xjsdj =#{jhsh.jsdj}
-				</if>
-				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
-					and l.lsjl=#{jhsh.lsjl}
-				</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and ${jhsh.xmbm}</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xdzt>=0">and j.xdzt=${jhsh.xdzt}</if>
+				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -69,13 +58,18 @@
 	<select id="queryJhshLmgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl xmsl from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm
+				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%2___' and sffirst=1) lx on j.xmbm = lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
 					and ${jhsh.xzqhdm}
 				</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
+				</if>
+				<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%2___' and jdbs='2')
 				</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
 					and l.lsjl=#{jhsh.lsjl}
@@ -84,7 +78,10 @@
 					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
 				</if>
 				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-					and j.xmbm like #{jhsh.xmbm}||'%'
+					and ${jhsh.xmbm}
+				</if>
+				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+					and ${jhsh.jsdj}
 				</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
 					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
@@ -102,32 +99,23 @@
 	<select id="queryJhshXj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.ghlxbh,l.lsjl,l.gydw from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
+				select j.*,l.ghlxbh,l.lsjl,l.gydw,lx.lc,sl.xmsl from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
+				left join (select xmid,lc from lxsh_lx where jdbs='2' and xmid like '%3___' and sffirst=1) lx on j.xmbm = lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
-				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
-					and ${jhsh.xzqhdm}
-				</if>
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
 				</if>
-				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
+				<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%3___' and jdbs='2')
 				</if>
-				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-					and j.xmbm like #{jhsh.xmbm}||'%'
-				</if>
-				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
-				</if>
-				<if test="jhsh.xdzt>=0">
-					and j.xdzt=${jhsh.xdzt}
-				</if>
-				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
-					and l.xjsdj =#{jhsh.jsdj}
-				</if>
-				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
-					and l.lsjl=#{jhsh.lsjl}
-				</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and ${jhsh.xmbm}</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xdzt>=0">and j.xdzt=${jhsh.xdzt}</if>
+				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -138,8 +126,9 @@
 	<select id="queryJhshYhdzx" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,c.kgsj,c.wgsj,c.gq,l.lsjl,l.gydw,l.qdmc,l.zdmc,l.jsdj 
+				select j.*,c.kgsj,c.wgsj,c.gq,l.lsjl,l.gydw,l.qdmc,l.zdmc,l.jsdj,sl.xmsl 
 				from jhsh_yhdzx j left join cbsj_yhdzx c on j.xmbm=c.xmbm left join xmsq_yhdzx l on c.xmbm = l.xmbm
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
 				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
 					and ${jhsh2.xzqhdm}
@@ -147,14 +136,20 @@
 				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh2.ghlxbh}||'%')
 				</if>
+				<if test="jhsh2.ylxbh!=null and jhsh2.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh2.ylxbh} and xmid like '%4___' and jdbs='2')
+				</if>
 				<if test="jhsh2.lsjl!=null and jhsh2.lsjl!=''">
 					and l.lsjl=#{jhsh2.lsjl}
 				</if>
 				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
 					and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
 				</if>
+				<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">
+					and ${jhsh2.jsdj}
+				</if>
 				<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">
-					and j.xmbm like #{jhsh2.xmbm}||'%'
+					and ${jhsh2.xmbm}
 				</if>
 				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
 					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
@@ -172,30 +167,25 @@
 	<select id="queryJhshSh" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*, c.kgsj,c.wgsj,c.gq,l.lsjl, l.gydw, l.qdmc, l.zdmc,l.jsdj  
+				select j.*, c.kgsj,c.wgsj,c.gq,l.lsjl, l.gydw, l.qdmc, l.zdmc,l.jsdj,sl.xmsl  
 				from jhsh_sh j left join cbsj_sh c on j.xmbm=c.xmbm left join xmsq_sh l on c.xmbm = l.xmbm
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
 				where 1=1
-				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
-					and ${jhsh2.xzqhdm}
-				</if>
+				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">and ${jhsh2.xzqhdm}</if>
 				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh2.ghlxbh}||'%')
 				</if>
-				<if test="jhsh2.lsjl!=null and jhsh2.lsjl!=''">
-					and l.lsjl=#{jhsh2.lsjl}
+				<if test="jhsh2.ylxbh!=null and jhsh2.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh2.ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
+				<if test="jhsh2.lsjl!=null and jhsh2.lsjl!=''">and l.lsjl=#{jhsh2.lsjl}</if>
 				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
 					and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
 				</if>
-				<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">
-					and j.xmbm like #{jhsh2.xmbm}||'%'
-				</if>
-				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
-				</if>
-				<if test="jhsh2.xdzt>=0">
-					and j.xdzt=${jhsh2.xdzt}
-				</if>
+				<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">and ${jhsh2.xmbm}</if>
+				<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and ${jhsh2.jsdj}</if>
+				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">and j.xmmc like '%'||#{jhsh2.xmmc}||'%'</if>
+				<if test="jhsh2.xdzt>=0">and j.xdzt=${jhsh2.xdzt}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -208,24 +198,18 @@
 		select count(t.xmbm) from (
 			select j.* from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm
 			where 1=1
-			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
-				and ${jhsh2.xzqhdm}
-			</if>
+			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">and ${jhsh2.xzqhdm}</if>
 			<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 				and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh2.ghlxbh}||'%')
 			</if>
-			<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">
-				and j.xmbm like #{jhsh2.xmbm}||'%'
+			<if test="jhsh2.ylxbh!=null and jhsh2.ylxbh!=''">
+				and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh2.ylxbh} and xmid like '%4___' and jdbs='2')
 			</if>
-			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-				and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
-			</if>
-			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
-				and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
-			</if>
-			<if test="jhsh2.xdzt>=0">
-				and j.xdzt=${jhsh2.xdzt}
-			</if>
+			<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">and ${jhsh2.xmbm}</if>
+			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">and j.xmmc like '%'||#{jhsh2.xmmc}||'%'</if>
+			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">and l.tsdq like '%'||#{jhsh2.tsdq}||'%'</if>
+			<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and ${jhsh2.jsdj}</if>
+			<if test="jhsh2.xdzt>=0">and j.xdzt=${jhsh2.xdzt}</if>
 			order by j.xdzt,j.xmbm desc
 		) t 
 	</select>
@@ -233,24 +217,20 @@
 		select count(t.xmbm) from (
 			select j.* from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm
 			where 1=1
-			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
-				and ${jhsh2.xzqhdm}
-			</if>
+			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">and ${jhsh2.xzqhdm}</if>
 			<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 				and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh2.ghlxbh}||'%')
 			</if>
-			<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">
-				and j.xmbm like #{jhsh2.xmbm}||'%'
+			<if test="jhsh2.ylxbh!=null and jhsh2.ylxbh!=''">
+				and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh2.ylxbh} and xmid like '%5___' and jdbs='2')
 			</if>
+			<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">and ${jhsh2.xmbm}</if>
+			<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and ${jhsh2.jsdj}</if>
 			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
 				and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
 			</if>
-			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
-				and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
-			</if>
-			<if test="jhsh2.xdzt>=0">
-				and j.xdzt=${jhsh2.xdzt}
-			</if>
+			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">and l.tsdq like '%'||#{jhsh2.tsdq}||'%'</if>
+			<if test="jhsh2.xdzt>=0">and j.xdzt=${jhsh2.xdzt}</if>
 			order by j.xdzt,j.xmbm desc
 		) t 
 	</select>
@@ -262,8 +242,11 @@
 		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
 		</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%1___' and jdbs='2')
+		</if>
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-			and j.xmbm like #{jhsh.xmbm}||'%'
+			and ${jhsh.xmbm}
 		</if>
 		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
 			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
@@ -275,7 +258,7 @@
 			and j.xdzt=${jhsh.xdzt}
 		</if>
 		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
-			and l.xjsdj =#{jhsh.jsdj}
+			and ${jhsh.jsdj}
 		</if>
 		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
 			and l.lsjl=#{jhsh.lsjl}
@@ -289,8 +272,14 @@
 		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
 		</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%2___' and jdbs='2')
+		</if>
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-			and j.xmbm like #{jhsh.xmbm}||'%'
+			and ${jhsh.xmbm}
+		</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
+			and ${jhsh.jsdj}
 		</if>
 		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
 			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
@@ -304,30 +293,19 @@
 	</select>
 	<select id="queryJhshCountXj" parameterType="java.util.Map" resultType="int">
 		select count(j.xmbm) from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm where 1=1
-		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
-			and ${jhsh.xzqhdm}
-		</if>
+		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
 		</if>
-		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-			and j.xmbm like #{jhsh.xmbm}||'%'
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%3___' and jdbs='2')
 		</if>
-		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
-		</if>
-		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-			and l.tsdq like '%'||#{jhsh.tsdq}||'%'
-		</if>
-		<if test="jhsh.xdzt>=0">
-			and j.xdzt=${jhsh.xdzt}
-		</if>
-		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
-			and l.xjsdj =#{jhsh.jsdj}
-		</if>
-		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
-			and l.lsjl=#{jhsh.lsjl}
-		</if>
+		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and ${jhsh.xmbm}</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
+		<if test="jhsh.xdzt>=0">and j.xdzt=${jhsh.xdzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
+		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 	</select>
 	
 	<update id="updateJhshxxLmsj" parameterType="java.util.List">
@@ -398,7 +376,7 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, 
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, l.jszlc,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 
@@ -446,8 +424,8 @@
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">
 		update lxsh_lx l set 
-		<if test="qdmc!=null and qdmc!=''">l.qdmc=#{qdmc},</if>
-		<if test="zdmc!=null and zdmc!=''">l.zdmc=#{zdmc},</if>
+		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
+		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
 		<if test="yilc!=null and yilc!=''">l.yilc=#{yilc},</if>
 		<if test="erlc!=null and erlc!=''">l.erlc=#{erlc},</if>
 		<if test="sanlc!=null and sanlc!=''">l.sanlc=#{sanlc},</if>
@@ -461,8 +439,8 @@
 		<if test="jhdwlc!=null and jhdwlc!=''">l.jhdwlc=#{jhdwlc},</if>
 		<if test="jhwllc!=null and jhwllc!=''">l.jhwllc=#{jhwllc},</if>
 		<if test="xjlxbm!=null and xjlxbm!=''">l.xjlxbm=#{xjlxbm},</if>
-		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
-		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
+		<if test="xjqdzh!=null">l.xjqdzh=#{xjqdzh},</if>
+		<if test="xjzdzh!=null">l.xjzdzh=#{xjzdzh},</if>
 		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
 		<if test="lxbm!=null and lxbm!=''">l.lxbm=#{lxbm},</if>
 		<if test="qdzh!=null and qdzh!=''">l.qdzh=#{qdzh},</if>
@@ -473,7 +451,7 @@
 		<if test="xzqhdm!=null and xzqhdm!=''">l.xzqhdm=#{xzqhdm},</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">l.jsjsdj=#{jsjsdj},</if>
 		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
-		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if>
+<!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
 		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if>
 		where l.xmid=#{xmid} 
@@ -503,7 +481,19 @@
 		<if test="jdbs!=null">,jdbs</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
 		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>
-		<if test="jsfa!=null and jsfa!=''">,jsfa</if>)
+		<if test="jsfa!=null and jsfa!=''">,jsfa</if>
+		<if test="yilc!=null">,yilc</if>
+		<if test="erlc!=null">,erlc</if>
+		<if test="sanlc!=null">,sanlc</if>
+		<if test="silc!=null">,silc</if>
+		<if test="dwlc!=null">,dwlc</if>
+		<if test="wllc!=null">,wllc</if>
+		<if test="jhyilc!=null">,jhyilc</if>
+		<if test="jherlc!=null">,jherlc</if>
+		<if test="jhsanlc!=null">,jhsanlc</if>
+		<if test="jhsilc!=null">,jhsilc</if>
+		<if test="jhdwlc!=null">,jhdwlc</if>
+		<if test="jhwllc!=null">,jhwllc</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -524,7 +514,19 @@
 		<if test="jdbs!=null">,#{jdbs}</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
 		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>
-		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>)
+		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>
+		<if test="yilc!=null">,#{yilc}</if>
+		<if test="erlc!=null">,#{erlc}</if>
+		<if test="sanlc!=null">,#{sanlc}</if>
+		<if test="silc!=null">,#{silc}</if>
+		<if test="dwlc!=null">,#{dwlc}</if>
+		<if test="wllc!=null">,#{wllc}</if>
+		<if test="jhyilc!=null">,#{jhyilc}</if>
+		<if test="jherlc!=null">,#{jherlc}</if>
+		<if test="jhsanlc!=null">,#{jhsanlc}</if>
+		<if test="jhsilc!=null">,#{jhsilc}</if>
+		<if test="jhdwlc!=null">,#{jhdwlc}</if>
+		<if test="jhwllc!=null">,#{jhwllc}</if>)
 	</insert>
 	<delete id="deleteLx" parameterType="lx">
 		delete from lxsh_lx where id=#{id}
@@ -557,6 +559,9 @@
 		select * from lxsh_lx where xmid=#{xmid} and 
 		jdbs= (select max(jdbs) from lxsh_lx x where x.xmid = #{xmid})
 	</select>
+	<select id="queryLxMaxJdbs1" parameterType="lx" resultType="lx">
+		select * from wnjh_lx where xmid=#{xmid}
+	</select>
 	<select id="queryYLx" parameterType="lx" resultType="lx">
 		<![CDATA[select ylxbm ylxbm,(case when Xqdzh<${qdzh} then YQDZH+${qdzh}-XQDZH else yqdzh end) yqdzh,
 		(case when ${zdzh}<Xzdzh then YZDZH-XZDZH+${zdzh} else yzdzh end ) yzdzh ,
@@ -566,14 +571,13 @@
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
-		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
-	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
-	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -590,15 +594,14 @@
 		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
-		<![CDATA[
 		union all
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
-	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
-	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -616,14 +619,13 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
-	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
-	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -641,14 +643,13 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
-	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
-	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -666,14 +667,13 @@
 	        ]]>
 		</foreach>
 		union all
-		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
-	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
-	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
 	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
-		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -703,7 +703,7 @@
 		from (select g.roadcode,to_char(decode(g.f114,null,'无路',g.f114)) f114,f014,
 		case when g.roadstart < ${qdzh} then ${qdzh} when g.roadstart > ${qdzh} then g.roadstart when g.roadstart = ${qdzh} then g.roadstart end roadstart,
 		case when g.roadends < ${zdzh} then g.roadends when g.roadends > ${zdzh} then ${zdzh} when g.roadends = ${zdzh} then g.roadends end roadends from gpsroad g
-		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X') and g.roadcode like '%' || #{lxbm} || '%'
+		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X', 'Y', 'C') and g.roadcode like '%' || #{lxbm} || '%'
 		and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends) or (g.roadstart > ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh})))
 		group by f114,f014 order by f014)
 		]]>
@@ -716,11 +716,15 @@
 			left join jhsh_sjgz j on c.xmbm=j.xmbm
 			where 1=1  and l.shzt='1' and k.shzt='1'
 			<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+			<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 			<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 			<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
-			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>)
+			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+			<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+			<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+			<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>)
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -732,11 +736,15 @@
 		left join jhsh_sjgz j on c.xmbm=j.xmbm
 		where 1=1  and l.shzt='1' and k.shzt='1'
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like #{jhsh.xmmc}||'%'</if>
 		<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 		<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 		<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 		<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
 		<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
 	</select>
 	<select id="zdyQueryLmgz" parameterType="java.util.List" resultType="java.util.Map">
 		select * from (
@@ -746,11 +754,15 @@
 		    left join jhsh_lmgz j on c.xmbm=j.xmbm
 		    where 1=1 and l.shzt='1' and k.shzt='1'
 			<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+			<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 			<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 			<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
-			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>)
+			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+			<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+			<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+			<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>)
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -762,11 +774,15 @@
 		left join jhsh_lmgz j on c.xmbm=j.xmbm
 		where 1=1 and l.shzt='1' and k.shzt='1'
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 		<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 		<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 		<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 		<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
 		<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
 	</select>
 	<select id="zdyQueryXj" parameterType="java.util.List" resultType="java.util.Map">
 		select * from (
@@ -776,11 +792,15 @@
 		    left join jhsh_xj j on c.xmbm=j.xmbm
 	      	where 1=1  and l.shzt='1' and k.shzt='1'
 	      	<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+	      	<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 			<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 			<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
-			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>)
+			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+			<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+			<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+			<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>)
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -792,11 +812,15 @@
 		left join jhsh_xj j on c.xmbm=j.xmbm
 	    where 1=1  and l.shzt='1' and k.shzt='1'
 	    <if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and l.xmbm like #{jhsh.xmbm}||'%'</if>
+	    <if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and l.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 		<if test="jhsh.gydw!=null">and l.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 		<if test="jhsh.xzqh!=null">and l.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 		<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and l.lxmc like #{jhsh.lxmc}||'%'</if>
 		<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and l.ghlxbh like #{jhsh.lxbm}||'%'</if>
 		<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt = #{jhsh.kgzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
 	</select>
 	<select id="zdyQueryYhdzx" parameterType="java.util.List" resultType="java.util.Map">
 		select * from (
@@ -805,9 +829,13 @@
 			<if test="jhsh.xzqh!=null and jhsh.xzqh!=''">and x.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 			<if test="jhsh.gydw!=null and jhsh.gydw!=''">and x.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 			<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and x.xmbm like #{jhsh.xmbm}||'%'</if>
+			<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
-			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>)
+			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>
+			<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+			<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+			<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and x.tsdq like '%'||#{jhsh.tsdq}||'%'</if>)
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -818,9 +846,13 @@
 		<if test="jhsh.xzqh!=null and jhsh.xzqh!=''">and x.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 		<if test="jhsh.gydw!=null and jhsh.gydw!=''">and x.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and x.xmbm like #{jhsh.xmbm}||'%'</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 		<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 		<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
 		<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and x.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
 	</select>
 	<select id="zdyQuerySh" parameterType="java.util.List" resultType="java.util.Map">
 		select * from (
@@ -829,9 +861,13 @@
 			<if test="jhsh.xzqh!=null and jhsh.xzqh!=''">and x.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 			<if test="jhsh.gydw!=null and jhsh.gydw!=''">and x.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 			<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and x.xmbm like #{jhsh.xmbm}||'%'</if>
+			<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 			<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 			<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
-			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>)
+			<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>
+			<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+			<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+			<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and x.tsdq like '%'||#{jhsh.tsdq}||'%'</if>)
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -842,8 +878,116 @@
 		<if test="jhsh.xzqh!=null and jhsh.xzqh!=''">and x.xzqhdm like '%'||#{jhsh.xzqh}||'%'</if>
 		<if test="jhsh.gydw!=null and jhsh.gydw!=''">and x.gydwdm like '%'||#{jhsh.gydw}||'%'</if>
 		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and x.xmbm like #{jhsh.xmbm}||'%'</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 		<if test="jhsh.lxmc!=null and jhsh.lxmc!=''">and x.lxmc like '%'||#{jhsh.lxmc}||'%'</if>
 		<if test="jhsh.lxbm!=null and jhsh.lxbm!=''">and x.ylxbh like '%'#{jhsh.lxbm}||'%'</if>
 		<if test="jhsh.kgzt!=null and jhsh.kgzt!=''">and j.kgzt=#{jhsh.kgzt}</if>
+		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.jsdj})</if>
+		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">and j.xmbm in (select xmid from lxsh_lx l where ${jhsh.ylxbh})</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and x.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
+	</select>
+	<select id="queryJhshLjLmsj" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm 
+		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%1___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___' and jdbs='2')
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and l.lsjl=#{jhsh.lsjl}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and l.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and j.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xdzt>=0">
+			and j.xdzt=${xdzt}
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and ${jsdj}
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and l.lsjl=#{lsjl}
+		</if>
+	</select>
+	<select id="queryJhshLjLmgz" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm 
+		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%2___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
+		</if>
+		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
+		<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+	</select>
+	<select id="queryJhshLjXj" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm 
+		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%3___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%3___' and jdbs='2')
+		</if>
+		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
+		<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+	</select>
+	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.sysbbzj) sysbb,sum(j.yqdbcgs) yqdbcgs,sum(j.ztz) ztz,sum(l1.lc) lc from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
+		</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+	</select>
+	<select id="queryJhshLjSh" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.sbzzj) sbzzj,sum(j.bbzzj) bbzzj,sum(l1.lc) lc from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1 
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
+		</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
 	</select>
 </mapper>

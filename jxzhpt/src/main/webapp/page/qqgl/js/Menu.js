@@ -2,7 +2,7 @@ $(function() {
 	var qx=parent.$.cookie("qx3").split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-		 if(qx[i]=='01010801'){
+    	 if(qx[i]=='01010801'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
 				title: '项目立项申请',
@@ -128,6 +128,13 @@ $(function() {
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/shxmgl.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080206',
+		title:'项目前期数据分析',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/lxsh/xmqqsjfx.jsp'
 	});
 	
 	/**
@@ -267,6 +274,7 @@ $(function() {
 //		renderTo:'left_menu5',
 //		href:'../sjcx/jhkgl/zbgl.jsp'
 //	});
+	
 	menuQx();
 	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010801"){
 		if(getParam("sj")=="0"){

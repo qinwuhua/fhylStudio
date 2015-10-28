@@ -71,6 +71,7 @@
 // 					addaqyb(response);
 // 				}
 //				alert(response);
+				flagsc=true;
 				var arr=response.substr(response.length-32,response.length);
 //				alert(response.substr(response.length-32,response.length).length);
 				$('<li></li>').appendTo('.files').html(response.substr(0,response.length-32)+'                   <a id="'+arr+'" href="javascript:DelTz('+"'"+arr+"'"+')"  style="text-decoration:none;"> 删除 </a> ');
@@ -149,8 +150,9 @@
 				async:false,
 				success:function(msg){
 					if(Boolean(msg)){
-						alert('保存成功！');
-						fanhui();
+						flagadd=true;
+						alert('请勿关闭窗口，等待文件上传成功后自动关闭，如未修改文件，请手动返回！');
+						closeck();
 					}else{
 						alert('保存失败！');
 					}
@@ -165,13 +167,21 @@
 		uploadifyUpload();
 	}
 	function tianjia(){
-		if($("#fileQueue").text()!=''){
 			uploadifyUpload();
-		}
-		addaqyb();
+			addaqyb();
 	}
 	function uploadifyUpload() {
 		$('#fileupload').uploadifyUpload();
+	}
+	var flagadd=false;
+	var flagsc=false;
+	function closeck(){
+		
+		if(flagadd&&flagsc){
+			fanhui();
+		}else{
+			setTimeout('closeck()',1000);
+		}
 	}
 	function fanhui() {
 // 		var data="id="+request('id');

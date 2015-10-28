@@ -27,8 +27,8 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm3('jsdj','技术等级');
+			loadGldj('gldj');
 			tsdq("tsdq");
 			xmnf("xmnf");
 			showAllsjsh();
@@ -56,6 +56,7 @@
 				id+=","+rows[i].id ;
 				xmbm+=','+rows[i].xmbm;
 			}
+			alert("xmbm="+xmbm+"    id="+id);
 			if(confirm('您确定审核该项目？')){
 				var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
 				$.ajax({
@@ -251,9 +252,8 @@ text-decoration:none;
 <!--         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="datagrid"></table>
-            		</div>
+            		<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="tz" style="color: red;">0</span>】,补助测算累计【<span id="bzcs" style="color: red;">0</span>】,里程累计【<span id="lc" style="color: red;">0</span>】</div>
+            		<div><table id="datagrid"></table></div>
             	</td>
         	</tr>
 		</table>

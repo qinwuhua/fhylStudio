@@ -51,7 +51,6 @@
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
 			var xmnf=$("#ddlYear1").combotree("getValues");
-			var gydw1=$("#gydw").combotree("getValues");
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')

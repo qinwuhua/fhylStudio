@@ -79,10 +79,13 @@ a:active {
         						<select name="ddlYear" id="ddlYear" style="width: 60px;">
         						<option value="">全部</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;
+        						</p>
+        						<p style="margin: 1% 0px 1% 2%;">
+        							<span>桥梁编码：</span>
+        						<input type="text" id="qlbm" style="width: 100px;">
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
-        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
+</p>
         				</div>
         			</fieldset>
         		</td>

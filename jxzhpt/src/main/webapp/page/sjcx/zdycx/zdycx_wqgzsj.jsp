@@ -313,7 +313,7 @@ text-decoration:none;
 						<td style="background-color: #ffffff;" align="left">
 								<input  type="checkbox" value="cjqz" name="checkbox1" class="part1"/>重建桥址</td>
 							<td style="background-color: #ffffff;" align="left">
-							<input  type="checkbox" value="sjsd" name="checkbox1" class="part1"/>设计速度</td>
+							<input  type="checkbox" value="sjsd" name="checkbox1" class="part1"/>设计速度(km/h)</td>
 						</tr>
 						<tr>
 						<td style="background-color: #ffffff;" align="left">

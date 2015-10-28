@@ -190,7 +190,7 @@
 					<tr height="32">
         						<td>行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td>规划路线编码：</td>
+        						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
 								<td>原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>

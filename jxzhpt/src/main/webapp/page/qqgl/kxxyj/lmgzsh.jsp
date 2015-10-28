@@ -27,8 +27,8 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm3('jsdj','技术等级');
+			loadGldj('gldj');
 			tsdq("tsdq");
 			xmnf("xmnf");
 			showAlllmsh();
@@ -208,12 +208,11 @@ text-decoration:none;
 									<option value="1">已审核</option>
 								</select></td>  -->
 								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:88px;" >
-								</select>
+								<td><select name="tsdq" id="tsdq" style="width:88px;" ></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:68px;" class="easyui-combobox"></select></td>
+								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
         						<td>是否有历史记录：</td>
         						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>

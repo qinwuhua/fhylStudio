@@ -223,6 +223,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<Lx> queryLsxx1(Jhsh jhsh) {
+		Lx lx=new Lx();
+		lx.setXmid(jhsh.getXmbm());
+		//返回结果
+		List<Lx> result =new ArrayList<Lx>();
+		//查询此计划所有的路线信息
+		List<Lx> lxList=queryList("queryLxMaxJdbs1",lx);
+		for (Lx item : lxList) {
+			queryLsjlList(result, item);
+		}
+		return result;
+	}
+	
 	@Override
 	public List<Lx> queryLsxx2(Lx lx) {
 		List<Lx> result=new ArrayList<Lx>();
@@ -339,5 +354,25 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("filed", filed);
 		params.put("jhsh", jhsh);
 		return queryOne("zdyQueryShTotal",params);
+	}
+	@Override
+	public Map<String, String> queryJhshLjLmsj(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmsj",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjLmgz(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmgz",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjXj(Jhsh jhsh) {
+		return queryOne("queryJhshLjXj",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjYhdzx(Jhsh jhsh) {
+		return queryOne("queryJhshLjYhdzx",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjSh(Jhsh jhsh) {
+		return queryOne("queryJhshLjSh",jhsh);
 	}
 }

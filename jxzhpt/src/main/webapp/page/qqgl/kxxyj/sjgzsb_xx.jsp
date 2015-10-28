@@ -55,7 +55,7 @@ text-decoration:none;
 		$("#kgny").html(data.kgny);
 		$("#wgny").html(data.wgny);
 		$("#pfsj").html(data.pfsj);
-		
+		$('#jszlc').html(data.jszlc);
 		$('#yilc').html(data.yilc);
 		$('#erlc').html(data.erlc);
 		$('#sanlc').html(data.sanlc);
@@ -155,10 +155,6 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lc"></span>
-				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="qdmc"></span>
@@ -167,18 +163,21 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="zdmc"></span>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<span id="yilc"></span>
-					二级公路：<span id="erlc"></span>
-					三级公路：<span id="sanlc"></span>
-					四级公路：<span id="silc"></span>
-					等外公路：<span id="dwlc"></span>
+					一级：<span id="yilc"></span>
+					二级：<span id="erlc"></span>
+					三级：<span id="sanlc"></span>
+					四级：<span id="silc"></span>
+					等外：<span id="dwlc"></span>
 					无路：<span id="wllc"></span>
+					现状总里程：<span id="lc"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -186,12 +185,13 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级公路：<span id="jhyilc"></span>
-					二级公路：<span id="jherlc"></span>
-					三级公路：<span id="jhsanlc"></span>
-					四级公路：<span id="jhsilc"></span>
-					等外公路：<span id="jhdwlc"></span>
+					一级：<span id="jhyilc"></span>
+					二级：<span id="jherlc"></span>
+					三级：<span id="jhsanlc"></span>
+					四级：<span id="jhsilc"></span>
+					等外：<span id="jhdwlc"></span>
 					无路：<span id="jhwllc"></span>
+					建设总里程：<span id="jszlc"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

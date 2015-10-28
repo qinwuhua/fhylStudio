@@ -32,7 +32,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public String queryShNextXmbm(Xmsq xmsq) {
-		return queryOne("queryShNextXmbm", null);
+		return queryOne("queryShNextXmbm", xmsq);
 	}
 	@Override
 	public List<Lx> queryAutoList(Xmsq xmsq) {
@@ -181,6 +181,20 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public List<TreeNode> queryAllGydw(String gydwdm) {
 		return queryList("queryAllGydw",gydwdm);
+	}
+	@Override
+	public Map<String, String> queryLjYhdzx(Xmsq xmsq) {
+		return queryOne("queryLjYhdzx", xmsq);
+	}
+	@Override
+	public Map<String, String> queryLjSh(Xmsq xmsq) {
+		return queryOne("queryLjSh", xmsq);
+	}
+	@Override
+	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm) {
+		params.put("level", level);
+		params.put("xzqhdm", xzqhdm);
+		return queryList("queryLxFromGpsroadByLevel", params);
 	}
 
 }

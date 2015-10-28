@@ -18,6 +18,7 @@
 			var data=parent.obj;
 			$("#wjmc").text(data.wjmc);
 			$("#wjgy").text(data.wjgy);
+			$("#fbdwmc").text(data.jsdw);
 			var data1="id="+data.id;
 			$.ajax({
 				type:'post',
@@ -67,6 +68,18 @@ a:active {
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                    padding-right: 5px; vertical-align: middle;">
+                                    <b><font color="#009ACD" style="font-size: 12px;">发布单位 </font></b>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
+                               		
+                                   <span id="fbdwmc"></span>
+                                </td>
+                            </tr>
+                            <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;" width="200px;">
                                     <b><font color="#009ACD" style=" font-size: 12px">文件名称 </font></b>
                                 </td>
@@ -76,7 +89,7 @@ a:active {
                                 </td>
                             </tr>
                             
-                            <tr style="height: 105px;">
+                           <!--  <tr style="height: 105px;">
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 200px; padding-right: 5px; vertical-align: middle;">
@@ -86,7 +99,7 @@ a:active {
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
                                   <span id="wjgy"></span>
                                 </td>
-                            </tr>
+                            </tr> -->
                        		<tr style="height: 35px;">
                                  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

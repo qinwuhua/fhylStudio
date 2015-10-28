@@ -31,6 +31,7 @@
 					$(item).hide();
 				});
 				$('#ztspan').html("审核状态");
+				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				$.each($("img[name='sheng']"),function(index,item){
 					$(item).hide();
@@ -44,7 +45,8 @@
 			loadTsdq("tsdq");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
+			loadGldj('gldj','公路等级');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
@@ -58,14 +60,16 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,
-					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
+					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
+					,"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
+			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -110,7 +114,7 @@
 						return result;
 					}
 				},
-				/*{field:'tjlx',title:'添加路线',width:100,align:'center',
+				{field:'tjlx',title:'添加路线',width:100,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
 							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
@@ -118,7 +122,7 @@
 							return '添加路线';
 						}
 					}
-				},*/
+				},
 				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -129,7 +133,15 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'xmmc',title:'项目名称',width:250,align:'center'},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',
+					formatter: function(value,row,index){
+		        		if(Number(row.xmsl)>1){
+		        			return '<label style="color:red;">'+value+'</label>';
+		        		}else{
+		        			return value;
+		        		}
+		        	}
+				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
 				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
@@ -142,6 +154,18 @@
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function deleteSh(){
 			var selRow = $('#grid').datagrid("getSelections");
@@ -270,9 +294,16 @@
 			}
 		}
 		function exportXmsq(){
-			var param='xmlx=5&sqzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
-			'&xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
+			var sqzt = $('#sqzt').combobox("getValue");
+			if(userPanduan($.cookie("unit2"))!="省"){
+				sqzt=sqzt=='' ? -1 : sqzt;
+			}else{
+				sqzt=sqzt=='' ? -1 : sqzt;
+			}
+			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
+			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
@@ -288,10 +319,10 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;灾毁重建项目管理</div>
+		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目计划库管理</span>>&nbsp;灾毁重建项目管理</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-        <tr>
+		<tr>
         	<td align="left" style="padding-left: 10px; padding-right: 10px;">
         		<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
 	       			<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
@@ -308,6 +339,8 @@
 	       						<td><select id="xzqh" style="width:124px;"></select></td>
 	       						<td>&nbsp;技术等级:</td>
 	       						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+	       						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 	       					</tr>
 	       					<tr height="32">
 	       						<td><span id="ztspan">上报状态</span>：</td>
@@ -345,6 +378,7 @@
         </tr>
         <tr>
             <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<div>投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
             	<div><table id="grid"></table></div>
     		</td>
     	</tr>

@@ -71,6 +71,7 @@
 // 					addaqyb(response);
 // 				}
 //				alert(response);
+				flagsc=true;
 				var arr=response.substr(response.length-32,response.length);
 //				alert(response.substr(response.length-32,response.length).length);
 				$('<li></li>').appendTo('.files').html(response.substr(0,response.length-32)+'                   <a id="'+arr+'" href="javascript:DelTz('+"'"+arr+"'"+')"  style="text-decoration:none;"> 删除 </a> ');
@@ -132,8 +133,9 @@
 				async:false,
 				success:function(msg){
 					if(Boolean(msg)){
-						alert('保存成功！');
-						fanhui();
+						flagadd=true;
+						alert('请勿关闭窗口，等待文件上传成功后自动关闭，如未修改文件，请手动返回！');
+						closeck();
 					}else{
 						alert('保存失败！');
 					}
@@ -148,26 +150,23 @@
 		uploadifyUpload();
 	}
 	function tianjia(){
-		if($("#fileQueue").text()!=''){
 			uploadifyUpload();
-		}
-		addaqyb();
+			addaqyb();
 		//uploadifyUpload();
 	}
 	function uploadifyUpload() {
 		$('#fileupload').uploadifyUpload();
 	}
+	var flagadd=false;
+	var flagsc=false;
+	function closeck(){
+		if(flagadd&&flagsc){
+			fanhui();
+		}else{
+			setTime('closeck()',1000);
+		}
+	}
 	function fanhui() {
-		var data="id="+request('id');
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/wjxt/deleteQtWjfile1.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				
-			}
-		});	
 		var flag=request('flag');
 		parent.window.location = '/jxzhpt/page/zcwj/'+flag;
  		dg.cancel();
@@ -277,7 +276,7 @@
                                  <input type="text" id="wjmc"  style="width: 300px;">
                                 </td>
                             </tr>
-                              <tr style="height: 35px;">
+                             <!--  <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
@@ -288,7 +287,7 @@
                                   <textarea rows="5" cols="50" id="wjgy"></textarea>
                                 </td>
                                 
-                            </tr>
+                            </tr> -->
 
                        	 <tr style="height: 35px;" >
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -300,10 +299,10 @@
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="1">
                                    <input type="file" name="fileupload" id="fileupload" /><span style="font-size: x-small;vertical-align: 120%">(小于20M)</span>
                                 </td>
-                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                               <!--  <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="2">
                                    <a href="javascript:;" onClick="shangchuan()"  class="easyui-linkbutton" > 上传 </a> 
-                                </td>
+                                </td> -->
                             </tr>
                             <tr style="height: 64px;" >
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;

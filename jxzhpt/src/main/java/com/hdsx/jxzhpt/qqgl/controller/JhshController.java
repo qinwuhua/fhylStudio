@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -74,6 +72,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			ylxbhHandle();
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,page,rows);
@@ -93,6 +109,71 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryJhshLj(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			ylxbhHandle();
+			jsdjHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx()==1){
+				result = jhshServer.queryJhshLjLmsj(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				result = jhshServer.queryJhshLjLmgz(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				result = jhshServer.queryJhshLjXj(jhsh);
+			}else if(jhsh.getXmlx()==4){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				result = jhshServer.queryJhshLjYhdzx(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				result = jhshServer.queryJhshLjSh(jhsh);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private void jsdjHandle() {
+		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
+	}
 	/**
 	 * 查询计划审核列表 养护和水毁
 	 * @throws Exception
@@ -101,6 +182,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try{
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
+			ylxbhHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
 				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
@@ -115,6 +214,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	private void ylxbhHandle() {
+		String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh.indexOf(",")>-1){
+				String[] split = ylxbh.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						ylxbh = "(lxbm like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						ylxbh += " or lxbm like '%"+split[i]+"%')";
+					}else{
+						ylxbh += " or lxbm like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				ylxbh = " lxbm like '%"+ylxbh+"%'";
+			}
+			jhsh.setYlxbh(ylxbh);
 		}
 	}
 	/**
@@ -395,6 +514,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("12", "pfztz");//批复总投资
 		attribute.put("13", "bbzzj");//部补助资金
 		attribute.put("14", "sbzzj");//省补助资金
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jsdjHandle();
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -427,7 +564,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
 				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
 				"<title=灌封长度,fieid=gfcd>,<title=灌封金额,fieid=gfje>,<title=老路处理,fieid=llcl>,";
-		
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jsdjHandle();
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
@@ -455,6 +609,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				lx.setQdzh(item.getQdzh());
 				lx.setZdzh(item.getZdzh());
 				lx.setXmid(item.getXmbm());
+				lx.setLc(item.getLc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -505,15 +660,32 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("7", "xdwh");//计划下达文号
 		attribute.put("8", "xdsj");//计划下达时间
 		attribute.put("9", "pfztz");//批复总投资
-		attribute.put("10", "sbzzj");//部补助资金
-		attribute.put("11", "bbzzj");//省补助资金
+		attribute.put("10", "sbzzj");//省补助资金
+		attribute.put("11", "bbzzj");//部补助资金
 		attribute.put("12", "ylxbh");
 		attribute.put("13", "qdmc");
 		attribute.put("14", "zdmc");
 		attribute.put("15", "qdzh");
 		attribute.put("16", "zdzh");
 		attribute.put("17", "lc");
-		
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jsdjHandle();
+		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -542,8 +714,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("7", "xdwh");//计划下达文号
 		attribute.put("8", "xdsj");//计划下达时间
 		attribute.put("9", "pfztz");//批复总投资
-		attribute.put("10", "bbzzj");//部补助资金
-		attribute.put("11", "sbzzj");//省补助资金
+		attribute.put("10", "sbzzj");//省补助资金
+		attribute.put("11", "bbzzj");//部补助资金
 		attribute.put("12", "ylxbh");
 		attribute.put("13", "qdmc");
 		attribute.put("14", "zdmc");
@@ -563,6 +735,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				lx.setQdzh(item.getQdzh());
 				lx.setZdzh(item.getZdzh());
 				lx.setXmid(item.getXmbm());
+				lx.setLc(item.getLc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -587,7 +760,25 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}else if(jhsh.getXmlx()==4){
 			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总投资资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省投资,fieid=stz>";
 		}
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jsdjHandle();
+		ylxbhHandle();
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
@@ -607,11 +798,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			fileName="新建工程项目-资金下达";
 		}
 		else if(jhsh.getXmlx()==4){
+			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
 			titleName="养护大中修项目";
 			fileName="养护大中修项目-资金下达";
 		}
 		else if(jhsh.getXmlx()==5){
+			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
 			titleName="灾毁重建项目";
 			fileName="灾毁重建项目-资金下达";
@@ -684,7 +877,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void insertLx() throws Exception{
 		try {
 			lx.setSffirst("0");
-			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = lx.getXmid().substring(10, 11).equals("5") ? null : jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				boolean b = jhshServer.insertLx(lx);
 				result.put("result", new Boolean(b).toString());
@@ -719,7 +912,6 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 */
 	public void selectlxList() throws Exception{
 		try {
-			System.out.println("是否"+lx.getSffirst());
 			JsonUtils.write(jhshServer.selectlxList(lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -732,6 +924,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryLsxx(){
 		try{
 			JsonUtils.write(jhshServer.queryLsxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx1(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx1(jhsh), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -765,6 +968,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void zdyQuery(){
 		try {
 			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
+			jsdjHandle();
+			ylxbhHandle();
 			int total = 0;
 			if(jhsh.getXmlx()==1){
 				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,page,rows);
@@ -793,10 +998,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void zdyExportExcel(){
 		try{
-			System.out.println(jhsh.getXmlx());
-			System.out.println(filed);
-			System.out.println(filedName);
 			String fileName="";
+			jsdjHandle();
+			ylxbhHandle();
 			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();
 			if(jhsh.getXmlx()==1){
 				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,0,0);

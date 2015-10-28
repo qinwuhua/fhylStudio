@@ -25,7 +25,6 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('jsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
@@ -113,10 +112,16 @@
 		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
+		        {field:'sfbk',title:'计划类别',width:120,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylrbwqk=='是')
+		        		return '车购税';
+		        	else if(row.sfylrbwqk=='否')
+		        		return '省补';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		        {field:'gydw',title:'管养单位',width:150,align:'center'},
+		        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:100,align:'center'},
@@ -187,7 +192,7 @@ text-decoration:none;
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
+        						<td>管养（监管）单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
         						
 								<td>公路等级：</td>
@@ -218,12 +223,10 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>    
-								<td>技术状况评定：</td>
+								<td>评定等级：</td>
 								<td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+								
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>

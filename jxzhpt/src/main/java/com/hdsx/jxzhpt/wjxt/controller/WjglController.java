@@ -138,6 +138,7 @@ public class WjglController extends BaseActionSupport{
 	}
 	
 	public void insertZcwj(){
+		wjgl.setFbdw(wjgl.getFbdw().replaceAll("0*$",""));
 		boolean bl=wjglServer.insertZcwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
@@ -146,6 +147,7 @@ public class WjglController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	public void updateZcwj(){
+		wjgl.setFbdw(wjgl.getFbdw().replaceAll("0*$",""));
 		boolean bl=wjglServer.updateZcwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}

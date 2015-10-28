@@ -1,53 +1,25 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
+import java.util.Map.Entry;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
-import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
@@ -59,21 +31,11 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
-import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
-import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
-import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
-import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
-import com.ibm.icu.text.SimpleDateFormat;
 
 
 /**
@@ -107,11 +69,39 @@ public class LxshController extends BaseActionSupport{
 	private String lsjl;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String lxbm;
+	private String jsxz;
+	private String shzt1;
+	private String wgny;
 	private Lx lx;
 	private Wqbzbz wqbzbz=new Wqbzbz();
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
 	
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getWgny() {
+		return wgny;
+	}
+	public void setWgny(String wgny) {
+		this.wgny = wgny;
+	}
+	public String getShzt1() {
+		return shzt1;
+	}
+	public void setShzt1(String shzt1) {
+		this.shzt1 = shzt1;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public File getFileupload() {
 		return fileupload;
 	}
@@ -201,12 +191,34 @@ public class LxshController extends BaseActionSupport{
 		return jsdj;
 	}
 	public void setJsdj(String jsdj) {
+		if(jsdj.indexOf(",")>-1){
+			String[] split = jsdj.split(",");
+			for (int i = 0; i < split.length; i++) {
+				if(i==0){
+					jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
+				}else if(i==split.length-1){
+					jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
+				}else{
+					jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
+				}
+			}
+		}else{
+			jsdj = "lx.xjsdj like '%"+jsdj+"%'";
+		}
 		this.jsdj = jsdj;
 	}
 	public String getGldj() {
 		return gldj;
 	}
 	public void setGldj(String gldj) {
+		if(gldj!=null && !gldj.equals("")){
+			String[] split1 = gldj.split(",");
+			gldj="";
+			for (int i = 0; i < split1.length; i++) {
+				gldj+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+			}
+			gldj = "("+gldj+")";
+		}
 		this.gldj = gldj;
 	}
 
@@ -418,6 +430,7 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void selectSjgzList(){
+		try {
 			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
@@ -428,11 +441,106 @@ public class LxshController extends BaseActionSupport{
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2="andx zqhdm in ("+xzqh+")";
+				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf=" xmnf in ("+xmnf+")";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setJsdj(jsdj);
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
+			int count=lxshServer.selectSjgzListCount(lxsh);
+			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+			e.setRows(list);
+			e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	/**
+	 * 累计立项申请升级
+	 */
+	public void queryLxshLjLmsj(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf=" xmnf in ("+xmnf+")";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setJsdj(jsdj);
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			Map<String, String> result = lxshServer.queryLxshLjLmsj(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryLxshShLjLmsj(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf=" xmnf in ("+xmnf+")";
+			}
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
@@ -442,17 +550,12 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
-			lxsh.setPage(page);
-			lxsh.setRows(rows);
-		List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
-		int count=lxshServer.selectSjgzListCount(lxsh);
-		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
-		e.setRows(list);
-		e.setTotal(count);
-		try {
-			JsonUtils.write(e, getresponse().getWriter());
-		} catch (Exception e1) {
-			e1.printStackTrace();
+			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void selectXjList(){
@@ -471,6 +574,12 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			xmnf= "xmnf in ("+xmnf+")";
+		}else{
+			xmnf= "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -491,7 +600,89 @@ public class LxshController extends BaseActionSupport{
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-}
+	}
+	public void queryLxshLjXj(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf= "xmnf in ("+xmnf+")";
+			}else{
+				xmnf= "xmnf ='"+xmnf+"'";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			Map<String, String> result = lxshServer.queryLxshLjXj(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryLxshShLjXj(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf= "xmnf in ("+xmnf+")";
+			}else{
+				xmnf= "xmnf ='"+xmnf+"'";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			Map<String, String> result = lxshServer.queryLxshShLjXj(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selectSjgzlxList(){
 		lxsh.setXmbm(xmbm);
 		lxsh.setJdbs(jdbs);
@@ -683,6 +874,12 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -693,16 +890,17 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-	List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
-	int count=lxshServer.selectSjgzshListCount(lxsh);
-	EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
-	e.setRows(list);
-	e.setTotal(count);
-	try {
-		JsonUtils.write(e, getresponse().getWriter());
-	} catch (Exception e1) {
-		e1.printStackTrace();
-	}
+		System.out.println(lxsh.getSbzt1());
+		List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
+		int count=lxshServer.selectSjgzshListCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	public void selectLmgzshList(){
 		String tiaojian1="";
@@ -720,6 +918,12 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			xmnf ="xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf ='"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -757,6 +961,12 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -802,11 +1012,15 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void shsjgzSbzt(){
-		boolean bl=lxshServer.shsjgzSbzt(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
+		try{
+			boolean bl=lxshServer.shsjgzSbzt(lxsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	public void shlmgzSbzt(){
@@ -841,6 +1055,12 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			xmnf = "xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -861,6 +1081,90 @@ public class LxshController extends BaseActionSupport{
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	public void queryLxshLjLmgz(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf = "xmnf in ("+xmnf+")";
+			}else{
+				xmnf = "xmnf = '"+xmnf+"'";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			Map<String, String> result = lxshServer.queryLxshLjLmgz(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryLxshShLjLmgz(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf = "xmnf in ("+xmnf+")";
+			}else{
+				xmnf = "xmnf = '"+xmnf+"'";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			Map<String, String> result = lxshServer.queryLxshShLjLmgz(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void qqglGpsroad(){
@@ -976,6 +1280,48 @@ public class LxshController extends BaseActionSupport{
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
+			if(lxsh.getXmnf().indexOf(",")>-1){
+				lxsh.setXmnf("xmnf in ("+lxsh.getXmnf()+")");
+			}else{
+				lxsh.setXmnf("xmnf = '"+lxsh.getXmnf()+"'");
+			}
+			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
+				String xjsdj ="";
+				if(lxsh.getJsdj().indexOf(",")>-1){
+					String[] split = lxsh.getJsdj().split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xjsdj = "(lx.xjsdj like '%"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xjsdj += " or lx.xjsdj like '%"+split[i]+"%')";
+						}else{
+							xjsdj += " or lx.xjsdj like '%"+split[i]+"%'";
+						}
+					}
+				}else{
+					xjsdj = "lx.xjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(xjsdj);
+			}
+			if(lxsh.getGldj()!=null){
+				if(lxsh.getGldj().indexOf("G,")>-1){
+					lxsh.setGldj("lxbm like 'G%'");
+				}else if(lxsh.getGldj().indexOf("S,")>-1){
+					lxsh.setGldj("lxbm like 'S%'");
+				}else if(lxsh.getGldj().indexOf(",")>-1){
+					String[] split = lxsh.getGldj().split(",");
+					String g="";
+					for (int i = 0; i < split.length; i++) {
+						g+=i==split.length-1 ? "'"+split[i]+"'" : "'"+split[i]+"',";
+					}
+					g = "lxbm in ("+g+")";
+					lxsh.setGldj(g);
+				}else if(lxsh.getGldj().equals("")){
+					lxsh.setGldj(null);
+				}else{
+					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
+				}
+			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
@@ -1048,6 +1394,51 @@ public class LxshController extends BaseActionSupport{
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
+			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
+				String jsdj1 ="";
+				if(lxsh.getJsdj().indexOf(",")>-1){
+					String[] jsdj2 = lxsh.getJsdj().split(",");
+					for (int i = 0; i < jsdj2.length; i++) {
+						if(i==0){
+							jsdj1 = "(xjsdj like '%"+jsdj2[i]+"%'";
+						}else if(i==jsdj2.length-1){
+							jsdj1 += " or xjsdj like '%"+jsdj2[i]+"%')";
+						}else{
+							jsdj1 = " or xjsdj like '%"+jsdj2[i]+"%'";
+						}
+					}
+				}else{
+					jsdj1 = "xjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(jsdj1);
+			}
+			if(!lxsh.getXmnf().equals("") && lxsh.getXmnf()!=null){
+				String xmnf1 ="";
+				if(lxsh.getXmnf().indexOf(",")>-1){
+					String[] split = lxsh.getXmnf().split(",");
+					for (int i = 0; i < split.length; i++) {
+						if(i==0){
+							xmnf1 = "(xmbm like '"+split[i]+"%'";
+						}else if(i==split.length-1){
+							xmnf1 += " or xmbm like '"+split[i]+"%')";
+						}else{
+							xmnf1 += " or xmbm like '"+split[i]+"%'";
+						}
+					}
+				}else{
+					xmnf1 = "xmbm like '"+lxsh.getXmnf()+"%'";
+				}
+				lxsh.setXmnf(xmnf1);
+			}
+			if(lxsh.getGldj()!=null && !lxsh.getGldj().equals("")){
+				String[] split1 = lxsh.getGldj().split(",");
+				String g="";
+				for (int i = 0; i < split1.length; i++) {
+					g+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				g = "("+g+")";
+				lxsh.setGldj(g);
+			}
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
@@ -1455,6 +1846,163 @@ public class LxshController extends BaseActionSupport{
 	public void delwqbzbz(){
 		boolean bl=lxshServer.delwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void queryXmqq(){
+		try{
+			Map<String, Object> result = new HashMap<String, Object>();
+			//处理行政区划查询参数
+			if(xzqh.equals("360000")){
+				xzqh = xzqh.substring(0,2)+"%";
+			}else if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				xzqh = xzqh.substring(0,4)+"%";
+			}
+			Map<String, String> params = new HashMap<String, String>();
+			if(xzqh.indexOf(",")==-1){
+				int i=0;
+				if(xzqh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(xzqh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				xzqh=xzqh.substring(0,xzqh.length()-i);
+			}
+			xzqh= xzqh.indexOf(",")==-1 ? " substr(xmbm,5,6)"+" like '%"+xzqh+"%'": " substr(xmbm,5,6)"+" in ("+xzqh+")";
+			params.put("xzqhdm", xzqh);
+			params.put("shzt", shzt1);
+			params.put("jsxz", jsxz);
+			params.put("lxbm", lxbm);
+			params.put("wgny", wgny);
+			//查询新增项目信息
+			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
+			JsonUtils.write(list, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void queryXmQqfx(){
+		try{
+			Map<String, Object> result = new HashMap<String, Object>();
+			//处理行政区划查询参数
+			if(xzqh.equals("360000")){
+				xzqh = xzqh.substring(0,2)+"%";
+			}else if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				xzqh = xzqh.substring(0,4)+"%";
+			}
+			Map<String, String> params = new HashMap<String, String>();
+			if(xzqh.indexOf(",")==-1){
+				int i=0;
+				if(xzqh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(xzqh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				xzqh=xzqh.substring(0,xzqh.length()-i);
+			}
+			xzqh= xzqh.indexOf(",")==-1 ? " substr(xmbm,5,6)"+" like '%"+xzqh+"%'": " substr(xmbm,5,6)"+" in ("+xzqh+")";
+			params.put("xzqhdm", xzqh);
+			params.put("shzt", shzt1);
+			params.put("jsxz", jsxz);
+			params.put("lxbm", lxbm);
+			params.put("wgny", wgny);
+			params.put("xmbm", xmbm);
+			//查询新增项目信息
+			List<Kxxyj> list = lxshServer.queryXmQqfx(params);
+			result.put("xjxm", list);
+			List<String> lxArray = new ArrayList<String>();
+			Map<String,String> xmbmArray = new HashMap<String, String>();
+			Map<String, String> xzqhMap = new HashMap<String, String>();
+			//获取新增项目的路线和行政区划，为下面的查询做准备
+			for (Kxxyj kxxyj : list) {
+				lxArray.add(kxxyj.getLxbm());
+				xzqhMap.put(kxxyj.getXmbm().substring(4,10), kxxyj.getXzqh());
+				xmbmArray.put(kxxyj.getXmbm(),kxxyj.getJdbs());
+			}
+			//处理获取到的路线编码
+			HashSet<String> hsl = new HashSet<String>(lxArray);
+			StringBuffer sb = new StringBuffer();
+			int i=0;
+			for (String lx : hsl) {
+				sb.append(i==hsl.size()-1 ? "'"+lx+"'" : "'"+lx+"',");
+				i++;
+			}
+			//获取之前的这些路线的信息
+			List<Map<String, String>> beform=null;
+			if(!sb.toString().equals("")){
+				beform = lxshServer.queryBeformXm(sb.toString());
+				result.put("befrom", beform);
+			}
+			//计算本年年底的里程的条件
+			StringBuffer sbXmbm = new StringBuffer();
+			int m =0;
+			for (Entry<String, String> xmbm : xmbmArray.entrySet()) {
+				sbXmbm.append(m==xmbmArray.size()-1 ? "(xmid ='"+ xmbm.getKey()+"' and jdbs='"+xmbm.getValue()+"')" :
+					"(xmid ='"+ xmbm.getKey()+"' and jdbs='"+xmbm.getValue()+"') or ");	
+				m++;
+			}
+			List<Map<String,String>> ndwgXzqh = lxshServer.queryNdwgXzqh(sbXmbm.toString(),false);
+			//获取对应行政区划之前的G、S道的总计
+			List<Map<String, String>> beformXzqh = new ArrayList<Map<String,String>>();
+			for (Entry<String, String> map : xzqhMap.entrySet()) {
+				if(map.getKey().matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(map.getKey().matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				String xz =map.getKey().substring(0,map.getKey().length()-i);
+				List<Map<String,String>> queryBeformXmByXzqh = lxshServer.queryBeformXmByXzqh(xz,map.getValue());
+				beformXzqh.addAll(queryBeformXmByXzqh);
+				for (Map<String, String> item : ndwgXzqh) {
+					if(map.getKey().equals(item.get("XZQHDM").toString())){
+						for (Map<String, String> item2 : queryBeformXmByXzqh) {
+							if(item.get("LXBM").equals(item2.get("ROADCODE"))){
+								double yi = Double.valueOf(String.valueOf(item2.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHYILC"))) - Double.valueOf(String.valueOf(item.get("YILC")));
+								double er = Double.valueOf(String.valueOf(item2.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHERLC"))) - Double.valueOf(String.valueOf(item.get("ERLC")));
+								double san = Double.valueOf(String.valueOf(item2.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHSANLC"))) - Double.valueOf(String.valueOf(item.get("SANLC")));
+								double si = Double.valueOf(String.valueOf(item2.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHSILC"))) - Double.valueOf(String.valueOf(item.get("SILC")));
+								double wl = Double.valueOf(String.valueOf(item2.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item.get("JHWLLC"))) - Double.valueOf(String.valueOf(item.get("WLLC")));
+								item.put("JHYILC", String.valueOf(String.format("%.3f", yi)));
+								item.put("JHERLC", String.valueOf(String.format("%.3f", er)));
+								item.put("JHSANLC", String.valueOf(String.format("%.3f", san)));
+								item.put("JHSILC", String.valueOf(String.format("%.3f", si)));
+								item.put("JHWLLC", String.valueOf(String.format("%.3f", wl)));
+								item.put("XZQHMC", item2.get("XZQHMC"));
+								break;
+							}
+						}
+					}
+				}
+			}
+			beformXzqh.addAll(lxshServer.queryBeformXmByXzqh("36","江西省"));
+			result.put("befrom2", beformXzqh);
+			ndwgXzqh.addAll(lxshServer.queryNdwgXzqh(sbXmbm.toString(),true));
+			result.put("ndwgxzqh", ndwgXzqh);
+			//计算年底完工后的路线里程
+			List<Map<String, String>> ndwglx = new ArrayList<Map<String,String>>(beform);
+			List<Map<String, String>> list2 = lxshServer.queryNdwg(sbXmbm.toString());
+			for (Map<String, String> item : ndwglx) {
+				for (Map<String, String> item2 : list2) {
+					if(item2.get("LXBM")!=null){
+						if(item.get("ROADCODE").toString().equals(item2.get("LXBM").toString())){
+							double yi = Double.valueOf(String.valueOf(item.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHYILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("YILC"))).doubleValue();
+							double er = Double.valueOf(String.valueOf(item.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHERLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("ERLC"))).doubleValue();
+							double san = Double.valueOf(String.valueOf(item.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSANLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SANLC"))).doubleValue();
+							double si = Double.valueOf(String.valueOf(item.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SILC"))).doubleValue();
+							double wl = Double.valueOf(String.valueOf(item.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHWLLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("WLLC"))).doubleValue();
+							item.put("YJ", String.format("%.3f", yi));
+							item.put("ER", String.format("%.3f", er));
+							item.put("SJ", String.format("%.3f", san));
+							item.put("SIJ", String.format("%.3f", si));
+							item.put("WL", String.format("%.3f", wl));
+							break;
+						}
+					}
+				}
+			}
+			result.put("ndwglx", ndwglx);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public Lx getLx() {
 		return lx;

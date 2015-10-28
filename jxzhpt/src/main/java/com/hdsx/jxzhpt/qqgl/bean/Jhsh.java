@@ -71,6 +71,7 @@ public class Jhsh {
 	private String gfje;//灌缝金额
 	private String llcl;//老路处理
 	private String jsdj;//技术等级
+	private String jszlc;//建设总里程
 	//用于路线信息的字段
 	private String gydw;//管养单位
 	private String qdmc;//起点名称
@@ -92,6 +93,20 @@ public class Jhsh {
 	private String xdzj;
 	private String btzzj;
 	private String stz;
+	//判断是否有多条路线
+	private String xmsl;
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
 	public String getXdnf() {
 		return xdnf;
 	}

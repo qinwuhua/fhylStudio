@@ -107,4 +107,8 @@ public interface GcglaqybServer {
 
 	Wjgl selectqtwjById(Gcgltz gcgltz);
 
+	List<TreeNode> selAllXzqh11(String replaceAll);
+
+	List<TreeNode> selAllUnit11(String replaceAll);
+
 }

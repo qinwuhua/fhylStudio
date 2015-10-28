@@ -23,9 +23,39 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 		List<SjbbMessage> l_n=new ArrayList<SjbbMessage>();
 		SjbbMessage temp=new SjbbMessage();
 		DecimalFormat fnum = new DecimalFormat("##0.000");
+		temp.setV_0("全省合计");
+		temp.setV_1("");
+		for(int j=2;j<7;j++){
+			String methodGetName = "getV_"+j;
+			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(0),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(1),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(2),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(3),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(4),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(5),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(6),new Object[]{}));
+			temp.getClass().getMethod("setV_"+j,  String.class).invoke(temp,"0.0".equals(Double.parseDouble(fnum.format(v_j))+"")?"0":Double.parseDouble(fnum.format(v_j))+"");
+		}
+		l_n.add(temp);
+		
+		temp=new SjbbMessage();
+		temp.setV_0("危桥（隧）改造");
+		temp.setV_1("小计");
+		for(int j=2;j<7;j++){
+			String methodGetName = "getV_"+j;
+			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(2),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(3),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(4),new Object[]{}));
+			temp.getClass().getMethod("setV_"+j,  String.class).invoke(temp,"0.0".equals(Double.parseDouble(fnum.format(v_j))+"")?"0":Double.parseDouble(fnum.format(v_j))+"");
+		}
+		l_n.add(temp);
+		l_n.add(l.get(3));
+		l_n.add(l.get(2));
+		l_n.add(l.get(4));
+		temp=new SjbbMessage();
 		temp.setV_0("安保工程");
-		temp.setV_1("合计");
-		for(int j=2;j<=7;j++){
+		temp.setV_1("小计");
+		for(int j=2;j<7;j++){
 			String methodGetName = "getV_"+j;
 			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(0),new Object[]{}))+
 					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(1),new Object[]{}));
@@ -34,19 +64,20 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 		l_n.add(temp);
 		l_n.add(l.get(0));
 		l_n.add(l.get(1));
+		
 		temp=new SjbbMessage();
-		temp.setV_0("危桥改造");
-		temp.setV_1("合计");
-		for(int j=2;j<=7;j++){
+		temp.setV_0("灾害防治");
+		temp.setV_1("小计");
+		for(int j=2;j<7;j++){
 			String methodGetName = "getV_"+j;
-			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(2),new Object[]{}))+
-					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(3),new Object[]{}));
+			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(5),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(6),new Object[]{}));
 			temp.getClass().getMethod("setV_"+j,  String.class).invoke(temp,"0.0".equals(Double.parseDouble(fnum.format(v_j))+"")?"0":Double.parseDouble(fnum.format(v_j))+"");
 		}
 		l_n.add(temp);
-		l_n.add(l.get(2));
-		l_n.add(l.get(3));
-		l_n.add(l.get(4));
+		l_n.add(l.get(5));
+		l_n.add(l.get(6));
+		
 		return l_n;
 	}
 

@@ -316,6 +316,34 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		return l1;
 	}
 
+	@Override
+	public List<Excel_list> getGlgzxj(Gcglabgc gcglabgc) {
+		List<Excel_list> l1=queryList("getGlgzxj",gcglabgc);
+		List<Excel_list> l2=queryList("getGlgzxj1",gcglabgc);
+		List<Excel_list> l3=queryList("getGlgzxj2",gcglabgc);
+		List<Excel_list> l4=queryList("getGlgzxj3",gcglabgc);
+		List<Excel_list> l5=queryList("getGlgzxj4",gcglabgc);
+		l4.addAll(l5);
+		for (int i = 0; i < l2.size(); i++) {
+			l4.add(l2.get(i));
+			for (int j = 0; j < l3.size(); j++) {
+				if(l2.get(i).getV_62().equals(l3.get(j).getV_62())){
+					l4.add(l3.get(j));
+				}
+			}
+			int t=1;
+			for (int j = 0; j < l1.size(); j++) {
+				if(l2.get(i).getV_62().equals(l1.get(j).getV_62())&&l2.get(i).getV_63().equals(l1.get(j).getV_63())){
+					l1.get(j).setV_0(t+"");
+					l4.add(l1.get(j));
+					t++;
+				}
+			}
+		}
+		
+		return l4;
+	}
+
 	
 
 }

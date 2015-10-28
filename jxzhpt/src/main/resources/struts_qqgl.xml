@@ -6,6 +6,7 @@
 		<!-- qwh -->
 		  <action name="selectlxbyxmid" class="lxshController" method="selectlxbyxmid"/>
 		  <action name="qqglGpszh" class="lxshController" method="qqglGpszh"/>
+		  <action name="qqglGpszh1" class="wnjhController" method="qqglGpszh1"/>
 		  <action name="sfylx" class="lxshController" method="sfylx"/>
 		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
 		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
@@ -48,7 +49,12 @@
 		  <action name="sjgzsfkxx" class="lxshController" method="sjgzsfkxx"/>
 		  <action name="Xjsfkxx" class="lxshController" method="Xjsfkxx"/>
 		  <action name="qqglGpsroad" class="lxshController" method="qqglGpsroad"/>
-		  
+		  <action name="queryLxshLjLmsj" class="lxshController" method="queryLxshLjLmsj"/>
+		  <action name="queryLxshShLjLmsj" class="lxshController" method="queryLxshShLjLmsj"/>
+		  <action name="queryLxshLjLmgz" class="lxshController" method="queryLxshLjLmgz"/>
+		  <action name="queryLxshShLjLmgz" class="lxshController" method="queryLxshShLjLmgz"/>
+		  <action name="queryLxshLjXj" class="lxshController" method="queryLxshLjXj"/>
+		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
 		  
 		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
 		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
@@ -89,6 +95,39 @@
 	      <action name="tjwqbzbz" class="lxshController" method="tjwqbzbz"/>
 	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>
 	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
+	      
+	      <action name="selectGjwnjh" class="wnjhController" method="selectGjwnjh"/>
+	      <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
+	      <action name="selectXjwnjh" class="wnjhController" method="selectXjwnjh"/>
+	      <action name="wnjhGpsroad" class="wnjhController" method="wnjhGpsroad"/>
+	      <action name="insertGjwnjh" class="wnjhController" method="insertGjwnjh"/>
+	      <action name="insertLmwnjh" class="wnjhController" method="insertLmwnjh"/>
+	      <action name="insertXjwnjh" class="wnjhController" method="insertXjwnjh"/>
+	      <action name="importsjgzwnjh" class="wnjhController" method="importsjgzwnjh"/>
+	      <action name="importlmgzwnjh" class="wnjhController" method="importlmgzwnjh"/>
+	      <action name="importxjwnjh" class="wnjhController" method="importxjwnjh"/>
+	      <action name="dcwnjhExcel" class="wnjhController" method="dcwnjhExcel"/>
+	      <action name="delwnjhSjgz" class="wnjhController" method="delwnjhSjgz"/>
+          <action name="delwnjhLmgz" class="wnjhController" method="delwnjhLmgz"/>
+          <action name="delwnjhXj" class="wnjhController" method="delwnjhXj"/>
+	      <action name="cxwnghsjByid" class="wnjhController" method="cxwnghsjByid"/>
+	      <action name="updatewnjhsj" class="wnjhController" method="updatewnjhsj"/>
+	      <action name="updatewnjhlm" class="wnjhController" method="updatewnjhlm"/>
+	      <action name="updatewnjhxj" class="wnjhController" method="updatewnjhxj"/>
+	      <action name="selectwnlxbyxmid" class="wnjhController" method="selectwnlxbyxmid"/>
+	      <action name="sfywnlx" class="wnjhController" method="sfywnlx"/>
+	      <action name="selectwnSjlxList" class="wnjhController" method="selectwnSjlxList"/>
+	      <action name="setJsdj" class="wnjhController" method="setJsdj"/>
+	       <action name="setXmnf" class="wnjhController" method="setXmnf"/>
+	      <action name="selectGjwnjhcf" class="wnjhController" method="selectGjwnjhcf"/>
+	      <action name="selectLmwnjhcf" class="wnjhController" method="selectLmwnjhcf"/>
+	      <action name="selectXjwnjhcf" class="wnjhController" method="selectXjwnjhcf"/>
+	      <action name="insertGjlxwnjh" class="wnjhController" method="insertGjlxwnjh"/>
+	      <action name="updatewnjhsjlx" class="wnjhController" method="updatewnjhsjlx"/>
+	      <action name="deleteWnlx" class="wnjhController" method="deleteWnlx"/>
+	      <action name="showgjtj" class="wnjhController" method="showgjtj"/>
+	      
+	      
 	 <!-- qwh -->
 	<!-- rh -->
 		
@@ -101,7 +140,7 @@
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
 		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
 		<action name="exportExcelCbsj" class="cbsjController" method="exportExcelCbsj"></action>
-		
+		<action name="queryCbsjLj" class="cbsjController" method="queryCbsjLj"></action>
 		<action name="queryFile" class="cbsjController" method="queryFile"></action>
 		<action name="down" class="cbsjController" method="down"></action>
 		
@@ -116,6 +155,7 @@
 		<action name="importExcelJhxdYhdzx" class="jhshController" method="importExcelJhxdYhdzx"></action>
 		<action name="importExcelJhxdSh" class="jhshController" method="importExcelJhxdSh"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
+		<action name="queryJhshLj" class="jhshController" method="queryJhshLj"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
@@ -128,6 +168,8 @@
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
+		<action name="queryLj" class="xmsqController" method="queryLj"></action>
+		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
@@ -138,6 +180,7 @@
 		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
+		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
@@ -155,6 +198,8 @@
 		
 		<action name="readFile" class="cbsjController" method="readFile"></action>
 		<action name="readJhxdFile" class="cbsjController" method="readJhxdFile"></action>
+		<action name="queryXmQqfx" class="lxshController" method="queryXmQqfx"></action>
+		<action name="queryXmqq" class="lxshController" method="queryXmqq"></action>
 	<!-- rh -->
 	</package>
 </struts>

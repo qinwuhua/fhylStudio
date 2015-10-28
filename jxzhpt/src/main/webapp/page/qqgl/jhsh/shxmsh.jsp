@@ -25,9 +25,10 @@
 			loadTsdq("tsdq");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
 			loadBmbm2('sqzt','申请状态省');
 			xmnf("xmnf");
+			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryShxm();
 			loadFileUpload();
@@ -36,11 +37,12 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),
 					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue"),
-					'xmbm':$('#xmnf').combobox("getValue")};
+					'xmbm':$('#xmnf').combobox("getValues").join(','),'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			loadLj(params);
+			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -71,7 +73,15 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'xmmc',title:'项目名称',width:250,align:'center'},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',
+					formatter: function(value,row,index){
+						if(Number(row.xmsl)>1){
+		        			return '<label style="color:red;">'+value+'</label>';
+		        		}else{
+		        			return value;
+		        		}
+					}
+				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
 				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
@@ -88,12 +98,27 @@
 				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}
 			]];
+			bindLxGrid();
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanbbz').html(msg.BBZZJ);
+					$('#spansbz').html(msg.SBZZJ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function exportJhshxx(){
 			var param='jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$('#ylxbh').val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
-			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue");
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
 		}
 		function importJhsh(){
@@ -174,20 +199,22 @@ text-decoration:none;
        				<div>
        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 						<tr height="32">
+							<td>行政区划：</td>
+       						<td><select id="xzqh" style="width:135px;"></select></td>
+							<td style="text-align: right;">项目名称：</td>
+       						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
 							<td>项目年份：</td>
         					<td><select id="xmnf" style="width: 70px;"></select></td>
-       						<td>行政区划：</td>
-       						<td><select id="xzqh" style="width:115px;"></select></td>
-       						<td align="right">特殊地区：</td>
-							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
 							<td>技术等级：</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-        					<td colspan="2">
-								<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
-							</td>
+							<td>&nbsp;公路等级：</td>
+							<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        					</tr>
        					<tr height="32">
+       						<td align="right">特殊地区：</td>
+							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:135px;"></select></td>
+							<td>原路线编号：</td>
+       						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td align="right">下达状态：</td>
 							<td>
        							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
@@ -196,20 +223,20 @@ text-decoration:none;
 	       							<option value="1">已下达</option>
        							</select>
        						</td>
-       						<td>项目名称：</td>
-       						<td><input name="xmmc" id="xmmc" style="width:110px;" type="text"/></td>
-       						<td>原路线编号：</td>
-       						<td><input name="ylxbh" id="ylxbh" style="width:150px;" type="text"/></td>
        						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-							<td colspan="2">
+       					</tr>
+       					<tr height="32">
+       						<td colspan="8">
+       							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-							</td>
+       						</td>
        					</tr>
        				</table>
        				</div>
@@ -218,9 +245,8 @@ text-decoration:none;
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>
-           			<table id="grid"></table>
-           		</div>
+           		<div>部补助资金累计：<span id="spanbbz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+           		<div><table id="grid"></table></div>
            	</td>
        	</tr>
 	</table>

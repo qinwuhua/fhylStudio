@@ -91,17 +91,23 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 			if(msg!=null){
 				for(var i=0;i<msg.length;i++){
 					
-					if(i!=6){
-						if(i==0||i==3){
-							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+					if(i!=0){
+						if(i==1||i==5||i==8){
+							if(i==1){
+								str+="<tr align='center'><td rowspan='4'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
+								+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td></tr>";
+							}else{
+								str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
+								+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td></tr>";
+							}
+							
 						}else{
 							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td></tr>";
 						}
 					}else{
-						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						str+="<tr align='center'><td colspan='2'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td></tr>";
 					}
 				}
 			}else{
@@ -189,12 +195,11 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
-										<td width="150px;"></td>
-										<td width="150px;"></td>
+										<td width="150px;">项目名称</td>
+										<td width="150px;">行政等级</td>
 										<td width="150px;">座/项目数</td>
 										<td width="150px;">延米</td>
 										<td width="150px;">处治里程(公里)</td>
-										<td width="150px;">地方补助资金(万元)</td>
 										<td width="150px;">部安排资金(万元)</td>
 										<td width="150px;">总投资(万元)</td>
 									</tr>

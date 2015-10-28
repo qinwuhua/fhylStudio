@@ -191,6 +191,7 @@ public class XtglController extends BaseActionSupport{
 		try {
 		    List<TreeNode> l=xtglServer.selAllXzqh2(yhdw);
             String s=JSONArray.fromObject(l).toString();
+            System.out.println(s);
 			ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1130,6 +1131,21 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setAnyXml(String anyXml) {
 		this.anyXml = anyXml;
+	}
+	public void userlogin(){
+		try {
+			List<Master> l = xtglServer.userlogin(name);
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

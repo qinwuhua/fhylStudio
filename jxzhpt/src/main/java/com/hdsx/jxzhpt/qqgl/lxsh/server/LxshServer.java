@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
@@ -154,5 +155,25 @@ public interface LxshServer {
 
 	boolean delwqbzbz(Wqbzbz wqbzbz);
 
+	List<Kxxyj> queryXmQqfx(Map<String, String> params);
 
+	List<Map<String, String>> queryBeformXm(String string);
+
+	List<Map<String, String>> queryBeformXmByXzqh(String xz,String xzqhmc);
+
+	List<Map<String, String>> queryNdwg(String xmbm);
+
+	List<Map<String, String>> queryNdwgXzqh(String xmbm,boolean qb);
+
+	Map<String, String> queryLxshLjLmsj(Lxsh lxsh);
+	
+	Map<String, String> queryLxshShLjLmsj(Lxsh lxsh);
+
+	Map<String, String> queryLxshLjLmgz(Lxsh lxsh);
+
+	Map<String, String> queryLxshLjXj(Lxsh lxsh);
+
+	Map<String, String> queryLxshShLjLmgz(Lxsh lxsh);
+
+	Map<String, String> queryLxshShLjXj(Lxsh lxsh);
 }

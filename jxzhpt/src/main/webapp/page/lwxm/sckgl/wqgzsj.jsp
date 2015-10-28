@@ -116,7 +116,7 @@ function shangB(){
 	}
 	var sckid=rows[0].sckid;
 	var sbthcd;
-	if(rows[0].tsdq.indexOf('省直管试点县')>0){
+	if(rows[0].tsdq.indexOf('省直管试点县')!=-1){
 		sbthcd=7;
 	}else{
 		sbthcd=$.cookie("unit2").length-2;
@@ -137,7 +137,7 @@ function shangB(){
 	}
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
-		if(rows[i].tsdq.indexOf('省直管试点县')>0){
+		if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
 			sbthcd=","+7;
 		}else{
 			sbthcd=","+$.cookie("unit2").length-2;
@@ -178,7 +178,7 @@ function shangb(index){
 function shangB1(index){
 	var sckid=$("#grid").datagrid('getRows')[index].sckid;
 	var sbthcd;
-	if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')>0){
+	if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')!=-1){
 		sbthcd=7;
 	}else{
 		sbthcd=$.cookie("unit2").length-2;
@@ -205,10 +205,16 @@ function shangB1(index){
 	}
 }
 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg1(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj1);
 }
-
+function shenghwtg2(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj2);
+}
 var gydwstr;
 var xzqhstr;
 //审查库管理
@@ -289,16 +295,16 @@ function sckglWqgz(){
 				
 				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==11){
 					if(row.sck_shzt1=='未审核'){
-						if(row.tsdq.indexOf('省直管试点县')>0){
-							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						if(row.tsdq.indexOf('省直管试点县')!=-1){
+							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 						}
-						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg1('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 					}else
 					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==9){
 					if(row.sck_shzt=='未审核'){
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 					}else
 					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 					}
@@ -306,7 +312,7 @@ function sckglWqgz(){
 					return '已初审  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
-						return '<span style="color:grey;">未上报</span>';
+						return '<span style="color:grey;">     </span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
@@ -322,7 +328,7 @@ function sckglWqgz(){
 		        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
+		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
 		        {field:'scqlqc',title:'桥梁全长(米)',width:140,align:'center'},
@@ -330,17 +336,14 @@ function sckglWqgz(){
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
 		        {field:'fapgdw',title:'方案评估(设计)单位',width:140,align:'center'},
 		        {field:'fascdw',title:'方案审核(批复)单位',width:140,align:'center'},
-		        {field:'faspsj',title:'方案审批时间',width:140,align:'center'},
+		        {field:'faspsj',title:'方案(施工图)批复时间',width:140,align:'center'},
 		        {field:'spwh',title:'审批文号',width:140,align:'center'},
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
-		        {field:'tzgs',title:'投资估算',width:140,align:'center'},
 		        {field:'hzdj',title:'荷载等级',width:140,align:'center'},
 		        {field:'scsjhspl',title:'设计洪水频率',width:140,align:'center'},
 		        {field:'kjzh',title:'跨径组合',width:140,align:'center'},
 		        {field:'sck_sbjgxs',title:'上部结构形式',width:140,align:'center'},
 		        {field:'sck_xbjgxs',title:'下部结构形式',width:140,align:'center'},
-		        {field:'sgtpfsj',title:'施工图批复时间',width:140,align:'center'},
-		        {field:'pfwh',title:'批复文号',width:140,align:'center'},
 		        {field:'zgq',title:'总工期',width:140,align:'center'},
 		        {field:'cjqz1',title:'重建桥址',width:140,align:'center',formatter:function(value,row,index){
 		        	if(row.cjqz!=''||row.cjqz!=null)
@@ -350,7 +353,7 @@ function sckglWqgz(){
 		        {field:'scthdj',title:'通航等级',width:140,align:'center'},
 		        {field:'qljc',title:'桥梁基础',width:140,align:'center'},
 		        {field:'ydgldj',title:'引道公路等级',width:140,align:'center'},
-		        {field:'sjsd',title:'设计速度',width:140,align:'center'},
+		        {field:'sjsd',title:'设计速度(km/h)',width:140,align:'center'},
 		        {field:'ztz',title:'总投资',width:140,align:'center'},
 		        {field:'nsqbbz',title:'拟申请部（省）级补助资金（万元）',width:140,align:'center'}
 	    ]]    
@@ -383,6 +386,20 @@ function xgSckwqgz(index){
 	var data=$("#grid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('lxxx','危桥编辑','wqgzsj_xg.jsp','lxxx',900,450);
+}
+
+function dcExcel(){
+	var sbthcd;
+ 	if($.cookie("unit2")=='______36'){
+ 		sbthcd=7;
+ 	}else  sbthcd=$.cookie("unit2").length;
+	var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
+ 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckExcel.do?'+data;
+	 });
 }
 </script>
 <style type="text/css">
@@ -431,12 +448,10 @@ text-decoration:none;
                               	<td><select id="xmnf" style="width:70px">
                               	</select>
                               </td>
-                             <td>技术状况评定：</td>
+                             <td>评定等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+								
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
@@ -470,7 +485,7 @@ text-decoration:none;
 <!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('wqgz_sc');" style="border-width:0px;" /> -->
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('wqgzsj_add.jsp','900','500');" style="border-width:0px;" />
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delSckwqgz();" style="border-width:0px;" />
-<!--                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz_scgl()" style="border-width:0px;cursor: hand;" /> -->
+                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>
 							  </td>
                             </tr></table>
 						</div>

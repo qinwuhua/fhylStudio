@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.PlanwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -90,6 +91,33 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return p;
 	}
 	@Override
+	public Planwqgzsj loadwqjhksbCount1(Planwqgzsj planwqgzsj) {
+		List<Planwqgzsj> list=queryList("loadwqjhksbCount1", planwqgzsj);
+		Planwqgzsj p=new Planwqgzsj();
+		BigDecimal pfztz=new BigDecimal("0");
+		BigDecimal btz=new BigDecimal("0");
+		BigDecimal stz=new BigDecimal("0");
+		BigDecimal qttz=new BigDecimal("0");
+		BigDecimal xdzj=new BigDecimal("0");
+		int sl=0;
+		for (Planwqgzsj pl : list) {
+			sl=sl+pl.getSl();
+			pfztz=pfztz.add(new BigDecimal(pl.getPfztz()==null ? "0":pl.getPfztz()));
+			btz=btz.add(new BigDecimal(pl.getJhsybzje()==null ? "0":pl.getJhsybzje()));
+			stz=stz.add(new BigDecimal(pl.getShengbz()==null ? "0":pl.getShengbz()));
+			qttz=qttz.add(new BigDecimal(pl.getJhsydfzcje()==null ? "0":pl.getJhsydfzcje()));
+			xdzj=xdzj.add(new BigDecimal(pl.getXdzj()==null ? "0":pl.getXdzj()));
+		}
+		p.setPfztz(pfztz+"");
+		p.setJhsybzje(btz+"");
+		p.setShengbz(stz+"");
+		p.setJhsydfzcje(qttz+"");
+		p.setXdzj(xdzj+"");
+		p.setSl(sl);
+		return p;
+	}
+	
+	@Override
 	public Planwqgzsj loadwqgzjhkbyid(String id) {
 		return queryOne("loadwqgzjhkbyid", id);
 	}
@@ -102,15 +130,17 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return queryOne("loadwqgzxmkbyid", id);
 	}
 	@Override
-	public Planwqgzsj loadwqgzsbzbyid(String id) {
+	public Planwqgzsj loadwqgzsbzbyid(String id,String jsxz) {
 		Planwqgzsj jck=queryOne("cxtiaojian", id);
-		if("省直管试点县".indexOf(jck.getTsdq())!=-1){
+		jck.setJsxz(jsxz);
+		if(jck.getTsdq()!=null)
+		if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", jck);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
 			}else{
-				BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
-				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+				BigDecimal b1=new BigDecimal(jck.getScqlqc().trim()).multiply(new BigDecimal(jck.getScqlqk().trim()));
+				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 				jck.setShibz(b2+"");
 			}
 		}
@@ -119,7 +149,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			System.out.println("未查出市级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
-				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(jck.getScqlqk())){
+				if(Double.parseDouble(wq1.getZdkd().trim())<Double.parseDouble(jck.getScqlqk().trim())){
 					jck.setScqlqk(wq1.getZdkd());
 				}else{
 					jck.setScqlqk(jck.getScqlqk());
@@ -130,8 +160,8 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			}
 		}
 		jck.setScqlqc(jck.getScqlqc());
-		BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
-		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+		BigDecimal b1=new BigDecimal(jck.getScqlqc().trim()).multiply(new BigDecimal(jck.getScqlqk().trim()));
+		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 		if(jck.getShibz()==null){
 			jck.setShibz("0");
 		}
@@ -145,15 +175,31 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return update("editwqgzsj", planwqgzsj)==1;
 	}
 	@Override
+	public boolean editwqgzsj1(Planwqgzsj planwqgzsj) {
+		return update("editwqgzsj1", planwqgzsj)==1;
+	}
+	@Override
 	public List<Planwqgzsj> selectwqjhksb(Planwqgzsj planwqgzsj) {
 		// TODO Auto-generated method stub
 		return queryList("selectwqjhksb",planwqgzsj);
+	}
+	@Override
+	public int selectwqjhksbcount1(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectwqjhksbcount1", planwqgzsj);
+	}
+	
+	@Override
+	public List<Planwqgzsj> selectwqjhksb1(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectwqjhksb1",planwqgzsj);
 	}
 	@Override
 	public int selectwqjhksbcount(Planwqgzsj planwqgzsj) {
 		// TODO Auto-generated method stub
 		return queryOne("selectwqjhksbcount", planwqgzsj);
 	}
+	
 	@Override
 	public boolean sbWqgzjh(Planwqgzsj planwqgzsj) {
 		String[] strs = planwqgzsj.getId().split(",");
@@ -190,13 +236,14 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	@Override
 	public String lwBzsbz(Planwqgzsj planwqgzsj) {
 		try{
-		if("省直管试点县".indexOf(planwqgzsj.getTsdq())!=-1){
+		if(planwqgzsj.getTsdq()!=null)
+		if(planwqgzsj.getTsdq().indexOf("省直管试点县")!=-1){
 			Wqbzbz wq1=queryOne("selectshibz", planwqgzsj);
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
 			}else{
-				BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
-				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+				BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(planwqgzsj.getScqlqk().trim()));
+				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 				planwqgzsj.setShibz(b2+"");
 			}
 		}
@@ -205,11 +252,10 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			System.out.println("未查出省级补助，请在审核时检查代码");
 		}else{
 			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
-				System.out.println(planwqgzsj.getScqlqk());
-				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(planwqgzsj.getScqlqk())){
-					planwqgzsj.setScqlqk(wq1.getZdkd());
+				if(Double.parseDouble(wq1.getZdkd().trim())<Double.parseDouble(planwqgzsj.getScqlqk().trim())){
+					planwqgzsj.setScqlqk(wq1.getZdkd().trim());
 				}else{
-					planwqgzsj.setScqlqk(planwqgzsj.getScqlqk());
+					planwqgzsj.setScqlqk(planwqgzsj.getScqlqk().trim());
 				}
 			}
 			else{
@@ -217,8 +263,8 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			}
 		}
 		planwqgzsj.setScqlqc(planwqgzsj.getScqlqc());
-		BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
-		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+		BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(planwqgzsj.getScqlqk().trim()));
+		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 		if(planwqgzsj.getShibz()==null){
 			planwqgzsj.setShibz("0");
 		}
@@ -232,5 +278,29 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	public List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj) {
 		return queryList("dcwqgzsjjhExcel",planwqgzsj);
 	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel1(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel1",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel2(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel2",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel3(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel3",planwqgzsj);
+	}
+	
+	@Override
+	public boolean tuihuiWqgzsjById(Planwqgzsj planwqgzsj) {
+			String[] strs = planwqgzsj.getId().split(",");
+			list = new ArrayList<String>();
+			for (int i = 0; i < strs.length; i++) {
+				list.add(strs[i]);
+			}
+			if(deleteBatch("tuihuiWqgzsjById", list)>0) return true;
+			else return false;
 		
+	}
+	
 }

@@ -1290,6 +1290,20 @@ function loadUnit1(id, dwbm) {
 				}
 		});
 }
+function loadUnit10(id, dwbm) {
+	if(dwbm=='21101360000')
+		dwbm='36';
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValue', dwbm);
+				}
+		});
+}
 /*
  * 加载特殊地区
  */
@@ -1355,6 +1369,63 @@ function loadBmbm2(id, name) {
 				textField : 'name',
 				panelHeight:'auto',
 				multiple:false
+			});
+		}
+	});
+}
+function loadBmbm3(id, name) {
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+		data:'yhm='+ encodeURI(encodeURI(name)),
+		dataType:'json',
+		success:function(msg){
+			$('#' + id).combobox({
+				data:msg,
+				valueField : 'bmid',
+				textField : 'name',
+				panelHeight:'auto',
+				multiple:true,
+				formatter:function(row){
+					var opts = $(this).combobox('options');
+					return '<input id="'+id+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				},
+				onSelect:function(record){
+					var opts = $(this).combobox('options');
+					if(record[opts.valueField]==""){
+						var values =new Array();
+						var datas = $('#' +id).combobox("getData");
+						$.each(datas,function(index,item){
+							values.push(item.bmid);
+							$('#'+id+item.id).attr('checked', true);
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$('#'+id+record.id).attr('checked', true);
+					}
+				},
+				onUnselect:function(record){
+					var opts = $(this).combobox('options');
+					var datas = $('#' +id).combobox("getData");
+					var values = $('#' +id).combobox("getValues");
+					$('#' +id).combobox("clear");
+					if(record[opts.valueField]!=""){
+						if(jQuery.inArray("",values)>=0){
+							values.splice(jQuery.inArray("",values),1);
+						}
+						$.each(datas,function(index,item){
+							if(jQuery.inArray(item.bmid,values)<0){
+								$('#'+id+item.id).attr('checked', false);
+							}
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$.each(datas,function(index,item){
+							$('#'+id+item.id).attr('checked', false);
+						});
+					}
+				}
 			});
 		}
 	});

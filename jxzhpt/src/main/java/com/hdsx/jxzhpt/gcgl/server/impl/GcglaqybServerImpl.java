@@ -235,7 +235,7 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	@Override
 	public Boolean deleteTzByid1(Gcgltz gcgltz) {
 		gcgltz.setTzid(gcgltz.getId());
-		if(delete("deleteTzByid", gcgltz)>0 && delete("deleteTzfile1", gcgltz)>0){
+		if(delete("deleteTzByid", gcgltz)>0){
 			return true;
 		}else{
 			return false;
@@ -304,13 +304,21 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 		// TODO Auto-generated method stub
 		return queryList("selAllXzqh1", yhdw);
 	}
-
+	@Override
+	public List<TreeNode> selAllXzqh11(String yhdw) {
+		// TODO Auto-generated method stub
+		return queryList("selAllXzqh11", yhdw);
+	}
 	@Override
 	public List<TreeNode> selAllUnit1(String yhdw) {
 		// TODO Auto-generated method stub
 		return queryList("selAllUnit1", yhdw);
 	}
-
+	@Override
+	public List<TreeNode> selAllUnit11(String yhdw) {
+		// TODO Auto-generated method stub
+		return queryList("selAllUnit11", yhdw);
+	}
 	@Override
 	public int selectmbgllistCount1(Gcglaqyb gcglaqyb) {
 		// TODO Auto-generated method stub

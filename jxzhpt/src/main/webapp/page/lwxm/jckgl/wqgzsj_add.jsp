@@ -45,6 +45,10 @@ $(function(){
 			$("#qlbh").focus();
 			return false;
 		}
+		if($("#sfylrbwqk").combobox('getValue')=="请选择"){
+			alert("请选择是否部库！");
+			return false;
+		}
 			var datas="jckwqgzsj.id="+xmbm;
 			$.ajax({
 				type:'post',
@@ -138,6 +142,8 @@ function autoCompleteLXBM(){
 				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
 				ptx=item.ptx;
 				pty=item.pty;
+				$("#jd").val(item.ptx);
+				$("#wd").val(item.pty);
 				$("#qlmc").html(item.qlmc);
 				$("#qlzxzh").html(parseFloat(item.qlzxzh));
 				$("#gydw").html(item.gydw);
@@ -150,25 +156,6 @@ function autoCompleteLXBM(){
 				$("#qlkd").html(item.qlkd);
 				$("#dkzdkj").html(item.dkzdkj);
 				$("#jsdj").html(item.pddj);
-				 /* $.ajax({
-					type : 'post',
-					url : '/jxzhpt/xmjck/selJsdj.do',
-					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
-					dataType:'json',
-					success : function(msg) {
-						if($.trim(msg.jsdj)=='一级公路')
-							$("#jsdj").html('一类');
-						else	if($.trim(msg.jsdj)=='二级公路')
-							$("#jsdj").html('二类');
-						else if($.trim(msg.jsdj)=='三级公路')
-							$("#jsdj").html('三类');
-						else if($.trim(msg.jsdj)=='四级公路')
-							$("#jsdj").html('四类');
-						else{
-							$("#jsdj").html('五类');
-						}	
-					}
-				});  */
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#sbjgxs").val(item.sbjgxs);
@@ -193,17 +180,18 @@ function saveWqgz(){
 	if($.cookie("unit2")=="______36"){
 		sbthcd=7;
 	}
+	var bhnr=$("#bhnr").val().replace(/%/g, "%25");
 	var data ="jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.qlmc="+$("#qlmc").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.gydwbm="+$("#gydwbm").val()+"&jckwqgzsj.gydw="+$("#gydw").html()
 	+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.xzqhmc="+$("#xzqhmc").html()+"&jckwqgzsj.lxmc="+$("#lxmc").html()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.kjzc="+$("#kjzc").html()+
 	"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.qlkd="+$("#qlkd").html()+"&jckwqgzsj.dkzdkj="+$("#dkzdkj").html()+"&jckwqgzsj.jsdj="+$("#jsdj").html()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&&jckwqgzsj.xjgjnd="+$("#xjgjnd").html()+"&&jckwqgzsj.tsdq="+$("#tsdq").html()
-	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
+	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+bhnr+"&jckwqgzsj.bz="+$("#bz").val().replace(/%/g, "%25")+
+	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val().replace(/%/g, "%25")+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()
-	+"&jckwqgzsj.ptx="+ptx+"&jckwqgzsj.pty="+pty+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
 	 $.ajax({
 		type:'post',
@@ -287,7 +275,7 @@ function loadUploadify(){
 		'queueID' : 'fileQueue2',
 		'fileDataName' : 'uploadWGYS',
 		'auto' : false,
-		'multi' : false,
+		'multi' : true,
 		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
@@ -404,6 +392,32 @@ function newGuid()
 				</td>
 			</tr>
 			
+				<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xlxbm" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xlxmc" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xqlbm" />
+					</td>
+				
+			</tr>
+			<tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xzxzh" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">经度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="jd" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">纬度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="wd" />
+					</td>
+			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -486,7 +500,8 @@ function newGuid()
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否入部危桥库：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
-						<option value="否"selected>否</option>
+						<option value="请选择">请选择</option>
+						<option value="否">否</option>
 						<option value="是">是</option>
 					</select>
 				</td>

@@ -6,7 +6,7 @@
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where 1=1 and sfylrbwqk='是'
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -17,7 +17,7 @@
   <select id="selectWqjcCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1 and sfylrbwqk='是'
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -25,11 +25,11 @@
  </select>
 	<select id="exportExcel_wqjc" parameterType="jckwqgz"	resultType="sjbb">
 		select
-		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qlbh v_5,qlmc v_6,qlzxzh v_7,xjgjnd v_8,qlqc v_9,qlkd v_10,
-		kjzc v_11,dkzdkj v_12,akjfl v_13,sbjgxs v_14,pddj v_15,bhnr v_16,bz v_17
+		gydw v_0,xzqhdm v_1,xzqhmc v_2,xlxbm v_3,xqlbm v_4,xzxzh v_5,ptx v_6,pty v_7,lxbm v_8,lxmc v_9,qlbh v_10,qlmc v_11,qlzxzh v_12,xjgjnd v_13,qlqc v_14,qlkd v_15,
+		kjzc v_16,dkzdkj v_17,akjfl v_18,sbjgxs v_19,pddj v_20,bhnr v_21,bz v_22
 		from xmk_wqgz where 1=1 and sfylrbwqk='是'
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -41,9 +41,9 @@
 		select rownum num ,t.* from
 			(select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.sfylrbwqk='是') t 
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -54,9 +54,9 @@
 	<select id="selectWqscCount" parameterType="jckwqgz" resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.sfylrbwqk='是')
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -68,7 +68,7 @@
 		from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.sfylrbwqk='是')
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -82,9 +82,9 @@
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -97,9 +97,9 @@
  		<select id="selectWqjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -112,7 +112,7 @@
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
 		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.sfylrbwqk='是'
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -124,7 +124,7 @@
  	select * from (
  		select rownum num ,t.* from xmk_abgc t where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -135,7 +135,7 @@
   <select id="selectAbjcCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_abgc t where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -146,7 +146,7 @@
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,yhnr v_10,bz v_11 
 			from xmk_abgc where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -159,9 +159,9 @@
 		select rownum num ,t.* from
 			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -172,9 +172,9 @@
 	<select id="selectAbscCount" parameterType="jckwqgz" resultType="int">
 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -186,7 +186,7 @@
 		from (select * from sck_abgc join xmk_abgc on xmkid=xmk_abgc.id) t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -200,9 +200,9 @@
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -215,9 +215,9 @@
  		<select id="selectAbjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -229,7 +229,7 @@
 		left join sck_abgc sc on (jh.sckid = sc.sckid)
 		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -242,7 +242,7 @@
  	select * from (
  		select rownum num ,t.* from xmk_zhfz t where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -253,7 +253,7 @@
   <select id="selectZhjcCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_zhfz t where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -264,7 +264,7 @@
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,yhnr v_10,bz v_11 
 			from xmk_zhfz where 1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -277,9 +277,9 @@
 		select rownum num ,t.* from
 			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -290,9 +290,9 @@
 	<select id="selectZhscCount" parameterType="jckwqgz" resultType="int">
 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
 			where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-		</if>
+		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
@@ -304,7 +304,7 @@
 		from (select * from sck_zhfz join xmk_zhfz on xmkid=xmk_zhfz.id) t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -319,9 +319,9 @@
 				(
 					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -334,9 +334,9 @@
  		<select id="selectZhjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
 					and xmnf like '%'||(#{xmnf})||'%'
 				</if>
@@ -348,7 +348,7 @@
 		left join sck_zhfz sc on (jh.sckid = sc.sckid)
 		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -363,11 +363,11 @@
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
  				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
+					and jh.sbnf in (${xmnf})
 				</if> 
 	 				order by jh.sbzt,jh.spzt
 	 			) t
@@ -378,12 +378,12 @@
  		<select id="selectWqkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
-				</if> 
+					and jh.sbnf in (${xmnf})
+		</if> 
 	</select>
 	<select id="exportExcel_wqkg" parameterType="jckwqgz" resultType="sjbb">
 		select lx.gydw v_0,lx.xzqhdm v_1,lx.xzqhmc v_2,lx.lxbm v_3,lx.lxmc v_4,lx.qlbh v_5,lx.qlmc v_6,lx.qlzxzh v_7,jh.xdsj v_8,
@@ -392,11 +392,11 @@
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
 		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.sfylrbwqk='是'
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
- 		</if>
+			and jh.sbnf in (${xmnf})
+		</if> 
 		order by jh.sbzt,jh.spzt
 	</select>
 	
@@ -408,11 +408,11 @@
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
  				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
+					and jh.jhnf in (${xmnf})
 				</if> 
 	 				order by jh.sbzt,jh.spzt
 	 			) t
@@ -423,11 +423,11 @@
  		<select id="selectAbkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
+					and jh.jhnf in (${xmnf})
 				</if> 
 	</select>
 	<select id="exportExcel_abkg" parameterType="jckwqgz" resultType="sjbb">
@@ -437,11 +437,11 @@
 		left join sck_abgc sc on (jh.sckid = sc.sckid)
 		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
- 		</if>
+			and jh.jhnf in (${xmnf})
+		</if> 
 		order by jh.sbzt,jh.spzt
 	</select>
 	
@@ -453,12 +453,12 @@
 				(
 					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-				<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
  				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
-				</if> 
+					and jh.sbnf in (${xmnf})
+				</if>  
 	 				order by jh.sbzt,jh.spzt
 	 			) t
  			)
@@ -467,12 +467,12 @@
  		<select id="selectZhkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-		 		<if test="gydw!='' and gydw!= null ">
-					and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
 				<if test="xmnf!='' and xmnf!= null ">
-					<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
-				</if> 
+					and jh.sbnf in (${xmnf})
+				</if>   
 	</select>
 	<select id="exportExcel_zhkg" parameterType="jckwqgz" resultType="sjbb">
 		select lx.gydw v_0,lx.xzqhdm v_1,lx.xzqhmc v_2,lx.lxbm v_3,lx.lxmc v_4,sc.scqdzh v_5,sc.sczdzh v_6,sc.sczlc v_7,sc.scyhlc v_8,
@@ -481,11 +481,11 @@
 		left join sck_zhfz sc on (jh.sckid = sc.sckid)
 		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
 		<if test="gydw!='' and gydw!= null "  >
- 			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			<![CDATA[ and substr(trim(substr(sjkgsj,4,3)),0,length(trim(substr(sjkgsj,4,3)))-1)<=to_number(#{xmnf})]]>
- 		</if>
+			and jh.sbnf in (${xmnf})
+		</if>  
 		order by jh.sbzt,jh.spzt
 	</select>
 	
@@ -496,12 +496,16 @@
 				select rownum as num,t.* from
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_wqgz 
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
-				<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
-				</if>
+ 			 			where 1=1 and jh.sfylrbwqk='是'
+				<if test="gydw!='' and gydw!= null "  >
+					${gydw}
+ 				</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.sbnf in (${xmnf})
+				</if> 
 	 				order by wc_btz
 	 			) t
  			)
@@ -510,23 +514,27 @@
  		
  		<select id="selectWqjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
- 					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_wqgz
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz jc on sc.xmkid=jc.id
-		 		<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
-				</if>
-
+ 			 		where 1=1 and jh.sfylrbwqk='是'
+		 		<if test="gydw!='' and gydw!= null "  >
+					${gydw}
+ 				</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.sbnf in (${xmnf})
+				</if> 
 	</select>
 	<select id="exportExcel_wqjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qlbh v_4,lx.qlmc v_5,gc.sbsj v_6,jh.yjjgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,jh.bz v_11
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_wqgz 
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz lx on sc.xmkid=lx.id
+ 			 	where 1=1 and jh.sfylrbwqk='是'	
 		<if test="gydw!='' and gydw!= null "  >
- 			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') and jh.sfylrbwqk='是'
+			${gydw}
  		</if>
 		order by wc_btz
 	</select>
@@ -538,12 +546,15 @@
 				select rownum as num,t.* from
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_abgc 
  					 group by jhid )gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
-				<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.jhnf in (${xmnf})
+				</if> 
 	 				order by wc_btz
 	 			) t
  			)
@@ -552,24 +563,29 @@
  		
  		<select id="selectAbjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
- 					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_abgc
  					 group by jhid)gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
-		 		<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
-
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.jhnf in (${xmnf})
+				</if> 
 	</select>
 	<select id="exportExcel_abjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,gc.sbsj v_6,jh.yjwgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_abgc 
  					 group by jhid )gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc lx on sc.xmkid=lx.id
 		<if test="gydw!='' and gydw!= null "  >
- 			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+			and jh.jhnf in (${xmnf})
+		</if> 
 		order by wc_btz
 	</select>
 	
@@ -580,12 +596,15 @@
 				select rownum as num,t.* from
 				(
 					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_zhfz
  					 group by jhid )gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
-				<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
+				<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.sbnf in (${xmnf})
+				</if> 
 	 				order by wc_btz
 	 			) t
  			)
@@ -594,24 +613,29 @@
  		
  		<select id="selectZhjzCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
- 					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_zhfz 
  					 group by jhid)gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
-		 		<if test="gydw!='' and gydw!= null ">
-					where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
-				</if>
-
+		 		<if test="gydw!='' and gydw!= null "  >
+			${gydw}
+ 		</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and jh.sbnf in (${xmnf})
+				</if> 
 	</select>
 	<select id="exportExcel_zhjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,gc.sbsj v_6,jh.yjwgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
 		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
- 					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
+ 					from gcgl_zhfz 
  					 group by jhid )gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz lx on sc.xmkid=lx.id
 		<if test="gydw!='' and gydw!= null "  >
- 			where gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
  		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+			and jh.sbnf in (${xmnf})
+		</if> 
 		order by wc_btz
 	</select>
 	
@@ -681,7 +705,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			union all
 			select '路面改造' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'路面改造' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
       lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,cbsj.dq dqiao,cbsj.sd sdao,' ' lmkd,' ' jsfa,p.pfztz ztz,p.bbzzj btz,p.sbzzj stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
-      gk.gkpfwh gkpfwh,cbsj.sjpfwh,zj1.jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
+      gk.gkpfwh gkpfwh,cbsj.sjpfwh,p.xdwh jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
       from jhsh_lmgz p,lxsh_lmgz lxsh,cbsj_lmgz cbsj,kxxyj_lmgz gk,
       (select xmid jhid,min(xzqh) xzqhmc,min(xzqhdm) xzqhdm,replace(WMSYS.WM_CONCAT(to_char(QDZH)),',','、') QDZH,replace(WMSYS.WM_CONCAT(decode(substr(to_char(lxbm),0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道')),',','、') xzdj,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') lxbh,
       replace(WMSYS.WM_CONCAT(to_char(ZDZH)),',','、') ZDZH,replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,0,instr(xzqh, '市')))),',','、') shi,replace(WMSYS.WM_CONCAT(to_char(substr(xzqh,instr(xzqh, '市')+1,instr(xzqh, '县')))),',','、') xian,replace(WMSYS.WM_CONCAT(to_char(xjsdj)),',','、') jsdj

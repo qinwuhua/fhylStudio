@@ -473,7 +473,8 @@ function xmnf(id){
 	$('#'+id).combobox({    
 	    data:years,
 	    valueField:'text',    
-	    textField:'text'   
+	    textField:'text',
+	    multiple:true
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }

@@ -319,4 +319,10 @@
 	<select id="selJsUsedById" parameterType="param" resultType="param">
 		select * from xtgl_master where roleid in ${roleid}
 	</select>
+	<select id="userlogin" parameterType="string" resultType="master">
+		select * from xtgl_master where 1=1
+		<if test="value != null and  value != ''">
+		and truename like '%'||trim(#{value})||'%'
+		</if>
+	</select>
 </mapper>

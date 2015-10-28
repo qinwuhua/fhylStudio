@@ -101,10 +101,10 @@ function edit(){
 			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
 			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
-				<ul class="nav">
+				<ul class="nav1">
 					<li id="menu_010301" style="display:none;"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
 					<li id="menu_010302" style="display:none;"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 
-					<li id="menu_010303" style="display:none;"><a id="Menu_3" href="javascript:void(0)">养护统计</a></li>
+					<li id="menu_010303" style="display:none;"><a id="Menu_3" href="javascript:void(0)">养护（道班）统计</a></li>
 					<li id="menu_010304" style="display:none;"><a id="Menu_4" href="javascript:void(0)">桥梁管理</a></li>
 				</ul>
 			</div>

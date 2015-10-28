@@ -151,12 +151,14 @@ function showAll(){
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
+	    	'gcglwqgz.qlbh':$('#qlbm').val(),
 	    	ybzt:'',
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
-	    	sfylrbwqk:'是'
+	    	sfylrbwqk:'是',
+	    	gydwtj:"and 1=1"
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -210,18 +212,20 @@ function showAll1(){
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
+	    	'gcglwqgz.qlbh':$('#qlbm').val(),
 	    	ybzt:'',
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
-	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue')
+	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
+	    	gydwtj:"and gydwbm like '1%'"
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 	        }},
-	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},

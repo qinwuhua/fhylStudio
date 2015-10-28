@@ -4,172 +4,140 @@
 	<select id="queryCbsjLmgz" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
+				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
+		        ,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+		        where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%2___')
 				</if>
-				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">
-					and l.lsjl=#{cbsj.lsjl}
-				</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
-				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc ) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
+				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
+		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+		        where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 				</if>
-				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">
-					and l.lsjl=#{cbsj.lsjl}
-				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjXj" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
+				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+				c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
+				,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+				from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%3___')
 				</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
-				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and l.xjsdj = #{cbsj.xjsdj}</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and c.jsjsdj=#{cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjYhdzx" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
+				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,
+				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%4___' and jdbs='2')
 				</if>
-				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">
-					and l.lsjl=#{cbsj.lsjl}
-				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
+				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
+				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,lx.lc,
+				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
-				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">
-					and l.lsjl=#{cbsj.lsjl}
-				</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
-				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
@@ -177,142 +145,103 @@
 	<select id="queryCbsjLmgzCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		where 1=1
-		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-			and ${cbsj.xzqhdm}
-		</if>
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 		</if>
-		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-			and l.xjsdj = #{cbsj.xjsdj}
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%2___')
 		</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
-		</if>
-		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-			and c.jsjsdj=#{cbsj.jsjsdj}
-		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
 		</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
-		<if test="cbsj.shzt>=0">
-			and c.shzt=${cbsj.shzt}
-		</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="queryCbsjLmsjCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
 		where 1=1
-		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-			and ${cbsj.xzqhdm}
-		</if>
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 		</if>
-		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-			and l.xjsdj = #{cbsj.xjsdj}
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
-		</if>
-		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-			and c.jsjsdj=#{cbsj.jsjsdj}
-		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
 		</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
-		<if test="cbsj.shzt>=0">
-			and c.shzt=${cbsj.shzt}
-		</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="queryCbsjXjCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
 		where 1=1
-		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-			and ${cbsj.xzqhdm}
-		</if>
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
 		</if>
-		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-			and l.xjsdj = #{cbsj.xjsdj}
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%3___')
 		</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
-		</if>
-		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-			and c.jsjsdj=#{cbsj.jsjsdj}
-		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
 		</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
-		<if test="cbsj.shzt>=0">
-			and c.shzt=${cbsj.shzt}
-		</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="queryCbsjYhdzxCount" parameterType="java.util.Map" resultType="int">
-		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
-				where 1=1
-				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-					and ${cbsj.xzqhdm}
-				</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
-				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-					and l.xjsdj = #{cbsj.xjsdj}
-				</if>
-				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-					and c.xmbm like #{cbsj.xmbm}||'%'
-				</if>
-				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-					and c.jsjsdj=#{cbsj.jsjsdj}
-				</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.TSDQ like '%'||#{cbsj.tsdq}||'%' 
-				</if>
-				<!-- <if test="cbsj.sbzt>=0">
-					and c.sbzt=${cbsj.sbzt}
-				</if> -->
-				<if test="cbsj.shzt>=0">
-					and c.shzt=${cbsj.shzt}
-				</if>
+		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm where 1=1
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+		</if>
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%4___' and jdbs='2')
+		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
+		<!-- <if test="cbsj.sbzt>=0">
+			and c.sbzt=${cbsj.sbzt}
+		</if> -->
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="queryCbsjShCount" parameterType="java.util.Map" resultType="int">
 		select count(c.xmbm) from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
 		where 1=1
-		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
-			and ${cbsj.xzqhdm}
-		</if>
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%' and jdbs='2')
 		</if>
-		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
-			and l.xjsdj = #{cbsj.xjsdj}
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%5___' and jdbs='2')
 		</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
-			and c.xmbm like #{cbsj.xmbm}||'%'
-		</if>
-		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
-			and c.jsjsdj=#{cbsj.jsjsdj}
-		</if>
-		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.TSDQ like '%'||#{cbsj.tsdq}||'%' 
-		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
-		<if test="cbsj.shzt>=0">
-			and c.shzt=${cbsj.shzt}
-		</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	
 	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
@@ -402,6 +331,7 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="jszlc!=null">c.jszlc=#{jszlc},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
@@ -552,27 +482,17 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 				</if>
-				<if test="xjsdj!=null and xjsdj!=''">
-					and l.xjsdj = #{xjsdj}
+				<if test="ylxbh!=null and ylxbh!=''">and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
 				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and l.lsjl=#{lsjl}
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and l.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and c.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">
-					and c.jsjsdj=#{jsjsdj}
-				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<!-- <if test="sbzt>=0">
 					and c.sbzt=${sbzt}
 				</if> -->
-				<if test="shzt>=0">
-					and c.shzt=${shzt}
-				</if>
+				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc ) t 
 		)
 	</select>
@@ -583,27 +503,18 @@
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join 
 				(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx 
 				on c.xmbm=lx.xmid where 1=1
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 				</if>
-				<if test="xjsdj!=null and xjsdj!=''">
-					and l.xjsdj = #{xjsdj}
+				<if test="ylxbh!=null and ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
 				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and l.lsjl=#{lsjl}
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and l.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and c.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">
-					and c.jsjsdj=#{jsjsdj}
-				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
@@ -620,30 +531,19 @@
 			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join 
 			(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx 
 			on c.xmbm=lx.xmid where 1=1
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 				</if>
-				<if test="xjsdj!=null and xjsdj!=''">
-					and l.xjsdj = #{xjsdj}
+				<if test="ylxbh!=null and ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and l.lsjl=#{lsjl}
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and l.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and c.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">
-					and c.jsjsdj=#{jsjsdj}
-				</if>
-				<if test="shzt>=0">
-					and c.shzt=${shzt}
-				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		)
 	</select>
@@ -655,30 +555,19 @@
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
 				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='2' and sffirst='1') lx
 				on c.xmbm = lx.xmid where 1=1
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 				</if>
-				<if test="xjsdj!=null and xjsdj!=''">
-					and l.xjsdj = #{xjsdj}
+				<if test="ylxbh!=null and ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___' and jdbs='2')
 				</if>
-				<if test="lsjl!=null and lsjl!=''">
-					and l.lsjl=#{lsjl}
-				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and l.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and c.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">
-					and c.jsjsdj=#{jsjsdj}
-				</if>
-				<if test="shzt>=0">
-					and c.shzt=${shzt}
-				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		)
 	</select>
@@ -690,27 +579,18 @@
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
 				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,xjlxbm xjlxbm, xjqdzh xjqdzh,xjzdzh xjzdzh,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx
 				on c.xmbm = lx.xmid where 1=1
-				<if test="xzqhdm!=null and xzqhdm!=''">
-					and ${xzqhdm}
-				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 				</if>
-				<if test="xjsdj!=null and xjsdj!=''">
-					and l.xjsdj = #{xjsdj}
+				<if test="ylxbh!=null and ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%3___' and jdbs='2')
 				</if>
-				<if test="tsdq!=null and tsdq!=''">
-					and l.tsdq like '%'||#{tsdq}||'%'
-				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and c.xmbm like #{xmbm}||'%'
-				</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">
-					and c.jsjsdj=#{jsjsdj}
-				</if>
-				<if test="shzt>=0">
-					and c.shzt=${shzt}
-				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		)
 	</select>
@@ -740,5 +620,42 @@
 		select yh.xmbm,yh.xdwh from jhsh_yhdzx yh
 		union all
 		select sh.xmbm,sh.xdwh from jhsh_sh sh) where filewh like '%'||#{jhwh}||'%'
+	</select>
+	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
+		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx c left join 
+		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
+		</if>
+		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="shzt>=0">and c.shzt=${shzt}</if>
+	</select>
+	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
+		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh c left join 
+		xmsq_sh l on c.xmbm=l.xmbm left join 
+		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
+		</if>
+		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="shzt>=0">and c.shzt=${shzt}</if>
 	</select>
 </mapper>

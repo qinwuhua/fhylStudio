@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
@@ -182,5 +183,24 @@ public interface XmsqServer {
 	 */
 	public List<TreeNode> queryAllXzqh(String xzqhdm);
 	public List<TreeNode> queryAllGydw(String gydwdm);
+	/**
+	 * 养护大中修查询累计信息
+	 * @param xmsq 查询条件
+	 * @return
+	 */
+	public Map<String, String> queryLjYhdzx(Xmsq xmsq);
+	/**
+	 * 水毁查询累计信息
+	 * @param xmsq
+	 * @return
+	 */
+	public Map<String, String> queryLjSh(Xmsq xmsq);
+	/**
+	 * 根据公路等级查询对应的路线
+	 * @param level 公路行政登记
+	 * @param xzqhdm 行政区划
+	 * @return
+	 */
+	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm);
 
 }

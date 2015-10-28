@@ -179,7 +179,11 @@ function showAll(){
 	         {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
   				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>     '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
   			}},
-  			{field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
+  			 {field : 'XMMC',title : '项目名称',width : 180,align : 'center',formatter:function(value,row,index){
+  	        	if(row.SL!=1)
+  	        		return '<font color="red">'+row.XMMC+'</font>';
+  	        	else return  row.XMMC;	
+  	        }},
 			{field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
 			{field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
 			{field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},

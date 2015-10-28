@@ -90,11 +90,12 @@
 			    columns:[[
 			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 			        	if(row.fbdw==$.cookie("unit"))
-			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editwj('+index+')">编辑</a>        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
+			        		//+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editwj('+index+')">编辑</a>        '
+			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deletewj('+index+')">删除</a>        ';
 			        	else	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckwj('+index+')">查看</a>    ';
 			        }},
-			        {field:'wjmc',title:'文件名称',width:200,align:'center'},
-			        {field:'wjgy',title:'文件概要',width:1000,align:'center'},
+			        {field:'wjmc',title:'文件名称',width:600,align:'center'},
+			        /* {field:'wjgy',title:'文件概要',width:1000,align:'center'}, */
 			        {field:'fbr',title:'发布人',width:200,align:'center'},
 			        {field:'fbsj',title:'发布时间',width:96,align:'center'}
 			    ]]    
@@ -108,7 +109,7 @@
 				title : '其它文件添加',
 				page : 'qtwj_add.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=qtwj.jsp'+'&id='+new Date().getTime(),
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -126,7 +127,7 @@
 				title : '其它文件编辑',
 				page : 'qtwj_xg.jsp?url='+"/jxzhpt/wjxt/uploadWjFile.do"+'&flag=qtwj.jsp'+'&id='+data.id,
 				width : 570,
-				height : 440,
+				height : 340,
 				top : 0,
 				rang : true,
 				resize : false,
@@ -161,7 +162,7 @@
 		function ckwj(index){
 			var data=$("#datagrid").datagrid('getRows')[index];
 			obj=data;
-			YMLib.UI.createWindow('zcwj','其它文件详情','qtwj_ck.jsp','zcwj',730,400);
+			YMLib.UI.createWindow('zcwj','其它文件详情','qtwj_ck.jsp','zcwj',730,300);
 		}
 	</script>
 	<style type="text/css">
@@ -208,10 +209,10 @@ a:active {
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" /> --%>
                                     <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
             
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="xxtztj()" style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="xxtztj()" style="border-width:0px;cursor: hand;vertical-align: middle;" />
                                     
         					</p>
         				</div>

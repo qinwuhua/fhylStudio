@@ -91,8 +91,13 @@ a:active {
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select>
+        						</p>
+        						<p style="margin: 1% 0% 1% 2%;">
+        						<span>桥梁编码：</span>
+        						<input type="text" id="qlbm" style="width: 100px;">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -60%;" onclick="showAll()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -60%;" onclick="showAll()"/>        
+                              </p>
         				</div>
         			</fieldset>
         		</td>

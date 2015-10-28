@@ -13,6 +13,19 @@ function userPanduan(unit2){
 		return "县";
 	}
 }
+/**
+ * 加载公路等级
+ * @param id
+ * @param name
+ * @returns
+ */
+function loadGldj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
+		panelHeight:200,
+		multiple:true
+	});
+}
 //--------------------------------------------------路线操作--------------------------------------
 /**
  * 项目年份
@@ -31,9 +44,50 @@ function xmnf(id){
 	$('#'+id).combobox({
 	    data:years,
 	    valueField:'value',
-	    textField:'text'
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
 /**
  * 判断项目类型，返回文字
@@ -65,7 +119,7 @@ function openLxAdd(id,xmbm,jdbs){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.jdbs=jdbs;
 	YMLib.Var.id=id;
-	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add.jsp',980,400);
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add2.jsp',980,400);
 }
 /**
  * 初步设计添加路线弹窗
@@ -595,6 +649,11 @@ function updateLxWin(index,xmbm,id){
 	}
 	YMLib.UI.createWindow(id,'编辑路线信息','lx_add.jsp',id,900,350);
 }
+function loadLxWin(index,xmbm,id){
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow(id,'编辑路线信息','lx_xx.jsp',id,900,350);
+}
 //--------------------------------------------------------easyui部分
 var gridObj;//datagrid 对象
 var Rh={
@@ -630,10 +689,9 @@ var Rh={
 					'lx.xmid':row.xmbm,
 					'lx.jdbs':YMLib.Var.jdbs,
 					'lx.sffirst':'1'
-					
 				},
     			columns:[[
-    			    {field:'cz',title:'删除',width:150,align:'center',
+    			    {field:'cz',title:'操作',width:150,align:'center',
     			    	formatter:function(value,row,index){
     			    		var result='<a href="javascript:updateLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">编辑</a>';
     			    		result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
@@ -658,6 +716,40 @@ var Rh={
 	    	});
 		}
 	};
+function bindLxGrid(){
+	Rh.onExpandRow=function(index,row){
+		$('#table_lx'+row.xmbm).datagrid({
+			url:'/jxzhpt/qqgl/selectlxList.do',
+			queryParams:{
+				'lx.xmid':row.xmbm,
+				'lx.jdbs':YMLib.Var.jdbs,
+				'lx.sffirst':'1'
+			},
+			columns:[[
+			    {field:'cz',title:'操作',width:150,align:'center',
+			    	formatter:function(value,row,index){
+			    		var result='<a href="javascript:loadLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">详细</a>';
+			    		return result;
+			    	}
+			    },
+				{field:'gydw',title:'管养单位',width:150,align:'center'},    
+				{field:'xzqh',title:'行政区划',width:150,align:'center'},
+				{field:'lxmc',title:'路线名称',width:120,align:'center'},
+				{field:'lxbm',title:'路线编码',width:100,align:'center'},
+				{field:'qdzh',title:'起点桩号',width:80,align:'center'},
+				{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+				{field:'qdmc',title:'起点名称',width:100,align:'center'},
+				{field:'zdmc',title:'止点名称',width:100,align:'center'},
+				{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+				{field:'lc',title:'里程',width:60,align:'center'}
+			]],
+			onLoadSuccess:function(){
+				$('#'+grid.id).datagrid('fixDetailRowHeight',index);
+	        }
+    	});
+	}
+}
 //此对象为绑定列表对象
 var grid={
 		id:null,url:null,queryParams:null,height:null,width:null,fitColumns:false,

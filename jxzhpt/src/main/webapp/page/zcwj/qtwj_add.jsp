@@ -70,7 +70,9 @@
 // 				if(response!=null||response!='error'){
 // 					addaqyb(response);
 // 				}
-//				alert(response);
+				$("#message").attr('color','green');
+				$("#message").html("文件上传成功");
+				addaqyb();
 				var arr=response.substr(response.length-32,response.length);
 //				alert(response.substr(response.length-32,response.length).length);
 				$('<li></li>').appendTo('.files').html(response.substr(0,response.length-32)+'                   <a id="'+arr+'" href="javascript:DelTz('+"'"+arr+"'"+')"  style="text-decoration:none;"> 删除 </a> ');
@@ -118,10 +120,10 @@
 			alert("请添加通知内容");
 			return;
 		}
-		if(!confirm("确认保存吗？")){
-			return;
-		}
-		var data= "wjgl.jsdw="+$("#jsdw").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+$("#wjgy").val()+"&wjgl.fbdw="+$.cookie("unit")
+// 		if(!confirm("确认保存吗？")){
+// 			return;
+// 		}
+		var data= "wjgl.jsdw="+$("#jsdw").val()+"&wjgl.wjmc="+$("#wjmc").val()+"&wjgl.wjgy="+''+"&wjgl.fbdw="+$.cookie("unit")
 		+"&wjgl.id="+request('id')+"&wjgl.fbr="+$.cookie("truename");
 		//alert(data);
 		$.ajax({
@@ -148,30 +150,26 @@
 		uploadifyUpload();
 	}
 	function tianjia(){
-		if($("#fileQueue").text()!=''){
+			$("#message").html("正在上传，请勿关闭窗口！");
 			uploadifyUpload();
-		}
-		addaqyb();
-		//uploadifyUpload();
 	}
 	function uploadifyUpload() {
 		$('#fileupload').uploadifyUpload();
 	}
 	function fanhui() {
-		var data="id="+request('id');
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/wjxt/deleteQtWjfile1.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				
-			}
-		});	
 		var flag=request('flag');
 		parent.window.location = '/jxzhpt/page/zcwj/'+flag;
  		dg.cancel();
 	}
+// 	var flagadd=false;
+// 	var flagsc=false;
+// 	function closeck(){
+// 		if(flagadd&&flagsc){
+// 			fanhui();
+// 		}else{
+// 			setTime('closeck()',1000);
+// 		}
+// 	}
 	$(function(){
 		setGydw("jsdw","36");
 		var data1="yhdw="+$.cookie("unit");
@@ -261,7 +259,7 @@
                                  <input type="text" id="wjmc"  style="width: 300px;">
                                 </td>
                             </tr>
-                              <tr style="height: 35px;">
+                            <!--   <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
@@ -272,7 +270,7 @@
                                   <textarea rows="5" cols="50" id="wjgy"></textarea>
                                 </td>
                                 
-                            </tr>
+                            </tr> -->
 
                        	 <tr style="height: 35px;" >
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -286,8 +284,9 @@
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="2">
-                                   <a href="javascript:;" onClick="shangchuan()"  class="easyui-linkbutton" > 上传 </a> 
+                                   <font id="message" color="red"></font>
                                 </td>
+                               
                             </tr>
                             <tr style="height: 64px;" >
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;

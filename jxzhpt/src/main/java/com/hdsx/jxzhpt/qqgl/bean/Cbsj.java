@@ -22,6 +22,7 @@ public class Cbsj {
 				+ ", jdbs=" + jdbs + ", gpsqdzh=" + gpsqdzh + ", gpszdzh="
 				+ gpszdzh + "]";
 	}
+	private String gcfl;//工程分类
 	private String id;//唯一ID
 	private String xmbm;//项目编码
 	private String xmmc;//项目名称
@@ -97,6 +98,20 @@ public class Cbsj {
 	private String jhwllc;//建设后无路里程
 	private String dfzc;//地方自筹
 	private String yhdk;//银行贷款
+	private String jszlc;//建设总里程
+	private String xmsl;//路线数量
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
 	public String getDfzc() {
 		return dfzc;
 	}
@@ -522,5 +537,11 @@ public class Cbsj {
 	}
 	public void setLc(String lc) {
 		this.lc = lc.trim();
+	}
+	public String getGcfl() {
+		return gcfl;
+	}
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
 	}
 }

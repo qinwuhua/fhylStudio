@@ -94,5 +94,7 @@
 	<action name="updateFdbzByXmlx" class="xtglController" method="updateFdbzByXmlx"></action>
 	<action name="dropYhdzxcsById" class="xtglController" method="dropYhdzxcsById"></action>
 	<action name="editYhdzxcs" class="xtglController" method="editYhdzxcs"></action>
+	<action name="userlogin" class="xtglController" method="userlogin"></action>
+	
  </package>
 </struts>

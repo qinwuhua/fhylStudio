@@ -30,6 +30,44 @@
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
+		
+		function tuihui(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要退回的项目！");
+				return;
+			}
+			var id=rows[0].id;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].spzt!='1'){
+					alert('请勾选已审核的项目！');
+					return;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+			}
+			if(confirm('确定退回到未审核状态？')){
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/jhgl/tuihuiWqgzsjById.do",
+					 dataType : 'json',
+					 data : 'planwqgzsj.id=' +id,
+					 success : function(msg){
+						 if(msg){
+							 alert('退回成功！');
+							 loadwqjhkgl();
+						 }else{
+							 YMLib.Tools.Show('退回失败！',3000);
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+			}
+		}
+		
 		function loadwqjhkgl(){
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
@@ -55,7 +93,7 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 		$("#grid").datagrid({    
-			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
+			 url:'/jxzhpt/jhgl/selectwqjhksb1.do',
 			 queryParams : {
 				 'sbthcd':function(){
 					 if($.cookie("unit2").length==11) return 0;
@@ -73,7 +111,8 @@
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -85,17 +124,21 @@
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-						if(row.sfylrbwqk=='是')
+						/* if(row.sfylrbwqk=='是')
 							return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
-							else
+							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
+							else */
 								return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    
 					 {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
-								 if(row.spzt=='0')
-								 return '<a href=javascript:shangb1('+"'"+row.id+"','"+row.tsdq+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-								 else  return "已审核";
+						 	if(row.jh_sbthcd<4){
+								return '<a href=javascript:shenghwtg('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
+							}else{
+								if(row.spzt=='0')
+									 return '<a href=javascript:shangb1('+"'"+row.id+"','"+row.tsdq+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+									 else  return "已审核";
+							} 
 					}}, 
 		 		{field:'sfylsjl',title:'是否有修建记录',width:120,align:'center',formatter:function(value,row,index){
 		        	if(row.sfylsjl=='无')
@@ -103,10 +146,16 @@
 		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
+		        {field:'sfbk',title:'计划类别',width:120,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylrbwqk=='是')
+		        		return '车购税';
+		        	else if(row.sfylrbwqk=='否')
+		        		return '省补';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		        {field:'gydw',title:'管养单位',width:150,align:'center'},
+		        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+		        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
+		        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:100,align:'center'},
@@ -122,10 +171,11 @@
 				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
 				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
 				$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
+				 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
 				 dataType : 'json',
 				 data : data,
 				 success : function(msg){
@@ -142,6 +192,10 @@
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
 		}
+		function edit1(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg1.jsp",'wq_edit',1000,500);
+		}
 		function ckwqgz(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
@@ -151,6 +205,25 @@
 			obj=id;
 			tsdq1=tsdq;
 			YMLib.UI.createWindow('wq_edit','省级审核',"/jxzhpt/page/jhgl/jhksh/wqgzsj_sh.jsp",'wq_edit',500,300);
+		}
+		
+		function dcExcel(){
+			var sbthcd;
+			if($.cookie("unit2").length==11) sbthcd=0;
+		 	else if($.cookie("unit2").length==9) sbthcd=2;
+	 		else sbthcd=4;
+			var data="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
+			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;
+			 });
+		}
+		function shenghwtg(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj);
 		}
 	</script>
 <style type="text/css">
@@ -176,9 +249,9 @@ text-decoration:none;
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
-        						<td>管养单位：</td>
-        						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+							<tr height="32">
+        						<td>管养（监管）单位：</td>
+        						<td  colspan="3" style="width:120px;"><select id="gydw" style="width:220px;"></select></td>
         						<td>审核状态：</td>
         						<td><select name="ddlSHZT" id="jhzt" style="width:60px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -208,16 +281,14 @@ text-decoration:none;
         						
         					</tr>
         					<tr height="32">
-        					<td>行政区划：</td>
-        						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>行政区划：</td>
+        						<td  colspan="3" style="width:120px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 60px;"></select></td>
-        						<td>技术状况评定：</td>
+        						<td>评定等级：</td>
                               <td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+								
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
@@ -238,19 +309,18 @@ text-decoration:none;
 									<option value="有">是</option>
 									</select>
 								</td>
-								<td>是否部库：</td>
+								<td>计划类别：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="" selected>全部</option>
-								<option value="否" >否</option>
-								<option value="是">是</option>
+								<option value="是" >车购税</option>
+								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
-								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
-								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
-				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/> --%>
-								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />
+								 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="dcExcel()"/>
 							</td>
                             </tr></table>
         				</div>

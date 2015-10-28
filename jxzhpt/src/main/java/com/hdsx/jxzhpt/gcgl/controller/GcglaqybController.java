@@ -410,6 +410,24 @@ public class GcglaqybController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void selAllXzqh11(){
+		List<TreeNode> l=gcglaqybServer.selAllXzqh11(yhdw.replaceAll("0*$",""));
+		TreeNode root = returnRoot1(l,l.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(l.get(0));
+		List<TreeNode> children = root.getChildren();
+		//children1.get(0).setId(yhdw.replaceAll("0*$",""));
+		children1.get(0).setChildren(children);
+		for (TreeNode treeNode : children1) {
+			System.out.println(treeNode.getId());
+		}
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void selAllUnit1(){
 		List<TreeNode> l=gcglaqybServer.selAllUnit1(yhdw.replaceAll("0*$",""));
@@ -425,7 +443,20 @@ public class GcglaqybController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	public void selAllUnit11(){
+		List<TreeNode> l=gcglaqybServer.selAllUnit11(yhdw.replaceAll("0*$",""));
+		TreeNode root = returnRoot1(l,l.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(l.get(0));
+		List<TreeNode> children = root.getChildren();
+		children1.get(0).setChildren(children);
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	private TreeNode returnRoot1(List<TreeNode> list, TreeNode zzjgTree){
 		for(TreeNode temp : list){
 			if(temp!=zzjgTree){

@@ -45,9 +45,9 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -91,9 +91,9 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -167,9 +167,9 @@
 		<if test="shzt!='' and shzt!= null ">
 			and sck_shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -217,9 +217,9 @@
 		<if test="shzt!='' and shzt!= null ">
 			and sck_shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -298,9 +298,9 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -343,9 +343,9 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		<if test="shzt!='' and shzt!= null ">
 			and sck_shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -396,9 +396,9 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		<if test="xmnf!='' and xmnf!= null ">
 			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
@@ -430,9 +430,9 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		<if test="xmnf!='' and xmnf!= null ">
 			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
-		</if>
+		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>

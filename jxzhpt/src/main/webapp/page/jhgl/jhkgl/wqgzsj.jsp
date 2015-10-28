@@ -73,7 +73,8 @@
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -85,10 +86,10 @@
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-						if(row.sfylrbwqk=='是')
+						/* if(row.sfylrbwqk=='是')
 							return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
-							else
+							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
+							else */
 								return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    
@@ -105,10 +106,16 @@
 		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
+		        {field:'sfbk',title:'计划类别',width:120,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylrbwqk=='是')
+		        		return '车购税';
+		        	else if(row.sfylrbwqk=='否')
+		        		return '省补';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		        {field:'gydw',title:'管养单位',width:150,align:'center'},
+		        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+		        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
+		        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:100,align:'center'},
@@ -124,7 +131,8 @@
 				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
 				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
 				$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/jhgl/loadwqjhkglCount.do",
@@ -143,6 +151,10 @@
 		function edit(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
+		}
+		function edit1(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg1.jsp",'wq_edit',1000,500);
 		}
 		function ckwqgz(id){
 			obj=id;
@@ -187,7 +199,7 @@ text-decoration:none;
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
+        						<td>管养（监管）单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
         						<td>计划状态：</td>
         						<td><select name="ddlSHZT" id="jhzt" style="width:70px;" class="easyui-combobox">
@@ -207,18 +219,15 @@ text-decoration:none;
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select></td>
-								<td>技术状况评定：</td>
+								<td>评定等级：</td>
                               <td><select id="jsdj" style="width:65px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
+
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
         						<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="lxmc" style="width:90px;" /></td>
-        						
         						
         					</tr>
         					<tr height="32">
@@ -239,6 +248,7 @@ text-decoration:none;
 								</select></td>
 								<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="qlmc" style="width:90px;" /></td>
+        						
         					</tr>
 								<tr height="32">
 								<td>是否有补助历史：</td>
@@ -249,12 +259,14 @@ text-decoration:none;
 									<option value="有">是</option>
 									</select>
 								</td>
-								<td>是否部库：</td>
+								<td>计划类别：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="" selected>全部</option>
-								<option value="否" >否</option>
-								<option value="是">是</option>
+								<option value="是" >车购税</option>
+								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>

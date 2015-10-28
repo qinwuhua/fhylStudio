@@ -24,8 +24,9 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
-			loadBmbm2('jsdj','技术等级');
+			loadBmbm3('jsdj','技术等级');
 			xmnf("xmnf");
+			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});
@@ -33,9 +34,11 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValue")};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
+			loadLj(params);
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -81,12 +84,27 @@
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
+			bindLxGrid();
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanbbz').html(msg.BBZZJ);
+					$('#spansbz').html(msg.SBZZJ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function exportZjxd(){
 			var param='jhsh.xmlx=2&jhsh.xdzt=1&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
 			'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")
-			+'&jhsh.xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue");
+			+'&jhsh.xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")
+			+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -112,7 +130,7 @@
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-        					<tr>
+        					<tr height="32">
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 70px;"></select></td>
         						<td align="right">行政区划：</td>
@@ -120,9 +138,11 @@
         						<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						<td align="right">技术等级：</td>
-        						<td style="width: 300px;"><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td>公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         					</tr>
-        					<tr>
+        					<tr height="32">
         						<td align="right">补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
@@ -135,7 +155,7 @@
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
         						<td align="right">路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:110px;" /></td>
-        						<td colspan="2">
+        						<td colspan="4">
         							<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<img onclick="importJhshZjzj(5)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
@@ -158,9 +178,8 @@
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
-            		</div>
+            		<div>部补助资金累计【<span id="spanbbz" style="color: red;">0</span>】,省补助资金累计【<span id="spansbz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+            		<div><table id="grid"></table></div>
             	</td>
         	</tr>
 		</table>

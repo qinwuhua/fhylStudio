@@ -20,14 +20,21 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 		}
 	});
 }
+function loadGldj(id) {
+	$('#' + id).combotree({
+		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
+		panelHeight:200,
+		multiple:true
+	});
+}
 function tsdq(id){
-			$("#"+id).combobox({    
-			    url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),
-			    valueField:'id',    
-			    textField:'text'   
-			})
-			$("#"+id).combobox('setValue','全部');
-	}
+	$("#"+id).combobox({    
+		url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),
+		valueField:'id',    
+		textField:'text'   
+	});
+	$("#"+id).combobox('setValue','全部');
+}
 function tsdq1(id,value){
 	$("#"+id).combotree({   
 		checkbox : true,
@@ -53,9 +60,50 @@ function xmnf(id){
 	$('#'+id).combobox({
 	    data:years,
 	    valueField:'value',
-	    textField:'text'
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
 
 
@@ -170,7 +218,7 @@ function dclxshModule(str){
 		sbthcd=7;
 	}
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getValue');
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
 	var lsjl="";
 	if(str!='xj'){
@@ -180,8 +228,8 @@ function dclxshModule(str){
 	if(tsdq=='全部'){
 		tsdq="";
 	}
-	var jsdj=$("#jsdj").combobox('getValue');
-	var gldj=$("#gldj").combobox('getValue');
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
+	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="lxsh.xmlx="+str+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.sbzt="+sbzt+"&lxsh.lsjl="+lsjl+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcModule.do?'+data;
@@ -224,13 +272,13 @@ function dclxshModule(str){
 			sbthcd=7;
 		}
 		var xmmc=$("#xmmc").val();
-		var xmnf=$("#xmnf").combobox('getValue');
+		var xmnf=$("#xmnf").combobox('getValues').join(",");
 		var tsdq=$("#tsdq").combobox('getText');
 		if(tsdq=='全部'){
 			tsdq="";
 		}
-		var jsdj=$("#jsdj").combobox('getValue');
-		var gldj=$("#gldj").combobox('getValue');
+		var jsdj=$("#jsdj").combobox('getValues').join(",");
+		var gldj=$("#gldj").combobox('getValues').join(",");
 		var lsjl="";
 		if(str!='xj'){
 			lsjl=$("#lsjl").combobox('getValue');

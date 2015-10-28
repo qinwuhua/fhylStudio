@@ -99,7 +99,8 @@ public class ExcelImportUtil {
 			//newObj是根据Class反射创建的对象
 			Object newObj = classType.newInstance();
 			for (Entry<String, String> entry : entrySet) {
-				newObj = getData(newObj, entry, row);
+				if(row!=null)
+					newObj = getData(newObj, entry, row);
 			}
 			if(isNullRow(newObj,entrySet))
 				result.add(newObj);
@@ -126,7 +127,8 @@ public class ExcelImportUtil {
 			//newObj是根据Class反射创建的对象
 			Object newObj = classType.newInstance();
 			for (Entry<String, String> entry : entrySet) {
-				newObj = getData(newObj, entry, row);
+				if(row!=null)
+					newObj = getData(newObj, entry, row);
 			}
 			if(isNullRow(newObj,entrySet))
 				result.add(newObj);

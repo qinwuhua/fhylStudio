@@ -152,7 +152,7 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
+        						<span>管养（监管）单位：</span>
         						<input id="gydw" style="width: 150px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" style="width: 60px;">
@@ -172,6 +172,8 @@ a:active {
 								</select>
 								</p> 
 								<p style="margin: 1% 0% 1% 2%;">
+								<span>桥梁编码：</span>
+        						<input type="text" id="qlbm" style="width: 100px;">
 								<span>是否部库：</span>
         						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
 								<option value="" selected>全部</option>

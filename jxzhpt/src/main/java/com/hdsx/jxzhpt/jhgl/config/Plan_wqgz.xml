@@ -78,9 +78,9 @@
 	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 					and lx.lxbm like #{lx.lxbm}||'%'
 	 				</if>
-	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 				<!-- <if test="lx.jsdj!=null and lx.jsdj!=''">
 	 					and lx.jsdj = #{lx.jsjd}
-	 				</if>
+	 				</if> -->
 	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
 	 				</if>
@@ -133,9 +133,9 @@
 	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 					and lx.lxbm like #{lx.lxbm}||'%'
 	 				</if>
-	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 				<!-- <if test="lx.jsdj!=null and lx.jsdj!=''">
 	 					and lx.jsdj = #{lx.jsjd}
-	 				</if>
+	 				</if> -->
 	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
 	 				</if>
@@ -573,9 +573,9 @@
 	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 	 					and lx.lxbm like #{lx.lxbm}||'%'
 	 				</if>
-	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 				<!-- <if test="lx.jsdj!=null and lx.jsdj!=''">
 	 					and lx.jsdj = #{lx.jsjd}
-	 				</if>
+	 				</if> -->
 	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
 	 				</if>

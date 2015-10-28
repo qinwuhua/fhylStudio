@@ -131,7 +131,14 @@ public class Gcglgcgzgj implements Serializable {
 	private String ssdctc;
 	private String bndsslc;
 	private String wkglc;
+	private String sl;
 	
+	public String getSl() {
+		return sl;
+	}
+	public void setSl(String sl) {
+		this.sl = sl;
+	}
 	public String getWkglc() {
 		return wkglc;
 	}

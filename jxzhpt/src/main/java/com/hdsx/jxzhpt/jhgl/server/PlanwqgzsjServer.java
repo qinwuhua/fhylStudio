@@ -34,7 +34,7 @@ public interface PlanwqgzsjServer {
 
 	Planwqgzsj loadwqgzxmkbyid(String id);
 
-	Planwqgzsj loadwqgzsbzbyid(String id);
+	Planwqgzsj loadwqgzsbzbyid(String id,String jsxz);
 
 	boolean editwqgzsj(Planwqgzsj planwqgzsj);
 
@@ -57,5 +57,21 @@ public interface PlanwqgzsjServer {
 	String lwBzsbz(Planwqgzsj planwqgzsj);
 
 	List<Excel_list> dcwqgzsjjhExcel(Planwqgzsj planwqgzsj);
+
+	boolean editwqgzsj1(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel1(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel2(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel3(Planwqgzsj planwqgzsj);
+
+	Planwqgzsj loadwqjhksbCount1(Planwqgzsj planwqgzsj);
+
+	List<Planwqgzsj> selectwqjhksb1(Planwqgzsj planwqgzsj);
+
+	int selectwqjhksbcount1(Planwqgzsj planwqgzsj);
+
+	boolean tuihuiWqgzsjById(Planwqgzsj planwqgzsj);
 	
 }

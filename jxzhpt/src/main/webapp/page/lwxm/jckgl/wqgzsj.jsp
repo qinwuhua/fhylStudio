@@ -132,7 +132,8 @@ function shangB(){
 		return;
 	}
 	var sbthcd;
-	if(rows[0].tsdq.indexOf('省直管试点县')>0){
+	
+	if(rows[0].tsdq.indexOf('省直管试点县')!=-1){
 		sbthcd=7;
 	}else{
 		sbthcd=$.cookie("unit2").length-2;
@@ -155,7 +156,7 @@ function shangB(){
 	
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
-		if(rows[i].tsdq.indexOf('省直管试点县')>0){
+		if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
 			sbthcd=","+7;
 		}else{
 			sbthcd=","+$.cookie("unit2").length-2;
@@ -186,7 +187,7 @@ function shangB(){
 function shangB1(index){
 	var id=$("#grid").datagrid('getRows')[index].id;
 	var sbthcd;
-		if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')>0){
+		if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')!=-1){
 			sbthcd=7;
 		}else{
 			sbthcd=$.cookie("unit2").length-2;
@@ -213,10 +214,16 @@ function shangB1(index){
 	}
 } 
 
-function shenghwtg(str){
-	alert("未通过原因："+str);
+function shenghwtg1(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj1);
 }
-
+function shenghwtg2(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	alert("未通过原因："+obj.shyj2);
+}
 var gydwstr;
 var xzqhstr;
 	function jckglWqgz(){
@@ -293,24 +300,24 @@ var xzqhstr;
 						}else
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<span style="color:grey;">编辑</span>  '+
+						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<span style="color:grey;">删除</span>';
 					}
 				}},    
 				{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd==11){
 						if(row.shzt1=='未审核'){
-							if(row.tsdq.indexOf('省直管试点县')>0){
-								return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+							if(row.tsdq.indexOf('省直管试点县')!=-1){
+								return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 							}
-							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg1('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 							
 						}else
 						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 						}
 					else if(row.sbzt2=="未上报" && row.sbthcd==9){
 						if(row.shzt=='未审核'){
-							return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+							return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 						}else
 						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 						}
@@ -318,7 +325,7 @@ var xzqhstr;
 						return '已初审  ';
 						}
 					else if(row.sbzt2=="未上报" && row.sbthcd==7){
-							return '<span style="color:grey;">未上报</span>';
+							return '<span style="color:grey;">         </span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
@@ -331,7 +338,7 @@ var xzqhstr;
 			        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
 			        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-			        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
+			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 			        {field:'xmnf',title:'入库时间',width:140,align:'center'}
 		    ]]    
@@ -358,6 +365,19 @@ var xzqhstr;
 		var data=$("#grid").datagrid('getRows')[index];
 		obj=data;
 		YMLib.UI.createWindow('lxxx','危桥编辑','wqgzsj_xg.jsp','lxxx',900,450);
+	}
+	
+	function dcExcel(){
+		var sbthcd;
+	 	if($.cookie("unit2")=='______36'){
+	 		sbthcd=7;
+	 	}else  sbthcd=$.cookie("unit2").length;
+		var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
+	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+			window.location.href='/jxzhpt/wqgzsj/dcwqgzsjxmkExcel.do?'+data;
+		 });
 	}
 </script>
 <style type="text/css">
@@ -399,12 +419,9 @@ text-decoration:none;
                               	<td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
 							 <td>项目年份：</td>
                              <td style="width:70px"><select id="xmnf"  style="width:70px"></select></td>       
-                             <td>技术状况评定：</td>
+                             <td>评定等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	<option value="" selected>全部</option>
-								<option value="一类">一类</option>
-								<option value="二类">二类</option>
-								<option value="三类">三类</option>
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
@@ -433,6 +450,7 @@ text-decoration:none;
 <!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" /> -->
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgzsj_add.jsp','900','450');" style="border-width:0px;" />
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
+                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>
 <!--                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" /> -->
                            </td>
                             </tr></table>

@@ -79,6 +79,8 @@ function loadxx(){
 	$("#qtlx").val(item.qtlx);$("#pzlx").val(item.pzlx);
 	$("#sfylrbwqk").combobox('setValue',item.sfylrbwqk);
 	$("#xmnf").combobox('setValue',item.xmnf);
+	$("#xlxbm").val(item.xlxbm);$("#xlxmc").val(item.xlxmc);$("#xqlbm").val(item.xqlbm);$("#xzxzh").val(item.xzxzh);
+	$("#jd").val(item.ptx);$("#wd").val(item.pty);
 }
 
 function selectTSDQ(str){
@@ -147,7 +149,7 @@ function loadUploadify(){
 		'queueID' : 'fileQueue2',
 		'fileDataName' : 'uploadWGYS',
 		'auto' : false,
-		'multi' : false,
+		'multi' : true,
 		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
@@ -177,13 +179,14 @@ function loadUploadify(){
 }
 
 function saveWqgz(){
-	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm
+	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val().replace(/%/g, "%25")+"&jckwqgzsj.bz="+$("#bz").val().replace(/%/g, "%25")+
+	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val().replace(/%/g, "%25")+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()+"&jckwqgzsj.jsdj="+$("#jsdj").html()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -277,7 +280,32 @@ function saveWqgz(){
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xlxbm" /></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xlxmc" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xqlbm" />
+					</td>
+				
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xzxzh" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">经度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="jd" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">纬度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="wd" />
+					</td>
+			</tr>
 			<tr style="height: 35px;">
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

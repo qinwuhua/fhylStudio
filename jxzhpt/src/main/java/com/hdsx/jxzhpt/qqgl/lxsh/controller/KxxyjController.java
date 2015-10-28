@@ -1,7 +1,5 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,49 +7,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
-import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
-import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
@@ -60,17 +34,7 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
-import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
-import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
-import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
-import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
-import com.ibm.icu.text.SimpleDateFormat;
 
 
 /**
@@ -273,6 +237,14 @@ public class KxxyjController extends BaseActionSupport{
 		return gldj;
 	}
 	public void setGldj(String gldj) {
+		if(gldj!=null && !gldj.equals("")){
+			String[] split1 = gldj.split(",");
+			gldj="";
+			for (int i = 0; i < split1.length; i++) {
+				gldj+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+			}
+			gldj = "("+gldj+")";
+		}
 		this.gldj = gldj;
 	}
 
@@ -313,6 +285,7 @@ public class KxxyjController extends BaseActionSupport{
 		this.nf = nf;
 	}
 	public void selectSjgzkxList(){
+		try {
 			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
@@ -328,6 +301,11 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = "t1.xmnf in ("+xmnf+")";
+			}else{
+				xmnf = "t1.xmnf = '"+xmnf+"'";
+			}
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
@@ -335,6 +313,7 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
+			jsdjHandle();
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
@@ -345,12 +324,30 @@ public class KxxyjController extends BaseActionSupport{
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
 			e.setRows(list);
 			e.setTotal(count);
-			try {
-				JsonUtils.write(e, getresponse().getWriter());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
+	}
+	private void jsdjHandle() {
+		if(jsdj!=null && !jsdj.equals("")){
+			if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(t.jsjsdj like '"+split[i]+"'";
+					}else if(i==split.length-1){
+						jsdj += " or t.jsjsdj like '"+split[i]+"')";
+					}else{
+						jsdj += " or t.jsjsdj like '"+split[i]+"'";
+					}
+				}
+			}else{
+				jsdj = "t.jsjsdj like '"+jsdj+"'";
+			}
+			lxsh.setJsdj(jsdj);
+		}
+	}
 	public void selectLmgzkxList(){
 		String tiaojian1="";
 		String tiaojian2="";
@@ -367,6 +364,11 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "t1.xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "t1.xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -374,6 +376,7 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		jsdjHandle();
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -406,6 +409,11 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "t1.xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "t1.xmnf = '"+xmnf+"'";
+		}
 		lxsh.setXmnf(xmnf);
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
@@ -413,6 +421,7 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
+		jsdjHandle();
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);

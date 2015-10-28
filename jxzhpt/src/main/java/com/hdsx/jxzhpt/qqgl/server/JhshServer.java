@@ -198,6 +198,7 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateLx(List<Lx> lx);
+	
 	/**
 	 * 添加路线
 	 * @param lx 路线信息
@@ -340,5 +341,36 @@ public interface JhshServer {
 	 * @return
 	 */
 	public int zdyQueryShTotal(String filed, Jhsh jhsh);
+	/**
+	 * 计划累计路面升级
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjLmsj(Jhsh jhsh);
+	/**
+	 * 计划累计路面改造
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjLmgz(Jhsh jhsh);
+	/**
+	 * 计划累计新建
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjXj(Jhsh jhsh);
+	/**
+	 * 计划累计养护大中修
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjYhdzx(Jhsh jhsh);
+	/**
+	 * 计划累计灾毁重建
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
+	public List<Lx> queryLsxx1(Jhsh jhsh);
 	
 }

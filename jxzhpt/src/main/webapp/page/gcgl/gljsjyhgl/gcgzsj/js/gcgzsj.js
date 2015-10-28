@@ -384,7 +384,11 @@ function showAll(){
 			{field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.SFQXKG+'</a>    ';
 			}},
-			{field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
+			 {field : 'XMMC',title : '项目名称',width : 180,align : 'center',formatter:function(value,row,index){
+	 	        	if(row.SL!=1)
+	 	        		return '<font color="red">'+row.XMMC+'</font>';
+	 	        	else return  row.XMMC;	
+	 	        }},
 			{field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
 			{field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
 			{field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},

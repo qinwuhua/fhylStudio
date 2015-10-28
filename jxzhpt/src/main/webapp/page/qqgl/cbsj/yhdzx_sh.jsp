@@ -24,9 +24,10 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
-			loadBmbm2('yjsdj','技术等级');
-			loadBmbm2('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm3('yjsdj','技术等级');
+			loadBmbm3('gjhjsdj','技术等级');
+			loadGldj('gldj');
+			loadGcfl('gcfl','工程分类');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -35,15 +36,34 @@
 			}
 			queryYhdzx();
 		});
+		function loadGcfl(id,name){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xtgl/getBmbmTreeByName2.do',
+				data:'yhm='+ encodeURI(encodeURI(name)),
+				dataType:'json',
+				success:function(msg){
+					$('#' + id).combobox({
+						data:msg,
+						valueField : 'bmid',
+						textField : 'name',
+						panelHeight:'auto',
+						multiple:true
+					});
+				}
+			});
+		}
 		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':4,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
-					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
-					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
+					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
+					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")
+					,"jdbs":2,'gcfl':$('#gcfl').combobox("getValues").join(","),'ylxbh':$('#gldj').combobox("getValues").join(',')};
+			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-165;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -85,7 +105,15 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'xmmc',title:'项目名称',width:250,align:'center'},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',
+					formatter: function(value,row,index){
+		        		if(Number(row.xmsl)>1){
+		        			return '<label style="color:red;">'+value+'</label>';
+		        		}else{
+		        			return value;
+		        		}
+		        	}
+				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
@@ -98,6 +126,18 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function loadLj(params){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryCbsjLj.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$('#spanntz').html(msg.NTZ);
+					$('#spanlc').html(msg.LC);
+				}
+			});
 		}
 		function sh(xmbm){
 			$.ajax({
@@ -153,9 +193,9 @@
 			}
 		}
 		function exportCbsj(){
-			var param='xmlx=4&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValue")+
-			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValue")+'&jsjsdj='+$('#gjhjsdj').combo("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue");
+			var param='xmlx=4&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+
+			'&tsdq='+$('#tsdq').combo("getText")+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
@@ -191,7 +231,7 @@ text-decoration:none;
 					<tr height="32">
         						<td>行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td>规划路线编码：</td>
+        						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
 								<td>原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
@@ -210,11 +250,15 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:71px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
+								<td align="right">&nbsp;工程分类：</td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
+	       						<td>&nbsp;公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">
 								<td colspan="10">
@@ -242,9 +286,8 @@ text-decoration:none;
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
-            		</div>
+            		<div>投资额累计：<span id="spanntz" style="color: red;">0</span>;里程累计：<span id="spanlc" style="color: red;">0</span></div>
+            		<div><table id="grid"></table></div>
             	</td>
         	</tr>
 		</table>

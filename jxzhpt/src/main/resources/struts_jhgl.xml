@@ -180,6 +180,7 @@
 		<action name="queryZjqfByZjqf" class="plan_zjqfController" method="queryZjqfByZjqf"></action>
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
 		<!-- qwh -->
+		<action name="editwqgzsj1" class="planwqgzsjController" method="editwqgzsj1"></action>
 		<action name="selectwqjhkgl" class="planwqgzsjController" method="selectwqjhkgl"></action>
 		<action name="loadwqjhkglCount" class="planwqgzsjController" method="loadwqjhkglCount"></action>
 		<action name="loadwqgzjhkbyid" class="planwqgzsjController" method="loadwqgzjhkbyid"></action>
@@ -189,6 +190,8 @@
 		<action name="editwqgzsj" class="planwqgzsjController" method="editwqgzsj"></action>
 		<action name="selectwqjhksb" class="planwqgzsjController" method="selectwqjhksb"></action>
 		<action name="loadwqjhksbCount" class="planwqgzsjController" method="loadwqjhksbCount"></action>
+		<action name="selectwqjhksb1" class="planwqgzsjController" method="selectwqjhksb1"></action>
+		<action name="loadwqjhksbCount1" class="planwqgzsjController" method="loadwqjhksbCount1"></action>
 		<action name="sbWqgzjh" class="planwqgzsjController" method="sbWqgzjh"></action>
 		<action name="shtyWqgzsbById" class="planwqgzsjController" method="shtyWqgzsbById"></action>
 		<action name="shbtyWqgzsbById" class="planwqgzsjController" method="shbtyWqgzsbById"></action>
@@ -196,6 +199,8 @@
 		<action name="shbtyWqgzshById" class="planwqgzsjController" method="shbtyWqgzshById"></action>
 		<action name="lwBzsbz" class="planwqgzsjController" method="lwBzsbz"></action>
 		<action name="dcwqgzsjjhExcel" class="planwqgzsjController" method="dcwqgzsjjhExcel"></action>
+		<action name="dcwqgzsjjhshExcel" class="planwqgzsjController" method="dcwqgzsjjhshExcel"></action>
+		<action name="tuihuiWqgzsjById" class="planwqgzsjController" method="tuihuiWqgzsjById"></action>
 		<!-- qwh -->
 	 </package>
 </struts>

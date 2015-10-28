@@ -59,9 +59,16 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
-	private String gydw1;
+
 	private String sfylrbwqk;
+	private String gydwtj;
 	
+	public String getGydwtj() {
+		return gydwtj;
+	}
+	public void setGydwtj(String gydwtj) {
+		this.gydwtj = gydwtj;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}
@@ -220,7 +227,6 @@ public class GcglwqgzController extends BaseActionSupport{
 		}
 	//查询月报
 	public void selectWqgzYbByJhid(){
-		Gcglwqgz gcglwqgz=new Gcglwqgz();
 		gcglwqgz.setPage(page);
 		gcglwqgz.setRows(rows);
 		gcglwqgz.setJhid(jhid);
@@ -238,7 +244,6 @@ public class GcglwqgzController extends BaseActionSupport{
 	}
 	//查询月报1
 	public void selectWqgzYbByJhid1(){
-		Gcglwqgz gcglwqgz=new Gcglwqgz();
 		gcglwqgz.setPage(page);
 		gcglwqgz.setRows(rows);
 		gcglwqgz.setJhid(jhid);
@@ -294,7 +299,6 @@ public class GcglwqgzController extends BaseActionSupport{
 		}
 		//查询cgs
 		public void selectWqgzCgsList(){
-			Gcglwqgz gcglwqgz=new Gcglwqgz();
 			gcglwqgz.setPage(page);
 			gcglwqgz.setRows(rows);
 			gcglwqgz.setJhid(jhid);
@@ -449,7 +453,6 @@ public class GcglwqgzController extends BaseActionSupport{
 		}
 		//查询jihua
 		public void selectWqgzjhList(){
-			Gcglwqgz gcglwqgz=new Gcglwqgz();
 			String tiaojian="";
 			if(gydw.indexOf(",")==-1){
 				tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
@@ -467,6 +470,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setShzt(ybzt);
 			gcglwqgz.setXmnf(xmnf);
 			gcglwqgz.setSfylrbwqk(sfylrbwqk);
+			gcglwqgz.setGydwtj(gydwtj);
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}
@@ -476,6 +480,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglwqgz.setTiaojian("xjzt");
 			}
+			System.out.println(gcglwqgz.getQlbh());
 			int count=gcglwqgzServer.selectWqgzjhListCount(gcglwqgz);
 			List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
 			EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
@@ -590,6 +595,7 @@ public class GcglwqgzController extends BaseActionSupport{
 		gcglwqgz.setTiaojian(bfzt);
 		gcglwqgz.setXmnf(xmnf);
 		gcglwqgz.setSfylrbwqk(sfylrbwqk);
+		gcglwqgz.setGydwtj(gydwtj);
 		try{
 		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList1(gcglwqgz);
 		int count=gcglwqgzServer.selectWqgzjhListcount1(gcglwqgz);

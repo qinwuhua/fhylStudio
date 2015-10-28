@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
@@ -34,13 +35,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public String selectXmbm(String str) {
-		// TODO Auto-generated method stub
 		return queryOne("selectXmbm", str);
 	}
 
 	@Override
 	public Lxsh selectbzcs(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectbzcs", lxsh);
 	}
 
@@ -121,25 +120,21 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	}
 	@Override
 	public List<Lxsh> selectSjgzList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectSjgzList", lxsh);
 	}
 
 	@Override
 	public int selectSjgzListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectSjgzListCount", lxsh);
 	}
 
 	@Override
 	public List<Lxsh> selectSjgzlxList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectSjgzlxList",lxsh);
 	}
 
 	@Override
 	public int selectSjgzlxListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectSjgzlxListCount", lxsh);
 	}
 
@@ -340,13 +335,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public List<Lxsh> selectSjgzshList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectSjgzshList", lxsh);
 	}
 
 	@Override
 	public int selectSjgzshListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectSjgzshListCount", lxsh);
 	}
 
@@ -485,13 +478,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public List<Lxsh> selectLmgzList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectLmgzList",lxsh);
 	}
 
 	@Override
 	public int selectLmgzListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectLmgzListCount", lxsh);
 	}
 
@@ -505,43 +496,36 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	}
 	@Override
 	public List<Lxsh> selectLmgzshList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectLmgzshList", lxsh);
 	}
 
 	@Override
 	public int selectLmgzshListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectLmgzshListCount", lxsh);
 	}
 
 	@Override
 	public List<Lxsh> selectXjList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectXjList", lxsh);
 	}
 
 	@Override
 	public int selectXjListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectXjListCount", lxsh);
 	}
 
 	@Override
 	public List<Lxsh> selectXjshList(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectXjshList",lxsh);
 	}
 
 	@Override
 	public int selectXjshListCount(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("selectXjshListCount", lxsh);
 	}
 
 	@Override
 	public List<Lxsh> qqglGpsroad(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("qqglGpsroad", lxsh);
 	}
 
@@ -605,73 +589,61 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public Lxsh cxqdmc(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("cxqdmc", lxsh);
 	}
 
 	@Override
 	public Lxsh cxzdmc(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("cxzdmc", lxsh);
 	}
 
 	@Override
 	public Lxsh sfylx(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("sfylx", lxsh);
 	}
 
 	@Override
 	public Lxsh qqglGpszh(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryOne("qqglGpszh", lxsh);
 	}
 
 	@Override
 	public List<Lxsh> selectlxbyxmid1(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("selectlxbyxmid1", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querylxshSjgz(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querylxshSjgz", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querylxshLmgz(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querylxshLmgz", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querylxshXj(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querylxshXj", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querykxxSjgz(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querykxxSjgz", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querykxxLmgz(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querykxxLmgz", lxsh);
 	}
 
 	@Override
 	public List<Excel_list> querykxxXj(Lxsh lxsh) {
-		// TODO Auto-generated method stub
 		return queryList("querykxxXj", lxsh);
 	}
 
 	@Override
 	public List<Wqbzbz> selectWqbzbz() {
-		// TODO Auto-generated method stub
 		return queryList("selectWqbzbz");
 	}
 
@@ -703,19 +675,81 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean tjwqbzbz(Wqbzbz wqbzbz) {
-		// TODO Auto-generated method stub
 		return insert("tjwqbzbz", wqbzbz)==1;
 	}
 
 	@Override
 	public boolean xgwqbzbz(Wqbzbz wqbzbz) {
-		// TODO Auto-generated method stub
 		return update("xgwqbzbz", wqbzbz)==1;
 	}
 
 	@Override
 	public boolean delwqbzbz(Wqbzbz wqbzbz) {
-		// TODO Auto-generated method stub
 		return delete("delwqbzbz", wqbzbz)==1;
+	}
+
+	@Override
+	public List<Kxxyj> queryXmQqfx(Map<String, String> params) {
+		return queryList("queryXmQqfx",params);
+	}
+
+	@Override
+	public List<Map<String, String>> queryBeformXm(String lxbms) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("lxbm", lxbms);
+		return queryList("queryBeformXm",params);
+	}
+
+	@Override
+	public List<Map<String, String>> queryBeformXmByXzqh(String xz,String xzqhmc) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("xzqhdm", xz);
+		params.put("xzqhmc", xzqhmc);
+		return queryList("queryBeformXmByXzqh",params);
+	}
+
+	@Override
+	public List<Map<String, String>> queryNdwg(String xmbm) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("xmbm", xmbm);
+		return queryList("queryNdwg",params);
+	}
+
+	@Override
+	public List<Map<String, String>> queryNdwgXzqh(String xmbm,boolean qb) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xmbm", xmbm);
+		params.put("qb", qb);
+		return queryList("queryNdwgXzqh",params);
+	}
+
+	@Override
+	public Map<String, String> queryLxshLjLmsj(Lxsh lxsh) {
+		return queryOne("queryLxshLjLmsj",lxsh);
+	}
+	
+	@Override
+	public Map<String, String> queryLxshShLjLmsj(Lxsh lxsh) {
+		return queryOne("queryLxshShLjLmsj",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshLjLmgz(Lxsh lxsh) {
+		return queryOne("queryLxshLjLmgz",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshLjXj(Lxsh lxsh) {
+		return queryOne("queryLxshLjXj",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshShLjLmgz(Lxsh lxsh) {
+		return queryOne("queryLxshShLjLmgz",lxsh);
+	}
+
+	@Override
+	public Map<String, String> queryLxshShLjXj(Lxsh lxsh) {
+		return queryOne("queryLxshShLjXj",lxsh);
 	}
 }
