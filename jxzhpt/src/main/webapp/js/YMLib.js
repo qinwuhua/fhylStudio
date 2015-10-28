@@ -1378,6 +1378,11 @@ function getParam(paras) {
 }
 function locationQl(_roadbm,_roadpos){
 	var data=new Array();
+	
+	if(_roadbm.substr(5,1)=="L"){
+		_roadbm=_roadbm.substr(1,4)+_roadbm.substr(length(_roadbm)-5)+_roadbm.substr(5,5);
+	}
+	//alert(_roadbm);
 	var jsonStr={
 	        ROADBM: _roadbm,
 	        ROADPOS: _roadpos

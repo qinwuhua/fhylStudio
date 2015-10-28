@@ -50,7 +50,9 @@
             if(_lx!="1"){
             	//桥梁图层
             	var qlList=_data;
-                testQueryQLByLXMBZH(qlList);
+            	//alert(_data[0].ROADBM);
+            	attrQuery(_data[0].ROADBM);
+                //testQueryQLByLXMBZH(qlList);
             }else{
             	//路线图层
             	var lxList=_data;
@@ -157,9 +159,14 @@
         /**
          * 属性查询示例
          */
-        function attrQuery() {
-            //wfsAttrQuery("jx_dist", "a", "1");
-            wfsAttrQuery(lxQueryLaye, "ROADCODE", "Y272360424");
+        function attrQuery(_roadcode) {
+        	//YMLib.Var.bm=_roadcode;
+        	clearGraphics();
+            if(_roadcode.length<=10){
+            	wfsAttrQuery(lxQueryLaye, "ROADCODE", _roadcode);
+            }else{
+            	wfsAttrQuery(qlQueryLayer, "ROADBM", _roadcode);
+            }
         }
         /**
          * I查询
