@@ -31,13 +31,13 @@ public class Plan_wqgz {
 	private String sbzt;//上报状态
 	private String sbbm;//上报部门
 	private Date sbsj;//上报时间
-	private Date xdsj;//计划下达时间
+	private String xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
 	private String gkbglj;//工可报告附件路径
 	private String sjsgtmc;
 	private String sjsgtlj;
-	private Date sjkgsj;//实际开工时间
-	private Date sjwgsj;//实际完工时间
+	private String sjkgsj;//实际开工时间
+	private String sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
 	private String jldw;//监理单位
 	private String htje;//合同金额
@@ -47,7 +47,7 @@ public class Plan_wqgz {
 	private String wjsczt;//文件上传状态
 	private String kgzt;//开工状态
 	private String jgzt;//竣工状态
-	private Date yjjgsj;//预计竣工时间
+	private String yjjgsj;//预计竣工时间
 	private String wjgyy;//未竣工原因
 	private String jsdw;//建设单位
 	private String jhxdwh;//计划下达文号
@@ -336,12 +336,7 @@ public class Plan_wqgz {
 	public void setSbsj(Date sbsj) {
 		this.sbsj = sbsj;
 	}
-	public Date getXdsj() {
-		return xdsj;
-	}
-	public void setXdsj(Date xdsj) {
-		this.xdsj = xdsj;
-	}
+	
 	public String getGkbgmc() {
 		return gkbgmc;
 	}
@@ -366,18 +361,7 @@ public class Plan_wqgz {
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
 	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+
 	public String getSgdw() {
 		return sgdw;
 	}
@@ -432,12 +416,7 @@ public class Plan_wqgz {
 	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
-	public Date getYjjgsj() {
-		return yjjgsj;
-	}
-	public void setYjjgsj(Date yjjgsj) {
-		this.yjjgsj = yjjgsj;
-	}
+	
 	public String getWjgyy() {
 		return wjgyy;
 	}
@@ -581,6 +560,30 @@ public class Plan_wqgz {
 	}
 	public void setXjgjnd(String xjgjnd) {
 		this.xjgjnd = xjgjnd;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
+	}
+	public String getYjjgsj() {
+		return yjjgsj;
+	}
+	public void setYjjgsj(String yjjgsj) {
+		this.yjjgsj = yjjgsj;
 	}
 	
 }

@@ -106,8 +106,9 @@ function loadSbz(){
 		 dataType : 'json',
 		 data : 'id='+sckid+'&jsxz='+$("#jhjsxz").combobox('getValue'),
 		 success : function(item){
-			 sbz=item.shengbz;
-			 $("#trshengbz").html("小于等于"+item.shengbz);
+			 sbz=Math.round(parseFloat(item.shengbz));
+			 
+			 $("#trshengbz").html("小于等于"+Math.round(parseFloat(item.shengbz)));
 		 }
 	 });
 }
@@ -129,11 +130,11 @@ function loadBbz(id){
 					jhqlqk=$('#jhqlqk').val();
 				}
 				var bzzj=(parseFloat(jhqlqc)*1000000000000000*parseFloat(jhqlqk)*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-				sbz=bzzj.toFixed(3);
+				sbz=Math.round(parseFloat(bzzj.toFixed(3)));
 				 if(parseFloat($("#pfztz").val())*0.6<parseFloat(sbz)){
-					 $("#trshengbz").html("小于等于"+parseFloat($("#pfztz").val())*0.6);
+					 $("#trshengbz").html("小于等于"+Math.round(parseFloat($("#pfztz").val())*0.6));
 					}else
-				$("#trshengbz").html("小于等于"+bzzj.toFixed(3));
+				$("#trshengbz").html("小于等于"+Math.round(parseFloat(bzzj.toFixed(3))));
 		 }
 	 });
 }
@@ -282,10 +283,10 @@ function bzSum(){
 		sbz=0;
 	}
 	if(parseFloat(pfztz)*0.6<parseFloat(sbz)){
-		trzjdx=parseFloat(pfztz)*0.6;
+		trzjdx=Math.round(parseFloat(pfztz)*0.6);
 	}
 	else{
-		trzjdx=parseFloat(sbz);
+		trzjdx=Math.round(parseFloat(sbz));
 	}
 	if($("#sfylrbwqk").combobox('getValue')=='是')
 	$("#trshengbz").html("小于等于"+trzjdx);
@@ -307,9 +308,11 @@ function bzSum(){
 }
 function setshengbz(){
 	if($("#shengbz").val()!=''){
+		if($("#sfylrbwqk").combobox('getValue')=='是'){
 		if(parseFloat($("#shengbz").val())>parseFloat(sbz)){
 			alert("请按照提示填写补助金额");
 			$("#shengbz").val('');
+		}
 		}
 		bzSum();
 	}
@@ -321,11 +324,14 @@ function editWqgz(){
 		return
 	}
 	var nsqbbz1=$("#shengbz").val();
-	if(parseFloat(nsqbbz1)>parseFloat(sbz)){
-		alert("请按提示填写正确的补助金额");
-		$("#shengbz").val('');
-		return;
+	if($("#sfylrbwqk").combobox('getValue')=='是'){
+		if(parseFloat(nsqbbz1)>parseFloat(sbz)){
+			alert("请按提示填写正确的补助金额");
+			$("#shengbz").val('');
+			return;
+		}
 	}
+	
 	if(parseFloat($("#shengbz").val())>parseFloat($("#pfztz").val())){
 		alert("总投资不能小于补助金额");
 		return;

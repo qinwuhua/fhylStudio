@@ -41,7 +41,7 @@
 					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,
 					sc.scqlqc,sc.scqlqk,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh 
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -83,6 +83,9 @@
 	 				</if> -->
 	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 				</if>
+	 				<if test="lx.qlbh!=null and lx.qlbh!=''">
+	 					and lx.qlbh like '%'||#{lx.qlbh}||'%'
 	 				</if>
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
@@ -173,7 +176,7 @@
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
 	 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -216,6 +219,9 @@
 	 	<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 		and lx.qlmc like '%'||#{lx.qlmc}||'%'
 	 	</if>
+	 	<if test="lx.qlbh!=null and lx.qlbh!=''">
+	 		and lx.qlbh like '%'||#{lx.qlbh}||'%'
+	 	</if>
 	 	<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 		and lx.akjfl like #{lx.akjfl}||'%'
 	 	</if>
@@ -227,7 +233,7 @@
 			sum(jh.jhsydfzcje) as jhsydfzcje 
 			from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
 			right join plan_wqgz jh on (sc.sckid=jh.sckid)
-			where 1=1 and jh.sfylrbwqk='是'
+			where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -269,6 +275,9 @@
 	 	</if>
 	 	<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 		and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 	</if>
+	 	<if test="lx.qlbh!=null and lx.qlbh!=''">
+	 		and lx.qlbh like '%'||#{lx.qlbh}||'%'
 	 	</if>
 	 	<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 		and lx.akjfl like #{lx.akjfl}||'%'

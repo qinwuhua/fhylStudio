@@ -208,10 +208,12 @@ function saveWqgz(){
 		return
 	}
 	var nsqbbz1=$("#nsqbbz").val();
-	if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
-		alert("请按提示填写正确的值");
-		$("#nsqbbz").val('');
-		return;
+	if($("#sfylrbwqk").combobox('getValue')=='是'){
+		if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
+			alert("请按提示填写正确的值");
+			$("#nsqbbz").val('');
+			return;
+		}
 	}
 	if(parseFloat($("#nsqbbz").val())>parseFloat($("#ztz").val())){
 		alert("总投资不能小于补助金额");
@@ -413,25 +415,28 @@ function setnsqbbz(){
 	var ztz=$("#ztz").val();
 	if(ztz!=null&&ztz!=''){
 		if(parseFloat(ztz)*0.6<parseFloat(nsqbbz)){
-			trzjdx=parseFloat(ztz)*0.6;
+			trzjdx=Math.round(parseFloat(ztz)*0.6);
 		}
 		else{
-			trzjdx=parseFloat(nsqbbz);
+			trzjdx=Math.round(parseFloat(nsqbbz));
 		}
 	}else{
-		trzjdx=parseFloat(nsqbbz);
+		trzjdx=Math.round(parseFloat(nsqbbz));
 	}
 	if($("#sfylrbwqk").combobox('getValue')=='是')
 	$("#trzjdx").html("小于等于"+trzjdx);
 	else
-		$("#trzjdx").html("小于等于"+nsqbbz);
+		$("#trzjdx").html("小于等于或大于"+nsqbbz);
 }
 function checksfzq(){
 	var nsqbbz1=$("#nsqbbz").val();
-	if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
-		alert("请按提示填写正确的值");
-		$("#nsqbbz").val('');
+	if($("#sfylrbwqk").combobox('getValue')=='是'){
+		if(parseFloat(nsqbbz1)>parseFloat(trzjdx)){
+			alert("请按提示填写正确的值");
+			$("#nsqbbz").val('');
+		}
 	}
+	
 }
 function upload(id){
 	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').val(),'uploads.parentid':xxId});
