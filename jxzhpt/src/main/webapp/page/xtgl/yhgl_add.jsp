@@ -78,18 +78,41 @@ function save(){
 		alert("请输入用户名！");
 		return false;
 	}
+	if($("#tel").val()!='')
 	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
 		alert("联系电话的格式不正确！");
 		return false;
 	}
+	if($("#idcard").val()!='')
 	if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($("#idcard").val())){
 	    alert("请输入正确的身份证号码！");
 	    return  false;
 	}
     checkNameVal($("#truename").val());
 }
+function loadDist5(id) {
+	$('#' + id).combotree(
+	{
+		checkbox : true,
+		url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + '36',
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	if($.cookie('unit')=='36'){
+		if($.cookie('truename')=='省局综规处')
+			$('#' + id).combotree('setValue', '21101360000');
+		else if($.cookie('truename')=='省局县乡处')
+			$('#' + id).combotree('setValue', '11101360000');
+		else
+		$('#' + id).combotree('setValue', '36');
+	}
+	else
+	$('#' + id).combotree('setValue', $.cookie('unit'));
+}
 $(function(){
-	loadUnit("unit","36");
+	
+	loadDist5("unit");
 	selQxList();
 	$("#yhgl_btn_Save").click(function(){
 		save();
@@ -149,7 +172,7 @@ $(function(){
 					身份证号：
 				</td>
 				<td style="text-align: left">
-					<input id="idcard" name="master.idcard" type="text"/><span style="color:red;">必填项</span>
+					<input id="idcard" name="master.idcard" type="text"/><!-- <span style="color:red;">必填项</span> -->
 				</td>
 			</tr>
 			<tr>
@@ -157,7 +180,7 @@ $(function(){
 					联系电话：
 				</td>
 				<td style="text-align: left">
-					<input id="tel" name="master.tel" type="text"/><span style="color:red;">必填项</span>
+					<input id="tel" name="master.tel" type="text"/><!-- <span style="color:red;">必填项</span> -->
 				</td>
 			</tr>
 			<tr>

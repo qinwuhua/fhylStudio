@@ -116,10 +116,39 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		p.setSl(sl);
 		return p;
 	}
-	
+	@Override
+	public Planwqgzsj loadwqjhksbCount11(Planwqgzsj planwqgzsj) {
+		List<Planwqgzsj> list=queryList("loadwqjhksbCount11", planwqgzsj);
+		Planwqgzsj p=new Planwqgzsj();
+		BigDecimal pfztz=new BigDecimal("0");
+		BigDecimal btz=new BigDecimal("0");
+		BigDecimal stz=new BigDecimal("0");
+		BigDecimal qttz=new BigDecimal("0");
+		BigDecimal xdzj=new BigDecimal("0");
+		int sl=0;
+		for (Planwqgzsj pl : list) {
+			sl=sl+pl.getSl();
+			pfztz=pfztz.add(new BigDecimal(pl.getPfztz()==null ? "0":pl.getPfztz()));
+			btz=btz.add(new BigDecimal(pl.getJhsybzje()==null ? "0":pl.getJhsybzje()));
+			stz=stz.add(new BigDecimal(pl.getShengbz()==null ? "0":pl.getShengbz()));
+			qttz=qttz.add(new BigDecimal(pl.getJhsydfzcje()==null ? "0":pl.getJhsydfzcje()));
+			xdzj=xdzj.add(new BigDecimal(pl.getXdzj()==null ? "0":pl.getXdzj()));
+		}
+		p.setPfztz(pfztz+"");
+		p.setJhsybzje(btz+"");
+		p.setShengbz(stz+"");
+		p.setJhsydfzcje(qttz+"");
+		p.setXdzj(xdzj+"");
+		p.setSl(sl);
+		return p;
+	}
 	@Override
 	public Planwqgzsj loadwqgzjhkbyid(String id) {
 		return queryOne("loadwqgzjhkbyid", id);
+	}
+	@Override
+	public Planwqgzsj loadwqgzjhkbyid1(String id) {
+		return queryOne("loadwqgzjhkbyid1", id);
 	}
 	@Override
 	public Planwqgzsj loadwqgzsckbyid(String id) {
@@ -193,6 +222,18 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	public List<Planwqgzsj> selectwqjhksb1(Planwqgzsj planwqgzsj) {
 		// TODO Auto-generated method stub
 		return queryList("selectwqjhksb1",planwqgzsj);
+	}
+	
+	@Override
+	public int selectwqjhksbcount11(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectwqjhksbcount11", planwqgzsj);
+	}
+	
+	@Override
+	public List<Planwqgzsj> selectwqjhksb11(Planwqgzsj planwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectwqjhksb11",planwqgzsj);
 	}
 	@Override
 	public int selectwqjhksbcount(Planwqgzsj planwqgzsj) {
@@ -292,6 +333,19 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 	}
 	
 	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel4(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel4",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel5(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel5",planwqgzsj);
+	}
+	@Override
+	public List<Excel_list> dcwqgzsjjhshExcel6(Planwqgzsj planwqgzsj) {
+		return queryList("dcwqgzsjjhshExcel6",planwqgzsj);
+	}
+	
+	@Override
 	public boolean tuihuiWqgzsjById(Planwqgzsj planwqgzsj) {
 			String[] strs = planwqgzsj.getId().split(",");
 			list = new ArrayList<String>();
@@ -301,6 +355,39 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 			if(deleteBatch("tuihuiWqgzsjById", list)>0) return true;
 			else return false;
 		
+	}
+	@Override
+	public boolean tzxz(Planwqgzsj id) {
+		int a=update("tzxzyb", id);
+		int b=0;
+		Planwqgzsj planwqgzsj=queryOne("querytzbyid", id);
+		 if(planwqgzsj==null){
+			 b=insert("tzxztj", id);
+		 }else{
+			 b=update("tzxzxg", id);
+		 }
+		if(a==1&&b==1){
+			if("取消".equals(id.getTzxz())){
+				int c=delete("qxtzxz",id);
+				return c==1;
+			}else{
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public boolean thtz(Planwqgzsj planwqgzsj) {
+		delete("qxtzxz",planwqgzsj);
+		insert("thtz",planwqgzsj);
+		delete("thtzxjhb",planwqgzsj);
+		return true;
+	}
+	@Override
+	public boolean thtz1(Planwqgzsj planwqgzsj) {
+		insert("thtz",planwqgzsj);
+		delete("thtzxjhb",planwqgzsj);
+		return true;
 	}
 	
 }

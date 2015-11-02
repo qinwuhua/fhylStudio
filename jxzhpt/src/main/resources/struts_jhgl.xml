@@ -184,6 +184,7 @@
 		<action name="selectwqjhkgl" class="planwqgzsjController" method="selectwqjhkgl"></action>
 		<action name="loadwqjhkglCount" class="planwqgzsjController" method="loadwqjhkglCount"></action>
 		<action name="loadwqgzjhkbyid" class="planwqgzsjController" method="loadwqgzjhkbyid"></action>
+		<action name="loadwqgzjhkbyid1" class="planwqgzsjController" method="loadwqgzjhkbyid1"></action>
 		<action name="loadwqgzsckbyid" class="planwqgzsjController" method="loadwqgzsckbyid"></action>
 		<action name="loadwqgzxmkbyid" class="planwqgzsjController" method="loadwqgzxmkbyid"></action>
 		<action name="loadwqgzsbzbyid" class="planwqgzsjController" method="loadwqgzsbzbyid"></action>
@@ -200,7 +201,13 @@
 		<action name="lwBzsbz" class="planwqgzsjController" method="lwBzsbz"></action>
 		<action name="dcwqgzsjjhExcel" class="planwqgzsjController" method="dcwqgzsjjhExcel"></action>
 		<action name="dcwqgzsjjhshExcel" class="planwqgzsjController" method="dcwqgzsjjhshExcel"></action>
+		<action name="dcwqgzsjjhshExcel1" class="planwqgzsjController" method="dcwqgzsjjhshExcel1"></action>
 		<action name="tuihuiWqgzsjById" class="planwqgzsjController" method="tuihuiWqgzsjById"></action>
+		<action name="tzxz" class="planwqgzsjController" method="tzxz"></action>
+		<action name="selectwqjhksb11" class="planwqgzsjController" method="selectwqjhksb11"></action>
+		<action name="loadwqjhksbCount11" class="planwqgzsjController" method="loadwqjhksbCount11"></action>
+		<action name="thtz" class="planwqgzsjController" method="thtz"></action>
+		<action name="thtz1" class="planwqgzsjController" method="thtz1"></action>
 		<!-- qwh -->
 	 </package>
 </struts>

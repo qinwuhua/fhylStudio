@@ -734,7 +734,7 @@ function showAll1(){
 	        {field:'jszt',title:'建设状态',width:120,align:'center',formatter:function(value,row,index){
 	        	if(row.kgzt=='0')
 	        		return '未开工';
-	        	else if(row.jgzt='1')
+	        	else if(row.jgzt=='1')
 	        		return '竣工'
 	        		else return '在建';
 	        }},

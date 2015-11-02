@@ -47,7 +47,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
  	private String gldj;
  	private String id;
  	private String jsxz;
+ 	private String tzxz;
  	
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
 	public String getJsxz() {
 		return jsxz;
 	}
@@ -245,6 +252,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void loadwqgzjhkbyid1(){
+		try{
+			Planwqgzsj p = planwqgzsjServer.loadwqgzjhkbyid1(id);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void loadwqgzsckbyid(){
 		try{
 			Planwqgzsj p = planwqgzsjServer.loadwqgzsckbyid(id);
@@ -323,6 +338,48 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void selectwqjhksb11(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
+			}else{
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			planwqgzsj.setTzxz(tzxz);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			List<Planwqgzsj> list = planwqgzsjServer.selectwqjhksb11(planwqgzsj);
+			int count = planwqgzsjServer.selectwqjhksbcount11(planwqgzsj);
+			
+			EasyUIPage<Planwqgzsj> eui = new EasyUIPage<Planwqgzsj>();
+			eui.setRows(list);
+			eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void loadwqjhksbCount1(){
 		try{
 			if(gydw.indexOf(",")==-1){
@@ -359,7 +416,43 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	public void loadwqjhksbCount11(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
+			}else{
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			planwqgzsj.setTzxz(tzxz);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			Planwqgzsj p = planwqgzsjServer.loadwqjhksbCount11(planwqgzsj);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){
@@ -690,11 +783,116 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		}
 	}
 	
+	
+	public void dcwqgzsjjhshExcel1(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			planwqgzsj.setGydw("and xm.gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			planwqgzsj.setGydw("and xm.gydwbm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			planwqgzsj.setXzqhdm("and xm.xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			planwqgzsj.setXzqhdm("and xm.xzqhdm in ("+xzqhs+")");
+		}
+		planwqgzsj.setLxmc(lxmc);
+		planwqgzsj.setQlmc(qlmc);
+		planwqgzsj.setSbnf(sbnf);
+		planwqgzsj.setAkjfl(akjfl);
+		planwqgzsj.setJsdj(jsdj);
+		planwqgzsj.setSfylsjl(sfylsjl);
+		planwqgzsj.setTsdq(tsdq);
+		planwqgzsj.setTzxz(tzxz);
+		planwqgzsj.setSfylrbwqk(sfylrbwqk);
+		planwqgzsj.setLxbm(gldj);
+		if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+			planwqgzsj.setSbzt(jhzt);
+		}
+		if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+			planwqgzsj.setShzt(jhzt);
+		}
+		planwqgzsj.setSbthcd(sbthcd);
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1 = planwqgzsjServer.dcwqgzsjjhshExcel4(planwqgzsj);
+		List<Excel_list> l2= planwqgzsjServer.dcwqgzsjjhshExcel5(planwqgzsj);
+		List<Excel_list> l3= planwqgzsjServer.dcwqgzsjjhshExcel6(planwqgzsj);
+		if(l3.size()>0){
+			l.addAll(l1);
+			for (int i = 0; i < l2.size(); i++) {
+				if(i==0){l2.get(i).setV_0("一");}if(i==6){l2.get(i).setV_0("七");}if(i==12){l2.get(i).setV_0("十三");}
+				if(i==1){l2.get(i).setV_0("二");}if(i==7){l2.get(i).setV_0("八");}if(i==13){l2.get(i).setV_0("十四");}
+				if(i==2){l2.get(i).setV_0("三");}if(i==8){l2.get(i).setV_0("九");}if(i==14){l2.get(i).setV_0("十五");}
+				if(i==3){l2.get(i).setV_0("四");}if(i==9){l2.get(i).setV_0("十");}if(i==15){l2.get(i).setV_0("十六");}
+				if(i==4){l2.get(i).setV_0("五");}if(i==10){l2.get(i).setV_0("十一");}if(i==16){l2.get(i).setV_0("十七");}
+				if(i==5){l2.get(i).setV_0("六");}if(i==11){l2.get(i).setV_0("十二");}if(i==17){l2.get(i).setV_0("十八");}
+				l.add(l2.get(i));
+				int k=1;
+				for (int j = 0; j < l3.size(); j++) {
+					if(l3.get(j).getV_30().equals(l2.get(i).getV_30())){
+						l3.get(j).setV_0(k+"");
+						k++;
+						l.add(l3.get(j));
+					}
+				}
+			}
+		}
+
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路路网结构改造工程建设计划（危桥改造项目）");//设置第一行
+		eldata.setSheetName("危桥");//设置sheeet名
+		eldata.setFileName("农村公路路网结构改造工程计划项目表（中央车购税补助全省合计）");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,1,0,0));
+		et.add(new Excel_tilte("设区市",1,1,1,1));
+		et.add(new Excel_tilte("县(市、区)",1,1,2,2));
+		et.add(new Excel_tilte("所在乡镇",1,1,3,3));
+		et.add(new Excel_tilte("桥梁编码",1,1,4,4));
+		et.add(new Excel_tilte("桥梁名称",1,1,5,5));
+		et.add(new Excel_tilte("桥长（米）",1,1,6,6));
+		et.add(new Excel_tilte("桥宽（米）",1,1,7,7));
+		et.add(new Excel_tilte("建设性质",1,1,8,8));
+		et.add(new Excel_tilte("建设内容",1,1,9,9));
+		et.add(new Excel_tilte("总投资（万元）",1,1,10,10));
+		et.add(new Excel_tilte("中央投资（万元）",1,1,11,11));
+		et.add(new Excel_tilte("地方自筹资金（万元）",1,1,12,12));
+		et.add(new Excel_tilte("开工年",1,1,13,13));
+		et.add(new Excel_tilte("完工年",1,1,14,14));
+		et.add(new Excel_tilte("路线编码",1,1,15,15));
+		et.add(new Excel_tilte("路线名称",1,1,16,16));
+		et.add(new Excel_tilte("中心桩号",1,1,17,17));
+		et.add(new Excel_tilte("批复文号",1,1,18,18));
+		et.add(new Excel_tilte("备注",1,1,19,19));
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_exportjhsh(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void tuihuiWqgzsjById(){
 		try {
 			JsonUtils.write(planwqgzsjServer.tuihuiWqgzsjById(planwqgzsj),getresponse().getWriter());
 		}  catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void tzxz(){
+		ResponseUtils.write(getresponse(),planwqgzsjServer.tzxz(planwqgzsj)+"");
+	}
+	public void thtz(){
+		ResponseUtils.write(getresponse(),planwqgzsjServer.thtz(planwqgzsj)+"");
+	}
+	public void thtz1(){
+		ResponseUtils.write(getresponse(),planwqgzsjServer.thtz1(planwqgzsj)+"");
 	}
 }

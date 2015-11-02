@@ -73,5 +73,25 @@ public interface PlanwqgzsjServer {
 	int selectwqjhksbcount1(Planwqgzsj planwqgzsj);
 
 	boolean tuihuiWqgzsjById(Planwqgzsj planwqgzsj);
+
+	boolean tzxz(Planwqgzsj id);
+
+	List<Planwqgzsj> selectwqjhksb11(Planwqgzsj planwqgzsj);
+
+	int selectwqjhksbcount11(Planwqgzsj planwqgzsj);
+
+	Planwqgzsj loadwqjhksbCount11(Planwqgzsj planwqgzsj);
+
+	Planwqgzsj loadwqgzjhkbyid1(String id);
+
+	List<Excel_list> dcwqgzsjjhshExcel4(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel5(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> dcwqgzsjjhshExcel6(Planwqgzsj planwqgzsj);
+
+	boolean thtz(Planwqgzsj planwqgzsj);
+
+	boolean thtz1(Planwqgzsj planwqgzsj);
 	
 }

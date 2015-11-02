@@ -210,7 +210,14 @@ public class Planwqgzsj implements Serializable{
 	private String lxxx;//路线信息
 	private String jhqlqc;
 	private String jhqlqk;
+	private String tzxz;
 	
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
 	public String getJhjsxz() {
 		return jhjsxz;
 	}

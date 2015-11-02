@@ -7,8 +7,8 @@ function xmnf(id){
 	years.push({text:'全部',value:''});
 	for(var i=0;i<=10;i++){
 		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+			first=myDate.getFullYear()+1-i;
+		years.push({text:(myDate.getFullYear()+1-i),value:(myDate.getFullYear()+1-i)});
 	}
 	$('#'+id).combobox({
 	    data:years,

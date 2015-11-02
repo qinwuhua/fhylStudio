@@ -27,6 +27,14 @@ $(function() {
 				iconCls:'icon-note'
 			});
 			j++;
+		}else if(qx[i]=='01010306'){
+			$('#aa').accordion('add', {
+				id:"left_menu6",
+				title: '项目计划库调整',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
 		}else if(qx[i]=='01010304'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
@@ -39,14 +47,6 @@ $(function() {
 			$('#aa').accordion('add', {
 				id:"left_menu5",
 				title: '计划查询',
-				selected: j==1?true:false,
-				iconCls:'icon-note'
-			});
-			j++;
-		}else if(qx[i]=='01010306'){
-			$('#aa').accordion('add', {
-				id:"left_menu6",
-				title: '项目立项申请',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -465,10 +465,10 @@ $(function() {
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101030601',
-		title:'改建工程项目',
+		title:'危桥改造项目(交通局)',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./jhksh/wqgzsjs.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030602',
