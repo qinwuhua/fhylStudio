@@ -1450,8 +1450,8 @@ function getParam(paras) {
 function locationQl(_roadbm,_roadpos){
 	var data=new Array();
 	
-	if(_roadbm.substr(5,1)=="L"){
-		_roadbm=_roadbm.substr(1,4)+_roadbm.substr(length(_roadbm)-5)+_roadbm.substr(5,5);
+	if(_roadbm.substr(4,1)=="L"){
+		_roadbm=_roadbm.substr(0,4)+_roadbm.substr(_roadbm.length-6)+_roadbm.substr(4,5);
 	}
 	//alert(_roadbm);
 	var jsonStr={
