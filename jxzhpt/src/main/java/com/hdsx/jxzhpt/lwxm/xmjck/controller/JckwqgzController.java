@@ -320,6 +320,9 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void selectWqgzCount1(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
+				if(jckwqgz.getGydw().length()==9)
+					jckwqgz.setGydw("and (gydwbm='"+jckwqgz.getGydw()+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+jckwqgz.getGydw()+"'||'00'))");
+					else
 				jckwqgz.setGydw("and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and gydwbm in ("+jckwqgz.getGydw()+")");

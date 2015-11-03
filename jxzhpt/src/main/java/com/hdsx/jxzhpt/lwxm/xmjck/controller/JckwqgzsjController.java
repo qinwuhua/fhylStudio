@@ -198,6 +198,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectWqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -290,6 +292,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectJckShwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -326,6 +330,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectWqgzShCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -382,6 +388,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -419,6 +427,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckwqgzCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -514,6 +524,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckShwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -551,6 +563,8 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckShwqgzCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				jckwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");

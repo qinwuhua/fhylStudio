@@ -170,6 +170,8 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhkgl(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -211,6 +213,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhkglCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -300,6 +305,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhksb1(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -341,6 +349,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhksb11(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -383,6 +394,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhksbCount1(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -419,6 +433,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhksbCount11(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -456,6 +473,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
@@ -497,6 +517,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhksbCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
