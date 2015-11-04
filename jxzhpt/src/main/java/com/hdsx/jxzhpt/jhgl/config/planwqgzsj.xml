@@ -1159,7 +1159,7 @@
 		 	update plan_wqgz set spzt='0' where id=#{String}
 	 </update>
 	 <update id="tzxzyb" parameterType="planwqgzsj">
-		 	update plan_wqgz set tzxz=#{tzxz} where id=#{id}
+		 	update plan_wqgz set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where id=#{id}
 	 </update>
 	 <insert id="tzxztj" parameterType="planwqgzsj">
 	 	insert into plan_wqgz_tz select * from plan_wqgz where id=#{id}

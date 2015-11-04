@@ -688,7 +688,7 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					危桥改造项目资金下发信息
+					危桥改造项目资金下达信息
 				</td>
 				
 			</tr>

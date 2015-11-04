@@ -9,8 +9,8 @@ function yhdzxxm_zjxd(){
 		          {field:'c',title:'操作',width:75,align:'center',formatter:function(value,row,index){
 		        	  return '定位    '+'详细 ';
 			      }},
-			      {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-			    	  return '<a href="javascript:void()">资金下发</a>';
+			      {field:'zjxf',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="javascript:void()">资金下达</a>';
 			      }},
 			      {field:'jszt',title:'建设状态',width:80,align:'center'},
 			      {field:'sbnf',title:'上报年费',width:80,align:'center'},
@@ -67,8 +67,8 @@ function hslyglxm_zjxd(){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
-	        {field:'c5',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;">资金下发</a>';
+	        {field:'c5',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;">资金下达</a>';
 	        }},
 	        {field:'zjzt',title:'在建状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';

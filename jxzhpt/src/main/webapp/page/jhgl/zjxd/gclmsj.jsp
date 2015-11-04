@@ -127,7 +127,7 @@
 			<tr>
 				<td height="45" align="left" background="../images/page/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-					工程改造路面升级项目资金下发信息</td>
+					工程改造路面升级项目资金下达信息</td>
 			</tr>
 			<tr>
 				<td style="text-align: left; padding-left: 20px; font-size: 12px;">

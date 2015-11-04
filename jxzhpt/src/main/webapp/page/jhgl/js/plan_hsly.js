@@ -114,8 +114,8 @@ function hslyglxm_zjxd(hsly){
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	return result;
 	        }},
-	        {field:'c5',title:'资金下发',width:100,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'zjxd_hslygl','红色旅游项目资金下发','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+	        {field:'c5',title:'资金下达',width:100,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openDialog('+"'zjxd_hslygl','红色旅游项目资金下达','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下达</a>';
 	        }},
 	        {field:'jhnf',title:'计划年份',width:80,align:'center'},
 	        {field:'gydwmc',title:'管养单位',width:150,align:'center'},

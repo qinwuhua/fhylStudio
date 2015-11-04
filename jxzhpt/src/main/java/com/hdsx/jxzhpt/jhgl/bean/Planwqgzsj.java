@@ -211,7 +211,14 @@ public class Planwqgzsj implements Serializable{
 	private String jhqlqc;
 	private String jhqlqk;
 	private String tzxz;
+	private String tzsj;
 	
+	public String getTzsj() {
+		return tzsj;
+	}
+	public void setTzsj(String tzsj) {
+		this.tzsj = tzsj;
+	}
 	public String getTzxz() {
 		return tzxz;
 	}

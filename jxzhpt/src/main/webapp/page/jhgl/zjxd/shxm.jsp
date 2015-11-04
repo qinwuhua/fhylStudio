@@ -133,7 +133,7 @@
 		<tr>
 			<td height="45" align="left" background="../images/page/jt.jpg"
 				style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-				<span id="lblName3">灾毁重建资金下发信息</span>
+				<span id="lblName3">灾毁重建资金下达信息</span>
 			</td>
 		</tr>
 		<tr>

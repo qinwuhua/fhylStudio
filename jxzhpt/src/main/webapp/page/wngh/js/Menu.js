@@ -34,6 +34,28 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./wnjh/xj.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101090104',
+		title:'改建工程项目查看',
+		imgSrc:'../../images/sj_s.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/sjgz__ck.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101090105',
+		title:'路面改造工程项目查看',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/lmgz__ck.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101090106',
+		title:'新建工程项目查看',
+		imgSrc:'../../images/xjgcxm.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/xj__ck.jsp'
+	});
+	
 	
 	menuQx();
 	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010801"){

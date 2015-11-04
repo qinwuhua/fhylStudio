@@ -81,7 +81,7 @@
 				</tr>
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 资金下发
+						升级改造工程项目 — 资金下达
 					</td>
 				</tr>
 				<tr>

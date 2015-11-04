@@ -165,28 +165,31 @@
 		        {field:'pfztz',title:'批复总投资',width:100,align:'center'}
 			    ]]    
 				}); 
-				var sbthcd;
-				if($.cookie("unit2").length==11) sbthcd=0;
-			 	else if($.cookie("unit2").length==9) sbthcd=2;
-		 		else sbthcd=4;
-				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
-				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&tzxz='+$("#tzxz").combobox("getValue")
-				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
-				$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhksbCount11.do",
-				 dataType : 'json',
-				 data : data,
-				 success : function(msg){
-					 $("#sl").html(msg.sl);
-					 $("#pfztz").html(msg.pfztz);
-					 $("#btz").html(msg.jhsybzje);
-					 $("#stz").html(msg.shengbz);
-					 $("#dftz").html(msg.jhsydfzcje);
-				 }
-			});
+		tjwqgz();
+		}
+		function tjwqgz(){
+			var sbthcd;
+			if($.cookie("unit2").length==11) sbthcd=0;
+		 	else if($.cookie("unit2").length==9) sbthcd=2;
+	 		else sbthcd=4;
+			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
+			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&tzxz='+$("#tzxz").combobox("getValue")
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+			$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/loadwqjhksbCount11.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 $("#sl").html(msg.sl);
+				 $("#pfztz").html(msg.pfztz);
+				 $("#btz").html(msg.jhsybzje);
+				 $("#stz").html(msg.shengbz);
+				 $("#dftz").html(msg.jhsydfzcje);
+			 }
+		});
 		}
 		function thtz(str){
 			$.ajax({
@@ -196,6 +199,7 @@
 				 data : "planwqgzsj.id="+str,
 				 success : function(msg){
 					if(msg){
+						alert("退回成功");
 						loadwqjhkgl();
 					}
 				 }
@@ -209,6 +213,7 @@
 				 data :  "planwqgzsj.id="+str,
 				 success : function(msg){
 					 if(msg){
+						 	alert("退回成功");
 							loadwqjhkgl();
 						}
 				 }
@@ -217,7 +222,7 @@
 		var obj;
 		function edit(id){
 			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
+			YMLib.UI.createWindow('wq_edit1','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xgtz.jsp",'wq_edit1',1000,500);
 		}
 		function tz(id){
 			obj=id;
@@ -225,7 +230,7 @@
 		}
 		function ckwqgz(id){
 			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck2.jsp",'wq_edit',1000,500);
 		}
 		function ckwqgz1(id){
 			obj=id;

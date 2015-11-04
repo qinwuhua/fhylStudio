@@ -40,6 +40,7 @@ function tzxz(){
 		 success : function(msg){
 			 if(msg){
 				 alert("调整成功");
+				 parent.$("#grid").datagrid('reload');
 				 parent.$('#wq_tz').window('destroy');
 			 }else{
 				 alert("调整失败");

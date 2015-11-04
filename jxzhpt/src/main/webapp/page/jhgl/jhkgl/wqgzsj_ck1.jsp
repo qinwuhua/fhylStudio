@@ -34,6 +34,7 @@ function loadJhkxx(){
 		 data : 'id='+parent.obj,
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
+			 $("#tzsj").html(msg.tzsj);
 			 $("#sfylrbwqk").html(msg.sfylrbwqk);
 			 $("#sbnf").html(msg.sbnf);
 			 $("#jhjsxz").html(msg.jhjsxz);
@@ -542,7 +543,7 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					危桥改造项目计划信息
+					危桥改造项目计划信息,调整时间:  <span id='tzsj'></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
