@@ -15,7 +15,7 @@ public class Plan_wqgz {
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
-	private Date pfsj;//批复时间
+	private String pfsj;//批复时间
 	private String pfsj1;//批复时间，用于计划库审核导入数据时使用
 	private String pfztz;//批复总投资
 	private String jhsybzje;//计划使用部不住金额
@@ -246,10 +246,11 @@ public class Plan_wqgz {
 	public void setPfwh(String pfwh) {
 		this.pfwh = pfwh;
 	}
-	public Date getPfsj() {
+	
+	public String getPfsj() {
 		return pfsj;
 	}
-	public void setPfsj(Date pfsj) {
+	public void setPfsj(String pfsj) {
 		this.pfsj = pfsj;
 	}
 	public String getPfztz() {

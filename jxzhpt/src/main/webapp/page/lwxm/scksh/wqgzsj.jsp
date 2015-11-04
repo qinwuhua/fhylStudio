@@ -124,7 +124,7 @@ function tuihui(){
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].sckid ;
 	}
-	alert(id);
+
 	if(confirm('确定退回到未审核状态？')){
 		$.ajax({
 			 type : "POST",
