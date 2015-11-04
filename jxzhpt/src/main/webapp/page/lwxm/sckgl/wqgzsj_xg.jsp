@@ -161,7 +161,7 @@ function saveWqgz(){
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
-				parent.sckglWqgz();
+				parent.$("#grid").datagrid('reload');
 				alert("保存成功！");
 				parent.$('#lxxx').window('destroy');
 				

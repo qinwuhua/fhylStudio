@@ -164,7 +164,7 @@ function check(str){
 				success:function(data){
 					if(data.result=="true"){
 						alert("修改成功！");
-						parent.loadZjxdList();
+						parent.$("#zjxfgrid").datagrid('reload');
 						parent.$('#zjxd').window('destroy');
 					}else{
 						alert("修改失败！");

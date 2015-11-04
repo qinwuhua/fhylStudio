@@ -358,7 +358,7 @@ function editWqgz(){
 		success:function(msg){
 			if(msg){
 				alert("保存成功");
-				parent.loadwqjhkgl();
+				parent.$("#grid").datagrid('reload');
 				parent.$('#wq_edit').window('destroy');
 			}
 		}

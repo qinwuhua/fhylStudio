@@ -45,7 +45,7 @@ text-decoration:none;
 			 success : function(msg){
 				 if(msg){
 					 alert('审核成功！');
-					 parent.loadwqjhkgl();
+					 parent.$("#grid").datagrid('reload');
 					 parent.$('#wq_edit').window('destroy');
 				 }else{
 					 YMLib.Tools.Show('审核失败！',3000);
@@ -75,7 +75,7 @@ text-decoration:none;
 			 success : function(msg){
 				 if(msg){
 					 alert('审核成功！');
-					 parent.loadwqjhkgl();
+					 parent.$("#grid").datagrid('reload');
 					 parent.$('#wq_edit').window('destroy');
 				 }else{
 					 YMLib.Tools.Show('审核失败！',3000);

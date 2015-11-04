@@ -196,7 +196,7 @@ function saveWqgz(){
 		success:function(msg){
 			if(Boolean(msg)){
 				alert("保存成功！");
-				parent.jckglWqgz();
+				parent.$("#grid").datagrid('reload');
 				parent.$('#lxxx').window('destroy');
 			}else{
 				alert('保存失败！');
