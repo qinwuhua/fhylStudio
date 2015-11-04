@@ -126,7 +126,7 @@
 				return;
 			}
 			if(!je.test($('#txtjyjhztz').val()) && !fje.test($('#txtjyjhztz').val())){
-				alert("请正确填写总投资资金");
+				alert("请正确填写总补助资金");
 				return;
 			}
 			var row =parent.YMLib.Var.Row;

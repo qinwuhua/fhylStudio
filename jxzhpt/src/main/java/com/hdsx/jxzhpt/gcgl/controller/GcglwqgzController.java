@@ -456,7 +456,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			String tiaojian="";
 			if(gydw.indexOf(",")==-1){
 				if(gydw.length()==9)
-					tiaojian=("and (and t3.gydwbm='"+gydw+"'||'00' or and t3.gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+					tiaojian=("and (t3.gydwbm='"+gydw+"'||'00' or t3.gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
 				tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian="and t3.gydwbm in ("+gydw+")";
@@ -582,6 +582,9 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void selectWqgzjhList1(){
 		String tiaojian="";
 		if(gydw.indexOf(",")==-1){
+			if(gydw.length()==9)
+				tiaojian=("and (t3.gydwbm='"+gydw+"'||'00' or t3.gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
 			tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian="and t3.gydwbm in ("+gydw+")";

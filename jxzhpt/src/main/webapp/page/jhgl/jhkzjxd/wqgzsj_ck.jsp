@@ -679,7 +679,7 @@ text-decoration:none;
 			<tr style="margin: 0px;">
 				<td colspan="6" style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;background-color:#ffffff; ">
 				共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个下发信息，
-				下发资金共【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+				项目总投资【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
 				</td>
 			</tr>
 			<tr  style="height: 30px;">
