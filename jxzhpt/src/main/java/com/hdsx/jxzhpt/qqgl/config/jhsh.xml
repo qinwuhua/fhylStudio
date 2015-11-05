@@ -183,7 +183,7 @@
 					and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
 				</if>
 				<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">and ${jhsh2.xmbm}</if>
-				<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and ${jhsh2.jsdj}</if>
+				<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where jdbs='2' and ${jhsh2.jsdj})</if>
 				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">and j.xmmc like '%'||#{jhsh2.xmmc}||'%'</if>
 				<if test="jhsh2.xdzt>=0">and j.xdzt=${jhsh2.xdzt}</if>
 				order by j.xdzt,j.xmbm desc
@@ -225,7 +225,7 @@
 				and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh2.ylxbh} and xmid like '%5___' and jdbs='2')
 			</if>
 			<if test="jhsh2.xmbm!=null and jhsh2.xmbm!=''">and ${jhsh2.xmbm}</if>
-			<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and ${jhsh2.jsdj}</if>
+			<if test="jhsh2.jsdj!=null and jhsh2.jsdj!=''">and j.xmbm in (select xmid from lxsh_lx l where jdbs='2' and ${jhsh2.jsdj})</if>
 			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
 				and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
 			</if>

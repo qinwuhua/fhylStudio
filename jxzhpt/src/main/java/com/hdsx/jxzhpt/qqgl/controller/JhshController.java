@@ -635,7 +635,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[3]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)3), null,20);
 		title[4]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)4), null,20);
 		title[5]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)5), null,20);
-		title[6]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)6), null,20);
+		title[6]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)6), null,20);
 		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,20);
 		title[8]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)8), null,20);
 		title[9]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)9), null,20);
