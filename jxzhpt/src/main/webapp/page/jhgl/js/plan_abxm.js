@@ -122,8 +122,8 @@ function abgcxm(jh,lx){
 	        		return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'abgc'"+",'安保工程历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
-	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:150,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.gydw;
@@ -213,8 +213,8 @@ function abgcxm_sb(jh,lx){
 	        		return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'abgc'"+",'安保工程历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
-	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:150,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.gydw;
@@ -302,8 +302,8 @@ function abgcxm_sh(jh,lx){
 	        		return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'abgc'"+",'安保工程历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
-	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:150,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.gydw;
@@ -388,8 +388,8 @@ function abgcxm_zjxd(jh,lx){
 	        		return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'abgc'"+",'安保工程历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
-	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:150,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.gydw;

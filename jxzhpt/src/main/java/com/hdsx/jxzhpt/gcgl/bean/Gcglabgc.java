@@ -70,12 +70,12 @@ public class Gcglabgc implements Serializable {
 	private String jhnf;
 	private String jhsybbzje;
 	private String jhsydfzczj;
-	private Date jhkgsj;
-	private Date jhwgsj;
+	private String jhkgsj;
+	private String jhwgsj;
 	private String sjdw;
 	private String sjpfdw;
 	private String pfwh;
-	private Date pfsj;
+	private String pfsj;
 	private String pfztz;
 	private String jhsybzje;
 	private String jhsydfzcje;
@@ -87,15 +87,15 @@ public class Gcglabgc implements Serializable {
 	private String sjsgtlj;
 	private String jhbz;//计划备注
 
-	private Date xdsj;
-	private Date sjkgsj;
-	private Date yjwgsj;
+	private String xdsj;
+	private String sjkgsj;
+	private String yjwgsj;
 	private String sgdw;
 	private String jldw;
 	private String jsdw;
 	private String gys;
 	private String htje;
-	private Date sjwgsj;
+	private String sjwgsj;
 	private String kgzt;
 	private String jgzt;
 	private String wjgyy;
@@ -486,18 +486,7 @@ public class Gcglabgc implements Serializable {
 	public void setSbnf(String sbnf) {
 		this.sbnf = sbnf;
 	}
-	public Date getJhkgsj() {
-		return jhkgsj;
-	}
-	public void setJhkgsj(Date jhkgsj) {
-		this.jhkgsj = jhkgsj;
-	}
-	public Date getJhwgsj() {
-		return jhwgsj;
-	}
-	public void setJhwgsj(Date jhwgsj) {
-		this.jhwgsj = jhwgsj;
-	}
+	
 	public String getSjdw() {
 		return sjdw;
 	}
@@ -516,12 +505,7 @@ public class Gcglabgc implements Serializable {
 	public void setPfwh(String pfwh) {
 		this.pfwh = pfwh;
 	}
-	public Date getPfsj() {
-		return pfsj;
-	}
-	public void setPfsj(Date pfsj) {
-		this.pfsj = pfsj;
-	}
+	
 	public String getPfztz() {
 		return pfztz;
 	}
@@ -582,24 +566,7 @@ public class Gcglabgc implements Serializable {
 	public void setJhbz(String jhbz) {
 		this.jhbz = jhbz;
 	}
-	public Date getXdsj() {
-		return xdsj;
-	}
-	public void setXdsj(Date xdsj) {
-		this.xdsj = xdsj;
-	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getYjwgsj() {
-		return yjwgsj;
-	}
-	public void setYjwgsj(Date yjwgsj) {
-		this.yjwgsj = yjwgsj;
-	}
+	
 	public String getSgdw() {
 		return sgdw;
 	}
@@ -630,12 +597,7 @@ public class Gcglabgc implements Serializable {
 	public void setHtje(String htje) {
 		this.htje = htje;
 	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+	
 	public String getKgzt() {
 		return kgzt;
 	}
@@ -750,6 +712,48 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setJhsydfzczj(String jhsydfzczj) {
 		this.jhsydfzczj = jhsydfzczj;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getPfsj() {
+		return pfsj;
+	}
+	public void setPfsj(String pfsj) {
+		this.pfsj = pfsj;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getYjwgsj() {
+		return yjwgsj;
+	}
+	public void setYjwgsj(String yjwgsj) {
+		this.yjwgsj = yjwgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
 	}
 	
 }

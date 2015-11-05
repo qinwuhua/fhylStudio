@@ -11,14 +11,14 @@ public class Plan_abgc {
 	private String id;//唯一ID
 	private String sckid;
 	private String jhnf;//计划年份
-	private Date jhkgsj;//计划开工时间
+	private String jhkgsj;//计划开工时间
 	private String jhkgsj1;//计划审核导入Excel用到
-	private Date jhwgsj;//计划完工时间
+	private String jhwgsj;//计划完工时间
 	private String jhwgsj1;//计划审核导入Excel用到
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
-	private Date pfsj;//批复时间
+	private String pfsj;//批复时间
 	private String pfsj1;//计划审核导入Excel用到
 	private String pfztz;//批复总投资
 	private String jhsybbzje;//计划使用部补助金额
@@ -34,13 +34,13 @@ public class Plan_abgc {
 	private String sbzt;//上报状态
 	private String sbbm;//上报部门
 	private Date sbsj;//上报时间
-	private Date xdsj;//计划下达时间
+	private String xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
 	private String gkbglj;//工可报告附件路径
 	private String sjsgtmc;//设计施工图名称
 	private String sjsgtlj;//设计施工图路径
-	private Date sjkgsj;//实际开工时间
-	private Date sjwgsj;//实际完工时间
+	private String sjkgsj;//实际开工时间
+	private String sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
 	private String jldw;//监理单位
 	private String htje;//合同金额
@@ -203,18 +203,7 @@ public class Plan_abgc {
 	public void setJhnf(String jhnf) {
 		this.jhnf = jhnf;
 	}
-	public Date getJhkgsj() {
-		return jhkgsj;
-	}
-	public void setJhkgsj(Date jhkgsj) {
-		this.jhkgsj = jhkgsj;
-	}
-	public Date getJhwgsj() {
-		return jhwgsj;
-	}
-	public void setJhwgsj(Date jhwgsj) {
-		this.jhwgsj = jhwgsj;
-	}
+	
 	public String getSjdw() {
 		return sjdw;
 	}
@@ -233,12 +222,7 @@ public class Plan_abgc {
 	public void setPfwh(String pfwh) {
 		this.pfwh = pfwh;
 	}
-	public Date getPfsj() {
-		return pfsj;
-	}
-	public void setPfsj(Date pfsj) {
-		this.pfsj = pfsj;
-	}
+	
 	public String getPfztz() {
 		return pfztz;
 	}
@@ -323,12 +307,7 @@ public class Plan_abgc {
 	public void setSbsj(Date sbsj) {
 		this.sbsj = sbsj;
 	}
-	public Date getXdsj() {
-		return xdsj;
-	}
-	public void setXdsj(Date xdsj) {
-		this.xdsj = xdsj;
-	}
+	
 	public String getGkbgmc() {
 		return gkbgmc;
 	}
@@ -353,18 +332,7 @@ public class Plan_abgc {
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
 	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+	
 	public String getSgdw() {
 		return sgdw;
 	}
@@ -562,6 +530,42 @@ public class Plan_abgc {
 	}
 	public void setGjxjnd(String gjxjnd) {
 		this.gjxjnd = gjxjnd;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getPfsj() {
+		return pfsj;
+	}
+	public void setPfsj(String pfsj) {
+		this.pfsj = pfsj;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
 	}
 	
 }

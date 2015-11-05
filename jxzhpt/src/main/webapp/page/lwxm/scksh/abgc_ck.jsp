@@ -56,6 +56,7 @@
 				$("#jsxz").html(msg.jsxz);
 				$("#jsnr").html(msg.jsnr);
 				$("#scbz").html(msg.scbz);
+				$("#nsqbzzj").html(msg.nsqbzzj);
 				}
 			});
 		}		
@@ -79,7 +80,7 @@
 				for ( var i = 0; i < data.length; i++) {
 					if(data[i].filetype=="工可报告"){
 						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  ";
-					}if(data[i].filetype=="设计施工图"){
+					}if(data[i].filetype=="施工图设计批复"){
 						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  ";
 					}
 					}
@@ -243,6 +244,12 @@ text-decoration:none;
 					<span id="jsxz"></span>
 				</td>
 			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请补助资金：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="nsqbzzj"></span>
+				</td>
+			</tr>
 				<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
@@ -264,7 +271,7 @@ text-decoration:none;
 				</td>
 			</tr> -->
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工设计图：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工图设计批复：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 						<tbody id="sjsgtTable"></tbody>

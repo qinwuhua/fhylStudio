@@ -110,13 +110,16 @@ var zdStr;
 			$("#jsxz").val(msg.jsxz);
 			$("#jsnr").val(msg.jsnr);
 			$("#scbz").val(msg.scbz);
+			$("#nsqbzzj").val(msg.nsqbzzj);
+			jsnsqbz();
 			}
 		});
 	}		
 	function xgAbgc(){
 		var data ="sckid="+parent.rowid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-		"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
+		"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scxmnf="+$("#scxmnf").combobox("getValue")+"&nsqbzzj="+$("#nsqbzzj").val();
+
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/updateSckabgc.do',
@@ -229,7 +232,7 @@ var zdStr;
 						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
 						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
 						"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-					}if(data[i].filetype=="设计施工图"){
+					}if(data[i].filetype=="施工图设计批复"){
 						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
 						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
 						"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
@@ -267,6 +270,44 @@ var zdStr;
 	function upload(id){
 		$("#"+id).uploadifySettings('scriptData',{'jh.jhnf':$('#scxmnf').combo("getValue"),'uploads.parentid':xxId});
 		$('#'+id).uploadifyUpload();
+	}
+	
+	var bz;
+	var bl;
+	var fd;
+	var bzzj;
+	function jsnsqbz(){
+		if($("#lxbm").html().substr(0,1)=='G'||$("#lxbm").val().substr(0,1)=='S')
+			bz='国省';
+		else
+			bz='县乡';
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
+			dataType:'json',
+			success:function(data){
+				bz=data.bz;
+				bl=data.bl;
+				fd=data.fd;
+				bzInit();
+			}
+		}); 
+	}
+	function bzInit(){
+		
+		ztz=(parseFloat($("#tzgs").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if($("#tzgs").val()!="" || $("#tzgs").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
+		}
+		
 	}
 </script>
 <style type="text/css">
@@ -372,41 +413,50 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				 <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select id="scxmnf" style="width: 154px"></select>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>隐患里程：</td>
 				<td colspan="3" style="background-color: #ffffff;" align="left">
-					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
+					<input onchange="jsnsqbz()" type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px"/></td>
+				<td style="background-color: #ffffff; " align="left">
+					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审查单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="fascdw"id="fascdw" style="width: 156px"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审批时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="faspsj"  class="easyui-datebox"/>
+				<td style="background-color: #ffffff;" align="left">
+					<input type="text" name="fascdw"id="fascdw" style="width: 156px" /></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<input type=text id="faspsj" class="easyui-datebox" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="spwh" id="spwh" style="width: 150px"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="tzgs"id="tzgs" style="width: 115px"/>&nbsp;万元</td>
+				<td style="background-color: #ffffff;" align="left">
+					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<select id="jsxz" style="width: 150px">
 						<option value="中修"selected>中修</option>
 						<option value="大修">大修</option>
 						<option value="改建">改建</option>
 					</select>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资估算：</td>
+				
+					<td style="background-color: #ffffff;" align="left">
+					<input onchange="jsnsqbz()" type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请补助资金：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
+					<input type="text" id="nsqbzzj" onblur="zjSum()" style="width: 120px;"/>万元
+					<br/><span id="bbzts"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -442,7 +492,7 @@ text-decoration:none;
 				</td>
 			</tr> -->
 				<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计施工图：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工图设计批复：</td>
 				<td id="td_sjsgt" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
 								cellpadding="1" cellspacing="1">

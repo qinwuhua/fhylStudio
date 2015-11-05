@@ -164,7 +164,7 @@ var bzls;
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
-		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&scxmnf="+$("#scxmnf").combobox("getValue");
+		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&scxmnf="+$("#scxmnf").combobox("getValue")+"&nsqbzzj="+$("#nsqbzzj").val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckabgc.do',
@@ -206,6 +206,44 @@ var bzls;
 	function changeZlc(){
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
 		$("#sczlc").html(zlc);
+	}
+	
+	var bz;
+	var bl;
+	var fd;
+	var bzzj;
+	function jsnsqbz(){
+		if($("#lxbm").val().substr(0,1)=='G'||$("#lxbm").val().substr(0,1)=='S')
+			bz='国省';
+		else
+			bz='县乡';
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
+			dataType:'json',
+			success:function(data){
+				bz=data.bz;
+				bl=data.bl;
+				fd=data.fd;
+				bzInit();
+			}
+		}); 
+	}
+	function bzInit(){
+		
+		ztz=(parseFloat($("#tzgs").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if($("#tzgs").val()!="" || $("#tzgs").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
+		}
+		
 	}
 </script>
 <style type="text/css">
@@ -317,7 +355,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>隐患里程：</td>
 				<td colspan="3" style="background-color: #ffffff;" align="left">
-					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
+					<input onchange="jsnsqbz()" type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -336,9 +374,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资估算：</td>
-				<td style="background-color: #ffffff;" align="left">
-					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select id="jsxz" style="width: 150px">
@@ -346,6 +382,17 @@ text-decoration:none;
 						<option value="大修">大修</option>
 						<option value="改建">改建</option>
 					</select>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资估算：</td>
+				
+					<td style="background-color: #ffffff;" align="left">
+					<input onchange="jsnsqbz()" type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请补助资金：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
+					<input type="text" id="nsqbzzj" onblur="zjSum()" style="width: 120px;"/>万元
+					<br/><span id="bbzts"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
