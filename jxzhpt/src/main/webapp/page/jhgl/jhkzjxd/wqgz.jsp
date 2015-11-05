@@ -81,10 +81,18 @@
 				success:function(data){
 					if(data.id>0){
 						$('#lblCount').html(data.id);
-						$('#lblXDZJ').html(data.jhsybzje);
+						$('#pfztz').html(data.pfztz);
+						$('#stz').html("0");
+						$('#btz').html(data.jhsybzje);
+						$('#dftz').html(data.jhsydfzcje);
+						$('#xdzj').html(data.pfwh);
 					}else{
 						$('#lblCount').html("0");
-						$('#lblXDZJ').html("0");
+						$('#pfztz').html("0");
+						$('#btz').html("0");
+						$('#stz').html("0");
+						$('#dftz').html("0");
+						$('#xdzj').html("0");
 					}
 				}
 			});
@@ -175,8 +183,12 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
-        			总补助资金【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
+        			批复总投资【&nbsp;<span id="pfztz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中省投资【&nbsp;<span id="stz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			总补助资金【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

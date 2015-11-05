@@ -327,10 +327,10 @@
 	</update>
 	<select id="querySumZhfz" resultMap="zhfz_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(qzlc) as qzlc,sum(yhlc) as yhlc,
-		sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje from(
+		sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje,sum(bz) spzt from(
 			select count(jh.id) as id,sum(sc.sczlc) as qzlc,sum(sc.scyhlc) as yhlc,
-			sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje
-			from xmk_zhfz lx right join sck_zhfz sc on (lx.id=sc.xmkid) right join plan_zhfz jh on (sc.sckid=jh.sckid)
+			sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje,decode(sum(xdzj),null,0,sum(xdzj)) bz 
+			from xmk_zhfz lx right join sck_zhfz sc on (lx.id=sc.xmkid) right join plan_zhfz jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
 			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}

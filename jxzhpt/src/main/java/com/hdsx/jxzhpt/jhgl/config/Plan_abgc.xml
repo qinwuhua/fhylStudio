@@ -380,10 +380,10 @@
 	</update>
 	<select id="querySumAbgc" resultMap="abgc_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
-		sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj from(
+		sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(
 			select count(jh.id) as id,sum(jh.jhzlc) as zlc,sum(jh.jhyhlc) as yhlc,
-			sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj
-			from xmk_abgc lx right join sck_abgc sc on (lx.id=sc.xmkid) right join plan_abgc jh on (sc.sckid=jh.sckid)
+			sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
+			from xmk_abgc lx right join sck_abgc sc on (lx.id=sc.xmkid) right join plan_abgc jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
 			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}

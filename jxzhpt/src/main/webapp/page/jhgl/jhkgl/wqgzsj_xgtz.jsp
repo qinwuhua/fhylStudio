@@ -808,7 +808,7 @@ text-decoration:none;
 					<span id="yqlszxz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					长<span id="yjhqlqc"></span>&nbsp;&nbsp;宽<span id="jhqlqk"></span></td>
+					长<span id="yjhqlqc"></span>&nbsp;&nbsp;宽<span id="yjhqlqk"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="yjhjsxz"></span></td>
