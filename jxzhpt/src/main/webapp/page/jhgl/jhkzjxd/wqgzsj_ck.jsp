@@ -200,7 +200,7 @@ function loadZjxdList(){
 			}
 		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
