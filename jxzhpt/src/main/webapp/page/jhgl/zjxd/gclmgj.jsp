@@ -133,13 +133,13 @@
 		<tr>
 			<td height="45" align="left" background="../images/page/jt.jpg"
 				style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-				<span id="lblName3">工程改造路面改建项目资金下发信息</span>
+				<span id="lblName3">工程改造路面改建项目资金下达信息</span>
 			</td>
 		</tr>
 		<tr>
 			<td style="text-align: left; padding-left: 20px; font-size: 12px;">
 				共有【&nbsp;<span id="lblTzCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个下发信息，
-				下发资金共【&nbsp;<span id="lblxfzjzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+				项目总投资【&nbsp;<span id="lblxfzjzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
 			</td>
 		</tr>
 		<tr>

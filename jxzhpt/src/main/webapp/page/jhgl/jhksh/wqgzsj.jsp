@@ -129,7 +129,7 @@
 							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 							else */
 								return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
+								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>     <a href="javascript:tz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">调整</a>';
 					}},    
 					 {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
 						 	if(row.jh_sbthcd<4){
@@ -164,37 +164,40 @@
 		        {field:'pfztz',title:'批复总投资',width:100,align:'center'}
 			    ]]    
 				}); 
-				var sbthcd;
-				if($.cookie("unit2").length==11) sbthcd=0;
-			 	else if($.cookie("unit2").length==9) sbthcd=2;
-		 		else sbthcd=4;
-				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
-				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
-				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
-				$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
-				 dataType : 'json',
-				 data : data,
-				 success : function(msg){
-					 $("#sl").html(msg.sl);
-					 $("#pfztz").html(msg.pfztz);
-					 $("#btz").html(msg.jhsybzje);
-					 $("#stz").html(msg.shengbz);
-					 $("#dftz").html(msg.jhsydfzcje);
-				 }
-			});
+		tjwqgz();
+		}
+		function tjwqgz(){
+			var sbthcd;
+			if($.cookie("unit2").length==11) sbthcd=0;
+		 	else if($.cookie("unit2").length==9) sbthcd=2;
+	 		else sbthcd=4;
+			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
+			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+			$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 $("#sl").html(msg.sl);
+				 $("#pfztz").html(msg.pfztz);
+				 $("#btz").html(msg.jhsybzje);
+				 $("#stz").html(msg.shengbz);
+				 $("#dftz").html(msg.jhsydfzcje);
+			 }
+		});
 		}
 		var obj;
 		function edit(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
 		}
-		function edit1(id){
+		function tz(id){
 			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg1.jsp",'wq_edit',1000,500);
+			YMLib.UI.createWindow('wq_tz','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_tz.jsp",'wq_tz',500,200);
 		}
 		function ckwqgz(id){
 			obj=id;

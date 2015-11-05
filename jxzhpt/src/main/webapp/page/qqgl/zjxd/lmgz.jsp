@@ -63,8 +63,8 @@
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmgzzjxd'"+','+"'路面改造工程项目 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/lmgz_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
+						var result='<a href="javascript:openWindow('+"'lmgzzjxd'"+','+"'路面改造工程项目 — 资金下达'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/lmgz_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下达</a>';
 						return result;
 					}
 				},

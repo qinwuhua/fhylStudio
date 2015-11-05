@@ -98,8 +98,8 @@
 								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 								 else  return "已审核";
 					}},  */
-				 {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-			        	return '<a href="javascript:zjxf('+"'"+row.id+"'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
+				 {field:'zjxf',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
+			        	return '<a href="javascript:zjxf('+"'"+row.id+"'"+')" style=" text-decoration:none;color:#3399CC;">资金下达</a>';
 			        }},
 			        {field:'jszt',title:'建设状态',width:120,align:'center',formatter:function(value,row,index){
 			        	if(row.kgzt=='0')
@@ -314,7 +314,7 @@ text-decoration:none;
         			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中省投资【&nbsp;<span id="stz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			下发资金共【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			项目总投资【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

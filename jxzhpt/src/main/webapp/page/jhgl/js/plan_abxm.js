@@ -368,8 +368,8 @@ function abgcxm_zjxd(jh,lx){
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
-	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'zjxd_abgc','安保工程资金下达','../zjxd/abgc.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
+	        {field:'zjxf',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openDialog('+"'zjxd_abgc','安保工程资金下达','../zjxd/abgc.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下达</a>';
 	        }},
 	        {field:'kgzt',title:'建设状态',width:80,align:'center',
 	        	formatter:function(value,row,index){

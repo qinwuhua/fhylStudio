@@ -371,8 +371,8 @@ function gclmgjxm_zjxd(jh,lx){
 		    		return result ;
 		    	}
 		    },
-		    {field:'zjxf',title:'资金下发',width:60,align:'center',formatter:function(value,row,index){
-		    	return '<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目资金下达','../zjxd/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+		    {field:'zjxf',title:'资金下达',width:60,align:'center',formatter:function(value,row,index){
+		    	return '<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目资金下达','../zjxd/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下达</a>';
 		    }},
 		    {field : 'kgzt',title : '建设状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {

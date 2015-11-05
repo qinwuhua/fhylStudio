@@ -63,11 +63,11 @@
 						}
 					}
 				},
-				{field:'xdzt',title:'资金下发',width:100,align:'center',
+				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter:function(value,row,index){
 						xmlx=4;
-						var result = '<a href="javascript:openWindow('+"'yhdzxzjxd'"+','+"'养护大中修 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/yhdzx_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
+						var result = '<a href="javascript:openWindow('+"'yhdzxzjxd'"+','+"'养护大中修 — 资金下达'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/yhdzx_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下达</a>';
 						return result;
 					}
 				},

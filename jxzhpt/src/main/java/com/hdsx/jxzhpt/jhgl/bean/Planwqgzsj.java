@@ -144,7 +144,7 @@ public class Planwqgzsj implements Serializable{
 	private String jhwgsj;//计划完工时间
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
-	private Date pfsj;//批复时间
+	private String pfsj;//批复时间
 	private String pfztz;//批复总投资
 	private String jhsybzje;//计划使用部不住金额
 	private String jhsydfzcje;//计划使用地方自筹金额
@@ -210,7 +210,21 @@ public class Planwqgzsj implements Serializable{
 	private String lxxx;//路线信息
 	private String jhqlqc;
 	private String jhqlqk;
+	private String tzxz;
+	private String tzsj;
 	
+	public String getTzsj() {
+		return tzsj;
+	}
+	public void setTzsj(String tzsj) {
+		this.tzsj = tzsj;
+	}
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
 	public String getJhjsxz() {
 		return jhjsxz;
 	}
@@ -1137,10 +1151,11 @@ public class Planwqgzsj implements Serializable{
 	public void setSjpfdw(String sjpfdw) {
 		this.sjpfdw = sjpfdw;
 	}
-	public Date getPfsj() {
+	
+	public String getPfsj() {
 		return pfsj;
 	}
-	public void setPfsj(Date pfsj) {
+	public void setPfsj(String pfsj) {
 		this.pfsj = pfsj;
 	}
 	public String getPfztz() {

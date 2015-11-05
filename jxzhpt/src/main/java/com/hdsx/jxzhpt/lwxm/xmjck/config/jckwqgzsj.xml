@@ -716,8 +716,32 @@
 	</update>
 	
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk,sfkxg,sfylsjl,qlszxz,zyjsnr,jhjsxz,pfsj,sjdw,sjpfdw,pfwh<!-- ,pfztz -->) 
-		values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},#{sfylrbwqk},decode(#{sfylrbwqk},'是','是','否','否'),#{bzls},#{scszxz},#{jsnr},#{jsxz},to_date(#{faspsj},'yyyy-mm-dd'),#{sjdwmc},#{fascdw},#{pfwh}<!-- ,#{ztz} -->)
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd
+		<if test="shibz!='' and shibz!= null ">,shibz</if>
+		<if test="shengbz!='' and shengbz!= null ">,shengbz</if>
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,sfylrbwqk</if>
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,sfkxg</if>
+		<if test="bzls!='' and bzls!= null ">,sfylsjl</if>
+		<if test="scszxz!='' and scszxz!= null ">,qlszxz</if>
+		<if test="jsnr!='' and jsnr!= null ">,zyjsnr</if>
+		<if test="jsxz!='' and jsxz!= null ">,jhjsxz</if>
+		<if test="faspsj!='' and faspsj!= null ">,pfsj</if>
+		<if test="sjdwmc!='' and sjdwmc!= null ">,sjdw</if>
+		<if test="fascdw!='' and fascdw!= null ">,sjpfdw</if>
+		<if test="pfwh!='' and pfwh!= null ">,pfwh</if><!-- ,pfztz -->) 
+		values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz}
+		<if test="shibz!='' and shibz!= null ">,#{shibz}</if>
+		<if test="shengbz!='' and shengbz!= null ">,#{shengbz}</if>
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,#{sfylrbwqk}</if>
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,decode(#{sfylrbwqk},'是','是','否','否')</if>
+		<if test="bzls!='' and bzls!= null ">,#{bzls}</if>
+		<if test="scszxz!='' and scszxz!= null ">,#{scszxz}</if>
+		<if test="jsnr!='' and jsnr!= null ">,#{jsnr}</if>
+		<if test="jsxz!='' and jsxz!= null ">,#{jsxz}</if>
+		<if test="faspsj!='' and faspsj!= null ">,#{faspsj}</if>
+		<if test="sjdwmc!='' and sjdwmc!= null ">,#{sjdwmc}</if>
+		<if test="fascdw!='' and fascdw!= null ">,#{fascdw}</if>
+		<if test="pfwh!='' and pfwh!= null ">,#{pfwh}</if><!-- ,#{ztz} -->)
 	</insert>
 	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select sckid,sc.sck_qlbh,fapgdw,fascdw,spwh,ztz,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,sc.scsqs,sc.scxsq,sc.scszxz,decode(sc.jsnr,null,' ',sc.jsnr) jsnr,decode(sc.jsxz,null,' ',sc.jsxz) jsxz,decode(sc.faspsj,null,to_char(sysdate,'yyyy-mm-dd') ,sc.faspsj) faspsj from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id

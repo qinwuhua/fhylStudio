@@ -34,7 +34,7 @@
 		and truename like #{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
-		and unit like rtrim(#{unit},'0')||'%'
+		and unit like substr(rtrim(#{unit},'0'),0,4)||'_'||substr(rtrim(#{unit},'0'),6,length(rtrim(#{unit},'0')))||'%'
 		</if>
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -49,7 +49,7 @@
 		and truename like #{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
-		and unit like rtrim(#{unit},'0')||'%'
+		and unit like substr(rtrim(#{unit},'0'),0,4)||'_'||substr(rtrim(#{unit},'0'),6,length(rtrim(#{unit},'0')))||'%'
 		</if>
 	</select>
 	<select id="selQxList" parameterType="hashmap" resultType="hashmap">

@@ -322,9 +322,9 @@ function yhdzxxm_zjxd(jh,lx){
 		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	  return result;
 			      }},
-			      {field:'zjxf',title:'资金下发',width:60,align:'center',
+			      {field:'zjxf',title:'资金下达',width:60,align:'center',
 			    	  formatter:function(value,row,index){
-				    	return '<a href="javascript:openDialog('+"'zjxd_yhdzx','养护大中修项目资金下达','../zjxd/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+				    	return '<a href="javascript:openDialog('+"'zjxd_yhdzx','养护大中修项目资金下达','../zjxd/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下达</a>';
 			    	  }
 			      },
 			      {field:'xmmc',title:'项目名称',width:180,align:'center'},

@@ -9,7 +9,7 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zjxdServer {
 	/**
-	 * 根据项目ID查找资金下发的列表
+	 * 根据项目ID查找资金下达的列表
 	 * @param id
 	 * @return
 	 */
@@ -26,13 +26,13 @@ public interface Plan_zjxdServer {
 	 */
 	boolean addZjxd(Plan_zjxd zjxd);
 	/**
-	 * 根据ID删除资金下发信息
+	 * 根据ID删除资金下达信息
 	 * @param id
 	 * @return
 	 */
 	boolean dropZjxd(String id);
 	/**
-	 * 修改资金下发信息
+	 * 修改资金下达信息
 	 * @param zjxd
 	 * @return
 	 */
