@@ -166,7 +166,7 @@
         	<tr>
         		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个灾毁重建，
-        			项目总投资【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			总补助资金【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>
