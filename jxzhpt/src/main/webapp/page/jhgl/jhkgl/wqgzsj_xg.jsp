@@ -744,7 +744,7 @@ text-decoration:none;
 					<input id="pfsj" type="text" class="easyui-datebox"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					长<input type="text" id="jhqlqc" style="width: 53px"/> 宽<input type="text" id="jhqlqk" style="width: 53px"/></td>	
+					长<input onchange="loadBz()" type="text" id="jhqlqc" style="width: 53px"/> 宽<input onchange="loadBz()" type="text" id="jhqlqk" style="width: 53px"/></td>	
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jhjsxz" class="easyui-combobox" data-options="panelHeight:'50'" >
