@@ -205,7 +205,7 @@ var bzls;
 	
 	function changeZlc(){
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
-		$("#sczlc").html(zlc);
+		$("#sczlc").html(zlc.toFixed(3));
 	}
 </script>
 <style type="text/css">
