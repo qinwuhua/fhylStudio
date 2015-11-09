@@ -98,7 +98,7 @@ function check(str){
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<span id="tbsj"></span>
+								<input type="text" id="tbsj">
 							</td>
 						</tr>
 					</table>
@@ -143,7 +143,7 @@ function check(str){
 				$('#btzzj').val(data.btzzj);
 				$('#stz').val(data.stz);
 				$('#tbdw').html(data.tbdw);
-				$('#tbsj').html(data.tbtime);
+				$('#tbsj').val(data.tbtime);
 				$('#btzzj').val(data.btzzj);
 				$('#jhxdwh').val(data.jhxdwh);
 				if(data.sfzj=="0")
@@ -155,7 +155,7 @@ function check(str){
 		function editZjxd(){
 			var zjxd={'zjxd.id':parent.obj1,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz').val(),
 					'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-					'zjxd.tbtime':$('#tbsj').html(),'zjxd.sfzj':$("input[name='rList']:checked").val()};
+					'zjxd.tbtime':$('#tbsj').val(),'zjxd.sfzj':$("input[name='rList']:checked").val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/jhgl/editZjxdById.do',

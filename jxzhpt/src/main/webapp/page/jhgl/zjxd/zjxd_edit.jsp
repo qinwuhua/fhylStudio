@@ -32,7 +32,7 @@ function check(str){
 									总补助资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input onblur="check(this)" id="xdzj" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
+								<input onblur="check(this)" id="xdzj1" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
@@ -46,7 +46,7 @@ function check(str){
 									省投资：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input onblur="check(this)" id="stz" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
+								<input onblur="check(this)" id="stz1" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 35px;">
@@ -90,7 +90,7 @@ function check(str){
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<span id="tbsj"></span>
+								<input type="text" id="tbsj">
 							</td>
 						</tr>
 					</table>
@@ -109,7 +109,7 @@ function check(str){
 								onclick="closezjxd()" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
 								src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" style="border-width: 0px;" />
 							</td>
-							</td>
+
 						</tr>
 					</table></td>
 			</tr>
@@ -132,11 +132,11 @@ function check(str){
 			data:'zjxd.id='+zjId,
 			success:function(data){
 				$('#zjxdnf').combobox('setValue',data.xdnf);
-				$('#xdzj').val(data.xdzj);
+				$('#xdzj1').val(data.xdzj);
 				$('#btzzj').val(data.btzzj);
-				$('#stz').val(data.stz);
+				$('#stz1').val(data.stz);
 				$('#tbdw').html(data.tbdw);
-				$('#tbsj').html(data.tbtime);
+				$('#tbsj').val(data.tbtime);
 				$('#btzzj').val(data.btzzj);
 				$('#jhxdwh').val(data.jhxdwh);
 				if(data.sfzj=="0")

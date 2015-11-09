@@ -106,7 +106,7 @@ function check(str){
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<span id="tbsj"></span>
+								<input type="text" id="tbsj">
 							</td>
 						</tr>
 					</table>
@@ -142,7 +142,7 @@ function check(str){
 			});
 			var myDate = new Date();
 			var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
-			$('#tbsj').html(date);
+			$('#tbsj').val(date);
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjxdExistById.do',
@@ -167,7 +167,7 @@ function check(str){
 			function addZjxd(){
 				var zjxd={'zjxd.xmid':parent.obj1,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj').val(),
 						'zjxd.btzzj':$('#btzzj').val(),'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-						'zjxd.tbtime':$('#tbsj').html(),'zjxd.stz':$('#stz').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
+						'zjxd.tbtime':$('#tbsj').val(),'zjxd.stz':$('#stz').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 				$.ajax({
 					type:'post',
 					url:'/jxzhpt/jhgl/addZjxd.do',

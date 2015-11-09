@@ -197,9 +197,9 @@ function openZjxd(id,title,href,width,height,zjid){
 	}).dialog("setTitle",title).dialog("open");
 }
 function addZjxd(){
-	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj').val(),
+	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj1').val(),
 			'zjxd.btzzj':$('#btzzj').val(),'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-			'zjxd.tbtime':$('#tbsj').html(),'zjxd.stz':$('#stz').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
+			'zjxd.tbtime':$('#tbsj').val(),'zjxd.stz':$('#stz1').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/addZjxd.do',
@@ -393,9 +393,9 @@ function dropZjxdById(id){
 	});
 }
 function editZjxd(){
-	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz').val(),
-			'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-			'zjxd.tbtime':$('#tbsj').html(),'zjxd.sfzj':$("input[name='rList']:checked").val()};
+	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz1').val(),
+			'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj1').val(),'zjxd.tbdw':$('#tbdw').html(),
+			'zjxd.tbtime':$('#tbsj').val(),'zjxd.sfzj':$("input[name='rList']:checked").val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/editZjxdById.do',
