@@ -138,9 +138,9 @@ function shangB(){
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
 		if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
-			sbthcd=","+7;
+			sbthcd+=","+7;
 		}else{
-			sbthcd=","+$.cookie("unit2").length-2;
+			sbthcd+=","+$.cookie("unit2").length-2;
 		}
 	}
 	if(confirm('您确定上报该项目？')){

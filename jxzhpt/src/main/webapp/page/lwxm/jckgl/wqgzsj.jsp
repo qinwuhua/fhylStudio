@@ -157,9 +157,9 @@ function shangB(){
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
 		if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
-			sbthcd=","+7;
+			sbthcd+=","+7;
 		}else{
-			sbthcd=","+$.cookie("unit2").length-2;
+			sbthcd+=","+$.cookie("unit2").length-2;
 		}
 	}
 
