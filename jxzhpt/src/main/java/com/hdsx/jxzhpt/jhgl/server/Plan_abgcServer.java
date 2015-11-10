@@ -147,4 +147,27 @@ public interface Plan_abgcServer {
 	List<Plan_upload> queryFjByParentId2(Plan_upload uploads);
 
 	boolean deleteFile2(Plan_upload uploads);
+
+	boolean updateTzxz(Plan_abgc jh);
+
+	int queryAbgcTz(Plan_abgc jh);
+
+	boolean updateAbgcTz(Plan_abgc jh);
+
+	boolean insertAbgcTz(Plan_abgc jh);
+
+	int queryAbgcTzCount(Plan_abgc jh, Jckabgc lx);
+
+	List<Plan_abgc> queryAbgcTzList(int page, int rows, Plan_abgc jh, Jckabgc lx);
+
+	Plan_abgc querySumAbgcTz(Plan_abgc jh, Jckabgc lx);
+
+	boolean insertAbgcFromBf(Plan_abgc jh);
+
+	boolean dropAbgcBfById(Plan_abgc jh);
+
+	Plan_abgc queryAbgcTzById(String id);
+
+	int editAbgcTzById(Plan_abgc jh);
+
 }

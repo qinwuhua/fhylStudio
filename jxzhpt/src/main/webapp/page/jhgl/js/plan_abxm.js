@@ -281,6 +281,7 @@ function abgcxm_sh(jh,lx){
 	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	//else
 	        	//	result+='<a style="text-decoration:none;color:black;">编辑</a>';
+	        	result+='  <a href="javascript:tz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">调整</a>';
 	        	return result;
 	        }},
 	        {field:'c4',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){

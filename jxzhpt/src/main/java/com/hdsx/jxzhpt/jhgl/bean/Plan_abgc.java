@@ -88,7 +88,20 @@ public class Plan_abgc {
 	private String jsnr;
 	private String scbz;
 	private String gjxjnd;
-	
+	private String tzxz;//调整状态
+	private String tzsj;//调整时间
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
+	public String getTzsj() {
+		return tzsj;
+	}
+	public void setTzsj(String tzsj) {
+		this.tzsj = tzsj;
+	}
 	public String getJhkgsj1() {
 		return jhkgsj1;
 	}

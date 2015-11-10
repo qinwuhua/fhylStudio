@@ -27,6 +27,8 @@
 		<result property="kgzt" column="kgzt"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="tzxz" column="tzxz"/>
+		<result property="tzsj" column="tzsj"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="sckabgc"  id="abgc_lx">
@@ -227,7 +229,7 @@
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
 		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
-		select id,sckid,jhnf,jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh, pfsj,pfztz,jhsybbzje,jhsydfzczj,sfsqablbz,ablbzsqwh, remarks, tbsj, tbbm, spzt,spbm,
+		select id,tzxz,tzsj,sckid,jhnf,jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh, pfsj,pfztz,jhsybbzje,jhsydfzczj,sfsqablbz,ablbzsqwh, remarks, tbsj, tbbm, spzt,spbm,
 	spsj,sbzt,sbbm,sbsj,xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw, jldw, htje,sgxkwj,jgtcwj, jgyswj,wjsczt,kgzt,jgzt,wjgyy,
 	yjwgsj, jhwc_c,jsdw,jhxdwh,xdzt,xfzt,xfsj,xfbm,wjzt,sfylsjl from Plan_Abgc jh where jh.id=#{id}
 	</select>
@@ -645,5 +647,198 @@
 		<if test="scbz!=null">scbz=#{scbz},</if>
 		sckid=#{sckid}
 		where sckid=#{sckid}
+	</update>
+	<update id="updateTzxz" parameterType="plan_abgc">
+		update plan_abgc set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where id=#{id}
+	</update>
+	<update id="updateAbgcTz" parameterType="plan_abgc">
+		update plan_abgc_bf set tzxz=#{tzxz} where id=#{id}
+	</update>
+	<insert id="insertAbgcTz" parameterType="plan_abgc">
+		insert into plan_abgc_bf select * from plan_abgc where id=#{id}
+	</insert>
+	<insert id="insertAbgcFromBf" parameterType="plan_abgc">
+		insert into plan_abgc select * from plan_abgc_bf where id=#{id}
+	</insert>
+	<delete id="dropAbgcBfById" parameterType="plan_abgc">
+		delete from plan_abgc_bf where id=#{id}
+	</delete>
+	<select id="queryAbgcTzList"  parameterType="java.util.Map"  resultMap="abgc_jh">
+		select * from 
+			(
+				select rownum as num,t.* from 
+				(
+					select jh.id,jh.sckid,jh.jhnf,to_char(jh.jhkgsj,'yyyy-mm-dd') jhkgsj,to_char(jh.jhwgsj,'yyyy-mm-dd') jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
+					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,jh.tzxz,jh.tzsj,sc.bzls as sfylsjl,
+               		lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc as yhlc
+                	from plan_abgc_bf jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+					<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+				 		and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and ${lx.gydwbm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and ${lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsdj}
+				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
+	    			order by jh.jhnf desc,jh.jh_sbthcd
+	    		) t order by t.jhnf desc,t.jh_sbthcd
+    		)
+    	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryAbgcTzCount"  parameterType="java.util.Map"  resultType="int">
+		select count(*) from plan_abgc_bf jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+		<if test="jh.kgzt!=null and jh.kgzt!=''">
+			and jh.kgzt=#{jh.kgzt}
+		</if>
+		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			and jh.jgzt=#{jh.jgzt}
+		</if>
+		<if test="jh.jhnf!=null and jh.jhnf!=''">
+			and jh.jhnf=#{jh.jhnf}
+		</if>
+		<if test="jh.sbzt!=null and jh.sbzt!=''">
+			and jh.sbzt=#{jh.sbzt}
+		</if>
+		<if test="jh.spzt!=null and jh.spzt!=''">
+			and jh.spzt=#{jh.spzt}
+		</if>
+		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			and sc.bzls=#{jh.sfylsjl}
+		</if>
+		<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+			and ${lx.gydwbm}
+		</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+			and ${lx.xzqhdm}
+		</if>
+		<if test="lx.lxmc!=null and lx.lxmc!=''">
+			and lx.lxmc like '%'||#{lx.lxmc}||'%'
+		</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">
+			and lx.lxbm like #{lx.lxbm}||'%'
+		</if>
+		<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+			and lx.lxjsdj = #{lx.lxjsdj}
+		</if>
+		<if test="lx.tsdq!=null and lx.tsdq!=''">
+			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+		</if>
+	</select>
+	<select id="querySumAbgcTz" resultMap="abgc_jh" parameterType="java.util.Map">
+		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
+		sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(
+			select count(jh.id) as id,sum(jh.jhzlc) as zlc,sum(jh.jhyhlc) as yhlc,
+			sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
+			from xmk_abgc lx right join sck_abgc sc on (lx.id=sc.xmkid) right join plan_abgc_bf jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
+			where 1=1
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+					<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+				 		and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and ${lx.gydwbm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and ${lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsdj}
+				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if> group by jh.id)
+	</select>
+	<select id="queryAbgcTzById"  parameterType="string"  resultType="plan_abgc">
+		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
+		select id,tzxz,tzsj,sckid,jhnf,jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh, pfsj,pfztz,jhsybbzje,jhsydfzczj,sfsqablbz,ablbzsqwh, remarks, tbsj, tbbm, spzt,spbm,
+	spsj,sbzt,sbbm,sbsj,xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw, jldw, htje,sgxkwj,jgtcwj, jgyswj,wjsczt,kgzt,jgzt,wjgyy,
+	yjwgsj, jhwc_c,jsdw,jhxdwh,xdzt,xfzt,xfsj,xfbm,wjzt,sfylsjl from Plan_Abgc_bf jh where jh.id=#{id}
+	</select>
+	<update id="editAbgcTzById" parameterType="plan_abgc">
+		update plan_abgc_bf set jhnf=#{jhnf}
+			<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=to_date(#{jhkgsj},'yyyy-mm-dd')</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=to_date(#{jhwgsj},'yyyy-mm-dd')</if>
+			<if test="xdsj!=null and xdsj!=''">,xdsj=to_date(#{xdsj},'yyyy-mm-dd')</if>
+			<if test="pfsj!=null and pfsj!=''">,pfsj=to_date(#{pfsj},'yyyy-mm-dd')</if>
+			<if test="jhwc_c!=null">,jhwc_c=#{jhwc_c}</if>
+			<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+			<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+			<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+			<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+			<if test="jhsybbzje!=null">,jhsybbzje=#{jhsybbzje}</if>
+			<if test="jhsydfzczj!=null">,jhsydfzczj=#{jhsydfzczj}</if>
+			<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+			<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+			<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+			<if test="remarks!=null">,remarks=#{remarks}</if>
+		where id=#{id}
 	</update>
 </mapper>

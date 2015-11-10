@@ -285,4 +285,59 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean deleteFile2(Plan_upload uploads) {
 		return delete("deleteFile2", uploads)>0 ? true:false;
 	}
+	@Override
+	public boolean updateTzxz(Plan_abgc jh) {
+		return update("updateTzxz",jh)>0;
+	}
+	@Override
+	public int queryAbgcTz(Plan_abgc jh) {
+		return 0;
+	}
+	@Override
+	public boolean updateAbgcTz(Plan_abgc jh) {
+		return update("updateAbgcTz",jh)>0;
+	}
+	@Override
+	public boolean insertAbgcTz(Plan_abgc jh) {
+		return insert("insertAbgcTz",jh)>0;
+	}
+	@Override
+	public int queryAbgcTzCount(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryOne("queryAbgcTzCount", params);
+	}
+	@Override
+	public List<Plan_abgc> queryAbgcTzList(int page, int rows, Plan_abgc jh,Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("page", page);
+		params.put("rows", rows);
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryAbgcTzList",params);
+	}
+	@Override
+	public Plan_abgc querySumAbgcTz(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryOne("querySumAbgcTz", param);
+	}
+	@Override
+	public boolean insertAbgcFromBf(Plan_abgc jh) {
+		return insert("insertAbgcFromBf",jh)>0;
+	}
+	@Override
+	public boolean dropAbgcBfById(Plan_abgc jh) {
+		return delete("dropAbgcBfById",jh)>0;
+	}
+	@Override
+	public Plan_abgc queryAbgcTzById(String id) {
+		return queryOne("queryAbgcTzById",id);
+	}
+	@Override
+	public int editAbgcTzById(Plan_abgc jh) {
+		return update("editAbgcTzById",jh);
+	}
 }

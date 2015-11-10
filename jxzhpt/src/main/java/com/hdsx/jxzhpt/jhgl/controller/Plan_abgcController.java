@@ -18,6 +18,8 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSON;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -247,6 +249,17 @@ public class Plan_abgcController extends BaseActionSupport{
 			System.out.println("审查："+jh.getSckid());
 			result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
 			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(sc)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void editAbgcTzById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("jh",new Boolean((abgcServer.editAbgcTzById(jh)>0)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -560,6 +573,80 @@ public class Plan_abgcController extends BaseActionSupport{
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	
+	public void abgcTz(){
+		try {
+			boolean updateTzxz = abgcServer.updateTzxz(jh);
+			boolean result = false;
+			if(updateTzxz){
+				int queryAbgcTz = abgcServer.queryAbgcTz(jh);
+				if(queryAbgcTz>0){
+					result = abgcServer.updateAbgcTz(jh);
+				}else{
+					result = abgcServer.insertAbgcTz(jh);
+				}
+				if(jh.getTzxz().equals("取消")){
+					result = abgcServer.dropAbgcById(jh.getId());
+				}
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryAbgcTzList(){
+		try {
+			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
+			if(lx.getGydwbm()!=null){
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			}
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			jsonMap.put("total", abgcServer.queryAbgcTzCount(jh, lx));
+			jsonMap.put("rows",abgcServer.queryAbgcTzList(page, rows, jh, lx));
+			JsonUtils.write(jsonMap, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void querySumAbgcTz(){
+		try {
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			JsonUtils.write(abgcServer.querySumAbgcTz(jh,lx), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void tzTh(){
+		try {
+			if(!jh.getTzxz().equals("取消")){
+				Plan_abgc queryAbgcById = abgcServer.queryAbgcById(jh.getId());
+				if(queryAbgcById!=null){
+					abgcServer.dropAbgcById(jh.getId());
+				}
+			}
+			boolean b = abgcServer.insertAbgcFromBf(jh);
+			b = abgcServer.dropAbgcBfById(jh);
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("result", b);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryAbgcTzById(){
+		try {
+			JsonUtils.write(abgcServer.queryAbgcTzById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	// get set

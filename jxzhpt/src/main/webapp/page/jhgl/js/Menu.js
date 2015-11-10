@@ -471,21 +471,21 @@ $(function() {
 		href:'./jhksh/wqgzsjs.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030602',
-		title:'路面改造工程项目',
+		id:'menu_0101030603',
+		title:'安保工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./jhksh/abgctz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030603',
+		id:'menu_0101030605',
 		title:'新建工程项目',
 		imgSrc:'../../images/xjgcxm.png',
 		renderTo:'left_menu6',
 		href:'./jhkgl/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030604',
+		id:'menu_0101030606',
 		title:'大中修工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',

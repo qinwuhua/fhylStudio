@@ -63,6 +63,12 @@
 		<action name="editAbZj" class="plan_abgcController" method="editAbZj"/>
 		<action name="exportExcelAbgcJhSh" class="plan_abgcController" method="exportExcelAbgcJhSh"/>
 		<action name="importExcelAbgcJhSh" class="plan_abgcController" method="importExcelAbgcJhSh"/>
+		<action name="abgcTz" class="plan_abgcController" method="abgcTz"/>
+		<action name="queryAbgcTzList" class="plan_abgcController" method="queryAbgcTzList"/>
+		<action name="querySumAbgcTz" class="plan_abgcController" method="querySumAbgcTz"/>
+		<action name="tzTh" class="plan_abgcController" method="tzTh"/>
+		<action name="queryAbgcTzById" class="plan_abgcController" method="queryAbgcTzById"/>
+		<action name="editAbgcTzById" class="plan_abgcController" method="editAbgcTzById"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
