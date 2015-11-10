@@ -133,7 +133,7 @@ var zdStr;
 	}		
 	function changeZlc(){
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
-		$("#sczlc").html(zlc);
+		$("#sczlc").html(zlc.toFixed(3));
 	}
 	var xxId=parent.rowid;
 	function loadUploadify(){

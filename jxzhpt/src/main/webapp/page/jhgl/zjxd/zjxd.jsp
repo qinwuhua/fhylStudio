@@ -32,7 +32,7 @@ function check(str){
 									总补助资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input onblur="check(this)" id="xdzj" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
+								<input onblur="check(this)" id="xdzj1" name="xdzj1" type="text"  style="width: 80px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
@@ -46,7 +46,7 @@ function check(str){
 									省投资：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input onblur="check(this)" id="stz" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
+								<input onblur="check(this)" id="stz1" name="stz1" type="text"  style="width: 80px;"/>&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 35px;">
@@ -60,7 +60,7 @@ function check(str){
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="jhxdwh" name="btzzj" type="text"  style="width: 80px;" />&nbsp;
+								<input id="jhxdwh" name="jhxdwh" type="text"  style="width: 80px;" />&nbsp;
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font></b>
@@ -90,7 +90,7 @@ function check(str){
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<span id="tbsj"></span>
+								<input type="text" id="tbsj">
 							</td>
 						</tr>
 					</table>
@@ -126,7 +126,7 @@ function check(str){
 			});
 			var myDate = new Date();
 			var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
-			$('#tbsj').html(date);
+			$('#tbsj').val(date);
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjxdExistById.do',

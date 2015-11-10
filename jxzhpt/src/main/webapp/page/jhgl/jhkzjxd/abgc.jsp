@@ -81,8 +81,8 @@
 					if(data.id>0){
 						$('#lblCount').html(data.id);
 						$('#pfztz').html(data.pfztz);
-						$('#btz').html("0");
-						$('#stz').html(data.jhsybbzje);
+						$('#btz').html(data.jhsybbzje);
+						$('#stz').html("0");
 						$('#dftz').html(data.jhsydfzczj);
 						$('#xdzj').html(data.pfwh);
 					}else{
