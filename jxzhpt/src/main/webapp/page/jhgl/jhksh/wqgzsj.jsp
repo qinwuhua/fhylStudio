@@ -218,7 +218,7 @@
 			var data="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 			"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
 			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;
 			 });

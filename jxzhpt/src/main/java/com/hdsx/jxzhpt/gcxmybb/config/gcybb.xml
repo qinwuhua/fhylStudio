@@ -1308,7 +1308,7 @@
 		from (
 		select 
 		xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-		sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+		sc.scyhlc v_8,pl.jhkgsj v_9,pl.jhwgsj v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
 		from plan_abgc pl,
 		sck_abgc sc,
 		xmk_abgc xm,
@@ -1334,7 +1334,7 @@
 	from (
 	select 
 	xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-	sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+	sc.scyhlc v_8,pl.jhkgsj v_9,pl.jhwgsj v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
 	from plan_abgc pl,
 	sck_abgc sc,
 	xmk_abgc xm,
@@ -1359,7 +1359,7 @@
 	<select id="getAbgcjh3" parameterType="gcglwqgz" resultType="elist">
 		select 
 		xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-		sc.scyhlc v_8,to_char(pl.jhkgsj,'yyyy') v_9,to_char(pl.jhwgsj,'yyyy') v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
+		sc.scyhlc v_8,pl.jhkgsj v_9,pl.jhwgsj v_10,pl.pfztz v_11,pl.jhsybbzje v_12,zj.ztz v_13,zj.btz v_14,zj.dftz v_15,sc.jsnr v_16,pl.remarks v_17
 		from plan_abgc pl,
 		sck_abgc sc,
 		xmk_abgc xm,
