@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
@@ -408,6 +409,18 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		}else{
 			return g;
 		}
+	}
+
+	@Override
+	public List<Excel_list> dcwqgzsjExcel(Gcglwqgz gcglwqgz) {
+		List<Excel_list> list=new ArrayList<Excel_list>();
+		Excel_list ll=queryOne("dcwqgzsjExcelhj", gcglwqgz);
+		List<Excel_list> l=queryList("dcwqgzsjExcel", gcglwqgz);
+		if(l.size()>0){
+			list.add(ll);
+			list.addAll(l);
+		}
+		return list;
 	}
 
 }

@@ -1201,4 +1201,85 @@ public class GcglabgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void dcabgcExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		if(gydws.indexOf(",")==-1){
+			gcglabgc.setGydw("and xm.gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			gcglabgc.setGydw("and xm.gydwbm in ("+gydws+")");
+		}
+		if(gcglabgc.getSfsj()==7){
+			gcglabgc.setTiaojian("sjsh");
+		}
+		if(gcglabgc.getSfsj()==9){
+			gcglabgc.setTiaojian("sjzt");
+		}
+		if(gcglabgc.getSfsj()==11){
+			gcglabgc.setTiaojian("xjzt");
+		}
+		List<Excel_list> l = gcglabgcServer.dcabgcExcel(gcglabgc);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("市农村公路安保工程项目建设表");//设置第一行
+		eldata.setSheetName("安保工程");//设置sheeet名
+		eldata.setFileName("市农村公路安保工程项目建设表");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,3,0,0));
+		et.add(new Excel_tilte("县(市、区)",1,3,1,1));
+		et.add(new Excel_tilte("是否17个罗宵山区连片特困县",1,3,2,2));
+		et.add(new Excel_tilte("是否38个原中央苏区和特困片区县",1,3,3,3));
+		et.add(new Excel_tilte("是否54个赣南等原中央苏区县",1,3,4,4));
+		et.add(new Excel_tilte("是否21个国家贫困县",1,3,5,5));
+		et.add(new Excel_tilte("计划情况",1,1,6,19));
+		et.add(new Excel_tilte("建设进展情况",1,1,20,32));
+		et.add(new Excel_tilte("资金落实情况",1,1,33,38));
+		et.add(new Excel_tilte("备注",1,3,39,39));
+		et.add(new Excel_tilte("行政区划代码",2,3,6,6));
+		et.add(new Excel_tilte("行政区划名称",2,3,7,7));
+		et.add(new Excel_tilte("路线编码",2,3,8,8));
+		et.add(new Excel_tilte("路线名称",2,3,9,9));
+		et.add(new Excel_tilte("起点桩号",2,3,10,10));
+		et.add(new Excel_tilte("止点桩号",2,3,11,11));
+		et.add(new Excel_tilte("处理隐患里程（公里）",2,3,12,12));
+		et.add(new Excel_tilte("建设性质",2,3,13,13));
+		et.add(new Excel_tilte("计划下达时间",2,3,14,14));
+		et.add(new Excel_tilte("计划开工时间",2,3,15,15));
+		et.add(new Excel_tilte("计划完成时间",2,3,16,16));
+		et.add(new Excel_tilte("预计竣工时间",2,3,17,17));
+		et.add(new Excel_tilte("总投资（万元）",2,3,18,18));
+		et.add(new Excel_tilte("其中中央投资(万元)",2,3,19,19));
+		et.add(new Excel_tilte("实际开工时间",2,3,20,20));
+		et.add(new Excel_tilte("工程竣工时间",2,3,21,21));
+		et.add(new Excel_tilte("建设单位",2,3,22,22));
+		et.add(new Excel_tilte("设计单位",2,3,23,23));
+		et.add(new Excel_tilte("施工单位",2,3,24,24));
+		et.add(new Excel_tilte("监理单位",2,3,25,25));
+		et.add(new Excel_tilte("完成总投资（万元）",2,3,26,26));
+		et.add(new Excel_tilte("本年完成里程（公里）",2,3,27,27));
+		et.add(new Excel_tilte("完成总投资（万元）",2,3,28,28));
+		et.add(new Excel_tilte("完成中央投资(万元)",2,3,29,29));
+		et.add(new Excel_tilte("完成地方自筹(万元)",2,3,30,30));
+		et.add(new Excel_tilte("本年完成投资（万元）",2,3,31,31));
+		et.add(new Excel_tilte("项目验收里程(公里)",2,3,32,32));
+		et.add(new Excel_tilte("车购税补助资金",2,2,33,35));
+		et.add(new Excel_tilte("地方配套资金",2,2,36,38));
+		et.add(new Excel_tilte("计划补助资金(万元)",3,3,33,33));
+		et.add(new Excel_tilte("到位金额(万元) ",3,3,34,34));
+		et.add(new Excel_tilte("到位率(%)",3,3,35,35));
+		et.add(new Excel_tilte("应配套资金(万元)",3,3,36,36));
+		et.add(new Excel_tilte("到位金额(万元) ",3,3,37,37));
+		et.add(new Excel_tilte("到位率(%)",3,3,38,38));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

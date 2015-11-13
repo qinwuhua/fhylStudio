@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.gcgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface GcglwqgzServer {
 
@@ -71,6 +72,8 @@ public interface GcglwqgzServer {
 	Gcglwqgz selectcgsyf(Gcglwqgz gcglwqgz);
 
 	Boolean insertWqgzYb1(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> dcwqgzsjExcel(Gcglwqgz gcglwqgz);
 
 
 }

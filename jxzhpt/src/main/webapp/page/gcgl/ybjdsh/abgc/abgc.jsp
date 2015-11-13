@@ -35,6 +35,44 @@
 			$("#ddlYear").val(myDate.getFullYear());
 			showAll();
 		});
+		
+		function dcExcel(){
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}var jgzt='0';
+			var yhjb=$.cookie("unit2");
+			var sfsj='';
+			if(yhjb.length==11){
+				yhtype='县级';
+				sfsj=11;
+			}
+			if(yhjb.length==9||yhjb.length==8){
+				yhtype='市级';
+				sfsj=9;
+			}
+			if(yhjb.length<8&&yhjb.length>=2){
+				yhtype='省级';
+				sfsj=7;
+			}
+			var kgzt='';
+			var lxmc=$("#lxmc").val();
+			var xmnf=$("#ddlYear").val();
+			var ybzt=$("#ybzt").val();
+			var data="gcglabgc.kgzt="+kgzt+"&gcglabgc.jgzt="+jgzt+"&gcglabgc.lxmc="+lxmc+
+		 	"&gcglabgc.ybzt="+ybzt+"&gcglabgc.sfsj="+sfsj+"&gcglabgc.xmnf="+xmnf;
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
+				window.location.href='/jxzhpt/gcgl/dcabgcExcel.do?'+data;
+			 });
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -86,7 +124,9 @@ a:active {
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
+                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
+        						</p>
         				</div>
         			</fieldset>
         		</td>

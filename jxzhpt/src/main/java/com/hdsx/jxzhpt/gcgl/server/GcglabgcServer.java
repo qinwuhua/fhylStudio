@@ -87,6 +87,8 @@ public interface GcglabgcServer {
 
 	List<Excel_list> exportxjyb(Gcglabgc gcglabgc);
 
+	List<Excel_list> dcabgcExcel(Gcglabgc gcglabgc);
+
 	
 
 }

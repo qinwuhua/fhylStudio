@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.server.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -363,6 +364,18 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public int selectWqgzjhListcount1(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhListcount1", gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> dcabgcExcel(Gcglabgc gcglabgc) {
+		List<Excel_list> list=new ArrayList<Excel_list>();
+		Excel_list ll=queryOne("dcabgcExcelhj", gcglabgc);
+		List<Excel_list> l=queryList("dcabgcExcel", gcglabgc);
+		if(l.size()>0){
+			list.add(ll);
+			list.addAll(l);
+		}
+		return list;
 	}
 
 }
