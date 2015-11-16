@@ -44,6 +44,18 @@ function ybsb1(index){
 	//window.open("wqgzyb.jsp");
 }
 
+function ybsb__ck(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb__ck.jsp','wqxx1',1059,480);
+	//window.open("wqgzyb.jsp");
+}
+function ybsb1__ck(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb1__ck.jsp','wqxx1',1059,480);
+	//window.open("wqgzyb.jsp");
+}
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
@@ -179,6 +191,80 @@ function showAll(){
 	    ]]    
 	}); 
 }
+
+function showAll__ck(){
+	var xmnf=$("#ddlYear").val();
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var kgzt='';
+	var jgzt='0';
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var ybzt=$("#ybzt").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzjhList.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: gydwstr,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+	    	'gcglwqgz.qlbh':$('#qlbm').val(),
+	    	ybzt:ybzt,
+	    	sfsj:sfsj,
+	    	xmnf:xmnf,
+	    	sfylrbwqk:'是',
+	    	gydwtj:"and 1=1"
+	    	
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb__ck('+index+')">月报审核</a>    ';
+	        }},
+	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
+	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
+	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
+	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
+	    ]]    
+	}); 
+}
 function showAll1(){
 	var xmnf=$("#ddlYear").val();
 	var gydw=$("#gydw").combotree("getValues");
@@ -252,6 +338,78 @@ function showAll1(){
 	}); 
 }
 
+function showAll1__ck(){
+	var xmnf=$("#ddlYear").val();
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var kgzt='';
+	var jgzt='0';
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var ybzt=$("#ybzt").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzjhList.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-160,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: gydwstr,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+	    	'gcglwqgz.qlbh':$('#qlbm').val(),
+	    	ybzt:ybzt,
+	    	sfsj:sfsj,
+	    	xmnf:xmnf,
+	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
+	    	gydwtj:"and gydwbm like '1%'"
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb1__ck('+index+')">月报审核</a>    ';
+	        }},
+	        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
+	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
+	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
+	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
+	    ]]    
+	}); 
+}
 function showYBlist(){
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
@@ -288,6 +446,40 @@ function showYBlist(){
 	    ]
 	});
 }
+function showYBlist__ck(){
+	$('#ybgrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:325,
+	    columns:[
+	             [
+	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
+	              		
+	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
+	              	}},
+			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
+			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
+			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
+			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+			        {title:'本月完成投资（万元）',colspan:3},
+			        {title:'本月资金到位（万元）',colspan:3},
+			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
+	             ],
+	             [
+			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+			    ]
+	    ]
+	});
+}
 function showYBlist1(){
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
@@ -304,6 +496,40 @@ function showYBlist1(){
 			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
 	              		if(row.shzt=='已审核')
 	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'已审核   '+'退回   ';
+	              	}},
+			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
+			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
+//			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
+//			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+			        {title:'本月完成投资（万元）',colspan:3},
+			        {title:'本月资金到位（万元）',colspan:3},
+			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
+	             ],
+	             [
+			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+			    ]
+	    ]
+	});
+}
+function showYBlist1__ck(){
+	$('#ybgrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:325,
+	    columns:[
+	             [
+	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
+	              		
+	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
