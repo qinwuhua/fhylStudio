@@ -1,6 +1,6 @@
 if ($.fn.pagination){
 	$.fn.pagination.defaults.beforePageText = '第';
-	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.afterPageText = '页,共{pages}页';
 	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
 }
 if ($.fn.datagrid){
@@ -10,7 +10,7 @@ if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }
 if ($.messager){
-	$.messager.defaults.ok = '是';
+	$.messager.defaults.ok = '关闭';
 	$.messager.defaults.cancel = '否';
 }
 if ($.fn.validatebox){

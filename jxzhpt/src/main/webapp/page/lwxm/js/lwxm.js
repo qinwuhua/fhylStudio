@@ -1,3 +1,94 @@
+function loadDist4(id,yhdw) {
+	$('#' + id).combotree(
+	{
+		checkbox : true,
+		url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + yhdw,
+		onBeforeExpand : function(node, param) {
+			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh1.do?yhdw="
+					+ node.id;
+		},
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	$('#' + id).combotree('setValue', '360000');
+}
+function loadUnit4(id,yhdw) {
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + yhdw,
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+//	if(yhdw=='_____36'||yhdw=='36')
+//	$('#' + id).combotree('setValue', '11101360000');
+//	else{
+		$('#' + id).combotree('setValue', yhdw);
+	//}
+}
+function loadDist5(id, dwbm,yhdw) {
+	$('#' + id).combotree(
+	{
+		checkbox : true,
+		url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + yhdw,
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text;
+		}
+	});
+	$('#' + id).combotree('setValue', dwbm);
+}
+function loadUnit5(id, dwbm,yhdw) {
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + yhdw,
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text
+		}
+	});
+	$('#' + id).combotree('setValue', dwbm);
+}
+
+//加法
+function accAdd(arg1,arg2){  
+    var r1,r2,m;  
+    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  
+    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}  
+    m=Math.pow(10,Math.max(r1,r2));
+    return (arg1*m+arg2*m)/m;  
+}
+//浮点数减法
+function accSub(arg1,arg2){
+	 var r1,r2,m,n;
+	 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
+	try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
+	m=Math.pow(10,Math.max(r1,r2));
+	//last modify by deeka
+	//动态控制精度长度
+	n=(r1>=r2)?r1:r2;
+	return ((arg1*m-arg2*m)/m).toFixed(n);
+	}
+//乘法
+function accMul(arg1,arg2)  
+{  
+    var m=0,s1=arg1.toString(),s2=arg2.toString();  
+    try{m+=s1.split(".")[1].length;}catch(e){
+    }  
+    try{m+=s2.split(".")[1].length;}catch(e){
+    }  
+    return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);  
+}
+//除法
+function accDiv(arg1,arg2){  
+    var t1=0,t2=0,r1,r2;  
+    try{t1=arg1.toString().split(".")[1].length;}catch(e){}  
+    try{t2=arg2.toString().split(".")[1].length;}catch(e){}  
+    with(Math){  
+        r1=Number(arg1.toString().replace(".",""));  
+        r2=Number(arg2.toString().replace(".",""));  
+        return (r1/r2)*pow(10,t2-t1);  
+    }  
+}
 var rowid;
 //年份
 function xmnf(id){
@@ -32,6 +123,23 @@ function xmnf1(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function xmnf2(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	});
+	$('#'+id).combobox("setValue",first);
+}
+
 function tsdq(id){
 	$('#'+id).combobox({    
 	    url:'/jxzhpt/jhgl/queryTsdq.do',

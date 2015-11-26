@@ -66,6 +66,13 @@ $(function() {
 		href:'./jckgl/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
+		id:'menu_0101020105',
+		title:'安全生命防护工程',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/aqsmfh.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020120',
 		title:'危桥改造项目查看',
 		imgSrc:'../../images/wq.png',
@@ -121,6 +128,13 @@ $(function() {
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101020205',
+		title:'安全生命防护工程',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu2',
+		href:'./jcksh/aqsmfh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101020220',
@@ -180,6 +194,13 @@ $(function() {
 		href:'./sckgl/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
+		id:'menu_0101020305',
+		title:'安全生命防护工程',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu3',
+		href:'./sckgl/aqsmfh.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020320',
 		title:'危桥改造项目查看',
 		imgSrc:'../../images/wq.png',
@@ -236,6 +257,13 @@ $(function() {
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu4',
 		href:'./scksh/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101020405',
+		title:'安全生命防护工程',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu4',
+		href:'./scksh/aqsmfh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101020420',

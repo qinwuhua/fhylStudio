@@ -82,7 +82,7 @@ function delSckwqgz(){
 		}
 }
 function delSckwqgz1(index){
-	if($("#grid").datagrid('getRows')[index].tbbmbm!=$.cookie("unit")||$("#grid").datagrid('getRows')[index].sbzt2=='已上报'){
+	if($("#grid").datagrid('getRows')[index].scbmbm!=$.cookie("unit")||$("#grid").datagrid('getRows')[index].sbzt2=='已上报'){
 		alert("该项目不是您添加的或已上报，不能执行删除操作！");
 		return false;
 	}
