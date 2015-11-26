@@ -1,0 +1,1417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.xmkaqsmfh">
+	<select id="selectXmkaqsmfhXMK" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+		select * from (
+	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
+	 			and  sbthcd &lt;=#{sbthcd} 
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
+	</select>
+	<select id="selectXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="int">
+	 		select count(*) from XMK_AQSMFH t where 1=1 
+	 			and  sbthcd &lt;=#{sbthcd} 
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 			
+	</select>
+	<select id="loadXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
+	 			and  sbthcd &lt;=#{sbthcd} 
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	</select>
+	
+	<select id="smfhGpsroad" parameterType="hashmap" resultType="xmkaqsmfh">
+	
+		select roadcode,roadname,min(roadstart) roadstart,max(roadends)
+		roadend,substr(roadcode,length(roadcode)-5,6) distcode, 
+		(select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6))
+		dist,F044 unitcode,F045 unit,
+		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
+		xjgjnd,F114 jsdj,decode(substr(roadcode,1,1),'G','国道','S','省道','X','县道','Y','乡道') gldj from GPSROAD
+		where substr(roadcode,1,1) in('G','S','X','Y') and F048='1' and roadcode like #{roadcode} ||'%' 
+		<if test="unitcode!='' and unitcode!= null ">
+			and F044 in(select id from xtgl_department where id like '%'||substr(#{unitcode},0,4)||'_'||substr(#{unitcode},6)||'%' or parent like '%'||substr(#{unitcode},0,4)||'_'||substr(#{unitcode},6)||'%') 
+		</if>
+<!-- 		<if test="xzqhdm!='' and xzqhdm!= null ">
+			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		</if> -->
+ 		and<![CDATA[ROWNUM <=50]]>
+		group by roadname,roadcode,F114,F044,F045
+		order by roadcode,roadstart
+		</select>
+		
+		<insert id="insertAqsmfhxmk" parameterType="xmkaqsmfh" >
+	    insert into XMK_AQSMFH
+	    <trim prefix="(" suffix=")" suffixOverrides="," >	      
+	        ID,
+	      <if test="province != null" > PROVINCE,</if>
+	      <if test="town != null" >TOWN,</if>
+	      <if test="county != null" > COUNTY,</if>
+	      <if test="unit != null" >UNIT,</if>
+	      <if test="unitcode != null" >
+	        UNITCODE,
+	      </if>
+	      <if test="roadcode != null" >
+	        ROADCODE,
+	      </if>
+	      <if test="jsdj != null" >
+	        JSDJ,
+	      </if>
+	      <if test="fangx != null" >
+	        FANGX,
+	      </if>
+	      <if test="roadstart != null" >
+	        ROADSTART,
+	      </if>
+	      <if test="roadend != null" >
+	        ROADEND,
+	      </if>
+	      <if test="pcsj != null" >
+	        PCSJ,
+	      </if>
+	      <if test="ldfl != null" >
+	        LDFL,
+	      </if>
+	      <if test="jtsgpcf != null" >
+	        JTSGPCF,
+	      </if>
+	      <if test="jtsgfxdj != null" >
+	        JTSGFXDJ,
+	      </if>
+	      <if test="gltjpcf != null" >
+	        GLTJPCF,
+	      </if>
+	      <if test="glfxdj != null" >
+	        GLFXDJ,
+	      </if>
+	      <if test="xbjyqx != null" >
+	        XBJYQX,
+	      </if>
+	      <if test="lxxp != null" >
+	        LXXP,
+	      </if>
+	      <if test="doup != null" >
+	        DOUP,
+	      </if>
+	      <if test="sjbl != null" >
+	        SJBL,
+	      </if>
+	      <if test="lcxy != null" >
+	        LCXY,
+	      </if>
+	      <if test="hjfz != null" >
+	        HJFZ,
+	      </if>
+	      <if test="jckbgf != null" >
+	        JCKBGF,
+	      </if>
+	      <if test="jtl != null" >
+	        JTL,
+	      </if>
+	      <if test="xchbc != null" >
+	        XCHBC,
+	      </if>
+	      <if test="csxsss != null" >
+	        CSXSSS,
+	      </if>
+	      <if test="hul != null" >
+	        HUL,
+	      </if>
+	      <if test="bzbx != null" >
+	        BZBX,
+	      </if>
+	      <if test="jshsxyd != null" >
+	        JSHSXYD,
+	      </if>
+	      <if test="aqssqt != null" >
+	        AQSSQT,
+	      </if>
+	      <if test="tjgc != null" >
+	        TJGC,
+	      </if>
+	      <if test="hjzz != null" >
+	        HJZZ,
+	      </if>
+	      <if test="bzbxcz != null" >
+	        BZBXCZ,
+	      </if>
+	      <if test="jckcz != null" >
+	        JCKCZ,
+	      </if>
+	      <if test="jzhl != null" >
+	        JZHL,
+	      </if>
+	      <if test="jshsxydcz != null" >
+	        JSHSXYDCZ,
+	      </if>
+	      <if test="aqssqtcz != null" >
+	        AQSSQTCZ,
+	      </if>
+	      <if test="tzgs != null" >
+	        TZGS,
+	      </if>
+	      <if test="jhnf != null" >
+	        JHNF,
+	      </if>
+	      <if test="throadcode != null" >
+	        THROADCODE,
+	      </if>
+	      <if test="throadstart != null" >
+	        THROADSTART,
+	      </if>
+	      <if test="throadend != null" >
+	        THROADEND,
+	      </if>
+	      <if test="sgpb != null" >
+	        SGPB,
+	      </if>
+	      <if test="dgjw != null" >
+	        DGJW,
+	      </if>
+	      <if test="lxjw != null" >
+	        LXJW,
+	      </if>
+	      <if test="jtlpbzb != null" >
+	        JTLPBZB,
+	      </if>
+	      <if test="dist != null" >
+	        DIST,
+	      </if>
+	      <if test="distcode != null" >
+	        DISTCODE,
+	      </if>
+	      <if test="sbzt != null" >
+	        SBZT,
+	      </if>
+	      <if test="cszt != null" >
+	        CSZT,
+	      </if>
+	      <if test="zszt != null" >
+	        ZSZT,
+	      </if>
+	      <if test="csyj != null" >
+	        CSYJ,
+	      </if>
+	      <if test="zsyj != null" >
+	        ZSYJ,
+	      </if>
+	      <if test="roadname != null" >
+	        ROADNAME,
+	      </if>
+	      <if test="gldj != null" >
+	        GLDJ,
+	      </if>
+	      <if test="tsdq != null" >
+	        TSDQ,
+	      </if>
+	      <if test="xjgjnd != null" >
+	        XJGJND,
+	      </if>
+	      <if test="zlc != null" >
+	        ZLC,
+	      </if>
+	      <if test="sbthcd != null" >
+	        SBTHCD,
+	      </if>
+	      <if test="yhlc != null" >
+	        yhlc,
+	      </if>
+	      <if test="gpsqd != null" >
+	        gpsqd,
+	      </if>
+	      <if test="gpszd != null" >
+	        gpszd,
+	      </if>
+	      <if test="tbbmbm != null" >
+	        tbbmbm,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			sys_guid(),
+			<if test="province != null">
+				#{province},
+			</if>
+			<if test="town != null">
+				#{town},
+			</if>
+			<if test="county != null">
+				#{county},
+			</if>
+			<if test="unit != null">
+				#{unit},
+			</if>
+			<if test="unitcode != null">
+				#{unitcode},
+			</if>
+			<if test="roadcode != null">
+				#{roadcode},
+			</if>
+			<if test="jsdj != null">
+				#{jsdj},
+			</if>
+			<if test="fangx != null">
+				#{fangx},
+			</if>
+			<if test="roadstart != null">
+				#{roadstart},
+			</if>
+			<if test="roadend != null">
+				#{roadend},
+			</if>
+			<if test="pcsj != null">
+				#{pcsj},
+			</if>
+			<if test="ldfl != null">
+				#{ldfl},
+			</if>
+			<if test="jtsgpcf != null">
+				#{jtsgpcf},
+			</if>
+			<if test="jtsgfxdj != null">
+				#{jtsgfxdj},
+			</if>
+			<if test="gltjpcf != null">
+				#{gltjpcf},
+			</if>
+			<if test="glfxdj != null">
+				#{glfxdj},
+			</if>
+			<if test="xbjyqx != null">
+				#{xbjyqx},
+			</if>
+			<if test="lxxp != null">
+				#{lxxp},
+			</if>
+			<if test="doup != null">
+				#{doup},
+			</if>
+			<if test="sjbl != null">
+				#{sjbl},
+			</if>
+			<if test="lcxy != null">
+				#{lcxy},
+			</if>
+			<if test="hjfz != null">
+				#{hjfz},
+			</if>
+			<if test="jckbgf != null">
+				#{jckbgf},
+			</if>
+			<if test="jtl != null">
+				#{jtl},
+			</if>
+			<if test="xchbc != null">
+				#{xchbc},
+			</if>
+			<if test="csxsss != null">
+				#{csxsss},
+			</if>
+			<if test="hul != null">
+				#{hul},
+			</if>
+			<if test="bzbx != null">
+				#{bzbx},
+			</if>
+			<if test="jshsxyd != null">
+				#{jshsxyd},
+			</if>
+			<if test="aqssqt != null">
+				#{aqssqt},
+			</if>
+			<if test="tjgc != null">
+				#{tjgc},
+			</if>
+			<if test="hjzz != null">
+				#{hjzz},
+			</if>
+			<if test="bzbxcz != null">
+				#{bzbxcz},
+			</if>
+			<if test="jckcz != null">
+				#{jckcz},
+			</if>
+			<if test="jzhl != null">
+				#{jzhl},
+			</if>
+			<if test="jshsxydcz != null">
+				#{jshsxydcz},
+			</if>
+			<if test="aqssqtcz != null">
+				#{aqssqtcz},
+			</if>
+			<if test="tzgs != null">
+				#{tzgs},
+			</if>
+			<if test="jhnf != null">
+				#{jhnf},
+			</if>
+			<if test="throadcode != null">
+				#{throadcode},
+			</if>
+			<if test="throadstart != null">
+				#{throadstart},
+			</if>
+			<if test="throadend != null">
+				#{throadend},
+			</if>
+			<if test="sgpb != null">
+				#{sgpb},
+			</if>
+			<if test="dgjw != null">
+				#{dgjw},
+			</if>
+			<if test="lxjw != null">
+				#{lxjw},
+			</if>
+			<if test="jtlpbzb != null">
+				#{jtlpbzb},
+			</if>
+			<if test="dist != null">
+				#{dist},
+			</if>
+			<if test="distcode != null">
+				#{distcode},
+			</if>
+			<if test="sbzt != null">
+				#{sbzt},
+			</if>
+			<if test="cszt != null">
+				#{cszt},
+			</if>
+			<if test="zszt != null">
+				#{zszt},
+			</if>
+			<if test="csyj != null">
+				#{csyj},
+			</if>
+			<if test="zsyj != null">
+				#{zsyj},
+			</if>
+			<if test="roadname != null">
+				#{roadname},
+			</if>
+			<if test="gldj != null">
+				#{gldj},
+			</if>
+			<if test="tsdq != null">
+				#{tsdq},
+			</if>
+			<if test="xjgjnd != null">
+				#{xjgjnd},
+			</if>
+			<if test="zlc != null">
+				#{zlc},
+			</if>
+			<if test="sbthcd != null">
+				#{sbthcd},
+			</if>
+			<if test="yhlc != null">
+				#{yhlc},
+			</if>
+			<if test="gpsqd != null">
+				#{gpsqd},
+			</if>
+			<if test="gpszd != null">
+				#{gpszd},
+			</if>
+			<if test="tbbmbm != null">
+				#{tbbmbm},
+			</if>
+	    </trim>
+	  </insert>
+	  <update id="updateAqsmfhxmk" parameterType="xmkaqsmfh">
+	  	update XMK_AQSMFH
+		    <set >
+		      <if test="province != null" >
+		        PROVINCE = #{province},
+		      </if>
+		      <if test="town != null" >
+		        TOWN = #{town},
+		      </if>
+		      <if test="county != null" >
+		        COUNTY = #{county},
+		      </if>
+		      <if test="unit != null" >
+		        UNIT = #{unit},
+		      </if>
+		      <if test="unitcode != null" >
+		        UNITCODE = #{unitcode},
+		      </if>
+		      <if test="roadcode != null" >
+		        ROADCODE = #{roadcode},
+		      </if>
+		      <if test="jsdj != null" >
+		        JSDJ = #{jsdj},
+		      </if>
+		      <if test="fangx != null" >
+		        FANGX = #{fangx},
+		      </if>
+		      <if test="roadstart != null" >
+		        ROADSTART = #{roadstart},
+		      </if>
+		      <if test="roadend != null" >
+		        ROADEND = #{roadend},
+		      </if>
+		      <if test="pcsj != null" >
+		        PCSJ = #{pcsj},
+		      </if>
+		      <if test="ldfl != null" >
+		        LDFL = #{ldfl},
+		      </if>
+		      <if test="jtsgpcf != null" >
+		        JTSGPCF = #{jtsgpcf},
+		      </if>
+		      <if test="jtsgfxdj != null" >
+		        JTSGFXDJ = #{jtsgfxdj},
+		      </if>
+		      <if test="gltjpcf != null" >
+		        GLTJPCF = #{gltjpcf},
+		      </if>
+		      <if test="glfxdj != null" >
+		        GLFXDJ = #{glfxdj},
+		      </if>
+		      <if test="xbjyqx != null" >
+		        XBJYQX = #{xbjyqx},
+		      </if>
+		      <if test="lxxp != null" >
+		        LXXP = #{lxxp},
+		      </if>
+		      <if test="doup != null" >
+		        DOUP = #{doup},
+		      </if>
+		      <if test="sjbl != null" >
+		        SJBL = #{sjbl},
+		      </if>
+		      <if test="lcxy != null" >
+		        LCXY = #{lcxy},
+		      </if>
+		      <if test="hjfz != null" >
+		        HJFZ = #{hjfz},
+		      </if>
+		      <if test="jckbgf != null" >
+		        JCKBGF = #{jckbgf},
+		      </if>
+		      <if test="jtl != null" >
+		        JTL = #{jtl},
+		      </if>
+		      <if test="xchbc != null" >
+		        XCHBC = #{xchbc},
+		      </if>
+		      <if test="csxsss != null" >
+		        CSXSSS = #{csxsss},
+		      </if>
+		      <if test="hul != null" >
+		        HUL = #{hul},
+		      </if>
+		      <if test="bzbx != null" >
+		        BZBX = #{bzbx},
+		      </if>
+		      <if test="jshsxyd != null" >
+		        JSHSXYD = #{jshsxyd},
+		      </if>
+		      <if test="aqssqt != null" >
+		        AQSSQT = #{aqssqt},
+		      </if>
+		      <if test="tjgc != null" >
+		        TJGC = #{tjgc},
+		      </if>
+		      <if test="hjzz != null" >
+		        HJZZ = #{hjzz},
+		      </if>
+		      <if test="bzbxcz != null" >
+		        BZBXCZ = #{bzbxcz},
+		      </if>
+		      <if test="jckcz != null" >
+		        JCKCZ = #{jckcz},
+		      </if>
+		      <if test="jzhl != null" >
+		        JZHL = #{jzhl},
+		      </if>
+		      <if test="jshsxydcz != null" >
+		        JSHSXYDCZ = #{jshsxydcz},
+		      </if>
+		      <if test="aqssqtcz != null" >
+		        AQSSQTCZ = #{aqssqtcz},
+		      </if>
+		      <if test="tzgs != null" >
+		        TZGS = #{tzgs},
+		      </if>
+		      <if test="jhnf != null" >
+		        JHNF = #{jhnf},
+		      </if>
+		      <if test="throadcode != null" >
+		        THROADCODE = #{throadcode},
+		      </if>
+		      <if test="throadstart != null" >
+		        THROADSTART = #{throadstart},
+		      </if>
+		      <if test="throadend != null" >
+		        THROADEND = #{throadend},
+		      </if>
+		      <if test="sgpb != null" >
+		        SGPB = #{sgpb},
+		      </if>
+		      <if test="dgjw != null" >
+		        DGJW = #{dgjw},
+		      </if>
+		      <if test="lxjw != null" >
+		        LXJW = #{lxjw},
+		      </if>
+		      <if test="jtlpbzb != null" >
+		        JTLPBZB = #{jtlpbzb},
+		      </if>
+		      <if test="dist != null" >
+		        DIST = #{dist},
+		      </if>
+		      <if test="distcode != null" >
+		        DISTCODE = #{distcode},
+		      </if>
+		      <if test="sbzt != null" >
+		        SBZT = #{sbzt},
+		      </if>
+		      <if test="cszt != null" >
+		        CSZT = #{cszt},
+		      </if>
+		      <if test="zszt != null" >
+		        ZSZT = #{zszt},
+		      </if>
+		      <if test="csyj != null" >
+		        CSYJ = #{csyj},
+		      </if>
+		      <if test="zsyj != null" >
+		        ZSYJ = #{zsyj},
+		      </if>
+		      <if test="roadname != null" >
+		        ROADNAME = #{roadname},
+		      </if>
+		      <if test="gldj != null" >
+		        GLDJ = #{gldj},
+		      </if>
+		      <if test="tsdq != null" >
+		        TSDQ = #{tsdq},
+		      </if>
+		      <if test="xjgjnd != null" >
+		        XJGJND = #{xjgjnd},
+		      </if>
+		      <if test="zlc != null" >
+		        ZLC = #{zlc},
+		      </if>
+		      <if test="sbthcd != null" >
+		        SBTHCD = #{sbthcd},
+		      </if>
+		      <if test="yhlc != null" >
+		        YHLC = #{yhlc},
+		      </if>
+		      <if test="gpsqd != null" >
+		        gpsqd = #{gpsqd},
+		      </if>
+		      <if test="gpszd != null" >
+		        gpszd = #{gpszd},
+		      </if>
+		    </set>
+		    where id=#{id}
+	  </update>
+	   	<update id="xgXmkAFSbzt" parameterType="hashmap" >
+ 			update XMK_AQSMFH set sbzt='已上报',sbthcd=#{sbthcd} where id =#{id}
+ 		</update>
+ 		<delete id="deleteAfxmkById" parameterType="java.util.List">
+ 			delete from XMK_AQSMFH where id=#{id}
+ 		</delete>
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		<!-- 审查库 -->
+ 		<select id="selectSckaqsmfh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+		select * from (
+	 		select rownum num ,t.*,decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) sbzt2 from (select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+	 			order by decode(sbthbmcd,#{sbthbmcd},'未上报',sbzt) desc 
+	</select>
+		<select id="selectSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="int">
+	 		select count(*) from 
+				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 			
+	</select>
+		<select id="loadSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc from 
+				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	</select>
+ 		<select id="aqsmfhJckGpsRoad" parameterType="hashmap" resultType="xmkaqsmfh">
+ 			select * from xmk_aqsmfh  where 1=1
+ 			<if test="unitcode!='' and unitcode!= null ">
+				and unitcode like '%'||#{unitcode}||'%'
+			</if>
+ 			<if test="distcode!='' and distcode!= null ">
+				and distcode like '%'||#{distcode}||'%'
+			</if>
+			<if test="roadcode!='' and roadcode!= null ">
+				and roadcode like '%'||#{roadcode}||'%'
+			</if>
+ 		</select>
+ 		<insert id="insertAqsmfhsck" parameterType="xmkaqsmfh">
+ 		insert into SCK_AQSMFH
+		    <trim prefix="(" suffix=")" suffixOverrides="," >    
+		        ID,
+		      <if test="province != null" >
+		        PROVINCE,
+		      </if>
+		      <if test="town != null" >
+		        TOWN,
+		      </if>
+		      <if test="county != null" >
+		        COUNTY,
+		      </if>
+		      <if test="gydw != null" >
+		        GYDW,
+		      </if>
+		      <if test="gydwdm != null" >
+		        GYDWDM,
+		      </if>
+		      <if test="lxbm != null" >
+		        LXBM,
+		      </if>
+		      <if test="jsdj != null" >
+		        JSDJ,
+		      </if>
+		      <if test="qdzh != null" >
+		        QDZH,
+		      </if>
+		      <if test="zdzh != null" >
+		        ZDZH,
+		      </if>
+		      <if test="sbzt != null" >
+		        SBZT,
+		      </if>
+		      <if test="lxmc != null" >
+		        LXMC,
+		      </if>
+		      <if test="xjgjnd != null" >
+		        XJGJND,
+		      </if>
+		      <if test="sbthbmcd != null" >
+		        SBTHBMCD,
+		      </if>
+		      <if test="yhlc != null" >
+		        YHLC,
+		      </if>
+		      <if test="fapgdw != null" >
+		        FAPGDW,
+		      </if>
+		      <if test="fascdw != null" >
+		        FASCDW,
+		      </if>
+		      <if test="faspsj != null" >
+		        FASPSJ,
+		      </if>
+		      <if test="spwh != null" >
+		        SPWH,
+		      </if>
+		      <if test="czzlc != null" >
+		        CZZLC,
+		      </if>
+		      <if test="cztzgs != null" >
+		        CZTZGS,
+		      </if>
+		      <if test="jsxz != null" >
+		        JSXZ,
+		      </if>
+		      <if test="jsnr != null" >
+		        JSNR,
+		      </if>
+		      <if test="bz != null" >
+		        BZ,
+		      </if>
+		      <if test="shzt != null" >
+		        SHZT,
+		      </if>
+		      <if test="tbdwdm != null" >
+		        TBDWDM,
+		      </if>
+		      <if test="sfsqablbz != null" >
+		        SFSQABLBZ,
+		      </if>
+		      <if test="ablbzsqwh != null" >
+		        ABLBZSQWH,
+		      </if>
+		      <if test="xzqhdm != null" >
+		        XZQHDM,
+		      </if>
+		      <if test="xzqh != null" >
+		        XZQH,
+		      </if>
+		      <if test="cszt != null" >
+		        CSZT,
+		      </if>
+		      <if test="csyj != null" >
+		        CSYJ,
+		      </if>
+		      <if test="shyj != null" >
+		        SHYJ,
+		      </if>
+		      <if test="xmbm != null" >
+		        XMBM,
+		      </if>
+		      <if test="bzls != null" >
+		        BZLS,
+		      </if>
+		      <if test="jhnf != null" >
+		        JHNF,
+		      </if>
+		       <if test="str1 != null" >
+		        STR1,
+		      </if>
+		      <if test="str2 != null" >
+		        STR2,
+		      </if>
+		      <if test="str3 != null" >
+		        STR3,
+		      </if>
+		      <if test="str4 != null" >
+		        STR4,
+		      </if>
+		      <if test="str5 != null" >
+		        STR5,
+		      </if>
+		      <if test="str6 != null" >
+		        STR6,
+		      </if>
+		      <if test="str7 != null" >
+		        STR7,
+		      </if>
+		    </trim>
+		    <trim prefix="values (" suffix=")" suffixOverrides="," >
+		        sys_guid(),
+		      <if test="province != null" >
+		        #{province},
+		      </if>
+		      <if test="town != null" >
+		        #{town},
+		      </if>
+		      <if test="county != null" >
+		        #{county},
+		      </if>
+		      <if test="gydw != null" >
+		        #{gydw},
+		      </if>
+		      <if test="gydwdm != null" >
+		        #{gydwdm},
+		      </if>
+		      <if test="lxbm != null" >
+		        #{lxbm},
+		      </if>
+		      <if test="jsdj != null" >
+		        #{jsdj},
+		      </if>
+		      <if test="qdzh != null" >
+		        #{qdzh},
+		      </if>
+		      <if test="zdzh != null" >
+		        #{zdzh},
+		      </if>
+		      <if test="sbzt != null" >
+		        #{sbzt},
+		      </if>
+		      <if test="lxmc != null" >
+		        #{lxmc},
+		      </if>
+		      <if test="xjgjnd != null" >
+		        #{xjgjnd},
+		      </if>
+		      <if test="sbthbmcd != null" >
+		        #{sbthbmcd},
+		      </if>
+		      <if test="yhlc != null" >
+		        #{yhlc},
+		      </if>
+		      <if test="fapgdw != null" >
+		        #{fapgdw},
+		      </if>
+		      <if test="fascdw != null" >
+		        #{fascdw},
+		      </if>
+		      <if test="faspsj != null" >
+		        #{faspsj},
+		      </if>
+		      <if test="spwh != null" >
+		        #{spwh},
+		      </if>
+		      <if test="czzlc != null" >
+		        #{czzlc},
+		      </if>
+		      <if test="cztzgs != null" >
+		        #{cztzgs},
+		      </if>
+		      <if test="jsxz != null" >
+		        #{jsxz},
+		      </if>
+		      <if test="jsnr != null" >
+		        #{jsnr},
+		      </if>
+		      <if test="bz != null" >
+		        #{bz},
+		      </if>
+		      <if test="shzt != null" >
+		        #{shzt},
+		      </if>
+		      <if test="tbdwdm != null" >
+		        #{tbdwdm},
+		      </if>
+		      <if test="sfsqablbz != null" >
+		        #{sfsqablbz},
+		      </if>
+		      <if test="ablbzsqwh != null" >
+		        #{ablbzsqwh},
+		      </if>
+		      <if test="xzqhdm != null" >
+		        #{xzqhdm},
+		      </if>
+		      <if test="xzqh != null" >
+		        #{xzqh},
+		      </if>
+		      <if test="cszt != null" >
+		        #{cszt},
+		      </if>
+		      <if test="csyj != null" >
+		        #{csyj},
+		      </if>
+		      <if test="shyj != null" >
+		        #{shyj},
+		      </if>
+		      <if test="xmbm != null" >
+		        #{xmbm},
+		      </if>
+		      <if test="bzls != null" >
+		        #{bzls},
+		      </if>
+		      <if test="jhnf != null" >
+		        #{jhnf},
+		      </if>
+		      <if test="str1 != null" >
+		        #{str1},
+		      </if>
+		      <if test="str2 != null" >
+		        #{str2},
+		      </if>
+		      <if test="str3 != null" >
+		        #{str3},
+		      </if>
+		      <if test="str4 != null" >
+		        #{str4},
+		      </if>
+		      <if test="str5 != null" >
+		        #{str5},
+		      </if>
+		      <if test="str6 != null" >
+		        #{str6},
+		      </if>
+		      <if test="str7 != null" >
+		        #{str7},
+		      </if>
+		    </trim>
+ 		</insert>
+ 		<select id="selectafldList" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from SCK_AQSMFH where 1=1 
+ 			<if test="xmbm!='' and xmbm!=null "> and xmbm=#{xmbm}</if>
+ 			order by xuh
+ 		</select>
+ 		<select id="selectAqsmfhsckbyid" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from SCK_AQSMFH where 1=1 
+ 			<if test="id!='' and id!=null "> and id=#{id}</if>
+ 		</select>
+ 		<select id="selectAqsmfhxmkbyid" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from XMK_AQSMFH where 1=1 
+ 			<if test="id!='' and id!=null "> and id=#{id}</if>
+ 		</select>
+ 		<update id="updateAqsmfhsck" parameterType="xmkaqsmfh">
+ 			 update SCK_AQSMFH
+			    <set >
+			      <if test="province != null" >
+			        PROVINCE = #{province},
+			      </if>
+			      <if test="town != null" >
+			        TOWN = #{town},
+			      </if>
+			      <if test="county != null" >
+			        COUNTY = #{county},
+			      </if>
+			      <if test="gydw != null" >
+			        GYDW = #{gydw},
+			      </if>
+			      <if test="gydwdm != null" >
+			        GYDWDM = #{gydwdm},
+			      </if>
+			      <if test="lxbm != null" >
+			        LXBM = #{lxbm},
+			      </if>
+			      <if test="jsdj != null" >
+			        JSDJ = #{jsdj},
+			      </if>
+			      <if test="qdzh != null" >
+			        QDZH = #{qdzh},
+			      </if>
+			      <if test="zdzh != null" >
+			        ZDZH = #{zdzh},
+			      </if>
+			      <if test="sbzt != null" >
+			        SBZT = #{sbzt},
+			      </if>
+			      <if test="lxmc != null" >
+			        LXMC = #{lxmc},
+			      </if>
+			      <if test="xjgjnd != null" >
+			        XJGJND = #{xjgjnd},
+			      </if>
+			      <if test="sbthbmcd != null" >
+			        SBTHBMCD = #{sbthbmcd},
+			      </if>
+			      <if test="yhlc != null" >
+			        YHLC = #{yhlc},
+			      </if>
+			      <if test="fapgdw != null" >
+			        FAPGDW = #{fapgdw},
+			      </if>
+			      <if test="fascdw != null" >
+			        FASCDW = #{fascdw},
+			      </if>
+			      <if test="faspsj != null" >
+			        FASPSJ = #{faspsj},
+			      </if>
+			      <if test="spwh != null" >
+			        SPWH = #{spwh},
+			      </if>
+			      <if test="czzlc != null" >
+			        CZZLC = #{czzlc},
+			      </if>
+			      <if test="cztzgs != null" >
+			        CZTZGS = #{cztzgs},
+			      </if>
+			      <if test="jsxz != null" >
+			        JSXZ = #{jsxz},
+			      </if>
+			      <if test="jsnr != null" >
+			        JSNR = #{jsnr},
+			      </if>
+			      <if test="bz != null" >
+			        BZ = #{bz},
+			      </if>
+			      <if test="shzt != null" >
+			        SHZT = #{shzt},
+			      </if>
+			      <if test="tbdwdm != null" >
+			        TBDWDM = #{tbdwdm},
+			      </if>
+			      <if test="sfsqablbz != null" >
+			        SFSQABLBZ = #{sfsqablbz},
+			      </if>
+			      <if test="ablbzsqwh != null" >
+			        ABLBZSQWH = #{ablbzsqwh},
+			      </if>
+			      <if test="xzqhdm != null" >
+			        XZQHDM = #{xzqhdm},
+			      </if>
+			      <if test="xzqh != null" >
+			        XZQH = #{xzqh},
+			      </if>
+			      <if test="cszt != null" >
+			        CSZT = #{cszt},
+			      </if>
+			      <if test="csyj != null" >
+			        CSYJ = #{csyj},
+			      </if>
+			      <if test="shyj != null" >
+			        SHYJ = #{shyj},
+			      </if>
+			      <if test="xmbm != null" >
+			        XMBM = #{xmbm},
+			      </if>
+			      <if test="bzls != null" >
+			        BZLS = #{bzls},
+			      </if>
+			      <if test="jhnf != null" >
+			        JHNF = #{jhnf},
+			      </if>
+			      <if test="str1 != null" >
+			        STR1 = #{str1},
+			      </if>
+			      <if test="str2 != null" >
+			        STR2 = #{str2},
+			      </if>
+			      <if test="str3 != null" >
+			        STR3 = #{str3},
+			      </if>
+			      <if test="str4 != null" >
+			        STR4 = #{str4},
+			      </if>
+			      <if test="str5 != null" >
+			        STR5 = #{str5},
+			      </if>
+			      <if test="str6 != null" >
+			        STR6 = #{str6},
+			      </if>
+			      <if test="str7 != null" >
+			        STR7 = #{str7},
+			      </if>
+			    </set>
+			    where 1=1 and id=#{id}
+ 		</update>
+ 		<select id="selectSckaqsmfhld" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from SCK_AQSMFH_LD where xmbm=#{xmbm} order by xuh
+ 		</select>
+ 		<insert id="insertAqsmfhsckld" parameterType="xmkaqsmfh">
+ 			 insert into SCK_AQSMFH_LD
+			    <trim prefix="(" suffix=")" suffixOverrides="," >
+			        ID,
+			      <if test="province != null" >
+			        PROVINCE,
+			      </if>
+			      <if test="town != null" >
+			        TOWN,
+			      </if>
+			      <if test="county != null" >
+			        COUNTY,
+			      </if>
+			      <if test="gydw != null" >
+			        GYDW,
+			      </if>
+			      <if test="gydwdm != null" >
+			        GYDWDM,
+			      </if>
+			      <if test="lxbm != null" >
+			        LXBM,
+			      </if>
+			      <if test="jsdj != null" >
+			        JSDJ,
+			      </if>
+			      <if test="qdzh != null" >
+			        QDZH,
+			      </if>
+			      <if test="zdzh != null" >
+			        ZDZH,
+			      </if>
+			      <if test="lxmc != null" >
+			        LXMC,
+			      </if>
+			      <if test="xjgjnd != null" >
+			        XJGJND,
+			      </if>
+			      <if test="yhlc != null" >
+			        YHLC,
+			      </if>
+			      <if test="cztzgs != null" >
+			        CZTZGS,
+			      </if>
+			      <if test="xmkid != null" >
+			        XMKID,
+			      </if>
+			      <if test="xzqhdm != null" >
+			        XZQHDM,
+			      </if>
+			      <if test="xzqh != null" >
+			        XZQH,
+			      </if>
+			      <if test="xuh != null" >
+			        XUH,
+			      </if>
+			      <if test="xmbm != null" >
+			        XMBM,
+			      </if>
+			      <if test="str1 != null" >
+			        STR1,
+			      </if>
+			      <if test="str2 != null" >
+			        STR2,
+			      </if>
+			      <if test="str3 != null" >
+			        STR3,
+			      </if>
+			      <if test="str4 != null" >
+			        STR4,
+			      </if>
+			      <if test="str5 != null" >
+			        STR5,
+			      </if>
+			      <if test="str6 != null" >
+			        STR6,
+			      </if>
+			      <if test="str7 != null" >
+			        STR7,
+			      </if>
+			    </trim>
+			    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			        sys_guid(),
+			      <if test="province != null" >
+			        #{province},
+			      </if>
+			      <if test="town != null" >
+			        #{town},
+			      </if>
+			      <if test="county != null" >
+			        #{county},
+			      </if>
+			      <if test="gydw != null" >
+			        #{gydw},
+			      </if>
+			      <if test="gydwdm != null" >
+			        #{gydwdm},
+			      </if>
+			      <if test="lxbm != null" >
+			        #{lxbm},
+			      </if>
+			      <if test="jsdj != null" >
+			        #{jsdj},
+			      </if>
+			      <if test="qdzh != null" >
+			        #{qdzh},
+			      </if>
+			      <if test="zdzh != null" >
+			        #{zdzh},
+			      </if>
+			      <if test="lxmc != null" >
+			        #{lxmc},
+			      </if>
+			      <if test="xjgjnd != null" >
+			        #{xjgjnd},
+			      </if>
+			      <if test="yhlc != null" >
+			        #{yhlc},
+			      </if>
+			      <if test="cztzgs != null" >
+			        #{cztzgs},
+			      </if>
+			      <if test="xmkid != null" >
+			        #{xmkid},
+			      </if>
+			      <if test="xzqhdm != null" >
+			        #{xzqhdm},
+			      </if>
+			      <if test="xzqh != null" >
+			        #{xzqh},
+			      </if>
+			      <if test="xuh != null" >
+			        #{xuh},
+			      </if>
+			      <if test="xmbm != null" >
+			        #{xmbm},
+			      </if>
+			      <if test="str1 != null" >
+			        #{str1},
+			      </if>
+			      <if test="str2 != null" >
+			        #{str2},
+			      </if>
+			      <if test="str3 != null" >
+			        #{str3},
+			      </if>
+			      <if test="str4 != null" >
+			        #{str4},
+			      </if>
+			      <if test="str5 != null" >
+			        #{str5},
+			      </if>
+			      <if test="str6 != null" >
+			        #{str6},
+			      </if>
+			      <if test="str7 != null" >
+			        #{str7},
+			      </if>
+			    </trim>
+ 		</insert>
+ 		<select id="loadscktjld" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select max(t.province) province,max(t.town) town,max(t.county) county,max(t.gydw) gydw,max(t.gydwdm) gydwdm,max(t.xzqh) xzqh,max(t.jsdj) jsdj,max(t.xjgjnd) xjgjnd,
+			max(t.xzqhdm) xzqhdm,max(t.lxbm) lxbm,max(t.lxmc) lxmc,to_char(min(to_number(t.qdzh))) qdzh,to_char(max(to_number(t.zdzh))) zdzh,
+			sum(yhlc) yhlc,sum(t.cztzgs) cztzgs,sum(t.str1) str1,sum(t.str2) str2,sum(t.str3) str3,sum(t.str4) str4,sum(t.str5) str5,sum(t.str6) str6,sum(t.str7) str7
+			from SCK_AQSMFH_LD t 
+			where xmbm=#{xmbm} group by t.xmbm
+ 		</select>
+ 		<delete id="delafldsck" parameterType="xmkaqsmfh" >
+ 			delete from SCK_AQSMFH_LD where id=#{id}
+ 		</delete>
+	    <delete id="deleteSckAf" parameterType="java.util.List" >
+	 	  delete from SCK_AQSMFH where xmbm =#{String}
+	   </delete>
+	   <delete id="deleteSckAfld" parameterType="java.util.List" >
+	 	 delete from SCK_AQSMFH_LD where xmbm =#{String}
+	   </delete>
+	    <update id="sckAfSb" parameterType="hashmap" >
+ 			update SCK_AQSMFH set sbzt='已上报',sbthbmcd=#{sbthbmcd} where id =#{id}
+ 		</update>
+	   <update id="afSckCs" parameterType="xmkaqsmfh" >
+ 			update SCK_AQSMFH set sbzt=#{sbzt},sbthbmcd=#{sbthbmcd},cszt=#{cszt},csyj=#{csyj} where id =#{id} 
+ 		</update>
+	   
+</mapper>
