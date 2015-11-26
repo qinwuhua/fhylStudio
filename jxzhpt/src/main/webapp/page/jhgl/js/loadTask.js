@@ -333,6 +333,41 @@ function queryZjxdSumByXmid(){
 		}
 	});
 }
+function queryZjxdList__ck(url){
+	var params={'zjxd.xmid':xxId};
+	queryZjxdSumByXmid();
+	$('#zjxdList').datagrid({
+		url : url,
+		queryParams : params,
+		striped : true,
+		pagination : true,
+		rownumbers : true,
+		pageNumber : 1,
+		pageSize : 3,
+		height : 140,
+		fitColumns:true,
+		columns : [[
+		
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				if (row.sfzj == "0") {
+					return "否";
+				} else {
+					return "是";
+				}
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
+		]]
+	});
+}
+
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
 	queryZjxdSumByXmid();

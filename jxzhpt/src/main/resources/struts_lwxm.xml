@@ -165,5 +165,36 @@
  	 <action name="dcwqgzsjxmkshExcel" class="jckwqgzsjController" method="dcwqgzsjxmkshExcel"/>
  	 <action name="dcwqgzsjsckExcel" class="jckwqgzsjController" method="dcwqgzsjsckExcel"/>
  	 <action name="dcwqgzsjsckshExcel" class="jckwqgzsjController" method="dcwqgzsjsckshExcel"/>
+ 	 
+ 	 
+ </package>
+ <package name="aqsmfh" extends="struts-default" namespace="/aqsmfh">
+ 	<action name="selectXmkaqsmfhXMK" class="xmkaqsmfhController" method="selectXmkaqsmfhXMK"/>
+ 	<action name="loadXmkaqsmfhXMKCount" class="xmkaqsmfhController" method="loadXmkaqsmfhXMKCount"/>
+ 	<action name="smfhGpsroad" class="xmkaqsmfhController" method="smfhGpsroad"/>
+ 	<action name="insertAqsmfhxmk" class="xmkaqsmfhController" method="insertAqsmfhxmk"/>
+ 	<action name="xgXmkAFSbzt" class="xmkaqsmfhController" method="xgXmkAFSbzt"/>
+ 	<action name="updateAqsmfhxmk" class="xmkaqsmfhController" method="updateAqsmfhxmk"/>
+ 	<action name="deleteAfxmkById" class="xmkaqsmfhController" method="deleteAfxmkById"/>
+ 	
+ 	
+ 	
+ 	
+ 	<action name="selectSckaqsmfh" class="xmkaqsmfhController" method="selectSckaqsmfh"/>
+ 	<action name="loadSckaqsmfhCount" class="xmkaqsmfhController" method="loadSckaqsmfhCount"/>
+ 	<action name="aqsmfhJckGpsRoad" class="xmkaqsmfhController" method="aqsmfhJckGpsRoad"/>
+ 	<action name="insertAqsmfhsck" class="xmkaqsmfhController" method="insertAqsmfhsck"/>
+ 	<action name="selectafldList" class="xmkaqsmfhController" method="selectafldList"/>
+ 	<action name="selectAqsmfhsckbyid" class="xmkaqsmfhController" method="selectAqsmfhsckbyid"/>
+ 	<action name="selectAqsmfhxmkbyid" class="xmkaqsmfhController" method="selectAqsmfhxmkbyid"/>
+ 	<action name="updateAqsmfhsck" class="xmkaqsmfhController" method="updateAqsmfhsck"/>
+ 	<action name="selectSckaqsmfhld" class="xmkaqsmfhController" method="selectSckaqsmfhld"/>
+ 	<action name="insertAqsmfhsckld" class="xmkaqsmfhController" method="insertAqsmfhsckld"/>
+ 	<action name="loadscktjld" class="xmkaqsmfhController" method="loadscktjld"/>
+ 	<action name="delafldsck" class="xmkaqsmfhController" method="delafldsck"/>
+ 	<action name="deleteSckAf" class="xmkaqsmfhController" method="deleteSckAf"/>
+ 	<action name="sckAfSb" class="xmkaqsmfhController" method="sckAfSb"/>
+ 	<action name="afSckCs" class="xmkaqsmfhController" method="afSckCs"/>
+ 	
  </package>
 </struts>

@@ -144,7 +144,14 @@ public class Gcglwqgz implements Serializable {
 	private String zwcstz;
 	private String shengbz;
 	private String gydwtj;
+	private String ybzt;
 	
+	public String getYbzt() {
+		return ybzt;
+	}
+	public void setYbzt(String ybzt) {
+		this.ybzt = ybzt;
+	}
 	public String getGydwtj() {
 		return gydwtj;
 	}

@@ -615,4 +615,93 @@ where t1.spzt='1'
 	 <select id="querymaxybyf" parameterType="gcglabgc" resultType="gcglabgc">
 	 	select max(sbyf) sbyf from gcgl_abgc where jhid=#{jhid}
 	 </select>
+	 
+	  <select id="dcabgcExcelhj" parameterType="gcglabgc" resultType="elist">
+	 	select
+      	decode(count(*),0,'','合计') v_1, sum(v_12) v_12,sum(v_18) v_18,sum(v_19) v_19,sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+		 sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_36) v_36,sum(v_37) v_37
+		from(
+		select 
+		rownum v_0,
+		(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='原中央苏区'),null,'否','是') v_4,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='国家贫困县'),null,'否','是') v_5,
+		xm.xzqhdm v_6,xm.xzqhmc v_7,xm.lxbm v_8,xm.lxmc v_9,sc.scqdzh v_10,sc.sczdzh v_11,sc.scyhlc v_12,sc.jsxz v_13,
+		pl.xdsj v_14,pl.jhkgsj v_15,pl.jhwgsj v_16,pl.yjwgsj v_17,pl.pfztz v_18,pl.jhsybbzje v_19,
+		pl.sjkgsj v_20,pl.sjwgsj v_21,pl.jsdw v_22,pl.sjdw v_23,pl.sgdw v_24,pl.jldw v_25,
+		gc.wcgl v_26,gc1.wcgl v_27,(gc.btz+gc.stz+gc.qttz) v_28,gc.btz v_29,gc.qttz v_30,(gc1.btz+gc1.stz+gc1.qttz) v_31,
+		decode(ys.yssj,null,0,sc.scyhlc) v_32,
+		zjxd.btz v_33,gc.btz1 v_34,decode(zjxd.btz,null,0,0,0,(decode(gc.btz1,null,0,(round(gc.btz1/zjxd.btz*100,0))))) v_35,
+		zjxd.qttz v_36,gc.qttz1 v_37,decode(zjxd.qttz,null,0,0,0,(decode(gc.qttz1,null,0,(round(gc.qttz1/zjxd.qttz*100,0))))) v_38,
+		pl.remarks v_39
+		from plan_abgc pl,sck_abgc sc,xmk_abgc xm,gcgl_jgys ys,
+		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.zjdw_btz) btz1,sum(t.zjdw_stz) stz1,sum(t.zjdw_qttz) qttz1,sum(t.bywc_gl) wcgl from gcgl_abgc t group by t.jhid) gc,
+		(select sum(btzzj) btz,sum(stz) stz,(sum(xdzj)-sum(btzzj)-sum(stz)) qttz,xmid from plan_zjxd group by xmid) zjxd,
+		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
+		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
+		and pl.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
+		)
+	 </select>
+	 
+	 <select id="dcabgcExcel" parameterType="gcglabgc" resultType="elist">
+	 	select 
+			rownum v_0,
+			(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='原中央苏区'),null,'否','是') v_4,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='国家贫困县'),null,'否','是') v_5,
+			xm.xzqhdm v_6,xm.xzqhmc v_7,xm.lxbm v_8,xm.lxmc v_9,sc.scqdzh v_10,sc.sczdzh v_11,sc.scyhlc v_12,sc.jsxz v_13,
+			pl.xdsj v_14,pl.jhkgsj v_15,pl.jhwgsj v_16,pl.yjwgsj v_17,pl.pfztz v_18,pl.jhsybbzje v_19,
+			pl.sjkgsj v_20,pl.sjwgsj v_21,pl.jsdw v_22,pl.sjdw v_23,pl.sgdw v_24,pl.jldw v_25,
+			gc.wcgl v_26,gc1.wcgl v_27,(gc.btz+gc.stz+gc.qttz) v_28,gc.btz v_29,gc.qttz v_30,(gc1.btz+gc1.stz+gc1.qttz) v_31,
+			decode(ys.yssj,null,0,sc.scyhlc) v_32,
+			zjxd.btz v_33,gc.btz1 v_34,decode(zjxd.btz,null,0,0,0,(decode(gc.btz1,null,0,(round(gc.btz1/zjxd.btz*100,0))))) v_35,
+			zjxd.qttz v_36,gc.qttz1 v_37,decode(zjxd.qttz,null,0,0,0,(decode(gc.qttz1,null,0,(round(gc.qttz1/zjxd.qttz*100,0))))) v_38,
+			pl.remarks v_39
+			from plan_abgc pl,sck_abgc sc,xmk_abgc xm,gcgl_jgys ys,
+			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.zjdw_btz) btz1,sum(t.zjdw_stz) stz1,sum(t.zjdw_qttz) qttz1,sum(t.bywc_gl) wcgl from gcgl_abgc t group by t.jhid) gc,
+			(select sum(btzzj) btz,sum(stz) stz,(sum(xdzj)-sum(btzzj)-sum(stz)) qttz,xmid from plan_zjxd group by xmid) zjxd,
+			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
+			where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
+			and pl.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
+	 </select>
 </mapper>

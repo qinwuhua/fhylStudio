@@ -95,6 +95,12 @@ function ybsb(index){
 	YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
 	//window.open("gcgzgjyb.jsp");
 }
+function ybsb__ck(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','gcgzgjyb__ck.jsp','wqxx1',1059,467);
+	//window.open("gcgzgjyb.jsp");
+}
 function AddInfo(index){
 	YMLib.UI.createWindow('wqxx','新建工程项目月报添加','gcgzgjybtj.jsp','wqxx',780,340);
 	//window.open("gcgzgjybtj.jsp");
@@ -501,6 +507,101 @@ function showAll(){
 	    }   
 	}); 
 }
+function showAll__ck(){
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jgzt='0';
+	var kgzt=$("#kgzt").combobox("getValue");
+	var lxmc=$("#lxmc").val();
+	var yhjb=$.cookie("unit2");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var xmnf=$("#ddlYear").val();
+	var ybzt=$("#ybzt").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectXjgcjhList1.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: xzqhstr,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+	    	ybzt:ybzt,
+	    	sfsj:sfsj,
+	    	xmnf:xmnf
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb__ck('+index+')">月报</a>   ';
+  	        }},
+	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
+	        	return row.SFQXKG+'';
+	        }},
+	        {field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
+		    {field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
+		    {field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},
+		    {field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
+		    {field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
+		    {field:'WGSJ',title:'计划完工时间',width:150,align:'center'},
+		    {field:'GQ',title:'工期',width:100,align:'center'},
+		    {field:'GKPFWH',title:'工可批复文号',width:100,align:'center'},
+		    {field:'SJPFWH',title:'设计批复文号',width:100,align:'center'}
+	    ]],
+		view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		 queryParams: {
+	    			 	jdbs:2,
+	    		    	xmbm:row.XMBM
+	    			},
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
+    			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
+    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			]]
+	    	});
+	    }   
+	}); 
+}
 
 function showYBlist(){
 	var jhid=parent.obj1.XMBM;
@@ -556,6 +657,65 @@ function showYBlist(){
 	              		if(yhtype=='省级'){
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
 	              		}
+	              	}},
+					{field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
+					{field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
+					{field:'bywcdc',title:'本月完成垫层（m³）',width:120,align:'center',rowspan:2},
+					{field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
+					{field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
+					{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
+					{title:'本月完成投资（万元）',colspan:3},
+					{title:'本月资金到位（万元）',colspan:3},
+					{field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
+					],
+					[
+					{field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+					{field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+					{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+					{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+					{field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+					{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+			    ]
+	    ]
+	});
+}
+
+function showYBlist__ck(){
+	var jhid=parent.obj1.XMBM;
+	var yhjb=$.cookie("unit2");
+	var yhtype='';
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	$('#ybgrid').datagrid({    
+	    url:'../../../../gcgl/selectxjgcYbByJhid.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:325,
+	    queryParams: {
+	    	jhid: jhid,
+	    	yhtype:yhtype,
+	    	sfsj:sfsj
+		},
+	    columns:[
+	             [
+					{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
+	              	
+	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
+	              		
 	              	}},
 					{field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 					{field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
