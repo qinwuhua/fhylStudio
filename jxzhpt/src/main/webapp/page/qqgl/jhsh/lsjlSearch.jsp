@@ -93,8 +93,8 @@
 			</tr>
 		</table>
 	</div>
-	<table id="grid" width="99%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
-		<thead>   
+	<table id="grid" width="98%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
+		<thead>
         	<tr>
         		<th data-options="field:'xmlx',width:150,fixed:true,align:'center'">项目类型</th>
         		<th data-options="field:'scbz',width:150,fixed:true,align:'center'">项目名称</th>

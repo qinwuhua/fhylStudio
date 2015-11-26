@@ -302,7 +302,7 @@ function loadNdwg2(beform2){
 }
 </script>
 </head>
-<body  style="padding-right:1px">
+<body style="padding-right:1px;">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
@@ -350,53 +350,58 @@ function loadNdwg2(beform2){
 			<tr>
                 <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height:400px" >
+                	<!-- 
                 	<script type="text/javascript">
                 	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
-                	</script>
+                	</script> -->
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
 							<table id="bbtable" class="table_body" width="2700px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年交通固定资产投资建设计划(路网结构改造)</caption>
-								<thead>
-									<tr>
-										<td align="center" colspan="22">项目前期数据分析表</td>
-									</tr>
-									<tr>
-										<td align="center" rowspan="3" width="100">截点</td>
-										<td align="center" rowspan="3" width="150">名称</td>
-										<td align="center" rowspan="3" width="100">行政区划</td>
-										<td align="center" rowspan="3" width="100">起点桩号</td>
-										<td align="center" rowspan="3" width="100">止点桩号</td>
-										<td align="center" rowspan="3" width="100">完工年份</td>
-										<td align="center" rowspan="3" width="100">建设性质</td>
-										<td align="center" colspan="15">规模</td>
-									</tr>
-									<tr>
-										<td align="center" colspan="3">一级</td>
-										<td align="center" colspan="3">二级</td>
-										<td align="center" colspan="3">三级</td>
-										<td align="center" colspan="3">四级</td>
-										<td align="center" colspan="3">无路</td>
-									</tr>
-									<tr>
-										<td align="center" width="80">里程</td>
-										<td align="center" width="80">百分比</td>
-										<td align="center" width="80">变化率(±)</td>
-										<td align="center" width="80">里程</td>
-										<td align="center" width="80">百分比</td>
-										<td align="center" width="80">变化率(±)</td>
-										<td align="center" width="80">里程</td>
-										<td align="center" width="80">百分比</td>
-										<td align="center" width="80">变化率(±)</td>
-										<td align="center" width="80">里程</td>
-										<td align="center" width="80">百分比</td>
-										<td align="center" width="80">变化率(±)</td>
-										<td align="center" width="80">里程</td>
-										<td align="center" width="80">百分比</td>
-										<td align="center" width="80">变化率(±)</td>
-									</tr>
-								</thead>
-								<tbody id="table_tbody"></tbody>
+								<tr style="position: absolute;">
+									<td colspan="22">
+										<table style="border-width: 0px;">
+											<tr>
+												<td align="center" colspan="22">项目前期数据分析表</td>
+											</tr>
+											<tr>
+												<td align="center" rowspan="3" width="100">截点</td>
+												<td align="center" rowspan="3" width="150">名称</td>
+												<td align="center" rowspan="3" width="100">行政区划</td>
+												<td align="center" rowspan="3" width="100">起点桩号</td>
+												<td align="center" rowspan="3" width="100">止点桩号</td>
+												<td align="center" rowspan="3" width="100">完工年份</td>
+												<td align="center" rowspan="3" width="100">建设性质</td>
+												<td align="center" colspan="15">规模</td>
+											</tr>
+											<tr>
+												<td align="center" colspan="3">一级</td>
+												<td align="center" colspan="3">二级</td>
+												<td align="center" colspan="3">三级</td>
+												<td align="center" colspan="3">四级</td>
+												<td align="center" colspan="3">无路</td>
+											</tr>
+											<tr>
+												<td align="center" width="80">里程</td>
+												<td align="center" width="80">百分比</td>
+												<td align="center" width="80">变化率(±)</td>
+												<td align="center" width="80">里程</td>
+												<td align="center" width="80">百分比</td>
+												<td align="center" width="80">变化率(±)</td>
+												<td align="center" width="80">里程</td>
+												<td align="center" width="80">百分比</td>
+												<td align="center" width="80">变化率(±)</td>
+												<td align="center" width="80">里程</td>
+												<td align="center" width="80">百分比</td>
+												<td align="center" width="80">变化率(±)</td>
+												<td align="center" width="80">里程</td>
+												<td align="center" width="80">百分比</td>
+												<td align="center" width="80">变化率(±)</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tbody id="table_tbody" style="display:block;"></tbody>
 							</table>
 							</div>
 						</div>
