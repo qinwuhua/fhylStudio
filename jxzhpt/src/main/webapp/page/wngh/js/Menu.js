@@ -42,6 +42,13 @@ $(function() {
 		href:'../qqgl/jhsh/lsjlSearch.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101090105',
+		title:'项目规划库数据分析',
+		imgSrc:'../../images/bzlscx.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/xmghksjfx.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101090121',
 		title:'路面改造工程项目查看',
 		imgSrc:'../../images/gj_s.png',

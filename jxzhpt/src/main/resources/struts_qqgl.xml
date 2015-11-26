@@ -200,6 +200,8 @@
 		<action name="readJhxdFile" class="cbsjController" method="readJhxdFile"></action>
 		<action name="queryXmQqfx" class="lxshController" method="queryXmQqfx"></action>
 		<action name="queryXmqq" class="lxshController" method="queryXmqq"></action>
+		<action name="ghksjfxXjAndGj" class="wnjhController" method="ghksjfxXjAndGj"/>
+		<action name="ghkfxSelect" class="wnjhController" method="ghkfxSelect"/>
 	<!-- rh -->
 	</package>
 </struts>

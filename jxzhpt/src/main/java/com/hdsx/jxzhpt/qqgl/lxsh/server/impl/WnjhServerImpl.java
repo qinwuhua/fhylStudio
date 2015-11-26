@@ -247,6 +247,28 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public Lxsh showxjtj(Lxsh lxsh) {
 		return queryOne("showxjtj", lxsh);
 	}
+	@Override
+	public List<Lxsh> selectJxAndGj(Lxsh lxsh) {
+		return queryList("selectJxAndGj",lxsh);
+	}
+	@Override
+	public List<Map<String, Object>> selectYlx(Lxsh lxsh) {
+		return queryList("selectYlx",lxsh);
+	}
+	@Override
+	public List<Map<String, Object>> selectYSj(String xzqhdm,String xzqhmc) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		params.put("xzqhmc", xzqhmc);
+		return queryList("selectYSj", params);
+	}
+	@Override
+	public List<Map<String, Object>> selectGhSj(String xzqhdm,boolean qb) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		params.put("qb", qb);
+		return queryList("selectGhSj", params);
+	}
 	
 
 }
