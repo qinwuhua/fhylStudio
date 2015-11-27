@@ -1080,5 +1080,110 @@ public class WnjhController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	/**
+	 * 规划库数据分析中查询弹窗列表数据
+	 */
+	public void ghksjfxXjAndGj(){
+		try {
+			String xzqhdm=null;
+			if(xzqh!=null){
+				if(xzqh.indexOf(",")==-1){
+					int i=0;
+					if(xzqh.matches("^[0-9]*[1-9]00$")){
+						i=2;
+					}else if(xzqh.matches("^[0-9]*[1-9]0000$")){
+						i=4;
+					}
+					xzqh=xzqh.substring(0,xzqh.length()-i);
+				}
+				xzqhdm= xzqh.indexOf(",")==-1 ? "and xzqhdm like '%"+xzqh+"%'" : "and xzqhdm in ("+xzqh+")";
+			}
+			System.out.println(xzqhdm);
+			lxsh.setXzqh(xzqhdm);
+			lxsh.setLxbm(lx.getLxbm());
+			List<Lxsh> result = wnjhServer.selectJxAndGj(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void ghkfxSelect(){
+		Map<String, Object> result = new HashMap<String, Object>();
+		//查询选中的规划库项目
+		lxsh.setId(lx.getId());
+		List<Lxsh> selectJxAndGj = wnjhServer.selectJxAndGj(lxsh);
+		result.put("ghkXm", selectJxAndGj);
+		
+		//查询原路线信息
+		lxsh.setLxbm(lx.getLxbm());
+		List<Map<String, Object>> ylx = wnjhServer.selectYlx(lxsh);
+		result.put("ylx", ylx);
+		//计算完工后的路线里程信息
+		List<Map<String, Object>> wgh = new ArrayList<Map<String,Object>>(ylx);
+		for (Map<String, Object> wgitem : wgh) {
+			for (Lxsh ghitem : selectJxAndGj) {
+				double yi = Double.valueOf(String.valueOf(wgitem.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(ghitem.getJhyilc() )).doubleValue() - Double.valueOf(String.valueOf(ghitem.getYilc())).doubleValue();
+				double er = Double.valueOf(String.valueOf(wgitem.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(ghitem.getJherlc())).doubleValue() - Double.valueOf(String.valueOf(ghitem.getErlc())).doubleValue();
+				double san = Double.valueOf(String.valueOf(wgitem.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(ghitem.getJhsanlc())).doubleValue() - Double.valueOf(String.valueOf(ghitem.getSanlc())).doubleValue();
+				double si = Double.valueOf(String.valueOf(wgitem.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(ghitem.getJhsilc())).doubleValue() - Double.valueOf(String.valueOf(ghitem.getSilc())).doubleValue();
+				double wl = Double.valueOf(String.valueOf(wgitem.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(ghitem.getJhwllc())).doubleValue() - Double.valueOf(String.valueOf(ghitem.getWllc())).doubleValue();
+				wgitem.put("YJ", String.format("%.3f", yi));
+				wgitem.put("ER", String.format("%.3f", er));
+				wgitem.put("SJ", String.format("%.3f", san));
+				wgitem.put("SIJ", String.format("%.3f", si));
+				wgitem.put("WL", String.format("%.3f", wl));
+				break;
+			}
+		}
+		result.put("wghlx", wgh);
+		//查询市级统计信息
+		String[] xzqhdms = lx.getXzqhdm().split(",");
+		String[] xzqhs = lx.getXzqh().split(",");
+		List<Map<String, Object>> wghtj = new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> ytj = new ArrayList<Map<String,Object>>();
+		for (int i=0;i<xzqhdms.length;i++) {
+			if(xzqhdms[i].indexOf(",")==-1){
+				int j=0;
+				if(xzqhdms[i].matches("^[0-9]*[1-9]00$")){
+					j=2;
+				}else if(xzqhdms[i].matches("^[0-9]*[1-9]0000$")){
+					j=4;
+				}
+				xzqhdms[i]=xzqhdms[i].substring(0,xzqhdms[i].length()-j);
+			}
+			List<Map<String, Object>> yMap = wnjhServer.selectYSj(xzqhdms[i],xzqhs[i]);
+			List<Map<String, Object>> wghMap =wnjhServer.selectGhSj(xzqhdms[i],false);
+			for (Map<String, Object> wgitem : wghMap) {
+				for (Map<String, Object> yitem : yMap) {
+					double yi = Double.valueOf(String.valueOf(yitem.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(wgitem.get("JHYILC"))) - Double.valueOf(String.valueOf(wgitem.get("YILC")));
+					double er = Double.valueOf(String.valueOf(yitem.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(wgitem.get("JHERLC"))) - Double.valueOf(String.valueOf(wgitem.get("ERLC")));
+					double san = Double.valueOf(String.valueOf(yitem.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(wgitem.get("JHSANLC"))) - Double.valueOf(String.valueOf(wgitem.get("SANLC")));
+					double si = Double.valueOf(String.valueOf(yitem.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(wgitem.get("JHSILC"))) - Double.valueOf(String.valueOf(wgitem.get("SILC")));
+					double wl = Double.valueOf(String.valueOf(yitem.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(wgitem.get("JHWLLC"))) - Double.valueOf(String.valueOf(wgitem.get("WLLC")));
+					wgitem.put("JHYILC", String.valueOf(String.format("%.3f", yi)));
+					wgitem.put("JHERLC", String.valueOf(String.format("%.3f", er)));
+					wgitem.put("JHSANLC", String.valueOf(String.format("%.3f", san)));
+					wgitem.put("JHSILC", String.valueOf(String.format("%.3f", si)));
+					wgitem.put("JHWLLC", String.valueOf(String.format("%.3f", wl)));
+					wgitem.put("XZQHMC", yitem.get("XZQHMC"));
+					break;
+				}
+			}
+			ytj.addAll(yMap);
+			wghtj.addAll(wghMap);
+		}
+		List<Map<String, Object>> yMap = wnjhServer.selectYSj("36","江西省");
+		ytj.addAll(yMap);
+		List<Map<String, Object>> wghMap =wnjhServer.selectGhSj("36",true);
+		wghtj.addAll(wghMap);
+		result.put("ytj", ytj);
+		result.put("wgtj", wghtj);
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 

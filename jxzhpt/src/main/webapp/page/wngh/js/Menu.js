@@ -35,11 +35,18 @@ $(function() {
 		href:'./wnjh/xj.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101090120',
-		title:'改建工程项目查看',
-		imgSrc:'../../images/sj_s.png',
+		id:'menu_0101090104',
+		title:'补助历史查询',
+		imgSrc:'../../images/bzlscx.png',
 		renderTo:'left_menu1',
-		href:'./wnjh/sjgz__ck.jsp'
+		href:'../qqgl/jhsh/lsjlSearch.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101090105',
+		title:'项目规划库数据分析',
+		imgSrc:'../../images/bzlscx.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/xmghksjfx.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101090121',
@@ -55,7 +62,6 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./wnjh/xj__ck.jsp'
 	});
-	
 	
 	menuQx();
 	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010801"){

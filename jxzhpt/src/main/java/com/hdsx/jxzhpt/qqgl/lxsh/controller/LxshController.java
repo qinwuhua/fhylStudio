@@ -1925,13 +1925,15 @@ public class LxshController extends BaseActionSupport{
 				sb.append(i==hsl.size()-1 ? "'"+lx+"'" : "'"+lx+"',");
 				i++;
 			}
-			//获取之前的这些路线的信息
+			//查询原路线和完工后路线的信息
+			//1、截止2014年底路线信息
 			List<Map<String, String>> beform=null;
 			if(!sb.toString().equals("")){
 				beform = lxshServer.queryBeformXm(sb.toString());
 				result.put("befrom", beform);
 			}
-			//计算本年年底的里程的条件-------年底完工行政区划统计
+			//2、完工后此路线的信息
+			//2.1设置查询条件，查询最终阶段的项目信息
 			StringBuffer sbXmbm = new StringBuffer();
 			int m =0;
 			for (Entry<String, String> xmbm : xmbmArray.entrySet()) {
@@ -1939,8 +1941,33 @@ public class LxshController extends BaseActionSupport{
 					"(xmid ='"+ xmbm.getKey()+"' and jdbs='"+xmbm.getValue()+"') or ");	
 				m++;
 			}
+			List<Map<String, String>> ndwglx = new ArrayList<Map<String,String>>(beform);
+			//2.2、查询到对应的项目信息
+			List<Map<String, String>> list2 = lxshServer.queryNdwg(sbXmbm.toString());
+			//2.3、计算完工后的里程
+			for (Map<String, String> item : ndwglx) {
+				for (Map<String, String> item2 : list2) {
+					if(item2.get("LXBM")!=null){
+						if(item.get("ROADCODE").toString().equals(item2.get("LXBM").toString())){
+							double yi = Double.valueOf(String.valueOf(item.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHYILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("YILC"))).doubleValue();
+							double er = Double.valueOf(String.valueOf(item.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHERLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("ERLC"))).doubleValue();
+							double san = Double.valueOf(String.valueOf(item.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSANLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SANLC"))).doubleValue();
+							double si = Double.valueOf(String.valueOf(item.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SILC"))).doubleValue();
+							double wl = Double.valueOf(String.valueOf(item.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHWLLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("WLLC"))).doubleValue();
+							item.put("YJ", String.format("%.3f", yi));
+							item.put("ER", String.format("%.3f", er));
+							item.put("SJ", String.format("%.3f", san));
+							item.put("SIJ", String.format("%.3f", si));
+							item.put("WL", String.format("%.3f", wl));
+							break;
+						}
+					}
+				}
+			}
+			result.put("ndwglx", ndwglx);
+			//3、查询市级的国省道统计
+			//3.1、首先查询到所有相关市级年底完工的统计
 			List<Map<String,String>> ndwgXzqh = lxshServer.queryNdwgXzqh(sbXmbm.toString(),false);
-			//获取对应行政区划之前的G、S道的总计-------获取上一年的省道和国道统计
 			List<Map<String, String>> beformXzqh = new ArrayList<Map<String,String>>();
 			for (Entry<String, String> map : xzqhMap.entrySet()) {
 				if(map.getKey().matches("^[0-9]*[1-9]00$")){
@@ -1949,8 +1976,10 @@ public class LxshController extends BaseActionSupport{
 					i=4;
 				}
 				String xz =map.getKey().substring(0,map.getKey().length()-i);
+				//3.2、查询到对应市级的截止2014年底的G、S道的总计，并加入到集合中
 				List<Map<String,String>> queryBeformXmByXzqh = lxshServer.queryBeformXmByXzqh(xz,map.getValue());
 				beformXzqh.addAll(queryBeformXmByXzqh);
+				//3.3、此处是为了计算对应市级的年底完工后的国省道里程
 				for (Map<String, String> item : ndwgXzqh) {
 					if(map.getKey().equals(item.get("XZQHDM").toString())){
 						for (Map<String, String> item2 : queryBeformXmByXzqh) {
@@ -1972,33 +2001,14 @@ public class LxshController extends BaseActionSupport{
 					}
 				}
 			}
+			//4、查询江西省的总的国省道的统计
+			//4。1、查询原数据的省的统计
 			beformXzqh.addAll(lxshServer.queryBeformXmByXzqh("36","江西省"));
 			result.put("befrom2", beformXzqh);
+			//4.2、查询此路线完工后的国省道统计
 			ndwgXzqh.addAll(lxshServer.queryNdwgXzqh(sbXmbm.toString(),true));
 			result.put("ndwgxzqh", ndwgXzqh);
-			//计算年底完工后的路线里程--------------年底完工路线信息
-			List<Map<String, String>> ndwglx = new ArrayList<Map<String,String>>(beform);
-			List<Map<String, String>> list2 = lxshServer.queryNdwg(sbXmbm.toString());
-			for (Map<String, String> item : ndwglx) {
-				for (Map<String, String> item2 : list2) {
-					if(item2.get("LXBM")!=null){
-						if(item.get("ROADCODE").toString().equals(item2.get("LXBM").toString())){
-							double yi = Double.valueOf(String.valueOf(item.get("YJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHYILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("YILC"))).doubleValue();
-							double er = Double.valueOf(String.valueOf(item.get("EJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHERLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("ERLC"))).doubleValue();
-							double san = Double.valueOf(String.valueOf(item.get("SJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSANLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SANLC"))).doubleValue();
-							double si = Double.valueOf(String.valueOf(item.get("SIJ"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHSILC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("SILC"))).doubleValue();
-							double wl = Double.valueOf(String.valueOf(item.get("WL"))).doubleValue() + Double.valueOf(String.valueOf(item2.get("JHWLLC"))).doubleValue() - Double.valueOf(String.valueOf(item2.get("WLLC"))).doubleValue();
-							item.put("YJ", String.format("%.3f", yi));
-							item.put("ER", String.format("%.3f", er));
-							item.put("SJ", String.format("%.3f", san));
-							item.put("SIJ", String.format("%.3f", si));
-							item.put("WL", String.format("%.3f", wl));
-							break;
-						}
-					}
-				}
-			}
-			result.put("ndwglx", ndwglx);
+			
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

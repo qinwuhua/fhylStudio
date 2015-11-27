@@ -764,6 +764,42 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 	</select>
-	
+	<select id="selectJxAndGj" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select w.id,w.xmmc,w.jhwgn,l.xzqh,l.xzqhdm,l.lxbm,l.lxmc,l.qdzh,l.zdzh,l.jsxz,l.yilc,l.erlc,l.sanlc,l.silc,l.wllc,
+		l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhwllc from wnjh_lmgz w left join wnjh_lx l on w.id = l.xmid
+		union all
+		select w.id,w.xmmc,w.jhwgn,l.xzqh,l.xzqhdm,l.lxbm,l.lxmc,l.qdzh,l.zdzh,l.jsxz,l.yilc,l.erlc,l.sanlc,l.silc,l.wllc ,
+		l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhwllc from wnjh_xj w left join wnjh_lx l on w.id = l.xmid)
+		where 1=1
+		<if test="xzqh!=null and xzqh!=''">${xzqh}</if>
+		<if test="lxbm!=null and lxbm!=''"> and lxbm like #{lxbm}||'%'</if>
+		<if test="id!=null and id!=''"> and id in (${id})</if>
+	</select>
+	<select id="selectYlx" parameterType="lxsh" resultType="java.util.Map">
+		select substr(roadcode,1,4) roadcode,min(roadstart) roadstart,max(roadends) roadends,max(decode(f026,null,f025,f026)) wgnf,
+		sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
+		sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL
+		from gpsroad  WHERE substr(roadcode,1,4) in(${lxbm}) group by substr(roadcode,1,4)
+	</select>
+	<select id="selectYSj" parameterType="java.util.Map" resultType="java.util.Map">
+		select substr(roadcode,0,1) roadcode,min(roadstart) roadstart,max(roadends) roadends,max(decode(f026,null,f025,f026)) wgnf,
+	    sum(roadlen) lc,sum(decode(f014,2,roadlen,0)) yj,sum(decode(f014,3,roadlen,0)) ej,sum(decode(f014,4,roadlen,0)) Sj,
+	    sum(decode(f014,5,roadlen,0)) SIj,sum(decode(f014,6,roadlen,0)) WL,#{xzqhmc} xzqhmc
+	    from gpsroad  WHERE substr(roadcode,0,1) in('S','G') 
+	    and (roadcode like '%'||#{xzqhdm}||'%')
+	     group by substr(roadcode,0,1)
+	</select>
+	<select id="selectGhSj" parameterType="java.util.Map" resultType="java.util.Map">
+		select 
+		<if test="qb==false">#{xzqhdm} xzqhdm,</if>
+		<if test="qb==true">'江西省' xzqhmc,</if>
+		substr(lxbm,0,1) lxbm
+		,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc
+		,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(sanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc 
+		from(select xmid,lxbm ,l.yilc,l.erlc ,l.sanlc,l.silc ,l.dwlc,l.wllc,l.jhyilc,l.jherlc ,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
+		from wnjh_lx l where substr(lxbm,0,1) in('S','G') and xzqhdm like #{xzqhdm}||'%') 
+		group by substr(lxbm,0,1)
+	</select>
 </mapper>
 

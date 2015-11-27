@@ -49,5 +49,9 @@ public interface WnjhServer {
 	Lxsh showgjtj(Lxsh lxsh);
 	Lxsh showlmtj(Lxsh lxsh);
 	Lxsh showxjtj(Lxsh lxsh);
+	List<Lxsh> selectJxAndGj(Lxsh lxsh);
+	List<Map<String, Object>> selectYlx(Lxsh lxsh);
+	List<Map<String, Object>> selectYSj(String xzqhdm,String xzqhmc);
+	List<Map<String, Object>> selectGhSj(String string,boolean qb);
 
 }

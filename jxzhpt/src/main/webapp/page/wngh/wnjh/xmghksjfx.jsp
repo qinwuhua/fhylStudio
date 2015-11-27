@@ -76,25 +76,26 @@ function selXm(){
 	var xz = $("#xzqh").combotree("getValues");
 	var xzqh =xz.join(',');
 	$('#sel_table').datagrid({
-		url:'/jxzhpt/qqgl/queryXmqq.do',
+		url:'/jxzhpt/qqgl/ghksjfxXjAndGj.do',
 	    striped:true,
 	    rownumbers:true,
 	    height:330,
 	    width:785,
 	    queryParams: {
 	    	xzqh:xzqh,
-	    	jsxz:$('#jsxz').val(),
-	    	shzt1:$('#shzt').val(),
-	    	lxbm:$('#lxbm').val(),
-	    	wgny:$('#wgsj').combobox("getValue")
+	    	//jsxz:$('#jsxz').val(),
+	    	//shzt1:$('#shzt').val(),
+	    	'lx.lxbm':$('#lxbm').val(),
+	    	//wgny:$('#wgsj').combobox("getValue")
 	    },
 	    columns:[[
 			{field:'xmmc',title:'项目名称',width:110,align:'center'},
 			{field:'xzqh',title:'行政区划',width:110,align:'center'},
+			{field:'xzqhdm',title:'行政区划编码',width:110,align:'center'},
 			{field:'lxbm',title:'路线编码',width:110,align:'center'},
 			{field:'qdzh',title:'起点桩号',width:110,align:'center'},
 			{field:'zdzh',title:'止点桩号',width:110,align:'center'},
-			{field:'wgny',title:'完工年月',width:110,align:'center'},
+			{field:'jhwgn',title:'完工年月',width:110,align:'center'},
 			{field:'jsxz',title:'建设性质',width:110,align:'center'},
 			{field:'yilc',title:'一级里程',width:110,align:'center'},
 			{field:'erlc',title:'二级里程',width:110,align:'center'},
@@ -106,36 +107,37 @@ function selXm(){
 }
 function search(){
 	var sels = $('#sel_table').datagrid("getSelections");
-	var xmbm="";
+	var lxbm="",qdzh="",zdzh="",xzqhdm="",id="",xzqh="";
 	for(var i=0;i<sels.length;i++){
-		xmbm+= i==sels.length-1 ? "'"+sels[i].xmbm+"'" : "'"+sels[i].xmbm+"',";
+		id+= i==sels.length-1 ? "'"+sels[i].id+"'" : "'"+sels[i].id+"',";
+		lxbm+= i==sels.length-1 ? "'"+sels[i].lxbm+"'" : "'"+sels[i].lxbm+"',";
+		xzqhdm+= i==sels.length-1 ? sels[i].xzqhdm : sels[i].xzqhdm+",";
+		xzqh+= i==sels.length-1 ? sels[i].xzqh : sels[i].xzqh+",";
 	}
-	queryDate(xmbm);
+	queryDate(lxbm,xzqh,xzqhdm,id);
 	$('#dd').dialog("close");
 }
-function queryDate(xmbm){
+function queryDate(lxbm,xzqh,xzqhdm,id){
 	$('#table_tbody').html("");
-	var xz = $("#xzqh").combotree("getValues");
-	var xzqh =xz.join(',');
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/qqgl/queryXmQqfx.do',
-		data:'xzqh='+xzqh+'&jsxz='+$('#jsxz').val()+'&shzt1='+$('#shzt').val()+'&lxbm='+$('#lxbm').val()+'&wgny='+$('#wgsj').combobox("getValue")+'&xmbm='+xmbm,
+		url:'/jxzhpt/qqgl/ghkfxSelect.do',
+		data:'lx.lxbm='+lxbm+"&lx.xzqhdm="+xzqhdm+"&lx.id="+id+"&lx.xzqh="+xzqh,
 		dataType:'json',
 		success:function(msg){
 			var befromLen=0;
-			if(msg.befrom!=null){
-				befromLen=msg.befrom.length;
+			if(msg.ylx!=null){
+				befromLen=msg.ylx.length;
 			}
-			loadbeform(Number(befromLen)+Number(msg.befrom2.length),msg.befrom,msg.befrom2);
-			loadXjxm(msg.xjxm);
-			loadNdwg(Number(msg.ndwglx.length)+Number(msg.ndwgxzqh.length),msg.ndwglx,msg.ndwgxzqh);
+			loadbeform(Number(befromLen)+Number(msg.ytj.length),msg.ylx,msg.ytj);
+			loadXjxm(msg.ghkXm);
+			loadNdwg(Number(msg.wghlx.length)+Number(msg.wgtj.length),msg.wghlx,msg.wgtj);
 		}
 	});
 }
-function loadbeform(rows,befrom,befrom2){
-	if(befrom!=null){
-		$.each(befrom,function(index,item){
+function loadbeform(rows,ylx,ytj){
+	if(ylx!=null){
+		$.each(ylx,function(index,item){
 			var tr='<tr>';
 			if(index==0){
 				tr+='<td align="center" rowspan="'+rows+'">截止2014年底</td>';
@@ -165,7 +167,7 @@ function loadbeform(rows,befrom,befrom2){
 			$('#table_tbody').append(tr);
 		});
 	}
-	loadbeform2(befrom2);
+	loadbeform2(ytj);
 }
 function loadbeform2(beform2){
 	$.each(beform2,function(index,item){
@@ -205,13 +207,13 @@ function loadXjxm(xjxm){
 	$.each(xjxm,function(index,item){
 		var tr='<tr>';
 		if(index==0){
-			tr+='<td align="center" rowspan="'+xjxm.length+'">新增项目</td>';
+			tr+='<td align="center" rowspan="'+xjxm.length+'">规划库项目</td>';
 		}
 		tr+='<td align="center">'+item.xmmc+'</td>';
 		tr+='<td align="center">'+item.xzqh+'</td>';
 		tr+='<td align="center">'+item.qdzh+'</td>';
 		tr+='<td align="center">'+item.zdzh+'</td>';
-		tr+='<td align="center">'+item.wgny+'</td>';
+		tr+='<td align="center">'+item.jhwgn+'</td>';
 		tr+='<td align="center">'+item.jsxz+'</td>';
 		tr+='<td align="center">'+item.yilc+'</td>';
 		tr+='<td align="center">/</td>';
@@ -232,9 +234,9 @@ function loadXjxm(xjxm){
 		$('#table_tbody').append(tr);
 	});
 }
-function loadNdwg(rows,ndwglx,xzqhtj){
-	if(ndwglx!=null){
-		$.each(ndwglx,function(index,item){
+function loadNdwg(rows,wgh,wghtj){
+	if(wgh!=null){
+		$.each(wgh,function(index,item){
 			var tr='<tr>';
 			if(index==0){
 				tr+='<td align="center" rowspan="'+rows+'">截止完工年底</td>';
@@ -264,7 +266,7 @@ function loadNdwg(rows,ndwglx,xzqhtj){
 			$('#table_tbody').append(tr);
 		});
 	}
-	loadNdwg2(xzqhtj);
+	 loadNdwg2(wghtj);
 }
 function loadNdwg2(beform2){
 	$.each(beform2,function(index,item){
@@ -320,12 +322,8 @@ function loadNdwg2(beform2){
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<input id="xzqh" type="text" width="100"/>
-        						<span>审核状态：</span>
-        						<select id="shzt" style="width: 100px;">
-        							<option value="" selected="selected">全部</option>
-        							<option value="1">已审核</option>
-        							<option value="0">未审核</option>
-        						</select>
+        						<span>路线编码：</span>
+        						<input id="lxbm" type="text" style="width: 145px;"/>
         						<span>建设性质</span>
         						<select id="jsxz" style="width: 100px;">
         							<option value="">全部</option>
@@ -336,8 +334,6 @@ function loadNdwg2(beform2){
         						<input id="wgsj" type="text" width="100"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
-        						<span>路线编码：</span>
-        						<input id="lxbm" type="text" style="width: 145px;"/>
 								<img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
 									 onclick="selXm()" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 								<img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
