@@ -1931,7 +1931,7 @@ public class LxshController extends BaseActionSupport{
 				beform = lxshServer.queryBeformXm(sb.toString());
 				result.put("befrom", beform);
 			}
-			//计算本年年底的里程的条件
+			//计算本年年底的里程的条件-------年底完工行政区划统计
 			StringBuffer sbXmbm = new StringBuffer();
 			int m =0;
 			for (Entry<String, String> xmbm : xmbmArray.entrySet()) {
@@ -1940,7 +1940,7 @@ public class LxshController extends BaseActionSupport{
 				m++;
 			}
 			List<Map<String,String>> ndwgXzqh = lxshServer.queryNdwgXzqh(sbXmbm.toString(),false);
-			//获取对应行政区划之前的G、S道的总计
+			//获取对应行政区划之前的G、S道的总计-------获取上一年的省道和国道统计
 			List<Map<String, String>> beformXzqh = new ArrayList<Map<String,String>>();
 			for (Entry<String, String> map : xzqhMap.entrySet()) {
 				if(map.getKey().matches("^[0-9]*[1-9]00$")){
@@ -1976,7 +1976,7 @@ public class LxshController extends BaseActionSupport{
 			result.put("befrom2", beformXzqh);
 			ndwgXzqh.addAll(lxshServer.queryNdwgXzqh(sbXmbm.toString(),true));
 			result.put("ndwgxzqh", ndwgXzqh);
-			//计算年底完工后的路线里程
+			//计算年底完工后的路线里程--------------年底完工路线信息
 			List<Map<String, String>> ndwglx = new ArrayList<Map<String,String>>(beform);
 			List<Map<String, String>> list2 = lxshServer.queryNdwg(sbXmbm.toString());
 			for (Map<String, String> item : ndwglx) {

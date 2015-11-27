@@ -151,6 +151,9 @@ text-decoration:none;
 			saveLd();
 		});
 		$("#tjld_button").click(function(){
+			$("#fangx2,#jsdj1,#ldfl1,#fangx1,#pcsj1,#jtsgpcf,#jtsgfxdj,#glfxdj,#xbjyqx,#jckbgf,#jtl,#gldj1,#ldfl2,#pcsj2,#sgpb,#dgjw,#lxjw,#jtlpbzb,#gldj1").html('');
+			$("#roadname,#unit,#unitcode,#roadstart,#roadend,#dist,#distcode,#xjgjnd,#province,#town,#county,#throadcode,#throadstart,#throadend,#lxxp,#doup,#sjbl,#lcxy,#hjfz,#xchbc").html('');
+			$("#csxsss,#hul,#bzbx,#jshsxyd,#aqssqt,#tjgc,#hjzz,#bzbxcz,#jckcz,#jzhl,#jshsxydcz,#jshsxydcz,#aqssqtcz,#jhnf,#yhlc,#tzgs,#tsdq,#gltjpcf,#xuh").html('');
 			$("#roadcode").val('');
 			$("#tjldtb1").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;display:none");
 			$("#tjldtb2").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;");
@@ -219,7 +222,7 @@ text-decoration:none;
 						$("#yjej").attr('style','display: none');
 						$("#sjsj").attr('style','');
 						$("#jsdj2").html(item.jsdj);$("#fangx2").html(item.fangx);
-						$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj1").html(item.gldj);
+						$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj2").html(item.gldj);
 					}
 					$("#roadcode").html(item.roadcode);$("#roadname").html(item.roadname);$("#unit").html(item.unit);$("#unitcode").val(item.unitcode);$("#roadstart").html(item.roadstart);
 					$("#roadend").html(item.roadend);$("#dist").html(item.dist);$("#distcode").val(item.distcode);$("#xjgjnd").html(item.xjgjnd);

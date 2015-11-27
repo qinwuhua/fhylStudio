@@ -360,7 +360,7 @@ function shangB(){
 }
 function chuS(index){
 	obj=$("#grid").datagrid('getRows')[index];
-	YMLib.UI.createWindow('lxxx','项目初审','aqsmfh_sh.jsp','lxxx',900,450);
+	YMLib.UI.createWindow('lxxx','项目初审','aqsmfh_sh.jsp','lxxx',500,250);
 }
 function showshyj(index){
 	$.messager.alert('不同意意见',$("#grid").datagrid('getRows')[index].shyj,'warning');  

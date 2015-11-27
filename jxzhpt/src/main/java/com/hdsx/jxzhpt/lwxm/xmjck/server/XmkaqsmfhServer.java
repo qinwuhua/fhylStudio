@@ -60,5 +60,13 @@ public interface XmkaqsmfhServer {
 
 	boolean afSckCs(Xmkaqsmfh xmkaqsmfh);
 
+	List<Xmkaqsmfh> selectSckaqsmfhsh(Xmkaqsmfh xmkaqsmfh);
+
+	int selectSckaqsmfhshCount(Xmkaqsmfh xmkaqsmfh);
+
+	boolean afSckZs(Xmkaqsmfh xmkaqsmfh);
+
+	Xmkaqsmfh loadSckaqsmfhshCount(Xmkaqsmfh xmkaqsmfh);
+
 
 }

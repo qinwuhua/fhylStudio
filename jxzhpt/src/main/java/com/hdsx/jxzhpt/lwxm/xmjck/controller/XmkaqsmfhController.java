@@ -189,6 +189,34 @@ public class XmkaqsmfhController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 	}
+	//sh
+	public void selectSckaqsmfhsh(){
+		try {
+			if(xmkaqsmfh.getGydw().indexOf(",")==-1){
+				if(xmkaqsmfh.getGydw().length()==9)
+					xmkaqsmfh.setGydw("and (gydwdm='"+xmkaqsmfh.getGydw()+"'||'00' or gydwdm in(select id from xtgl_department where parent='"+xmkaqsmfh.getGydw()+"'||'00'))");					else
+						xmkaqsmfh.setGydw("and gydwdm like '%'||substr('"+xmkaqsmfh.getGydw()+"',0,4)||'_'||substr('"+xmkaqsmfh.getGydw()+"',6)||'%'");
+			}else{
+				xmkaqsmfh.setGydw("and gydwdm in ("+xmkaqsmfh.getGydw()+")");
+			}
+			if(xmkaqsmfh.getXzqh().indexOf(",")==-1){
+				xmkaqsmfh.setXzqh("and xzqhdm like '%"+xmkaqsmfh.getXzqh()+"%'");
+			}else{
+				xmkaqsmfh.setXzqh("and xzqhdm in ("+xmkaqsmfh.getXzqh()+")");
+			}
+			xmkaqsmfh.setPage(page);
+			xmkaqsmfh.setRows(rows);
+			List<Xmkaqsmfh> wqgzList = xmkaqsmfhServer.selectSckaqsmfhsh(xmkaqsmfh);
+			int count = xmkaqsmfhServer.selectSckaqsmfhshCount(xmkaqsmfh);
+			EasyUIPage<Xmkaqsmfh> eui = new EasyUIPage<Xmkaqsmfh>();
+			eui.setRows(wqgzList);
+			eui.setTotal(count);
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	
 	public void loadSckaqsmfhCount(){
 		try {
 			if(xmkaqsmfh.getGydw().indexOf(",")==-1){
@@ -204,6 +232,27 @@ public class XmkaqsmfhController extends BaseActionSupport{
 				xmkaqsmfh.setXzqh("and xzqhdm in ("+xmkaqsmfh.getXzqh()+")");
 			}
 			Xmkaqsmfh aqsmfh=xmkaqsmfhServer.loadSckaqsmfhCount(xmkaqsmfh);
+			JsonUtils.write(aqsmfh, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void loadSckaqsmfhshCount(){
+		try {
+			if(xmkaqsmfh.getGydw().indexOf(",")==-1){
+				if(xmkaqsmfh.getGydw().length()==9)
+					xmkaqsmfh.setGydw("and (gydwdm='"+xmkaqsmfh.getGydw()+"'||'00' or gydwdm in(select id from xtgl_department where parent='"+xmkaqsmfh.getGydw()+"'||'00'))");					else
+						xmkaqsmfh.setGydw("and gydwdm like '%'||substr('"+xmkaqsmfh.getGydw()+"',0,4)||'_'||substr('"+xmkaqsmfh.getGydw()+"',6)||'%'");
+			}else{
+				xmkaqsmfh.setGydw("and gydwdm in ("+xmkaqsmfh.getGydw()+")");
+			}
+			if(xmkaqsmfh.getXzqh().indexOf(",")==-1){
+				xmkaqsmfh.setXzqh("and xzqhdm like '%"+xmkaqsmfh.getXzqh()+"%'");
+			}else{
+				xmkaqsmfh.setXzqh("and xzqhdm in ("+xmkaqsmfh.getXzqh()+")");
+			}
+			Xmkaqsmfh aqsmfh=xmkaqsmfhServer.loadSckaqsmfhshCount(xmkaqsmfh);
 			JsonUtils.write(aqsmfh, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -286,5 +335,9 @@ public class XmkaqsmfhController extends BaseActionSupport{
 	
 	public void afSckCs(){
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afSckCs(xmkaqsmfh)+"");	
+	}
+	
+	public void afSckZs(){
+		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afSckZs(xmkaqsmfh)+"");	
 	}
 }

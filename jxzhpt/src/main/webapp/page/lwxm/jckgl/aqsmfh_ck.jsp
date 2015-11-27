@@ -50,7 +50,7 @@ text-decoration:none;
 			$("#yjej").attr('style','display: none');
 			$("#sjsj").attr('style','');
 			$("#jsdj2").html(item.jsdj);$("#fangx2").html(item.fangx);
-			$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj1").html(item.gldj);
+			$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj2").html(item.gldj);
 		}
 		$("#roadcode").html(item.roadcode);$("#roadname").html(item.roadname);$("#unit").html(item.unit);$("#unitcode").html(item.unitcode);$("#roadstart").html(item.roadstart);
 		$("#roadend").html(item.roadend);$("#dist").html(item.dist);$("#distcode").html(item.distcode);$("#xjgjnd").html(item.xjgjnd);

@@ -87,8 +87,21 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 		return queryOne("selectSckaqsmfhCount", xmkaqsmfh);
 	}
 	@Override
+	public List<Xmkaqsmfh> selectSckaqsmfhsh(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("selectSckaqsmfhsh",xmkaqsmfh);
+	}
+	@Override
+	public int selectSckaqsmfhshCount(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("selectSckaqsmfhshCount", xmkaqsmfh);
+	}
+	
+	@Override
 	public Xmkaqsmfh loadSckaqsmfhCount(Xmkaqsmfh xmkaqsmfh) {
 		return queryOne("loadSckaqsmfhCount", xmkaqsmfh);
+	}
+	@Override
+	public Xmkaqsmfh loadSckaqsmfhshCount(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("loadSckaqsmfhshCount", xmkaqsmfh);
 	}
 	@Override
 	public List<Xmkaqsmfh> aqsmfhJckGpsRoad(Xmkaqsmfh xmkaqsmfh) {
@@ -164,6 +177,10 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	@Override
 	public boolean afSckCs(Xmkaqsmfh xmkaqsmfh) {
 		return update("afSckCs", xmkaqsmfh)==1;
+	}
+	@Override
+	public boolean afSckZs(Xmkaqsmfh xmkaqsmfh) {
+		return update("afSckZs", xmkaqsmfh)==1;
 	}
 	
 	

@@ -182,6 +182,8 @@
  	
  	<action name="selectSckaqsmfh" class="xmkaqsmfhController" method="selectSckaqsmfh"/>
  	<action name="loadSckaqsmfhCount" class="xmkaqsmfhController" method="loadSckaqsmfhCount"/>
+ 	<action name="selectSckaqsmfhsh" class="xmkaqsmfhController" method="selectSckaqsmfhsh"/>
+ 	<action name="loadSckaqsmfhshCount" class="xmkaqsmfhController" method="loadSckaqsmfhshCount"/>
  	<action name="aqsmfhJckGpsRoad" class="xmkaqsmfhController" method="aqsmfhJckGpsRoad"/>
  	<action name="insertAqsmfhsck" class="xmkaqsmfhController" method="insertAqsmfhsck"/>
  	<action name="selectafldList" class="xmkaqsmfhController" method="selectafldList"/>
@@ -195,6 +197,7 @@
  	<action name="deleteSckAf" class="xmkaqsmfhController" method="deleteSckAf"/>
  	<action name="sckAfSb" class="xmkaqsmfhController" method="sckAfSb"/>
  	<action name="afSckCs" class="xmkaqsmfhController" method="afSckCs"/>
+ 	<action name="afSckZs" class="xmkaqsmfhController" method="afSckZs"/>
  	
  </package>
 </struts>

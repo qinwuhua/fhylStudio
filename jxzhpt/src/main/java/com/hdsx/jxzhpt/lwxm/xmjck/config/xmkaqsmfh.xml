@@ -740,6 +740,49 @@
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthbmcd,#{sbthbmcd},'未上报',sbzt) desc 
 	</select>
+	<select id="selectSckaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+		select * from (
+	 		select rownum num ,t.* from (select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+	 			order by decode(shyj,null,1,'同意',3,'',1,2) 
+	</select>
+	
 		<select id="selectSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="int">
 	 		select count(*) from 
 				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
@@ -776,6 +819,48 @@
 	 		</if>
 	 			
 	</select>
+	<select id="selectSckaqsmfhshCount" parameterType="xmkaqsmfh" resultType="int">
+	 		select count(*) from 
+				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 			
+	</select>
+	
 		<select id="loadSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc from 
 				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
@@ -811,6 +896,47 @@
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
 	</select>
+	<select id="loadSckaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc from 
+				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{lxbm})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	</select>
+	
  		<select id="aqsmfhJckGpsRoad" parameterType="hashmap" resultType="xmkaqsmfh">
  			select * from xmk_aqsmfh  where 1=1
  			<if test="unitcode!='' and unitcode!= null ">
@@ -1413,5 +1539,7 @@
 	   <update id="afSckCs" parameterType="xmkaqsmfh" >
  			update SCK_AQSMFH set sbzt=#{sbzt},sbthbmcd=#{sbthbmcd},cszt=#{cszt},csyj=#{csyj} where id =#{id} 
  		</update>
-	   
+	   <update id="afSckZs" parameterType="xmkaqsmfh" >
+ 			update SCK_AQSMFH set shzt=#{shzt},sbthbmcd=#{sbthbmcd},cszt=#{cszt},shyj=#{shyj} where id =#{id} 
+ 		</update>
 </mapper>
