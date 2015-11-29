@@ -35,8 +35,8 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	afxmnf("jhnf"); 
-	loadBmbm2("sbzt", "上报状态");
+	xmnf("jhnf"); 
+	loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("gldj", "公路等级");
 	tsdq("tsdq");
@@ -68,7 +68,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 		xzqhstr= xzqhdm.join(',');
 	}
 $("#grid").datagrid({    
-	 url:'/jxzhpt/aqsmfh/selectSckaqsmfh.do',
+	 url:'/jxzhpt/aqsmfh/selectSckaqsmfhsh.do',
 	 queryParams : {
 		 	'xmkaqsmfh.sbthbmcd':function(){
 		 		if($.cookie("unit2")=='______36') return 7;
@@ -94,66 +94,20 @@ $("#grid").datagrid({
 		width:$(window).width()-18,
     columns:[[    
 		{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-		{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){	
-			
-				if(row.sbthbmcd>7){
-					if(row.sbzt2=='未上报'){
-						return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<a href=javascript:delone('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';			
-					}else{
-						return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<span style="color:grey;">编辑</span>'+
-						'<span style="color:grey;">删除</span>';			
-					} 
-				}else{
-					if(row.tbdwdm=='36' && row.shzt!='已审核'){
-						return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<a href=javascript:delone('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';			 
-					}else{
-						return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<span style="color:grey;">编辑</span>'+
-						'<span style="color:grey;">删除</span>';	
-					}
-				}
-				
+		{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){			
+				return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';			
 		}},  
 		{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
-			
-			if(row.sbzt2=="未上报" && row.sbthbmcd==11){
-				if(row.cszt=='未审核'){
-					if(row.tsdq.indexOf('省直管试点县')!=-1){
-						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
-					}
-					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:showcsyj('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
-				}else
-				return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+			if(row.sbthbmcd!=7){
+				return '<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
+			}else{
+				if(row.shzt=="已审核"){
+					return '<span style="color:grey;">已审核</span>';
+				}else{
+					return '<a href=javascript:shengh('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}
-			else if(row.sbzt2=="未上报" && row.sbthbmcd==9){
-				if(row.shzt=='未审核'){
-					return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
-				}else
-				return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
-				}
-			else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==9&&row.sbthbmcd==7){
-				return '<span style="color:grey;">已初审</span>';
-				}
-			else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==11){
-				return '<span style="color:grey;">已上报</span>';
-				}
-			else if($.cookie("unit2").length==7){
-				if(row.shzt!='')
-					return '<span style="color:grey;">  '+row.shzt+'   </span>';
-					else
-						return '<span style="color:grey;">  未审核  </span>';	
-				
 			}
-			
 			
 		}},
 
@@ -213,7 +167,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue");
 	$.ajax({
 		 type : "POST",
-		 url : "/jxzhpt/aqsmfh/loadSckaqsmfhCount.do",
+		 url : "/jxzhpt/aqsmfh/loadSckaqsmfhshCount.do",
 		 dataType : 'json',
 		 data : data,
 		 success : function(msg){
@@ -228,162 +182,15 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	});
 }
 var obj=new Object();
-function edit(index){
-	obj=$("#grid").datagrid('getRows')[index];
-	YMLib.UI.createWindow('lxxx','项目编辑','aqsmfh_xg.jsp','lxxx',900,450);
-}
 var id;
 function ckxmxx(index){
 	obj=$("#grid").datagrid('getRows')[index];
-	YMLib.UI.createWindow('lxxx','项目信息','aqsmfh_ck.jsp','lxxx',900,450);
-}
-function delone(index){
- 	if($("#grid").datagrid('getRows')[index].tbbmbm!=$.cookie("unit")||$("#grid").datagrid('getRows')[index].sbzt2=='已上报'){
-		alert("该项目不是您添加的或已上报，不能执行删除操作！");
-		return;
-	} 
-	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
-	if(confirm('确定删除所选数据？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/aqsmfh/deleteSckAf.do",
-				 dataType : 'json',
-				 data : 'xmkaqsmfh.xmbm=' +xmbm,
-				 success : function(msg){
-					 if(msg){
-						 alert('删除成功！');
-						 $("#grid").datagrid('reload');	
-						 loadtj();
-					 }else{
-						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-}
-function delAll(){
-	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) {
-		alert("请选择要删除项目！");
-		return;
-	}
-	var xmbm=rows[0].xmbm;
- 	for(var i=0;i<rows.length;i++){
-		if(rows[i].tbbmbm!=$.cookie("unit")||rows[i].sbzt2=='已上报'){
-			alert("该项目不是您添加的或已上报，不能执行删除操作！");
-			return false;
-		}
-	} 
-	for(var i=1;i<rows.length;i++){
-		xmbm+=","+rows[i].xmbm ;
-	}
-	if(confirm('确定删除所选数据？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/aqsmfh/deleteSckAf.do",
-				 dataType : 'json',
-				 data : 'xmkaqsmfh.xmbm=' +xmbm,
-				 success : function(msg){
-					 if(msg){
-						 alert('删除成功！');
-						 $("#grid").datagrid('reload');	
-						 loadtj();
-					 }else{
-						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
+	YMLib.UI.createWindow('lxxx','项目信息','../sckgl/aqsmfh_ck.jsp','lxxx',900,450);
 }
 
-function shangB1(index){
-	var id=$("#grid").datagrid('getRows')[index].id;
-	var sbthcd;
-	if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')!=-1){
-		sbthcd=7;
-	}else{
-		sbthcd=$.cookie("unit2").length-2;
-	}
-	if(confirm('您确定上报该项目？')){
-		var data = "xmkaqsmfh.id="+id+"&xmkaqsmfh.sbthbmcd="+sbthcd;
-		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/aqsmfh/sckAfSb.do",
-			 dataType : 'json',
-			 data : data,
-			 success : function(msg){
-				 if(msg){
-					 alert('上报成功！'); 
-					 $("#grid").datagrid('reload');
-					 loadtj();
-				 }else{
-					 alert('上报失败,请选择要上报项目！');
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-		});
-	}
-}
-function shangB(){
-	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) {
-		alert("请选择要上报项目！");
-		return;
-	}
-	var id=rows[0].id;
-	var sbthcd;
-	if(rows[0].tsdq.indexOf('省直管试点县')!=-1){
-		sbthcd=7;
-	}else{
-		sbthcd=$.cookie("unit2").length-2;
-	}
-	for(var i=0;i<rows.length;i++){
-		if(rows[i].sbzt2=='已上报'){
-			alert("有项目已上报，请勿重复操作！");
-			return ;
-		}
-	}
-	for(var i=1;i<rows.length;i++){
-		id+=","+rows[i].id ;
-		if(rows[i].tsdq.indexOf('省直管试点县')!=-1){
-			sbthcd+=","+7;
-		}else{
-			sbthcd+=","+$.cookie("unit2").length-2;
-		}
-	}
-	if(confirm('您确定上报该项目？')){
-		var data = "xmkaqsmfh.id="+id+"&xmkaqsmfh.sbthbmcd="+sbthcd;
-		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/aqsmfh/sckAfSb.do",
-			 dataType : 'json',
-			 data : data,
-			 success : function(msg){
-				 if(msg){
-					 alert('上报成功！'); 
-					 $("#grid").datagrid('reload');
-					 loadtj();
-				 }else{
-					 alert('上报失败,请选择要上报项目！');
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-		});
-	}
-}
-function chuS(index){
+function shengh(index){
 	obj=$("#grid").datagrid('getRows')[index];
-	YMLib.UI.createWindow('lxxx','项目初审','aqsmfh_sh.jsp','lxxx',500,250);
+	YMLib.UI.createWindow('lxxx','项目审核','aqsmfh_sh.jsp','lxxx',500,250);
 }
 function showshyj(index){
 	$.messager.alert('不同意意见',$("#grid").datagrid('getRows')[index].shyj,'warning');  
@@ -404,7 +211,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目审查库管理>&nbsp;安全生命防护工程项目</div>
+		<div id="p_top">路网项目>&nbsp;项目审查库审核>&nbsp;安全生命防护工程项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -438,7 +245,7 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select></td>
-                               <td>上报状态：</td>
+                               <td>审核状态：</td>
                               <td>	<select id="sbzt" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               <td>特殊地区：</td>
@@ -457,10 +264,8 @@ text-decoration:none;
                             <tr height="32">
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
-								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('aqsmfh_add.jsp','900','500');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delAll();" style="border-width:0px;" />
-                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
+								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>		
 							 </td>
                             </tr></table>
 						</div>

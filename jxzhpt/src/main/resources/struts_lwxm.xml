@@ -171,11 +171,15 @@
  <package name="aqsmfh" extends="struts-default" namespace="/aqsmfh">
  	<action name="selectXmkaqsmfhXMK" class="xmkaqsmfhController" method="selectXmkaqsmfhXMK"/>
  	<action name="loadXmkaqsmfhXMKCount" class="xmkaqsmfhController" method="loadXmkaqsmfhXMKCount"/>
+ 	<action name="selectXmkaqsmfhsh" class="xmkaqsmfhController" method="selectXmkaqsmfhsh"/>
+ 	<action name="loadXmkaqsmfhshCount" class="xmkaqsmfhController" method="loadXmkaqsmfhshCount"/>
  	<action name="smfhGpsroad" class="xmkaqsmfhController" method="smfhGpsroad"/>
  	<action name="insertAqsmfhxmk" class="xmkaqsmfhController" method="insertAqsmfhxmk"/>
  	<action name="xgXmkAFSbzt" class="xmkaqsmfhController" method="xgXmkAFSbzt"/>
  	<action name="updateAqsmfhxmk" class="xmkaqsmfhController" method="updateAqsmfhxmk"/>
  	<action name="deleteAfxmkById" class="xmkaqsmfhController" method="deleteAfxmkById"/>
+ 	<action name="afXmkCs" class="xmkaqsmfhController" method="afXmkCs"/>
+ 	<action name="afXmkZs" class="xmkaqsmfhController" method="afXmkZs"/>
  	
  	
  	

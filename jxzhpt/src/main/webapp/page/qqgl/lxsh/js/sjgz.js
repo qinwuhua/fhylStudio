@@ -536,7 +536,7 @@ function xmnf1(id,xmlx){
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 	}
 	$('#'+id).combobox({
 	    data:years,

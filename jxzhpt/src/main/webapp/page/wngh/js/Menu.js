@@ -49,6 +49,13 @@ $(function() {
 		href:'./wnjh/xmghksjfx.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101090120',
+		title:'新建工程项目',
+		imgSrc:'../../images/xjgcxm.png',
+		renderTo:'left_menu1',
+		href:'./wnjh/xj__ck.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101090121',
 		title:'路面改造工程项目查看',
 		imgSrc:'../../images/gj_s.png',

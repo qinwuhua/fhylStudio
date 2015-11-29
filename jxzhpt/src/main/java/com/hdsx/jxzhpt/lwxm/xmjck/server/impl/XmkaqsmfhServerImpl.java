@@ -17,6 +17,8 @@ import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.XmkaqsmfhServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+
+import freemarker.core.ReturnInstruction.Return;
 @Service
 public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer {
 	private Map<String, Object> hm;
@@ -37,6 +39,18 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	public Xmkaqsmfh loadXmkaqsmfhXMKCount(Xmkaqsmfh xmkaqsmfh) {
 		
 		return queryOne("loadXmkaqsmfhXMKCount", xmkaqsmfh);
+	}
+	@Override
+	public List<Xmkaqsmfh> selectXmkaqsmfhsh(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("selectXmkaqsmfhsh",xmkaqsmfh);
+	}
+	@Override
+	public int selectXmkaqsmfhshCount(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("selectXmkaqsmfhshCount", xmkaqsmfh);
+	}
+	@Override
+	public Xmkaqsmfh loadXmkaqsmfhshCount(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("loadXmkaqsmfhshCount", xmkaqsmfh);
 	}
 	@Override
 	public List<Xmkaqsmfh> smfhGpsroad(Xmkaqsmfh roadcode) {
@@ -180,7 +194,22 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	}
 	@Override
 	public boolean afSckZs(Xmkaqsmfh xmkaqsmfh) {
-		return update("afSckZs", xmkaqsmfh)==1;
+		if(update("afSckZs", xmkaqsmfh)==1){
+			if("已审核".equals("xmkaqsmfh.getShzt()")){
+				//向计划库插入一条数据
+			}
+			return true;
+		}
+		
+		return false;
+	}
+	@Override
+	public boolean afXmkCs(Xmkaqsmfh xmkaqsmfh) {
+		return update("afXmkCs", xmkaqsmfh)==1;
+	}
+	@Override
+	public boolean afXmkZs(Xmkaqsmfh xmkaqsmfh) {
+		return update("afXmkZs", xmkaqsmfh)==1;
 	}
 	
 	

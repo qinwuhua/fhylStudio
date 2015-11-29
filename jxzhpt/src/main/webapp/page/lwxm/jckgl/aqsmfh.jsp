@@ -22,9 +22,21 @@
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
+	if($.cookie("unit2").length<11){
+		$("#shangBao").attr('style','display: none');
+	}
+	if($.cookie("unit2").length==11){
+		czzt="上报状态";
+	}
+	if($.cookie("unit2").length==9){
+		czzt="初审状态";
+	}
+	if($.cookie("unit2").length==7){
+		czzt="审核状态";
+	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	afxmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
 	loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("gldj", "公路等级");
@@ -84,37 +96,61 @@ function showAll(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:editXX('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-					'<a href=javascript:delOne('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>  ';
-					//'<span style="color:grey;">删除</span>';
-				
-			}},    
-			{field:'sbzt',title:'上报状态',width:180,align:'center',formatter:function(value,row,index){
-				if(row.sbzt2=="未上报" && row.sbthcd==11){
-					if(row.shzt1=='未审核'){
-						if(row.tsdq.indexOf('省直管试点县')!=-1){
-							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+					if(row.sbthcd>7){
+						if(row.sbzt2=='未上报'){
+							return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<a href=javascript:editXX('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<a href=javascript:delOne('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>  ';
+						}else{
+							return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<span style="color:grey;">编辑</span>'+
+							'<span style="color:grey;">删除</span>';			
+						} 
+					}else{
+						if(row.tbdwdm=='36' && row.shzt!='已审核'){
+							return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<a href=javascript:editXX('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<a href=javascript:delOne('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>  ';
+						}else{
+							return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<span style="color:grey;">编辑</span>'+
+							'<span style="color:grey;">删除</span>';	
 						}
-						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg1('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
-						
+					}
+			}},    
+			{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
+
+				if(row.sbzt2=="未上报" && row.sbthbmcd==11){
+					if(row.cszt=='未审核'){
+						if(row.tsdq.indexOf('省直管试点县')!=-1){
+							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						}
+						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:showcsyj('+index+') style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
 					}else
 					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}
-				else if(row.sbzt2=="未上报" && row.sbthcd==9){
+				else if(row.sbzt2=="未上报" && row.sbthbmcd==9){
 					if(row.shzt=='未审核'){
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg2('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 					}else
-					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
+					return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 					}
-				else if(row.sbzt2=="已上报" && row.sbthcd==7&&$.cookie("unit2").length!=11){
-					return '已初审  ';
+				else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==9&&row.sbthbmcd==7){
+					return '<span style="color:grey;">已初审</span>';
 					}
-				else if(row.sbzt2=="未上报" && row.sbthcd==7){
-						return '<span style="color:grey;">         </span>';
-					}else{
+				else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==11){
 					return '<span style="color:grey;">已上报</span>';
+					}
+				else if($.cookie("unit2").length==7){
+					if(row.zszt!='')
+						return '<span style="color:grey;">  '+row.zszt+'   </span>';
+						else
+							return '<span style="color:grey;">  未审核  </span>';	
+					
 				}
 			}},
 				//{field:'shzt',title:'审核状态',width:80,align:'center'},
@@ -133,6 +169,33 @@ function showAll(){
 		        {field:'jhnf',title:'计划实施安防工程年份',width:140,align:'center'}
 		    ]]    
 		});  
+	loadtj();
+	}
+	
+	function loadtj(){
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
 		var sbthcd;
 	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
@@ -155,6 +218,38 @@ function showAll(){
 	}
 	
 	//批量上报
+	
+	function shangB1(index){
+	var id=$("#grid").datagrid('getRows')[index].id;
+	var sbthcd;
+	if($("#grid").datagrid('getRows')[index].tsdq.indexOf('省直管试点县')!=-1){
+		sbthcd=7;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	if(confirm('您确定上报该项目？')){
+		var data = "xmkaqsmfh.id="+id+"&xmkaqsmfh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/aqsmfh/xgXmkAFSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！'); 
+					 $("#grid").datagrid('reload');
+					 loadtj();
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+	
 	function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	if(rows.length==0) {
@@ -251,6 +346,11 @@ function showAll(){
 				});
 			}
 	}
+	
+	function chuS(index){
+		obj=$("#grid").datagrid('getRows')[index];
+		YMLib.UI.createWindow('lxxx','项目初审','aqsmfh_sh.jsp','lxxx',500,250);
+	}
 </script>
 <style type="text/css">
 TD {
@@ -322,8 +422,8 @@ text-decoration:none;
 					</tr>
 			<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
-        					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里。</td>
+        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目.
+<!--         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里。</td> -->
        	 	</tr>
 		</table>
 		<div id="grid" width="100%" ></div>

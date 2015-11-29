@@ -91,6 +91,24 @@ function accDiv(arg1,arg2){
 }
 var rowid;
 //年份
+function afxmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=2015;i<=2020;i++){
+		if(i==2015)
+			first=myDate.getFullYear()+1-i;
+		years.push({text:(i),value:(i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text'
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+}
+
 function xmnf(id){
 	var myDate = new Date();
 	var years=[];

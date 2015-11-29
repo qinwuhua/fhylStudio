@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.lxsh">
+	<insert id="insertqqgllx" parameterType="lxsh">
+		insert into lxsh_lx select * from wnjh_lx where xmid=#{wnid}
+	</insert>
+	<insert id="updateqqgllx" parameterType="lxsh">
+		update lxsh_lx set xmid=#{xmbm},jdbs='0' where xmid=#{wnid}
+	</insert>
+	<select id="loadjsdjcd" parameterType="lxsh" resultType="lxsh">
+		select sum(t.yilc) yilc,sum(t.erlc) erlc,sum(t.sanlc) sanlc,sum(t.silc) silc,sum(t.dwlc) dwlc,sum(t.wllc) wllc,
+       sum(t.jhyilc) jhyilc,sum(t.jherlc) jherlc,sum(t.jhsanlc) jhsanlc,sum(t.jhsilc) jhsilc,sum(t.jhdwlc) jhdwlc,sum(t.jhwllc) jhwllc,
+        max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh     
+       from wnjh_lx t where t.xmid=#{id} group by t.xmid
+     </select>
 	<select id="selectimportXmbm" parameterType="String" resultType="String">
 		${value}
 	</select>
@@ -29,8 +41,8 @@
 		select * from LXSH_XJ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
-		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,jszlc)
-		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{jszlc})
+		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk})
 	</insert>
 	<insert id="insertLmgz" parameterType="lxsh">
 		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk)
@@ -434,9 +446,8 @@
 	<select id="Xjsfkxx" parameterType="string" resultType="lxsh">
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
-	<select id="qqglGpsroad" parameterType="lxsh" resultType="lxsh">
-		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj
-		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
+	<select id="qqglGpsroad" parameterType="hashmap" resultType="lxsh">
+		select * from ${xmlx} where xmmc like '%'||#{xmmc}||'%' and xzqhdm like '%'||#{xzqh}||'%' 
 	</select>
 	<update id="updatesjgz" parameterType="lxsh">
 		update lxsh_sjgz set <!-- bzys=#{bzys}, -->lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}

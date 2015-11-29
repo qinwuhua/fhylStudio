@@ -99,6 +99,126 @@
 	 		</if>
 	</select>
 	
+	<select id="selectXmkaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+		select * from (
+	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
+	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
+	</select>
+	<select id="selectXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="int">
+	 		select count(*) from XMK_AQSMFH t where 1=1 
+	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 			
+	</select>
+	<select id="loadXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
+	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 		<if test="unitcode!='' and unitcode!= null ">
+				${unitcode}
+			</if>
+			<if test="distcode!='' and distcode!= null ">
+				${distcode}
+			</if>
+	 		<if test="roadname!='' and roadname!= null ">
+	 			and roadname like '%'||(#{roadname})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and gldj like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="roadcode!='' and roadcode!= null ">
+	 			and roadcode like '%'||(#{roadcode})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	</select>
+	<update id="afXmkCs" parameterType="xmkaqsmfh">
+ 			update XMK_AQSMFH set sbzt=#{sbzt},sbthcd=#{sbthcd},cszt=#{cszt},csyj=#{csyj} where id =#{id} 
+	</update>
+	<update id="afXmkZs" parameterType="xmkaqsmfh" >
+			update XMK_AQSMFH set zszt=#{zszt},sbthcd=#{sbthcd},cszt=#{cszt},zsyj=#{zsyj} where id =#{id} 
+	</update>
+ 		
+	
 	<select id="smfhGpsroad" parameterType="hashmap" resultType="xmkaqsmfh">
 	
 		select roadcode,roadname,min(roadstart) roadstart,max(roadends)
@@ -304,6 +424,9 @@
 	      <if test="tbbmbm != null" >
 	        tbbmbm,
 	      </if>
+	      <if test="xuh != null" >
+	        xuh,
+	      </if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 			sys_guid(),
@@ -496,6 +619,9 @@
 			<if test="tbbmbm != null">
 				#{tbbmbm},
 			</if>
+			<if test="xuh != null">
+				#{xuh},
+			</if>
 	    </trim>
 	  </insert>
 	  <update id="updateAqsmfhxmk" parameterType="xmkaqsmfh">
@@ -686,6 +812,9 @@
 		      </if>
 		      <if test="gpszd != null" >
 		        gpszd = #{gpszd},
+		      </if>
+		      <if test="xuh != null" >
+		        xuh = #{xuh},
 		      </if>
 		    </set>
 		    where id=#{id}

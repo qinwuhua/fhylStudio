@@ -4,6 +4,7 @@
 <struts>
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
+		  <action name="loadjsdjcd" class="lxshController" method="loadjsdjcd"/>
 		  <action name="selectlxbyxmid" class="lxshController" method="selectlxbyxmid"/>
 		  <action name="qqglGpszh" class="lxshController" method="qqglGpszh"/>
 		  <action name="qqglGpszh1" class="wnjhController" method="qqglGpszh1"/>

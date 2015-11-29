@@ -73,11 +73,18 @@ public class LxshController extends BaseActionSupport{
 	private String jsxz;
 	private String shzt1;
 	private String wgny;
+	private String xmlx;
 	private Lx lx;
 	private Wqbzbz wqbzbz=new Wqbzbz();
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
 	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getJsxz() {
 		return jsxz;
 	}
@@ -355,8 +362,6 @@ public class LxshController extends BaseActionSupport{
 			JhshServer jhshServer=new JhshServerImpl();
 			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
-				XmsqServer xmsqServer=new XmsqServerImpl();
-				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 				boolean bl=lxshServer.insertSjgz(lxsh);
 				if(bl){
 					result.put("result", "true");
@@ -383,8 +388,6 @@ public class LxshController extends BaseActionSupport{
 			JhshServer jhshServer=new JhshServerImpl();
 			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
-				XmsqServer xmsqServer=new XmsqServerImpl();
-				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 				boolean bl=lxshServer.insertLmgz(lxsh);
 				if(bl){
 					result.put("result", "true");
@@ -412,8 +415,6 @@ public class LxshController extends BaseActionSupport{
 			JhshServer jhshServer=new JhshServerImpl();
 			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
-				XmsqServer xmsqServer=new XmsqServerImpl();
-				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 				boolean bl=lxshServer.insertXj(lxsh);
 				if(bl){
 					result.put("result", "true");
@@ -1168,8 +1169,9 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void qqglGpsroad(){
-		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setXmmc(xmmc);
 		lxsh.setXzqh(xzqh);
+		lxsh.setXmlx(xmlx);
 		List<Lxsh> list=lxshServer.qqglGpsroad(lxsh);
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
@@ -2019,6 +2021,15 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void setLx(Lx lx) {
 		this.lx = lx;
+	}
+	
+	public void loadjsdjcd(){
+		try {
+			JsonUtils.write(lxshServer.loadjsdjcd(lxsh), getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 

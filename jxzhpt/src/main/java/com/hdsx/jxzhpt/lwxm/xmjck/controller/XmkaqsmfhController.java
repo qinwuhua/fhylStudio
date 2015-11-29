@@ -121,6 +121,54 @@ public class XmkaqsmfhController extends BaseActionSupport{
 		}
 	}
 	
+	public void selectXmkaqsmfhsh(){
+		try {
+			if(xmkaqsmfh.getUnitcode().indexOf(",")==-1){
+				if(xmkaqsmfh.getUnitcode().length()==9)
+					xmkaqsmfh.setUnitcode("and (unitcode='"+xmkaqsmfh.getUnitcode()+"'||'00' or unitcode in(select id from xtgl_department where parent='"+xmkaqsmfh.getUnitcode()+"'||'00'))");					else
+						xmkaqsmfh.setUnitcode("and unitcode like '%'||substr('"+xmkaqsmfh.getUnitcode()+"',0,4)||'_'||substr('"+xmkaqsmfh.getUnitcode()+"',6)||'%'");
+			}else{
+				xmkaqsmfh.setUnitcode("and unitcode in ("+xmkaqsmfh.getUnitcode()+")");
+			}
+			if(xmkaqsmfh.getDistcode().indexOf(",")==-1){
+				xmkaqsmfh.setDistcode("and distcode like '%"+xmkaqsmfh.getDistcode()+"%'");
+			}else{
+				xmkaqsmfh.setDistcode("and distcode in ("+xmkaqsmfh.getDistcode()+")");
+			}
+			xmkaqsmfh.setPage(page);
+			xmkaqsmfh.setRows(rows);
+			List<Xmkaqsmfh> wqgzList = xmkaqsmfhServer.selectXmkaqsmfhsh(xmkaqsmfh);
+			int count = xmkaqsmfhServer.selectXmkaqsmfhshCount(xmkaqsmfh);
+			EasyUIPage<Xmkaqsmfh> eui = new EasyUIPage<Xmkaqsmfh>();
+			eui.setRows(wqgzList);
+			eui.setTotal(count);
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	public void loadXmkaqsmfhshCount(){
+		try {
+			if(xmkaqsmfh.getUnitcode().indexOf(",")==-1){
+				if(xmkaqsmfh.getUnitcode().length()==9)
+					xmkaqsmfh.setUnitcode("and (unitcode='"+xmkaqsmfh.getUnitcode()+"'||'00' or unitcode in(select id from xtgl_department where parent='"+xmkaqsmfh.getUnitcode()+"'||'00'))");					else
+						xmkaqsmfh.setUnitcode("and unitcode like '%'||substr('"+xmkaqsmfh.getUnitcode()+"',0,4)||'_'||substr('"+xmkaqsmfh.getUnitcode()+"',6)||'%'");
+			}else{
+				xmkaqsmfh.setUnitcode("and unitcode in ("+xmkaqsmfh.getUnitcode()+")");
+			}
+			if(xmkaqsmfh.getDistcode().indexOf(",")==-1){
+				xmkaqsmfh.setDistcode("and distcode like '%"+xmkaqsmfh.getDistcode()+"%'");
+			}else{
+				xmkaqsmfh.setDistcode("and distcode in ("+xmkaqsmfh.getDistcode()+")");
+			}
+			Xmkaqsmfh aqsmfh=xmkaqsmfhServer.loadXmkaqsmfhshCount(xmkaqsmfh);
+			JsonUtils.write(aqsmfh, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void smfhGpsroad(){
 		try {
 			xmkaqsmfh.setRoadcode(roadcode);
@@ -154,8 +202,12 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
-	
+	public void afXmkCs(){
+		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afXmkCs(xmkaqsmfh)+"");	
+	}
+	public void afXmkZs(){
+		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afXmkZs(xmkaqsmfh)+"");	
+	}
 	
 	
 	

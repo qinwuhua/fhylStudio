@@ -48,6 +48,7 @@ text-decoration:none;
 			$("#jsdj2").val(item.jsdj);$("#fangx2").val(item.fangx);
 			$("#ldfl2").val(item.ldfl);$("#pcsj2").val(item.pcsj);$("#sgpb").val(item.sgpb);$("#dgjw").val(item.dgjw);$("#lxjw").val(item.lxjw);$("#jtlpbzb").val(item.jtlpbzb);$("#gldj2").val(item.gldj);
 		}
+		$("#xuh").val(item.xuh);
 		$("#roadcode").val(item.roadcode);$("#roadname").val(item.roadname);$("#unit").val(item.unit);$("#unitcode").val(item.unitcode);$("#roadstart").val(item.roadstart);
 		$("#roadend").val(item.roadend);$("#dist").val(item.dist);$("#distcode").val(item.distcode);$("#xjgjnd").val(item.xjgjnd);
 		$("#province").val(item.province);$("#town").val(item.town);$("#county").val(item.county);$("#throadcode").val(item.throadcode);$("#throadstart").val(item.throadstart);$("#throadend").val(item.throadend);
@@ -154,6 +155,10 @@ text-decoration:none;
 				function(e, item) {
 					if(item==undefined) return ;
 					selectTSDQ(item.distcode);
+					$("#fangx2,#jsdj1,#ldfl1,#fangx1,#pcsj1,#jtsgpcf,#jtsgfxdj,#glfxdj,#xbjyqx,#jckbgf,#jtl,#gldj1,#ldfl2,#pcsj2,#sgpb,#dgjw,#lxjw,#jtlpbzb,#gldj1").val('');
+					$("#roadname,#unit,#unitcode,#roadstart,#roadend,#dist,#distcode,#xjgjnd,#town,#county,#throadcode,#throadstart,#throadend,#lxxp,#doup,#sjbl,#lcxy,#hjfz,#xchbc").val('');
+					$("#csxsss,#hul,#bzbx,#jshsxyd,#aqssqt,#tjgc,#hjzz,#bzbxcz,#jckcz,#jzhl,#jshsxydcz,#jshsxydcz,#aqssqtcz,#jhnf,#yhlc,#tzgs,#tsdq,#gltjpcf,#xuh").val('');
+					$("#tsdq").html('');
 					$("#roadname").val(item.roadname);
 					$("#unit").val(item.unit);
 					$("#dist").val(item.dist);
@@ -215,7 +220,7 @@ text-decoration:none;
 		}
 		var zlc=jszlc($("#roadstart").val(),$("#roadend").val());
 		var data ="xmkaqsmfh.roadcode="+$("#roadcode").val()+"&xmkaqsmfh.roadname="+$("#roadname").val()+"&xmkaqsmfh.unit="+$("#unit").val()+"&xmkaqsmfh.unitcode="+$("#unitcode").val()+"&xmkaqsmfh.roadstart="+$("#roadstart").val().replace(/\+/g,"%2B")
-		+"&xmkaqsmfh.roadend="+$("#roadend").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.zlc="+zlc+"&xmkaqsmfh.dist="+$("#dist").val()+"&xmkaqsmfh.distcode="+$("#distcode").val()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").val()+
+		+"&xmkaqsmfh.roadend="+$("#roadend").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.zlc="+zlc+"&xmkaqsmfh.dist="+$("#dist").val()+"&xmkaqsmfh.distcode="+$("#distcode").val()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").val()+"&xmkaqsmfh.xuh="+$("#xuh").val()+
 		"&xmkaqsmfh.province="+$("#province").val()+"&xmkaqsmfh.town="+$("#town").val()+"&xmkaqsmfh.county="+$("#county").val()+"&xmkaqsmfh.throadcode="+$("#throadcode").val()+"&xmkaqsmfh.throadstart="+$("#throadstart").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.throadend="+$("#throadend").val().replace(/\+/g,"%2B")
 		+"&xmkaqsmfh.lxxp="+$("#lxxp").val()+"&xmkaqsmfh.doup="+$("#doup").val()+"&xmkaqsmfh.sjbl="+$("#sjbl").val()+"&xmkaqsmfh.lcxy="+$("#lcxy").val()+"&xmkaqsmfh.hjfz="+$("#hjfz").val()+"&xmkaqsmfh.xchbc="+$("#xchbc").val()
 		+"&xmkaqsmfh.csxsss="+$("#csxsss").val()+"&xmkaqsmfh.hul="+$("#hul").val()+"&xmkaqsmfh.bzbx="+$("#bzbx").val()+"&xmkaqsmfh.jshsxyd="+$("#jshsxyd").val()+"&xmkaqsmfh.aqssqt="+$("#aqssqt").val()+"&xmkaqsmfh.tjgc="+$("#tjgc").val()
@@ -305,33 +310,40 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text"  id="roadname" style="width: 156px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">序号：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:20%" align="left">
+					<input type="text" id="xuh" style="width: 156px"  /></td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="unit" style="width: 156px" />
 					<input type="text" id="unitcode" style="display:none"/></td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
+				<td colspan="3" style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="dist" style="width: 156px" />
 					<input type="text" id="distcode" style="display:none"/></td>
+				
+				</tr>	
+				<tr style="height: 35px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">省：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="province" style="width: 156px" value="江西省" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="town" style="width: 156px" /></td>
-				</tr>	
-				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="county" style="width: 156px" /></td>
+				</tr>	
+				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号起点：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text"  id="roadstart" style="width: 156px" /><br>
 					<span id="qd"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号终点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
+				<td colspan="3"  style="background-color: #ffffff; height: 20px;" align="left"><br>
 					<input type="text" id="roadend" style="width: 156px" />
 					<span id="zd"></span></td>
 				</tr>

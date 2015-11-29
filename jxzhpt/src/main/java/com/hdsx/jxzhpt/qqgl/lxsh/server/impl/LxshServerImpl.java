@@ -77,14 +77,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	}
 	@Override
 	public boolean insertSjgz(Lxsh lxsh) {
-		insert("insertlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if (insert("insertSjgz", lxsh) > 0) {
+			insert("insertqqgllx", lxsh);
+			update("updateqqgllx", lxsh);
 			return true;
 		} else
 			return false;
@@ -92,28 +87,18 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public boolean insertLmgz(Lxsh lxsh) {
-		insert("insertlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if (insert("insertLmgz", lxsh) > 0) {
+			insert("insertqqgllx", lxsh);
+			update("updateqqgllx", lxsh);
 			return true;
 		} else
 			return false;
 	}
 	@Override
 	public boolean insertXj(Lxsh lxsh) {
-		insert("insertlx", lxsh);
-		Double bzcs=queryOne("queryMaxbzcs",lxsh);
-		Double lc=queryOne("queryMaxlc",lxsh);
-		if(lc!=null)
-		lxsh.setLc(lc+"");
-		if(bzcs!=null)
-		lxsh.setBzys(bzcs+"");
 		if (insert("insertXj", lxsh) > 0) {
+			insert("insertqqgllx", lxsh);
+			update("updateqqgllx", lxsh);
 			return true;
 		} else
 			return false;
@@ -526,7 +511,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public List<Lxsh> qqglGpsroad(Lxsh lxsh) {
-		return queryList("qqglGpsroad", lxsh);
+		hm = new HashMap<String, Object>();
+		hm.put("xmmc", lxsh.getXmmc());
+		hm.put("xzqh", lxsh.getXzqh());
+		hm.put("xmlx", lxsh.getXmlx());
+		return queryList("qqglGpsroad", hm);
+
 	}
 
 	@Override
@@ -751,5 +741,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public Map<String, String> queryLxshShLjXj(Lxsh lxsh) {
 		return queryOne("queryLxshShLjXj",lxsh);
+	}
+
+	@Override
+	public Lxsh loadjsdjcd(Lxsh lxsh) {
+		return queryOne("loadjsdjcd", lxsh);
 	}
 }

@@ -86,7 +86,14 @@ public class Lxsh implements Serializable {
 	private String gz;
 	private String sz;
 	private String xmsl;
-
+	private String wnid;
+	
+	public String getWnid() {
+		return wnid;
+	}
+	public void setWnid(String wnid) {
+		this.wnid = wnid;
+	}
 	public String getGz() {
 		return gz;
 	}
