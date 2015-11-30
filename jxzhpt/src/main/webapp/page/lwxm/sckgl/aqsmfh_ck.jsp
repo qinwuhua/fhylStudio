@@ -96,6 +96,7 @@ text-decoration:none;
 	$(function(){
 		showLd();
 		loadscxx();
+		fileShow();
 		$("#qx_window").click(function(){
 			parent.$('#lxxx').window('destroy');
 		});	
@@ -104,6 +105,39 @@ text-decoration:none;
 	function ckxxld(id){
 		xmkid=id;
 		YMLib.UI.createWindow('lxxx','项目路段信息','aqsmfhld_ck.jsp','lxxx',700,400);
+	}
+	
+	
+	function fileShow(){
+		//加载文件
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryFjByParentId.do',
+			dataType:'json',
+			data:'uploads.id='+xmbm,
+			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
+				$("#gkbgTable").empty();
+				$("#sjsgtTable").empty();
+				var gkbg="";
+				var sjsgt="";
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].filetype=="工可报告"){
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a>  ';
+					}if(data[i].filetype=="设计施工图"){
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+						'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a>  ';
+					}
+				}
+				$("#gkbgTable").append(gkbg);
+				$("#sjsgtTable").append(sjsgt);
+			}
+		});
+	}
+	function downFile(fileurl,filename){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
 	}
 </script>
 
@@ -212,6 +246,14 @@ text-decoration:none;
 				</td>
 				
 			</tr>	
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工图设计批复：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+				</td>
+			</tr>
 			<tr style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff; height: 30px;"
 					align="center"><a

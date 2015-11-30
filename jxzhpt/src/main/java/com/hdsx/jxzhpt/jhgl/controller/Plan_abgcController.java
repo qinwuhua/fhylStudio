@@ -362,6 +362,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void downAbgcFile(){
         try {
+        	System.out.println(uploads.getFileurl());
         	File file =new File(uploads.getFileurl());
         	HttpServletResponse response = getresponse();
         	OutputStream out = response.getOutputStream();

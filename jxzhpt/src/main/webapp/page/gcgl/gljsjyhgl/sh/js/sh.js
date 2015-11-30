@@ -164,6 +164,10 @@ function tjshyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#tj_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#tj_wc_stz").val()==''){
 		alert("请填入本月完成省投资");
 		return;
@@ -219,7 +223,7 @@ function tjshyb(){
 	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()
 	+"&gcglsh.qksm="+$("#tj_qksm").val()+"&gcglsh.wcqk="+$("#tj_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
-	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+$("#tj_sbyf").val()+"&gcglsh.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
+	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglsh.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -241,6 +245,10 @@ function tjshyb(){
 //修改
 function xgshyb(){
 	//alert("xx");
+	if($("#xg_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#xg_wc_btz").val()==''){
 		alert("请填入本月完成部投资");
 		return;
@@ -300,7 +308,7 @@ function xgshyb(){
 	+"&gcglsh.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#xg_bywcdc").val()+"&gcglsh.bywcjc="+$("#xg_bywcjc").val()+"&gcglsh.bywcmc="+$("#xg_bywcmc").val()+"&gcglsh.kgdl="+$("#xg_kgdl").val()
 	+"&gcglsh.qksm="+$("#xg_qksm").val()+"&gcglsh.wcqk="+$("#xg_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
-	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.sbyf="+$("#xg_sbyf").val();
+	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.sbyf="+$("#xg_sbyf").datebox('getValue');
 	//alert(data);
 	$.ajax({
 		type:'post',

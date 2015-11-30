@@ -13,6 +13,8 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
@@ -67,6 +69,7 @@ text-decoration:none;
 	}
 	
 	$(function(){
+		loadUploadify();
 		showLd();
 		$('#faspsj').datebox({    
 		    required:false,
@@ -354,6 +357,104 @@ function saveAbgc(){
 	  			
 		//
 	}
+	
+	function loadUploadify(){
+	$("#uploadSjt").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadAbgcFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue1',
+		'fileDataName' : 'uploadSjt',
+		'auto' : false,
+		'multi' : true,
+		'buttonImg': '../../../js/uploader/bdll.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'uploads.parentid':xmbm,
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			alert(response);
+			fileShow();
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+
+		}
+	});
+}
+
+function fileShow(){
+	//加载文件
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryFjByParentId.do',
+		dataType:'json',
+		data:'uploads.id='+xmbm,
+		success:function(data){
+	/* 		var data=datas.rows; */
+		/* 	alert(data); */
+			$("#gkbgTable").empty();
+			$("#sjsgtTable").empty();
+			var gkbg="";
+			var sjsgt="";
+			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype=="工可报告"){
+					gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+					"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				}if(data[i].filetype=="设计施工图"){
+					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
+					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+					"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				}
+			}
+			$("#gkbgTable").append(gkbg);
+			$("#sjsgtTable").append(sjsgt);
+		}
+	});
+}
+function downFile(fileurl,filename){
+	alert(fileurl);
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
+}
+function deleteFile(id){
+	if(confirm('确定删除所选数据？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/deleteFile.do",
+			 dataType : 'json',
+			 data : 'uploads.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('删除成功！');
+					 fileShow();
+				 }else{
+					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+	function upload(id){
+		$("#"+id).uploadifySettings('scriptData',{'jh.jhnf':$('#scjhnf').combo("getValue"),'uploads.parentid':xmbm});
+		$('#'+id).uploadifyUpload();
+	}
+	
 </script>
 		<table style="width: 100%; background-color: #aacbf8; font-size: 12px;"
 			border="0" cellpadding="3" cellspacing="1" id='tjldtb1'>
@@ -494,6 +595,26 @@ function saveAbgc(){
 				</td>
 				
 			</tr>	
+			<tr>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工图设计批复：</td>
+				<td id="td_sjsgt" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+								<td><div id="fileQueue1" ></div></td>
+							</tr>
+							<tr>
+								<td rowspan="2">
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload('uploadSjt')"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
+				</td>
+			</tr>
 			<tr style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff; height: 30px;"
 					align="center"><a href="javascript:void(0)" id="save_button"

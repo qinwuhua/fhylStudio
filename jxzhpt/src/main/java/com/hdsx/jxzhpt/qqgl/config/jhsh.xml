@@ -376,7 +376,7 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, l.jszlc,
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, l1.jhyilc+l1.jherlc+l1.jhsanlc+l1.jhsilc+l1.jhdwlc+l1.wllc jszlc,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 

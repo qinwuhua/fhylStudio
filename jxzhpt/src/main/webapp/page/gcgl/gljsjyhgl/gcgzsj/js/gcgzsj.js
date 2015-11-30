@@ -158,6 +158,10 @@ function tjgcgzsjyb(){
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
 	}
+	if($("#tj_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#tj_qlwcqk_z").val()==''||$("#tj_qlwcqk_ym").val()==''||$("#tj_sdwcqk_z").val()==''||$("#tj_sdwcqk_ym").val()==''||$("#tj_hdwcqk_m").val()==''||$("#tj_ljtsfwcqk").val()==''||$("#tj_dcwcqk").val()==''||$("#tj_jcwcqk").val()==''||$("#tj_bywcmc").val()==''||$("#tj_lqlmwcqk").val()==''||$("#tj_snlmwcqk").val()==''||$("#tj_bywctze").val()==''||$("#tj_bywcgzl").val()==''||$("#tj_kgdl").val()==''){
 		alert("页面信息未填写完整，请您检查漏填项");
 		return;
@@ -179,7 +183,7 @@ function tjgcgzsjyb(){
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#tj_kgdl").val()+"&gcglgcgzsj.qksm="+$("#tj_qksm").val()+"&gcglgcgzsj.bywctze="+$("#tj_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#tj_bywcgzl").val()+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
 	+"&gcglgcgzsj.wkglc="+$("#wkglc").val()
-	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+$("#tj_sbyf").val()+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
+	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -201,6 +205,10 @@ function tjgcgzsjyb(){
 //修改
 function xggcgzsjyb(){
 	//alert("xx");
+	if($("#xg_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#xg_qlwcqk_z").val()==''||$("#xg_qlwcqk_ym").val()==''||$("#xg_sdwcqk_z").val()==''||$("#xg_sdwcqk_ym").val()==''||$("#xg_hdwcqk_m").val()==''||$("#xg_ljtsfwcqk").val()==''||$("#xg_dcwcqk").val()==''||$("#xg_jcwcqk").val()==''||$("#xg_bywcmc").val()==''||$("#xg_lqlmwcqk").val()==''||$("#xg_snlmwcqk").val()==''||$("#xg_bywctze").val()==''||$("#xg_bywcgzl").val()==''||$("#xg_kgdl").val()==''){
 		alert("页面信息未填写完整，请您检查漏填项");
 		return;
@@ -221,7 +229,7 @@ function xggcgzsjyb(){
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#xg_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#xg_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#xg_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#xg_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#xg_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#xg_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#xg_kgdl").val()+"&gcglgcgzsj.qksm="+$("#xg_qksm").val()+"&gcglgcgzsj.bywctze="+$("#xg_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#xg_bywcgzl").val()
-	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.sbyf="+$("#xg_sbyf").val()+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
+	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.sbyf="+$("#xg_sbyf").datebox('getValue')+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
 	+"&gcglgcgzsj.wkglc="+$("#wkglc").val();
 	//alert(data);
 	$.ajax({

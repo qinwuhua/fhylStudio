@@ -132,6 +132,10 @@ function tjyhdzxyb(){
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
 	}
+	if($("#tj_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#tj_wc_btz").val()==''){
 		alert("请填入本月完成部投资");
 		return;
@@ -184,7 +188,7 @@ function tjyhdzxyb(){
 	+"&gcglyhdzx.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#tj_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#tj_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#tj_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#tj_kgdl").val()
 	+"&gcglyhdzx.qksm="+$("#tj_qksm").val()+"&gcglyhdzx.wcqk="+$("#tj_wcqk").text()
-	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").val()+"&gcglyhdzx.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
+	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglyhdzx.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	
 	$.ajax({
 		type:'post',
@@ -205,6 +209,10 @@ function tjyhdzxyb(){
 }
 //修改
 function xgyhdzxyb(){
+	if($("#xg_sbyf").datebox('getValue')==''){
+		alert("请选择上报月份");
+		return;
+	}
 	if($("#xg_wc_btz").val()==''){
 		alert("请填入本月完成部投资");
 		return;
@@ -257,7 +265,7 @@ function xgyhdzxyb(){
 	+"&gcglyhdzx.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#xg_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#xg_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#xg_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#xg_kgdl").val()
 	+"&gcglyhdzx.qksm="+$("#xg_qksm").val()+"&gcglyhdzx.wcqk="+$("#xg_wcqk").text()
-	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").val();
+	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").datebox('getValue');
 //	alert(data);
 	$.ajax({
 		type:'post',

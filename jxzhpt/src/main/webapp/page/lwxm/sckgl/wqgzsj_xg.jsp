@@ -250,7 +250,7 @@ function sjtfileShow(){
 			for ( var i = 0; i < data.length; i++) {
 				if(data[i].filetype=="设计施工图"){
 					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"+
-					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="sjtdownFile('+"'"+data[i].fileurl+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
+					'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="sjtdownFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a>  |  '+
 					"<a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=sjtdeleteFile('"+data[i].id+"')>删除</a></td></tr>";
 				}
 			}
