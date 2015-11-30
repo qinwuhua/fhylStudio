@@ -4,7 +4,7 @@
 	<select id="selectXmkaqsmfhXMK" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
 	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} 
+	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>
@@ -37,7 +37,7 @@
 	</select>
 	<select id="selectXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="int">
 	 		select count(*) from XMK_AQSMFH t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} 
+	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>
@@ -69,7 +69,7 @@
 	</select>
 	<select id="loadXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} 
+	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>

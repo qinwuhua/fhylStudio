@@ -102,7 +102,7 @@ $("#grid").datagrid({
 			if(row.sbthcd!=7){
 				return '<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
 			}else{
-				if(row.shzt=="已审核"){
+				if(row.zszt=="已审核"){
 					return '<span style="color:grey;">已审核</span>';
 				}else{
 					return '<a href=javascript:shengh('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
