@@ -151,7 +151,16 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	}
 	@Override
 	public boolean insertAqsmfhsckld(Xmkaqsmfh xmkaqsmfh) {
-		return insert("insertAqsmfhsckld", xmkaqsmfh)==1;
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmkid", strs[i]);
+			hm.put("xmbm", xmkaqsmfh.getXmbm());
+			lm.add(hm);
+		}
+
+		return insertBatch("insertAqsmfhsckld", lm)>0;
 	}
 	@Override
 	public Xmkaqsmfh loadscktjld(Xmkaqsmfh xmkaqsmfh) {

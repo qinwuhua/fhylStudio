@@ -81,18 +81,19 @@ text-decoration:none;
 		$("#qx_window").click(function(){
 			parent.$('#sck_add').window('destroy');
 		});	
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 		$("#save_button").click(function(){
 			saveAbgc();
 		});
 		$("#add_button").click(function(){
-			if($("#roadcode").val()==''||$("#roadcode").val()==null){
-				alert("请输入路段信息");
+			
+			 if($("#ldxx").combobox('getValues')==''||$("#ldxx").combobox('getValues')==null){
+				alert("请选择路段信息");
 				return;
 			}
-			$("#tjldtb1").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;");
-			$("#tjldtb2").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;display:none");
-			saveLd();
+		//	$("#tjldtb1").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;");
+		// $("#tjldtb2").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;display:none");
+			saveLd(); 
 		});
 		$("#tjld_button").click(function(){
 			 loadobject();
@@ -103,124 +104,23 @@ text-decoration:none;
 			$("#tjldtb1").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;display:none");
 			$("#tjldtb2").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;");
 		});
+		
+		$("#cx_button").click(function(){
+			 cxlx();
+		});
 	});
 	var ldobj=new Object();
-	function autoCompleteLXBM(){
-		
-		ldobj=null;
-		var url = "/jxzhpt/aqsmfh/aqsmfhJckGpsRoad.do";
-		$("#roadcode").autocomplete(url, {
-			multiple : false,
-			minChars :2,
-			multipleSeparator : ' ',
-			mustMatch: true,
-	  		cacheLength : 0,
-	  		delay : 200,
-	  		max : 50,
-	  		extraParams : {
-	  			roadcode:function() {
-	  				var d = '';
-	  				if(object!=null){
-	  					d=object.lxbm;
-	  				}else{
-	  					d=$("#roadcode").val().toUpperCase();
-	  				}
-	  				return d;
-	  			},
-	  			unitcode:function() {
-	  				var d = '';
-	  				if(object!=null){
-	  					d=object.gydwdm;
-	  				}else{
-	  					d=$.cookie("unit2");
-	  				}
-	  				if(d=='_____36') return "";
-	  				else return d;
-	  			},
-	  			distcode:function() {
-	  				var d = '';
-	  				if(object!=null){
-	  					d=object.xzqhdm;
-	  				}else{
-	  					d=$.cookie("dist2");
-	  				}
-	  				if(d=='360000') return "";
-	  				else return d;
-	  			}
-	  		},
-	  		dataType : 'json',// 返回类型
-	  		// 对返回的json对象进行解析函数，函数返回一个数组
-	  		parse : function(data) {
-	  			var aa = [];
-	  			aa = $.map(eval(data), function(row) {
-	  					return {
-	  						data : row,
-	  						value : row.roadcode.replace(/(\s*$)/g,""),
-	  						result : row.roadcode.replace(/(\s*$)/g,"")
-	  					};
-	  				});
-	  			return aa;
-	  		},
-	  		formatItem : function(row, i, max) {
-	  			return row.roadcode.replace(/(\s*$)/g,"")+"("+row.roadstart+","+row.roadend+")"+"<br/>"+row.roadname.replace(/(\s*$)/g,"");
-	  		}
-	  	}).result(
-				function(e, item) {
-					if(item==undefined) return ;
-					
-				//	$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw").attr("value",'');
-					xmkid=item.id;
-					ldobj=item;
-					if(item.jsdj=='1'||item.jsdj=='2'){
-						jsdjmb="1";
-						$("#yjej").attr('style','');
-						$("#sjsj").attr('style','display: none');
-						$("#jsdj1").html(item.jsdj);$("#fangx1").html(item.fangx);
-						$("#ldfl1").html(item.ldfl);$("#pcsj1").html(item.pcsj);$("#jtsgpcf").html(item.jtsgpcf);$("#jtsgfxdj").html(item.jtsgfxdj);$("#glfxdj").html(item.glfxdj);$("#xbjyqx").html(item.xbjyqx);$("#jckbgf").html(item.jckbgf);$("#jtl").html(item.jtl);$("#gldj1").html(item.gldj);
-					}else{
-						jsdjmb="2";
-						$("#yjej").attr('style','display: none');
-						$("#sjsj").attr('style','');
-						$("#jsdj2").html(item.jsdj);$("#fangx2").html(item.fangx);
-						$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj2").html(item.gldj);
-					}
-					$("#roadcode").html(item.roadcode);$("#roadname").html(item.roadname);$("#unit").html(item.unit);$("#unitcode").val(item.unitcode);$("#roadstart").html(item.roadstart);
-					$("#roadend").html(item.roadend);$("#dist").html(item.dist);$("#distcode").val(item.distcode);$("#xjgjnd").html(item.xjgjnd);
-					$("#province").html(item.province);$("#town").html(item.town);$("#county").html(item.county);$("#throadcode").html(item.throadcode);$("#throadstart").html(item.throadstart);$("#throadend").html(item.throadend);
-					$("#lxxp").html(item.lxxp);$("#doup").html(item.doup);$("#sjbl").html(item.sjbl);$("#lcxy").html(item.lcxy);$("#hjfz").html(item.hjfz);$("#xchbc").html(item.xchbc);
-					$("#csxsss").html(item.csxsss);$("#hul").html(item.hul);$("#bzbx").html(item.bzbx);$("#jshsxyd").html(item.jshsxyd);$("#aqssqt").html(item.aqssqt);$("#tjgc").html(item.tjgc);
-					$("#hjzz").html(item.hjzz);$("#bzbxcz").html(item.bzbxcz);$("#jckcz").html(item.jckcz);$("#jzhl").html(item.jzhl);$("#jshsxydcz").html(item.jshsxydcz);$("#aqssqtcz").html(item.aqssqtcz);
-					$("#jhnf").html(item.jhnf);$("#yhlc").html(item.yhlc);$("#tzgs").html(item.tzgs);$("#tsdq").html(item.tsdq);
-					$("#gltjpcf").html(item.gltjpcf);$("#xuh").html(item.xuh);
-					
-					
-				});
-	}
-
 	
 	function saveLd(){
-		var qdzh=ldobj.roadstart.substr(1,ldobj.roadstart.length-1).replace('+','.');
+		/* var qdzh=ldobj.roadstart.substr(1,ldobj.roadstart.length-1).replace('+','.');
 		var zdzh=ldobj.roadend.substr(1,ldobj.roadend.length-1).replace('+','.');
-		
-		var data ="xmkaqsmfh.xuh="+$("#xuh").html()+"&xmkaqsmfh.province="+$("#province").html()+"&xmkaqsmfh.town="+$("#town").html()+"&xmkaqsmfh.county="+$("#county").html()+"&xmkaqsmfh.lxbm="+$("#roadcode").val()+"&xmkaqsmfh.lxmc="+$("#roadname").html()+"&xmkaqsmfh.gydw="+$("#unit").html()
+		 */
+		/* var data ="xmkaqsmfh.xuh="+$("#xuh").html()+"&xmkaqsmfh.province="+$("#province").html()+"&xmkaqsmfh.town="+$("#town").html()+"&xmkaqsmfh.county="+$("#county").html()+"&xmkaqsmfh.lxbm="+$("#roadcode").val()+"&xmkaqsmfh.lxmc="+$("#roadname").html()+"&xmkaqsmfh.gydw="+$("#unit").html()
 		+"&xmkaqsmfh.gydwdm="+$("#unitcode").val()+"&xmkaqsmfh.xzqh="+$("#dist").html()+"&xmkaqsmfh.xzqhdm="+$("#distcode").val()+"&xmkaqsmfh.jsdj="+ldobj.jsdj
 		+"&xmkaqsmfh.qdzh="+qdzh+"&xmkaqsmfh.zdzh="+zdzh+"&xmkaqsmfh.yhlc="+$("#yhlc").html()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").html()
-		+"&xmkaqsmfh.cztzgs="+$("#tzgs").html()+"&xmkaqsmfh.xmkid="+xmkid+"&xmkaqsmfh.xmbm="+xmbm;
-		if($("#bzbxcz").html()=="1"){
-			data+="&xmkaqsmfh.str1="+'1';
-		}
-		if($("#jckcz").html()=="1"){
-			data+="&xmkaqsmfh.str2="+'1';
-		}
-		if($("#jzhl").html()=="1"){
-			data+="&xmkaqsmfh.str3="+'1';
-		}
-		if($("#tjgc").html()=="1"){
-			data+="&xmkaqsmfh.str4="+'1'+"&xmkaqsmfh.str5="+'1';
-		}
-		if($("#hjzz").html()=="1"){
-			data+="&xmkaqsmfh.str6="+'1'+"&xmkaqsmfh.str7="+'1';
-		}
+		+"&xmkaqsmfh.cztzgs="+$("#tzgs").html()+"&xmkaqsmfh.xmkid="+xmkid+"&xmkaqsmfh.xmbm="+xmbm; */
+		 var data ="xmkaqsmfh.xmkid="+$("#ldxx").combobox('getValues')+"&xmkaqsmfh.xmbm="+xmbm; 
+		
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/aqsmfh/insertAqsmfhsckld.do',
@@ -230,6 +130,8 @@ text-decoration:none;
 				if(Boolean(msg)){
 					alert("添加成功！");
 					loadscktj();
+					$("#tjldtb1").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;");
+					$("#tjldtb2").attr('style',"width: 100%; background-color: #aacbf8; font-size: 12px;display:none");
 					$("#ldgrid").datagrid('reload');
 				}else{
 					alert('添加失败！');
@@ -295,19 +197,19 @@ text-decoration:none;
 						$("#ablbzsqwh").attr("disabled",'true');
 					}
 	 				var str="";
-					if(item.str1=="1"){
+					if(item.str1!='0'&&item.str1!=''){
 						str+="标志标线处置<input type='text' id='str1' style='width:70px;'>米，";
 					}
-					if(item.str2=="1"){
+					if(item.str2!='0'&&item.str2!=''){
 						str+="交叉口综合处置<input type='text' id='str2' style='width:70px;'>处，";
 					}
-					if(item.str3=="1"){
+					if(item.str3!='0'&&item.str3!=''){
 						str+="加装护栏警示诱导设施处置<input type='text' id='str3' style='width:70px;'>米，";
 					}
-					if(item.str4=="1"){
+					if(item.str4!='0'&&item.str4!=''){
 						str+="涉及路线参数调整的土建工程<input type='text' id='str4' style='width:70px;'>处 <input type='text' id='str5' style='width:70px;'>立方米；";
 					}
-					if(item.str6=="1"){
+					if(item.str6!='0'&&item.str6!=''){
 						str+="边坡、边沟或路域环境整治<input type='text' id='str6' style='width:70px;'>处 <input type='text' id='str7' style='width:70px;'>立方米；";
 					}
 					$("#jsnr").html(str);
@@ -327,23 +229,23 @@ function saveAbgc(){
 		+"&xmkaqsmfh.fapgdw="+$("#fapgdw").val()+"&xmkaqsmfh.fascdw="+$("#fascdw").val()+"&xmkaqsmfh.faspsj="+$("#faspsj").datebox('getValue')+"&xmkaqsmfh.spwh="+$("#spwh").val()+"&xmkaqsmfh.cztzgs="+$("#cztzgs").val()+"&xmkaqsmfh.sfsqablbz="+$("#sfsqablbz").val()
  		+"&xmkaqsmfh.ablbzsqwh="+$("#ablbzsqwh").val()+"&xmkaqsmfh.jsxz="+$("#jsxz").val()+"&xmkaqsmfh.bz="+$("#bz").val()+"&xmkaqsmfh.jhnf="+$("#scjhnf").combobox('getValue')+"&xmkaqsmfh.sbthbmcd="+sbthbmcd+"&xmkaqsmfh.tbdwdm="+$.cookie("unit")+"&xmkaqsmfh.xmbm="+xmbm;
 		var str="";
-		if(tjldobj.str1=="1"){
+		if(tjldobj.str1!='0'&&tjldobj.str1!=''){
 			str+= "标志标线处置"+$("#str1").val()+"米，";
 			data+="&xmkaqsmfh.str1="+$("#str1").val();
 		}
-		if(tjldobj.str2=="1"){
+		if(tjldobj.str2!='0'&&tjldobj.str2!=''){
 			str+="交叉口综合处置"+$("#str2").val()+"处，";
 			data+="&xmkaqsmfh.str2="+$("#str2").val();
 		}
-		if(tjldobj.str3=="1"){
+		if(tjldobj.str3!='0'&&tjldobj.str3!=''){
 			str+="加装护栏警示诱导设施处置"+$("#str3").val()+"米，";
 			data+="&xmkaqsmfh.str3="+$("#str3").val();
 		}
-		if(tjldobj.str4=="1"){
+		if(tjldobj.str4!='0'&&tjldobj.str4!=''){
 			str+="涉及路线参数调整的土建工程"+$("#str4").val()+"处 "+$("#str5").val()+"立方米；";
 			data+="&xmkaqsmfh.str4="+$("#str4").val()+"&xmkaqsmfh.str5="+$("#str5").val();
 		}
-		if(tjldobj.str6=="1"){
+		if(tjldobj.str6!='0'&&tjldobj.str6!=''){
 			str+="边坡、边沟或路域环境整治"+$("#str6").val()+"处 "+$("#str7").val()+"立方米；";
 			data+="&xmkaqsmfh.str6="+$("#str6").val()+"&xmkaqsmfh.str7="+$("#str7").val();
 		}
@@ -367,7 +269,91 @@ function saveAbgc(){
 		});
 	}
 	
-	
+	function cxlx(){
+			var roadcode = '';
+			if(object!=null){
+				roadcode=object.lxbm;
+			}else{
+				roadcode=$("#roadcode").val().toUpperCase();
+			}
+			var unitcode = '';
+			if(object!=null){
+				unitcode=object.gydwdm;
+			}else{
+				unitcode=$.cookie("unit2");
+			}
+			var distcode = '';
+			if(object!=null){
+				distcode=object.xzqhdm;
+			}else{
+				distcode=$.cookie("dist2");
+			}
+			var data="roadcode="+roadcode+"&unitcode="+unitcode+"&distcode="+distcode;
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/aqsmfh/aqsmfhJckGpsRoad.do',
+	        data:data,
+			dataType:'json',
+			success:function(row){
+				if(row!=null){
+					var years=[];
+					 for(var i=0;i<row.length;i++){
+ 					var text=row[i].roadcode.replace(/(\s*$)/g,"")+"("+row[i].roadstart+","+row[i].roadend+")"+row[i].roadname.replace(/(\s*$)/g,"");
+						years.push({text:(text),value:(row[i].id)});
+					} 
+					$('#ldxx').combobox({
+					    data:years,
+					    valueField:'value',
+					    textField:'text',
+					    multiple:true,
+					    formatter:function(row){
+							var opts = $(this).combobox('options');
+							return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+						},
+						onSelect:function(record){
+							var opts = $(this).combobox('options');
+							if(record[opts.valueField]==""){
+								var values =new Array();
+								var datas = $('#ldxx').combobox("getData");
+								$.each(datas,function(index,item){
+									values.push(item.value);
+									$('#id'+item.value).attr('checked', true);
+								});
+								$('#ldxx').combobox("setValues",values);
+							}else{
+								$('#id'+record.value).attr('checked', true);
+							}
+						},
+						onUnselect:function(record){
+							var opts = $(this).combobox('options');
+							var datas = $('#ldxx').combobox("getData");
+							var values = $('#ldxx').combobox("getValues");
+							$('#ldxx').combobox("clear");
+							if(record[opts.valueField]!=""){
+								if(jQuery.inArray("",values)>=0){
+									values.splice(jQuery.inArray("",values),1);
+								}
+								$.each(datas,function(index,item){
+									if(jQuery.inArray(""+item.value,values)<0){
+										$('#id'+item.value).attr('checked', false);
+									}
+								});
+								$('#ldxx').combobox("setValues",values);
+							}else{
+								$.each(datas,function(index,item){
+									$('#id'+item.value).attr('checked', false);
+								});
+							}
+						}
+					});
+					
+				}
+				
+			}
+		});
+	  			
+		//
+	}
 </script>
 		<table style="width: 100%; background-color: #aacbf8; font-size: 12px;"
 			border="0" cellpadding="3" cellspacing="1" id='tjldtb1'>
@@ -383,250 +369,23 @@ function saveAbgc(){
 			
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安全生命防护工程项目基本信息
+					请先填写路线编码-->查询-->选择路段-->保存路段
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:130px" align="right">路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;width:200px" align="left">
-					<input type="text" id='roadcode'></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:130px" align="right">路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;width:200px" align="left">
-					<span  id="roadname" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:130px" align="right">管养单位：</td>
-				<td style="background-color: #ffffff; height: 20px;width:200px" align="left">
-					<span id="unit" ></span>
-					<input type="hidden" id='unitcode'>
-					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:130px" align="right">请您输入路线编码：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:200px" align="left">
+					<input type="text" id='roadcode'>
+					<a href="javascript:void(0)" id="cx_button"
+						class="easyui-linkbutton" plain="true" iconCls="icon-save">查询</a>
+					 
 			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="dist" ></span>
-					<input type="hidden" id='distcode'>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">省：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="province"  ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="town" ></span></td>
-				</tr>	
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="county" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号起点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span  id="roadstart" ></span><br>
-					<span id="qd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桩号终点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"><br>
-					<span id="roadend" ></span>
-					<span id="zd"></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县乡道路网调后<br>公路编号：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="throadcode" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县乡道路网调后<br>桩号起点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="throadstart" ></span>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县乡道路网调后<br>桩号终点：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="throadend" ></span>
-					</td>
-				</tr>
-			
-			<tbody id='yjej' style="display: none">
-			
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级(1、一级 2、二级)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jsdj1" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方向(1、桩号大到小2、桩号小到大3、不分方向)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="fangx1" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路段分类(A、B、C)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="ldfl1" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">排查时间(年 / 月)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<span id="pcsj1" ></span>	</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交通事故排查方法(1、事故风险评估2、事故多发点段识别)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jtsgpcf" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交通事故风险等级(1、2、3、4、5级)或是否事故多发点段(0、否 6、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jtsgfxdj" ></span>
-				</td>
-			</tr>
-			
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路条件排查方法(1、公路风险评估2、公路条件识别)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="gltjpcf" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路风险等级(1、2、3、4、5级)或是否事故多发点段(0、否 6、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="glfxdj" ></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">小半径圆曲线(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xbjyqx" ></span></td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交叉口不规范(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jckbgf" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交通量(AADT)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jtl" ></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路等级：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="gldj1" ></span></td>
-			</tr>
-		
-			</tbody>
-			<tbody id="sjsj" style="display: none">
-			
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级(3、三级4、四级)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jsdj2" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方向(1、桩号大到小2、桩号小到大3、不分方向)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="fangx2" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路段分类(A.1、A.2、A.3、B.1、B.2、B.3、B.4、C)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="ldfl2" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">排查时间(年 / 月)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pcsj2" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">符合事故判别指标(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="sgpb" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">单个急弯(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="dgjw" ></span>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">连续急弯(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="lsjw" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">符合交通量判别指标(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jtlpbzb" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路等级：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="gldj2" ></span>
-				</td>
-			</tr>
-		
-			</tbody>
-			
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">连续下坡(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="lxxp" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">陡坡(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="doup" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">视距不良(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="sjbl" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路侧险要(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="lcxy" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">环境复杂(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="hjfz" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通行校车或班线车(0、否1、是)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="xchbc" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">运行车速或路段限速或设计速度(km/h)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="csxsss" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">护栏(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="hul" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">标志标线(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="bzbx" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">警示和视线诱导设施(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jshsxyd" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">其他路段既有安全设施信息(用文字简要说明)：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px; " align="left">
-					<span id="aqssqt" style="width: 356px"></span></td>
+			<tr><td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:130px" align="right">请您选择路段：</td>
+			<td  style="background-color: #ffffff; height: 20px;width:200px" align="left">
+				<input type="text" id='ldxx'>
+				<a href="javascript:void(0)" id="add_button"
+						class="easyui-linkbutton" plain="true" iconCls="icon-save">保存路段</a></td>
 				
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">涉及路线参数调整的土建工程(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="tjgc" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">边坡、边沟或路域环境整治(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="hjzz" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">标志标线处置(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="bzbxcz" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交叉口综合处置(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jckcz" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">加装护栏(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jzhl" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">警示诱导设施处置(0、无1、有)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<span id="jshsxydcz" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划实施安防工程年份(年)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="jhnf" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">其他拟新采取的处置措施(用文字简要说明)：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="aqssqtcz" style="width: 356px"></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程(公里)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="yhlc" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置投资估算(万元)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="tzgs" ></span><br>
-					<span id='bbzts'></span>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修改建年度(年)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span  id="xjgjnd" ></span></td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<span id='tsdq'></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				序号：<span id='xuh'></span>
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<a href="javascript:void(0)" id="add_button"
-						class="easyui-linkbutton" plain="true" iconCls="icon-save">保存路段</a>
-				</td>
 				</tr>
 		</table>
 		<table style="width: 100%; background-color: #aacbf8; font-size: 12px"

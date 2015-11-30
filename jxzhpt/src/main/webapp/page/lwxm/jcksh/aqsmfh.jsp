@@ -35,7 +35,7 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("jhnf"); 
+	//xmnf("jhnf"); 
 	loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("gldj", "公路等级");
@@ -77,11 +77,10 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.unitcode': gydwstr,
 		 	'xmkaqsmfh.distcode':xzqhstr,
 		 	'xmkaqsmfh.lxmc' : $('#lxmc').val(),
-		 	'xmkaqsmfh.jhnf':$("#jhnf").combobox("getValue"),
+		 	'xmkaqsmfh.jhnf':'',
 		 	'xmkaqsmfh.sbzt':$('#sbzt').combobox("getValue"),
 		 	'xmkaqsmfh.jsdj':$("#jsdj").combobox("getValue"),
 		 	'xmkaqsmfh.lxbm':$("#lxbm").val(),
-		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 		 	'xmkaqsmfh.gldj':$("#gldj").combobox("getValue"),
 		 	'xmkaqsmfh.tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 		},
@@ -158,8 +157,8 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 		sbthcd=7;
 		}else  sbthcd=$.cookie("unit2").length;
 	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
-	"&xmkaqsmfh.jhnf="+$("#jhnf").combobox("getValue")+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
-	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
+	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
+	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+
 	"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue");
 	$.ajax({
 		 type : "POST",
@@ -228,22 +227,19 @@ text-decoration:none;
                              	<td>行政区划：</td>
                               	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
                               	</select></td>
-                               <td>路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:100px;" /></td>
+                              
         						<td>路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:100px;" /></td>
 						</tr>
                         <tr height="32">
-							  <td>项目年份：</td>
+							  <!-- <td>项目年份：</td>
                               	<td><select id="jhnf" style="width:70px">
-                              	</select>
+                              	</select> -->
                               <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
-									<option value="未上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">已入库</option>
-									<option value="已审核">已下达</option>
+									<option value="未审核">未审核</option>
+									<option value="已审核">已审核</option>
                               	</select></td>
                                <td>审核状态：</td>
                               <td>	<select id="sbzt" style="width:70px"class="easyui-combobox">
@@ -257,9 +253,8 @@ text-decoration:none;
                               	<td>公路等级：</td>
                               	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
-                              	<td>补助历史：</td>
-                              	<td><select id="bzls" style="width:104px"class="easyui-combobox">
-                              	</select></td>
+                              	 <td>路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:100px;" /></td>
                              </tr>
                             <tr height="32">
                               <td colspan="10">
