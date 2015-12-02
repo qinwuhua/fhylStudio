@@ -18,7 +18,7 @@ import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 /**
- * 项目基础库——危桥改造Action层
+ * 项目基础库——安防Action层
  * @author qwh
  *
  */

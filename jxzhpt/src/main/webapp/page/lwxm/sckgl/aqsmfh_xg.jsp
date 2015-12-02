@@ -81,7 +81,8 @@ text-decoration:none;
 					$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
 					$("#qdzh").val(item.qdzh);$("#zdzh").val(item.zdzh);$("#scjsdj").val(item.jsdj);
 					$("#scyhlc").val(item.yhlc);$("#scxjgjnd").val(item.xjgjnd);
-					$("#cztzgs").val(item.tzgs);$("#scjhnf").combobox('setValue',item.jhnf);
+					$("#cztzgs").val(item.tzgs);
+					//$("#scjhnf").combobox('setValue',item.jhnf);
 					loadUnit5("gydw",item.gydwdm,$.cookie("unit"));
 					loadDist5("xzqh",item.xzqhdm,$.cookie("dist"));
 					if(Math.round(item.cztzgs)>=500){
@@ -95,21 +96,26 @@ text-decoration:none;
 					}
 	 				var str="";
 					if(item.str1!='0'&&item.str1!=''){
-						str+="标志标线处置<input type='text' id='str1' style='width:70px;' value='"+item.str1+"'>米，";
+						str+="标志标线处置<input type='text' name='bitian' id='str1' style='width:70px;' value='"+item.str1+"'>米，";
 					}
 					if(item.str2!='0'&&item.str2!=''){
-						str+="交叉口综合处置<input type='text' id='str2' style='width:70px;' value='"+item.str2+"'>处，";
+						str+="交叉口综合处置<input type='text' name='bitian' id='str2' style='width:70px;' value='"+item.str2+"'>处，";
 					}
 					if(item.str3!='0'&&item.str3!=''){
-						str+="加装护栏警示诱导设施处置<input type='text' id='str3' style='width:70px;' value='"+item.str3+"'>米，";
+						str+="加装护栏警示诱导设施处置<input type='text' name='bitian' id='str3' style='width:70px;' value='"+item.str3+"'>米，";
 					}
 					if(item.str4!='0'&&item.str4!=''){
-						str+="涉及路线参数调整的土建工程<input type='text' id='str4' style='width:70px;' value='"+item.str4+"'>处 <input type='text' id='str5' style='width:70px;' value='"+item.str5+"'>立方米；";
+						str+="涉及路线参数调整的土建工程<input type='text' name='bitian' id='str4' style='width:70px;' value='"+item.str4+"'>处 <input type='text' name='bitian' id='str5' style='width:70px;' value='"+item.str5+"'>立方米；";
 					}
 					if(item.str6!='0'&&item.str6!=''){
-						str+="边坡、边沟或路域环境整治<input type='text' id='str6' style='width:70px;' value='"+item.str6+"'>处 <input type='text' id='str7' style='width:70px;' value='"+item.str7+"'>立方米";
+						str+="边坡、边沟或路域环境整治<input type='text' name='bitian' id='str6' style='width:70px;' value='"+item.str6+"'>处 <input type='text' name='bitian' id='str7' style='width:70px;' value='"+item.str7+"'>立方米";
 					}
-					$("#jsnr").html(str);
+					if(str==''){
+						loadscktj();
+					}else{
+						$("#jsnr").html(str);
+					}
+					
 					$("#scxjgjnd").val(item.xjgjnd);$("#cztzgs").val(item.cztzgs);$("#czzlc").val(item.czzlc);
 					$("#fapgdw").val(item.fapgdw);$("#fascdw").val(item.fascdw);
 					$("#faspsj").datebox('setValue',item.faspsj);$("#spwh").val(item.spwh);$("#sfsqablbz").val(item.sfsqablbz);
@@ -240,7 +246,7 @@ text-decoration:none;
 					$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
 					$("#qdzh").val(item.qdzh);$("#zdzh").val(item.zdzh);$("#scjsdj").val(item.jsdj);
 					$("#scyhlc").val(item.yhlc);$("#scxjgjnd").val(item.xjgjnd);
-					$("#cztzgs").val(item.cztzgs);$("#scjhnf").combobox('setValue',item.jhnf);
+					$("#cztzgs").val(Math.round(item.cztzgs));$("#scjhnf").combobox('setValue',item.jhnf);
 					loadUnit5("gydw",item.gydwdm,$.cookie("unit"));
 					loadDist5("xzqh",item.xzqhdm,$.cookie("dist"));
 					if(Math.round(item.cztzgs)>=500){
@@ -254,19 +260,19 @@ text-decoration:none;
 					}
 	 				var str="";
 					if(item.str1!='0'&&item.str1!=''){
-						str+="标志标线处置<input type='text' id='str1' style='width:70px;'>米，";
+						str+="标志标线处置<input type='text' name='bitian' id='str1' style='width:70px;'>米，";
 					}
 					if(item.str2!='0'&&item.str2!=''){
-						str+="交叉口综合处置<input type='text' id='str2' style='width:70px;'>处，";
+						str+="交叉口综合处置<input type='text' name='bitian' id='str2' style='width:70px;'>处，";
 					}
 					if(item.str3!='0'&&item.str3!=''){
-						str+="加装护栏警示诱导设施处置<input type='text' id='str3' style='width:70px;'>米，";
+						str+="加装护栏警示诱导设施处置<input type='text' name='bitian' id='str3' style='width:70px;'>米，";
 					}
 					if(item.str4!='0'&&item.str4!=''){
-						str+="涉及路线参数调整的土建工程<input type='text' id='str4' style='width:70px;'>处 <input type='text' id='str5' style='width:70px;'>立方米；";
+						str+="涉及路线参数调整的土建工程<input type='text' name='bitian' id='str4' style='width:70px;'>处 <input type='text' name='bitian' id='str5' style='width:70px;'>立方米；";
 					}
 					if(item.str6!='0'&&item.str6!=''){
-						str+="边坡、边沟或路域环境整治<input type='text' id='str6' style='width:70px;'>处 <input type='text' id='str7' style='width:70px;'>立方米；";
+						str+="边坡、边沟或路域环境整治<input type='text' name='bitian' id='str6' style='width:70px;'>处 <input type='text' name='bitian' id='str7' style='width:70px;'>立方米；";
 					}
 					$("#jsnr").html(str);
 				}
@@ -275,6 +281,26 @@ text-decoration:none;
 	}
 	
 function saveAbgc(){
+		var flag=true;
+		if($("#faspsj").datebox('getValue')==''){
+			alert("请选择方法审批时间");
+			return;
+		}
+		if($("#scjhnf").combobox('getValue')==''){
+			alert("请选择项目年份");
+			return;
+		}
+	    $("input[name='bitian']").each(function(){
+	        if ($(this).val() == ""||$(this).val() == null){
+	        	alert("请将页面除备注外的信息填写完整。");
+	        	flag=false;
+	        	return false;
+	        }
+	    });
+	    if(flag==false){
+	    	return;
+	    }
+		
 		var sbthbmcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthbmcd=7;
@@ -570,40 +596,40 @@ function deleteFile(id){
 					<input type="text" id="xzqh"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="lxmc"></td>
+					<input type="text" name='bitian' id="lxmc"></td>
 				
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="scjsdj"></td>
+					<input type="text" name='bitian' id="scjsdj"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="qdzh"></td>
+					<input type="text" id="qdzh" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="zdzh"></td>
+					<input type="text" id="zdzh" name='bitian'></td>
 				
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="scyhlc"></td>
+					<input type="text" id="scyhlc" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="czzlc"></td>
+					<input type="text" id="czzlc" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="scxjgjnd"></td>
+					<input type="text" id="scxjgjnd" name='bitian'></td>
 				
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="fapgdw"></td>
+					<input type="text" id="fapgdw" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审查单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="fascdw"></td>
+					<input type="text" id="fascdw" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审批时间(年/月/日)：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="faspsj"></td>
@@ -612,10 +638,10 @@ function deleteFile(id){
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="spwh"></td>
+					<input type="text" id="spwh" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置投资估算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="cztzgs"></td>
+					<input type="text" id="cztzgs" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助(0、否1、是)：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="sfsqablbz"></td>
@@ -627,7 +653,7 @@ function deleteFile(id){
 					<input type="text" id="ablbzsqwh"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质(1、中修2、大修)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz"></td>
+					<input type="text" id="jsxz" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="scjhnf"></td>

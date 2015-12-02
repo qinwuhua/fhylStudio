@@ -305,8 +305,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 			response.setCharacterEncoding("utf-8"); 	
 			String fid=UUID.randomUUID().toString();
 			if((uploadGk!=null)){
-				String fileurl = "kgbg/"+ jh.getSbnf() +"/";
-				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				String fileurl = "D:\\江西综合平台上传文件\\kgbg\\"+ jh.getSbnf() +"\\";
+				File file =new File(fileurl);
 				Plan_upload upload =new Plan_upload(fid,uploadGkFileName, "工可报告", uploads.getParentid(), fileurl+uploadGkFileName, null);
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				upload.setFid(fid);
@@ -315,8 +315,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 					response.getWriter().print(uploadGkFileName+"上传成功！");
 				}
 			}else{
-				String fileurl = "sjsgt/"+ jh.getSbnf() +"/";
-				File file =new File(this.getClass().getResource("/").getPath()+fileurl);
+				String fileurl = "D:\\江西综合平台上传文件\\sjsgt\\"+ jh.getSbnf() +"\\";
+				File file =new File(fileurl);
 				Plan_upload upload =new Plan_upload(fid,uploadSjtFileName, "设计施工图", uploads.getParentid(), fileurl+uploadSjtFileName, null);
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				upload.setFid(fid);
