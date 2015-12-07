@@ -156,7 +156,7 @@ function showAll(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var jgzt='0';
+	var jgzt='';
 	var kgzt='';
 	var xmnf=$("#ddlYear").val();
 	var bfyf=$("#ddlMonth").val();
@@ -179,7 +179,11 @@ function showAll(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
-	    	bfzt:$("#bfzt").val()
+	    	bfzt:$("#bfzt").val(),
+	    	'gcglyhdzx.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglyhdzx.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglyhdzx.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglyhdzx.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -456,7 +460,7 @@ function jiazai(ooo){
 }
 
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM;
+	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM+"&gcglwqgz.tablename=gcgl_yhdzx";
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',

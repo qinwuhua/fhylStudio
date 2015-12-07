@@ -122,7 +122,35 @@ public class Gcglabgc implements Serializable {
 	private String xmmc;
 	private String xdwh;
 	private String sfylrbwqk;
+	private String jszt;
+	private String gldj;
+	private String jsdj;
+	private String ljbfzt;
 	
+	public String getLjbfzt() {
+		return ljbfzt;
+	}
+	public void setLjbfzt(String ljbfzt) {
+		this.ljbfzt = ljbfzt;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getJszt() {
+		return jszt;
+	}
+	public void setJszt(String jszt) {
+		this.jszt = jszt;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}

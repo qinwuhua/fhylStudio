@@ -474,7 +474,18 @@ function deleteFile(id){
 		$("#"+id).uploadifySettings('scriptData',{'jh.jhnf':$('#scjhnf').combo("getValue"),'uploads.parentid':xmbm});
 		$('#'+id).uploadifyUpload();
 	}
-	
+	function sfcgwbw(){
+		var cztzgs=parseFloat($("#cztzgs").val());
+		if(Math.round(cztzgs)>=500){
+			$("#sfsqablbz").val("1");
+			$("#ablbzsqwh").removeAttr('disabled');
+			$("#sfsqablbz").removeAttr('disabled');
+		}else{
+			$("#sfsqablbz").val("0");
+			$("#sfsqablbz").attr("disabled",'true');
+			$("#ablbzsqwh").attr("disabled",'true');
+		}
+	}
 </script>
 		<table style="width: 100%; background-color: #aacbf8; font-size: 12px;"
 			border="0" cellpadding="3" cellspacing="1" id='tjldtb1'>
@@ -584,7 +595,7 @@ function deleteFile(id){
 					<input type="text" id="spwh" name='bitian'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置投资估算(单位:万元,保留整数)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="cztzgs" name='bitian'></td>
+					<input type="text" id="cztzgs" name='bitian' onchange="sfcgwbw()"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助(0、否1、是)：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="sfsqablbz"></td>

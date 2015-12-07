@@ -2,12 +2,17 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import oracle.net.aso.l;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Xmkaqsmfh;
@@ -15,6 +20,10 @@ import com.hdsx.jxzhpt.lwxm.xmjck.server.XmkaqsmfhServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 /**
@@ -391,5 +400,141 @@ public class XmkaqsmfhController extends BaseActionSupport{
 	
 	public void afSckZs(){
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afSckZs(xmkaqsmfh)+"");	
+	}
+	
+	public void dcaqsmfhsckExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			xmkaqsmfh.setGydw("and ld.gydwdm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			xmkaqsmfh.setGydw("and ld.gydwdm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			xmkaqsmfh.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			xmkaqsmfh.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+		}
+		
+		List<Excel_list> l = xmkaqsmfhServer.dcaqsmfhsckExcel(xmkaqsmfh);
+
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路安全生命防护工程审查项目");//设置第一行
+		eldata.setSheetName("安防");//设置sheeet名
+		eldata.setFileName("公路安全生命防护工程审查项目");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号 ",1,2,0,0));
+		et.add(new Excel_tilte("省",1,2,1,1));
+		et.add(new Excel_tilte("市",1,2,2,2));
+		et.add(new Excel_tilte("县",1,2,3,3));
+		et.add(new Excel_tilte("公路编码",1,2,4,4));
+		et.add(new Excel_tilte("管养单位",1,2,5,5));
+		et.add(new Excel_tilte("行政区划代码",1,2,6,6));
+		et.add(new Excel_tilte("路线名称",1,2,7,7));
+		et.add(new Excel_tilte("技术等级",1,1,8,8));
+		et.add(new Excel_tilte("起点桩号",1,2,9,9));
+		et.add(new Excel_tilte("止点桩号",1,2,10,10));
+		et.add(new Excel_tilte("隐患里程",1,1,11,11));
+		et.add(new Excel_tilte("处置总里程",1,1,12,12));
+		et.add(new Excel_tilte("修建/改建年度",1,2,13,13));
+		et.add(new Excel_tilte("方案评估单位",1,2,14,14));
+		et.add(new Excel_tilte("方案审查单位",1,2,15,15));
+		et.add(new Excel_tilte("方案审批时间",1,1,16,16));
+		et.add(new Excel_tilte("审批文号",1,2,17,17));
+		et.add(new Excel_tilte("处置投资估算",1,1,18,18));
+		et.add(new Excel_tilte("是否申请按比例补助",1,1,19,19));
+		et.add(new Excel_tilte("按比例补助申请文号",1,2,20,20));
+		et.add(new Excel_tilte("建设内容",1,1,21,21));
+		et.add(new Excel_tilte("建设性质",1,1,22,22));
+		et.add(new Excel_tilte("备注",1,1,23,23));
+		et.add(new Excel_tilte("1、一级 2、二级 3、三级 4、四级",2,2,8,8));
+		et.add(new Excel_tilte("(KM)",2,2,11,11));
+		et.add(new Excel_tilte("(KM)",2,2,12,12));
+		et.add(new Excel_tilte("（年/月/日）",2,2,16,16));
+		et.add(new Excel_tilte("（万元）",2,2,18,18));
+		et.add(new Excel_tilte("0、否 1、是",2,2,19,19));
+		et.add(new Excel_tilte("1、中修 2、大修",2,2,21,21));
+		et.add(new Excel_tilte("标志标线处置？米，交叉口综合处置？处，加装护栏警示诱导设施处置？米，涉及路线参数调整的土建工程？处？立方米；边坡、边沟或路域环境整治？处？立方米",2,2,22,22));
+		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,23,23));
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void dcaqsmfhsckshExcel(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String gydws=(String) session.getAttribute("gydwbb");	
+		String xzqhs=(String) session.getAttribute("xzqhbb");
+		if(gydws.indexOf(",")==-1){
+			xmkaqsmfh.setGydw("and ld.gydwdm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		}else{
+			xmkaqsmfh.setGydw("and ld.gydwdm in ("+gydws+")");
+		}
+		if(xzqhs.indexOf(",")==-1){
+			xmkaqsmfh.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+		}else{
+			xmkaqsmfh.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+		}
+		
+		List<Excel_list> l = xmkaqsmfhServer.dcaqsmfhsckshExcel(xmkaqsmfh);
+
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路安全生命防护工程审查项目");//设置第一行
+		eldata.setSheetName("安防");//设置sheeet名
+		eldata.setFileName("公路安全生命防护工程审查项目");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号 ",1,2,0,0));
+		et.add(new Excel_tilte("省",1,2,1,1));
+		et.add(new Excel_tilte("市",1,2,2,2));
+		et.add(new Excel_tilte("县",1,2,3,3));
+		et.add(new Excel_tilte("公路编码",1,2,4,4));
+		et.add(new Excel_tilte("管养单位",1,2,5,5));
+		et.add(new Excel_tilte("行政区划代码",1,2,6,6));
+		et.add(new Excel_tilte("路线名称",1,2,7,7));
+		et.add(new Excel_tilte("技术等级",1,1,8,8));
+		et.add(new Excel_tilte("起点桩号",1,2,9,9));
+		et.add(new Excel_tilte("止点桩号",1,2,10,10));
+		et.add(new Excel_tilte("隐患里程",1,1,11,11));
+		et.add(new Excel_tilte("处置总里程",1,1,12,12));
+		et.add(new Excel_tilte("修建/改建年度",1,2,13,13));
+		et.add(new Excel_tilte("方案评估单位",1,2,14,14));
+		et.add(new Excel_tilte("方案审查单位",1,2,15,15));
+		et.add(new Excel_tilte("方案审批时间",1,1,16,16));
+		et.add(new Excel_tilte("审批文号",1,2,17,17));
+		et.add(new Excel_tilte("处置投资估算",1,1,18,18));
+		et.add(new Excel_tilte("是否申请按比例补助",1,1,19,19));
+		et.add(new Excel_tilte("按比例补助申请文号",1,2,20,20));
+		et.add(new Excel_tilte("建设内容",1,1,21,21));
+		et.add(new Excel_tilte("建设性质",1,1,22,22));
+		et.add(new Excel_tilte("备注",1,1,23,23));
+		et.add(new Excel_tilte("1、一级 2、二级 3、三级 4、四级",2,2,8,8));
+		et.add(new Excel_tilte("(KM)",2,2,11,11));
+		et.add(new Excel_tilte("(KM)",2,2,12,12));
+		et.add(new Excel_tilte("（年/月/日）",2,2,16,16));
+		et.add(new Excel_tilte("（万元）",2,2,18,18));
+		et.add(new Excel_tilte("0、否 1、是",2,2,19,19));
+		et.add(new Excel_tilte("1、中修 2、大修",2,2,21,21));
+		et.add(new Excel_tilte("标志标线处置？米，交叉口综合处置？处，加装护栏警示诱导设施处置？米，涉及路线参数调整的土建工程？处？立方米；边坡、边沟或路域环境整治？处？立方米",2,2,22,22));
+		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,23,23));
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

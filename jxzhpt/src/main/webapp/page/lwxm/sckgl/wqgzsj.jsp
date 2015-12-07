@@ -261,7 +261,8 @@ function sckglWqgz(){
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val(),
 			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+			 	'jckwqgzsj.jsxz':$("#jsxz").combobox("getValue")
 			},
 		    striped:true,
 		    pagination:true,
@@ -365,7 +366,7 @@ function sckglWqgz(){
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
- 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+ 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/wqgzsj/selectSckwqgzCount.do",
@@ -477,7 +478,15 @@ text-decoration:none;
 								
                               <td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>	 
-                              <td colspan="10">
+        						 <td>建设性质：</td>
+        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+									<option value=""selected>全部</option>
+									<option value="加固改造">加固改造</option>
+									<option value="拆除重建">拆除重建</option>
+									<option value="大修">大修</option>
+									</select></td>	 
+        						
+                              <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->

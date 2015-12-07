@@ -38,7 +38,7 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	//afxmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
+	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
 	tsdq("tsdq");
 	showAll();
@@ -173,6 +173,7 @@ function showAll(){
 	}
 	
 	function loadtj(){
+		
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -185,6 +186,7 @@ function showAll(){
 		}else{
 			gydwstr= gydw.join(',');
 		}
+		
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -196,13 +198,14 @@ function showAll(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		
 		var sbthcd;
 	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
-	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.jhnf='+$("#xmnf").combobox("getValue")+
+	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.jhnf='+
 	 	'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+$("#jsdj").combobox("getValue")+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
-	 	
+
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/aqsmfh/loadXmkaqsmfhXMKCount.do",
@@ -351,6 +354,8 @@ function showAll(){
 		obj=$("#grid").datagrid('getRows')[index];
 		YMLib.UI.createWindow('lxxx','项目初审','aqsmfh_sh.jsp','lxxx',500,250);
 	}
+	
+
 </script>
 <style type="text/css">
 TD {
@@ -395,7 +400,6 @@ text-decoration:none;
 							  <td>上报状态：</td>
 							  <td>
 								  <select id="sbzt"  style="width:70px"class="easyui-combobox"></select>
-								  <select id="xmtype" style="width:70px; display: none;"></select>
 							  </td>
 							  <td>特殊地区：</td>
 							  <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
@@ -412,7 +416,7 @@ text-decoration:none;
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
 <!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('aqsmfh_add.jsp','900','450');" style="border-width:0px;" /> -->
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
-                                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>
+<%--                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/> --%>
 							  </td>
 							 </tr>
 							</table>

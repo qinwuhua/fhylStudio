@@ -595,6 +595,13 @@ public class GcglwqgzController extends BaseActionSupport{
 		}else{
 			tiaojian="and t3.gydwbm in ("+gydw+")";
 		}
+		String tiaojian2="";
+		if(gcglwqgz.getXzqh().indexOf(",")==-1){
+			tiaojian2="and t3.xzqhdm like '%'||'"+gcglwqgz.getXzqh()+"'||'%'";
+		}else{
+			tiaojian2="and t3.xzqhdm in ("+gcglwqgz.getXzqh()+")";
+		}
+		gcglwqgz.setXzqhdm(tiaojian2);	
 		gcglwqgz.setPage(page);
 		gcglwqgz.setRows(rows);
 		gcglwqgz.setGydw(tiaojian);

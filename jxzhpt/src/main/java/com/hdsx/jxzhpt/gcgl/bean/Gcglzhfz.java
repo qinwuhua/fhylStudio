@@ -114,7 +114,35 @@ public class Gcglzhfz implements Serializable {
 	private String yhtype;
 	private String stz;
 	private String xdwh;
+	private String gldj;
+	private String jsdj;
+	private String ljbfzt;
+	private String xzqh;
 	
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getLjbfzt() {
+		return ljbfzt;
+	}
+	public void setLjbfzt(String ljbfzt) {
+		this.ljbfzt = ljbfzt;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
 	public String getXdwh() {
 		return xdwh;
 	}

@@ -522,6 +522,13 @@ public class GcglzhfzController extends BaseActionSupport{
 			}else{
 				tiaojian1="and gydwbm in ("+gydw+")";
 			}
+			String tiaojian2="";
+			if(gcglzhfz.getXzqh().indexOf(",")==-1){
+				tiaojian2="and t3.xzqhdm like '%'||'"+gcglzhfz.getXzqh()+"'||'%'";
+			}else{
+				tiaojian2="and t3.xzqhdm in ("+gcglzhfz.getXzqh()+")";
+			}
+			gcglzhfz.setXzqhdm(tiaojian2);	
 		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setKgzt(kgzt);
 		gcglzhfz.setLxmc(lxmc);

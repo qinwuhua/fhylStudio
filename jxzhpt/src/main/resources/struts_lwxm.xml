@@ -202,6 +202,9 @@
  	<action name="sckAfSb" class="xmkaqsmfhController" method="sckAfSb"/>
  	<action name="afSckCs" class="xmkaqsmfhController" method="afSckCs"/>
  	<action name="afSckZs" class="xmkaqsmfhController" method="afSckZs"/>
+ 	<action name="dcaqsmfhsckExcel" class="xmkaqsmfhController" method="dcaqsmfhsckExcel"/>
+ 	<action name="dcaqsmfhsckshExcel" class="xmkaqsmfhController" method="dcaqsmfhsckshExcel"/>
+ 	<action name="dcaqsmfhxmkExcel" class="xmkaqsmfhController" method="dcaqsmfhxmkExcel"/>
  	
  </package>
 </struts>

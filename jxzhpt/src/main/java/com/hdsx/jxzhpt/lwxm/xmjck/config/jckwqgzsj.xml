@@ -507,6 +507,9 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz like '%'||(#{jsxz})||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -556,7 +559,9 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
-		
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz like '%'||(#{jsxz})||'%'
+		</if>
 	</select>
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
 	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
@@ -650,6 +655,9 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz like '%'||(#{jsxz})||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -703,6 +711,9 @@
 		</if>
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
 	</select>	
 	<select id="cxplanwqgzbyid" parameterType="jckwqgzsj" resultType="planwqgzsj">

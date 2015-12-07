@@ -286,7 +286,8 @@ $("#grid").datagrid({
 		 	'lxbm': $('#lxbm').val(),
 		 	'qlbh':$("#qlbh").val(),
 		 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-		 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+		 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+		 	'jckwqgzsj.jsxz':$("#jsxz").combobox("getValue")
 		},
 	    striped:true,
 	    pagination:true,
@@ -330,15 +331,19 @@ $("#grid").datagrid({
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'scqlqc',title:'桥梁全长(米)',width:140,align:'center'},
+		        {field:'scqlqk',title:'桥梁全宽(米)',width:140,align:'center'},
+		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'fapgdw',title:'方案评估(设计)单位',width:140,align:'center'},
+		        {field:'fascdw',title:'方案审核(批复)单位',width:140,align:'center'},
+		        {field:'faspsj',title:'方案(施工图)批复时间',width:140,align:'center'},
+		        {field:'spwh',title:'审批文号',width:140,align:'center'},
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'},
-		        {field:'tzgs',title:'投资估算',width:140,align:'center'},
 		        {field:'hzdj',title:'荷载等级',width:140,align:'center'},
 		        {field:'scsjhspl',title:'设计洪水频率',width:140,align:'center'},
 		        {field:'kjzh',title:'跨径组合',width:140,align:'center'},
 		        {field:'sck_sbjgxs',title:'上部结构形式',width:140,align:'center'},
 		        {field:'sck_xbjgxs',title:'下部结构形式',width:140,align:'center'},
-		        {field:'sgtpfsj',title:'施工图批复时间',width:140,align:'center'},
-		        {field:'pfwh',title:'批复文号',width:140,align:'center'},
 		        {field:'zgq',title:'总工期',width:140,align:'center'},
 		        {field:'cjqz1',title:'重建桥址',width:140,align:'center',formatter:function(value,row,index){
 		        	if(row.cjqz!=''||row.cjqz!=null)
@@ -360,7 +365,7 @@ $("#grid").datagrid({
 			var data="sck_sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 			"&xmnf="+$("#xmnf").combobox("getValue")+"&shzt="+$('#shzt').combobox("getValue")+
 			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+
-			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue");
 			$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/selectSckShwqgzCount.do",
@@ -470,7 +475,14 @@ text-decoration:none;
 								</select></td>
 								<td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
-                              <td colspan="10">
+        						 <td>建设性质：</td>
+        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+									<option value=""selected>全部</option>
+									<option value="加固改造">加固改造</option>
+									<option value="拆除重建">拆除重建</option>
+									<option value="大修">大修</option>
+									</select></td>	 
+                              <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>		

@@ -78,5 +78,9 @@ public interface XmkaqsmfhServer {
 
 	boolean afXmkZs(Xmkaqsmfh xmkaqsmfh);
 
+	List<Excel_list> dcaqsmfhsckExcel(Xmkaqsmfh xmkaqsmfh);
+
+	List<Excel_list> dcaqsmfhsckshExcel(Xmkaqsmfh xmkaqsmfh);
+
 
 }

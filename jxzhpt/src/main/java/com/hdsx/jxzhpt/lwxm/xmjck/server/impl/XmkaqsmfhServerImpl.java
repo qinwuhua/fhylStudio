@@ -220,6 +220,13 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	public boolean afXmkZs(Xmkaqsmfh xmkaqsmfh) {
 		return update("afXmkZs", xmkaqsmfh)==1;
 	}
-	
+	@Override
+	public List<Excel_list> dcaqsmfhsckExcel(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("dcaqsmfhsckExcel",xmkaqsmfh);
+	}
+	@Override
+	public List<Excel_list> dcaqsmfhsckshExcel(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("dcaqsmfhsckshExcel",xmkaqsmfh);
+	}
 	
 }

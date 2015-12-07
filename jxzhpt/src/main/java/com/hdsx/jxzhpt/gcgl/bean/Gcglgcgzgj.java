@@ -132,7 +132,35 @@ public class Gcglgcgzgj implements Serializable {
 	private String bndsslc;
 	private String wkglc;
 	private String sl;
+	private String gldj;
+	private String jsdj;
+	private String ljbfzt;
+	private String tsdq;
 	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getLjbfzt() {
+		return ljbfzt;
+	}
+	public void setLjbfzt(String ljbfzt) {
+		this.ljbfzt = ljbfzt;
+	}
 	public String getSl() {
 		return sl;
 	}

@@ -37,7 +37,7 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("jhnf"); 
 	loadBmbm2("sbzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
+	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
 	tsdq("tsdq");
 	showAll();
@@ -197,6 +197,23 @@ function showshyj(index){
 }
 function showcsyj(index){
 	$.messager.alert('不同意意见',$("#grid").datagrid('getRows')[index].csyj,'warning');  
+}
+
+
+var gydwstr;
+var xzqhstr;
+function dcExcel(){
+	var sbthcd;
+ 	if($.cookie("unit2")=='______36'){
+ 		sbthcd=7;
+ 	}else  sbthcd=$.cookie("unit2").length;
+	var data=ata="xmkaqsmfh.sbthbmcd="+sbthcd+"&xmkaqsmfh.lxmc="+$('#lxmc').val()
+ 	+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox("getValue")+"&xmkaqsmfh.sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
+ 	"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		window.location.href='/jxzhpt/aqsmfh/dcaqsmfhsckshExcel.do?'+data;
+	 });
 }
 </script>
 <style type="text/css">

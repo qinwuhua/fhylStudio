@@ -24,7 +24,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -57,7 +57,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -89,7 +89,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -127,7 +127,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -165,7 +165,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -202,7 +202,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and gldj like '%'||(#{gldj})||'%'
+ 				and roadcode like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
@@ -855,7 +855,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -897,7 +897,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -935,7 +935,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -976,7 +976,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -1013,7 +1013,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -1053,7 +1053,7 @@
  				and jsdj like '%'||(#{jsdj})||'%'
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{lxbm})||'%'
+ 				and lxbm like '%'||(#{gldj})||'%'
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
@@ -1515,4 +1515,101 @@
 	   <update id="afSckZs" parameterType="xmkaqsmfh" >
  			update SCK_AQSMFH set shzt=#{shzt},sbthbmcd=#{sbthbmcd},cszt=#{cszt},shyj=#{shyj} where id =#{id} 
  		</update>
+ 		<select id="dcaqsmfhsckExcel" parameterType="xmkaqsmfh" resultType="elist">
+ 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+			decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
+			decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
+			decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
+			decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
+			decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_19,
+			decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_20,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_22,
+			decode(ld.xuh,ld1.xuh,sc.bz,'') v_23
+			
+			  from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
+			  where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)
+			  and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) and sc.jhnf is not null
+			  <if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 		order by ld.xmbm,ld.xuh
+ 		</select>
+ 		
+ 		<select id="dcaqsmfhsckshExcel" parameterType="xmkaqsmfh" resultType="elist">
+ 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+			decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
+			decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
+			decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
+			decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
+			decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_19,
+			decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_20,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_22,
+			decode(ld.xuh,ld1.xuh,sc.bz,'') v_23
+			
+			  from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
+			  where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)
+			 and sc.jhnf is not null
+			  and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqh!='' and xzqh!= null ">
+				${xzqh}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="jhnf!='' and jhnf!= null ">
+	 			and jhnf like '%'||(#{jhnf})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			<if test="sbzt == '未审核'">
+ 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+				</if>
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+ 				and jsdj like '%'||(#{jsdj})||'%'
+ 			</if> 
+ 			<if test="gldj!='' and gldj!= null ">
+ 				and lxbm like '%'||(#{gldj})||'%'
+ 			</if> 
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+	 			and bzls like '%'||(#{bzls})||'%'
+	 		</if>
+	 		order by ld.xmbm,ld.xuh
+ 		</select>
 </mapper>
