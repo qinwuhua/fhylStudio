@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import oracle.net.aso.f;
+
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.components.If;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -1942,71 +1945,14 @@ public class GcybbController extends BaseActionSupport{
 			//查总合list
 			try {
 			List<Excel_list> list1=gcybbServer.getGlgzxj(gcglabgc);
-			/*//按行政区划查询每个行政区划的合list
-			List<Map<String,Object>> list2=gcybbServer.getabgcbblist2(gcglabgc);
-			//按行政区划和年份查每个行政区划下每个年份的合
-			List<Map<String,Object>> list3=gcybbServer.getabgcbblist3(gcglabgc);
-			//查询所有列表
-			List<Map<String,Object>> list4=gcybbServer.getabgcbblist4(gcglabgc);
-			if(list2.size()>0)
-			for (Map<String, Object> map : list2) {
-				list1.add(map);
-				if(list3.size()>0)
-				for (Map<String, Object> map1 : list3) {
-					if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
-						list1.add(map1);
-						if(list4.size()>0)
-						for (Map<String, Object> map2 : list4) {
-							if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
-								list1.add(map2);
-							}
-						}
-					}
-				}
-			}
+			
 			if("flag".equals(flag)){
-				List<Excel_list> elist=new ArrayList<Excel_list>();
-				for (Map<String, Object> map : list1) {
-					Excel_list l=new Excel_list();
-					try {l.setV_0(map.get("LXBM").toString());} catch (Exception e) {l.setV_0("");}
-					try {l.setV_1(map.get("LXMC").toString());} catch (Exception e) {l.setV_1("");}
-					try {l.setV_2(map.get("QDZH").toString());} catch (Exception e) {l.setV_2("");}
-					try {l.setV_3(map.get("ZDZH").toString());} catch (Exception e) {l.setV_3("");}
-					try {l.setV_4(map.get("JSDJ").toString());} catch (Exception e) {l.setV_4("");}
-					try {l.setV_5(map.get("XJGJND").toString());} catch (Exception e) {l.setV_5("");}
-					try {l.setV_6(map.get("BNHJ").toString());} catch (Exception e) {l.setV_6("");}
-					try {l.setV_7(map.get("BNBTZ").toString());} catch (Exception e) {l.setV_7("");}
-					try {l.setV_8(map.get("BNSTZ").toString());} catch (Exception e) {l.setV_8("");}
-					try {l.setV_9(map.get("YHLX").toString());} catch (Exception e) {l.setV_9("");}
-					try {l.setV_10(map.get("JSXZ").toString());} catch (Exception e) {l.setV_10("");}
-					try {l.setV_11(map.get("JHC").toString());} catch (Exception e) {l.setV_11("");}
-					try {l.setV_12(map.get("JHGL").toString());} catch (Exception e) {l.setV_12("");}
-					try {l.setV_13(map.get("JHKGN").toString());} catch (Exception e) {l.setV_13("");}
-					try {l.setV_14(map.get("JHWGN").toString());} catch (Exception e) {l.setV_14("");}
-					try {l.setV_15(map.get("BYWCC").toString());} catch (Exception e) {l.setV_15("");}
-					try {l.setV_16(map.get("BYWCGL").toString());} catch (Exception e) {l.setV_16("");}
-					try {l.setV_17(map.get("YYWCC").toString());} catch (Exception e) {l.setV_17("");}
-					try {l.setV_18(map.get("YYWCGL").toString());} catch (Exception e) {l.setV_18("");}
-					try {l.setV_19(map.get("KGWCC").toString());} catch (Exception e) {l.setV_19("");}
-					try {l.setV_20(map.get("KGWCGL").toString());} catch (Exception e) {l.setV_20("");}
-					try {l.setV_21(map.get("BYHJ").toString());} catch (Exception e) {l.setV_21("");}
-					try {l.setV_22(map.get("BYBTZ").toString());} catch (Exception e) {l.setV_22("");}
-					try {l.setV_23(map.get("BYSTZ").toString());} catch (Exception e) {l.setV_23("");}
-					try {l.setV_24(map.get("YYHJ").toString());} catch (Exception e) {l.setV_24("");}
-					try {l.setV_25(map.get("YYBTZ").toString());} catch (Exception e) {l.setV_25("");}
-					try {l.setV_26(map.get("YYSTZ").toString());} catch (Exception e) {l.setV_26("");}
-					try {l.setV_27(map.get("KGHJ").toString());} catch (Exception e) {l.setV_27("");}
-					try {l.setV_28(map.get("KGBTZ").toString());} catch (Exception e) {l.setV_28("");}
-					try {l.setV_29(map.get("KGSTZ").toString());} catch (Exception e) {l.setV_29("");}
-					try {l.setV_30(map.get("JSNR").toString());} catch (Exception e) {l.setV_30("");}
-					
-					elist.add(l);
-				}
+				
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("江西省公路路网结构改造工程统计月报表（二）安保工程");//设置第一行
 				eldata.setSheetName("安保工程月报表");//设置sheeet名
 				eldata.setFileName("安保工程月报表");//设置文件名
-				eldata.setEl(elist);//将实体list放入类中
+				eldata.setEl(list1);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("路线编码",1,2,0,0));
 				et.add(new Excel_tilte("路线名称",1,2,1,1));
@@ -2054,13 +2000,157 @@ public class GcybbController extends BaseActionSupport{
 				Excel_export.excel_export1(eldata,response);
 				
 			}else{
-				if(list1.size()==1){
-					JsonUtils.write(null, getresponse().getWriter());
-				}else
-				*/
 				JsonUtils.write(list1, getresponse().getWriter());
-//			}                                                                          
+               }                                                     
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void xmkaqsmfhbb1(){
+			try {
+			String tiaojian1="";
+			String gydwdm="";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+			}else{
+			gydwdm = gydw;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and unitcode like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and unitcode in ("+gydwdm+")";
+			}
+			if("12".equals(xzdj)){
+				tiaojian1+=" and (jsdj like '%1%' or jsdj like '%2%')";
+			}else{
+				tiaojian1+=" and (jsdj like '%3%' or jsdj like '%4%')";
+			}
+			if("".equals(xmnf)){}else{
+				tiaojian1+=" and jhnf="+xmnf;
+			}
+			List<Excel_list> list=gcybbServer.xmkaqsmfhbb1(tiaojian1);
+			if("1".equals(flag)){
+				
+			}else{
+					JsonUtils.write(list, getresponse().getWriter());
+			}
+			}  catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void xmkaqsmfhbb2(){
+			try {
+			String tiaojian1="";
+			String gydwdm="";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+			}else{
+			gydwdm = gydw;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and unitcode like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and unitcode in ("+gydwdm+")";
+			}
+			if("12".equals(xzdj)){
+				tiaojian1+=" and (jsdj like '%1%' or jsdj like '%2%')";
+			}else{
+				tiaojian1+=" and (jsdj like '%3%' or jsdj like '%4%')";
+			}
+			if("".equals(xmnf)){}else{
+				tiaojian1+=" and jhnf="+xmnf;
+			}
+			List<Excel_list> list=gcybbServer.xmkaqsmfhbb2(tiaojian1);
+			if("1".equals(flag)){
+				
+			}else{
+					JsonUtils.write(list, getresponse().getWriter());
+			}
+			}  catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void sckaqsmfhbb(){
+			try {
+			String tiaojian1="";
+			String gydwdm="";
+			if("1".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+			}else{
+			gydwdm = gydw;
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and sc.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and sc.gydwdm in ("+gydwdm+")";
+			}
+			if("".equals(xmnf)){}else{
+				tiaojian1+=" and sc.jhnf="+xmnf;
+			}
+			List<Excel_list> list=gcybbServer.sckaqsmfhbb(tiaojian1);
+			if("1".equals(flag)){
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("安全生命防护工程审查库报表");//设置第一行
+				eldata.setSheetName("安全生命防护工程");//设置sheeet名
+				eldata.setFileName("安全生命防护工程审查库报表");//设置文件名
+				eldata.setEl(list);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("1",1,1,0,0));
+				et.add(new Excel_tilte("2",1,1,1,1));
+				et.add(new Excel_tilte("3",1,1,2,2));
+				et.add(new Excel_tilte("4",1,1,3,3));
+				et.add(new Excel_tilte("5",1,1,4,4));
+				et.add(new Excel_tilte("6",1,1,5,5));
+				et.add(new Excel_tilte("7",1,1,6,6));
+				et.add(new Excel_tilte("8",1,1,7,7));
+				et.add(new Excel_tilte("9",1,1,8,8));
+				et.add(new Excel_tilte("10",1,1,9,9));
+				et.add(new Excel_tilte("11",1,1,10,10));
+				et.add(new Excel_tilte("12",1,1,11,11));
+				et.add(new Excel_tilte("13",1,1,12,12));
+				et.add(new Excel_tilte("14",1,1,13,13));
+				et.add(new Excel_tilte("15",1,1,14,14));
+				et.add(new Excel_tilte("16",1,1,15,15));
+				et.add(new Excel_tilte("序号",2,3,0,0));
+				et.add(new Excel_tilte("省",2,3,1,1));
+				et.add(new Excel_tilte("市",2,3,2,2));
+				et.add(new Excel_tilte("县",2,3,3,3));
+				et.add(new Excel_tilte("公路编号",2,3,4,4));
+				et.add(new Excel_tilte("路段总里程",2,2,5,5));
+				et.add(new Excel_tilte("路段修建/改建年度",2,2,6,6));
+				et.add(new Excel_tilte("方案评估单位",2,3,7,7));
+				et.add(new Excel_tilte("方案审查单位",2,3,8,8));
+				et.add(new Excel_tilte("方案审批时间",2,2,9,9));
+				et.add(new Excel_tilte("方案审批文号",2,3,10,10));
+				et.add(new Excel_tilte("建设性质",2,2,11,11));
+				et.add(new Excel_tilte("投资估算",2,2,12,12));
+				et.add(new Excel_tilte("是否申请按比例补助",2,2,13,13));
+				et.add(new Excel_tilte("按比例补助申请文号",2,3,14,14));
+				et.add(new Excel_tilte("备注",2,3,15,15));
+				et.add(new Excel_tilte("（km）",3,3,5,5));
+				et.add(new Excel_tilte("（年）",3,3,6,6));
+				et.add(new Excel_tilte("（年/月/日）",3,3,9,9));
+				et.add(new Excel_tilte("1、中修2、大修",3,3,11,11));
+				et.add(new Excel_tilte("（万元）",3,3,12,12));
+				et.add(new Excel_tilte("0、否1、是",3,3,13,13));
+
+				
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			}else{
+					JsonUtils.write(list, getresponse().getWriter());
+			}
+			}  catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

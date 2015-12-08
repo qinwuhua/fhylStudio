@@ -349,6 +349,21 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhjz.jsp'
 	});
+	
+	createMenux('LeftMenu',{
+		id:'menu_0101050416',
+		title:'安全生命防护工程基础库报表',
+		imgSrc:'../../images/menubutton/abjckbb.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abbb/afjc.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050417',
+		title:'安全生命防护工程审查库报表',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abbb/afsc.jsp'
+	});
 	/*createMenu2('LeftMenu',{
 		id:'menu22',
 		title:'灾害进度库完成信息模板',

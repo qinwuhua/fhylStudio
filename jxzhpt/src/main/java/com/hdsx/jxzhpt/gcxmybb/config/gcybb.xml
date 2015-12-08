@@ -2218,4 +2218,49 @@
 		    order by v_62,v_63
 		    )tb group by v_63 order by v_63
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="xmkaqsmfhbb1" parameterType="String" resultType="elist">
+	select t.xuh v_0,t.province v_1,t.town v_2,t.county v_3,t.roadcode v_4,t.jsdj v_5,t.fangx v_6,t.roadstart v_7,t.roadend v_8,t.pcsj v_9,t.ldfl v_10,
+	t.jtsgpcf v_11,t.jtsgfxdj v_12,t.gltjpcf v_13,t.glfxdj v_14,t.xbjyqx v_15,t.lxxp v_16,t.doup v_17,t.sjbl v_18,t.lcxy v_19,t.hjfz v_20,t.jckbgf v_21,
+	t.jtl v_22,t.xchbc v_23,t.csxsss v_24,t.hul v_25,t.bzbx v_26,t.jshsxyd v_27,t.aqssqt v_28,t.tjgc v_29,t.hjzz v_30,t.bzbxcz v_31,t.jckcz v_32,
+	t.jzhl v_33,t.jshsxydcz v_34,t.aqssqtcz v_35,t.tzgs v_36,t.jhnf v_37
+	from XMK_AQSMFH t
+	where 1=1 ${value}
+	order by distcode,xuh
+	</select>
+	<select id="xmkaqsmfhbb2" parameterType="String" resultType="elist">
+	select t.xuh v_0,t.province v_1,t.town v_2,t.county v_3,t.roadcode v_4,t.jsdj v_5,t.fangx v_6,t.roadstart v_7,t.roadend v_8,t.pcsj v_9,t.ldfl v_10,
+	  t.sgpb v_11,t.dgjw v_12,t.lxjw v_13,t.lxxp v_14,t.doup v_15,t.sjbl v_16,t.lcxy v_17,t.hjfz v_18,t.jtlpbzb v_19,
+	  t.xchbc v_20,t.csxsss v_21,t.hul v_22,t.bzbx v_23,t.jshsxyd v_24,t.aqssqt v_25,t.tjgc v_26,t.hjzz v_27,t.bzbxcz v_28,t.jckcz v_29,
+	  t.jzhl v_30,t.jshsxydcz v_31,t.aqssqtcz v_32,t.tzgs v_33,t.jhnf v_34
+  	from XMK_AQSMFH t
+	where 1=1 ${value}
+	order by distcode,xuh
+	</select>
+	<select id="sckaqsmfhbb" parameterType="String" resultType="elist">
+	select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_5,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_6,decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_7,
+      decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_8,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_9,decode(ld.xuh,ld1.xuh,sc.spwh,'') v_10,
+      decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_11,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_12,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_13,
+      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_14,decode(ld.xuh,ld1.xuh,sc.bz,'') v_15
+        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
+        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)
+       and sc.jhnf is not null
+		${value}
+		order by sc.xmbm,ld.xuh
+	</select>
 </mapper>

@@ -269,7 +269,7 @@ function sckglWqgz(){
 		    rownumbers:true,
 		    pageNumber:1,
 		    pageSize:10,
-		    height:$(window).height()-185,
+		    height:$(window).height()-200,
 			width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
@@ -313,7 +313,8 @@ function sckglWqgz(){
 					return '已初审  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
-						return '<span style="color:grey;">     </span>';
+					if(row.sck_shzt=='已审核'){return '<span style="color:grey;">已审核</span>';}		
+					else return '<span style="color:grey;">未审核</span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}

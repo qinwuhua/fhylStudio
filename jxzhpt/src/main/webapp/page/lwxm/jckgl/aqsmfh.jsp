@@ -117,8 +117,10 @@ function showAll(){
 						}else{
 							return '<a href=javascript:locationXm1("'+row.roadcode+'","'+row.roadstart+'","'+row.roadend+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href=javascript:ckXX('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-							'<span style="color:grey;">编辑</span>'+
-							'<span style="color:grey;">删除</span>';	
+							'<a href=javascript:editXX('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<a href=javascript:delOne('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>  ';
+							/* '<span style="color:grey;">编辑</span>'+
+							'<span style="color:grey;">删除</span>';	 */
 						}
 					}
 			}},    

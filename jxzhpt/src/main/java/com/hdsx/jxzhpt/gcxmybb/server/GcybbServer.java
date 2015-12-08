@@ -98,5 +98,11 @@ public interface GcybbServer {
 
 	List<Excel_list> getGlgzxj(Gcglabgc gcglabgc);
 
+	List<Excel_list> xmkaqsmfhbb1(String tiaojian1);
+
+	List<Excel_list> xmkaqsmfhbb2(String tiaojian1);
+
+	List<Excel_list> sckaqsmfhbb(String tiaojian1);
+
 	
 }

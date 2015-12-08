@@ -344,6 +344,18 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		return l4;
 	}
 
-	
+	@Override
+	public List<Excel_list> xmkaqsmfhbb1(String tiaojian1) {
+		return queryList("xmkaqsmfhbb1",tiaojian1);
+	}
 
+	@Override
+	public List<Excel_list> xmkaqsmfhbb2(String tiaojian1) {
+		return queryList("xmkaqsmfhbb2",tiaojian1);
+	}
+
+	@Override
+	public List<Excel_list> sckaqsmfhbb(String tiaojian1) {
+		return queryList("sckaqsmfhbb",tiaojian1);
+	}
 }
