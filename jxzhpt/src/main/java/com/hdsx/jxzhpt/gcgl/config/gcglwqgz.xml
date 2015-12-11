@@ -249,22 +249,25 @@
 	 	and	to_date(sbyf,'yyyy-mm')&gt;to_date(#{sbyf},'yyyy-mm') 
 	 </select>	 
 	 <select id="selectwqzj1" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(cgsdwzj)+sum(stz) zbfzj from gcgl_cgs where jhid=#{jhid}
+	 	select sum(cgsdwzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) zbfzj from gcgl_cgs where jhid=#{jhid}
 	 </select>
 	  <select id="selectwqzj2" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(cgsdwzj)+sum(stz) nbfzj from gcgl_cgs where jhid=#{jhid} and tbyf like #{nf}||'%'
+	 	select sum(cgsdwzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) nbfzj from gcgl_cgs where jhid=#{jhid} and tbyf like #{nf}||'%'
 	 </select>
 	  <select id="selectwqzj3" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(btzzj)+sum(stz) nxdzj from PLAN_ZJXD where xmid=#{id} and xdnf like #{nf}||'%'
+	 	select sum(btzzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) nxdzj from PLAN_ZJXD where xmid=#{id} and xdnf like #{nf}||'%'
 	 </select>
 	 <select id="selectwqzj4" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(btzzj)+sum(stz) zxdzj from PLAN_ZJXD where xmid=#{id}
+	 	select sum(btzzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) zxdzj from PLAN_ZJXD where xmid=#{id}
 	 </select>
 	 <select id="selectwqzj5" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz from ${tablename} where jhid=#{id}
+	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,'0' yhdk,'0' gz,'0' sz from ${tablename} where jhid=#{id}
+	 </select>
+	 <select id="selectwqzj7" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz)+sum(yhdk)+sum(gz)+sum(sz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}
 	 </select>
 	 <select id="selectwqzj6" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(bywctze) zwczj,'0' zwcbtz,'0' zwcstz from ${tablename} where jhid=#{id}
+	 	select sum(bywctze)+sum(yhdk)+sum(gz)+sum(sz) zwczj,'0' zwcbtz,'0' zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglwqgz" >
 	 update PLAN_WQGZ set sjzt=#{sjzt} where id=#{jhid}
@@ -423,7 +426,7 @@
 	 </select>
 	 <!-- 查询每月的车购税 -->
 	 <select id="selectcgsyf" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select cgsdwzj zjdw_btz,stz zjdw_stz from gcgl_cgs where tbyf=#{tbyf} and jhid=#{jhid}
+	 	select cgsdwzj zjdw_btz,stz zjdw_stz,yhdk,gz,sz from gcgl_cgs where tbyf=#{tbyf} and jhid=#{jhid}
 	 </select>
 	 <!-- 查询最进展大月份 -->
 	 <select id="querymaxybyf" parameterType="gcglwqgz" resultType="gcglwqgz">

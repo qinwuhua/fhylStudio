@@ -133,8 +133,49 @@ public class Gcglsh implements Serializable {
 	private String jsdj;
 	private String ljbfzt;
 	private String tsdq;
+	private String yhdk;
+	private String gz;
+	private String sz;
+	private String dwyhdk;
+	private String dwgz;
+	private String dwsz;
 	
-	
+	public String getDwyhdk() {
+		return dwyhdk;
+	}
+	public void setDwyhdk(String dwyhdk) {
+		this.dwyhdk = dwyhdk;
+	}
+	public String getDwgz() {
+		return dwgz;
+	}
+	public void setDwgz(String dwgz) {
+		this.dwgz = dwgz;
+	}
+	public String getDwsz() {
+		return dwsz;
+	}
+	public void setDwsz(String dwsz) {
+		this.dwsz = dwsz;
+	}
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	public String getGldj() {
 		return gldj;
 	}

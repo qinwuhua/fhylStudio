@@ -452,8 +452,8 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
 			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
-		int count = jckwqgzsjServer.selectSckwqgzCount(jckwqgzsj);
-		ResponseUtils.write(getresponse(), count+"");
+			Jckwqgzsj count = jckwqgzsjServer.selectSckwqgzCount1(jckwqgzsj);
+		JsonUtils.write(count, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -588,8 +588,8 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
 			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
-		int count = jckwqgzsjServer.selectSckShwqgzCount(jckwqgzsj);
-		ResponseUtils.write(getresponse(), count+"");
+			Jckwqgzsj count = jckwqgzsjServer.selectSckShwqgzCount1(jckwqgzsj);
+		JsonUtils.write(count, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

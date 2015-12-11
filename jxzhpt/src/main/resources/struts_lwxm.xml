@@ -192,11 +192,14 @@
  	<action name="insertAqsmfhsck" class="xmkaqsmfhController" method="insertAqsmfhsck"/>
  	<action name="selectafldList" class="xmkaqsmfhController" method="selectafldList"/>
  	<action name="selectAqsmfhsckbyid" class="xmkaqsmfhController" method="selectAqsmfhsckbyid"/>
+ 	<action name="selectAqsmfhsckbyid1" class="xmkaqsmfhController" method="selectAqsmfhsckbyid1"/>
  	<action name="selectAqsmfhxmkbyid" class="xmkaqsmfhController" method="selectAqsmfhxmkbyid"/>
  	<action name="updateAqsmfhsck" class="xmkaqsmfhController" method="updateAqsmfhsck"/>
  	<action name="selectSckaqsmfhld" class="xmkaqsmfhController" method="selectSckaqsmfhld"/>
+ 	<action name="selectSckaqsmfhld1" class="xmkaqsmfhController" method="selectSckaqsmfhld1"/>
  	<action name="insertAqsmfhsckld" class="xmkaqsmfhController" method="insertAqsmfhsckld"/>
  	<action name="loadscktjld" class="xmkaqsmfhController" method="loadscktjld"/>
+ 	<action name="loadscktjld1" class="xmkaqsmfhController" method="loadscktjld1"/>
  	<action name="delafldsck" class="xmkaqsmfhController" method="delafldsck"/>
  	<action name="deleteSckAf" class="xmkaqsmfhController" method="deleteSckAf"/>
  	<action name="sckAfSb" class="xmkaqsmfhController" method="sckAfSb"/>
@@ -205,6 +208,8 @@
  	<action name="dcaqsmfhsckExcel" class="xmkaqsmfhController" method="dcaqsmfhsckExcel"/>
  	<action name="dcaqsmfhsckshExcel" class="xmkaqsmfhController" method="dcaqsmfhsckshExcel"/>
  	<action name="dcaqsmfhxmkExcel" class="xmkaqsmfhController" method="dcaqsmfhxmkExcel"/>
+ 	
+ 	<action name="sfcfbntj" class="xmkaqsmfhController" method="sfcfbntj"/>
  	
  </package>
 </struts>

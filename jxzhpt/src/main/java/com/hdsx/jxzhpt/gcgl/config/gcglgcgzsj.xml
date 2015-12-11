@@ -48,8 +48,8 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzsjYb" parameterType="gcglgcgzsj">
-		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc)
-		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc})
+		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc<if test="gz != null">,gz</if><if test="sz != null">,sz</if>)
+		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc}<if test="gz != null">,#{gz}</if><if test="sz != null">,#{sz}</if>)
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_GCGZSJ where sbyf=#{sbyf} and jhid=#{jhid}
@@ -57,6 +57,7 @@
 	<!-- 修改月报 -->
 	<update id="updategcgzsjYb" parameterType="gcglgcgzsj">
 		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wcqk=#{wcqk},wkglc=#{wkglc} 
+		<if test="gz != null">,gz=#{gz}</if><if test="sz != null">,sz=#{sz}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -76,8 +77,8 @@
 	
 			<!-- 添加车购税 -->
 	<insert id="insertGcgzsjCgs" parameterType="gcglgcgzsj">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj<if test="stz != null">,stz</if>,cscyj<if test="sz != null">,sz</if><if test="gz != null">,gz</if><if test="yhdk != null">,yhdk</if>)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj}<if test="stz != null">,#{stz}</if>,#{cscyj}<if test="sz != null">,#{sz}</if><if test="gz != null">,#{gz}</if><if test="yhdk != null">,#{yhdk}</if>)
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -111,7 +112,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzsjCgs" parameterType="gcglgcgzsj">
-			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},cscyj=#{cscyj}<if test="stz != null">,stz=#{stz}</if><if test="sz != null">,sz=#{sz}</if><if test="gz != null">,gz=#{gz}</if><if test="yhdk != null">,yhdk=#{yhdk}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->

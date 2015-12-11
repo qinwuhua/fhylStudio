@@ -362,6 +362,8 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		Gcglwqgz gcglwqgz5=null;
 		if("gcgl_gcgzsj".equals(gcglwqgz.getTablename())){
 			gcglwqgz5 = queryOne("selectwqzj6", gcglwqgz);
+		}else if("gcgl_gcgzgj".equals(gcglwqgz.getTablename())||"gcgl_xj".equals(gcglwqgz.getTablename())||"gcgl_sh".equals(gcglwqgz.getTablename())){
+			gcglwqgz5 = queryOne("selectwqzj7", gcglwqgz);
 		}else{
 			gcglwqgz5 = queryOne("selectwqzj5", gcglwqgz);
 		}
@@ -377,6 +379,9 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 			gcglwqgz.setZwczj(gcglwqgz5.getZwczj());
 			gcglwqgz.setZwcbtz(gcglwqgz5.getZwcbtz());
 			gcglwqgz.setZwcstz(gcglwqgz5.getZwcstz());
+			gcglwqgz.setYhdk(gcglwqgz5.getYhdk());
+			gcglwqgz.setGz(gcglwqgz5.getGz());
+			gcglwqgz.setSz(gcglwqgz5.getSz());
 		}
 		return gcglwqgz;
 	}
@@ -405,6 +410,9 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		if(g==null){
 			gcglwqgz.setZjdw_btz("0");
 			gcglwqgz.setZjdw_stz("0");
+			gcglwqgz.setYhdk("0");
+			gcglwqgz.setGz("0");
+			gcglwqgz.setSz("0");
 			return gcglwqgz;
 		}else{
 			return g;

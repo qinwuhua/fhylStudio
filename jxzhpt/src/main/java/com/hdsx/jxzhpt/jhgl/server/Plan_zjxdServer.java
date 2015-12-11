@@ -77,4 +77,6 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	List<Plan_zjzj> queryZjzjByXmid(Plan_zjzj zjzj);
+	boolean addxZjxd(Plan_zjxd zjxd);
+	boolean editxZjxd(Plan_zjxd zjxd);
 }

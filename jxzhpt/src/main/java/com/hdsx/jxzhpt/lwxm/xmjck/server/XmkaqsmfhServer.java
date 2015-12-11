@@ -82,5 +82,13 @@ public interface XmkaqsmfhServer {
 
 	List<Excel_list> dcaqsmfhsckshExcel(Xmkaqsmfh xmkaqsmfh);
 
+	String sfcfbntj(Xmkaqsmfh xmkaqsmfh);
+
+	List<Xmkaqsmfh> selectSckaqsmfhld1(Xmkaqsmfh xmkaqsmfh);
+
+	Xmkaqsmfh selectAqsmfhsckbyid1(Xmkaqsmfh xmkaqsmfh);
+
+	Xmkaqsmfh loadscktjld1(Xmkaqsmfh xmkaqsmfh);
+
 
 }

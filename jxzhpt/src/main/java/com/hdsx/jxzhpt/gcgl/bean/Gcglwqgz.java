@@ -148,7 +148,28 @@ public class Gcglwqgz implements Serializable {
 	private String gldj;
 	private String ljbfzt;
 	private String xzqh;
+	private String yhdk;
+	private String gz;
+	private String sz;
 	
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	public String getGldj() {
 		return gldj;
 	}

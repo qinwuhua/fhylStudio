@@ -73,6 +73,17 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 			e.printStackTrace();
 		}
 	}
+	public void editxZjxdById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(zjxdServer.editxZjxd(zjxd)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void queryZjxdExistById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -88,6 +99,17 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("result",  new Boolean(zjxdServer.addZjxd(zjxd)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void addxZjxd(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(zjxdServer.addxZjxd(zjxd)).toString());
 			JsonUtils.write(result,getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

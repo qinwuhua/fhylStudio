@@ -333,8 +333,11 @@ public class XmkaqsmfhController extends BaseActionSupport{
 	}
 	
 	public void insertAqsmfhsck(){
-		
+		try {
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.insertAqsmfhsck(xmkaqsmfh)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void selectafldList(){
@@ -352,7 +355,13 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	public void selectAqsmfhsckbyid1(){
+		try {
+			JsonUtils.write(xmkaqsmfhServer.selectAqsmfhsckbyid1(xmkaqsmfh), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selectAqsmfhxmkbyid(){
 		try {
 			JsonUtils.write(xmkaqsmfhServer.selectAqsmfhxmkbyid(xmkaqsmfh), getresponse().getWriter());
@@ -372,12 +381,26 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void selectSckaqsmfhld1(){
+		try {
+			JsonUtils.write(xmkaqsmfhServer.selectSckaqsmfhld1(xmkaqsmfh), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void insertAqsmfhsckld(){
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.insertAqsmfhsckld(xmkaqsmfh)+"");
 	}
 	public void loadscktjld(){
 		try {
 			JsonUtils.write(xmkaqsmfhServer.loadscktjld(xmkaqsmfh), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadscktjld1(){
+		try {
+			JsonUtils.write(xmkaqsmfhServer.loadscktjld1(xmkaqsmfh), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -446,20 +469,21 @@ public class XmkaqsmfhController extends BaseActionSupport{
 		et.add(new Excel_tilte("方案审批时间",1,1,16,16));
 		et.add(new Excel_tilte("审批文号",1,2,17,17));
 		et.add(new Excel_tilte("处置投资估算",1,1,18,18));
-		et.add(new Excel_tilte("是否申请按比例补助",1,1,19,19));
-		et.add(new Excel_tilte("按比例补助申请文号",1,2,20,20));
-		et.add(new Excel_tilte("建设内容",1,1,21,21));
+		et.add(new Excel_tilte("拟申请部（省）补助",1,1,19,19));
+		et.add(new Excel_tilte("是否申请按比例补助",1,1,20,20));
+		et.add(new Excel_tilte("按比例补助申请文号",1,2,21,21));
 		et.add(new Excel_tilte("建设性质",1,1,22,22));
-		et.add(new Excel_tilte("备注",1,1,23,23));
+		et.add(new Excel_tilte("建设内容",1,2,23,23));
+		et.add(new Excel_tilte("备注",1,1,24,24));
 		et.add(new Excel_tilte("1、一级 2、二级 3、三级 4、四级",2,2,8,8));
 		et.add(new Excel_tilte("(KM)",2,2,11,11));
 		et.add(new Excel_tilte("(KM)",2,2,12,12));
 		et.add(new Excel_tilte("（年/月/日）",2,2,16,16));
 		et.add(new Excel_tilte("（万元）",2,2,18,18));
-		et.add(new Excel_tilte("0、否 1、是",2,2,19,19));
-		et.add(new Excel_tilte("1、中修 2、大修",2,2,21,21));
-		et.add(new Excel_tilte("标志标线处置？米，交叉口综合处置？处，加装护栏警示诱导设施处置？米，涉及路线参数调整的土建工程？处？立方米；边坡、边沟或路域环境整治？处？立方米",2,2,22,22));
-		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,23,23));
+		et.add(new Excel_tilte("（万元）",2,2,19,19));
+		et.add(new Excel_tilte("0、否 1、是",2,2,20,20));
+		et.add(new Excel_tilte("1、中修 2、大修",2,2,22,22));
+		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,24,24));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		
@@ -514,20 +538,21 @@ public class XmkaqsmfhController extends BaseActionSupport{
 		et.add(new Excel_tilte("方案审批时间",1,1,16,16));
 		et.add(new Excel_tilte("审批文号",1,2,17,17));
 		et.add(new Excel_tilte("处置投资估算",1,1,18,18));
-		et.add(new Excel_tilte("是否申请按比例补助",1,1,19,19));
-		et.add(new Excel_tilte("按比例补助申请文号",1,2,20,20));
-		et.add(new Excel_tilte("建设内容",1,1,21,21));
+		et.add(new Excel_tilte("拟申请部（省）补助",1,1,19,19));
+		et.add(new Excel_tilte("是否申请按比例补助",1,1,20,20));
+		et.add(new Excel_tilte("按比例补助申请文号",1,2,21,21));
 		et.add(new Excel_tilte("建设性质",1,1,22,22));
-		et.add(new Excel_tilte("备注",1,1,23,23));
+		et.add(new Excel_tilte("建设内容",1,2,23,23));
+		et.add(new Excel_tilte("备注",1,1,24,24));
 		et.add(new Excel_tilte("1、一级 2、二级 3、三级 4、四级",2,2,8,8));
 		et.add(new Excel_tilte("(KM)",2,2,11,11));
 		et.add(new Excel_tilte("(KM)",2,2,12,12));
 		et.add(new Excel_tilte("（年/月/日）",2,2,16,16));
 		et.add(new Excel_tilte("（万元）",2,2,18,18));
-		et.add(new Excel_tilte("0、否 1、是",2,2,19,19));
-		et.add(new Excel_tilte("1、中修 2、大修",2,2,21,21));
-		et.add(new Excel_tilte("标志标线处置？米，交叉口综合处置？处，加装护栏警示诱导设施处置？米，涉及路线参数调整的土建工程？处？立方米；边坡、边沟或路域环境整治？处？立方米",2,2,22,22));
-		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,23,23));
+		et.add(new Excel_tilte("（万元）",2,2,19,19));
+		et.add(new Excel_tilte("0、否 1、是",2,2,20,20));
+		et.add(new Excel_tilte("1、中修 2、大修",2,2,22,22));
+		et.add(new Excel_tilte("批复文件路线编码及桩号如为老编码，需在备注栏说明",2,2,24,24));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		
@@ -537,4 +562,15 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void sfcfbntj(){
+		xmkaqsmfh.setBz(xmkaqsmfhServer.sfcfbntj(xmkaqsmfh));
+		
+		try {
+			JsonUtils.write(xmkaqsmfh, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

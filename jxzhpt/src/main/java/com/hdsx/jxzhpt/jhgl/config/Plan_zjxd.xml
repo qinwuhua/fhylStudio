@@ -44,6 +44,38 @@
 		<if test="stz!=null">,#{stz}</if>
 		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
+	<insert id="addxZjxd" parameterType="plan_zjxd">
+		insert into plan_zjxd (id
+		<if test="xmid!=null">,xmid</if>
+		<if test="xdnf!=null">,xdnf</if>
+		<if test="xdzj!=null">,xdzj</if>
+		<if test="sfzj!=null">,sfzj</if>
+		<if test="tbdw!=null">,tbdw</if>
+		<if test="tbtime!=null">,tbtime</if>
+		<if test="btzzj!=null">,btzzj</if>
+		<if test="stz!=null">,stz</if>
+		<if test="jhxdwh!=null">,jhxdwh</if>
+		<if test="yhdk!=null">,yhdk</if>
+		<if test="gz!=null">,gz</if>
+		<if test="sz!=null">,sz</if>
+		) 
+		values (SYS_GUID()
+		<if test="xmid!=null">,#{xmid}</if>
+		<if test="xdnf!=null">,#{xdnf}</if>
+		<if test="xdzj!=null">,#{xdzj}</if>
+		<if test="sfzj!=null">,#{sfzj}</if>
+		<if test="tbdw!=null">,#{tbdw}</if>
+		<if test="tbtime!=null">,#{tbtime}</if>
+		<if test="btzzj!=null">,#{btzzj}</if>
+		<if test="stz!=null">,#{stz}</if>
+		<if test="jhxdwh!=null">,#{jhxdwh}</if>
+		<if test="yhdk!=null">,#{yhdk}</if>
+		<if test="gz!=null">,#{gz}</if>
+		<if test="sz!=null">,#{sz}</if>
+		)
+	</insert>
+	
+	
 	<insert id="insertBatch" parameterType="plan_zjxd">
 		insert into plan_zjxd (id<if test="xmid!=null">,xmid</if>
 		<if test="xdnf!=null">,xdnf</if>
@@ -70,6 +102,22 @@
 			<if test="xdzj!=null and xdzj!=''">xdzj=#{xdzj},</if>
 			<if test="btzzj!=null and btzzj!=''">btzzj=#{btzzj},</if>
 			<if test="stz!=null and stz!=''">stz=#{stz},</if>
+			<if test="jhxdwh!=null and jhxdwh!=''">jhxdwh=#{jhxdwh},</if>
+			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
+			<if test="tbdw!=null and tbdw!=''">tbdw=#{tbdw},</if>
+			<if test="tbtime!=null and tbtime!=''">tbtime=#{tbtime},</if>
+			id=#{id}
+		where id=#{id}
+	</update>
+	<update id="editxZjxd" parameterType="plan_zjxd">
+		update plan_zjxd set 
+			<if test="xdnf!=null and xdnf!=''">xdnf=#{xdnf},</if>
+			<if test="xdzj!=null and xdzj!=''">xdzj=#{xdzj},</if>
+			<if test="btzzj!=null and btzzj!=''">btzzj=#{btzzj},</if>
+			<if test="stz!=null and stz!=''">stz=#{stz},</if>
+			<if test="yhdk!=null and yhdk!=''">yhdk=#{yhdk},</if>
+			<if test="gz!=null and gz!=''">gz=#{gz},</if>
+			<if test="sz!=null and sz!=''">sz=#{sz},</if>
 			<if test="jhxdwh!=null and jhxdwh!=''">jhxdwh=#{jhxdwh},</if>
 			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
 			<if test="tbdw!=null and tbdw!=''">tbdw=#{tbdw},</if>

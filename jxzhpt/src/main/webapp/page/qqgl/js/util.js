@@ -183,15 +183,15 @@ function importExcel(url,flag){
 	weatherDlg.ShowDialog();
 }
 function accSub(arg1,arg2){
-	　　 var r1,r2,m,n;
-	　　 try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
-	　　 try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
-	　　 m=Math.pow(10,Math.max(r1,r2));
-	　　 //last modify by deeka
-	　　 //动态控制精度长度
-	　　 n=(r1>=r2)?r1:r2;
-	　　 return ((arg1*m-arg2*m)/m).toFixed(n);
-}
+	 var r1,r2,m,n;
+	 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
+	try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
+	m=Math.pow(10,Math.max(r1,r2));
+	//last modify by deeka
+	//动态控制精度长度
+	n=(r1>=r2)?r1:r2;
+	return ((arg1*m-arg2*m)/m).toFixed(n);
+	}
 /**
  * 历史记录弹窗
  * @param xmbm 项目编码
@@ -494,6 +494,58 @@ function queryZjxd(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+function queryxZjxd(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field:'cz',title:'操作',width:100,align:'center',
+			formatter : function(value, row, index) {
+				var result = '<a href="javascript:updateZjxdById('+"'"+index+"','xzjxd_edit.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				if(xmbm.substring(10,11)==4){
+					result = '<a href="javascript:updateZjxdById('+"'"+index+"','xzjxd_edit1.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				}
+				result += '<a href="javascript:deleteZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'yhdk',title : '银行贷款',width : 150,align : 'center'}, 
+		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
+		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+function queryxZjxd1(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'yhdk',title : '银行贷款',width : 150,align : 'center'}, 
+		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
+		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+
 function queryZjxd1(xmbm){
 	grid.id="zjxdList";
 	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
@@ -562,6 +614,14 @@ function openZjxd(){
 function openZjxd1(){
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/zjxd1.jsp',800,300);
+}
+function openxZjxd(){
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
+	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/xzjxd.jsp',800,300);
+}
+function openxZjxd1(){
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
+	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/xzjxd1.jsp',800,300);
 }
 /**
  * 弹出窗口

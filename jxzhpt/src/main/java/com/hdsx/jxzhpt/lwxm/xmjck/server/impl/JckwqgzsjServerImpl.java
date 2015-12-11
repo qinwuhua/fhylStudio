@@ -166,7 +166,11 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		// TODO Auto-generated method stub
 		return queryOne("selectSckwqgzCount", jckwqgzsj);
 	}
-
+	@Override
+	public Jckwqgzsj selectSckwqgzCount1(Jckwqgzsj jckwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSckwqgzCount1", jckwqgzsj);
+	}
 	@Override
 	public List<Jckwqgzsj> JckWqgzRoad(Jckwqgzsj jckwqgzsj) {
 		HashMap<String, String> hm = new HashMap<String, String>();
@@ -240,7 +244,10 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	public int selectSckShwqgzCount(Jckwqgzsj jckwqgzsj) {
 		return queryOne("selectSckShwqgzCount", jckwqgzsj);
 	}
-	
+	@Override
+	public Jckwqgzsj selectSckShwqgzCount1(Jckwqgzsj jckwqgzsj) {
+		return queryOne("selectSckShwqgzCount1", jckwqgzsj);
+	}
 	@Override
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {

@@ -43,7 +43,12 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public boolean editZjxd(Plan_zjxd zjxd) {
 		return update("editZjxd", zjxd)>0;
 	}
+	@Override
+	public boolean editxZjxd(Plan_zjxd zjxd) {
+		return update("editxZjxd", zjxd)>0;
+	}
 
+	
 	@Override
 	public Plan_zjxd queryZjxdById(String id) {
 		return queryOne("queryZjxdById", id);
@@ -87,5 +92,10 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	@Override
 	public List<Plan_zjzj> queryZjzjByXmid(Plan_zjzj zjzj) {
 		return queryList("queryZjzjByXmid",zjzj);
+	}
+
+	@Override
+	public boolean addxZjxd(Plan_zjxd zjxd) {
+		return insert("addxZjxd", zjxd)>0;
 	}
 }

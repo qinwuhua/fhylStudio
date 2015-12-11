@@ -35,7 +35,7 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("jhnf"); 
+	afxmnf("jhnf"); 
 	loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
@@ -126,6 +126,7 @@ $("#grid").datagrid({
         {field:'fascdw',title:'方案审查单位',width:140,align:'center'},
         {field:'faspsj',title:'方案审批时间',width:140,align:'center'},
         {field:'spwh',title:'审批文号',width:140,align:'center'},
+        {field:'nsqbbz',title:'拟申请部（省）补助',width:140,align:'center'},
         {field:'cztzgs',title:'处置投资估算',width:140,align:'center'},
         {field:'jsxz',title:'建设性质(1、中修2、大修)',width:140,align:'center'}
     ]]
@@ -173,11 +174,17 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 		 success : function(msg){
 			 $("#abgc1").html(msg.sbthbmcd);
 			 if(msg.yhlc!=null && msg.yhlc!=""){
-				 $("#abgc2").html(msg.yhlc);
+				 $("#abgc2").html(parseFloat(msg.yhlc));
 			 }else $("#abgc2").html("0");
 			 if(msg.czzlc!=null && msg.czzlc!=""){
-				 $("#abgc3").html(msg.czzlc);
+				 $("#abgc3").html(parseFloat(msg.czzlc));
 			 }else $("#abgc3").html("0");
+			 if(msg.cztzgs!=null && msg.cztzgs!=""){
+				 $("#abgc4").html(parseFloat(msg.cztzgs));
+			 }else $("#abgc4").html("0");
+			 if(msg.nsqbbz!=null && msg.nsqbbz!=""){
+				 $("#abgc5").html(parseFloat(msg.nsqbbz));
+			 }else $("#abgc5").html("0");
 		 },
 	});
 }
@@ -293,7 +300,7 @@ text-decoration:none;
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个项目，
         					隐患里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
-        					处置里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里。</td>
+        					处置里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，总投资估算【&nbsp;<span id="abgc4" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，总拟申请部（省）补助【&nbsp;<span id="abgc5" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。</td>
         </tr>
          <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">

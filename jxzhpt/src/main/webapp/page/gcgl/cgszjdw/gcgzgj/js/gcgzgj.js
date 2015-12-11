@@ -53,12 +53,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzgjzjdwtj.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzgjzjdwtj.jsp','wqxx',600,375);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzgjzjdwxg.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzgjzjdwxg.jsp','wqxx',600,375);
 }
 
 //添加车购税
@@ -73,8 +73,8 @@ function tjgcgzgjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzgj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzgj.tbr="+$.cookie("truename")+"&gcglgcgzgj.tbsj="+tbsj+"&gcglgcgzgj.tbyf="+$("#tj_tbyf").val()+"&gcglgcgzgj.cscyj="+$("#tj_cscyj").val()+"&gcglgcgzgj.stz="+$("#tj_stz").val()
-	+"&gcglgcgzgj.jhid="+parent.parent.obj1.XMBM;
+	var data="gcglgcgzgj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzgj.tbr="+$.cookie("truename")+"&gcglgcgzgj.tbsj="+tbsj+"&gcglgcgzgj.tbyf="+$("#tbyf").val()+"&gcglgcgzgj.cscyj="+$("#tj_cscyj").val()
+	+"&gcglgcgzgj.sz="+$("#sz").val()+"&gcglgcgzgj.gz="+$("#gz").val()+"&gcglgcgzgj.yhdk="+$("#yhdk").val()+"&gcglgcgzgj.jhid="+parent.parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -101,7 +101,7 @@ function xggcgzgjcgs(){
 		return;
 	}
 	var data="gcglgcgzgj.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.tbyf="+$("#xg_tbyf").val()+"&gcglgcgzgj.cscyj="+$("#xg_cscyj").val()+"&gcglgcgzgj.stz="+$("#xg_stz").val();
+	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.tbyf="+$("#tbyf").val()+"&gcglgcgzgj.cscyj="+$("#xg_cscyj").val()+"&gcglgcgzgj.sz="+$("#sz").val()+"&gcglgcgzgj.gz="+$("#gz").val()+"&gcglgcgzgj.yhdk="+$("#yhdk").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -337,11 +337,13 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
+				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
+				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
+				{field:'gz',title:'国债(万元)',width:100,align:'center'},
+				{field:'sz',title:'省债(万元)',width:100,align:'center'},
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
-				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
 				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 
@@ -361,13 +363,14 @@ function showAllZJ__ck(){
 	    	jhid: jhid
 		},
 	    columns:[[
-				
-				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
-				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
-				{field:'tbr',title:'填报人 ',width:80,align:'center'},
-				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
-				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+			{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
+			{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
+			{field:'gz',title:'国债(万元)',width:100,align:'center'},
+			{field:'sz',title:'省债(万元)',width:100,align:'center'},
+			{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
+			{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
+			{field:'tbr',title:'填报人 ',width:80,align:'center'},
+			{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }

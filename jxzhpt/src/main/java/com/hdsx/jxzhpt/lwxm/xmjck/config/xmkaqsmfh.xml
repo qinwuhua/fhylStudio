@@ -102,7 +102,7 @@
 	<select id="selectXmkaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
 	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
-	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>
@@ -120,7 +120,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+ 					and decode(zszt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (zsyj is not null and sbthcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -140,7 +140,7 @@
 	</select>
 	<select id="selectXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="int">
 	 		select count(*) from XMK_AQSMFH t where 1=1 
-	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>
@@ -155,10 +155,10 @@
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
- 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+ 					and decode(zszt,null,'未审核',zszt) like '%'||(#{zszt})||'%' or (zsyj is not null and sbthcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -177,7 +177,7 @@
 	</select>
 	<select id="loadXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
-	 			and  (sbthcd &lt;=7 or zszt is not null)
+	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
 			</if>
@@ -192,10 +192,10 @@
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
- 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(zszt,null,'未审核',shzt) like '%'||(#{zszt})||'%' or shzt is not null
+ 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or (zsyj is not null and sbthcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -890,7 +890,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -969,7 +969,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -991,7 +991,7 @@
 	</select>
 	
 		<select id="loadSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
-	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc from 
+	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc,sum(cztzgs) cztzgs,sum(nsqbbz) nsqbbz from 
 				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
 	 		<if test="gydw!='' and gydw!= null ">
@@ -1026,7 +1026,7 @@
 	 		</if>
 	</select>
 	<select id="loadSckaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
-	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc from 
+	 		select count(*) sbthbmcd,decode(sum(yhlc),null,0,sum(yhlc)) yhlc,decode(sum(czzlc),null,0,sum(czzlc)) czzlc,sum(cztzgs) cztzgs,sum(nsqbbz) nsqbbz from 
 				(select sc.*,xmld.tsdq from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT(xm.tsdq) tsdq from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
 	 		<if test="gydw!='' and gydw!= null ">
@@ -1046,7 +1046,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -1208,6 +1208,12 @@
 		      <if test="str7 != null" >
 		        STR7,
 		      </if>
+		      <if test="str8 != null" >
+		        STR8,
+		      </if>
+		      <if test="nsqbbz != null" >
+		        nsqbbz,
+		      </if>
 		    </trim>
 		    <trim prefix="values (" suffix=")" suffixOverrides="," >
 		        sys_guid(),
@@ -1337,6 +1343,12 @@
 		      <if test="str7 != null" >
 		        #{str7},
 		      </if>
+		       <if test="str8 != null" >
+		        #{str8},
+		      </if>
+		       <if test="nsqbbz != null" >
+		        #{nsqbbz},
+		      </if>
 		    </trim>
  		</insert>
  		<select id="selectafldList" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
@@ -1345,6 +1357,10 @@
  			order by xuh
  		</select>
  		<select id="selectAqsmfhsckbyid" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from SCK_AQSMFH where 1=1 
+ 			<if test="id!='' and id!=null "> and id=#{id}</if>
+ 		</select>
+ 		<select id="selectAqsmfhsckbyid1" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
  			select * from SCK_AQSMFH where 1=1 
  			<if test="id!='' and id!=null "> and id=#{id}</if>
  		</select>
@@ -1481,21 +1497,37 @@
 			      <if test="str7 != null" >
 			        STR7 = #{str7},
 			      </if>
+			      <if test="str8 != null" >
+			        STR8 = #{str8},
+			      </if>
+			      <if test="nsqbbz != null" >
+			        nsqbbz = #{nsqbbz},
+			      </if>
 			    </set>
 			    where 1=1 and id=#{id}
  		</update>
  		<select id="selectSckaqsmfhld" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
- 			select * from SCK_AQSMFH_LD where xmbm=#{xmbm} order by xuh
+ 			select * from XMK_AQSMFH where 1=1 ${xmkid} order by xuh
+ 		</select>
+ 		<select id="selectSckaqsmfhld1" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select * from SCK_AQSMFH_LD where 1=1 and xmbm=#{xmbm} order by xuh
  		</select>
  		<insert id="insertAqsmfhsckld" parameterType="hashmap">
- 			 insert into SCK_AQSMFH_LD select sys_guid(),xm.province,xm.town,xm.county,xm.unit,xm.unitcode,xm.roadcode,xm.jsdj,replace(substr(xm.roadstart,2,instr(xm.roadstart, '+')+3),'+','.'),replace(substr(xm.roadend,2,instr(xm.roadend, '+')+3),'+','.'),xm.roadname,xm.xjgjnd,xm.yhlc,xm.tzgs,xm.id,xm.distcode,xm.dist,xm.xuh,#{xmbm} xmbm,decode(xm.bzbxcz,'1','1','0'),decode(xm.jckcz,'1','1','0'),decode(xm.jzhl,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.hjzz,'1','1','0'),decode(xm.hjzz,'1','1','0') from xmk_aqsmfh xm where xm.id=#{xmkid}
+ 			 insert into SCK_AQSMFH_LD select sys_guid(),xm.province,xm.town,xm.county,xm.unit,xm.unitcode,xm.roadcode,xm.jsdj,xm.gpsqd,xm.gpszd,xm.roadname,xm.xjgjnd,xm.yhlc,xm.tzgs,xm.id,xm.distcode,xm.dist,xm.xuh,#{xmbm} xmbm,decode(xm.bzbxcz,'1','1','0'),decode(xm.jckcz,'1','1','0'),decode(xm.jzhl,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.hjzz,'1','1','0'),decode(xm.hjzz,'1','1','0'),'0' from xmk_aqsmfh xm where xm.id=#{xmkid}
  		</insert>
  		<select id="loadscktjld" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select max(t.province) province,max(t.town) town,max(t.county) county,max(t.unit) gydw,max(t.unitcode) gydwdm,max(t.dist) xzqh,max(t.jsdj) jsdj,max(t.xjgjnd) xjgjnd,
+			max(t.distcode) xzqhdm,max(t.roadcode) lxbm,max(t.roadname) lxmc,to_char(round(min(to_number(t.gpsqd)),3)) qdzh,to_char(round(max(to_number(t.gpszd)),3)) zdzh,
+			sum(yhlc) yhlc,sum(t.tzgs) cztzgs
+			from XMK_AQSMFH t 
+			where 1=1 ${xmkid} 
+ 		</select>
+ 		<select id="loadscktjld1" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
  			select max(t.province) province,max(t.town) town,max(t.county) county,max(t.gydw) gydw,max(t.gydwdm) gydwdm,max(t.xzqh) xzqh,max(t.jsdj) jsdj,max(t.xjgjnd) xjgjnd,
-			max(t.xzqhdm) xzqhdm,max(t.lxbm) lxbm,max(t.lxmc) lxmc,to_char(min(to_number(t.qdzh))) qdzh,to_char(max(to_number(t.zdzh))) zdzh,
-			sum(yhlc) yhlc,sum(t.cztzgs) cztzgs,sum(t.str1) str1,sum(t.str2) str2,sum(t.str3) str3,sum(t.str4) str4,sum(t.str5) str5,sum(t.str6) str6,sum(t.str7) str7
+			max(t.xzqhdm) xzqhdm,max(t.lxbm) lxbm,max(t.lxmc) lxmc,to_char(round(min(to_number(t.qdzh)),3)) qdzh,to_char(round(max(to_number(t.zdzh)),3)) zdzh,
+			sum(yhlc) yhlc,sum(t.cztzgs) cztzgs
 			from SCK_AQSMFH_LD t 
-			where xmbm=#{xmbm} group by t.xmbm
+			where 1=1 and xmbm=#{xmbm}
  		</select>
  		<delete id="delafldsck" parameterType="xmkaqsmfh" >
  			delete from SCK_AQSMFH_LD where id=#{id}
@@ -1517,17 +1549,15 @@
  		</update>
  		<select id="dcaqsmfhsckExcel" parameterType="xmkaqsmfh" resultType="elist">
  			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
-			decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
-			decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
-			decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
-			decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
-			decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_19,
-			decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_20,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_22,
-			decode(ld.xuh,ld1.xuh,sc.bz,'') v_23
-			
-			  from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-			  where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)
-			  and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) and sc.jhnf is not null
+		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
+		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
+		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
+		      decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
+		      decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.nsqbbz,'') v_19,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_20,
+		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
+		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
+	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
 			  <if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -1538,7 +1568,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and sc.jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
@@ -1563,18 +1593,16 @@
  		
  		<select id="dcaqsmfhsckshExcel" parameterType="xmkaqsmfh" resultType="elist">
  			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
-			decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
-			decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
-			decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
-			decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
-			decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_19,
-			decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_20,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_22,
-			decode(ld.xuh,ld1.xuh,sc.bz,'') v_23
-			
-			  from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-			  where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)
-			 and sc.jhnf is not null
-			  and  (to_number(sbthbmcd) &lt;=7 or shyj is not null)
+		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
+		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
+		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
+		      decode(ld.xuh,ld1.xuh,sc.fapgdw,'') v_14,decode(ld.xuh,ld1.xuh,sc.fascdw,'') v_15,decode(ld.xuh,ld1.xuh,sc.faspsj,'') v_16,
+		      decode(ld.xuh,ld1.xuh,sc.spwh,'') v_17,decode(ld.xuh,ld1.xuh,sc.nsqbbz,'') v_19,decode(ld.xuh,ld1.xuh,sc.cztzgs,'') v_18,decode(ld.xuh,ld1.xuh,sc.sfsqablbz,'') v_20,
+		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
+		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
+	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
+			  and  (to_number(sbthbmcd) &lt;=7)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -1585,14 +1613,14 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and sc.jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or shzt is not null
+ 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' and sbthbmcd=7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -1612,4 +1640,11 @@
 	 		</if>
 	 		order by ld.xmbm,ld.xuh
  		</select>
+ 		
+ 		<select id="sfcfbntj" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
+ 			select sc.lxbm||'('||sc.lxmc||' '||sc.qdzh||','||sc.zdzh||')' lxbm from sck_aqsmfh_ld ld,sck_aqsmfh sc where ld.xmbm=sc.xmbm and sc.jhnf=#{jhnf} ${xmkid} and sc.xmbm not like #{xmbm}
+ 		</select>
+ 		<delete id="deletesckldbyxmbm" parameterType="xmkaqsmfh" >
+ 			delete from sck_aqsmfh_ld where xmbm=#{xmbm}
+ 		</delete>
 </mapper>

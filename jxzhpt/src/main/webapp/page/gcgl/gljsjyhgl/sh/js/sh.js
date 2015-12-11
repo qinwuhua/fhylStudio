@@ -12,7 +12,7 @@ function sfqxkg(index){
 		sfqxkg='否';
 	if(data1.SFQXKG=='否')
 		sfqxkg='是';
-	var data="flag="+"sh"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
+	var data="flag="+"sh"+"&gcglsh.sfqxkg="+sfqxkg+"&gcglsh.id="+data1.XMBM;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/updataSFQX.do',
@@ -168,10 +168,6 @@ function tjshyb(){
 		alert("请选择上报月份");
 		return;
 	}
-	if($("#tj_wc_stz").val()==''){
-		alert("请填入本月完成省投资");
-		return;
-	}
 	if($("#tj_wc_qttz").val()==''){
 		alert("请填入本月完成其他投资");
 		return;
@@ -194,23 +190,15 @@ function tjshyb(){
 	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#tj_wc_btz").val();
-	var stz=$("#tj_wc_stz").val();
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
-	var zstz=parseFloat(parent.$("#zwcstz").html())+parseFloat(stz);
 	if(parent.pfbtz<zbtz){
 		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
 		}else
 		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
-		return;
-	}
-	if(parent.pfstz<zstz){
-		if(confirm("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗")){
-		}else
-		//alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
 		return;
 	}
 	if(parent.pfztz<zwc){
@@ -219,8 +207,10 @@ function tjshyb(){
 		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
-	var data = "gcglsh.wc_btz="+$("#tj_wc_btz").val()+"&gcglsh.wc_stz="+$("#tj_wc_stz").val()+"&gcglsh.wc_qttz="+$("#tj_wc_qttz").val()
-	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	var data = "gcglsh.wc_btz="+$("#tj_wc_btz").val()+"&gcglsh.wc_stz="+"&gcglsh.wc_qttz="+$("#tj_wc_qttz").val()
+	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&gcglsh.dwyhdk="+$("#zjdw_yhdk").val()+"&gcglsh.dwgz="+$("#zjdw_gz").val()+"&gcglsh.dwsz="+$("#zjdw_sz").val()
+	+"&gcglsh.yhdk="+$("#wc_yhdk").val()+"&gcglsh.gz="+$("#wc_gz").val()+"&gcglsh.sz="+$("#wc_sz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()
 	+"&gcglsh.qksm="+$("#tj_qksm").val()+"&gcglsh.wcqk="+$("#tj_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
 	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglsh.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
@@ -253,10 +243,6 @@ function xgshyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
-	if($("#xg_wc_stz").val()==''){
-		alert("请填入本月完成省投资");
-		return;
-	}
 	if($("#xg_wc_qttz").val()==''){
 		alert("请填入本月完成其他投资");
 		return;
@@ -279,33 +265,28 @@ function xgshyb(){
 	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
-	var stz=$("#xg_wc_stz").val();
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
-	var zstz=parseFloat(parent.$("#zwcstz").html())-parseFloat(parent.obj.wc_stz)+parseFloat(stz);
 	if(parent.pfbtz<zbtz){
 		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
 		}else
 		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
-	if(parent.pfstz<zstz){
-		if(confirm("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗")){
-		}else
-		//alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
-		return;
-	}
+
 	if(parent.pfztz<zwc){
 		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
 		}else
 		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
-	var data = "gcglsh.wc_btz="+$("#xg_wc_btz").val()+"&gcglsh.wc_stz="+$("#xg_wc_stz").val()+"&gcglsh.wc_qttz="+$("#xg_wc_qttz").val()
-	+"&gcglsh.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	var data = "gcglsh.wc_btz="+$("#xg_wc_btz").val()+"&gcglsh.wc_stz="+"&gcglsh.wc_qttz="+$("#xg_wc_qttz").val()
+	+"&gcglsh.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglsh.zjdw_stz="+"&gcglsh.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	+"&gcglsh.dwyhdk="+$("#zjdw_yhdk").val()+"&gcglsh.dwgz="+$("#zjdw_gz").val()+"&gcglsh.dwsz="+$("#zjdw_sz").val()
+	+"&gcglsh.yhdk="+$("#wc_yhdk").val()+"&gcglsh.gz="+$("#wc_gz").val()+"&gcglsh.sz="+$("#wc_sz").val()
 	+"&gcglsh.bywcdc="+$("#xg_bywcdc").val()+"&gcglsh.bywcjc="+$("#xg_bywcjc").val()+"&gcglsh.bywcmc="+$("#xg_bywcmc").val()+"&gcglsh.kgdl="+$("#xg_kgdl").val()
 	+"&gcglsh.qksm="+$("#xg_qksm").val()+"&gcglsh.wcqk="+$("#xg_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
 	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.sbyf="+$("#xg_sbyf").datebox('getValue');

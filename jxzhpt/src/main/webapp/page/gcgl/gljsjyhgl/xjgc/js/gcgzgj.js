@@ -168,10 +168,7 @@ function tjgcgzgjyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
-	if($("#tj_wc_stz").val()==''){
-		alert("请填入本月完成省投资");
-		return;
-	}
+
 	if($("#tj_wc_qttz").val()==''){
 		alert("请填入本月完成其他投资");
 		return;
@@ -194,33 +191,28 @@ function tjgcgzgjyb(){
 	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#tj_wc_btz").val();
-	var stz=$("#tj_wc_stz").val();
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
-	var zstz=parseFloat(parent.$("#zwcstz").html())+parseFloat(stz);
 	if(parent.pfbtz<zbtz){
 		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
 		}else
 		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
-	if(parent.pfstz<zstz){
-		if(confirm("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗")){
-		}else
-		//alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
-		return;
-	}
+
 	if(parent.pfztz<zwc){
 		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
 		}else
 		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
-	var data = "gcglgcgzgj.wc_btz="+$("#tj_wc_btz").val()+"&gcglgcgzgj.wc_stz="+$("#tj_wc_stz").val()+"&gcglgcgzgj.wc_qttz="+$("#tj_wc_qttz").val()
-	+"&gcglgcgzgj.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglgcgzgj.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	var data = "gcglgcgzgj.wc_btz="+$("#tj_wc_btz").val()+"&gcglgcgzgj.wc_stz="+"&gcglgcgzgj.wc_qttz="+$("#tj_wc_qttz").val()
+	+"&gcglgcgzgj.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+"&gcglgcgzgj.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&gcglgcgzgj.dwyhdk="+$("#zjdw_yhdk").val()+"&gcglgcgzgj.dwgz="+$("#zjdw_gz").val()+"&gcglgcgzgj.dwsz="+$("#zjdw_sz").val()
+	+"&gcglgcgzgj.yhdk="+$("#wc_yhdk").val()+"&gcglgcgzgj.gz="+$("#wc_gz").val()+"&gcglgcgzgj.sz="+$("#wc_sz").val()
 	+"&gcglgcgzgj.bywcdc="+$("#tj_bywcdc").val()+"&gcglgcgzgj.bywcjc="+$("#tj_bywcjc").val()+"&gcglgcgzgj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzgj.kgdl="+$("#tj_kgdl").val()
 	+"&gcglgcgzgj.qksm="+$("#tj_qksm").val()+"&gcglgcgzgj.wcqk="+$("#tj_wcqk").text()+"&gcglgcgzgj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzgj.bndsslc="+$("#bndsslc").val()+"&gcglgcgzgj.wkglc="+$("#wkglc").val()
 	+"&gcglgcgzgj.sbsj="+sbsj+"&gcglgcgzgj.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglgcgzgj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
@@ -253,10 +245,7 @@ function xggcgzgjyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
-	if($("#xg_wc_stz").val()==''){
-		alert("请填入本月完成省投资");
-		return;
-	}
+
 	if($("#xg_wc_qttz").val()==''){
 		alert("请填入本月完成其他投资");
 		return;
@@ -279,33 +268,28 @@ function xggcgzgjyb(){
 	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
-	var stz=$("#xg_wc_stz").val();
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz)-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz)+parseFloat(btz);
-	var zstz=parseFloat(parent.$("#zwcstz").html())-parseFloat(parent.obj.wc_stz)+parseFloat(stz);
 	if(parent.pfbtz<zbtz){
 		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
 		}else
 		//alert("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗");
 		return;
 	}
-	if(parent.pfstz<zstz){
-		if(confirm("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗")){
-		}else
-		//alert("完成总省投资不能大于计划省投资"+parent.pfstz+"万元，确认保存吗");
-		return;
-	}
+	
 	if(parent.pfztz<zwc){
 		if(confirm("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗")){
 		}else
 		//alert("总完成资金不能大于总投资"+parent.pfztz+"万元，确认保存吗");
 		return;
 	}
-	var data = "gcglgcgzgj.wc_btz="+$("#xg_wc_btz").val()+"&gcglgcgzgj.wc_stz="+$("#xg_wc_stz").val()+"&gcglgcgzgj.wc_qttz="+$("#xg_wc_qttz").val()
-	+"&gcglgcgzgj.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglgcgzgj.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	var data = "gcglgcgzgj.wc_btz="+$("#xg_wc_btz").val()+"&gcglgcgzgj.wc_stz="+"&gcglgcgzgj.wc_qttz="+$("#xg_wc_qttz").val()
+	+"&gcglgcgzgj.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+"&gcglgcgzgj.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	+"&gcglgcgzgj.dwyhdk="+$("#zjdw_yhdk").val()+"&gcglgcgzgj.dwgz="+$("#zjdw_gz").val()+"&gcglgcgzgj.dwsz="+$("#zjdw_sz").val()
+	+"&gcglgcgzgj.yhdk="+$("#wc_yhdk").val()+"&gcglgcgzgj.gz="+$("#wc_gz").val()+"&gcglgcgzgj.sz="+$("#wc_sz").val()
 	+"&gcglgcgzgj.bywcdc="+$("#xg_bywcdc").val()+"&gcglgcgzgj.bywcjc="+$("#xg_bywcjc").val()+"&gcglgcgzgj.bywcmc="+$("#xg_bywcmc").val()+"&gcglgcgzgj.kgdl="+$("#xg_kgdl").val()
 	+"&gcglgcgzgj.qksm="+$("#xg_qksm").val()+"&gcglgcgzgj.wcqk="+$("#xg_wcqk").text()+"&gcglgcgzgj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzgj.bndsslc="+$("#bndsslc").val()+"&gcglgcgzgj.wkglc="+$("#wkglc").val()
 	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.sbyf="+$("#xg_sbyf").datebox('getValue');

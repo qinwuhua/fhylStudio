@@ -34,6 +34,7 @@ $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
+	rkxmnf("rksj"); 
 	loadBmbm2("shzt", "审核状态");
 	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
@@ -229,7 +230,8 @@ function shangB1(index){
 function shenghwtg(index){
 	var data=$("#grid").datagrid('getRows')[index];
 	obj=data;
-	alert("未通过原因："+obj.sck_shyj2);
+	//alert("未通过原因："+obj.sck_shyj2);
+	$.messager.alert('不同意意见',obj.sck_shyj2,'warning'); 
 }
 
 function shangb(index){
@@ -279,6 +281,7 @@ $("#grid").datagrid({
 		 	'lxmc':$('#lxmc').val(),
 		 	'qlmc':$("#qlmc").val(),
 		 	'xmnf':$("#xmnf").combobox("getValue"),
+		 	'jckwqgzsj.xmrksj':$("#rksj").combobox("getValue"),
 		 	'shzt':$("#shzt").combobox("getValue"),
 		 	'jsdj':$("#jsdj").combobox("getValue"),
 		 	'akjfl':$("#akjfl").combobox("getValue"),
@@ -294,7 +297,7 @@ $("#grid").datagrid({
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-185,
+	    height:$(window).height()-220,
 		width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
@@ -365,14 +368,20 @@ $("#grid").datagrid({
 			var data="sck_sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
 			"&xmnf="+$("#xmnf").combobox("getValue")+"&shzt="+$('#shzt').combobox("getValue")+
 			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+
-			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue");
+			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+$("#rksj").combobox("getValue");
 			$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/selectSckShwqgzCount.do",
 			 dataType : 'json',
 			 data : data,
 			 success : function(msg){
-				 $("#wqgz1").html(msg);
+				 $("#wqgz1").html(msg.id);
+				 if(msg.ztz!=null && msg.ztz!=""){
+					 $("#wqgz2").html(msg.ztz);
+				 }else $("#wqgz2").html("0");
+				 if(msg.nsqbbz!=null && msg.nsqbbz!=""){
+					 $("#wqgz3").html(msg.nsqbbz);
+				 }else $("#wqgz3").html("0");
 			 },
 		});
 	}
@@ -396,7 +405,7 @@ function dcExcel(){
 	var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
- 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+ 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.xmrksj='+$("#rksj").combobox("getValue");
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckshExcel.do?'+data;
 	 });
@@ -482,6 +491,12 @@ text-decoration:none;
 									<option value="拆除重建">拆除重建</option>
 									<option value="大修">大修</option>
 									</select></td>	 
+                            		<td>项目库入库时间：</td>
+									<td><select id="rksj" style="width:70px">
+	                              	</select>
+	                              </td>	
+									</tr> 
+        						<tr>
                               <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
@@ -494,7 +509,7 @@ text-decoration:none;
 		</tr>
 		<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目。</td>
+        					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，总投资【&nbsp;<span id="wqgz2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，总拟申请部（省）补助【&nbsp;<span id="wqgz3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。</td>
         </tr>
          <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">

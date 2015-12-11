@@ -14,6 +14,8 @@
 	<script type="text/javascript" src="js/sh.js"></script>
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		var myDate = new Date();
@@ -24,50 +26,8 @@
 		tbyf = y+"-"+m;
 		$("#tj_tbr").text($.cookie("truename"));
 		$("#tj_tbsj").text(tbsj);
-//		$("#tj_tbyf").text(tbyf);
-		var mystr='';
-		var mystr1='';
-		var mystr2='';
-		var mystr3='';
-		var mystr4='';
-		if(m==1){
-			mystr=y+'-'+m;
-			mystr1=(y-1)+'-'+11;
-			mystr2=(y-1)+'-'+12;
-			mystr3=(y-1)+'-'+10;
-			mystr4=(y-1)+'-'+9;
-		}
-		else if(m==2){
-			mystr=y+'-'+m;
-			mystr1=(y-1)+'-'+12;
-			mystr2=y+'-'+1;
-			mystr3=(y-1)+'-'+11;
-			mystr4=(y-1)+'-'+10;
-		}else if(m==3){
-			mystr=y+'-'+m;
-			mystr1=y+'-'+1;
-			mystr2=y+'-'+2;
-			mystr3=(y-1)+'-'+12;
-			mystr4=(y-1)+'-'+11;
-		}else if(m==4){
-			mystr=y+'-'+m;
-			mystr1=y+'-'+2;
-			mystr2=y+'-'+3;
-			mystr3=y+'-'+1;
-			mystr4=(y-1)+'-'+12;
-		}else{
-			mystr=y+'-'+m;
-			mystr1=y+'-'+(m-2);
-			mystr2=y+'-'+(m-1);
-			mystr3=y+'-'+(m-3);
-			mystr4=y+'-'+(m-4);
-		}
-
-		$("#tj_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
-		$("#tj_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
-		$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-		$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
-		$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
+		$('#tbyf').simpleCanleder();
+		$('#tbyf').val(y+"-"+m);
 	});
 	function checkZJ(str1){
 		var str=str1.value;
@@ -122,11 +82,31 @@ text-decoration: none;
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                    <font color="#009ACD" style="font-size: 12px">省投资： </font>
+                                    <font color="#009ACD" style="font-size: 12px">银行贷款： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
-                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="tj_stz"  style="width: 50px" value="0"/>万元
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="yhdk"  style="width: 50px" value="0"/>万元
+                                </td>
+                            </tr>
+                              <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">国债： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="gz"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">省债： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="sz"  style="width: 50px" value="0"/>万元
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
@@ -160,7 +140,7 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <select id="tj_tbyf"></select>&nbsp;
+                                <input id="tbyf" type="text">&nbsp;
                             </td>
                         </tr>
                     </table>

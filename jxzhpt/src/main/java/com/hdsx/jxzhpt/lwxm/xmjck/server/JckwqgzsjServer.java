@@ -76,4 +76,8 @@ public interface JckwqgzsjServer {
 	boolean tuihuiWqgzsjById(Jckwqgzsj jckwqgzsj);
 
 	boolean tuihuiWqgzsjsckById(Jckwqgzsj jckwqgzsj);
+
+	Jckwqgzsj selectSckShwqgzCount1(Jckwqgzsj jckwqgzsj);
+
+	Jckwqgzsj selectSckwqgzCount1(Jckwqgzsj jckwqgzsj);
 }

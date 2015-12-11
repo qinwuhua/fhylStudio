@@ -61,10 +61,18 @@
 						$("#zwcbtz").text('0');
 					else
 						$("#zwcbtz").text(msg.zwcbtz);
-					if(msg.zwcstz=='')
-						$("#zwcstz").text('0');
+					if(msg.yhdk=='')
+						$("#yhdk").text('0');
 					else
-						$("#zwcstz").text(msg.zwcstz);
+						$("#yhdk").text(msg.yhdk);
+					if(msg.gz=='')
+						$("#gz").text('0');
+					else
+						$("#gz").text(msg.gz);
+					if(msg.sz=='')
+						$("#sz").text('0');
+					else
+						$("#sz").text(msg.sz);
 				}
 			});	
 		}
@@ -99,7 +107,7 @@ a:active {
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
-                    其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="zwcstz" style="color: Red; font-weight: bold;"></span>】万元。
+                    其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，银行贷款【<span id="yhdk" style="color: Red; font-weight: bold;"></span>】万元，国债【<span id="gz" style="color: Red; font-weight: bold;"></span>】，省债【<span id="sz" style="color: Red; font-weight: bold;"></span>】。
                 </td>
             </tr>
             <tr>

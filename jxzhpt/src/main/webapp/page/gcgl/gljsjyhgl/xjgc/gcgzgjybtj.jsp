@@ -33,7 +33,7 @@
 		    }
 		}); 
 		$("#tj_sbsj").text(sbsj);
-		
+		$('#tj_sbyf').datebox('setValue',y+"-"+m);
 		pfztz=parent.parent.obj1.PFZTZ;
 		pfbtz=parent.parent.obj1.BBZZJ;
 		pfstz=parent.parent.obj1.SBZZJ;
@@ -74,18 +74,22 @@ function getYuefen(){
 		success:function(msg){
 			$("#tj_zjdw_btz").val(msg.zjdw_btz);
 			$("#tjbtz").text(msg.zjdw_btz);
-			$("#tj_zjdw_stz").val(msg.zjdw_stz);
-			$("#tjstz").text(msg.zjdw_stz);
+			$("#zjdw_yhdk").val(msg.yhdk);
+			$("#zjdw_gz").val(msg.gz);
+			$("#zjdw_sz").val(msg.sz);
+			$("#tjyhdk").text(msg.yhdk);
+			$("#tjgz").text(msg.gz);
+			$("#tjsz").text(msg.sz);
 			shewcqk();
 		}
 	});
 }
 function shewcqk(){
 	var dwb=$("#tj_zjdw_btz").val();
-	var dws=$("#tj_zjdw_stz").val();
+	var dws='';
 	var dwq=$("#tj_zjdw_qttz").val();
 	var wcb=$("#tj_wc_btz").val();
-	var wcs=$("#tj_wc_stz").val();
+	var wcs='';
 	var wcq=$("#tj_wc_qttz").val();
 	if(dwb=='') dwb=0;
 	if(dws=='') dws=0;
@@ -147,7 +151,11 @@ text-decoration: none;
                                 <table>
                                 <tr>
                                 <td style="width: 157px;">部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color="red">*</font></td>
-                                <td style="width: 157px;">省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" onblur='check(this)'/><font color="red">*</font></td>
+                                <td style="width: 157px;">银行贷款：<input style="width: 50px" name="WC_STZ" type="text" id="wc_yhdk" onblur='check(this)'/><font color="red">*</font></td>
+                                <td style="width: 157px;">国债：<input style="width: 50px" name="WC_STZ" type="text" id="wc_gz" onblur='check(this)'/><font color="red">*</font></td>
+                               	</tr>
+                                <tr>
+                                <td style="width: 157px;">省&nbsp;&nbsp;债：<input style="width: 50px" name="WC_STZ" type="text" id="wc_sz" onblur='check(this)'/><font color="red">*</font></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color="red">*</font></td>
                                 </tr>
                                 </table>
@@ -166,7 +174,11 @@ text-decoration: none;
                                 <table>
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
-                                <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
+                                 <td style="width: 157px;">银行贷款：<span style="width: 50px" id="tjyhdk"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_yhdk" /></td>
+                                 <td style="width: 157px;">国债：<span style="width: 50px" id="tjgz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_gz" /></td>
+                                 </tr>
+                                 <tr>
+                                  <td style="width: 157px;">省债：<span style="width: 50px" id="tjsz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_sz" /></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color="red">*</font></td>
                                 </tr>
                                 </table>

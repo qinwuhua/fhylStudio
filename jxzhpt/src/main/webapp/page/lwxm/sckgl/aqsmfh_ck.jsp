@@ -34,7 +34,7 @@ text-decoration:none;
 	var xmbm=parent.obj.xmbm;
 	function showLd(){
 		$("#ldgrid").datagrid({    
-			 url:'/jxzhpt/aqsmfh/selectSckaqsmfhld.do',
+			 url:'/jxzhpt/aqsmfh/selectSckaqsmfhld1.do',
 			 queryParams : {
 				 	'xmkaqsmfh.xmbm':xmbm
 				},
@@ -44,9 +44,7 @@ text-decoration:none;
 			    pageNumber:1,
 			    pageSize:20,
 		    columns:[[        
-				{field:'cz',title:'操作',width:130,align:'center',formatter:function(htmlue,row,index){			
-						return '<a href=javascript:ckxxld("'+row.xmkid+'") style="text-decoration:none;color:#3399CC; ">详细</a>';			
-				}},  
+				
 				{field:'xuh',title:'序号',width:60,align:'center'},
 		        {field:'province',title:'省',width:160,align:'center'},
 		        {field:'town',title:'市',width:120,align:'center'},
@@ -88,7 +86,7 @@ text-decoration:none;
 					$("#faspsj").html(item.faspsj);$("#spwh").html(item.spwh);$("#sfsqablbz").html(item.sfsqablbz);
 			 		$("#ablbzsqwh").html(item.ablbzsqwh);$("#jsxz").html(item.jsxz);$("#bz").html(item.bz);
 					$("#scjhnf").html(item.jhnf);
-					
+					$("#nsqbbz").html(item.nsqbbz);
 				}
 			}
 		});
@@ -231,6 +229,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">项目年份</td>
 				<td  style="background-color: #ffffff; height: 20px;width:180px" align="left">
 					<span id="scjhnf"></span></td>
+			</tr>	
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部(省)补助(单位:万元,保留整数)：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					 <span id='nsqbbz'></span></td>
+				
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">建设内容：</td>

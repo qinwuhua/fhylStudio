@@ -32,6 +32,7 @@
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 		var d = myDate.getDate();
 		sbsj = y+"-"+m+"-"+d;
+		$('#tj_sbyf').datebox('setValue',y+"-"+m);
 		$("#tj_sbsj").text(sbsj);
 
 		getYuefen();
@@ -43,7 +44,9 @@
 		$("#pfstz").text(pfstz);
 		$("#zwczj").text(parent.$("#zwczj").text());
 		$("#zwcbtz").text(parent.$("#zwcbtz").text());
-		$("#zwcstz").text(parent.$("#zwcstz").text());
+		$("#zwcy").text(parent.$("#yhdk").text());
+		$("#zwcg").text(parent.$("#gz").text());
+		$("#zwcs").text(parent.$("#sz").text());
 	});
 function check(str){
 	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -74,29 +77,33 @@ function getYuefen(){
 		success:function(msg){
 			$("#tj_zjdw_btz").val(msg.zjdw_btz);
 			$("#tjbtz").text(msg.zjdw_btz);
-			$("#tj_zjdw_stz").val(msg.zjdw_stz);
-			$("#tjstz").text(msg.zjdw_stz);
+			$("#zjdw_yhdk").val(msg.yhdk);
+			$("#zjdw_gz").val(msg.gz);
+			$("#zjdw_sz").val(msg.sz);
+			$("#tjyhdk").text(msg.yhdk);
+			$("#tjgz").text(msg.gz);
+			$("#tjsz").text(msg.sz);
 			shewcqk();
 		}
 	});
 }
 function shewcqk(){
 	var dwb=$("#tj_zjdw_btz").val();
-	var dws=$("#tj_zjdw_stz").val();
+	var dws=$("#zjdw_sz").val();
+	var dwy=$("#zjdw_yhdk").val();
+	var dwg=$("#zjdw_gz").val();
 	var dwq=$("#tj_zjdw_qttz").val();
 	var wcb=$("#tj_wc_btz").val();
-	var wcs=$("#tj_wc_stz").val();
+	var wcs=$("#wc_sz").val();
+	var wcy=$("#wc_yhdk").val();
+	var wcg=$("#wc_gz").val();
 	var wcq=$("#tj_wc_qttz").val();
-	if(dwb=='') dwb=0;
-	if(dws=='') dws=0;
-	if(dwq=='') dwq=0;
-	if(wcb=='') wcb=0;
-	if(wcs=='') wcs=0;
-	if(wcq=='') wcq=0;
-	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))==0){
+	if(dwb=='') dwb=0;if(dws=='') dws=0;if(dwg=='') dwg=0;if(dwy=='') dwy=0;if(dwq=='') dwq=0;
+	if(wcb=='') wcb=0;if(wcs=='') wcs=0;if(wcg=='') wcg=0;if(wcy=='') wcy=0;if(wcq=='') wcq=0;
+	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))==0){
 		$("#tj_wcqk").text("0");
 	}else
-	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))*100).toFixed(2));
+	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcg)+parseFloat(wcy)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))*100).toFixed(2));
 	
 }
 </script>
@@ -126,7 +133,7 @@ text-decoration: none;
                   	 项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
           	  		其中部投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="pfstz" style="color: Red; font-weight: bold;"></span>】万元,
 					除去本月，累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
-              		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="zwcstz" style="color: Red; font-weight: bold;"></span>】万元。
+              		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，银行贷款【<span id="zwcy" style="color: Red; font-weight: bold;"></span>】万元，国债【<span id="zwcg" style="color: Red; font-weight: bold;"></span>】万元，省债【<span id="zwcs" style="color: Red; font-weight: bold;"></span>】万元。
                   	</td>
                   </tr>
        <tr>
@@ -147,8 +154,12 @@ text-decoration: none;
                                 <table>
                                 <tr>
                                 <td style="width: 157px;">部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color="red">*</font></td>
-                                <td style="width: 157px;">省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" onblur='check(this)'/><font color="red">*</font></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color="red">*</font></td>
+                                <td style="width: 157px;">银行贷款：<input style="width: 50px" name="WC_STZ" type="text" id="wc_yhdk" onblur='check(this)'/><font color="red">*</font></td>
+                                <td style="width: 157px;">国债：<input style="width: 50px" name="WC_STZ" type="text" id="wc_gz" onblur='check(this)'/><font color="red">*</font></td>
+                               	</tr>
+                                <tr>
+                                <td style="width: 157px;">省&nbsp;&nbsp;债：<input style="width: 50px" name="WC_STZ" type="text" id="wc_sz" onblur='check(this)'/><font color="red">*</font></td>
+                                <td colspan="2" style="width: 157px;">其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color="red">*</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -166,7 +177,11 @@ text-decoration: none;
                                 <table>
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
-                                <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
+                                <td style="width: 157px;">银行贷款：<span style="width: 50px" id="tjyhdk"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_yhdk" /></td>
+                                 <td style="width: 157px;">国债：<span style="width: 50px" id="tjgz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_gz" /></td>
+                                 </tr>
+                                 <tr>
+                                  <td style="width: 157px;">省债：<span style="width: 50px" id="tjsz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_sz" /></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color="red">*</font></td>
                                 </tr>
                                 </table>

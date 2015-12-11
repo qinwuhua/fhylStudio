@@ -32,6 +32,7 @@
 		    	getYuefen();
 		    }
 		}); 
+		$('#tj_sbyf').datebox('setValue',y+"-"+m);
 		$("#tj_sbsj").text(sbsj);
 		getYuefen();
 	});
@@ -62,9 +63,14 @@ function getYuefen(){
 		data:data,
 		dataType:'json',
 		success:function(msg){
-			$("#tj_zycgs").val(msg.zjdw_btz);
-			$("#tjbtz").text(msg.zjdw_btz);
-			shewcqk();
+			if(msg!=null){
+				$("#tj_zycgs").val(msg.zjdw_btz);
+				$("#tjbtz").text(msg.zjdw_btz);
+				$("#yhdk").text(msg.yhdk);
+				$("#gz").text(msg.gz);
+				$("#sz").text(msg.sz);
+				shewcqk();
+			}
 		}
 	});
 }
@@ -122,8 +128,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="QLWCQK_Z" type="text" id="tj_qlwcqk_z" style="width: 30px;" />座<font color="red">*</font>
-                                <input name="QLWCQK_YM" type="text" id="tj_qlwcqk_ym" style="width: 30px;" />延米<font color="red">*</font>
+                                <input name="QLWCQK_Z" type="text" id="tj_qlwcqk_z" style="width: 50px;" />座<font color="red">*</font>
+                                <input name="QLWCQK_YM" type="text" id="tj_qlwcqk_ym" style="width: 50px;" />延米<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -132,8 +138,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="SDWCQK_Z" type="text" id="tj_sdwcqk_z" style="width: 30px;" />座<font color="red">*</font>
-                                <input name="SDWCQK_YM" type="text" id="tj_sdwcqk_ym" style="width: 30px;" />延米<font color="red">*</font>
+                                <input name="SDWCQK_Z" type="text" id="tj_sdwcqk_z" style="width: 50px;" />座<font color="red">*</font>
+                                <input name="SDWCQK_YM" type="text" id="tj_sdwcqk_ym" style="width: 50px;" />延米<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -142,7 +148,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="HDWCQK_M" type="text" id="tj_hdwcqk_m" style="width: 30px;" />米<font color="red">*</font>
+                                <input name="HDWCQK_M" type="text" id="tj_hdwcqk_m" style="width: 50px;" />米<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -153,7 +159,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="LJTSFWCQK" type="text" id="tj_ljtsfwcqk"  style="width: 30px;"/>㎡
+                                <input name="LJTSFWCQK" type="text" id="tj_ljtsfwcqk"  style="width: 50px;"/>㎡
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -162,7 +168,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="DCWCQK" type="text" id="tj_dcwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
+                                <input name="DCWCQK" type="text" id="tj_dcwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -171,7 +177,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="JCWCQK" type="text" id="tj_jcwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
+                                <input name="JCWCQK" type="text" id="tj_jcwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -182,7 +188,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 30px;" />公里<font color="red">*</font>
+                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 50px;" />公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -191,7 +197,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="LQLMWCQK" type="text" id="tj_lqlmwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
+                                <input name="LQLMWCQK" type="text" id="tj_lqlmwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -200,7 +206,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="SNLMWCQK" type="text" id="tj_snlmwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
+                                <input name="SNLMWCQK" type="text" id="tj_snlmwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -214,8 +220,9 @@ a:active {
                                 class="style1">
                                 中央车购税：
                            <span style="width: 50px" id="tjbtz"></span>万元
-                           <input name="ZYCGS" type="hidden" id="tj_zycgs"  style="width: 30px;"/>&nbsp;
-                                地方补助：<input onblur="check(this)" name="DFBZ" type="text" id="tj_dfbz"  style="width: 30px;"/>万元&nbsp;&nbsp; 银行贷款：<input  name="YHDK" type="text" id="tj_yhdk"  style="width: 30px;"/>万元&nbsp;&nbsp;省厅贴息：<input onblur="check(this)" name="STTX" type="text" id="tj_sttxdk"  style="width: 30px;"/>万元&nbsp;&nbsp; 其他投资：<input onblur="check(this)" name="QTTZ" type="text" id="tj_qtzj"  style="width: 30px;"/>万元
+                           <input name="ZYCGS" type="hidden" id="tj_zycgs"  style="width: 50px;"/>&nbsp;
+                                地方补助：<input onblur="check(this)" name="DFBZ" type="text" id="tj_dfbz"  style="width: 50px;"/>万元&nbsp;&nbsp; 省厅贴息：<input onblur="check(this)" name="STTX" type="text" id="tj_sttxdk"  style="width: 50px;"/>万元&nbsp;&nbsp; 其他投资：<input onblur="check(this)" name="QTTZ" type="text" id="tj_qtzj"  style="width: 50px;"/>万元<br>
+                                	银行贷款：<input  name="YHDK" type="text" id="tj_yhdk"  style="width: 50px;" value="0"/>万元&nbsp;&nbsp;国债：<input   type="text" id="gz"  style="width: 50px;"  value="0"/>万元&nbsp;&nbsp;省债：<input  type="text" id="sz"  style="width: 50px;" value="0"/>万元&nbsp;&nbsp;
                             </td>
                         </tr>
                        

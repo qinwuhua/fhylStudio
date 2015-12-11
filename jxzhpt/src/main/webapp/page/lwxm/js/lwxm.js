@@ -97,8 +97,6 @@ function afxmnf(id){
 	var first;
 	years.push({text:'全部',value:''});
 	for(var i=2015;i<=2020;i++){
-		if(i==2015)
-			first=myDate.getFullYear()+1-i;
 		years.push({text:(i),value:(i)});
 	}
 	$('#'+id).combobox({
@@ -106,7 +104,12 @@ function afxmnf(id){
 	    valueField:'value',
 	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	if(myDate.getFullYear()==2015){
+		first=myDate.getFullYear()+1;
+	}else{
+		first=myDate.getFullYear();
+	}
+	$('#'+id).combobox("setValue",+first);
 }
 
 function xmnf(id){
@@ -125,6 +128,23 @@ function xmnf(id){
 	    textField:'text'
 	});
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+}
+function rkxmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()+1-i;
+		years.push({text:(myDate.getFullYear()+1-i),value:(myDate.getFullYear()+1-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text'
+	});
+	$('#'+id).combobox("setText",'全部');
 }
 function xmnf1(id){
 	var myDate = new Date();

@@ -127,7 +127,15 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	}
 	@Override
 	public boolean insertAqsmfhsck(Xmkaqsmfh xmkaqsmfh) {
-		return insert("insertAqsmfhsck", xmkaqsmfh)==1;
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmkid", strs[i]);
+			hm.put("xmbm", xmkaqsmfh.getXmbm());
+			lm.add(hm);
+		}
+		return insert("insertAqsmfhsck", xmkaqsmfh)==1 && insertBatch("insertAqsmfhsckld", lm)>0;
 	}
 	@Override
 	public List<Xmkaqsmfh> selectafldList(Xmkaqsmfh xmkaqsmfh) {
@@ -138,16 +146,44 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 		return queryOne("selectAqsmfhsckbyid", xmkaqsmfh);
 	}
 	@Override
+	public Xmkaqsmfh selectAqsmfhsckbyid1(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("selectAqsmfhsckbyid1", xmkaqsmfh);
+	}
+	@Override
 	public Xmkaqsmfh selectAqsmfhxmkbyid(Xmkaqsmfh xmkaqsmfh) {
 		return queryOne("selectAqsmfhxmkbyid", xmkaqsmfh);
 	}
 	@Override
 	public boolean updateAqsmfhsck(Xmkaqsmfh xmkaqsmfh) {
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmkid", strs[i]);
+			hm.put("xmbm", xmkaqsmfh.getXmbm());
+			lm.add(hm);
+		}
+		delete("deletesckldbyxmbm", xmkaqsmfh);
+		insertBatch("insertAqsmfhsckld", lm);
 		return update("updateAqsmfhsck", xmkaqsmfh)==1;
 	}
 	@Override
 	public List<Xmkaqsmfh> selectSckaqsmfhld(Xmkaqsmfh xmkaqsmfh) {
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		String tj="and id in (";
+		for (int i = 0; i < strs.length; i++) {
+			if(i==strs.length-1)
+				tj+="'"+strs[i]+"')";
+			else tj+="'"+strs[i]+"',";
+		}
+		xmkaqsmfh.setXmkid(tj);
 		return queryList("selectSckaqsmfhld",xmkaqsmfh);
+	}
+	
+	@Override
+	public List<Xmkaqsmfh> selectSckaqsmfhld1(Xmkaqsmfh xmkaqsmfh) {
+		
+		return queryList("selectSckaqsmfhld1",xmkaqsmfh);
 	}
 	@Override
 	public boolean insertAqsmfhsckld(Xmkaqsmfh xmkaqsmfh) {
@@ -164,7 +200,19 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	}
 	@Override
 	public Xmkaqsmfh loadscktjld(Xmkaqsmfh xmkaqsmfh) {
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		String tj="and id in (";
+		for (int i = 0; i < strs.length; i++) {
+			if(i==strs.length-1)
+				tj+="'"+strs[i]+"')";
+			else tj+="'"+strs[i]+"',";
+		}
+		xmkaqsmfh.setXmkid(tj);
 		return queryOne("loadscktjld", xmkaqsmfh);
+	}
+	@Override
+	public Xmkaqsmfh loadscktjld1(Xmkaqsmfh xmkaqsmfh) {
+		return queryOne("loadscktjld1", xmkaqsmfh);
 	}
 	@Override
 	public boolean delafldsck(Xmkaqsmfh xmkaqsmfh) {
@@ -228,5 +276,30 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	public List<Excel_list> dcaqsmfhsckshExcel(Xmkaqsmfh xmkaqsmfh) {
 		return queryList("dcaqsmfhsckshExcel",xmkaqsmfh);
 	}
+	@Override
+	public String sfcfbntj(Xmkaqsmfh xmkaqsmfh) {
+		String xxString="";
+		String[] strs = xmkaqsmfh.getXmkid().split(",");
+		String tj="and xmkid in (";
+		for (int i = 0; i < strs.length; i++) {
+			if(i==strs.length-1)
+				tj+="'"+strs[i]+"')";
+			else tj+="'"+strs[i]+"',";
+		}
+		xmkaqsmfh.setXmkid(tj);
+		List<Xmkaqsmfh> list = queryList("sfcfbntj",xmkaqsmfh);
+		if(list.size()==0)
+			xxString="true";
+		else{
+			xxString+="路段信息在"+xmkaqsmfh.getJhnf()+"年的";
+			for (Xmkaqsmfh af : list) {
+				xxString+=af.getLxbm()+"   ";
+			}
+			xxString+="中已添加，请检查";
+		}
+		System.out.println(xxString);
+		return xxString;
+	}
+	
 	
 }

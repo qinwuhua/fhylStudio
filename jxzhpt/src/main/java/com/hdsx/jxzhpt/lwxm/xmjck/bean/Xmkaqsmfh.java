@@ -1009,8 +1009,27 @@ public class Xmkaqsmfh {
     public String getSbthcd() {
         return sbthcd;
     }
+    private String str8;
+    
+    public String getStr8() {
+		return str8;
+	}
 
-    public void setSbthcd(String sbthcd) {
+	public void setStr8(String str8) {
+		this.str8 = str8;
+	}
+
+	public void setSbthcd(String sbthcd) {
         this.sbthcd = sbthcd == null ? null : sbthcd.trim();
     }
+	private String nsqbbz;
+
+	public String getNsqbbz() {
+		return nsqbbz;
+	}
+
+	public void setNsqbbz(String nsqbbz) {
+		this.nsqbbz = nsqbbz;
+	}
+	
 }

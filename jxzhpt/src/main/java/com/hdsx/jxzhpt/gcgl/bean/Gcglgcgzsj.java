@@ -146,7 +146,21 @@ public class Gcglgcgzsj implements Serializable {
 	private String jsdj;
 	private String ljbfzt;
 	private String tsdq;
+	private String gz;
+	private String sz;
 	
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	public String getGldj() {
 		return gldj;
 	}
