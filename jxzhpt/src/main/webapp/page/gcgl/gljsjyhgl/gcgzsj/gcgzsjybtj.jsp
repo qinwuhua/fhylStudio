@@ -66,9 +66,9 @@ function getYuefen(){
 			if(msg!=null){
 				$("#tj_zycgs").val(msg.zjdw_btz);
 				$("#tjbtz").text(msg.zjdw_btz);
-				$("#yhdk").text(msg.yhdk);
-				$("#gz").text(msg.gz);
-				$("#sz").text(msg.sz);
+				$("#tj_yhdk").val(msg.yhdk);
+				$("#gz").val(msg.gz);
+				$("#sz").val(msg.sz);
 				shewcqk();
 			}
 		}

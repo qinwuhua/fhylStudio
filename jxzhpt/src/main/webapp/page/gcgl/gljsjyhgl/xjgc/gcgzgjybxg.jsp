@@ -69,12 +69,16 @@
 		$("#pfztz").text(pfztz);
 		$("#pfbtz").text(pfbtz);
 		$("#pfstz").text(pfstz);
-		var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.wc_stz)-parseFloat(parent.obj.wc_qttz);
+		var zwczj=parseFloat(parent.$("#zwczj").html())-parseFloat(parent.obj.wc_btz)-parseFloat(parent.obj.yhdk)-parseFloat(parent.obj.gz)-parseFloat(parent.obj.sz)-parseFloat(parent.obj.wc_qttz);
 		$("#zwczj").text(zwczj);
 		var zwcbtz=parseFloat(parent.$("#zwcbtz").html())-parseFloat(parent.obj.wc_btz);
 		$("#zwcbtz").text(zwcbtz);
-		var zwcstz=parseFloat(parent.$("#zwcstz").html())-parseFloat(parent.obj.wc_stz);
-		$("#zwcstz").text(zwcstz);
+		var yhdk=parseFloat(parent.$("#yhdk").html())-parseFloat(parent.obj.yhdk);
+		$("#zwcy").text(yhdk);
+		var gz=parseFloat(parent.$("#gz").html())-parseFloat(parent.obj.gz);
+		$("#zwcg").text(gz);
+		var sz=parseFloat(parent.$("#sz").html())-parseFloat(parent.obj.sz);
+		$("#zwcs").text(sz);
 	});
 	function check(str){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -117,22 +121,22 @@
 	}
 	function shewcqk(){
 		var dwb=$("#xg_zjdw_btz").val();
-    	var dws='';
-    	var dwq=$("#xg_zjdw_qttz").val();
-    	var wcb=$("#xg_wc_btz").val();
-    	var wcs='';
-    	var wcq=$("#xg_wc_qttz").val();
-    	if(dwb=='') dwb=0;
-    	if(dws=='') dws=0;
-    	if(dwq=='') dwq=0;
-    	if(wcb=='') wcb=0;
-    	if(wcs=='') wcs=0;
-    	if(wcq=='') wcq=0;
-    	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))==0){
-    		$("#xg_wcqk").text("0");
-    	}else
-    	$("#xg_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))*100).toFixed(2));
-    	
+		var dws=$("#zjdw_sz").val();
+		var dwy=$("#zjdw_yhdk").val();
+		var dwg=$("#zjdw_gz").val();
+		var dwq=$("#xg_zjdw_qttz").val();
+		var wcb=$("#xg_wc_btz").val();
+		var wcs=$("#wc_sz").val();
+		var wcy=$("#wc_yhdk").val();
+		var wcg=$("#wc_gz").val();
+		var wcq=$("#xg_wc_qttz").val();
+		if(dwb=='') dwb=0;if(dws=='') dws=0;if(dwg=='') dwg=0;if(dwy=='') dwy=0;if(dwq=='') dwq=0;
+		if(wcb=='') wcb=0;if(wcs=='') wcs=0;if(wcg=='') wcg=0;if(wcy=='') wcy=0;if(wcq=='') wcq=0;
+		if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))==0){
+			$("#xg_wcqk").text("0");
+		}else
+		$("#xg_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcg)+parseFloat(wcy)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))*100).toFixed(2));
+		
 	}
 </script>
 <style type="text/css">
@@ -160,7 +164,7 @@ text-decoration: none;
                   	 项目批复总投资共【<span id="pfztz" style="color: Red; font-weight: bold;"></span>】万元，
           	  		其中部投资【<span id="pfbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="pfstz" style="color: Red; font-weight: bold;"></span>】万元,
 					除去本月，累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
-              		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，省投资【<span id="zwcstz" style="color: Red; font-weight: bold;"></span>】万元。
+              		其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元，银行贷款【<span id="zwcy" style="color: Red; font-weight: bold;"></span>】万元，国债【<span id="zwcg" style="color: Red; font-weight: bold;"></span>】万元，省债【<span id="zwcs" style="color: Red; font-weight: bold;"></span>】万元。
                   	</td>
                   </tr>
        <tr>

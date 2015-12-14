@@ -1352,7 +1352,7 @@
 		    </trim>
  		</insert>
  		<select id="selectafldList" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
- 			select * from SCK_AQSMFH where 1=1 
+ 			select * from SCK_AQSMFH where 1=1 and zszt='已审核'
  			<if test="xmbm!='' and xmbm!=null "> and xmbm=#{xmbm}</if>
  			order by xuh
  		</select>

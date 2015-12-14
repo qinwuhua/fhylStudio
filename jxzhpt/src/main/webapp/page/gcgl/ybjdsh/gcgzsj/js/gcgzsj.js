@@ -337,15 +337,18 @@ function showYBlist(){
 					{field:'jcwcqk',title:'本月完成基层（公里）',width:130,align:'center',rowspan:2},
 					{field:'bywcmc',title:'本月完成面层（公里）',width:130,align:'center',rowspan:2},
 					{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-					{title:'本月完成投资（万元）',colspan:5},
-					{field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
-					],
-					[
-					{field:'zycgs',title:'中央车购税 ',width:79,align:'center',rowspan:1},
-					{field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
-					{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
-					{field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
-					{field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
+					 {title:'本月到位投资（万元）',colspan:7},
+				        {field:'bywctze',title:'本月完成投资（万元）',width:120,align:'center',rowspan:2},
+				        {field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
+		             ],
+		             [
+				        {field:'zycgs',title:'中央车购税 ',width:79,align:'center',rowspan:1},
+				        {field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
+				        {field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+				        {field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+				        {field:'sz',title:'省债',width:79,align:'center',rowspan:1},
+				        {field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
+				        {field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});
@@ -371,15 +374,18 @@ function showYBlist__ck(){
 					{field:'jcwcqk',title:'本月完成基层（公里）',width:130,align:'center',rowspan:2},
 					{field:'bywcmc',title:'本月完成面层（公里）',width:130,align:'center',rowspan:2},
 					{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-					{title:'本月完成投资（万元）',colspan:5},
-					{field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
-					],
-					[
-					{field:'zycgs',title:'中央车购税 ',width:79,align:'center',rowspan:1},
-					{field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
-					{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
-					{field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
-					{field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
+					 {title:'本月到位投资（万元）',colspan:7},
+				        {field:'bywctze',title:'本月完成投资（万元）',width:120,align:'center',rowspan:2},
+				        {field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
+		             ],
+		             [
+				        {field:'zycgs',title:'中央车购税 ',width:79,align:'center',rowspan:1},
+				        {field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
+				        {field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+				        {field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+				        {field:'sz',title:'省债',width:79,align:'center',rowspan:1},
+				        {field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
+				        {field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});

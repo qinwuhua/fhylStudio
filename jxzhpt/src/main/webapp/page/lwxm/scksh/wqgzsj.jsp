@@ -377,10 +377,10 @@ $("#grid").datagrid({
 			 success : function(msg){
 				 $("#wqgz1").html(msg.id);
 				 if(msg.ztz!=null && msg.ztz!=""){
-					 $("#wqgz2").html(msg.ztz);
+					 $("#wqgz2").html(parseFloat(msg.ztz));
 				 }else $("#wqgz2").html("0");
 				 if(msg.nsqbbz!=null && msg.nsqbbz!=""){
-					 $("#wqgz3").html(msg.nsqbbz);
+					 $("#wqgz3").html(parseFloat(msg.nsqbbz));
 				 }else $("#wqgz3").html("0");
 			 },
 		});

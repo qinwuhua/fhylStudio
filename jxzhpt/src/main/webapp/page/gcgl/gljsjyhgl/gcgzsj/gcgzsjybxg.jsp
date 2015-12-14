@@ -41,7 +41,7 @@
 			$("#ssdctc").val(datayb.ssdctc);
 			$("#bndsslc").val(datayb.bndsslc);
 			$("#wkglc").val(datayb.wkglc);
-			$("#xg_sbyf").datebox('setVale',datayb.sbyf);
+			$("#xg_sbyf").datebox('setValue',datayb.sbyf);
 			$("#wcqk").text(datayb.wcqk);
 			$("#gz").text(datayb.gz);
 			$("#sz").text(datayb.sz);
@@ -77,6 +77,9 @@
 			success:function(msg){
 				$("#tj_zycgs").val(msg.zjdw_btz);
 				$("#tjbtz").text(msg.zjdw_btz);
+				$("#tj_yhdk").val(msg.yhdk);
+				$("#gz").val(msg.gz);
+				$("#sz").val(msg.sz);
 				shewcqk();
 			}
 		});

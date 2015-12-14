@@ -68,7 +68,7 @@
 	</update>
 	<!-- 修改月报状态 -->
 	<update id="sbWqgzYb" parameterType="gcglwqgz">
-		update GCGL_WQGZ set sfsj='7' , shzt='已审核' , xgcsyj='同意'
+		update GCGL_WQGZ set sfsj=#{sfsj} <!-- , shzt='已审核' , xgcsyj='同意' -->
 		where id=#{id}
 	</update>
 	<!-- 删除月报 -->
@@ -264,7 +264,7 @@
 	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,'0' yhdk,'0' gz,'0' sz from ${tablename} where jhid=#{id}
 	 </select>
 	 <select id="selectwqzj7" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz)+sum(yhdk)+sum(gz)+sum(sz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}
+	 	select sum(wc_btz)+sum(wc_qttz)+sum(yhdk)+sum(gz)+sum(sz) zwczj,sum(wc_btz) zwcbtz,'0' zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}
 	 </select>
 	 <select id="selectwqzj6" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sum(bywctze)+sum(yhdk)+sum(gz)+sum(sz) zwczj,'0' zwcbtz,'0' zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}

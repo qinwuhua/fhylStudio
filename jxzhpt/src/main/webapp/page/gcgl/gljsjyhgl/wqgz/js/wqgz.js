@@ -1111,7 +1111,7 @@ function showYBlist1(){
 	              				return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'退回    '+'已审核    ';
 	              		}
 	              		if(yhtype=='省级'){
-	              			return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    ';
+	              			return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   ';
 	              		}
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:70,align:'center',rowspan:2},
@@ -1281,6 +1281,9 @@ function sbsjyb(index){
 		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=9"+"&gcglwqgz.yhtype=11"+"&gcglwqgz.jhid="+data1.jhid;
 	}
 	if(yhjb.length==9||yhjb.length==8){
+		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=7"+"&gcglwqgz.yhtype=9"+"&gcglwqgz.jhid="+data1.jhid;
+	}
+	if(parent.obj.tsdq.indexOf('省直管试点县')!=-1){
 		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=7"+"&gcglwqgz.yhtype=9"+"&gcglwqgz.jhid="+data1.jhid;
 	}
 	if(confirm("确认上报吗？")){

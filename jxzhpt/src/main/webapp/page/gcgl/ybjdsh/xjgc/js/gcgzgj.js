@@ -329,16 +329,20 @@ function showYBlist(){
 						{field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
 						{field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 						{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-						{title:'本月完成投资（万元）',colspan:3},
-						{title:'本月资金到位（万元）',colspan:3},
+						{title:'本月完成投资（万元）',colspan:5},
+						{title:'本月资金到位（万元）',colspan:5},
 						{field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
 						],
 						[
 						{field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-						{field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+						{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'sz',title:'省债',width:79,align:'center',rowspan:1},
 						{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
 						{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-						{field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+						{field:'dwyhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'dwgz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'dwsz',title:'省债',width:79,align:'center',rowspan:1},
 						{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
@@ -365,16 +369,20 @@ function showYBlist__ck(){
 						{field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
 						{field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 						{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-						{title:'本月完成投资（万元）',colspan:3},
-						{title:'本月资金到位（万元）',colspan:3},
+						{title:'本月完成投资（万元）',colspan:5},
+						{title:'本月资金到位（万元）',colspan:5},
 						{field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
 						],
 						[
 						{field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-						{field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+						{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'sz',title:'省债',width:79,align:'center',rowspan:1},
 						{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
 						{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-						{field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+						{field:'dwyhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'dwgz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'dwsz',title:'省债',width:79,align:'center',rowspan:1},
 						{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]

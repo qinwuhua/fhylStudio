@@ -62,7 +62,7 @@
 	</update>
 	<!-- 修改月报状态 -->
 	<update id="sbWqgzYb" parameterType="gcglgcgzgj">
-		update GCGL_XJ set sfsj='7' , shzt='已审核' , xgcsyj='同意'
+		update GCGL_XJ set sfsj=#{sfsj} <!-- , shzt='已审核' , xgcsyj='同意' -->
 		where id=#{id}
 	</update>
 	<!-- 删除月报 -->

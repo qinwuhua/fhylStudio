@@ -190,11 +190,14 @@ function tjshyb(){
 	}
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#tj_wc_btz").val();
+	var wcs=$("#wc_sz").val();
+	var wcy=$("#wc_yhdk").val();
+	var wcg=$("#wc_gz").val();
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz);
-	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
+	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(qttz)+parseFloat(wcs)+parseFloat(wcy)+parseFloat(wcg);
+	var zbtz=parseFloat(parent.$("#zwcbtz").html());
 	if(parent.pfbtz<zbtz){
 		if(confirm("完成总部投资不能大于计划部投资"+parent.pfbtz+"万元，确认保存吗")){
 		}else
@@ -669,17 +672,21 @@ function showYBlist(){
 			        {field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:3},
-			        {title:'本月资金到位（万元）',colspan:3},
+			        {title:'本月完成投资（万元）',colspan:5},
+			        {title:'本月资金到位（万元）',colspan:5},
 			        {field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
 	             ],
 	             [
-			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+		        		{field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+						{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'sz',title:'省债',width:79,align:'center',rowspan:1},
+						{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+						{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+						{field:'dwyhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+						{field:'dwgz',title:'国债',width:79,align:'center',rowspan:1},
+						{field:'dwsz',title:'省债',width:79,align:'center',rowspan:1},
+						{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});
@@ -728,17 +735,21 @@ function showYBlist__ck(){
 			        {field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:3},
-			        {title:'本月资金到位（万元）',colspan:3},
+			        {title:'本月完成投资（万元）',colspan:5},
+			        {title:'本月资金到位（万元）',colspan:5},
 			        {field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
 	             ],
 	             [
 			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+					{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+					{field:'gz',title:'国债',width:79,align:'center',rowspan:1},
+					{field:'sz',title:'省债',width:79,align:'center',rowspan:1},
+					{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+					{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+					{field:'dwyhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
+					{field:'dwgz',title:'国债',width:79,align:'center',rowspan:1},
+					{field:'dwsz',title:'省债',width:79,align:'center',rowspan:1},
+					{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});
