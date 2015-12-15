@@ -61,6 +61,7 @@
 						//if(row.shzt==0){
 							if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
+								else
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						//}else{
@@ -74,6 +75,7 @@
 						var result="";
 						if($.cookie("unit2").length!=7)
 						result = row.shzt==0 ? '未审核' : '已审核';
+						else
 						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
 						return result;
 					}
