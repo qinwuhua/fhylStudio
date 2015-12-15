@@ -55,12 +55,12 @@
 						return result;
 					}
 				},
-				{field:'xdzt',title:'计划下达',width:100,align:'center',
+				{field:'xdzt',title:'计划审核',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=3;
-						result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:#3399CC;">计划下达</a>';
+						result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
 						return result;
 					}
 				},

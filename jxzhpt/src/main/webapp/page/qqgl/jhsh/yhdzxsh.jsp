@@ -65,10 +65,10 @@
 						}
 					}
 				},
-				{field:'xdzt',title:'下达状态',width:100,align:'center',
+				{field:'xdzt',title:'计划审核',width:100,align:'center',
 					formatter:function(value,row,index){
 						xmlx=4;
-						var result='<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:#3399CC;">计划下达</a>';
+						var result='<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:#3399CC;">计划审核</a>';
 						return result;
 					}
 				},
