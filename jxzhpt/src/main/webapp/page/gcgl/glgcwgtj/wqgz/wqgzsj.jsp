@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -23,6 +25,9 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist")); 
+			loadBmbm2('ddlGldj','公路等级');
+			tsdq('ddlTSDQ');
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -102,33 +107,44 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="height:80px;width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+        			<fieldset style="height:120px;width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0px 1% 2%;">
+        					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养（监管）单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<input id="gydw" style="width: 180px;">
+        							<span>行政区划：</span>
+        						<select id="xzqh" style="width:150px;"></select>
+        						
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
-        						<span>桥梁名称：</span>
-        							<input type="text" id="qlmc" >
+        							<input type="text" id="lxmc" style="width: 100px;">
         						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
         						<option value="">全部</option>
         						</select>
-        						</p>
-        						<p style="margin: 1% 0px 1% 2%;">
-        						<span>桥梁编码：</span>
+        						
+        						 <p style="margin: 1% 0% 1% 2%;">
+								<span style=" vertical-align:middle;">公路等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:102px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:108px; vertical-align:middle;">
+								</select>
+								
+        							<span>桥梁编码：</span>
         						<input type="text" id="qlbm" style="width: 100px;">
+        						<span>桥梁名称：</span>
+        						<input type="text" id="qlmc" style="width: 100px;">
         						<span>是否部库：</span>
-        						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
+        						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 70px">
 								<option value="" selected>全部</option>
 								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select>
-       							&nbsp;&nbsp;&nbsp;&nbsp;
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+        						
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="showAll1()"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>

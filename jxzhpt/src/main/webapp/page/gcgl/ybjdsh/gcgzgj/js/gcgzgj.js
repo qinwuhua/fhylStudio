@@ -167,7 +167,10 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:320,align:'center',formatter:function(value,row,index){

@@ -502,7 +502,6 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	//查询jihua
 	public void selectGcgzgjjhList1(){
 		try {
-		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and xzqhdm like '%"+gydw+"%'";

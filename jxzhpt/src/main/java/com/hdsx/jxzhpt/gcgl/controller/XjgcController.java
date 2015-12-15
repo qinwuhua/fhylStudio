@@ -503,7 +503,6 @@ public class XjgcController extends BaseActionSupport{
 	public void selectXjgcjhList1(){
 		//System.out.println("--------------------------------------------------");
 		try {
-		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and xzqhdm like '%"+gydw+"%'";

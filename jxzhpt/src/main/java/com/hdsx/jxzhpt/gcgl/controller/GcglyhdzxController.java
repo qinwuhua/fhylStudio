@@ -422,7 +422,6 @@ public class GcglyhdzxController extends BaseActionSupport{
 	}
 	//查询jihua
 	public void selectYhdzxjhList(){
-		Gcglyhdzx gcglyhdzx=new Gcglyhdzx();
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){

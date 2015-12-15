@@ -17,6 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/yhdzx.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -24,6 +26,9 @@
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','公路等级');
+			tsdq('ddlTSDQ');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
@@ -73,21 +78,31 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 200px;">
+        						<input id="xzqh" style="width: 208px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
+        							<input type="text" id="lxmc" style="width: 116px" >
         						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
         						<option value="">全部</option>
         						</select>
+        						
+        						</p>
+								   <p style="margin: 1% 0% 1% 2%;">
+								<span style=" vertical-align:middle;">技术等级：</span>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
+								<span style=" vertical-align:middle;">公路等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:120px; vertical-align:middle;">
+								</select>
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
         							<option value="">全&nbsp;&nbsp;部</option>
-        							<option value="已审核">已审核</option>
-        							<option value="未审核">未审核</option>
+        							<option value="已上报">已上报</option>
+        							<option value="未上报">未上报</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
         				</div>

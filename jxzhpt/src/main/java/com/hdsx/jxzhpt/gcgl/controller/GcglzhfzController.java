@@ -418,13 +418,19 @@ public class GcglzhfzController extends BaseActionSupport{
 	}
 	//查询jihua
 	public void selectZhfzjhList(){
-		Gcglzhfz gcglzhfz=new Gcglzhfz();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and gydwbm in ("+gydw+")";
 		}
+		String tiaojian2="";
+		if(gcglzhfz.getXzqh().indexOf(",")==-1){
+			tiaojian2="and t3.xzqhdm like '%'||'"+gcglzhfz.getXzqh()+"'||'%'";
+		}else{
+			tiaojian2="and t3.xzqhdm in ("+gcglzhfz.getXzqh()+")";
+		}
+		gcglzhfz.setXzqhdm(tiaojian2);
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
 		gcglzhfz.setJhid(jhid);

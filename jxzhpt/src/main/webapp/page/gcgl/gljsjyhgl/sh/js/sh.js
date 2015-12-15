@@ -440,7 +440,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -449,7 +449,10 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglsh.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglsh.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 			{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

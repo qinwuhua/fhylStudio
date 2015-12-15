@@ -328,6 +328,9 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -336,6 +339,13 @@
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
+				
 			)
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -355,6 +365,9 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -362,6 +375,12 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
 				</if>
 			)
 	</select>

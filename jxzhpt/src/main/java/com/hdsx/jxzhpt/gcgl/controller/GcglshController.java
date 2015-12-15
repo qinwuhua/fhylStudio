@@ -418,7 +418,6 @@ public class GcglshController extends BaseActionSupport{
 	}
 	//查询jihua
 	public void selectShjhList(){
-		Gcglsh gcglsh=new Gcglsh();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and xzqhdm like '%"+gydw+"%'";
