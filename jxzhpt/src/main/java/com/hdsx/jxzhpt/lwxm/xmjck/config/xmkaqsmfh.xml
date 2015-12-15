@@ -890,7 +890,10 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
+	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and shyj is not null and sbthbmcd != 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -969,7 +972,10 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
+	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and shyj is not null and sbthbmcd != 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -1046,7 +1052,10 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (shyj is not null and sbthbmcd != 7)
+	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and shyj is not null and sbthbmcd != 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">

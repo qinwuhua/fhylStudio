@@ -63,7 +63,6 @@
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combotree("getValues");
-		var gydw1=$("#gydw").combotree("getValues");
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -89,7 +88,7 @@
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
 		var lxmc=$("#lxmc").val();
-		var data="flag=''&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+		var data="flag=0&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
@@ -99,13 +98,14 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				
 				$("#nian").text($("#ddlYear").val());
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
-						if(msg[i].v_0==''){
-							tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"
-									+msg[i].v_1+"</td><td colspan='2'>"+msg[i].v_2+"</td><td>"
-									+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+						if(msg[i].v_0=='是'){
+							tbody.append("<tr><td>"+""+"</td><td>"+msg[i].v_1+"</td><td>"
+									+msg[i].v_2+"</td><td colspan='2'>"+msg[i].v_3+"</td><td>"
+									+msg[i].v_5+"</td><td>"
 									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
 									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
 									+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
@@ -133,7 +133,10 @@
 									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
 									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
 									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
-									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td></tr>"
+									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td><td>"
+									+msg[i].v_62+"</td><td>"+msg[i].v_63+"</td><td>"
+									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
+									+msg[i].v_66+"</td></tr>"
 							);
 						}else{
 							tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
@@ -166,7 +169,10 @@
 									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
 									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
 									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
-									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td></tr>"
+									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td><td>"
+									+msg[i].v_62+"</td><td>"+msg[i].v_63+"</td><td>"
+									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
+									+msg[i].v_66+"</td></tr>"
 							);
 						}
 					}
@@ -185,7 +191,7 @@
 			else gydwstr= $.cookie("unit2");
 		}else if(gydw.length==1){
 			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
 			gydwstr=gydw[0] ;
 		}else{
 			gydwstr= gydw.join(',');
@@ -196,15 +202,14 @@
 			
 		}else if(xzqhdm.length==1){
 			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-			xzqhstr=xzqhdm[0] ;
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
 		var lxmc=$("#lxmc").val();
-		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
-		
+		var data="flag=1&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
 		 });
@@ -281,14 +286,15 @@
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 公路局<span id='nian' style="font-size: x-large;"></span>年公路改造工程项目完成情况表</caption>
 								<thead>
 									<tr>
-										<td colspan="23">一、 项 目 计 划</td>
-										<td colspan="16">二、 本年元月至本月完成情况</td>
+										<td colspan="24">一、 项 目 计 划</td>
+										<td colspan="18">二、 本年元月至本月完成情况</td>
 										<td colspan="3">三、本月进展情况</td>
-										<td colspan="19">四、 自开工至本月底累计完成情况</td>
+										<td colspan="21">四、 自开工至本月底累计完成情况</td>
 										<td rowspan="4">备注</td>
 									</tr>
 									<tr>
 										<td rowspan="3"  style="width: 125px;">序号</td>
+										<td rowspan="3"  style="width: 125px;">计划唯一编码</td>
 										<td rowspan="3"  style="width: 125px;">项目所在地市</td>
 										<td rowspan="3"  style="width: 125px;">项目所在县市</td>
 										<td rowspan="3" style="width: 125px;">路线编码、项目名称</td>
@@ -311,14 +317,14 @@
 										<td rowspan="3" style="width: 125px;">项目未开工个数<br>(个)</td>
 										<td rowspan="3" style="width: 125px;">开工时间(精确到月)</td>
 										<td rowspan="3" style="width: 125px;">完工时间(精确到月)</td>
-										<td colspan="6">累计资金到位<br>(万 元)</td>
+										<td colspan="8">累计资金到位<br>(万 元)</td>
 										<td rowspan="3" style="width: 125px;">项目完成投资<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">占投资比例<br>(%)</td>
 										<td colspan="8">完   成  工  程  量<br>(公里)</td>
 										<td rowspan="3">新增资金到位<br>(万 元)</td>
 										<td rowspan="3">新增完成路面工程量<br>(公里)</td>
 										<td rowspan="3">新增项目完成投资<br>(万 元)</td>
-										<td colspan="6">累计资金到位<br>(万 元)</td>
+										<td colspan="8">累计资金到位<br>(万 元)</td>
 										<td rowspan="3">项目完成投资<br>(万 元)</td>
 										<td colspan="8">累  计  完   成  工  程  量<br>(公里)</td>
 										<td rowspan="3" style="width: 125px;">项目未完工程量<br>(万元)</td>
@@ -329,7 +335,7 @@
 									<tr>
 										<td rowspan="2" style="width: 125px;">合计</td>
 										<td rowspan="2" style="width: 125px;">中央车购税</td>
-										<td colspan="2" >地方配套</td>
+										<td colspan="4" >地方配套</td>
 										<td rowspan="2" style="width: 125px;">省厅贴息<br>(贷款)</td>
 										<td rowspan="2" style="width: 125px;">其他资金</td>
 										<td colspan="5">按技术等级</td>
@@ -337,7 +343,7 @@
 										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
 										<td rowspan="2" style="width: 125px;">合计</td>
 										<td rowspan="2" style="width: 125px;">中央车购税</td>
-										<td colspan="2" >地方配套</td>
+										<td colspan="4" >地方配套</td>
 										<td rowspan="2" style="width: 125px;">省厅贴息<br>(贷款)</td>
 										<td rowspan="2" style="width: 125px;">其他资金</td>
 										<td colspan="5">按技术等级</td>
@@ -348,6 +354,8 @@
 										<td style="width: 100px;">其中：中央车购税</td>
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">其中：银行贷款</td>
+										<td style="width: 100px;">国债</td>
+										<td style="width: 100px;">省债</td>
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">一级</td>
 										<td style="width: 100px;">二级</td>
@@ -357,6 +365,8 @@
 										<td style="width: 100px;">水泥砼</td>
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">其中：银行贷款</td>
+										<td style="width: 100px;">国债</td>
+										<td style="width: 100px;">省债</td>
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">一级</td>
 										<td style="width: 100px;">二级</td>

@@ -706,8 +706,12 @@
  			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null) and sck_sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
- 			and sck_shzt like '%'||(#{shzt})||'%' or (sck_sbthcd != 7 and sck_shyj2 is not null)
+ 			and sck_shzt like '%'||(#{shzt})||'%' 
  			</if>
+ 			<if test="shzt == '审核不同意'">
+ 			and sck_sbthcd != 7 and sck_shyj2 is not null
+ 			</if>
+ 			
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and pddj like '%'||(#{jsdj})||'%'
@@ -766,9 +770,14 @@
  			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null) and sck_sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
- 			and sck_shzt like '%'||(#{shzt})||'%'  or (sck_sbthcd != 7 and sck_shyj2 is not null)
+ 			and sck_shzt like '%'||(#{shzt})||'%' 
  			</if>
+ 			<if test="shzt == '审核不同意'">
+ 			and sck_sbthcd != 7 and sck_shyj2 is not null
+ 			</if>
+ 			
 		</if>
+
 		<if test="jsdj!='' and jsdj!= null ">
 			and pddj like '%'||(#{jsdj})||'%'
 		</if>
@@ -824,8 +833,12 @@
  			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null) and sck_sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
- 			and sck_shzt like '%'||(#{shzt})||'%' or (sck_sbthcd != 7 and sck_shyj2 is not null)
+ 			and sck_shzt like '%'||(#{shzt})||'%' 
  			</if>
+ 			<if test="shzt == '审核不同意'">
+ 			and sck_sbthcd != 7 and sck_shyj2 is not null
+ 			</if>
+ 			
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and pddj like '%'||(#{jsdj})||'%'
