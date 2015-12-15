@@ -22,6 +22,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			if($.cookie("unit2").length!=7)
+				$("img[name='bxs']").attr('style','display:none');
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
 			loadBmbm3('yjsdj','技术等级');
@@ -56,6 +58,8 @@
 						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
 						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
+							if($.cookie("unit2").length!=7)
+								result+='&nbsp;编辑';
 							result+='&nbsp;<a href="javascript:openWindow('+"'xjgcedit'"+','+"'新建工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						//}else{
@@ -67,6 +71,8 @@
 				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
+						if($.cookie("unit2").length!=7)
+							result = row.shzt==0 ? '未审核' : '已审核';
 						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
 						return result;
 					}
@@ -274,10 +280,10 @@ text-decoration:none;
 							<tr height="32">
                               <td colspan="10">
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
-								<img id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</td>
                             </tr></table>
         				</div>

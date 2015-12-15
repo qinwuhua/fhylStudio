@@ -25,7 +25,7 @@
 			setjhxdnf();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
-			loadBmbm2("xmlx","项目类型2");
+		//	loadBmbm2("xmlx","项目类型2");
 			$("#xmlx").combobox("setValue",'升级改造');
 			var myDate = new Date();
 			var y = myDate.getFullYear();
@@ -63,15 +63,15 @@
 			var len=(xmnf.length+1)*1000+"px";
 			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
-				str1=str1+'<td colspan="9">计划下达及完成情况</td>';
-				str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>';
-				str3=str3+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>';
+				str1=str1+'<td colspan="10">计划下达及完成情况</td>';
+				str2=str2+'<td rowspan="1" colspan="4">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>';
+				str3=str3+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td><td>计划总投资</td>';
 			}
-			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td rowspan="3">项目类型</td><td colspan="9">计划下达及完成情况</td>'
+			biaotstr='<tr><td rowspan="3">序号</td><td rowspan="3">设区市</td><td rowspan="3">项目类型</td><td colspan="10">计划下达及完成情况</td>'
 			+str1+'<td rowspan="3">备注</td></tr>'
-			+'<td rowspan="1" colspan="3">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>'
+			+'<td rowspan="1" colspan="4">'+min+'-'+max+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年车购税到位（万元）</td><td rowspan="2">累计车购税到位（万元）</td><td rowspan="2">本年完成投资（万元）</td><td rowspan="2">累计完成投资（万元）</td>'
 			+str2+'</tr>'
-			+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td>'
+			+'<td>项目数量</td><td>建设里程（公里）</td><td>中央或省统筹资金（万元）含续建</td><td>计划总投资</td>'
 			+str3+'</tr>';
 			biaotou.empty();
 			biaotou.append(biaotstr);
@@ -98,19 +98,20 @@
 											var s4="WCLC"+xmnf[j];
 											var s5="LJWCLC"+xmnf[j];
 											var s6="BBZ"+xmnf[j];
-											var s7="LJWCBBZ"+xmnf[j];
-											var s8="WCXMZJ"+xmnf[j];
-											var s9="LJWCZJ"+xmnf[j];
+											var s7="PFZTZ"+xmnf[j];
+											var s8="LJWCBBZ"+xmnf[j];
+											var s9="WCXMZJ"+xmnf[j];
+											var s10="LJWCZJ"+xmnf[j];
 											strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
-											+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+											+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
 											+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
-											+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
-											+msg[i][s9].toFixed(2)+"</td><td>";
+											+msg[i][s8].toFixed(2)+"</td><td>"
+											+msg[i][s9].toFixed(2)+"</td><td>"+msg[i][s10].toFixed(2)+"</td><td>";
 										}
 										tbodystr=tbodystr+"<tr><td colspan='2'>"+msg[i].XZQHMC+"</td><td>"
 										+$("#xmlx").combobox("getText")+"</td><td>"
 										+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
-										+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+										+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].PFZTZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
 										+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].BBZ.toFixed(2)+"</td><td>"
 										+msg[i].LJWCBBZ.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
 										+msg[i].LJWCZJ.toFixed(2)+"</td><td>"
@@ -124,19 +125,20 @@
 									var s4="WCLC"+xmnf[j];
 									var s5="LJWCLC"+xmnf[j];
 									var s6="BBZ"+xmnf[j];
-									var s7="LJWCBBZ"+xmnf[j];
-									var s8="WCXMZJ"+xmnf[j];
-									var s9="LJWCZJ"+xmnf[j];
+									var s7="PFZTZ"+xmnf[j];
+									var s8="LJWCBBZ"+xmnf[j];
+									var s9="WCXMZJ"+xmnf[j];
+									var s10="LJWCZJ"+xmnf[j];
 									strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
-									+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+									+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
 									+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
-									+msg[i][s7].toFixed(2)+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
-									+msg[i][s9].toFixed(2)+"</td><td>";
+									+msg[i][s8].toFixed(2)+"</td><td>"
+									+msg[i][s9].toFixed(2)+"</td><td>"+msg[i][s10].toFixed(2)+"</td><td>";
 								}
 								tbodystr=tbodystr+"<tr><td>"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
 								+$("#xmlx").combobox("getText")+"</td><td>"
 								+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
-								+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+								+msg[i].BBZORSBZ.toFixed(2)+"</td><td>"+msg[i].PFZTZ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
 								+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].BBZ.toFixed(2)+"</td><td>"
 								+msg[i].LJWCBBZ.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
 								+msg[i].LJWCZJ.toFixed(2)+"</td><td>"
@@ -212,7 +214,10 @@ a:active {
         						<span>下达年份：</span>
         						<input type="text" id="jhxdnf"  style="width:80px;">
         						<span>项目类型：</span>
-        						<select id="xmlx" style="width:80px;">
+        						<select id="xmlx" style="width:80px;" class='easyui-combobox'>
+        							<option value="升级改造">升级改造</option>
+        							<option value="路面改造">路面改造</option>
+        							<option value="灾毁重建">灾毁重建</option>
         						</select>	
         						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        							<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"

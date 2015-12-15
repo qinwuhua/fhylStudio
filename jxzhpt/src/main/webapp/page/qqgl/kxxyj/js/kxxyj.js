@@ -651,12 +651,17 @@ function showAllsjsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
-		        return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
+	        	if($.cookie("unit2").length!=7)
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑 ';
+
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
-	        	else if(row.sbzt1=='1')
+	        	if(row.sbzt1=='0'){
+	        		if($.cookie("unit2").length!=7)
+	        			return '未审核';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+	        	}else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
@@ -789,11 +794,18 @@ function showAlllmsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    ';
+	        	if($.cookie("unit2").length!=7)
+		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑  ';
+
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.shzt=='0')
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
+	        	if(row.shzt=='0'){
+	        		if($.cookie("unit2").length!=7)
+	        			return '未审核';
+	            		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
+
+	        	}
 	        	else if(row.shzt=='1')
 	        		return '已审核';
 	        }},
@@ -926,11 +938,18 @@ function showAllxjsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
+	        	if($.cookie("unit2").length!=7)
+		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+' 编辑 ';
+
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
+	        	if(row.sbzt1=='0'){
+	        		if($.cookie("unit2").length!=7)
+	        			return '未审核';
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
+
+	        	}
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},
