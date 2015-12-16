@@ -200,10 +200,10 @@ function wqxm_sb(jh,lx){
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2)){
-//		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 //		        		if(roleName()=="市级")
-//		        			result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
-		        		result="未上报";
+//		        			result+='        <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+//		        		result="未上报";
 		        	}else{
 		        		result='<a style="text-decoration:none;color:black;">已上报</a>';
 		        	}
@@ -284,7 +284,7 @@ function wqxm_sh(jh,lx){
 		        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if(row.spzt=="0"){
-		        		result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+		        		result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>         ';
 		        		result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 		        	}else if(row.spzt=="1"){
 		        		result="已审批";

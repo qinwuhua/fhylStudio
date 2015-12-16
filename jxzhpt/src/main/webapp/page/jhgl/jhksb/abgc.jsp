@@ -98,34 +98,7 @@
 			abgcxm_sb(jh,lx);
 		}
 		function sbList(){
-			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
-				if(roleName()=="市级"){
-					param['jh.jh_sbthcd']=2;
-				}
-				$.ajax({
-					type:'post',async:false,data:param,dataType:'json',
-					url:'../../../jhgl/queryAbgcListByStatus.do',
-					success:function(data){
-						if(data.length>0){
-							$.each(data,function(index,item){
-								var date=new Date();
-								var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-									" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-								var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-										'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
-								if(xian){
-									jh['jh.sbzt']='0';
-								}
-								editStatus(jh);
-							});
-							alert("上报成功！");
-							searchAbgc();
-						}else{
-							alert("无需要上报的计划！");
-						}
-					}
-				});
+			
 		}
 		function sb(id,jh_sbthcd){
 			var date=new Date();
@@ -229,7 +202,7 @@ text-decoration:none;
         					<tr height="32">
                               <td colspan="10">
         								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 8px;"/>
-        								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+<%--         								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
         								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                 	</td>
                                 </tr>
