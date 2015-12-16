@@ -806,5 +806,12 @@
 			group by xmbm,tz
 		)
 	</select>
+	
+	<update id="thxmsqshyh" parameterType="String">
+		update xmsq_yhdzx set sqzt='0' where ${value}
+	</update>
+	<update id="thxmsqshsh" parameterType="String">
+		update xmsq_sh set sqzt='0' where ${value}
+	</update>
 </mapper>
 

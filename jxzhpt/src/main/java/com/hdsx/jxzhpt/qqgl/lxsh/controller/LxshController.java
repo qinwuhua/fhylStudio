@@ -2036,5 +2036,14 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void thxmsqsh(){
+		try {
+			ResponseUtils.write(getresponse(), lxshServer.thxmsqsh(lxsh)+"");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 

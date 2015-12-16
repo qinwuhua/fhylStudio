@@ -178,4 +178,6 @@ public interface LxshServer {
 	Map<String, String> queryLxshShLjXj(Lxsh lxsh);
 
 	Lxsh loadjsdjcd(Lxsh lxsh);
+
+	boolean thxmsqsh(Lxsh lxsh);
 }

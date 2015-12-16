@@ -315,6 +315,47 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
+		
+		function tuiHui(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要退回项目！");
+				return;
+			}
+			if($.cookie("unit2").length!=7){
+				alert("您不是省级用户");
+				return;
+			}
+			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
+			for(var i=1;i<rows.length;i++){
+				xmbm+=","+rows[i].xmbm;
+			}
+			for(var i=0;i<rows.length;i++){
+			if(rows[i].sqzt=='9'){
+				var data = "lxsh.xmbm="+xmbm+"&lxsh.bz=sh";
+				//在可行性中是否已经操作过
+				$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/thxmsqsh.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+						 if(msg){
+							 alert('退回成功！');
+							 $("#grid").datagrid('reload');
+						 }else{
+							 alert('退回失败,请选择要退回项目！');
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+				return;
+			}
+		}
+		}
 	</script>
 </head>
 <body>
@@ -365,7 +406,7 @@
 									<img id="tj" name="dishi" alt="添加" onclick="openSh()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
-					                <img id="th" name="sheng" alt="退回" onclick="" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
+					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Sh')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
