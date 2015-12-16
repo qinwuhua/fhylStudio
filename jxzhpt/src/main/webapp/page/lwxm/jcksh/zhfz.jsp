@@ -90,7 +90,7 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
-	if(rows[i].shzt='已审核'){
+	if(rows[i].shzt=='已审核'){
 		alert("对不起，项目已审核，不能执行退回操作！");
 		return;
 	}
