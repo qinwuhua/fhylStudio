@@ -930,8 +930,12 @@ public class GcybbController extends BaseActionSupport{
 				sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl))) xmsl"+arr[j]+
 						",decode(sum(decode(jhnf,'"+arr[j]+"',ym)),null,0,sum(decode(jhnf,'"+arr[j]+"',ym))) ym"+arr[j]+
 						",decode(sum(decode(jhnf,'"+arr[j]+"',wcxmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wcxmsl))) wcxmsl"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',zjxmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',zjxmsl))) zjxmsl"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',wkxmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wkxmsl))) wkxmsl"+arr[j]+
 						",decode(sum(decode(jhnf,'"+arr[j]+"',wcym)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcym))) wcym"+arr[j]+
-			        ",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',zjym)),null,0,sum(decode(jhnf,'"+arr[j]+"',zjym))) zjym"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',wkym)),null,0,sum(decode(jhnf,'"+arr[j]+"',wkym))) wkym"+arr[j]+
+						",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+
 			        ",decode(sum(decode(jhnf,'"+arr[j]+"',bnwc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnwc))) bnwc"+arr[j]+""+
 			        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcl)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcl))) wcl"+arr[j]+"";
 			}

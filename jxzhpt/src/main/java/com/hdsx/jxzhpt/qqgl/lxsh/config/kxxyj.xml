@@ -341,29 +341,31 @@
 	<select id="queryshsjgz" parameterType="string" resultType="kxxyj">
 		select * from KXXYJ_SJGZ where ${value}
 	</select>
-	<insert id="insertsjgzcb" parameterType="kxxyj">
-		insert into cbsj_sjgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,jszlc)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw},#{dfzc},#{yhdk},#{jszlc})
-	</insert>
+	
 	<update id="shlmgzkxx" parameterType="hashmap">
 		update KXXYJ_LMGZ set shzt=1 where id=#{id}
 	</update>
 	<select id="queryshlmgz" parameterType="string" resultType="kxxyj">
 		select * from KXXYJ_LMGZ where ${value}
 	</select>
-	<insert id="insertlmgzcb" parameterType="kxxyj">
-		insert into cbsj_lmgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw},#{dfzc},#{yhdk})
-	</insert>
+	
 	<update id="shxjkxx" parameterType="hashmap">
 		update KXXYJ_XJ set shzt=1 where id=#{id}
 	</update>
 	<select id="queryshxj" parameterType="string" resultType="kxxyj">
 		select * from KXXYJ_XJ where ${value}
 	</select>
+	<insert id="insertsjgzcb" parameterType="kxxyj">
+		insert into cbsj_sjgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="jszlc != null ">,jszlc</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="jszlc != null ">,#{jszlc}</if>)
+	</insert>
+	<insert id="insertlmgzcb" parameterType="kxxyj">
+		insert into cbsj_lmgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if>)
+	</insert>
 	<insert id="insertxjcb" parameterType="kxxyj">
-		insert into cbsj_xj(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw},#{dfzc},#{yhdk})
+		insert into cbsj_xj(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if>)
 	</insert>
 	
 	<select id="sjgzsfcb" parameterType="string" resultType="kxxyj">

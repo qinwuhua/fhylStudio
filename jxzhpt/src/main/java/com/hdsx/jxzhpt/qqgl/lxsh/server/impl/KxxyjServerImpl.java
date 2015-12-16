@@ -185,6 +185,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("2");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");
@@ -220,6 +221,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("2");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");
@@ -255,6 +257,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("2");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");

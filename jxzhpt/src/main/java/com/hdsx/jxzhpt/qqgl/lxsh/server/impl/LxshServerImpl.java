@@ -388,6 +388,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("1");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				insert("insertsjgzkxx", lxsh2);
 			}
@@ -420,6 +421,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("1");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				insert("insertlmgzkxx", lxsh2);
 			}
@@ -452,6 +454,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				for (Lxsh lxsh3 : list3) {
 					lxsh3.setJdbs("1");
 					insert("insertLx1", lxsh3);
+					break;
 				}
 				insert("insertxjkxx", lxsh2);
 			}

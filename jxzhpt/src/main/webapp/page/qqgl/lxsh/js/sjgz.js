@@ -449,12 +449,12 @@ function showAll(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+',"sq")">添加路线</a>   ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
-	        }},
+	        }},*/
 	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -503,14 +503,14 @@ function showAll(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
-		           {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+		          /* {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 		        	   var result ='<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 		        	   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
 		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 		        		   result+= '&nbsp;删除';
 		        	   return result;
-		           }},
+		           }},*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -745,11 +745,11 @@ function showAllsjsh(){
 	    			'lx.sffirst':'1'
 	    		},
     			columns:[[
-    			    {field:'cz',title:'操作',width:150,align:'center',
+    			    /*{field:'cz',title:'操作',width:150,align:'center',
     			    	formatter: function(value,row,index){
     			    		return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
     			    	}
-    			    },
+    			    },*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -866,12 +866,12 @@ function showAlllmgz(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+',"sq")">添加路线</a>   ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
-	        }},
+	        }},*/
 	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -920,7 +920,7 @@ function showAlllmgz(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
-					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+					/*{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
@@ -928,7 +928,7 @@ function showAlllmgz(){
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							result+='&nbsp;删除';
 						return result;
-					}},
+					}},*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1075,11 +1075,11 @@ function showAlllmsh(){
 	    			 'lx.sffirst':'1'
 	    		},
     			columns:[[
-					{field:'cz',title:'操作',width:150,align:'center',
+					/*{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
 							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						}
-					},
+					},*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1194,12 +1194,12 @@ function showAllxj(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+',"sq")">添加路线</a>   ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
-	        }},
+	        }},*/
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -1248,12 +1248,12 @@ function showAllxj(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
-					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+					/*{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 						return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delxjlx('+parentindex+','+index+')">删除</a>   ';
 						   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							   return '删除';
-					}},
+					}},*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1428,22 +1428,22 @@ function selectTSDQ(lxbm,qdzh,zdzh){
 		}
 	});	
 }
-function tjsjlx(index,sq){
+function tjsjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
-	YMLib.Var.sq=sq;
+	YMLib.Var.sq='sq';
 	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add2.jsp','lxxx',900,300);
 }
-function tjlmlx(index,sq){
+function tjlmlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
-	YMLib.Var.sq=sq;
+	YMLib.Var.sq='sq';
 	YMLib.UI.createWindow('lxxx','添加路线信息','lmgzlx_add2.jsp','lxxx',900,300);
 }
-function tjxjlx(index,sq){
+function tjxjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.Var.sq=sq;
+	YMLib.Var.sq='sq';
 	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,300);
 }
 function delsjlx(index1,index){

@@ -210,7 +210,11 @@ public class LxshController extends BaseActionSupport{
 				}
 			}
 		}else{
+			if(!"".equals(jsdj)||jsdj==null)
 			jsdj = "lx.xjsdj like '%"+jsdj+"%'";
+			else{
+				jsdj = "";
+			}
 		}
 		this.jsdj = jsdj;
 	}
@@ -551,6 +555,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
+			System.out.println("--"+jsdj+"--");
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {

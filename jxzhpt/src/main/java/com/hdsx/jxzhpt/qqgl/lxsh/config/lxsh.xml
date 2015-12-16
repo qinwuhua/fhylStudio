@@ -352,16 +352,16 @@
 		select * from LXSH_XJ where ${value}
 	</select>
 	<insert id="insertsjgzkxx" parameterType="lxsh">
-		insert into kxxyj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc,jszlc)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc},#{jszlc})
+		insert into kxxyj_sjgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if><if test="jszlc != null ">,jszlc</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if><if test="jszlc != null ">,#{jszlc}</if>)
 	</insert>
 	<insert id="insertlmgzkxx" parameterType="lxsh">
-		insert into kxxyj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc})
+		insert into kxxyj_lmgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if>)
 	</insert>
 	<insert id="insertxjkxx" parameterType="lxsh">
-		insert into kxxyj_xj(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc})
+		insert into kxxyj_xj(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if>)
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -715,7 +715,7 @@
     	select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
 			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from LXSH_SJGZ t left join 
 			(select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
-			on t.xmbm=lx.xmid where 1=1 and sbthcd = 7
+			on t.xmbm=lx.xmid where 1=1 and sbthcd = 7 
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
