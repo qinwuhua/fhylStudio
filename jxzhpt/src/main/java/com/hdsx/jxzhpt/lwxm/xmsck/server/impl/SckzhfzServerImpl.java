@@ -100,11 +100,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 			Plan_zhfz z=new Plan_zhfz();
 			z.setSckid(strs[i]);
 			z.setSbnf(nfs[i]);
-			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
-				z.setJh_sbthcd("0");
-			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
+//			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
+//				z.setJh_sbthcd("0");
+//			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
 				z.setJh_sbthcd("2");
-			}
+//			}
 			list.add(z);
 		}
 		boolean result = insertBatch("lrjhSckzhfz", list)==list.size();

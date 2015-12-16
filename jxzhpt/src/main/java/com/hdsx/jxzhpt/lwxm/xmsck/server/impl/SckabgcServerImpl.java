@@ -96,11 +96,15 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 			Plan_abgc a=new Plan_abgc();
 			a.setSckid(strs[i]);
 			a.setJhnf(nfs[i]);
-			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
-				a.setJh_sbthcd("0");
-			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
-				a.setJh_sbthcd("2");
-			}
+			if(tbbmbms[i].substring(0, 1).equals("1")){
+				if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$"))
+					a.setJh_sbthcd("0");
+				else
+					//}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
+						a.setJh_sbthcd("2");
+			}else
+						a.setJh_sbthcd("2");
+			//}
 			list.add(a);
 		}
 		boolean insertBatch = insertBatch("lrjhSckabgc", list)==list.size();

@@ -214,6 +214,39 @@
 				}
 			});
 		}
+		function batchTh(){
+			var selRow = $('#grid').datagrid("getSelections");
+			var y=true;
+			$.each(selRow,function(index,item){
+				if(item.sqzt!=0){
+					y=false;
+					return;
+				}
+			});
+			if(!y){
+				alert("只能上报未上报过的项目！");
+				return;
+			}
+			if(selArray.length!=0){
+				var xmbm = selArray.join(",");
+				$.ajax({
+					type:'post',
+					url:'../../../qqgl/updateXmsqSbzt.do',
+					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
+					dataType:'json',
+					success:function(msg){
+						if(msg.result=="true"){
+							selArray.splice(0,selArray.length);
+							alert("上报成功!");
+							queryYhdzx();
+						}
+					}
+				});
+			}else{
+				alert("请选择要上报的信息！");
+			}
+		}
+		
 		function batchSb(){
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;

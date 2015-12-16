@@ -111,11 +111,11 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 			Plan_wqgz w=new Plan_wqgz();
 			w.setSckid(strs[i]);
 			w.setSbnf(nfs[i]);
-			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
-				w.setJh_sbthcd("0");
-			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
+//			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
+//				w.setJh_sbthcd("0");
+//			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
 				w.setJh_sbthcd("2");
-			}
+//			}
 			list.add(w);
 		}
 		boolean insert = insertBatch("lrjhSckwqgz", list)==list.size();
