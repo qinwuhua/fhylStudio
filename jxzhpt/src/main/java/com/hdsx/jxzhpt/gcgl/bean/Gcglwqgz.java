@@ -23,7 +23,7 @@ public class Gcglwqgz implements Serializable {
 	private String sbbm;
 	private String shzt;
 	private String shuser;
-	private String shtime;
+	private Date shtime;
 	private String bywcmc;
 	private String kgdl;
 	private String qksm;
@@ -922,10 +922,11 @@ public class Gcglwqgz implements Serializable {
 	public void setSjsh(String sjsh) {
 		this.sjsh = sjsh;
 	}
-	public String getShtime() {
+	
+	public Date getShtime() {
 		return shtime;
 	}
-	public void setShtime(String shtime) {
+	public void setShtime(Date shtime) {
 		this.shtime = shtime;
 	}
 	public String getPfsj() {
