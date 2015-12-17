@@ -1309,6 +1309,7 @@ function sbsjyb(index){
 	if(yhjb.length==9||yhjb.length==8){
 		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=7"+"&gcglwqgz.yhtype=9"+"&gcglwqgz.jhid="+data1.jhid;
 	}
+	if(parent.obj.tsdq!=null)
 	if(parent.obj.tsdq.indexOf('省直管试点县')!=-1){
 		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=7"+"&gcglwqgz.yhtype=9"+"&gcglwqgz.jhid="+data1.jhid;
 	}

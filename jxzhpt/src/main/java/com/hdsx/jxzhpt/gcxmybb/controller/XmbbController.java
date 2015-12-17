@@ -142,8 +142,11 @@ public class XmbbController extends BaseActionSupport{
 		int nian=a.get(Calendar.YEAR);
 		String json="";
 		String json1="[";
-		for (int i = nian; i >= 2011; i--) {
+		for (int i = nian+5; i >= 2011; i--) {
+			if(i==nian)
 				json=json+"{id:"+i+",text:"+i+"年,iconCls:'icon-none',checked:'true'},";
+			else 
+				json=json+"{id:"+i+",text:"+i+"年,iconCls:'icon-none'},";
 		}
 		try {
 			JsonUtils.write(json1+json+"]", getresponse().getWriter());
