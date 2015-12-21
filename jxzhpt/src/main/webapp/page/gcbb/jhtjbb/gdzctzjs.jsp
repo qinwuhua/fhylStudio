@@ -50,6 +50,7 @@ a:active {
 </style>
 <script type="text/javascript">
 $(function(){
+	
 	selYearList("year");
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqh",$.cookie("dist"));
@@ -80,11 +81,17 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
+	var dwlx='';
+	if($.cookie("unit").substr(0,1)=='1'){
+		dwlx='交通局';
+	}else{
+		dwlx='公路局';
+	}
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getGdzctzjs.do',
 		dataType:"json",
-		data:"dist="+xzqhstr+"&unit="+gydwstr+"&nf="+$("#year").combotree("getValue"),
+		data:"dist="+xzqhstr+"&unit="+gydwstr+"&nf="+$("#year").combotree("getValue")+"&dwlx="+dwlx,
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -93,13 +100,15 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 					str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
 						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
 						+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
-						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
+						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"
+						/* +"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
 						+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>"
 						+"<td>"+msg[i].v_20+"</td>"+"<td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+"<td>"+msg[i].v_23+"</td>"
 						+"<td>"+msg[i].v_24+"</td>"+"<td>"+msg[i].v_25+"</td>"+"<td>"+msg[i].v_26+"</td>"+"<td>"+msg[i].v_27+"</td>"
 						+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"+"<td>"+msg[i].v_30+"<td>"+msg[i].v_31+"</td>"+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"
 						+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_7+"</td>"
-						+"<td>"+msg[i].v_38+"</td>"+"<td>"+msg[i].v_39+"</td></tr>";
+						+"<td>"+msg[i].v_38+"</td>"+"<td>"+msg[i].v_39+"</td>" */
+						+"</tr>";
 				}
 			}else{
 				str+="<tr align='center'><td colspan='22'>暂无数据</td></tr>";
@@ -132,7 +141,13 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var data="flag=flag&nf="+$("#year").combotree("getValue");
+	var dwlx='';
+	if($.cookie("unit").substr(0,1)=='1'){
+		dwlx='交通局';
+	}else{
+		dwlx='公路局';
+	}
+	var data="flag=flag&nf="+$("#year").combotree("getValue")+"&dwlx="+dwlx;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/gcbb/getGdzctzjs.do?'+data;
 	 });
@@ -182,39 +197,17 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table id="bbtable" class="table_body" width="2700px" >
+							<table id="bbtable" class="table_body" width="1700px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年交通固定资产投资建设计划(路网结构改造)</caption>
 								<thead>
 									<tr>
 										<td rowspan="3" style="width: 135px">项目所在地区</td>
-										<td colspan="12">危桥</td>
-										<td colspan="12">安保</td>
-										<td colspan="12">灾害</td>
-										<td colspan="3">总计</td>
+										<td colspan="4">危桥</td>
+										<td colspan="4">安保</td>
+										<td colspan="4">灾害</td>
+										<td colspan="1">合计</td>
 									</tr>	
 									<tr>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td>公路局</td>
-										<td>交通局</td>
-										<td>小计</td>
-									</tr>
-									<tr>
-										<td style="width: 55px">座</td>
-										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">座</td>
-										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
 										<td style="width: 140px">总投资(万元)</td>
@@ -226,24 +219,6 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
 										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 140px">补助资金(万元)</td>
 									</tr>

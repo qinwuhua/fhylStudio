@@ -74,8 +74,17 @@ public class SjbbMessage   implements Serializable {
 	private String unit;
 	private String nf;
 	private String sbdw;
+	private String dwlx;
 	
-    public String toString(){
+    public String getDwlx() {
+		return dwlx;
+	}
+
+	public void setDwlx(String dwlx) {
+		this.dwlx = dwlx;
+	}
+
+	public String toString(){
     	return "SjbbMessage:"+
     			this.v_0+" "+
     			this.v_1+" "+

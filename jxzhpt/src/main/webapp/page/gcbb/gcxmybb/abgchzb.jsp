@@ -30,10 +30,7 @@
 			var y = myDate.getFullYear();
 			var arr = new Array(); 
 			var i=0;
-			for(var x=y;x>=2011;x--){
-				arr[i]=x+'';
-				i++;
-			}
+			arr[i]=y;
 			$("#jhxdnf").combotree("setValues",arr);
 			showAll();
 		});
@@ -56,18 +53,22 @@
 			var biaotou = $("#biaotou");
 			var str1='';
 			var str2='';
+			var str3='';
 			var min=xmnf[xmnf.length-1];
 			var max=xmnf[0];
-			var len=(xmnf.length+1)*500+"px";
+			var len=(xmnf.length+1)*700+"px";
 			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
-				str1=str1+'<td colspan="5">'+xmnf[i]+'年度</td>';
-				str2=str2+'<td>计划(公里)</td><td>完成情况(公里)</td><td>完成投资(万元)</td><td>本年完成投资(万元)</td><td>完成率(%)</td>';
+				str1=str1+'<td colspan="11">'+xmnf[i]+'年度</td>';
+				str2=str2+'<td colspan="2">计划项目</td><td colspan="2">完工项目</td><td colspan="2">在建项目</td><td colspan="2">未开工项目</td><td rowspan="2">完成投资(万元)</td><td rowspan="2">本年完成投资(万元)</td><td rowspan="2">完成率(%)</td>';
+				str3=str3+'<td>个数</td><td>公里</td><td>个数</td><td>公里</td><td>个数</td><td>公里</td><td>个数</td><td>公里</td>';
 			}
-			biaotstr='<tr><td rowspan="2">设区市交通局</td><td colspan="5">合计</td>'
+			biaotstr='<tr><td rowspan="3">设区市交通局</td><td colspan="11">合计</td>'
 			+str1+'</tr>'
-			+'<td>计划(公里)</td><td>完成情况(公里)</td><td>完成投资(万元)</td><td>本年完成投资(万元)</td><td>完成率(%)</td>'
-			+str2+'</tr>';
+			+'<td rowspan="1" colspan="2">计划项目</td><td colspan="2">完工项目</td><td colspan="2">在建项目</td><td colspan="2">未开工项目</td><td rowspan="2">完成投资(万元)</td><td rowspan="2">本年完成投资(万元)</td><td rowspan="2">完成率(%)</td>'
+			+str2+'</tr>'
+			+'<td>个数</td><td>公里</td><td>个数</td><td>公里</td><td>个数</td><td>公里</td><td>个数</td><td>公里</td>'
+			+str3+'</tr>';
 			biaotou.empty();
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
@@ -84,23 +85,38 @@
 						for ( var i = 0; i < msg.length; i++) {
 										var strs="";
 										for(var j=xmnf.length-1;j>=0;j--){
-											var s1="JH"+xmnf[j];
-											var s2="WCJH"+xmnf[j];
-											var s3="WC"+xmnf[j];
-											var s4="BNWC"+xmnf[j];
-											var s5="WCL"+xmnf[j];
+											var s1="JHSL"+xmnf[j];
+											var s2="JHYM"+xmnf[j];
+											var s3="WCSL"+xmnf[j];
+											var s4="WCYM"+xmnf[j];
+											var s5="ZJSL"+xmnf[j];
+											var s6="ZJYM"+xmnf[j];
+											var s7="WKSL"+xmnf[j];
+											var s8="WKYM"+xmnf[j];
+											var s9="WC"+xmnf[j];
+											var s10="BNWC"+xmnf[j];
+											var s11="WCL"+xmnf[j];
 											if(j==0)
 												strs=strs+msg[i][s1].toFixed(2)+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
 												+msg[i][s3]+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
-												+msg[i][s5]+"</td>";
+												+msg[i][s5]+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+												+msg[i][s7]+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
+												+msg[i][s9]+"</td><td>"+msg[i][s10].toFixed(2)+"</td><td>"
+												+msg[i][s11]+"</td>";
 											else
 											strs=strs+msg[i][s1].toFixed(2)+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
 											+msg[i][s3]+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
-											+msg[i][s5]+"</td><td>";
+											+msg[i][s5]+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>"
+											+msg[i][s7]+"</td><td>"+msg[i][s8].toFixed(2)+"</td><td>"
+											+msg[i][s9]+"</td><td>"+msg[i][s10].toFixed(2)+"</td><td>"
+											+msg[i][s11]+"</td><td>";
 										}
 										tbodystr=tbodystr+"<tr><td>"+msg[i].XZQHMC+"</td><td>"
-										+msg[i].JH.toFixed(2)+"</td><td>"+msg[i].WCJH.toFixed(2)+"</td><td>"
-										+msg[i].WC.toFixed(2)+"</td><td>"+msg[i].BNWC.toFixed(2)+"</td><td>"
+										+msg[i].JHSL+"</td><td>"+msg[i].JHYM.toFixed(2)+"</td><td>"
+										+msg[i].WCSL+"</td><td>"+msg[i].WCYM.toFixed(2)+"</td><td>"
+										+msg[i].ZJSL+"</td><td>"+msg[i].ZJYM.toFixed(2)+"</td><td>"
+										+msg[i].WKSL+"</td><td>"+msg[i].WKYM.toFixed(2)+"</td><td>"
+										+msg[i].WC+"</td><td>"+msg[i].BNWC.toFixed(2)+"</td><td>"
 										+msg[i].WCL+"</td><td>"+strs+"</tr>";
 					}
 						tbody.append(tbodystr);
