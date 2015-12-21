@@ -23,6 +23,28 @@ public class Jhsh {
 				+ yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc="
 				+ silc + ", dwlc=" + dwlc + ", wllc=" + wllc + "]";
 	}
+	private String yhdk;
+	private String gz;
+	private String sz;
+	
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	private String id;//ID
 	private String xmmc;//项目名称
 	private String xmbm;//项目编码

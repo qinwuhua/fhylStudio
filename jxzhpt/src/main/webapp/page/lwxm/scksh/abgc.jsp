@@ -49,7 +49,7 @@ function xgShzt(){
 	}
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
-		nf+=","+rows[i].xmnf;
+		nf+=","+rows[i].scxmnf;
 		tbbmbm+=","+rows[i].tbbmbm;
 	}
 	if(confirm('您确定审核通过该项目？')){

@@ -39,7 +39,7 @@ function xgShzt(){
 		return;
 	}
 	var sckid=rows[0].sckid;
-	var nf=rows[0].xmnf;
+	var nf=rows[0].scxmnf;
 	var tbbmbm=rows[0].tbbmbm;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_shzt=='已审核'){
