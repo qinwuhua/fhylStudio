@@ -41,7 +41,7 @@
 					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
 			loadLj(params);
-			grid.height=$(window).height()-200;
+			grid.height=$(window).height()-195;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;

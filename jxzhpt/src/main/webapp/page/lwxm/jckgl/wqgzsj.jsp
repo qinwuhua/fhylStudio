@@ -276,7 +276,7 @@ var xzqhstr;
 			    rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:$(window).height()-200,
+			    height:$(window).height()-195,
 				width:$(window).width()-10,
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
