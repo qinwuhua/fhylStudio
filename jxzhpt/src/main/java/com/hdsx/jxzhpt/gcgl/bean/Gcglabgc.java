@@ -126,7 +126,28 @@ public class Gcglabgc implements Serializable {
 	private String gldj;
 	private String jsdj;
 	private String ljbfzt;
+	private String yhdk;
+	private String gz;
+	private String sz;
 	
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
 	public String getLjbfzt() {
 		return ljbfzt;
 	}

@@ -33,8 +33,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
-	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
+	//YMLib.UI.createWindow('wqxx','改建工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','改建工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("gcgzsjxx.jsp");
 }
 function zjdw(index){
@@ -169,7 +169,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -258,7 +258,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,

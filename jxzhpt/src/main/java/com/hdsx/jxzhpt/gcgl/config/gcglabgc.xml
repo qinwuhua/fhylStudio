@@ -81,8 +81,8 @@
 	
 		<!-- 添加车购税 -->
 	<insert id="insertAbgcCgs" parameterType="gcglabgc">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
+		insert into GCGL_CGS(id<if test="jhid !=null">,jhid</if><if test="cgsdwzj !=null">,cgsdwzj</if><if test="tbr !=null">,tbr</if><if test="tbyf !=null">,tbyf</if><if test="tbsj !=null">,tbsj</if><if test="stz !=null">,stz</if><if test="cscyj !=null">,cscyj</if><if test="yhdk !=null">,yhdk</if><if test="gz !=null">,gz</if><if test="sz !=null">,sz</if>)
+		values(sys_guid()<if test="jhid !=null">,#{jhid}</if><if test="cgsdwzj !=null">,#{cgsdwzj}</if><if test="tbr !=null">,#{tbr}</if><if test="tbyf !=null">,#{tbyf}</if><if test="tbsj !=null">,#{tbsj}</if><if test="stz !=null">,#{stz}</if><if test="cscyj !=null">,#{cscyj}</if><if test="yhdk !=null">,#{yhdk}</if><if test="gz !=null">,#{gz}</if><if test="sz !=null">,#{sz}</if>)
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglwqgz" resultType="gcglabgc">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -274,7 +274,7 @@
 	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
 		from JHSH_LMGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">
@@ -308,7 +308,7 @@
 	<select id="exportxjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
 		from JHSH_XJ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">
@@ -365,7 +365,7 @@
 	 <select id="exportsjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
 		from JHSH_SJGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">
@@ -421,7 +421,7 @@
 	<select id="exportshyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,0,4) v_2,t.jhkgsj v_3,t.jhwgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.jhkgsj v_3,t.jhwgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
 		from JHSH_SH t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">

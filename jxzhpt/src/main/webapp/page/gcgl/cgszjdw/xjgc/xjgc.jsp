@@ -70,7 +70,7 @@
 			var weatherDlg = new J.dialog( {
 				id : 'id4',
 				title : '车购税信息导入',
-				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS.do"+'&flag='+flag,
+				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS2.do"+'&flag='+flag,
 				width : 570,
 				height : 440,
 				top : 0,

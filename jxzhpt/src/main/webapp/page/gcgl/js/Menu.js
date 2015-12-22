@@ -751,7 +751,7 @@ $(function() {
 //	});
 //	createMenux('LeftMenu',{
 //		id:'menu6',
-//		title:'升级改造工程项目',
+//		title:'改建工程项目',
 //		imgSrc:'../../images/sj_s.png',
 //		renderTo:'left_menu6',
 //		href:'./lxxx.jsp'

@@ -85,7 +85,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-220,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -143,7 +143,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-220,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,

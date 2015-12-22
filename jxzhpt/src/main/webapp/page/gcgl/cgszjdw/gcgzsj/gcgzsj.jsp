@@ -72,7 +72,7 @@
 			var weatherDlg = new J.dialog( {
 				id : 'id4',
 				title : '车购税信息导入',
-				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS.do"+'&flag='+flag,
+				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS2.do"+'&flag='+flag,
 				width : 570,
 				height : 440,
 				top : 0,
@@ -107,7 +107,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;升级改造工程项目</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;改建工程项目</div>
 					</div>
 	            
         	</tr>
