@@ -4,7 +4,7 @@ public class Plan_lx_gcsj {
 	private String id;//项目唯一编号
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
-	private String ylxbm;//原路线编码
+	private String ylxbm;//路线编码
 	private String xzqhdm;//行政区划代码
 	private String xzqhmc;//行政区划名称
 	private String qdzh;//七点桩号

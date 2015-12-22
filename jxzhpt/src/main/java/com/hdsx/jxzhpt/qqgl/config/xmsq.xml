@@ -94,7 +94,7 @@
 	<select id="queryTsdq" parameterType="xmsq" resultType="string">
 		<![CDATA[SELECT DISTINCT X.NAME FROM XTGL_XZQHTSDQ T,XTGL_TSDQ X WHERE T.XZQHDM IN(
 		select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{ylxbh}
-		AND ROADSTART<=${zdzh} AND ROADENDS>=${qdzh}) AND X.ID=T.PARENT]]>
+		AND ROADSTART<=${zdzh} AND ROADENDS>=${qdzh}) AND X.ID=T.PARENT  AND X.NAME NOT LIKE '省直管试点县']]> 
 	</select>
 	
 	<insert id="insertXmsqYhdzx" parameterType="java.util.List">

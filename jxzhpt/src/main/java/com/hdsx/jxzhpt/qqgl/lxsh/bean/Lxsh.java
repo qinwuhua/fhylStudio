@@ -77,7 +77,7 @@ public class Lxsh implements Serializable {
 
 	private String jsfa;//建设方案
 	//历史数据字段
-	private String ylxbm;//原路线编码
+	private String ylxbm;//路线编码
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
 	private String jhlc;

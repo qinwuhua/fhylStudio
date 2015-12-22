@@ -82,7 +82,7 @@
 					{field:'gjjsdj',title:'现技术等级',width:100,align:'center'},
 					{field:'xqdzh',title:'现起点桩号',width:100,align:'center'},
 					{field:'xzdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
-					{field:'ylxbm',title:'原路线编码',width:100,align:'center'},
+					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
 				]]
@@ -120,7 +120,7 @@
 					{field:'gjjsdj',title:'现技术等级',width:100,align:'center'},
 					{field:'xqdzh',title:'现起点桩号',width:100,align:'center'},
 					{field:'xzdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
-					{field:'ylxbm',title:'原路线编码',width:100,align:'center'},
+					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
 				]]
@@ -151,7 +151,7 @@
 				<th data-options="field:'gjjsdj',width:100,align:'center'">现技术等级</th>
 				<th data-options="field:'xqdzh',width:100,align:'center'">现起点桩号</th>
 				<th data-options="field:'xzdzh',width:100,align:'center'">现指点桩号</th>
-				<th data-options="field:'ylxbm',width:100,align:'center'">原路线编码</th>
+				<th data-options="field:'ylxbm',width:100,align:'center'">路线编码</th>
 				<th data-options="field:'yqdzh',width:100,align:'center'">原起点桩号</th>
 				<th data-options="field:'yzdzh',width:100,align:'center'">原止点桩号</th>
         	</tr>
