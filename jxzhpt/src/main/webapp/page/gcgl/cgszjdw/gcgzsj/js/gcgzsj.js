@@ -182,6 +182,9 @@ function showAll(){
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglgcgzsj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzsj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzsj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzsj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzsj.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglgcgzsj.ljbfzt':$("#ljbfzt").combobox('getValue')

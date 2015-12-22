@@ -170,6 +170,9 @@ function showAll(){
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
 	    	'gcglyhdzx.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglyhdzx.lxbm':$("#lxbm").val(),
+	    	'gcglyhdzx.xmmc':$("#xmmc").val(),
+	    	'gcglyhdzx.lxmc':$("#lxmc").val(),
 	    	'gcglyhdzx.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglyhdzx.tsdq':$("#ddlTSDQ").combobox('getText')
 		},

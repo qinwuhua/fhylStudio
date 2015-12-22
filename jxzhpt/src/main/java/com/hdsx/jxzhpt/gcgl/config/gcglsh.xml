@@ -294,6 +294,9 @@
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
+	<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -301,6 +304,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -329,6 +335,9 @@
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -336,6 +345,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -384,6 +396,9 @@
 				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
 			</if>
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -391,6 +406,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -440,6 +458,9 @@
 				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
 			</if>
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -447,6 +468,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'

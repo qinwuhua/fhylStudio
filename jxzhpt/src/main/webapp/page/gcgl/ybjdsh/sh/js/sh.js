@@ -169,6 +169,9 @@ function showAll(){
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
 	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglsh.lxbm':$("#lxbm").val(),
+	    	'gcglsh.xmmc':$("#xmmc").val(),
+	    	'gcglsh.lxmc':$("#lxmc").val(),
 	    	'gcglsh.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglsh.tsdq':$("#ddlTSDQ").combobox('getText')
 		},

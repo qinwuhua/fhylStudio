@@ -82,7 +82,7 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("计划下达成功！");
+						alert("审核成功！");
 						closeWindow("jhxd");
 					}
 				},

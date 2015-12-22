@@ -526,6 +526,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzgj.setTiaojian("xjzt");
 		}
+		System.out.println(gcglgcgzgj.getXmmc()+"---------------------");
 		List<Map<String,Object>> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
 		
 		int count=gcglgcgzgjServer.queryGcgjListCount(gcglgcgzgj);
