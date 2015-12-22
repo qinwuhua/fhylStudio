@@ -75,6 +75,20 @@ public class LxshController extends BaseActionSupport{
 	private String wgny;
 	private String xmlx;
 	private Lx lx;
+	private String lxmc;
+	
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public LxshServer getLxshServer() {
+		return lxshServer;
+	}
+	public void setLxshServer(LxshServer lxshServer) {
+		this.lxshServer = lxshServer;
+	}
 	private Wqbzbz wqbzbz=new Wqbzbz();
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
@@ -469,6 +483,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
 			int count=lxshServer.selectSjgzListCount(lxsh);
 			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -515,6 +531,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			Map<String, String> result = lxshServer.queryLxshLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -555,6 +573,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			System.out.println("--"+jsdj+"--");
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
@@ -596,6 +616,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setLxmc(lxmc);
 		List<Lxsh> list=lxshServer.selectXjList(lxsh);
 		int count=lxshServer.selectXjListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -640,6 +662,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			Map<String, String> result = lxshServer.queryLxshLjXj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -681,6 +705,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			Map<String, String> result = lxshServer.queryLxshShLjXj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -896,6 +922,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setLxmc(lxmc);
 		System.out.println(lxsh.getSbzt1());
 		List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
 		int count=lxshServer.selectSjgzshListCount(lxsh);
@@ -940,6 +968,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setLxmc(lxmc);
 		List<Lxsh> list=lxshServer.selectLmgzshList(lxsh);
 		int count=lxshServer.selectLmgzshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -982,6 +1012,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setLxmc(lxmc);
 		List<Lxsh> list=lxshServer.selectXjshList(lxsh);
 		int count=lxshServer.selectXjshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1078,6 +1110,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setLxmc(lxmc);
 		List<Lxsh> list=lxshServer.selectLmgzList(lxsh);
 		int count=lxshServer.selectLmgzListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1123,6 +1157,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			Map<String, String> result = lxshServer.queryLxshLjLmgz(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -1165,6 +1201,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
 			Map<String, String> result = lxshServer.queryLxshShLjLmgz(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {

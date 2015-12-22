@@ -404,7 +404,7 @@ function showAll(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmsj.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -434,7 +434,9 @@ function showAll(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,
+			ghlxbh:$("#lxbm").val(),
+			lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -654,7 +656,7 @@ function showAllsjsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmsj.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -683,7 +685,7 @@ function showAllsjsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -821,7 +823,7 @@ function showAlllmgz(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmgz.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -851,7 +853,7 @@ function showAlllmgz(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -984,7 +986,7 @@ function showAlllmsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmgz.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -1013,7 +1015,7 @@ function showAlllmsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1150,7 +1152,7 @@ function showAllxj(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjXj.do',
-		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -1179,7 +1181,7 @@ function showAllxj(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1308,7 +1310,7 @@ function showAllxjsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjXj.do',
-		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -1336,7 +1338,7 @@ function showAllxjsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

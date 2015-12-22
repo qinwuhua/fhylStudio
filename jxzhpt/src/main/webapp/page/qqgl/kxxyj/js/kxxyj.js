@@ -644,7 +644,9 @@ function showAllsjsh(){
 //			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -787,7 +789,9 @@ function showAlllmsh(){
 //			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -931,7 +935,9 @@ function showAllxjsh(){
 //			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

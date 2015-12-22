@@ -530,7 +530,7 @@ function showgjtj(xmlx){
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
-	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+"&xmlx="+xmlx+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
+	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -596,7 +596,9 @@ function showAllgj(){
 			jsdj:jsdj,
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
-			'lxsh.xmmc':$("#xmmc").val()
+			'lxsh.xmmc':$("#xmmc").val(),
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -721,7 +723,9 @@ function showAlllm(){
 			jsdj:jsdj,
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
-			'lxsh.xmmc':$("#xmmc").val()
+			'lxsh.xmmc':$("#xmmc").val(),
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -847,7 +851,9 @@ function showAllxj(){
 			jsdj:jsdj,
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
-			'lxsh.xmmc':$("#xmmc").val()
+			'lxsh.xmmc':$("#xmmc").val(),
+			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.lxmc':$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -955,7 +961,7 @@ function dcwnjhExcel(str){
 	}
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
-	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
+	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcwnjhExcel.do?'+data;
 	 });
