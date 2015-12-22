@@ -129,10 +129,18 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanztz').html(msg.ZTZ);
-					$('#spansbz').html(msg.SYSBB);
-					$('#spanbcgs').html(msg.YQDBCGS);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanztz').html(msg.ZTZ);
+						$('#spansbz').html(msg.SYSBB);
+						$('#spanbcgs').html(msg.YQDBCGS);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanztz').html("0");
+						$('#spansbz').html("0");
+						$('#spanbcgs').html("0");
+						$('#spanlc').html("0");
+					}
+					
 				}
 			});
 		}

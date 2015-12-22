@@ -94,9 +94,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}
