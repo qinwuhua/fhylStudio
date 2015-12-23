@@ -345,7 +345,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		if(lx.getGydwdm().equals("36")){
 			lx.setGydwdm(null);
 		}
-		//此处遍历查询资金下达模块的所有项目
+		//此处遍历查询计划资金下达模块的所有项目
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_zhfz item : zhfzServer.queryZhfzList(jh, lx)) {
@@ -361,7 +361,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			excelData.add(zjxd);
 		}
 		ExcelEntity excel=new ExcelEntity("灾害防治",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "灾害防治-资金下达", getresponse());
+		ExcelExportUtil.excelWrite(excel, "灾害防治-计划资金下达", getresponse());
 	}
 	public void exportExcelZhfzJhSh(){
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));

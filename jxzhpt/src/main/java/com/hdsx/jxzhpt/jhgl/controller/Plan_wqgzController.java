@@ -375,7 +375,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 		}
 	}
 	/**
-	 * 导出危桥资金下达Excel
+	 * 导出危桥计划资金下达Excel
 	 */
 	public void exportWqgzZjxdExcel(){
 		//设置表头
@@ -406,7 +406,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 		if(lx.getGydwdm().equals("36")){
 			lx.setGydwdm(null);
 		}
-		//此处遍历查询资金下达模块的所有项目
+		//此处遍历查询计划资金下达模块的所有项目
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_wqgz item : wqgzServer.queryWqgzList(jh, lx)) {
@@ -422,7 +422,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 			excelData.add(zjxd);
 		}
 		ExcelEntity excel=new ExcelEntity("危桥改造",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "危桥改造-资金下达", getresponse());
+		ExcelExportUtil.excelWrite(excel, "危桥改造-计划资金下达", getresponse());
 	}
 	/**
 	 * 查询危桥自己
