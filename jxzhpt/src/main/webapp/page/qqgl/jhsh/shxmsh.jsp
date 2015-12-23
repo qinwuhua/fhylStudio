@@ -221,14 +221,14 @@ text-decoration:none;
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:135px;"></select></td>
 							<td>原路线编号：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
-       						<td align="right">下达状态：</td>
-							<td>
-       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
-	       							<option value="-1" selected="selected">全部</option>
-	       							<option value="0">未下达</option>
-	       							<option value="1">已下达</option>
-       							</select>
-       						</td>
+       						<td align="right">审核状态：</td>
+								<td>
+	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
+		       							<option value="-1" selected="selected">全部</option>
+		       							<option value="0">未审核</option>
+		       							<option value="1">已审核</option>
+	       							</select>
+	       						</td>
        						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
 									<option value="" selected="selected">全部</option>

@@ -226,12 +226,12 @@ text-decoration:none;
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:124px;"></select></td>
 								<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:120px;" /></td>
-        						<td align="right">下达状态：</td>
+        						<td align="right">审核状态：</td>
 								<td>
 	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
 		       							<option value="-1" selected="selected">全部</option>
-		       							<option value="0">未下达</option>
-		       							<option value="1">已下达</option>
+		       							<option value="0">未审核</option>
+		       							<option value="1">已审核</option>
 	       							</select>
 	       						</td>
         						<td>补助历史：</td>
