@@ -431,4 +431,9 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		return list;
 	}
 
+	@Override
+	public boolean ybyshbwsh(Gcglwqgz gcglwqgz) {
+		return update("ybyshbwsh", gcglwqgz)==1;
+	}
+
 }

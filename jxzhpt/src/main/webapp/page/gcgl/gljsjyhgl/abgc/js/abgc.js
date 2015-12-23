@@ -724,8 +724,8 @@ function showYBlist__ck(){
 		if(yhjb.length==9||yhjb.length==8||yhjb.length==2){
 			data="gcglabgc.id="+data1.id+"&gcglabgc.sfsj=7"+"&gcglabgc.yhtype=9"+"&gcglabgc.jhid="+data1.jhid;
 		}
-		if(parent.obj.tsdq!=null)
-		if(parent.obj.tsdq.indexOf('省直管试点县')!=-1){
+		if(parent.obj1.tsdq!=null)
+		if(parent.obj1.tsdq.indexOf('省直管试点县')!=-1){
 			data="gcglabgc.id="+data1.id+"&gcglabgc.sfsj=7"+"&gcglabgc.yhtype=9"+"&gcglabgc.jhid="+data1.jhid;
 		}
 		if(confirm("确认上报吗？")){

@@ -68,9 +68,17 @@
 	</update>
 	<!-- 修改月报状态 -->
 	<update id="sbWqgzYb" parameterType="gcglwqgz">
-		update GCGL_WQGZ set sfsj=#{sfsj} <!-- , shzt='已审核' , xgcsyj='同意' -->
+		update GCGL_WQGZ set sfsj=#{sfsj} 
+		<if test="sfsj == 7">
+		, shzt='已审核' , xgcsyj='同意',shtime=sysdate
+		</if>
+		
 		where id=#{id}
 	</update>
+	<update id="ybyshbwsh" parameterType="gcglwqgz">
+		update ${xmlx} set shzt='未审核' where 1=1 and jhid=#{jhid} and id=#{id} 
+	</update>
+	
 	<!-- 删除月报 -->
 	<delete id="deleteWqgzYb" parameterType="gcglwqgz">
 		delete from GCGL_WQGZ where id=#{id}
