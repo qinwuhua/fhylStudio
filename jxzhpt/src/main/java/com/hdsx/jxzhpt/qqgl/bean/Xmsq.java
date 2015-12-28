@@ -17,7 +17,7 @@ public class Xmsq {
 	private String ntz;//拟投资
 	private String jhkgsj;//计划开工时间
 	private String jhwgsj;//计划完工时间
-	private String gq;//工期
+	private String gq;//工期（月）
 	private String tsdq;//特殊地区
 	private String gydw;//管养单位
 	private String gydwdm;//管养单位代码

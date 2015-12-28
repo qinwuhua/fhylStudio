@@ -103,7 +103,7 @@
 				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期',width:100,align:'center'},
+				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'pfsj',title:'批复时间',width:100,align:'center'},

@@ -53,7 +53,7 @@ public class Cbsj {
 	private String sd_lx;//隧道类型
 	private String kgsj;//开工时间
 	private String wgsj;//完工时间
-	private String gq;//工期
+	private String gq;//工期（月）
 	private String sjdw;//设计单位
 	private String sjpfwh;//设计批复文号
 	private String pfsj;//批复时间

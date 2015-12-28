@@ -365,11 +365,11 @@ a{text-decoration:none;}
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.jhwgsj" name="xmsq" value="x.jhwgsj-计划完工时间"/>计划完工时间</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="x.gq" name="xmsq" value="x.gq-工期"/>工期</td>
+									<td><input type="checkbox" id="x.gq" name="xmsq" value="x.gq-工期（月）"/>工期（月）</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.gcfl" name="xmsq" value="x.gcfl-工程分类"/>工程分类</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="x.tsdq" name="xmsq" value="x.tsdq-工期"/>特殊地区</td>
+									<td><input type="checkbox" id="x.tsdq" name="xmsq" value="x.tsdq-工期（月）"/>特殊地区</td>
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.jsfa" name="xmsq" value="x.jsfa-建设方案"/>建设方案</td>
 								</tr>
 								<tr>
@@ -410,7 +410,7 @@ a{text-decoration:none;}
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="c.wgsj" name="cbsj" value="c.wgsj-完工时间"/>完工时间</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="c.gq" name="cbsj" value="c.gq-工期"/>工期</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="c.gq" name="cbsj" value="c.gq-工期（月）"/>工期（月）</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="c.sjdw" name="cbsj" value="c.sjdw-设计单位"/>设计单位</td>

@@ -489,7 +489,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[4]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
 		title[5]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
 		title[6]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
-		title[7]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)7), null,20);
+		title[7]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)7), null,20);
 		title[8]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)8), null,20);
 		title[9]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)9), null,20);
 		title[10]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)10), null,20);
@@ -506,7 +506,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("4", "zdzh");//止点桩号
 		attribute.put("5", "kgsj");//开工时间
 		attribute.put("6", "wgsj");//完工时间
-		attribute.put("7", "gq");//工期
+		attribute.put("7", "gq");//工期（月）
 		attribute.put("8", "gkpfwh");//工可批复文号
 		attribute.put("9", "sjpfwh");//设计批复文号
 		attribute.put("10", "xdwh");//计划下达文号
@@ -557,7 +557,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void exportJhshYhdzx(){
 		//设置表头、列与字段对应
 		String fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区号,fieid=xzqh>,<title=开工时间,fieid=kgsj>," +
-				"<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=下达文号,fieid=xdwh>,<title=下达时间,fieid=xdsj>," +
+				"<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=下达文号,fieid=xdwh>,<title=下达时间,fieid=xdsj>," +
 				"<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=以确定部车购税,fieid=yqdbcgs>,<title=原路线编号,fieid=ylxbh>," +
 				"<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
 				"<title=里程,fieid=lc>,<title=面层路面类型,fieid=mclmlx>,<title=面层材料类型,fieid=mclx>,<title=面层数量,fieid=mcsl>," +
@@ -634,7 +634,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
 		title[3]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)3), null,20);
 		title[4]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)4), null,20);
-		title[5]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)5), null,20);
+		title[5]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)5), null,20);
 		title[6]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)6), null,20);
 		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,20);
 		title[8]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)8), null,20);
@@ -655,7 +655,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("2", "xzqh");//行政区划
 		attribute.put("3", "kgsj");//开工时间
 		attribute.put("4", "wgsj");//完工时间
-		attribute.put("5", "gq");//工期
+		attribute.put("5", "gq");//工期（月）
 		attribute.put("6", "sjpfwh");//设计批复文号
 		attribute.put("7", "xdwh");//计划下达文号
 		attribute.put("8", "xdsj");//计划下达时间
@@ -709,7 +709,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("2", "xzqh");//行政区划
 		attribute.put("3", "kgsj");//开工时间
 		attribute.put("4", "wgsj");//完工时间
-		attribute.put("5", "gq");//工期
+		attribute.put("5", "gq");//工期（月）
 		attribute.put("6", "sjpfwh");//设计批复文号
 		attribute.put("7", "xdwh");//计划下达文号
 		attribute.put("8", "xdsj");//计划下达时间
@@ -826,7 +826,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("4", "zdzh");//止点桩号
 		attribute.put("5", "kgsj");//开工时间
 		attribute.put("6", "wgsj");//完工时间
-		attribute.put("7", "gq");//工期
+		attribute.put("7", "gq");//工期（月）
 		attribute.put("8", "gkpfwh");//工可批复文号
 		attribute.put("9", "sjpfwh");//设计批复文号
 		attribute.put("10", "xdwh");//计划下达文号
