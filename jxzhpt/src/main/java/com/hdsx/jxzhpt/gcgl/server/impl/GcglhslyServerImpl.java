@@ -128,10 +128,10 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 
 	@Override
 	public Boolean insertHslyCgs(Gcglhsly gcglhsly) {
-		Gcglhsly gcglwqgz1=queryOne("queryCGSByYf", gcglhsly);
+		/*Gcglhsly gcglwqgz1=queryOne("queryCGSByYf", gcglhsly);
 		if(gcglwqgz1!=null){
 			return false;
-		}
+		}*/
 		if(insert("insertHslyCgs", gcglhsly)>0){
 			return true;
 		}else{

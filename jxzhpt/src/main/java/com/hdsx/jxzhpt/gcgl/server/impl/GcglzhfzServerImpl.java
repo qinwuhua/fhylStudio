@@ -132,10 +132,10 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 
 	@Override
 	public Boolean updateZhfzCgs(Gcglzhfz gcglzhfz) {
-		Gcglzhfz gcglwqgz1=queryOne("queryCGSByYf", gcglzhfz);
+		/*Gcglzhfz gcglwqgz1=queryOne("queryCGSByYf", gcglzhfz);
 		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglzhfz.getId())){
 			return false;
-		}
+		}*/
 		if(update("updateZhfzCgs", gcglzhfz)>0){
 			return true;
 		}else{

@@ -56,7 +56,7 @@ public class Gcglhsly implements Serializable {
 	private String sgtpfwh;
 	private String zyjsnr;
 	private String xzscl;
-	private Date xdsj;
+	private String xdsj;
 	private Date sjkgsj;
 	private Date yjwgsj;
 	private Date sjwgsj;
@@ -509,10 +509,10 @@ public class Gcglhsly implements Serializable {
 	public void setXzscl(String xzscl) {
 		this.xzscl = xzscl;
 	}
-	public Date getXdsj() {
+	public String getXdsj() {
 		return xdsj;
 	}
-	public void setXdsj(Date xdsj) {
+	public void setXdsj(String xdsj) {
 		this.xdsj = xdsj;
 	}
 	public Date getSjkgsj() {

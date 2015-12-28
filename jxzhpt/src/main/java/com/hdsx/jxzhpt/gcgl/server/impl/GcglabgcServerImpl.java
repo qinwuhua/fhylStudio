@@ -160,10 +160,6 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 
 	@Override
 	public Boolean insertAbgcCgs(Gcglabgc gcglabgc) {
-		Gcglabgc gcglwqgz1=queryOne("queryCGSByYf", gcglabgc);
-		if(gcglwqgz1!=null){
-			return false;
-		}
 		if(insert("insertAbgcCgs", gcglabgc)>0){
 			return true;
 		}else{

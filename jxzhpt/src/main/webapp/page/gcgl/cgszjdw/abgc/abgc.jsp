@@ -155,6 +155,10 @@ a:active {
 								</select>
 								</p>
 								<p style="margin: 1% 0% 1% 2%;">
+								<span>路线编码：</span>
+        							<input type="text" id="lxbm" style="width: 138px;">
+        						<span>下达年份：</span>
+        							<input type="text" id="xdnf" style="width: 100px;">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="showAll()"/>
                            		 <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

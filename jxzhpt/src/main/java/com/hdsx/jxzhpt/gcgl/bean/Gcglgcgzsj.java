@@ -106,7 +106,7 @@ public class Gcglgcgzsj implements Serializable {
 	private String jhsybzje;
 	private String jhsydfzcje;
 	
-	private Date xdsj;
+	private String xdsj;
 	private String sjkgsj;
 	private String sjwgsj;
 	private String kgzt;
@@ -763,13 +763,12 @@ public class Gcglgcgzsj implements Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public Date getXdsj() {
+	public String getXdsj() {
 		return xdsj;
 	}
-	public void setXdsj(Date xdsj) {
+	public void setXdsj(String xdsj) {
 		this.xdsj = xdsj;
 	}
-
 	public String getKgzt() {
 		return kgzt;
 	}

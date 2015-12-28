@@ -61,7 +61,7 @@ function tjabgccgs(){
 				parent.shezhi();
 				closes('wqxx');
 			}else{
-				alert('该月车购税可能已存在，保存失败！');
+				alert('保存失败！');
 			}
 		}
 	});	
@@ -168,6 +168,8 @@ function showAll(){
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
 	    	xzqh:xzqhstr,
+	    	'gcglabgc.lxbm':$("#lxbm").val(),
+	    	'gcglabgc.xdsj':$("#xdnf").val(),
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),

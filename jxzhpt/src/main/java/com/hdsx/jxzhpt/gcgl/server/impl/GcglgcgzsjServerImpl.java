@@ -132,10 +132,10 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	
 	@Override
 	public Boolean insertGcgzsjCgs(Gcglgcgzsj gcglgcgzsj) {
-		Gcglgcgzsj gcglwqgz1=queryOne("queryCGSByYf", gcglgcgzsj);
+		/*Gcglgcgzsj gcglwqgz1=queryOne("queryCGSByYf", gcglgcgzsj);
 		if(gcglwqgz1!=null){
 			return false;
-		}
+		}*/
 		if(insert("insertGcgzsjCgs", gcglgcgzsj)>0){
 			return true;
 		}else{

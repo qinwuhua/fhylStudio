@@ -176,6 +176,7 @@ function showAll(){
 	    	sfylrbwqk:'是',
 	    	gydwtj:"and 1=1",
 	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.xdsj':$("#xdnf").val(),
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.ljbfzt':$("#ljbfzt").combobox('getValue')
@@ -312,6 +313,7 @@ function showAll1(){
 	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
 	    	gydwtj:"and gydwbm like '1%'",
 	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.xdsj':$("#xdnf").val(),
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.ljbfzt':$("#ljbfzt").combobox('getValue')
