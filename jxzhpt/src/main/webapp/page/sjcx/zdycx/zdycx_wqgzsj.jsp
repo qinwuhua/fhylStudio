@@ -307,7 +307,7 @@ text-decoration:none;
 						<td style="background-color: #ffffff;" align="left">
 								<input  type="checkbox" value="scpfwh" name="checkbox1" class="part1"/>批复文号</td>
 							<td style="background-color: #ffffff;" align="left">
-							<input  type="checkbox" value="zgq" name="checkbox1" class="part1"/>总工期</td>
+							<input  type="checkbox" value="zgq" name="checkbox1" class="part1"/>总工期（月）</td>
 						</tr>
 						<tr>
 						<td style="background-color: #ffffff;" align="left">

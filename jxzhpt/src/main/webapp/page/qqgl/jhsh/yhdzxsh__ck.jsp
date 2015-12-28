@@ -85,7 +85,7 @@
 				{field:'jsdj',title:'技术等级',width:100,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期',width:100,align:'center'},
+				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center'},
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},

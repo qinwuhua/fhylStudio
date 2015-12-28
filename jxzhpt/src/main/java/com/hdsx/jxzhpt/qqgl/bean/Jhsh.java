@@ -53,7 +53,7 @@ public class Jhsh {
 	private String zdzh;//止点桩号
 	private String kgsj;//开工时间
 	private String wgsj;//完工时间
-	private String gq;//工期
+	private String gq;//工期（月）
 	private String gkpfwh;//工可批复文号
 	private String sjpfwh;//设计批复文号
 	private String xdwh;//下达文号

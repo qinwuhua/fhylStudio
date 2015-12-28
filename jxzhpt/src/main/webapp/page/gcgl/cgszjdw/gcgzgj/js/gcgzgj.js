@@ -204,7 +204,7 @@ function showAll(){
 		    {field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
 		    {field:'WGSJ',title:'计划完工时间',width:150,align:'center'},
-		    {field:'GQ',title:'工期',width:100,align:'center'},
+		    {field:'GQ',title:'工期（月）',width:100,align:'center'},
 		    {field:'GKPFWH',title:'工可批复文号',width:100,align:'center'},
 		    {field:'SJPFWH',title:'设计批复文号',width:100,align:'center'}
 	    ]],
@@ -293,7 +293,7 @@ function showAll__ck(){
 		    {field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
 		    {field:'WGSJ',title:'计划完工时间',width:150,align:'center'},
-		    {field:'GQ',title:'工期',width:100,align:'center'},
+		    {field:'GQ',title:'工期（月）',width:100,align:'center'},
 		    {field:'GKPFWH',title:'工可批复文号',width:100,align:'center'},
 		    {field:'SJPFWH',title:'设计批复文号',width:100,align:'center'}
 	    ]],

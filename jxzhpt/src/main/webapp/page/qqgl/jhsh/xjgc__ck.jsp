@@ -73,7 +73,7 @@
 				{field:'lc',title:'里程',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期',width:100,align:'center'},
+				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'xdwh',title:'下达文号',width:100,align:'center'},

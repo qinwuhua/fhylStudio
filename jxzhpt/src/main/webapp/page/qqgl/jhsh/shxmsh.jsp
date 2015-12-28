@@ -91,7 +91,7 @@
 				{field:'jsdj',title:'技术等级',width:100,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期',width:100,align:'center'},
+				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助资金',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
