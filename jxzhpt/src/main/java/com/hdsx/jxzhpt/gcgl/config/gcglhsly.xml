@@ -237,7 +237,7 @@
 		ztz,zytz,dfta,gndk,lywz,jsxz,gkpfwh,sgtpfwh,zyjsnr,xzscl,
 		xdsj,sjkgsj,yjwgsj,sjwgsj,sgdw,jldw,jsdw,htje,sgxkwj,jgtcwj,jgyswj,
 		wjgyy,gsztz,sfqxkg,kgzt,jgzt,jh.id jhid,jh.id
-		from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		from PLAN_HSLY jh left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on jh.id=c.jhid
 		where 1=1 
 	<if test="jhnf != null and  jhnf != ''">
 			and jhnf like '%'||trim(#{jhnf})||'%'
@@ -273,7 +273,7 @@
 	</select>
 	 <select id="selectWqgzjhListCount1" parameterType="gcglhsly" resultType="int">
 	 	select count(*) 	
-	 	from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+	 	from PLAN_HSLY jh left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on jh.id=c.jhid
 		where 1=1 
 	<if test="jhnf != null and  jhnf != ''">
 			and jhnf like '%'||trim(#{jhnf})||'%'

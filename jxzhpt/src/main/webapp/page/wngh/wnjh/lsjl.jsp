@@ -53,7 +53,7 @@
 					{field:'jsjsdj',title:'现技术等级',width:100,align:'center'},
 					{field:'qdzh',title:'现起点桩号',width:100,align:'center'},
 					{field:'zdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
-					{field:'ylxbm',title:'原路线编码',width:100,align:'center'},
+					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
 					{field:'xjsdj',title:'原技术等级',width:100,align:'center'},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}

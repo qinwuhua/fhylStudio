@@ -65,7 +65,7 @@
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
@@ -165,7 +165,7 @@ text-decoration:none;
 							<tr height="32">
         						<td>行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td>规划路线编码：</td>
+        						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
 								<td>原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>

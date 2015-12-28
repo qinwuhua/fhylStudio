@@ -85,7 +85,7 @@ public class Gcglzhfz implements Serializable {
 	private String sjsgtlj;
 	private String jhbz;//计划备注
 
-	private Date xdsj;
+	private String xdsj;
 	private Date sjkgsj;
 	private Date yjwgsj;
 	private String sgdw;
@@ -596,10 +596,11 @@ public class Gcglzhfz implements Serializable {
 	public void setJhbz(String jhbz) {
 		this.jhbz = jhbz;
 	}
-	public Date getXdsj() {
+	
+	public String getXdsj() {
 		return xdsj;
 	}
-	public void setXdsj(Date xdsj) {
+	public void setXdsj(String xdsj) {
 		this.xdsj = xdsj;
 	}
 	public Date getSjkgsj() {

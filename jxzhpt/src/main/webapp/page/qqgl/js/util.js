@@ -39,7 +39,7 @@ function xmnf(id){
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 	}
 	$('#'+id).combobox({
 	    data:years,
@@ -595,7 +595,7 @@ function deleteZjxdById(id){
 function openJhxd1(url,index){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
-	openWindow('jhxd','计划下达','/jxzhpt/page/qqgl/jhsh/'+url,920,300);
+	openWindow('jhxd','计划审核','/jxzhpt/page/qqgl/jhsh/'+url,920,300);
 }
 function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];

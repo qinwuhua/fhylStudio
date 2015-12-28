@@ -448,7 +448,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 导出安保工程资金下达Excel
+	 * 导出安保工程计划资金下达Excel
 	 */
 	public void exportAbgcZjxdExcel(){
 		//设置表头
@@ -478,7 +478,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		List<Object> excelData = new ArrayList<Object>();
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-		//此处遍历查询资金下达模块的所有项目
+		//此处遍历查询计划资金下达模块的所有项目
 		for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
 			String strLx=(item.getJckabgc().getLxmc()==null ? "" : item.getJckabgc().getLxmc()+"-" )+
@@ -492,7 +492,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			excelData.add(zjxd);
 		}
 		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "安保工程-资金下达", getresponse());
+		ExcelExportUtil.excelWrite(excel, "安保工程-计划资金下达", getresponse());
 	}
 	public void exportExcelAbgcJhSh(){
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));

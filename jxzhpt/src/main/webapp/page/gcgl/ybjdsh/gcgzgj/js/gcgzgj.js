@@ -158,7 +158,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -169,6 +169,9 @@ function showAll(){
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
 	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzgj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzgj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzgj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
@@ -183,6 +186,7 @@ function showAll(){
 	        }},
 		    {field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'GHLXBH',title : '路线编码',width : 120,align : 'center'},
 		    {field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
@@ -258,7 +262,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,

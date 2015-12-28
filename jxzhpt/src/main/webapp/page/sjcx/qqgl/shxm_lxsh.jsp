@@ -87,7 +87,7 @@
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
+				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},

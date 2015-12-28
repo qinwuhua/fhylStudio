@@ -130,10 +130,10 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 
 	@Override
 	public Boolean insertShCgs(Gcglsh gcglsh) {
-		Gcglsh gcglwqgz1=queryOne("queryCGSByYf", gcglsh);
+		/*Gcglsh gcglwqgz1=queryOne("queryCGSByYf", gcglsh);
 		if(gcglwqgz1!=null){
 			return false;
-		}
+		}*/
 		if(insert("insertShCgs", gcglsh)>0){
 			return true;
 		}else{

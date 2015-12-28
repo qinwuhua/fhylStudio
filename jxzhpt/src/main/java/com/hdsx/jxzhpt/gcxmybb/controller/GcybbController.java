@@ -967,9 +967,12 @@ public class GcybbController extends BaseActionSupport{
 					wkym=wcym+Double.valueOf(hm.get("WKYM"+arr[j]).toString());
 					wc=wc+Double.valueOf(hm.get("WC"+arr[j]).toString());
 					bnwc=bnwc+Double.valueOf(hm.get("BNWC"+arr[j]).toString());
+					if((Double.valueOf(hm.get("XMSL"+arr[j]).toString()))!=0.0||(Double.valueOf(hm.get("XMSL"+arr[j]).toString()))!=0)
+						 hm.put("WCL"+arr[j],(int)((Double.valueOf(hm.get("WCXMSL"+arr[j]).toString())/Double.valueOf(hm.get("XMSL"+arr[j]).toString()))*100)+"");
 				}
-				if(xmsl!=0){
-					wcl=new BigDecimal(wcxmsl).divide(new BigDecimal(xmsl),3).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).toString(); 
+				System.out.println("项目数量"+xmsl+"完成个数"+wcxmsl);
+				if(((int)xmsl)!=0){
+					wcl=(int)((wcxmsl/xmsl)*100)+""; 
 				}else{
 					wcl="0";
 				}
@@ -1104,7 +1107,7 @@ public class GcybbController extends BaseActionSupport{
 				}
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-				Excel_export.excel_exportmxb(eldata,response);
+				Excel_export.excel_export(eldata,response);
 				
 			}else{
 				JsonUtils.write(list, getresponse().getWriter());
@@ -1126,8 +1129,14 @@ public class GcybbController extends BaseActionSupport{
 				    in=in+"'"+arr[j]+"'";
 				else
 					in=in+",'"+arr[j]+"'";
-				sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',jh)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',jh))) jh"+arr[j]+
-							",decode(sum(decode(jhnf,'"+arr[j]+"',wcjh)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcjh))) wcjh"+arr[j]+
+				sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',jhsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',jhsl))) jhsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',jhym)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',jhym))) jhym"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wcsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wcsl))) wcsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wcym)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wcym))) wcym"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',zjsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',zjsl))) zjsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',zjym)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',zjym))) zjym"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wksl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wksl))) wksl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',wkym)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',wkym))) wkym"+arr[j]+
 					        ",decode(sum(decode(jhnf,'"+arr[j]+"',wc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wc))) wc"+arr[j]+
 					        ",decode(sum(decode(jhnf,'"+arr[j]+"',bnwc)),null,0,sum(decode(jhnf,'"+arr[j]+"',bnwc))) bnwc"+arr[j]+""+
 					        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcl)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcl))) wcl"+arr[j]+"";
@@ -1138,25 +1147,45 @@ public class GcybbController extends BaseActionSupport{
 			
 			for(int i=0;i<list.size();i++){
 				HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
-				double jh=0;
-				double wcjh=0;
+				double jhsl=0;
+				double jhym=0;
+				double wcsl=0;
+				double wcym=0;
+				double zjsl=0;
+				double zjym=0;
+				double wksl=0;
+				double wkym=0;
 				double wc=0;
 				double bnwc=0;
 				String wcl="";
 				for(int j=arr.length-1;j>=0;j--){
-					jh=jh+Double.valueOf(hm.get("JH"+arr[j]).toString());
-					wcjh=wcjh+Double.valueOf(hm.get("WCJH"+arr[j]).toString());
+					jhsl=jhsl+Double.valueOf(hm.get("JHSL"+arr[j]).toString());
+					jhym=jhym+Double.valueOf(hm.get("JHYM"+arr[j]).toString());
+					wcsl=wcsl+Double.valueOf(hm.get("WCSL"+arr[j]).toString());
+					wcym=wcym+Double.valueOf(hm.get("WCYM"+arr[j]).toString());
+					zjsl=zjsl+Double.valueOf(hm.get("ZJSL"+arr[j]).toString());
+					zjym=zjym+Double.valueOf(hm.get("ZJYM"+arr[j]).toString());
+					wksl=wksl+Double.valueOf(hm.get("WKSL"+arr[j]).toString());
+					wkym=wkym+Double.valueOf(hm.get("WKYM"+arr[j]).toString());
 					wc=wc+Double.valueOf(hm.get("WC"+arr[j]).toString());
 					bnwc=bnwc+Double.valueOf(hm.get("BNWC"+arr[j]).toString());
+					if((Double.valueOf(hm.get("JHSL"+arr[j]).toString()))!=0.0||(Double.valueOf(hm.get("JHSL"+arr[j]).toString()))!=0)
+					 hm.put("WCL"+arr[j],(int)((Double.valueOf(hm.get("WCSL"+arr[j]).toString())/Double.valueOf(hm.get("JHSL"+arr[j]).toString()))*100)+"");
 				}
-				if(jh!=0){
-					wcl=new BigDecimal(wcjh).divide(new BigDecimal(jh),3).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP).toString(); 
+				if(jhsl!=0){
+					wcl=(int)((wcsl/jhsl)*100)+""; 
 				}else{
 					wcl="0";
 				}
 			   hm.put("WCL",wcl);
-			   hm.put("JH",jh);
-			   hm.put("WCJH",wcjh);
+			   hm.put("JHSL",jhsl);
+			   hm.put("JHYM",jhym);
+			   hm.put("WCSL",wcsl);
+			   hm.put("WCYM",wcym);
+			   hm.put("ZJSL",zjsl);
+			   hm.put("ZJYM",zjym);
+			   hm.put("WKSL",wksl);
+			   hm.put("WKYM",wkym);
 			   hm.put("WC",wc);
 			   hm.put("BNWC",wc);
 			}
@@ -1175,28 +1204,52 @@ public class GcybbController extends BaseActionSupport{
 					Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
 					method.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
 					Method method1 = cl.getMethod("setV_"+1, new Class[]{String.class});
-					method1.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JH").toString()))});
+					method1.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JHSL").toString()))});
 					Method method2 = cl.getMethod("setV_"+2, new Class[]{String.class});
-					method2.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCJH").toString()))});
-					Method method5 = cl.getMethod("setV_"+3, new Class[]{String.class});
-					method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC").toString()))});
-					Method method6 = cl.getMethod("setV_"+4, new Class[]{String.class});
-					method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC").toString()))});
-					Method method7 = cl.getMethod("setV_"+5, new Class[]{String.class});
-					method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL").toString()))});
-					int k=6;
+					method2.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JHYM").toString()))});
+					Method method3 = cl.getMethod("setV_"+3, new Class[]{String.class});
+					method3.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCSL").toString()))});
+					Method method4 = cl.getMethod("setV_"+4, new Class[]{String.class});
+					method4.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCYM").toString()))});
+					Method method5 = cl.getMethod("setV_"+5, new Class[]{String.class});
+					method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("ZJSL").toString()))});
+					Method method6 = cl.getMethod("setV_"+6, new Class[]{String.class});
+					method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("ZJYM").toString()))});
+					Method method7 = cl.getMethod("setV_"+7, new Class[]{String.class});
+					method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WKSL").toString()))});
+					Method method8 = cl.getMethod("setV_"+8, new Class[]{String.class});
+					method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WKYM").toString()))});
+					Method method9 = cl.getMethod("setV_"+9, new Class[]{String.class});
+					method9.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC").toString()))});
+					Method method10 = cl.getMethod("setV_"+10, new Class[]{String.class});
+					method10.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC").toString()))});
+					Method method11 = cl.getMethod("setV_"+11, new Class[]{String.class});
+					method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL").toString()))});
+					int k=12;
 					for (int j = 0; j < nf.length; j++) {
-						Method method8 = cl.getMethod("setV_"+k, new Class[]{String.class});
-						method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JH"+nf[j]).toString()))});
-						Method method9 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
-						method9.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCJH"+nf[j]).toString()))});
-						Method method12 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
-						method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC"+nf[j]).toString()))});
-						Method method13 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
-						method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC"+nf[j]).toString()))});
-						Method method14 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
-						method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL"+nf[j]).toString()))});
-						k+=5;
+						Method method12 = cl.getMethod("setV_"+k, new Class[]{String.class});
+						method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JHSL"+nf[j]).toString()))});
+						Method method13 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
+						method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("JHYM"+nf[j]).toString()))});
+						Method method14 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
+						method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCSL"+nf[j]).toString()))});
+						Method method15 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
+						method15.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCYM"+nf[j]).toString()))});
+						Method method16 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
+						method16.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("ZJSL"+nf[j]).toString()))});
+						Method method17 = cl.getMethod("setV_"+(k+5), new Class[]{String.class});
+						method17.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("ZJYM"+nf[j]).toString()))});
+						Method method18 = cl.getMethod("setV_"+(k+6), new Class[]{String.class});
+						method18.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WKSL"+nf[j]).toString()))});
+						Method method19 = cl.getMethod("setV_"+(k+7), new Class[]{String.class});
+						method19.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WKYM"+nf[j]).toString()))});
+						Method method20 = cl.getMethod("setV_"+(k+8), new Class[]{String.class});
+						method20.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WC"+nf[j]).toString()))});
+						Method method21 = cl.getMethod("setV_"+(k+9), new Class[]{String.class});
+						method21.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("BNWC"+nf[j]).toString()))});
+						Method method22 = cl.getMethod("setV_"+(k+10), new Class[]{String.class});
+						method22.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCL"+nf[j]).toString()))});
+						k+=11;
 					}
 					elist.add(l);
 				}
@@ -1208,30 +1261,54 @@ public class GcybbController extends BaseActionSupport{
 				eldata.setFileName("全省安保工程项目汇总表");//设置文件名
 				eldata.setEl(elist);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-				et.add(new Excel_tilte("设区市交通局",1,2,0,0));
-				et.add(new Excel_tilte("合计",1,1,1,5));
-				int sj1=6;
+				et.add(new Excel_tilte("设区市交通局",1,3,0,0));
+				et.add(new Excel_tilte("合计",1,1,1,11));
+				int sj1=12;
 				for (int i = 0; i < nf.length; i++) {
-					et.add(new Excel_tilte(nf[i]+"年度",1,1,sj1,sj1+4));
-					sj1=sj1+5;
+					et.add(new Excel_tilte(nf[i]+"年度",1,1,sj1,sj1+10));
+					sj1=sj1+11;
 				}
-				et.add(new Excel_tilte("计划(公里)",2,2,1,1));
-				et.add(new Excel_tilte("完成情况(公里)",2,2,2,2));
-				et.add(new Excel_tilte("完成投资(万元)",2,2,3,3));
-				et.add(new Excel_tilte("本年完成投资(万元)",2,2,4,4));
-				et.add(new Excel_tilte("完成率(%)",2,2,5,5));
-				int sj2=5;
+				et.add(new Excel_tilte("计划项目",2,2,1,2));
+				et.add(new Excel_tilte("完工项目",2,2,3,4));
+				et.add(new Excel_tilte("在建项目",2,2,5,6));
+				et.add(new Excel_tilte("未开工项目",2,2,7,8));
+				et.add(new Excel_tilte("完成投资(万元)",2,3,9,9));
+				et.add(new Excel_tilte("本年完成投资(万元)",2,3,10,10));
+				et.add(new Excel_tilte("完成率(%)",2,3,11,11));
+				int sj2=11;
 				for (int i = 0; i < nf.length; i++) {
-					et.add(new Excel_tilte("计划(公里)",2,2,sj2+1,sj2+1));
-					et.add(new Excel_tilte("完成情况(公里)",2,2,sj2+2,sj2+2));
-					et.add(new Excel_tilte("完成投资(万元)",2,2,sj2+3,sj2+3));
-					et.add(new Excel_tilte("本年完成投资(万元)",2,2,sj2+4,sj2+4));
-					et.add(new Excel_tilte("完成率(%)",2,2,sj2+5,sj2+5));
-					sj2=sj2+5;
+					et.add(new Excel_tilte("计划项目",2,2,sj2+1,sj2+2));
+					et.add(new Excel_tilte("完工项目",2,2,sj2+3,sj2+4));
+					et.add(new Excel_tilte("在建项目",2,2,sj2+5,sj2+6));
+					et.add(new Excel_tilte("未开工项目",2,2,sj2+7,sj2+8));
+					et.add(new Excel_tilte("完成投资(万元)",2,3,sj2+9,sj2+9));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,sj2+10,sj2+10));
+					et.add(new Excel_tilte("完成率(%)",2,3,sj2+11,sj2+11));
+					sj2=sj2+11;
+				}
+				et.add(new Excel_tilte("个数",3,3,1,1));
+				et.add(new Excel_tilte("公里",3,3,2,2));
+				et.add(new Excel_tilte("个数",3,3,3,3));
+				et.add(new Excel_tilte("公里",3,3,4,4));
+				et.add(new Excel_tilte("个数",3,3,5,5));
+				et.add(new Excel_tilte("公里",3,3,6,6));
+				et.add(new Excel_tilte("个数",3,3,7,7));
+				et.add(new Excel_tilte("公里",3,3,8,8));
+				int sj3=12;
+				for (int i = 0; i < nf.length; i++) {
+					et.add(new Excel_tilte("个数",3,3,sj3,sj3));
+					et.add(new Excel_tilte("公里",3,3,sj3+1,sj3+1));
+					et.add(new Excel_tilte("个数",3,3,sj3+2,sj3+2));
+					et.add(new Excel_tilte("公里",3,3,sj3+3,sj3+3));
+					et.add(new Excel_tilte("个数",3,3,sj3+4,sj3+4));
+					et.add(new Excel_tilte("公里",3,3,sj3+5,sj3+5));
+					et.add(new Excel_tilte("个数",3,3,sj3+6,sj3+6));
+					et.add(new Excel_tilte("公里",3,3,sj3+7,sj3+7));
+					sj3=sj3+11;
 				}
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-				Excel_export.excel_exportmxb(eldata,response);
+				Excel_export.excel_export(eldata,response);
 				
 			}else{
 				JsonUtils.write(list, getresponse().getWriter());

@@ -331,6 +331,9 @@
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -338,6 +341,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -368,6 +374,9 @@
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -375,6 +384,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -387,7 +399,9 @@
 	<!-- 拨付列表 -->
 	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join 
+		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.id=xdjh.jhid
 			left join (select 
 	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
 	      else '未全部拨付' end) ljbfzt,tb1.xmid
@@ -395,6 +409,9 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
 			where 1=1 
+			<if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -423,6 +440,9 @@
 				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
 			</if>
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -430,6 +450,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'
@@ -445,7 +468,9 @@
 		
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzgj">
-		select count(*) from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+		select count(*) from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join 
+		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.id=xdjh.jhid
 		left join (select 
 	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
 	      else '未全部拨付' end) ljbfzt,tb1.xmid
@@ -453,6 +478,9 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
 			where 1=1 
+			<if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -481,6 +509,9 @@
 				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
 			</if>
 		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
@@ -488,6 +519,9 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
 				</if>
 				<if test="jsdj != null and  jsdj != ''">
 					and xjsdj like '%'||trim(#{jsdj})||'%'

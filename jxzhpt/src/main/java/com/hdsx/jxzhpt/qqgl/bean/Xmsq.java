@@ -5,7 +5,7 @@ public class Xmsq {
 	private String xmbm;//项目编码
 	private String xmmc;//项目名称
 	private String gcfl;//工程分类
-	private String ghlxbh;//规划路线编号
+	private String ghlxbh;//路线编号
 	private String ylxbh;//原路线编号
 	private String xzqh;//行政区划
 	private String xzqhdm;//行政区划代码

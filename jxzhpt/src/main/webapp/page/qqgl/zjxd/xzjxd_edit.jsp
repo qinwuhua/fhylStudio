@@ -55,9 +55,9 @@
 			});
 		}
 		function isNumber(obj){
-			var number=/^[0-9]*.[0-9]*$/;
+			var number=/^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/; /*    /^[0-9]*.[0-9]*$/; */
 			if(!number.test($(obj).val())){
-				alert("请输入数字！");
+				alert("请输入正确的数字！");
 				$(obj).focus();
 			}
 			return number.test($(obj).val());

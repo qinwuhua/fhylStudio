@@ -40,25 +40,25 @@ function wqxiangxi(index){
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','shzjdw.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','shzjdw.jsp','wqxx1',900,500);
 	//window.open("abgczjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','shzjdw__ck.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','shzjdw__ck.jsp','wqxx1',900,500);
 	//window.open("abgczjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','shzjdwtj.jsp','wqxx',600,375);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','shzjdwtj.jsp','wqxx',800,375);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','shzjdwxg.jsp','wqxx',600,375);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','shzjdwxg.jsp','wqxx',800,375);
 }
 
 //添加车购税
@@ -168,7 +168,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-200,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -181,6 +181,10 @@ function showAll(){
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglsh.lxbm':$("#lxbm").val(),
+	    	'gcglsh.xdsj':$("#xdnf").val(),
+	    	'gcglsh.xmmc':$("#xmmc").val(),
+	    	'gcglsh.lxmc':$("#lxmc").val(),
 	    	'gcglsh.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglsh.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglsh.ljbfzt':$("#ljbfzt").combobox('getValue')
@@ -197,7 +201,7 @@ function showAll(){
    	        }},
 			{field:'XZQH',title:'行政区划',width:100,align:'center'},
 //			{field:'GYDW',title:'管养单位',width:100,align:'center'},
-			{field:'YLXBH',title:'原路线编码',width:100,align:'center'},
+			{field:'YLXBH',title:'路线编码',width:100,align:'center'},
 			{field:'QDZH',title:'起点桩号',width:100,align:'center'},
 			{field:'ZDZH',title:'止点桩号',width:100,align:'center'},
 			{field:'LC',title:'里程',width:100,align:'center'},
@@ -260,7 +264,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -285,7 +289,7 @@ function showAll__ck(){
    	        }},
 			{field:'XZQH',title:'行政区划',width:100,align:'center'},
 //			{field:'GYDW',title:'管养单位',width:100,align:'center'},
-			{field:'YLXBH',title:'原路线编码',width:100,align:'center'},
+			{field:'YLXBH',title:'路线编码',width:100,align:'center'},
 			{field:'QDZH',title:'起点桩号',width:100,align:'center'},
 			{field:'ZDZH',title:'止点桩号',width:100,align:'center'},
 			{field:'LC',title:'里程',width:100,align:'center'},

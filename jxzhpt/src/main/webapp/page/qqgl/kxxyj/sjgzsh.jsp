@@ -198,6 +198,8 @@ text-decoration:none;
         						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
         					</tr>
         					<tr height="32">
         						<td>项目年份：</td>
@@ -222,6 +224,8 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
+								<td>路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         					</tr>
         					<tr height="32">
                               <td colspan="10">

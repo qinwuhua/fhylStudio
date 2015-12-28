@@ -67,7 +67,7 @@
 					}
 				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},
@@ -194,7 +194,7 @@ text-decoration:none;
 							<tr height="32">
 								<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:124px;"></select></td>
-								<td>原路线编码：</td>
+								<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:120px;" /></td>
 								<td align="right">下达状态：</td>
 								<td>

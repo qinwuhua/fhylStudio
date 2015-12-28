@@ -85,6 +85,9 @@
 		<if test="tbtime!=null">,tbtime</if>
 		<if test="btzzj!=null">,btzzj</if>
 		<if test="stz!=null">,stz</if>
+		<if test="yhdk !=null">,yhdk</if>
+		<if test="gz !=null">,gz</if>
+		<if test="sz !=null">,sz</if>
 		<if test="jhxdwh!=null">,jhxdwh</if>) 
 		values (SYS_GUID()<if test="xmid!=null">,#{xmid}</if>
 		<if test="xdnf!=null">,#{xdnf}</if>
@@ -94,6 +97,9 @@
 		<if test="tbtime!=null">,#{tbtime}</if>
 		<if test="btzzj!=null">,#{btzzj}</if>
 		<if test="stz!=null">,#{stz}</if>
+		<if test="yhdk !=null">,#{yhdk}</if>
+		<if test="gz !=null">,#{gz}</if>
+		<if test="sz !=null">,#{sz}</if>
 		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
 	<update id="editZjxd" parameterType="plan_zjxd">

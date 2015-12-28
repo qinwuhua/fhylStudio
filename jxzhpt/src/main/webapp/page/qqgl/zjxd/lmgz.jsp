@@ -71,7 +71,7 @@
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
@@ -94,9 +94,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}

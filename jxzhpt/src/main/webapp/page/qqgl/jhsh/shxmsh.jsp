@@ -84,7 +84,7 @@
 				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
+				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},
@@ -108,9 +108,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}
@@ -215,14 +221,14 @@ text-decoration:none;
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:135px;"></select></td>
 							<td>原路线编号：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
-       						<td align="right">下达状态：</td>
-							<td>
-       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
-	       							<option value="-1" selected="selected">全部</option>
-	       							<option value="0">未下达</option>
-	       							<option value="1">已下达</option>
-       							</select>
-       						</td>
+       						<td align="right">审核状态：</td>
+								<td>
+	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
+		       							<option value="-1" selected="selected">全部</option>
+		       							<option value="0">未审核</option>
+		       							<option value="1">已审核</option>
+	       							</select>
+	       						</td>
        						<td>补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
 									<option value="" selected="selected">全部</option>

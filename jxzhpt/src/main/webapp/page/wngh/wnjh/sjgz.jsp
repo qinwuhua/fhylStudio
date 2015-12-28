@@ -116,6 +116,10 @@ text-decoration:none;
 								</select></td>
         					</tr>
         					<tr height="32">
+        						<td>路线编码：</td>
+        						<td><input id='lxbm' type="text" /></td>
+        						<td>路线名称：</td>
+        						<td><input id='lxmc' type="text" /></td>
                               <td colspan="10">
         						<img onclick="showAllgj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('sjgz_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>

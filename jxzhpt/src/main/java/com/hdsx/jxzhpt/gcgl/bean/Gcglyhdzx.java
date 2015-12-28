@@ -136,7 +136,14 @@ public class Gcglyhdzx implements Serializable {
 	private String stz;
 	private String gldj;
 	private String ljbfzt;
+	private String xmmc;
 	
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
 	public String getGldj() {
 		return gldj;
 	}

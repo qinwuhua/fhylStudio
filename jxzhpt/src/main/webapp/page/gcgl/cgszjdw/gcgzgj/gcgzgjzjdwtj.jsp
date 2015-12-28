@@ -72,7 +72,7 @@ text-decoration: none;
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
+                                padding-right: 5px;width: 16%;">
                                     <font color="#009ACD" style="font-size: 12px">拨付车购税： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
@@ -112,7 +112,7 @@ text-decoration: none;
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
+                                padding-right: 5px;width: 16%;">
                                     <font color="#009ACD" style="font-size: 12px">财审处意见： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
@@ -122,25 +122,25 @@ text-decoration: none;
                             </tr>
                         <tr style="height: 35px;">
                             <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
-                                background-color: #F1F8FF;  padding-right: 5px;">
+                                background-color: #F1F8FF;  padding-right: 5px;width: 16%;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人：</font></b>
                             </td>
-                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;width: 16%;">
                                 <span id="tj_tbr"></span>&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;width: 16%;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
                             </td>
-                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;width: 16%;">
                                 <span id="tj_tbsj"></span>&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;width: 16%;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
-                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input id="tbyf" type="text">&nbsp;
+                            <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;width: 16%;">
+                                <input id="tbyf" type="text" width="100px">&nbsp;
                             </td>
                         </tr>
                     </table>

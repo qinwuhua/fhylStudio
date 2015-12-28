@@ -3,6 +3,7 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
+	<action name="ybyshbwsh" class="gcglwqgzController" method="ybyshbwsh"/>
 	<action name="insertWqgzYb" class="gcglwqgzController" method="insertWqgzYb"/>
 	<action name="insertWqgzYb1" class="gcglwqgzController" method="insertWqgzYb1"/>
 	<action name="selectWqgzYbByJhid" class="gcglwqgzController" method="selectWqgzYbByJhid"/>
@@ -44,6 +45,7 @@
 	<action name="exportAbyb" class="gcglabgcController" method="exportAbyb"/>
 	<action name="insertCGS" class="gcglabgcController" method="insertCGS"/>
 	<action name="insertCGS1" class="gcglabgcController" method="insertCGS1"/>
+	<action name="insertCGS2" class="gcglabgcController" method="insertCGS2"/>
 	<action name="exportxjyb" class="gcglabgcController" method="exportxjyb"/>
 	<action name="exportgjyb" class="gcglabgcController" method="exportgjyb"/>
 	<action name="exportsjyb" class="gcglabgcController" method="exportsjyb"/>

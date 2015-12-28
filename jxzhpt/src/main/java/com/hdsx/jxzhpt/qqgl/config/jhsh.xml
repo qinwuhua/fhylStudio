@@ -889,6 +889,7 @@
 	<select id="queryJhshLjLmsj" parameterType="jhsh" resultType="java.util.Map">
 		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm 
 		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%1___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">
 			and ${xzqhdm}
 		</if>
@@ -923,6 +924,7 @@
 	<select id="queryJhshLjLmgz" parameterType="jhsh" resultType="java.util.Map">
 		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm 
 		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%2___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
 			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
@@ -941,6 +943,7 @@
 	<select id="queryJhshLjXj" parameterType="jhsh" resultType="java.util.Map">
 		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm 
 		left join (select xmid,sum(lc) lc from lxsh_lx where xmid like '%3___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
 			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')

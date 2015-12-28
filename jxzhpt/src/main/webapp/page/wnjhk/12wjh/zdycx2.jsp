@@ -333,8 +333,8 @@ a{text-decoration:none;}
 						<td colspan="2" style="background-color: #ffffff;" align="center">
 							<table>
 								<tr>
-									<td><input type="checkbox" id="x.ylxbh" name="xmsq" value="x.ylxbh-原路线编码"/>原路线编号</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="ghlxbh" name="xmsq" value="x.ghlxbh-规划路线编号"/>规划路线编号</td>
+									<td><input type="checkbox" id="x.ylxbh" name="xmsq" value="x.ylxbh-路线编码"/>原路线编号</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="ghlxbh" name="xmsq" value="x.ghlxbh-路线编号"/>路线编号</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="x.lmkd" name="xmsq" value="x.lmkd-路面宽度"/>路面宽度</td>

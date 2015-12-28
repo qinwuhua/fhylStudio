@@ -539,17 +539,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		if(jhsh.getXmlx()==1){
 			excelData.addAll(jhshServer.queryJhshLmsj(jhsh, 0, 0));
 			titleName="改建工程项目";
-			fileName="改建工程项目-计划下达";
+			fileName="改建工程项目-计划审核";
 		}
 		else if(jhsh.getXmlx()==2){
 			excelData.addAll(jhshServer.queryJhshLmgz(jhsh, 0, 0));
 			titleName="路面改造工程项目";
-			fileName="路面改造工程项目-计划下达";
+			fileName="路面改造工程项目-计划审核";
 		}
 		else if(jhsh.getXmlx()==3){
 			excelData.addAll(jhshServer.queryJhshXj(jhsh, 0, 0));
 			titleName="新建工程项目";
-			fileName="新建工程项目-计划下达";
+			fileName="新建工程项目-计划审核";
 		}
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
@@ -587,7 +587,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		String fileName="";
 		if(jhsh.getXmlx()==4){
 			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
-			fileName="养护大中修项目-计划下达";
+			fileName="养护大中修项目-计划审核";
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
@@ -692,7 +692,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		String fileName="";
 		excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
 		titleName="灾毁重建项目";
-		fileName="灾毁重建项目-计划下达";
+		fileName="灾毁重建项目-计划审核";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
@@ -756,7 +756,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		//设置表头、设置列与字段对应
 		String fileTitle=null;
 		if(jhsh.getXmlx()<=3 || jhsh.getXmlx()==5){
-			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=下达总投资,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>";
+			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk><title=国债,fieid=gz>,<title=省债,fieid=sz>";
 		}else if(jhsh.getXmlx()==4){
 			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省投资,fieid=stz>";
 		}
@@ -785,29 +785,29 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		if(jhsh.getXmlx()==1){
 			excelData.addAll(jhshServer.queryJhshLmsj(jhsh, 0, 0));
 			titleName="改建工程项目";
-			fileName="改建工程项目-资金下达";
+			fileName="改建工程项目-计划资金下达";
 		}
 		else if(jhsh.getXmlx()==2){
 			excelData.addAll(jhshServer.queryJhshLmgz(jhsh, 0, 0));
 			titleName="路面改造工程项目";
-			fileName="路面改造工程项目-资金下达";
+			fileName="路面改造工程项目-计划资金下达";
 		}
 		else if(jhsh.getXmlx()==3){
 			excelData.addAll(jhshServer.queryJhshXj(jhsh, 0, 0));
 			titleName="新建工程项目";
-			fileName="新建工程项目-资金下达";
+			fileName="新建工程项目-计划资金下达";
 		}
 		else if(jhsh.getXmlx()==4){
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
 			titleName="养护大中修项目";
-			fileName="养护大中修项目-资金下达";
+			fileName="养护大中修项目-计划资金下达";
 		}
 		else if(jhsh.getXmlx()==5){
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
 			titleName="灾毁重建项目";
-			fileName="灾毁重建项目-资金下达";
+			fileName="灾毁重建项目-计划资金下达";
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}

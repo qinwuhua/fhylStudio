@@ -145,7 +145,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -216,7 +216,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -258,7 +258,7 @@ function showYBlist(){
 	              		if(row.shzt=='未审核'&&row.sfsj==7)
 				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
 		              		if(row.shzt=='已审核')
-		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核   '+'退回   ';
+		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
 			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
@@ -318,6 +318,10 @@ function showYBlist__ck(){
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
 	var data="gcglabgc.id="+data1.id+"&gcglabgc.sfsj=9"+"&gcglabgc.yhtype=7"+"&gcglabgc.jhid="+data1.jhid;
+	if(parent.obj1.tsdq!=null)
+		if(parent.obj1.tsdq.indexOf('省直管试点县')!=-1){
+			data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=11"+"&gcglwqgz.yhtype=7"+"&gcglwqgz.jhid="+data1.jhid;
+		}
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
@@ -414,5 +418,20 @@ function jiazai(ooo){
 					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 				}
 			}
+	});	
+}
+function ybysh(index){
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.xmlx=gcgl_abgc"+"&gcglwqgz.id="+data1.id;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcgl/ybyshbwsh.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				$("#ybgrid").datagrid('reload');
+			}
+		}
 	});	
 }

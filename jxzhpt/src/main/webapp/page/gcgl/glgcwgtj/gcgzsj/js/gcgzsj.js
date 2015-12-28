@@ -57,8 +57,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('gclmsj_xx','升级改造项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
+	//YMLib.UI.createWindow('gclmsj_xx','改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','改建工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -67,13 +67,13 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','升级改造月报详情','gcgzsjybxx.jsp','wqxx',900,450);
+	parent.YMLib.UI.createWindow('wqxx','改建月报详情','gcgzsjybxx.jsp','wqxx',900,450);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','升级改造月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','改建月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 
@@ -101,7 +101,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -113,6 +113,9 @@ function showAll(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	'gcglgcgzsj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzsj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzsj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzsj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzsj.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
@@ -127,6 +130,7 @@ function showAll(){
  	        }},
 			{field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
 			{field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
+			 {field : 'GHLXBH',title : '路线编码',width : 120,align : 'center'},
 			{field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},
 			{field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
 			{field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
@@ -187,7 +191,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,

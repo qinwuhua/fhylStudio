@@ -33,32 +33,32 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
-	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
+	//YMLib.UI.createWindow('wqxx','改建工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','改建工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("gcgzsjxx.jsp");
 }
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw.jsp','wqxx1',900,500);
 	//window.open("gcgzsjzjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw__ck.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw__ck.jsp','wqxx1',900,500);
 	//window.open("gcgzsjzjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzsjzjdwtj.jsp','wqxx',600,375);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzsjzjdwtj.jsp','wqxx',800,375);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzsjzjdwxg.jsp','wqxx',600,375);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzsjzjdwxg.jsp','wqxx',800,375);
 }
 
 //添加车购税
@@ -169,7 +169,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,
@@ -182,6 +182,10 @@ function showAll(){
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglgcgzsj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzsj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzsj.xdsj':$("#xdnf").val(),
+	    	'gcglgcgzsj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzsj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzsj.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglgcgzsj.ljbfzt':$("#ljbfzt").combobox('getValue')
@@ -197,6 +201,7 @@ function showAll(){
   	        }},
 			{field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
 			{field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
+			
 			{field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},
 			{field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
 			{field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
@@ -258,7 +263,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: xzqhstr,

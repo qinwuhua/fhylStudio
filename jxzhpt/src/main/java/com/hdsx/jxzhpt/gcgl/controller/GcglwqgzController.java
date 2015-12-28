@@ -742,5 +742,10 @@ public class GcglwqgzController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void ybyshbwsh(){
+		boolean bl=gcglwqgzServer.ybyshbwsh(gcglwqgz);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 }
 	

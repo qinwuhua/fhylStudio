@@ -14,25 +14,25 @@ function wqxiangxi(index){
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','abgczjdw.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','abgczjdw.jsp','wqxx1',900,500);
 	//window.open("abgczjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','abgczjdw__ck.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','abgczjdw__ck.jsp','wqxx1',900,500);
 	//window.open("abgczjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','abgczjdwtj.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','abgczjdwtj.jsp','wqxx',700,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','abgczjdwxg.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','abgczjdwxg.jsp','wqxx',700,250);
 }
 //添加车购税
 function tjabgccgs(){
@@ -61,7 +61,7 @@ function tjabgccgs(){
 				parent.shezhi();
 				closes('wqxx');
 			}else{
-				alert('该月车购税可能已存在，保存失败！');
+				alert('保存失败！');
 			}
 		}
 	});	
@@ -155,7 +155,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-200,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -168,6 +168,8 @@ function showAll(){
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val(),
 	    	xzqh:xzqhstr,
+	    	'gcglabgc.lxbm':$("#lxbm").val(),
+	    	'gcglabgc.xdsj':$("#xdnf").val(),
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
@@ -215,7 +217,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,

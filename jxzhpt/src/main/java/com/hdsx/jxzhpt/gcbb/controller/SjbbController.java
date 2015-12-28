@@ -245,6 +245,16 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 			sjbb.setUnit(tiaojian1);
 			sjbb.setDist(tiaojian2);
 			List<SjbbMessage> list = sjbbServer.getGdzctzjs(sjbb);
+			List<SjbbMessage> l = new ArrayList<SjbbMessage>();
+			for (SjbbMessage s : list) {
+				SjbbMessage sj=new SjbbMessage();
+				if("交通局".equals(sjbb.getDwlx())){
+					sj.setV_0(s.getV_0());sj.setV_1(s.getV_5());sj.setV_2(s.getV_6());sj.setV_3(s.getV_7());sj.setV_4(s.getV_8());sj.setV_5(s.getV_17());sj.setV_6(s.getV_18());sj.setV_7(s.getV_19());sj.setV_8(s.getV_20());sj.setV_9(s.getV_29());sj.setV_10(s.getV_30());sj.setV_11(s.getV_31());sj.setV_12(s.getV_32());sj.setV_13(s.getV_38());
+				}else{
+					sj.setV_0(s.getV_0());sj.setV_1(s.getV_1());sj.setV_2(s.getV_2());sj.setV_3(s.getV_3());sj.setV_4(s.getV_4());sj.setV_5(s.getV_13());sj.setV_6(s.getV_14());sj.setV_7(s.getV_15());sj.setV_8(s.getV_16());sj.setV_9(s.getV_25());sj.setV_10(s.getV_26());sj.setV_11(s.getV_27());sj.setV_12(s.getV_28());sj.setV_13(s.getV_37());
+				}
+				l.add(sj);
+			}
 			if("flag".equals(flag)){
 				String tableName=sjbb.getNf()+"年交通固定资产投资建设计划(路网结构改造)";
 				String excelHtml="<tr><td rowspan='3' >项目所在地区</td><td colspan='12'>危桥</td><td colspan='12' >安保</td>"+
@@ -260,69 +270,31 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 				eldata.setTitleName("交通部固定资产投资建设计划表（分地市）");//设置第一行
 				eldata.setSheetName("交通部固定资产投资建设计划表");//设置sheeet名
 				eldata.setFileName("交通部固定资产投资建设计划表");//设置文件名
-				eldata.setEl1(list);//将实体list放入类中
+				eldata.setEl1(l);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-				et.add(new Excel_tilte("项目所在地区",1,3,0,0));
-				et.add(new Excel_tilte("危桥",1,1,1,12));
-				et.add(new Excel_tilte("安保",1,1,13,24));
-				et.add(new Excel_tilte("灾害",1,1,25,36));
-				et.add(new Excel_tilte("总计",1,1,37,39));
-				et.add(new Excel_tilte("公路局",2,2,1,4));
-				et.add(new Excel_tilte("交通局",2,2,5,8));
-				et.add(new Excel_tilte("小计",2,2,9,12));
-				et.add(new Excel_tilte("公路局",2,2,13,16));
-				et.add(new Excel_tilte("交通局",2,2,17,20));
-				et.add(new Excel_tilte("小计",2,2,21,24));
-				et.add(new Excel_tilte("公路局",2,2,25,28));
-				et.add(new Excel_tilte("交通局",2,2,29,32));
-				et.add(new Excel_tilte("小计",2,2,33,36));
-				et.add(new Excel_tilte("公路局",2,2,37,37));
-				et.add(new Excel_tilte("交通局",2,2,38,38));
-				et.add(new Excel_tilte("小计",2,2,39,39));
-				et.add(new Excel_tilte("座",3,3,1,1));
-				et.add(new Excel_tilte("延米",3,3,2,2));
-				et.add(new Excel_tilte("总投资(万元)",3,3,3,3));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,4,4));
-				et.add(new Excel_tilte("座",3,3,5,5));
-				et.add(new Excel_tilte("延米",3,3,6,6));
-				et.add(new Excel_tilte("总投资(万元)",3,3,7,7));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,8,8));
-				et.add(new Excel_tilte("座",3,3,9,9));
-				et.add(new Excel_tilte("延米",3,3,10,10));
-				et.add(new Excel_tilte("总投资(万元)",3,3,11,11));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,12,12));
-				et.add(new Excel_tilte("项目数量",3,3,13,13));
-				et.add(new Excel_tilte("处治里程(km)",3,3,14,14));
-				et.add(new Excel_tilte("总投资(万元)",3,3,15,15));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,16,16));
-				et.add(new Excel_tilte("项目数量",3,3,17,17));
-				et.add(new Excel_tilte("处治里程(km)",3,3,18,18));
-				et.add(new Excel_tilte("总投资(万元)",3,3,19,19));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,20,20));
-				et.add(new Excel_tilte("项目数量",3,3,21,21));
-				et.add(new Excel_tilte("处治里程(km)",3,3,22,22));
-				et.add(new Excel_tilte("总投资(万元)",3,3,23,23));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,24,24));
-				et.add(new Excel_tilte("项目数量",3,3,25,25));
-				et.add(new Excel_tilte("处治里程(km)",3,3,26,26));
-				et.add(new Excel_tilte("总投资(万元)",3,3,27,27));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,28,28));
-				et.add(new Excel_tilte("项目数量",3,3,29,29));
-				et.add(new Excel_tilte("处治里程(km)",3,3,30,30));
-				et.add(new Excel_tilte("总投资(万元)",3,3,31,31));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,32,32));
-				et.add(new Excel_tilte("项目数量",3,3,33,33));
-				et.add(new Excel_tilte("处治里程(km)",3,3,34,34));
-				et.add(new Excel_tilte("总投资(万元)",3,3,35,35));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,36,36));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,37,37));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,38,38));
-				et.add(new Excel_tilte("补助资金(万元)",3,3,39,39));
+				et.add(new Excel_tilte("项目所在地区",1,2,0,0));
+				et.add(new Excel_tilte("危桥",1,1,1,4));
+				et.add(new Excel_tilte("安保",1,1,5,8));
+				et.add(new Excel_tilte("灾害",1,1,9,12));
+				et.add(new Excel_tilte("合计",1,1,13,13));
+				et.add(new Excel_tilte("座",2,2,1,1));
+				et.add(new Excel_tilte("延米",2,2,2,2));
+				et.add(new Excel_tilte("总投资(万元)",2,2,3,3));
+				et.add(new Excel_tilte("补助资金(万元)",2,2,4,4));
+				et.add(new Excel_tilte("项目数量",2,2,5,5));
+				et.add(new Excel_tilte("处治里程(km)",2,2,6,6));
+				et.add(new Excel_tilte("总投资(万元)",2,2,7,7));
+				et.add(new Excel_tilte("补助资金(万元)",2,2,8,8));
+				et.add(new Excel_tilte("项目数量",2,2,9,9));
+				et.add(new Excel_tilte("处治里程(km)",2,2,10,10));
+				et.add(new Excel_tilte("总投资(万元)",2,2,11,11));
+				et.add(new Excel_tilte("补助资金(万元)",2,2,12,12));
+				et.add(new Excel_tilte("补助资金(万元)",2,2,13,13));
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				Excel_export.excel_exportgdzc(eldata,response);
 			}else{
-				JsonUtils.write(list, getresponse().getWriter());
+				JsonUtils.write(l, getresponse().getWriter());
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

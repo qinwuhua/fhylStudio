@@ -151,7 +151,14 @@ public class Gcglwqgz implements Serializable {
 	private String yhdk;
 	private String gz;
 	private String sz;
+	private String xmlx;
 	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}

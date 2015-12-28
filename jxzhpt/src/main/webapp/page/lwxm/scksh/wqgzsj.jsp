@@ -297,7 +297,7 @@ $("#grid").datagrid({
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-220,
+	    height:$(window).height()-195,
 		width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         

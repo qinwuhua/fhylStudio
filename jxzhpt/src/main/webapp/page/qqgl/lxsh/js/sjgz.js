@@ -404,7 +404,7 @@ function showAll(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmsj.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -434,7 +434,9 @@ function showAll(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,
+			ghlxbh:$("#lxbm").val(),
+			lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -476,7 +478,7 @@ function showAll(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 80,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 80,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:120,align:'center'},
@@ -654,7 +656,7 @@ function showAllsjsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmsj.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -683,7 +685,7 @@ function showAllsjsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -719,7 +721,7 @@ function showAllsjsh(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -821,7 +823,7 @@ function showAlllmgz(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjLmgz.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -851,7 +853,7 @@ function showAlllmgz(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -893,7 +895,7 @@ function showAlllmgz(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 100,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 100,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:120,align:'center'},
@@ -984,7 +986,7 @@ function showAlllmsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmgz.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -1013,7 +1015,7 @@ function showAlllmsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1049,7 +1051,7 @@ function showAlllmsh(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -1150,7 +1152,7 @@ function showAllxj(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshLjXj.do',
-		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
@@ -1179,7 +1181,7 @@ function showAllxj(){
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
-			sbthcd:sbthcd
+			sbthcd:sbthcd,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1221,7 +1223,7 @@ function showAllxj(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -1308,7 +1310,7 @@ function showAllxjsh(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjXj.do',
-		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,
+		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
@@ -1336,7 +1338,7 @@ function showAllxjsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj
+			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1364,7 +1366,7 @@ function showAllxjsh(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -1729,7 +1731,7 @@ function showAlllmgz__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 100,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 100,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:120,align:'center'},
@@ -1902,7 +1904,7 @@ function showAll__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 80,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 80,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:120,align:'center'},
@@ -2072,7 +2074,7 @@ function showAllxj__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -2226,7 +2228,7 @@ function showAlllmsh__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -2377,7 +2379,7 @@ function showAllsjsh__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
@@ -2518,7 +2520,7 @@ function showAllxjsh__ck(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '路线编号',width : 180,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},

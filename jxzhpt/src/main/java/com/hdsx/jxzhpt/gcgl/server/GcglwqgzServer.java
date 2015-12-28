@@ -75,5 +75,7 @@ public interface GcglwqgzServer {
 
 	List<Excel_list> dcwqgzsjExcel(Gcglwqgz gcglwqgz);
 
+	boolean ybyshbwsh(Gcglwqgz gcglwqgz);
+
 
 }

@@ -59,7 +59,7 @@
 		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
-			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
+			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ghlxbh':$('#lxbm').val(),'lxmc':$('#lxmc').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
 					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
 					,'gcfl':$('#gcfl').combobox("getValues").join(","),"ylxbh":$('#gldj').combobox("getValues").join(",")};
@@ -144,7 +144,7 @@
 				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
+				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},
@@ -422,6 +422,10 @@
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        						</tr>
        						<tr>
+       							<td>路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
+        						<td>路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
        							<td colspan="8">
        								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>

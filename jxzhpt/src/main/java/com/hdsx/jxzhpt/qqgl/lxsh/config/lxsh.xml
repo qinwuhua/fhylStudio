@@ -116,6 +116,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm desc,sbzt1 
 	</select>
@@ -133,6 +139,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -230,6 +242,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -247,6 +265,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -267,6 +291,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -284,6 +314,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
@@ -303,6 +339,12 @@
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -320,6 +362,12 @@
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<delete id="delSjgz" parameterType="hashmap">
 		delete from LXSH_SJGZ where xmbm=#{xmbm}
@@ -382,6 +430,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -399,6 +453,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
@@ -419,6 +479,12 @@
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -436,6 +502,12 @@
 		<if test="tsdq!='' and tsdq!= null ">and tsdq like '%'||#{tsdq}||'%'</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="Lmgzsfkxx" parameterType="string" resultType="lxsh">
 		select * from kxxyj_lmgz where 1=1 and ${value} and sbthcd is not null
@@ -502,6 +574,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_LMGZ t left join
@@ -518,6 +596,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_XJ t,
@@ -534,6 +618,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
@@ -551,6 +641,12 @@
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.yilc v_7,lx.erlc v_8,lx.sanlc v_9,lx.silc v_10,lx.dwlc v_11,
@@ -566,6 +662,12 @@
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl like '%'||#{lsjl}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
@@ -586,6 +688,12 @@
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl like '%'||#{lsjl}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 	</select>
 	<insert id="importsjgzlxsh" parameterType="hashMap">
@@ -700,6 +808,7 @@
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
 				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
@@ -708,6 +817,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+				and ghlxbh like '%'||#{ghlxbh}||'%'
+			</if>
+			<if test="lxmc !='' and lxmc != null ">
+				and lxmc like '%'||#{lxmc}||'%'
+			</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -727,6 +842,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -746,6 +867,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -765,6 +892,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%2___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -784,6 +917,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -803,6 +942,12 @@
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 			<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%3___' and ${gldj})</if>
 			<if test="lsjl!='' and lsjl!= null ">and lsjl like '%'||#{lsjl}||'%'</if>
+			<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
 			group by xmbm,tz
 		)
 	</select>

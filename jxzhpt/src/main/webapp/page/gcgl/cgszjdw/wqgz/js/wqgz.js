@@ -21,25 +21,25 @@ function wqxiangxi1(index){
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw.jsp','wqxx1',900,500);
 	//window.open("wqgzzjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw__ck.jsp','wqxx1',800,500);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw__ck.jsp','wqxx1',900,500);
 	//window.open("wqgzzjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwtj.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwtj.jsp','wqxx',700,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','wqgzzjdwxg.jsp','wqxx',550,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','wqgzzjdwxg.jsp','wqxx',700,250);
 }
 //添加车购税
 function tjwqgzcgs(){
@@ -159,7 +159,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-200,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -176,6 +176,7 @@ function showAll(){
 	    	sfylrbwqk:'是',
 	    	gydwtj:"and 1=1",
 	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.xdsj':$("#xdnf").val(),
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.ljbfzt':$("#ljbfzt").combobox('getValue')
@@ -224,7 +225,7 @@ function showAll__ck(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-$(window).height()*0.22,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -295,7 +296,7 @@ function showAll1(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-200,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -312,6 +313,7 @@ function showAll1(){
 	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
 	    	gydwtj:"and gydwbm like '1%'",
 	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.xdsj':$("#xdnf").val(),
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.ljbfzt':$("#ljbfzt").combobox('getValue')

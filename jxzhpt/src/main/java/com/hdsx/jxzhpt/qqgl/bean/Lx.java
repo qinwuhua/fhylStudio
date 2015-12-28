@@ -104,7 +104,7 @@ public class Lx {
 	private String xjzdzh;//新建止点桩号
 	private String xjlc;//新建里程
 	//历史数据字段
-	private String ylxbm;//原路线编码
+	private String ylxbm;//路线编码
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
 	private String xmmc;//项目名称

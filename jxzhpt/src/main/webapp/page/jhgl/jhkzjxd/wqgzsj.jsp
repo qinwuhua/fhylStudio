@@ -208,7 +208,7 @@
 			}else if($('#ddlSHZT').combo("getValue")=="竣工"){
 				param+="&jh.jgzt=1";
 			} */
-			alert(param);
+			//alert(param);
 			window.location.href="/jxzhpt/jhgl/exportWqgzZjxdExcel.do?"+param;
 		}
 	</script>
