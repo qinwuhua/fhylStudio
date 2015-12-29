@@ -69,8 +69,8 @@ text-decoration:none;
 			success:function(msg){
 				qdStr=parseFloat(msg.qdzh);
 				zdStr=parseFloat(msg.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -129,8 +129,8 @@ text-decoration:none;
 					$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 				});
@@ -179,7 +179,7 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
+			/* if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
 				$("#qdzh").focus();
 				return false;
@@ -188,7 +188,7 @@ text-decoration:none;
 				alert("对不起，止点桩号不能大于"+zdStr+"！");
 				$("#zdzh").focus();
 				return false;
-			}
+			} */
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
@@ -241,17 +241,19 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
-		}
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		$("#lc").val(zlc);
+		} */
+// 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+// 		$("#lc").val(zlc);
 		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		jslc();
+		cesuan();
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		if($("#qdzh").val()!='')

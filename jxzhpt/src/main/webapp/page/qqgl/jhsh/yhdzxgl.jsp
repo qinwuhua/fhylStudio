@@ -64,12 +64,13 @@
 					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
 					,'gcfl':$('#gcfl').combobox("getValues").join(","),"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
-			loadLj(params);
+			
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
+			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -163,8 +164,14 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){
+						if(msg.NTZ!=null)
 						$('#spanntz').html(msg.NTZ);
+						else
+							$('#spanntz').html('0');
+						if(msg.LC!=null)
 						$('#spanlc').html(msg.LC);
+						else
+							$('#spanlc').html('0');
 						$("#xmsl").html(msg.BZ);
 					}else{
 						$('#spanntz').html('0');

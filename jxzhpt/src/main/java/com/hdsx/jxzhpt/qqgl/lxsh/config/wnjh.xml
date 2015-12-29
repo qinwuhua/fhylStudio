@@ -181,9 +181,11 @@
 	</select>
 	<select id="selectLmwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl  from wnjh_lmgz t left join 
+		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid where 1=1
+		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
+		left join (select xmid,sum(lc) jhlc from WNJH_LX group by xmid) lx2 on t.id=lx2.xmid
+		where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -253,10 +255,11 @@
 	
 	<select id="selectXjwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,tt.bzys1,lx1.*,lx2.sl from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid left join 
+		select rownum num ,t.*,tt.bzys1,lx1.*,lx2.sl,lx3.jhlc from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
 		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
+		left join (select xmid,sum(xjlc) jhlc from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

@@ -163,8 +163,14 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){
+						if(msg.NTZ!=null)
 						$('#spanntz').html(msg.NTZ);
+						else
+							$('#spanntz').html('0');
+						if(msg.LC!=null)
 						$('#spanlc').html(msg.LC);
+						else
+							$('#spanlc').html('0');
 						$("#xmsl").html(msg.BZ);
 					}else{
 						$('#spanntz').html('0');

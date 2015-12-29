@@ -534,7 +534,7 @@
 	</select>
 	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
-			select xmbm,ntz,x.lc from xmsq_yhdzx x left join 
+			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
 			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -558,7 +558,7 @@
 	</select>
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
-			select xmbm,ntz,x.lc from xmsq_sh x left join 
+			select xmbm,ntz,l.lc from xmsq_sh x left join 
 			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
 			on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
