@@ -877,14 +877,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void insertLx() throws Exception{
 		try {
 			lx.setSffirst("0");
-			Lx queryHaveLx = lx.getXmid().substring(10, 11).equals("5") ? null : jhshServer.queryHaveLx(lx);
-			if(queryHaveLx==null){
+			//Lx queryHaveLx = lx.getXmid().substring(10, 11).equals("5") ? null : jhshServer.queryHaveLx(lx);
+			//if(queryHaveLx==null){
 				boolean b = jhshServer.insertLx(lx);
 				result.put("result", new Boolean(b).toString());
-			}else{
+			/*}else{
 				result.put("result", "have");
 				result.put("lx", queryHaveLx);
-			}
+			}*/
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

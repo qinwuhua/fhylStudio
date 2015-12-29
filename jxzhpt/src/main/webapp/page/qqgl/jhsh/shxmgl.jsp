@@ -162,8 +162,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanntz').html(msg.NTZ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanntz').html(msg.NTZ);
+						$('#spanlc').html(msg.LC);
+						$("#xmsl").html(msg.BZ);
+					}else{
+						$('#spanntz').html('0');
+						$('#spanlc').html('0');
+						$("#xmsl").html('0');
+					}
 				}
 			});
 		}
@@ -424,7 +431,7 @@
         </tr>
         <tr>
             <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            	<div>投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+            	<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
             	<div><table id="grid"></table></div>
     		</td>
     	</tr>
