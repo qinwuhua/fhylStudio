@@ -589,15 +589,14 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 		where t1.spzt='1' 
-		<if test="xdsj != null and  xdsj != ''">
-			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+
+		<if test="xmnf != null and  xmnf != ''">
+			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 		</if>
 		<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
 		</if>
-		<if test="xmnf != null and  xmnf != ''">
-			and t1.jhnf like '%'||trim(#{xmnf})||'%'
-		</if>
+		
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -655,14 +654,11 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 	 	where t1.spzt='1' 
-		 	<if test="xdsj != null and  xdsj != ''">
-				and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+			<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="lxbm != null and  lxbm != ''">
 				and t3.lxbm like '%'||trim(#{lxbm})||'%'
-			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					and t1.jhnf like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}

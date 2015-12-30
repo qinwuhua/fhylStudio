@@ -853,6 +853,10 @@ function sbsjyb(index){
 		data="gcglsh.id="+data1.id+"&gcglsh.sfsj=7"+"&gcglsh.yhtype=9"+"&gcglsh.jhid="+data1.jhid;
 	}
 	if(confirm("确认上报吗？")){
+		var mydate=new Date();
+		var nf1=data1.sbyf.substr(0,4);
+		var yf1=data1.sbyf.substr(5,data1.sbyf.length);
+		cxsfcgsjd(data1.id,mydate.getFullYear(),mydate.getMonth()+1,mydate.getDate(),'gcgl_sh',nf1,yf1);
 		$.ajax({
 			type:'post',
 			url:'../../../../gcgl/sbShYb.do',

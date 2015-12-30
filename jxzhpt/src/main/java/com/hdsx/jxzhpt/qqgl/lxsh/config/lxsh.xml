@@ -958,5 +958,36 @@
 	<update id="thxmsqshsh" parameterType="String">
 		update xmsq_sh set sqzt='0' where ${value}
 	</update>
+	
+	<select id="selectYbmrsjd" parameterType="wqbzbz" resultType="wqbzbz">
+		select id,decode(xmlx,'gcgl_wqgz','危桥','gcgl_abgc','安保','gcgl_zhfz','灾害','gcgl_gcgzgj','路面改造','gcgl_gcgzsj','改建','gcgl_sh','灾毁重建','gcgl_yhdzx','养护大中修','gcgl_xj','新建') xmlx,jzsj,yf from xtgl_ybmrsj where 1=1 and xmlx=#{xmlx} order by to_number(yf)
+	</select>
+	
+	<update id="xgybmrsjd" parameterType="wqbzbz">
+		update xtgl_ybmrsj set jzsj=#{jzsj} where id=#{id}
+	</update>
+	
+	<select id="selectYbsjd" parameterType="wqbzbz" resultType="wqbzbz">
+		select id,decode(xmlx,'gcgl_wqgz','危桥','gcgl_abgc','安保','gcgl_zhfz','灾害','gcgl_gcgzgj','路面改造','gcgl_gcgzsj','改建','gcgl_sh','灾毁重建','gcgl_yhdzx','养护大中修','gcgl_xj','新建') xmlx,jzsj,nf,yf from xtgl_ybsjd where 1=1 and xmlx=#{xmlx} and nf=#{nf} order by to_number(yf)
+	</select>
+	<insert id="tjybsjd" parameterType="wqbzbz">
+		insert into xtgl_ybsjd(id,xmlx,nf,yf,jzsj) values(sys_guid(),#{xmlx},#{nf},#{yf},#{jzsj})
+	</insert>
+	<update id="xgybsjd" parameterType="wqbzbz">
+		update xtgl_ybsjd set nf=#{nf},yf=#{yf},jzsj=#{jzsj} where id=#{id}
+	</update>
+	<delete id="delybsjd" parameterType="wqbzbz">
+		delete from xtgl_ybsjd where id=#{id}
+	</delete>
+	
+	<select id="cxybsjd1" parameterType="wqbzbz" resultType="wqbzbz">
+		select * from xtgl_ybsjd where xmlx=#{xmlx} and nf=#{nf1} and yf=#{yf1}
+	</select>
+	<select id="cxybsjd2" parameterType="wqbzbz" resultType="wqbzbz">
+		select * from xtgl_ybmrsj where xmlx=#{xmlx} and yf=#{yf1}
+	</select>
+	<update id="cxsfcgsjd" parameterType="wqbzbz">
+		update ${xmlx} set sfcgsjd=#{qllx} where id=#{id}
+	</update>
 </mapper>
 

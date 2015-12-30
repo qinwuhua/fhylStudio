@@ -182,7 +182,7 @@ function showAll(){
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglyhdzx.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglyhdzx.lxbm':$("#lxbm").val(),
-	    	'gcglyhdzx.xdsj':$("#xdnf").val(),
+//	    	'gcglyhdzx.xdsj':$("#xdnf").val(),
 	    	'gcglyhdzx.xmmc':$("#xmmc").val(),
 	    	'gcglyhdzx.lxmc':$("#lxmc").val(),
 	    	'gcglyhdzx.gldj':$("#ddlGldj").combobox('getValue'),

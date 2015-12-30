@@ -1859,13 +1859,42 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	
-	
+	public void cxsfcgsjd(){
+		ResponseUtils.write(getresponse(), ""+lxshServer.cxsfcgsjd(wqbzbz));
+	}
+	public void delybsjd(){
+		ResponseUtils.write(getresponse(), ""+lxshServer.delybsjd(wqbzbz));
+	}
+	public void xgybsjd(){
+		ResponseUtils.write(getresponse(), ""+lxshServer.xgybsjd(wqbzbz));
+	}
+	public void tjybsjd(){
+		ResponseUtils.write(getresponse(), ""+lxshServer.tjybsjd(wqbzbz));
+	}
+	public void xgybmrsjd(){
+		ResponseUtils.write(getresponse(), ""+lxshServer.xgybmrsjd(wqbzbz));
+	}
+	public void selectYbsjd(){
+		try {
+			List<Wqbzbz> list=lxshServer.selectYbsjd(wqbzbz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	public void selectYbmrsjd(){
+		try {
+			List<Wqbzbz> list=lxshServer.selectYbmrsjd(wqbzbz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
 	public void selectWqbzbz(){
 		try {
 		List<Wqbzbz> list=lxshServer.selectWqbzbz();
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

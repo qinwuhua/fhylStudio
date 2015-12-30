@@ -17,7 +17,56 @@ public class Wqbzbz implements Serializable {
 	private String zdkd;
 	private String bzjb;
 	private String jsdj1;
+	private String xmlx;
+	private String jzsj;
+	private String yf;
+	private String ybyf;
+	private String nf;
+	private String yf1;
+	private String nf1;
 	
+	public String getYf1() {
+		return yf1;
+	}
+	public void setYf1(String yf1) {
+		this.yf1 = yf1;
+	}
+	public String getNf1() {
+		return nf1;
+	}
+	public void setNf1(String nf1) {
+		this.nf1 = nf1;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getJzsj() {
+		return jzsj;
+	}
+	public void setJzsj(String jzsj) {
+		this.jzsj = jzsj;
+	}
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
+	}
+	public String getYbyf() {
+		return ybyf;
+	}
+	public void setYbyf(String ybyf) {
+		this.ybyf = ybyf;
+	}
 	public String getId() {
 		return id;
 	}

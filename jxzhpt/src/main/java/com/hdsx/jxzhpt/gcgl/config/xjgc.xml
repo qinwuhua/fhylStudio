@@ -376,9 +376,9 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
 			where 1=1 
-			<if test="xdsj != null and  xdsj != ''">
+		<!-- 	<if test="xdsj != null and  xdsj != ''">
 			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
-		</if>
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -394,7 +394,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and t.xmbm like trim(#{sbnf})||'%'
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
@@ -441,9 +441,9 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
 			where 1=1 
-			<if test="xdsj != null and  xdsj != ''">
+			<!-- <if test="xdsj != null and  xdsj != ''">
 			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
-		</if>
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -459,7 +459,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and t.xmbm like trim(#{sbnf})||'%'
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'

@@ -95,7 +95,14 @@
 	      <action name="importsjgzkxx" class="kxxyjController" method="importsjgzkxx"/>
 	      <action name="importlmgzkxx" class="kxxyjController" method="importlmgzkxx"/>
           <action name="importxjkxx" class="kxxyjController" method="importxjkxx"/>
-	        
+	       
+	       <action name="cxsfcgsjd" class="lxshController" method="cxsfcgsjd"/> 
+	       <action name="delybsjd" class="lxshController" method="delybsjd"/> 
+	       <action name="xgybsjd" class="lxshController" method="xgybsjd"/> 
+	       <action name="tjybsjd" class="lxshController" method="tjybsjd"/> 
+	       <action name="selectYbsjd" class="lxshController" method="selectYbsjd"/> 
+	       <action name="xgybmrsjd" class="lxshController" method="xgybmrsjd"/> 
+	       <action name="selectYbmrsjd" class="lxshController" method="selectYbmrsjd"/> 
 	      <action name="selectWqbzbz" class="lxshController" method="selectWqbzbz"/>
 	      <action name="tjwqbzbz" class="lxshController" method="tjwqbzbz"/>
 	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>

@@ -189,10 +189,10 @@ text-decoration:none;
 					
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					qdStr=(parseFloat(item.qdzh)-5);
+					zdStr=(parseFloat(item.zdzh)+5);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//cesuan2(); 
 					loadjsdjcd();

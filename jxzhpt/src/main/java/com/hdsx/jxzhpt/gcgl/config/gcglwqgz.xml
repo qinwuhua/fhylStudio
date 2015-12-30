@@ -331,11 +331,11 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 	 	where t1.spzt='1' 
-	 		<if test="xdsj != null and  xdsj != ''">
+	 		<!-- <if test="xdsj != null and  xdsj != ''">
 			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
-			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					and t1.sbnf like '%'||trim(#{xmnf})||'%'
+			</if> -->
+				<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}
@@ -402,11 +402,11 @@
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 	 	where t1.spzt='1' 
-	 		<if test="xdsj != null and  xdsj != ''">
+	 		<!-- <if test="xdsj != null and  xdsj != ''">
 				and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
-			</if>
+			</if> -->
 			<if test="xmnf != null and  xmnf != ''">
-					and t1.sbnf like '%'||trim(#{xmnf})||'%'
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}

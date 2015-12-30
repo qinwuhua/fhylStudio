@@ -1519,3 +1519,19 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 	YMLib.Var.type="1";
 	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
 }
+
+
+//qwh查询并修改月报上报是否超过时间点
+function cxsfcgsjd(id,nf,yf,jzsj,xmlx,nf1,yf1){
+	//alert('wqbzbz.id='+id+"&wqbzbz.jzsj="+jzsj+"&wqbzbz.xmlx="+xmlx+"&wqbzbz.nf="+nf+"&wqbzbz.yf="+yf+"&wqbzbz.nf1="+nf1+"&wqbzbz.yf1="+yf1);
+	$.ajax({
+		data:'wqbzbz.id='+id+"&wqbzbz.jzsj="+jzsj+"&wqbzbz.xmlx="+xmlx+"&wqbzbz.nf="+nf+"&wqbzbz.yf="+yf+"&wqbzbz.nf1="+nf1+"&wqbzbz.yf1="+yf1,
+		type:'post',
+		datatype:'json',
+		url:'/jxzhpt/qqgl/cxsfcgsjd.do',
+		success:function(msg){
+			
+		}
+	})
+	
+}

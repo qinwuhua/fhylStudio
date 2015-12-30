@@ -43,7 +43,7 @@ text-decoration:none;
 				$('#lxsh').form("load",msg);
 				loadUnit3("gydw",msg.gydwdm,$.cookie("unit"));
 				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
-				$('#bzcs').html(msg.bzys);
+				$('#bzcs').val(msg.bzys);
 				$("#dfzc").html(msg.dfzc);
 				$("#lxmc").html(msg.lxmc);
 				$("#lxbm").val(msg.ghlxbh);
@@ -62,11 +62,11 @@ text-decoration:none;
 			url:'/jxzhpt/qqgl/qqglGpszh.do',
 			data:data1,
 			dataType:'json',
-			success:function(msg){
-				qdStr=parseFloat(msg.qdzh);
-				zdStr=parseFloat(msg.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
+			success:function(item){
+				qdStr=(parseFloat(item.qdzh)-5);
+				zdStr=(parseFloat(item.zdzh)+5);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -107,7 +107,7 @@ text-decoration:none;
 				alert("请填写地方自筹！");
 				return false;
 			}
-			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
+			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
 				alert("未能正确计算出补助测算");
 				return false;
 			}
@@ -154,8 +154,8 @@ text-decoration:none;
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
-		if($("#bzcs").html()!='')
-			bzcs=parseFloat($("#bzcs").html());
+		if($("#bzcs").val()!='')
+			bzcs=parseFloat($("#bzcs").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
 			return
@@ -170,7 +170,7 @@ text-decoration:none;
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		//alert(data);
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val();
@@ -332,7 +332,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="bzcs"></span></td>
+					<input type="text" id="bzcs"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

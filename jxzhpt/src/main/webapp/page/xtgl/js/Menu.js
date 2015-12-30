@@ -70,6 +70,20 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./wqbzbz.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010411',
+		title:'月报上报时间点',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./ybsjd.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_010412',
+		title:'月报上报默认时间点',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./ybmrsjd.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

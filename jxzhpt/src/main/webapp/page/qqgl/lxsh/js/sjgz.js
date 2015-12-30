@@ -550,8 +550,46 @@ function xmnf1(id,xmlx){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+
+function jsjszlc(){
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#jhyilc').val()!='')
+		yilc=parseFloat($('#jhyilc').val());
+	if($('#jherlc').val()!='')
+		erlc=parseFloat($('#jherlc').val());
+	if($('#jhsanlc').val()!='')
+		sanlc=parseFloat($('#jhsanlc').val());
+	if($('#jhsilc').val()!='')
+		silc=parseFloat($('#jhsilc').val());
+	if($('#jhwllc').val()!='')
+		wllc=parseFloat($('#jhwllc').val());
+	if($('#jhdwlc').val()!='')
+		dwlc=parseFloat($('#jhdwlc').val());
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#jszlc').val(hj5);
+}
+function jsyzlc(){
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#yilc').val()!='')
+		yilc=parseFloat($('#yilc').val());
+	if($('#erlc').val()!='')
+		erlc=parseFloat($('#erlc').val());
+	if($('#sanlc').val()!='')
+		sanlc=parseFloat($('#sanlc').val());
+	if($('#silc').val()!='')
+		silc=parseFloat($('#silc').val());
+	if($('#wllc').val()!='')
+		wllc=parseFloat($('#wllc').val());
+	if($('#dwlc').val()!='')
+		dwlc=parseFloat($('#dwlc').val());
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#lc').val(hj5);
+}
 function cesuan(){
-	var yi=0;
+	jsjszlc();
+/*	var yi=0;
 	if($('#jhyilc').val()!="" && $('#jhyilc').val()!="0")
 		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
 	var er=0;
@@ -570,11 +608,11 @@ function cesuan(){
 	if($('#jhwllc').val()!="" && $('#jhwllc').val()!="0")
 		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
 	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
-	$('#bzcs').html(zcs);
-	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
+	$('#bzcs').html(zcs);*/
+	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val())));
 }
 function cesuan2(){
-	var yi=0;
+	/*var yi=0;
 	if($('#yilc').val()!="" && $('#yilc').val()!="0" && $('#yilc').val()!="0.0")
 		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#yilc').val(),'升级改造工程项目');
 	var er=0;
@@ -593,8 +631,8 @@ function cesuan2(){
 	if($('#wllc').val()!="" && $('#wllc').val()!="0" && $('#wllc').val()!="0.0")
 		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#wllc').val(),'升级改造工程项目');
 	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
-	$('#bzcs').html(zcs);
-	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
+	$('#bzcs').html(zcs);*/
+	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val())));
 }
 function getbzcs(gldj,jsdj,lc,xmlx){
 	var data="lxsh.xmlx="+xmlx+"&lxsh.gldj="+gldj+"&lxsh.jsdj="+jsdj+"&lxsh.lc="+lc;
@@ -1538,8 +1576,8 @@ function checkdfzc(str){
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')
 		tz=parseFloat($("#tz").val());
-	if($("#bzcs").html()!='')
-		bzcs=parseFloat($("#bzcs").html());
+	if($("#bzcs").val()!='')
+		bzcs=parseFloat($("#bzcs").val());
 	if(bzcs>tz){
 		alert("投资不能小于补助测算");
 		return

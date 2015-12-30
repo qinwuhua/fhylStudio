@@ -777,6 +777,10 @@ function sbsjyb(index){
 		data="gcglgcgzsj.id="+data1.id+"&gcglgcgzsj.sfsj=7"+"&gcglgcgzsj.yhtype=9"+"&gcglgcgzsj.jhid="+data1.jhid;
 	}
 	if(confirm("确认上报吗？")){
+		var mydate=new Date();
+		var nf1=data1.sbyf.substr(0,4);
+		var yf1=data1.sbyf.substr(5,data1.sbyf.length);
+		cxsfcgsjd(data1.id,mydate.getFullYear(),mydate.getMonth()+1,mydate.getDate(),'gcgl_gcgzsj',nf1,yf1);
 		$.ajax({
 			type:'post',
 			url:'../../../../gcgl/sbGcgzsjYb.do',

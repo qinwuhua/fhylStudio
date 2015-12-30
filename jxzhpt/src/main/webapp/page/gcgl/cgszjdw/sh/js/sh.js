@@ -182,7 +182,7 @@ function showAll(){
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglsh.lxbm':$("#lxbm").val(),
-	    	'gcglsh.xdsj':$("#xdnf").val(),
+//	    	'gcglsh.xdsj':$("#xdnf").val(),
 	    	'gcglsh.xmmc':$("#xmmc").val(),
 	    	'gcglsh.lxmc':$("#lxmc").val(),
 	    	'gcglsh.gldj':$("#ddlGldj").combobox('getValue'),

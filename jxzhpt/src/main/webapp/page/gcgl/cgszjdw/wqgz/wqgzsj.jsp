@@ -121,7 +121,7 @@ a:active {
         						<input id="gydw" style="width: 150px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
-        						<span>项目年份：</span> 
+        						<span>下达年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 50px;">
         						<option value="">全部</option>
         						</select>
@@ -161,8 +161,8 @@ a:active {
 								<option value="否" >否</option>
 								<option value="是">是</option>
 								</select>
-								<span>下达年份：</span>
-        							<input type="text" id="xdnf" style="width: 100px;">
+<!-- 								<span>下达年份：</span> -->
+<!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll1()"/>        					
                                        <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

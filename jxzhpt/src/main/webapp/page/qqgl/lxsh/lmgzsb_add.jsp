@@ -65,7 +65,7 @@ a{text-decoration:none;}
 				alert("请填写地方自筹！");
 				return false;
 			}
-			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
+			if($("#bzcs").val()=="" || $("#bzcs").val()==null){
 				alert("未能正确计算出补助测算");
 				return false;
 			}
@@ -177,7 +177,7 @@ a{text-decoration:none;}
 					$("#jhwgn").combobox('setValue',item.jhwgn);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
-					$("#tz").val(parseFloat(item.tz));$("#bzcs").html(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
+					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
 					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
 					loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
@@ -186,10 +186,10 @@ a{text-decoration:none;}
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					qdStr=(parseFloat(item.qdzh)-5);
+					zdStr=(parseFloat(item.zdzh)+5);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//cesuan2(); 
 					loadjsdjcd();
@@ -216,8 +216,8 @@ a{text-decoration:none;}
 		var tz=0;var bzcs=0;
 		if($("#tz").val()!='')
 			tz=parseFloat($("#tz").val());
-		if($("#bzcs").html()!='')
-			bzcs=parseFloat($("#bzcs").html());
+		if($("#bzcs").val()!='')
+			bzcs=parseFloat($("#bzcs").val());
 		if(bzcs>tz){
 			alert("投资不能小于补助测算");
 			return
@@ -232,7 +232,7 @@ a{text-decoration:none;}
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
@@ -396,7 +396,7 @@ a{text-decoration:none;}
 					<input type="text" id="tz" onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<span id="bzcs"></span></td>
+					<input type="text" id="bzcs"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>

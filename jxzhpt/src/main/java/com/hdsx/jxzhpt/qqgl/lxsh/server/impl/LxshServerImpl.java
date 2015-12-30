@@ -1,7 +1,10 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.server.impl;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -758,6 +761,63 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			return update("thxmsqshyh", str)>0;
 		}else{
 			return update("thxmsqshsh", str)>0;
+		}
+	}
+
+	@Override
+	public List<Wqbzbz> selectYbmrsjd(Wqbzbz wqbzbz) {
+		return queryList("selectYbmrsjd", wqbzbz);
+	}
+
+	@Override
+	public boolean xgybmrsjd(Wqbzbz wqbzbz) {
+		return update("xgybmrsjd", wqbzbz)==1;
+	}
+	
+	@Override
+	public List<Wqbzbz> selectYbsjd(Wqbzbz wqbzbz) {
+		return queryList("selectYbsjd", wqbzbz);
+	}
+
+	@Override
+	public boolean tjybsjd(Wqbzbz wqbzbz) {
+		return insert("tjybsjd",wqbzbz)==1;
+	}
+	
+	@Override
+	public boolean xgybsjd(Wqbzbz wqbzbz) {
+		return update("xgybsjd",wqbzbz)==1;
+	}
+
+	@Override
+	public boolean delybsjd(Wqbzbz wqbzbz) {
+		return delete("delybsjd", wqbzbz)==1;
+	}
+
+	@Override
+	public boolean cxsfcgsjd(Wqbzbz wqbzbz) {
+		try {
+		Wqbzbz w1=queryOne("cxybsjd1", wqbzbz);
+		if(w1==null){
+			w1=queryOne("cxybsjd2", wqbzbz);
+			w1.setJzsj(wqbzbz.getNf1()+"-"+wqbzbz.getYf1()+"-"+w1.getJzsj());
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date d1=null;
+		Date d2=null;
+		
+			d1=sdf.parse(w1.getJzsj());
+			d2=sdf.parse(wqbzbz.getNf()+"-"+wqbzbz.getYf()+"-"+wqbzbz.getJzsj());
+		
+		if(d1.before(d2))
+			wqbzbz.setQllx("1");
+		else
+			wqbzbz.setQllx("0");
+		return update("cxsfcgsjd", wqbzbz)==1;
+		
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

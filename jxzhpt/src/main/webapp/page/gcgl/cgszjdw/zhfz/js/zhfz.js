@@ -167,7 +167,7 @@ function showAll(){
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglzhfz.xzqh':xzqhstr,
 	    	'gcglzhfz.lxbm':$("#lxbm").val(),
-	    	'gcglzhfz.xdsj':$("#xdnf").val(),
+//	    	'gcglzhfz.xdsj':$("#xdnf").val(),
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),

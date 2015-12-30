@@ -180,4 +180,18 @@ public interface LxshServer {
 	Lxsh loadjsdjcd(Lxsh lxsh);
 
 	boolean thxmsqsh(Lxsh lxsh);
+
+	List<Wqbzbz> selectYbmrsjd(Wqbzbz wqbzbz);
+
+	boolean xgybmrsjd(Wqbzbz wqbzbz);
+
+	List<Wqbzbz> selectYbsjd(Wqbzbz wqbzbz);
+
+	boolean tjybsjd(Wqbzbz wqbzbz);
+
+	boolean xgybsjd(Wqbzbz wqbzbz);
+
+	boolean delybsjd(Wqbzbz wqbzbz);
+
+	boolean cxsfcgsjd(Wqbzbz wqbzbz);
 }
