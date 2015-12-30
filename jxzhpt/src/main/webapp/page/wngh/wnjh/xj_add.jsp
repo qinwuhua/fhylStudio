@@ -86,7 +86,7 @@ text-decoration:none;
 				return false;
 			}
 			
-			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
+		 	if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
@@ -94,7 +94,7 @@ text-decoration:none;
 			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
 				return false;
-			}
+			} 
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
 				return false;
@@ -168,8 +168,8 @@ text-decoration:none;
 					$("#zdmc").html(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 				});
 	}
 	function saveLxsh(){

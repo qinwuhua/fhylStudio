@@ -96,8 +96,8 @@
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
-				{field:'kgsj',title:'开工时间',width:100,align:'center'},
-				{field:'wgsj',title:'完工时间',width:100,align:'center'},
+				/* {field:'kgsj',title:'开工时间',width:100,align:'center'},
+				{field:'wgsj',title:'完工时间',width:100,align:'center'}, */
 				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},

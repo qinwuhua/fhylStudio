@@ -64,12 +64,13 @@
 					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
 					,'gcfl':$('#gcfl').combobox("getValues").join(","),"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
-			loadLj(params);
+			
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
+			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -162,8 +163,21 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanntz').html(msg.NTZ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						if(msg.NTZ!=null)
+						$('#spanntz').html(msg.NTZ);
+						else
+							$('#spanntz').html('0');
+						if(msg.LC!=null)
+						$('#spanlc').html(msg.LC);
+						else
+							$('#spanlc').html('0');
+						$("#xmsl").html(msg.BZ);
+					}else{
+						$('#spanntz').html('0');
+						$('#spanlc').html('0');
+						$("#xmsl").html('0');
+					}
 				}
 			});
 		}
@@ -446,7 +460,7 @@
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
            		<div>
-           			<div>投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
            			<table id="grid"></table>
            		</div>
            	</td>

@@ -44,8 +44,8 @@ text-decoration:none;
 				$("#xjsdj").val(msg.xjsdj);
 				qdStr=parseFloat(msg.qdzh);
 				zdStr=parseFloat(msg.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.zdzh);
 	}
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
@@ -96,8 +96,8 @@ text-decoration:none;
 					$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					cesuan2();
 				});
@@ -140,18 +140,19 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
-		}
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		$("#lc").html(zlc);
+		} */
+// 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+// 		$("#lc").html(zlc);
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		cesuan2();
 		if($("#qdzh").val()!='')
 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')

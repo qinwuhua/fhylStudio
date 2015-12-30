@@ -232,7 +232,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc ,sl.xmsl
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='1' and l.sffirst='1' 
@@ -263,7 +263,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,l.lc ,sl.xmsl
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='1' and l.sffirst='1' 
@@ -533,7 +533,7 @@
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||#{value}||'%' order by to_number(id)
 	</select>
 	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
-		select sum(ntz) ntz,sum(lc) lc from (
+		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
 			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
 			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
@@ -557,7 +557,7 @@
 		)
 	</select>
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
-		select sum(ntz) ntz,sum(lc) lc from (
+		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
 			select xmbm,ntz,l.lc from xmsq_sh x left join 
 			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
 			on x.xmbm=l.xmid where 1=1
