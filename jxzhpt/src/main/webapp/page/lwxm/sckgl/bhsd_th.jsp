@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript" src="../js/qqgl.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <style type="text/css">
 TD {
 font-size: 12px;
@@ -52,7 +52,7 @@ function tuiHui(){
 	if(confirm('您确定退回该项目？')){
 			$.ajax({
 				 type : "POST",
-				 url : "/nmyhgc/xmsck/xgSckbhsdTH.do",
+				 url : "/jxzhpt/xmsck/xgSckbhsdTH.do",
 				 dataType : 'json',
 				 data : 'delstr=' +sckid+'&Sckbhsd.sck_thyj='+$('#thyj').val(),
 				 success : function(msg){

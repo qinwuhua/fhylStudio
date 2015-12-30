@@ -109,11 +109,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scgl(Sckbhsd);
@@ -158,11 +157,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scsh(Sckbhsd);
@@ -204,11 +202,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scsd(Sckbhsd);
@@ -250,11 +247,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 		}else{
 			Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 		}
-		if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-				&&Sckbhsd.getXtType().equals("nc")) {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-		}else {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+		if(Sckbhsd.getGydw().indexOf(",")==-1){
+			Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+		}else{
+			Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 		}
 		List<Sckbhsd> list = wqgzServer.selectSckbhsd(Sckbhsd);
 		int count = wqgzServer.selectWqgzCount(Sckbhsd);
@@ -309,11 +305,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 		}else{
 			Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 		}
-		if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-				&&Sckbhsd.getXtType().equals("nc")) {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-		}else {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+		if(Sckbhsd.getGydw().indexOf(",")==-1){
+			Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+		}else{
+			Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 		}
 		List<Sckbhsd> list = wqgzServer.selectSckShwqgz(Sckbhsd);
 		int count = wqgzServer.selectWqgzShCount(Sckbhsd);
@@ -334,11 +329,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 		}else{
 			Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 		}
-		if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-				&&Sckbhsd.getXtType().equals("nc")) {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-		}else {
-			Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+		if(Sckbhsd.getGydw().indexOf(",")==-1){
+			Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+		}else{
+			Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 		}
 		List<Sckbhsd> list = wqgzServer.selectSckSdwqgz(Sckbhsd);
 		int count = wqgzServer.selectWqgzSdCount(Sckbhsd);
@@ -404,11 +398,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzCount(Sckbhsd)+"");
 		} catch (Exception e) {
@@ -417,17 +410,15 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selectBhsdShCount(){
 		try {
-
 			if(Sckbhsd.getXzqhdm().indexOf(",")==-1){
 				Sckbhsd.setXzqhdm("and xzqhdm like '%"+Sckbhsd.getXzqhdm()+"%'");
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzShCount(Sckbhsd)+"");
 		} catch (Exception e) {
@@ -442,11 +433,10 @@ public class SckbhsdController extends BaseActionSupport implements ModelDriven<
 			}else{
 				Sckbhsd.setXzqhdm("and xzqhdm in ("+Sckbhsd.getXzqhdm()+")");
 			}
-			if (Sckbhsd.getXtType()!=null&&!Sckbhsd.getXtType().equals("")
-					&&Sckbhsd.getXtType().equals("nc")) {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) not in('G','S')");
-			}else {
-				Sckbhsd.setXtType("and substr(sck_lxbm,1,1) in('G','S')");
+			if(Sckbhsd.getGydw().indexOf(",")==-1){
+				Sckbhsd.setGydw("and scbmbm like '%'||substr('"+Sckbhsd.getGydw()+"',0,4)||'_'||substr('"+Sckbhsd.getGydw()+"',6)||'%'");
+			}else{
+				Sckbhsd.setGydw("and scbmbm in ("+Sckbhsd.getGydw()+")");
 			}
 			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzSdCount(Sckbhsd)+"");
 		} catch (Exception e) {

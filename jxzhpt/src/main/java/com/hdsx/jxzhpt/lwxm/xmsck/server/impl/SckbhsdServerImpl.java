@@ -150,7 +150,7 @@ public class SckbhsdServerImpl extends BaseOperate implements SckbhsdServer {
 			w.setJh_sbthcd(String.valueOf(tbStr.length()));//设置计划库的上报长度标识字段Jh_sbthcd--为填报单位编码长度
 			list.add(w);
 		}
-//		boolean insert = insertBatch("lrjhSckbhsd", list)==list.size();
+		boolean insert = insertBatch("lrjhSckbhsd", list)==list.size();
 		return this.updateBatch("xgSckbhsdShzt", lm)==lm.size()?true:false;
 	}
 

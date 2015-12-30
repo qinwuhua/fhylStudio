@@ -18,7 +18,7 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript" src="../js/qqgl.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
 // 	xmnf1("sck_xmnf");
@@ -61,7 +61,7 @@ $(function(){
 		
 		$.ajax({
 			type:'post',
-			url:'/nmyhgc/xmsck/updateSckbhsd.do',
+			url:'/jxzhpt/xmsck/updateSckbhsd.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
@@ -85,7 +85,7 @@ $(function(){
 function selBhsdById(){
 	$.ajax({
 		type : 'post',
-		url : '/nmyhgc/xmsck/selectSckbhsdById.do',
+		url : '/jxzhpt/xmsck/selectSckbhsdById.do',
 		data :"sckid="+parent.rowid,
 		dataType:'json',
 		success : function(msg) {
@@ -233,7 +233,7 @@ function fileShow(){
 	});
 }
 function downFile(id){
-	parent.window.location.href="/nmyhgc/jhgl/downAbgcFile.do?uploads.id="+id;
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 }
 
 </script>

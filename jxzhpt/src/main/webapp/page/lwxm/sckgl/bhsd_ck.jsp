@@ -26,7 +26,7 @@ $(function(){
 function selBhsdById(){
 	$.ajax({
 		type : 'post',
-		url : '/nmyhgc/xmsck/selectSckbhsdById.do',
+		url : '/jxzhpt/xmsck/selectSckbhsdById.do',
 		data :"sckid="+parent.rowid,
 		dataType:'json',
 		success : function(msg) {
@@ -106,13 +106,13 @@ function fileShow(){
 	});
 }
 function downFile(id){
-	parent.window.location.href="/nmyhgc/jhgl/downAbgcFile.do?uploads.id="+id;
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 }
 function deleteFile(id){
 	if(confirm('确定删除所选数据？')){
 		$.ajax({
 			 type : "POST",
-			 url : "/nmyhgc/jhgl/deleteFile.do",
+			 url : "/jxzhpt/jhgl/deleteFile.do",
 			 dataType : 'json',
 			 data : 'uploads.id=' +id,
 			 success : function(msg){

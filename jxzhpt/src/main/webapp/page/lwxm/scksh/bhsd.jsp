@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>审查库审核病害隧道项目</title>
-<link rel="stylesheet" type="text/css" href="../../../css/jm.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -14,9 +15,10 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript" src="../js/qqgl.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
+	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
@@ -51,7 +53,7 @@ function xgShzt(){
 	if(confirm('您确定审核通过该项目？')){
 			$.ajax({
 				 type : "POST",
-				 url : "/nmyhgc/xmsck/xgSckbhsdShzt.do",
+				 url : "/jxzhpt/xmsck/xgSckbhsdShzt.do",
 				 dataType : 'json',
 				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit")+"&nf="+nf+"&tbbmbm1="+tbbmbm,
 				 success : function(msg){
@@ -81,8 +83,8 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<div id="righttop" class="dqwz">
-		<div id="p_top">前期项目>&nbsp;方案审查库审核>&nbsp;病害隧道项目</div>
+<div id="righttop">
+		<div id="p_top">路网项目>&nbsp;方案审查库审核>&nbsp;病害隧道项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -92,6 +94,9 @@ text-decoration:none;
 				</legend>
 					<div>
 					<p style="margin:8px 0px 4px 20px;">
+					            <span>管养单位：</span>
+                              	<select id="gydw" style="width:235px">
+                              	</select>
                              	<span>&nbsp;行政区划：</span>
                               	<select id="xzqhmc" style="width:218px">
                               	</select>

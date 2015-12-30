@@ -26,15 +26,15 @@
 		 (select * from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1
  				) t where 
 			sck_sbthcd &lt;=#{sck_sbthcd} 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -71,15 +71,15 @@
 		select count(*) from (select * from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1
  				)
 			where sck_sbthcd &lt;=#{sck_sbthcd} 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -131,7 +131,7 @@
 	</update>
 	
 	<update id="xgSckbhsdShzt" parameterType="hashmap">
-		update sck_bhsd set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
+		update sck_bhsd set sck_shzt='已审核',lrjh='已列入',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
 	</update>
 
     <update id="xgSckbhsdSdzt" parameterType="hashmap">
@@ -165,16 +165,14 @@
 		xmkid=xmk_bhsd.id 
 		where 1=1
  			) t
-		where sck_sbthcd=2
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+		where sck_sbthcd=7
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+<!-- 		Cif> -->
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -212,16 +210,16 @@
 		select count(*) from (select * from sck_bhsd t join xmk_bhsd on
 		xmkid=xmk_bhsd.id
 		where 1=1)
-		where sck_sbthcd=2
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+		where sck_sbthcd=7
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -258,17 +256,17 @@
 		xmkid=xmk_bhsd.id 
 		where 1=1
  			) t
-		where sck_sbthcd=2
+		where sck_sbthcd=7
 			and sck_shzt='已审核' 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -308,17 +306,17 @@
 		xmkid=xmk_bhsd.id
 		where 1=1
  			)
-		where sck_sbthcd=2
+		where sck_sbthcd=7
 			and sck_shzt='已审核' 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -398,15 +396,15 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		v_8,pddj v_9,xjgjnd v_10,xmnf v_11,sck_jsxz v_12,xmk_bhsd.xmmc v_13
 		from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1
 		and sck_sbthcd &lt;=#{sck_sbthcd} 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -443,15 +441,15 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1 and
 			sck_sbthcd=2
 			and sck_sbthcd>=#{sck_sbthcd} 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -488,15 +486,15 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1 and
 			sck_sbthcd=2
 			and sck_sbthcd>=#{sck_sbthcd} 
-        <if test="xtType!='' and xtType!= null ">
-			${xtType}
-		</if>
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!--         <if test="xtType!='' and xtType!= null "> -->
+<!-- 			${xtType} -->
 <!-- 		</if> -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
+<!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -548,12 +546,12 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
  				) t 
  		where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
 <!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>
@@ -583,12 +581,12 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
  			)
  		 where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
-		<if test="scbmbm!='' and scbmbm!= null ">
-		   and scbmbm like '%'||(#{scbmbm})||'%'
-		</if>
-<!-- 		<if test="gydw!='' and gydw!= null "> -->
-<!-- 			${gydw} -->
+<!-- 		<if test="scbmbm!='' and scbmbm!= null "> -->
+<!-- 		   and scbmbm like '%'||(#{scbmbm})||'%' -->
 <!-- 		</if> -->
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
 			${xzqhdm}
 		</if>

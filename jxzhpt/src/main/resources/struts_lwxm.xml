@@ -146,6 +146,30 @@
 	<action name="selSckZhfzCount" class="sckzhfzController" method="selSckZhfzCount"/>
 	<action name="selSckZhfzShCount" class="sckzhfzController" method="selSckZhfzShCount"/>
 	<action name="lrjhZhfz" class="sckzhfzController" method="lrjhZhfz"/>
+	
+	 <!-- 病害隧道 -->
+	<action name="insertSckbhsd" class="sckbhsdController" method="insertSckbhsd"/>
+	<action name="selectSckbhsd" class="sckbhsdController" method="selectSckbhsd"/>
+	<action name="deleteSckbhsd" class="sckbhsdController" method="deleteSckbhsd"/>
+	<action name="updateSckbhsd" class="sckbhsdController" method="updateSckbhsd"/>
+	<action name="selectSckbhsdById" class="sckbhsdController" method="selectSckbhsdById"/>
+	<action name="xgSckbhsdSbzt" class="sckbhsdController" method="xgSckbhsdSbzt"/>
+	<action name="xgSckbhsdTH" class="sckbhsdController" method="xgSckbhsdTH"/>
+	<action name="selectSckShbhsd" class="sckbhsdController" method="selectSckShbhsd"/>
+	<action name="xgSckbhsdShzt" class="sckbhsdController" method="xgSckbhsdShzt"/>
+	<action name="onceSckBhsd" class="sckbhsdController" method="onceSckBhsd"/>
+	<action name="bzBhsd" class="sckbhsdController" method="bzBhsd"/>
+	<action name="exportExcel_bhsd_scgl" class="sckbhsdController" method="exportExcel_bhsd_scgl"/>
+	<action name="exportExcel_bhsd_scsh" class="sckbhsdController" method="exportExcel_bhsd_scsh"/>
+	<action name="exportExcel_bhsd_scsd" class="sckbhsdController" method="exportExcel_bhsd_scsd"/>
+	<action name="importBhsd_sc" class="sckbhsdController" method="importBhsd_sc"/>
+	<action name="lrjhSckbhsd" class="sckbhsdController" method="lrjhSckbhsd"/>
+	<action name="selectBhsdCount" class="sckbhsdController" method="selectBhsdCount"/>
+	<action name="selectBhsdShCount" class="sckbhsdController" method="selectBhsdShCount"/>
+	<action name="lrjhBhsd" class="sckbhsdController" method="lrjhBhsd"/>
+	<action name="selectSckSdbhsd" class="sckbhsdController" method="selectSckSdbhsd"/>
+	<action name="selectBhsdSdCount" class="sckbhsdController" method="selectBhsdSdCount"/>
+	<action name="xgSckbhsdSdzt" class="sckbhsdController" method="xgSckbhsdSdzt"/>
  </package>
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
 	 <action name="selwqgzsjZdy" class="zdycxController" method="selwqgzsjZdy"/>

@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript" src="../js/qqgl.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 var xmkid;
 var bzls;
@@ -62,7 +62,7 @@ $(function(){
 // 		alert(datas);
 		$.ajax({
 			type:'post',
-			url:'/nmyhgc/xmsck/onceSckBhsd.do',
+			url:'/jxzhpt/xmsck/onceSckBhsd.do',
 			dataType:'json',
 	        data:datas,
 			success:function(msg){
@@ -80,7 +80,7 @@ $(function(){
 	});	
 });
 function autoCompleteQLBH(){
-	var url = "/nmyhgc/xmjck/JckBhsdRoad.do";
+	var url = "/jxzhpt/xmjck/JckBhsdRoad.do";
 	$("#sddm").autocomplete(url, {
 		multiple : false,
 		minChars :2,
@@ -96,11 +96,13 @@ function autoCompleteQLBH(){
   			},
   			gydwbm:function() {
   				var d = $.cookie("unit2");
-  				return d;
+  				if(d=='_____36') return "";
+  				else return d;
   			},
   			xzqhdm:function() {
-  				var d = $.cookie("dist2");
-  				return d;
+  				var d = $.cookie("dist");
+  				if(d=='360000') return "";
+  				else return d;
   			}
   		},
   		dataType : 'json',// 返回类型
@@ -169,7 +171,7 @@ function saveBhsd(){
 // 	alert(data);
 	$.ajax({
 		type:'post',
-		url:'/nmyhgc/xmsck/insertSckbhsd.do',
+		url:'/jxzhpt/xmsck/insertSckbhsd.do',
         data:data,
 		dataType:'json',
 		success:function(msg){
@@ -189,7 +191,7 @@ function bzWqgz(){
 	var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val();
 	$.ajax({
 		type:'post',
-		url:'/nmyhgc/xmsck/bzWqgz.do',
+		url:'/jxzhpt/xmsck/bzWqgz.do',
 		dataType:'json',
         data:datas,
 		success:function(msg){
