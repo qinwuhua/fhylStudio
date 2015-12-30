@@ -14,6 +14,7 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Dzdt" alias="dzdt"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.ProgBean" alias="pb"/>
      <!-- qwh begin -->
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglbhsd" alias="gcglbhsd"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglabgc" alias="gcglabgc"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz" alias="gcglzhfz"/>
@@ -50,6 +51,8 @@
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc" alias="sckabgc"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz" alias="sckwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz" alias="sckzhfz"/>
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckbhsd" alias="jckbhsd"/>
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckbhsd" alias="sckbhsd"/>
      <!-- lhp -->
      <!-- rh -->
      <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Cbsj" alias="cbsj"/>
@@ -58,6 +61,7 @@
      <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Xmsq" alias="xmsq"/>
      <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Lx" alias="lx"/>
      
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_bhsd" alias="plan_bhsd"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj" alias="plan_gcsj"/>
@@ -136,6 +140,7 @@
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/dzdt.xml"/>
 	<!-- qwh begin -->
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglbhsd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglwqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglabgc.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglzhfz.xml"/>
@@ -168,6 +173,8 @@
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmsck/config/sckabgc.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmsck/config/sckwqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmsck/config/sckzhfz.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckbhsd.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmsck/config/sckbhsd.xml"/>
 	<!-- lhp -->
 	<!-- rh -->
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/cbsj.xml"/>
@@ -186,6 +193,7 @@
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_hsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjqf.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_bhsd.xml"/>
 	<!-- rh -->
 	<!-- chc -->
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/gcbb.xml"/>

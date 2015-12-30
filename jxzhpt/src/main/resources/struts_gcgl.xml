@@ -278,5 +278,30 @@
 	<action name="deleteTzckByid" class="gcglaqybController" method="deleteTzckByid"/>
 	<action name="xgTzzt" class="gcglaqybController" method="xgTzzt"/>
 	<action name="downXxtzFile" class="gcglaqybController" method="downXxtzFile"/>
+	
+	<action name="insertBhsdYb" class="gcglbhsdController" method="insertBhsdYb"/>
+	<action name="selectBhsdYbByJhid" class="gcglbhsdController" method="selectBhsdYbByJhid"/>
+	<action name="selectBhsdYbByJhid1" class="gcglbhsdController" method="selectBhsdYbByJhid1"/>
+	<action name="updateBhsdYb" class="gcglbhsdController" method="updateBhsdYb"/>
+	<action name="deleteBhsdYb" class="gcglbhsdController" method="deleteBhsdYb"/>
+	<action name="shBhsdYb" class="gcglbhsdController" method="shBhsdYb"/>
+	<action name="insertBhsdCgs" class="gcglbhsdController" method="insertBhsdCgs"/>
+	<action name="selectBhsdCgsList" class="gcglbhsdController" method="selectBhsdCgsList"/>
+	<action name="updateBhsdCgs" class="gcglbhsdController" method="updateBhsdCgs"/>
+	<action name="deleteBhsdCgs" class="gcglbhsdController" method="deleteBhsdCgs"/>
+	<action name="uploadBhsdFile" class="gcglbhsdController" method="uploadBhsdFile"/>
+	<action name="downBhsdFile" class="gcglbhsdController" method="downBhsdFile"/>
+	<action name="insertBhsdkg" class="gcglbhsdController" method="insertBhsdkg"/>
+	<action name="insertBhsdwg" class="gcglbhsdController" method="insertBhsdwg"/>
+	<action name="insertBhsdwwg" class="gcglbhsdController" method="insertBhsdwwg"/>
+	<action name="selectBhsdjhList" class="gcglbhsdController" method="selectBhsdjhList"/>
+	<action name="selectBhsdjhFile" class="gcglbhsdController" method="selectBhsdjhFile"/>
+	<action name="deleteBhsdFile" class="gcglbhsdController" method="deleteBhsdFile"/>
+	<action name="sbBhsdYb" class="gcglbhsdController" method="sbBhsdYb"/>
+	<action name="selectBhsdyf" class="gcglbhsdController" method="selectBhsdyf"/>
+	<action name="selectBhsdwcqk" class="gcglbhsdController" method="selectBhsdwcqk"/>
+	<action name="selectBhsdbzzj" class="gcglbhsdController" method="selectBhsdbzzj"/>
+	<action name="selectBhsdjhList1" class="gcglbhsdController" method="selectBhsdjhList1"/>
+	<action name="selectcgsyf" class="gcglbhsdController" method="selectcgsyf"/>
  </package>
 </struts>

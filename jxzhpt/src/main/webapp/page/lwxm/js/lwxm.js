@@ -802,3 +802,267 @@ function exportExcel_zhfz_scsh(){
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_zhfz_scsh.do?"+param;
 }
+
+
+//基础库病害隧道
+function xgJckbhsd(xg_id){
+	rowid=xg_id;
+	YMLib.UI.createWindow('jck_xg','修改项目信息','bhsd_xg.jsp','jck_xg',900,450);
+}
+function ckJckbhsd(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('jck_ck','查看项目详情','bhsd_ck.jsp','jck_ck',900,450);
+}
+
+//审查库病害隧道
+function xgSckbhsd(xg_id){
+	rowid=xg_id;
+	YMLib.UI.createWindow('sck_xg','修改项目信息','bhsd_xg.jsp','sck_xg',900,500);
+}
+function ckSckbhsd(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('sck_ck','查看项目详情','bhsd_ck.jsp','sck_ck',900,500);
+}
+
+//病害隧道导出excel 
+function exportExcel_bhsd(){
+	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
+	var gydwstr=$.cookie("unit2");
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var sbzt=encodeURI(encodeURI($("#sbzt").combobox("getValue")));	
+	var jsdj=encodeURI(encodeURI($("#jsdj").combobox("getValue")));
+	var acdfl=encodeURI(encodeURI($("#acdfl").combobox("getValue")));
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&sdmc='+$("#sdmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+sbzt+
+ 	'&jsdj='+jsdj+
+ 	'&acdfl='+acdfl+'&lxbm='+$("#lxbm").val()+
+ 	'&sddm='+$("#sddm").val()+
+ 	'&sbthcd='+cd+'&tbbmbm='+$.cookie("unit2");
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmjck/exportExcel_bhsd.do?"+param;
+}
+
+//病害隧道审核excel导出
+function exportExcel_bhsd_sh(){
+	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
+	var gydwstr=$.cookie("unit2");
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var shzt=encodeURI(encodeURI($("#shzt").combobox("getValue")));	
+	var jsdj=encodeURI(encodeURI($("#jsdj").combobox("getValue")));
+	var acdfl=encodeURI(encodeURI($("#acdfl").combobox("getValue")));
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&sdmc='+$("#sdmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+shzt+
+ 	'&jsdj='+jsdj+
+ 	'&acdfl='+acdfl+'&lxbm='+$("#lxbm").val()+
+ 	'&sddm='+$("#sddm").val()+
+ 	'&sbthcd='+cd+'&tbbmbm='+$.cookie("unit2");
+		
+	window.location.href="/jxzhpt/xmjck/exportExcel_bhsd_sh.do?"+param;
+}
+
+function th_jckgl(jsp,w,h){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt=='未上报' && rows[i].sbthcd==6){
+			alert("对不起，无法退回！");
+			return;
+		}
+		if(rows[i].tbbmbm==$.cookie("unit")){
+			alert("对不起，您添加的项目无法退回！");
+			return;
+		}
+		if(rows[i].sbthcd<$.cookie("unit2").length){
+			alert("对不起，该项目已上报，不能执行退回操作！");
+			return;
+		}
+		if(rows[i].shzt=='已审核'){
+			alert("对不起，该项目已审核，不能执行退回操作！！");
+			return;
+		}
+		}	
+	YMLib.UI.createWindow('jck_th','退回项目',jsp,'jck_th',w,h);
+}
+
+
+function th_jcksh(jsp,w,h){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==6){
+		alert("对不起，无法退回！");
+		return;
+	}
+	if(rows[i].tbbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
+		return;
+	}
+	if(rows[i].sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	if(rows[i].shzt=='已审核'){
+		alert("对不起，项目已审核，不能执行退回操作！");
+		return;
+	}
+	}	
+	YMLib.UI.createWindow('jck_th','退回项目',jsp,'jck_th',w,h);
+}
+
+function th_sckgl(jsp,w,h){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+//		if($.cookie("unit2")=='15'){
+//			alert("对不起，无法退回！");
+//			return;
+//		}
+	if(rows[i].sck_sbzt=='未上报' && rows[i].sck_sbthcd==6){
+		alert("对不起，无法退回！");
+		return;
+	}
+	if(rows[i].scbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
+		return;
+	}
+	if(rows[i].sck_sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	if(rows[i].sck_shzt=='已审核'){
+		alert("对不起，项目已审核，不能执行退回操作！");
+		return;
+	}
+	}		
+	YMLib.UI.createWindow('sck_th','退回项目',jsp,'sck_th',w,h);
+}
+
+
+function th_scksh(jsp,w,h){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+	if(rows[i].sck_sbzt=='未上报' && rows[i].sck_sbthcd==6){
+		alert("对不起，无法退回！");
+		return;
+	}
+	if(rows[i].scbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
+		return;
+	}
+	if(rows[i].sck_sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	if(rows[i].sck_shzt=='已审核'){
+		alert("对不起，项目已审核，不能执行退回操作！");
+		return;
+	}
+	}	
+	YMLib.UI.createWindow('sck_th','退回项目',jsp,'sck_th',w,h);
+}
+
+//病害隧道审查库管理excel导出
+function exportExcel_bhsd_scgl(){
+	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
+	var gydwstr=$.cookie("unit2");
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var sbzt=encodeURI(encodeURI($("#sbzt").combobox("getValue")));	
+	var jsdj=encodeURI(encodeURI($("#jsdj").combobox("getValue")));
+	var acdfl=encodeURI(encodeURI($("#acdfl").combobox("getValue")));
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&sdmc='+$("#sdmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sck_sbzt='+sbzt+
+ 	'&jsdj='+jsdj+
+ 	'&acdfl='+acdfl+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sddm='+$("#sddm").val()+
+ 	'&sck_sbthcd='+cd+'&scbmbm='+$.cookie("unit2");
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmsck/exportExcel_bhsd_scgl.do?"+param;
+}
+//病害隧道审查库管理excel导出
+function exportExcel_bhsd_scsh(){
+	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
+	var gydwstr=$.cookie("unit2");
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var shzt=encodeURI(encodeURI($("#shzt").combobox("getValue")));	
+	var jsdj=encodeURI(encodeURI($("#jsdj").combobox("getValue")));
+	var acdfl=encodeURI(encodeURI($("#acdfl").combobox("getValue")));
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&sdmc='+$("#sdmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sck_shzt='+shzt+
+ 	'&jsdj='+jsdj+
+ 	'&acdfl='+acdfl+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sddm='+$("#sddm").val()+
+ 	'&sck_sbthcd='+cd+'&scbmbm='+$.cookie("unit2");
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmsck/exportExcel_bhsd_scsh.do?"+param;
+}

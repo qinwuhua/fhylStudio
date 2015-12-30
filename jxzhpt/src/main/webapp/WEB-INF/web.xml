@@ -53,20 +53,20 @@
     <filter-name>struts</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
-  <filter>
-    <filter-name>sitemesh</filter-name>
-    <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
-    <init-param>
-      <param-name>encoding</param-name>
-      <param-value>UTF-8</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>sitemesh</filter-name>
-    <url-pattern>*.jsp</url-pattern>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>REQUEST</dispatcher>
-  </filter-mapping>
+<!--   <filter> -->
+<!--     <filter-name>sitemesh</filter-name> -->
+<!--     <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> -->
+<!--     <init-param> -->
+<!--       <param-name>encoding</param-name> -->
+<!--       <param-value>UTF-8</param-value> -->
+<!--     </init-param> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--     <filter-name>sitemesh</filter-name> -->
+<!--     <url-pattern>*.jsp</url-pattern> -->
+<!--     <dispatcher>FORWARD</dispatcher> -->
+<!--     <dispatcher>REQUEST</dispatcher> -->
+<!--   </filter-mapping> -->
   <servlet>
     <servlet-name>flexDataSourceXml8</servlet-name>
     <servlet-class>com.hdsx.jxzhpt.controller.AnyChartSslkAction</servlet-class>

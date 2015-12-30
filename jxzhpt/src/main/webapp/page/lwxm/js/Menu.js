@@ -73,6 +73,13 @@ $(function() {
 		href:'./jckgl/aqsmfh.jsp'
 	});
 	createMenu('LeftMenu',{
+		id:'menu_0101020106',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/bhsd.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020120',
 		title:'危桥改造项目查看',
 		imgSrc:'../../images/wq.png',
@@ -99,6 +106,13 @@ $(function() {
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu1',
 		href:'./jckgl/zhfz__ck.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101020124',
+		title:'病害隧道项目查看',
+		imgSrc:'../../images/bhsd.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/bhsd__ck.jsp'
 	});
 	
 	createMenu('LeftMenu',{
@@ -137,6 +151,13 @@ $(function() {
 		href:'./jcksh/aqsmfh.jsp'
 	});
 	createMenu('LeftMenu',{
+		id:'menu_0101020206',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd.png',
+		renderTo:'left_menu2',
+		href:'./jcksh/bhsd.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020220',
 		title:'危桥改造项目查看',
 		imgSrc:'../../images/wq.png',
@@ -163,6 +184,13 @@ $(function() {
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/zhfz__ck.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101020224',
+		title:'病害隧道项目查看',
+		imgSrc:'../../images/bhsd.png',
+		renderTo:'left_menu2',
+		href:'./jcksh/bhsd__ck.jsp'
 	});
 	
 	createMenu('LeftMenu',{

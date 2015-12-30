@@ -64,6 +64,29 @@
 	<action name="onceZhfz" class="jckzhfzController" method="onceZhfz"/>
 	<action name="selZhfzCount" class="jckzhfzController" method="selZhfzCount"/>
 	<action name="selZhfzShCount" class="jckzhfzController" method="selZhfzShCount"/>
+	<!-- 病害隧道 -->
+	<action name="insertBhsd" class="jckbhsdController" method="insertBhsd"/>
+	<action name="selectBhsd" class="jckbhsdController" method="selectBhsd"/>
+	<action name="selectBhsdById" class="jckbhsdController" method="selectBhsdById"/>
+	<action name="updateBhsdById" class="jckbhsdController" method="updateBhsdById"/>
+	<action name="deleteBhsdById" class="jckbhsdController" method="deleteBhsdById"/>
+	<action name="xgJckBhsdShzt" class="jckbhsdController" method="xgJckBhsdShzt"/>
+	<action name="xgJckBhsdSbzt" class="jckbhsdController" method="xgJckBhsdSbzt"/>
+	<action name="bhsdGpsroad" class="jckbhsdController" method="bhsdGpsroad"/>
+	<action name="JckBhsdRoad" class="jckbhsdController" method="JckBhsdRoad"/>
+	<action name="selectJckShbhsd" class="jckbhsdController" method="selectJckShbhsd"/>
+	<action name="xgJckBhsdTH" class="jckbhsdController" method="xgJckBhsdTH"/>
+	<action name="importBhsd" class="jckbhsdController" method="importBhsd"/>
+	<action name="exportExcel_bhsd" class="jckbhsdController" method="exportExcel_bhsd"/>
+	<action name="exportExcel_bhsd_sh" class="jckbhsdController" method="exportExcel_bhsd_sh"/>
+	<action name="exportExcel_bhsd_sd" class="jckbhsdController" method="exportExcel_bhsd_sd"/>
+	<action name="onceBhsd" class="jckbhsdController" method="onceBhsd"/>
+	<action name="selJsdj" class="jckbhsdController" method="selJsdj"/>
+	<action name="selectBhsdCount" class="jckbhsdController" method="selectBhsdCount"/>
+	<action name="selectBhsdShCount" class="jckbhsdController" method="selectBhsdShCount"/>
+	<action name="selectJckSdbhsd" class="jckbhsdController" method="selectJckSdbhsd"/>
+	<action name="selectBhsdSdCount" class="jckbhsdController" method="selectBhsdSdCount"/>
+	<action name="xgJckBhsdSdzt" class="jckbhsdController" method="xgJckBhsdSdzt"/>
  </package>
  <package name="xmsck" extends="struts-default" namespace="/xmsck">
  <!-- 危桥改造 -->
