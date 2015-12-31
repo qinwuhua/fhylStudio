@@ -435,7 +435,7 @@ function loadUnit3(id, dwbm,yhdw) {
 	$('#' + id).combotree('setValue', dwbm);
 }
 function checkSZ(str){
-	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
+	var g = /^-?[1-9]+(?=\.{0,1}\d+$)|(^0$)|(^-?0\.[0-9]*[1-9]$)|(^-?[1-9][0-9]*.[0-9]*$)/;
 	if(str.value==''){
 		return;
 	}
