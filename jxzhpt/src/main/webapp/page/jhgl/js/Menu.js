@@ -83,6 +83,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhkgl/zhfz.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030113',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu1',
+		href:'./jhkgl/bhsd.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101030120',
@@ -111,6 +118,13 @@ $(function() {
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu1',
 		href:'./jhkgl/zhfz__ck.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030124',
+		title:'病害隧道项目查看',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu1',
+		href:'./jhkgl/bhsd__ck.jsp'
 	});
 	/*
 	createMenux('LeftMenu',{

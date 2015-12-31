@@ -245,6 +245,13 @@ function exportExcel(flag){
 		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}
+	if(flag=='bhsd'){
+		params="&lx.gydwbm="+$.cookie("unit2")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&lx.jsdj="+jsdj+
+				"&lx.sddm="+$('#sddm').val()+"&lx.sdmc="+$('#sdmc').val()+"&jh.jh_sbthcd="+$.cookie("unit2").length+
+				"&lx.tbbmbm="+$.cookie("unit2")+"&jh.sbzt="+sbzt+"&jh.spzt="+spzt;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_bhsd.do?flag="+flag+params+"&mode="+mode;
+	}
 }
 //excel审查库数据导入
 function importData_jh(flag){
@@ -585,4 +592,22 @@ function deleteFile(id){
 			 }
 		});
 	}
+}
+
+function plannf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text'
+	});
+	$('#'+id).combobox("setValue",'');
 }

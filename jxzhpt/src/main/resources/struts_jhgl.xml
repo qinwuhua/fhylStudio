@@ -243,5 +243,31 @@
 		<action name="querySumBhsdTz" class="plan_bhsdController" method="querySumBhsdTz"/>
 		<action name="bhsdTzth" class="plan_bhsdController" method="bhsdTzth"/>
 		<action name="queryBhsdtzById" class="plan_bhsdController" method="queryBhsdtzById"/>
+		
+		<action name="queryBhsdNfs" class="plan_bhsdController" method="queryBhsdNfs"/>
+		<action name="queryBhsdById" class="plan_bhsdController" method="queryBhsdById"/>
+		<action name="queryBhsdList" class="plan_bhsdController" method="queryBhsdList"/>
+		<action name="editBhsdStatusBatch" class="plan_bhsdController" method="editBhsdStatusBatch"/>
+		<action name="dropBhsdById" class="plan_bhsdController" method="dropBhsdById"/>
+		<action name="editBhsdById" class="plan_bhsdController" method="editBhsdById"/>
+		<action name="editBhsdStatus" class="plan_bhsdController" method="editBhsdStatus"/>
+		<action name="querySumBhsd" class="plan_bhsdController" method="querySumBhsd"/>
+		<action name="uploadBhsdFile" class="plan_bhsdController" method="uploadBhsdFile"/>
+		<action name="downBhsdFile" class="plan_bhsdController" method="downBhsdFile"/>
+		<action name="queryBhsdByStatus" class="plan_bhsdController" method="queryBhsdByStatus"/>
+		<action name="exportBhsdZjxdExcel" class="plan_bhsdController" method="exportBhsdZjxdExcel"/>
+		<action name="queryBhLs" class="plan_bhsdController" method="queryBhLs"/>
+		<action name="editBhZj" class="plan_bhsdController" method="editBhZj"/>
+		<action name="xgJhkBhsdBathSd" class="plan_bhsdController" method="xgJhkBhsdBathSd"/>
+		<action name="xgJhkBhsdBathSp" class="plan_bhsdController" method="xgJhkBhsdBathSp"/>
+		<action name="xgJhkBhsdTH" class="plan_bhsdController" method="xgJhkBhsdTH"/>
+		<action name="jHBhsdShangB" class="plan_bhsdController" method="jHBhsdShangB"/>
+		<action name="exportExcel_jh_bhsd" class="plan_bhsdController" method="exportExcel_jh_bhsd"/>
+		<action name="importBhsd_jh" class="plan_bhsdController" method="importBhsd_jh"/>
+		<action name="bhsdTz" class="plan_bhsdController" method="bhsdTz"/>
+		<action name="queryBhsdListTz" class="plan_bhsdController" method="queryBhsdListTz"/>
+		<action name="querySumBhsdTz" class="plan_bhsdController" method="querySumBhsdTz"/>
+		<action name="bhsdTzth" class="plan_bhsdController" method="bhsdTzth"/>
+		<action name="queryBhsdtzById" class="plan_bhsdController" method="queryBhsdtzById"/>
 	 </package>
 </struts>
