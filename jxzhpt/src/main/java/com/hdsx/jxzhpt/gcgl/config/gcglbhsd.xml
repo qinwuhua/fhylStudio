@@ -32,7 +32,7 @@
 		select m.*,rownum rn from (
 			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.cscyj,t2.stz 
 			from gcgl_bhsd t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
-			where 1=1 and sfsj=2
+			where 1=1 and sfsj=7
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
@@ -46,7 +46,7 @@
 	
 	<select id="selectBhsdYbByJhidCount1" parameterType="gcglbhsd" resultType="int">
 		select count(*) from gcgl_bhsd 
-		where 1=1 and sfsj=2
+		where 1=1 and sfsj=7
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
@@ -62,7 +62,7 @@
 	</insert>
 	
 	<select id="queryYbByYf" parameterType="gcglbhsd" resultType="gcglbhsd">
-		select * from gcgl_bhsd where sbsj=#{sbsj} and id=#{id}
+		select * from gcgl_bhsd where sbsj=#{sbsj} and id=#{jhid}
 	</select>
 	
 	<!-- 修改月报 -->
@@ -181,16 +181,16 @@
 	    t2.tzgs,t2.spwh,t2.sck_jsxz,t2.zyjsnr,t2.scbz
 	    from PLAN_BHSD t1 left join SCK_BHSD  t2 on t1.SCKID=t2.SCKID
             left join XMK_BHSD t3 on t2.xmkid=t3.id
-		    where  t1.jh_sdzt='1' 
-	    <if test="xtType!='' and xtType!= null ">
-				${xtType}
-		</if>
+		    where  t1.spzt='1' 
+<!-- 	    <if test="xtType!='' and xtType!= null "> -->
+<!-- 				${xtType} -->
+<!-- 		</if> -->
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
-		<if test="tbbmbm!='' and tbbmbm!= null ">
-				and t3.tbbmbm like '%'||(#{tbbmbm})||'%'
-		</if>
+<!-- 		<if test="tbbmbm!='' and tbbmbm!= null "> -->
+<!-- 				and t3.tbbmbm like '%'||(#{tbbmbm})||'%' -->
+<!-- 		</if> -->
 		<if test="kgzt != null and  kgzt != ''">
 				and t1.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
@@ -222,16 +222,16 @@
 	 <select id="selectBhsdjhListCount" parameterType="gcglbhsd" resultType="int">
 	 	select count(*) from  PLAN_BHSD t1 left join SCK_BHSD  t2 on t1.SCKID=t2.SCKID 
 	 	left join XMK_BHSD t3 on t2.xmkid=t3.id  
-		where  t1.jh_sdzt='1' 
-	    <if test="xtType!='' and xtType!= null ">
-				${xtType}
-		</if>
+		where  t1.spzt='1' 
+<!-- 	    <if test="xtType!='' and xtType!= null "> -->
+<!-- 				${xtType} -->
+<!-- 		</if> -->
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
-		<if test="tbbmbm!='' and tbbmbm!= null ">
-				and t3.tbbmbm like '%'||(#{tbbmbm})||'%'
-		</if>
+<!-- 		<if test="tbbmbm!='' and tbbmbm!= null "> -->
+<!-- 				and t3.tbbmbm like '%'||(#{tbbmbm})||'%' -->
+<!-- 		</if> -->
 		<if test="kgzt != null and  kgzt != ''">
 				and t1.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
