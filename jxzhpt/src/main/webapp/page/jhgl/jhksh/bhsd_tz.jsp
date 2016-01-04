@@ -28,7 +28,7 @@ function tzxz(){
 	}
 	$.ajax({
 		 type : "POST",
-		 url : "/nmyhgc/jhgl/bhsdTz.do",
+		 url : "/jxzhpt/jhgl/bhsdTz.do",
 		 dataType : 'json',
 		 data : 'jh.id='+parent.rowid+"&jh.tz_type="+$("#tz_type").combo('getValue'),
 		 success : function(msg){

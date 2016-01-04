@@ -207,6 +207,13 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./jhksb/zhfz.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030211',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu2',
+		href:'./jhksb/bhsd.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101030220',
@@ -293,6 +300,13 @@ $(function() {
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu3',
 		href:'./jhksh/zhfz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030311',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu3',
+		href:'./jhksh/bhsd.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030304',
@@ -628,7 +642,13 @@ $(function() {
 		renderTo:'left_menu6',
 		href:'./jhksh/abgctz.jsp'
 	});
-	
+	createMenux('LeftMenu',{
+		id:'menu_0101030605',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/bhsdtz.jsp'
+	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030620',
 		title:'危桥改造项目查看(交通局)',
