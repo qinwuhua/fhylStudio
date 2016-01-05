@@ -439,7 +439,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		sck_shzt v_0,gydw v_1,xzqhmc v_2,sddm v_3,sdmc v_4,sdzxzh v_5,lxbm v_6,lxmc
 		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,sck_jsxz v_11,xmk_bhsd.xmmc v_12
 		from sck_bhsd t join xmk_bhsd on xmkid=xmk_bhsd.id where 1=1 and
-			sck_sbthcd=2
+			sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd} 
 <!--         <if test="xtType!='' and xtType!= null "> -->
 <!-- 			${xtType} -->

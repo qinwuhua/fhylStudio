@@ -179,22 +179,8 @@ public class Plan_bhsdController extends BaseActionSupport {
 		if (lx.getJsdj()!=null) {
 			lx.setJsdj(URLDecoder.decode(lx.getJsdj(), "UTF-8"));
 		}
-		if (lx.getGydwbm().indexOf(",")==-1) {
-			lx.setGydwbm(" lx.gydwbm like '%"+lx.getGydwbm()+"%'");
-		}else {
-			lx.setGydwbm(" lx.gydwbm in ("+lx.getGydwbm()+")");
-		}
-		if (lx.getXzqhdm().indexOf(",")==-1) {
-			lx.setXzqhdm(" lx.xzqhdm like '%"+lx.getXzqhdm()+"%'");
-		}else {
-			lx.setXzqhdm(" lx.xzqhdm in ("+lx.getXzqhdm()+")");
-		}
-		if (jh.getXtType()!=null && !jh.getXtType().equals("")
-				&& jh.getXtType().equals("nc")) {
-			jh.setXtType("and substr(lx.lxbm,1,1)  not in('G','S')");
-		}else {
-			jh.setXtType("and substr(lx.lxbm,1,1) in('G','S')");
-		}
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		System.out.println("******************");
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -472,28 +458,6 @@ public class Plan_bhsdController extends BaseActionSupport {
 		List<Plan_bhsd> ls=wqgzServer.queryWqLs(lx);
 		JsonUtils.write(ls, getresponse().getWriter());
 	}
-	/**
-	 * 管养单位或行政区划代码处理
-	 * @param bh
-	 * @param name
-	 * @return
-	 */
-	public String gydwOrxzqhBm(String bh,String name){
-		String result=null;
-		if(bh!=null){
-			if(bh.indexOf(",")==-1){
-				int i=0;
-				if(bh.matches("^[0-9]*[1-9]00$")){
-					i=2;
-				}else if(bh.matches("^[0-9]*[1-9]0000$")){
-					i=4;
-				}
-				bh=bh.substring(0,bh.length()-i);
-			}
-			result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
-		}
-		return result;
-	}
 	
 	public void editBhZj(){
 		try{
@@ -633,6 +597,44 @@ public class Plan_bhsdController extends BaseActionSupport {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		/**
+		 * 管养单位或行政区划代码处理
+		 * @param bh
+		 * @param name
+		 * @return
+		 */
+		public String gydwOrxzqhBm(String bh,String name){
+			String result=null;
+			if(bh!=null){
+				if(bh.indexOf(",")==-1){
+					int i=0;
+					if(bh.matches("^[0-9]*[1-9]00$")){
+						i=2;
+					}else if(bh.matches("^[0-9]*[1-9]0000$")){
+						i=4;
+					}
+					bh=bh.substring(0,bh.length()-i);
+				}
+				result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+			}
+			return result;
+		}
+		public String gydwBm(String bh,String name){
+			String result=null;
+			if(bh!=null){
+				if(bh.indexOf(",")==-1){
+					int i=0;
+					if(bh.matches("^[0-9]*[1-9]00$") || bh.matches("^[0-9]*[1-9][0-9]00$")){
+						i=2;
+					}else if(bh.matches("^[0-9]*[1-9]0000$")){
+						i=4;
+					}
+					bh=bh.substring(0,bh.length()-i);
+				}
+			result = bh.indexOf(",")==-1 ?  " lx."+name+" like '%'||substr('"+bh+"',0,4)||'_'||substr('"+bh+"',6)||'%'" : "lx."+name+" in ("+bh+")";
+			}
+			return result;
 		}
 		
 	//set get
