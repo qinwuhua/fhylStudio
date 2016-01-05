@@ -41,6 +41,7 @@
 			else if($("#xmlx").combobox("getValue")=='lmgj') Gcgj();
 			else if($("#xmlx").combobox("getValue")=='lmsj')	Gcsj();
 			else if($("#xmlx").combobox("getValue")=='yhdzx') Yhdzx();
+			else if($("#xmlx").combobox("getValue")=='bhsd') Bhsd();
 			else Sh();
 		});
 	});
@@ -81,6 +82,7 @@ text-decoration:none;
 						<option value="wqgz">危桥改造</option>
 						<option value="abgc">安保工程</option>
 						<option value="zhfz">灾害防治</option>
+						<option value="bhsd">病害隧道</option>
 					</select></td>
 				<!-- <td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">

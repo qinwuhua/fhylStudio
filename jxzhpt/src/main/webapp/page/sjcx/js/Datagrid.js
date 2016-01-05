@@ -558,3 +558,215 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	 },
 });
 }
+
+
+function jckglBhsd(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqhmc").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+		
+	$("#grid").datagrid({    
+		 url:'/jxzhpt/xmjck/selectBhsd.do',
+		 queryParams : {
+			 	'sbthcd':function(){
+			 		if($.cookie("unit2")=='______36') return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
+			 	'gydw':gydwstr,
+			 	'xzqhdm':xzqhstr,
+			 	'lxmc' : $('#lxmc').val(),
+			 	'sdmc':$("#sdmc").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
+			 	'sbzt':$('#sbzt').combobox("getValue"),
+			 	'jsdj':$("#jsdj").combobox("getValue"),
+			 	'acdfl':$("#acdfl").combobox("getValue"),
+			 	'lxbm':$("#lxbm").val(),
+			 	'sddm':$("#sddm").val(),
+			 	'tbbmbm':$.cookie("unit2")
+			 	
+			},
+		    striped:true,
+		    pagination:true,
+		    rownumbers:true,
+		    pageNumber:1,
+		    pageSize:10,
+		    height:$(window).height()-180,
+			width:$(window).width()-10,
+	    columns:[[    
+			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+					return '<a href=javascript:locationXm("'+row.sddm+'","'+row.sdzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					'<a href=javascript:ckJckbhsd("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+			}},    
+			{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
+				if(row.sbzt2=="未上报" && row.sbthcd!=2){
+						return '<span style="color:grey;">未上报</span>';
+					}else{
+					return '<span style="color:grey;">已上报</span>';
+				}
+			}},
+			{field:'shzt',title:'审核状态',width:80,align:'center'},
+		 	{field:'gydw',title:'管养单位',width:160,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'sddm',title:'隧道代码',width:120,align:'center'},
+	        {field:'sdmc',title:'隧道名称',width:120,align:'center'},
+	        {field:'sdzxzh',title:'隧道中心桩号',width:120,align:'center'},
+	        {field:'jsjd',title:'进遂经度',width:120,align:'center'},
+	        {field:'jswd',title:'进遂纬度',width:120,align:'center'},
+	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+	        {field:'jsdj',title:'所在路线技术等级',width:120,align:'center'},
+	        {field:'pddj',title:'隧道评定等级',width:140,align:'center'},
+	        {field:'acdfl',title:'隧道分类',width:140,align:'center'},
+	        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
+	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:120,align:'center'},
+	        {field:'jsxz',title:'建设性质',width:120,align:'center'}
+	    ]]    
+	});  
+	var sbthcd;
+	if($.cookie("unit2")=='______36'){
+			sck_sbthcd=7;
+		}else  sck_sbthcd=$.cookie("unit2").length;
+ 	var data="sbthcd="+sbthcd+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&sdmc="+$("#sdmc").val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&acdfl="+$("#acdfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&sddm="+$("#sddm").val();
+$.ajax({
+	 type : "POST",
+	 url : "/jxzhpt/xmjck/selectBhsdCount.do",
+	 dataType : 'json',
+	 data : data,
+	 success : function(msg){
+		 $("#bhsd1").html(msg);
+	 },
+});
+}
+
+function sckglBhsd(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqhmc").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	$("#grid").datagrid({    
+		 url:'/jxzhpt/xmsck/selectSckbhsd.do',
+		 queryParams : {
+			 	'sck_sbthcd':function(){
+			 		return $.cookie("unit2").length;
+			 	},
+			 	'gydw':gydwstr,
+			 	'xzqhdm':xzqhstr,
+			 	'lxmc' : $('#lxmc').val(),
+			 	'sdmc':$("#sdmc").val(),
+			 	'sck_xmnf':$("#xmnf").combobox("getValue"),
+			 	'sck_sbzt':$('#sbzt').combobox("getValue"),
+			 	'jsdj':$("#jsdj").combobox("getValue"),
+			 	'acdfl':$("#acdfl").combobox("getValue"),
+//			 	'bzls':$("#bzls").combobox("getValue"),
+			 	'lxbm': $('#lxbm').val(),
+			 	'sddm':$("#sddm").val(),
+			 	'scbmbm':$.cookie("unit2")
+			},
+		    striped:true,
+		    pagination:true,
+		    rownumbers:true,
+		    pageNumber:1,
+		    pageSize:10,
+		    height:$(window).height()-185,
+			width:$(window).width()-15,
+	    columns:[[    
+			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+					return '<a href=javascript:locationXm("'+row.sddm+'","'+row.sdzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					'<a href=javascript:ckSckbhsd("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+			}},    
+			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=2){
+					return '<span style="color:grey;">未上报</span>';
+					}else{
+					return '<span style="color:grey;">已上报</span>';
+				}
+			}},
+				{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
+//				{field:'bzls',title:'补助历史',width:60,align:'center'},
+			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
+		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+		        {field:'sddm',title:'隧道代码',width:120,align:'center'},
+		        {field:'sdmc',title:'隧道名称',width:120,align:'center'},
+		        {field:'sdzxzh',title:'隧道中心桩号',width:120,align:'center'},
+		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+		        {field:'pddj',title:'隧道评定等级',width:140,align:'center'},
+		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
+		        {field:'sck_xmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'sck_jsxz',title:'建设性质',width:140,align:'center'},
+		        {field:'xmmc',title:'项目名称',width:140,align:'center'}
+	    ]]    
+	});  
+	var sbthcd;
+	if($.cookie("unit2")=='______36'){
+			sck_sbthcd=7;
+		}else  sck_sbthcd=$.cookie("unit2").length;
+ 	var data="sck_sbthcd="+sbthcd+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&sdmc="+$("#sdmc").val()+
+ 	"&sck_xmnf="+$("#xmnf").combobox("getValue")+"&sck_sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&acdfl="+$("#acdfl").combobox("getValue")+
+ 	"&lxbm="+$("#lxbm").val()+"&sddm="+$("#sddm").val()+'&scbmbm='+$.cookie("unit2");
+ 	
+ 	$.ajax({
+	 type : "POST",
+	 url : "/jxzhpt/xmsck/selectBhsdCount.do",
+	 dataType : 'json',
+	 data : data,
+	 success : function(msg){
+		 $("#bhsd1").html(msg);
+	 },
+});
+}
+
+function ckSckbhsd(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('sck_ck','查看项目详情','bhsd_sck_ck.jsp','sck_ck',900,500);
+}
+
+function ckJckbhsd(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('jck_ck','查看项目详情','bhsd_jck_ck.jsp','jck_ck',900,450);
+}

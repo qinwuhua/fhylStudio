@@ -368,4 +368,70 @@
 		<if test="xmnf != null and  xmnf != ''">and sbnf like '%'||trim(#{xmnf})||'%'</if>
 		<if test="xmlx != null and  xmlx != ''">and sfylrbwqk like '%'||trim(#{xmlx})||'%'</if>
 	</select>
+	<select id="selZdyBhsd" parameterType="zdycx" resultType="gcglbhsd">
+	select * from (
+	select m.*,rownum rn from (
+	select 
+	t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,
+	t1.xdsj,t1.sjkgsj,
+	t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.sbnf,
+	t3.sdmc,t3.sddm,t3.sdzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.sdkd,t3.sdcd,t3.xjgjnd,t3.xmnf,
+	t2.sck_jsxz jsxz
+	from PLAN_bhsd t1 left join plan_zjxd xd on t1.id=xd.xmid left join SCK_bhsd  t2 on t1.SCKID=t2.SCKID 
+	left join XMK_bhsd t3 on t2.xmkid=t3.id 
+	where  1=1
+    <if test="gydw != null and  gydw != ''">
+	and t3.gydwbm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+	and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+<!-- 	in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) -->
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
+	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and xd.xdnf like '%'||trim(#{jhnf})||'%'
+	</if>
+	order by t3.sddm
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selZdyBhsdCount" parameterType="zdycx" resultType="int">
+	 	select count(*) from  PLAN_bhsd t1 left join plan_zjxd xd on t1.id=xd.xmid 
+	 	left join SCK_bhsd  t2 on t1.SCKID=t2.SCKID left join XMK_bhsd t3 on t2.xmkid=t3.id 
+		where  1=1
+	<if test="gydw != null and  gydw != ''">
+	and t3.gydwbm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+	and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
+	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and xd.xdnf like '%'||trim(#{jhnf})||'%'
+	</if>
+	 </select>
 </mapper>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglbhsd;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglhsly;
@@ -126,7 +127,15 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 			eui.setRows(list);
 			eui.setTotal(count);
 			JsonUtils.write(eui, getresponse().getWriter());
-		}else if("lmsj".equals(xmlx)){
+		}else if("bhsd".equals(xmlx)){
+			List<com.hdsx.jxzhpt.gcgl.bean.Gcglbhsd> list = zdycxServer.selZdyList(zdycx);
+			EasyUIPage<Gcglbhsd> eui=new EasyUIPage<Gcglbhsd>();
+			int count = zdycxServer.selZdyCount(zdycx);
+			eui.setRows(list);
+			eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		}
+		else if("lmsj".equals(xmlx)){
 			List<Gcglgcgzsj> list = zdycxServer.selZdyList(zdycx);
 			EasyUIPage<Gcglgcgzsj> eui=new EasyUIPage<Gcglgcgzsj>();
 			int count = zdycxServer.selZdyCount(zdycx);

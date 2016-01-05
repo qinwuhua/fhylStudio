@@ -24,6 +24,9 @@ function Yhdzx(){
 function Sh(){
 	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_sh.jsp','zd_xz','900','380');
 }
+function Bhsd(){
+	YMLib.UI.createWindow('zd_bhsd','病害隧道字段选择列表','zdycx_bhsd.jsp','zd_bhsd','900','380');
+}
 function tsdq(id){
 	$('#'+id).combobox({    
 	    url:'/jxzhpt/jhgl/queryTsdq.do',

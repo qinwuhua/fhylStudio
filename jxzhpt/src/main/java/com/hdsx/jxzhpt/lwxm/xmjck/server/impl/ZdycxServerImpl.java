@@ -28,6 +28,7 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 		if("wqgz".equals(xmlx)) return queryList("selZdyWqgz", zdycx);
 		else if("abgc".equals(xmlx)) return queryList("selZdyAbgc", zdycx);
 		else if("zhfz".equals(xmlx)) return queryList("selZdyZhfz", zdycx);
+		else if("bhsd".equals(xmlx)) return queryList("selZdyBhsd", zdycx);
 		else if("lmsj".equals(xmlx)) return queryList("selZdyLmsj", zdycx);
 		else if("lmgj".equals(xmlx)) return queryList("selZdyLmgj", zdycx);
 		else if("yhdzx".equals(xmlx)) return queryList("selZdyYhdzx", zdycx);
@@ -39,6 +40,7 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 		if("wqgz".equals(xmlx)) return queryOne("selZdyWqgzCount", zdycx);
 		else if("abgc".equals(xmlx)) return queryOne("selZdyAbgcCount", zdycx);
 		else if("zhfz".equals(xmlx)) return queryOne("selZdyZhfzCount", zdycx);
+		else if("bhsd".equals(xmlx)) return queryOne("selZdyBhsdCount", zdycx);
 		else if("lmsj".equals(xmlx)) return queryOne("selZdyLmsjCount", zdycx);
 		else if("lmgj".equals(xmlx)) return queryOne("selZdyLmgjCount", zdycx);
 		else if("yhdzx".equals(xmlx)) return queryOne("selZdyYhdzxCount", zdycx);
