@@ -131,7 +131,7 @@ public class JckbhsdController extends BaseActionSupport implements ModelDriven<
 			String stylefileName="module.xls";
 			String tableName="病害隧道项目";//excel 文件的名字
 			//导出excel
-			ExportExcel_new <Jckwqgz> ee = new ExportExcel_new<Jckwqgz>();
+			ExportExcel_new <Jckbhsd> ee = new ExportExcel_new<Jckbhsd>();
 			ee.initStyle(ee.workbook, stylefileName);
 			HttpServletResponse response= getresponse();
 			ee.makeExcel(tableName, sheetBeans, response);

@@ -303,5 +303,6 @@
 	<action name="selectBhsdbzzj" class="gcglbhsdController" method="selectBhsdbzzj"/>
 	<action name="selectBhsdjhList1" class="gcglbhsdController" method="selectBhsdjhList1"/>
 	<action name="selectcgsyf" class="gcglbhsdController" method="selectcgsyf"/>
+	
  </package>
 </struts>

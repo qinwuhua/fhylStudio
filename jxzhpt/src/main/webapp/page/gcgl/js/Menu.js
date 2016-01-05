@@ -75,6 +75,13 @@ $(function() {
 		href:'./gljsjyhgl/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101040111',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/bhsd/bhsd.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101040107',
 		title:'改建工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -233,6 +240,13 @@ $(function() {
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu2',
 		href:'./ybjdsh/zhfz/zhfz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040211',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu2',
+		href:'./ybjdsh/bhsd/bhsd.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040207',
@@ -551,6 +565,13 @@ $(function() {
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/zhfz/zhfz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040411',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu4',
+		href:'./glgcwgtj/bhsd/bhsd.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040407',

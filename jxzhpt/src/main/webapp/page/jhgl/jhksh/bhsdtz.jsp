@@ -25,13 +25,16 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('tzlx','调整类型');
 			var myDate = new Date();
 			plannf("sbnf");
-			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:$.cookie("unit2").length,
+// 			$('#sbnf').combobox("setValue",myDate.getFullYear());
+			queryZjqf($('#sbnf').combobox("getValue"));
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:'1',jh_sbthcd:$.cookie("unit2").length,
 					shFlag:'1'};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
-				querySumWqgz(jh,lx);
-				wqxm_sh(jh,lx);
+				querySumWqgzTz(jh,lx);
+				wqxmTz(jh,lx);
 		});
 		function searchWqgz(){
 			var gydwstr;
@@ -73,92 +76,28 @@
 			if($('#sbnf').combobox('getValue')!=""){
 				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getValue')=="未审核"){
-				jh.spzt='0';
-			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
-				jh.spzt='1';
+			if($('#ddlSDZT').combobox('getValue')=="未审定"){
+				jh.jh_sdzt='0';
+			}else if($('#ddlSDZT').combobox('getValue')=="已审定"){
+				jh.jh_sdzt='1';
 				
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.jsdj=$('#ddlPDDJ').combobox('getValue');
 			}
+			if($('#tzlx').combobox('getText')!="全部"){
+				jh.tz_type=$('#tzlx').combobox('getValue');
+			}
 // 			queryZjqf($('#sbnf').combobox("getValue"));
-			querySumWqgz(jh,lx);
-			wqxm_sh(jh,lx);
+			querySumWqgzTz(jh,lx);
+			wqxmTz(jh,lx);
 		}
-		
-		function spBatch(){
-			var rows=$('#grid').datagrid('getSelections');
-			if(rows.length==0) {
-				alert("请选择要审批的项目！");
-				return;
-			}
-			for(var i=0;i<rows.length;i++){
-				if(rows[i].spzt=='1'){
-					alert("有项目已审核，请勿重复操作！");
-					return ;
-				}
-			}
-			var id=rows[0].id;
-			for(var i=1;i<rows.length;i++){
-				id+=","+rows[i].id ;
-				
-			}
-			var date=new Date();
-			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-			var jh={'jhIds':id,'jh.spsj':sbsj,'jh.spbmdm':$.cookie("unit"),'jh.spzt':'1'};
-			
-			if(confirm('您确定审批该项目？')){
-					$.ajax({
-						 type : "POST",
-						 url : "/jxzhpt/jhgl/xgJhkBhsdBathSp.do",
-						 dataType : 'json',
-						 data : jh,
-						 success : function(msg){
-							 if(msg){
-								 alert('审核成功！');
-								 $("#grid").datagrid('reload');
-								 searchWqgz();
-							 }else{
-								 alert('审核失败,请选择要审核项目！');
-							 }
-						 },
-						 error : function(){
-							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-						 }
-					});
-			}
-			
-		}
-		function sp(id,jh_sbthcd){
-			var date=new Date();
-			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-			var jh={'jh.id':id,'jh.spsj':sbsj,'jh.spbmdm':$.cookie("unit"),'jh.spzt':'1',
-					'jh.jh_sbthcd':Number(jh_sbthcd)-1};
-			if(editStatus(jh)){
-				alert("审批成功！");
-				searchWqgz();
-			}
-		}
-		function tuihui(id,jh_sbthcd){
-			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd+2};
-			if(editStatus(jh)){
-				alert("成功将计划退回！");
-				searchWqgz();
-			}
-		}
-		
-		$(window).resize(function () { 
-			$('#grid').datagrid('resize'); 
-		});
 		
 	</script>
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库审核>&nbsp;病害隧道项目</div>
+		<div id="p_top">计划管理>&nbsp;项目计划库调整>&nbsp;病害隧道项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -183,21 +122,22 @@
         					<p style="margin:8px 0px 8px 20px;">
         						<span>计划年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;审核状态：</span>
-        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+        						<span>&nbsp;审定状态：</span>
+        						<select name="ddlSDZT" class="easyui-combobox" id="ddlSDZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
+									<option value="未审定">未审定</option>
+									<option value="已审定">已审定</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 								</select>
+								<span>&nbsp;调整类型：</span>
+								<select name="tzlx" class="easyui-combobox" id="tzlx" style="width:100px;">
+								</select>
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
-        						<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
-        						<img alt="导出Excel" onclick="exportExcel('bhsd','sh')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-<!-- 							<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="th_jhksh('bhsd_th.jsp','500','200');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
+        						<img alt="导出Excel" onclick="exportExceltz('bhsd','tz')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 							</p>
         				</div>
         			</fieldset>
@@ -205,7 +145,6 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-<!--         			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元， -->
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个病害隧道项目，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，

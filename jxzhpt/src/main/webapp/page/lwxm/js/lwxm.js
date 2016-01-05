@@ -826,8 +826,19 @@ function ckSckbhsd(ck_id){
 
 //病害隧道导出excel 
 function exportExcel_bhsd(){
-	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
-	var gydwstr=$.cookie("unit2");
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -858,8 +869,19 @@ function exportExcel_bhsd(){
 
 //病害隧道审核excel导出
 function exportExcel_bhsd_sh(){
-	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
-	var gydwstr=$.cookie("unit2");
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -1004,8 +1026,19 @@ function th_scksh(jsp,w,h){
 
 //病害隧道审查库管理excel导出
 function exportExcel_bhsd_scgl(){
-	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
-	var gydwstr=$.cookie("unit2");
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
@@ -1036,8 +1069,19 @@ function exportExcel_bhsd_scgl(){
 }
 //病害隧道审查库管理excel导出
 function exportExcel_bhsd_scsh(){
-	var cd=$.cookie("unit2")=='15'?2:$.cookie("unit2").length;
-	var gydwstr=$.cookie("unit2");
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");

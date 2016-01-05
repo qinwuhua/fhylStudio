@@ -608,7 +608,9 @@ public class GcglhslyController extends BaseActionSupport{
 			if("yhdzx".equals(xmlx)){
 				sql="update jhsh_yhdzx set jgzt='0' where xmbm='"+id+"'";
 			}
-			
+			if("bhsd".equals(xmlx)){
+				sql="update plan_bhsd set jgzt='0' where id='"+id+"'";
+			}
 			boolean bl=gcglhslyServer.thxmwgtj(sql);
 			ResponseUtils.write(getresponse(), bl+"");
 		}

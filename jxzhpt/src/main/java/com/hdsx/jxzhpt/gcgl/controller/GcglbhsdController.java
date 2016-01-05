@@ -201,13 +201,13 @@ public class GcglbhsdController extends BaseActionSupport{
 	public void insertBhsdYb(){
 		System.out.println(gcglbhsd);
 		if("县级".equals(yhtype)){
-			gcglbhsd.setSfsj(6);
+			gcglbhsd.setSfsj(11);
 		}
 		if("市级".equals(yhtype)){
-			gcglbhsd.setSfsj(4);
+			gcglbhsd.setSfsj(9);
 		}
 		if("省级".equals(yhtype)){
-			gcglbhsd.setSfsj(2);
+			gcglbhsd.setSfsj(7);
 		}
 		Boolean bl=gcglbhsdServer.insertWqgzYb(gcglbhsd);
 		if(bl){
@@ -450,7 +450,9 @@ public class GcglbhsdController extends BaseActionSupport{
 			Gcglbhsd Gcglbhsd=new Gcglbhsd();
 			String tiaojian="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+//				if(gydw.length()==9)
+//					tiaojian=("and (t3.gydwbm='"+gydw+"'||'00' or t3.gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+				tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian="and t3.gydwbm in ("+gydw+")";
 			}
@@ -466,20 +468,20 @@ public class GcglbhsdController extends BaseActionSupport{
 			Gcglbhsd.setShzt(ybzt);
 			Gcglbhsd.setXmnf(xmnf);
 			Gcglbhsd.setTbbmbm(tbbmbm);
-			if(sfsj==2){
+			if(sfsj==7){
 				Gcglbhsd.setTiaojian("sjsh");
 			}
-			if(sfsj==4){
+			if(sfsj==9){
 				Gcglbhsd.setTiaojian("sjzt");
 			}
-			if(sfsj==6){
+			if(sfsj==11){
 				Gcglbhsd.setTiaojian("xjzt");
 			}
-			if (xtType!=null && !xtType.equals("")&&xtType.equals("nc")) {
-				Gcglbhsd.setXtType("and substr(t3.lxbm,1,1) not in('G','S')");
-			}else {
-				Gcglbhsd.setXtType("and substr(t3.lxbm,1,1) in('G','S')");
-			}
+//			if (xtType!=null && !xtType.equals("")&&xtType.equals("nc")) {
+//				Gcglbhsd.setXtType("and substr(t3.lxbm,1,1) not in('G','S')");
+//			}else {
+//				Gcglbhsd.setXtType("and substr(t3.lxbm,1,1) in('G','S')");
+//			}
 			int count=gcglbhsdServer.selectWqgzjhListCount(Gcglbhsd);
 			List<Gcglbhsd> list=gcglbhsdServer.selectWqgzjhList(Gcglbhsd);
 			EasyUIPage<Gcglbhsd> e=new EasyUIPage<Gcglbhsd>();

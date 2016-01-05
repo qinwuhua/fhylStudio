@@ -219,7 +219,7 @@ function exportModule(filename){
 	//window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
 }
 //导出excel
-function exportExcel(flag){
+function exportExcel(flag,mode){
 //	var param=JSON.stringify(queryParams);
 //	param=param.replace(/null/g,'').replace(/undefined/g,'');
 //	param=param.substring(1, param.length-1);
@@ -246,6 +246,24 @@ function exportExcel(flag){
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}
 	if(flag=='bhsd'){
+		alert('bhsd');
+		var sbzt="";
+		var spzt="";
+		if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
+			if($('#ddlSHZT').combo("getValue")=="未上报"){
+			    sbzt='0';
+			}
+			if($('#ddlSHZT').combo("getValue")=="已上报"){
+				sbzt='1';
+			}
+			if($('#ddlSHZT').combo("getValue")=="未审核"){
+				spzt='0';
+			}
+			if($('#ddlSHZT').combo("getValue")=="已审核"){
+				spzt='1';
+			}
+		}
+		var jsdj=encodeURI(encodeURI($('#ddlPDDJ').combobox('getValue')));
 		params="&lx.gydwbm="+$.cookie("unit2")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
 				"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&lx.jsdj="+jsdj+
 				"&lx.sddm="+$('#sddm').val()+"&lx.sdmc="+$('#sdmc').val()+"&jh.jh_sbthcd="+$.cookie("unit2").length+
