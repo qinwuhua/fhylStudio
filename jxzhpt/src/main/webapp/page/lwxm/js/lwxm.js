@@ -212,15 +212,15 @@ function ckJckzhfz(ck_id){
 	rowid=ck_id;
 	YMLib.UI.createWindow('jck_ck','查看项目详情','zhfz_ck.jsp','jck_ck',900,450);
 }
-
+var obj=new Object();
 //基础库危桥改造
-function xgJckwqgz(xg_id){
-	rowid=xg_id;
-	YMLib.UI.createWindow('jck_xg','修改项目信息','wqgz_xg.jsp','jck_xg',900,450);
+function xgJckwqgz(index){
+	obj=$("#grid").datagrid('getRows')[index];
+	YMLib.UI.createWindow('lxxx','修改项目信息','wqgz_xg.jsp','lxxx',900,450);
 }
-function ckJckwqgz(ck_id){
-	rowid=ck_id;
-	YMLib.UI.createWindow('jck_ck','查看项目详情','wqgz_ck.jsp','jck_ck',900,450);
+function ckJckwqgz(index){
+	obj=$("#grid").datagrid('getRows')[index];
+	YMLib.UI.createWindow('lxxx','查看项目详情','wqgzsj_ck.jsp','lxxx',900,450);
 }
 
 //审查库项目添加
@@ -233,12 +233,12 @@ function addSck(jsp,w,h){
 	YMLib.UI.createWindow('sck_add','添加项目',jsp,'sck_add',w,h);
 }
 //审查库危桥改造
-function xgSckwqgz(xg_id){
-	rowid=xg_id;
-	YMLib.UI.createWindow('sck_xg','修改项目信息','wqgz_xg.jsp','sck_xg',900,500);
+function xgSckwqgz(index){
+	obj=$("#grid").datagrid('getRows')[index];
+	YMLib.UI.createWindow('lxxx','修改项目信息','wqgz_xg.jsp','lxxx',900,500);
 }
-function ckSckwqgz(ck_id){
-	rowid=ck_id;
+function ckSckwqgz(index){
+	obj=$("#grid").datagrid('getRows')[index];
 	YMLib.UI.createWindow('sck_ck','查看项目详情','wqgz_ck.jsp','sck_ck',900,500);
 }
 //审查库安保工程

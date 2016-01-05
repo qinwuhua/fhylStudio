@@ -145,7 +145,14 @@ public class Jckwqgzsj implements Serializable{
 	private String xqlbm;
 	private String xzxzh;
 	private String xlxmc;
+	private String nsqsbz;
 	
+	public String getNsqsbz() {
+		return nsqsbz;
+	}
+	public void setNsqsbz(String nsqsbz) {
+		this.nsqsbz = nsqsbz;
+	}
 	public String getXlxmc() {
 		return xlxmc;
 	}

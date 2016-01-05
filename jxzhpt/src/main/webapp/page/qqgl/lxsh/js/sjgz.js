@@ -31,7 +31,7 @@ function xiangxi(index){
 function edit(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,490);
 }
 function del(index){
 	if($.cookie("unit2").length==7 ){
@@ -237,7 +237,7 @@ function xiangxi1(index){
 function edit1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,490);
 }
 function del1(index){
 	if($.cookie("unit2").length==7 ){
@@ -275,7 +275,7 @@ function xiangxi2(index){
 function edit2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,490);
 }
 function del2(index){
 	if($.cookie("unit2").length==7 ){
@@ -483,7 +483,7 @@ function showAll(){
 		    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:120,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:120,align:'center'},
-		    {field : 'lc',title : '里程',width : 90,align : 'center'},
+		    {field : 'jszlc',title : '里程',width : 90,align : 'center'},
 		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},

@@ -69,8 +69,8 @@ text-decoration:none;
 			success:function(msg){
 				qdStr=parseFloat(msg.qdzh);
 				zdStr=parseFloat(msg.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.zdzh);
+// 				$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.qdzh);
+// 				$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -128,8 +128,8 @@ text-decoration:none;
 					$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
+// 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
+// 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					cesuan2();
 				});

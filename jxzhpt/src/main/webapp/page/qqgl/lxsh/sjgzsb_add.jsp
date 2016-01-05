@@ -107,14 +107,16 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			if(parseInt($("#xmnf").combobox('getText'))>parseInt($("#jhkgn").combobox('getText'))){
-				alert("对不起，开工年不能小于项目年份！");
-				return false;
-			}
+			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
+			var zlc=$("#jszlc").val();
+			if(parseFloat(zlc)>(parseFloat($('#lc').html())*1.2)){
+				alert("对不起，建设技术等级里程不能大于现状里程的120%");
+				return false;
+			} 
 			saveLxsh();
 			/*var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=sjgz";
 			$.ajax({

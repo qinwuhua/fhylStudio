@@ -32,8 +32,13 @@
 					$('#sd_sfcd').val("0");
 					$('#jaf').val("0");
 					$('#cbsj').form("load",data);
-					$('#span_qdzh').html(data.gpsqdzh);
-					$('#span_zdzh').html(data.gpszdzh);
+					var lc=parseFloat(data.gpszdzh)-parseFloat(data.gpsqdzh);
+					var qdStr=(parseFloat(data.gpsqdzh)-lc*0.3).toFixed(3);
+					var zdStr=(parseFloat(data.gpszdzh)+lc*0.3).toFixed(3);
+					if(qdStr<0)
+						qdStr=0;
+					$('#span_qdzh').html(qdStr);
+					$('#span_zdzh').html(zdStr);
 					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);

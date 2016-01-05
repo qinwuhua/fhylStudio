@@ -57,10 +57,14 @@ text-decoration:none;
 			data:data1,
 			dataType:'json',
 			success:function(msg){
-				qdStr=parseFloat(msg.qdzh);
-				zdStr=parseFloat(msg.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
+				var lc=parseFloat(msg.zdzh)-parseFloat(msg.qdzh);
+				qdStr=(parseFloat(msg.qdzh)-lc*0.3).toFixed(3);
+				zdStr=(parseFloat(msg.zdzh)+lc*0.3).toFixed(3);
+				if(qdStr<0)
+					qdStr=0;
+
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -106,13 +110,11 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			var zlc=parseFloat($('#jhyilc').val()=="" ? "0": $('#jhyilc').val())+parseFloat($('#jherlc').val()=="" ? "0" : $('#jherlc').val())
-			+parseFloat($('#jhsanlc').val()=="" ? "0" : $('#jhsanlc').val())+parseFloat($('#jhsilc').val()=="" ? "" : $('#jhsilc').val())
-			+parseFloat($('#jhdwlc').val()=="" ? "0" : $('#jhdwlc').val())+parseFloat($('#jhwllc').val()=="" ? "0" : $('#jhwllc').val());
-			if(zlc.toFixed(3)!=parseFloat($('#lc').val())){
-				alert("对不起，建设技术等级及里程的总和应等于里程");
+			var zlc=$("#jszlc").val();
+			if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
+				alert("对不起，建设技术等级里程不能大于现状里程的120%");
 				return false;
-			}
+			} 
 			saveLxsh();
 		});
 

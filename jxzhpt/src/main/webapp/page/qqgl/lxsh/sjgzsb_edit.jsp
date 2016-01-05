@@ -86,6 +86,7 @@ text-decoration:none;
 		    }
 		});*/
 		$("#save_button").click(function(){
+			
 			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
 				alert("请填写项目名称！");
 				$("#xmmc").focus();
@@ -142,21 +143,16 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
-				alert("对不起，开工年不能小于项目年份！");
-				return false;
-			}
+			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-			var zlc=parseFloat($('#jhyilc').val()=="" ? "0": $('#jhyilc').val())+parseFloat($('#jherlc').val()=="" ? "0" : $('#jherlc').val())
-			+parseFloat($('#jhsanlc').val()=="" ? "0" : $('#jhsanlc').val())+parseFloat($('#jhsilc').val()=="" ? "" : $('#jhsilc').val())
-			+parseFloat($('#jhdwlc').val()=="" ? "0" : $('#jhdwlc').val())+parseFloat($('#jhwllc').val()=="" ? "0" : $('#jhwllc').val());
-			if(zlc.toFixed(3)!=parseFloat($('#lc').val())){
-				alert("对不起，建设技术等级及里程的总和应等于里程");
+			var zlc=$("#jszlc").val();
+			if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
+				alert("对不起，建设技术等级里程不能大于现状里程的120%");
 				return false;
-			}
+			} 
 			saveLxsh();
 		});
 
@@ -188,7 +184,7 @@ text-decoration:none;
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val();
 		data+="&lx.jhyilc="+$('#jhyilc').val()+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+
 		"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val();
 		//alert(data);
 		$.ajax({
 			type:'post',

@@ -136,10 +136,7 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
-				alert("对不起，开工年不能小于项目年份！");
-				return false;
-			}
+			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
 				return false;

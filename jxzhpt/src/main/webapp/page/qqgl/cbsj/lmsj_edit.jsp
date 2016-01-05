@@ -30,8 +30,13 @@
 					$('#dq_dk').val("0");
 					$('#sd_sfcd').val("0");
 					$('#jaf').val("0");
-					$('#span_qdzh').html(data.gpsqdzh);
-					$('#span_zdzh').html(data.gpszdzh);
+					var lc=parseFloat(data.gpszdzh)-parseFloat(data.gpsqdzh);
+					var qdStr=(parseFloat(data.gpsqdzh)-lc*0.3).toFixed(3);
+					var zdStr=(parseFloat(data.gpszdzh)+lc*0.3).toFixed(3);
+					if(qdStr<0)
+						qdStr=0;
+					$('#span_qdzh').html(qdStr);
+					$('#span_zdzh').html(zdStr);
 					$('#cbsj').form("load",data);
 					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
@@ -77,13 +82,12 @@
 		}
 		function uploadLmzj(){
 			var submit=true;
-			var zlc=parseFloat($('#jhyilc').val()=="" ? "0": $('#jhyilc').val())+parseFloat($('#jherlc').val()=="" ? "0" : $('#jherlc').val())
-			+parseFloat($('#jhsanlc').val()=="" ? "0" : $('#jhsanlc').val())+parseFloat($('#jhsilc').val()=="" ? "" : $('#jhsilc').val())
-			+parseFloat($('#jhdwlc').val()=="" ? "0" : $('#jhdwlc').val())+parseFloat($('#jhwllc').val()=="" ? "0" : $('#jhwllc').val());
-			if(zlc.toFixed(3)!=parseFloat($('#lc').val())){
-				alert("对不起，建设技术等级及里程的总和应等于里程");
+			var zlc=$("#jszlc").val();
+			if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
+				alert("对不起，建设技术等级里程不能大于现状里程的120%");
 				submit = false;
-			}
+			} 
+			
 			submit=validateText('qdzh','number',submit);
 			submit=validateText('zdzh','number',submit);
 			submit=validateText('mc_lc','number',submit);
