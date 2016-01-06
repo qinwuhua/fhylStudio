@@ -540,7 +540,7 @@ function shezhi(){
 	var data="gcglbhsd.jhid="+parent.obj1.jhid+"&gcglbhsd.nf="+new Date().getFullYear()+"&gcglbhsd.id="+parent.obj1.id+"&gcglbhsd.tablename=gcgl_wqgz";
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/selectWqgzbzzj.do',
+		url:'../../../../gcgl/selectBhsdbzzj.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
