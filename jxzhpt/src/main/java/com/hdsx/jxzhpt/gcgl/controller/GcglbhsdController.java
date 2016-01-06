@@ -64,7 +64,6 @@ public class GcglbhsdController extends BaseActionSupport{
 	private String tbbmbm;//
 	private String xtType;//系统类型
 	
-	
 	public String getSdmc() {
 		return sdmc;
 	}
@@ -581,10 +580,17 @@ public class GcglbhsdController extends BaseActionSupport{
 	public void selectBhsdjhList1(){
 		String tiaojian="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian="and t3.tbbmbm like '%"+gydw+"%'";
+			tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
-			tiaojian="and t3.tbbmbm in ("+gydw+")";
+			tiaojian="and t3.gydwbm in ("+gydw+")";
 		}
+		String tiaojian2="";
+		if(gcglbhsd.getXzqhdm().indexOf(",")==-1){
+			tiaojian2="and t3.xzqhdm like '%'||'"+gcglbhsd.getXzqhdm()+"'||'%'";
+		}else{
+			tiaojian2="and t3.xzqhdm in ("+gcglbhsd.getXzqhdm()+")";
+		}
+		gcglbhsd.setXzqhdm(tiaojian2);
 		gcglbhsd.setPage(page);
 		gcglbhsd.setRows(rows);
 		gcglbhsd.setGydw(tiaojian);

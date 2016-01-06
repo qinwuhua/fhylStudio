@@ -408,6 +408,13 @@ $(function() {
 		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101040311',
+		title:'病害隧道工程项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu3',
+		href:'./cgszjdw/bhsd/bhsd.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101040307',
 		title:'改建工程项目',
 		imgSrc:'../../images/sj_s.png',

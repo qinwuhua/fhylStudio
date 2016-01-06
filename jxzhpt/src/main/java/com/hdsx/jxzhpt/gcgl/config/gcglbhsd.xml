@@ -321,4 +321,157 @@
 	 <select id="querymaxybyf" parameterType="gcglbhsd" resultType="gcglbhsd">
 	 	select max(sbyf) sbyf from gcgl_bhsd where jhid=#{jhid}
 	 </select>
+	 
+	  <!-- 拨付资金列表 -->
+	 <select id="selectBhsdjhList1" parameterType="gcglbhsd" resultType="gcglbhsd">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,
+	    t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,
+	    t1.sjkgsj,t1.ID jhid,t1.id,t3.sdcd,t3.sdkd,t3.sdgd,
+	    t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+	    t3.sdmc,t3.sddm,t3.sdzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.jsdj,t3.pddj,t3.xjgjnd,t3.acdfl,t3.xmnf,t3.xmtype,t3.bhnr,
+	    t2.tzgs,t2.spwh,t2.sck_jsxz,t2.zyjsnr,t2.scbz
+		from PLAN_Bhsd t1 left join SCK_BHSD  t2 on t1.SCKID=t2.SCKID left join XMK_BHSD t3 on t2.xmkid=t3.id left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	 	where t1.spzt='1' 
+	 		<!-- <if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+			</if> -->
+				<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+			</if>
+<!-- 			<if test="sfylrbwqk != null and  sfylrbwqk != ''"> -->
+<!-- 					and t1.sfylrbwqk = #{sfylrbwqk} -->
+<!-- 			</if> -->
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+<!-- 			<if test="gydwtj != null and  gydwtj != ''"> -->
+<!-- 					${gydwtj} -->
+<!-- 			</if> -->
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="sdmc != null and  sdmc != ''">
+					and t3.sdmc like '%'||trim(#{sdmc})||'%'
+			</if>
+			<if test="sddm != null and  sddm != ''">
+			and t3.sddm like '%'||trim(#{sddm})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+<!-- 			<if test="tsdq != null and  tsdq != ''"> -->
+<!-- 					and t3.tsdq like '%'||trim(#{tsdq})||'%' -->
+<!-- 			</if> -->
+			<if test="ljbfzt != null and  ljbfzt != ''">
+					<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			order by t1.sbnf
+			) m
+					where <![CDATA[rownum<=(#{page} * #{rows})]]>
+				) 
+					where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selectBhsdjhListcount1" parameterType="gcglbhsd" resultType="int">
+	 	select count(*) from  PLAN_BHSD t1 left join SCK_BHSD  t2 on t1.SCKID=t2.SCKID 
+	 	left join XMK_BHSD t3 on t2.xmkid=t3.id 
+	 	left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,
+	 	sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  
+	 	where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	 	where t1.spzt='1' 
+	 		<!-- <if test="xdsj != null and  xdsj != ''">
+				and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+			</if> -->
+			<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+			</if>
+<!-- 			<if test="sfylrbwqk != null and  sfylrbwqk != ''"> -->
+<!-- 					and t1.sfylrbwqk = #{sfylrbwqk} -->
+<!-- 			</if> -->
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+<!-- 			<if test="gydwtj != null and  gydwtj != ''"> -->
+<!-- 					${gydwtj} -->
+<!-- 			</if> -->
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="sdmc != null and  sdmc != ''">
+					and t3.sdmc like '%'||trim(#{sdmc})||'%'
+			</if>
+			<if test="sddm != null and  sddm != ''">
+			and t3.sddm like '%'||trim(#{sddm})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+<!-- 			<if test="tsdq != null and  tsdq != ''"> -->
+<!-- 					and t3.tsdq like '%'||trim(#{tsdq})||'%' -->
+<!-- 			</if> -->
+			<if test="ljbfzt != null and  ljbfzt != ''">
+					<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			
+	 </select>
 </mapper>

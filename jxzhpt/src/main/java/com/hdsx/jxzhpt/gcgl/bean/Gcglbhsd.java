@@ -122,6 +122,8 @@ public class Gcglbhsd implements Serializable {
 	private String yb_thyj;//
 	private String tbbmbm;//填报部门编码
 	private String xtType;//系统类型 nc or gx
+	private String gldj;
+	private String ljbfzt;
 	
 	
 	public String getXtType() {
@@ -737,6 +739,18 @@ public class Gcglbhsd implements Serializable {
 	}
 	public void setZczjyls(String zczjyls) {
 		this.zczjyls = zczjyls;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getLjbfzt() {
+		return ljbfzt;
+	}
+	public void setLjbfzt(String ljbfzt) {
+		this.ljbfzt = ljbfzt;
 	}
 	
 	
