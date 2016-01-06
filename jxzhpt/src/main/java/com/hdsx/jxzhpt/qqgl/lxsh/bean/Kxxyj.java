@@ -48,6 +48,8 @@ public class Kxxyj implements Serializable {
 	private String lsjl;
 	private String gpsqdzh;
 	private String gpszdzh;
+	private String gpsqdzh1;
+	private String gpszdzh1;
 	private String minqdzh;
 	private String maxzdzh;
 	private String xjlxbm;//新建录像编码
@@ -471,6 +473,18 @@ public class Kxxyj implements Serializable {
 				+ ", xmnf=" + xmnf + ", gldj=" + gldj + ", jsdj=" + jsdj
 				+ ", xmlx=" + xmlx + ", sbthcd=" + sbthcd + ", sbzt1=" + sbzt1
 				+ ", lxbh=" + lxbh + ", gydwdm=" + gydwdm + "]";
+	}
+	public String getGpsqdzh1() {
+		return gpsqdzh1;
+	}
+	public void setGpsqdzh1(String gpsqdzh1) {
+		this.gpsqdzh1 = gpsqdzh1;
+	}
+	public String getGpszdzh1() {
+		return gpszdzh1;
+	}
+	public void setGpszdzh1(String gpszdzh1) {
+		this.gpszdzh1 = gpszdzh1;
 	}
 	
 }

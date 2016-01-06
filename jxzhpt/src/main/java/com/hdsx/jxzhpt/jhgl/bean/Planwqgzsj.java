@@ -212,7 +212,14 @@ public class Planwqgzsj implements Serializable{
 	private String jhqlqk;
 	private String tzxz;
 	private String tzsj;
+	private String nsqsbz;
 	
+	public String getNsqsbz() {
+		return nsqsbz;
+	}
+	public void setNsqsbz(String nsqsbz) {
+		this.nsqsbz = nsqsbz;
+	}
 	public String getTzsj() {
 		return tzsj;
 	}

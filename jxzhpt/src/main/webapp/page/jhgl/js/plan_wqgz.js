@@ -62,11 +62,13 @@ function sbnf(id){
 	$('#'+id).combobox("setValue",first);
 }
 function openWindow(id){
-	YMLib.Var.jhbm=id;
+	obj=id;
 	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
 }
+var obj;
 function openEditWindow(id){
-	YMLib.Var.jhbm=id;
+	obj=id;
+	//YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/edit/wqgz.jsp",'wq_edit',1000,500);
 }
 function openEditWindow1(id){
@@ -92,10 +94,10 @@ function wqxm(jh,lx){
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 		        		//result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	var id="'"+row.id+"'";
-			        	result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+			        	//result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		        	}else{
 		        		//result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
-			        	result+='<a style="text-decoration:none;color:black;">移除</a>';
+			        	//result+='<a style="text-decoration:none;color:black;">移除</a>';
 		        	}
 		        	
 		        	return result;
@@ -361,6 +363,10 @@ function wqxm_sh(jh,lx){
 	};
 	gridBind(grid);
 }
+function zjxf(id){
+	obj=id;
+	YMLib.UI.createWindow('wq_edit','危桥改造资金下达',"/jxzhpt/page/jhgl/jhkzjxd/wqgz_zj.jsp",'wq_edit',1000,500);
+}
 function wqxm_zjxd(jh,lx){
 	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
@@ -375,7 +381,7 @@ function wqxm_zjxd(jh,lx){
 		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
-		        	return '<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下达</a>';
+		        	return '<a href="javascript:zjxf('+"'"+row.id+"'"+')" style=" text-decoration:none;color:#3399CC;">资金下达</a>';
 		        }},
 		        {field:'kgzt',title:'建设状态',width:80,align:'center',
 		        	formatter:function(value,row,index){

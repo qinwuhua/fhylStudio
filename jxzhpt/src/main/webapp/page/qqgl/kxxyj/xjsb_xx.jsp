@@ -174,10 +174,10 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（米）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="dq_m"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（座）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（座）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="dq"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
@@ -192,9 +192,9 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="sd"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsdw"></span>
+<!-- 					<span id="jsdw"></span> -->
 				</td>
 			</tr>
 			<tr style="height: 35px;">

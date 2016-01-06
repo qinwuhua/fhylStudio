@@ -41,6 +41,14 @@ public class Xmsq {
 	private String silc;//四级公路里程
 	private String dwlc;//等外公路里程
 	private String wllc;//高速公路里程
+	private String xmnf;
+	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getXmsl() {
 		return xmsl;
 	}

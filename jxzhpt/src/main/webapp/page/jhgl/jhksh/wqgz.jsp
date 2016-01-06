@@ -43,6 +43,40 @@
 				alert("只有省级用户才能查看审核中的计划信息");
 			}*/
 		});
+		function tjwqgz(){
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#txtqlbm').val()!=''){
+				lx.qlbh=$('#txtqlbm').val();
+			}
+			if($('#sbnf').combobox('getValue')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getValue')=="未审核"){
+				jh.jh_sbthcd=4;
+			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.jh_sbthcd=4;
+				jh.sbzt='1';
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlAKJFL').combobox('getText')!="全部"){
+				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
+			}
+			querySumWqgz(jh,lx);
+		}
 		function searchWqgz(){
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};

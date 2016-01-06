@@ -125,7 +125,7 @@ text-decoration:none;
 				});
 	}
 	function check(str){
-		var flag = /^-?[1-9]+(?=\.{0,1}\d+$)|(^0$)|(^-?0\.[0-9]*[1-9]$)|(^-?[1-9][0-9]*.[0-9]*$)/;
+		var flag = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
 		if(!flag.test($.trim(str.value))){
 			alert("请输入正确的数字");
 			$(str).val('');

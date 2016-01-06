@@ -38,6 +38,61 @@
 			}
 			wqxm(jh,lx);
 		});
+		function tjwqgz(){
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#txtqlbm').val()!=''){
+				lx.qlbh=$('#txtqlbm').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#ddlSHZT').combo("getValue")=="未上报"){
+					if(xian){
+						jh.jh_sbthcd=0;
+					}else{
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="已上报"){
+					if(xian){
+						jh.jh_sbthcd=2;
+					}else{
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="未审核"){
+					jh.jh_sbthcd=4;
+				}
+				if($('#ddlSHZT').combo("getValue")=="已审核"){
+					jh.jh_sbthcd=6;
+				}
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlAKJFL').combobox('getText')!="全部"){
+				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
+			}
+			//wqxm(jh,lx);
+			querySumWqgz(jh,lx);
+		}
 		function searchWqgz(){
 			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};

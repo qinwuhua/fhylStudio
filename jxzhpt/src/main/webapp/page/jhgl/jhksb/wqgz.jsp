@@ -52,6 +52,56 @@
 			querySumWqgz(jh,lx);
 			wqxm_sb(jh,lx);
 		});
+		function tjwqgz(){
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#txtqlbm').val()!=''){
+				lx.qlbh=$('#txtqlbm').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlAKJFL').combobox('getText')!="全部"){
+				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getValue')=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#ddlSHZT').combobox('getValue')=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}
+			querySumWqgz(jh,lx);
+
+		}
 		function searchWqgz(){
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			if(!xian){

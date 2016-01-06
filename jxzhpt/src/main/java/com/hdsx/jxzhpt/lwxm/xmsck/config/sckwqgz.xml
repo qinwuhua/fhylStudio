@@ -10,7 +10,11 @@
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="java.util.List">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd) values(sys_guid(),#{sckid},'未下达',#{sbnf},#{jh_sbthcd})
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,jhsybzje,shengbz,sfylrbwqk,sfkxg,sfylsjl,qlszxz,zyjsnr,jhjsxz,pfsj,sjdw,sjpfdw,pfwh,jhqlqc,jhqlqk,pfztz)
+		select 
+		sys_guid(),sc.sckid,'未下达',sc.scxmnf,'2',sc.nsqbbz,sc.nsqsbz,'是','是',sc.bzls,sc.scszxz,sc.jsnr,sc.jsxz,sc.faspsj,sc.fapgdw,sc.fascdw,sc.spwh,sc.scqlqc,sc.scqlqk,sc.ztz
+		from sck_wqgz sc
+		where sc.sckid=#{sckid}
 	</insert>
  	<insert id="xglrjhSckwqgz"  parameterType="java.util.List">
 		update sck_wqgz set lrjh='已列入'  where sckid=#{String}
@@ -165,7 +169,12 @@
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '已审核'">
 			and sck_shzt like '%'||(#{shzt})||'%'
+			</if>
+			<if test="shzt == '未审核'">
+			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null or sck_shzt='')
+			</if>
 		</if>
 		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -215,7 +224,12 @@
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '已审核'">
 			and sck_shzt like '%'||(#{shzt})||'%'
+			</if>
+			<if test="shzt == '未审核'">
+			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null or sck_shzt='')
+			</if>
 		</if>
 		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -341,7 +355,12 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '已审核'">
 			and sck_shzt like '%'||(#{shzt})||'%'
+			</if>
+			<if test="shzt == '未审核'">
+			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null or sck_shzt='')
+			</if>
 		</if>
 		<!-- <if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'

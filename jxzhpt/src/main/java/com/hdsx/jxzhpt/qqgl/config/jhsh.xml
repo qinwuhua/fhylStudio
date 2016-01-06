@@ -412,13 +412,19 @@
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_sjgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
+		select * from kxxyj_sjgz k left join lxsh_lx l on k.xmbm=l.xmid
+		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
+	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
+		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid
+		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
+	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_xj k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
+		select * from kxxyj_xj k left join lxsh_lx l on k.xmbm=l.xmid
+		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
+		where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	
 	<!-- 路线操作部分 -->

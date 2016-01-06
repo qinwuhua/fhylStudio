@@ -5,7 +5,7 @@
 		insert into lxsh_lx select * from wnjh_lx where xmid=#{wnid}
 	</insert>
 	<insert id="updateqqgllx" parameterType="lxsh">
-		update lxsh_lx set xmid=#{xmbm},jdbs='0' where xmid=#{wnid}
+		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid=#{wnid}
 	</insert>
 	<select id="loadjsdjcd" parameterType="lxsh" resultType="lxsh">
 		select sum(t.yilc) yilc,sum(t.erlc) erlc,sum(t.sanlc) sanlc,sum(t.silc) silc,sum(t.dwlc) dwlc,sum(t.wllc) wllc,
@@ -91,7 +91,7 @@
 	</insert>
 	<insert id="insertLx1" parameterType="lxsh">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
 		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
 	</insert>
@@ -560,7 +560,7 @@
 	</select>
 	
 	<select id="querylxshSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_SJGZ t left join
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_SJGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
@@ -582,7 +582,7 @@
 		</if>
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_LMGZ t left join
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_LMGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
@@ -604,7 +604,7 @@
 		</if>
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_XJ t,
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_XJ t,
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx  where 1=1 and t.xmbm=lx.xmid(+)
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>

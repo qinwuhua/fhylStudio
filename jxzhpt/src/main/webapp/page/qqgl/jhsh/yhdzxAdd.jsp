@@ -20,19 +20,50 @@
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
+	function xmnf1(id){
+		var myDate = new Date();
+		var years=[];
+		var first;
+		for(var i=0;i<=10;i++){
+			if(i==0)
+				first=myDate.getFullYear()-i;
+			years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+		}
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    onSelect:function(rec){
+		    	$.ajax({
+					type:'post',
+					url:'../../../qqgl/queryNextXmbm.do',
+					data:'xmsq.xmlx='+4+'&xmsq.xzqhdm='+$.cookie('dist')+'&xmsq.xmnf='+rec.value,
+					dataType:'json',
+					success:function(msg){
+						$('#xmbm1').val(rec.value+$.cookie('dist')+msg.xmbm);
+						$('#xmbm1').attr("disabled","disabled");
+						$('#xmbm').val(rec.value+$.cookie('dist')+msg.xmbm);
+					}
+				});
+		    }
+		});
+		$('#'+id).combobox("setValue",first);
+	}
+	
 		$(function(){
+			xmnf1("xmnf");
 			loadDist("xzqh1",$.cookie("dist"));
 			loadUnit("gydw1",$.cookie("unit"));
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryNextXmbm.do',
-				data:'xmsq.xmlx='+4+'&xmsq.xzqhdm='+$.cookie('dist'),
+				data:'xmsq.xmlx='+4+'&xmsq.xzqhdm='+$.cookie('dist')+'&xmsq.xmnf='+$("#xmnf").combobox('getValue'),
 				dataType:'json',
 				success:function(msg){
-					var date=new Date();
-					$('#xmbm1').val(date.getFullYear()+$.cookie('dist')+msg.xmbm);
+					
+					$('#xmbm1').val($("#xmnf").combobox('getValue')+$.cookie('dist')+msg.xmbm);
 					$('#xmbm1').attr("disabled","disabled");
-					$('#xmbm').val(date.getFullYear()+$.cookie('dist')+msg.xmbm);
+					$('#xmbm').val($("#xmnf").combobox('getValue')+$.cookie('dist')+msg.xmbm);
 				}
 			});
 			autoCompleteLXBM();
@@ -306,8 +337,10 @@
 					<span id="tsdq1"></span>
 					<input id="tsdq" name="tsdq" type="hidden"/>
 				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目年份</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<select id="xmnf" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
+				</td>
             </tr>
             <tr style="height: 70px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

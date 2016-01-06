@@ -445,7 +445,7 @@
 	<select id="selectWqgzjhList2"  parameterType="gcglgcgzsj" resultType="hashmap">
 	select * from (
 		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_SJGZ t left join lxsh_sjgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
-		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.id=xdjh.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
 		left join (select 
 	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
 	      else '未全部拨付' end) ljbfzt,tb1.xmid
@@ -510,7 +510,7 @@
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzsj">
 		select count(*) from JHSH_SJGZ t left join lxsh_sjgz lxsh on t.xmbm=lxsh.xmbm left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
-		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.id=xdjh.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
 		left join (select 
 	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
 	      else '未全部拨付' end) ljbfzt,tb1.xmid

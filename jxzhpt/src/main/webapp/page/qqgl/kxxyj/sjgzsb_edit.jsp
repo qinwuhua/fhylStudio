@@ -45,6 +45,14 @@ text-decoration:none;
 			success:function(msg){
 				$("#xmbm").html(msg.xmbm);
 				$('#kxxyj').form("load",msg);
+				var lc=parseFloat(msg.gpszdzh)-parseFloat(msg.gpsqdzh);
+				qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+				zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
+				if(qdStr<0)
+					qdStr=0;
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+
 				$('#lxbh').val(msg.lxbm);
 				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
 			}
@@ -57,14 +65,6 @@ text-decoration:none;
 			data:data1,
 			dataType:'json',
 			success:function(msg){
-				var lc=parseFloat(msg.zdzh)-parseFloat(msg.qdzh);
-				qdStr=(parseFloat(msg.qdzh)-lc*0.3).toFixed(3);
-				zdStr=(parseFloat(msg.zdzh)+lc*0.3).toFixed(3);
-				if(qdStr<0)
-					qdStr=0;
-
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -128,7 +128,7 @@ text-decoration:none;
 		var data="kxxyj.xmbm="+parent.obj.xmbm+"&kxxyj.xmmc="+$('#xmmc').val()+"&kxxyj.sbthcd="+sbthcd+"&kxxyj.tbbmbm="+$.cookie("unit")
 		+"&kxxyj.qdzh="+$('#qdzh').val()+"&kxxyj.zdzh="+$('#zdzh').val()+"&kxxyj.jsxz="+$('#jsxz').val()
 		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combobox('getValue')
-		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="+$('#jsdw').val()
+		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')
 		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.lxbh="+$('#lxbh').val()
@@ -303,15 +303,15 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（米）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<input id="dq_m" name="dq_m" type="text"  onblur="checkSZ(this)" style="width:120px;"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（座）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（座）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<input id="dq" name="dq" type="text" onblur="checkSZ(this)" style="width:120px;"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="jsdw" name="jsdw" type="text" style="width: 120px;"/>
+<!-- 					<input id="jsdw" name="jsdw" type="text" style="width: 120px;"/> -->
 				</td>
 			</tr>
 			<tr style="height: 35px;">
