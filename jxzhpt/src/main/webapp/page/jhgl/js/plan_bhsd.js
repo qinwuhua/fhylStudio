@@ -78,7 +78,10 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('wq_edit','病害隧道',"/jxzhpt/page/jhgl/edit/bhsd.jsp",'wq_edit',1000,500);
 }
-
+function openZjxdWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('zjxd_bhsd','病害隧道资金下达',"/jxzhpt/page/jhgl/zjxd/bhsd.jsp",'zjxd_bhsd',1000,500);
+}
 function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,
@@ -475,16 +478,24 @@ function wqxm_zjxd(jh,lx){
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl};
-	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:$(window).height()-158,width:$('#searchField').width(),queryParams:params,
+	
+	var grid={id:'grid',
+			url:'../../../jhgl/queryBhsdList.do',
+			pagination:true,
+			rownumbers:false,
+		    pageNumber:1,
+		    pageSize:10,
+		    height:$(window).height()-158,
+		    width:$('#searchField').width(),
+		    queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationXm('+"'"+row.sddm+"',"+"'"+row.sdzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-		        	return '<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
+		        	return '<a href="javascript:openDialog('+"'zjxd_bhsd','病害隧道资金下达','../zjxd/bhsd.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
 		        }},
 		        {field:'kgzt',title:'建设状态',width:80,align:'center',
 		        	formatter:function(value,row,index){
@@ -496,46 +507,46 @@ function wqxm_zjxd(jh,lx){
 		        			return '竣工';
 		        	}
 		        },
-		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-		        	if(row.sfylsjl=='无')
-		        		return '无';
-		        	else if(row.sfylsjl=='有')
-		        		return '有';
-		        }},
+//		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+//		        	if(row.sfylsjl=='无')
+//		        		return '无';
+//		        	else if(row.sfylsjl=='有')
+//		        		return '有';
+//		        }},
 		        {field:'sbnf',title:'计划年份',width:80,align:'center'},
-		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		        {field:'gydw',title:'管养单位',width:150,align:'center',
 		        	formatter:function(value, row, index){
-		        		return row.jckwqgz.gydw;
+		        		return row.gydw;
 		        	}
 		        },
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
 		        	formatter:function(value, row, index){
-		        		return row.jckwqgz.xzqhmc;
+		        		return row.xzqhmc;
 		        	}
 		        },
 		        {field:'lxbm',title:'路线编码',width:80,align:'center',
 		        	formatter:function(value,row,index){
-			        	return row.jckwqgz.lxbm;
+			        	return row.lxbm;
 		        	}
 		        },
 		        {field:'lxmc',title:'路线名称',width:80,align:'center',
 		        	formatter:function(value,row,index){
-			        	return row.jckwqgz.lxmc;
+			        	return row.lxmc;
 		        	}
 		        },
-		        {field:'qlbm',title:'桥梁编码',width:60,align:'center',
+		        {field:'sddm',title:'隧道代码',width:60,align:'center',
 		        	formatter:function(value,row,index){
-			        	return row.jckwqgz.qlbh;
+			        	return row.sddm;
 		        	}
 		       },
-		        {field:'qlmc',title:'桥梁名称',width:60,align:'center',
+		        {field:'qlmc',title:'隧道名称',width:60,align:'center',
 		    	   formatter:function(value,row,index){
-			        	return row.jckwqgz.qlmc;
+			        	return row.sdmc;
 		        	}
 		    	},
-		        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'}
 		    ]],
 		    onClickRow:function(rowIndex,rowDate){
 				if(oldIndex!=-1){

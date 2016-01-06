@@ -45,9 +45,9 @@
 					from plan_bhsd jh left join sck_Bhsd sc on (jh.sckid=sc.sckid) 
 					left join xmk_Bhsd lx on (sc.xmkid=lx.id) where 1=1
                     and jh.jh_sbthcd&lt;=#{jh.jh_sbthcd} 
-                    <if test="jh.xtType!='' and jh.xtType!= null ">
-						${jh.xtType}
-					</if>
+<!--                     <if test="jh.xtType!='' and jh.xtType!= null "> -->
+<!-- 						${jh.xtType} -->
+<!-- 					</if> -->
 	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
@@ -186,9 +186,9 @@
 		select count(*) from plan_bhsd jh left join sck_Bhsd sc on (jh.sckid=sc.sckid) 
 		left join xmk_Bhsd lx on (sc.xmkid=lx.id) where 1=1
 		and jh.jh_sbthcd &lt;=#{jh.jh_sbthcd}
-        <if test="jh.xtType!='' and jh.xtType!= null ">
-			${jh.xtType}
-		</if>
+<!--         <if test="jh.xtType!='' and jh.xtType!= null "> -->
+<!-- 			${jh.xtType} -->
+<!-- 		</if> -->
 	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 		and jh.sbnf=#{jh.sbnf}
 	 	</if>

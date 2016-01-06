@@ -445,6 +445,13 @@ $(function() {
 		href:'./jhkzjxd/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101030412',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu4',
+		href:'./jhkzjxd/bhsd.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101030404',
 		title:'改建工程项目',
 		imgSrc:'../../images/sj_s.png',

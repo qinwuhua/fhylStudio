@@ -114,22 +114,8 @@ public class Plan_bhsdController extends BaseActionSupport {
 	 */
 	public void queryBhsdList(){
 		try {
-			if (lx.getGydwbm().indexOf(",")==-1) {
-				lx.setGydwbm(" lx.gydwbm like '%"+lx.getGydwbm()+"%'");
-			}else {
-				lx.setGydwbm(" lx.gydwbm in ("+lx.getGydwbm()+")");
-			}
-			if (lx.getXzqhdm().indexOf(",")==-1) {
-				lx.setXzqhdm(" lx.xzqhdm like '%"+lx.getXzqhdm()+"%'");
-			}else {
-				lx.setXzqhdm(" lx.xzqhdm in ("+lx.getXzqhdm()+")");
-			}
-			if (jh.getXtType()!=null && !jh.getXtType().equals("")
-					&& jh.getXtType().equals("nc")) {
-				jh.setXtType("and substr(lx.lxbm,1,1)  not in('G','S')");
-			}else {
-				jh.setXtType("and substr(lx.lxbm,1,1) in('G','S')");
-			}
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
 			jsonMap.put("rows", wqgzServer.queryWqgzList(page, rows, jh, lx));
@@ -145,22 +131,8 @@ public class Plan_bhsdController extends BaseActionSupport {
 	 */
 	public void querySumBhsd(){
 		try {
-			if (lx.getGydwbm().indexOf(",")==-1) {
-				lx.setGydwbm(" lx.gydwbm like '%"+lx.getGydwbm()+"%'");
-			}else {
-				lx.setGydwbm(" lx.gydwbm in ("+lx.getGydwbm()+")");
-			}
-			if (lx.getXzqhdm().indexOf(",")==-1) {
-				lx.setXzqhdm(" lx.xzqhdm like '%"+lx.getXzqhdm()+"%'");
-			}else {
-				lx.setXzqhdm(" lx.xzqhdm in ("+lx.getXzqhdm()+")");
-			}
-			if (jh.getXtType()!=null && !jh.getXtType().equals("")
-					&& jh.getXtType().equals("nc")) {
-				jh.setXtType("and substr(lx.lxbm,1,1)  not in('G','S')");
-			}else {
-				jh.setXtType("and substr(lx.lxbm,1,1) in('G','S')");
-			}
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

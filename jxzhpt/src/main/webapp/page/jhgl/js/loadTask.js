@@ -395,6 +395,7 @@ function queryZjxdList__ck(url){
 
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
+//	alert(xxId);
 	queryZjxdSumByXmid();
 	$('#zjxdList').datagrid({
 		url : url,
