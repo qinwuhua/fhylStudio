@@ -9,11 +9,11 @@ function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationQl(data.qlbh,data.qlzxzh);
 }
+
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
+	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz1.jsp",'wq_xx',1000,500);
 	//YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
 	//window.open("wqgzxx.jsp");
 }
@@ -172,10 +172,10 @@ function tjwqgzyb(){
 	var qttz=$("#tj_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);
-	if(stz!='0'){
+/*	if(stz!='0'){
 		alert("危桥改造项目没有省投资");
 		return;
-	}
+	}*/
 	var zwc=parseFloat(zwczj)+parseFloat(btz)+parseFloat(stz)+parseFloat(qttz);
 	var zbtz=parseFloat(parent.$("#zwcbtz").html())+parseFloat(btz);
 	if(parent.pfbtz<zbtz){
@@ -362,10 +362,10 @@ function xgwqgzyb(){
 	var zwczj=parent.$("#zwczj").html(); 
 	var btz=$("#xg_wc_btz").val();
 	var stz=$("#xg_wc_stz").val();
-	if(stz!='0'){
+/*	if(stz!='0'){
 		alert("危桥改造项目没有省投资");
 		return;
-	}
+	}*/
 	var qttz=$("#xg_wc_qttz").val();
 	var zbfzj=parent.$("#zbfzj").html(); 
 	var zbf=parseFloat(zbfzj);

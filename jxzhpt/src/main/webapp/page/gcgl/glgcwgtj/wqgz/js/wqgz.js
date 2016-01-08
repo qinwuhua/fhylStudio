@@ -37,7 +37,7 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
+	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz1.jsp",'wq_xx',1000,500);
 }
 function wqxiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];

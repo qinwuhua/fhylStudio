@@ -709,7 +709,7 @@
 		from (select g.roadcode,to_char(decode(g.f114,null,'无路',g.f114)) f114,f014,
 		case when g.roadstart < ${qdzh} then ${qdzh} when g.roadstart > ${qdzh} then g.roadstart when g.roadstart = ${qdzh} then g.roadstart end roadstart,
 		case when g.roadends < ${zdzh} then g.roadends when g.roadends > ${zdzh} then ${zdzh} when g.roadends = ${zdzh} then g.roadends end roadends from gpsroad g
-		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X', 'Y', 'C') and g.roadcode like '%' || #{lxbm} || '%'
+		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X', 'Y', 'C') and g.roadcode like #{lxbm} || '%'
 		and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends) or (g.roadstart > ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh})))
 		group by f114,f014 order by f014)
 		]]>
