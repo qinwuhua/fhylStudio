@@ -628,6 +628,13 @@ $(function() {
 		href:'../sjcx/jhkgl/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101030512',
+		title:'病害隧道项目',
+		imgSrc:'../../images/bhsd_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/bhsd.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101030505',
 		title:'改建工程项目',
 		imgSrc:'../../images/gj_s.png',

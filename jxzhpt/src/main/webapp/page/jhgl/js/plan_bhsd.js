@@ -68,6 +68,12 @@ function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('wq_xx','病害隧道',"/jxzhpt/page/jhgl/jhkxx/bhsd.jsp",'wq_xx',1000,500);
 }
+
+function openWindow1(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('wq_xx','病害隧道',"/jxzhpt/page/jhgl/jhkxx/bhsdxx.jsp",'wq_xx',1000,500);
+}
+
 function viewJhkxx(id,tzType){
 	YMLib.Var.jhbm=id;
 	YMLib.Var.tzType=tzType;
@@ -491,7 +497,7 @@ function wqxm_zjxd(jh,lx){
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a href="javascript:locationXm('+"'"+row.sddm+"',"+"'"+row.sdzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		        	result+='<a href="javascript:openDialog('+"'zjxd_bhsd','病害隧道详情','../jhkxx/bhsdxx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
