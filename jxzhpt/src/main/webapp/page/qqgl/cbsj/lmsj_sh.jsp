@@ -46,6 +46,7 @@
 					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
+			loadcbsjTjxx(params);
 			grid.height=$(window).height()-$('#searchField').height()-55;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -312,6 +313,8 @@ text-decoration:none;
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="tz" style="color: red;">0</span>】,补助测算累计【<span id="bzcs" style="color: red;">0</span>】,里程累计【<span id="lc" style="color: red;">0</span>】</div>
+            	
             		<div>
             			<table id="grid"></table>
             		</div>

@@ -265,12 +265,12 @@ text-decoration:none;
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					一级：<input onchange="jsyzlc()" id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input onchange="jsyzlc()" id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input onchange="jsyzlc()" id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input onchange="jsyzlc()" id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外：<input onchange="jsyzlc()" id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input onchange="jsyzlc()" id="wllc" name="wllc" style="width: 50px;" type="text"/>
 					现状总里程：<input name="lc" id="lc" type="text" style="width: 50px;"/>
 				</td>
 			</tr>
@@ -279,12 +279,12 @@ text-decoration:none;
 					建设技术<br/>等级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-					二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
-					三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-					四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-					等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
-					无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					一级：<input onchange="jsjszlc()" id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+					二级：<input onchange="jsjszlc()" id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
+					三级：<input onchange="jsjszlc()" id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+					四级：<input onchange="jsjszlc()" id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+					等外：<input onchange="jsjszlc()" id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+					无路：<input onchange="jsjszlc()" id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
 					建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>

@@ -218,10 +218,10 @@
 					<input name="xjsdj" id="xjsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
+<!-- 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)： -->
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="bzcs" name="bzcs" type="text" style="width: 120px;"/>
+<!-- 					<input id="bzcs" name="bzcs" type="text" style="width: 120px;"/> -->
 				</td>
 			</tr>
 			<tr style="height: 35px;">

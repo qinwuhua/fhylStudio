@@ -537,6 +537,8 @@ public class KxxyjController extends BaseActionSupport{
 			lx.setXzqhdm(kxxyj.getXzqhdm());
 			lx.setSffirst("1");
 			lx.setJdbs("1");
+			lx.setLc(kxxyj.getLc());
+			lx.setJszlc(kxxyj.getJszlc());
 			System.out.println("路线编码："+lx.getLxbm());
 			JhshServer jhshServer = new JhshServerImpl();
 			jhshServer.updateLx(lx);
@@ -905,6 +907,38 @@ public class KxxyjController extends BaseActionSupport{
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败\r");
 		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void showkxxTjxx(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(lxsh.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+lxsh.getGydw()+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+lxsh.getGydw()+")";
+			}
+			if(lxsh.getXzqh().indexOf(",")==-1){
+				tiaojian2="and t.xzqhdm like '%"+lxsh.getXzqh()+"%'";
+			}else{
+				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			Lxsh l=null;
+			if("sjgz".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showsjkxxTjxx(lxsh);
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showlmkxxTjxx(lxsh);
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showxjkxxTjxx(lxsh);
+			}
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

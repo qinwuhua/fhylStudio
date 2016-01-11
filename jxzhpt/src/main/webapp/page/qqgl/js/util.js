@@ -1,3 +1,26 @@
+function loadcbsjTjxx(data){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/loadcbsjTjxx.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg!=null){
+				$('#xmsl').html(msg.sl);
+				$('#tz').html(msg.tz);
+				$('#lc').html(msg.lc);
+				$('#bzcs').html(msg.bzcs);
+			}else{
+				$('#xmsl').html('0');
+				$('#tz').html('0');
+				$('#lc').html('0');
+				$('#bzcs').html('0');
+			}
+			
+		}
+	});
+}
+
 function checkSZ(str){
 	var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
 	if(str.value==''){

@@ -26,6 +26,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -108,6 +109,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			result.put("rows", resultData);
 			result.put("total", total);
 			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void loadcbsjTjxx() throws Exception{
+		try {
+			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			xmbmHandle();
+			ylxbhHandle();
+			xjsdjHandle();
+			jsjsdjHandle();
+			Lxsh l=null;
+			if(cbsj.getXmlx()==1){
+				l=cbsjServer.loadsjcbsjTjxx(cbsj);
+			}else if(cbsj.getXmlx()==2){
+				l = cbsjServer.loadlmcbsjTjxx(cbsj);
+			}else if(cbsj.getXmlx()==3){
+				l = cbsjServer.loadxjcbsjTjxx(cbsj);
+			}
+			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

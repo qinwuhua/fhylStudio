@@ -1,3 +1,103 @@
+function showkxxTjxx(xmlx){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var xmmc=$("#xmmc").val();
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	var tsdq=$("#tsdq").combobox('getText');
+	if(tsdq=='全部'){
+		tsdq="";
+	}
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
+	var gldj=$("#gldj").combobox('getValues').join(",");
+	if(xmlx!='xj')
+	var lsjl=$("#lsjl").combobox('getValue');
+	else lsjl='';
+var  data='lxsh.lsjl='+lsjl+'&lxsh.xzqh='+xzqhstr+'&lxsh.gydw='+gydwstr
++'&lxsh.xmmc='+xmmc+'&lxsh.xmnf='+xmnf+'&lxsh.tsdq='+tsdq+'&lxsh.jsdj='+jsdj
++'&lxsh.gldj='+gldj+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.xmlx='+xmlx;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/showkxxTjxx.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg!=null){
+				$('#xmsl').html(msg.sl);
+				$('#tz').html(msg.tz);
+				$('#lc').html(msg.lc);
+				$('#bzcs').html(msg.bzcs);
+			}else{
+				$('#xmsl').html('0');
+				$('#tz').html('0');
+				$('#lc').html('0');
+				$('#bzcs').html('0');
+			}
+			
+		}
+	});
+}
+
+function jsyzlc(){
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#yilc').val()!='')
+		yilc=parseFloat($('#yilc').val());
+	if($('#erlc').val()!='')
+		erlc=parseFloat($('#erlc').val());
+	if($('#sanlc').val()!='')
+		sanlc=parseFloat($('#sanlc').val());
+	if($('#silc').val()!='')
+		silc=parseFloat($('#silc').val());
+	if($('#wllc').val()!='')
+		wllc=parseFloat($('#wllc').val());
+	if($('#dwlc').val()!='')
+		dwlc=parseFloat($('#dwlc').val());
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#lc').val(hj5);
+}
+function jsjszlc(){
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#jhyilc').val()!='')
+		yilc=parseFloat($('#jhyilc').val());
+	if($('#jherlc').val()!='')
+		erlc=parseFloat($('#jherlc').val());
+	if($('#jhsanlc').val()!='')
+		sanlc=parseFloat($('#jhsanlc').val());
+	if($('#jhsilc').val()!='')
+		silc=parseFloat($('#jhsilc').val());
+	if($('#jhwllc').val()!='')
+		wllc=parseFloat($('#jhwllc').val());
+	if($('#jhdwlc').val()!='')
+		dwlc=parseFloat($('#jhdwlc').val());
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#jszlc').val(hj5);
+}
+
+
+
+
 var obj=new Object();
 /**
  * 判断项目类型，返回文字
@@ -591,6 +691,8 @@ function showxjAll(){
 }
 //升级审核
 function showAllsjsh(){
+	
+	showkxxTjxx('sjgz');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -689,7 +791,7 @@ function showAllsjsh(){
 		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
@@ -736,6 +838,7 @@ function editSjlx(xmid,index){
 }
 //lm
 function showAlllmsh(){
+	showkxxTjxx('lmgz');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -883,6 +986,7 @@ function editGzlx(xmid,index){
 }
 //xj
 function showAllxjsh(){
+	showkxxTjxx('xj');
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')

@@ -422,4 +422,19 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 			return true;
 			else return false;
 	}
+
+	@Override
+	public Lxsh showsjkxxTjxx(Lxsh lxsh) {
+		return queryOne("showsjkxxTjxx", lxsh);
+	}
+
+	@Override
+	public Lxsh showlmkxxTjxx(Lxsh lxsh) {
+		return queryOne("showlmkxxTjxx", lxsh);
+	}
+
+	@Override
+	public Lxsh showxjkxxTjxx(Lxsh lxsh) {
+		return queryOne("showxjkxxTjxx", lxsh);
+	}
 }

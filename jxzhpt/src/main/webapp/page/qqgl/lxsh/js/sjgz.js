@@ -513,6 +513,14 @@ function showAll(){
 		        		   result+= '&nbsp;删除';
 		        	   return result;
 		           }},*/
+		          {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+		        	   var result ='<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+		        	   /*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
+		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+		        		   result+= '&nbsp;删除';*/
+		        	   return result;
+		           }},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -523,8 +531,8 @@ function showAll(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}/*,
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}*/
     			]]
 	    	});
 	    }   
@@ -764,7 +772,7 @@ function showAllsjsh(){
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
 		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
@@ -785,11 +793,11 @@ function showAllsjsh(){
 	    			'lx.sffirst':'1'
 	    		},
     			columns:[[
-    			    /*{field:'cz',title:'操作',width:150,align:'center',
+    			    {field:'cz',title:'操作',width:150,align:'center',
     			    	formatter: function(value,row,index){
     			    		return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
     			    	}
-    			    },*/
+    			    },
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -960,15 +968,15 @@ function showAlllmgz(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
-					/*{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-							result+='&nbsp;删除';
+							result+='&nbsp;删除';*/
 						return result;
-					}},*/
+					}},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1115,11 +1123,11 @@ function showAlllmsh(){
 	    			 'lx.sffirst':'1'
 	    		},
     			columns:[[
-					/*{field:'cz',title:'操作',width:150,align:'center',
+					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
 							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						}
-					},*/
+					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1130,8 +1138,7 @@ function showAlllmsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -1276,11 +1283,10 @@ function showAllxj(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
-	    	var parentindex=index;
-	    	$('#table_lx'+index).datagrid({
+	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
 	    			 'lx.jdbs':0,
@@ -1294,6 +1300,15 @@ function showAllxj(){
 						   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							   return '删除';
 					}},*/
+					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+						}
+						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+							result+='&nbsp;删除';*/
+						return result;
+					}},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1304,8 +1319,7 @@ function showAllxj(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -1419,10 +1433,10 @@ function showAllxjsh(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
-	    	$('#table_lx'+index).datagrid({
+	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
 	    			 'lx.jdbs':0,
@@ -1430,6 +1444,15 @@ function showAllxjsh(){
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
+					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+						}
+						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+							result+='&nbsp;删除';*/
+						return result;
+					}},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},

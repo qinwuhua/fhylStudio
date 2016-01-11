@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface CbsjServer {
 	/**
@@ -302,5 +303,11 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public Map<String, String> queryCbsjLjSh(Cbsj cbsj);
+
+	public Lxsh loadsjcbsjTjxx(Cbsj cbsj);
+
+	public Lxsh loadlmcbsjTjxx(Cbsj cbsj);
+
+	public Lxsh loadxjcbsjTjxx(Cbsj cbsj);
 	
 }

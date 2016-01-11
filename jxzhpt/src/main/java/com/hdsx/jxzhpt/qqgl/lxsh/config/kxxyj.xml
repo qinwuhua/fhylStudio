@@ -520,4 +520,114 @@
 		yilc=#{11},erlc=#{12},sanlc=#{13},silc=#{14},dwlc=#{15},wllc=#{16},jsjsdj=#{20},xzqhdm=substr(#{0},5,6)
 		where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>
+	
+	
+	<select id="showsjkxxTjxx" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm
+		left join (select xmid,jhlc lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on t.xmbm=lx.xmid
+		 where 1=1
+		and  t.sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and t.shzt like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and t1.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+	</select>
+	<select id="showlmkxxTjxx" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_LMGZ t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
+		left join (select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on t.xmbm=lx.xmid
+		 where 1=1
+		and  t.sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and t.shzt like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and t1.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+	</select>
+	<select id="showxjkxxTjxx" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
+		left join (select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on t.xmbm=lx.xmid
+		 where 1=1
+		and  t.sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and t.shzt like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and t1.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbh like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+	</select>
 </mapper>

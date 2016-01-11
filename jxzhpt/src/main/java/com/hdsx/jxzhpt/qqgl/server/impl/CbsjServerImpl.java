@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 @Service
 public class CbsjServerImpl extends BaseOperate implements CbsjServer {
@@ -335,6 +336,21 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	@Override
 	public Map<String, String> queryCbsjLjSh(Cbsj cbsj) {
 		return queryOne("queryCbsjLjSh", cbsj);
+	}
+	@Override
+	public Lxsh loadsjcbsjTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadsjcbsjTjxx", params);
+	}
+	@Override
+	public Lxsh loadlmcbsjTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadlmcbsjTjxx", params);
+	}
+	@Override
+	public Lxsh loadxjcbsjTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadxjcbsjTjxx", params);
 	}
 
 }

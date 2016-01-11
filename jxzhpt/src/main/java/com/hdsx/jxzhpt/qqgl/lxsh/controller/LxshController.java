@@ -839,6 +839,7 @@ public class LxshController extends BaseActionSupport{
 		lx.setZdmc(lxsh.getZdmc());
 		lx.setXjsdj(lxsh.getXjsdj());
 		lx.setJsjsdj(lxsh.getJsjsdj());
+		lx.setLc(lxsh.getLc());
 		lx.setSffirst("1");
 		lx.setJdbs("0");
 		if(bl){

@@ -458,7 +458,9 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">l.jsjsdj=#{jsjsdj},</if>
 		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
 <!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
+		<if test="jszlc!=null and jszlc!=''">l.jhlc=#{jszlc},</if>
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
+		
 		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if>
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>

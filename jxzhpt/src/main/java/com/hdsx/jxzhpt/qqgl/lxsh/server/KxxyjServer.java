@@ -91,4 +91,10 @@ public interface KxxyjServer {
 
 	boolean importxjkxx(List<Map> data);
 
+	Lxsh showsjkxxTjxx(Lxsh lxsh);
+
+	Lxsh showlmkxxTjxx(Lxsh lxsh);
+
+	Lxsh showxjkxxTjxx(Lxsh lxsh);
+
 }

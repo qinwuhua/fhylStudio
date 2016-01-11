@@ -4,6 +4,14 @@ public class Lx {
 	public Lx(){
 		super();
 	};
+	private String jszlc;
+	
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
 	public Lx(String xmid,String qdzh,String zdzh,String qdmc,String zdmc,String yilc,String erlc,String sanlc,String silc,String dwlc,String wllc){
 		super();
 		this.xmid=xmid;
