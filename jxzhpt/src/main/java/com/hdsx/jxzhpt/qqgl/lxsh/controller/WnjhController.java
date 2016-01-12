@@ -508,10 +508,10 @@ public class WnjhController extends BaseActionSupport{
 	}
 	
 	public void wnjhGpsroad(){
-		lxsh.setGhlxbh(lxbm);
-		lxsh.setXzqh(xzqh);
-		List<Lxsh> list=wnjhServer.wnjhGpsroad(lxsh);
 		try {
+			lxsh.setGhlxbh(lxbm);
+			lxsh.setXzqh(xzqh);
+			List<Lxsh> list=wnjhServer.wnjhGpsroad(lxsh);
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();

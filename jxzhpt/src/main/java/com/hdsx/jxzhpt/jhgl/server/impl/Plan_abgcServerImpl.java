@@ -54,6 +54,10 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public Plan_abgc queryAbgcById(String id) {
 		return queryOne("queryAbgcById", id);
 	}
+	@Override
+	public Plan_abgc queryAfgcById(String id) {
+		return queryOne("queryAfgcById", id);
+	}
 	
 	public boolean dropAbgcById(String id){
 		String [] ids=id.split(",");
@@ -74,8 +78,20 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		params.put("lx", lx);
 		return this.queryList("exportExcel_jh",params);
 	}
+	@Override
+	public List<SjbbMessage> exportExcel_jh1(Plan_abgc jh,Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return this.queryList("exportExcel_jh1",params);
+	}
+	@Override
 	public int editAbgcById(Plan_abgc jh) {
 		return update("editAbgcById", jh);
+	}
+	@Override
+	public int editAfgcById(Plan_abgc jh) {
+		return update("editAfgcById", jh);
 	}
 	@Override
 	public boolean importAbgc_jh(List<Map> data) {
@@ -127,8 +143,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		}
 		return this.insertBatch("importAbgc_jh", data)==data.size()?true:false;
 	}
+	@Override
 	public boolean editStatus(Plan_abgc jh) {
 		return update("editStatus", jh)>0;
+	}
+	@Override
+	public boolean editStatus1(Plan_abgc jh) {
+		return update("editStatus1", jh)>0;
 	}
 	@Override
 	public Plan_abgc querySumAbgc(Plan_abgc jh, Jckabgc lx ) {
@@ -198,6 +219,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return queryList("queryAbgcListByStatus",param);
 	}
 	@Override
+	public List<Plan_abgc> queryAfgcByStatus(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryList("queryAfgcListByStatus",param);
+	}
+	@Override
 	public boolean updateStatusBatch(List<Plan_abgc> splist) {
 		return updateBatch("editStatus", splist)==splist.size();
 	}
@@ -263,6 +291,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return queryList("queryAbgcList2",params);
 	}
 	@Override
+	public List<Plan_abgc> queryAfgcList(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryAfgcList2",params);
+	}
+	@Override
 	public boolean editZjById(Plan_abgc jh) {
 		return update("editZjById", jh)>0;
 	}
@@ -272,6 +307,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		params.put("jh", jh);
 		params.put("lx", lx);
 		return queryList("exportExcelAbgcJhSh",params);
+	}
+	@Override
+	public List<Object> exportExcelAfgcJhSh(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("exportExcelAfgcJhSh",params);
 	}
 	@Override
 	public boolean updateImportAbgcJhSh(List<Plan_abgc> list) {
@@ -339,5 +381,29 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public int editAbgcTzById(Plan_abgc jh) {
 		return update("editAbgcTzById",jh);
+	}
+	@Override
+	public Plan_abgc querySumAfgc(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryOne("querySumAfgc", param);
+	}
+	@Override
+	public int queryAfgcCount(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryOne("queryAfgcCount", params);
+	}
+	@Override
+	public List<Plan_abgc> queryAfgcList(int page, int rows, Plan_abgc jh,
+			Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("page", page);
+		params.put("rows", rows);
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryAfgcList",params);
 	}
 }

@@ -489,8 +489,8 @@
  	
  	<update id="importsjgzkxx" parameterType="hashMap">
 		update kxxyj_sjgz set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{19},dq=#{21},
-		dq_m=#{20},jsjsdj=#{22},sd=#{24},sd_m=#{23},jsdw=#{25},sbthcd=7,tbbmbm='36',
-		kgny=#{26},wgny=#{27},bzdw=#{28},tzgs=#{29},dfzc=#{30},yhdk=#{31},gkpfwh=#{32},pfsj=#{33},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		dq_m=#{20},jsjsdj=#{22},sd=#{24},sd_m=#{23},sbthcd=7,tbbmbm='36',
+		kgny=#{25},wgny=#{26},bzdw=#{27},tzgs=#{28},dfzc=#{29},yhdk=#{30},gkpfwh=#{31},pfsj=#{32},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="updatesjgzkxxlx" parameterType="hashMap">
@@ -500,8 +500,8 @@
 	</update>
 	<update id="importlmgzkxx" parameterType="hashMap">
 		update kxxyj_lmgz set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{13},dq=#{15},
-		dq_m=#{14},jsjsdj=#{16},sd=#{18},sd_m=#{17},jsdw=#{19},sbthcd=7,tbbmbm='36',
-		kgny=#{20},wgny=#{21},bzdw=#{22},tzgs=#{23},dfzc=#{24},yhdk=#{25},gkpfwh=#{26},pfsj=#{27},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		dq_m=#{14},jsjsdj=#{16},sd=#{18},sd_m=#{17},sbthcd=7,tbbmbm='36',
+		kgny=#{19},wgny=#{20},bzdw=#{21},tzgs=#{22},dfzc=#{23},yhdk=#{24},gkpfwh=#{25},pfsj=#{26},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="updatelmgzkxxlx" parameterType="hashMap">
@@ -511,8 +511,8 @@
 	</update>
 	<update id="importxjkxx" parameterType="hashMap">
 		update kxxyj_xj set xmmc=#{1},qdzh=#{4},zdzh=#{5},jsxz=#{17},dq=#{19},
-		dq_m=#{18},jsjsdj=#{20},sd=#{22},sd_m=#{21},jsdw=#{23},sbthcd=7,tbbmbm='36',
-		kgny=#{24},wgny=#{25},bzdw=#{26},tzgs=#{27},dfzc=#{28},yhdk=#{29},gkpfwh=#{30},pfsj=#{31},xzqh=#{2},xzqhdm=substr(#{0},5,6)
+		dq_m=#{18},jsjsdj=#{20},sd=#{22},sd_m=#{21},sbthcd=7,tbbmbm='36',
+		kgny=#{23},wgny=#{24},bzdw=#{25},tzgs=#{26},dfzc=#{27},yhdk=#{28},gkpfwh=#{29},pfsj=#{30},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="updatexjkxxlx" parameterType="hashMap">

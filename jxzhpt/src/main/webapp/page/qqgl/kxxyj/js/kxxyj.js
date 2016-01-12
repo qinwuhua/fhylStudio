@@ -1,3 +1,4 @@
+
 function showkxxTjxx(xmlx){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
@@ -330,12 +331,7 @@ function showsjgzAll(){
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
-		        else if(row.sbzt1=='1')
-	        		return '添加路线';
-	        }},
+	        
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -760,6 +756,9 @@ function showAllsjsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
+	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
+	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -794,7 +793,8 @@ function showAllsjsh(){
 		    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -824,8 +824,7 @@ function showAllsjsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -906,6 +905,10 @@ function showAlllmsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
 	        }},
+	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
+		       
+	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -916,6 +919,7 @@ function showAlllmsh(){
 	        	else if(row.shzt=='1')
 	        		return '已审核';
 	        }},
+	        
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -942,7 +946,8 @@ function showAlllmsh(){
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -972,8 +977,7 @@ function showAlllmsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -1053,6 +1057,10 @@ function showAllxjsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
 	        }},
+	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
+
+	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -1089,7 +1097,8 @@ function showAllxjsh(){
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1114,8 +1123,7 @@ function showAllxjsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -1258,18 +1266,21 @@ function getbzcs(gldj,jsdj,lc,xmlx){
 }
 function tjsjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add.jsp','lxxx',900,300);
+	YMLib.Var.Obj=data;
+	YMLib.Var.sq='sq';
+	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add2.jsp','lxxx',900,400);
 }
 function tjlmlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('lxxx','添加路线信息','lmgzlx_add.jsp','lxxx',900,300);
+	YMLib.Var.Obj=data;
+	YMLib.Var.sq='sq';
+	YMLib.UI.createWindow('lxxx','添加路线信息','lmgzlx_add2.jsp','lxxx',900,400);
 }
 function tjxjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,300);
+	YMLib.Var.sq='sq';
+	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,400);
 }
 function delsjlx(index1,index){
 	var data=$("#table_lx"+index1).datagrid('getRows')[index];

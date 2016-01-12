@@ -8,9 +8,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 
 public class Plan_abgc {
-	private String id;//唯一ID
 	private String sckid;
-	private String jhnf;//计划年份
 	private String jhkgsj;//计划开工时间
 	private String jhkgsj1;//计划审核导入Excel用到
 	private String jhwgsj;//计划完工时间
@@ -23,15 +21,12 @@ public class Plan_abgc {
 	private String pfztz;//批复总投资
 	private String jhsybbzje;//计划使用部补助金额
 	private String jhsydfzczj;//计划使用地方自筹资金
-	private String sfsqablbz;//是否申请按比例补助
-	private String ablbzsqwh;//按比例补助申请文号
 	private String remarks;//备注
 	private String tbsj;//填报时间
 	private String tbbm;//填报部门
 	private String spzt;//审批状态
 	private String spbm;//审批部门
 	private Date spsj;//审批时间
-	private String sbzt;//上报状态
 	private String sbbm;//上报部门
 	private Date sbsj;//上报时间
 	private String xdsj;//计划下达时间
@@ -68,28 +63,228 @@ public class Plan_abgc {
 	private String sfylsjl;//最近年份是否有历史记录
 	private Sckabgc jckabgc;
 	private byte[] gkbgdata;
-	private byte[] sjsgtdata;
-	
-	private String gydw;
-	private String xzqhdm;
+	private byte[] sjsgtdata;	
 	private String xzqhmc;
-	private String lxbm;
-	private String lxmc;
 	private String scqdzh;
 	private String sczdzh;
 	private String sczlc;
 	private String scyhlc;
-	private String tzgs;
-	private String spwh;
-	private String fapgdw;
-	private String fascdw;
-	private String faspsj;
-	private String jsxz;
-	private String jsnr;
 	private String scbz;
 	private String gjxjnd;
 	private String tzxz;//调整状态
 	private String tzsj;//调整时间
+	
+	private String id;
+
+    private String province;
+
+    private String town;
+
+    private String county;
+
+    private String unit;
+
+    private String unitcode;
+
+    private String roadcode;
+
+    private String jsdj;
+
+    private String fangx;
+
+    private String roadstart;
+
+    private String roadend;
+
+    private String pcsj;
+
+    private String ldfl;
+
+    private String jtsgpcf;
+
+    private String jtsgfxdj;
+
+    private String gltjpcf;
+
+    private String glfxdj;
+
+    private String xbjyqx;
+
+    private String lxxp;
+
+    private String doup;
+
+    private String sjbl;
+
+    private String lcxy;
+
+    private String hjfz;
+
+    private String jckbgf;
+
+    private String jtl;
+
+    private String xchbc;
+
+    private String csxsss;
+
+    private String hul;
+
+    private String bzbx;
+
+    private String jshsxyd;
+
+    private String aqssqt;
+
+    private String tjgc;
+
+    private String hjzz;
+
+    private String bzbxcz;
+
+    private String jckcz;
+
+    private String jzhl;
+
+    private String jshsxydcz;
+
+    private String aqssqtcz;
+
+    private String tzgs;
+
+    private String jhnf;
+
+    private String throadcode;
+
+    private String throadstart;
+
+    private String throadend;
+
+    private String sgpb;
+
+    private String dgjw;
+
+    private String lxjw;
+
+    private String jtlpbzb;
+
+    private String dist;
+
+    private String distcode;
+
+    private String sbzt;
+
+    private String cszt;
+
+    private String zszt;
+
+    private String csyj;
+
+    private String zsyj;
+
+    private String roadname;
+
+    private String gldj;
+
+    private String tsdq;
+
+    private String xjgjnd;
+
+    private String zlc;
+
+    private String sbthcd;
+    
+    private String sbzt2;
+    
+    private String yhlc;
+    
+    private String gpsqd;
+    
+    private String gpszd;
+    
+    private String tbbmbm;
+    
+    private int page;
+    
+	private int rows;
+    
+	    private String gydw;
+
+	    private String gydwdm;
+
+	    private String lxbm;
+
+
+	    private String qdzh;
+
+	    private String zdzh;
+
+	    private String lxmc;
+
+	    private String sbthbmcd;
+
+	    private String fapgdw;
+
+	    private String fascdw;
+
+	    private String faspsj;
+
+	    private String spwh;
+
+	    private String czzlc;
+
+	    private String cztzgs;
+
+	    private String jsxz;
+
+	    private String jsnr;
+
+	    private String bz;
+
+	    private String shzt;
+
+	    private String tbdwdm;
+
+	    private String xmkid;
+
+	    private String sfsqablbz;
+
+	    private String ablbzsqwh;
+
+	    private String xzqhdm;
+
+	    private String xzqh;
+
+	    private String shyj;
+
+	    private String xuh;
+
+	    private String xmbm;
+	    
+	    private String bzls;
+	    
+	    private String str1;
+
+	    private String str2;
+
+	    private String str3;
+
+	    private String str4;
+
+	    private String str5;
+
+	    private String str6;
+
+	    private String str7;
+	    
+	    private String xmlx;
+	    
+	public String getXmlx() {
+			return xmlx;
+		}
+		public void setXmlx(String xmlx) {
+			this.xmlx = xmlx;
+		}
 	public String getTzxz() {
 		return tzxz;
 	}
@@ -579,6 +774,516 @@ public class Plan_abgc {
 	}
 	public void setSjwgsj(String sjwgsj) {
 		this.sjwgsj = sjwgsj;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getTown() {
+		return town;
+	}
+	public void setTown(String town) {
+		this.town = town;
+	}
+	public String getCounty() {
+		return county;
+	}
+	public void setCounty(String county) {
+		this.county = county;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public String getUnitcode() {
+		return unitcode;
+	}
+	public void setUnitcode(String unitcode) {
+		this.unitcode = unitcode;
+	}
+	public String getRoadcode() {
+		return roadcode;
+	}
+	public void setRoadcode(String roadcode) {
+		this.roadcode = roadcode;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getFangx() {
+		return fangx;
+	}
+	public void setFangx(String fangx) {
+		this.fangx = fangx;
+	}
+	public String getRoadstart() {
+		return roadstart;
+	}
+	public void setRoadstart(String roadstart) {
+		this.roadstart = roadstart;
+	}
+	public String getRoadend() {
+		return roadend;
+	}
+	public void setRoadend(String roadend) {
+		this.roadend = roadend;
+	}
+	public String getPcsj() {
+		return pcsj;
+	}
+	public void setPcsj(String pcsj) {
+		this.pcsj = pcsj;
+	}
+	public String getLdfl() {
+		return ldfl;
+	}
+	public void setLdfl(String ldfl) {
+		this.ldfl = ldfl;
+	}
+	public String getJtsgpcf() {
+		return jtsgpcf;
+	}
+	public void setJtsgpcf(String jtsgpcf) {
+		this.jtsgpcf = jtsgpcf;
+	}
+	public String getJtsgfxdj() {
+		return jtsgfxdj;
+	}
+	public void setJtsgfxdj(String jtsgfxdj) {
+		this.jtsgfxdj = jtsgfxdj;
+	}
+	public String getGltjpcf() {
+		return gltjpcf;
+	}
+	public void setGltjpcf(String gltjpcf) {
+		this.gltjpcf = gltjpcf;
+	}
+	public String getGlfxdj() {
+		return glfxdj;
+	}
+	public void setGlfxdj(String glfxdj) {
+		this.glfxdj = glfxdj;
+	}
+	public String getXbjyqx() {
+		return xbjyqx;
+	}
+	public void setXbjyqx(String xbjyqx) {
+		this.xbjyqx = xbjyqx;
+	}
+	public String getLxxp() {
+		return lxxp;
+	}
+	public void setLxxp(String lxxp) {
+		this.lxxp = lxxp;
+	}
+	public String getDoup() {
+		return doup;
+	}
+	public void setDoup(String doup) {
+		this.doup = doup;
+	}
+	public String getSjbl() {
+		return sjbl;
+	}
+	public void setSjbl(String sjbl) {
+		this.sjbl = sjbl;
+	}
+	public String getLcxy() {
+		return lcxy;
+	}
+	public void setLcxy(String lcxy) {
+		this.lcxy = lcxy;
+	}
+	public String getHjfz() {
+		return hjfz;
+	}
+	public void setHjfz(String hjfz) {
+		this.hjfz = hjfz;
+	}
+	public String getJckbgf() {
+		return jckbgf;
+	}
+	public void setJckbgf(String jckbgf) {
+		this.jckbgf = jckbgf;
+	}
+	public String getJtl() {
+		return jtl;
+	}
+	public void setJtl(String jtl) {
+		this.jtl = jtl;
+	}
+	public String getXchbc() {
+		return xchbc;
+	}
+	public void setXchbc(String xchbc) {
+		this.xchbc = xchbc;
+	}
+	public String getCsxsss() {
+		return csxsss;
+	}
+	public void setCsxsss(String csxsss) {
+		this.csxsss = csxsss;
+	}
+	public String getHul() {
+		return hul;
+	}
+	public void setHul(String hul) {
+		this.hul = hul;
+	}
+	public String getBzbx() {
+		return bzbx;
+	}
+	public void setBzbx(String bzbx) {
+		this.bzbx = bzbx;
+	}
+	public String getJshsxyd() {
+		return jshsxyd;
+	}
+	public void setJshsxyd(String jshsxyd) {
+		this.jshsxyd = jshsxyd;
+	}
+	public String getAqssqt() {
+		return aqssqt;
+	}
+	public void setAqssqt(String aqssqt) {
+		this.aqssqt = aqssqt;
+	}
+	public String getTjgc() {
+		return tjgc;
+	}
+	public void setTjgc(String tjgc) {
+		this.tjgc = tjgc;
+	}
+	public String getHjzz() {
+		return hjzz;
+	}
+	public void setHjzz(String hjzz) {
+		this.hjzz = hjzz;
+	}
+	public String getBzbxcz() {
+		return bzbxcz;
+	}
+	public void setBzbxcz(String bzbxcz) {
+		this.bzbxcz = bzbxcz;
+	}
+	public String getJckcz() {
+		return jckcz;
+	}
+	public void setJckcz(String jckcz) {
+		this.jckcz = jckcz;
+	}
+	public String getJzhl() {
+		return jzhl;
+	}
+	public void setJzhl(String jzhl) {
+		this.jzhl = jzhl;
+	}
+	public String getJshsxydcz() {
+		return jshsxydcz;
+	}
+	public void setJshsxydcz(String jshsxydcz) {
+		this.jshsxydcz = jshsxydcz;
+	}
+	public String getAqssqtcz() {
+		return aqssqtcz;
+	}
+	public void setAqssqtcz(String aqssqtcz) {
+		this.aqssqtcz = aqssqtcz;
+	}
+	public String getThroadcode() {
+		return throadcode;
+	}
+	public void setThroadcode(String throadcode) {
+		this.throadcode = throadcode;
+	}
+	public String getThroadstart() {
+		return throadstart;
+	}
+	public void setThroadstart(String throadstart) {
+		this.throadstart = throadstart;
+	}
+	public String getThroadend() {
+		return throadend;
+	}
+	public void setThroadend(String throadend) {
+		this.throadend = throadend;
+	}
+	public String getSgpb() {
+		return sgpb;
+	}
+	public void setSgpb(String sgpb) {
+		this.sgpb = sgpb;
+	}
+	public String getDgjw() {
+		return dgjw;
+	}
+	public void setDgjw(String dgjw) {
+		this.dgjw = dgjw;
+	}
+	public String getLxjw() {
+		return lxjw;
+	}
+	public void setLxjw(String lxjw) {
+		this.lxjw = lxjw;
+	}
+	public String getJtlpbzb() {
+		return jtlpbzb;
+	}
+	public void setJtlpbzb(String jtlpbzb) {
+		this.jtlpbzb = jtlpbzb;
+	}
+	public String getDist() {
+		return dist;
+	}
+	public void setDist(String dist) {
+		this.dist = dist;
+	}
+	public String getDistcode() {
+		return distcode;
+	}
+	public void setDistcode(String distcode) {
+		this.distcode = distcode;
+	}
+	public String getCszt() {
+		return cszt;
+	}
+	public void setCszt(String cszt) {
+		this.cszt = cszt;
+	}
+	public String getZszt() {
+		return zszt;
+	}
+	public void setZszt(String zszt) {
+		this.zszt = zszt;
+	}
+	public String getCsyj() {
+		return csyj;
+	}
+	public void setCsyj(String csyj) {
+		this.csyj = csyj;
+	}
+	public String getZsyj() {
+		return zsyj;
+	}
+	public void setZsyj(String zsyj) {
+		this.zsyj = zsyj;
+	}
+	public String getRoadname() {
+		return roadname;
+	}
+	public void setRoadname(String roadname) {
+		this.roadname = roadname;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
+	public String getXjgjnd() {
+		return xjgjnd;
+	}
+	public void setXjgjnd(String xjgjnd) {
+		this.xjgjnd = xjgjnd;
+	}
+	public String getZlc() {
+		return zlc;
+	}
+	public void setZlc(String zlc) {
+		this.zlc = zlc;
+	}
+	public String getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(String sbthcd) {
+		this.sbthcd = sbthcd;
+	}
+	public String getSbzt2() {
+		return sbzt2;
+	}
+	public void setSbzt2(String sbzt2) {
+		this.sbzt2 = sbzt2;
+	}
+	public String getYhlc() {
+		return yhlc;
+	}
+	public void setYhlc(String yhlc) {
+		this.yhlc = yhlc;
+	}
+	public String getGpsqd() {
+		return gpsqd;
+	}
+	public void setGpsqd(String gpsqd) {
+		this.gpsqd = gpsqd;
+	}
+	public String getGpszd() {
+		return gpszd;
+	}
+	public void setGpszd(String gpszd) {
+		this.gpszd = gpszd;
+	}
+	public String getTbbmbm() {
+		return tbbmbm;
+	}
+	public void setTbbmbm(String tbbmbm) {
+		this.tbbmbm = tbbmbm;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
+	public String getQdzh() {
+		return qdzh;
+	}
+	public void setQdzh(String qdzh) {
+		this.qdzh = qdzh;
+	}
+	public String getZdzh() {
+		return zdzh;
+	}
+	public void setZdzh(String zdzh) {
+		this.zdzh = zdzh;
+	}
+	public String getSbthbmcd() {
+		return sbthbmcd;
+	}
+	public void setSbthbmcd(String sbthbmcd) {
+		this.sbthbmcd = sbthbmcd;
+	}
+	public String getCzzlc() {
+		return czzlc;
+	}
+	public void setCzzlc(String czzlc) {
+		this.czzlc = czzlc;
+	}
+	public String getCztzgs() {
+		return cztzgs;
+	}
+	public void setCztzgs(String cztzgs) {
+		this.cztzgs = cztzgs;
+	}
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+	public String getShzt() {
+		return shzt;
+	}
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
+	}
+	public String getTbdwdm() {
+		return tbdwdm;
+	}
+	public void setTbdwdm(String tbdwdm) {
+		this.tbdwdm = tbdwdm;
+	}
+	public String getXmkid() {
+		return xmkid;
+	}
+	public void setXmkid(String xmkid) {
+		this.xmkid = xmkid;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getShyj() {
+		return shyj;
+	}
+	public void setShyj(String shyj) {
+		this.shyj = shyj;
+	}
+	public String getXuh() {
+		return xuh;
+	}
+	public void setXuh(String xuh) {
+		this.xuh = xuh;
+	}
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getBzls() {
+		return bzls;
+	}
+	public void setBzls(String bzls) {
+		this.bzls = bzls;
+	}
+	public String getStr1() {
+		return str1;
+	}
+	public void setStr1(String str1) {
+		this.str1 = str1;
+	}
+	public String getStr2() {
+		return str2;
+	}
+	public void setStr2(String str2) {
+		this.str2 = str2;
+	}
+	public String getStr3() {
+		return str3;
+	}
+	public void setStr3(String str3) {
+		this.str3 = str3;
+	}
+	public String getStr4() {
+		return str4;
+	}
+	public void setStr4(String str4) {
+		this.str4 = str4;
+	}
+	public String getStr5() {
+		return str5;
+	}
+	public void setStr5(String str5) {
+		this.str5 = str5;
+	}
+	public String getStr6() {
+		return str6;
+	}
+	public void setStr6(String str6) {
+		this.str6 = str6;
+	}
+	public String getStr7() {
+		return str7;
+	}
+	public void setStr7(String str7) {
+		this.str7 = str7;
 	}
 	
 }

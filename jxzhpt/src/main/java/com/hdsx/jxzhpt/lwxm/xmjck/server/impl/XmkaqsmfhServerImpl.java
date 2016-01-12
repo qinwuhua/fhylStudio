@@ -252,8 +252,9 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	@Override
 	public boolean afSckZs(Xmkaqsmfh xmkaqsmfh) {
 		if(update("afSckZs", xmkaqsmfh)==1){
-			if("已审核".equals("xmkaqsmfh.getShzt()")){
+			if("已审核".equals(xmkaqsmfh.getShzt())){
 				//向计划库插入一条数据
+				insert("insertPlanaf", xmkaqsmfh);
 			}
 			return true;
 		}

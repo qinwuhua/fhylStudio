@@ -60,6 +60,7 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	Plan_abgc queryAbgcById(String id);
+	Plan_abgc queryAfgcById(String id);
 	/**
 	 * 根据ID删除安保工程
 	 * @param id
@@ -75,6 +76,7 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	List<SjbbMessage> exportExcel_jh(Plan_abgc jh,Jckabgc lx);
+	List<SjbbMessage> exportExcel_jh1(Plan_abgc jh,Jckabgc lx);
 	/**
 	 * 修改安保工程计划信息
 	 * @return
@@ -85,6 +87,7 @@ public interface Plan_abgcServer {
 	boolean importAbgc_jh(List<Map> data);
 
 	boolean editStatus(Plan_abgc jh);
+	boolean editStatus1(Plan_abgc jh);
 	Bzbz lwBzbz(Bzbz bz);
 //	boolean updateGkbg(Plan_abgc jh);
 //	boolean updateSjsgt(Plan_abgc jh);
@@ -100,6 +103,8 @@ public interface Plan_abgcServer {
 
 	List<Plan_abgc> queryAbgcByStatus(Plan_abgc jh, Jckabgc lx);
 
+	List<Plan_abgc> queryAfgcByStatus(Plan_abgc jh, Jckabgc lx);
+	
 	boolean updateStatusBatch(List<Plan_abgc> splist);
 
 	TreeNode queryJcktj(TreeNode treenode);
@@ -124,6 +129,7 @@ public interface Plan_abgcServer {
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 
 	List<Plan_abgc> queryAbgcList(Plan_abgc jh, Jckabgc lx);
+	List<Plan_abgc> queryAfgcList(Plan_abgc jh, Jckabgc lx);
 	/**
 	 * 安保工程资金追加
 	 * @param jh
@@ -137,6 +143,7 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	List<Object> exportExcelAbgcJhSh(Plan_abgc jh, Jckabgc lx);
+	List<Object> exportExcelAfgcJhSh(Plan_abgc jh, Jckabgc lx);
 	/**
 	 * 导入计划审核Excel
 	 * @param list
@@ -169,5 +176,13 @@ public interface Plan_abgcServer {
 	Plan_abgc queryAbgcTzById(String id);
 
 	int editAbgcTzById(Plan_abgc jh);
+
+	Plan_abgc querySumAfgc(Plan_abgc jh, Jckabgc lx);
+
+	int queryAfgcCount(Plan_abgc jh, Jckabgc lx);
+
+	List<Plan_abgc> queryAfgcList(int page, int rows, Plan_abgc jh, Jckabgc lx);
+
+	int editAfgcById(Plan_abgc jh);
 
 }

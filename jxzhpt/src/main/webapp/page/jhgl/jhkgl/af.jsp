@@ -35,16 +35,16 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={xmlx:'ab',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={xmlx:'af',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}
 			querySumAbgc(jh,lx);
-			abgcxm(jh,lx);
+			afgcxm(jh,lx);
 		});
-		function searchAbgc(){
-			var jh={xmlx:'ab',jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+		function searchAbgctj(){
+			var jh={xmlx:'af',jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -98,13 +98,69 @@
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
 			}
 			querySumAbgc(jh,lx);
-			abgcxm(jh,lx);
+		}
+		function searchAbgc(){
+			var jh={xmlx:'af',jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#ddlSHZT').combo("getValue")=="未上报"){
+					if(xian){
+						jh.jh_sbthcd=0;
+					}else{
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="已上报"){
+					if(xian){
+						jh.jh_sbthcd=2;
+					}else{
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="未审核"){
+					jh.jh_sbthcd=4;
+				}
+				if($('#ddlSHZT').combo("getValue")=="已审核"){
+					jh.jh_sbthcd=6;
+				}
+			}else{
+				jh.jh_sbthcd=null;
+				jh.sbzt=null;
+				jh.spzt=null;
+			}
+			
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlTSDQ').combobox('getValue')!=''){
+				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			}
+			querySumAbgc(jh,lx);
+			afgcxm(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-					<style type="text/css">
+<style type="text/css">
 TD {
 font-size: 12px;
 }
@@ -116,7 +172,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;安保工程项目</div>
+		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;安防工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -163,10 +219,10 @@ text-decoration:none;
         					<tr height="32">
                               <td colspan="10">
         						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/>
-								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/>
-				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;">
-				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+<%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
+<%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
+<%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
+				                <img onclick="exportExcel('afgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 				                <!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display:none;"  onclick="showLrjh('lrjh_ab.jsp','1100','500');"/> -->
 				             </td>
                             </tr></table>
@@ -176,7 +232,7 @@ text-decoration:none;
         	</tr>
         	<tr>
         		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安防工程项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，

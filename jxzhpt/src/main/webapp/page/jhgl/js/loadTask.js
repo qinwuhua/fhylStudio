@@ -230,6 +230,13 @@ function exportExcel(flag,mode){
 		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
 	}
+	if(flag=='afgc'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&jh.xmlx=af"+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+				"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+"&lx.tsdq="+$('#ddlTSDQ').combobox('getValue');
+		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
+	}
 	if(flag=='wqgz'){
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
 				"&lx.qlmc="+$('#txtBridge').val()+"&jh.sbnf="+$('#sbnf').combobox('getValue')+
@@ -354,6 +361,9 @@ function queryZjxdSumByXmid(){
 			if(data!=null){
 				$('#lblTzCount').html(data.xmid);
 				$('#lblxfzjzj').html(data.xdzj);
+			}else{
+				$('#lblTzCount').html('0');
+				$('#lblxfzjzj').html('0');
 			}
 		}
 	});
@@ -445,8 +455,10 @@ function dropZjxdById(id){
 		success:function(data){
 			if(data.result=="true"){
 				alert("删除成功！");
-				queryZjxdSumByXmid();
+				//queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
+				queryZjxdSumByXmid();
+				
 			}else{
 				alert("删除失败！");
 			}
@@ -466,7 +478,8 @@ function editZjxd(){
 			if(data.result=="true"){
 				alert("修改成功！");
 				closezjxd();
-				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
+				//$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
+				queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 			}else{
 				alert("修改失败！");
 			}

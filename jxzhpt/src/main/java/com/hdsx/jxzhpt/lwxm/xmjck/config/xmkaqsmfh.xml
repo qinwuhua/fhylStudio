@@ -1556,6 +1556,11 @@
 	   <update id="afSckZs" parameterType="xmkaqsmfh" >
  			update SCK_AQSMFH set shzt=#{shzt},sbthbmcd=#{sbthbmcd},cszt=#{cszt},shyj=#{shyj} where id =#{id} 
  		</update>
+ 		<insert id="insertPlanaf" parameterType="xmkaqsmfh">
+ 			insert into plan_af(sckid,jhnf,jh_sbthcd,pfztz,jhsybbzje,jhsydfzczj,sfsqablbz,ablbzsqwh,pfwh,pfsj,jhzlc,jhyhlc,sjpfdw) select id,jhnf,decode(substr(t.gydwdm,0,1),'2','2',decode(substr(t.gydwdm,-1),'0','2','0')),
+			t.cztzgs,t.nsqbbz,(t.cztzgs-t.nsqbbz),decode(t.sfsqablbz,1,'是','否'),t.ablbzsqwh,t.spwh,REPLACE( t.faspsj, '/', '-'),t.czzlc,t.yhlc,t.fascdw
+			 from SCK_AQSMFH t where id=#{id}
+ 		</insert>
  		<select id="dcaqsmfhsckExcel" parameterType="xmkaqsmfh" resultType="elist">
  			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
 		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,

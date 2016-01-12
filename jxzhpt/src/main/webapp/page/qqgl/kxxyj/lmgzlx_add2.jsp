@@ -30,30 +30,103 @@
 	var qdStr;
 	var zdStr;
 	$(function(){
-		$('#lx').form("load",parent.YMLib.Var.Obj);
-		loadUnit("gydw",parent.YMLib.Var.Obj.gydwdm);
-		loadDist("xzqh",parent.YMLib.Var.Obj.xzqhdm);
-		$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
+		loadUnit("gydw",$.cookie("unit"));
+		loadDist("xzqh",$.cookie("dist"));
+		$('#xmbm').html(parent.YMLib.Var.Obj.xmbm);
+		autoCompleteLXBM()
 	});
+	function autoCompleteLXBM(){
+		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
+		$("#lxbm").autocomplete(url, {
+			multiple : false,
+			minChars :1,
+			multipleSeparator : ' ',
+			mustMatch: true,
+	  		cacheLength : 0,
+	  		delay : 200,
+	  		max : 50,
+	  		extraParams : {
+  				lxbm:function() {
+	  				var d = $("#lxbm").val();
+	  				return d;
+	  			},
+	  			xzqh:function() {
+	  				var d = $.cookie("dist");
+	  				return d;
+	  			}
+	  		},
+	  		dataType : 'json',// 返回类型
+	  		// 对返回的json对象进行解析函数，函数返回一个数组
+	  		parse : function(data) {
+	  			var aa = [];
+	  			aa = $.map(eval(data), function(row) {
+	  					return {
+	  						data : row,
+	  						value : row.ghlxbh.replace(/(\s*$)/g,""),
+	  						result : row.ghlxbh.replace(/(\s*$)/g,"")
+	  					};
+	  				});
+	  			return aa;
+	  		},
+	  		formatItem : function(row, i, max) {
+	  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  		}
+	  	}).result(
+			function(e, item) {
+				if(item==undefined) return ;
+				$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
+				$("#lxmc").val(item.lxmc);
+				$("#qdzh").val(parseFloat(item.qdzh));
+				$("#zdzh").val(parseFloat(item.zdzh));
+				selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+				$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+				$("#jsjsdj").val(item.xjsdj);
+				$("#xjsdj").val(item.xjsdj);
+				$("#qdmc").val(item.qdmc);
+				$("#zdmc").val(item.zdmc);
+				qdStr=parseFloat(item.qdzh);
+				zdStr=parseFloat(item.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+				$("#gpsqdzh").val(item.qdzh);
+				$("#gpszdzh").val(item.zdzh);
+				queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
+				//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
+			});
+	}
 	function updateLx(){
-		var params="lx.id="+$('#id').val()+"&lx.lxbm="+$('#lxbm').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.gydw="+$('#gydw').combotree("getText")
+		/*var params="lx.lxbm="+$('#lxbm').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.gydw="+$('#gydw').combotree("getText")
 		+"&lx.gydwdm="+$('#gydw').combotree("getValue")+"&lx.xzqh="+$('#xzqh').combotree("getText")+"&lx.xzqhdm="+$('#xzqh').combotree("getValue")
 		+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()+"&lx.jsxz="+$('#jsxz').val()+"&lx.qdzh="+$('#qdzh').val()
 		+"&lx.zdzh="+$('#zdzh').val()+"&lx.lc="+$('#lc').val()+"&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()
 		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.jhyilc="+$('#jhyilc').val()
 		+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+"&lx.jhsilc="+$('#jhsilc').val()
 		+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+"&lx.jsjsdj="+$('#jsjsdj').val()+"&lx.xjsdj="+$('#xjsdj').val()
-		+"&lx.bzcs="+''+"&lx.jdbs=1"+"&lx.xmid="+$('#xmbm').html();
+		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=0"+"&lx.xmid="+$('#xmbm').html();*/
+		var params="lxsh.xmbm="+$('#xmbm').html()+"&lxsh.xmid="+$('#xmbm').html()+"&lxsh.lxbm="+$('#lxbm').val()+"&lxsh.ghlxbh="+$('#lxbm').val()+"&lxsh.lxmc="+$('#lxmc').val()+
+			"&lxsh.xzqh="+$('#xzqh').combotree("getText")+"&lxsh.xzqhdm="+$('#xzqh').combotree("getValue")+
+			"&lxsh.gydw="+$('#gydw').combotree("getText")+"&lxsh.gydwdm="+$('#gydw').combotree("getValue")+
+			"&lxsh.qdzh="+$('#qdzh').val()+"&lxsh.zdzh="+$('#zdzh').val()+"&lxsh.jsjsdj="+$('#jsjsdj').val()+
+			"&lxsh.lc="+$('#lc').val()+"&lxsh.xjsdj="+$('#xjsdj').val()+"&lxsh.jsxz="+$('#jsxz').val()+"&lxsh.qdmc="+$('#qdmc').val()+
+			"&lxsh.zdmc="+$('#zdmc').val()+"&lxsh.bzys="+"&lxsh.sffirst=0"+"&lxsh.jdbs=1"+"&lxsh.gpsqdzh="+$('#gpsqdzh').val()+
+			"&lxsh.gpszdzh="+$('#gpszdzh').val()+"&lxsh.xmlx=lmgz"+"&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+
+			"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/updateLx.do',
+			url:'/jxzhpt/qqgl/insertLx1.do',
 	        data:params,
 			dataType:'json',
 			success:function(msg){
 				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showAllsjsh();
+					if(YMLib.Var.sq=="sq"){
+						parent.showAlllmgz();
+					}else{
+						parent.showAlllmsh();
+					}
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("此路线已有项目！");
 				}else{
 					alert("保存失败！");
 				}
@@ -142,6 +215,7 @@
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
+					<input type="hidden" name="gpsqdzh" id="gpsqdzh"/>
 					<span id="qd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -149,6 +223,7 @@
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input type="hidden" name="gpszdzh" id="gpszdzh"/>
 					<span id="zd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -183,25 +258,12 @@
 					现技术等<br/>级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					建设技术<br/>等级及里程
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="jhyilc" name="jhyilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					二级公路：<input id="jherlc" name="jherlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					三级公路：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					四级公路：<input id="jhsilc" name="jhsilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					等外公路：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
-					无路：<input id="jhwllc" name="jhwllc" onchange="cesuan()" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

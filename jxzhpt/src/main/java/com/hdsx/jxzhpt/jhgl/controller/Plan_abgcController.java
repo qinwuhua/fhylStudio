@@ -93,9 +93,16 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void querySumAbgc(){
 		try {
-			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			if("af".equals(jh.getXmlx()))
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+			else 
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-			JsonUtils.write(abgcServer.querySumAbgc(jh,lx), getresponse().getWriter());
+			if("af".equals(jh.getXmlx()))
+				JsonUtils.write(abgcServer.querySumAfgc(jh,lx), getresponse().getWriter());
+			else 
+				JsonUtils.write(abgcServer.querySumAbgc(jh,lx), getresponse().getWriter());
+				
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -140,7 +147,10 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_abgc(){
-		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+		if("af".equals(jh.getXmlx()))
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+		else
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -148,13 +158,25 @@ public class Plan_abgcController extends BaseActionSupport{
 		SheetBean sheetb = new SheetBean();
 		String excelHtml="";
 		String tableName="";
-		list = abgcServer.exportExcel_jh(jh, lx);
+		if("af".equals(jh.getXmlx()))
+			list = abgcServer.exportExcel_jh1(jh, lx);
+		else
+			list = abgcServer.exportExcel_jh(jh, lx);
 		System.out.println("行政区划："+lx.getXzqhdm()+"    管养单位："+lx.getGydwbm());
 		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
-		sheetb.setTableName("安保工程项目");
-		sheetb.setHeader(excelHtml);
-		sheetb.setSheetName("安保");
-		tableName="安保工程项目";//excel 文件的名字
+		if("af".equals(jh.getXmlx())){
+			sheetb.setTableName("安防工程项目");
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("安防");
+			tableName="安防工程项目";//excel 文件的名字
+		}
+		else {
+			sheetb.setTableName("安保工程项目");
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("安保");
+			tableName="安保工程项目";//excel 文件的名字
+		}
+		
 		sheetb.setColnum((short)12);
 		sheetb.setList(list);
 		sheetb.setFooter(null);
@@ -172,12 +194,21 @@ public class Plan_abgcController extends BaseActionSupport{
 		try {
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
 			if(lx.getGydwbm()!=null){
-				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+				if("af".equals(jh.getXmlx()))
+					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+				else 
+					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
-			jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
-			jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
+			if("af".equals(jh.getXmlx())){
+				jsonMap.put("total", abgcServer.queryAfgcCount(jh, lx));
+				jsonMap.put("rows",abgcServer.queryAfgcList(page, rows, jh, lx));
+			}else{
+				jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
+				jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
+			}
+			
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,16 +218,30 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void editAbgcStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
-			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
-			for (Plan_abgc item : splist) {
-				item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());
-				item.setSpzt("1");
-				item.setSpsj(new Date());
-				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+			if("af".equals(jh.getXmlx())){
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+				lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+				List<Plan_abgc> splist = abgcServer.queryAfgcByStatus(jh,lx);
+				for (Plan_abgc item : splist) {
+					item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());
+					item.setSpzt("1");
+					item.setSpsj(new Date());
+					item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+				}
+				//result.put("result", new Boolean(abgcServer.updateStatusBatch1(splist)).toString());
 			}
-			result.put("result", new Boolean(abgcServer.updateStatusBatch(splist)).toString());
+			else{
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+				lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+				List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
+				for (Plan_abgc item : splist) {
+					item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());
+					item.setSpzt("1");
+					item.setSpsj(new Date());
+					item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+				}
+				result.put("result", new Boolean(abgcServer.updateStatusBatch(splist)).toString());
+			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +264,9 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryAbgcById(){
 		try {
+			if("af".equals(jh.getXmlx()))
+				JsonUtils.write(abgcServer.queryAfgcById(jh.getId()), getresponse().getWriter());
+			else
 			JsonUtils.write(abgcServer.queryAbgcById(jh.getId()), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -247,8 +295,14 @@ public class Plan_abgcController extends BaseActionSupport{
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			System.out.println("审查："+jh.getSckid());
-			result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
-			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(sc)).toString());
+			if("af".equals(jh.getXmlx())){
+				result.put("jh",new Boolean((abgcServer.editAfgcById(jh)>0)).toString());
+				result.put("sc", new Boolean(true).toString());
+			}else{
+				result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
+				result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(sc)).toString());
+			}
+			
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -273,7 +327,11 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void editAbgcStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			result.put("result", new Boolean(abgcServer.editStatus(jh)).toString());
+			if("af".equals(jh.getXmlx())){
+				result.put("result", new Boolean(abgcServer.editStatus1(jh)).toString());
+			}else {
+				result.put("result", new Boolean(abgcServer.editStatus(jh)).toString());
+			}
 			JsonUtils.write(result,getresponse().getWriter());
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -476,32 +534,63 @@ public class Plan_abgcController extends BaseActionSupport{
 		//准备数据
 		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
 		List<Object> excelData = new ArrayList<Object>();
-		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
-		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-		//此处遍历查询计划资金下达模块的所有项目
-		for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
-			Plan_zjxd zjxd=new Plan_zjxd();
-			String strLx=(item.getJckabgc().getLxmc()==null ? "" : item.getJckabgc().getLxmc()+"-" )+
-					item.getJckabgc().getLxbm()+"("+
-					item.getJckabgc().getQdzh()+"-"+
-					item.getJckabgc().getZdzh()+")";
-			zjxd.setLxxx(strLx);
-			zjxd.setPfztz(item.getPfztz());
-			zjxd.setXmid(item.getId());
-			zjxd.setTbdw(gydwmc);
-			excelData.add(zjxd);
+		if("af".equals(jh.getXmlx())){
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			//此处遍历查询计划资金下达模块的所有项目
+			for (Plan_abgc item : abgcServer.queryAfgcList(jh, lx)) {
+				Plan_zjxd zjxd=new Plan_zjxd();
+				String strLx=(item.getJckabgc().getLxmc()==null ? "" : item.getJckabgc().getLxmc()+"-" )+
+						item.getJckabgc().getLxbm()+"("+
+						item.getJckabgc().getQdzh()+"-"+
+						item.getJckabgc().getZdzh()+")";
+				zjxd.setLxxx(strLx);
+				zjxd.setPfztz(item.getPfztz());
+				zjxd.setXmid(item.getId());
+				zjxd.setTbdw(gydwmc);
+				excelData.add(zjxd);
+			}
+			ExcelEntity excel=new ExcelEntity("安防工程",title,attribute,excelData);
+			ExcelExportUtil.excelWrite(excel, "安防工程-计划资金下达", getresponse());
+		}else{
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			//此处遍历查询计划资金下达模块的所有项目
+			for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
+				Plan_zjxd zjxd=new Plan_zjxd();
+				String strLx=(item.getJckabgc().getLxmc()==null ? "" : item.getJckabgc().getLxmc()+"-" )+
+						item.getJckabgc().getLxbm()+"("+
+						item.getJckabgc().getQdzh()+"-"+
+						item.getJckabgc().getZdzh()+")";
+				zjxd.setLxxx(strLx);
+				zjxd.setPfztz(item.getPfztz());
+				zjxd.setXmid(item.getId());
+				zjxd.setTbdw(gydwmc);
+				excelData.add(zjxd);
+			}
+			ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
+			ExcelExportUtil.excelWrite(excel, "安保工程-计划资金下达", getresponse());
 		}
-		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "安保工程-计划资金下达", getresponse());
+		
 	}
 	public void exportExcelAbgcJhSh(){
-		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
-		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-		String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=审查起点桩号,fieid=scqdzh>,<title=审查止点桩号,fieid=sczdzh>,<title=审查总里程,fieid=sczlc>,<title=审查隐患里程,fieid=scyhlc>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=jhnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=计划完成(处),fieid=jhwc_c>,<title=设计单位,fieid=sjdw>,<title=设计批复单位,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助申请文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybbzje>,<title=地方自筹,fieid=jhsydfzczj>,<title=备注,fieid=remarks>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
-		String fileName="安保工程计划库审核";
-		List<Object> excelData=new ArrayList<Object>();
-		excelData =abgcServer.exportExcelAbgcJhSh(jh, lx);
-		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+		if("af".equals(jh.getXmlx())){
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=审查起点桩号,fieid=scqdzh>,<title=审查止点桩号,fieid=sczdzh>,<title=审查总里程,fieid=sczlc>,<title=审查隐患里程,fieid=scyhlc>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=jhnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=计划完成(处),fieid=jhwc_c>,<title=设计单位,fieid=sjdw>,<title=设计批复单位,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助申请文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybbzje>,<title=地方自筹,fieid=jhsydfzczj>,<title=备注,fieid=remarks>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
+			String fileName="安防工程计划库审核";
+			List<Object> excelData=new ArrayList<Object>();
+			excelData =abgcServer.exportExcelAfgcJhSh(jh, lx);
+			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+		}else{
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=审查起点桩号,fieid=scqdzh>,<title=审查止点桩号,fieid=sczdzh>,<title=审查总里程,fieid=sczlc>,<title=审查隐患里程,fieid=scyhlc>,<title=方案评估单位,fieid=fapgdw>,<title=方案审查单位,fieid=fascdw>,<title=方案审批时间,fieid=faspsj>,<title=审批文号,fieid=spwh>,<title=投资估算,fieid=tzgs>,<title=建设性质,fieid=jsxz>,<title=建设内容,fieid=jsnr>,<title=审查备注,fieid=scbz>,<title=上报年份,fieid=jhnf>,<title=计划开工时间,fieid=jhkgsj1>,<title=计划完工时间,fieid=jhwgsj1>,<title=计划完成(处),fieid=jhwc_c>,<title=设计单位,fieid=sjdw>,<title=设计批复单位,fieid=sjpfdw>,<title=批复文号,fieid=pfwh>,<title=批复时间,fieid=pfsj1>,<title=是否申请按比例补助,fieid=sfsqablbz>,<title=按比例补助申请文号,fieid=ablbzsqwh>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=jhsybbzje>,<title=地方自筹,fieid=jhsydfzczj>,<title=备注,fieid=remarks>,<title=计划ID,fieid=id,hidden=true>,<title=审查库ID,fieid=sckid,hidden=true>";
+			String fileName="安保工程计划库审核";
+			List<Object> excelData=new ArrayList<Object>();
+			excelData =abgcServer.exportExcelAbgcJhSh(jh, lx);
+			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+		}
 	}
 	public void importExcelAbgcJhSh(){
 		String str="xzqhmc,gydw,lxbm,lxmc,scqdzh,sczdzh,sczlc,scyhlc,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,jhnf,jhkgsj1,jhwgsj1,jhwc_c,sjdw,sjpfdw,pfwh,pfsj1,sfsqablbz,ablbzsqwh,pfztz,jhsybbzje,jhsydfzczj,remarks,id,sckid";
