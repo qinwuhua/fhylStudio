@@ -141,6 +141,8 @@ function panduanxmlx(xmbm){
 		result="养护大中修项目";
 	}else if(xmlx=="5"){
 		result="水毁项目";
+	}else if(xmlx=="6"){
+		result="养护中心项目";
 	}
 	return result;
 }

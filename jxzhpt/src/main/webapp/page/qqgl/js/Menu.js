@@ -87,6 +87,13 @@ $(function() {
 		href:'../qqgl/jhsh/yhdzxgl.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101080106',
+		title:'养护中心项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu1',
+		href:'../qqgl/jhsh/yhzxgl.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101080105',
 		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
@@ -157,6 +164,13 @@ $(function() {
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/yhdzxgl.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080207',
+		title:'养护中心项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/jhsh/yhzxgl.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080205',

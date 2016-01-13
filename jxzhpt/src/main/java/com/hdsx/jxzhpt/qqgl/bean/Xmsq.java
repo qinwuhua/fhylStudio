@@ -24,7 +24,7 @@ public class Xmsq {
 	private String jsfa;//建设方案
 	private String lsjl;//历史记录
 	private int sqzt;//申请状态
-	private int xmlx;//项目类型 1：养护大中修；2：水毁
+	private int xmlx;//项目类型 1：养护大中修；2：水毁  6：养护中心项目（zyy add 2016.1.12）
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
 	private String jdbs;//阶段标示
@@ -43,6 +43,87 @@ public class Xmsq {
 	private String wllc;//高速公路里程
 	private String xmnf;
 	
+	//zyy add 2016.1.12
+	private String qsmc;//区市名称
+	private String xjmc;//县级名称
+	private String jb;//级别 1--市级2--省级
+	private String jsxz;//建设性质 1-新建2-扩建3-改建
+	private String ydbmc;//原道班名称
+	private String ztz;//总投资
+	private String zbzzj;//总补助资金
+	private String sbzzj;//省补助资金
+	private String zddzjl;//重点打造奖励
+	private String dfzc;//地方自筹资金
+	private String lxzh;//所在路线桩号
+
+	
+	
+	public String getQsmc() {
+		return qsmc;
+	}
+	public void setQsmc(String qsmc) {
+		this.qsmc = qsmc;
+	}
+	public String getXjmc() {
+		return xjmc;
+	}
+	public void setXjmc(String xjmc) {
+		this.xjmc = xjmc;
+	}
+	public String getJb() {
+		return jb;
+	}
+	public void setJb(String jb) {
+		this.jb = jb;
+	}
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getYdbmc() {
+		return ydbmc;
+	}
+	public void setYdbmc(String ydbmc) {
+		this.ydbmc = ydbmc;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+	public String getZbzzj() {
+		return zbzzj;
+	}
+	public void setZbzzj(String zbzzj) {
+		this.zbzzj = zbzzj;
+	}
+	public String getSbzzj() {
+		return sbzzj;
+	}
+	public void setSbzzj(String sbzzj) {
+		this.sbzzj = sbzzj;
+	}
+	public String getZddzjl() {
+		return zddzjl;
+	}
+	public void setZddzjl(String zddzjl) {
+		this.zddzjl = zddzjl;
+	}
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
+	public String getLxzh() {
+		return lxzh;
+	}
+	public void setLxzh(String lxzh) {
+		this.lxzh = lxzh;
+	}
 	public String getXmnf() {
 		return xmnf;
 	}

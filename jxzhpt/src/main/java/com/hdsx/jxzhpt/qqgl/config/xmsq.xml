@@ -587,4 +587,157 @@
 		and substr(roadcode,length(roadcode)-5) like #{xzqhdm}||'%' 
 		group by substr(roadcode,0,length(roadcode)-6) order by substr(roadcode,0,length(roadcode)-6)
 	</select>
+	
+	<select id="queryYhzxXmsq" parameterType="xmsq" resultType="xmsq">
+		select * from (
+			select rownum num,t.* from (
+				select * from xmsq_yhzx x
+				where 1=1
+				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
+					and ${xmsq.gydwdm}
+				</if>
+				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">
+					and ${xmsq.xzqhdm}
+				</if>
+				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
+					and xmmc like '%'||#{xmsq.xmmc}||'%'
+				</if>
+				<if test="xmsq.jb!=null and xmsq.jb!=''">
+					and jb like '%'||#{xmsq.jb}||'%'
+				</if>
+				<if test="xmsq.sqzt>=0">
+					and sqzt=${xmsq.sqzt}
+				</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
+					and ${xmsq.xmbm}
+				</if>
+				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">
+					and jsxz like '%'||#{xmsq.jsxz}||'%'
+				</if>
+				<if test="xmsq.ydbmc!=null and xmsq.ydbmc!=''">
+					and ydbmc like '%'||#{xmsq.ydbmc}||'%'
+				</if>
+				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
+					and lxmc like '%'||#{xmsq.lxmc}||'%'
+				</if>
+				order by sqzt desc,xmbm desc) t ) t2
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
+	<select id="queryYhzxCount" parameterType="xmsq" resultType="int">
+		select count(x.xmbm) from xmsq_yhzx x where 1=1
+		<if test="gydwdm!=null and gydwdm!=''">
+			and ${gydwdm}
+		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="jb!=null and jb!=''">
+			and jb like '%'||#{jb}||'%'
+		</if>
+		<if test="sqzt>=0">
+			and sqzt=${sqzt}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="jsxz!=null and jsxz!=''">
+			and jsxz like '%'||#{jsxz}||'%'
+		</if>
+		<if test="ydbmc!=null and ydbmc!=''">
+			and ydbmc like '%'||#{ydbmc}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+	</select>
+	
+	<select id="queryYhzxNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),6000)+1 from xmsq_yhzx c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
+	</select>
+	
+	<insert id="insertXmsqYhzx" parameterType="java.util.List">
+		insert into xmsq_yhzx (
+		<if test="xmbm!=null">xmbm</if>
+		<if test="xmmc!=null">,xmmc</if>
+		<if test="jb!=null">,jb</if>
+		<if test="jsxz!=null">,jsxz</if>
+		<if test="ydbmc!=null">,ydbmc</if>
+		<if test="xzqh!=null">,xzqh</if>
+		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="ztz!=null">,ztz</if>
+		<if test="zbzzj!=null">,zbzzj</if>
+		<if test="sbzzj!=null">,sbzzj</if>
+		<if test="zddzjl!=null">,zddzjl</if>
+		<if test="dfzc!=null">,dfzc</if>
+		<if test="jhkgsj!=null">,jhkgsj</if>
+		<if test="jhwgsj!=null">,jhwgsj</if>
+		<if test="gydw!=null">,gydw</if>
+		<if test="gydwdm!=null">,gydwdm</if>
+		<if test="lxmc!=null">,lxmc</if>
+		<if test="lxzh!=null">,lxzh</if>
+		<if test="xmnf!=null">,xmnf</if>
+		<if test="bz!=null">,bz</if>) 
+		values (
+		<if test="xmbm!=null">#{xmbm}</if>
+		<if test="xmmc!=null">,#{xmmc}</if>
+		<if test="jb!=null">,#{jb}</if>
+		<if test="jsxz!=null">,#{jsxz}</if>
+		<if test="ydbmc!=null">,#{ydbmc}</if>
+		<if test="xzqh!=null">,#{xzqh}</if>
+		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="ztz!=null">,#{ztz}</if>
+		<if test="zbzzj!=null">,#{zbzzj}</if>
+		<if test="sbzzj!=null">,#{sbzzj}</if>
+		<if test="zddzjl!=null">,#{zddzjl}</if>
+		<if test="dfzc!=null">,#{dfzc}</if>
+		<if test="jhkgsj!=null">,#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,#{jhwgsj}</if>
+		<if test="gydw!=null">,#{gydw}</if>
+		<if test="gydwdm!=null">,#{gydwdm}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>
+		<if test="lxzh!=null">,#{lxzh}</if>
+		<if test="xmnf!=null">,#{xmnf}</if>
+		<if test="bz!=null">,#{bz}</if>)
+	</insert>
+	<update id="updateYhzx" parameterType="xmsq">
+		update xmsq_yhzx set 
+		<if test="xmbm!=null">xmbm=#{xmbm}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="jb!=null">,jb=#{jb}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="ydbmc!=null">,ydbmc=#{ydbmc}</if>
+		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="ztz!=null">,ztz=#{ztz}</if>
+		<if test="zbzzj!=null">,zbzzj=#{zbzzj}</if>
+		<if test="sbzzj!=null">,sbzzj=#{sbzzj}</if>
+		<if test="zddzjl!=null">,zddzjl=#{zddzjl}</if>
+		<if test="dfzc!=null">,dfzc=#{dfzc}</if>
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="gydw!=null">,gydw=#{gydw}</if>
+		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
+		<if test="lxmc!=null">,lxmc=#{lxmc}</if>
+		<if test="lxzh!=null">,lxzh=#{lxzh}</if>
+		<if test="xmnf!=null">,xmnf=#{xmnf}</if>
+		<if test="bz!=null">,bz=#{bz}</if>
+		where xmbm=#{xmbm}
+	</update>
+	
+	<delete id="deleteYhzxByXmbm" parameterType="xmsq">
+		delete from xmsq_yhzx where xmbm=#{xmbm}
+	</delete>
+	
+	<select id="queryYhzxByXmbm" parameterType="xmsq" resultType="xmsq">
+		select x.* from xmsq_yhzx x where xmbm=#{xmbm} 
+	</select>
+	
+	<update id="updateYhzxSqzt" parameterType="xmsq">
+		update xmsq_yhzx set sqzt=${sqzt} where xmbm=#{xmbm}
+	</update>
 </mapper>

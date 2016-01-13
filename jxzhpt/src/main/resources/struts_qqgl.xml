@@ -216,6 +216,9 @@
 		<action name="ghksjfxXjAndGj" class="wnjhController" method="ghksjfxXjAndGj"/>
 		<action name="ghkfxSelect" class="wnjhController" method="ghkfxSelect"/>
 	<!-- rh -->
+	
+	    <action name="insertYhzx" class="xmsqController" method="insertYhzx"></action>
+	    <action name="updateYhzx" class="xmsqController" method="updateYhzx"></action>
 	</package>
 </struts>
 

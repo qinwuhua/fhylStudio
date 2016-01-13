@@ -57,6 +57,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else if(xmsq.getXmlx()==5){
 				xmbm = xmsqServer.queryShNextXmbm(xmsq);
 			}
+			else if(xmsq.getXmlx()==6){
+				xmbm = xmsqServer.queryYhzxNextXmbm(xmsq);
+			}
 			result.put("xmbm", xmbm);
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
@@ -155,6 +158,25 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	/**
+	 * 添加项目申请信息---养护中心项目
+	 * @throws Exception
+	 */
+	public void insertYhzx() throws Exception{
+		try{
+			boolean b=false;
+			List<Xmsq> list=new ArrayList<Xmsq>();
+			list.add(xmsq);
+			b = xmsqServer.insertXmsqYhzx(list);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryXmsq(){
 		try {
 			String xmbm = xmsq.getXmbm();
@@ -214,6 +236,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else if(xmsq.getXmlx()==5){
 				list = xmsqServer.queryShXmsq(xmsq,page,rows);
 				total =xmsqServer.queryShCount(xmsq);
+			}
+			else if(xmsq.getXmlx()==6) {
+				list = xmsqServer.queryYhzxXmsq(xmsq,page,rows);
+				total =xmsqServer.queryYhzxCount(xmsq);
 			}
 			result.put("rows", list);
 			result.put("total", total);
@@ -319,6 +345,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.deleteShByXmbm(xmsq.getXmbm());
 			}
+			else if(xmsq.getXmlx()==6){
+				b = xmsqServer.deleteYhzxByXmbm(xmsq.getXmbm());
+			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
@@ -342,6 +371,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateShSqzt(xmsq);
+			}else if (xmsq.getXmlx()==6) {
+				b = xmsqServer.updateYhzxSqzt(xmsq);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -394,6 +425,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				obj = xmsqServer.queryYhdzxByXmbm(xmsq);
 			}else if(xmsq.getXmlx()==5){
 				obj = xmsqServer.queryShByXmbm(xmsq);
+			}else if (xmsq.getXmlx()==6) {
+				obj = xmsqServer.queryYhzxByXmbm(xmsq);
 			}
 			JsonUtils.write(obj, getresponse().getWriter());
 		}catch(Exception e){
@@ -439,6 +472,22 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	/**
+	 * 修改项目申请信息--养护中心
+	 * @throws Exception 
+	 */
+	public void updateYhzx() throws Exception{
+		try{
+			boolean b=true;
+			b = xmsqServer.updateYhzx(xmsq);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void exportExcelXmsq(){
 		try{
 			//设置列与字段对应

@@ -203,4 +203,54 @@ public interface XmsqServer {
 	 */
 	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm);
 
+	/**
+	 * 查询养护中心项目立项list
+	 * @param xmsq
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	public List<Xmsq> queryYhzxXmsq(Xmsq xmsq,int page,int rows);
+	/**
+	 * 查询养护中心项目立项个数
+	 * @param xmsq
+	 * @return
+	 */
+	public int queryYhzxCount(Xmsq xmsq); 
+	/**
+	 * 查询养护中心下一个num
+	 * @param xmsq
+	 * @return
+	 */
+	public String queryYhzxNextXmbm(Xmsq xmsq);
+	/**
+	 * 添加养护中心立项数据
+	 * @param list
+	 * @return
+	 */
+	public boolean insertXmsqYhzx(List<Xmsq> list);
+	/**
+	 * 删除养护中心数据
+	 * @param xmbm
+	 * @return
+	 */
+	public boolean deleteYhzxByXmbm(String xmbm);
+	/**
+	 * 查询单条养护中心立项项目
+	 * @param xmsq
+	 * @return
+	 */
+	public Xmsq queryYhzxByXmbm(Xmsq xmsq);
+	/**
+	 * 修改立项信息--养护中心
+	 * @param xmsq
+	 * @return
+	 */
+	public boolean updateYhzx(Xmsq xmsq);
+	/**
+	 * 修改项目申请状态---养护中心
+	 * @param xmsq
+	 * @return
+	 */
+	public boolean updateYhzxSqzt(Xmsq xmsq);
 }

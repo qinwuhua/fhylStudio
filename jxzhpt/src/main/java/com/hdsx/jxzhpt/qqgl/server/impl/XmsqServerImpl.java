@@ -68,6 +68,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params.put("rows", rows);
 		return queryList("queryShXmsq",params);
 	}
+	
 	@Override
 	public int queryYhdzxCount(Xmsq xmsq) {
 		return queryOne("queryYhdzxCount", xmsq);
@@ -197,4 +198,60 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryList("queryLxFromGpsroadByLevel", params);
 	}
 
+	@Override
+	public List<Xmsq> queryYhzxXmsq(Xmsq xmsq,int page,int rows) {
+		params.put("xmsq", xmsq);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryYhzxXmsq",params);
+	}
+	@Override
+	public int queryYhzxCount(Xmsq xmsq) {
+		return queryOne("queryYhzxCount", xmsq);
+	}
+	
+	@Override
+	public String queryYhzxNextXmbm(Xmsq xmsq) {
+		return queryOne("queryYhzxNextXmbm", xmsq);
+	}
+	
+	@Override
+	public boolean insertXmsqYhzx(List<Xmsq> list) {
+		return insertBatch("insertXmsqYhzx",list)==list.size();
+	}
+	
+	@Override
+	public boolean deleteYhzxByXmbm(String xmbm) {
+		String[] split = xmbm.split(",");
+		List<Xmsq> list=new ArrayList<Xmsq>();
+		for (String x : split) {
+			Xmsq xmsq=new Xmsq();
+			xmsq.setXmbm(x);
+			list.add(xmsq);
+		}
+		return deleteBatch("deleteYhzxByXmbm", list)==list.size();
+	}
+	
+	@Override
+	public Xmsq queryYhzxByXmbm(Xmsq xmsq) {
+		return queryOne("queryYhzxByXmbm", xmsq);
+	}
+	
+	@Override
+	public boolean updateYhzx(Xmsq xmsq) {
+		return update("updateYhzx", xmsq)>0;
+	}
+	
+	@Override
+	public boolean updateYhzxSqzt(Xmsq xmsq) {
+		String[] split = xmsq.getXmbm().split(",");
+		List<Xmsq> list=new ArrayList<Xmsq>();
+		for (String x : split) {
+			Xmsq item =new Xmsq();
+			item.setXmbm(x);
+			item.setSqzt(xmsq.getSqzt());
+			list.add(item);
+		}
+		return updateBatch("updateYhzxSqzt", list)==list.size();
+	}
 }
