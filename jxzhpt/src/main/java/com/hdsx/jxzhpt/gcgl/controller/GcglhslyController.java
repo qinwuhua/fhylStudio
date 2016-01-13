@@ -581,6 +581,9 @@ public class GcglhslyController extends BaseActionSupport{
 		}	
 		public void thxmwgtj(){
 			String sql="";
+			if("afgc".equals(xmlx)){
+				sql="update plan_af set jgzt='0' where id='"+id+"'";
+			}
 			if("abgc".equals(xmlx)){
 				sql="update plan_abgc set jgzt='0' where id='"+id+"'";
 			}

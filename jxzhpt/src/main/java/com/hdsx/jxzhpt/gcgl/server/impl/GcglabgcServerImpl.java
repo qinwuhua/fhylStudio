@@ -217,7 +217,15 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 			return false;
 		}
 	}
-
+	@Override
+	public Boolean insertafwg(Gcglabgc gcglwqgz) {
+		gcglwqgz.setJgzt("1");
+		if(update("insertafwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	@Override
 	public Boolean insertWqgzkg(Gcglabgc gcglwqgz) {
 		gcglwqgz.setKgzt("1");
@@ -229,17 +237,34 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	}
 
 	@Override
+	public Boolean insertafkg(Gcglabgc gcglwqgz) {
+		gcglwqgz.setKgzt("1");
+		if(update("insertafkg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	@Override
 	public int selectWqgzjhListCount(Gcglabgc gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhListCount", gcglwqgz);
 	}
-
+	@Override
+	public int selectafjhListCount(Gcglabgc gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectafjhListCount", gcglwqgz);
+	}
 	@Override
 	public List<Gcglabgc> selectWqgzjhList(Gcglabgc gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzjhList", gcglwqgz);
 	}
-
+	@Override
+	public List<Gcglabgc> selectafjhList(Gcglabgc gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectafjhList", gcglwqgz);
+	}
 	@Override
 	public Gcglabgc selectWqgzjhFile(Gcglabgc gcglwqgz) {
 		// TODO Auto-generated method stub
@@ -282,6 +307,11 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public List<Excel_list> exportAbyb(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryList("exportAbyb", gcglabgc);
+	}
+	@Override
+	public List<Excel_list> exportAfyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportAfyb", gcglabgc);
 	}
 	@Override
 	public List<Excel_list> exportAbyb1(Gcglabgc gcglabgc) {
@@ -355,13 +385,21 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzjhList1", gcglabgc);
 	}
-
+	@Override
+	public List<Gcglabgc> selectafjhList1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectafjhList1", gcglabgc);
+	}
 	@Override
 	public int selectWqgzjhListcount1(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhListcount1", gcglabgc);
 	}
-
+	@Override
+	public int selectafjhListcount1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectafjhListcount1", gcglabgc);
+	}
 	@Override
 	public List<Excel_list> dcabgcExcel(Gcglabgc gcglabgc) {
 		List<Excel_list> list=new ArrayList<Excel_list>();
@@ -374,4 +412,15 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		return list;
 	}
 
+	@Override
+	public List<Excel_list> dcafgcExcel(Gcglabgc gcglabgc) {
+		List<Excel_list> list=new ArrayList<Excel_list>();
+		Excel_list ll=queryOne("dcafgcExcelhj", gcglabgc);
+		List<Excel_list> l=queryList("dcafgcExcel", gcglabgc);
+		if(l.size()>0){
+			list.add(ll);
+			list.addAll(l);
+		}
+		return list;
+	}
 }

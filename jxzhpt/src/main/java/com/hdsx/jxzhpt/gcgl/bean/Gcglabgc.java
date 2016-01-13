@@ -129,7 +129,21 @@ public class Gcglabgc implements Serializable {
 	private String yhdk;
 	private String gz;
 	private String sz;
+	private String xmlx;
+	private String ybzt;
 	
+	public String getYbzt() {
+		return ybzt;
+	}
+	public void setYbzt(String ybzt) {
+		this.ybzt = ybzt;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}

@@ -68,6 +68,13 @@ $(function() {
 		href:'./gljsjyhgl/abgc/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101040114',
+		title:'安防工程项目',
+		imgSrc:'../../images/ab_s.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/abgc/afgc.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101040103',
 		title:'灾害防治工程项目',
 		imgSrc:'../../images/zh_s.png',
@@ -233,6 +240,13 @@ $(function() {
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu2',
 		href:'./ybjdsh/abgc/abgc.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040214',
+		title:'安防工程项目',
+		imgSrc:'../../images/ab_s.png',
+		renderTo:'left_menu2',
+		href:'./ybjdsh/abgc/afgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040203',
@@ -401,6 +415,13 @@ $(function() {
 		href:'./cgszjdw/abgc/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101040314',
+		title:'安防工程项目',
+		imgSrc:'../../images/ab_s.png',
+		renderTo:'left_menu3',
+		href:'./cgszjdw/abgc/afgc.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101040303',
 		title:'灾害防治工程项目',
 		imgSrc:'../../images/zh_s.png',
@@ -565,6 +586,13 @@ $(function() {
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/abgc/abgc.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040414',
+		title:'安防工程项目',
+		imgSrc:'../../images/ab_s.png',
+		renderTo:'left_menu4',
+		href:'./glgcwgtj/abgc/afgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040403',

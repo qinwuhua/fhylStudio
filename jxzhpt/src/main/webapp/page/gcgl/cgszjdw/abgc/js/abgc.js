@@ -1,3 +1,9 @@
+function afxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('abgc_xx','安防工程',"/jxzhpt/page/jhgl/jhkxx/afgc1.jsp",'abgc_xx',1000,500);
+}
 var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
@@ -191,6 +197,80 @@ function showAll(){
 	    ]]    
 	}); 
 }
+function showafAll(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jgzt='';
+	var kgzt='';
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
+	var lxmc=$("#lxmc").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectAbgcjhList1.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-195,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: gydwstr,
+	    	kgzt: kgzt,
+	    	jgzt:jgzt,
+	    	lxmc:lxmc,
+	    	ybzt:'',
+	    	sfsj:7,
+	    	xmnf:xmnf,
+	    	bfyf:bfyf,
+	    	bfzt:$("#bfzt").val(),
+	    	xzqh:xzqhstr,
+	    	'gcglabgc.lxbm':$("#lxbm").val(),
+//	    	'gcglabgc.xdsj':$("#xdnf").val(),
+	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.xmlx':'af',
+	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglabgc.ljbfzt':$("#ljbfzt").combobox('getValue')
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>      '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="afxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
+	        }},
+	  	   {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},
+	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+	        {field:'qzlc',title:'总里程',width:80,align:'center'},
+	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
+	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
+	    ]]    
+	}); 
+}
+
 function showAll__ck(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){

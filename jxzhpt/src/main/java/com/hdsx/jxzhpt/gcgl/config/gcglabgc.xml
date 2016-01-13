@@ -145,10 +145,15 @@
 	<update id="insertWqgzwg" parameterType="gcglabgc">
 		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
+	<update id="insertafwg" parameterType="gcglabgc">
+		update PLAN_AF set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
+	</update>
 	<update id="insertWqgzkg" parameterType="gcglabgc">
 		update PLAN_ABGC set xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where ID=#{jhid}
 	</update>
-	
+	<update id="insertafkg" parameterType="gcglabgc">
+		update PLAN_AF set xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where ID=#{jhid}
+	</update>
 	<select id="selectWqgzjhList" parameterType="gcglabgc" resultType="gcglabgc">
 		select * from (
 		select m.*,rownum rn from (
@@ -195,6 +200,50 @@
 		) 
 			where RN>((#{page} - 1) * #{rows})
 	</select>
+	<select id="selectafjhList" parameterType="gcglabgc" resultType="gcglabgc">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje
+		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID
+		where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t3.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t1.jhnf like '%'||trim(#{xmnf})||'%'
+		</if>
+		order by t1.jhnf
+		) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	
 	 <select id="selectWqgzjhListCount" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 	 	where 1=1 and spzt='1'
@@ -229,6 +278,41 @@
 			and t1.jhnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	 </select>
+	  <select id="selectafjhListCount" parameterType="gcglabgc" resultType="int">
+	 	select count(*) from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID 
+	 	where 1=1 and spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			${gydw}
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t1.jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
+	</if>
+	 </select>
+	 
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where ID=#{jhid}
 	 </select>
@@ -272,6 +356,29 @@
 			</if>
 			order by t1.jhnf
 	</select>
+	<select id="exportAfyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t1.ID v_0,t3.gydw v_1,t3.xzqh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBBZJE v_8,JHSYDFZCZJ v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
+			from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+			where t1.spzt='1'
+			<if test="jhnf != null and  jhnf != ''">
+					and t1.jhnf like '%'||trim(#{jhnf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			order by t1.jhnf
+	</select>
+	
 	
 	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
 		select 
@@ -643,6 +750,76 @@
 		) 
 			where RN>((#{page} - 1) * #{rows})
 	</select>
+	<select id="selectafjhList1" parameterType="gcglabgc" resultType="gcglabgc">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje
+		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID left join 
+		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+		where t1.spzt='1' 
+
+		<if test="xmnf != null and  xmnf != ''">
+			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+		</if>
+		<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+		</if>
+		
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			order by t1.jhnf
+			) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	
 	 <select id="selectWqgzjhListcount1" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 	 	left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
@@ -701,6 +878,65 @@
 				</if>
 			</if>
 	 </select>
+	  <select id="selectafjhListcount1" parameterType="gcglabgc" resultType="int">
+	 	select count(*) from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID 
+	 	left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+	 	left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+	 	left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	 	where t1.spzt='1' 
+			<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="lxbm != null and  lxbm != ''">
+				and t3.lxbm like '%'||trim(#{lxbm})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+				<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+					<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+	 </select>
+	 
 	  <!-- 查询最进展大月份 -->
 	 <select id="querymaxybyf" parameterType="gcglabgc" resultType="gcglabgc">
 	 	select max(sbyf) sbyf from gcgl_abgc where jhid=#{jhid}
@@ -753,6 +989,53 @@
 		)
 	 </select>
 	 
+	 <select id="dcafgcExcelhj" parameterType="gcglabgc" resultType="elist">
+	 	select
+      	decode(count(*),0,'','合计') v_1, sum(v_12) v_12,sum(v_18) v_18,sum(v_19) v_19,sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,
+		 sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_36) v_36,sum(v_37) v_37
+		from(
+		select 
+		rownum v_0,
+		(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='原中央苏区'),null,'否','是') v_4,
+		decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='国家贫困县'),null,'否','是') v_5,
+		xm.xzqhdm v_6,xm.xzqh v_7,xm.lxbm v_8,xm.lxmc v_9,xm.qdzh v_10,xm.zdzh v_11,xm.yhlc v_12,xm.jsxz v_13,
+		pl.xdsj v_14,pl.jhkgsj v_15,pl.jhwgsj v_16,pl.yjwgsj v_17,pl.pfztz v_18,pl.jhsybbzje v_19,
+		pl.sjkgsj v_20,pl.sjwgsj v_21,pl.jsdw v_22,pl.sjdw v_23,pl.sgdw v_24,pl.jldw v_25,
+		gc.wcgl v_26,gc1.wcgl v_27,(gc.btz+gc.stz+gc.qttz) v_28,gc.btz v_29,gc.qttz v_30,(gc1.btz+gc1.stz+gc1.qttz) v_31,
+		decode(ys.yssj,null,0,xm.yhlc) v_32,
+		zjxd.btz v_33,gc.btz1 v_34,decode(zjxd.btz,null,0,0,0,(decode(gc.btz1,null,0,(round(gc.btz1/zjxd.btz*100,0))))) v_35,
+		zjxd.qttz v_36,gc.qttz1 v_37,decode(zjxd.qttz,null,0,0,0,(decode(gc.qttz1,null,0,(round(gc.qttz1/zjxd.qttz*100,0))))) v_38,
+		pl.remarks v_39
+		from plan_af pl,sck_aqsmfh xm,gcgl_jgys ys,
+		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.zjdw_btz) btz1,sum(t.zjdw_stz) stz1,sum(t.zjdw_qttz) qttz1,sum(t.bywc_gl) wcgl from gcgl_abgc t group by t.jhid) gc,
+		(select sum(btzzj) btz,sum(stz) stz,(sum(xdzj)-sum(btzzj)-sum(stz)) qttz,xmid from plan_zjxd group by xmid) zjxd,
+		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
+		where pl.sckid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
+		and pl.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
+		)
+	 </select>
+	 
 	 <select id="dcabgcExcel" parameterType="gcglabgc" resultType="elist">
 	 	select 
 			rownum v_0,
@@ -774,6 +1057,47 @@
 			(select sum(btzzj) btz,sum(stz) stz,(sum(xdzj)-sum(btzzj)-sum(stz)) qttz,xmid from plan_zjxd group by xmid) zjxd,
 			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
 			where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
+			and pl.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
+	 </select>
+	  <select id="dcafgcExcel" parameterType="gcglabgc" resultType="elist">
+	 	select 
+			rownum v_0,
+			(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='原中央苏区'),null,'否','是') v_4,
+			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='国家贫困县'),null,'否','是') v_5,
+			xm.xzqhdm v_6,xm.xzqh v_7,xm.lxbm v_8,xm.lxmc v_9,xm.qdzh v_10,xm.zdzh v_11,xm.yhlc v_12,xm.jsxz v_13,
+			pl.xdsj v_14,pl.jhkgsj v_15,pl.jhwgsj v_16,pl.yjwgsj v_17,pl.pfztz v_18,pl.jhsybbzje v_19,
+			pl.sjkgsj v_20,pl.sjwgsj v_21,pl.jsdw v_22,pl.sjdw v_23,pl.sgdw v_24,pl.jldw v_25,
+			gc.wcgl v_26,gc1.wcgl v_27,(gc.btz+gc.stz+gc.qttz) v_28,gc.btz v_29,gc.qttz v_30,(gc1.btz+gc1.stz+gc1.qttz) v_31,
+			decode(ys.yssj,null,0,xm.yhlc) v_32,
+			zjxd.btz v_33,gc.btz1 v_34,decode(zjxd.btz,null,0,0,0,(decode(gc.btz1,null,0,(round(gc.btz1/zjxd.btz*100,0))))) v_35,
+			zjxd.qttz v_36,gc.qttz1 v_37,decode(zjxd.qttz,null,0,0,0,(decode(gc.qttz1,null,0,(round(gc.qttz1/zjxd.qttz*100,0))))) v_38,
+			pl.remarks v_39
+			from plan_af pl,sck_aqsmfh xm,gcgl_jgys ys,
+			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.zjdw_btz) btz1,sum(t.zjdw_stz) stz1,sum(t.zjdw_qttz) qttz1,sum(t.bywc_gl) wcgl from gcgl_abgc t group by t.jhid) gc,
+			(select sum(btzzj) btz,sum(stz) stz,(sum(xdzj)-sum(btzzj)-sum(stz)) qttz,xmid from plan_zjxd group by xmid) zjxd,
+			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
+			where pl.sckid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
 			and pl.spzt='1'
 			<if test="gydw != null and  gydw != ''">
 					${gydw}

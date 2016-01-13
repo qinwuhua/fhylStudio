@@ -89,6 +89,22 @@ public interface GcglabgcServer {
 
 	List<Excel_list> dcabgcExcel(Gcglabgc gcglabgc);
 
+	List<Gcglabgc> selectafjhList(Gcglabgc gcglabgc);
+
+	int selectafjhListCount(Gcglabgc gcglabgc);
+
+	Boolean insertafkg(Gcglabgc gcglabgc);
+
+	Boolean insertafwg(Gcglabgc gcglabgc);
+
+	List<Gcglabgc> selectafjhList1(Gcglabgc gcglabgc);
+
+	int selectafjhListcount1(Gcglabgc gcglabgc);
+
+	List<Excel_list> dcafgcExcel(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportAfyb(Gcglabgc gcglabgc);
+
 	
 
 }

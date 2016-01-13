@@ -440,7 +440,15 @@ public class GcglabgcController extends BaseActionSupport{
 			}
 		}
 		public void insertAbgckg(){
-			Boolean bl=gcglabgcServer.insertWqgzkg(gcglabgc);
+			
+			Boolean bl=false;
+			if("af".equals(gcglabgc.getXmlx())){
+				bl=gcglabgcServer.insertafkg(gcglabgc);
+			}
+			else {
+				bl=gcglabgcServer.insertWqgzkg(gcglabgc);
+			}
+			
 			if(bl){
 				ResponseUtils.write(getresponse(), "true");
 			}else{
@@ -448,7 +456,12 @@ public class GcglabgcController extends BaseActionSupport{
 			}
 		}
 		public void insertAbgcwg(){
-			Boolean bl=gcglabgcServer.insertWqgzwg(gcglabgc);
+			Boolean bl=false;
+			if("af".equals(gcglabgc.getXmlx())){
+				bl=gcglabgcServer.insertafwg(gcglabgc);
+			}else{
+				bl=gcglabgcServer.insertWqgzwg(gcglabgc);
+			}
 			if(bl){
 				ResponseUtils.write(getresponse(), "true");
 			}else{
@@ -466,10 +479,19 @@ public class GcglabgcController extends BaseActionSupport{
 		//查询jihua
 		public void selectAbgcjhList(){
 			String tiaojian1="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
-			}else{
-				tiaojian1="and t3.gydwbm in ("+gydw+")";
+			if("af".equals(gcglabgc.getXmlx())){
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and t3.gydwdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+				}else{
+					tiaojian1="and t3.gydwdm in ("+gydw+")";
+				}
+			}
+			else{
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+				}else{
+					tiaojian1="and t3.gydwbm in ("+gydw+")";
+				}
 			}
 			String tiaojian2="";
 			if(xzqh.indexOf(",")==-1){
@@ -497,8 +519,15 @@ public class GcglabgcController extends BaseActionSupport{
 				gcglabgc.setTiaojian("xjzt");
 			}
 			System.out.println(gcglabgc.getTiaojian());
-			int count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);
-			List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList(gcglabgc);
+			int count=0;
+			List<Gcglabgc> list=null;
+			if("af".equals(gcglabgc.getXmlx())){
+				count=gcglabgcServer.selectafjhListCount(gcglabgc);
+				list=gcglabgcServer.selectafjhList(gcglabgc);
+			}else{
+				count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);
+				list=gcglabgcServer.selectWqgzjhList(gcglabgc);
+			}
 			EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
 			e.setRows(list);
 			e.setTotal(count);
@@ -566,16 +595,24 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 
 	public void exportAbyb(){
-		Gcglabgc gcglabgc=new Gcglabgc();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
-		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+		if("af".equals(gcglabgc.getXmlx())){
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and t3.gydwdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+			}else{
+				tiaojian1="and t3.gydwdm in ("+gydw+")";
+			}
 		}else{
-			tiaojian1="and t3.gydwbm in ("+gydw+")";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+			}else{
+				tiaojian1="and t3.gydwbm in ("+gydw+")";
+			}
 		}
+		
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
@@ -583,13 +620,22 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setTbyf(sbyf);
 		gcglabgc.setJhnf(xmnf);
 		gcglabgc.setTbr(tbr);
-		List<Excel_list> list=gcglabgcServer.exportAbyb(gcglabgc);
-		
-		//到报表
+		List<Excel_list> list=null;
 		ExcelData eldata=new ExcelData();//创建一个类
-		eldata.setTitleName("安保工程车购税拨付信息导入表");//设置第一行
-		eldata.setSheetName("车购税拨付");//设置sheeet名
-		eldata.setFileName("安保工程车购税拨付信息导入表");//设置文件名
+		if("af".equals(gcglabgc.getXmlx())){
+			list=gcglabgcServer.exportAfyb(gcglabgc);
+			eldata.setTitleName("安防工程车购税拨付信息导入表");//设置第一行
+			eldata.setSheetName("车购税拨付");//设置sheeet名
+			eldata.setFileName("安防工程车购税拨付信息导入表");//设置文件名
+		}else{
+			list=gcglabgcServer.exportAbyb(gcglabgc);
+			eldata.setTitleName("安保工程车购税拨付信息导入表");//设置第一行
+			eldata.setSheetName("车购税拨付");//设置sheeet名
+			eldata.setFileName("安保工程车购税拨付信息导入表");//设置文件名
+		}
+	
+		//到报表
+		
 		eldata.setEl(list);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 		et.add(new Excel_tilte("计划编码",1,1,0,0));
@@ -1252,10 +1298,18 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setRows(rows);
 		try {
 			String tiaojian1="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+			if("af".equals(gcglabgc.getXmlx())){
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and t3.gydwdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+				}else{
+					tiaojian1="and t3.gydwdm in ("+gydw+")";
+				}
 			}else{
-				tiaojian1="and t3.gydwbm in ("+gydw+")";
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+				}else{
+					tiaojian1="and t3.gydwbm in ("+gydw+")";
+				}
 			}
 
 			String tiaojian2="";
@@ -1273,8 +1327,15 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setTbr(tbr);
 		gcglabgc.setTiaojian(bfzt);
 		gcglabgc.setXmnf(xmnf);
-		List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList1(gcglabgc);
-		int count=gcglabgcServer.selectWqgzjhListcount1(gcglabgc);
+		List<Gcglabgc> list=null;
+		int count=0;
+		if("af".equals(gcglabgc.getXmlx())){
+			list=gcglabgcServer.selectafjhList1(gcglabgc);
+			count=gcglabgcServer.selectafjhListcount1(gcglabgc);
+		}else{
+			list=gcglabgcServer.selectWqgzjhList1(gcglabgc);
+			count=gcglabgcServer.selectWqgzjhListcount1(gcglabgc);
+		}
 		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -1298,12 +1359,21 @@ public class GcglabgcController extends BaseActionSupport{
 		try {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		String gydws=(String) session.getAttribute("gydwbb");	
-		if(gydws.indexOf(",")==-1){
-			gcglabgc.setGydw("and xm.gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+		String gydws=(String) session.getAttribute("gydwbb");
+		if("af".equals(gcglabgc.getXmlx())){
+			if(gydws.indexOf(",")==-1){
+				gcglabgc.setGydw("and xm.gydwdm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+			}else{
+				gcglabgc.setGydw("and xm.gydwdm in ("+gydws+")");
+			}
 		}else{
-			gcglabgc.setGydw("and xm.gydwbm in ("+gydws+")");
+			if(gydws.indexOf(",")==-1){
+				gcglabgc.setGydw("and xm.gydwbm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+			}else{
+				gcglabgc.setGydw("and xm.gydwbm in ("+gydws+")");
+			}
 		}
+		
 		if(gcglabgc.getSfsj()==7){
 			gcglabgc.setTiaojian("sjsh");
 		}
@@ -1313,11 +1383,20 @@ public class GcglabgcController extends BaseActionSupport{
 		if(gcglabgc.getSfsj()==11){
 			gcglabgc.setTiaojian("xjzt");
 		}
-		List<Excel_list> l = gcglabgcServer.dcabgcExcel(gcglabgc);
+		List<Excel_list> l =null;
 		ExcelData eldata=new ExcelData();//创建一个类
-		eldata.setTitleName("市农村公路安保工程项目建设表");//设置第一行
-		eldata.setSheetName("安保工程");//设置sheeet名
-		eldata.setFileName("市农村公路安保工程项目建设表");//设置文件名
+		if("af".equals(gcglabgc.getXmlx())){
+			l = gcglabgcServer.dcafgcExcel(gcglabgc);
+			eldata.setTitleName("市农村公路安防工程项目建设表");//设置第一行
+			eldata.setSheetName("安防工程");//设置sheeet名
+			eldata.setFileName("市农村公路安防工程项目建设表");//设置文件名
+		}else{
+			l = gcglabgcServer.dcabgcExcel(gcglabgc);
+			eldata.setTitleName("市农村公路安保工程项目建设表");//设置第一行
+			eldata.setSheetName("安保工程");//设置sheeet名
+			eldata.setFileName("市农村公路安保工程项目建设表");//设置文件名
+		}
+		
 		eldata.setEl(l);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 		et.add(new Excel_tilte("序号",1,3,0,0));

@@ -1,3 +1,9 @@
+function afxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('abgc_xx','安防工程',"/jxzhpt/page/jhgl/jhkxx/afgc1.jsp",'abgc_xx',1000,500);
+}
 var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
@@ -8,14 +14,14 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('abgc_xx','安保工程项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+	YMLib.UI.createWindow('abgc_xx','项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
 	//window.open("wqgzxx.jsp");
 }
 //月报审核
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','安保工程月报审核','abgcybsh.jsp','wqxx',450,200);
+	YMLib.UI.createWindow('wqxx','月报审核','abgcybsh.jsp','wqxx',450,200);
 }
 
 function closes(str){
@@ -24,25 +30,25 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,430);
+	parent.YMLib.UI.createWindow('wqxx','月报详情','abgcybxx.jsp','wqxx',700,430);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','安保工程月报列表','abgcyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','月报列表','abgcyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','安保工程月报列表','abgcyb__ck.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','月报列表','abgcyb__ck.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','安保工程月报编辑','abgcybxg.jsp','wqxx',600,360);
+	YMLib.UI.createWindow('wqxx','月报编辑','abgcybxg.jsp','wqxx',600,360);
 	//window.open("wqgzybxg.jsp");
 }
 function xgabgcyb(){
@@ -176,6 +182,89 @@ function showAll(){
 	    ]]    
 	}); 
 }
+function showafAll(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jgzt='0';
+	var kgzt='';
+	var lxmc=$("#lxmc").val();
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var xmnf=$("#ddlYear").val();
+	var ybzt=$("#ybzt").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectAbgcjhList.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-195,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: gydwstr,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+	    	ybzt:ybzt,
+	    	sfsj:sfsj,
+	    	xmnf:xmnf,
+	    	xzqh:xzqhstr,
+	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.xmlx':'af',
+	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText')
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="afxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
+	  	     }},
+	  	   {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},
+	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+	        {field:'qzlc',title:'总里程',width:80,align:'center'},
+	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
+	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
+	    ]]    
+	}); 
+}
+
 function showAll__ck(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
