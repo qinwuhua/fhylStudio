@@ -325,6 +325,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}else if(xmsq.getXmlx()==5){
 			result = xmsqServer.queryLjSh(xmsq);
 		}
+		else if(xmsq.getXmlx()==6){
+			result = xmsqServer.queryLjYhzx(xmsq);
+		}
 		try {
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -399,6 +402,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				if(b){
 					boolean s = xmsqServer.insertCbsjSh(xmsq);
 				}
+			}else if(xmsq.getXmlx()==6){
+				b = xmsqServer.updateYhzxSqzt(xmsq);
 			}
 			//路线阶段添加
 			if(b){
@@ -414,6 +419,27 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	/**
+	 * 通过申请，并在计划审核中加入数据---養護中心項目
+	 * @throws Exception
+	 */
+	public void updateYhzxSp() throws Exception{
+		try{
+			boolean b=true;
+			xmsq.setSqzt(xmsq.getXzqhdm().length());
+			b = xmsqServer.updateYhzxSqzt(xmsq);
+			if(b){
+				xmsqServer.insertJhshYhzx(xmsq);
+			}
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	/**
 	 * 根据项目编码查询项目申请信息
 	 * @throws Exception

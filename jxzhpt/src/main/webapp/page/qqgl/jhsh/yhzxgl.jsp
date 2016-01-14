@@ -58,8 +58,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':6,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),
-					'lxmc':$('#lxmc').val(),'jsxz':$('#jsxz').combobox("getValues"),
-					'jb':$('#jb').combobox("getValues"),'xmmc':$('#xmmc').val(),
+					'lxmc':$('#lxmc').val(),'jsxz':$('#jsxz').combobox("getValue"),
+					'jb':$('#jb').combobox("getValue"),'xmmc':$('#xmmc').val(),
 					'xmbm':$('#xmnf').combobox("getValues").join(','),
 					"ydbmc":$('#ydbmc').val()};
 			var sqzt = $('#sqzt').combobox("getValue");
@@ -67,7 +67,7 @@
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
-				params.sqzt=sqzt=='' ? 9 : sqzt;
+				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			loadLj(params);
 			grid.queryParams=params;
@@ -158,14 +158,9 @@
 						$('#spanntz').html(msg.NTZ);
 						else
 							$('#spanntz').html('0');
-						if(msg.LC!=null)
-						$('#spanlc').html(msg.LC);
-						else
-							$('#spanlc').html('0');
 						$("#xmsl").html(msg.BZ);
 					}else{
 						$('#spanntz').html('0');
-						$('#spanlc').html('0');
 						$("#xmsl").html('0');
 					}
 				}
@@ -256,8 +251,8 @@
 		function sp(xmbm){
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/updateXmsqSp.do',
-				data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+				url:'../../../qqgl/updateYhzxSp.do',
+				data:'xmlx='+6+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
@@ -285,8 +280,8 @@
 				var xmbm = selArray.join(",");
 				$.ajax({
 					type:'post',
-					url:'../../../qqgl/updateXmsqSp.do',
-					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+					url:'../../../qqgl/updateYhzxSp.do',
+					data:'xmlx='+6+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
@@ -436,7 +431,7 @@
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
            		<div>
-           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】</div>
            			<table id="grid"></table>
            		</div>
            	</td>

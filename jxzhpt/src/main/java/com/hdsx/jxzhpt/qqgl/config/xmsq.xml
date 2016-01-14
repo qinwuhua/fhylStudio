@@ -600,10 +600,10 @@
 					and ${xmsq.xzqhdm}
 				</if>
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
-					and xmmc like '%'||#{xmsq.xmmc}||'%'
+					and xmmc like '%'||${xmsq.xmmc}||'%'
 				</if>
 				<if test="xmsq.jb!=null and xmsq.jb!=''">
-					and jb like '%'||#{xmsq.jb}||'%'
+					and jb like '%'||${xmsq.jb}||'%'
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
@@ -612,13 +612,13 @@
 					and ${xmsq.xmbm}
 				</if>
 				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">
-					and jsxz like '%'||#{xmsq.jsxz}||'%'
+					and jsxz like '%'||${xmsq.jsxz}||'%'
 				</if>
 				<if test="xmsq.ydbmc!=null and xmsq.ydbmc!=''">
-					and ydbmc like '%'||#{xmsq.ydbmc}||'%'
+					and ydbmc like '%'||${xmsq.ydbmc}||'%'
 				</if>
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
-					and lxmc like '%'||#{xmsq.lxmc}||'%'
+					and lxmc like '%'||${xmsq.lxmc}||'%'
 				</if>
 				order by sqzt desc,xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
@@ -740,4 +740,41 @@
 	<update id="updateYhzxSqzt" parameterType="xmsq">
 		update xmsq_yhzx set sqzt=${sqzt} where xmbm=#{xmbm}
 	</update>
+	
+	<select id="queryLjYhzx" parameterType="xmsq" resultType="java.util.Map">
+		select count(*) bz,sum(ztz) ntz from xmsq_yhzx x where 1=1
+			    <if test="gydwdm!=null and gydwdm!=''">
+					and ${gydwdm}
+				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">
+					and ${xzqhdm}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">
+					and xmmc like '%'||#{xmmc}||'%'
+				</if>
+				<if test="jb!=null and jb!=''">
+					and jb like '%'||#{jb}||'%'
+				</if>
+				<if test="sqzt>=0">
+					and sqzt=${sqzt}
+				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and ${xmbm}
+				</if>
+				<if test="jsxz!=null and jsxz!=''">
+					and jsxz like '%'||#{jsxz}||'%'
+				</if>
+				<if test="ydbmc!=null and ydbmc!=''">
+					and ydbmc like '%'||#{ydbmc}||'%'
+				</if>
+				<if test="lxmc !='' and lxmc != null ">
+					and lxmc like '%'||#{lxmc}||'%'
+				</if>
+	</select>
+	
+	<insert id="insertJhshYhzx" parameterType="xmsq">
+		insert into jhsh_yhzx (xmbm,ztz,ZBZZJ,SBZZJ,ZDDZJL,DFZC,jhkgsj,jhwgsj)
+		select x.xmbm,x.ztz,x.ZBZZJ,x.SBZZJ,x.ZDDZJL,x.DFZC,x.jhkgsj,x,jhwgsj
+		from xmsq_yhzx x where x.xmbm in (${xmbm})
+	</insert>
 </mapper>

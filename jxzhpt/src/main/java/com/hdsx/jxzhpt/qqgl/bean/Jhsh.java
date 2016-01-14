@@ -117,6 +117,74 @@ public class Jhsh {
 	private String stz;
 	//判断是否有多条路线
 	private String xmsl;
+	
+	//zyy add 2016.1.14
+	private String qsmc;//区市名称
+	private String xjmc;//县级名称
+	private String jb;//级别 1--市级2--省级
+	private String jsxz;//建设性质 1-新建2-扩建3-改建
+	private String ydbmc;//原道班名称
+	private String zbzzj;//总补助资金
+	private String zddzjl;//重点打造奖励
+	private String dfzc;//地方自筹资金
+	private String lxzh;//所在路线桩号
+		
+
+	
+	public String getQsmc() {
+		return qsmc;
+	}
+	public void setQsmc(String qsmc) {
+		this.qsmc = qsmc;
+	}
+	public String getXjmc() {
+		return xjmc;
+	}
+	public void setXjmc(String xjmc) {
+		this.xjmc = xjmc;
+	}
+	public String getJb() {
+		return jb;
+	}
+	public void setJb(String jb) {
+		this.jb = jb;
+	}
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getYdbmc() {
+		return ydbmc;
+	}
+	public void setYdbmc(String ydbmc) {
+		this.ydbmc = ydbmc;
+	}
+	public String getZbzzj() {
+		return zbzzj;
+	}
+	public void setZbzzj(String zbzzj) {
+		this.zbzzj = zbzzj;
+	}
+	public String getZddzjl() {
+		return zddzjl;
+	}
+	public void setZddzjl(String zddzjl) {
+		this.zddzjl = zddzjl;
+	}
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
+	public String getLxzh() {
+		return lxzh;
+	}
+	public void setLxzh(String lxzh) {
+		this.lxzh = lxzh;
+	}
 	public String getXmsl() {
 		return xmsl;
 	}

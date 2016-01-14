@@ -219,6 +219,10 @@
 	
 	    <action name="insertYhzx" class="xmsqController" method="insertYhzx"></action>
 	    <action name="updateYhzx" class="xmsqController" method="updateYhzx"></action>
+	    <action name="updateYhzxSp" class="xmsqController" method="updateYhzxSp"></action>
+	    <action name="updateJhshYhzx" class="jhshController" method="updateJhshYhzx"></action>
+	    
+	    
 	</package>
 </struts>
 

@@ -143,7 +143,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==5){
 				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 				result = jhshServer.queryJhshLjSh(jhsh);
+			}else if(jhsh.getXmlx()==6){
+				result = jhshServer.queryJhshLjYhzx(jhsh);
 			}
+			
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -207,6 +210,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==5){
 				listData=jhshServer.queryJhshSh(jhsh,page,rows);
 				total=jhshServer.queryJhshShCount(jhsh);
+			}else if (jhsh.getXmlx()==6) {
+				listData=jhshServer.queryJhshYhzx(jhsh,page,rows);
+				total=jhshServer.queryJhshYhzxCount(jhsh);
 			}
 			result.put("rows", listData);
 			result.put("total", total);
@@ -308,6 +314,23 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	
+	/**
+	 * 养护中心的计划下达
+	 * @throws Exception
+	 */
+	public void updateJhshYhzx() throws Exception{
+		try{
+			boolean b=true;
+			b = jhshServer.updateJhshYhzx(jhsh);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	/**
 	 * 上传计划下达文件
 	 * @throws Exception
@@ -417,6 +440,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				obj = jhshServer.queryJhshxxYhdzxByXmbm(jhsh);
 			}else if(jhsh.getXmlx()==5){
 				obj = jhshServer.queryJhshxxShByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==6){
+				obj = jhshServer.queryJhshxxYhzxByXmbm(jhsh);
 			}
 			JsonUtils.write(obj, getresponse().getWriter());
 		}catch(Exception e){

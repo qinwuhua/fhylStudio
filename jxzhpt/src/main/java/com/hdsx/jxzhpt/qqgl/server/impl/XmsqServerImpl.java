@@ -254,4 +254,15 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		}
 		return updateBatch("updateYhzxSqzt", list)==list.size();
 	}
+	
+	@Override
+	public Map<String, String> queryLjYhzx(Xmsq xmsq) {
+		return queryOne("queryLjYhzx", xmsq);
+	}
+	
+	@Override
+	public boolean insertJhshYhzx(Xmsq xmsq) {
+		return insert("insertJhshYhzx",xmsq)==xmsq.getXmbm().split(",").length;
+	}
+	
 }

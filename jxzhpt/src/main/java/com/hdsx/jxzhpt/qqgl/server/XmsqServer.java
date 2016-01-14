@@ -253,4 +253,16 @@ public interface XmsqServer {
 	 * @return
 	 */
 	public boolean updateYhzxSqzt(Xmsq xmsq);
+	/**
+	 * 查询总数
+	 * @param xmsq
+	 * @return
+	 */
+	public Map<String, String> queryLjYhzx(Xmsq xmsq);
+	/**
+	 * 添加計劃信息
+	 * @param list
+	 * @return
+	 */
+	public boolean insertJhshYhzx(Xmsq xmsq);
 }

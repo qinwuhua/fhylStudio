@@ -372,5 +372,36 @@ public interface JhshServer {
 	 */
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
 	public List<Lx> queryLsxx1(Jhsh jhsh);
-	
+	/**
+	 * 查詢 計劃數據---養護中心
+	 * @param jhsh
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	public List<Jhsh> queryJhshYhzx(Jhsh jhsh,int page,int rows);
+	/**
+	 * 計劃審覈數據count---養護中心
+	 * @param jhsh
+	 * @return
+	 */
+	public int queryJhshYhzxCount(Jhsh jhsh);
+	/**
+	 * 計劃審覈資金統計--養護中心
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjYhzx(Jhsh jhsh);
+	/**
+	 * 根據xmbm查詢計劃審覈信息---養護中心
+	 * @param jhsh
+	 * @return
+	 */
+	public Jhsh queryJhshxxYhzxByXmbm(Jhsh jhsh);
+	/**
+	 * 修改計劃審覈---養護中心
+	 * @param jhsh
+	 * @return
+	 */
+	public boolean updateJhshYhzx(Jhsh jhsh);
 }
