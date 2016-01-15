@@ -304,5 +304,27 @@
 	<action name="selectBhsdjhList1" class="gcglbhsdController" method="selectBhsdjhList1"/>
 	<action name="selectcgsyf" class="gcglbhsdController" method="selectcgsyf"/>
 	
+	<!-- yhzx -->
+	<action name="insertYhzxYb" class="gcglyhzxController" method="insertYhzxYb"/>
+	<action name="updateYhzxYb" class="gcglyhzxController" method="updateYhzxYb"/>
+	<action name="selectYhzxYbByJhid" class="gcglyhzxController" method="selectYhzxYbByJhid"/>
+	<action name="selectYhzxYbByJhid1" class="gcglyhzxController" method="selectYhzxYbByJhid1"/>
+	<action name="deleteYhzxYb" class="gcglyhzxController" method="deleteYhzxYb"/>
+	<action name="shYhzxYb" class="gcglyhzxController" method="shYhzxYb"/>
+	<action name="insertYhzxCgs" class="gcglyhzxController" method="insertYhzxCgs"/>
+	<action name="updateYhzxCgs" class="gcglyhzxController" method="updateYhzxCgs"/>
+	<action name="deleteYhzxCgs" class="gcglyhzxController" method="deleteYhzxCgs"/>
+	<action name="selectYhzxCgsList" class="gcglyhzxController" method="selectYhzxCgsList"/>
+	
+	<action name="uploadYhzxFile" class="gcglyhzxController" method="uploadYhzxFile"/>
+	<action name="downYhzxFile" class="gcglyhzxController" method="downYhzxFile"/>
+	<action name="insertYhzxkg" class="gcglyhzxController" method="insertYhzxkg"/>
+	<action name="insertYhzxwg" class="gcglyhzxController" method="insertYhzxwg"/>
+	<action name="insertYhzxwwg" class="gcglyhzxController" method="insertYhzxwwg"/>
+	<action name="selectYhzxjhList" class="gcglyhzxController" method="selectYhzxjhList"/>
+	<action name="selectYhzxjhFile" class="gcglyhzxController" method="selectYhzxjhFile"/>
+	<action name="deleteYhzxFile" class="gcglyhzxController" method="deleteYhzxFile"/>
+	<action name="sbYhzxYb" class="gcglyhzxController" method="sbYhzxYb"/>
+	<action name="selectYhzxjhList1" class="gcglyhzxController" method="selectYhzxjhList1"/>
  </package>
 </struts>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdsx.jxzhpt.gcglyhdzx">
+<mapper namespace="com.hdsx.jxzhpt.gcglyhzx">
 
-	<select id="selectYhdzxYbByJhid" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="selectYhdzxYbByJhid" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select * from (
 		select m.*,rownum rn from (
-			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.stz,t2.cscyj from GCGL_YHDZX t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
+			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.stz,t2.cscyj 
+			from GCGL_YHZX t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
 			where 1=1 and t1.sfsj &lt;=#{sfsj}
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
@@ -17,17 +18,18 @@
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectYhdzxYbByJhidCount" parameterType="gcglyhdzx" resultType="int">
-		select count(*) from GCGL_YHDZX 
+	<select id="selectYhdzxYbByJhidCount" parameterType="gcglyhzx" resultType="int">
+		select count(*) from GCGL_YHZX 
 		where 1=1 and sfsj &lt;=#{sfsj}
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
 	</select>
-	<select id="selectYhdzxYbByJhid1" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="selectYhdzxYbByJhid1" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select * from (
 		select m.*,rownum rn from (
-			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.stz,t2.cscyj from GCGL_YHDZX t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
+			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.stz,t2.cscyj 
+			from GCGL_YHZX t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
 			where 1=1 and sfsj=7 
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
@@ -39,50 +41,51 @@
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectYhdzxYbByJhidCount1" parameterType="gcglyhdzx" resultType="int">
-		select count(*) from GCGL_YHDZX 
+	<select id="selectYhdzxYbByJhidCount1" parameterType="gcglyhzx" resultType="int">
+		select count(*) from GCGL_YHZX 
 		where 1=1 and sfsj=7
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
 	</select>
 	<!-- 添加月报 -->
-	<insert id="insertYhdzxYb" parameterType="gcglyhdzx">
-		insert into GCGL_YHDZX(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否')
+	<insert id="insertYhdzxYb" parameterType="gcglyhzx">
+		insert into GCGL_YHZX(id,jhid,wc_stz,wc_qttz,zjdw_stz,zjdw_qttz,qksm,sbsj,sbyf,shzt,sfsj)
+		values(sys_guid(),#{jhid},#{wc_stz},#{wc_qttz},#{zjdw_stz},#{zjdw_qttz},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj})
 	</insert>
-	<select id="queryYbByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
-		select * from GCGL_YHDZX where sbyf=#{sbyf} and jhid=#{jhid}
+	<select id="queryYbByYf" parameterType="gcglyhzx" resultType="gcglyhzx">
+		select * from GCGL_YHZX where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
-	<update id="updateYhdzxYb" parameterType="gcglyhdzx">
-		update GCGL_YHDZX set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf} 
+	<update id="updateYhdzxYb" parameterType="gcglyhzx">
+		update GCGL_YHDZX set wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_stz=#{zjdw_stz},
+		zjdw_qttz=#{zjdw_qttz},qksm=#{qksm},sbyf=#{sbyf} 
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
-	<update id="sbWqgzYb" parameterType="gcglyhdzx">
-		update GCGL_YHDZX set sfsj=#{sfsj}<!--  , shzt='已审核' , xgcsyj='同意' -->
+	<update id="sbWqgzYb" parameterType="gcglyhzx">
+		update GCGL_YHZX set sfsj=#{sfsj}<!--  , shzt='已审核' , xgcsyj='同意' -->
 		where id=#{id}
 	</update>
 	<!-- 删除月报 -->
-	<delete id="deleteYhdzxYb" parameterType="gcglyhdzx">
+	<delete id="deleteYhdzxYb" parameterType="gcglyhzx">
 		delete from GCGL_YHDZX where id=#{id}
 	</delete>
 	<!-- 审核月报 -->
-	<update id="shYhdzxYb" parameterType="gcglyhdzx">
-		update GCGL_YHDZX set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+	<update id="shYhdzxYb" parameterType="gcglyhzx">
+		update GCGL_YHZX set shuser=#{shuser},shtime=#{shtime},xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 		<!-- 添加车购税 -->
-	<insert id="insertYhdzxCgs" parameterType="gcglyhdzx">
+	<insert id="insertYhdzxCgs" parameterType="gcglyhzx">
 		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
 		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
-	<select id="queryCGSByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="queryCGSByYf" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
 	</select>
 	<!-- 查询cgs -->
-	<select id="selectYhdzxCgsList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="selectYhdzxCgsList" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select * from (
 		select m.*,rownum rn from (
 			select t1.*,t2.sbsj,t2.sbyf from GCGL_CGS t1 left join GCGL_YHDZX t2 on t1.jhid=t2.jhid and t1.tbyf=t2.sbyf
@@ -97,7 +100,7 @@
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectYhdzxCgsListCount" parameterType="gcglyhdzx" resultType="int">
+	<select id="selectYhdzxCgsListCount" parameterType="gcglyhzx" resultType="int">
 		select count(*) from GCGL_CGS 
 		where 1=1
 		<if test="jhid != null and  jhid != ''">
@@ -105,43 +108,45 @@
 		</if>
 	</select>
 	<!-- 删除cgs -->
-	<delete id="deleteYhdzxCgs" parameterType="gcglyhdzx">
+	<delete id="deleteYhdzxCgs" parameterType="gcglyhzx">
 		delete from GCGL_CGS where id=#{id}
 	</delete>
 	<!-- 修改cgs -->
-	<update id="updateYhdzxCgs" parameterType="gcglyhdzx">
+	<update id="updateYhdzxCgs" parameterType="gcglyhzx">
 			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 
 <!-- 上传 -->
-	<update id="uploadWqgzFilesgxk" parameterType="gcglyhdzx">
+	<update id="uploadWqgzFilesgxk" parameterType="gcglyhzx">
 		update PLAN_YHDZX set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
 		where id=#{jhid}
 	</update>
-		<update id="uploadWqgzFilejgtc" parameterType="gcglyhdzx">
+		<update id="uploadWqgzFilejgtc" parameterType="gcglyhzx">
 		update PLAN_YHDZX set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
 		where id=#{jhid}
 	</update>
-		<update id="uploadWqgzFilejgys" parameterType="gcglyhdzx">
+		<update id="uploadWqgzFilejgys" parameterType="gcglyhzx">
 		update JHSH_YHDZX set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where xmbm=#{jhid}
 	</update>
 	<!-- 下载 -->
-	<select id="downWqgzFile" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="downWqgzFile" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_YHDZX where id=#{jhid}
 	</select>
-	<update id="insertWqgzwwg" parameterType="gcglyhdzx">
+	<update id="insertWqgzwwg" parameterType="gcglyhzx">
 		update PLAN_YHDZX set WJGYY=#{wjgyy} where id=#{jhid}
 	</update>
-	<update id="insertWqgzwg" parameterType="gcglyhdzx">
-		update JHSH_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
+	<update id="insertWqgzwg" parameterType="gcglyhzx">
+		update JHSH_YHZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
 	</update>
-	<update id="insertWqgzkg" parameterType="gcglyhdzx">
-		update JHSH_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where xmbm=#{jhid}
+	<update id="insertWqgzkg" parameterType="gcglyhzx">
+		update JHSH_YHZX set xdsj=#{jhxdsj},kgzt=#{kgzt},
+		sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},
+		jsdw=#{jsdw} where xmbm=#{jhid}
 	</update>
 	
-	<select id="selectWqgzjhList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	<select id="selectWqgzjhList" parameterType="gcglyhzx" resultType="gcglyhzx">
 		select * from (
 		select m.*,rownum rn from (
 		select 
@@ -175,7 +180,7 @@
 		) 
 			where RN>((#{page} - 1) * #{rows})
 	</select>
-	 <select id="selectWqgzjhListCount" parameterType="gcglyhdzx" resultType="int">
+	 <select id="selectWqgzjhListCount" parameterType="gcglyhzx" resultType="int">
 	 	select count(*) from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
 		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
@@ -194,28 +199,28 @@
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
 	 </select>
-	 <select id="selectWqgzjhFile" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	 <select id="selectWqgzjhFile" parameterType="gcglyhzx" resultType="gcglyhzx">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_YHDZX where id=#{jhid}
 	 </select>
-	 <update id="updateSjZT" parameterType="gcglyhdzx" >
-	 update JHSH_YHDZX set sjzt=#{sjzt} where xmbm=#{jhid}
+	 <update id="updateSjZT" parameterType="gcglyhzx" >
+	 update JHSH_YHZX set sjzt=#{sjzt} where xmbm=#{jhid}
 	 </update>
-	 <update id="updateXjZT" parameterType="gcglyhdzx" >
-	 update JHSH_YHDZX set xjzt=#{xjzt} where xmbm=#{jhid}
+	 <update id="updateXjZT" parameterType="gcglyhzx" >
+	 update JHSH_YHZX set xjzt=#{xjzt} where xmbm=#{jhid}
 	 </update>
-	 <update id="updateSJSH" parameterType="gcglyhdzx" >
-	 update JHSH_YHDZX set sjsh=#{sjsh} where xmbm=#{jhid}
+	 <update id="updateSJSH" parameterType="gcglyhzx" >
+	 update JHSH_YHZX set sjsh=#{sjsh} where xmbm=#{jhid}
 	 </update>
-	 <update id="updatezdyf" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set zdyf=#{sbyf} where id=#{jhid}
+	 <update id="updatezdyf" parameterType="gcglyhzx" >
+	 update PLAN_YHZX set zdyf=#{sbyf} where id=#{jhid}
 	 </update>
-	 <select id="selectnumbyyh" parameterType="gcglyhdzx" resultType="int">
-	 	select count(*) from GCGL_YHDZX 
+	 <select id="selectnumbyyh" parameterType="gcglyhzx" resultType="int">
+	 	select count(*) from GCGL_YHZX 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
 	  <!-- 查询最进展大月份 -->
-	 <select id="querymaxybyf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
-	 	select max(sbyf) sbyf from gcgl_yhdzx where jhid=#{jhid}
+	 <select id="querymaxybyf" parameterType="gcglyhzx" resultType="gcglyhzx">
+	 	select max(sbyf) sbyf from gcgl_yhzx where jhid=#{jhid}
 	 </select>
 	 <resultMap type="plan_yhdzx" id="yhdzx_jh">
 		<id property="id" column="id" />
@@ -286,10 +291,15 @@
 		<result property="glf" column="glf"/>
 	</resultMap>
 	 
-	 <select id="queryGcgjList"  parameterType="gcglyhdzx" resultType="hashmap">
+	 <select id="queryGcgjList"  parameterType="gcglyhzx" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*,s.sl sl  from JHSH_YHDZX t 
-		left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm where 1=1
+		select rownum num,t.*,
+		  s.xzqh,s.gydw,s.xzqhdm,s.gydwdm,s.jb,s.jsxz,s.ydbmc,s.xmmc,s.lxmc,s.bz,s.lxzh
+	    from JHSH_YHZX t 
+		left join xmsq_yhzx s on t.xmbm=s.xmbm where 1=1
+		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
@@ -302,35 +312,21 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
-		<if test="tsdq != null and  tsdq != ''">
-				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
-		</if>
 		<if test="xmmc != null and  xmmc != ''">
-				and t.xmmc like '%'||trim(#{xmmc})||'%'
+				and s.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
-		and t.xmbm in (
-				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
-				${gydw}
-				</if>
-				<if test="lxmc != null and  lxmc != ''">
-					and lxmc like '%'||trim(#{lxmc})||'%'
-				</if>
-				<if test="lxbm != null and  lxbm != ''">
-					and lxbm like '%'||trim(#{lxbm})||'%'
-				</if>
-				<if test="jsdj != null and  jsdj != ''">
-					and xjsdj like '%'||trim(#{jsdj})||'%'
-				</if>
-				<if test="gldj != null and  gldj != ''">
-						and lxbm like trim(#{gldj})||'%'
-				</if>
-			)
+		
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
 	</select>
-	<select id="queryGcgjListCount" resultType="int" parameterType="gcglyhdzx">
-		select count(*)  from JHSH_YHDZX t where 1=1
+	
+	<select id="queryGcgjListCount" resultType="int" parameterType="gcglyhzx">
+		select count(*)  from JHSH_YHZX t 
+		left join xmsq_yhzx s on s.xmbm=t.xmbm  
+		where 1=1
+		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
@@ -343,33 +339,12 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
-		<if test="tsdq != null and  tsdq != ''">
-				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
-		</if>
 		<if test="xmmc != null and  xmmc != ''">
-				and t.xmmc like '%'||trim(#{xmmc})||'%'
+				and s.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
-		and t.xmbm in (
-				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
-				${gydw}
-				</if>
-				<if test="lxmc != null and  lxmc != ''">
-					and lxmc like '%'||trim(#{lxmc})||'%'
-				</if>
-				<if test="lxbm != null and  lxbm != ''">
-					and lxbm like '%'||trim(#{lxbm})||'%'
-				</if>
-				<if test="jsdj != null and  jsdj != ''">
-					and xjsdj like '%'||trim(#{jsdj})||'%'
-				</if>
-				<if test="gldj != null and  gldj != ''">
-						and lxbm like trim(#{gldj})||'%'
-				</if>
-			)
 	</select>
 	
-	 <select id="selectWqgzjhList2"  parameterType="gcglyhdzx" resultType="hashmap">
+	 <select id="selectWqgzjhList2"  parameterType="gcglyhzx" resultType="hashmap">
 	select * from (
 		select rownum num ,t.*,s.sl sl  from JHSH_YHDZX t left join xmsq_yhdzx lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm  left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
@@ -435,7 +410,7 @@
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm 
 	</select>
-	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglyhdzx">
+	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglyhzx">
 		select count(*) from JHSH_YHDZX t left join xmsq_yhdzx lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm  left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
 			left join (select 

@@ -88,6 +88,9 @@
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
      <typeAlias type="com.hdsx.jxzhpt.gcbb.bean.Gcbb" alias="gcbb"/>
+     
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglyhzx" alias="gcglyhzx"/>
+     
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -199,5 +202,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/gcbb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/dbbb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/sjbb.xml"/>
+	
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglyhzx.xml"/>
   </mappers>
 </configuration>
