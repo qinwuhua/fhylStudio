@@ -141,7 +141,7 @@
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>
 						<input id="xdzt" name="xdzt" value="1" type="hidden"/>
 					<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
-						 <tr style="height: 30px;">
+					<tr style="height: 30px;">
 		            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 							计划开工时间</td>
 						<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
