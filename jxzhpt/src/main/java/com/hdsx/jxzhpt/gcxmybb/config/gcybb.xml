@@ -1653,4 +1653,7 @@
 	<insert id="glgzxjmxb" parameterType="String">
 			${value}
 	</insert>
+	<insert id="createybView" parameterType="String">
+			${value}
+	</insert>
 </mapper>

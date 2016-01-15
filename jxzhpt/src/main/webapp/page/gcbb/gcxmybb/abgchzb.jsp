@@ -20,7 +20,40 @@
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
+	function ybnf(id){
+		var myDate = new Date();
+		var years=[];
+		var first;
+		for(var i=myDate.getFullYear();i>=2005;i--){
+			years.push({text:(i),value:(i)});
+		}
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text'
+		});
+			first=myDate.getFullYear();
+		$('#'+id).combobox("setValue",+first);
+	}
+	function ybyf(id){
+		var myDate = new Date();
+		var years=[];
+		var first;
+		for(var i=1;i<=12;i++){
+			years.push({text:(i),value:(i)});
+		}
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text'
+		});		
+			first=myDate.getMonth()+1;
+
+		$('#'+id).combobox("setValue",+first);
+	}
 		$(function(){
+			ybnf('ybnf');
+			ybyf('ybyf');
 			setjhxdnf();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
@@ -73,7 +106,7 @@
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.xmnf="+xmnf;
+			var data="gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getAbgchzb.do",
@@ -130,7 +163,7 @@
 			alert("请选择年份");
 			return;
 		}
-		var data="flag=flag&gcglwqgz.xmnf="+xmnf;
+		var data="flag=flag&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
 		window.location.href="/jxzhpt/gcybb/getAbgchzb.do?"+data;
 	}	
 	</script>
@@ -186,9 +219,10 @@ a:active {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>下达年份：</span>
         						<input type="text" id="jhxdnf"  style="width:80px;">
-<!--         						<span>项目类型：</span>
-        						<select id="xmlx" style="width:80px;">
-        						</select>	 -->
+								<span>截至进展年份：</span>
+        						<input type="text" id="ybnf"  style="width:80px;">
+        						<span>截至进展月份：</span>
+        						<input type="text" id="ybyf"  style="width:80px;">	
         						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        							<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />

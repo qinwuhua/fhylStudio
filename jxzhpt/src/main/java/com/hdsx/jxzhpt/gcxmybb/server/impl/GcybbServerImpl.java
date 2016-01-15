@@ -477,4 +477,9 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> sckaqsmfhbb(String tiaojian1) {
 		return queryList("sckaqsmfhbb",tiaojian1);
 	}
+
+	@Override
+	public void createybView(String viewsql) {
+		insert("createybView", viewsql);
+	}
 }

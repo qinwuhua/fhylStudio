@@ -104,5 +104,7 @@ public interface GcybbServer {
 
 	List<Excel_list> sckaqsmfhbb(String tiaojian1);
 
+	void createybView(String viewsql);
+
 	
 }

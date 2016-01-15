@@ -9,6 +9,21 @@ public class Gcglwqgz implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String ybnf;
+	private String ybyf;
+	
+	public String getYbnf() {
+		return ybnf;
+	}
+	public void setYbnf(String ybnf) {
+		this.ybnf = ybnf;
+	}
+	public String getYbyf() {
+		return ybyf;
+	}
+	public void setYbyf(String ybyf) {
+		this.ybyf = ybyf;
+	}
 	private String id;
 	private String jhid;
 	private String wc_btz;
