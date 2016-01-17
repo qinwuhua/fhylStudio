@@ -34,9 +34,6 @@
 			for(var x=y+5;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
-			tsdq('ddlTSDQ');
 			$('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
 			$("#ddlYear").val(myDate.getFullYear());
@@ -105,7 +102,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;养护大中修工程项目</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;养护中心工程项目</div>
 					</div>
         	</tr>
         	<tr>
@@ -119,13 +116,13 @@ a:active {
         						<span>行政区划：</span>
         						<input id="xzqh" style="width: 150px;">
         						<span>下达年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 90px;">
         						<option value="">全部</option>
         						</select>
         						<span>拨付月份：</span> <input name="ddlMonth"
-									id="ddlMonth" style="width: 60px;">
+									id="ddlMonth" style="width: 100px;">
 								<span>拨付状态：</span> <select id=bfzt
-									style="width: 50px;">
+									style="width: 90px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
@@ -134,32 +131,18 @@ a:active {
         							<input type="text" id="lxmc" style="width: 138px;">
 								</p>
 								   <p style="margin: 1% 0% 1% 2%;">
-								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
-								<span style=" vertical-align:middle;">&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
-        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:115px; vertical-align:middle;">
-								</select>
-								
         						<span>累计拨付状态：</span>
         						<select id="ljbfzt" class="easyui-combobox" style="width:83px;">
 									<option value="" selected="selected">全部</option>
 									<option value="已全部拨付">已全部拨付</option>
 									<option value="未全部拨付">未全部拨付</option>
 								</select>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span>路线编码：</span>
-        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
         						<span>项目名称：</span>
         						<span><input type="text" id="xmmc" style="width:95px;" /></span>
-<!--         						<span>下达年份：</span> -->
-<!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					
-                                  <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-        						 <img onclick="importData_yb('cgszjdw/yhdzx/yhdzx')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>      
+<%--                                   <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
+<%--         						 <img onclick="importData_yb('cgszjdw/yhdzx/yhdzx')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>       --%>
                                         </p>
         				</div>
         			</fieldset>

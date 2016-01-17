@@ -515,6 +515,13 @@ $(function() {
 		href:'../qqgl/zjxd/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101030415',
+		title:'养护中心项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu4',
+		href:'../qqgl/zjxd/yhzx.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101030407',
 		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',

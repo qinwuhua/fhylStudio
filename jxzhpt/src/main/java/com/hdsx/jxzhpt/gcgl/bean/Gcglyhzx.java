@@ -149,7 +149,6 @@ public class Gcglyhzx implements Serializable {
 	private String lxzh;//所在路线桩号
 	
 	
-	
 	public String getJb() {
 		return jb;
 	}

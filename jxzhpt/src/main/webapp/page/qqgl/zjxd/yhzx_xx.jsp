@@ -1,81 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>养护中心开工详情</title>
-<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
-<script type="text/javascript" src="/jxzhpt/page/qqgl/js/util.js"></script>
-<script type="text/javascript" src="js/yhdzx.js"></script>
-<script type="text/javascript"> 
-$(function(){
-	var data=parent.obj1;//$("#").text(data.);
-	$("#jhxdsj").html(data.XDSJ);
-	$("#sjkgsj").html(data.SJKGSJ);
-	$("#yjwgsj").html(data.YJWGSJ);
-	$("#sgdw").html(data.SGDW);
-	$("#jldw").html(data.JLDW);
-	$("#jsdw1").html(data.JSDW);
-	$("#htje").html(data.HTJE);
-	$("#gys").html(data.GYS);
-	
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/queryXmsqByXmbm.do',
-		data:'xmlx='+6+'&xmbm='+parent.obj1.XMBM,
-		dataType:'json',
-		success:function(msg){
-			loadDist("xzqh1",msg.xzqhdm);
-			loadUnit("gydw1",msg.gydwdm);
-			$('#submit').form("load",msg);
-			var selectArray=$('select');
-			var inputArray= $('input');
-			$.each(inputArray,function(index,item){
-				$(item).attr("disabled","disabled");
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>养护中心详细</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+	<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/jquery-form.js"></script>
+	<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../../../js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryXmsqByXmbm.do',
+				data:'xmlx='+6+'&xmbm='+parent.YMLib.Var.xmbm,
+				dataType:'json',
+				success:function(msg){
+					loadDist("xzqh1",msg.xzqhdm);
+					loadUnit("gydw1",msg.gydwdm);
+					$('#submit').form("load",msg);
+					var selectArray=$('select');
+					var inputArray= $('input');
+					$.each(inputArray,function(index,item){
+						$(item).attr("disabled","disabled");
+					});
+					$.each(selectArray,function(index,item){
+						$(item).attr("disabled","disabled");
+					})
+					$('#bz').attr("disabled","disabled");
+					$("#dfzcSpan").html(msg.dfzc);
+					$("#zddzjlSpan").html(msg.zddzjl);
+					$("#xmbm1").val(msg.xmbm);
+				}
 			});
-			$.each(selectArray,function(index,item){
-				$(item).attr("disabled","disabled");
-			})
-			$('#bz').attr("disabled","disabled");
-			$("#dfzcSpan").html(msg.dfzc);
-			$("#zddzjlSpan").html(msg.zddzjl);
-			$("#xmbm1").val(msg.xmbm);
-		}
-	});
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/queryJhshxxByXmbm2.do',
-		data:'xmlx='+6+'&xmbm='+parent.obj1.XMBM,
-		dataType:'json',
-		success:function(msg){
-			$('#jhshForm').form("load",msg);
-			var inputArray= $('input');
-			$.each(inputArray,function(index,item){
-				$(item).attr("disabled","disabled");
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshxxByXmbm2.do',
+				data:'xmlx='+6+'&xmbm='+parent.YMLib.Var.xmbm,
+				dataType:'json',
+				success:function(msg){
+					$('#jhshForm').form("load",msg);
+					var inputArray= $('input');
+					$.each(inputArray,function(index,item){
+						$(item).attr("disabled","disabled");
+					});
+					$("#dfzcSpan_jh").html(msg.dfzc);
+					$("#zddzjlSpan_jh").html(msg.zddzjl);
+				}
 			});
-			$("#dfzcSpan_jh").html(msg.dfzc);
-			$("#zddzjlSpan_jh").html(msg.zddzjl);
-		}
-	});
-	queryYhzxZjxdxx(parent.obj1.XMBM);
-});
-</script>
+			queryYhzxZjxdxx(parent.YMLib.Var.xmbm);
+		});
+	</script>
 </head>
 <body>
-<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
-<form id="submit" action="/jxzhpt/qqgl/insertXmsq.do">
-<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
-    <tr style="height: 25px;">
+	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
+		<form id="submit" action="">
+		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
+             <tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					养护中心项目 — 项目申请信息
 				</td>
@@ -200,12 +190,11 @@ $(function(){
 					<textarea id="bz" name="bz" rows="" cols="" style="width: 650px;height: 60px;"></textarea>
 				</td>
             </tr>
-</table>
-</form>
-
-<form id="jhshForm" action="">
-	<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
-        <tr style="height: 25px;">
+		</table>
+		</form>
+		<form id="jhshForm" action="">
+			<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
+	            <tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 						养护中心项目 — 计划审核信息
 					</td>
@@ -265,52 +254,23 @@ $(function(){
 						<input id="xdwh" name="xdwh" type="text"  style="width: 100px;height: 20px;" />
 					</td>
 		            </tr>
-	</table>
-</form>
-<form id="zjxd">
-	<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
-		<tr style="height: 25px;">
-			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				养护中心项目 — 资金下达
-			</td>
-		</tr>
-		<tr>
-			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
-				</table>
-			</td>
-		</tr>
-	</table>
-</form>
-<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
-		<tr style="height: 25px;">
-			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				养护中心项目— 开工信息
-			</td>
-		</tr>
-		<tr style="height: 35px;">
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划下达时间：</td>
-			<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="jhxdsj"></span></td>
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际开工时间：</td>
-			<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="sjkgsj"></span></td>
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">预计完工时间：</td>
-			<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-				<span id="yjwgsj"></span></td>
-		</tr>
-		<tr style="height: 35px;">
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工单位：</td>
-			<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="sgdw"></span></td>
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">监理单位：</td>
-			<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="jldw"></span></td>
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
-			<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-				<span id="jsdw1"></span></td>
-		</tr>
-	</table>
-</div>
+			</table>
+		</form>
+		<form id="zjxd">
+			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
+				<tr style="height: 25px;">
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						养护中心项目 — 资金下达
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

@@ -47,6 +47,7 @@ $(function(){
 			$('#bz').attr("disabled","disabled");
 			$("#dfzcSpan").html(msg.dfzc);
 			$("#zddzjlSpan").html(msg.zddzjl);
+			$("#xmbm1").val(msg.xmbm);
 		}
 	});
 	$.ajax({
@@ -64,7 +65,7 @@ $(function(){
 			$("#zddzjlSpan_jh").html(msg.zddzjl);
 		}
 	});
-	queryZjxd1(parent.obj1.XMBM);
+	queryYhzxZjxdxx(parent.obj1.XMBM);
 });
 </script>
 </head>
