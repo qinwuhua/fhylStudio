@@ -166,6 +166,15 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'../qqgl/jhcx/yhdzx.jsp'
 	});
+	
+	createMenux('LeftMenu',{
+		id:'menu_0101060212',
+		title:'养护中心项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/jhcx/yhzx.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101060207',
 		title:'灾毁重建项目',
@@ -246,6 +255,13 @@ $(function() {
 		href:'./gcgl/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101060311',
+		title:'养护中心工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu3',
+		href:'./gcgl/yhzx.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101060307',
 		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
@@ -324,6 +340,13 @@ $(function() {
 		imgSrc:'../../images/yhlxsh.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/yhdzx_lxsh.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060514',
+		title:'养护中心工程立项审核',
+		imgSrc:'../../images/yhlxsh.png',
+		renderTo:'left_menu5',
+		href:'./qqgl/yhzx_lxsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060505',
