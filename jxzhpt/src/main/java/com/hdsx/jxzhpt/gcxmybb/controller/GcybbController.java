@@ -1882,7 +1882,9 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("路线名称",1,1,16,16));
 				et.add(new Excel_tilte("中心桩号",1,1,17,17));
 				et.add(new Excel_tilte("批复文号",1,1,18,18));
-				et.add(new Excel_tilte("备注",1,1,19,19));
+				et.add(new Excel_tilte("本年完成情况(总投资)",1,1,19,19));
+				et.add(new Excel_tilte("本年完成情况(省投资)",1,1,20,20));
+				et.add(new Excel_tilte("备注",1,1,21,21));
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				try {
@@ -1947,7 +1949,9 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("总投资（万元）",1,2,11,11));
 				et.add(new Excel_tilte("中央投资（万元）",1,2,12,12));
 				et.add(new Excel_tilte(xmnf+"年 计 划 （ 万 元 ）",1,1,13,16));
-				et.add(new Excel_tilte("备注",1,2,17,17));
+				et.add(new Excel_tilte("本年完成情况(总投资)",1,2,17,17));
+				et.add(new Excel_tilte("本年完成情况(省投资)",1,2,18,18));
+				et.add(new Excel_tilte("备注",1,2,19,19));
 				et.add(new Excel_tilte("路线编号",2,2,3,3));
 				et.add(new Excel_tilte("项目名称",2,2,4,4));
 				et.add(new Excel_tilte("起点桩号",2,2,5,5));

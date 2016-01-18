@@ -11,7 +11,14 @@ public class Gcglwqgz implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String ybnf;
 	private String ybyf;
+	private String wgnf;
 	
+	public String getWgnf() {
+		return wgnf;
+	}
+	public void setWgnf(String wgnf) {
+		this.wgnf = wgnf;
+	}
 	public String getYbnf() {
 		return ybnf;
 	}

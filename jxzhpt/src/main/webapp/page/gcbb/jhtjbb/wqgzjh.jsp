@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 		$(function(){
 			xmnf('ddlYear1');
+			xmnf1('wgnf');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("xzdj","公路等级");
@@ -50,6 +51,25 @@
 			});
 			$('#'+id).combobox("setValue",first);
 		}
+		
+		function xmnf1(id){
+			var myDate = new Date();
+			var years=[];
+			var first;
+			years.push({text:'不选择'});
+			for(var i=0;i<=10;i++){
+				if(i==0)
+					first=myDate.getFullYear()-i;
+				years.push({text:(myDate.getFullYear()-i)});
+			}
+			$('#'+id).combobox({    
+			    data:years,
+			    valueField:'text',    
+			    textField:'text'   
+			});
+			$('#'+id).combobox("setValue",'不选择');
+		}
+		
 		var fls=1;
 		function showAll(){
 			var myDate = new Date();
@@ -87,7 +107,7 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xzdj=$("#xzdj").combobox("getValue");
-			var data="gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+			var data="gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.wgnf="+$("#wgnf").combobox("getValue").replace('不选择','');
 			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
@@ -110,7 +130,8 @@
 											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
 											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td></tr>");
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>");
 								}else{
 									tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
 											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
@@ -121,7 +142,8 @@
 											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
 											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td></tr>");
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>");
 								}
 							}
 						}
@@ -165,7 +187,7 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
-		var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+		var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.wgnf="+$("#wgnf").combobox("getValue").replace('不选择','');
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/gcybb/getWqgzjh.do?'+data;
 		 });
@@ -215,7 +237,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%;height:40px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%;height:70px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -235,11 +257,15 @@ a:active {
 								<option value="否">否</option>
 								<option value="是">是</option>
 								</select>
+								</p>
+							<p style="margin: 8px 0px 8px 20px;">
+										<span>完工年份：</span>
+        									<select  id="wgnf" style="width: 80px;"></select>
        								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
 								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: middle;" />
-        					</p>         					
+        					</p>		
         				</div>
         			</fieldset>
         		</td>
@@ -276,6 +302,8 @@ a:active {
 										<td style="width: 125px">路线名称</td>
 										<td style="width: 125px">中心桩号</td>
 										<td style="width: 125px">批复文号</td>
+										<td style="width: 125px">本年完成情况(总投资)</td>
+										<td style="width: 125px">本年完成情况(省投资)</td>
 										<td style="width: 125px">备注</td>										
 									</tr>	
 									
