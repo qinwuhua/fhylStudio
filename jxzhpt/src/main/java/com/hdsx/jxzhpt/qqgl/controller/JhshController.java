@@ -616,6 +616,36 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
+	
+	public void exportJhshYhzx(){
+		//设置表头、列与字段对应
+		String fileTitle="<title=项目编码,fieid=xmbm>,<title=项目名称,fieid=xmmc>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原道班名称,fieid=ydbmc>,<title=所在路线桩号,fieid=lxzh>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>";
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		List<Object> excelData=new ArrayList<Object>();
+		String fileName="";
+		if(jhsh.getXmlx()==6){
+			excelData.addAll(jhshServer.queryJhshYhzx(jhsh, 0, 0));
+			fileName="养护中心项目-计划审核";
+		}
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+	}
+	
 	/**
 	 * 导入养护大中修计划审核信息
 	 */
