@@ -230,7 +230,7 @@
 	    <action name="updateYhzx" class="xmsqController" method="updateYhzx"></action>
 	    <action name="updateYhzxSp" class="xmsqController" method="updateYhzxSp"></action>
 	    <action name="updateJhshYhzx" class="jhshController" method="updateJhshYhzx"></action>
-	    
+	    <action name="exportJhshYhzx" class="jhshController" method="exportJhshYhzx"></action>
 	    
 	</package>
 </struts>

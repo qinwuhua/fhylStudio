@@ -563,6 +563,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				fileName="灾毁重建立项审核";
 				excelData = xmsqServer.queryShExport(xmsq);
 			}
+			else if(xmsq.getXmlx()==6){
+			    fileTitle="<title=项目编码,fieid=xmbm>,<title=项目名称,fieid=xmmc>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原道班名称,fieid=ydbmc>,<title=所在路线桩号,fieid=lxzh>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=备注,fieid=bz,width=20>";
+				titleName="立项审核";
+				fileName="养护中心立项审核";
+				excelData = xmsqServer.queryYhzxExport(xmsq);
+			}
 			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 		}catch(Exception e){
 			e.printStackTrace();

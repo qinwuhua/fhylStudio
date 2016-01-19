@@ -265,4 +265,10 @@ public interface XmsqServer {
 	 * @return
 	 */
 	public boolean insertJhshYhzx(Xmsq xmsq);
+	/**
+	 * 导出养护中心立项数据
+	 * @param xmsq
+	 * @return
+	 */
+	public List<Object> queryYhzxExport(Xmsq xmsq);
 }

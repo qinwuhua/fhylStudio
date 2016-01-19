@@ -116,11 +116,12 @@
 			});
 		}
 		function exportJhshxx(){
-			var param='jhsh.xmlx=4&jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+
-			'&jhsh.ghlxbh='+$('#ylxbh').val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
-			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
-			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
-			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param;
+			var param='xmlx=6'+'&xzqhdm='+getxzqhdm('xzqh')+
+			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jb='+$('#jb').combobox("getValue")+
+			'&xmmc='+$('#xmmc').val()+'&jsxz='+$('#jsxz').combobox("getValue")+
+			'&ydbmc='+$('#ydbmc').val()+'&xdzt='+$('#xdzt').combobox("getValue");
+			alert(param);
+			window.location.href="/jxzhpt/qqgl/exportJhshYhzx.do?"+param;
 		}
 		function importJhsh(){
 			importExcel("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");

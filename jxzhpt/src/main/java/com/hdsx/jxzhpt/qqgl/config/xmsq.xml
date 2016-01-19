@@ -777,4 +777,36 @@
 		select x.xmbm,x.ztz,x.ZBZZJ,x.SBZZJ,x.ZDDZJL,x.DFZC,x.jhkgsj,x,jhwgsj
 		from xmsq_yhzx x where x.xmbm in (${xmbm})
 	</insert>
+	
+	<select id="queryYhzxExport" parameterType="xmsq" resultType="xmsq">
+		select * from xmsq_yhzx x
+				where 1=1
+				<if test="gydwdm!=null and gydwdm!=''">
+					and ${gydwdm}
+				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">
+					and ${xzqhdm}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">
+					and xmmc like '%'||${xmmc}||'%'
+				</if>
+				<if test="jb!=null and jb!=''">
+					and jb like '%'||${jb}||'%'
+				</if>
+				<if test="sqzt>=0">
+					and sqzt=${sqzt}
+				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and ${xmbm}
+				</if>
+				<if test="jsxz!=null and jsxz!=''">
+					and jsxz like '%'||${jsxz}||'%'
+				</if>
+				<if test="ydbmc!=null and ydbmc!=''">
+					and ydbmc like '%'||${ydbmc}||'%'
+				</if>
+				<if test="lxmc !='' and lxmc != null ">
+					and lxmc like '%'||${lxmc}||'%'
+				</if>
+	</select>
 </mapper>
