@@ -46,6 +46,7 @@ function save(){
 }
 
 function init(){
+	
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/selectJsById.do",

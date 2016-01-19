@@ -544,6 +544,11 @@
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst!='1'</if>
 	</select>
+	<select id="selectlxbgList" parameterType="lx" resultType="lx">
+		select * from lxsh_lx_tz where xmid=#{xmid} 
+		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
+		<if test="sffirst==1">and sffirst!='1'</if>
+	</select>
 	<insert id="insertLxJdbs" parameterType="lx">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc)
 		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}

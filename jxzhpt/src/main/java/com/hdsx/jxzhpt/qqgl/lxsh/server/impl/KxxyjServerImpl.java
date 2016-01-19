@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.jhgl.bean.Planwqgzsj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
@@ -159,6 +160,18 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	public int selectSjgzkxshListCount(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryOne("selectSjgzkxshListCount", lxsh);
+	}
+
+	@Override
+	public List<Kxxyj> selectSjgzkxbgList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectSjgzkxbgList", lxsh);
+	}
+
+	@Override
+	public int selectSjgzkxbgListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSjgzkxbgListCount", lxsh);
 	}
 
 	@Override
@@ -388,6 +401,30 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		// TODO Auto-generated method stub
 		return queryOne("selectXjkxshListCount", lxsh);
 	}
+	
+	@Override
+	public List<Kxxyj> selectLmgzkxbgList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectLmgzkxbgList", lxsh);
+	}
+
+	@Override
+	public int selectLmgzkxbgListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLmgzkxbgListCount", lxsh);
+	}
+
+	@Override
+	public List<Kxxyj> selectXjkxbgList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectXjkxbgList", lxsh);
+	}
+
+	@Override
+	public int selectXjkxbgListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectXjkxbgListCount", lxsh);
+	}
 	@Override
 	public boolean updateJGTC(Gcgl_jgys gcgl_jgys) {
 		if(insert("insertJgtc", gcgl_jgys)>0){
@@ -436,5 +473,161 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	@Override
 	public Lxsh showxjkxxTjxx(Lxsh lxsh) {
 		return queryOne("showxjkxxTjxx", lxsh);
+	}
+	
+	@Override
+	public Lxsh showsjkxxbgTjxx(Lxsh lxsh) {
+		return queryOne("showsjkxxbgTjxx", lxsh);
+	}
+
+	@Override
+	public Lxsh showlmkxxbgTjxx(Lxsh lxsh) {
+		return queryOne("showlmkxxbgTjxx", lxsh);
+	}
+
+	@Override
+	public Lxsh showxjkxxbgTjxx(Lxsh lxsh) {
+		return queryOne("showxjkxxbgTjxx", lxsh);
+	}
+
+	@Override
+	public boolean tzxm(Lxsh lxsh) {
+		if("sjgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbsjkx", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmsjkx", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjsjkx", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgsjkx", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzsjkx",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		
+		if("lmgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtblmkx", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmlmkx", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjlmkx", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxglmkx", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzlmkx",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		
+		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbxjkx", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmxjkx", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjxjkx", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgxjkx", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzxjkx",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean thtzxm(Lxsh lxsh) {
+		if("sjgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzsjkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbsjkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("lmgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzlmkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtblmkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzxjkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbxjkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean thtzxm1(Lxsh lxsh) {
+		if("sjgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("qxtzxzsjkx",lxsh);
+			delete("thtzkxlx",lxsh);
+			insert("thtzsjkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbsjkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("lmgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("qxtzxzlmkx",lxsh);
+			delete("thtzkxlx",lxsh);
+			insert("thtzlmkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtblmkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			delete("qxtzxzxjkx",lxsh);
+			delete("thtzkxlx",lxsh);
+			insert("thtzxjkx",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbxjkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		return true;
+	}
+
+	@Override
+	public Kxxyj querygkxmXX(Lxsh lxsh) {
+		if("sjgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			return queryOne("querygkxmXXsj", lxsh);
+		}
+		if("lmgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			return queryOne("querygkxmXXlm", lxsh);
+		}
+		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			return queryOne("querygkxmXXxj", lxsh);
+		}
+		return null;
 	}
 }

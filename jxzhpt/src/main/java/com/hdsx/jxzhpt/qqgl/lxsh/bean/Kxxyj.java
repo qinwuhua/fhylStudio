@@ -9,6 +9,21 @@ public class Kxxyj implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String tzxz;
+	private String tzsj;
+	
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
+	public String getTzsj() {
+		return tzsj;
+	}
+	public void setTzsj(String tzsj) {
+		this.tzsj = tzsj;
+	}
 	private String id;
 	private String xmmc;
 	private String xmbm;

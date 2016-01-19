@@ -97,4 +97,30 @@ public interface KxxyjServer {
 
 	Lxsh showxjkxxTjxx(Lxsh lxsh);
 
+	List<Kxxyj> selectSjgzkxbgList(Lxsh lxsh);
+
+	int selectSjgzkxbgListCount(Lxsh lxsh);
+
+	Lxsh showsjkxxbgTjxx(Lxsh lxsh);
+
+	Lxsh showlmkxxbgTjxx(Lxsh lxsh);
+
+	Lxsh showxjkxxbgTjxx(Lxsh lxsh);
+
+	boolean tzxm(Lxsh lxsh);
+
+	boolean thtzxm(Lxsh lxsh);
+
+	boolean thtzxm1(Lxsh lxsh);
+
+	Kxxyj querygkxmXX(Lxsh lxsh);
+
+	List<Kxxyj> selectLmgzkxbgList(Lxsh lxsh);
+
+	int selectLmgzkxbgListCount(Lxsh lxsh);
+
+	List<Kxxyj> selectXjkxbgList(Lxsh lxsh);
+
+	int selectXjkxbgListCount(Lxsh lxsh);
+
 }

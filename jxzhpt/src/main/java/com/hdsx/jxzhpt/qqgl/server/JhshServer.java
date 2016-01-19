@@ -217,6 +217,7 @@ public interface JhshServer {
 	 * @return 路线集合
 	 */
 	public List<Lx> selectlxList(Lx lx);
+	public List<Lx> selectlxbgList(Lx lx);
 	/**
 	 * 升级路线阶段标示
 	 * @param lx 路线编码  阶段标示

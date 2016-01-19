@@ -59,6 +59,66 @@ var  data='lxsh.lsjl='+lsjl+'&lxsh.xzqh='+xzqhstr+'&lxsh.gydw='+gydwstr
 	});
 }
 
+function showkxxtzTjxx(xmlx){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var xmmc=$("#xmmc").val();
+	var xmnf=$("#xmnf").combobox('getValues').join(",");
+	var tsdq=$("#tsdq").combobox('getText');
+	if(tsdq=='全部'){
+		tsdq="";
+	}
+	var jsdj=$("#jsdj").combobox('getValues').join(",");
+	var gldj=$("#gldj").combobox('getValues').join(",");
+	if(xmlx!='xj')
+	var lsjl=$("#lsjl").combobox('getValue');
+	else lsjl='';
+var  data='lxsh.lsjl='+lsjl+'&lxsh.xzqh='+xzqhstr+'&lxsh.gydw='+gydwstr
++'&lxsh.xmmc='+xmmc+'&lxsh.xmnf='+xmnf+'&lxsh.tsdq='+tsdq+'&lxsh.jsdj='+jsdj
++'&lxsh.gldj='+gldj+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.xmlx='+xmlx+'&lxsh.tzxz='+$("#tzxz").combobox("getValue");
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/showkxxtzTjxx.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg!=null){
+				$('#xmsl').html(msg.sl);
+				$('#tz').html(msg.tz);
+				$('#lc').html(msg.lc);
+				$('#bzcs').html(msg.bzcs);
+			}else{
+				$('#xmsl').html('0');
+				$('#tz').html('0');
+				$('#lc').html('0');
+				$('#bzcs').html('0');
+			}
+			
+		}
+	});
+}
+
 function jsyzlc(){
 	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
 	if($('#yilc').val()!='')
@@ -125,6 +185,11 @@ function xiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('lxxx','可行性研究详细信息','sjgzsb_xx.jsp','lxxx',900,400);
+}
+function xiangxitz(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','sjgzsb_xx1.jsp','lxxx',900,400);
 }
 function edit(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -208,6 +273,11 @@ function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('lxxx','可行性研究详细信息','lmgzsb_xx.jsp','lxxx',900,400);
+}
+function xiangxi1tz(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','lmgzsb_xx1.jsp','lxxx',900,400);
 }
 function edit1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -754,7 +824,7 @@ function showAllsjsh(){
 	        	if($.cookie("unit2").length!=7)
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑 ';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
@@ -830,6 +900,14 @@ function showAllsjsh(){
 	    }   
 	}); 
 }
+var xmbm;
+var xmlx;
+function tz(id,lx){
+	xmbm=id;
+	xmlx=lx;
+	YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
+}
+
 function editSjlx(xmid,index){
 	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
@@ -903,7 +981,7 @@ function showAlllmsh(){
 	        	if($.cookie("unit2").length!=7)
 		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑  ';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>   <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
@@ -1055,7 +1133,7 @@ function showAllxjsh(){
 	        	if($.cookie("unit2").length!=7)
 		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+' 编辑 ';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';

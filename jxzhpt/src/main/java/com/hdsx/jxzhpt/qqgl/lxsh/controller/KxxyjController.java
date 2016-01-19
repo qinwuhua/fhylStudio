@@ -329,6 +329,51 @@ public class KxxyjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectSjgzkxbgList(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and t.xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = "t1.xmnf in ("+xmnf+")";
+			}else{
+				xmnf = "t1.xmnf = '"+xmnf+"'";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			jsdjHandle();
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			System.out.println(gldj);
+			List<Kxxyj> list=kxxyjServer.selectSjgzkxbgList(lxsh);
+			int count=kxxyjServer.selectSjgzkxbgListCount(lxsh);
+			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
+			e.setRows(list);
+			e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	private void jsdjHandle() {
 		if(jsdj!=null && !jsdj.equals("")){
 			if(jsdj.indexOf(",")>-1){
@@ -393,6 +438,52 @@ public class KxxyjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectLmgzkxbgList(){
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and t.xzqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "t1.xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "t1.xmnf = '"+xmnf+"'";
+		}
+		lxsh.setXmnf(xmnf);
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
+		lxsh.setSbthcd(sbthcd);
+		lxsh.setTsdq(tsdq);
+		lxsh.setGldj(gldj);
+		jsdjHandle();
+		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		System.out.println(gldj);
+		List<Kxxyj> list=kxxyjServer.selectLmgzkxbgList(lxsh);
+		int count=kxxyjServer.selectLmgzkxbgListCount(lxsh);
+		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public void selectXjkxList(){
 		String tiaojian1="";
 		String tiaojian2="";
@@ -428,6 +519,51 @@ public class KxxyjController extends BaseActionSupport{
 		System.out.println(gldj);
 		List<Kxxyj> list=kxxyjServer.selectXjkxList(lxsh);
 		int count=kxxyjServer.selectXjkxListCount(lxsh);
+		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selectXjkxbgList(){
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and t.xzqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmmc(xmmc);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = "t1.xmnf in ("+xmnf+")";
+		}else{
+			xmnf = "t1.xmnf = '"+xmnf+"'";
+		}
+		lxsh.setXmnf(xmnf);
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
+		lxsh.setSbthcd(sbthcd);
+		lxsh.setTsdq(tsdq);
+		lxsh.setGldj(gldj);
+		jsdjHandle();
+		lxsh.setJsdj(jsdj);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		System.out.println(gldj);
+		List<Kxxyj> list=kxxyjServer.selectXjkxbgList(lxsh);
+		int count=kxxyjServer.selectXjkxbgListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -703,6 +839,7 @@ public class KxxyjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+
 	public void selectXjkxshList(){
 		String tiaojian1="";
 		String tiaojian2="";
@@ -741,6 +878,7 @@ public class KxxyjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
 	public void shlmgzkxx(){
 		boolean bl=kxxyjServer.shlmgzkxx(lxsh);
 		if(bl){
@@ -942,5 +1080,52 @@ public class KxxyjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void showkxxtzTjxx(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(lxsh.getGydw().indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+lxsh.getGydw()+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+lxsh.getGydw()+")";
+			}
+			if(lxsh.getXzqh().indexOf(",")==-1){
+				tiaojian2="and t.xzqhdm like '%"+lxsh.getXzqh()+"%'";
+			}else{
+				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			Lxsh l=null;
+			if("sjgz".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showsjkxxbgTjxx(lxsh);
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showlmkxxbgTjxx(lxsh);
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				l=kxxyjServer.showxjkxxbgTjxx(lxsh);
+			}
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void querygkxmXX() throws IOException, Exception{
+		JsonUtils.write(kxxyjServer.querygkxmXX(lxsh), getresponse().getWriter());
+	}
+	
+	
+	public void tzxm(){
+		ResponseUtils.write(getresponse(),kxxyjServer.tzxm(lxsh)+"");
+	}
+	public void thtzxm(){
+		ResponseUtils.write(getresponse(),kxxyjServer.thtzxm(lxsh)+"");
+	}
+	public void thtzxm1(){
+		ResponseUtils.write(getresponse(),kxxyjServer.thtzxm1(lxsh)+"");
+	}
+	
 }
 

@@ -203,6 +203,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("selectlxList",lx);
 	}
 	@Override
+	public List<Lx> selectlxbgList(Lx lx) {
+		return queryList("selectlxbgList",lx);
+	}
+	@Override
 	public boolean insertLxJdbs(Lx lx) {
 		return insert("insertLxJdbs",lx)>0;
 	}

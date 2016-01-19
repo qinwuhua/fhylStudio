@@ -60,11 +60,19 @@
 		  <action name="queryLxshShLjLmgz" class="lxshController" method="queryLxshShLjLmgz"/>
 		  <action name="queryLxshLjXj" class="lxshController" method="queryLxshLjXj"/>
 		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
+		  <action name="querygkxmXX" class="kxxyjController" method="querygkxmXX"/>
 		  
+		  <action name="thtzxm" class="kxxyjController" method="thtzxm"/>
+		  <action name="thtzxm1" class="kxxyjController" method="thtzxm1"/>
+		  <action name="tzxm" class="kxxyjController" method="tzxm"/>
 		  <action name="showkxxTjxx" class="kxxyjController" method="showkxxTjxx"/>
+		  <action name="showkxxtzTjxx" class="kxxyjController" method="showkxxtzTjxx"/>
 		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
+		  <action name="selectSjgzkxbgList" class="kxxyjController" method="selectSjgzkxbgList"/>
 		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
+		  <action name="selectLmgzkxbgList" class="kxxyjController" method="selectLmgzkxbgList"/>
 		  <action name="selectXjkxList" class="kxxyjController" method="selectXjkxList"/>
+		  <action name="selectXjkxbgList" class="kxxyjController" method="selectXjkxbgList"/>
 		  <action name="uploadGkpf" class="kxxyjController" method="uploadGkpf"/>
 		  <action name="uploadJGYSFile" class="kxxyjController" method="uploadJGYSFile"/>
 		  <action name="updateSjgzkxx" class="kxxyjController" method="updateSjgzkxx"/>
@@ -192,6 +200,7 @@
 		<action name="insertLx" class="jhshController" method="insertLx"></action>
 		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
+		<action name="selectlxbgList" class="jhshController" method="selectlxbgList"></action>
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
 		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>

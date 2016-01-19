@@ -943,6 +943,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void selectlxbgList() throws Exception{
+		try {
+			JsonUtils.write(jhshServer.selectlxbgList(lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	/**
 	 * 查询历史数据信息
 	 */
