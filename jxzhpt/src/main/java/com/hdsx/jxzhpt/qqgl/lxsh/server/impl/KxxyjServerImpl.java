@@ -551,6 +551,102 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 			}
 		}
+		//cbsj
+		if("sjgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbsjcb", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmsjcb", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjsjcb", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgsjcb", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzsjcb",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		if("lmgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtblmcb", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmlmcb", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjlmcb", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxglmcb", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzlmcb",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		if("xj".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbxjcb", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmxjcb", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjxjcb", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgxjcb", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzxjcb",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		if("sh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbshcb", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmshcb", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjshcb", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgshcb", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzshcb",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
+		if("yh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			int a=update("tzxzoldtbyhcb", lxsh);
+			int b=0;
+			Lxsh l=queryOne("querytzbyxmbmyhcb", lxsh);
+			 if(l==null){
+				 b=insert("tzxztjyhcb", lxsh);
+				 insert("tzxztjsjkxlx", lxsh);
+			 }else{
+				 b=update("tzxzxgyhcb", lxsh);
+			 }
+			if(a==1&&b==1){
+				if("取消".equals(lxsh.getTzxz())){
+					int c=delete("qxtzxzyhcb",lxsh);
+					return c==1;
+				}else{
+					return true;
+				}
+			}
+		}
 		
 		return false;
 	}
@@ -578,6 +674,47 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 			insert("thtzxjkx",lxsh);
 			insert("tjtzkxlx",lxsh);
 			delete("thtznewtbxjkx",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		//cbsj
+		if("sjgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzsjcb",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbsjcb",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("lmgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzlmcb",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtblmcb",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("xj".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzxjcb",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbxjcb",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("sh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzshcb",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbshcb",lxsh);
+			delete("thtznewtbsjkxlx",lxsh);
+			return true;
+		}
+		if("yh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+			delete("thtzkxlx",lxsh);
+			insert("thtzyhcb",lxsh);
+			insert("tjtzkxlx",lxsh);
+			delete("thtznewtbyhcb",lxsh);
 			delete("thtznewtbsjkxlx",lxsh);
 			return true;
 		}
@@ -614,6 +751,53 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 			delete("thtznewtbsjkxlx",lxsh);
 			return true;
 		}
+		//cbsj
+				if("sjgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+					delete("qxtzxzsjcb",lxsh);
+					delete("thtzkxlx",lxsh);
+					insert("thtzsjcb",lxsh);
+					insert("tjtzkxlx",lxsh);
+					delete("thtznewtbsjcb",lxsh);
+					delete("thtznewtbsjkxlx",lxsh);
+					return true;
+				}
+				if("lmgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+					delete("qxtzxzlmcb",lxsh);
+					delete("thtzkxlx",lxsh);
+					insert("thtzlmcb",lxsh);
+					insert("tjtzkxlx",lxsh);
+					delete("thtznewtblmcb",lxsh);
+					delete("thtznewtbsjkxlx",lxsh);
+					return true;
+				}
+				if("xj".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+					delete("qxtzxzxjcb",lxsh);
+					delete("thtzkxlx",lxsh);
+					insert("thtzxjcb",lxsh);
+					insert("tjtzkxlx",lxsh);
+					delete("thtznewtbxjcb",lxsh);
+					delete("thtznewtbsjkxlx",lxsh);
+					return true;
+				}
+				if("sh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+					delete("qxtzxzshcb",lxsh);
+					delete("thtzkxlx",lxsh);
+					insert("thtzshcb",lxsh);
+					insert("tjtzkxlx",lxsh);
+					delete("thtznewtbshcb",lxsh);
+					delete("thtznewtbsjkxlx",lxsh);
+					return true;
+				}
+				if("yh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
+					delete("qxtzxzyhcb",lxsh);
+					delete("thtzkxlx",lxsh);
+					insert("thtzyhcb",lxsh);
+					insert("tjtzkxlx",lxsh);
+					delete("thtznewtbyhcb",lxsh);
+					delete("thtznewtbsjkxlx",lxsh);
+					return true;
+				}
+		
 		return true;
 	}
 

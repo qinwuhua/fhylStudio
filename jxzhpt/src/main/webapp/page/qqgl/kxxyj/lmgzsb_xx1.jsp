@@ -83,7 +83,8 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				if(msg!=null){
-					var data=parent.obj;
+					var data=msg;
+					$("#tzsj").html(data.tzsj);
 					$("#xmmc1").html(data.xmmc);
 					$('#lxbh1').html(data.lxbh);
 					$("#qdzh1").html(data.minqdzh);
@@ -281,7 +282,7 @@ text-decoration:none;
 			
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					变更后信息
+					变更后信息&nbsp;&nbsp;&nbsp;&nbsp;变更日期：<span id='tzsj'></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -924,6 +924,22 @@
 	<update id="tzxzoldtbxjkx" parameterType="lxsh">
 		update kxxyj_xj set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
 	</update>
+	<update id="tzxzoldtbsjcb" parameterType="lxsh">
+		update cbsj_sjgz set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
+	</update>
+	<update id="tzxzoldtblmcb" parameterType="lxsh">
+		update cbsj_lmgz set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
+	</update>
+	<update id="tzxzoldtbxjcb" parameterType="lxsh">
+		update cbsj_xj set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
+	</update>
+	<update id="tzxzoldtbshcb" parameterType="lxsh">
+		update cbsj_sh set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
+	</update>
+	<update id="tzxzoldtbyhcb" parameterType="lxsh">
+		update cbsj_yhdzx set tzxz=#{tzxz},tzsj=to_char(sysdate,'yyyy-mm-dd') where xmbm=#{xmbm}
+	</update>
+	
 	<select id="querytzbyxmbmsjkx" parameterType="lxsh" resultType="lxsh">
 	 	select * from kxxyj_sjgz_tz where xmbm=#{xmbm}
 	 </select>
@@ -933,6 +949,22 @@
 	 <select id="querytzbyxmbmxjkx" parameterType="lxsh" resultType="lxsh">
 	 	select * from kxxyj_xj_tz where xmbm=#{xmbm}
 	 </select>
+	 <select id="querytzbyxmbmsjcb" parameterType="lxsh" resultType="lxsh">
+	 	select * from cbsj_sjgz_tz where xmbm=#{xmbm}
+	 </select>
+	 <select id="querytzbyxmbmlmcb" parameterType="lxsh" resultType="lxsh">
+	 	select * from cbsj_lmgz_tz where xmbm=#{xmbm}
+	 </select>
+	 <select id="querytzbyxmbmxjcb" parameterType="lxsh" resultType="lxsh">
+	 	select * from cbsj_xj_tz where xmbm=#{xmbm}
+	 </select>
+	 <select id="querytzbyxmbmshcb" parameterType="lxsh" resultType="lxsh">
+	 	select * from cbsj_sh_tz where xmbm=#{xmbm}
+	 </select>
+	 <select id="querytzbyxmbmyhcb" parameterType="lxsh" resultType="lxsh">
+	 	select * from cbsj_yhdzx_tz where xmbm=#{xmbm}
+	 </select>
+	 
 	 <insert id="tzxztjsjkx" parameterType="lxsh">
 	 	insert into kxxyj_sjgz_tz select * from kxxyj_sjgz where xmbm=#{xmbm}
 	 </insert>
@@ -942,6 +974,22 @@
 	 <insert id="tzxztjxjkx" parameterType="lxsh">
 	 	insert into kxxyj_xj_tz select * from kxxyj_xj where xmbm=#{xmbm}
 	 </insert>
+	  <insert id="tzxztjsjcb" parameterType="lxsh">
+	 	insert into cbsj_sjgz_tz select * from cbsj_sjgz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="tzxztjlmcb" parameterType="lxsh">
+	 	insert into cbsj_lmgz_tz select * from cbsj_lmgz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="tzxztjxjcb" parameterType="lxsh">
+	 	insert into cbsj_xj_tz select * from cbsj_xj where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="tzxztjshcb" parameterType="lxsh">
+	 	insert into cbsj_sh_tz select * from cbsj_sh where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="tzxztjyhcb" parameterType="lxsh">
+	 	insert into cbsj_yhdzx_tz select * from cbsj_yhdzx where xmbm=#{xmbm}
+	 </insert>
+	 
 	 <insert id="tzxztjsjkxlx" parameterType="lxsh">
 	 	insert into lxsh_lx_tz select * from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs}
 	 </insert>
@@ -954,6 +1002,22 @@
 	 <update id="tzxzxgxjkx" parameterType="lxsh" >
 	 	update kxxyj_xj_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
 	 </update>
+	 <update id="tzxzxgsjcb" parameterType="lxsh" >
+	 	update cbsj_sjgz_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
+	 </update>
+	 <update id="tzxzxglmcb" parameterType="lxsh" >
+	 	update cbsj_lmgz_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
+	 </update>
+	 <update id="tzxzxgxjcb" parameterType="lxsh" >
+	 	update cbsj_xj_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
+	 </update>
+	 <update id="tzxzxgshcb" parameterType="lxsh" >
+	 	update cbsj_sh_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
+	 </update>
+	 <update id="tzxzxgyhcb" parameterType="lxsh" >
+	 	update cbsj_yhdzx_tz set tzxz=#{tzxz} where xmbm=#{xmbm}
+	 </update>
+	 
 	 <delete id="qxtzxzsjkx" parameterType="lxsh">
 	 	delete from  kxxyj_sjgz where xmbm=#{xmbm}
 	 </delete>
@@ -963,6 +1027,22 @@
 	 <delete id="qxtzxzxjkx" parameterType="lxsh">
 	 	delete from  kxxyj_xj where xmbm=#{xmbm}
 	 </delete>
+	 <delete id="qxtzxzsjcb" parameterType="lxsh">
+	 	delete from  cbsj_sjgz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="qxtzxzlmcb" parameterType="lxsh">
+	 	delete from  cbsj_lmgz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="qxtzxzxjcb" parameterType="lxsh">
+	 	delete from  cbsj_xj where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="qxtzxzshcb" parameterType="lxsh">
+	 	delete from  cbsj_sh where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="qxtzxzyhcb" parameterType="lxsh">
+	 	delete from  cbsj_yhdzx where xmbm=#{xmbm}
+	 </delete>
+	 
 	  <delete id="thtzkxlx" parameterType="lxsh">
 	 	delete from  lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs}
 	 </delete>
@@ -975,8 +1055,25 @@
 	 <insert id="thtzxjkx" parameterType="lxsh">
 	 	insert into kxxyj_xj select * from kxxyj_xj_tz where xmbm=#{xmbm}
 	 </insert>
+	   <insert id="thtzsjcb" parameterType="lxsh">
+	 	insert into cbsj_sjgz select * from cbsj_sjgz_tz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="thtzlmcb" parameterType="lxsh">
+	 	insert into cbsj_lmgz select * from cbsj_lmgz_tz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="thtzxjcb" parameterType="lxsh">
+	 	insert into cbsj_xj select * from cbsj_xj_tz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="thtzshcb" parameterType="lxsh">
+	 	insert into cbsj_sh select * from cbsj_sh_tz where xmbm=#{xmbm}
+	 </insert>
+	 <insert id="thtzyhcb" parameterType="lxsh">
+	 	insert into cbsj_yhdzx select * from cbsj_yhdzx_tz where xmbm=#{xmbm}
+	 </insert>
+	 
+	 
 	 <insert id="tjtzkxlx" parameterType="lxsh">
-	 	insert into lxsh_lx select * from lxsh_lx_tz where xmid=#{xmbm}
+	 	insert into lxsh_lx select * from lxsh_lx_tz where xmid=#{xmbm} and jdbs=#{jdbs}
 	 </insert>
 	  <delete id="thtznewtbsjkx" parameterType="lxsh">
 	 	delete from  kxxyj_sjgz_tz where xmbm=#{xmbm}
@@ -987,6 +1084,22 @@
 	  <delete id="thtznewtbxjkx" parameterType="lxsh">
 	 	delete from  kxxyj_xj_tz where xmbm=#{xmbm}
 	 </delete>
+	  <delete id="thtznewtbsjcb" parameterType="lxsh">
+	 	delete from  cbsj_sjgz_tz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="thtznewtblmcb" parameterType="lxsh">
+	 	delete from  cbsj_lmgz_tz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="thtznewtbxjcb" parameterType="lxsh">
+	 	delete from  cbsj_xj_tz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="thtznewtbshcb" parameterType="lxsh">
+	 	delete from  cbsj_sh_tz where xmbm=#{xmbm}
+	 </delete>
+	 <delete id="thtznewtbyhcb" parameterType="lxsh">
+	 	delete from  cbsj_yhdzx_tz where xmbm=#{xmbm}
+	 </delete>
+	 
 	  <delete id="thtznewtbsjkxlx" parameterType="lxsh">
 	 	delete from  lxsh_lx_tz where xmid=#{xmbm} and jdbs=#{jdbs}
 	 </delete>

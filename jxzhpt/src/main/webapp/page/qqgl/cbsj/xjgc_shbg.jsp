@@ -23,6 +23,15 @@
 	<script type="text/javascript">
 	var xmbm;
 	var xmlx;
+	function ckxx(str1,str2){
+		if(str2=='qx'){
+			xmbm=str1;
+			YMLib.UI.createWindow('wq_tz','项目详情',"xjgc_xx1.jsp",'wq_tz',980,400);
+		}else{
+			xmbm=str1;
+			YMLib.UI.createWindow('wq_tz','项目详情',"xjgc_xx2.jsp",'wq_tz',980,400);
+		}
+	}
 	function tz(id,lx){
 		xmbm=id;
 		xmlx=lx;
@@ -46,13 +55,13 @@
 		});
 		function queryXj(){
 			grid.id="grid";
-			grid.url="../../../qqgl/queryCbsj.do";
+			grid.url="../../../qqgl/queryCbsjbg.do";
 			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),'cbsj.xmmc':$('#xmmc').val(),
-					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
+					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),'cbsj.tzxz':$('#tzxz').combobox("getValue"),
 					'tsdq':$('#tsdq').combo("getText"),'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
-			loadcbsjTjxx(params);
+			loadcbsjbgTjxx(params);
 			grid.height=$(window).height()-165;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -63,17 +72,16 @@
 					formatter: function(value,row,index){
 						var result="";
 						result+='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						//if(row.shzt==0){
-							if($.cookie("unit2").length!=7)
-								result+='&nbsp;编辑';
-								else
+						if(row.tzxz=='取消'){
+							result+='&nbsp;<a href="javascript:ckxx('+"'"+row.xmbm+"','qx'"+')" style="color:#3399CC;">详细</a>';
+							result+='&nbsp;编辑&nbsp;<a href="javascript:thtz('+"'"+row.xmbm+"','xj','2'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
+						}else{
+							result+='&nbsp;<a href="javascript:ckxx('+"'"+row.xmbm+"','fqx'"+')" style="color:#3399CC;">详细</a>';
 							result+='&nbsp;<a href="javascript:openWindow('+"'xjgcedit'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
-						//}else{
-						//	result+='&nbsp;<a style="color:black;">编辑</a>';
-						//}
+							"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:thtz1('+"'"+row.xmbm+"','xj','2'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
+
+						}
+						
 						return result;
 					}
 				},
@@ -239,6 +247,38 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
+		function thtz(str,xmlx,jdbs){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/qqgl/thtzxm.do",
+				 dataType : 'json',
+				 data : "lxsh.xmbm="+str+"&lxsh.xmlx="+xmlx+"&lxsh.jdbs="+2,
+				 success : function(msg){
+					if(msg){
+						alert("退回成功");
+						//showkxxtzTjxx(xmlx);
+						$("#grid").datagrid('reload');
+					}
+				 }
+			});
+		}
+		
+		function thtz1(str,xmlx,jdbs){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/qqgl/thtzxm1.do",
+				 dataType : 'json',
+				 data : "lxsh.xmbm="+str+"&lxsh.xmlx="+xmlx+"&lxsh.jdbs="+2,
+				 success : function(msg){
+					if(msg){
+						alert("退回成功");
+						 //showkxxtzTjxx(xmlx);
+						$("#grid").datagrid('reload');
+					}
+				 }
+			});
+		}
+		
 	</script>
 				<style type="text/css">
 TD {
@@ -252,7 +292,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;新建工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计>&nbsp;新建工程项目变更</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -290,12 +330,20 @@ text-decoration:none;
 							<tr height="32">
 								<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+        						<td>变更类别：</td>
+                              	<td>
+								<select id="tzxz" class="easyui-combobox" data-options="panelHeight:'80'"  style="width: 152px">
+									<option value="" selected>全部</option>
+									<option value="取消" >取消</option>
+									<option value="规模变更">规模变更</option>
+									<option value="建设性质变更">建设性质变更</option>
+								</select></td>
                               <td colspan="10">
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
-								<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+<!-- 								<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
+<!-- 								<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
+<!-- 								<img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
+<!-- 								<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
         					</td>
                             </tr></table>
         				</div>

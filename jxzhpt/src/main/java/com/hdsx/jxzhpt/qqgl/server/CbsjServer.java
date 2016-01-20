@@ -309,5 +309,45 @@ public interface CbsjServer {
 	public Lxsh loadlmcbsjTjxx(Cbsj cbsj);
 
 	public Lxsh loadxjcbsjTjxx(Cbsj cbsj);
+
+	public List<Cbsj> queryCbsjLmsjbg(Cbsj cbsj, int page, int rows);
+
+	public int queryCbsjLmsjbgCount(Cbsj cbsj);
+
+	public List<Cbsj> queryCbsjLmgzbg(Cbsj cbsj, int page, int rows);
+
+	public int queryCbsjLmgzbgCount(Cbsj cbsj);
+
+	public List<Cbsj> queryCbsjXjbg(Cbsj cbsj, int page, int rows);
+
+	public int queryCbsjXjbgCount(Cbsj cbsj);
+
+	public List<Cbsj> queryCbsjYhdzxbg(Cbsj cbsj, int page, int rows);
+
+	public int queryCbsjYhdzxbgCount(Cbsj cbsj);
+
+	public List<Cbsj> queryCbsjShbg(Cbsj cbsj, int page, int rows);
+
+	public int queryCbsjShbgCount(Cbsj cbsj);
+
+	public Lxsh loadsjcbsjbgTjxx(Cbsj cbsj);
+
+	public Lxsh loadlmcbsjbgTjxx(Cbsj cbsj);
+
+	public Lxsh loadxjcbsjbgTjxx(Cbsj cbsj);
+
+	public Map<String, String> queryCbsjbgLjYhdzx(Cbsj cbsj);
+
+	public Map<String, String> queryCbsjbgLjSh(Cbsj cbsj);
+
+	public Cbsj queryCbsjLmsjbgByXmbm(String xmbm);
+
+	public Cbsj queryCbsjLmgzbgByXmbm(String xmbm);
+
+	public Cbsj queryCbsjXjbgByXmbm(String xmbm);
+
+	public Cbsj queryCbsjYhdzxbgByXmbm(String xmbm);
+
+	public Cbsj queryCbsjShbgByXmbm(String xmbm);
 	
 }

@@ -152,9 +152,12 @@
 	 <!-- qwh -->
 	<!-- rh -->
 		<action name="loadcbsjTjxx" class="cbsjController" method="loadcbsjTjxx"></action>
+		<action name="loadcbsjbgTjxx" class="cbsjController" method="loadcbsjbgTjxx"></action>
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
+		<action name="queryCbsjbg" class="cbsjController" method="queryCbsjbg"></action>
 		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
+		<action name="queryCbsjbgByXmbm" class="cbsjController" method="queryCbsjbgByXmbm"></action>
 		<action name="updateCbsj" class="cbsjController" method="updateCbsj"></action>
 		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
 		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
@@ -162,6 +165,7 @@
 		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
 		<action name="exportExcelCbsj" class="cbsjController" method="exportExcelCbsj"></action>
 		<action name="queryCbsjLj" class="cbsjController" method="queryCbsjLj"></action>
+		<action name="queryCbsjbgLj" class="cbsjController" method="queryCbsjbgLj"></action>
 		<action name="queryFile" class="cbsjController" method="queryFile"></action>
 		<action name="down" class="cbsjController" method="down"></action>
 		

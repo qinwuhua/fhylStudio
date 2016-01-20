@@ -114,6 +114,60 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
+	public void queryCbsjbg() throws Exception{
+		try {
+			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			xmbmHandle();
+			ylxbhHandle();
+			xjsdjHandle();
+			jsjsdjHandle();
+			List<Cbsj> resultData=null;
+			int total=0;
+			if(cbsj.getXmlx()==1){
+				resultData=cbsjServer.queryCbsjLmsjbg(cbsj, page, rows);
+				total=cbsjServer.queryCbsjLmsjbgCount(cbsj);
+			}else if(cbsj.getXmlx()==2){
+				resultData = cbsjServer.queryCbsjLmgzbg(cbsj, page, rows);
+				total = cbsjServer.queryCbsjLmgzbgCount(cbsj);
+			}else if(cbsj.getXmlx()==3){
+				resultData = cbsjServer.queryCbsjXjbg(cbsj, page, rows);
+				total = cbsjServer.queryCbsjXjbgCount(cbsj);
+			}else if(cbsj.getXmlx()==4){
+				String gcfl = cbsj.getGcfl();
+				if(gcfl.equals("")){
+					gcfl=null;
+				}else if(gcfl.indexOf(",")>-1){
+					String[] gcflArray = gcfl.split(",");
+					for (int i = 0; i < gcflArray.length; i++) {
+						if(i==0){
+							gcfl = "(l.gcfl like '%"+gcflArray[i]+"%'";
+						}else if(i==gcflArray.length-1){
+							gcfl += " or l.gcfl like '%"+ gcflArray[i] +"%' )";
+						}else{
+							gcfl += " or l.gcfl like '%" + gcflArray[i] + "%'";
+						}
+					}
+				}else{
+					gcfl = "l.gcfl like '%" + gcfl + "%'";
+				}
+				cbsj.setGcfl(gcfl);
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
+				resultData = cbsjServer.queryCbsjYhdzxbg(cbsj, page, rows);
+				total = cbsjServer.queryCbsjYhdzxbgCount(cbsj);
+			}else if(cbsj.getXmlx()==5){
+				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
+				resultData = cbsjServer.queryCbsjShbg(cbsj, page, rows);
+				total = cbsjServer.queryCbsjShbgCount(cbsj);
+			}
+			result.put("rows", resultData);
+			result.put("total", total);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	
 	public void loadcbsjTjxx() throws Exception{
 		try {
@@ -136,6 +190,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
+	public void loadcbsjbgTjxx() throws Exception{
+		try {
+			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			xmbmHandle();
+			ylxbhHandle();
+			xjsdjHandle();
+			jsjsdjHandle();
+			Lxsh l=null;
+			if(cbsj.getXmlx()==1){
+				l=cbsjServer.loadsjcbsjbgTjxx(cbsj);
+			}else if(cbsj.getXmlx()==2){
+				l = cbsjServer.loadlmcbsjbgTjxx(cbsj);
+			}else if(cbsj.getXmlx()==3){
+				l = cbsjServer.loadxjcbsjbgTjxx(cbsj);
+			}
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryCbsjLj(){
 		xmbmHandle();
 		xjsdjHandle();
@@ -177,6 +253,48 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			e.printStackTrace();
 		}
 	}
+	
+	public void queryCbsjbgLj(){
+		xmbmHandle();
+		xjsdjHandle();
+		jsjsdjHandle();
+		ylxbhHandle();
+		cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(), "xzqhdm"));
+		Map<String, String> result = null;
+		
+		if(cbsj.getXmlx()==4){
+			String gcfl = cbsj.getGcfl();
+			if(gcfl.equals("")){
+				gcfl=null;
+			}else if(gcfl.indexOf(",")>-1){
+				String[] gcflArray = gcfl.split(",");
+				for (int i = 0; i < gcflArray.length; i++) {
+					if(i==0){
+						gcfl = "(l.gcfl like '%"+gcflArray[i]+"%'";
+					}else if(i==gcflArray.length-1){
+						gcfl += " or l.gcfl like '%"+ gcflArray[i] +"%' )";
+					}else{
+						gcfl += " or l.gcfl like '%" + gcflArray[i] + "%'";
+					}
+				}
+			}else{
+				gcfl = "l.gcfl like '%" + gcfl + "%'";
+			}
+			cbsj.setGcfl(gcfl);
+			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
+			result = cbsjServer.queryCbsjbgLjYhdzx(cbsj);
+		}else if(cbsj.getXmlx()==5){
+			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
+			result = cbsjServer.queryCbsjbgLjSh(cbsj);
+		}
+		try {
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 根据项目编码查询计划初步设计信息
 	 * @throws Exception
@@ -194,6 +312,29 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				object =cbsjServer.queryCbsjYhdzxByXmbm(cbsj.getXmbm());
 			}else if(cbsj.getXmlx()==5){
 				object =cbsjServer.queryCbsjShByXmbm(cbsj.getXmbm());
+			}
+			if(object!=null)
+				object.setXmlx(cbsj.getXmlx());
+			JsonUtils.write(object, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void queryCbsjbgByXmbm() throws Exception{
+		Cbsj object=new Cbsj();
+		try {
+			if(cbsj.getXmlx()==1){
+				object=cbsjServer.queryCbsjLmsjbgByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==2){
+				object = cbsjServer.queryCbsjLmgzbgByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==3){
+				object =cbsjServer.queryCbsjXjbgByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==4){
+				object =cbsjServer.queryCbsjYhdzxbgByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==5){
+				object =cbsjServer.queryCbsjShbgByXmbm(cbsj.getXmbm());
 			}
 			if(object!=null)
 				object.setXmlx(cbsj.getXmlx());

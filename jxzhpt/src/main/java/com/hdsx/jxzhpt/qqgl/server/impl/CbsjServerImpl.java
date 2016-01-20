@@ -28,14 +28,31 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjLmgz",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjLmgzbg(Cbsj lmsj, int page, int rows) {
+		params.put("cbsj", lmsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjLmgzbg",params);
+	}
+	@Override
 	public int queryCbsjLmgzCount(Cbsj lmsj) {
 		params.put("lmsj", lmsj);
 		return queryOne("queryCbsjLmgzCount", params);
 	}
 	@Override
+	public int queryCbsjLmgzbgCount(Cbsj lmsj) {
+		params.put("lmsj", lmsj);
+		return queryOne("queryCbsjLmgzbgCount", params);
+	}
+	@Override
 	public Cbsj queryCbsjLmgzByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjLmgzByXmbm",params);
+	}
+	@Override
+	public Cbsj queryCbsjLmgzbgByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjLmgzbgByXmbm",params);
 	}
 	@Override
 	public boolean updateCbsjLmgz(Cbsj cbsj) {
@@ -69,14 +86,31 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjLmsj",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjLmsjbg(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjLmsjbg",params);
+	}
+	@Override
 	public int queryCbsjLmsjCount(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("queryCbsjLmsjCount", params);
 	}
 	@Override
+	public int queryCbsjLmsjbgCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjLmsjbgCount", params);
+	}
+	@Override
 	public Cbsj queryCbsjLmsjByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjLmsjByXmbm", params);
+	}
+	@Override
+	public Cbsj queryCbsjLmsjbgByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjLmsjbgByXmbm", params);
 	}
 	@Override
 	public boolean updateCbsjLmsj(Cbsj cbsj) {
@@ -149,14 +183,31 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjXj",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjXjbg(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjXjbg",params);
+	}
+	@Override
 	public int queryCbsjXjCount(Cbsj cbsj) {
 		params.put("cbsj",cbsj);
 		return queryOne("queryCbsjXjCount", params);
 	}
 	@Override
+	public int queryCbsjXjbgCount(Cbsj cbsj) {
+		params.put("cbsj",cbsj);
+		return queryOne("queryCbsjXjbgCount", params);
+	}
+	@Override
 	public Cbsj queryCbsjXjByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjXjByXmbm", params);
+	}
+	@Override
+	public Cbsj queryCbsjXjbgByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjXjbgByXmbm", params);
 	}
 	@Override
 	public boolean updateCbsjXj(Cbsj cbsj) {
@@ -203,6 +254,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryOne("queryCbsjYhdzxByXmbm", params);
 	}
 	@Override
+	public Cbsj queryCbsjYhdzxbgByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjYhdzxbgByXmbm", params);
+	}
+	@Override
 	public List<Cbsj> queryCbsjYhdzx(Cbsj cbsj, int page, int rows) {
 		params.put("cbsj", cbsj);
 		params.put("page", page);
@@ -210,9 +266,21 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjYhdzx",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjYhdzxbg(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjYhdzxbg",params);
+	}
+	@Override
 	public int queryCbsjYhdzxCount(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("queryCbsjYhdzxCount", params);
+	}
+	@Override
+	public int queryCbsjYhdzxbgCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjYhdzxbgCount", params);
 	}
 	@Override
 	public boolean updateCbsjYhdzx(Cbsj cbsj) {
@@ -238,14 +306,31 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjSh",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjShbg(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjShbg",params);
+	}
+	@Override
 	public int queryCbsjShCount(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("queryCbsjShCount", params);
 	}
 	@Override
+	public int queryCbsjShbgCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjShbgCount", params);
+	}
+	@Override
 	public Cbsj queryCbsjShByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjShByXmbm",params);
+	}
+	@Override
+	public Cbsj queryCbsjShbgByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjShbgByXmbm",params);
 	}
 	@Override
 	public boolean updateCbsjSh(Cbsj cbsj) {
@@ -334,8 +419,16 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryOne("queryCbsjLjYhdzx", cbsj);
 	}
 	@Override
+	public Map<String, String> queryCbsjbgLjYhdzx(Cbsj cbsj) {
+		return queryOne("queryCbsjbgLjYhdzx", cbsj);
+	}
+	@Override
 	public Map<String, String> queryCbsjLjSh(Cbsj cbsj) {
 		return queryOne("queryCbsjLjSh", cbsj);
+	}
+	@Override
+	public Map<String, String> queryCbsjbgLjSh(Cbsj cbsj) {
+		return queryOne("queryCbsjbgLjSh", cbsj);
 	}
 	@Override
 	public Lxsh loadsjcbsjTjxx(Cbsj cbsj) {
@@ -343,14 +436,29 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryOne("loadsjcbsjTjxx", params);
 	}
 	@Override
+	public Lxsh loadsjcbsjbgTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadsjcbsjbgTjxx", params);
+	}
+	@Override
 	public Lxsh loadlmcbsjTjxx(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("loadlmcbsjTjxx", params);
 	}
 	@Override
+	public Lxsh loadlmcbsjbgTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadlmcbsjbgTjxx", params);
+	}
+	@Override
 	public Lxsh loadxjcbsjTjxx(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("loadxjcbsjTjxx", params);
+	}
+	@Override
+	public Lxsh loadxjcbsjbgTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadxjcbsjbgTjxx", params);
 	}
 
 }

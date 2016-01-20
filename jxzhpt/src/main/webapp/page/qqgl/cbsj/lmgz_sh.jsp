@@ -37,6 +37,13 @@
 			}
 			queryLmgz();
 		});
+		var xmbm;
+		var xmlx;
+		function tz(id,lx){
+			xmbm=id;
+			xmlx=lx;
+			YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
+		}
 		function queryLmgz(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
@@ -64,7 +71,7 @@
 								result+='&nbsp;编辑';
 								else
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}

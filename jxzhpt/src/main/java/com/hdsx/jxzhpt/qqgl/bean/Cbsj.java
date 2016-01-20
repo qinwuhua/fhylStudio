@@ -22,6 +22,21 @@ public class Cbsj {
 				+ ", jdbs=" + jdbs + ", gpsqdzh=" + gpsqdzh + ", gpszdzh="
 				+ gpszdzh + "]";
 	}
+	private String tzxz;
+	private String tzsj;
+	
+	public String getTzxz() {
+		return tzxz;
+	}
+	public void setTzxz(String tzxz) {
+		this.tzxz = tzxz;
+	}
+	public String getTzsj() {
+		return tzsj;
+	}
+	public void setTzsj(String tzsj) {
+		this.tzsj = tzsj;
+	}
 	private String gcfl;//工程分类
 	private String id;//唯一ID
 	private String xmbm;//项目编码

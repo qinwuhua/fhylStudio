@@ -21,6 +21,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
+	var xmbm;
+	var xmlx;
+	function tz(id,lx){
+		xmbm=id;
+		xmlx=lx;
+		YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
+	}
 		$(function(){
 			if($.cookie("unit2").length!=7)
 				$("img[name='bxs']").attr('style','display:none');
@@ -64,7 +71,7 @@
 								result+='&nbsp;编辑';
 								else
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'改建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}

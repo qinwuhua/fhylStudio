@@ -103,7 +103,7 @@
 			        	if(row.tzxz=='取消')
 				        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+' 编辑 <a href="javascript:thtz('+"'"+row.xmbm+"','xj','1'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
 			        	else
-			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  <a href="javascript:thtz1('+"'"+row.xmbm+"','xj','1'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2tz('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  <a href="javascript:thtz1('+"'"+row.xmbm+"','xj','1'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
 			        }},
 			       
 			        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',

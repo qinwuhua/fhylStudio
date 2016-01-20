@@ -290,6 +290,11 @@ function xiangxi2(index){
 	obj=data;
 	YMLib.UI.createWindow('lxxx','可行性研究详细信息','xjsb_xx.jsp','lxxx',900,400);
 }
+function xiangxi2tz(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','xjsb_xx1.jsp','lxxx',900,400);
+}
 function edit2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
