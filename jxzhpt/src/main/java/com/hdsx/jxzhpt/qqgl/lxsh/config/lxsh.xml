@@ -958,6 +958,9 @@
 	<update id="thxmsqshsh" parameterType="String">
 		update xmsq_sh set sqzt='0' where ${value}
 	</update>
+	<update id="thxmsqshyhzx" parameterType="String">
+		update xmsq_yhzx set sqzt='0' where ${value}
+	</update>
 	
 	<select id="selectYbmrsjd" parameterType="wqbzbz" resultType="wqbzbz">
 		select id,decode(xmlx,'gcgl_wqgz','危桥','gcgl_abgc','安保','gcgl_zhfz','灾害','gcgl_gcgzgj','路面改造','gcgl_gcgzsj','改建','gcgl_sh','灾毁重建','gcgl_yhdzx','养护大中修','gcgl_xj','新建') xmlx,jzsj,yf from xtgl_ybmrsj where 1=1 and xmlx=#{xmlx} order by to_number(yf)

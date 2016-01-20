@@ -345,14 +345,21 @@
 				alert("您不是省级用户");
 				return;
 			}
+			for(var i=0;i<rows.length;i++){
+			if(rows[i].sqzt=='7'){
+				alert("已审核的项目无法退回！");
+				return;
+			}
+			}
 			var id=rows[0].id;
 			var xmbm=rows[0].xmbm;
 			for(var i=1;i<rows.length;i++){
 				xmbm+=","+rows[i].xmbm;
 			}
+			alert(xmbm);
 			for(var i=0;i<rows.length;i++){
 			if(rows[i].sqzt=='9'){
-				var data = "lxsh.xmbm="+xmbm+"&lxsh.bz=yhdzx";
+				var data = "lxsh.xmbm="+xmbm+"&lxsh.bz=yhzx";
 				//在可行性中是否已经操作过
 				$.ajax({
 						 type : "POST",
