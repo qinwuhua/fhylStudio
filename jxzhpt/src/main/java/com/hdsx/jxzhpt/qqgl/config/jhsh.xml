@@ -1018,7 +1018,7 @@
 					and ${jhsh2.xzqhdm}
 				</if>
 				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-					and l.xmmc like '%'||${jhsh2.xmmc}||'%'
+					and l.xmmc like '%'||'${jhsh2.xmmc}'||'%'
 				</if>
 				<if test="jhsh2.jb!=null and jhsh2.jb!=''">
 					and l.jb like '%'||${jhsh2.jb}||'%'
@@ -1030,10 +1030,10 @@
 					and l.jsxz like '%'||${jhsh2.jsxz}||'%'
 				</if>
 				<if test="jhsh2.ydbmc!=null and jhsh2.ydbmc!=''">
-					and l.ydbmc like '%'||${jhsh2.ydbmc}||'%'
+					and l.ydbmc like '%'||'${jhsh2.ydbmc}'||'%'
 				</if>
 				<if test="jhsh2.lxmc !='' and jhsh2.lxmc != null ">
-					and l.lxmc like '%'||${jhsh2.lxmc}||'%'
+					and l.lxmc like '%'||'${jhsh2.lxmc}'||'%'
 				</if>
 				<if test="jhsh2.xdzt>=0">
 					and j.xdzt=${jhsh2.xdzt}
@@ -1054,7 +1054,7 @@
 					and ${jhsh2.xzqhdm}
 				</if>
 				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-					and l.xmmc like '%'||${jhsh2.xmmc}||'%'
+					and l.xmmc like '%'||'${jhsh2.xmmc}'||'%'
 				</if>
 				<if test="jhsh2.jb!=null and jhsh2.jb!=''">
 					and l.jb like '%'||${jhsh2.jb}||'%'
@@ -1066,10 +1066,10 @@
 					and l.jsxz like '%'||${jhsh2.jsxz}||'%'
 				</if>
 				<if test="jhsh2.ydbmc!=null and jhsh2.ydbmc!=''">
-					and l.ydbmc like '%'||${jhsh2.ydbmc}||'%'
+					and l.ydbmc like '%'||'${jhsh2.ydbmc}'||'%'
 				</if>
 				<if test="jhsh2.lxmc !='' and jhsh2.lxmc != null ">
-					and l.lxmc like '%'||${jhsh2.lxmc}||'%'
+					and l.lxmc like '%'||'${jhsh2.lxmc}'||'%'
 				</if>
 				<if test="jhsh2.xdzt>=0">
 					and j.xdzt=${jhsh2.xdzt}

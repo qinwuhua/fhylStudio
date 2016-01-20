@@ -308,6 +308,7 @@ function showAllZJ(){
 		},
 	    columns:[[
 				{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+//					alert(row.sbyf+'--'+row.tbyf);
 					if(row.sbsj==""||row.sbyf>row.tbyf){
 		        		return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
 		        	}

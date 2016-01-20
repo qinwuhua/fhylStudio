@@ -600,7 +600,7 @@
 					and ${xmsq.xzqhdm}
 				</if>
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
-					and xmmc like '%'||${xmsq.xmmc}||'%'
+					and xmmc like '%'||'${xmsq.xmmc}'||'%'
 				</if>
 				<if test="xmsq.jb!=null and xmsq.jb!=''">
 					and jb like '%'||${xmsq.jb}||'%'
@@ -615,10 +615,10 @@
 					and jsxz like '%'||${xmsq.jsxz}||'%'
 				</if>
 				<if test="xmsq.ydbmc!=null and xmsq.ydbmc!=''">
-					and ydbmc like '%'||${xmsq.ydbmc}||'%'
+					and ydbmc like '%'||'${xmsq.ydbmc}'||'%'
 				</if>
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
-					and lxmc like '%'||${xmsq.lxmc}||'%'
+					and lxmc like '%'||'${xmsq.lxmc}'||'%'
 				</if>
 				order by sqzt desc,xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
@@ -788,10 +788,10 @@
 					and ${xzqhdm}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">
-					and xmmc like '%'||${xmmc}||'%'
+					and xmmc like '%'||#{xmmc}||'%'
 				</if>
 				<if test="jb!=null and jb!=''">
-					and jb like '%'||${jb}||'%'
+					and jb like '%'||#{jb}||'%'
 				</if>
 				<if test="sqzt>=0">
 					and sqzt=${sqzt}
@@ -800,13 +800,13 @@
 					and ${xmbm}
 				</if>
 				<if test="jsxz!=null and jsxz!=''">
-					and jsxz like '%'||${jsxz}||'%'
+					and jsxz like '%'||#{jsxz}||'%'
 				</if>
 				<if test="ydbmc!=null and ydbmc!=''">
-					and ydbmc like '%'||${ydbmc}||'%'
+					and ydbmc like '%'||#{ydbmc}||'%'
 				</if>
 				<if test="lxmc !='' and lxmc != null ">
-					and lxmc like '%'||${lxmc}||'%'
+					and lxmc like '%'||#{lxmc}||'%'
 				</if>
 	</select>
 </mapper>

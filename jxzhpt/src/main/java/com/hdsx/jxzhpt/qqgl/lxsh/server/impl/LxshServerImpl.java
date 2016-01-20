@@ -759,6 +759,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		String str="xmbm in ("+lxsh.getXmbm()+")";
 		if("yhdzx".equals(lxsh.getBz())){
 			return update("thxmsqshyh", str)>0;
+		}else if ("yhzx".equals(lxsh.getBz())) {
+			return update("thxmsqshyhzx", str)>0;
 		}else{
 			return update("thxmsqshsh", str)>0;
 		}
