@@ -89,7 +89,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080106',
 		title:'养护中心项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/yhzx_s.png',
 		renderTo:'left_menu1',
 		href:'../qqgl/jhsh/yhzxgl.jsp'
 	});
@@ -168,7 +168,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101080207',
 		title:'养护中心项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/yhzx_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/yhzxgl.jsp'
 	});

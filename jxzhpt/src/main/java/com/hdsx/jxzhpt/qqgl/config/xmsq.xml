@@ -774,7 +774,7 @@
 	
 	<insert id="insertJhshYhzx" parameterType="xmsq">
 		insert into jhsh_yhzx (xmbm,ztz,ZBZZJ,SBZZJ,ZDDZJL,DFZC,jhkgsj,jhwgsj)
-		select x.xmbm,x.ztz,x.ZBZZJ,x.SBZZJ,x.ZDDZJL,x.DFZC,x.jhkgsj,x,jhwgsj
+		select x.xmbm,x.ztz,x.ZBZZJ,x.SBZZJ,x.ZDDZJL,x.DFZC,x.jhkgsj,x.jhwgsj
 		from xmsq_yhzx x where x.xmbm in (${xmbm})
 	</insert>
 	
