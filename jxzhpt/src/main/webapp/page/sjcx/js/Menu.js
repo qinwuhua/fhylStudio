@@ -312,6 +312,13 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./zdycx/zdycx4.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060405',
+		title:'改建、路面改造、新建、养护大中修、灾毁重建',
+		imgSrc:'../../images/zdycx.png',
+		renderTo:'left_menu4',
+		href:'./zdycx/zdycx5.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101060501',

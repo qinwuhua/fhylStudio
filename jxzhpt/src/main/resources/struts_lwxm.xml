@@ -172,7 +172,9 @@
 	<action name="xgSckbhsdSdzt" class="sckbhsdController" method="xgSckbhsdSdzt"/>
  </package>
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
+ 	 <action name="selqbZdy" class="zdycxController" method="selqbZdy"/>
 	 <action name="selwqgzsjZdy" class="zdycxController" method="selwqgzsjZdy"/>
+	  <action name="exportExcel_qbzdy" class="zdycxController" method="exportExcel_qbzdy"/>
 	 <action name="exportExcel_wqsjzdy" class="zdycxController" method="exportExcel_wqsjzdy"/>
 	 <action name="selZdy" class="zdycxController" method="selZdy"/>
      <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>

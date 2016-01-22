@@ -44,6 +44,8 @@
       <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Planwqgzsj" alias="planwqgzsj"/>
      <!-- qwh end -->
      <!-- lhp -->
+     
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycxqb" alias="zdycxqb"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz" alias="jckwqgz"/>

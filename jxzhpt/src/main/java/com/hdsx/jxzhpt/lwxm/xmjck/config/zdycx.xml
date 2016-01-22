@@ -434,4 +434,37 @@
 			and xd.xdnf like '%'||trim(#{jhnf})||'%'
 	</if>
 	 </select>
+	 
+	 <select id="selqbZdy" parameterType="zdycx" resultType="zdycxqb">
+	 	select * from(select t.*,rownum rn from zdycxqb t where 1=1
+	 	<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
+		<if test="kgzt != null and  kgzt != ''">and ${kgzt}</if>
+		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||#{lxmc}||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||#{lxbm}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and ${xmnf}</if>
+		<if test="xmlx != null and  xmlx != ''">and ${xmlx}</if>
+	 	) tb where tb.rn&lt;=(#{page} * #{rows}) and  tb.rn>((#{page} - 1) * #{rows})
+	 	
+	 </select>
+	  <select id="selqbZdyCount" parameterType="zdycx" resultType="int">
+	 	select count(*) from zdycxqb t where 1=1
+	 	<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
+		<if test="kgzt != null and  kgzt != ''">and ${kgzt}</if>
+		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||#{lxmc}||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||#{lxbm}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and ${xmnf}</if>
+		<if test="xmlx != null and  xmlx != ''">and ${xmlx}</if>
+	 </select>
+	 <select id="exportExcel_qbzdy" parameterType="zdycx" resultType="sjbb">
+		select ${colName} from (select * from zdycxqb t where 1=1
+	 	<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
+		<if test="kgzt != null and  kgzt != ''">and ${kgzt}</if>
+		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||#{lxmc}||'%'</if>
+		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||#{lxbm}||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and ${xmnf}</if>
+		<if test="xmlx != null and  xmlx != ''">and ${xmlx}</if>)
+	</select>
 </mapper>

@@ -69,6 +69,47 @@ public class SjbbMessage   implements Serializable {
 	private String v_56="";
 	private String v_57="";
 	private String v_58="";
+	private String v_59="";
+	private String v_60="";
+	private String v_61="";
+	private String v_62="";
+	private String v_63="";
+	private String v_64="";
+	private String v_65="";
+	private String v_66="";
+	private String v_67="";
+	private String v_68="";
+	private String v_69="";
+	private String v_70="";
+	private String v_71="";
+	private String v_72="";
+	private String v_73="";
+	private String v_74="";
+	private String v_75="";
+	private String v_76="";
+	private String v_77="";
+	private String v_78="";
+	private String v_79="";
+	private String v_80="";
+	private String v_81="";
+	private String v_82="";
+	private String v_83="";
+	private String v_84="";
+	private String v_85="";
+	private String v_86="";
+	private String v_87="";
+	private String v_88="";
+	private String v_89="";
+	private String v_90="";
+	private String v_91="";
+	private String v_92="";
+	private String v_93="";
+	private String v_94="";
+	private String v_95="";
+	private String v_96="";
+	private String v_97="";
+	private String v_98="";
+	private String v_99="";
 	private String id;
 	private String dist;
 	private String unit;
@@ -76,7 +117,335 @@ public class SjbbMessage   implements Serializable {
 	private String sbdw;
 	private String dwlx;
 	
-    public String getDwlx() {
+    public String getV_59() {
+		return v_59;
+	}
+
+	public void setV_59(String v_59) {
+		this.v_59 = v_59;
+	}
+
+	public String getV_60() {
+		return v_60;
+	}
+
+	public void setV_60(String v_60) {
+		this.v_60 = v_60;
+	}
+
+	public String getV_61() {
+		return v_61;
+	}
+
+	public void setV_61(String v_61) {
+		this.v_61 = v_61;
+	}
+
+	public String getV_62() {
+		return v_62;
+	}
+
+	public void setV_62(String v_62) {
+		this.v_62 = v_62;
+	}
+
+	public String getV_63() {
+		return v_63;
+	}
+
+	public void setV_63(String v_63) {
+		this.v_63 = v_63;
+	}
+
+	public String getV_64() {
+		return v_64;
+	}
+
+	public void setV_64(String v_64) {
+		this.v_64 = v_64;
+	}
+
+	public String getV_65() {
+		return v_65;
+	}
+
+	public void setV_65(String v_65) {
+		this.v_65 = v_65;
+	}
+
+	public String getV_66() {
+		return v_66;
+	}
+
+	public void setV_66(String v_66) {
+		this.v_66 = v_66;
+	}
+
+	public String getV_67() {
+		return v_67;
+	}
+
+	public void setV_67(String v_67) {
+		this.v_67 = v_67;
+	}
+
+	public String getV_68() {
+		return v_68;
+	}
+
+	public void setV_68(String v_68) {
+		this.v_68 = v_68;
+	}
+
+	public String getV_69() {
+		return v_69;
+	}
+
+	public void setV_69(String v_69) {
+		this.v_69 = v_69;
+	}
+
+	public String getV_70() {
+		return v_70;
+	}
+
+	public void setV_70(String v_70) {
+		this.v_70 = v_70;
+	}
+
+	public String getV_71() {
+		return v_71;
+	}
+
+	public void setV_71(String v_71) {
+		this.v_71 = v_71;
+	}
+
+	public String getV_72() {
+		return v_72;
+	}
+
+	public void setV_72(String v_72) {
+		this.v_72 = v_72;
+	}
+
+	public String getV_73() {
+		return v_73;
+	}
+
+	public void setV_73(String v_73) {
+		this.v_73 = v_73;
+	}
+
+	public String getV_74() {
+		return v_74;
+	}
+
+	public void setV_74(String v_74) {
+		this.v_74 = v_74;
+	}
+
+	public String getV_75() {
+		return v_75;
+	}
+
+	public void setV_75(String v_75) {
+		this.v_75 = v_75;
+	}
+
+	public String getV_76() {
+		return v_76;
+	}
+
+	public void setV_76(String v_76) {
+		this.v_76 = v_76;
+	}
+
+	public String getV_77() {
+		return v_77;
+	}
+
+	public void setV_77(String v_77) {
+		this.v_77 = v_77;
+	}
+
+	public String getV_78() {
+		return v_78;
+	}
+
+	public void setV_78(String v_78) {
+		this.v_78 = v_78;
+	}
+
+	public String getV_79() {
+		return v_79;
+	}
+
+	public void setV_79(String v_79) {
+		this.v_79 = v_79;
+	}
+
+	public String getV_80() {
+		return v_80;
+	}
+
+	public void setV_80(String v_80) {
+		this.v_80 = v_80;
+	}
+
+	public String getV_81() {
+		return v_81;
+	}
+
+	public void setV_81(String v_81) {
+		this.v_81 = v_81;
+	}
+
+	public String getV_82() {
+		return v_82;
+	}
+
+	public void setV_82(String v_82) {
+		this.v_82 = v_82;
+	}
+
+	public String getV_83() {
+		return v_83;
+	}
+
+	public void setV_83(String v_83) {
+		this.v_83 = v_83;
+	}
+
+	public String getV_84() {
+		return v_84;
+	}
+
+	public void setV_84(String v_84) {
+		this.v_84 = v_84;
+	}
+
+	public String getV_85() {
+		return v_85;
+	}
+
+	public void setV_85(String v_85) {
+		this.v_85 = v_85;
+	}
+
+	public String getV_86() {
+		return v_86;
+	}
+
+	public void setV_86(String v_86) {
+		this.v_86 = v_86;
+	}
+
+	public String getV_87() {
+		return v_87;
+	}
+
+	public void setV_87(String v_87) {
+		this.v_87 = v_87;
+	}
+
+	public String getV_88() {
+		return v_88;
+	}
+
+	public void setV_88(String v_88) {
+		this.v_88 = v_88;
+	}
+
+	public String getV_89() {
+		return v_89;
+	}
+
+	public void setV_89(String v_89) {
+		this.v_89 = v_89;
+	}
+
+	public String getV_90() {
+		return v_90;
+	}
+
+	public void setV_90(String v_90) {
+		this.v_90 = v_90;
+	}
+
+	public String getV_91() {
+		return v_91;
+	}
+
+	public void setV_91(String v_91) {
+		this.v_91 = v_91;
+	}
+
+	public String getV_92() {
+		return v_92;
+	}
+
+	public void setV_92(String v_92) {
+		this.v_92 = v_92;
+	}
+
+	public String getV_93() {
+		return v_93;
+	}
+
+	public void setV_93(String v_93) {
+		this.v_93 = v_93;
+	}
+
+	public String getV_94() {
+		return v_94;
+	}
+
+	public void setV_94(String v_94) {
+		this.v_94 = v_94;
+	}
+
+	public String getV_95() {
+		return v_95;
+	}
+
+	public void setV_95(String v_95) {
+		this.v_95 = v_95;
+	}
+
+	public String getV_96() {
+		return v_96;
+	}
+
+	public void setV_96(String v_96) {
+		this.v_96 = v_96;
+	}
+
+	public String getV_97() {
+		return v_97;
+	}
+
+	public void setV_97(String v_97) {
+		this.v_97 = v_97;
+	}
+
+	public String getV_98() {
+		return v_98;
+	}
+
+	public void setV_98(String v_98) {
+		this.v_98 = v_98;
+	}
+
+	public String getV_99() {
+		return v_99;
+	}
+
+	public void setV_99(String v_99) {
+		this.v_99 = v_99;
+	}
+
+	public String getDwlx() {
 		return dwlx;
 	}
 

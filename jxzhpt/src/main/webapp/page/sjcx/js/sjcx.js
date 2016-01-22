@@ -1,5 +1,8 @@
 var checkValues;
 var gydw=parent.YMLib.Var.gydw;
+function sjcxqb(){
+	YMLib.UI.createWindow('zd_wqgz','项目字段选择列表','zdycx_qb.jsp','zd_wqgz','1000','420');
+}
 function Wqgz(){
 	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgz.jsp','zd_wqgz','900','380');
 }
@@ -98,6 +101,25 @@ function exportExcel_zdy(){
 	"&tableName="+YMLib.Var.tablecol;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
+}
+function exportExcel_qbzdy(){
+	if(YMLib.Var.sqlcol==null||YMLib.Var.sqlcol==''){
+		alert("请勾选要导出的列");
+		return ;
+	}
+	var param="kgzt="+YMLib.Var.kgzt+
+	"&lxmc="+YMLib.Var.lxmc+
+	"&lxbm="+YMLib.Var.lxbm+
+	"&xmlx="+YMLib.Var.xmlx+
+	"&xmnf="+YMLib.Var.xmnf+
+	"&xmName="+YMLib.Var.xmName+
+	"&colName="+YMLib.Var.sqlcol+
+	"&tableName="+YMLib.Var.tablecol;
+	//特殊地区 条件	
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:YMLib.Var.gydw,xzqh:YMLib.Var.xzqhdm},function(){
+		window.location.href="/jxzhpt/zdycx/exportExcel_qbzdy.do?"+param;
+	 });
+	
 }
 function exportExcel_wqsjzdy(){
 	if(YMLib.Var.sqlcol==null||YMLib.Var.sqlcol==''){

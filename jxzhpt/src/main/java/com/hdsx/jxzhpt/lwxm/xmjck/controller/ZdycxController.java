@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
@@ -17,6 +19,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycxqb;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.ZdycxServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
@@ -42,6 +45,148 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	private ZdycxServer zdycxServer;
 	private Zdycx zdycx=new Zdycx();
 	private String xmlx;
+	private void xmlxHandle() {
+		if(zdycx.getXmlx()!=null && !zdycx.getXmlx().equals("")){
+			String xmlx = zdycx.getXmlx();
+			if(xmlx.indexOf(",")>-1){
+				String[] split = xmlx.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xmlx = "(xmlx like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xmlx += " or xmlx like '"+split[i]+"%')";
+					}else{
+						xmlx += " or xmlx like '"+split[i]+"%'";
+					}
+				}
+			}else{
+				xmlx = "xmlx like '"+xmlx+"%'";
+			}
+			zdycx.setXmlx(xmlx);
+		}
+	}
+	private void kgztHandle() {
+		if(zdycx.getKgzt()!=null && !zdycx.getKgzt().equals("")){
+			String kgzt = zdycx.getKgzt();
+			if(kgzt.indexOf(",")>-1){
+				String[] split = kgzt.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						kgzt = "(kgzt like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						kgzt += " or kgzt like '"+split[i]+"%')";
+					}else{
+						kgzt += " or kgzt like '"+split[i]+"%'";
+					}
+				}
+			}else{
+				kgzt = "kgzt like '"+kgzt+"%'";
+			}
+			zdycx.setKgzt(kgzt);
+		}
+	}
+	private void xmnfHandle() {
+		if(zdycx.getXmnf()!=null && !zdycx.getXmnf().equals("")){
+			String xmnf = zdycx.getXmnf();
+			if(xmnf.indexOf(",")>-1){
+				String[] split = xmnf.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xmnf = "(xmnf like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xmnf += " or xmnf like '"+split[i]+"%')";
+					}else{
+						xmnf += " or xmnf like '"+split[i]+"%'";
+					}
+				}
+			}else{
+				xmnf = "xmnf like '"+xmnf+"%'";
+			}
+			zdycx.setXmnf(xmnf);
+		}
+	}
+	public void selqbZdy(){
+		try {
+			xmlxHandle();
+			xmnfHandle();
+			kgztHandle();
+			if(zdycx.getGydw().indexOf(",")==-1){
+				if(zdycx.getGydw().length()==9)
+					zdycx.setGydw("and (gydw='"+zdycx.getGydw()+"'||'00' or gydw in(select id from xtgl_department where parent='"+zdycx.getGydw()+"'||'00'))");					
+				else
+					zdycx.setGydw("and gydw like '%'||substr('"+zdycx.getGydw()+"',0,4)||'_'||substr('"+zdycx.getGydw()+"',6)||'%'");
+			}else{
+				zdycx.setGydw("and gydw in ("+zdycx.getGydw()+")");
+			}
+			if(zdycx.getXzqhdm().indexOf(",")==-1){
+				zdycx.setXzqhdm("and xzqh like '%"+zdycx.getXzqhdm()+"%'");
+			}else{
+				zdycx.setXzqhdm("and xzqh in ("+zdycx.getXzqhdm()+")");
+			}
+			List<Zdycxqb> list = zdycxServer.selqbZdy(zdycx);
+			int count = zdycxServer.selqbZdyCount(zdycx);
+			EasyUIPage<Zdycxqb> ep = new EasyUIPage<Zdycxqb>();
+			ep.setRows(list);
+			ep.setTotal(count);
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void exportExcel_qbzdy(){
+		try {
+			xmlxHandle();
+			xmnfHandle();
+			kgztHandle();
+			HttpSession session = getRequest().getSession();
+			String gydws=(String) session.getAttribute("gydwbb");	
+			String xzqhs=(String) session.getAttribute("xzqhbb");
+			if(gydws.indexOf(",")==-1){
+				if(gydws.length()==9)
+					zdycx.setGydw("and (gydw='"+gydws+"'||'00' or gydw in(select id from xtgl_department where parent='"+gydws+"'||'00'))");					
+				else
+					zdycx.setGydw("and gydw like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
+			}else{
+				zdycx.setGydw("and gydw in ("+gydws+")");
+			}
+			if(xzqhs.indexOf(",")==-1){
+				zdycx.setXzqhdm("and xzqh like '%"+xzqhs+"%'");
+			}else{
+				zdycx.setXzqhdm("and xzqh in ("+xzqhs+")");
+			}
+			
+			List <SjbbMessage> list=zdycxServer.exportExcel_qbzdy(zdycx);
+			System.out.println("------------"+list.size()+"--------------");
+			//导出设置
+			String excelHtml="<tr>";
+			String[] col=null;
+			col=zdycx.getTableName().split(",");
+			for(int i=0;i<col.length;i++){
+				excelHtml+="<td>"+col[i]+"</td>";
+			}
+			excelHtml+="</tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("项目自定义导出数据");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("项目自定义表格");
+			sheetb.setList(list);
+			sheetb.setColnum((short)col.length);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName="项目自定义导出数据";//excel 文件的名字
+			//导出excel
+			ExportExcel_new ee = new ExportExcel_new();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 	public void selwqgzsjZdy(){

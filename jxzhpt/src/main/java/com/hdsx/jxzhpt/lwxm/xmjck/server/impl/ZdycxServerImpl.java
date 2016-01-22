@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycxqb;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.ZdycxServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
@@ -74,5 +75,16 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 	public List<SjbbMessage> exportExcel_wqsjzdy(Zdycx zdycx) {
 		return queryList("exportExcel_wqsjzdy",zdycx);
 	}
-	
+	@Override
+	public List<Zdycxqb> selqbZdy(Zdycx zdycx) {
+		return queryList("selqbZdy",zdycx);
+	}
+	@Override
+	public int selqbZdyCount(Zdycx zdycx) {
+		return queryOne("selqbZdyCount", zdycx);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_qbzdy(Zdycx zdycx) {
+		return queryList("exportExcel_qbzdy",zdycx);
+	}
 }
