@@ -216,7 +216,7 @@
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
            		<div>
-           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】</div>
+           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】万元</div>
            			<table id="grid"></table>
            		</div>
            	</td>

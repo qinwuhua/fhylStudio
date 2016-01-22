@@ -241,7 +241,7 @@ text-decoration:none;
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>总投资累计：<span id="spanztz" style="color: red;">0</span>;省补助资金累计：<span id="spansbz" style="color: red;">0</span>;
+           		<div>总投资累计：<span id="spanztz" style="color: red;">0</span>万元; 省补助资金累计：<span id="spansbz" style="color: red;">0</span>万元;
            		</div>
            		<div><table id="grid"></table></div>
            	</td>

@@ -24,7 +24,6 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
-// 			loadBmbm2('sqzt','申请状态省');
             loadBmbm2('jb','级别');
 			loadBmbm2('jsxz','建设性质2');
 			xmnf("xmnf");
@@ -62,10 +61,10 @@
 						return result;
 					}
 				},
-				{rowspan:2,field:'xmbm',title:'项目编码',width:100,align:'center'},
+				{rowspan:2,field:'xmbm',title:'项目编码',width:150,align:'center'},
 				{rowspan:2,field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{rowspan:2,field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{rowspan:2,field:'gydw',title:'管养单位',width:100,align:'center'},
+				{rowspan:2,field:'gydw',title:'管养单位',width:150,align:'center'},
 				{rowspan:2,field:'ydbmc',title:'原道班名称',width:100,align:'center'},
 				{rowspan:2,field:'jb',title:'级别',width:100,align:'center',
 					formatter: function(value,row,index){
@@ -176,8 +175,8 @@
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>总投资累计【<span id="spanztz" style="color: red;">0</span>】,
-           		省以上补助资金累计【<span id="spansbz" style="color: red;">0</span>】
+           		<div>总投资累计【<span id="spanztz" style="color: red;">0</span>万元】,
+           		省以上补助资金累计【<span id="spansbz" style="color: red;">0</span>万元】
            		</div>
            		<div>
            			<table id="grid"></table>

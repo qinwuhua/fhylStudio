@@ -83,7 +83,8 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <!-- <td style="width: 155px;">部投资：<span id="cgsdwzj"></span></td> --><td>省投资：<span id="stz"></span></td>
+                                <td style="width: 155px;">重点打造奖励：<span id="cgsdwzj"></span></td>
+                                <td>省投资：<span id="stz"></span></td>
                                 </tr>
                                 </table>
                                 </div>

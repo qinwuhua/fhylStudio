@@ -179,6 +179,7 @@
 				alert("只能删除未申请的信息！");
 				return;
 			}
+		if(confirm('确定删除该项目？')){
 			if(selArray.length!=0){
 				var xmbm = selArray.join(",");
 				$.ajax({
@@ -197,9 +198,11 @@
 			}else{
 				alert("请选择要删除的信息！");
 			}
+			}
 		}
 		
 		function sb(xmbm){
+			if(confirm('确定上报该项目？')){
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/updateXmsqSbzt.do',
@@ -213,6 +216,7 @@
 					}
 				}
 			});
+			}
 		}
 		
 		
@@ -229,6 +233,7 @@
 				alert("只能上报未上报过的项目！");
 				return;
 			}
+		if(confirm('确定上报该项目？')){
 			if(selArray.length!=0){
 				var xmbm = selArray.join(",");
 				$.ajax({
@@ -248,7 +253,10 @@
 				alert("请选择要上报的信息！");
 			}
 		}
+		}
+		
 		function sp(xmbm){
+			if(confirm('确定审核该项目？')){
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/updateYhzxSp.do',
@@ -262,6 +270,7 @@
 					}
 				}
 			});
+			}
 		}
 		function batchSp(){
 			var selRow = $('#grid').datagrid("getSelections");
@@ -276,6 +285,7 @@
 				alert("只能审批未通过的项目！");
 				return;
 			}
+		if(confirm('确定审批该项目？')){
 			if(selArray.length!=0){
 				var xmbm = selArray.join(",");
 				$.ajax({
@@ -293,6 +303,7 @@
 				});
 			}else{
 				alert("请选择要上报的信息！");
+			}
 			}
 		}
 		
@@ -313,6 +324,7 @@
 		function openYhzx(){
 			openWindow("yhzxadd","添加养护中心项目","yhzxAdd.jsp",980,400);
 		}
+		
 		function loadGcfl(id,name){
 			$.ajax({
 				type:'post',
@@ -331,6 +343,7 @@
 				}
 			});
 		}
+		
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
@@ -356,7 +369,7 @@
 			for(var i=1;i<rows.length;i++){
 				xmbm+=","+rows[i].xmbm;
 			}
-			alert(xmbm);
+			if(confirm('确定退回该项目？')){
 			for(var i=0;i<rows.length;i++){
 			if(rows[i].sqzt=='9'){
 				var data = "lxsh.xmbm="+xmbm+"&lxsh.bz=yhzx";
@@ -381,6 +394,7 @@
 				return;
 			}
 		}
+			}
 		}
 	</script>
 </head>
@@ -438,7 +452,7 @@
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
            		<div>
-           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>】</div>
+           			<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="spanntz" style="color: red;">0</span>万元】</div>
            			<table id="grid"></table>
            		</div>
            	</td>

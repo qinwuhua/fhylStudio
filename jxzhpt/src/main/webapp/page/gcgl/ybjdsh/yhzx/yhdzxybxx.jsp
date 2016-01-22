@@ -83,7 +83,8 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <!-- <td style="width: 155px;">部投资：<span id="cgsdwzj"></span></td> --><td>省投资：<span id="stz"></span></td>
+                                <td style="width: 155px;">重点打造奖励：<span id="cgsdwzj"></span></td> 
+                                <td>省投资：<span id="stz"></span></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -109,7 +110,7 @@ a:active {
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 9px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报月份</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;

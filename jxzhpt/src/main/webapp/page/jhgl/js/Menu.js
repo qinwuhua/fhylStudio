@@ -360,7 +360,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030315',
 		title:'养护中心项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/yhzx_s.png',
 		renderTo:'left_menu3',
 		href:'../qqgl/jhsh/yhzxsh.jsp'
 	});
@@ -517,7 +517,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030415',
 		title:'养护中心项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/yhzx_s.png',
 		renderTo:'left_menu4',
 		href:'../qqgl/zjxd/yhzx.jsp'
 	});
@@ -679,7 +679,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030515',
 		title:'养护中心项目',
-		imgSrc:'../../images/yh_s.png',
+		imgSrc:'../../images/yhzx_s.png',
 		renderTo:'left_menu5',
 		href:'../qqgl/jhcx/yhzx.jsp'
 	});
