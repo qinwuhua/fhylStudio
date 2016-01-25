@@ -9,6 +9,14 @@ public class Gcglzhfz implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+private String jgys;
+	
+	public String getJgys() {
+		return jgys;
+	}
+	public void setJgys(String jgys) {
+		this.jgys = jgys;
+	}
 	private String id;
 	private String jhid;
 	private String wc_btz;

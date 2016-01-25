@@ -518,7 +518,7 @@ public class GcglabgcController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglabgc.setTiaojian("xjzt");
 			}
-			System.out.println(gcglabgc.getTiaojian());
+			//System.out.println(gcglabgc.getJgys());
 			int count=0;
 			List<Gcglabgc> list=null;
 			if("af".equals(gcglabgc.getXmlx())){

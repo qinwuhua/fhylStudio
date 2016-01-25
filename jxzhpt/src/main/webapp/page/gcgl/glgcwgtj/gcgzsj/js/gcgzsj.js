@@ -117,7 +117,8 @@ function showAll(){
 	    	'gcglgcgzsj.xmmc':$("#xmmc").val(),
 	    	'gcglgcgzsj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzsj.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglgcgzsj.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

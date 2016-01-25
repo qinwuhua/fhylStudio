@@ -584,7 +584,7 @@
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,j.gcfl xjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
@@ -973,7 +973,7 @@
 		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
 	</select>
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
-		select sum(j.sysbbzj) sysbb,sum(j.yqdbcgs) yqdbcgs,sum(j.ztz) ztz,sum(l1.lc) lc from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm left join 
+		select sum(j.sysbbzj) sysbb,sum(j.yqdbcgs) yqdbcgs,sum(j.ztz) ztz,sum(j.lc) lc from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm left join 
 		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>

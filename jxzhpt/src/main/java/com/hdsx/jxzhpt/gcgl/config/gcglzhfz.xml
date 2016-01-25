@@ -153,7 +153,11 @@
 	t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 	t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 	from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
-	where  t1.spzt='1'
+	left join gcgl_jgys jg on t1.id=jg.jhid
+		where  t1.spzt='1'
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 	<if test="gydw != null and  gydw != ''">
 			${gydw}
 	</if>
@@ -192,7 +196,11 @@
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglzhfz" resultType="int">
 	 	select count(*) from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+		left join gcgl_jgys jg on t1.id=jg.jhid
 		where  t1.spzt='1'
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 	<if test="gydw != null and  gydw != ''">
 			${gydw}
 	</if>

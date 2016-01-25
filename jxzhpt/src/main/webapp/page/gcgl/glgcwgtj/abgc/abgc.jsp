@@ -132,6 +132,12 @@ a:active {
 								
 								</p>
 								<p style="margin: 1% 0% 1% 2%;">
+								<span>是否交工验收：</span>
+								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
+									<option value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
                                  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>

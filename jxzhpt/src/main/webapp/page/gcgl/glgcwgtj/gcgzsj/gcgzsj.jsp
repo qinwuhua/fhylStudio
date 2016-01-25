@@ -81,7 +81,8 @@ a:active {
         						<select name="ddlYear" id="ddlYear" style="width: 70px;">
         						<option value="">全部</option>
         						</select>
-        						
+        						<span>路线编码：</span>
+        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
         						</p>
 								   <p style="margin: 1% 0% 1% 2%;">
 								<span style=" vertical-align:middle;">技术等级：</span>
@@ -91,13 +92,18 @@ a:active {
         						<span style=" vertical-align:middle;">特殊地区：</span>
 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:120px; vertical-align:middle;">
 								</select>
-        						
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span>路线编码：</span>
-        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
         						<span>项目名称：</span>
         						<span><input type="text" id="xmmc" style="width:95px;" /></span>
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								
+        						
+        						<span>是否交工验收：</span>
+								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
+									<option value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
         				</div>

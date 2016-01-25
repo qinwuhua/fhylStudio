@@ -125,7 +125,8 @@ function showAll(){
 	    	gydwtj:"and 1=1",
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -265,7 +266,8 @@ function showAll1(){
 	    	gydwtj:"and gydwbm like '1%'",
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

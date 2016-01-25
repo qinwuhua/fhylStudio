@@ -360,8 +360,12 @@
 	</resultMap>
 	<select id="queryGcgjList"  parameterType="gcglgcgzsj" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_SJGZ t left join lxsh_sjgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm where 1=1
-		
+		select rownum num ,t.*,lxsh.ghlxbh,s.sl sl  from JHSH_SJGZ t left join lxsh_sjgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm 
+		left join gcgl_jgys jg on t.xmbm=jg.jhid
+		where 1=1
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
@@ -402,8 +406,11 @@
 		order by xmbm
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglgcgzsj">
-		select count(*)  from JHSH_SJGZ t where 1=1
-		
+		select count(*)  from JHSH_SJGZ t left join gcgl_jgys jg on t.xmbm=jg.jhid
+		where 1=1
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>

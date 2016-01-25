@@ -31,7 +31,7 @@
 							}else if(row.xmid.substring(10,11)=="3"){
 								return '新建工程项目';
 							}else if(row.xmid.substring(10,11)=="4"){
-								return '养护大中修项目';
+								return row.xjsdj;
 							}else if(row.xmid.substring(10,11)=="5"){
 								return "灾毁重建";
 							}
@@ -54,7 +54,12 @@
 					{field:'qdzh',title:'现起点桩号',width:100,align:'center'},
 					{field:'zdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
 					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
-					{field:'xjsdj',title:'原技术等级',width:100,align:'center'},
+					{field:'xx',title:'原技术等级',width:100,align:'center',formatter:function(value,row,index){
+						if(row.xmid.substring(10,11)=="4")
+						return '';
+						else
+							return row .xjsdj;
+					}},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
 				]]

@@ -165,7 +165,11 @@
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm
 		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select decode(max(jhxdwh),null,'-',max(jhxdwh)) jhxdwh,xmid from plan_zjxd group by xmid) zj on t1.id=zj.xmid
-		where  t1.spzt='1' 
+		left join gcgl_jgys jg on t1.id=jg.jhid
+		where  t1.spzt='1'
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -214,7 +218,11 @@
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglwqgz" resultType="int">
 	 	select count(*) from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
-		where  t1.spzt='1' 
+		left join gcgl_jgys jg on t1.id=jg.jhid
+		where  t1.spzt='1'
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
 	<if test="gydw != null and  gydw != ''">
 			${gydw}
 	</if>

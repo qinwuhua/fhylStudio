@@ -98,7 +98,8 @@ function showAll(){
 	    	'gcglzhfz.xzqh':xzqhstr,
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglzhfz.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

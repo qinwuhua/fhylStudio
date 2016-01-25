@@ -12,7 +12,14 @@ public class Gcglwqgz implements Serializable {
 	private String ybnf;
 	private String ybyf;
 	private String wgnf;
+private String jgys;
 	
+	public String getJgys() {
+		return jgys;
+	}
+	public void setJgys(String jgys) {
+		this.jgys = jgys;
+	}
 	public String getWgnf() {
 		return wgnf;
 	}
