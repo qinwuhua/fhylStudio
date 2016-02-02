@@ -17,6 +17,8 @@
 		$(function(){
 			var datayb=parent.obj;
 			$("#cgsdwzj").text(datayb.cgsdwzj);
+			$("#yiji").text(datayb.yiji);$("#sanji").text(datayb.sanji);
+			$("#erji").text(datayb.erji);$("#siji").text(datayb.siji);
 			$("#tbr").text(datayb.tbr);
 			$("#tbsj").text(datayb.tbsj);
 			$("#tbyf").text(datayb.tbyf);
@@ -293,6 +295,21 @@ a:active {
                                 <span id="bndsslc"  ></span>
                             </td>
                         </tr>
+                         <tr style="height: 35px;">
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                本月完成：
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                一级<span  id="yiji"  ></span>公里；
+                                二级<span  id="erji"  ></span>公里；
+                                三级<span  id="sanji"  ></span>公里；
+                                四级<span  id="siji"  ></span>公里。
+                            </td>
+                        </tr>
+                        
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

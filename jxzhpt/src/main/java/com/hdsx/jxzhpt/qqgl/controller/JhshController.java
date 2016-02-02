@@ -258,7 +258,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			lx.setXmid(jhsh.getXmbm());
 			lx.setSffirst("1");
 			lx.setJdbs(jdbs);
-			
+
 			if(jhsh.getXmlx()==1){
 				b=jhshServer.updateJhshxxLmsj(list);
 			}else if(jhsh.getXmlx()==2){
@@ -506,7 +506,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 */
 	public void exportJhshxx(){
 		//设置表头
-		ExcelTitleCell [] title=new ExcelTitleCell[15];
+		ExcelTitleCell [] title=null;
+		if(jhsh.getXmlx()!=2)
+		title=new ExcelTitleCell[16];
+		else
+			title=new ExcelTitleCell[15];
 		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
 		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
 		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
@@ -522,6 +526,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
 		title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
 		title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
+		if(jhsh.getXmlx()!=2)
+		title[15]=new ExcelTitleCell("公路等级",false, new ExcelCoordinate(0, (short)15), null,20);
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
 		attribute.put("0", "xmmc");//项目名称
@@ -811,9 +817,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		//设置表头、设置列与字段对应
 		String fileTitle=null;
 		if(jhsh.getXmlx()<=3 || jhsh.getXmlx()==5){
-			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk><title=国债,fieid=gz>,<title=省债,fieid=sz>";
+			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk><title=国债,fieid=gz>,<title=省债,fieid=sz>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}else if(jhsh.getXmlx()==4){
-			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省投资,fieid=stz>";
+			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=计划总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省统筹,fieid=stc>,<title=贷款,fieid=dk>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}
 		String xmbm = jhsh.getXmbm();
 		if(xmbm.indexOf(",")>-1){
@@ -889,6 +895,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("12", "pfztz");//批复总投资
 		attribute.put("13", "bbzzj");//部补助资金
 		attribute.put("14", "sbzzj");//省补助资金
+		if(jhsh.getXmlx()!=2){
+			attribute.put("15", "gldj");//公路等级
+		}
 		excel.setAttributes(attribute);
 		try {
 			boolean b=false;

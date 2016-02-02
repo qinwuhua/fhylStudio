@@ -112,6 +112,22 @@ public class Excel_list implements Serializable {
 	private String v_97="";
 	private String v_98="";
 	private String v_99="";
+	
+	private String xzqh;
+	private String xzqhdm;
+	
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
 	public String getV_0() {
 		return v_0;
 	}

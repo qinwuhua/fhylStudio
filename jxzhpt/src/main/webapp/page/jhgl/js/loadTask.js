@@ -197,7 +197,7 @@ function openZjxd(id,title,href,width,height,zjid){
 	}).dialog("setTitle",title).dialog("open");
 }
 function addZjxd(){
-	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj1').val(),
+	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj1').val(),'zjxd.ztz':$('#ztz').val(),
 			'zjxd.btzzj':$('#btzzj').val(),'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
 			'zjxd.tbtime':$('#tbsj').val(),'zjxd.stz':$('#stz1').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 	$.ajax({
@@ -466,7 +466,7 @@ function dropZjxdById(id){
 	});
 }
 function editZjxd(){
-	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz1').val(),
+	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz1').val(),'zjxd.ztz':$('#ztz').val(),
 			'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj1').val(),'zjxd.tbdw':$('#tbdw').html(),
 			'zjxd.tbtime':$('#tbsj').val(),'zjxd.sfzj':$("input[name='rList']:checked").val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 	$.ajax({

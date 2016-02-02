@@ -315,6 +315,7 @@
 		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
 		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		<if test="gldj != null">c.gldj=#{gldj},</if>
 		c.xdzt=${xdzt} 
 		where c.xmbm=#{xmbm}
 	</update>
@@ -334,6 +335,7 @@
 		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
 		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		<if test="gldj != null">c.gldj=#{gldj},</if>
 		c.xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateJhshxxYhdzx" parameterType="jhsh">

@@ -106,5 +106,15 @@ public interface GcybbServer {
 
 	void createybView(String viewsql);
 
+	List<Excel_list> getHzgjxj(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getHzzh(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getHzlm(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getHzyh(Gcglwqgz gcglwqgz);
+
+	List<Excel_list> getHzlw(Gcglwqgz gcglwqgz);
+
 	
 }

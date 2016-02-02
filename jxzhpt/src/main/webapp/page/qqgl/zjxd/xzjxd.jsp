@@ -87,7 +87,7 @@
 		<table width="100%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
 				<td>
-					<form id="zjxdForm" action="../../../jhgl/addxZjxd.do">
+					<form id="zjxdForm" action="../../../jhgl/addxZjxd.do" method="post">
 					<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 						<tr style="height: 35px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -130,10 +130,11 @@
 								<input id="sz" name='sz' onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
+									总投资：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-							
+								<input id="ztz" name='ztz' onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 35px;">
@@ -155,6 +156,15 @@
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="tbdw" name="tbdw" type="text" style="width: 100px;"/>
 							</td>
+						</tr>
+						<tr style="height: 35px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="jhxdwh" name="jhxdwh" type="text"  style="width: 80px;" />&nbsp;
+							</td>
+							
 							<td style="display:none;border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<font color="#009ACD" style="cursor: hand; font-size: 12px">是否为追加资金：</font>
 								<input id="sfzj" name="sfzj" value="0" type="hidden"/>
@@ -178,7 +188,6 @@
 						style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
 						cellspacing="0" cellpadding="0">
 						<tr style="height: 30px;">
-							<td align="center">
 							<td align="center">
 								<input type="image" name="btnAdd" id="btnAdd" onclick="insertZjxd()"
 								onmouseover="this.src='../../../images/Button/baocun2.gif'" alt="保存"

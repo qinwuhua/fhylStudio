@@ -32,6 +32,9 @@
 		<if test="btzzj!=null">,btzzj</if>
 		<if test="stz!=null">,stz</if>
 		<if test="jhxdwh!=null">,jhxdwh</if>
+		<if test="ztz != null">,ztz</if>
+		<if test="dk != null">,dk</if>
+		<if test="stc != null">,stc</if>
 		) 
 		values (SYS_GUID()
 		<if test="xmid!=null">,#{xmid}</if>
@@ -42,7 +45,10 @@
 		<if test="tbtime!=null">,#{tbtime}</if>
 		<if test="btzzj!=null">,#{btzzj}</if>
 		<if test="stz!=null">,#{stz}</if>
-		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
+		<if test="jhxdwh!=null">,#{jhxdwh}</if>
+		<if test="ztz != null">,#{ztz}</if>
+		<if test="dk != null">,#{dk}</if>
+		<if test="stc != null">,#{stc}</if>)
 	</insert>
 	<insert id="addxZjxd" parameterType="plan_zjxd">
 		insert into plan_zjxd (id
@@ -88,6 +94,7 @@
 		<if test="yhdk !=null">,yhdk</if>
 		<if test="gz !=null">,gz</if>
 		<if test="sz !=null">,sz</if>
+		<if test="ztz !=null">,ztz</if>
 		<if test="jhxdwh!=null">,jhxdwh</if>) 
 		values (SYS_GUID()<if test="xmid!=null">,#{xmid}</if>
 		<if test="xdnf!=null">,#{xdnf}</if>
@@ -100,6 +107,7 @@
 		<if test="yhdk !=null">,#{yhdk}</if>
 		<if test="gz !=null">,#{gz}</if>
 		<if test="sz !=null">,#{sz}</if>
+		<if test="ztz !=null">,#{ztz}</if>
 		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
 	<update id="editZjxd" parameterType="plan_zjxd">
@@ -112,6 +120,9 @@
 			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
 			<if test="tbdw!=null and tbdw!=''">tbdw=#{tbdw},</if>
 			<if test="tbtime!=null and tbtime!=''">tbtime=#{tbtime},</if>
+			<if test="ztz !=null and ztz !=''">ztz=#{ztz},</if>
+			<if test="stc !=null and stc !=''">stc=#{stc},</if>
+			<if test="dk !=null and dk !=''">dk=#{dk},</if>
 			id=#{id}
 		where id=#{id}
 	</update>
@@ -124,6 +135,7 @@
 			<if test="yhdk!=null and yhdk!=''">yhdk=#{yhdk},</if>
 			<if test="gz!=null and gz!=''">gz=#{gz},</if>
 			<if test="sz!=null and sz!=''">sz=#{sz},</if>
+			<if test="ztz !=null and ztz !=''">ztz=#{ztz},</if>
 			<if test="jhxdwh!=null and jhxdwh!=''">jhxdwh=#{jhxdwh},</if>
 			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
 			<if test="tbdw!=null and tbdw!=''">tbdw=#{tbdw},</if>

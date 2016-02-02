@@ -30,13 +30,15 @@
 			$('#zjxdForm').form("load",parent.YMLib.Var.row);
 			$('#yxdzj').val(parent.YMLib.Var.row.xdzj);
 			$('#ybtzzj').val(parent.YMLib.Var.row.btzzj);
-			$('#ystz').val(parent.YMLib.Var.row.stz);
+			$('#ystc').val(parent.YMLib.Var.row.stc);
+			$('#ydk').val(parent.YMLib.Var.row.dk);
+			$('#yztz').val(parent.YMLib.Var.row.ztz);
 		});
 		function updateZjxd(){
 			var tj=true;
 			tj = validateText('xdzj','number',tj);
 			tj = validateText('btzzj','number',tj);
-			tj = validateText('stz','number',tj);
+			//tj = validateText('stz','number',tj);
 			/*$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjxdSumByXmid.do',
@@ -93,7 +95,7 @@
 		<table width="100%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
 				<td>
-					<form id="zjxdForm" action="../../../jhgl/editZjxdById.do">
+					<form id="zjxdForm" action="../../../jhgl/editZjxdById.do" method="post">
 					<table width="100%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
 						cellspacing="0" cellpadding="0">
@@ -116,13 +118,38 @@
 								<input id="btzzj" name="btzzj" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
 								<input id="ybtzzj" name="ybtzzj" type="hidden"/>
 							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							
+						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
-									省投资：</font></b>
+									省统筹：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="stz" name="stz" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
-								<input id="ystz" name="ystz" type="hidden"/>
+								<input id="stc" name="stc" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
+								<input id="ystc" name="ystc" type="hidden"/>
+							</td>
+						</tr>
+						<tr style="height: 35px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
+									贷款：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="dk" name="dk" onblur="isNumber(this)" type="text" value="0" style="width: 80px;" />&nbsp;万元
+								<input id="ydk" name="ydk" type="hidden"/>
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
+									总投资：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="ztz" name="ztz" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
+								<input id="yztz" name="yztz" type="hidden"/>
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="jhxdwh" name="jhxdwh" type="text"  style="width: 80px;" />&nbsp;
 							</td>
 						</tr>
 						<tr style="height: 35px;">

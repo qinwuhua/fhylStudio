@@ -34,6 +34,14 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 	private File fileupload;
 	private Plan_zjxd zjxd=new Plan_zjxd();
 	private Plan_zjzj zjzj;
+	private String xmlx;
+	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	public void queryZjxdByXmId(){
@@ -146,17 +154,32 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 		}
 	}
 	public void importJhshZjzj(){
+		
 		ExcelEntity excel=new ExcelEntity();
 		Map<String, String> attribute=new HashMap<String, String>();
 		String gydwmc = zjxdServer.queryGydwmcById(gydwdm);
-		attribute.put("1", "xmid");
-		attribute.put("8", "xdnf");
-		attribute.put("9", "xdzj");
-		attribute.put("10", "btzzj");
-		attribute.put("11", "stz");
-		attribute.put("12", "yhdk");
-		attribute.put("13", "gz");
-		attribute.put("14", "sz");
+		if("7".equals(xmlx)){
+			attribute.put("1", "xmid");
+			attribute.put("8", "xdnf");
+			attribute.put("9", "xdzj");
+			attribute.put("10", "btzzj");
+			attribute.put("11", "stc");
+			attribute.put("12", "dk");
+			attribute.put("13", "ztz");
+			attribute.put("14", "jhxdwh");
+		}else{
+			attribute.put("1", "xmid");
+			attribute.put("8", "xdnf");
+			attribute.put("9", "xdzj");
+			attribute.put("10", "btzzj");
+			attribute.put("11", "stz");
+			attribute.put("12", "yhdk");
+			attribute.put("13", "gz");
+			attribute.put("14", "sz");
+			attribute.put("15", "ztz");
+			attribute.put("16", "jhxdwh");
+		}
+		
 		excel.setAttributes(attribute);
 		try {
 			@SuppressWarnings("unchecked")
@@ -266,7 +289,9 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 		attribute.put("5", "btzzj");//下达的部投资
 		attribute.put("6", "stz");//下达的部投资
 		attribute.put("7", "jhxdwh");//下达的部投资
-		attribute.put("8", "xmid");
+		attribute.put("8", "ztz");
+		attribute.put("9", "xmid");
+		
 		excel.setAttributes(attribute);
 		try {
 			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);
@@ -287,7 +312,8 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 		attribute.put("5", "btzzj");//下达的部投资
 		attribute.put("6", "stz");//省投资
 		attribute.put("7", "jhxdwh");//计划下达文号
-		attribute.put("8", "xmid");
+		attribute.put("8", "ztz");
+		attribute.put("9", "xmid");
 		excel.setAttributes(attribute);
 		try {
 			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);
@@ -308,7 +334,8 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 		attribute.put("5", "btzzj");//下达的部投资
 		attribute.put("6", "stz");//省投资
 		attribute.put("7", "jhxdwh");//计划下达文号
-		attribute.put("8", "xmid");
+		attribute.put("8", "ztz");
+		attribute.put("9", "xmid");
 		excel.setAttributes(attribute);
 		try {
 			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);

@@ -60,7 +60,7 @@
 						var result="";
 						xmlx=3;
 						result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
+							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
 						return result;
 					}
 				},

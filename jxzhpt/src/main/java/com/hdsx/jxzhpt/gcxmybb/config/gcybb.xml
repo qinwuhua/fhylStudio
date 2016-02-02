@@ -1683,4 +1683,1444 @@
 	<insert id="createybView" parameterType="String">
 			${value}
 	</insert>
+	
+	<select id="getHzgjxj" parameterType="gcglwqgz" resultType="elist">
+		select * from(
+		select 
+		max(t1.xzqh) xzqh,36 xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,
+                nvl(sum(t2.xmsl), 0) v_3,nvl(sum(t2.gsyi + t2.gser + t2.sser + t2.sssan + t2.qt), 0) v_4,
+                nvl(sum(t2.gsyi), 0) v_5,nvl(sum(t2.gser), 0) v_6,nvl(sum(t2.sser), 0) v_7,nvl(sum(t2.sssan), 0) v_8,
+                nvl(sum(t2.qt), 0) v_9,nvl(sum(t1.ztz), 0) v_10,nvl(sum(t1.btz), 0) v_11,
+                nvl(sum(t1.stz), 0) v_12,nvl(sum(t1.gz), 0) v_13,nvl(sum(t1.sz), 0) v_14,nvl(sum(t1.stc), 0) v_15,
+                nvl(sum(t1.qtzj), 0) v_16,nvl(sum(t3.xmsl), 0) v_17,nvl(sum(t3.bngsyi + t3.bngser + t3.bnsser + t3.bnsssan + t3.bnqt),0) v_18,
+                nvl(sum(t3.bngsyi), 0) v_19,nvl(sum(t3.bngser), 0) v_20,nvl(sum(t3.bnsser), 0) v_21,nvl(sum(t3.bnsssan), 0) v_22,
+                nvl(sum(t3.bnqt), 0) v_23,nvl(sum(t4.xmsl), 0) v_24,nvl(sum(t4.ljgsyi + t4.ljgser + t4.ljsser + t4.ljsssan + t4.ljqt),0) v_25,
+                nvl(sum(t4.ljgsyi), 0) v_26,nvl(sum(t4.ljgser), 0) v_27,nvl(sum(t4.ljsser), 0) v_28,
+                nvl(sum(t4.ljsssan), 0) v_29,nvl(sum(t4.ljqt), 0) v_30,nvl(sum(t3.bnwctz), 0) v_31,nvl(sum(t4.ljwctz), 0) v_32,'0' v_0
+		from 
+		(      select 
+	      xdnf,jhxdwh,'总计' xzqh,sum(ztz) ztz,sum(btz) btz,sum(stz) stz,sum(gz) gz,sum(sz) sz,sum(stc) stc,sum(qtzj) qtzj
+	      from 
+	      (select 
+		    xd.xdnf,xd.jhxdwh,'总计' xzqh,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+		    from 
+		    plan_zjxd xd left join jhsh_sjgz t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='1' group by xd.xdnf,xd.jhxdwh
+		    union all
+		    select 
+		    xd.xdnf,xd.jhxdwh,'总计' xzqh,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+		    from 
+		    plan_zjxd xd left join jhsh_xj t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='3' group by xd.xdnf,xd.jhxdwh) tab
+	      group by tab.xdnf,tab.jhxdwh) t1 
+		left join
+		(
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(jh.gldj,'国道',sum(jhyilc)，0) gsyi,decode(jh.gldj,'国道',sum(jherlc)，0) gser,decode(jh.gldj,'省道',sum(jherlc)+sum(jhyilc)，0) sser,
+		decode(jh.gldj,'省道',sum(jhsanlc)，0) sssan,decode(jh.gldj,'国道',sum(jhsanlc)+sum(jhqtlc),'省道',sum(jhqtlc),sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc)) qt 
+		from jhsh_sjgz jh left join (select xmid xmbm,nvl(sum(lx.jhyilc),0) jhyilc,nvl(sum(lx.jherlc),0) jherlc,nvl(sum(lx.jhsanlc),0) jhsanlc,(nvl(sum(lx.jhsilc),0)+nvl(sum(lx.jhdwlc),0)+nvl(sum(lx.jhwllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.gldj
+		union all
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(jh.gldj,'国道',sum(jhyilc)，0) gsyi,decode(jh.gldj,'国道',sum(jherlc)，0) gser,decode(jh.gldj,'省道',sum(jherlc)+sum(jhyilc)，0) sser,
+		decode(jh.gldj,'省道',sum(jhsanlc)，0) sssan,decode(jh.gldj,'国道',sum(jhsanlc)+sum(jhqtlc),'省道',sum(jhqtlc),sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc)) qt
+		from jhsh_xj jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.gldj
+		 
+		) t2
+		on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+		left join
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(j.gldj,'国道',sum(yiji)，0) bngsyi,decode(j.gldj,'国道',sum(erji)，0) bngser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) bnsser,
+		decode(j.gldj,'省道',sum(sanji)，0) bnsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) bnqt,
+		sum(bnwctz) bnwctz  
+		from jhsh_sjgz j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.bywctze),0) bnwctz from gcgl_gcgzsj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.gldj 
+		union all
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(j.gldj,'国道',sum(yiji)，0) bngsyi,decode(j.gldj,'国道',sum(erji)，0) bngser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) bnsser,
+		decode(j.gldj,'省道',sum(sanji)，0) bnsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) bnqt,
+		sum(bnwctz) bnwctz  
+		from jhsh_xj j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_xj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.gldj 
+		
+		) t3
+		on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+		left join
+		
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(j.gldj,'国道',sum(yiji)，0) ljgsyi,decode(j.gldj,'国道',sum(erji)，0) ljgser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) ljsser,
+		decode(j.gldj,'省道',sum(sanji)，0) ljsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) ljqt,
+		sum(ljwctz) ljwctz  
+		from jhsh_sjgz j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.bywctze),0) ljwctz from gcgl_gcgzsj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.gldj 
+		union all
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,
+		decode(j.gldj,'国道',sum(yiji)，0) ljgsyi,decode(j.gldj,'国道',sum(erji)，0) ljgser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) ljsser,
+		decode(j.gldj,'省道',sum(sanji)，0) ljsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) ljqt,
+		sum(ljwctz) ljwctz  
+		from jhsh_xj j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_xj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.gldj 
+		
+		
+		) t4
+		on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+		group by t1.xdnf,t1.jhxdwh
+		
+		union all
+		
+		select 
+		t1.xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl((t2.gsyi+t2.gser+t2.sser+t2.sssan+t2.qt),0) v_4,
+		nvl(t2.gsyi,0) v_5,nvl(t2.gser,0) v_6,nvl(t2.sser,0) v_7,nvl(t2.sssan,0) v_8,nvl(t2.qt,0) v_9,t1.ztz v_10,
+		nvl(t1.btz,0) v_11,nvl(t1.stz,0) v_12,nvl(t1.gz,0) v_13,nvl(t1.sz,0) v_14,nvl(t1.stc,0) v_15,t1.qtzj v_16,
+		nvl(t3.xmsl,0) v_17,nvl((t3.bngsyi+t3.bngser+t3.bnsser+t3.bnsssan+t3.bnqt),0) v_18,
+		nvl(t3.bngsyi,0) v_19,nvl(t3.bngser,0) v_20,nvl(t3.bnsser,0) v_21,nvl(t3.bnsssan,0) v_22,nvl(t3.bnqt,0) v_23,
+		nvl(t4.xmsl,0) v_24,nvl((t4.ljgsyi+t4.ljgser+t4.ljsser+t4.ljsssan+t4.ljqt),0) v_25,
+		nvl(t4.ljgsyi,0) v_26,nvl(t4.ljgser,0) v_27,nvl(t4.ljsser,0) v_28,nvl(t4.ljsssan,0) v_29,nvl(t4.ljqt,0) v_30,
+		nvl(t3.bnwctz,0) v_31,nvl(t4.ljwctz,0) v_32,'0' v_0
+		from 
+		(select 
+	    xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+	    nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+	    from 
+	    plan_zjxd xd left join jhsh_sjgz t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='1' group by xd.xdnf,xd.jhxdwh,t.xzqh
+	    union all
+	    select 
+	    xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+	    nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+	    from 
+	    plan_zjxd xd left join jhsh_xj t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='3' group by xd.xdnf,xd.jhxdwh,t.xzqh) t1 
+		left join
+		(
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,
+		decode(jh.gldj,'国道',sum(jhyilc)，0) gsyi,decode(jh.gldj,'国道',sum(jherlc)，0) gser,decode(jh.gldj,'省道',sum(jherlc)+sum(jhyilc)，0) sser,
+		decode(jh.gldj,'省道',sum(jhsanlc)，0) sssan,decode(jh.gldj,'国道',sum(jhsanlc)+sum(jhqtlc),'省道',sum(jhqtlc),sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc)) qt
+		from jhsh_sjgz jh left join (select xmid xmbm,nvl(sum(lx.jhyilc),0) jhyilc,nvl(sum(lx.jherlc),0) jherlc,nvl(sum(lx.jhsanlc),0) jhsanlc,(nvl(sum(lx.jhsilc),0)+nvl(sum(lx.jhdwlc),0)+nvl(sum(lx.jhwllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh,jh.gldj 
+		union all
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,
+		decode(jh.gldj,'国道',sum(jhyilc)，0) gsyi,decode(jh.gldj,'国道',sum(jherlc)，0) gser,decode(jh.gldj,'省道',sum(jherlc)+sum(jhyilc)，0) sser,
+		decode(jh.gldj,'省道',sum(jhsanlc)，0) sssan,decode(jh.gldj,'国道',sum(jhsanlc)+sum(jhqtlc),'省道',sum(jhqtlc),sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc)) qt
+		from jhsh_xj jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh,jh.gldj 
+		
+		) t2
+		on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+		left join
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gldj,'国道',sum(yiji)，0) bngsyi,decode(j.gldj,'国道',sum(erji)，0) bngser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) bnsser,
+		decode(j.gldj,'省道',sum(sanji)，0) bnsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) bnqt,
+		sum(bnwctz) bnwctz  
+		from jhsh_sjgz j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.bywctze),0) bnwctz from gcgl_gcgzsj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gldj 
+		union all
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gldj,'国道',sum(yiji)，0) bngsyi,decode(j.gldj,'国道',sum(erji)，0) bngser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) bnsser,
+		decode(j.gldj,'省道',sum(sanji)，0) bnsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) bnqt,
+		sum(bnwctz) bnwctz  
+		from jhsh_xj j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_xj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gldj 
+		
+		) t3
+		on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+		left join
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gldj,'国道',sum(yiji)，0) ljgsyi,decode(j.gldj,'国道',sum(erji)，0) ljgser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) ljsser,
+		decode(j.gldj,'省道',sum(sanji)，0) ljsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) ljqt,
+		sum(ljwctz) ljwctz  
+		from jhsh_sjgz j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.bywctze),0) ljwctz from gcgl_gcgzsj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gldj 
+		union all
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gldj,'国道',sum(yiji)，0) ljgsyi,decode(j.gldj,'国道',sum(erji)，0) ljgser,decode(j.gldj,'省道',sum(yiji)+sum(erji)，0) ljsser,
+		decode(j.gldj,'省道',sum(sanji)，0) ljsssan,decode(j.gldj,'国道',sum(sanji)+sum(siji),'省道',sum(siji),sum(yiji)+sum(erji)+sum(sanji)+sum(siji)) ljqt,
+		sum(ljwctz) ljwctz  
+		from jhsh_xj j left join
+		(select jhid,nvl(sum(g.yiji),0) yiji,nvl(sum(g.erji),0) erji,nvl(sum(g.sanji),0) sanji,nvl(sum(g.siji),0) siji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_xj g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gldj 
+		) t4
+		on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+		
+		order by xzqhdm,v_1
+
+		)
+		where v_1 in (${xmnf}) and xzqh is not null
+	</select>
+	
+	<select id="getHzzh" parameterType="gcglwqgz" resultType="elist">
+		select * from(
+			select distinct 
+			t1.xzqh,36 xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl(t2.qt,0) v_4,nvl(t1.ztz,0) v_5,nvl(t1.btz,0) v_6,
+			nvl((t1.ztz-t1.btz),0) v_7,'0' v_8,nvl(t3.xmsl,0) v_9,nvl(t3.bnqt,0) v_10,nvl(t4.xmsl,0) v_11,nvl(t4.ljqt,0) v_12,
+			nvl(t3.bnwctz,0) v_13,nvl(t4.ljwctz,0) v_14,
+			'0' v_0
+			from 
+			(select distinct 
+			xd.xdnf,xd.jhxdwh,'总计' xzqh,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+			from 
+			plan_zjxd xd left join jhsh_sh t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='5' group by xd.xdnf,xd.jhxdwh) t1 
+			left join
+			(
+			select distinct  jh.xdwh,substr(jh.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc) qt
+			from jhsh_sh jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+			group by jh.xdwh,substr(jh.xmbm,0,4)
+			 
+			) t2
+			on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+			left join
+			(
+			select distinct  j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(yiji) bnqt,
+			sum(bnwctz) bnwctz  
+			from jhsh_sh j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_sh g where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4)
+			
+			) t3
+			on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+			left join
+			
+			(
+			select distinct  j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(yiji) ljqt,
+			sum(ljwctz) ljwctz  
+			from jhsh_sh j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_sh g  where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4)
+			
+			
+			) t4
+			on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+			union all
+			select distinct 
+			t1.xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl(t2.qt,0) v_4,nvl(t1.ztz,0) v_5,nvl(t1.btz,0) v_6,
+			nvl((t1.ztz-t1.btz),0) v_7,'0' v_8,nvl(t3.xmsl,0) v_9,nvl(t3.bnqt,0) v_10,nvl(t4.xmsl,0) v_11,nvl(t4.ljqt,0) v_12,
+			nvl(t3.bnwctz,0) v_13,nvl(t4.ljwctz,0) v_14,
+			'0' v_0
+			from 
+			(select 
+			xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+			nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+			from 
+			plan_zjxd xd left join jhsh_sh t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='5' group by xd.xdnf,xd.jhxdwh,t.xzqh) t1 
+			left join
+			(
+			
+			select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc) qt
+			from jhsh_sh jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+			group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh
+			
+			) t2
+			on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+			left join
+			(
+			
+			select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,sum(yiji) bnqt,
+			sum(bnwctz) bnwctz  
+			from jhsh_sh j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_sh g where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh
+			
+			) t3
+			on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+			left join
+			(
+			select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,sum(yiji) ljqt,
+			sum(ljwctz) ljwctz  
+			from jhsh_sh j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_sh g  where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh
+			) t4
+			on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+			order by xzqhdm,v_1
+		)
+		where v_1 in (${xmnf}) and xzqh is not null
+	</select>
+	
+	<select id="getHzlm" parameterType="gcglwqgz" resultType="elist">
+		select * from(
+			select distinct 
+			t1.xzqh,36 xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl(t2.qt,0) v_4,nvl(t1.ztz,0) v_5,nvl(t1.btz,0) v_6,
+			nvl((t1.ztz-t1.btz),0) v_7,'0' v_8,nvl(t3.xmsl,0) v_9,nvl(t3.bnqt,0) v_10,nvl(t4.xmsl,0) v_11,nvl(t4.ljqt,0) v_12,
+			nvl(t3.bnwctz,0) v_13,nvl(t4.ljwctz,0) v_14,
+			'0' v_0
+			from 
+			(select distinct 
+			xd.xdnf,xd.jhxdwh,'总计' xzqh,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+			from 
+			plan_zjxd xd left join jhsh_lmgz t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='2' group by xd.xdnf,xd.jhxdwh) t1 
+			left join
+			(
+			select distinct  jh.xdwh,substr(jh.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc) qt
+			from jhsh_lmgz jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+			group by jh.xdwh,substr(jh.xmbm,0,4)
+			 
+			) t2
+			on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+			left join
+			(
+			select distinct  j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(yiji) bnqt,
+			sum(bnwctz) bnwctz  
+			from jhsh_lmgz j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_gcgzgj g where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4)
+			
+			) t3
+			on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+			left join
+			
+			(
+			select distinct  j.xdwh,substr(j.xmbm,0,4) xmnf,'总计' xzqh,count(*) xmsl,sum(yiji) ljqt,
+			sum(ljwctz) ljwctz  
+			from jhsh_lmgz j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_gcgzgj g  where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4)
+			
+			
+			) t4
+			on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+			union all
+			select distinct 
+			t1.xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl(t2.qt,0) v_4,nvl(t1.ztz,0) v_5,nvl(t1.btz,0) v_6,
+			nvl((t1.ztz-t1.btz),0) v_7,'0' v_8,nvl(t3.xmsl,0) v_9,nvl(t3.bnqt,0) v_10,nvl(t4.xmsl,0) v_11,nvl(t4.ljqt,0) v_12,
+			nvl(t3.bnwctz,0) v_13,nvl(t4.ljwctz,0) v_14,
+			'0' v_0
+			from 
+			(select 
+			xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+			nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl(sum(xd.gz),0) gz,nvl(sum(xd.sz),0) sz,(nvl(sum(xd.ztz),0)-nvl(sum(xd.btzzj),0)-nvl(sum(xd.stz),0)-nvl(sum(xd.gz),0)-nvl(sum(xd.sz),0)) stc ,0 qtzj
+			from 
+			plan_zjxd xd left join jhsh_lmgz t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='2' group by xd.xdnf,xd.jhxdwh,t.xzqh) t1 
+			left join
+			(
+			
+			select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,sum(jherlc)+sum(jhyilc)+sum(jhsanlc)+sum(jhqtlc) qt
+			from jhsh_lmgz jh left join (select xmid xmbm,nvl(sum(lx.yilc),0) jhyilc,nvl(sum(lx.erlc),0) jherlc,nvl(sum(lx.sanlc),0) jhsanlc,(nvl(sum(lx.silc),0)+nvl(sum(lx.dwlc),0)+nvl(sum(lx.wllc),0)) jhqtlc from lxsh_lx lx where lx.jdbs='2' group by lx.xmid) lxb on jh.xmbm=lxb.xmbm 
+			group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh
+			
+			) t2
+			on t1.xdnf= t2.xmnf and t1.jhxdwh=t2.xdwh and t1.xzqh=t2.xzqh
+			left join
+			(
+			
+			select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,sum(yiji) bnqt,
+			sum(bnwctz) bnwctz  
+			from jhsh_lmgz j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_gcgzgj g where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh
+			
+			) t3
+			on t2.xmnf=t3.xmnf and t2.xdwh=t3.xdwh and t2.xzqh=t3.xzqh
+			left join
+			(
+			select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,sum(yiji) ljqt,
+			sum(ljwctz) ljwctz  
+			from jhsh_lmgz j left join
+			(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) ljwctz from gcgl_gcgzgj g  where
+			to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			  group by g.jhid) gc on j.xmbm=gc.jhid
+			where j.sjwgsj is not null 
+			and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh
+			) t4
+			on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+			order by xzqhdm,v_1
+		)
+		where v_1 in (${xmnf}) and xzqh is not null
+	</select>
+	<select id="getHzyh" parameterType="gcglwqgz" resultType="elist">
+	select 
+		'总计' xzqh,36 xzqhdm,'0' v_0,min(v_1) v_1,min(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,sum(v_7) v_7,sum(v_8) v_8,sum(v_9) v_9,sum(v_10) v_10,
+		sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,
+		sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,
+		sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,
+		sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,sum(v_50) v_50,
+		sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,sum(v_54) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,sum(v_59) v_59,sum(v_60) v_60,
+		sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,sum(v_69) v_69,sum(v_70) v_70,
+		sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,sum(v_75) v_75,sum(v_76) v_76
+		from(
+		select distinct
+		t1.xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,
+		nvl((t2.dglc+t2.dslc+t2.dxlc+t2.zglc+t2.zslc+t2.zxlc+t2.yglc+t2.yslc+t2.yxlc),0) v_3,
+		nvl((t2.dglc+t2.zglc+t2.yglc),0) v_4,nvl((t2.dslc+t2.zslc+t2.yslc),0) v_5,nvl((t2.dxlc+t2.zxlc+t2.yxlc),0) v_6,
+		nvl((t2.dglc+t2.dslc+t2.dxlc),0) v_7,nvl(t2.dglc,0) v_8,nvl(t2.dslc,0) v_9,nvl(t2.dxlc,0) v_10,
+		nvl((t2.zglc+t2.zslc+t2.zxlc),0) v_11,nvl(t2.zglc,0) v_12,nvl(t2.zslc,0) v_13,nvl(t2.zxlc,0) v_14,
+		nvl((t2.yglc+t2.yslc+t2.yxlc),0) v_15,nvl(t2.yglc,0) v_16,nvl(t2.yslc,0) v_17,nvl(t2.yxlc,0) v_18,
+		nvl(t1.stcztz,0) v_19,nvl((dgstc+zgstc+ygstc),0) v_20,nvl((dsstc+zsstc+ysstc),0) v_21,nvl((dxstc+zxstc+yxstc),0) v_22,
+		nvl((dgstc+dsstc+dxstc),0) v_23,nvl(t1.dgstc,0) v_24,nvl(t1.dsstc,0) v_25,nvl(t1.dxstc,0) v_26,
+		nvl((zgstc+zsstc+zxstc),0) v_27,nvl(t1.zgstc,0) v_28,nvl(t1.zsstc,0) v_29,nvl(t1.zxstc,0) v_30,
+		nvl((ygstc+ysstc+yxstc),0) v_31,nvl(t1.ygstc,0) v_32,nvl(t1.ysstc,0) v_33,nvl(t1.yxstc,0) v_34,
+		nvl((stcztz-(dgstc+dsstc+dxstc+zgstc+zsstc+zxstc+ygstc+ysstc+yxstc)),0) v_35,nvl(t1.stcqt,0) v_36,
+		nvl(t1.dkztz,0) v_37,nvl((dgdk+zgdk+ygdk),0) v_38,nvl((dsdk+zsdk+ysdk),0) v_39,nvl((dxdk+zxdk+yxdk),0) v_40,
+		nvl((dgdk+dsdk+dxdk),0) v_41,nvl(t1.dgdk,0) v_42,nvl(t1.dsdk,0) v_43,nvl(t1.dxdk,0) v_44,
+		nvl((zgdk+zsdk+zxdk),0) v_45,nvl(t1.zgdk,0) v_46,nvl(t1.zsdk,0) v_47,nvl(t1.zxdk,0) v_48,
+		nvl((ygdk+ysdk+yxdk),0) v_49,nvl(t1.ygdk,0) v_50,nvl(t1.ysdk,0) v_51,nvl(t1.yxdk,0) v_52,
+		nvl((dkztz-(dgdk+dsdk+dxdk+zgdk+zsdk+zxdk+ygdk+ysdk+yxdk)),0) v_53,nvl(t1.dkqt,0) v_54,
+		nvl((t3.dglc+t3.dslc+t3.dxlc+t3.zglc+t3.zslc+t3.zxlc+t3.yglc+t3.yslc+t3.yxlc),0) v_55,
+		nvl(t3.dglc,0) v_56,nvl(t3.dslc,0) v_57,nvl(t3.dxlc,0) v_58,
+		nvl(t3.zglc,0) v_59,nvl(t3.zslc,0) v_60,nvl(t3.zxlc,0) v_61,
+		nvl(t3.yglc,0) v_62,nvl(t3.yslc,0) v_63,nvl(t3.yxlc,0) v_64,
+		nvl((t4.dglc+t4.dslc+t4.dxlc+t4.zglc+t4.zslc+t4.zxlc+t4.yglc+t4.yslc+t4.yxlc),0) v_65,
+		nvl(t4.dglc,0) v_66,nvl(t4.dslc,0) v_67,nvl(t4.dxlc,0) v_68,
+		nvl(t4.zglc,0) v_69,nvl(t4.zslc,0) v_70,nvl(t4.zxlc,0) v_71,
+		nvl(t4.yglc,0) v_72,nvl(t4.yslc,0) v_73,nvl(t4.yxlc,0) v_74,
+		nvl(t3.wctz,0) v_75,nvl(t4.wctz,0) v_76
+		
+		from
+		
+		(select 
+		xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+		  nvl(sum(xd.stcztz),0) stcztz,nvl(sum(xd.dkztz),0) dkztz,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) dgstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) dsstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) dxstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) zgstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) zsstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) zxstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) ygstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) ysstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) yxstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) dgdk,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) dsdk,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) dxdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) zgdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) zsdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) zxdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) ygdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) ysdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) yxdk,
+		  0 stcqt,0 dkqt
+		  from 
+		(select id,xmid,xdnf,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh,xmbm,yhdk,gz,sz,decode(stc,0,0,null,0,ztz) stcztz,decode(dk,0,0,null,0,ztz) dkztz,stc,dk from plan_zjxd
+		)
+		 xd left join jhsh_yhdzx t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='4' group by xd.xdnf,xd.jhxdwh,t.xzqh,t.gcfl,substr(t.ghlxbh,0,1)
+		) t1
+		left join
+		(
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) dglc,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) dslc,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) dxlc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) zglc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) zslc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) zxlc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) yglc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) yslc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) yxlc
+		from jhsh_yhdzx jh
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh,jh.gcfl,substr(jh.ghlxbh,0,1)
+		) t2 on t1.jhxdwh=t2.xdwh and t1.xdnf=t2.xmnf and t1.xzqh=t2.xzqh
+		left join 
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) dglc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) dslc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) dxlc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) zglc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) zslc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) zxlc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) yglc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) yslc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) yxlc,
+		sum(bnwctz) wctz  
+		from jhsh_yhdzx j left join
+		(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_yhdzx g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gcfl,substr(j.ghlxbh,0,1)
+		) t3 on t2.xdwh=t3.xdwh and t2.xmnf=t3.xmnf and t2.xzqh=t3.xzqh
+		left join
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) dglc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) dslc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) dxlc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) zglc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) zslc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) zxlc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) yglc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) yslc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) yxlc,
+		nvl(sum(bnwctz),0) wctz  
+		from jhsh_yhdzx j left join
+		(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_yhdzx g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gcfl,substr(j.ghlxbh,0,1)
+		) t4 on t2.xdwh=t4.xdwh and t2.xmnf=t4.xmnf and t2.xzqh=t4.xzqh
+		) tb where tb.v_1 in (${xmnf}) and tb.xzqh is not null group by tb.v_1,tb.v_2
+		union all
+		select distinct
+		t1.xzqh,t1.xzqhdm,'0' v_0,t1.xdnf v_1,t1.jhxdwh v_2,
+		nvl((t2.dglc+t2.dslc+t2.dxlc+t2.zglc+t2.zslc+t2.zxlc+t2.yglc+t2.yslc+t2.yxlc),0) v_3,
+		nvl((t2.dglc+t2.zglc+t2.yglc),0) v_4,nvl((t2.dslc+t2.zslc+t2.yslc),0) v_5,nvl((t2.dxlc+t2.zxlc+t2.yxlc),0) v_6,
+		nvl((t2.dglc+t2.dslc+t2.dxlc),0) v_7,nvl(t2.dglc,0) v_8,nvl(t2.dslc,0) v_9,nvl(t2.dxlc,0) v_10,
+		nvl((t2.zglc+t2.zslc+t2.zxlc),0) v_11,nvl(t2.zglc,0) v_12,nvl(t2.zslc,0) v_13,nvl(t2.zxlc,0) v_14,
+		nvl((t2.yglc+t2.yslc+t2.yxlc),0) v_15,nvl(t2.yglc,0) v_16,nvl(t2.yslc,0) v_17,nvl(t2.yxlc,0) v_18,
+		nvl(t1.stcztz,0) v_19,nvl((dgstc+zgstc+ygstc),0) v_20,nvl((dsstc+zsstc+ysstc),0) v_21,nvl((dxstc+zxstc+yxstc),0) v_22,
+		nvl((dgstc+dsstc+dxstc),0) v_23,nvl(t1.dgstc,0) v_24,nvl(t1.dsstc,0) v_25,nvl(t1.dxstc,0) v_26,
+		nvl((zgstc+zsstc+zxstc),0) v_27,nvl(t1.zgstc,0) v_28,nvl(t1.zsstc,0) v_29,nvl(t1.zxstc,0) v_30,
+		nvl((ygstc+ysstc+yxstc),0) v_31,nvl(t1.ygstc,0) v_32,nvl(t1.ysstc,0) v_33,nvl(t1.yxstc,0) v_34,
+		nvl((stcztz-(dgstc+dsstc+dxstc+zgstc+zsstc+zxstc+ygstc+ysstc+yxstc)),0) v_35,nvl(t1.stcqt,0) v_36,
+		nvl(t1.dkztz,0) v_37,nvl((dgdk+zgdk+ygdk),0) v_38,nvl((dsdk+zsdk+ysdk),0) v_39,nvl((dxdk+zxdk+yxdk),0) v_40,
+		nvl((dgdk+dsdk+dxdk),0) v_41,nvl(t1.dgdk,0) v_42,nvl(t1.dsdk,0) v_43,nvl(t1.dxdk,0) v_44,
+		nvl((zgdk+zsdk+zxdk),0) v_45,nvl(t1.zgdk,0) v_46,nvl(t1.zsdk,0) v_47,nvl(t1.zxdk,0) v_48,
+		nvl((ygdk+ysdk+yxdk),0) v_49,nvl(t1.ygdk,0) v_50,nvl(t1.ysdk,0) v_51,nvl(t1.yxdk,0) v_52,
+		nvl((dkztz-(dgdk+dsdk+dxdk+zgdk+zsdk+zxdk+ygdk+ysdk+yxdk)),0) v_53,nvl(t1.dkqt,0) v_54,
+		nvl((t3.dglc+t3.dslc+t3.dxlc+t3.zglc+t3.zslc+t3.zxlc+t3.yglc+t3.yslc+t3.yxlc),0) v_55,
+		nvl(t3.dglc,0) v_56,nvl(t3.dslc,0) v_57,nvl(t3.dxlc,0) v_58,
+		nvl(t3.zglc,0) v_59,nvl(t3.zslc,0) v_60,nvl(t3.zxlc,0) v_61,
+		nvl(t3.yglc,0) v_62,nvl(t3.yslc,0) v_63,nvl(t3.yxlc,0) v_64,
+		nvl((t4.dglc+t4.dslc+t4.dxlc+t4.zglc+t4.zslc+t4.zxlc+t4.yglc+t4.yslc+t4.yxlc),0) v_65,
+		nvl(t4.dglc,0) v_66,nvl(t4.dslc,0) v_67,nvl(t4.dxlc,0) v_68,
+		nvl(t4.zglc,0) v_69,nvl(t4.zslc,0) v_70,nvl(t4.zxlc,0) v_71,
+		nvl(t4.yglc,0) v_72,nvl(t4.yslc,0) v_73,nvl(t4.yxlc,0) v_74,
+		nvl(t3.wctz,0) v_75,nvl(t4.wctz,0) v_76
+		
+		from
+		
+		(select 
+		xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
+		  nvl(sum(xd.stcztz),0) stcztz,nvl(sum(xd.dkztz),0) dkztz,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) dgstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) dsstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) dxstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) zgstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) zsstc,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) zxstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.stc),0)),0),0) ygstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.stc),0)),0),0) ysstc,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.stc),0)),0),0) yxstc,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) dgdk,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) dsdk,
+		  decode(t.gcfl,'大修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) dxdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) zgdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) zsdk,
+		  decode(t.gcfl,'中修',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) zxdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'G',nvl(sum(xd.dk),0)),0),0) ygdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'S',nvl(sum(xd.dk),0)),0),0) ysdk,
+		  decode(t.gcfl,'预防性',nvl(decode(substr(t.ghlxbh,0,1),'X',nvl(sum(xd.dk),0)),0),0) yxdk,
+		  0 stcqt,0 dkqt
+		  from 
+		(select id,xmid,xdnf,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh,xmbm,yhdk,gz,sz,decode(stc,0,0,null,0,ztz) stcztz,decode(dk,0,0,null,0,ztz) dkztz,stc,dk from plan_zjxd
+		)
+		 xd left join jhsh_yhdzx t on xd.xmid=t.xmbm where length(xd.xmid)=14 and substr(xd.xmid,11,1)='4' group by xd.xdnf,xd.jhxdwh,t.xzqh,t.gcfl,substr(t.ghlxbh,0,1)
+		) t1
+		left join
+		(
+		select jh.xdwh,substr(jh.xmbm,0,4) xmnf,jh.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=jh.xzqh) xzqhdm,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) dglc,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) dslc,
+		  decode(jh.gcfl,'大修',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) dxlc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) zglc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) zslc,
+		  decode(jh.gcfl,'中修',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) zxlc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'G',nvl(sum(jh.lc),0)),0),0) yglc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'S',nvl(sum(jh.lc),0)),0),0) yslc,
+		  decode(jh.gcfl,'预防性',nvl(decode(substr(jh.ghlxbh,0,1),'X',nvl(sum(jh.lc),0)),0),0) yxlc
+		from jhsh_yhdzx jh
+		group by jh.xdwh,substr(jh.xmbm,0,4),jh.xzqh,jh.gcfl,substr(jh.ghlxbh,0,1)
+		) t2 on t1.jhxdwh=t2.xdwh and t1.xdnf=t2.xmnf and t1.xzqh=t2.xzqh
+		left join 
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) dglc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) dslc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) dxlc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) zglc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) zslc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) zxlc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) yglc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) yslc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) yxlc,
+		sum(bnwctz) wctz  
+		from jhsh_yhdzx j left join
+		(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_yhdzx g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+		and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		where j.sjwgsj is not null 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+		and to_date(j.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gcfl,substr(j.ghlxbh,0,1)
+		) t3 on t2.xdwh=t3.xdwh and t2.xmnf=t3.xmnf and t2.xzqh=t3.xzqh
+		left join
+		(
+		select j.xdwh,substr(j.xmbm,0,4) xmnf,j.xzqh,count(*) xmsl,(select id from xtgl_xzqh where name=j.xzqh) xzqhdm,
+		decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) dglc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) dslc,
+		  decode(j.gcfl,'大修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) dxlc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) zglc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) zslc,
+		  decode(j.gcfl,'中修',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) zxlc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'G',nvl(sum(yiji),0)),0),0) yglc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'S',nvl(sum(yiji),0)),0),0) yslc,
+		  decode(j.gcfl,'预防性',nvl(decode(substr(j.ghlxbh,0,1),'X',nvl(sum(yiji),0)),0),0) yxlc,
+		nvl(sum(bnwctz),0) wctz  
+		from jhsh_yhdzx j left join
+		(select distinct  jhid,nvl(sum(g.bywcmc),0) yiji,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_yhdzx g where
+		to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+		  group by g.jhid) gc on j.xmbm=gc.jhid
+		group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gcfl,substr(j.ghlxbh,0,1)
+		) t4 on t2.xdwh=t4.xdwh and t2.xmnf=t4.xmnf and t2.xzqh=t4.xzqh
+		where t1.xdnf in (${xmnf}) and t1.xzqh is not null
+		order by xzqhdm,v_1
+
+	</select>
+	
+	<select id="getHzlw" parameterType="gcglwqgz" resultType="elist">
+		select 
+			'总计' xzqh,'36' xzqhdm,'0' v_0,min(v_1) v_1,min(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,sum(v_7) v_7,sum(v_8) v_8,sum(v_9) v_9,sum(v_10) v_10,
+			sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,sum(v_14) v_14,sum(v_15) v_15,sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,
+			sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,
+			sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,sum(v_34) v_34,sum(v_35) v_35,sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,
+			sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,sum(v_47) v_47,sum(v_48) v_48,sum(v_49) v_49,sum(v_50) v_50,
+			sum(v_51) v_51,sum(v_52) v_52,sum(v_53) v_53,sum(v_54) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,sum(v_59) v_59,sum(v_60) v_60,
+			sum(v_61) v_61
+			from
+			(
+			select 
+			max(tb0.xzqh) xzqh,tb0.xzqhdm,'0' v_0,tb0.xdnf v_1,tb0.jhxdwh v_2,nvl(sum(tb0.ztz),0) v_3,nvl(sum(tb0.btz),0) v_4,nvl(sum(tb0.stz),0) v_5,nvl(sum(tb0.dstc),0) v_6,nvl(sum(tb0.qtzj),0) v_7,
+			nvl(sum(tb1.zuo),0) v_8,nvl(sum(tb1.ym),0) v_9,nvl(sum(tb1.ztz),0) v_10,nvl(sum(tb1.btz),0) v_11,nvl(sum(tb1.stz),0) v_12,nvl(sum(tb1.dstc),0) v_13,nvl(sum(tb1.qtzj),0) v_14,
+			nvl(sum(tb2.zuo),0) v_15,nvl(sum(tb2.ym),0) v_16,nvl(sum(tb2.ztz),0) v_17,nvl(sum(tb2.btz),0) v_18,nvl(sum(tb2.stz),0) v_19,nvl(sum(tb2.dstc),0) v_20,nvl(sum(tb2.qtzj),0) v_21,
+			nvl(sum(tb3.zuo),0) v_22,nvl(sum(tb3.ym),0) v_23,nvl(sum(tb3.ztz),0) v_24,nvl(sum(tb3.btz),0) v_25,nvl(sum(tb3.stz),0) v_26,nvl(sum(tb3.dstc),0) v_27,nvl(sum(tb3.qtzj),0) v_28,
+			nvl(sum(tb4.zuo),0) v_29,nvl(sum(tb4.ym),0) v_30,nvl(sum(tb4.ztz),0) v_31,nvl(sum(tb4.btz),0) v_32,nvl(sum(tb4.stz),0) v_33,nvl(sum(tb4.dstc),0) v_34,nvl(sum(tb4.qtzj),0) v_35,
+			nvl((nvl(sum(tb1.bnwctz),0)+nvl(sum(tb2.bnwctz),0)+nvl(sum(tb3.bnwctz),0)+nvl(sum(tb4.bnwctz),0)),0) v_36,nvl((nvl(sum(tb1.ljwctz),0)+nvl(sum(tb2.ljwctz),0)+nvl(sum(tb3.ljwctz),0)+nvl(sum(tb4.ljwctz),0)),0) v_37,
+			nvl(sum(tb1.bnzuo),0) v_38,nvl(sum(tb1.bnym),0) v_39,nvl(sum(tb1.bnwctz),0) v_40,
+			nvl(sum(tb2.bnzuo),0) v_41,nvl(sum(tb2.bnym),0) v_42,nvl(sum(tb2.bnwctz),0) v_43,
+			nvl(sum(tb3.bnzuo),0) v_44,nvl(sum(tb3.bnym),0) v_45,nvl(sum(tb3.bnwctz),0) v_46,
+			nvl(sum(tb4.bnzuo),0) v_47,nvl(sum(tb4.bnym),0) v_48,nvl(sum(tb4.bnwctz),0) v_49,
+			nvl(sum(tb1.ljzuo),0) v_50,nvl(sum(tb1.ljym),0) v_51,nvl(sum(tb1.ljwctz),0) v_52,
+			nvl(sum(tb2.ljzuo),0) v_53,nvl(sum(tb2.ljym),0) v_54,nvl(sum(tb2.ljwctz),0) v_55,
+			nvl(sum(tb3.ljzuo),0) v_56,nvl(sum(tb3.ljym),0) v_57,nvl(sum(tb3.ljwctz),0) v_58,
+			nvl(sum(tb4.ljzuo),0) v_59,nvl(sum(tb4.ljym),0) v_60,nvl(sum(tb4.ljwctz),0) v_61
+			from 
+			(
+			select 
+			xdnf,jhxdwh,min(xzqh) xzqh,xzqhdm,gydw,sum(ztz) ztz,sum(btz) btz,sum(stz) stz,sum(dstc) dstc,sum(qtzj) qtzj
+			from(
+			  select distinct 
+			'危桥' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'病害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw
+			from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'灾害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) tt group by tt.xdnf,tt.jhxdwh,tt.xzqhdm,tt.gydw
+			) tb0,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'危桥' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhqlqc ym,pl.jhxdwh,pl.sbnf
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_wqgz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_wqgz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_wqgz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_wqgz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb1,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'病害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhqlqc ym,pl.jhxdwh,pl.sbnf
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_bhsd zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_bhsd g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_bhsd zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_bhsd g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb2,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw
+			from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.jhnf sbnf
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			union all
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.jhnf sbnf
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_abgc zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  union all
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_af zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_abgc zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate) zuo
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  union all
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_af zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb3,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'灾害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.sbnf
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_zhfz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and zcx.sjwgsj&lt;=sysdate 
+			    and zcx.sjwgsj>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcgl,-1),'米',substr(g.bywcgl,0,length(g.bywcgl)-1),g.bywcgl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_zhfz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_zhfz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and zcx.sjwgsj&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcgl,-1),'米',substr(g.bywcgl,0,length(g.bywcgl)-1),g.bywcgl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_zhfz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			 
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb4
+			where tb0.xdnf=tb1.xdnf(+) and tb0.jhxdwh=tb1.jhxdwh(+) 
+			and tb0.xdnf=tb2.xdnf(+) and tb0.jhxdwh=tb2.jhxdwh(+)
+			and tb0.xdnf=tb3.xdnf(+) and tb0.jhxdwh=tb3.jhxdwh(+)
+			and tb0.xdnf=tb4.xdnf(+) and tb0.jhxdwh=tb4.jhxdwh(+)
+			and tb0.xzqhdm=tb1.xzqhdm(+) and tb0.gydw=tb1.gydw(+)
+			and tb0.xzqhdm=tb2.xzqhdm(+) and tb0.gydw=tb2.gydw(+)
+			and tb0.xzqhdm=tb3.xzqhdm(+) and tb0.gydw=tb3.gydw(+)
+			and tb0.xzqhdm=tb4.xzqhdm(+) and tb0.gydw=tb4.gydw(+)
+			<if test="xmlx != null and  xmlx != ''">
+					and tb0.gydw like '%'||trim(#{xmlx})||'%'
+			</if>
+			group by tb0.xzqhdm,tb0.xdnf,tb0.jhxdwh
+			order by tb0.xzqhdm,tb0.xdnf
+			) tbzj
+			group by tbzj.v_1,tbzj.v_2
+			
+			
+			
+			union all
+			
+			
+			
+			select distinct
+			to_char(max(tb0.xzqh)) xzqh,tb0.xzqhdm,'0' v_0,tb0.xdnf v_1,tb0.jhxdwh v_2,nvl(sum(tb0.ztz),0) v_3,nvl(sum(tb0.btz),0) v_4,nvl(sum(tb0.stz),0) v_5,nvl(sum(tb0.dstc),0) v_6,nvl(sum(tb0.qtzj),0) v_7,
+			nvl(sum(tb1.zuo),0) v_8,nvl(sum(tb1.ym),0) v_9,nvl(sum(tb1.ztz),0) v_10,nvl(sum(tb1.btz),0) v_11,nvl(sum(tb1.stz),0) v_12,nvl(sum(tb1.dstc),0) v_13,nvl(sum(tb1.qtzj),0) v_14,
+			nvl(sum(tb2.zuo),0) v_15,nvl(sum(tb2.ym),0) v_16,nvl(sum(tb2.ztz),0) v_17,nvl(sum(tb2.btz),0) v_18,nvl(sum(tb2.stz),0) v_19,nvl(sum(tb2.dstc),0) v_20,nvl(sum(tb2.qtzj),0) v_21,
+			nvl(sum(tb3.zuo),0) v_22,nvl(sum(tb3.ym),0) v_23,nvl(sum(tb3.ztz),0) v_24,nvl(sum(tb3.btz),0) v_25,nvl(sum(tb3.stz),0) v_26,nvl(sum(tb3.dstc),0) v_27,nvl(sum(tb3.qtzj),0) v_28,
+			nvl(sum(tb4.zuo),0) v_29,nvl(sum(tb4.ym),0) v_30,nvl(sum(tb4.ztz),0) v_31,nvl(sum(tb4.btz),0) v_32,nvl(sum(tb4.stz),0) v_33,nvl(sum(tb4.dstc),0) v_34,nvl(sum(tb4.qtzj),0) v_35,
+			nvl((nvl(sum(tb1.bnwctz),0)+nvl(sum(tb2.bnwctz),0)+nvl(sum(tb3.bnwctz),0)+nvl(sum(tb4.bnwctz),0)),0) v_36,nvl((nvl(sum(tb1.ljwctz),0)+nvl(sum(tb2.ljwctz),0)+nvl(sum(tb3.ljwctz),0)+nvl(sum(tb4.ljwctz),0)),0) v_37,
+			nvl(sum(tb1.bnzuo),0) v_38,nvl(sum(tb1.bnym),0) v_39,nvl(sum(tb1.bnwctz),0) v_40,
+			nvl(sum(tb2.bnzuo),0) v_41,nvl(sum(tb2.bnym),0) v_42,nvl(sum(tb2.bnwctz),0) v_43,
+			nvl(sum(tb3.bnzuo),0) v_44,nvl(sum(tb3.bnym),0) v_45,nvl(sum(tb3.bnwctz),0) v_46,
+			nvl(sum(tb4.bnzuo),0) v_47,nvl(sum(tb4.bnym),0) v_48,nvl(sum(tb4.bnwctz),0) v_49,
+			nvl(sum(tb1.ljzuo),0) v_50,nvl(sum(tb1.ljym),0) v_51,nvl(sum(tb1.ljwctz),0) v_52,
+			nvl(sum(tb2.ljzuo),0) v_53,nvl(sum(tb2.ljym),0) v_54,nvl(sum(tb2.ljwctz),0) v_55,
+			nvl(sum(tb3.ljzuo),0) v_56,nvl(sum(tb3.ljym),0) v_57,nvl(sum(tb3.ljwctz),0) v_58,
+			nvl(sum(tb4.ljzuo),0) v_59,nvl(sum(tb4.ljym),0) v_60,nvl(sum(tb4.ljwctz),0) v_61
+			from 
+			(
+			select 
+			xdnf,jhxdwh,min(xzqh) xzqh,xzqhdm,gydw,sum(ztz) ztz,sum(btz) btz,sum(stz) stz,sum(dstc) dstc,sum(qtzj) qtzj
+			from(
+			  select distinct 
+			'危桥' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'病害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw
+			from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'灾害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) tt group by tt.xdnf,tt.jhxdwh,tt.xzqhdm,tt.gydw
+			) tb0,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'危桥' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhqlqc ym,pl.jhxdwh,pl.sbnf
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_wqgz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_wqgz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_wqgz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_wqgz pl left join sck_wqgz sc on pl.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_wqgz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb1,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'病害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhqlqc ym,pl.jhxdwh,pl.sbnf
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_bhsd zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_bhsd g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_bhsd zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_bhsd pl left join sck_bhsd sc on pl.sckid=sc.sckid left join xmk_bhsd xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_bhsd g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			    
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb2,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			union all
+			select distinct 
+			'安保' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw
+			from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.jhnf sbnf
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			union all
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			 pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.jhnf sbnf
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_abgc zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  union all
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_af zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_abgc zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=sysdate) zuo
+			    from plan_abgc pl left join sck_abgc sc on pl.sckid=sc.sckid left join xmk_abgc xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  union all
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(sc.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(sc.xzqhdm,0,4)||'00') xzqh,decode(substr(sc.gydwdm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.jhnf sbnf,(select count(*) from plan_af zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and to_date(zcx.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_af pl left join sck_aqsmfh sc on pl.sckid=sc.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywc_gl,-1),'米',substr(g.bywc_gl,0,length(g.bywc_gl)-1),g.bywc_gl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_abgc g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb3,
+			(
+			select 
+			xmlx,t1.xdnf,t1.jhxdwh,t1.xzqh,t1.xzqhdm,t1.gydw,t1.ztz,t1.btz,t1.stz,t1.dstc,t1.qtzj,t2.zuo,t2.ym,t3.zuo bnzuo,t3.ym bnym,t3.wctz bnwctz,t4.zuo ljzuo,t4.ym ljym,t4.wctz ljwctz
+			from
+			(select distinct 
+			'灾害' xmlx,xd.xdnf,xd.jhxdwh,min(t.xzqh) xzqh,t.xzqhdm,t.gydw,nvl(sum(xd.ztz),0) ztz,nvl(sum(xd.btzzj),0) btz,nvl(sum(xd.stz),0) stz,nvl((sum(xd.ztz)-sum(xd.btzzj)-sum(xd.stz)),0) dstc,0 qtzj
+			from 
+			plan_zjxd xd left join 
+			(select 
+			 pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw
+			from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id) t on xd.xmid=t.id 
+			where t.id is not null
+			group by xd.xdnf,xd.jhxdwh,t.xzqhdm,t.gydw
+			) t1 left join
+			(
+			  select 
+			     sbnf,jhxdwh,xzqhdm,gydw,count(*) zuo,sum(ym) ym 
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			     pl.jhyhlc ym,pl.jhxdwh,pl.sbnf
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			
+			) t2 on t1.xdnf=t2.sbnf and t1.jhxdwh=t2.jhxdwh and t1.xzqhdm=t2.xzqhdm and t1.gydw=t2.gydw
+			left join
+			(select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_zhfz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and zcx.sjwgsj&lt;=sysdate 
+			    and zcx.sjwgsj>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')) zuo
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcgl,-1),'米',substr(g.bywcgl,0,length(g.bywcgl)-1),g.bywcgl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_zhfz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(to_char(sysdate,'yyyy-MM')||'-01','yyyy-mm-dd')
+			    and to_date(g.sbyf||'-01','yyyy-MM-dd')>=to_date(to_char(sysdate,'yyyy')||'-01-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			  
+			) t3
+			 on t1.xdnf=t3.sbnf and t1.jhxdwh=t3.jhxdwh and t1.xzqhdm=t3.xzqhdm and t1.gydw=t3.gydw
+			left join 
+			(
+			select 
+			     sbnf,jhxdwh,xzqhdm,gydw,sum(zuo) zuo,sum(ym) ym,sum(wctz) wctz
+			  from(
+			    select 
+			     pl.id,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh xz where xz.id=substr(xm.xzqhdm,0,4)||'00') xzqh,decode(substr(xm.gydwbm,0,1),'1','交通局','2','公路局') gydw,
+			      nvl(gc.bnwctz,0) wctz,nvl(gc.ym,0) ym,pl.jhxdwh,pl.sbnf,(select count(*) from plan_zhfz zcx where zcx.id=pl.id and zcx.sjwgsj is not null 
+			    and zcx.sjwgsj&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')) zuo
+			    from plan_zhfz pl left join sck_zhfz sc on pl.sckid=sc.sckid left join xmk_zhfz xm on sc.xmkid=xm.id
+			    left join
+			    (select jhid,nvl(sum(decode(substr(g.bywcgl,-1),'米',substr(g.bywcgl,0,length(g.bywcgl)-1),g.bywcgl)),0) ym ,nvl(sum(g.wc_btz+g.wc_stz+g.wc_qttz),0) bnwctz from gcgl_zhfz g where
+			    to_date(g.sbyf||'-01','yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-01','yyyy-mm-dd')
+			      group by g.jhid) gc on pl.id=gc.jhid
+			  ) t group by t.sbnf,jhxdwh,xzqhdm,gydw
+			 
+			) t4
+			on t1.xdnf=t4.sbnf and t1.jhxdwh=t4.jhxdwh and t1.xzqhdm=t4.xzqhdm and t1.gydw=t4.gydw
+			) tb4
+			where tb0.xdnf=tb1.xdnf(+) and tb0.jhxdwh=tb1.jhxdwh(+) 
+			and tb0.xdnf=tb2.xdnf(+) and tb0.jhxdwh=tb2.jhxdwh(+)
+			and tb0.xdnf=tb3.xdnf(+) and tb0.jhxdwh=tb3.jhxdwh(+)
+			and tb0.xdnf=tb4.xdnf(+) and tb0.jhxdwh=tb4.jhxdwh(+)
+			and tb0.xzqhdm=tb1.xzqhdm(+) and tb0.gydw=tb1.gydw(+)
+			and tb0.xzqhdm=tb2.xzqhdm(+) and tb0.gydw=tb2.gydw(+)
+			and tb0.xzqhdm=tb3.xzqhdm(+) and tb0.gydw=tb3.gydw(+)
+			and tb0.xzqhdm=tb4.xzqhdm(+) and tb0.gydw=tb4.gydw(+)
+			<if test="xmlx != null and  xmlx != ''">
+					and tb0.gydw like '%'||trim(#{xmlx})||'%'
+			</if>
+			group by tb0.xzqhdm,tb0.xdnf,tb0.jhxdwh
+			
+			order by xzqhdm,v_1,v_2
+	</select>
 </mapper>

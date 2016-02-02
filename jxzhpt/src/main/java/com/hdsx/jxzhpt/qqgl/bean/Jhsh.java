@@ -128,9 +128,16 @@ public class Jhsh {
 	private String zddzjl;//重点打造奖励
 	private String dfzc;//地方自筹资金
 	private String lxzh;//所在路线桩号
-		
+	private String gldj;
+	
 
 	
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
 	public String getQsmc() {
 		return qsmc;
 	}

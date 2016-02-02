@@ -510,7 +510,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void exportAbgcZjxdExcel(){
 		//设置表头
-		ExcelTitleCell [] title=new ExcelTitleCell[9];
+		ExcelTitleCell [] title=new ExcelTitleCell[10];
 		title[0]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)0), null,50);
 		title[1]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)1), null,15);
 		title[2]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)2), null,15);
@@ -519,7 +519,9 @@ public class Plan_abgcController extends BaseActionSupport{
 		title[5]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)5), null,15);
 		title[6]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)6), null,15);
 		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,15);
-		title[8]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)8), null,20);
+		title[8]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)8), null,20);
+		title[9]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)9), null,20);
+		
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
 		attribute.put("0", "lxxx");//路线信息
@@ -530,7 +532,8 @@ public class Plan_abgcController extends BaseActionSupport{
 		attribute.put("5", "btzzj");//下达的部投资
 		attribute.put("6", "stz");//下达的部投资
 		attribute.put("7", "jhxdwh");//下达的部投资
-		attribute.put("8", "xmid");
+		attribute.put("8", "ztz");//下达的部投资
+		attribute.put("9", "xmid");
 		//准备数据
 		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
 		List<Object> excelData = new ArrayList<Object>();

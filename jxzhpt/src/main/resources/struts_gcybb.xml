@@ -31,6 +31,12 @@
 	<action name="xmkaqsmfhbb1" class="gcybbController" method="xmkaqsmfhbb1"/>
 	<action name="xmkaqsmfhbb2" class="gcybbController" method="xmkaqsmfhbb2"/>
  	<action name="sckaqsmfhbb" class="gcybbController" method="sckaqsmfhbb"/>
- 
+ 	
+ 	<action name="getHzgjxj" class="gcybbController" method="getHzgjxj"/>
+ 	<action name="getHzzh" class="gcybbController" method="getHzzh"/>
+ 	<action name="getHzlm" class="gcybbController" method="getHzlm"/>
+ 	<action name="getHzyh" class="gcybbController" method="getHzyh"/>
+ 	<action name="getHzlw" class="gcybbController" method="getHzlw"/>
+ 	
  </package>
 </struts>

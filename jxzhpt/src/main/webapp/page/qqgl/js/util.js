@@ -552,6 +552,42 @@ function queryZjxd(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+function queryZjxdyh(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field:'cz',title:'操作',width:100,align:'center',
+			formatter : function(value, row, index) {
+				var result = '<a href="javascript:updateZjxdById('+"'"+index+"','zjxd_edit.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				if(xmbm.substring(10,11)==4){
+					result = '<a href="javascript:updateZjxdById('+"'"+index+"','zjxd_edit1.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				}
+				result += '<a href="javascript:deleteZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stc',title : '省统筹',width : 150,align : 'center'}, 
+		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'ztz',title : '总投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+
 
 function queryYhzxZjxd(xmbm){
 	grid.id="zjxdList";

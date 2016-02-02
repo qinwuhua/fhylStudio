@@ -933,7 +933,7 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
-		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
 	<select id="queryCbsjbgLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx_tz c left join 
@@ -953,8 +953,8 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
-		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
-		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="tzxz !=null and tzxz !=''">and c.tzxz like '%'||#{tzxz}||'%'</if>
+		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
 	
 	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
@@ -974,7 +974,7 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
-		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
 	<select id="queryCbsjbgLjSh" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh_tz c left join 
@@ -993,8 +993,8 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
-		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
-		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
+		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="tzxz !=null and tzxz !=''">and c.tzxz like '%'||#{tzxz}||'%'</if>
 	</select>
 	
 	<select id="loadsjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">

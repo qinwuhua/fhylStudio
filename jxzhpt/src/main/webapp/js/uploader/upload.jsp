@@ -60,6 +60,7 @@
 			'scriptData' : {
 				'tbbmbm1':$.cookie("unit2"),
 				'tbbmbm2':$.cookie("unit"),
+				'xmlx':flag,
 				'sbthcd1':$.cookie("unit2").length
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {

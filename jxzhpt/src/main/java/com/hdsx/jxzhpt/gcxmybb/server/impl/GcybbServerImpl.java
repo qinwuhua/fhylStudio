@@ -482,4 +482,111 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public void createybView(String viewsql) {
 		insert("createybView", viewsql);
 	}
+
+	@Override
+	public List<Excel_list> getHzgjxj(Gcglwqgz gcglwqgz) {
+		System.out.println(gcglwqgz.getXmnf());
+		List<Excel_list> list = queryList("getHzgjxj",gcglwqgz);
+		int k=0;//k为每一个行政区划的第一行
+		int count=0;//统计个数
+		String xzqh="总计";
+		for (int i = 0; i < list.size(); i++) {
+			if(xzqh.equals(list.get(i).getXzqh())){
+				count++;
+			}else{
+				list.get(k).setV_0(count+"");
+				k=i;
+				count=1;
+				xzqh=list.get(i).getXzqh();
+			}
+		}
+		list.get(k).setV_0(count+"");
+		return list; 
+	}
+	
+	@Override
+	public List<Excel_list> getHzzh(Gcglwqgz gcglwqgz) {
+		System.out.println(gcglwqgz.getXmnf());
+		List<Excel_list> list = queryList("getHzzh",gcglwqgz);
+		int k=0;//k为每一个行政区划的第一行
+		int count=0;//统计个数
+		String xzqh="总计";
+		for (int i = 0; i < list.size(); i++) {
+			if(xzqh.equals(list.get(i).getXzqh())){
+				count++;
+			}else{
+				list.get(k).setV_0(count+"");
+				k=i;
+				count=1;
+				xzqh=list.get(i).getXzqh();
+			}
+		}
+		list.get(k).setV_0(count+"");
+		return list; 
+	}
+	
+	@Override
+	public List<Excel_list> getHzlm(Gcglwqgz gcglwqgz) {
+		System.out.println(gcglwqgz.getXmnf());
+		List<Excel_list> list = queryList("getHzlm",gcglwqgz);
+		int k=0;//k为每一个行政区划的第一行
+		int count=0;//统计个数
+		String xzqh="总计";
+		for (int i = 0; i < list.size(); i++) {
+			if(xzqh.equals(list.get(i).getXzqh())){
+				count++;
+			}else{
+				list.get(k).setV_0(count+"");
+				k=i;
+				count=1;
+				xzqh=list.get(i).getXzqh();
+			}
+		}
+		list.get(k).setV_0(count+"");
+		return list; 
+	}
+	
+	@Override
+	public List<Excel_list> getHzyh(Gcglwqgz gcglwqgz) {
+		System.out.println(gcglwqgz.getXmnf());
+		List<Excel_list> list = queryList("getHzyh",gcglwqgz);
+		int k=0;//k为每一个行政区划的第一行
+		int count=0;//统计个数
+		String xzqh="总计";
+		for (int i = 0; i < list.size(); i++) {
+			if(xzqh.equals(list.get(i).getXzqh())){
+				count++;
+			}else{
+				list.get(k).setV_0(count+"");
+				k=i;
+				count=1;
+				xzqh=list.get(i).getXzqh();
+			}
+		}
+		list.get(k).setV_0(count+"");
+		
+		return list; 
+	}
+	
+	@Override
+	public List<Excel_list> getHzlw(Gcglwqgz gcglwqgz) {
+		System.out.println(gcglwqgz.getXmnf());
+		List<Excel_list> list = queryList("getHzlw",gcglwqgz);
+		int k=0;//k为每一个行政区划的第一行
+		int count=0;//统计个数
+		String xzqh="总计";
+		for (int i = 0; i < list.size(); i++) {
+			if(xzqh.equals(list.get(i).getXzqh())){
+				count++;
+			}else{
+				list.get(k).setV_0(count+"");
+				k=i;
+				count=1;
+				xzqh=list.get(i).getXzqh();
+			}
+		}
+		list.get(k).setV_0(count+"");
+		
+		return list; 
+	}
 }

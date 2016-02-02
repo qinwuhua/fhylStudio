@@ -17,7 +17,28 @@ public class Plan_zjxd {
 	private String yhdk;
 	private String gz;
 	private String sz;
+	private String ztz;
+	private String stc;
+	private String dk;
 	
+	public String getStc() {
+		return stc;
+	}
+	public void setStc(String stc) {
+		this.stc = stc;
+	}
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}

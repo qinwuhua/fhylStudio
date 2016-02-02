@@ -31,7 +31,7 @@
 					});
 				}
 			});
-			queryZjxd(parent.YMLib.Var.xmbm);
+			queryZjxdyh(parent.YMLib.Var.xmbm);
 		});
 	</script>
 </head>

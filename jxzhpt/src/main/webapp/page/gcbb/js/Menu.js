@@ -35,6 +35,7 @@ $(function() {
 			});
 			j++;
 		}
+		
 	}
 	
 	createMenux('LeftMenu',{
@@ -189,6 +190,42 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/abgchzb.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050213',
+		title:'中央车购税改建、新建',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/hzgx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050214',
+		title:'中央车购税灾毁',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/hzzh.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050215',
+		title:'中央车购税路面改造',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/hzlm.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050216',
+		title:'省统筹养护大中修',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/hzyh.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050217',
+		title:'路网结构改造项目',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/hzlw.jsp'
+	});
+	
 	
 	
 	createMenux('LeftMenu',{
@@ -364,6 +401,8 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/abbb/afsc.jsp'
 	});
+	
+
 	/*createMenu2('LeftMenu',{
 		id:'menu22',
 		title:'灾害进度库完成信息模板',

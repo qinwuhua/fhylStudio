@@ -10,7 +10,35 @@ public class Gcglgcgzgj implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String jgys;
+	private String yiji;
+	private String erji;
+	private String sanji;
+	private String siji;
 	
+	public String getYiji() {
+		return yiji;
+	}
+	public void setYiji(String yiji) {
+		this.yiji = yiji;
+	}
+	public String getErji() {
+		return erji;
+	}
+	public void setErji(String erji) {
+		this.erji = erji;
+	}
+	public String getSanji() {
+		return sanji;
+	}
+	public void setSanji(String sanji) {
+		this.sanji = sanji;
+	}
+	public String getSiji() {
+		return siji;
+	}
+	public void setSiji(String siji) {
+		this.siji = siji;
+	}
 	public String getJgys() {
 		return jgys;
 	}

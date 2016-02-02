@@ -2349,4 +2349,49 @@ public class GcybbController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		}
+		
+		public void getHzgjxj(){
+			try {
+				List<Excel_list> list=gcybbServer.getHzgjxj(gcglwqgz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void getHzzh(){
+			try {
+				List<Excel_list> list=gcybbServer.getHzzh(gcglwqgz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void getHzlm(){
+			try {
+				List<Excel_list> list=gcybbServer.getHzlm(gcglwqgz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void getHzyh(){
+			try {
+				List<Excel_list> list=gcybbServer.getHzyh(gcglwqgz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void getHzlw(){
+			try {
+				List<Excel_list> list=gcybbServer.getHzlw(gcglwqgz);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }
