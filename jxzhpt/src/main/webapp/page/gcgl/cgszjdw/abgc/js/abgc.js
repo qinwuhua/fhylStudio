@@ -193,6 +193,8 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
+	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
+	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
@@ -266,6 +268,8 @@ function showafAll(){
 	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
+	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
+	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
 	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 

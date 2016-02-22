@@ -14,7 +14,18 @@ public class Gcglgcgzgj implements Serializable {
 	private String erji;
 	private String sanji;
 	private String siji;
+	private String xdzj;
+	private String bfzj;
 	
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
 	public String getYiji() {
 		return yiji;
 	}

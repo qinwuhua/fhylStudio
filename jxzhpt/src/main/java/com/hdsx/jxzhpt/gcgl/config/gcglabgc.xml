@@ -161,9 +161,11 @@
 		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.id jhid,t1.id,
 		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1'
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
@@ -208,9 +210,11 @@
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
 		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID
 		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1'
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
@@ -353,13 +357,29 @@
 	 <select id="exportAbyb" parameterType="gcglabgc" resultType="elist">
 			select 
 			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBBZJE v_8,JHSYDFZCZJ v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
-			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1' and c.tbyf is null 
-			<if test="jhnf != null and  jhnf != ''">
-					and t1.jhnf like '%'||trim(#{jhnf})||'%'
-			</if>
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+	    left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
+	 	where t1.spzt='1' 
+	 		<if test="xmnf != null and  xmnf != ''">
+			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+		</if>
+		<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+		</if>
+		
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -369,19 +389,62 @@
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
 			</if>
 			order by t1.jhnf
 	</select>
 	<select id="exportAfyb" parameterType="gcglabgc" resultType="elist">
 			select 
 			t1.ID v_0,t3.gydw v_1,t3.xzqh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBBZJE v_8,JHSYDFZCZJ v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
-			from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1'
-			<if test="jhnf != null and  jhnf != ''">
-					and t1.jhnf like '%'||trim(#{jhnf})||'%'
-			</if>
+			from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID left join 
+		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
+		where t1.spzt='1' 
+
+		<if test="xmnf != null and  xmnf != ''">
+			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+		</if>
+		<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+		</if>
+		
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -391,6 +454,31 @@
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
 			</if>
 			order by t1.jhnf
 	</select>
@@ -400,8 +488,22 @@
 		select 
 		t.xmbm v_0,
 		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
-		from JHSH_LMGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
-			where 1=1 and c.tbyf is null 
+		from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join 
+		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
+			left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid
+			where 1=1 
+			<!-- <if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -416,8 +518,22 @@
 		<if test="jgzt != null and  jgzt != ''">
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="jhnf != null and  jhnf != ''">
-				and t.xmbm like trim(#{jhnf})||'%'
+		<if test="sbnf != null and  sbnf != ''">
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+			</if>
+			<if test="ljbfzt =='未全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+			</if>
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
@@ -427,15 +543,37 @@
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
-			)
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
+				)
 	</select>
 	
 	<select id="exportxjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
 		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
-		from JHSH_XJ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
-			where 1=1 and c.tbyf is null 
+		from JHSH_XJ t left join lxsh_xj lxsh on t.xmbm=lxsh.xmbm left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		    left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid
+			where 1=1 
+		<!-- 	<if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -450,8 +588,22 @@
 		<if test="jgzt != null and  jgzt != ''">
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="jhnf != null and  jhnf != ''">
-				and t.xmbm like trim(#{jhnf})||'%'
+		<if test="sbnf != null and  sbnf != ''">
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbfzt != null and  ljbfzt != ''">
+			<if test="ljbfzt =='已全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+			</if>
+			<if test="ljbfzt =='未全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+			</if>
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
@@ -460,6 +612,15 @@
 				</if>
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
 				</if>
 			)
 	</select>
@@ -491,8 +652,21 @@
 		select 
 		t.xmbm v_0,
 		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
-		from JHSH_SJGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
-			where 1=1 and c.tbyf is null 
+		from JHSH_SJGZ t left join lxsh_sjgz lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid
+			where 1=1 
+			<!-- <if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -507,8 +681,22 @@
 		<if test="jgzt != null and  jgzt != ''">
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="jhnf != null and  jhnf != ''">
-				and t.xmbm like trim(#{jhnf})||'%'
+		<if test="sbnf != null and  sbnf != ''">
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbfzt != null and  ljbfzt != ''">
+			<if test="ljbfzt =='已全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+			</if>
+			<if test="ljbfzt =='未全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+			</if>
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
@@ -518,6 +706,15 @@
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
 			)
 	</select>
 	
@@ -525,10 +722,10 @@
 			select 
 			t2.id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,t2.ztz v_7,zytz v_8,dfta v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_HSLY t2 left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-			where 1=1 and c.tbyf is null 
-			<if test="jhnf != null and  jhnf != ''">
-					and t2.jhnf like '%'||trim(#{jhnf})||'%'
-			</if>
+			where 1=1 
+<!-- 			<if test="jhnf != null and  jhnf != ''"> -->
+<!-- 					and t2.jhnf like '%'||trim(#{jhnf})||'%' -->
+<!-- 			</if> -->
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -547,8 +744,21 @@
 		select 
 		t.xmbm v_0,
 		substr(t.xmbm,0,4) v_2,t.jhkgsj v_3,t.jhwgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,0 v_9,0 v_10,'同意' v_11,#{tbyf} v_12,to_char(sysdate,'yyyy-mm-dd') v_13,#{tbr} v_14
-		from JHSH_SH t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
-			where 1=1 and c.tbyf is null 
+		from JHSH_SH t left join xmsq_sh lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm  left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
+			left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		    left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid	
+			where 1=1 
+			<!-- <if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -563,8 +773,22 @@
 		<if test="jgzt != null and  jgzt != ''">
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="jhnf != null and  jhnf != ''">
-				and t.xmbm like trim(#{jhnf})||'%'
+		<if test="sbnf != null and  sbnf != ''">
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+			</if>
+			<if test="ljbfzt =='未全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+			</if>
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
@@ -574,6 +798,16 @@
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
+				
 			)
 	</select>
 	
@@ -581,8 +815,21 @@
 		select 
 		t.xmbm v_0,
 		substr(t.xmbm,0,4) v_2,t.jhkgsj v_3,t.jhwgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
-		from JHSH_YHDZX t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
-			where 1=1 and c.tbyf is null 
+		from JHSH_YHDZX t left join xmsq_yhdzx lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm  left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t.xmbm=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t.xmbm=xdjh.jhid
+			left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t.xmbm=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		    left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid
+			where 1=1 
+		<!-- 	<if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -597,8 +844,22 @@
 		<if test="jgzt != null and  jgzt != ''">
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="jhnf != null and  jhnf != ''">
-				and t.xmbm like trim(#{jhnf})||'%'
+		<if test="sbnf != null and  sbnf != ''">
+				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbfzt != null and  ljbfzt != ''">
+				<if test="ljbfzt =='已全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+			</if>
+			<if test="ljbfzt =='未全部拨付'">
+				and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+			</if>
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
@@ -608,19 +869,46 @@
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
 			)
 	</select>
 	
 	<select id="exportzhyb" parameterType="gcglabgc" resultType="elist">
 			select 
 			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
-			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1'  and c.tbyf is null 
-			<if test="jhnf != null and  jhnf != ''">
-					and t1.sbnf like '%'||trim(#{jhnf})||'%'
+			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+			left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
+	 	where t1.spzt='1' 
+	 		<!-- <if test="xdsj != null and  xdsj != ''">
+			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
+		</if> -->
+		<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+		</if>
+				<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -631,15 +919,50 @@
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+					<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			order by t1.sbnf
 	</select>
 	
 	<select id="exportwqyb" parameterType="gcglabgc" resultType="elist">
 			select 
 			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
-			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1' and c.tbyf is null 
-			<if test="jhnf != null and  jhnf != ''">
-					and t1.sbnf like '%'||trim(#{jhnf})||'%'
+			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
+		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (select 
+	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
+	      else '未全部拨付' end) ljbfzt,tb1.xmid
+	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
+	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
+	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+	    left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
+	 	where t1.spzt='1' 
+				<if test="xmnf != null and  xmnf != ''">
+				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}
@@ -647,6 +970,12 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
+			<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
@@ -656,9 +985,35 @@
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
-			<if test="tiaojian != null and  tiaojian != ''">
-					and t3.qlmc like '%'||trim(#{tiaojian})||'%'
+			<if test="qlmc != null and  qlmc != ''">
+					and t3.qlmc like '%'||trim(#{qlmc})||'%'
 			</if>
+			<if test="qlbh != null and  qlbh != ''">
+			and t3.qlbh like '%'||trim(#{qlbh})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and t3.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			<if test="ljbfzt != null and  ljbfzt != ''">
+					<if test="ljbfzt =='已全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%'
+				</if>
+				<if test="ljbfzt =='未全部拨付'">
+					and tb3.ljbfzt like '%'||trim(#{ljbfzt})||'%' or tb3.ljbfzt is null
+				</if>
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			order by t1.sbnf
 	</select>
 	<!--  -->
 	 <select id="exportAbyb1" parameterType="gcglabgc" resultType="elist">
@@ -701,7 +1056,7 @@
 		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
 		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join 
 		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
@@ -711,6 +1066,8 @@
 	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1' 
 
 		<if test="xmnf != null and  xmnf != ''">
@@ -770,7 +1127,7 @@
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
 		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID left join 
 		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
@@ -780,6 +1137,8 @@
 	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1' 
 
 		<if test="xmnf != null and  xmnf != ''">

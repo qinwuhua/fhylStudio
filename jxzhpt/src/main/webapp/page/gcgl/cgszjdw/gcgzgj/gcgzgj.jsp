@@ -54,14 +54,23 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			var jgzt='0';
+			var jgzt='';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var myDate = new Date();
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();    //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
+			
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y
+			+"&bfzt="+$("#bfzt").val()+
+	    	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
+	    	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValue')+
+	    	'&gcglabgc.lxbm='+$("#lxbm").val()+
+	    	'&gcglabgc.xmmc='+$("#xmmc").val()+
+	    	'&gcglabgc.lxmc='+$("#lxmc").val()+
+	    	'&gcglabgc.tsdq='+$("#ddlTSDQ").combobox('getText')+
+	    	'&gcglabgc.ljbfzt='+$("#ljbfzt").combobox('getValue');
 			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:xzqhstr} ,function(){
 				window.location.href="/jxzhpt/gcgl/exportgjyb.do?"+data;
 			    });

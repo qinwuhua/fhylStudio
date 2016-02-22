@@ -595,32 +595,55 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 
 	public void exportAbyb(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		HttpSession session = request.getSession();
-		gydw=(String) session.getAttribute("gydw");	
-		String tiaojian1="";
-		if("af".equals(gcglabgc.getXmlx())){
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
-			}else{
-				tiaojian1="and t3.gydwdm in ("+gydw+")";
+		List<Excel_list> list;
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydw = (String) session.getAttribute("gydw");
+			xzqh = (String) session.getAttribute("xzqh");
+			System.out.println(xzqh);
+			String tiaojian1 = "";
+			if ("af".equals(gcglabgc.getXmlx())) {
+				if (gydw.indexOf(",") == -1) {
+					tiaojian1 = "and t3.gydwdm like '%'||substr('" + gydw
+							+ "',0,4)||'_'||substr('" + gydw + "',6)||'%'";
+				} else {
+					tiaojian1 = "and t3.gydwdm in (" + gydw + ")";
+				}
+			} else {
+				if (gydw.indexOf(",") == -1) {
+					tiaojian1 = "and t3.gydwbm like '%'||substr('" + gydw
+							+ "',0,4)||'_'||substr('" + gydw + "',6)||'%'";
+				} else {
+					tiaojian1 = "and t3.gydwbm in (" + gydw + ")";
+				}
 			}
-		}else{
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
-			}else{
-				tiaojian1="and t3.gydwbm in ("+gydw+")";
+			String tiaojian2 = "";
+			if (xzqh.indexOf(",") == -1) {
+				tiaojian2 = "and t3.xzqhdm like '%'||'" + xzqh + "'||'%'";
+			} else {
+				tiaojian2 = "and t3.xzqhdm in (" + xzqh + ")";
 			}
+			gcglabgc.setXzqhdm(tiaojian2);
+			gcglabgc.setGydw(tiaojian1);
+			gcglabgc.setKgzt(kgzt);
+			gcglabgc.setLxmc(lxmc);
+			gcglabgc.setJgzt(jgzt);
+			gcglabgc.setTbyf(bfyf);
+			gcglabgc.setTbr(tbr);
+			gcglabgc.setTiaojian(bfzt);
+			gcglabgc.setXmnf(xmnf);
+			gcglabgc.setGydw(tiaojian1);
+			gcglabgc.setKgzt(kgzt);
+			gcglabgc.setLxmc(lxmc);
+			gcglabgc.setJgzt(jgzt);
+			gcglabgc.setTbyf(sbyf);
+			gcglabgc.setJhnf(xmnf);
+			gcglabgc.setTbr(tbr);
+			list = null;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		gcglabgc.setGydw(tiaojian1);
-		gcglabgc.setKgzt(kgzt);
-		gcglabgc.setLxmc(lxmc);
-		gcglabgc.setJgzt(jgzt);
-		gcglabgc.setTbyf(sbyf);
-		gcglabgc.setJhnf(xmnf);
-		gcglabgc.setTbr(tbr);
-		List<Excel_list> list=null;
 		ExcelData eldata=new ExcelData();//创建一个类
 		if("af".equals(gcglabgc.getXmlx())){
 			list=gcglabgcServer.exportAfyb(gcglabgc);
@@ -855,7 +878,6 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 	//改建
 	public void exportgjyb(){
-		Gcglabgc gcglabgc=new Gcglabgc();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		gydw=(String) session.getAttribute("gydw");	
@@ -865,6 +887,14 @@ public class GcglabgcController extends BaseActionSupport{
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setShzt(ybzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setSbnf(xmnf);
+		gcglabgc.setTiaojian(bfzt);
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
@@ -923,6 +953,13 @@ public class GcglabgcController extends BaseActionSupport{
 			gcglabgc.setKgzt(kgzt);
 			gcglabgc.setLxmc(lxmc);
 			gcglabgc.setJgzt(jgzt);
+			gcglabgc.setShzt(ybzt);
+			gcglabgc.setTbyf(bfyf);
+			gcglabgc.setSbnf(xmnf);
+			gcglabgc.setGydw(tiaojian1);
+			gcglabgc.setKgzt(kgzt);
+			gcglabgc.setLxmc(lxmc);
+			gcglabgc.setJgzt(jgzt);
 			gcglabgc.setTbyf(sbyf);
 			gcglabgc.setTbr(tbr);
 			gcglabgc.setJhnf(xmnf);
@@ -967,6 +1004,7 @@ public class GcglabgcController extends BaseActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		session.setAttribute("gydw", gydw);
+		session.setAttribute("xzqh", xzqh);
 	}
 	public void exportsjyb(){
 		try {
@@ -980,6 +1018,13 @@ public class GcglabgcController extends BaseActionSupport{
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setShzt(ybzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setSbnf(xmnf);
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
@@ -1092,6 +1137,13 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setShzt(ybzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setSbnf(xmnf);
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setTbyf(sbyf);
 		gcglabgc.setTbr(tbr);
 		gcglabgc.setJhnf(xmnf);
@@ -1146,6 +1198,13 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setShzt(ybzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setSbnf(xmnf);
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setTbyf(sbyf);
 		gcglabgc.setTbr(tbr);
 		gcglabgc.setJhnf(xmnf);
@@ -1183,23 +1242,38 @@ public class GcglabgcController extends BaseActionSupport{
 		
 	}
 	public void exportzhyb(){
-		Gcglabgc gcglabgc=new Gcglabgc();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		gydw=(String) session.getAttribute("gydw");	
+		xzqh=(String) session.getAttribute("xzqh");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t3.gydwbm in ("+gydw+")";
 		}
+		String tiaojian2 = "";
+		if (xzqh.indexOf(",") == -1) {
+			tiaojian2 = "and t3.xzqhdm like '%'||'" + xzqh + "'||'%'";
+		} else {
+			tiaojian2 = "and t3.xzqhdm in (" + xzqh + ")";
+		}
+		gcglabgc.setXzqhdm(tiaojian2);
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setTbr(tbr);
+		gcglabgc.setTiaojian(bfzt);
+		gcglabgc.setXmnf(xmnf);
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setTbyf(sbyf);
-		gcglabgc.setTbr(tbr);
 		gcglabgc.setJhnf(xmnf);
+		gcglabgc.setTbr(tbr);
 		List<Excel_list> list=gcglabgcServer.exportzhyb(gcglabgc);
 		
 		//到报表
@@ -1238,25 +1312,38 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 	
 	public void exportwqyb(){
-		Gcglabgc gcglabgc=new Gcglabgc();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		gydw=(String) session.getAttribute("gydw");	
+		xzqh=(String) session.getAttribute("xzqh");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t3.gydwbm in ("+gydw+")";
 		}
+		String tiaojian2 = "";
+		if (xzqh.indexOf(",") == -1) {
+			tiaojian2 = "and t3.xzqhdm like '%'||'" + xzqh + "'||'%'";
+		} else {
+			tiaojian2 = "and t3.xzqhdm in (" + xzqh + ")";
+		}
+		gcglabgc.setXzqhdm(tiaojian2);	
+		gcglabgc.setPage(page);
+		gcglabgc.setRows(rows);
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setQlmc(qlmc);
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTiaojian(bfzt);
+		gcglabgc.setXmnf(xmnf);
+		gcglabgc.setSfylrbwqk(sfylrbwqk);
 		gcglabgc.setTbyf(sbyf);
 		gcglabgc.setTbr(tbr);
+		gcglabgc.setTiaojian(bfzt);
 		gcglabgc.setJhnf(xmnf);
-		gcglabgc.setTiaojian(qlmc);
-		gcglabgc.setSfylrbwqk(sfylrbwqk);
+		System.out.println(gcglabgc.getTbyf()+"----"+gcglabgc.getTbr());
 		List<Excel_list> list=gcglabgcServer.exportwqyb(gcglabgc);
 
 		//到报表

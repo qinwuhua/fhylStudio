@@ -671,6 +671,8 @@ function showAll(){
 	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
 	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
 	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
+	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
+	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
 	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
@@ -855,6 +857,8 @@ function showAll1(){
 	        		return '竣工'
 	        		else return '在建';
 	        }},
+	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
+	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
 	        {field:'sjkgsj',title:'项目开工时间',width:100,align:'center'}
 	    ]]    
 	}); 

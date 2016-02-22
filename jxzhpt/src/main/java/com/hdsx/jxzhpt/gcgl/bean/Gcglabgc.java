@@ -10,7 +10,42 @@ public class Gcglabgc implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String jgys;
+	private String xdzj;
+	private String bfzj;
+	private String qlmc;
+	private String gydwtj;
+	private String qlbh;
 	
+	public String getQlbh() {
+		return qlbh;
+	}
+	public void setQlbh(String qlbh) {
+		this.qlbh = qlbh;
+	}
+	public String getGydwtj() {
+		return gydwtj;
+	}
+	public void setGydwtj(String gydwtj) {
+		this.gydwtj = gydwtj;
+	}
+	public String getQlmc() {
+		return qlmc;
+	}
+	public void setQlmc(String qlmc) {
+		this.qlmc = qlmc;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}

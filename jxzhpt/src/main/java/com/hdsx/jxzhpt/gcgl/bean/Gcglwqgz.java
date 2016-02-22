@@ -12,8 +12,22 @@ public class Gcglwqgz implements Serializable {
 	private String ybnf;
 	private String ybyf;
 	private String wgnf;
-private String jgys;
+	private String jgys;
+	private String xdzj;
+	private String bfzj;
 	
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}

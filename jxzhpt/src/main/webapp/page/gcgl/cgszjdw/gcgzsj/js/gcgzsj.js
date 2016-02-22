@@ -207,6 +207,8 @@ function showAll(){
 			{field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
 			{field:'WGSJ',title:'计划完工时间',width:150,align:'center'},
 			{field:'GQ',title:'工期（月）',width:100,align:'center'},
+	        {field:'XDZJ',title:'已下达计划(万元)',width:120,align:'center'},
+	        {field:'BFZJ',title:'已拨付资金(万元)',width:120,align:'center'},
 			{field:'GKPFWH',title:'工可批复文号',width:100,align:'center'},
 			{field:'SJPFWH',title:'设计批复文号',width:100,align:'center'}
 			]],
