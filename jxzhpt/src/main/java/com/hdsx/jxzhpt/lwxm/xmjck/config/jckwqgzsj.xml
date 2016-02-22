@@ -58,6 +58,9 @@
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
 	 </select>
@@ -154,6 +157,9 @@
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 		 </select>
 		 <delete id="deleteWqgzsjById" parameterType="java.util.List" >
 		 	delete from xmk_wqgz where id =#{String}
@@ -288,6 +294,9 @@
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -347,6 +356,9 @@
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
  </select>
  
  		<update id="sjshtyWqgzsjById" parameterType="jckwqgzsj" >

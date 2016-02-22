@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.bean;
 
 public class Xmkaqsmfh {
+	
 	private String id;
 
     private String province;

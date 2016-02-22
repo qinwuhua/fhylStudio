@@ -39,6 +39,7 @@ $(function(){
 	//loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
+	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
 	showAll();
 	

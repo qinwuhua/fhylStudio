@@ -32,6 +32,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
 	</select>
@@ -65,7 +68,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
-	 			
+	 			<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	</select>
 	<select id="loadXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
@@ -97,6 +102,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	</select>
 	
 	<select id="selectXmkaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
@@ -140,6 +148,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
 	</select>
@@ -187,7 +198,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
-	 			
+	 			<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	</select>
 	<select id="loadXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
@@ -233,6 +246,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
 	</select>
 	<update id="afXmkCs" parameterType="xmkaqsmfh">
  			update XMK_AQSMFH set sbzt=#{sbzt},sbthcd=#{sbthcd},cszt=#{cszt},csyj=#{csyj} where id =#{id} 

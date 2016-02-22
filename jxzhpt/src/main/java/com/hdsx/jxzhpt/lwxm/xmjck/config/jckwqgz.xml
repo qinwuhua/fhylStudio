@@ -135,6 +135,9 @@
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
+	 		<if test="bzls!='' and bzls!= null ">
+ 			and jcbzls like #{bzls}||'%'
+ 		</if>
  </select>
  
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">

@@ -11,7 +11,7 @@ import java.util.Date;
 public class Jckwqgz implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String qxjk;
 	private String id;
 	private String qlmc;

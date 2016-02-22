@@ -39,6 +39,7 @@ $(function(){
 	//loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
+	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
 	showAll();
 	
@@ -82,6 +83,7 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.jsdj':$("#jsdj").combobox("getValue"),
 		 	'xmkaqsmfh.lxbm':$("#lxbm").val(),
 		 	'xmkaqsmfh.gldj':$("#gldj").combobox("getValue"),
+		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 		 	'xmkaqsmfh.tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 		},
 	    striped:true,
@@ -158,7 +160,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 		}else  sbthcd=$.cookie("unit2").length;
 	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
 	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
-	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+
+	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+
 	"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue");
 	$.ajax({
 		 type : "POST",
@@ -261,6 +263,9 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:100px;" /></td>
                              </tr>
                             <tr height="32">
+                            <td>补助历史：</td>
+                              	<td><select id="bzls" style="width:74px"class="easyui-combobox">
+                              	</select></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								

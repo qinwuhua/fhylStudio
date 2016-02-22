@@ -40,6 +40,7 @@ $(function(){
 	loadBmbm2("sbzt", "上报状态");
 	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
+	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
 	showAll();
 	
@@ -84,6 +85,7 @@ function showAll(){
 			 	'xmkaqsmfh.jsdj':$("#jsdj").combobox("getValue"),
 			 	'xmkaqsmfh.roadcode':$("#roadcode").val(),
 			 	'xmkaqsmfh.gldj':$("#gldj").combobox("getValue"),
+			 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 			 	'xmkaqsmfh.tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
@@ -206,7 +208,7 @@ function showAll(){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.jhnf='+
-	 	'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+$("#jsdj").combobox("getValue")+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
+	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+$("#jsdj").combobox("getValue")+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
 
 		$.ajax({
 			 type : "POST",
@@ -413,6 +415,9 @@ text-decoration:none;
 							  <td><input type="text" id="roadname"  style="width:100px;" /></td>
 							</tr>
 							<tr   height="32">
+							<td>补助历史：</td>
+                              	<td><select id="bzls" style="width:74px"class="easyui-combobox">
+                              	</select></td>
 							  <td colspan="10">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
