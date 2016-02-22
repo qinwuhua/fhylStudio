@@ -788,14 +788,34 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	public void selQxByUser(){
-		List<Param> l=xtglServer.selQxByUser(param);
+		List<Param> l=null;
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			
+				l=xtglServer.selQxByUser(param);
+				session.setAttribute("sour", l);
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
-	
+	public void selQxByUser2(){
+		List<Param> l=null;
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			if(session.getAttribute("sour")!=null){
+				l=(List<Param>) session.getAttribute("sour");
+			}else{
+				l=xtglServer.selQxByUser(param);
+				session.setAttribute("sour", l);
+			};
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	public void selAllQx(){
 		List<TreeNode> l=xtglServer.selQxByRoleid(param);
 		TreeNode root = returnRoot(l,l.get(0),new ArrayList<Param>());

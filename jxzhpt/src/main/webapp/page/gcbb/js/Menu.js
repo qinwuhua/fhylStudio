@@ -419,9 +419,31 @@ $(function() {
 	});*/
 	menuQx();
 });
+
 function menuQx(){
-	var qx=parent.$.cookie("qx4").split(",");
+	var qx=selQxByUser2(parent.$.cookie("roleid"));//parent.$.cookie("qx4").split(",");
 	for(var i=0;i<qx.length;i++){
 		if($("#menu_"+qx[i])!=null) $("#menu_"+qx[i]).show();
 	}
+}
+
+
+function selQxByUser2(roleid){
+	var qx4= new Array();
+	$.ajax({
+		type : "POST",
+		url : "../../xtgl/selQxByUser2.do",
+		dataType : 'json',
+		data :"param.roleid="+roleid,
+		async: false ,
+		success : function(msg){
+			if(msg){
+				for(var i=0;i<msg.length;i++){
+					//第4层
+					if(msg[i].id.length==10) qx4. push(msg[i].id);
+				}
+	     	 }
+		 }
+	});
+	return qx4;
 }

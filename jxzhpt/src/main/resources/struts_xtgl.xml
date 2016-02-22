@@ -56,6 +56,7 @@
 	<action name="selAllQx2" class="xtglController" method="selAllQx2"></action>
 	<action name="selectJsById" class="xtglController" method="selectJsById"></action>
 	<action name="selQxByUser" class="xtglController" method="selQxByUser"></action>
+	<action name="selQxByUser2" class="xtglController" method="selQxByUser2"></action>
 	<action name="selJsUsedById" class="xtglController" method="selJsUsedById"></action>
 	
 	
