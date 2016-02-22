@@ -116,12 +116,17 @@
 	 			and jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
-	 			<if test="sbzt == '未审核'">
- 					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthcd=7
+	 			
+				<if test="sbzt == '未审核'">
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(zszt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' or (zsyj is not null and sbthcd != 7)
+	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
 				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and zsyj is not null and sbthcd != 7
+				</if>
+				
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				and jsdj like '%'||(#{jsdj})||'%'
@@ -154,11 +159,20 @@
 	 			and jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
-	 			<if test="sbzt == '未审核'">
+	 			<!-- <if test="sbzt == '未审核'">
  					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
  					and decode(zszt,null,'未审核',zszt) like '%'||(#{zszt})||'%' or (zsyj is not null and sbthcd != 7)
+				</if> -->
+				<if test="sbzt == '未审核'">
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and zsyj is not null and sbthcd != 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -191,11 +205,20 @@
 	 			and jhnf like '%'||(#{jhnf})||'%'
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
-	 			<if test="sbzt == '未审核'">
+	 			<!-- <if test="sbzt == '未审核'">
  					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
  					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or (zsyj is not null and sbthcd != 7)
+				</if> -->
+				<if test="sbzt == '未审核'">
+ 					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
+				</if>
+				<if test="sbzt == '已审核'">
+	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
+				</if>
+				<if test="sbzt == '审核不同意'">
+	 					and zsyj is not null and sbthcd != 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">

@@ -36,7 +36,7 @@ $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	//xmnf("jhnf"); 
-	loadBmbm2("sbzt", "审核状态");
+	//loadBmbm2("sbzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级2");
 	loadBmbm2("gldj", "公路等级");
 	tsdq("tsdq");
@@ -243,6 +243,10 @@ text-decoration:none;
                               	</select></td>
                                <td>审核状态：</td>
                               <td>	<select id="sbzt" style="width:70px"class="easyui-combobox">
+                             	 <option value="">全部</option>
+                              	<option value="未审核">未审核</option>
+                              	<option value="已审核">已审核</option>
+                              	<option value="审核不同意">审核不同意</option>
                               	</select></td>
                               <td>特殊地区：</td>
                               	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">

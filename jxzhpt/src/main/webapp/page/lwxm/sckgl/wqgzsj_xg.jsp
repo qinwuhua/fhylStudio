@@ -89,7 +89,7 @@ function loadxx(){
 	$("#nsqbbz").val(item.nsqbbz);$("#rksj").html(item.rksj);
 	$("#cjqz1").combobox('setValue',item.cjqz.substring(0,5));
 	$("#cjqz").val(item.cjqz.substring(5,item.cjqz.length));
-	$("#scthdj").val(item.scthdj);$("#qljc").val(item.qljc);$("#ydgldj").val(item.ydgldj);
+	$("#scthdj").val(item.scthdj);$("#qljc").val(item.qljc);$("#ydgldj").combobox('setValue',item.ydgldj);
 	$("#sjsd").val(item.sjsd);$("#scsqs").val(item.scsqs);$("#scxsq").val(item.scxsq);$("#scszxz").val(item.scszxz);
 	setbz();
 }
@@ -150,7 +150,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+''+"&jckwqgzsj.pfwh="+''+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+cjqz
-	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()
+	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").combobox('getValue')
 	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	$.ajax({
 		type:'post',
@@ -652,7 +652,13 @@ text-decoration:none;
 					<input type="text" id="qljc" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道公路等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="ydgldj" style="width: 150px" /></td>
+					<select id='ydgldj' class='easyui-combobox' data-options="panelHeight:'100'" >
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+					</select>
+					</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>

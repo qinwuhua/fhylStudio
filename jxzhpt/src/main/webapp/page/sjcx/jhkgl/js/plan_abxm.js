@@ -129,7 +129,7 @@ function abgcxm(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.yhlc;
+					return row.jckabgc.scyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}

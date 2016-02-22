@@ -187,7 +187,7 @@ function autoCompleteQLBH(){
 				else if($.trim(item.jsdj)=='四类')
 					$("#jsdj").html('四级公路');
 				else{
-					$("#ydgldj").val("等外公路");
+					$("#ydgldj").combobox('setValue',"等外公路");
 				}	
 				
 				
@@ -250,7 +250,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+''+"&jckwqgzsj.pfwh="+''+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+cjqz
-	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()+"&jckwqgzsj.zdezj="+zdezj
+	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").combobox('getValue')+"&jckwqgzsj.zdezj="+zdezj
 	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+sfbk+"&jckwqgzsj.sfkxg="+"是";
 	$.ajax({
 		type:'post',
@@ -761,7 +761,13 @@ text-decoration:none;
 					<input type="text" id="qljc" name='bitian' style="width: 150px" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道公路等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="ydgldj" name='bitian' style="width: 150px" /></td>
+					<select id='ydgldj' class='easyui-combobox' data-options="panelHeight:'100'" >
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+					</select>
+					</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>

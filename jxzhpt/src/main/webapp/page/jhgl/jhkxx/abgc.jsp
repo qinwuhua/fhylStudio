@@ -62,7 +62,7 @@
 							$('#scqdzh').html(data.scqdzh);
 							$('#sczdzh').html(data.sczdzh);
 							$('#sczlc').html(data.sczdzh);
-							$('#scyhlc').html(data.sczdzh);
+							$('#scyhlc').html(data.scyhlc);
 							$('#fapgdw').html(data.fapgdw);
 							$('#fascdw').html(data.fascdw);
 							$('#faspsj').html(data.faspsj);

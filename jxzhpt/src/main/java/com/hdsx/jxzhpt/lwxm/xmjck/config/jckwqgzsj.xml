@@ -259,11 +259,15 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
+ 			
  			<if test="shzt == '未审核'">
- 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ') and sbthcd=7
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt is null) and sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and shzt like '%'||(#{shzt})||'%' 
+ 			</if>
+ 			<if test="shzt == '审核不同意'">
+ 			and sbthcd != 7 and shyj2 is not null
  			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
@@ -309,11 +313,20 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			<if test="shzt == '未审核'">
+ 			<!-- <if test="shzt == '未审核'">
  			and (shzt like '%'||(#{shzt})||'%' or shzt=' ') and sbthcd=7
  			</if>
  			<if test="shzt == '已审核'">
  			and shzt like '%'||(#{shzt})||'%'
+ 			</if> -->
+ 			<if test="shzt == '未审核'">
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt is null) and sbthcd=7
+ 			</if>
+ 			<if test="shzt == '已审核'">
+ 			and shzt like '%'||(#{shzt})||'%' 
+ 			</if>
+ 			<if test="shzt == '审核不同意'">
+ 			and sbthcd != 7 and shyj2 is not null
  			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
