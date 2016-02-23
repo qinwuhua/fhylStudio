@@ -88,7 +88,7 @@
 		
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+			var data="flag=&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getHzzh.do",
@@ -123,13 +123,12 @@
 		}
 	function exportWqgzyb(){
 		var xmnf=$("#jhxdnf").combotree("getValues");
-		var xmlx=$("#xmlx").combobox("getText");
 		if(xmnf==''){
 			alert("请选择年份");
 			return;
 		}
-		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
-		window.location.href="/jxzhpt/gcybb/getGjxjmxb.do?"+data;
+		var data="flag=flag&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+		window.location.href="/jxzhpt/gcybb/getHzzh.do?"+data;
 	}	
 	</script>
 	<style type="text/css">

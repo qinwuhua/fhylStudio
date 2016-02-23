@@ -500,6 +500,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				xzqh=list.get(i).getXzqh();
 			}
 		}
+		if(list.size()>0)
 		list.get(k).setV_0(count+"");
 		return list; 
 	}
@@ -521,6 +522,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				xzqh=list.get(i).getXzqh();
 			}
 		}
+		if(list.size()>0)
 		list.get(k).setV_0(count+"");
 		return list; 
 	}
@@ -542,6 +544,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				xzqh=list.get(i).getXzqh();
 			}
 		}
+		if(list.size()>0)
 		list.get(k).setV_0(count+"");
 		return list; 
 	}
@@ -563,6 +566,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				xzqh=list.get(i).getXzqh();
 			}
 		}
+		if(list.size()>0)
 		list.get(k).setV_0(count+"");
 		
 		return list; 
@@ -585,6 +589,7 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				xzqh=list.get(i).getXzqh();
 			}
 		}
+		if(list.size()>0)
 		list.get(k).setV_0(count+"");
 		
 		return list; 
