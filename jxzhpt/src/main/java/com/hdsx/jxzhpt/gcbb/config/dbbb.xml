@@ -4,7 +4,7 @@
 <!--危桥  -->
 <select id="selectWqjc" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t where 1=1 and sfylrbwqk='是'
+ 		select rownum num ,t.* from xmk_wqgz t where 1=1 and t.gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -15,7 +15,7 @@
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
   <select id="selectWqjcCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where 1=1 and sfylrbwqk='是'
+ 		select count(*) from xmk_wqgz t where 1=1 and t.gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -27,7 +27,7 @@
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,xlxbm v_3,xqlbm v_4,xzxzh v_5,ptx v_6,pty v_7,lxbm v_8,lxmc v_9,qlbh v_10,qlmc v_11,qlzxzh v_12,xjgjnd v_13,qlqc v_14,qlkd v_15,
 		kjzc v_16,dkzdkj v_17,akjfl v_18,sbjgxs v_19,pddj v_20,bhnr v_21,bz v_22
-		from xmk_wqgz where 1=1 and sfylrbwqk='是'
+		from xmk_wqgz where 1=1 and t.gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -39,8 +39,8 @@
 	<select id="selectWqsc" parameterType="jckwqgz" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.* from
-			(select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 ) t 
-			where 1=1
+			(select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and gydwbm like '2%' ) t 
+			where 1=1 
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -52,8 +52,8 @@
 		order by decode(sck_sbthcd,#{sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectWqscCount" parameterType="jckwqgz" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 )
-			where 1=1
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and gydwbm like '2%' )
+			where 1=1 
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -65,8 +65,8 @@
 		select
 		qlbh v_0,qlmc v_1,qlzxzh v_2,qlqc v_3,qlkd v_4,fapgdw v_5,fascdw v_6,faspsj v_7,spwh v_8,tzgs v_9,jsxz v_10,
 		jsnr v_11,bz v_12
-		from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 )
-		where  1=1
+		from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and gydwbm like '2%')
+		where  1=1 
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -81,7 +81,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1  and jh.spzt='1'
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1  and jh.spzt='1' and lx.gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -96,7 +96,7 @@
  		
  		<select id="selectWqjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.spzt='1'
+			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.spzt='1' and lx.gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -110,7 +110,7 @@
 		jh.sjdw v_9,jh.sjpfdw v_10,jh.pfwh v_11,jh.pfztz v_12,jh.jhsybzje v_13,jh.jhsydfzcje v_14,jh.sfsqablbz v_15,jh.ablbzsqwh v_16
 		from plan_wqgz jh
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
-		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.spzt='1'
+		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.spzt='1' and lx.gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -122,7 +122,7 @@
 	<!--安保  -->
 	<select id="selectAbjc" parameterType="jckwqgz" resultType="jckabgc">
  	select * from (
- 		select rownum num ,t.* from xmk_abgc t where 1=1
+ 		select rownum num ,t.* from xmk_abgc t where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -133,7 +133,7 @@
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
   <select id="selectAbjcCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_abgc t where 1=1
+ 		select count(*) from xmk_abgc t where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -144,7 +144,7 @@
  <select id="exportExcel_abjc" parameterType="jckwqgz"	resultType="sjbb">
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,yhnr v_10,bz v_11 
-			from xmk_abgc where 1=1
+			from xmk_abgc where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -157,7 +157,7 @@
 	<select id="selectAbsc" parameterType="jckwqgz" resultType="sckabgc">
 		select * from (
 		select rownum num ,t.* from
-			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
+			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1 and gydwbm like '2%') t 
 			where 1=1
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -170,7 +170,7 @@
 		order by decode(sck_sbthcd,#{sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectAbscCount" parameterType="jckwqgz" resultType="int">
-		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1 and gydwbm like '2%')
 			where 1=1
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -183,7 +183,7 @@
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,gjxjnd v_9,fapgdw v_10,
 		fascdw v_11,faspsj v_12,spwh v_13,tzgs v_14,jsxz v_15,jsnr v_16,bz v_17
-		from (select * from sck_abgc join xmk_abgc on xmkid=xmk_abgc.id) t
+		from (select * from sck_abgc join xmk_abgc on xmkid=xmk_abgc.id where 1=1 and gydwbm like '2%') t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -199,7 +199,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -214,7 +214,7 @@
  		
  		<select id="selectAbjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
+			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -227,7 +227,7 @@
 		jh.sjdw v_10,jh.sjpfdw v_11,jh.pfwh v_12,jh.pfztz v_13,jh.jhsybbzje v_14,jh.jhsydfzczj v_15,jh.sfsqablbz v_16,jh.ablbzsqwh v_17
 		from plan_abgc jh
 		left join sck_abgc sc on (jh.sckid = sc.sckid)
-		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1
+		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1 and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -240,7 +240,7 @@
 	<!--灾害  -->
 	<select id="selectZhjc" parameterType="jckwqgz" resultType="jckzhfz">
  	select * from (
- 		select rownum num ,t.* from xmk_zhfz t where 1=1
+ 		select rownum num ,t.* from xmk_zhfz t where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -251,7 +251,7 @@
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
   <select id="selectZhjcCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_zhfz t where 1=1
+ 		select count(*) from xmk_zhfz t where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -262,7 +262,7 @@
  <select id="exportExcel_zhjc" parameterType="jckwqgz"	resultType="sjbb">
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,yhnr v_10,bz v_11 
-			from xmk_zhfz where 1=1
+			from xmk_zhfz where 1=1 and gydwbm like '2%'
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -275,7 +275,7 @@
 	<select id="selectZhsc" parameterType="jckwqgz" resultType="sckzhfz">
 		select * from (
 		select rownum num ,t.* from
-			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
+			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1 and gydwbm like '2%') t 
 			where 1=1
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -288,7 +288,7 @@
 		order by decode(sck_sbthcd,#{sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectZhscCount" parameterType="jckwqgz" resultType="int">
-		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1 and gydwbm like '2%')
 			where 1=1
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -301,7 +301,7 @@
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,gjxjnd v_9,fapgdw v_10,
 		fascdw v_11,faspsj v_12,spwh v_13,tzgs v_14,jsxz v_15,jsnr v_16,bz v_17
-		from (select * from sck_zhfz join xmk_zhfz on xmkid=xmk_zhfz.id) t
+		from (select * from sck_zhfz join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1 and gydwbm like '2%') t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
@@ -318,7 +318,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
-					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
+					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -333,7 +333,7 @@
  		
  		<select id="selectZhjhCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
-			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
+			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -346,7 +346,7 @@
 		jh.sjdw v_10,jh.sjpfdw v_11,jh.pfwh v_12,jh.pfztz v_13,jh.jhsybzje v_14,jh.jhsydfzcje v_15,jh.sfsqablbz v_16,jh.ablbzsqwh v_17
 		from plan_zhfz jh
 		left join sck_zhfz sc on (jh.sckid = sc.sckid)
-		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
+		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1 and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -362,7 +362,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -377,7 +377,7 @@
  		
  		<select id="selectWqkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+			left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -390,7 +390,7 @@
 		jh.jhkgsj v_9,jh.jhwgsj v_10,jh.sjkgsj v_11,jh.sgdw v_12,jh.jldw v_13,jh.htje v_14
 		from plan_wqgz jh
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
-		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1'
+		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -407,7 +407,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -422,7 +422,7 @@
  		
  		<select id="selectAbkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -435,7 +435,7 @@
 		jh.xdsj v_9,jh.jhkgsj v_10,jh.jhwgsj v_11,jh.sjkgsj v_12,jh.sgdw v_13,jh.jldw v_14,jh.htje v_15
 		from plan_abgc jh
 		left join sck_abgc sc on (jh.sckid = sc.sckid)
-		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1'
+		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -452,7 +452,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
-					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -466,7 +466,7 @@
  		</select>
  		<select id="selectZhkgCount"  parameterType="jckwqgz"  resultType="int">
 			select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
-			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1'
+			left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -479,7 +479,7 @@
 		jh.xdsj v_9,jh.jhkgsj v_10,jh.jhwgsj v_11,jh.sjkgsj v_12,jh.sgdw v_13,jh.jldw v_14,jh.htje v_15
 		from plan_zhfz jh
 		left join sck_zhfz sc on (jh.sckid = sc.sckid)
-		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1'
+		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1 and jh.kgzt='1' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -499,7 +499,7 @@
  					from gcgl_wqgz 
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
- 			 			where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 			where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 					${gydw}
  				</if>
@@ -517,7 +517,7 @@
  					from gcgl_wqgz
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz jc on sc.xmkid=jc.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 					${gydw}
  				</if>
@@ -532,7 +532,7 @@
  					from gcgl_wqgz 
  					 group by jhid )gc left join plan_wqgz jh  on
  			 		(gc.jhid=jh.id) left join sck_wqgz sc  on (sc.sckid=jh.sckid)  left join xmk_wqgz lx on sc.xmkid=lx.id
- 			 	where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 	where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -549,7 +549,7 @@
  					from gcgl_abgc 
  					 group by jhid )gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -567,7 +567,7 @@
  					from gcgl_abgc
  					 group by jhid)gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -582,7 +582,7 @@
  					from gcgl_abgc 
  					 group by jhid )gc left join plan_abgc jh  on
  			 		(gc.jhid=jh.id) left join sck_abgc sc  on (sc.sckid=jh.sckid) left join xmk_abgc lx on sc.xmkid=lx.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -602,7 +602,7 @@
  					from gcgl_zhfz
  					 group by jhid )gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 				<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -620,7 +620,7 @@
  					from gcgl_zhfz 
  					 group by jhid)gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>
@@ -635,7 +635,7 @@
  					from gcgl_zhfz 
  					 group by jhid )gc left join plan_zhfz jh  on
  			 		(gc.jhid=jh.id) left join sck_zhfz sc  on (sc.sckid=jh.sckid) left join xmk_zhfz lx on sc.xmkid=lx.id
- 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0'
+ 			 		where 1=1 and jh.kgzt='1' and jh.jgzt='0' and spzt='1' and gydwbm like '2%'
 		<if test="gydw!='' and gydw!= null "  >
 			${gydw}
  		</if>

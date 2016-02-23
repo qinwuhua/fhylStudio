@@ -1785,19 +1785,21 @@
 		
 		) t4
 		on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
+		where t1.jhxdwh !=' '
 		group by t1.xdnf,t1.jhxdwh
 		
 		union all
 		
 		select 
-		t1.xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(t2.xmsl,0) v_3,nvl((t2.gsyi+t2.gser+t2.sser+t2.sssan+t2.qt),0) v_4,
-		nvl(t2.gsyi,0) v_5,nvl(t2.gser,0) v_6,nvl(t2.sser,0) v_7,nvl(t2.sssan,0) v_8,nvl(t2.qt,0) v_9,t1.ztz v_10,
-		nvl(t1.btz,0) v_11,nvl(t1.stz,0) v_12,nvl(t1.gz,0) v_13,nvl(t1.sz,0) v_14,nvl(t1.stc,0) v_15,t1.qtzj v_16,
-		nvl(t3.xmsl,0) v_17,nvl((t3.bngsyi+t3.bngser+t3.bnsser+t3.bnsssan+t3.bnqt),0) v_18,
-		nvl(t3.bngsyi,0) v_19,nvl(t3.bngser,0) v_20,nvl(t3.bnsser,0) v_21,nvl(t3.bnsssan,0) v_22,nvl(t3.bnqt,0) v_23,
-		nvl(t4.xmsl,0) v_24,nvl((t4.ljgsyi+t4.ljgser+t4.ljsser+t4.ljsssan+t4.ljqt),0) v_25,
-		nvl(t4.ljgsyi,0) v_26,nvl(t4.ljgser,0) v_27,nvl(t4.ljsser,0) v_28,nvl(t4.ljsssan,0) v_29,nvl(t4.ljqt,0) v_30,
-		nvl(t3.bnwctz,0) v_31,nvl(t4.ljwctz,0) v_32,'0' v_0
+		max(t1.xzqh) xzqh,t1.xzqhdm,t1.xdnf v_1,t1.jhxdwh v_2,nvl(sum(t2.xmsl),0) v_3,nvl((sum(t2.gsyi)+sum(t2.gser)+sum(t2.sser)+sum(t2.sssan)+sum(t2.qt)),0) v_4,
+	    nvl(sum(t2.gsyi),0) v_5,nvl(sum(t2.gser),0) v_6,nvl(sum(t2.sser),0) v_7,nvl(sum(t2.sssan),0) v_8,nvl(sum(t2.qt),0) v_9,sum(t1.ztz) v_10,
+	    nvl(sum(t1.btz),0) v_11,nvl(sum(t1.stz),0) v_12,nvl(sum(t1.gz),0) v_13,nvl(sum(t1.sz),0) v_14,nvl(sum(t1.stc),0) v_15,sum(t1.qtzj) v_16,
+	    nvl(sum(t3.xmsl),0) v_17,nvl((sum(t3.bngsyi)+sum(t3.bngser)+sum(t3.bnsser)+sum(t3.bnsssan)+sum(t3.bnqt)),0) v_18,
+	    nvl(sum(t3.bngsyi),0) v_19,nvl(sum(t3.bngser),0) v_20,nvl(sum(t3.bnsser),0) v_21,nvl(sum(t3.bnsssan),0) v_22,nvl(sum(t3.bnqt),0) v_23,
+	    nvl(sum(t4.xmsl),0) v_24,nvl((sum(t4.ljgsyi)+sum(t4.ljgser)+sum(t4.ljsser)+sum(t4.ljsssan)+sum(t4.ljqt)),0) v_25,
+	    nvl(sum(t4.ljgsyi),0) v_26,nvl(sum(t4.ljgser),0) v_27,nvl(sum(t4.ljsser),0) v_28,nvl(sum(t4.ljsssan),0) v_29,nvl(sum(t4.ljqt),0) v_30,
+	    nvl(sum(t3.bnwctz),0) v_31,nvl(sum(t4.ljwctz),0) v_32,
+	    '0' v_0
 		from 
 		(select 
 	    xd.xdnf,xd.jhxdwh,t.xzqh,(select id from xtgl_xzqh where name=t.xzqh) xzqhdm,
@@ -1881,7 +1883,8 @@
 		and to_date(j.sjwgsj,'yyyy-MM-dd')&lt;=to_date(#{ybnf}||'-'||#{ybyf}||'-28','yyyy-mm-dd')  group by j.xdwh,substr(j.xmbm,0,4),j.xzqh,j.gldj 
 		) t4
 		on t2.xmnf=t4.xmnf and t2.xdwh=t4.xdwh and t2.xzqh=t4.xzqh
-		
+		where t1.jhxdwh !=' '
+		group by t1.xzqhdm,t1.xdnf,t1.jhxdwh
 		order by xzqhdm,v_1
 
 		)

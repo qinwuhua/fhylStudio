@@ -25,13 +25,13 @@
 		tbsj = y+"-"+m+"-"+d;
 		tbyf = y+"-"+m;
 		$("#tj_tbr").text($.cookie("truename"));
-		$("#tj_tbsj").text(tbsj);
+		$("#tj_tbsj").val(tbsj);
 		$('#tbyf').simpleCanleder();
 		$('#tbyf').val(y+"-"+m);
 	});
 	function checkZJ(str1){
 		var str=str1.value;
-		var g = /^\d+(?=\.{0,1}\d+$|$)/;
+		var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
 		if(str=='')
 			return;
 	    if( !g.test(str)){
@@ -133,7 +133,7 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;width: 16%;">
-                                <span id="tj_tbsj"></span>&nbsp;
+                                <input type='text' id="tj_tbsj">&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                 text-align: right; background-color: #F1F8FF;  padding-right: 5px;width: 16%;">

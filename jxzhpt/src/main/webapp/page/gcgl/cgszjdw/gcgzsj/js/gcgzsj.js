@@ -73,7 +73,7 @@ function tjgcgzsjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzsj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzsj.tbr="+$.cookie("truename")+"&gcglgcgzsj.tbsj="+tbsj+"&gcglgcgzsj.tbyf="+$("#tbyf").val()+"&gcglgcgzsj.cscyj="+$("#tj_cscyj").val()+"&gcglgcgzsj.sz="+$("#sz").val()
+	var data="gcglgcgzsj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzsj.tbr="+$.cookie("truename")+"&gcglgcgzsj.tbsj="+$("#tj_tbsj").val()+"&gcglgcgzsj.tbyf="+$("#tbyf").val()+"&gcglgcgzsj.cscyj="+$("#tj_cscyj").val()+"&gcglgcgzsj.sz="+$("#sz").val()
 	+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.yhdk="+$("#yhdk").val()+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
@@ -100,7 +100,7 @@ function xggcgzsjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzsj.cgsdwzj="+$("#xg_cgsdwzj").val()
+	var data="gcglgcgzsj.cgsdwzj="+$("#xg_cgsdwzj").val()+"&gcglgcgzsj.tbsj="+$("#xg_tbsj").val()
 	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.tbyf="+$("#tbyf").val()+"&gcglgcgzsj.cscyj="+$("#xg_cscyj").val()+"&gcglgcgzsj.sz="+$("#sz").val()
 	+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.yhdk="+$("#yhdk").val();
 	//alert(data);

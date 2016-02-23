@@ -16,7 +16,7 @@
 	<script type="text/javascript">
 	function checkZJ(str1){
 		var str=str1.value;
-		var g = /^\d+(?=\.{0,1}\d+$|$)/;
+		var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
 		if(str=='')
 			return;
 	    if( !g.test(str)){
@@ -30,7 +30,7 @@
 		$("#xg_stz").val(data.stz);
 		$("#xg_cscyj").val(data.cscyj);
 		$("#xg_tbr").text(data.tbr);
-		$("#xg_tbsj").text(data.tbsj);
+		$("#xg_tbsj").val(data.tbsj);
 
 		var myDate = new Date();
 		var y = myDate.getFullYear();
@@ -82,7 +82,7 @@
 	});
 	function checkZJ(){
 		var str=$("#xg_cgsdwzj").val();
-		var g = /^\d+(?=\.{0,1}\d+$|$)/;
+		var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
 	    if( !g.test(str)){
 	    	alert("请输入正确的金额");
 	    	$("#tj_cgsdwzj").val('');
@@ -162,7 +162,7 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="xg_tbsj"></span>&nbsp;
+                                <input type='text' id="xg_tbsj">&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                 text-align: right; background-color: #F1F8FF;  padding-right: 5px;">

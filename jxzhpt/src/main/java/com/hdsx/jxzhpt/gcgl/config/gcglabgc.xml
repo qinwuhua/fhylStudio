@@ -118,7 +118,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateAbgcCgs" parameterType="gcglabgc">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj},tbsj=#{tbsj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	
