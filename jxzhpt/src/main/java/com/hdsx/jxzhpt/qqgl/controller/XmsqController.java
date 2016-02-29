@@ -103,8 +103,20 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	/**
 	 * 添加项目申请信息
+	 * @throws IOException 
 	 * @throws Exception
 	 */
+	public void sfinsert() throws IOException, Exception{
+		int flag = xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm());
+		if(flag>0){
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			result.put("result", "have");
+			result.put("lx", lxs);
+		}else{
+			result.put("result", new Boolean(true).toString());
+		}
+		JsonUtils.write(result, getresponse().getWriter());
+	}
 	public void insertXmsq() throws Exception{
 		try{
 			boolean b=false;
@@ -123,7 +135,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setDwlc(xmsq.getDwlc());
 			lx.setWllc(xmsq.getWllc());
 			List<Xmsq> list=new ArrayList<Xmsq>();
-			xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+			//xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
 			list.add(xmsq);
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.insertXmsqYhdzx(list);

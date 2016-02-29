@@ -183,6 +183,7 @@
 		<action name="queryJhshLj" class="jhshController" method="queryJhshLj"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
+		<action name="sfinsert" class="xmsqController" method="sfinsert"></action>
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
 		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
 		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>

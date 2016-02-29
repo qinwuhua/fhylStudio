@@ -144,6 +144,59 @@
 			});
 			$('#'+id).combotree('setValue', dwbm);
 		}
+		
+		function sfinsert(){
+			var datas='xmsq.ylxbh='+$("#ylxbh").val()+'&xmsq.qdzh='+$("#qdzh").val()+'&xmsq.zdzh='+$("#zdzh").val()+'&xmsq.xmbm='+$("#xmbm").val();
+			//alert(datas);
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/sfinsert.do',
+		        data:datas,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						$("#lsjl").val("否");
+						insert();
+					}else if(msg.result=="have"){
+						var xsxx='';
+						
+						//alert();
+						for(var i=0;i<msg.lx.length;i++){
+							var xmlx='';
+							if(msg.lx[i].xmid.substr(10,1)==1){
+								xmlx='改建';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==2){
+								xmlx='路面改造';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==3){
+								xmlx='新建';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==4){
+								xmlx=msg.lx[i].xjsdj;
+							}
+							if(msg.lx[i].xmid.substr(10,1)==5){
+								xmlx='灾毁重建';
+							}
+
+							xsxx+="      项目类型："+xmlx+"     项目编码："+msg.lx[i].xmid+"      项目名称："+msg.lx[i].xmmc+"\r";
+							
+						}
+						if(msg.lx.length>0){
+							$("#lsjl").val("是");
+							alert("存在补助历史\r"+xsxx);
+							if(confirm('是否保存？')){
+								insert();
+							}
+						}else{
+							$("#lsjl").val("否");
+							insert();
+						}
+						
+					}
+				}
+			});
+		}
 		function insert(){
 			$('#gydw').val($('#gydw1').combo("getText"));
 			$('#gydwdm').val($('#gydw1').combo("getValue"));
@@ -163,6 +216,8 @@
 			if(!result){
 				return;
 			}
+			
+			
 			if(zhuanghao()){
 				$('#submit').ajaxSubmit({
 					dataType:'json',
@@ -296,6 +351,7 @@
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="xmbm1" name="xmbm1" type="text" style="width: 120px;"/>
 					<input id="xmbm" name="xmbm" type="hidden"/>
+					<input id="lsjl" name="lsjl" type="hidden" value="否"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					项目名称</td>
@@ -358,7 +414,7 @@
             </tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img onclick="insert()" alt="确定" src="../../../images/Button/qd1.gif" onmouseover="this.src='../../../images/Button/qd2.gif'" onmouseout="this.src='../../../images/Button/qd1.gif' " />
+                	<img onclick="sfinsert()" alt="确定" src="../../../images/Button/qd1.gif" onmouseover="this.src='../../../images/Button/qd2.gif'" onmouseout="this.src='../../../images/Button/qd1.gif' " />
                 </td>
             </tr>
 		</table>

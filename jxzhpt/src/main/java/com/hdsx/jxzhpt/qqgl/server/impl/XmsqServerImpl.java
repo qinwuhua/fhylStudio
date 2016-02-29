@@ -269,5 +269,35 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public List<Object> queryYhzxExport(Xmsq xmsq) {
 		return queryList("queryYhzxExport",xmsq);
 	}
-	
+	@Override
+	public List<Lx> queryLslist(Xmsq xmsq) {
+		List<Lx> result =new ArrayList<Lx>();
+		Lx lx=new Lx();
+		lx.setLxbm(xmsq.getYlxbh());
+		lx.setQdzh(xmsq.getQdzh());
+		lx.setZdzh(xmsq.getZdzh());
+		queryLsjlList(result, lx);
+		return result;
+	}
+	private void queryLsjlList(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		List<Lx> queryList = queryList("queryLsjlList",params);
+		boolean flag=true;
+		if(result.size()>0&&queryList.size()>0){
+			for (Lx l1 : queryList) {
+				flag=true;
+				for (Lx l2 : queryList) {
+					if(l1.equals(l2))
+						flag=false;
+				}
+				if(flag)
+					result.add(l1);
+			}
+		}
+		if(result.size()==0)
+		result.addAll(queryList);
+	}
 }

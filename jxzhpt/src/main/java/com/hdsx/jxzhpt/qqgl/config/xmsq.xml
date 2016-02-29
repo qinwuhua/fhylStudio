@@ -809,4 +809,134 @@
 					and lxmc like '%'||#{lxmc}||'%'
 				</if>
 	</select>
+	
+	<select id="queryYLx" parameterType="lx" resultType="lx">
+		<![CDATA[select ylxbm ylxbm,(case when Xqdzh<${qdzh} then YQDZH+${qdzh}-XQDZH else yqdzh end) yqdzh,
+		(case when ${zdzh}<Xzdzh then YZDZH-XZDZH+${zdzh} else yzdzh end ) yzdzh ,
+		xlxbm as lxbm,(case when Xqdzh<${qdzh} then ${qdzh} else xqdzh end ) qdzh,
+		(case when ${zdzh}<Xzdzh then ${zdzh} else xzdzh end) zdzh 
+		from XTGL_LXSJ t where  t.xlxbm like #{lxbm} || '%' and 
+		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
+	</select>
+	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,j.gcfl xjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+			union all
+			<![CDATA[
+			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
+			lx.lxbm as ylxbm,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
+			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
+			from lxsh_lx lx,jhsh_yhdzx jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
+	        ]]>
+		</foreach>
+		union all
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+			union all
+			<![CDATA[
+			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
+			lx.lxbm as ylxbm,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
+			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
+			from lxsh_lx lx,jhsh_sh jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
+	        ]]>
+		</foreach>
+		union all
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+			union all
+			<![CDATA[
+			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
+			lx.lxbm as ylxbm,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
+			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
+			from lxsh_lx lx,jhsh_lmgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
+	        ]]>
+		</foreach>
+		union all
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+			union all
+			<![CDATA[
+			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
+			lx.lxbm as ylxbm,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
+			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
+			from lxsh_lx lx,jhsh_sjgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
+	        ]]>
+		</foreach>
+		union all
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
+		(
+			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
+	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+	    )
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+			union all
+			<![CDATA[
+			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
+			lx.lxbm as ylxbm,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
+			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
+			from lxsh_lx lx,jhsh_xj jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
+	        ]]>
+		</foreach>
+	</select>
 </mapper>
