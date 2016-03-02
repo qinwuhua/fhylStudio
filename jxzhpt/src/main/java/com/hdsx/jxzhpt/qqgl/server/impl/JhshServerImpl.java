@@ -63,9 +63,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("queryJhshLmsj",params);
 	}
 	@Override
+	public List<Jhsh> queryJhshLmsj1(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshLmsj1",params);
+	}
+	@Override
 	public int queryJhshCountLmsj(Jhsh jhsh) {
 		params.put("jhsh", jhsh);
 		return queryOne("queryJhshCountLmsj", params);
+	}
+	@Override
+	public int queryJhshCountLmsj1(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryJhshCountLmsj1", params);
 	}
 	@Override
 	public List<Jhsh> queryJhshLmgz(Jhsh jhsh, int page, int rows) {
@@ -75,9 +87,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("queryJhshLmgz",params);
 	}
 	@Override
+	public List<Jhsh> queryJhshLmgz1(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshLmgz1",params);
+	}
+	@Override
 	public int queryJhshCountLmgz(Jhsh jhsh) {
 		params.put("jhsh", jhsh);
 		return queryOne("queryJhshCountLmgz", params);
+	}
+	@Override
+	public int queryJhshCountLmgz1(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryJhshCountLmgz1", params);
 	}
 	@Override
 	public List<Jhsh> queryJhshXj(Jhsh jhsh, int page, int rows) {
@@ -87,9 +111,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("queryJhshXj",params);
 	}
 	@Override
+	public List<Jhsh> queryJhshXj1(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshXj1",params);
+	}
+	@Override
 	public int queryJhshCountXj(Jhsh jhsh) {
 		params.put("jhsh", jhsh);
 		return queryOne("queryJhshCountXj", params);
+	}
+	@Override
+	public int queryJhshCountXj1(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryJhshCountXj1", params);
 	}
 	@Override
 	public boolean updateJhshxxLmsj(List<Jhsh> jhshs) {
@@ -141,9 +177,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("queryJhshYhdzx",params);
 	}
 	@Override
+	public List<Jhsh> queryJhshYhdzx1(Jhsh jhsh,int page,int rows) {
+		params.put("jhsh2", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshYhdzx1",params);
+	}
+	@Override
 	public int queryJhshYhdzxCount(Jhsh jhsh) {
 		params.put("jhsh2", jhsh);
 		return queryOne("queryJhshYhdzxCount", params);
+	}
+	@Override
+	public int queryJhshYhdzxCount1(Jhsh jhsh) {
+		params.put("jhsh2", jhsh);
+		return queryOne("queryJhshYhdzxCount1", params);
 	}
 	@Override
 	public boolean updateJhshxxYhdzx(Jhsh jhsh) {
@@ -169,9 +217,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryList("queryJhshSh",params);
 	}
 	@Override
+	public List<Jhsh> queryJhshSh1(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh2", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshSh1",params);
+	}
+	@Override
 	public int queryJhshShCount(Jhsh jhsh) {
 		params.put("jhsh2", jhsh);
 		return queryOne("queryJhshShCount",params);
+	}
+	@Override
+	public int queryJhshShCount1(Jhsh jhsh) {
+		params.put("jhsh2", jhsh);
+		return queryOne("queryJhshShCount1",params);
 	}
 	@Override
 	public boolean insertJhshYhdzxFromCbsj(String xmbm) {
@@ -264,16 +324,28 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		if(result.size()>0&&queryList.size()>0){
 			for (Lx l1 : queryList) {
 				flag=true;
-				for (Lx l2 : queryList) {
-					if(l1.equals(l2))
+				for (Lx l2 : result) {
+					if(l1.getXmid().equals(l2.getXmid()))
 						flag=false;
 				}
 				if(flag)
 					result.add(l1);
 			}
 		}
-		if(result.size()==0)
-		result.addAll(queryList);
+		if(result.size()==0){
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = false;
+					}
+				}
+				if (flag){
+					result.add(queryList.get(i));
+				}
+			}
+		}
+		
 	}
 	@Override
 	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh) {
@@ -378,22 +450,41 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryJhshLjLmsj",jhsh);
 	}
 	@Override
+	public Map<String, String> queryJhshLjLmsj1(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmsj1",jhsh);
+	}
+	@Override
 	public Map<String, String> queryJhshLjLmgz(Jhsh jhsh) {
 		return queryOne("queryJhshLjLmgz",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjLmgz1(Jhsh jhsh) {
+		return queryOne("queryJhshLjLmgz1",jhsh);
 	}
 	@Override
 	public Map<String, String> queryJhshLjXj(Jhsh jhsh) {
 		return queryOne("queryJhshLjXj",jhsh);
 	}
 	@Override
+	public Map<String, String> queryJhshLjXj1(Jhsh jhsh) {
+		return queryOne("queryJhshLjXj1",jhsh);
+	}
+	@Override
 	public Map<String, String> queryJhshLjYhdzx(Jhsh jhsh) {
 		return queryOne("queryJhshLjYhdzx",jhsh);
+	}
+	@Override
+	public Map<String, String> queryJhshLjYhdzx1(Jhsh jhsh) {
+		return queryOne("queryJhshLjYhdzx1",jhsh);
 	}
 	@Override
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh) {
 		return queryOne("queryJhshLjSh",jhsh);
 	}
-	
+	@Override
+	public Map<String, String> queryJhshLjSh1(Jhsh jhsh) {
+		return queryOne("queryJhshLjSh1",jhsh);
+	}
 	@Override
 	public List<Jhsh> queryJhshYhzx(Jhsh jhsh,int page,int rows) {
 		params.put("jhsh2", jhsh);

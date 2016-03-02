@@ -365,7 +365,9 @@ function showAll(){
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var yhjb=$.cookie("unit2");
 	var sfsj='';
 	if(yhjb.length==11){
@@ -440,7 +442,9 @@ function showAll__ck(){
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var yhjb=$.cookie("unit2");
 	var sfsj='';
 	if(yhjb.length==11){

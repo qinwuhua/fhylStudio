@@ -491,7 +491,7 @@
 		select * from (
 			select rownum num,t.* from (
 				<!-- select x.* from xmsq_yhdzx x  -->
-				select x.xmbm,x.xmmc,x.xzqh,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,x.ghlxbh,x.xzqhdm,l.*
+				select substr(x.xmbm,0,4) xmnf,x.xmbm,x.xmmc,x.xzqh,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,x.ghlxbh,x.xzqhdm,l.*
 				from xmsq_yhdzx x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
 				lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
@@ -510,7 +510,7 @@
 	<select id="queryShExport" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm,x.xmmc,x.xzqh,x.ghlxbh,x.xzqhdm,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,l.*
+				select substr(x.xmbm,0,4) xmnf,x.xmbm,x.xmmc,x.xzqh,x.ghlxbh,x.xzqhdm,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,l.*
 		        from xmsq_sh x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
 		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>

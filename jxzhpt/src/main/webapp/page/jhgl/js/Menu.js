@@ -719,6 +719,43 @@ $(function() {
 		renderTo:'left_menu6',
 		href:'./jhksh/bhsdtz.jsp'
 	});
+	
+	createMenux('LeftMenu',{
+		id:'menu_0101030606',
+		title:'改建项目',
+		imgSrc:'../../images/sj_s.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/gj.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030607',
+		title:'路面改造项目',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/lm.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030608',
+		title:'新建项目',
+		imgSrc:'../../images/xjgcxm.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/xj.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030609',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/yh.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030610',
+		title:'灾毁重建项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu6',
+		href:'./jhksh/zh.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101030620',
 		title:'危桥改造项目查看(交通局)',

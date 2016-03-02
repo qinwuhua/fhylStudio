@@ -194,7 +194,10 @@
 				return;
 			}
 			if(selArray.length!=0){
-				var xmbm = selArray.join(",");
+				var xmbm=selRow[0].xmbm;
+				for(var i=1;i<selRow.length;i++){
+					xmbm+=","+selRow[i].xmbm;
+				}
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/deleteXmsq.do',

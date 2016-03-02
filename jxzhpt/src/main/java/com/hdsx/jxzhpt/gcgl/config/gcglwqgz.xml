@@ -198,7 +198,7 @@
 					and t1.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					and t1.sbnf like '%'||trim(#{xmnf})||'%'
+					and t1.sbnf in (${xmnf})
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
@@ -253,7 +253,7 @@
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
 	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
+			and t1.sbnf in (${xmnf})
 	</if>
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
@@ -347,7 +347,7 @@
 			and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
 			</if> -->
 				<if test="xmnf != null and  xmnf != ''">
-				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+				${xmnf}
 			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}
@@ -418,7 +418,7 @@
 				and xdjh.xdsj like '%'||trim(#{xdsj})||'%'
 			</if> -->
 			<if test="xmnf != null and  xmnf != ''">
-				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+				${xmnf}
 			</if>
 			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 					and t1.sfylrbwqk = #{sfylrbwqk}

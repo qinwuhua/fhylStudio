@@ -531,7 +531,17 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setJgzt(jgzt);
 		gcglyhdzx.setShzt(ybzt);
 		gcglyhdzx.setTbyf(bfyf);
-		gcglyhdzx.setSbnf(xmnf);
+		String[] nfs=xmnf.split(",");
+		String tj="";
+		for (int i = 0; i < nfs.length; i++) {
+			if(i==0)
+				tj+=" and ( xdjh.xdsj like '%"+nfs[i]+"%'";
+			else 
+				tj+="or xdjh.xdsj like '%"+nfs[i]+"%'";
+		}
+		tj+=")";
+		System.out.println(tj);
+		gcglyhdzx.setSbnf(tj);
 		gcglyhdzx.setTiaojian(bfzt);
 		List<Map<String, Object>> list=gcglyhdzxServer.selectWqgzjhList2(gcglyhdzx);
 		int count=gcglyhdzxServer.selectWqgzjhListcount1(gcglyhdzx);

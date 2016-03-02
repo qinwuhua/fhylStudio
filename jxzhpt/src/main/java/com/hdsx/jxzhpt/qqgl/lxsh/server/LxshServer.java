@@ -194,4 +194,24 @@ public interface LxshServer {
 	boolean delybsjd(Wqbzbz wqbzbz);
 
 	boolean cxsfcgsjd(Wqbzbz wqbzbz);
+
+	boolean qxxmgj(Lxsh lxsh);
+
+	boolean qxxmlm(Lxsh lxsh);
+
+	boolean qxxmxj(Lxsh lxsh);
+
+	boolean qxxmyh(Lxsh lxsh);
+
+	boolean qxxmzh(Lxsh lxsh);
+
+	boolean qxxmgj1(Lxsh lxsh);
+
+	boolean qxxmlm1(Lxsh lxsh);
+
+	boolean qxxmxj1(Lxsh lxsh);
+
+	boolean qxxmyh1(Lxsh lxsh);
+
+	boolean qxxmzh1(Lxsh lxsh);
 }

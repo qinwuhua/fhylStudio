@@ -355,6 +355,9 @@ public class WnjhController extends BaseActionSupport{
 		System.out.println(tiaojian2);
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+		}
 		lxsh.setXmnf(xmnf);
 		lxsh.setTsdq(tsdq);
 		String gldjtj="";
@@ -410,6 +413,9 @@ public class WnjhController extends BaseActionSupport{
 		}
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+		}
 		lxsh.setXmnf(xmnf);
 		lxsh.setTsdq(tsdq);
 		String gldjtj="";
@@ -467,6 +473,9 @@ public class WnjhController extends BaseActionSupport{
 			System.out.println(xmnf);
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			}
 			lxsh.setXmnf(xmnf);
 			lxsh.setTsdq(tsdq);
 			String gldjtj="";
@@ -1040,6 +1049,9 @@ public class WnjhController extends BaseActionSupport{
 		}
 		lxsh.setXzqh(tiaojian2);
 		lxsh.setGydw(tiaojian1);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+		}
 		lxsh.setXmnf(xmnf);
 		lxsh.setTsdq(tsdq);
 		String gldjtj="";

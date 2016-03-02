@@ -557,7 +557,17 @@ public class XjgcController extends BaseActionSupport{
 			gcglgcgzgj.setJgzt(jgzt);
 			gcglgcgzgj.setShzt(ybzt);
 			gcglgcgzgj.setTbyf(bfyf);
-			gcglgcgzgj.setSbnf(xmnf);
+			String[] nfs=xmnf.split(",");
+			String tj="";
+			for (int i = 0; i < nfs.length; i++) {
+				if(i==0)
+					tj+=" and ( xdjh.xdsj like '%"+nfs[i]+"%'";
+				else 
+					tj+="or xdjh.xdsj like '%"+nfs[i]+"%'";
+			}
+			tj+=")";
+			System.out.println(tj);
+			gcglgcgzgj.setSbnf(tj);
 			gcglgcgzgj.setTiaojian(bfzt);
 			try{
 			List<Map<String,Object>> list=xjgcServer.selectWqgzjhList2(gcglgcgzgj);

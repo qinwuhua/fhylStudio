@@ -1,3 +1,53 @@
+function qxxm(str){
+	var xmbm=str+"";
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/qxxm.do',
+		data:"lxsh.xmbm="+str,
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("项目已成功取消");
+				if(xmbm.substr(10,1)=='1')
+				queryLmsj();
+				if(xmbm.substr(10,1)=='2')
+				queryLmgz();
+				if(xmbm.substr(10,1)=='3')
+					queryXj();
+				if(xmbm.substr(10,1)=='4')
+					queryYhdzx();
+				if(xmbm.substr(10,1)=='5')
+					queryShxm();
+			}
+				
+		}
+	});
+}
+function qxxm1(str){
+	var xmbm=str+"";
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/qxxmth.do',
+		data:"lxsh.xmbm="+str,
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("项目已成功退回");
+				if(xmbm.substr(10,1)=='1')
+					queryLmsj();
+					if(xmbm.substr(10,1)=='2')
+					queryLmgz();
+					if(xmbm.substr(10,1)=='3')
+						queryXj();
+					if(xmbm.substr(10,1)=='4')
+						queryYhdzx();
+					if(xmbm.substr(10,1)=='5')
+						queryShxm();
+			}
+				
+		}
+	});
+}
 function loadcbsjTjxx(data){
 	$.ajax({
 		type:'post',
@@ -179,6 +229,12 @@ function openLxAdd(id,xmbm,jdbs){
 	YMLib.Var.id=id;
 	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add2.jsp',980,400);
 }
+function openLxAddyh(id,xmbm,jdbs){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.jdbs=jdbs;
+	YMLib.Var.id=id;
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_addyh.jsp',980,400);
+}
 /**
  * 初步设计添加路线弹窗
  * @param xmbm 项目编码
@@ -231,6 +287,20 @@ function importExcel(url,flag){
 		id : 'id1',
 		title : '请选择EXCEL文档！',
 		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+}
+function importExcelqwh(url,flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload1.jsp?url='+url+'&flag='+flag,
 		width : 450,
 		height : 400,
 		top : 0,
@@ -924,6 +994,68 @@ var Rh={
 		}
 	};
 
+var Qwh={
+		onLoadSuccess:function(data){
+		},
+		onClickRow:function(rowIndex, rowData){
+		},
+		onSelect:function(rowIndex, rowData){
+			xmbm=rowData.xmbm;
+			selArray.push(rowData.xmbm);
+		},
+		onSelectAll:function(rows){
+			if(selArray.length<rows.length){
+				selArray.splice(0,selArray.length);
+				$.each(rows,function(index,item){
+					selArray.push(item.xmbm);
+				});
+			}else if(selArray.length==rows.length){
+				selArray.splice(0,selArray.length);
+			}
+		},
+		onUnselect:function(rowIndex, rowData){
+			xmbm=rowData.xmbm;
+			selArray.pop(rowData.xmbm);
+		},
+		detailFormatter:function(index,row){
+			return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';
+		},
+		onExpandRow:function(index,row){
+			$('#table_lx'+row.xmbm).datagrid({
+				url:'/jxzhpt/qqgl/selectlxList.do',
+				queryParams:{
+					'lx.xmid':row.xmbm,
+					'lx.jdbs':YMLib.Var.jdbs,
+					'lx.sffirst':'1'
+				},
+    			columns:[[
+    			    {field:'cz',title:'操作',width:150,align:'center',
+    			    	formatter:function(value,row,index){
+    			    		var result='<a href="javascript:updateLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">编辑</a>';
+    			    		result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		return result;
+    			    	}
+    			    },
+					{field:'gydw',title:'管养单位',width:150,align:'center'},    
+					{field:'xzqh',title:'行政区划',width:150,align:'center'},
+					{field:'lxmc',title:'路线名称',width:120,align:'center'},
+					{field:'lxbm',title:'路线编码',width:100,align:'center'},
+					{field:'qdzh',title:'起点桩号',width:80,align:'center'},
+					{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+					{field:'qdmc',title:'起点名称',width:100,align:'center'},
+					{field:'zdmc',title:'止点名称',width:100,align:'center'},
+					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+					{field:'lc',title:'里程',width:60,align:'center'},
+					{field:'jsfa',title:'建设方案',width:80,align:'center'}
+    			]],
+    			onLoadSuccess:function(){
+    				$('#'+grid.id).datagrid('fixDetailRowHeight',index);
+    	        }
+	    	});
+		}
+	};
+
 var Rh11={
 		onLoadSuccess:function(data){
 		},
@@ -1095,6 +1227,29 @@ function gridBind1(grid){
 	    onUnselect:Rh.onUnselect,
 	    onClickRow:Rh.onClickRow,
 	    onLoadSuccess:Rh.onLoadSuccess
+	});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function gridBindyh(grid){
+	gridObj = $('#'+grid.id).datagrid({
+	    url:grid.url,
+	    queryParams:grid.queryParams,
+	    striped:grid.striped,
+	    pagination:grid.pagination,
+	    rownumbers:grid.rownumbers,
+	    pageNumber:grid.pageNumber,
+	    pageSize:grid.pageSize,
+	    height:grid.height,
+	    width:grid.width,
+	    columns:grid.columns,
+	    onSelect:Qwh.onSelect,
+	    onSelectAll:Qwh.onSelectAll,
+	    onUnselect:Qwh.onUnselect,
+	    onClickRow:Qwh.onClickRow,
+	    onLoadSuccess:Qwh.onLoadSuccess,
+	    view:grid.view,
+	    detailFormatter:Qwh.detailFormatter,
+	    onExpandRow:Qwh.onExpandRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

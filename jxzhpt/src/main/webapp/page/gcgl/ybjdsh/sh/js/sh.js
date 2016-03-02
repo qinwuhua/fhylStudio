@@ -121,7 +121,9 @@ function shShyb(){
 	});	
 }
 function showAll(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -228,7 +230,9 @@ function showAll(){
 	}); 
 }
 function showAll__ck(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");

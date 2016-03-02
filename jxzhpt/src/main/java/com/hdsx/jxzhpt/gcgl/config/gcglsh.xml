@@ -293,7 +293,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and t.xmbm like trim(#{sbnf})||'%'
+				and substr(t.xmbm,0,4) in (${sbnf})
 		</if>
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
@@ -339,7 +339,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and t.xmbm like trim(#{sbnf})||'%'
+				and substr(t.xmbm,0,4) in (${sbnf})
 		</if>
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
@@ -401,7 +401,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+				${sbnf}
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
@@ -467,7 +467,7 @@
 				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
 		<if test="sbnf != null and  sbnf != ''">
-				and xdjh.xdsj like '%'||trim(#{sbnf})||'%'
+				${sbnf}
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'

@@ -629,7 +629,9 @@ function showAll(){
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 	var ybzt=$("#ybzt").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -713,7 +715,9 @@ function showAll__ck(){
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 	var ybzt=$("#ybzt").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -801,7 +805,9 @@ function showAll1(){
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 	var ybzt=$("#ybzt").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -897,7 +903,9 @@ function showAll1__ck(){
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 	var ybzt=$("#ybzt").val();
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,

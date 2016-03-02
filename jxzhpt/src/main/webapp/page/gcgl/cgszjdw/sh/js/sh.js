@@ -158,7 +158,9 @@ function showAll(){
 
 	var jgzt='';
 	var kgzt='';
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
@@ -256,7 +258,9 @@ function showAll__ck(){
 
 	var jgzt='0';
 	var kgzt='';
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    

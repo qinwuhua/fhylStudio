@@ -109,6 +109,49 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	
+	public void queryJhsh1() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			ylxbhHandle();
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx()==1){
+				listData=jhshServer.queryJhshLmsj1(jhsh,page,rows);
+				total=jhshServer.queryJhshCountLmsj1(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				listData=jhshServer.queryJhshLmgz1(jhsh,page,rows);
+				total=jhshServer.queryJhshCountLmgz1(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				listData=jhshServer.queryJhshXj1(jhsh,page,rows);
+				total=jhshServer.queryJhshCountXj1(jhsh);
+			}
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryJhshLj(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
@@ -154,6 +197,52 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	public void queryJhshLj1(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			ylxbhHandle();
+			jsdjHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx()==1){
+				result = jhshServer.queryJhshLjLmsj1(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				result = jhshServer.queryJhshLjLmgz1(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				result = jhshServer.queryJhshLjXj1(jhsh);
+			}else if(jhsh.getXmlx()==4){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				result = jhshServer.queryJhshLjYhdzx1(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				result = jhshServer.queryJhshLjSh1(jhsh);
+			}else if(jhsh.getXmlx()==6){
+				result = jhshServer.queryJhshLjYhzx(jhsh);
+			}
+			
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void jsdjHandle() {
 		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
 			String xjsdj = jhsh.getJsdj();
@@ -222,6 +311,48 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryJhsh3() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try{
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
+			ylxbhHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
+			if(jhsh.getXmlx()==4){
+				listData=jhshServer.queryJhshYhdzx1(jhsh,page,rows);
+				total=jhshServer.queryJhshYhdzxCount1(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				listData=jhshServer.queryJhshSh1(jhsh,page,rows);
+				total=jhshServer.queryJhshShCount1(jhsh);
+			}else if (jhsh.getXmlx()==6) {
+				listData=jhshServer.queryJhshYhzx(jhsh,page,rows);
+				total=jhshServer.queryJhshYhzxCount(jhsh);
+			}
+			result.put("rows", listData);
+			result.put("total", total);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	private void ylxbhHandle() {
 		String ylxbh = jhsh.getYlxbh()==null ? "" : jhsh.getYlxbh();
 		if(ylxbh!=null && !ylxbh.equals("")){

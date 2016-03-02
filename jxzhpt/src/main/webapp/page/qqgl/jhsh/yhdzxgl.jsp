@@ -118,7 +118,7 @@
 				{field:'tjlx',title:'添加路线',width:100,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
-							return '<a href="javascript:openLxAdd('+"'yhdzx','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+							return '<a href="javascript:openLxAddyh('+"'yhdzx','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
 						}else{
 							return '添加路线';
 						}
@@ -154,7 +154,7 @@
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
-			gridBind(grid);
+			gridBindyh(grid);
 		}
 		function loadLj(params){
 			$.ajax({
@@ -183,19 +183,27 @@
 		}
 		function deleteYhdzx(){
 			var selRow = $('#grid').datagrid("getSelections");
+			
 			var y=true;
 			$.each(selRow,function(index,item){
 				if(item.sqzt!=0){
 					y=false;
 					return;
 				}
-			});
+			}
+			
+			);
 			if(!y){
 				alert("只能删除未申请的信息！");
 				return;
 			}
 			if(selArray.length!=0){
-				var xmbm = selArray.join(",");
+				var xmbm=selRow[0].xmbm;
+				for(var i=1;i<selRow.length;i++){
+					xmbm+=","+selRow[i].xmbm;
+				}
+				//var xmbm = selArray.join(",");
+				//alert(xmbm+"         "+xmbm1);
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/deleteXmsq.do',
@@ -323,7 +331,7 @@
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
-			importExcel("/jxzhpt/qqgl/importExcelYhdzx.do","yhlxsh");
+			importExcelqwh("/jxzhpt/qqgl/importExcelYhdzx.do","yhlxsh");
 		}
 		function openYhdzx(){
 			openWindow("yhdzxadd","添加养护大中修项目","yhdzxAdd.jsp",980,400);

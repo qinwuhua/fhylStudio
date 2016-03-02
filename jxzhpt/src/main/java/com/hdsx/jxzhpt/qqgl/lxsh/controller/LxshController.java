@@ -2110,5 +2110,35 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void qxxm(){
+		boolean bl=false;
+		if(lxsh.getXmbm().substring(10,11).equals("1"))
+			bl=lxshServer.qxxmgj(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("2"))
+			bl=lxshServer.qxxmlm(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("3"))
+			bl=lxshServer.qxxmxj(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("4"))
+			bl=lxshServer.qxxmyh(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("5"))
+			bl=lxshServer.qxxmzh(lxsh);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
+	public void qxxmth(){
+		boolean bl=false;
+		if(lxsh.getXmbm().substring(10,11).equals("1"))
+			bl=lxshServer.qxxmgj1(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("2"))
+			bl=lxshServer.qxxmlm1(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("3"))
+			bl=lxshServer.qxxmxj1(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("4"))
+			bl=lxshServer.qxxmyh1(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("5"))
+			bl=lxshServer.qxxmzh1(lxsh);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 }
 

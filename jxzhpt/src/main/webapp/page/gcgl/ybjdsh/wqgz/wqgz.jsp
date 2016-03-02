@@ -31,13 +31,7 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y+5;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			$("#ddlYear").val(myDate.getFullYear());
+			gcglxmnf("ddlYear");
 			showAll();
 		});
 	</script>

@@ -405,4 +405,19 @@ public interface JhshServer {
 	 * @return
 	 */
 	public boolean updateJhshYhzx(Jhsh jhsh);
+	public List<Jhsh> queryJhshLmsj1(Jhsh jhsh, int page, int rows);
+	public int queryJhshCountLmsj1(Jhsh jhsh);
+	public List<Jhsh> queryJhshLmgz1(Jhsh jhsh, int page, int rows);
+	public int queryJhshCountLmgz1(Jhsh jhsh);
+	public List<Jhsh> queryJhshXj1(Jhsh jhsh, int page, int rows);
+	public int queryJhshCountXj1(Jhsh jhsh);
+	public Map<String, String> queryJhshLjLmsj1(Jhsh jhsh);
+	public Map<String, String> queryJhshLjLmgz1(Jhsh jhsh);
+	public Map<String, String> queryJhshLjXj1(Jhsh jhsh);
+	public Map<String, String> queryJhshLjYhdzx1(Jhsh jhsh);
+	public Map<String, String> queryJhshLjSh1(Jhsh jhsh);
+	public List<Jhsh> queryJhshYhdzx1(Jhsh jhsh, int page, int rows);
+	public int queryJhshYhdzxCount1(Jhsh jhsh);
+	public List<Jhsh> queryJhshSh1(Jhsh jhsh, int page, int rows);
+	public int queryJhshShCount1(Jhsh jhsh);
 }

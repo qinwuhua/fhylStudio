@@ -32,13 +32,8 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y+5;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			$("#ddlYear").val(myDate.getFullYear());
+			gcglxmnf("ddlYear");
+			
 			showAll();
 		});
 	</script>
@@ -88,7 +83,6 @@ a:active {
         						<input type="text" id="qlmc" style="width: 100px;">
         						<span>项目年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 70px;">
-        						<option value="">全部</option>
         						</select>
         						
         						 <p style="margin: 1% 0% 1% 2%;">

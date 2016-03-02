@@ -149,7 +149,9 @@ function showAll(){
 		yhtype='省级';
 		sfsj=7;
 	}
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectGcgzsjjhList.do',
@@ -255,7 +257,9 @@ function showAll__ck(){
 		yhtype='省级';
 		sfsj=7;
 	}
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectGcgzsjjhList.do',

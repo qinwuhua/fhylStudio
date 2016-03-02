@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import oracle.net.aso.q;
+
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -284,20 +286,24 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		List<Lx> ylx = queryList("queryYLx",item);
 		params.put("lx", item);
 		params.put("ylx", ylx);
-		List<Lx> queryList = queryList("queryLsjlList",params);
-		boolean flag=true;
-		if(result.size()>0&&queryList.size()>0){
-			for (Lx l1 : queryList) {
-				flag=true;
-				for (Lx l2 : queryList) {
-					if(l1.equals(l2))
-						flag=false;
+		try {
+			List<Lx> queryList = queryList("queryLsjlList", params);
+			boolean flag = true;
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = false;
+					}
 				}
-				if(flag)
-					result.add(l1);
+				if (flag){
+					result.add(queryList.get(i));
+				}
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		if(result.size()==0)
-		result.addAll(queryList);
+		
 	}
 }

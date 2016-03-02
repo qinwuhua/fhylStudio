@@ -30,16 +30,13 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			$('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
-			$("#ddlYear").val(myDate.getFullYear());
+			gcglxmnf("ddlYear");
 			showAll();
 		});
 		function exportAbyb(){
@@ -136,11 +133,11 @@ a:active {
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>下达年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 55px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 65px;">
         						<option value="">全部</option>
         						</select>
         						<span>拨付月份：</span> <input name="ddlMonth"
-									id="ddlMonth"  style="width: 68px;">
+									id="ddlMonth"  style="width: 58px;">
 								<span>拨付状态：</span> <select id=bfzt
 									style="width: 55px;">
 									<option value="">全部</option>

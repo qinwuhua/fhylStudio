@@ -63,16 +63,22 @@ public class ExcelImportUtil {
 	 * @throws Exception
 	 */
 	public static List readExcel(String string, int sheetIndex,int startRow, Class classType,File file)throws IOException, FileNotFoundException, Exception {
-		String[] split = string.split(",");
-		HSSFWorkbook readWork=new HSSFWorkbook(new FileInputStream(file));
-		HSSFSheet sheet = readWork.getSheetAt(sheetIndex);
-		ExcelEntity excel=new ExcelEntity();
-		Map<String, String> attribute=new HashMap<String, String>();
-		for (int i = 0; i < split.length; i++) {
-			attribute.put(new Integer(i).toString(), split[i]);
+		try {
+			String[] split = string.split(",");
+			HSSFWorkbook readWork = new HSSFWorkbook(new FileInputStream(file));
+			HSSFSheet sheet = readWork.getSheetAt(sheetIndex);
+			ExcelEntity excel = new ExcelEntity();
+			Map<String, String> attribute = new HashMap<String, String>();
+			for (int i = 0; i < split.length; i++) {
+				attribute.put(new Integer(i).toString(), split[i]);
+			}
+			excel.setAttributes(attribute);
+			return ExcelImportUtil.readerExcel(sheet, classType, startRow,
+					excel);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		excel.setAttributes(attribute);
-		return ExcelImportUtil.readerExcel(sheet, classType, startRow, excel);
 	}
 	/**
 	 * 导入读取Excel

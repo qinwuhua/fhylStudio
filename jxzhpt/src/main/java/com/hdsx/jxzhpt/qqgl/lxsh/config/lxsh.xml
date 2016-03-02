@@ -992,5 +992,70 @@
 	<update id="cxsfcgsjd" parameterType="wqbzbz">
 		update ${xmlx} set sfcgsjd=#{qllx} where id=#{id}
 	</update>
+	<insert id="qxxmgj" parameterType="lxsh">
+		insert into jhsh_sjgz_qx select * from jhsh_sjgz where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmgjdel" parameterType="lxsh">
+		delete from jhsh_sjgz where xmbm=#{xmbm}
+	</delete>
+	<insert id="qxxmgj1" parameterType="lxsh">
+		insert into jhsh_sjgz select * from jhsh_sjgz_qx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmgjdel1" parameterType="lxsh">
+		delete from jhsh_sjgz_qx where xmbm=#{xmbm}
+	</delete>
+	
+	<insert id="qxxmlm" parameterType="lxsh">
+		insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmlmdel" parameterType="lxsh">
+		delete from jhsh_lmgz where xmbm=#{xmbm}
+	</delete>
+	<insert id="qxxmlm1" parameterType="lxsh">
+		insert into jhsh_lmgz select * from jhsh_lmgz_qx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmlmdel1" parameterType="lxsh">
+		delete from jhsh_lmgz_qx where xmbm=#{xmbm}
+	</delete>
+	
+	<insert id="qxxmxj" parameterType="lxsh">
+		insert into jhsh_xj_qx select * from jhsh_xj where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmxjdel" parameterType="lxsh">
+		delete from jhsh_xj where xmbm=#{xmbm}
+	</delete>
+	<insert id="qxxmxj1" parameterType="lxsh">
+		insert into jhsh_xj select * from jhsh_xj_qx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmxjdel1" parameterType="lxsh">
+		delete from jhsh_xj_qx where xmbm=#{xmbm}
+	</delete>
+	
+	<insert id="qxxmyh" parameterType="lxsh">
+		insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmyhdel" parameterType="lxsh">
+		delete from jhsh_yhdzx where xmbm=#{xmbm}
+	</delete>
+	<insert id="qxxmyh1" parameterType="lxsh">
+		insert into jhsh_yhdzx select * from jhsh_yhdzx_qx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmyhdel1" parameterType="lxsh">
+		delete from jhsh_yhdzx_qx where xmbm=#{xmbm}
+	</delete>
+	
+	<insert id="qxxmzh" parameterType="lxsh">
+		insert into jhsh_sh_qx select * from jhsh_sh where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmzhdel" parameterType="lxsh">
+		delete from jhsh_sh where xmbm=#{xmbm}
+	</delete>
+	<insert id="qxxmzh1" parameterType="lxsh">
+		insert into jhsh_sh select * from jhsh_sh_qx where xmbm=#{xmbm}
+	</insert>
+	<delete id="qxxmzhdel1" parameterType="lxsh">
+		delete from jhsh_sh_qx where xmbm=#{xmbm}
+	</delete>
+	
 </mapper>
 

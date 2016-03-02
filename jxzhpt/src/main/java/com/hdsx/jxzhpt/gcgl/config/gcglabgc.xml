@@ -195,7 +195,7 @@
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
 		<if test="xmnf != null and  xmnf != ''">
-				and t1.jhnf like '%'||trim(#{xmnf})||'%'
+				and t1.jhnf in (${xmnf})
 		</if>
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
@@ -244,7 +244,7 @@
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
 		<if test="xmnf != null and  xmnf != ''">
-				and t1.jhnf like '%'||trim(#{xmnf})||'%'
+				and t1.jhnf in (${xmnf})
 		</if>
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
@@ -288,7 +288,7 @@
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
 	<if test="xmnf != null and  xmnf != ''">
-			and t1.jhnf like '%'||trim(#{xmnf})||'%'
+			and t1.jhnf in (${xmnf})
 	</if>
 	<if test="jgys != null and  jgys != ''">
 			and decode(jg.id,null,'否','是') = #{jgys}
@@ -329,7 +329,7 @@
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
 	<if test="xmnf != null and  xmnf != ''">
-			and t1.jhnf like '%'||trim(#{xmnf})||'%'
+			and t1.jhnf in (${xmnf})
 	</if>
 	 </select>
 	 
@@ -1071,7 +1071,7 @@
 		where t1.spzt='1' 
 
 		<if test="xmnf != null and  xmnf != ''">
-			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+			${xmnf}
 		</if>
 		<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
@@ -1142,7 +1142,7 @@
 		where t1.spzt='1' 
 
 		<if test="xmnf != null and  xmnf != ''">
-			and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+			${xmnf}
 		</if>
 		<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
@@ -1207,7 +1207,7 @@
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 	 	where t1.spzt='1' 
 			<if test="xmnf != null and  xmnf != ''">
-				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+				${xmnf}
 			</if>
 			<if test="lxbm != null and  lxbm != ''">
 				and t3.lxbm like '%'||trim(#{lxbm})||'%'
@@ -1265,7 +1265,7 @@
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
 	 	where t1.spzt='1' 
 			<if test="xmnf != null and  xmnf != ''">
-				and xdjh.xdsj like '%'||trim(#{xmnf})||'%'
+				${xmnf}
 			</if>
 			<if test="lxbm != null and  lxbm != ''">
 				and t3.lxbm like '%'||trim(#{lxbm})||'%'

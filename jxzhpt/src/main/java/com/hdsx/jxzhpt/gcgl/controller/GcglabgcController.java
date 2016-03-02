@@ -1413,7 +1413,17 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setTbyf(bfyf);
 		gcglabgc.setTbr(tbr);
 		gcglabgc.setTiaojian(bfzt);
-		gcglabgc.setXmnf(xmnf);
+		String[] nfs=xmnf.split(",");
+		String tj="";
+		for (int i = 0; i < nfs.length; i++) {
+			if(i==0)
+				tj+=" and ( xdjh.xdsj like '%"+nfs[i]+"%'";
+			else 
+				tj+="or xdjh.xdsj like '%"+nfs[i]+"%'";
+		}
+		tj+=")";
+		System.out.println(tj);
+		gcglabgc.setXmnf(tj);
 		List<Gcglabgc> list=null;
 		int count=0;
 		if("af".equals(gcglabgc.getXmlx())){

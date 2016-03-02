@@ -74,7 +74,9 @@ function ybsb1(index){
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -146,7 +148,9 @@ function showAll(){
 	}); 
 }
 function showAll__ck(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -215,7 +219,9 @@ function showAll__ck(){
 }
 
 function showAll1(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -287,7 +293,9 @@ function showAll1(){
 	}); 
 }
 function showAll1__ck(){
-	var xmnf=$("#ddlYear").val();
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')

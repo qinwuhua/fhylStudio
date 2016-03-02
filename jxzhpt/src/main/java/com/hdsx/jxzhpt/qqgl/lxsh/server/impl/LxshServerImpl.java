@@ -822,4 +822,94 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean qxxmgj(Lxsh lxsh) {
+		if(insert("qxxmgj", lxsh)>0)
+		return delete("qxxmgjdel",lxsh)==1;
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean qxxmlm(Lxsh lxsh) {
+		if(insert("qxxmlm", lxsh)>0)
+			return delete("qxxmlmdel",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmxj(Lxsh lxsh) {
+		if(insert("qxxmxj", lxsh)>0)
+			return delete("qxxmxjdel",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmyh(Lxsh lxsh) {
+		if(insert("qxxmyh", lxsh)>0)
+			return delete("qxxmyhdel",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmzh(Lxsh lxsh) {
+		if(insert("qxxmzh", lxsh)>0)
+			return delete("qxxmzhdel",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+	
+	@Override
+	public boolean qxxmgj1(Lxsh lxsh) {
+		if(insert("qxxmgj1", lxsh)>0)
+		return delete("qxxmgjdel1",lxsh)==1;
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean qxxmlm1(Lxsh lxsh) {
+		if(insert("qxxmlm1", lxsh)>0)
+			return delete("qxxmlmdel1",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmxj1(Lxsh lxsh) {
+		if(insert("qxxmxj1", lxsh)>0)
+			return delete("qxxmxjdel1",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmyh1(Lxsh lxsh) {
+		if(insert("qxxmyh1", lxsh)>0)
+			return delete("qxxmyhdel1",lxsh)==1;
+			else {
+				return false;
+			}
+	}
+
+	@Override
+	public boolean qxxmzh1(Lxsh lxsh) {
+		if(insert("qxxmzh1", lxsh)>0)
+			return delete("qxxmzhdel1",lxsh)==1;
+			else {
+				return false;
+			}
+	}
 }

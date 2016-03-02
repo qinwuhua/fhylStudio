@@ -26,7 +26,7 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			setJsdj('jsdj');
+			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			tsdq("tsdq");
 			setxmnf("xmnf");

@@ -34,12 +34,9 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y+5;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
 			$('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
-			$("#ddlYear").val(myDate.getFullYear());
+			gcglxmnf("ddlYear");
 			showAll();
 		});
 		function exportAbyb(){
@@ -128,7 +125,7 @@ a:active {
         						<span>行政区划：</span>
         						<input id="xzqh" style="width: 150px;">
         						<span>下达年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 68px;">
         						<option value="">全部</option>
         						</select>
         						<span>拨付月份：</span> <input name="ddlMonth"
