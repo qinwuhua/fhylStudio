@@ -42,6 +42,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -86,7 +87,14 @@ public class GcglaqybController extends BaseActionSupport{
 	private String uploadSGXKFileName;
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
+	private Cbsj cbsj=new Cbsj();
 	
+	public Cbsj getCbsj() {
+		return cbsj;
+	}
+	public void setCbsj(Cbsj cbsj) {
+		this.cbsj = cbsj;
+	}
 	public File getUploadSGXK() {
 		return uploadSGXK;
 	}
@@ -1049,4 +1057,16 @@ public class GcglaqybController extends BaseActionSupport{
 		boolean bl=gcglaqybServer.loadWqgzwgzp(gcgl_jgys);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	public void querysgtByXmbm(){
+		try {
+			if(cbsj.getXmbm().substring(10,11).equals("1"))
+			JsonUtils.write(gcglaqybServer.querysjsgtByXmbm(cbsj), getresponse().getWriter());
+			if(cbsj.getXmbm().substring(10,11).equals("3"))
+			JsonUtils.write(gcglaqybServer.queryxjsgtByXmbm(cbsj), getresponse().getWriter());
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

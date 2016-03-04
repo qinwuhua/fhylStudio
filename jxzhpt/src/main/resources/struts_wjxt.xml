@@ -9,12 +9,16 @@
 	<action name="deleteQtWjfile1" class="wjglController" method="deleteQtWjfile1"/>
 	<action name="insertZcwj" class="wjglController" method="insertZcwj"/>
 	<action name="insertQtwj" class="wjglController" method="insertQtwj"/>
+	<action name="insertJhwj" class="wjglController" method="insertJhwj"/>
 	<action name="updateZcwj" class="wjglController" method="updateZcwj"/>
 	<action name="updateQtwj" class="wjglController" method="updateQtwj"/>
+	<action name="updateJhwj" class="wjglController" method="updateJhwj"/>
 	<action name="deleteZcwj" class="wjglController" method="deleteZcwj"/>
 	<action name="deleteQtwj" class="wjglController" method="deleteQtwj"/>
+	<action name="deleteJhwj" class="wjglController" method="deleteJhwj"/>
 	<action name="selectzcwjlist" class="wjglController" method="selectzcwjlist"/>
 	<action name="selectqtwjlist" class="wjglController" method="selectqtwjlist"/>
+	<action name="selectjhwjlist" class="wjglController" method="selectjhwjlist"/>
 	<action name="selectWjfile" class="wjglController" method="selectWjfile"/>
 	<action name="downWjFile" class="wjglController" method="downWjFile"/>
 	

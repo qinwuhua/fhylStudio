@@ -161,6 +161,8 @@
 		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
 		<action name="queryCbsjbgByXmbm" class="cbsjController" method="queryCbsjbgByXmbm"></action>
 		<action name="updateCbsj" class="cbsjController" method="updateCbsj"></action>
+		<action name="updatesgt" class="cbsjController" method="updatesgt"></action>
+		
 		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
 		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>

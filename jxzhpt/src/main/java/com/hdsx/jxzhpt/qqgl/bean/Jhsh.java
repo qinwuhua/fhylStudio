@@ -26,7 +26,28 @@ public class Jhsh {
 	private String yhdk;
 	private String gz;
 	private String sz;
+	private String jhxdwh;
+	private String stc;
+	private String dk;
 	
+	public String getStc() {
+		return stc;
+	}
+	public void setStc(String stc) {
+		this.stc = stc;
+	}
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}

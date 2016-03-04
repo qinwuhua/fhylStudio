@@ -46,4 +46,14 @@ public interface WjglServer {
 
 	boolean deleteQtwj(Wjgl wjgl);
 
+	boolean insertJhwj(Wjgl wjgl);
+
+	boolean updateJhwj(Wjgl wjgl);
+
+	List<Wjgl> selectjhwjlist(Wjgl wjgl);
+
+	int selectjhwjlistCount(Wjgl wjgl);
+
+	boolean deleteJhwj(Wjgl wjgl);
+
 }

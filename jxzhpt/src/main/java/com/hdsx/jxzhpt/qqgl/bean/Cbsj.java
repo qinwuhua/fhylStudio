@@ -1,6 +1,8 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
-public class Cbsj {
+import java.io.Serializable;
+
+public class Cbsj{
 	@Override
 	public String toString() {
 		return "Cbsj [id=" + id + ", xmbm=" + xmbm + ", xmmc=" + xmmc
@@ -24,7 +26,14 @@ public class Cbsj {
 	}
 	private String tzxz;
 	private String tzsj;
+	private String gys;
 	
+	public String getGys() {
+		return gys;
+	}
+	public void setGys(String gys) {
+		this.gys = gys;
+	}
 	public String getTzxz() {
 		return tzxz;
 	}

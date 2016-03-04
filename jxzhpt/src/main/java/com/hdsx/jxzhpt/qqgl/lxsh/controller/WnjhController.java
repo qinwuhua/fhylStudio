@@ -57,6 +57,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzServerImpl;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
@@ -537,7 +538,13 @@ public class WnjhController extends BaseActionSupport{
 	public void insertGjwnjh(){
 		try {
 			XmsqServer xmsqServer=new XmsqServerImpl();
-			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
+			Xmsq xmsq=new Xmsq();
+			xmsq.setXmbm(lxsh.getXmbm());
+			xmsq.setYlxbh(lxsh.getGhlxbh());
+			xmsq.setQdzh(lxsh.getQdzh());
+			lxsh.setZdzh(lxsh.getZdzh());
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");
 			boolean bl=wnjhServer.insertGjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -547,7 +554,13 @@ public class WnjhController extends BaseActionSupport{
 	public void insertLmwnjh(){
 		try {
 			XmsqServer xmsqServer=new XmsqServerImpl();
-			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
+			Xmsq xmsq=new Xmsq();
+			xmsq.setXmbm(lxsh.getXmbm());
+			xmsq.setYlxbh(lxsh.getGhlxbh());
+			xmsq.setQdzh(lxsh.getQdzh());
+			lxsh.setZdzh(lxsh.getZdzh());
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");
 			boolean bl=wnjhServer.insertLmwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -557,7 +570,13 @@ public class WnjhController extends BaseActionSupport{
 	public void insertXjwnjh(){
 		try {
 			XmsqServer xmsqServer=new XmsqServerImpl();
-			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
+			Xmsq xmsq=new Xmsq();
+			xmsq.setXmbm(lxsh.getXmbm());
+			xmsq.setYlxbh(lxsh.getGhlxbh());
+			xmsq.setQdzh(lxsh.getQdzh());
+			lxsh.setZdzh(lxsh.getZdzh());
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");	
 			boolean bl=wnjhServer.insertXjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {

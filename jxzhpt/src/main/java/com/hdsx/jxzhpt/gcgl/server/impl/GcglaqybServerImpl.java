@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -399,5 +400,15 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	@Override
 	public Wjgl selectqtwjById(Gcgltz gcgltz) {
 		return queryOne("selectqtwjById", gcgltz);
+	}
+
+	@Override
+	public Cbsj querysjsgtByXmbm(Cbsj cbsj) {
+		return queryOne("querysjsgtByXmbm", cbsj);
+	}
+
+	@Override
+	public Cbsj queryxjsgtByXmbm(Cbsj cbsj) {
+		return queryOne("queryxjsgtByXmbm", cbsj);
 	}
 }

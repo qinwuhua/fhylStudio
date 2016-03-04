@@ -613,7 +613,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					num = num==0 ? new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue() : num+1;
 					xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
 					xmsq.setGydwdm(tbbmbm2);
-					xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+					List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+					xmsq.setLsjl(lxs.size()>0 ? "是" : "否");
+					
 				}
 				xmsq.setGpsqdzh(xmsq.getQdzh());
 				xmsq.setGpszdzh(xmsq.getZdzh());

@@ -1,5 +1,11 @@
 var obj=new Object();
 var obj1=new Object();
+function sgttj(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('wqxx','施工图','sjsgt.jsp','wqxx',950,420);
+}
+
 function jgys(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
@@ -269,13 +275,13 @@ function tjwqgzkg(){
 		alert("请您输入合同金额");
 		return;
 	}
-	if($("#tj_gys").val()==''){
-		alert("请您输入概预算");
-		return;
-	}
+//	if($("#tj_gys").val()==''){
+//		alert("请您输入概预算");
+//		return;
+//	}
 	var data="gcglgcgzsj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzsj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglgcgzsj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzsj.jldw="+$("#tj_jldw").val()+"&gcglgcgzsj.jsdw="+$("#tj_jsdw").val()
-	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+$("#tj_gys").val()+"&gcglgcgzsj.jhid="+parent.obj1.XMBM;
+	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+"&gcglgcgzsj.jhid="+parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -401,9 +407,13 @@ function showAll(){
 	    columns:[[
 			{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 			  	if(row.KGZT=='1'){
-			  		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  ';
+			  		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '
+			  		+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sgttj('+index+')">施工图</a>  '
+			  		+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  ';
 			  	}else
-			  	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   ';
+			  	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '
+			  	+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sgttj('+index+')">施工图</a>  '
+			  	+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   ';
 			  }},
 			{field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.SFQXKG+'</a>    ';

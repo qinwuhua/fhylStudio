@@ -88,6 +88,11 @@ public class WjglServerImpl extends BaseOperate implements WjglServer {
 	}
 
 	@Override
+	public boolean insertJhwj(Wjgl wjgl) {
+		return insert("insertJhwj", wjgl)==1;
+	}
+	
+	@Override
 	public List<Wjgl> selectqtwjlist(Wjgl wjgl) {
 		return queryList("selectqtwjlist", wjgl);
 	}
@@ -111,8 +116,32 @@ public class WjglServerImpl extends BaseOperate implements WjglServer {
 	}
 
 	@Override
+	public boolean updateJhwj(Wjgl wjgl) {
+		return update("updateQtwj", wjgl)==1;
+	}
+	
+	@Override
 	public boolean deleteQtwj(Wjgl wjgl) {
 		if(delete("deleteQtwj",wjgl)==1){
+			delete("deleteWjfile1", wjgl.getId());
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<Wjgl> selectjhwjlist(Wjgl wjgl) {
+		return queryList("selectjhwjlist",wjgl);
+	}
+
+	@Override
+	public int selectjhwjlistCount(Wjgl wjgl) {
+		return queryOne("selectjhwjlistCount", wjgl);
+	}
+
+	@Override
+	public boolean deleteJhwj(Wjgl wjgl) {
+		if(delete("deleteJhwj",wjgl)==1){
 			delete("deleteWjfile1", wjgl.getId());
 			return true;
 		}

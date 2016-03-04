@@ -460,5 +460,23 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		params.put("cbsj", cbsj);
 		return queryOne("loadxjcbsjbgTjxx", params);
 	}
+	@Override
+	public Cbsj selectSjsgt(Cbsj cbsj) {
+		return queryOne("selectSjsgt", cbsj);
+	}
+	@Override
+	public boolean updatesjsgt(Cbsj cbsj) {
+		if(queryOne("selectSjsgt", cbsj)==null){
+			insert("insertsjsgt", cbsj);
+		}
+		return update("updatesjsgt",cbsj)==1;
+	}
+	@Override
+	public boolean updatexjsgt(Cbsj cbsj) {
+		if(queryOne("selectXjsgt", cbsj)==null){
+			insert("insertxjsgt", cbsj);
+		}
+		return update("updatexjsgt",cbsj)==1;
+	}
 
 }

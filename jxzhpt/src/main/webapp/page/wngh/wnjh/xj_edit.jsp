@@ -68,7 +68,7 @@ text-decoration:none;
 		xmnf2("jhwgn");
 		load();
 			$("#save_button").click(function(){
-			if($("#lxmc").val()=="" || $("#lxmc").val()==null){
+			/* if($("#lxmc").val()=="" || $("#lxmc").val()==null){
 				alert("请填写路线名称！");
 				$("#lxmc").focus();
 				return false;
@@ -80,7 +80,7 @@ text-decoration:none;
 			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
 				alert("请填写止点名称！");
 				return false;
-			}
+			} */
 			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
 				alert("请填写建设性质！");
 				$("#jsxz").focus();
@@ -99,7 +99,7 @@ text-decoration:none;
 				alert("请填写补助测算");
 				return false;
 			}
-			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
+			/* if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
 				alert("请填写正确的起点桩号！");
 				$("#qdzh").focus();
 				return false;
@@ -113,7 +113,7 @@ text-decoration:none;
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
-			}
+			} */
 			if(parseInt($("#xmnf").html())>parseInt($("#jhkgn").combobox('getText'))){
 				alert("对不起，开工年不能小于项目年份！");
 				return false;

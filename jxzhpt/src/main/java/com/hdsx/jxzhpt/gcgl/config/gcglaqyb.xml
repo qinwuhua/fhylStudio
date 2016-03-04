@@ -320,4 +320,11 @@
  	<select id="selectqtwjById" parameterType="gcgltz" resultType="wjgl">
  		select * from zcwj_qtwj where id=#{id}
  	</select>
+ 	
+ 	<select id="querysjsgtByXmbm" parameterType="cbsj" resultType="cbsj">
+ 		select * from SGT_SJGZ where xmbm=#{xmbm}
+ 	</select>
+ 	<select id="queryxjsgtByXmbm" parameterType="cbsj" resultType="cbsj">
+ 		select * from SGT_XJ where xmbm=#{xmbm}
+ 	</select>
 </mapper>

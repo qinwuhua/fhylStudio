@@ -30,6 +30,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -348,6 +349,18 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * 修改路面改造初步设计信息
 	 * @throws Exception
 	 */
+	public void updatesgt(){
+		boolean bl=false;
+
+		if(cbsj.getXmbm().substring(10,11).equals("1")){
+			bl=cbsjServer.updatesjsgt(cbsj);
+		}
+		if(cbsj.getXmbm().substring(10,11).equals("3")){
+			bl=cbsjServer.updatexjsgt(cbsj);
+		}	
+			ResponseUtils.write(getresponse(), bl+"");
+	}
+	
 	public void updateCbsj() throws Exception{
 		try{
 			boolean b = false;

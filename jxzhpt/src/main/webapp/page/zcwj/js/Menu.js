@@ -13,6 +13,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./qtwj.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_01020103',
+		title:'计划文件',
+		imgSrc:'../../images/qtwj.png',
+		renderTo:'left_menu1',
+		href:'./jhwj.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

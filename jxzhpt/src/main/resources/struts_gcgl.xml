@@ -263,6 +263,7 @@
 	<action name="deleteMbgl" class="gcglaqybController" method="deleteMbgl"/>
 	
 	<!-- xxtz -->
+	<action name="querysgtByXmbm" class="gcglaqybController" method="querysgtByXmbm"/>
 	<action name="uploadTzFile" class="gcglaqybController" method="uploadTzFile"/>
 	<action name="insertTz" class="gcglaqybController" method="insertTz"/>
 	<action name="insertTz1" class="gcglaqybController" method="insertTz1"/>

@@ -349,5 +349,11 @@ public interface CbsjServer {
 	public Cbsj queryCbsjYhdzxbgByXmbm(String xmbm);
 
 	public Cbsj queryCbsjShbgByXmbm(String xmbm);
+
+	public Cbsj selectSjsgt(Cbsj cbsj);
+
+	public boolean updatesjsgt(Cbsj cbsj);
+
+	public boolean updatexjsgt(Cbsj cbsj);
 	
 }

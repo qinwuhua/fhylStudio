@@ -25,6 +25,10 @@
 		insert into ZCWJ_QTWJ(id,fbsj,fbr,wjmc,wjgy,jsdw,fbdw)
 		values(#{id},to_char(sysdate,'yyyy-mm-dd'),#{fbr},#{wjmc},#{wjgy},#{jsdw},#{fbdw})
 	</insert>
+	<insert id="insertJhwj" parameterType="wjgl">
+		insert into ZCWJ_JHWJ(id,fbsj,fbr,wjmc,wjgy,fbdw)
+		values(#{id},to_char(sysdate,'yyyy-mm-dd'),#{fbr},#{wjmc},#{wjgy},#{fbdw})
+	</insert>
 	<update id="updateZcwj" parameterType="wjgl">
 		update ZCWJ_ZCWJ set wjmc=#{wjmc},wjgy=#{wjgy},jsdw=#{jsdw}
 		where id=#{id}
@@ -33,11 +37,18 @@
 		update ZCWJ_QTWJ set wjmc=#{wjmc},wjgy=#{wjgy},jsdw=#{jsdw}
 		where id=#{id}
 	</update>
+	<update id="updateJhwj" parameterType="wjgl">
+		update ZCWJ_JHWJ set wjmc=#{wjmc},wjgy=#{wjgy}
+		where id=#{id}
+	</update>
 	<delete id="deleteZcwj" parameterType="wjgl">
 		delete from ZCWJ_ZCWJ where id=#{id}
 	</delete>
 	<delete id="deleteQtwj" parameterType="wjgl">
 		delete from ZCWJ_QTWJ where id=#{id}
+	</delete>
+	<delete id="deleteJhwj" parameterType="wjgl">
+		delete from ZCWJ_JHWJ where id=#{id}
 	</delete>
 	<select id="selectzcwjlist" parameterType="wjgl" resultType="wjgl">
 		select * from (
@@ -93,6 +104,34 @@
 		) 
 			where RN>((#{page} - 1) * #{rows})
 		
+	</select>
+	<select id="selectjhwjlist" parameterType="wjgl" resultType="wjgl">
+		select * from (
+		select m.*,rownum rn from (
+			select * from ZCWJ_JHWJ 
+			where 1=1
+			<if test="kssj != null  and kssj != ''">
+					and to_date(fbsj,'yyyy-mm-dd') >= to_date(#{kssj},'yyyy-mm-dd')
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and to_date(fbsj,'yyyy-mm-dd') <= to_date(#{jssj},'yyyy-mm-dd')]]>
+			</if>
+		order by fbsj desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectjhwjlistCount" parameterType="wjgl" resultType="int">
+		select count(*) from ZCWJ_JHWJ 
+			where 1=1
+			<if test="kssj != null  and kssj != ''">
+					and to_date(fbsj,'yyyy-mm-dd') >= to_date(#{kssj},'yyyy-mm-dd')
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and to_date(fbsj,'yyyy-mm-dd') <= to_date(#{jssj},'yyyy-mm-dd')]]>
+			</if>
 	</select>
 	<select id="selectqtwjlistCount" parameterType="wjgl" resultType="int">
 		select count(*) from ZCWJ_QTWJ 

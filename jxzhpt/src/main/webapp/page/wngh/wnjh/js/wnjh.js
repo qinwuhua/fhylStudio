@@ -1,3 +1,28 @@
+function cxqdmc(lxbm,qdzh){
+	$('#qdmc').val('');
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#qdmc').val(msg.qdmc);
+		}
+	});
+}
+function cxzdmc(lxbm,qdzh){
+	$('#zdmc').val('');
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#zdmc').val(msg.zdmc);
+		}
+	});
+}
+
 var obj=new Object();
 function Lsjl(xmbm){
 	YMLib.Var.xmbm=xmbm;

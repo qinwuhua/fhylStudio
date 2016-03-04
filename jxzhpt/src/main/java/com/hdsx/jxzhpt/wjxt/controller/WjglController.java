@@ -146,6 +146,10 @@ public class WjglController extends BaseActionSupport{
 		boolean bl=wjglServer.insertQtwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	public void insertJhwj(){
+		boolean bl=wjglServer.insertJhwj(wjgl);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 	public void updateZcwj(){
 		wjgl.setFbdw(wjgl.getFbdw().replaceAll("0*$",""));
 		boolean bl=wjglServer.updateZcwj(wjgl);
@@ -155,12 +159,20 @@ public class WjglController extends BaseActionSupport{
 		boolean bl=wjglServer.updateQtwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	public void updateJhwj(){
+		boolean bl=wjglServer.updateJhwj(wjgl);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 	public void deleteZcwj(){
 		boolean bl=wjglServer.deleteZcwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	public void deleteQtwj(){
 		boolean bl=wjglServer.deleteQtwj(wjgl);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void deleteJhwj(){
+		boolean bl=wjglServer.deleteJhwj(wjgl);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	public void selectzcwjlist(){
@@ -188,6 +200,24 @@ public class WjglController extends BaseActionSupport{
 		wjgl.setRows(rows);
 		List<Wjgl> list = wjglServer.selectqtwjlist(wjgl);
 		int count = wjglServer.selectqtwjlistCount(wjgl);
+		EasyUIPage<Wjgl> e=new EasyUIPage<Wjgl>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selectjhwjlist(){
+		wjgl.setJsdw(gydw);
+		wjgl.setKssj(kssj);
+		wjgl.setJssj(jssj);
+		wjgl.setPage(page);
+		wjgl.setRows(rows);
+		List<Wjgl> list = wjglServer.selectjhwjlist(wjgl);
+		int count = wjglServer.selectjhwjlistCount(wjgl);
 		EasyUIPage<Wjgl> e=new EasyUIPage<Wjgl>();
 		e.setRows(list);
 		e.setTotal(count);

@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcgltz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.wjxt.bean.Wjgl;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -110,5 +111,9 @@ public interface GcglaqybServer {
 	List<TreeNode> selAllXzqh11(String replaceAll);
 
 	List<TreeNode> selAllUnit11(String replaceAll);
+
+	Cbsj querysjsgtByXmbm(Cbsj cbsj);
+
+	Cbsj queryxjsgtByXmbm(Cbsj cbsj);
 
 }
