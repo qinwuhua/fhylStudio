@@ -175,9 +175,11 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 			attribute.put("11", "stz");
 			attribute.put("12", "yhdk");
 			attribute.put("13", "gz");
-			attribute.put("14", "sz");
-			attribute.put("15", "ztz");
-			attribute.put("16", "jhxdwh");
+			attribute.put("14", "gzzq");
+			attribute.put("15", "sz");
+			attribute.put("16", "szzq");
+			attribute.put("17", "ztz");
+			attribute.put("18", "jhxdwh");
 		}
 		
 		excel.setAttributes(attribute);

@@ -732,7 +732,9 @@ function queryxZjxd(xmbm){
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'yhdk',title : '银行贷款',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
+		{field : 'gzzq',title : '国债债券',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
+		{field : 'szzq',title : '省债债券',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
@@ -753,7 +755,9 @@ function queryxZjxd1(xmbm){
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'yhdk',title : '银行贷款',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
+		{field : 'gzzq',title : '国债债券',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
+		{field : 'szzq',title : '省债债券',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);

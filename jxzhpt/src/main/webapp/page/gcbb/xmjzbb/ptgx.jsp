@@ -90,6 +90,7 @@
 							if(msg[i].SL>1){
 								var j=msg[i].SL;
 								var ybf=0;
+								var bnbf=0;
 								var wbf=0;
 								var sum=0;
 								for(var k=0;k<j;k++)
@@ -114,7 +115,7 @@
 											+msg[i].XDNF+"</td><td  rowspan="+j+">"+msg[i].QDZH+"</td><td  rowspan="+j+">"
 											+msg[i].ZDZH+"</td><td  rowspan="+j+">"+msg[i].YHLC+"</td><td  rowspan="+j+">"
 											+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
-											+ybf+"</td><td>"+wbf+"</td><td  rowspan="+j+">"
+											+bnbfzj+"</td><td>"+ybf+"</td><td>"+wbf+"</td><td  rowspan="+j+">"
 											+msg[i].JSZT+"</td><td  rowspan="+j+">"+msg[i].DC+"</td><td  rowspan="+j+">"
 											+msg[i].JC+"</td><td  rowspan="+j+">"+msg[i].WGLC+"</td><td  rowspan="+j+">"
 											+msg[i].WKGLC+"</td><td  rowspan="+j+">"+msg[i].SJKGSJ+"</td><td  rowspan="+j+">"
@@ -125,7 +126,7 @@
 										}else{
 											tbodystr=tbodystr+"<tr><td  >"+msg[i+k].XDNF+"</td><td  >"
 											+msg[i+k].JHXDZJ+"</td><td  >"+ybf+"</td><td  >"
-											+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
+											+bnbfzj+"</td><td>"+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
 											+msg[i+k].XGCSYJ+"</td><td  >"+msg[i+k].CSCYJ+"</td></tr>";
 										}
 									}	
@@ -136,7 +137,7 @@
 								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
 								+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 								+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
-								+msg[i].BFZJ+"</td><td>"+msg[i].WBFZJ+"</td><td>"
+								+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"+msg[i].WBFZJ+"</td><td>"
 								+msg[i].JSZT+"</td><td>"+msg[i].DC+"</td><td>"
 								+msg[i].JC+"</td><td>"+msg[i].WGLC+"</td><td>"
 								+msg[i].WKGLC+"</td><td>"+msg[i].SJKGSJ+"</td><td>"
@@ -307,6 +308,7 @@ a:active {
 										<td style="width: 140px">计划里程（里程）</td>
 										<td style="width: 140px">概算总投资(万元)</td>
 										<td style="width: 140px">计划下达资金(万元)</td>
+										<td style="width: 140px">本年拨付资金（万元）</td>
 										<td style="width: 140px">累计拨付资金（万元）</td>
 										<td style="width: 140px">未拨付资金（万元）</td>
 										<td style="width: 140px">建设状态</td>

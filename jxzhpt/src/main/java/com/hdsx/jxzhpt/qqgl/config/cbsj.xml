@@ -918,7 +918,7 @@
 	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx c left join 
 		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
-		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -938,7 +938,7 @@
 	<select id="queryCbsjbgLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx_tz c left join 
 		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
-		(select xmid,sum(lc) lc from lxsh_lx_tz where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx_tz where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -960,7 +960,7 @@
 	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh c left join 
 		xmsq_sh l on c.xmbm=l.xmbm left join 
-		(select xmid,sum(lc) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -979,7 +979,7 @@
 	<select id="queryCbsjbgLjSh" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh_tz c left join 
 		xmsq_sh l on c.xmbm=l.xmbm left join 
-		(select xmid,sum(lc) lc from lxsh_lx_tz where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx_tz where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">

@@ -152,7 +152,7 @@
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param;
 		}
 		function importJhsh(){
-			importExcel("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");
+			importExcelqwh("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');

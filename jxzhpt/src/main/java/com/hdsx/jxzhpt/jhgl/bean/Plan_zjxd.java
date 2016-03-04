@@ -20,7 +20,21 @@ public class Plan_zjxd {
 	private String ztz;
 	private String stc;
 	private String dk;
+	private String gzzq;
+	private String szzq;
 	
+	public String getGzzq() {
+		return gzzq;
+	}
+	public void setGzzq(String gzzq) {
+		this.gzzq = gzzq;
+	}
+	public String getSzzq() {
+		return szzq;
+	}
+	public void setSzzq(String szzq) {
+		this.szzq = szzq;
+	}
 	public String getStc() {
 		return stc;
 	}

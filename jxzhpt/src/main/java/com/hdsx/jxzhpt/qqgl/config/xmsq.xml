@@ -535,7 +535,7 @@
 	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
 			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
-			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
+			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -559,7 +559,7 @@
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
 		select count(*) bz,sum(ntz) ntz,sum(lc) lc from (
 			select xmbm,ntz,l.lc from xmsq_sh x left join 
-			(select xmid,sum(lc) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
+			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%5___' group by xmid) l 
 			on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>

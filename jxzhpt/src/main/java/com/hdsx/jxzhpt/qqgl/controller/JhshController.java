@@ -948,7 +948,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		//设置表头、设置列与字段对应
 		String fileTitle=null;
 		if(jhsh.getXmlx()<=3 || jhsh.getXmlx()==5){
-			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk><title=国债,fieid=gz>,<title=省债,fieid=sz>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
+			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk>,<title=国债,fieid=gz>,<title=国债债券,fieid=gzzq>,<title=省债,fieid=sz>,<title=省债债券,fieid=szzq>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}else if(jhsh.getXmlx()==4){
 			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=计划总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省统筹,fieid=stc>,<title=贷款,fieid=dk>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}

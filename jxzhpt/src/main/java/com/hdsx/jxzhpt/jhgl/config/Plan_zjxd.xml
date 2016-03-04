@@ -62,8 +62,11 @@
 		<if test="stz!=null">,stz</if>
 		<if test="jhxdwh!=null">,jhxdwh</if>
 		<if test="yhdk!=null">,yhdk</if>
+		<if test="ztz!=null">,ztz</if>
 		<if test="gz!=null">,gz</if>
 		<if test="sz!=null">,sz</if>
+		<if test="gzzq!=null">,gzzq</if>
+		<if test="szzq!=null">,szzq</if>
 		) 
 		values (SYS_GUID()
 		<if test="xmid!=null">,#{xmid}</if>
@@ -76,8 +79,11 @@
 		<if test="stz!=null">,#{stz}</if>
 		<if test="jhxdwh!=null">,#{jhxdwh}</if>
 		<if test="yhdk!=null">,#{yhdk}</if>
+		<if test="ztz!=null">,#{ztz}</if>
 		<if test="gz!=null">,#{gz}</if>
 		<if test="sz!=null">,#{sz}</if>
+		<if test="gzzq!=null">,#{gzzq}</if>
+		<if test="szzq!=null">,#{szzq}</if>
 		)
 	</insert>
 	
@@ -94,6 +100,8 @@
 		<if test="yhdk !=null">,yhdk</if>
 		<if test="gz !=null">,gz</if>
 		<if test="sz !=null">,sz</if>
+		<if test="gzzq !=null">,gzzq</if>
+		<if test="szzq !=null">,szzq</if>
 		<if test="ztz !=null">,ztz</if>
 		<if test="jhxdwh!=null">,jhxdwh</if>) 
 		values (SYS_GUID()<if test="xmid!=null">,#{xmid}</if>
@@ -107,6 +115,8 @@
 		<if test="yhdk !=null">,#{yhdk}</if>
 		<if test="gz !=null">,#{gz}</if>
 		<if test="sz !=null">,#{sz}</if>
+		<if test="gzzq !=null">,#{gzzq}</if>
+		<if test="szzq !=null">,#{szzq}</if>
 		<if test="ztz !=null">,#{ztz}</if>
 		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
@@ -135,6 +145,8 @@
 			<if test="yhdk!=null and yhdk!=''">yhdk=#{yhdk},</if>
 			<if test="gz!=null and gz!=''">gz=#{gz},</if>
 			<if test="sz!=null and sz!=''">sz=#{sz},</if>
+			<if test="gzzq!=null and gzzq!=''">gzzq=#{gzzq},</if>
+			<if test="szzq!=null and szzq!=''">szzq=#{szzq},</if>
 			<if test="ztz !=null and ztz !=''">ztz=#{ztz},</if>
 			<if test="jhxdwh!=null and jhxdwh!=''">jhxdwh=#{jhxdwh},</if>
 			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
