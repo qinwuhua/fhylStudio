@@ -115,7 +115,7 @@
 											+msg[i].XDNF+"</td><td  rowspan="+j+">"+msg[i].QDZH+"</td><td  rowspan="+j+">"
 											+msg[i].ZDZH+"</td><td  rowspan="+j+">"+msg[i].YHLC+"</td><td  rowspan="+j+">"
 											+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
-											+bnbfzj+"</td><td>"+ybf+"</td><td>"+wbf+"</td><td  rowspan="+j+">"
+											+bnbf+"</td><td>"+ybf+"</td><td>"+wbf+"</td><td  rowspan="+j+">"
 											+msg[i].JSZT+"</td><td  rowspan="+j+">"+msg[i].DC+"</td><td  rowspan="+j+">"
 											+msg[i].JC+"</td><td  rowspan="+j+">"+msg[i].WGLC+"</td><td  rowspan="+j+">"
 											+msg[i].WKGLC+"</td><td  rowspan="+j+">"+msg[i].SJKGSJ+"</td><td  rowspan="+j+">"
@@ -126,7 +126,7 @@
 										}else{
 											tbodystr=tbodystr+"<tr><td  >"+msg[i+k].XDNF+"</td><td  >"
 											+msg[i+k].JHXDZJ+"</td><td  >"+ybf+"</td><td  >"
-											+bnbfzj+"</td><td>"+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
+											+bnbf+"</td><td>"+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
 											+msg[i+k].XGCSYJ+"</td><td  >"+msg[i+k].CSCYJ+"</td></tr>";
 										}
 									}	

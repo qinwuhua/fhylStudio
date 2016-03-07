@@ -39,7 +39,7 @@
 		var url = "/jxzhpt/qqgl/qqglGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :1,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

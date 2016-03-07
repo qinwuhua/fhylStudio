@@ -113,7 +113,7 @@ text-decoration:none;
 		var url = "/jxzhpt/aqsmfh/smfhGpsroad.do";
 		$("#roadcode").autocomplete(url, {
 			multiple : false,
-			minChars :1,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

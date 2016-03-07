@@ -94,7 +94,7 @@ text-decoration:none;
 		var url = "/jxzhpt/xmjck/zhfzGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :2,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

@@ -83,7 +83,7 @@ function autoCompleteQLBH(){
 	var url = "/jxzhpt/xmjck/JckBhsdRoad.do";
 	$("#sddm").autocomplete(url, {
 		multiple : false,
-		minChars :2,
+		minChars :4,
 		multipleSeparator : ' ',
 		mustMatch: true,
   		cacheLength : 0,

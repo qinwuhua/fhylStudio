@@ -29,7 +29,7 @@
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/jhgl/sjAutoCompleteLxbm.do";
 		$("#lxbm").autocomplete(url, {
-			multiple : false,minChars :1,multipleSeparator : ' ',
+			multiple : false,minChars :4,multipleSeparator : ' ',
 			mustMatch: true,cacheLength : 0,delay : 200,max : 50,
 	  		extraParams : {
 	  			'lx.lxbm':function() {

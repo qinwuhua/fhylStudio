@@ -71,7 +71,7 @@
 		function autoCompleteLXBM(){
 			var url = "/jxzhpt/qqgl/queryAutoList.do";
 			$("#ylxbh").autocomplete(url, {
-				multiple : false,minChars :1,multipleSeparator : ' ',
+				multiple : false,minChars :4,multipleSeparator : ' ',
 				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
 		  		extraParams : {
 		  			'ylxbh':function() {

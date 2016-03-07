@@ -61,7 +61,7 @@ function autoCompletelogin(){
   			return row.truename.replace(/(\s*$)/g,"");
   		}
   	}).result(function(e, item) {
-  		$("#name").val(item.truename)
+  		//$("#name").val(item.truename)
 	});
 }
 </script>

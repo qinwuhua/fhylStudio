@@ -75,7 +75,7 @@ text-decoration:none;
 		var url = "/jxzhpt/xmjck/abgcGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :2,
+			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,
