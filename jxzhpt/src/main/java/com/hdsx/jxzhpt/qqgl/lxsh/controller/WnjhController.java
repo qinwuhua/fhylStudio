@@ -572,9 +572,9 @@ public class WnjhController extends BaseActionSupport{
 			XmsqServer xmsqServer=new XmsqServerImpl();
 			Xmsq xmsq=new Xmsq();
 			xmsq.setXmbm(lxsh.getXmbm());
-			xmsq.setYlxbh(lxsh.getGhlxbh());
-			xmsq.setQdzh(lxsh.getQdzh());
-			lxsh.setZdzh(lxsh.getZdzh());
+			xmsq.setYlxbh(lxsh.getXjlxbm());
+			xmsq.setQdzh(lxsh.getXjqdzh());
+			lxsh.setZdzh(lxsh.getXjzdzh());
 			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
 			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");	
 			boolean bl=wnjhServer.insertXjwnjh(lxsh);

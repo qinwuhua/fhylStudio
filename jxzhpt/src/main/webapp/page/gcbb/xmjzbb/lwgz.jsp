@@ -91,7 +91,7 @@
 										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
-										+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
+										+msg[i].GYS+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
 										+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
 										+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
 										+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
@@ -104,7 +104,7 @@
 											+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 											+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 											+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
-											+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
+											+msg[i].GYS+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
 											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 											+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
 											+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
@@ -273,6 +273,7 @@ a:active {
 										<td rowspan="2" style="width: 140px">计划下达年度</td>
 										<td rowspan="2" style="width: 140px">计划下达资金（万元）</td>
 										<td rowspan="2" style="width: 140px">概预算（万元）</td>
+										<td rowspan="2" style="width: 140px">本年拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">累计拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">未拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">建设状态</td>

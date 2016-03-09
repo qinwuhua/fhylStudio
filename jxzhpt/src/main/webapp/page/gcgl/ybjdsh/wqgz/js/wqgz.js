@@ -1,5 +1,22 @@
 var obj=new Object();
 var obj1=new Object();
+var sfylrbwqk;
+function Edityb1(index){
+	//alert(index);
+	var data=$("#ybgrid").datagrid('getRows')[index];
+	obj=data;
+	sfylrbwqk=parent.obj1.sfylrbwqk;
+	ybxiangxi=data;
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','../../gljsjyhgl/wqgz/wqgzybxg1.jsp','wqxx',850,350);
+}
+function Edityb(index){
+	//alert(index);
+	var data=$("#ybgrid").datagrid('getRows')[index];
+	obj=data;
+	sfylrbwqk=parent.obj1.sfylrbwqk;
+	ybxiangxi=data;
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','../../gljsjyhgl/wqgz/wqgzybxg.jsp','wqxx',850,350);
+}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationQl(data.qlbh,data.qlzxzh);
@@ -55,11 +72,6 @@ function ybsb1__ck(index){
 	obj1=data;
 	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb1__ck.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
-}
-function Edityb(index){
-	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',650,350);
 }
 
 //审核
@@ -488,9 +500,9 @@ function showYBlist(){
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		if(row.shzt=='未审核'&&row.sfsj==7)
-			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
+			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
 	              		if(row.shzt=='已审核')
-	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
+	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
@@ -558,9 +570,13 @@ function showYBlist1(){
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		if(row.shzt=='未审核'&&row.sfsj==7)
-			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
+			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '
+			        	+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '
+			        	+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
 	              		if(row.shzt=='已审核')
-	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
+	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '
+	              		+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '
+	              		+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},

@@ -84,7 +84,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                车购税资金
+                                车购税资金(万元)
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
@@ -138,7 +138,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px; ">
-                                <b><font color="#009ACD" style=" font-size: 12px">本月完成投资</font></b>
+                                <b><font color="#009ACD" style=" font-size: 12px">本月完成投资(万元)</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                                 text-align: left; padding-left: 10px;" colspan="5">
@@ -147,7 +147,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="wc_btz"   ></span></td>
                                 <td style="width: 157px;">省投资：<span style="width: 50px" id="wc_stz" ></span></td>
-                                <td style="width: 157px;">其他投资：<span style="width: 50px" id="wc_qttz"   ></span></td>
+                                <td style="width: 157px;">其他(市、县等)投资：<span style="width: 50px" id="wc_qttz"   ></span></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -157,7 +157,7 @@ a:active {
                             <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; color: #009ACD; font-weight: bold; font-size: small;
                                 text-align: right; background-color: #F1F8FF; padding-right: 5px;" class="style1">
-                                本月资金到位
+                                本月资金到位(万元)
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                                 text-align: left; padding-left: 10px;" colspan="5" class="style2">
@@ -166,7 +166,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="zjdw_btz" ></span></td>
                                 <td style="width: 157px;">省投资：<span style="width: 50px"  id="zjdw_stz" ></span></td>
-                                <td style="width: 157px;">其他投资：<span style="width: 50px" id="zjdw_qttz"  ></span></td>
+                                <td style="width: 157px;">其他(市、县等)投资：<span style="width: 50px" id="zjdw_qttz"  ></span></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -208,11 +208,11 @@ a:active {
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px;width: 35px;">下部构造(桥台、桥墩)：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 12px;width: 35px;">下部构造(桥台、桥墩)(%)：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
-                                <span id='xbgz'></span>%
+                                <span id='xbgz'></span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -239,13 +239,13 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">本月完成情况</font></b>
+                                <b><font color="#009ACD" style=" font-size: 12px">本月完成情况(%)</font></b>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                  text-align: left; padding-left: 10px;">
                                 <label id="wcqk"></label>
-                                % &nbsp;
+                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

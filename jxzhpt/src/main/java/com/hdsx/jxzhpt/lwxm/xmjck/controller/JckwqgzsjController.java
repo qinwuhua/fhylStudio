@@ -256,6 +256,14 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			e.printStackTrace();
 		}
 	}
+	public void tuihuiAfsckById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.tuihuiAfsckById(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void getwqgzZP(){
 		try {

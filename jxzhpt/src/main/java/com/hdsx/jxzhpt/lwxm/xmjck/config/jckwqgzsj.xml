@@ -17,7 +17,10 @@
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 	 	select * from (
-	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
+	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t 
+	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id
+	 			where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -59,7 +62,7 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
@@ -116,7 +119,9 @@
 	 </select>
 	 
 	  <select id="selectWqgzCount" parameterType="jckwqgzsj" resultType="int">
-	 		select count(*) from xmk_wqgz t where 1=1 
+	 		select count(*) from xmk_wqgz t
+	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -158,7 +163,7 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有')  like #{bzls}||'%'
  		</if>
 		 </select>
 		 <delete id="deleteWqgzsjById" parameterType="java.util.List" >
@@ -171,7 +176,9 @@
 		  <update id="tuihuiWqgzsjsckById" parameterType="java.util.List">
 		 	update sck_wqgz set sck_shzt='未审核' where sckid=#{String}
 		 </update>
-		 
+		  <update id="tuihuiAfsckById" parameterType="java.util.List">
+		 	update SCK_AQSMFH set shzt='未审核',shyj='' where id=#{String}
+		 </update>
 		 <select id="getwqgzZP1" resultType="plan_upload" parameterType="jckwqgzsj">
 		 	select id from plan_upload where parentid=#{id} and filetype='桥梁正面文件'
 		 </select>
@@ -244,7 +251,10 @@
 	 </select>
  		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
  	select * from (
- 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where (sbthcd=7 or shyj2 is not null)
+ 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t 
+ 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id
+ 		where (sbthcd=7 or shyj2 is not null)
 			and sbthcd>=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -275,6 +285,9 @@
  			<if test="shzt == '审核不同意'">
  			and sbthcd != 7 and shyj2 is not null
  			</if>
+ 			<if test="shzt == '审核同意'">
+ 			and sbthcd = 7 and shyj2 = '同意'
+ 			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and pddj like '%'||(#{jsdj})||'%'
@@ -295,13 +308,16 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where (sbthcd=7 or shyj2 is not null)
+ 		select count(*) from xmk_wqgz t 
+ 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id
+ 		where (sbthcd=7 or shyj2 is not null)
 			and sbthcd>=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -337,6 +353,9 @@
  			<if test="shzt == '审核不同意'">
  			and sbthcd != 7 and shyj2 is not null
  			</if>
+ 			<if test="shzt == '审核同意'">
+ 			and sbthcd = 7 and shyj2 = '同意'
+ 			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and pddj like '%'||(#{jsdj})||'%'
@@ -357,7 +376,7 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
  </select>
  
@@ -736,7 +755,9 @@
  			<if test="shzt == '审核不同意'">
  			and sck_sbthcd != 7 and sck_shyj2 is not null
  			</if>
- 			
+ 			<if test="shzt == '审核同意'">
+ 			and sck_sbthcd = 7 and sck_shyj2 = '同意'
+ 			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and pddj like '%'||(#{jsdj})||'%'
@@ -800,7 +821,9 @@
  			<if test="shzt == '审核不同意'">
  			and sck_sbthcd != 7 and sck_shyj2 is not null
  			</if>
- 			
+ 			<if test="shzt == '审核同意'">
+ 			and sck_sbthcd = 7 and sck_shyj2 = '同意'
+ 			</if>
 		</if>
 
 		<if test="jsdj!='' and jsdj!= null ">
@@ -863,7 +886,9 @@
  			<if test="shzt == '审核不同意'">
  			and sck_sbthcd != 7 and sck_shyj2 is not null
  			</if>
- 			
+ 			<if test="shzt == '审核同意'">
+ 			and sck_sbthcd = 7 and sck_shyj2 = '同意'
+ 			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and pddj like '%'||(#{jsdj})||'%'

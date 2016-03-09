@@ -291,23 +291,24 @@ public class XmbbController extends BaseActionSupport{
 							 try {ll.setV_7(l.get(i).get("YHLC").toString());} catch (Exception e) {ll.setV_7("");} 
 							 try {ll.setV_8(l.get(i).get("PFZTZ").toString());} catch (Exception e) {ll.setV_8("");} 
 							 try {ll.setV_9(l.get(i).get("JHXDZJ").toString());} catch (Exception e) {ll.setV_9("");} 
-							 try {ll.setV_10(ybf+"");} catch (Exception e) {ll.setV_10("");} 
-							 try {ll.setV_11(wbf+"");} catch (Exception e) {ll.setV_11("");} 
-							 try {ll.setV_12(l.get(i).get("JSZT").toString());} catch (Exception e) {ll.setV_12("");} 
-							 try {ll.setV_13(l.get(i).get("DC").toString());} catch (Exception e) {ll.setV_13("");} 
-							 try {ll.setV_14(l.get(i).get("JC").toString());} catch (Exception e) {ll.setV_14("");} 
-							 try {ll.setV_15(l.get(i).get("WGLC").toString());} catch (Exception e) {ll.setV_15("");} 
-							 try {ll.setV_16(l.get(i).get("WKGLC").toString());} catch (Exception e) {ll.setV_16("");} 
-							 try {ll.setV_17(l.get(i).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_17("");} 
-							 try {ll.setV_18(l.get(i).get("SFQXKG").toString());} catch (Exception e) {ll.setV_18("");} 
-							 try {ll.setV_19(l.get(i).get("KGDL").toString());} catch (Exception e) {ll.setV_19("");} 
-							 try {ll.setV_20(l.get(i).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_20("");} 
-							 try {ll.setV_21(l.get(i).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
-							 try {ll.setV_22(l.get(i).get("QKSM").toString());} catch (Exception e) {ll.setV_22("");} 
-							 try {ll.setV_23(l.get(i).get("XDWH").toString());} catch (Exception e) {ll.setV_23("");} 
-							 try {ll.setV_24(l.get(i).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_24("");} 
-							 try {ll.setV_25(l.get(i).get("CSCYJ").toString());} catch (Exception e) {ll.setV_25("");} 
-							 try {ll.setV_26(l.get(i).get("SL").toString());} catch (Exception e) {ll.setV_25("1");} 
+							 try {ll.setV_10(l.get(i).get("BNBFZJ").toString());} catch (Exception e) {ll.setV_10("");} 
+							 try {ll.setV_11(ybf+"");} catch (Exception e) {ll.setV_11("");} 
+							 try {ll.setV_12(wbf+"");} catch (Exception e) {ll.setV_12("");} 
+							 try {ll.setV_13(l.get(i).get("JSZT").toString());} catch (Exception e) {ll.setV_13("");} 
+							 try {ll.setV_14(l.get(i).get("DC").toString());} catch (Exception e) {ll.setV_14("");} 
+							 try {ll.setV_15(l.get(i).get("JC").toString());} catch (Exception e) {ll.setV_15("");} 
+							 try {ll.setV_16(l.get(i).get("WGLC").toString());} catch (Exception e) {ll.setV_16("");} 
+							 try {ll.setV_17(l.get(i).get("WKGLC").toString());} catch (Exception e) {ll.setV_17("");} 
+							 try {ll.setV_18(l.get(i).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_18("");} 
+							 try {ll.setV_19(l.get(i).get("SFQXKG").toString());} catch (Exception e) {ll.setV_19("");} 
+							 try {ll.setV_20(l.get(i).get("KGDL").toString());} catch (Exception e) {ll.setV_20("");} 
+							 try {ll.setV_21(l.get(i).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
+							 try {ll.setV_22(l.get(i).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_22("");} 
+							 try {ll.setV_23(l.get(i).get("QKSM").toString());} catch (Exception e) {ll.setV_23("");} 
+							 try {ll.setV_24(l.get(i).get("XDWH").toString());} catch (Exception e) {ll.setV_24("");} 
+							 try {ll.setV_25(l.get(i).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_25("");} 
+							 try {ll.setV_26(l.get(i).get("CSCYJ").toString());} catch (Exception e) {ll.setV_26("");} 
+							 try {ll.setV_27(l.get(i).get("SL").toString());} catch (Exception e) {ll.setV_27("1");} 
 							 elist.add(ll);
 						 }else{
 							 Excel_list ll=new Excel_list();
@@ -321,23 +322,24 @@ public class XmbbController extends BaseActionSupport{
 							 try {ll.setV_7(l.get(i+k).get("YHLC").toString());} catch (Exception e) {ll.setV_7("");} 
 							 try {ll.setV_8(l.get(i+k).get("PFZTZ").toString());} catch (Exception e) {ll.setV_8("");} 
 							 try {ll.setV_9(l.get(i+k).get("JHXDZJ").toString());} catch (Exception e) {ll.setV_9("");} 
-							 try {ll.setV_10(ybf+"");} catch (Exception e) {ll.setV_10("");} 
-							 try {ll.setV_11(wbf+"");} catch (Exception e) {ll.setV_11("");} 
-							 try {ll.setV_12(l.get(i+k).get("JSZT").toString());} catch (Exception e) {ll.setV_12("");} 
-							 try {ll.setV_13(l.get(i+k).get("DC").toString());} catch (Exception e) {ll.setV_13("");} 
-							 try {ll.setV_14(l.get(i+k).get("JC").toString());} catch (Exception e) {ll.setV_14("");} 
-							 try {ll.setV_15(l.get(i+k).get("WGLC").toString());} catch (Exception e) {ll.setV_15("");} 
-							 try {ll.setV_16(l.get(i+k).get("WKGLC").toString());} catch (Exception e) {ll.setV_16("");} 
-							 try {ll.setV_17(l.get(i+k).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_17("");} 
-							 try {ll.setV_18(l.get(i+k).get("SFQXKG").toString());} catch (Exception e) {ll.setV_18("");} 
-							 try {ll.setV_19(l.get(i+k).get("KGDL").toString());} catch (Exception e) {ll.setV_19("");} 
-							 try {ll.setV_20(l.get(i+k).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_20("");} 
-							 try {ll.setV_21(l.get(i+k).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
-							 try {ll.setV_22(l.get(i+k).get("QKSM").toString());} catch (Exception e) {ll.setV_22("");} 
-							 try {ll.setV_23(l.get(i+k).get("XDWH").toString());} catch (Exception e) {ll.setV_23("");} 
-							 try {ll.setV_24(l.get(i+k).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_24("");} 
-							 try {ll.setV_25(l.get(i+k).get("CSCYJ").toString());} catch (Exception e) {ll.setV_25("");} 
-							 ll.setV_26("1");
+							 try {ll.setV_10(l.get(i).get("BNBFZJ").toString());} catch (Exception e) {ll.setV_10("");} 
+							 try {ll.setV_11(ybf+"");} catch (Exception e) {ll.setV_11("");} 
+							 try {ll.setV_12(wbf+"");} catch (Exception e) {ll.setV_12("");} 
+							 try {ll.setV_13(l.get(i).get("JSZT").toString());} catch (Exception e) {ll.setV_13("");} 
+							 try {ll.setV_14(l.get(i).get("DC").toString());} catch (Exception e) {ll.setV_14("");} 
+							 try {ll.setV_15(l.get(i).get("JC").toString());} catch (Exception e) {ll.setV_15("");} 
+							 try {ll.setV_16(l.get(i).get("WGLC").toString());} catch (Exception e) {ll.setV_16("");} 
+							 try {ll.setV_17(l.get(i).get("WKGLC").toString());} catch (Exception e) {ll.setV_17("");} 
+							 try {ll.setV_18(l.get(i).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_18("");} 
+							 try {ll.setV_19(l.get(i).get("SFQXKG").toString());} catch (Exception e) {ll.setV_19("");} 
+							 try {ll.setV_20(l.get(i).get("KGDL").toString());} catch (Exception e) {ll.setV_20("");} 
+							 try {ll.setV_21(l.get(i).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
+							 try {ll.setV_22(l.get(i).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_22("");} 
+							 try {ll.setV_23(l.get(i).get("QKSM").toString());} catch (Exception e) {ll.setV_23("");} 
+							 try {ll.setV_24(l.get(i).get("XDWH").toString());} catch (Exception e) {ll.setV_24("");} 
+							 try {ll.setV_25(l.get(i).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_25("");} 
+							 try {ll.setV_26(l.get(i).get("CSCYJ").toString());} catch (Exception e) {ll.setV_26("");} 
+							 ll.setV_27("1");
 							 elist.add(ll);
 						 }
 						}
@@ -357,23 +359,24 @@ public class XmbbController extends BaseActionSupport{
 					 try {ll.setV_7(l.get(i).get("YHLC").toString());} catch (Exception e) {ll.setV_7("");} 
 					 try {ll.setV_8(l.get(i).get("PFZTZ").toString());} catch (Exception e) {ll.setV_8("");} 
 					 try {ll.setV_9(l.get(i).get("JHXDZJ").toString());} catch (Exception e) {ll.setV_9("");} 
-					 try {ll.setV_10(l.get(i).get("BFZJ").toString());} catch (Exception e) {ll.setV_10("");} 
-					 try {ll.setV_11(l.get(i).get("WBFZJ").toString());} catch (Exception e) {ll.setV_11("");} 
-					 try {ll.setV_12(l.get(i).get("JSZT").toString());} catch (Exception e) {ll.setV_12("");} 
-					 try {ll.setV_13(l.get(i).get("DC").toString());} catch (Exception e) {ll.setV_13("");} 
-					 try {ll.setV_14(l.get(i).get("JC").toString());} catch (Exception e) {ll.setV_14("");} 
-					 try {ll.setV_15(l.get(i).get("WGLC").toString());} catch (Exception e) {ll.setV_15("");} 
-					 try {ll.setV_16(l.get(i).get("WKGLC").toString());} catch (Exception e) {ll.setV_16("");} 
-					 try {ll.setV_17(l.get(i).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_17("");} 
-					 try {ll.setV_18(l.get(i).get("SFQXKG").toString());} catch (Exception e) {ll.setV_18("");} 
-					 try {ll.setV_19(l.get(i).get("KGDL").toString());} catch (Exception e) {ll.setV_19("");} 
-					 try {ll.setV_20(l.get(i).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_20("");} 
-					 try {ll.setV_21(l.get(i).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
-					 try {ll.setV_22(l.get(i).get("QKSM").toString());} catch (Exception e) {ll.setV_22("");} 
-					 try {ll.setV_23(l.get(i).get("XDWH").toString());} catch (Exception e) {ll.setV_23("");} 
-					 try {ll.setV_24(l.get(i).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_24("");} 
-					 try {ll.setV_25(l.get(i).get("CSCYJ").toString());} catch (Exception e) {ll.setV_25("");} 
-					 ll.setV_26("1");
+					 try {ll.setV_10(l.get(i).get("BNBFZJ").toString());} catch (Exception e) {ll.setV_10("");} 
+					 try {ll.setV_11(l.get(i).get("BFZJ").toString());} catch (Exception e) {ll.setV_11("");} 
+					 try {ll.setV_12(l.get(i).get("WBFZJ").toString());} catch (Exception e) {ll.setV_12("");} 
+					 try {ll.setV_13(l.get(i).get("JSZT").toString());} catch (Exception e) {ll.setV_13("");} 
+					 try {ll.setV_14(l.get(i).get("DC").toString());} catch (Exception e) {ll.setV_14("");} 
+					 try {ll.setV_15(l.get(i).get("JC").toString());} catch (Exception e) {ll.setV_15("");} 
+					 try {ll.setV_16(l.get(i).get("WGLC").toString());} catch (Exception e) {ll.setV_16("");} 
+					 try {ll.setV_17(l.get(i).get("WKGLC").toString());} catch (Exception e) {ll.setV_17("");} 
+					 try {ll.setV_18(l.get(i).get("SJKGSJ").toString());} catch (Exception e) {ll.setV_18("");} 
+					 try {ll.setV_19(l.get(i).get("SFQXKG").toString());} catch (Exception e) {ll.setV_19("");} 
+					 try {ll.setV_20(l.get(i).get("KGDL").toString());} catch (Exception e) {ll.setV_20("");} 
+					 try {ll.setV_21(l.get(i).get("SJWGSJ").toString());} catch (Exception e) {ll.setV_21("");} 
+					 try {ll.setV_22(l.get(i).get("YJWGSJ").toString());} catch (Exception e) {ll.setV_22("");} 
+					 try {ll.setV_23(l.get(i).get("QKSM").toString());} catch (Exception e) {ll.setV_23("");} 
+					 try {ll.setV_24(l.get(i).get("XDWH").toString());} catch (Exception e) {ll.setV_24("");} 
+					 try {ll.setV_25(l.get(i).get("XGCSYJ").toString());} catch (Exception e) {ll.setV_25("");} 
+					 try {ll.setV_26(l.get(i).get("CSCYJ").toString());} catch (Exception e) {ll.setV_26("");} 
+					 ll.setV_27("1");
 					 elist.add(ll);
 				}
 			}
@@ -393,22 +396,23 @@ public class XmbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("计划里程（里程）",1,1,7,7));
 			et.add(new Excel_tilte("概算总投资(万元)",1,1,8,8));
 			et.add(new Excel_tilte("计划下达资金(万元)",1,1,9,9));
-			et.add(new Excel_tilte("已拨付资金（万元）",1,1,10,10));
-			et.add(new Excel_tilte("未拨付资金（万元）",1,1,11,11));
-			et.add(new Excel_tilte("建设状态",1,1,12,12));
-			et.add(new Excel_tilte("垫层（m³）",1,1,13,13));
-			et.add(new Excel_tilte("基层（m³）",1,1,14,14));
-			et.add(new Excel_tilte("完工里程（公里）",1,1,15,15));
-			et.add(new Excel_tilte("未开工里程(公里)",1,1,16,16));
-			et.add(new Excel_tilte("开工日期",1,1,17,17));
-			et.add(new Excel_tilte("全线开工",1,1,18,18));
-			et.add(new Excel_tilte("开工段落",1,1,19,19));
-			et.add(new Excel_tilte("完工日期",1,1,20,20));
-			et.add(new Excel_tilte("预计完工时间",1,1,21,21));
-			et.add(new Excel_tilte("情况说明",1,1,22,22));
-			et.add(new Excel_tilte("计划下达文号",1,1,23,23));
-			et.add(new Excel_tilte("相关处室意见",1,1,24,24));
-			et.add(new Excel_tilte("财审处意见",1,1,25,25));
+			et.add(new Excel_tilte("本年拨付资金（万元）",1,1,10,10));
+			et.add(new Excel_tilte("已拨付资金（万元）",1,1,11,11));
+			et.add(new Excel_tilte("未拨付资金（万元）",1,1,12,12));
+			et.add(new Excel_tilte("建设状态",1,1,13,13));
+			et.add(new Excel_tilte("垫层（m³）",1,1,14,14));
+			et.add(new Excel_tilte("基层（m³）",1,1,15,15));
+			et.add(new Excel_tilte("完工里程（公里）",1,1,16,16));
+			et.add(new Excel_tilte("未开工里程(公里)",1,1,17,17));
+			et.add(new Excel_tilte("开工日期",1,1,18,18));
+			et.add(new Excel_tilte("全线开工",1,1,19,19));
+			et.add(new Excel_tilte("开工段落",1,1,20,20));
+			et.add(new Excel_tilte("完工日期",1,1,21,21));
+			et.add(new Excel_tilte("预计完工时间",1,1,22,22));
+			et.add(new Excel_tilte("情况说明",1,1,23,23));
+			et.add(new Excel_tilte("计划下达文号",1,1,24,24));
+			et.add(new Excel_tilte("相关处室意见",1,1,25,25));
+			et.add(new Excel_tilte("财审处意见",1,1,26,26));
 
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -491,19 +495,20 @@ public class XmbbController extends BaseActionSupport{
 					try {l.setV_8(map.get("JHLC").toString());} catch (Exception e) {l.setV_8("");}
 					try {l.setV_9(map.get("GYS").toString());} catch (Exception e) {l.setV_9("");}
 					try {l.setV_10(map.get("JHXDZJ").toString());} catch (Exception e) {l.setV_10("");}
-					try {l.setV_11(map.get("BFZJ").toString());} catch (Exception e) {l.setV_11("");}
-					try {l.setV_12(map.get("WBFZJ").toString());} catch (Exception e) {l.setV_12("");}
-					try {l.setV_13(map.get("JSZT").toString());} catch (Exception e) {l.setV_13("");}
-					try {l.setV_14(map.get("DC").toString());} catch (Exception e) {l.setV_14("");}
-					try {l.setV_15(map.get("JC").toString());} catch (Exception e) {l.setV_15("");}
-					try {l.setV_16(map.get("KGRQ").toString());} catch (Exception e) {l.setV_16("");}
-					try {l.setV_17(map.get("WGRQ").toString());} catch (Exception e) {l.setV_17("");}
-					try {l.setV_18(map.get("KGDL").toString());} catch (Exception e) {l.setV_18("");}
-					try {l.setV_19(map.get("WGLC").toString());} catch (Exception e) {l.setV_19("");}
-					try {l.setV_20(map.get("QKSM").toString());} catch (Exception e) {l.setV_20("");}
-					try {l.setV_21(map.get("JHXDWH").toString());} catch (Exception e) {l.setV_21("");}
-					try {l.setV_22(map.get("XGCSYJ").toString());} catch (Exception e) {l.setV_22("");}
-					try {l.setV_23(map.get("CSCYJ").toString());} catch (Exception e) {l.setV_23("");}
+					try {l.setV_11(map.get("BNBFZJ").toString());} catch (Exception e) {l.setV_11("");}
+					try {l.setV_12(map.get("BFZJ").toString());} catch (Exception e) {l.setV_12("");}
+					try {l.setV_13(map.get("WBFZJ").toString());} catch (Exception e) {l.setV_13("");}
+					try {l.setV_14(map.get("JSZT").toString());} catch (Exception e) {l.setV_14("");}
+					try {l.setV_15(map.get("DC").toString());} catch (Exception e) {l.setV_15("");}
+					try {l.setV_16(map.get("JC").toString());} catch (Exception e) {l.setV_16("");}
+					try {l.setV_17(map.get("KGRQ").toString());} catch (Exception e) {l.setV_17("");}
+					try {l.setV_18(map.get("WGRQ").toString());} catch (Exception e) {l.setV_18("");}
+					try {l.setV_19(map.get("KGDL").toString());} catch (Exception e) {l.setV_19("");}
+					try {l.setV_20(map.get("WGLC").toString());} catch (Exception e) {l.setV_20("");}
+					try {l.setV_21(map.get("QKSM").toString());} catch (Exception e) {l.setV_21("");}
+					try {l.setV_22(map.get("JHXDWH").toString());} catch (Exception e) {l.setV_22("");}
+					try {l.setV_23(map.get("XGCSYJ").toString());} catch (Exception e) {l.setV_23("");}
+					try {l.setV_24(map.get("CSCYJ").toString());} catch (Exception e) {l.setV_24("");}
 					elist.add(l);
 				}
 				ExcelData eldata=new ExcelData();//创建一个类
@@ -521,20 +526,21 @@ public class XmbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("项目段落",1,1,6,7));
 				et.add(new Excel_tilte("计划里程（公里）",1,2,8,8));
 				et.add(new Excel_tilte("概算总投资(万元)",1,2,9,9));
-				et.add(new Excel_tilte("计划下达资金(万元)",1,2,10,10));		
-				et.add(new Excel_tilte("累计拨付资金（万元）",1,2,11,11));
-				et.add(new Excel_tilte("未拨付资金（万元）",1,2,12,12));
-				et.add(new Excel_tilte("建设状态",1,2,13,13));
-				et.add(new Excel_tilte("垫层（m³）",1,2,14,14));
-				et.add(new Excel_tilte("基层（m³）",1,2,15,15));
-				et.add(new Excel_tilte("开工日期",1,2,16,16));
-				et.add(new Excel_tilte("完工日期",1,2,17,17));
-				et.add(new Excel_tilte("开工段落",1,2,18,18));
-				et.add(new Excel_tilte("完工里程（公里）",1,2,19,19));
-				et.add(new Excel_tilte("情况说明",1,2,20,20));
-				et.add(new Excel_tilte("计划下达文号",1,2,21,21));
-				et.add(new Excel_tilte("相关处室意见",1,2,22,22));
-				et.add(new Excel_tilte("财审处意见",1,2,23,23));
+				et.add(new Excel_tilte("计划下达资金(万元)",1,2,10,10));	
+				et.add(new Excel_tilte("本年拨付资金（万元）",1,2,11,11));
+				et.add(new Excel_tilte("累计拨付资金（万元）",1,2,12,12));
+				et.add(new Excel_tilte("未拨付资金（万元）",1,2,13,13));
+				et.add(new Excel_tilte("建设状态",1,2,14,14));
+				et.add(new Excel_tilte("垫层（m³）",1,2,15,15));
+				et.add(new Excel_tilte("基层（m³）",1,2,16,16));
+				et.add(new Excel_tilte("开工日期",1,2,17,17));
+				et.add(new Excel_tilte("完工日期",1,2,18,18));
+				et.add(new Excel_tilte("开工段落",1,2,19,19));
+				et.add(new Excel_tilte("完工里程（公里）",1,2,20,20));
+				et.add(new Excel_tilte("情况说明",1,2,21,21));
+				et.add(new Excel_tilte("计划下达文号",1,2,22,22));
+				et.add(new Excel_tilte("相关处室意见",1,2,23,23));
+				et.add(new Excel_tilte("财审处意见",1,2,24,24));
 				et.add(new Excel_tilte("起点桩号",2,2,6,6));
 				et.add(new Excel_tilte("迄点桩号 ",2,2,7,7));
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -616,18 +622,19 @@ public class XmbbController extends BaseActionSupport{
 					try {l.setV_8(map.get("XDNF").toString());} catch (Exception e) {l.setV_8("");}
 					try {l.setV_9(map.get("XDZJ").toString());} catch (Exception e) {l.setV_9("");}
 					try {l.setV_10(map.get("GYS").toString());} catch (Exception e) {l.setV_10("");}
-					try {l.setV_11(map.get("BFZJ").toString());} catch (Exception e) {l.setV_11("");}
-					try {l.setV_12(map.get("WBFZJ").toString());} catch (Exception e) {l.setV_12("");}
-					try {l.setV_13(map.get("JSZT").toString());} catch (Exception e) {l.setV_13("");}
-					try {l.setV_14(map.get("WGLC").toString());} catch (Exception e) {l.setV_14("");}
-					try {l.setV_15(map.get("KGRQ").toString());} catch (Exception e) {l.setV_15("");}
-					try {l.setV_16(map.get("WGRQ").toString());} catch (Exception e) {l.setV_16("");}
-					try {l.setV_17(map.get("YJRQ").toString());} catch (Exception e) {l.setV_17("");}
-					try {l.setV_18(map.get("QKSM").toString());} catch (Exception e) {l.setV_18("");}
-					try {l.setV_19(map.get("JHXDWH").toString());} catch (Exception e) {l.setV_19("");}
-					try {l.setV_20(map.get("XGCSYJ").toString());} catch (Exception e) {l.setV_20("");}
-					try {l.setV_21(map.get("CSCYJ").toString());} catch (Exception e) {l.setV_21("");}
-					try {l.setV_22(map.get("HB").toString());} catch (Exception e) {l.setV_22("");}
+					try {l.setV_11(map.get("BNBFZJ").toString());} catch (Exception e) {l.setV_11("");}
+					try {l.setV_12(map.get("BFZJ").toString());} catch (Exception e) {l.setV_12("");}
+					try {l.setV_13(map.get("WBFZJ").toString());} catch (Exception e) {l.setV_13("");}
+					try {l.setV_14(map.get("JSZT").toString());} catch (Exception e) {l.setV_14("");}
+					try {l.setV_15(map.get("WGLC").toString());} catch (Exception e) {l.setV_15("");}
+					try {l.setV_16(map.get("KGRQ").toString());} catch (Exception e) {l.setV_16("");}
+					try {l.setV_17(map.get("WGRQ").toString());} catch (Exception e) {l.setV_17("");}
+					try {l.setV_18(map.get("YJRQ").toString());} catch (Exception e) {l.setV_18("");}
+					try {l.setV_19(map.get("QKSM").toString());} catch (Exception e) {l.setV_19("");}
+					try {l.setV_20(map.get("JHXDWH").toString());} catch (Exception e) {l.setV_20("");}
+					try {l.setV_21(map.get("XGCSYJ").toString());} catch (Exception e) {l.setV_21("");}
+					try {l.setV_22(map.get("CSCYJ").toString());} catch (Exception e) {l.setV_22("");}
+					try {l.setV_23(map.get("HB").toString());} catch (Exception e) {l.setV_23("");}
 					elist.add(l);
 				}
 				ExcelData eldata=new ExcelData();//创建一个类
@@ -645,17 +652,18 @@ public class XmbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("计划下达年度",1,2,8,8));
 				et.add(new Excel_tilte("计划下达资金(万元)",1,2,9,9));
 				et.add(new Excel_tilte("概预算(万元)",1,2,10,10));
-				et.add(new Excel_tilte("累计拨付资金（万元）",1,2,11,11));
-				et.add(new Excel_tilte("未拨付资金（万元）",1,2,12,12));
-				et.add(new Excel_tilte("建设状态",1,2,13,13));
-				et.add(new Excel_tilte("完工桥长或隐患里程",1,2,14,14));
-				et.add(new Excel_tilte("开工日期",1,2,15,15));
-				et.add(new Excel_tilte("完工日期",1,2,16,16));
-				et.add(new Excel_tilte("预计完工时间",1,2,17,17));
-				et.add(new Excel_tilte("情况说明",1,2,18,18));
-				et.add(new Excel_tilte("计划下达文号",1,2,19,19));
-				et.add(new Excel_tilte("相关处室意见",1,2,20,20));
-				et.add(new Excel_tilte("财审处意见",1,2,21,21));
+				et.add(new Excel_tilte("本年拨付资金（万元）",1,2,11,11));
+				et.add(new Excel_tilte("累计拨付资金（万元）",1,2,12,12));
+				et.add(new Excel_tilte("未拨付资金（万元）",1,2,13,13));
+				et.add(new Excel_tilte("建设状态",1,2,14,14));
+				et.add(new Excel_tilte("完工桥长或隐患里程",1,2,15,15));
+				et.add(new Excel_tilte("开工日期",1,2,16,16));
+				et.add(new Excel_tilte("完工日期",1,2,17,17));
+				et.add(new Excel_tilte("预计完工时间",1,2,18,18));
+				et.add(new Excel_tilte("情况说明",1,2,19,19));
+				et.add(new Excel_tilte("计划下达文号",1,2,20,20));
+				et.add(new Excel_tilte("相关处室意见",1,2,21,21));
+				et.add(new Excel_tilte("财审处意见",1,2,22,22));
 				et.add(new Excel_tilte("起点桩号或中心桩号",2,2,5,5));
 				et.add(new Excel_tilte("迄点桩号 ",2,2,6,6));
 				et.add(new Excel_tilte("桥长或隐患里程（延米）",2,2,7,7));

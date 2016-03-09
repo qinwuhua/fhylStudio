@@ -210,12 +210,12 @@ text-decoration:none;
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线编码：
+					路线编码：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="lxbm" name="lxbm" style="width: 120px"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线名称：
+					路线名称：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="lxmc" name="lxmc" style="width: 120px"/>
@@ -227,7 +227,7 @@ text-decoration:none;
 					<input type="text" id="xmmc" name="xmmc" style="width: 120px"/>
 				</td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>起点桩号：
+					起点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
@@ -237,20 +237,20 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>止点桩号：
+					止点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>里程：
+					里程：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text"  id="lc" style="font-size: 14px;width: 50px" value="0"/>公里
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>原起点名称：</td>
+					原起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qdmc" id="qdmc" style="width: 120px" />
 				</td>
@@ -258,7 +258,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>原止点名称：</td>
+					原止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdmc" id="zdmc" style="width: 120px" />
 				</td>

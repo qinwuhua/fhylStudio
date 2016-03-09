@@ -7020,8 +7020,12 @@ public class Excel_export {
 	            		cell.setCellValue(trqk1.getV_25());  
 	                    cell.setCellStyle(style);
 	            	}
-	            	if(Integer.parseInt(trqk1.getV_26())>1){
-	            		lists.add( new int[]{(int) i + maxx+1,Integer.parseInt(trqk1.getV_26())});
+	            	if(j==26){
+	            		cell.setCellValue(trqk1.getV_26());  
+	                    cell.setCellStyle(style);
+	            	}
+	            	if(Integer.parseInt(trqk1.getV_27())>1){
+	            		lists.add( new int[]{(int) i + maxx+1,Integer.parseInt(trqk1.getV_27())});
 	            	}
 				}
 	        }
@@ -7050,7 +7054,7 @@ public class Excel_export {
 				CellRangeAddress range8 = new CellRangeAddress(is[0],is[0]+is[1]-1,8,8);
 				sheet.addMergedRegion(range8);
 				setRegionStyle(style,range8,sheet);
-				for (int k = 12; k < 23; k++) {
+				for (int k = 13; k < 24; k++) {
 					CellRangeAddress range9 = new CellRangeAddress(is[0],is[0]+is[1]-1,k,k);
 					sheet.addMergedRegion(range9);
 					setRegionStyle(style,range9,sheet);

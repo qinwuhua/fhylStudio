@@ -48,7 +48,7 @@ text-decoration:none;
 	$(function(){
 		load();
 			$("#save_button").click(function(){
-			if($("#lxmc").val()=="" || $("#lxmc").val()==null){
+			/* if($("#lxmc").val()=="" || $("#lxmc").val()==null){
 				alert("请填写路线名称！");
 				$("#lxmc").focus();
 				return false;
@@ -75,7 +75,7 @@ text-decoration:none;
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
-			}
+			} */
 			saveLxsh();
 		});
 

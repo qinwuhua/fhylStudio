@@ -46,7 +46,6 @@ function save(){
 }
 
 function init(){
-	
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/selectJsById.do",
@@ -63,9 +62,9 @@ function init(){
 }
 
 $(function(){
+	init();
 	$("#roleid").val(parent.YMLib.Var.ID);
 	loadQx("source");
-	init();
 	$("#jsgl_btn_Save").click(function(){
 		save();
 	});

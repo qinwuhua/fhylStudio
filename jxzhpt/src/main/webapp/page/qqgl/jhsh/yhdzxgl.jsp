@@ -144,7 +144,7 @@
 		        	}
 				},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				{field:'gydw',title:'管养单位',width:180,align:'center'},
 				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},

@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			loadBmbm2("gcfl1",'工程分类');
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryXmsqByXmbm.do',
@@ -28,17 +29,19 @@
 				dataType:'json',
 				success:function(msg){
 					loadDist("xzqh1",msg.xzqhdm);
-					loadUnit("gydw1",msg.gydwdm);
+					loadUnits("gydw1",$.cookie('unit'),msg.gydwdm);
 					$('#submit').form("load",msg);
 					$('#span_qdzh').html(msg.gpsqdzh);
 					$('#span_zdzh').html(msg.gpszdzh);
 					$('#xmbm1').val(msg.xmbm);
 					$('#xmbm1').attr("disabled","disabled");
 					$('#xmlx').val(4);
+					$('#gcfl1').combo('setText',msg.gcfl);
 				}
 			});
 		});
 		function update(){
+			$('#gcfl').val($('#gcfl1').combo("getText"));
 			$('#gydw').val($('#gydw1').combo("getText"));
 			$('#gydwdm').val($('#gydw1').combo("getValue"));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
@@ -216,7 +219,8 @@
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					工程分类</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="gcfl" name="gcfl" type="text"/>
+					<select id='gcfl1' style="width: 80px;"></select>
+					<input id="gcfl" name="gcfl" type="hidden"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					特殊地区</td>

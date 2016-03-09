@@ -186,6 +186,7 @@
  	 <action name="deleteWqgzsjById" class="jckwqgzsjController" method="deleteWqgzsjById"/>
  	 <action name="tuihuiWqgzsjById" class="jckwqgzsjController" method="tuihuiWqgzsjById"/>
  	 <action name="tuihuiWqgzsjsckById" class="jckwqgzsjController" method="tuihuiWqgzsjsckById"/>
+ 	 <action name="tuihuiAfsckById" class="jckwqgzsjController" method="tuihuiAfsckById"/>
  	 <action name="getwqgzZP" class="jckwqgzsjController" method="getwqgzZP"/>
  	 <action name="xgJckWqgzSbzt" class="jckwqgzsjController" method="xgJckWqgzSbzt"/>
  	 <action name="shtyWqgzsjById" class="jckwqgzsjController" method="shtyWqgzsjById"/>

@@ -3,7 +3,10 @@
 <mapper namespace="com.hdsx.jxzhpt.xmkaqsmfh">
 	<select id="selectXmkaqsmfhXMK" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
-	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
+	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id 
+	 		where 1=1 
 	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -33,13 +36,16 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
 	</select>
 	<select id="selectXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="int">
-	 		select count(*) from XMK_AQSMFH t where 1=1 
+	 		select count(*) from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id
+	 		where 1=1 
 	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -69,11 +75,14 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 			<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	</select>
 	<select id="loadXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
-	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
+	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id
+	 		where 1=1 
 	 			and  to_number(sbthcd) &lt;=to_number(#{sbthcd}) 
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -103,13 +112,16 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	</select>
 	
 	<select id="selectXmkaqsmfhsh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
-	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t where 1=1 
+	 		select rownum num ,t.*,decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) sbzt2 from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id
+	 		where 1=1 
 	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -134,6 +146,9 @@
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
+				<if test="sbzt == '审核同意'">
+	 					and zsyj = '同意' and sbthcd = 7
+				</if>
 				
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -149,13 +164,16 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt) desc 
 	</select>
 	<select id="selectXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="int">
-	 		select count(*) from XMK_AQSMFH t where 1=1 
+	 		select count(*) from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id
+	 		where 1=1 
 	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -185,6 +203,9 @@
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
+				<if test="sbzt == '审核同意'">
+	 					and zsyj = '同意' and sbthcd = 7
+				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				and jsdj like '%'||(#{jsdj})||'%'
@@ -199,11 +220,14 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 			<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	</select>
 	<select id="loadXmkaqsmfhshCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
-	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t where 1=1 
+	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t 
+	 		left join (select count(*) jhsl,a4.id  from plan_af a1 left join sck_aqsmfh a2 on a1.sckid=a2.id left join sck_aqsmfh_ld a3 on a2.xmbm=a3.xmbm left join xmk_aqsmfh a4 on a3.xmkid=a4.id group by a4.id) t1
+	 		on t.id=t1.id
+	 		where 1=1 
 	 			and  (sbthcd &lt;=7 or zsyj is not null)
 	 		<if test="unitcode!='' and unitcode!= null ">
 				${unitcode}
@@ -233,6 +257,9 @@
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
+				<if test="sbzt == '审核同意'">
+	 					and zsyj = '同意' and sbthcd = 7
+				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				and jsdj like '%'||(#{jsdj})||'%'
@@ -247,7 +274,7 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
 	</select>
 	<update id="afXmkCs" parameterType="xmkaqsmfh">
@@ -934,6 +961,9 @@
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
 				</if>
+				<if test="sbzt == '审核同意'">
+	 					and shyj = '同意' and sbthbmcd = 7
+				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				and jsdj like '%'||(#{jsdj})||'%'
@@ -1016,6 +1046,9 @@
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
 				</if>
+				<if test="sbzt == '审核同意'">
+	 					and shyj = '同意' and sbthbmcd = 7
+				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
  				and jsdj like '%'||(#{jsdj})||'%'
@@ -1095,6 +1128,9 @@
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
+				</if>
+				<if test="sbzt == '审核同意'">
+	 					and shyj = '同意' and sbthbmcd = 7
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">

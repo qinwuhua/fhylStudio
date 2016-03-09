@@ -91,7 +91,7 @@
 										+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
 										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
 										+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
-										+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+										+msg[i].JHXDZJ+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
 										+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 										+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
 										+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
@@ -107,7 +107,7 @@
 												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
 												+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
 												+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
-												+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+												+msg[i].JHXDZJ+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
 												+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 												+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
 												+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
@@ -122,7 +122,7 @@
 											+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
 											+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
 											+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
-											+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+											+msg[i].JHXDZJ+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
 											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 											+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
 											+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
@@ -289,6 +289,7 @@ a:active {
 										<td rowspan="2" style="width: 140px">计划里程（公里）</td>
 										<td rowspan="2" style="width: 140px">概预算（万元）</td>
 										<td rowspan="2" style="width: 140px">计划下达资金（万元）</td>
+										<td rowspan="2" style="width: 140px">本年拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">累计拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">未拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">建设状态</td>

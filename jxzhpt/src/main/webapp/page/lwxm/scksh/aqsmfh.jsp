@@ -223,6 +223,45 @@ function dcExcel(){
 		window.location.href='/jxzhpt/aqsmfh/dcaqsmfhsckshExcel.do?'+data;
 	 });
 }
+
+
+function tuihui(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt!='已审核'){
+			alert('请勾选已审核的项目！');
+			return;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+	}
+
+	if(confirm('确定退回到未审核状态？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/wqgzsj/tuihuiAfsckById.do",
+			 dataType : 'json',
+			 data : 'jckwqgzsj.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 showAll();
+				 }else{
+					 YMLib.Tools.Show('退回失败！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 </script>
 <style type="text/css">
 TD {
@@ -268,7 +307,8 @@ text-decoration:none;
                               	<option value="">全部</option>
                               	<option value="未审核">未审核</option>
                               	<option value="已审核">已审核</option>
-                              	<option value="审核不同意">审核不同意</option>
+                              	<option value="审核同意">审核通过</option>
+                              	<option value="审核不同意">审核不通过</option>
                               	</select></td>
                               <td>特殊地区：</td>
                               	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">

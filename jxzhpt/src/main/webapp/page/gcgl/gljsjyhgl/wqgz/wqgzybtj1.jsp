@@ -125,22 +125,23 @@
 		});
 	}
 	function shewcqk(){
-		var dwb=$("#tj_zjdw_btz").val();
-    	var dws=$("#tj_zjdw_stz").val();
-    	var dwq=$("#tj_zjdw_qttz").val();
+		var pfztz=parent.parent.obj1.pfztz;
+		//var dwb=$("#tj_zjdw_btz").val();
+    	//var dws=$("#tj_zjdw_stz").val();
+    	//var dwq=$("#tj_zjdw_qttz").val();
     	var wcb=$("#tj_wc_btz").val();
     	var wcs=$("#tj_wc_stz").val();
     	var wcq=$("#tj_wc_qttz").val();
-    	if(dwb=='') dwb=0;
-    	if(dws=='') dws=0;
-    	if(dwq=='') dwq=0;
+    	//if(dwb=='') dwb=0;
+    	//if(dws=='') dws=0;
+    	//if(dwq=='') dwq=0;
     	if(wcb=='') wcb=0;
     	if(wcs=='') wcs=0;
     	if(wcq=='') wcq=0;
-    	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))==0){
+    	if(parseFloat(pfztz)==0){
     		$("#tj_wcqk").text("0");
     	}else
-    	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))*100).toFixed(2));
+    	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(pfztz))*100).toFixed(2));
     	
 	}
 	</script>
@@ -162,7 +163,7 @@ a:active {
 </style>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
+	<div style="text-align: left; font-size: 10px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 		<tr>
                         	<td colspan="6" >
@@ -182,7 +183,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;width: 145px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">本月完成投资（万元）</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">本月完成投资（万元）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
@@ -191,7 +192,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 <td style="width: 157px;">省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
+                                <td style="width: 157px;">其他(市、县等)投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -201,7 +202,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <font color="#009ACD" style=" font-size: 12px">本月资金到位（万元）</font>
+                                <font color="#009ACD" style=" font-size: 10px;">本月资金到位（万元）</font>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
@@ -210,7 +211,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
                                 <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
+                                <td style="width: 157px;">其他(市、县等)投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -220,7 +221,7 @@ a:active {
                             <!-- <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">本月完成面层（公里）</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">本月完成面层（公里）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
@@ -229,7 +230,7 @@ a:active {
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px;width: 35px;">本月完成情况(%)：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;width: 35px;">本月完成情况(%)：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;width:100px;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
@@ -238,7 +239,7 @@ a:active {
                            <!--  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">截至开工段落：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">截至开工段落：</font></b>
                             </td> 
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
@@ -248,7 +249,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">桥梁基础(%)</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">桥梁基础(%)</font></b>
                             </td>
                             <td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
@@ -260,16 +261,16 @@ a:active {
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px;width: 35px;">下部构造(桥台、桥墩)：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;width: 35px;">下部构造(桥台、桥墩)(%)：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;width:30px;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
-                                <input  type="text" id="xbgz" style="width: 50px;"/>%
+                                <input  type="text" id="xbgz" style="width: 50px;"/>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">上部结构(%)：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">上部结构：</font></b>
                             </td>
                             <td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
@@ -281,7 +282,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">情况说明：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">情况说明：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
@@ -292,7 +293,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">上报时间：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">上报时间：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
@@ -301,7 +302,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style=" font-size: 12px">月报月份：</font></b>
+                                <b><font color="#009ACD" style=" font-size: 10px;">月报月份：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">

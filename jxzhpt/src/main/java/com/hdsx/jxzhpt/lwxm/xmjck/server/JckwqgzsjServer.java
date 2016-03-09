@@ -80,4 +80,6 @@ public interface JckwqgzsjServer {
 	Jckwqgzsj selectSckShwqgzCount1(Jckwqgzsj jckwqgzsj);
 
 	Jckwqgzsj selectSckwqgzCount1(Jckwqgzsj jckwqgzsj);
+
+	boolean tuihuiAfsckById(Jckwqgzsj jckwqgzsj);
 }

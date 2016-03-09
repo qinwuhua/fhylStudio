@@ -1290,6 +1290,19 @@ function loadUnit1(id, dwbm) {
 				}
 		});
 }
+
+function loadUnits(id, dwbm,gydw) {
+	$('#' + id).combotree(
+			{
+				checkbox : false,
+				multiple:false,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValue', gydw);
+				}
+		});
+}
 function loadUnit10(id, dwbm) {
 	if(dwbm=='21101360000')
 		dwbm='36';

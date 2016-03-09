@@ -134,10 +134,11 @@
 	    	if(wcb=='') wcb=0;
 	    	if(wcs=='') wcs=0;
 	    	if(wcq=='') wcq=0;
-	    	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))==0){
+	    	var pfztz=parent.parent.obj1.pfztz;
+	    	if(parseFloat(pfztz)==0){
 	    		$("#xg_wcqk").text("0");
 	    	}else
-	    	$("#xg_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))*100).toFixed(2));
+	    	$("#xg_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(pfztz))*100).toFixed(2));
 	    	
 		}
 	</script>

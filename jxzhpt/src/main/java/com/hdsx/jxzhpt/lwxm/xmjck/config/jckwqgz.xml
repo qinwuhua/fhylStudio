@@ -94,7 +94,10 @@
  		</if>
  </select>
  <select id="selectWqgzCount1" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where 1=1 
+ 		select count(*) from xmk_wqgz t 
+ 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id 
+ 		where 1=1 
  			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -136,7 +139,7 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and jcbzls like #{bzls}||'%'
+ 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
  </select>
  

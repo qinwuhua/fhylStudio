@@ -39,40 +39,7 @@ text-decoration:none;
 		xmnf2("jhwgn");
 		tsdq1('tsdq','');
 		$("#save_button").click(function(){
-			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
-				alert("请填写路线编码！");
-				$("#lxbm").focus();
-				return false;
-			}
-			if($("#lxmc").val()=="" || $("#lxmc").val()==null){
-				alert("请填写路线名称！");
-				$("#lxmc").focus();
-				return false;
-			}
-			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
-				alert("请填写起点名称！");
-				return false;
-			}
-			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
-				alert("请填写止点名称！");
-				return false;
-			}
-			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
-				alert("请填写正确的起点桩号！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
-				alert("请填写正确的止点桩号！");
-				$("#zdzh").focus();
-				return false;
-			}
 			
-			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
-				alert("对不起，起点桩号不能大于止点桩号！");
-				$("#qdzh").focus();
-				return false;
-			}
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/selectXjwnjhcf.do',
