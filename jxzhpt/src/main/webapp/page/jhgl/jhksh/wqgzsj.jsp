@@ -30,7 +30,8 @@
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
-		
+		var gydwstr;
+		var xzqhstr;
 		function tuihui(){
 			var rows=$('#grid').datagrid('getSelections');
 			if(rows.length==0) {
@@ -105,7 +106,7 @@
 				 	'lxmc':$('#lxmc').val(),
 				 	'qlmc':$("#qlmc").val(),
 				 	'sbnf':$("#sbnf").combobox("getValue"),
-				 	'jhzt':$("#jhzt").combobox("getValue"),
+				 	'planwqgzsj.jhzt':$("#jhzt").combobox("getValue"),
 				 	'jsdj':$("#jsdj").combobox("getValue"),
 				 	'gldj':$("#gldj").combobox("getValue"),
 				 	'akjfl':$("#akjfl").combobox("getValue"),
@@ -172,7 +173,7 @@
 		 	else if($.cookie("unit2").length==9) sbthcd=2;
 	 		else sbthcd=4;
 			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-			"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
+			"&sbnf="+$("#sbnf").combobox("getValue")+"&planwqgzsj.jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
 			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
 			$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
 			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
@@ -260,6 +261,8 @@ text-decoration:none;
 									<option selected="selected" value="">全部</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
+									<option value="审核不通过">审核未通过</option>
+									<option value="审核通过">审核通过</option>
 								</select></td>
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:70px;" class="easyui-combobox">

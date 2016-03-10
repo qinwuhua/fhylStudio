@@ -36,6 +36,7 @@ $(function(){
 	xmnf("xmnf"); 
 	rkxmnf("rksj"); 
 	loadBmbm2("sbzt", "上报状态");
+	loadBmbm2("gldj", "公路等级");
 	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
@@ -266,6 +267,7 @@ function sckglWqgz(){
 			 	'qlbh':$("#qlbh").val(),
 			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
 			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+			 	'jckwqgzsj.gldj':$("#gldj").combobox("getValue"),
 			 	'jckwqgzsj.jsxz':$("#jsxz").combobox("getValue")
 			},
 		    striped:true,
@@ -377,7 +379,7 @@ function sckglWqgz(){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+'&jckwqgzsj.gldj='+$("#gldj").combobox("getValue")+
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
  	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+$("#rksj").combobox("getValue");
  	$.ajax({
@@ -508,6 +510,9 @@ text-decoration:none;
 									<td><select id="rksj" style="width:70px">
 	                              	</select>
 	                              </td>	
+	                              <td>公路等级：</td>
+						    		<td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
+						  
 									</tr> 
         						<tr>
                               <td colspan="8">

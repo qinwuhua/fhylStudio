@@ -317,6 +317,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			}else{
 				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
 			}
+			//System.out.println(planwqgzsj.getJhzt());
 			planwqgzsj.setLxmc(lxmc);
 			planwqgzsj.setQlmc(qlmc);
 			planwqgzsj.setSbnf(sbnf);
@@ -406,6 +407,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			}else{
 				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
 			}
+			//System.out.println(planwqgzsj.getJhzt());
 			planwqgzsj.setLxmc(lxmc);
 			planwqgzsj.setQlmc(qlmc);
 			planwqgzsj.setSbnf(sbnf);

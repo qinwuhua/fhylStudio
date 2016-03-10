@@ -36,6 +36,7 @@ $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
+	loadBmbm2("gldj", "公路等级");
 	//loadBmbm2("shzt", "审核状态");
 	//loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("akjfl", "跨径分类");
@@ -227,6 +228,7 @@ var xzqhstr;
 			 	'qlbh':$("#qlbh").val(),
 			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
 			 	'jckwqgzsj.bzls':$("#bzls").combobox("getValue"),
+			 	'jckwqgzsj.gldj':$("#gldj").combobox("getValue"),
 			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
 			},
 		    striped:true,
@@ -272,7 +274,7 @@ var xzqhstr;
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.bzls='+$("#bzls").combobox("getValue")+
+	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.bzls='+$("#bzls").combobox("getValue")+'&jckwqgzsj.gldj='+$("#gldj").combobox("getValue")+
 	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+
 	 	"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
 		$.ajax({
@@ -382,8 +384,11 @@ text-decoration:none;
 								<option value="是">是</option>
 								</select></td>
 								<td>补助历史：</td>
-                              	<td><select id="bzls" style="width:74px"class="easyui-combobox">
+                              	<td><select id="bzls" style="width:70px"class="easyui-combobox">
                               	</select></td>
+                              	<td>公路等级：</td>
+						   		 <td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
+						  
                               <td colspan="6">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangb()"  style="border-width:0px;" /> -->

@@ -141,6 +141,9 @@
 	 		<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
+ 		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
  </select>
  
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">

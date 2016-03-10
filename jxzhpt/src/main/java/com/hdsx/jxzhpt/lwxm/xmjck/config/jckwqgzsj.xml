@@ -62,8 +62,11 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
- 		</if>
+ 				and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+	 		</if>
+	 		<if test="gldj != '' and gldj != null ">
+	 			and qlbh like #{gldj}||'%'
+	 		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
 	 </select>
@@ -163,8 +166,11 @@
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有')  like #{bzls}||'%'
- 		</if>
+ 				and decode(t1.jhsl,null,'无','有')  like #{bzls}||'%'
+ 			</if>
+ 			<if test="gldj != '' and gldj != null ">
+	 			and qlbh like #{gldj}||'%'
+	 		</if>
 		 </select>
 		 <delete id="deleteWqgzsjById" parameterType="java.util.List" >
 		 	delete from xmk_wqgz where id =#{String}
@@ -246,7 +252,9 @@
  		</if>
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 	</if>)
+	 	</if>
+	 	
+	 	)
 	 			
 	 </select>
  		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -305,10 +313,13 @@
  			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 		</if>
-	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 		</if>
+ 		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
@@ -373,10 +384,13 @@
  			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 		</if>
-	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 		</if>
+ 		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
  		</if>
  </select>
  
@@ -565,6 +579,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -620,6 +637,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 	</select>
 	<select id="selectSckwqgzCount1" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select count(*) id,sum(ztz) ztz,sum(nsqbbz) nsqbbz from (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1 
@@ -672,6 +692,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 	</select>
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
 	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
@@ -777,6 +800,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -844,6 +870,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 	</select>	
 	
 	<select id="selectSckShwqgzCount1" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -908,6 +937,9 @@
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz like '%'||(#{jsxz})||'%'
 		</if>
+		<if test="gldj != '' and gldj != null ">
+ 			and qlbh like #{gldj}||'%'
+ 		</if>
 	</select>	
 	<select id="cxplanwqgzbyid" parameterType="jckwqgzsj" resultType="planwqgzsj">
 	select * from plan_wqgz where sckid=#{id}
