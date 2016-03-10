@@ -100,10 +100,11 @@ function shewcqk(){
 	var wcq=$("#tj_wc_qttz").val();
 	if(dwb=='') dwb=0;if(dws=='') dws=0;if(dwg=='') dwg=0;if(dwy=='') dwy=0;if(dwq=='') dwq=0;
 	if(wcb=='') wcb=0;if(wcs=='') wcs=0;if(wcg=='') wcg=0;if(wcy=='') wcy=0;if(wcq=='') wcq=0;
-	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))==0){
+	var pfztz=parent.parent.obj1.PFZTZ;
+	if(parseFloat(pfztz)==0){
 		$("#tj_wcqk").text("0");
 	}else
-	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcg)+parseFloat(wcy)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwg)+parseFloat(dwy)+parseFloat(dwq))*100).toFixed(2));
+	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcg)+parseFloat(wcy)+parseFloat(wcq))/(parseFloat(pfztz))*100).toFixed(2));
 	
 }
 </script>

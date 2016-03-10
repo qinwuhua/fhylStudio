@@ -202,6 +202,8 @@
 		}
 	function exportWqgzyb(){
 		var xmnf=$("#jhxdnf").combotree("getValues");
+		if(xmnf.join(",").substr(0,1)==',')
+			xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
 		//var xmlx=$("#xmlx").combobox("getValue");
 		if(xmnf==''){
 			alert("请选择年份");

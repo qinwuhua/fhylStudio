@@ -1323,7 +1323,7 @@
 		from (
 		select 
 	    xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-	    sc.scyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
+	    pl.jhyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
 	    from plan_abgc pl,
 	    sck_abgc sc,
 	    xmk_abgc xm,
@@ -1353,7 +1353,7 @@
 	from (
 	select 
     xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-    sc.scyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
+    pl.jhyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
     from plan_abgc pl,
     sck_abgc sc,
     xmk_abgc xm,
@@ -1382,7 +1382,7 @@
 	<select id="getAbgcjh3" parameterType="gcglwqgz" resultType="elist">
 		select 
 	    xm.xzqhdm v_1,substr(xm.xzqhdm,0,4)||'00' v_20,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_21,xm.gydw v_2,xm.lxbm v_3,xm.lxmc v_4,xm.qdzh v_5,xm.zdzh v_6,sc.jsxz v_7,
-	    sc.scyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
+	    pl.jhyhlc v_8,substr(pl.sjkgsj,0,4) v_9,substr(pl.sjwgsj,0,4) v_10,pl.pfztz v_11,pl.jhsybbzje v_12,nvl(zj.ztz,0) v_13,nvl(zj.btz,0) v_14,nvl(zj.dftz,0) v_15,sc.jsnr v_16,nvl(wc.bnztz,0) v_17,nvl(wc.bnstz,0) v_18,pl.remarks v_19
 	    from plan_abgc pl,
 	    sck_abgc sc,
 	    xmk_abgc xm,

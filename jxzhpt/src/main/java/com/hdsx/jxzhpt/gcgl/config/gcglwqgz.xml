@@ -172,6 +172,9 @@
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
+		<if test="akjfl != null and  akjfl != ''">
+				and t3.akjfl like '%'||#{akjfl}||'%'
+		</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -224,6 +227,9 @@
 		where  t1.spzt='1'
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+		<if test="akjfl != null and  akjfl != ''">
+				and t3.akjfl like '%'||#{akjfl}||'%'
 		</if>
 	<if test="gydw != null and  gydw != ''">
 			${gydw}

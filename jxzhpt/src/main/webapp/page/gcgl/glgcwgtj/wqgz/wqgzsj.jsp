@@ -144,6 +144,14 @@ a:active {
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select>
+								<span>跨径分类：</span>
+								<select id='akjfl' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'110'">
+									<option value="">全部</option>
+									<option value="特大桥">特大桥</option>
+									<option value="大桥">大桥</option>
+									<option value="中桥">中桥</option>
+									<option value="小桥">小桥</option>
+								</select>
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="showAll1()"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>

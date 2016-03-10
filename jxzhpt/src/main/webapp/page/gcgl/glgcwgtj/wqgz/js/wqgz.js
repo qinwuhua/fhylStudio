@@ -273,6 +273,7 @@ function showAll1(){
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.akjfl':$("#akjfl").combobox('getValue'),
 	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[

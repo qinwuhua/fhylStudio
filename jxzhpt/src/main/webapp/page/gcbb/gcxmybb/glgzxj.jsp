@@ -234,7 +234,10 @@
 	function exportExcel(){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").combotree("getValues");
+		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')

@@ -85,11 +85,11 @@ function shewcqk(){
 	if(dwq=='') dwq=0;
 	if(wcb=='') wcb=0;
 	if(wcs=='') wcs=0;
-	if((parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq)+parseFloat(wcb))==0){
-		
-		$("#wcqk").text("0");
+	var pfztz=parent.parent.obj1.PFZTZ;
+	if(parseFloat(pfztz)==0){
+		$("#tj_wcqk").text("0");
 	}else{
-	$("#wcqk").text((parseFloat(wcs)/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq)+parseFloat(wcb))*100).toFixed(2));
+	$("#wcqk").text((parseFloat(wcs)/(parseFloat(pfztz))*100).toFixed(2));
 	}
 }
 	</script>
