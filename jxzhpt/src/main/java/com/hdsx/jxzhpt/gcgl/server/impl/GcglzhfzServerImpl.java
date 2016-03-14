@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 
@@ -297,5 +298,10 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 	public int selectWqgzjhListcount1(Gcglzhfz gcglzhfz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhListcount1", gcglzhfz);
+	}
+
+	@Override
+	public Gcglwqgz selectZhfzTj(Gcglzhfz gcglzhfz) {
+		return queryOne("selectZhfzTj",gcglzhfz);
 	}
 }

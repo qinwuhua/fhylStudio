@@ -77,5 +77,9 @@ public interface GcglwqgzServer {
 
 	boolean ybyshbwsh(Gcglwqgz gcglwqgz);
 
+	Gcglwqgz selectWqgzTj(Gcglwqgz gcglwqgz);
+
+	boolean selectsfkwg(Gcglwqgz gcglwqgz);
+
 
 }

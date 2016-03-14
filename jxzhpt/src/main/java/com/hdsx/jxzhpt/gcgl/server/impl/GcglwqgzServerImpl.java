@@ -436,4 +436,19 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		return update("ybyshbwsh", gcglwqgz)==1;
 	}
 
+	@Override
+	public Gcglwqgz selectWqgzTj(Gcglwqgz gcglwqgz) {
+		return queryOne("selectWqgzTj", gcglwqgz);
+	}
+
+	@Override
+	public boolean selectsfkwg(Gcglwqgz gcglwqgz) {
+		Gcglwqgz g = queryOne("selectsfkwg", gcglwqgz);
+		if(Double.parseDouble(g.getZjc())>=100 && Double.parseDouble(g.getWcqk())>=100 && Double.parseDouble(g.getXbgz())>=100){
+			return true;
+		}
+		else
+			return false;
+	}
+
 }

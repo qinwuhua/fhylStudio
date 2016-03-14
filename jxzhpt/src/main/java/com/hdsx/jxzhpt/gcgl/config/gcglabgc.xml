@@ -294,6 +294,87 @@
 			and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
 	 </select>
+	 <select id="selectabTJ" parameterType="gcglabgc" resultType="gcglwqgz">
+	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
+    	nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+    	left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+	 	left join gcgl_jgys jg on t1.id=jg.jhid
+	 	where 1=1 and spzt='1'
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="jsdj != null and  jsdj != ''">
+				and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+		</if>
+		<if test="gldj != null and  gldj != ''">
+				and t3.lxbm like trim(#{gldj})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t3.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t1.jhnf in (${xmnf})
+		</if>
+		<if test="jgys != null and  jgys != ''">
+			and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+	 </select>
+	 
+	 
+	  <select id="selectafTJ" parameterType="gcglabgc" resultType="gcglwqgz">
+	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
+    	nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+	 	left join gcgl_jgys jg on t1.id=jg.jhid
+	 	where 1=1 and spzt='1'
+	 	<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="jsdj != null and  jsdj != ''">
+				and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+		</if>
+		<if test="gldj != null and  gldj != ''">
+				and t3.lxbm like trim(#{gldj})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t3.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t1.jhnf in (${xmnf})
+		</if>
+	 </select>
 	  <select id="selectafjhListCount" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID 
 	 	left join gcgl_jgys jg on t1.id=jg.jhid

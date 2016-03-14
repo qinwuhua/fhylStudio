@@ -271,6 +271,61 @@
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>	
 	 </select>
+	 
+	  <select id="selectWqgzTj" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybzje),0) btz,nvl(sum(t1.shengbz),0) stz,nvl(sum(t1.jhsydfzcje),0) dftz,
+		nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj
+		from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+		left join gcgl_jgys jg on t1.id=jg.jhid
+		where  t1.spzt='1'
+		<if test="jgys != null and  jgys != ''">
+			and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+		<if test="akjfl != null and  akjfl != ''">
+			and t3.akjfl like '%'||#{akjfl}||'%'
+		</if>
+		<if test="gydw != null and  gydw != ''">
+			${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+			${xzqhdm}
+		</if>
+		<if test="gldj != null and  gldj != ''">
+			and t3.lxbm like trim(#{gldj})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="gydwtj != null and  gydwtj != ''">
+			and gydwbm like #{gydwtj}||'%'
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+			and t1.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+			and t1.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf in (${xmnf})
+		</if>
+		<if test="qlmc != null and  qlmc != ''">
+			and t3.qlmc like '%'||trim(#{qlmc})||'%'
+		</if>
+		<if test="qlbh != null and  qlbh != ''">
+			and t3.qlbh like '%'||trim(#{qlbh})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>	
+	 </select>
+	 
+	 
 	 <select id="selectWqgzjhFile" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_WQGZ where ID=#{jhid}
 	 </select>
@@ -620,4 +675,9 @@
 			</if>
 	 	
 	 </select>
+	 <select id="selectsfkwg" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select nvl(sum(g.xbgz),0) xbgz,nvl(sum(g.zjc),0) zjc,nvl(sum(g.wcqk),0) wcqk,jhid from gcgl_wqgz g where jhid=#{id} group by jhid 
+	 	
+	 </select>
+	 
 </mapper>

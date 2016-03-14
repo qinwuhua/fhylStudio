@@ -4,7 +4,44 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Gcglwqgz implements Serializable {
-
+	//private String pfztz;
+	//private String stz;
+	private String btz;
+	private String dftz;
+	private String zbz;
+	private String jlzj;
+	private String sl;
+	
+	public String getSl() {
+		return sl;
+	}
+	public void setSl(String sl) {
+		this.sl = sl;
+	}
+	public String getBtz() {
+		return btz;
+	}
+	public void setBtz(String btz) {
+		this.btz = btz;
+	}
+	public String getDftz() {
+		return dftz;
+	}
+	public void setDftz(String dftz) {
+		this.dftz = dftz;
+	}
+	public String getZbz() {
+		return zbz;
+	}
+	public void setZbz(String zbz) {
+		this.zbz = zbz;
+	}
+	public String getJlzj() {
+		return jlzj;
+	}
+	public void setJlzj(String jlzj) {
+		this.jlzj = jlzj;
+	}
 	/**
 	 * 
 	 */

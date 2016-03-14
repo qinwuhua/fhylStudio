@@ -50,7 +50,67 @@ function ybsb(index){
 	YMLib.UI.createWindow('wqxx','灾害防治月报列表','zhfzyb.jsp','wqxx',1059,480);
 	//window.open("wqgzyb.jsp");
 }
+
+function showtj(){
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jgzt='1';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
+	var data="gydw="+gydwstr+
+	"&kgzt="+kgzt+
+	"&jgzt="+jgzt+
+	"&lxmc="+lxmc+
+	"&ybzt="+''+
+	"&sfsj="+7+
+	"&xmnf="+xmnf+
+	'&gcglzhfz.xzqh='+xzqhstr+
+	'&gcglzhfz.gldj='+$("#ddlGldj").combobox('getValue')+
+	'&gcglzhfz.tsdq='+$("#ddlTSDQ").combobox('getText')+
+	'&gcglzhfz.jsdj='+$("#ddlPDDJ").combobox('getValue')+
+	'&gcglzhfz.jgys='+$("#jgys").combobox('getValue');
+	$.ajax({
+		data:data,
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/gcgl/selectZhtj.do',
+		success:function(msg){
+			$("#sl").html(msg.sl);
+			$("#pfztz").html(msg.pfztz);
+			$("#btz").html(msg.btz);
+			$("#stz").html('0');
+			$("#dftz").html(msg.dftz);
+			$("#zbz").html(msg.zbz);
+			$("#jlzj").html(msg.jlzj);
+		}
+	})
+} 
 function showAll(){
+	showtj();
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);

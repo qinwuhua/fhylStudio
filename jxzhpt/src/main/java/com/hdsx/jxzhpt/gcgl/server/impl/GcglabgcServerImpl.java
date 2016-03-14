@@ -423,4 +423,14 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		}
 		return list;
 	}
+
+	@Override
+	public Gcglwqgz selectafTJ(Gcglabgc gcglabgc) {
+		return queryOne("selectafTJ", gcglabgc);
+	}
+
+	@Override
+	public Gcglwqgz selectabTJ(Gcglabgc gcglabgc) {
+		return queryOne("selectabTJ", gcglabgc);
+	}
 }

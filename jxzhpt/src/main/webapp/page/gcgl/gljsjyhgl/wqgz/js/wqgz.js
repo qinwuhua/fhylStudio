@@ -50,7 +50,20 @@ function ykaigong(index){
 	function wangong1(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-			YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
+		$.ajax({
+			data:'gcglwqgz.id='+data.jhid,
+			type:'post',
+			dataType:'json',
+			url:'/jxzhpt/gcgl/selectsfkwg.do',
+			success:function(msg){
+				if(msg){
+					YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
+				}else{
+					alert("工程量都要是100%才能完工");
+				}
+			}
+		});
+		
 		}
 	function wwangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];

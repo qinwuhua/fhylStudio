@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 	function ybnf(id){
 		var myDate = new Date();
+		
 		var years=[];
 		var first;
 		for(var i=myDate.getFullYear();i>=2005;i--){
@@ -55,6 +56,7 @@
 			ybnf('ybnf');
 			ybyf('ybyf');
 			setjhxdnf();
+			
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 		//	loadBmbm2("xmlx","项目类型2");

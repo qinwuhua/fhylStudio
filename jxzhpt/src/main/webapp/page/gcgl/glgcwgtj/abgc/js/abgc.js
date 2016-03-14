@@ -68,7 +68,68 @@ function ybsb(index){
 	YMLib.UI.createWindow('wqxx1','月报列表','abgcyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
+
+function showtj(xmlx){
+	var xmnf=$("#ddlYear").combobox('getValues').join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jgzt='1';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
+	var data="gydw="+gydwstr+
+	"&kgzt="+kgzt+
+	"&jgzt="+jgzt+
+	"&lxmc="+lxmc+
+	"&ybzt="+''+
+	"&sfsj="+7+
+	"&xmnf="+xmnf+
+	'&xzqh='+xzqhstr+
+	'&gcglabgc.xmlx='+xmlx+
+	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValue')+
+	'&gcglabgc.tsdq='+$("#ddlTSDQ").combobox('getText')+
+	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
+	'&gcglabgc.jgys='+$("#jgys").combobox('getValue');
+	$.ajax({
+		data:data,
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/gcgl/selectAbtj.do',
+		success:function(msg){
+			$("#sl").html(msg.sl);
+			$("#pfztz").html(msg.pfztz);
+			$("#btz").html(msg.btz);
+			$("#stz").html('0');
+			$("#dftz").html(msg.dftz);
+			$("#zbz").html(msg.zbz);
+			$("#jlzj").html(msg.jlzj);
+		}
+	})
+} 
 function showAll(){
+	showtj('ab');
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
@@ -139,6 +200,7 @@ function showAll(){
 	}); 
 }
 function showafAll(){
+	showtj('af');
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);

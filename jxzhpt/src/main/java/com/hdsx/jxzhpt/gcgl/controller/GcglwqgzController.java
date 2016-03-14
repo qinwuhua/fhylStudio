@@ -506,7 +506,54 @@ public class GcglwqgzController extends BaseActionSupport{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		}		
+		}
+		public void selectWqtj(){
+			try {
+			String tiaojian="";
+			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					tiaojian=("and (t3.gydwbm='"+gydw+"'||'00' or t3.gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+				tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+			}else{
+				tiaojian="and t3.gydwbm in ("+gydw+")";
+			}
+			String tiaojian2="";
+			if(gcglwqgz.getXzqh().indexOf(",")==-1){
+				tiaojian2="and t3.xzqhdm like '%'||'"+gcglwqgz.getXzqh()+"'||'%'";
+			}else{
+				tiaojian2="and t3.xzqhdm in ("+gcglwqgz.getXzqh()+")";
+			}
+			gcglwqgz.setXzqhdm(tiaojian2);	
+			gcglwqgz.setPage(page);
+			gcglwqgz.setRows(rows);
+			gcglwqgz.setJhid(jhid);
+			gcglwqgz.setGydw(tiaojian);
+			gcglwqgz.setKgzt(kgzt);
+			gcglwqgz.setQlmc(qlmc);
+			gcglwqgz.setLxmc(lxmc);
+			gcglwqgz.setJgzt(jgzt);
+			gcglwqgz.setShzt(ybzt);
+			gcglwqgz.setXmnf(xmnf);
+			gcglwqgz.setSfylrbwqk(sfylrbwqk);
+			gcglwqgz.setGydwtj(gydwtj);
+			if(sfsj==7){
+				gcglwqgz.setTiaojian("sjsh");
+			}
+			if(sfsj==9){
+				gcglwqgz.setTiaojian("sjzt");
+			}
+			if(sfsj==11){
+				gcglwqgz.setTiaojian("xjzt");
+			}
+			Gcglwqgz tj=gcglwqgzServer.selectWqgzTj(gcglwqgz);
+				JsonUtils.write(tj, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		
 	public void selectWqgzjhFile(){
 		gcglwqgz.setJhid(jhid);
 		Gcglwqgz g= gcglwqgzServer.selectWqgzjhFile(gcglwqgz);
@@ -756,6 +803,15 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void ybyshbwsh(){
 		boolean bl=gcglwqgzServer.ybyshbwsh(gcglwqgz);
 		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
+	public void selectsfkwg(){
+		try {
+			boolean bl = gcglwqgzServer.selectsfkwg(gcglwqgz);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 	

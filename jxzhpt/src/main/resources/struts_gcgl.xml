@@ -30,6 +30,8 @@
 	<action name="selectWqgzjhList1" class="gcglwqgzController" method="selectWqgzjhList1"/>
 	<action name="selectcgsyf" class="gcglwqgzController" method="selectcgsyf"/>
 	<action name="dcwqgzsjExcel" class="gcglwqgzController" method="dcwqgzsjExcel"/>
+	<action name="selectWqtj" class="gcglwqgzController" method="selectWqtj"/>
+	<action name="selectsfkwg" class="gcglwqgzController" method="selectsfkwg"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
@@ -69,7 +71,8 @@
 	<action name="selectAbgcjhList1" class="gcglabgcController" method="selectAbgcjhList1"/>
 	<action name="selectabgcxx" class="gcglabgcController" method="selectabgcxx"/>
 	<action name="dcabgcExcel" class="gcglabgcController" method="dcabgcExcel"/>
-	
+	<action name="selectAbtj" class="gcglabgcController" method="selectAbtj"/>
+
 	<!-- zhfz -->
 	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>
 	<action name="selectZhfzYbByJhid" class="gcglzhfzController" method="selectZhfzYbByJhid"/>
@@ -92,6 +95,7 @@
 	<action name="deleteZhfzFile" class="gcglzhfzController" method="deleteZhfzFile"/>
 	<action name="sbZhfzYb" class="gcglzhfzController" method="sbZhfzYb"/>
 	<action name="selectZhfzjhList1" class="gcglzhfzController" method="selectZhfzjhList1"/>
+	<action name="selectZhtj" class="gcglzhfzController" method="selectZhtj"/>
 	
 	<!-- yhdzx -->
 	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
