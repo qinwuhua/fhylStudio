@@ -599,10 +599,9 @@ function showgjtj(xmlx){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
@@ -648,10 +647,9 @@ function showAllgj(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
@@ -775,10 +773,9 @@ function showAlllm(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
@@ -903,10 +900,9 @@ function showAllxj(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	$('#datagrid').datagrid({    
@@ -1031,10 +1027,9 @@ function dcwnjhExcel(str){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');

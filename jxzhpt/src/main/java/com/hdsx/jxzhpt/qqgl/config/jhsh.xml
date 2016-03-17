@@ -869,7 +869,7 @@
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
 <!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -892,7 +892,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -915,7 +915,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -938,7 +938,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -961,7 +961,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all

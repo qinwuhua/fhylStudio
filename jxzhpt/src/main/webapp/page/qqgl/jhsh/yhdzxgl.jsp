@@ -41,7 +41,7 @@
 				});
 				$('#ztspan').html("上报状态");
 			}
-			loadTsdq("tsdq");
+			tsdqdx("tsdq");
 			xmnf("xmnf");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
@@ -57,10 +57,13 @@
 			queryYhdzx();
 		});
 		function queryYhdzx(){
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ghlxbh':$('#lxbm').val(),'lxmc':$('#lxmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
+					'tsdq':tsdq,'jsdj':$('#jsdj').combobox("getValues").join(","),'sqzt':-1,"jdbs":1,
 					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValues").join(',')
 					,'gcfl':$('#gcfl').combobox("getValues").join(","),"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
@@ -324,9 +327,12 @@
 			}else{
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
@@ -440,7 +446,7 @@
 		       							<option value="否">否</option>
 	       							</select>
        							</td>
-       							<td>&nbsp;公路等级：</td>
+       							<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        						</tr>
        						<tr>

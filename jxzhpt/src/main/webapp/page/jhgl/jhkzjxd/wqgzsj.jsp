@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			//loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm2('gldj','行政等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
@@ -239,7 +239,7 @@ text-decoration:none;
         						<td>管养（监管）单位：</td>
         						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
         						
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:60px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>

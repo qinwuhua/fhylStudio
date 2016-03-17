@@ -39,7 +39,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 		//	loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm2('gldj','行政等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
@@ -346,7 +346,7 @@ text-decoration:none;
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
 								<td>路线名称：</td>

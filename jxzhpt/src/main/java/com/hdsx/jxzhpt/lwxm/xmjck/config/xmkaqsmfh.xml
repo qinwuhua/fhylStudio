@@ -24,16 +24,16 @@
 	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -63,16 +63,16 @@
 	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 			<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -100,16 +100,16 @@
 	 			and decode(sbthcd,'7','已上报',#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -152,16 +152,16 @@
 				
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -208,16 +208,16 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 			<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -262,16 +262,16 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and roadcode like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="roadcode!='' and roadcode!= null ">
 	 			and roadcode like '%'||(#{roadcode})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
  			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
@@ -912,22 +912,22 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
@@ -949,7 +949,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
@@ -966,16 +966,16 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
@@ -998,22 +998,22 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
@@ -1034,7 +1034,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
@@ -1051,21 +1051,20 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
-	 			
 	</select>
 	
 		<select id="loadSckaqsmfhCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
@@ -1082,22 +1081,22 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			and decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
@@ -1117,7 +1116,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and jhnf like '%'||(#{jhnf})||'%'
+	 			and jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
@@ -1134,16 +1133,16 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'

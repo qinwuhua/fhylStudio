@@ -658,7 +658,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
 		title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
 		if(jhsh.getXmlx()!=2)
-		title[15]=new ExcelTitleCell("公路等级",false, new ExcelCoordinate(0, (short)15), null,20);
+		title[15]=new ExcelTitleCell("行政等级",false, new ExcelCoordinate(0, (short)15), null,20);
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
 		attribute.put("0", "xmmc");//项目名称
@@ -1027,7 +1027,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("13", "bbzzj");//部补助资金
 		attribute.put("14", "sbzzj");//省补助资金
 		if(jhsh.getXmlx()!=2){
-			attribute.put("15", "gldj");//公路等级
+			attribute.put("15", "gldj");//行政等级
 		}
 		excel.setAttributes(attribute);
 		try {

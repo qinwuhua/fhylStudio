@@ -8,7 +8,21 @@ import java.util.Date;
  *
  */
 public class Sckabgc implements Serializable{
-
+	private String gldj;
+	private String jsdj;
+	
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
 	private static final long serialVersionUID = 1L;
 		private String sckid;
 		private String id;

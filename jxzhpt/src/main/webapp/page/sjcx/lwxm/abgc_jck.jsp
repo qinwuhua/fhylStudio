@@ -26,7 +26,7 @@ $(function(){
 	xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
 	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "公路等级");
+	loadBmbm2("bz", "行政等级");
 	tsdq("tsdq");
 	jckglAbgc();
 	
@@ -84,7 +84,7 @@ text-decoration:none;
                                <span>&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               	</select>
-                              	<span>&nbsp;公路等级：</span>
+                              	<span>&nbsp;行政等级：</span>
                               	<select id="bz" style="width:105px" class="easyui-combobox">
                               	</select>
                               		

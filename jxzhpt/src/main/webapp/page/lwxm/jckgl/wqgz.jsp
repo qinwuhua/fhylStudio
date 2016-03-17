@@ -22,14 +22,20 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
+	//loadBmbm2("jsdj", "技术等级");
+	//loadBmbm2("akjfl", "跨径分类");
+	//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
+	
 	jckglWqgz();
 });
 
@@ -205,13 +211,15 @@ text-decoration:none;
                               <td width="66" sytle="overflow:hidden">上报状态：</td>
                               <td><select id="sbzt" style="width:70px"class="easyui-combobox"></select></td>
                               <td>特殊地区：</td>
-                              <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
+                              <td><select id="tsdq" style="width:80px"class="easyui-combobox"></select></td>
                              <td>技术等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
                               <td>按跨径分类：</td>
                               <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
                               <td>桥梁编号：</td>
                               <td><input type="text" id="qlbh"style="width:70px"/></td>
+                              <td>行政等级：</td>
+                              <td><select id="gldj" style="width:70px"class="easyui-combobox"></select></td>
                            </tr>
                            
                              <tr height="32">

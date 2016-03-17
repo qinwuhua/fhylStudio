@@ -243,7 +243,7 @@
 				<if test="xmsq.sqzt>=0">and sqzt=${xmsq.sqzt}</if>
 				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">and ${xmsq.xmbm}</if>
 				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">and ${xmsq.gcfl}</if>
-				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">and x.tsdq like '%'||#{xmsq.tsdq}||'%'</if>
+				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">${xmsq.tsdq}</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">and x.lsjl=#{xmsq.lsjl}</if>
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
@@ -289,7 +289,7 @@
 					and ${xmsq.gcfl}
 				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
-					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
+					${xmsq.tsdq}
 				</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
@@ -333,7 +333,7 @@
 			and ${gcfl}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
-			and x.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!=null and lsjl!=''">
 			and x.lsjl=#{lsjl}
@@ -372,7 +372,7 @@
 			and ${gcfl}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
-			and x.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!=null and lsjl!=''">
 			and x.lsjl=#{lsjl}
@@ -500,7 +500,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="sqzt>=0">and sqzt=${sqzt}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
-				<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 				<if test="ylxbh!=null and ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
@@ -519,7 +519,7 @@
 				<if test="jsdj!=null and jsdj!=''">and (jsdj=#{jsdj})</if>
 				<if test="sqzt>=0">and sqzt=${sqzt}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
-				<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 				<if test="ylxbh!=null and ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
@@ -543,7 +543,7 @@
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
 			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
-			<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 			<if test="ylxbh!=null and ylxbh!=''">
 				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
@@ -568,7 +568,7 @@
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
 			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
-			<if test="tsdq!=null and tsdq!=''">and x.tsdq like '%'||#{tsdq}||'%'</if>
+			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 			<if test="ylxbh!=null and ylxbh!=''">
 				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
@@ -825,7 +825,7 @@
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -849,7 +849,7 @@
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -873,7 +873,7 @@
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -897,7 +897,7 @@
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -921,7 +921,7 @@
 			(to_number(l.qdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.zdzh)) or 
 	    	(to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -946,7 +946,7 @@
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
 <!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -969,7 +969,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -992,7 +992,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -1015,7 +1015,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh))
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
@@ -1038,7 +1038,7 @@
 		(
 			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
 	    )
-	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all

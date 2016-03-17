@@ -15,7 +15,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -39,7 +39,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -64,7 +64,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -91,7 +91,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -121,7 +121,7 @@
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
@@ -145,7 +145,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -172,7 +172,7 @@
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%2___' and ${gldj})</if>
@@ -199,7 +199,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -228,7 +228,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -250,7 +250,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -275,7 +275,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -300,7 +300,7 @@
 <!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
 <!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
 <!-- 		</if> -->
-		<if test="tsdq!='' and tsdq!= null ">and t1.tsdq like '%'||#{tsdq}||'%'</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx_tz where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
@@ -379,7 +379,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -415,7 +415,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -453,7 +453,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -489,7 +489,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -524,7 +524,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -560,7 +560,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -712,7 +712,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -748,7 +748,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -784,7 +784,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -821,7 +821,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -857,7 +857,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'
@@ -896,7 +896,7 @@
 			and t.shzt like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and t1.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and t.jsjsdj like '%'||#{jsdj}||'%'

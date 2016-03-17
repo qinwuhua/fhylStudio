@@ -125,7 +125,7 @@ a{text-decoration:none;}
 						<option value="2011">2011</option>
 					</select>
 				</td>
-				<td style="background-color: #ffffff;width:15%" align="right">公路等级：</td>
+				<td style="background-color: #ffffff;width:15%" align="right">行政等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select name="gldj" id="gldj" style="width:149px;" class="easyui-combobox"></select>
 				</td>

@@ -22,7 +22,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -30,17 +30,17 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		<if test="bz!='' and bz!= null ">
- 			and lxbm like #{bz}||'%'
+		<if test="gldj !='' and gldj != null ">
+ 			${gldj}
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
@@ -58,7 +58,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -66,17 +66,17 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		<if test="bz!='' and bz!= null ">
- 			and lxbm like #{bz}||'%'
+		<if test="gldj !='' and gldj != null ">
+ 			${gldj}
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 	</select>
 	<select id="selectJckabgcById" parameterType="jckabgc"
@@ -149,7 +149,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -157,8 +157,11 @@
 		<if test="shzt!='' and shzt!= null ">
 			and shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
@@ -167,7 +170,7 @@
  			and lxbm like #{bz}||'%'
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
@@ -187,7 +190,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -195,8 +198,11 @@
 		<if test="shzt!='' and shzt!= null ">
 			and shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
@@ -205,7 +211,7 @@
  			and lxbm like #{bz}||'%'
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 	</select>
 	<sql id="abgc_commonsql">
@@ -270,7 +276,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -278,8 +284,11 @@
 		<if test="shzt!='' and shzt!= null ">
 			and shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
@@ -288,7 +297,7 @@
  			and lxbm like #{bz}||'%'
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 	</select>
 	<select id="onceAbgc" parameterType="jckabgc" resultType="int">
@@ -340,7 +349,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -348,17 +357,17 @@
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		<if test="bz!='' and bz!= null ">
- 			and lxbm like #{bz}||'%'
+		<if test="gldj !='' and gldj != null ">
+ 			${gldj}
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 	</select>
 	
@@ -375,7 +384,7 @@
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and xmnf in (${xmnf})
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -383,8 +392,11 @@
 		<if test="shzt!='' and shzt!= null ">
 			and shzt like '%'||(#{shzt})||'%'
 		</if>
-		<if test="lxjsdj!='' and lxjsdj!= null ">
-			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
@@ -393,7 +405,7 @@
  			and lxbm like #{bz}||'%'
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||#{tsdq}||'%'
+ 			${tsdq}
  		</if>
 	</select>
 	<select id="selTsdq" resultType="jckabgc">

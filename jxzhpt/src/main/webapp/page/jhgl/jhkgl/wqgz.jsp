@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('ddlGldj','行政等级');
 			tsdq('tsdq');
 			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
@@ -209,7 +209,7 @@ text-decoration:none;
 								<td>技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
 								</select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>

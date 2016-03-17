@@ -50,7 +50,7 @@
 								return value;
 						}
 					},
-					{field:'gldj',title:'公路等级',width:100,align:'center',
+					{field:'gldj',title:'行政等级',width:100,align:'center',
 						formatter:function(value){
 							if(value=="X"){
 								return '县道';
@@ -281,7 +281,7 @@
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">公路等级</td>
+				<td align="right" style="padding-right: 10px;">行政等级</td>
 				<td>
 					<select id="gldj" style="width: 80px;">
 						<option value="">--请选择--</option>

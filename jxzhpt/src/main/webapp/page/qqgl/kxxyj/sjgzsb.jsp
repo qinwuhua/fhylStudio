@@ -28,7 +28,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm2('gldj','行政等级');
 			tsdq("tsdq");
 			xmnf("xmnf");
 			showsjgzAll();
@@ -174,7 +174,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:68px;" class="easyui-combobox"></select></td>
         						<td>是否有历史记录：</td>
         						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">

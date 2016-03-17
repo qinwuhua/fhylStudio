@@ -26,7 +26,7 @@
 			loadTsdq("tsdq");
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm2('gldj','行政等级');
 			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});

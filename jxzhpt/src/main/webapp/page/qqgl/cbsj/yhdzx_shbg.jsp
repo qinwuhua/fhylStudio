@@ -312,7 +312,7 @@ text-decoration:none;
 								</select></td>
 								<td align="right">&nbsp;工程分类：</td>
 	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
-	       						<td>&nbsp;公路等级：</td>
+	       						<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 							</tr>
 							<tr height="32">

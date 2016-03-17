@@ -25,7 +25,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			var myDate = new Date();
 			sbnf("sbnf");
@@ -280,7 +280,7 @@
 								<td>技术等级：</td>
 								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 								</select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:94px;">
 								</select></td>
 								<td>跨径分类：</td>

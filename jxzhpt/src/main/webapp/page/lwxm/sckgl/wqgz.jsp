@@ -22,12 +22,13 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
@@ -228,6 +229,9 @@ text-decoration:none;
                               	 
                              </tr>
                             <tr height="32">
+                            <td>行政等级：</td>
+                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
+                              	</select></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />

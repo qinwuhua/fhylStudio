@@ -20,11 +20,13 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
@@ -177,6 +179,9 @@ text-decoration:none;
                               	</select></td>
                               <td>桥梁编号：</td>
                               <td>	<input type="text" id="qlbh"style="width:70px"/></td>
+                              <td>行政等级：</td>
+                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
+                              	</select></td>
                         </tr>
                              <tr height="32">
                               <td colspan="10">

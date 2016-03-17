@@ -35,12 +35,16 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	afxmnf("jhnf"); 
+	//afxmnf("jhnf"); 
 	//loadBmbm2("sbzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级2");
-	loadBmbm2("gldj", "公路等级");
+	//loadBmbm2("jsdj", "技术等级2");
+	//loadBmbm2("gldj", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	xmnfdx("jhnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
+	//tsdq("tsdq");
 	showAll();
 	
 });
@@ -68,6 +72,18 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
+	var xmnf=$("#jhnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var jsdj=$("#jsdj").combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 $("#grid").datagrid({    
 	 url:'/jxzhpt/aqsmfh/selectSckaqsmfhsh.do',
 	 queryParams : {
@@ -78,13 +94,13 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.gydw': gydwstr,
 		 	'xmkaqsmfh.xzqh':xzqhstr,
 		 	'xmkaqsmfh.lxmc' : $('#lxmc').val(),
-		 	'xmkaqsmfh.jhnf':$("#jhnf").combobox("getValue"),
+		 	'xmkaqsmfh.jhnf':xmnf,
 		 	'xmkaqsmfh.sbzt':$('#sbzt').combobox("getValue"),
-		 	'xmkaqsmfh.jsdj':$("#jsdj").combobox("getValue"),
+		 	'xmkaqsmfh.jsdj':jsdj,
 		 	'xmkaqsmfh.lxbm':$("#lxbm").val(),
 		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
-		 	'xmkaqsmfh.gldj':$("#gldj").combobox("getValue"),
-		 	'xmkaqsmfh.tsdq':$("#tsdq").combobox("getText").replace("全部",'')
+		 	'xmkaqsmfh.gldj':gldj,
+		 	'xmkaqsmfh.tsdq':tsdq
 		},
 	    striped:true,
 	    pagination:true,
@@ -163,10 +179,23 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	if($.cookie("unit2")=='______36'){
 		sbthbmcd=7;
 		}else  sbthbmcd=$.cookie("unit2").length;
+	
+	var xmnf=$("#jhnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var jsdj=$("#jsdj").combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var data="xmkaqsmfh.sbthbmcd="+sbthbmcd+"&xmkaqsmfh.gydw="+gydwstr+"&xmkaqsmfh.xzqh="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
-	"&xmkaqsmfh.jhnf="+$("#jhnf").combobox("getValue")+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
-	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
-	"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue");
+	"&xmkaqsmfh.jhnf="+xmnf+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
+	"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
+	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq;
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/aqsmfh/loadSckaqsmfhshCount.do",
@@ -215,10 +244,22 @@ function dcExcel(){
  	if($.cookie("unit2")=='______36'){
  		sbthcd=7;
  	}else  sbthcd=$.cookie("unit2").length;
-	var data=ata="xmkaqsmfh.sbthbmcd="+sbthcd+"&xmkaqsmfh.lxmc="+$('#lxmc').val()
- 	+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox("getValue")+"&xmkaqsmfh.sbzt="+$('#sbzt').combobox("getValue")+
- 	"&xmkaqsmfh.jsdj="+$("#jsdj").combobox("getValue")+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
- 	"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.gldj="+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
+ 	var xmnf=$("#jhnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var jsdj=$("#jsdj").combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
+	var data=ata="xmkaqsmfh.sbthbmcd="+sbthcd+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
+	"&xmkaqsmfh.jhnf="+xmnf+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
+	"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
+	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/aqsmfh/dcaqsmfhsckshExcel.do?'+data;
 	 });
@@ -316,7 +357,7 @@ text-decoration:none;
                               <td>技术等级：</td>
                               	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              	<td>公路等级：</td>
+                              	<td>行政等级：</td>
                               	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>

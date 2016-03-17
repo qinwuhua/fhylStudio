@@ -485,6 +485,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setRows(rows);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
 			int count=lxshServer.selectSjgzListCount(lxsh);
 			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -533,6 +553,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			Map<String, String> result = lxshServer.queryLxshLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -575,6 +615,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			System.out.println("--"+jsdj+"--");
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
@@ -618,6 +678,26 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setRows(rows);
 		lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Lxsh> list=lxshServer.selectXjList(lxsh);
 		int count=lxshServer.selectXjListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -664,6 +744,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setRows(rows);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			Map<String, String> result = lxshServer.queryLxshLjXj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -707,6 +807,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setRows(rows);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			Map<String, String> result = lxshServer.queryLxshShLjXj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -925,6 +1045,26 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setRows(rows);
 		lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		System.out.println(lxsh.getSbzt1());
 		List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
 		int count=lxshServer.selectSjgzshListCount(lxsh);
@@ -971,6 +1111,26 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setRows(rows);
 		lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Lxsh> list=lxshServer.selectLmgzshList(lxsh);
 		int count=lxshServer.selectLmgzshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1015,6 +1175,26 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setRows(rows);
 		lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Lxsh> list=lxshServer.selectXjshList(lxsh);
 		int count=lxshServer.selectXjshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1113,6 +1293,26 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setRows(rows);
 		lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Lxsh> list=lxshServer.selectLmgzList(lxsh);
 		int count=lxshServer.selectLmgzListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1160,6 +1360,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setRows(rows);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			Map<String, String> result = lxshServer.queryLxshLjLmgz(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -1204,6 +1424,26 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setRows(rows);
 			lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			Map<String, String> result = lxshServer.queryLxshShLjLmgz(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -1368,6 +1608,26 @@ public class LxshController extends BaseActionSupport{
 					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
 				}
 			}
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
@@ -1486,6 +1746,26 @@ public class LxshController extends BaseActionSupport{
 				lxsh.setGldj(g);
 			}
 			String xmbt="";
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			if("sjgz".equals(lxsh.getXmlx())){

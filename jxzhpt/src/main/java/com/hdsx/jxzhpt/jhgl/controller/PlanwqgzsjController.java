@@ -686,7 +686,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		et.add(new Excel_tilte("重建桥址",2,2,52,52));
 		et.add(new Excel_tilte("通航等级",2,2,53,53));
 		et.add(new Excel_tilte("桥梁基础",2,2,54,54));
-		et.add(new Excel_tilte("引道公路等级",2,2,55,55));
+		et.add(new Excel_tilte("引道行政等级",2,2,55,55));
 		et.add(new Excel_tilte("设计速度(km/h)",2,2,56,56));
 		et.add(new Excel_tilte("总投资",2,2,57,57));
 		et.add(new Excel_tilte("拟申请部(省)级补助资金(万元)",2,2,58,58));

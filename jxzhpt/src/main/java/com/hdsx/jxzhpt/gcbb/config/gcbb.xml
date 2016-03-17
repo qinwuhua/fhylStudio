@@ -98,22 +98,22 @@
 	    NVL((select gjgc.bywcdc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcdc,
 	    NVL((select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcdc ]]>,
-	    NVL((select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(sh.sjkgsj,0,7),'yyyy-mm')),0) as zjwcdc,
+	    NVL((select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) as zjwcdc,
 	    ' ' as jc,
 	    NVL((select gjgc.bywcjc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcjc,
 	    NVL((select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcjc ]]>,
-	    NVL((select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(sh.sjkgsj,0,7),'yyyy-mm')),0) as zjwcjc,
+	    NVL((select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) as zjwcjc,
 	    NVL(sh.lc,0) as mc,
 	    NVL((select gjgc.bywcmc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcmc,
 	    NVL((select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcmc ]]>,
-	    NVL((select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(sh.sjkgsj,0,7),'yyyy-mm')),0) as zjwcmc,
+	    NVL((select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) as zjwcmc,
 	    NVL(sh.pfztz,0) as pfztz,NVL(sh.gys,0) as gys,
 	    NVL((select gjgc.wc_btz+gjgc.wc_stz+gjgc.wc_qttz from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm') = to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) as bywcje,
 	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcje ]]>,
-	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(substr(sh.sjkgsj,0,7),'yyyy-mm') and gjgc.jhid=sh.xmbm),0) as zjwcje,
+	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm') and gjgc.jhid=sh.xmbm),0) as zjwcje,
 	    sh.kgzt as kgzt,sh.jgzt as jgzt,lx.*
 	    from jhsh_sh sh,(select l.xmid jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqh)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
 	    replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as yhlc,
@@ -131,23 +131,23 @@
 	    NVL((select gcyh.bywcdc from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcdc,
 	    NVL((select sum(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and 
 	    to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) bnwcdc,
-	    NVL((select max(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(yh.sjkgsj,0,7),'yyyy-mm')),0) zjwcdc,
+	    NVL((select max(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) zjwcdc,
 	    NVL(yh.jcsl,0) as jc,
 	    NVL((select gcyh.bywcjc from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcjc,
 	    NVL((select max(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and 
 	    to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) bnwcjc,
-	    NVL((select max(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(yh.sjkgsj,0,7),'yyyy-mm')),0) zjwcjc,
+	    NVL((select max(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) zjwcjc,
 	    NVL(yh.mcsl,0) as mc,
 	    NVL((select gcyh.bywcmc from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcmc,
 	    NVL((select max(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and 
 	    to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) bnwcmc,
-	    NVL((select max(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(substr(yh.sjkgsj,0,7),'yyyy-mm')),0) zjwcmc,
+	    NVL((select max(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) zjwcmc,
 	    NVL(yh.ztz,0) as pfztz,NVL(yh.gys,0) as gys,
 	    NVL((select gcyh.wc_btz+gcyh.wc_stz+gcyh.wc_qttz from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) as bywcje,
 	    NVL((select sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and 
 	    to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) as bnwcje,
 	    NVL((select  sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.xmbm and 
-	    to_date(#{ybny},'yyyy-mm') >= to_date(substr(yh.sjkgsj,0,7),'yyyy-mm')),0) zjwcje,yh.kgzt as kgzt,yh.jgzt as jgzt
+	    to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) zjwcje,yh.kgzt as kgzt,yh.jgzt as jgzt
 	    from (select l.xmid jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqh)),',','、') as jsdd,
 	    replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
 	    replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as yhlc,

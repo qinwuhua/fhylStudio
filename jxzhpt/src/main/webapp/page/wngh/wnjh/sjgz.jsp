@@ -24,13 +24,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			
+			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			tsdq("tsdq");
 			setxmnf("xmnf");
-			showAllgj();
+			setTimeout("showAllgj()",'1700');
+// 			showAllgj();
 		});
 		
 		
@@ -106,7 +108,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" ></select></td>
         						<td>是否有历史记录：</td>
         						<td><select id="lsjl" style="width:127px;" class="easyui-combobox">

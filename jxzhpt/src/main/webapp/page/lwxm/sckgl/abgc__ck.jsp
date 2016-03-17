@@ -25,7 +25,7 @@ $(function(){
 	xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
 	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "公路等级");
+	loadBmbm2("bz", "行政等级");
 	loadBmbm2("bzls", "补助历史");
 	tsdq("tsdq");
 	if(getParam("t")=='1') {
@@ -220,7 +220,7 @@ text-decoration:none;
                               <td>技术等级：</td>
                               	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              	<td>公路等级：</td>
+                              	<td>行政等级：</td>
                               	<td><select id="bz" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>

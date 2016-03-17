@@ -22,12 +22,15 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	//xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "公路等级");
+	////loadBmbm2("lxjsdj", "技术等级");
+	//loadBmbm2("bz", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
@@ -213,10 +216,10 @@ text-decoration:none;
                               	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">
                               	</select></td>
                              <td>技术等级：</td>
-                              	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              	<td>公路等级：</td>
-                              	<td><select id="bz" style="width:104px"class="easyui-combobox">
+                              	<td>行政等级：</td>
+                              	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:104px"class="easyui-combobox">

@@ -162,7 +162,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jtl" ></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路等级：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gldj1" ></span></td>
 			</tr>
@@ -200,7 +200,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">符合交通量判别指标(0、否1、是)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jtlpbzb" ></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路等级：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gldj2" ></span>
 				</td>

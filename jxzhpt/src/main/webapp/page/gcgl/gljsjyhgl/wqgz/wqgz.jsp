@@ -27,7 +27,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2("kgzt","开工状态");
 			loadDist1("xzqh",$.cookie("dist")); 
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
@@ -88,7 +88,7 @@ a:active {
         						 <p style="margin: 1% 0% 1% 2%;">
 								<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
-								<span style=" vertical-align:middle;">公路等级：</span>
+								<span style=" vertical-align:middle;">行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
         						<span style=" vertical-align:middle;">特殊地区：</span>
 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:102px; vertical-align:middle;">

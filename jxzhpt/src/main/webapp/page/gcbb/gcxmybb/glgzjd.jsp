@@ -36,7 +36,7 @@
 			var myDate = new Date();
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('xzdj','公路等级');
+			loadBmbm2('xzdj','行政等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
 			for(var x=y;x>=y-10;x--){

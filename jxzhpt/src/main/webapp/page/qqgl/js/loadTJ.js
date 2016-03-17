@@ -252,10 +252,9 @@ function dclxshModule(str){
 	if(str!='xj'){
 		lsjl=$("#lsjl").combobox('getValue');
 	}
-	var tsdq=$("#tsdq").combobox('getText');
-	if(tsdq=='全部'){
-		tsdq="";
-	}
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var data="lxsh.xmlx="+str+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.sbzt="+sbzt+"&lxsh.lsjl="+lsjl+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd;
@@ -301,10 +300,9 @@ function dclxshModule(str){
 		}
 		var xmmc=$("#xmmc").val();
 		var xmnf=$("#xmnf").combobox('getValues').join(",");
-		var tsdq=$("#tsdq").combobox('getText');
-		if(tsdq=='全部'){
-			tsdq="";
-		}
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 		var jsdj=$("#jsdj").combobox('getValues').join(",");
 		var gldj=$("#gldj").combobox('getValues').join(",");
 		var lsjl="";

@@ -418,7 +418,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 						//设置非路网项目的查询条件，注释，因为没有统一补助标准
 //						Plan_flwbzbz flw=new Plan_flwbzbz();
 //						flw.setXmlx("工程改造路面升级");//建设项目类型
-//						flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
+//						flw.setGldj(lx.getLxbm().substring(0, 1));//行政等级
 //						flw.setJsdj(lx.getYjsdj());//技术等级
 //						flw.setTsdq(lx.getTsdqbm());
 //						Plan_flwbzbz flwResult=gcsjServer.queryBzzj(flw);

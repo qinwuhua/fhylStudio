@@ -38,10 +38,14 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	//afxmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级2");
-	loadBmbm2("gldj", "公路等级");
+// 	loadBmbm2("jsdj", "技术等级2");
+// 	loadBmbm2("gldj", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+// 	tsdq("tsdq");
+//xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
 	showAll();
 	
 });
@@ -69,7 +73,16 @@ function showAll(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
 		
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/aqsmfh/selectXmkaqsmfhXMK.do',
 		 queryParams : {
@@ -82,11 +95,11 @@ function showAll(){
 			 	'xmkaqsmfh.roadname' : $('#roadname').val(),
 			 	'xmkaqsmfh.jhnf':'',
 			 	'xmkaqsmfh.sbzt':$("#sbzt").combobox("getValue"),
-			 	'xmkaqsmfh.jsdj':$("#jsdj").combobox("getValue"),
+			 	'xmkaqsmfh.jsdj':jsdj,
 			 	'xmkaqsmfh.roadcode':$("#roadcode").val(),
-			 	'xmkaqsmfh.gldj':$("#gldj").combobox("getValue"),
+			 	'xmkaqsmfh.gldj':gldj,
 			 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
-			 	'xmkaqsmfh.tsdq':$("#tsdq").combobox("getText").replace("全部",'')
+			 	'xmkaqsmfh.tsdq':tsdq
 			},
 		    striped:true,
 		    pagination:true,
@@ -163,7 +176,7 @@ function showAll(){
 		        {field:'roadstart',title:'桩号起点',width:120,align:'center'},
 		        {field:'roadend',title:'桩号终点',width:120,align:'center'},
 		        {field:'jsdj',title:'技术等级',width:120,align:'center'},
-		        {field:'gldj',title:'公路等级',width:140,align:'center'},
+		        {field:'gldj',title:'行政等级',width:140,align:'center'},
 		        {field:'fangx',title:'方向',width:140,align:'center'},
 		        {field:'pcsj',title:'排查时间',width:140,align:'center'},
 		        {field:'ldfl',title:'路段分类',width:140,align:'center'},
@@ -177,7 +190,16 @@ function showAll(){
 	}
 	
 	function loadtj(){
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
 		
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -208,7 +230,7 @@ function showAll(){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.jhnf='+
-	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+$("#jsdj").combobox("getValue")+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+$("#gldj").combobox("getValue")+'&xmkaqsmfh.tsdq='+$("#tsdq").combobox("getText").replace("全部",'');
+	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+jsdj+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+gldj+'&xmkaqsmfh.tsdq='+tsdq;
 
 		$.ajax({
 			 type : "POST",
@@ -409,7 +431,7 @@ text-decoration:none;
 							  <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>技术等级：</td>
 							  <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
-							  <td>公路等级：</td>
+							  <td>行政等级：</td>
 							  <td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
 							  <td>路线名称：</td>
 							  <td><input type="text" id="roadname"  style="width:100px;" /></td>

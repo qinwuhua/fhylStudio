@@ -1610,3 +1610,381 @@ function gcglxmnf(id){
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
+
+function jsdjdx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'一级',value:'一级'});
+	years.push({text:'二级',value:'二级'});
+	years.push({text:'三级',value:'三级'});
+	years.push({text:'四级',value:'四级'});
+	years.push({text:'等外',value:'等外'});
+	years.push({text:'无路',value:'无路'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+function xzdjdx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'国道',value:'G'});
+	years.push({text:'省道',value:'S'});
+	years.push({text:'县道',value:'X'});
+	years.push({text:'乡道',value:'Y'});
+	years.push({text:'村道',value:'C'});
+	years.push({text:'专道',value:'Z'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+function kjfldx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'特大桥',value:'特大桥'});
+	years.push({text:'大桥',value:'大桥'});
+	years.push({text:'中桥',value:'中桥'});
+	years.push({text:'小桥',value:'小桥'});
+	
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+function tsdqdx(id){
+	$.ajax({
+		data:'xzqh='+$.cookie("dist"),
+		type:'post',
+		async:'false',
+		dataType:'json',
+		url:'/jxzhpt/xmjzbb/settsdq.do',
+		success:function(msg){
+			
+			//开始
+			var years=[];
+			years.push({text:'全部',value:''});
+			/*for(var i=0;i<=10;i++){
+				if(i==0)
+					first=myDate.getFullYear()-i;
+				years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+			}*/
+			for ( var i = 0; i < msg.length; i++) {
+				years.push({text:msg[i].text,value:msg[i].text});
+			}
+			
+			$('#'+id).combobox({
+			    data:years,
+			    valueField:'value',
+			    textField:'text',
+			    multiple:true,
+			    formatter:function(row){
+					var opts = $(this).combobox('options');
+					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				},
+				onSelect:function(record){
+					var opts = $(this).combobox('options');
+					if(record[opts.valueField]==""){
+						var values =new Array();
+						var datas = $('#' +id).combobox("getData");
+						$.each(datas,function(index,item){
+							values.push(item.value);
+							$('#id'+item.value).attr('checked', true);
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$('#id'+record.value).attr('checked', true);
+					}
+				},
+				onUnselect:function(record){
+					var opts = $(this).combobox('options');
+					var datas = $('#' +id).combobox("getData");
+					var values = $('#' +id).combobox("getValues");
+					$('#' +id).combobox("clear");
+					if(record[opts.valueField]!=""){
+						if(jQuery.inArray("",values)>=0){
+							values.splice(jQuery.inArray("",values),1);
+						}
+						$.each(datas,function(index,item){
+							if(jQuery.inArray(""+item.value,values)<0){
+								$('#id'+item.value).attr('checked', false);
+							}
+						});
+						$('#' +id).combobox("setValues",values);
+					}else{
+						$.each(datas,function(index,item){
+							$('#id'+item.value).attr('checked', false);
+						});
+					}
+				}
+			});
+			$('#'+id).combobox("setText",'全部');
+			//$('#id全部').attr('checked', true);
+		}
+		
+	});
+}
+
+function xmnfdx(id){
+	var myDate = new Date();
+	var years=[];
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	$('#id'+id+myDate.getFullYear()).attr('checked', true);
+	
+}
+function xmnfdx1(id){
+	var myDate = new Date();
+	var years=[];
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText","全部"+'');
+	//$('#id'+id+myDate.getFullYear()).attr('checked', true);
+	
+}

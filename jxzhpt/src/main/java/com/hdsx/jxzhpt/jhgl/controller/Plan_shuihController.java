@@ -346,7 +346,7 @@ public class Plan_shuihController extends BaseActionSupport {
 						//设置非路网项目的查询条件，注释：因为没有统一的补助标准
 //						Plan_flwbzbz flw=new Plan_flwbzbz();
 //						flw.setXmlx("水毁项目");//建设项目类型
-//						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
+//						flw.setGldj(shuih.getLxbm().substring(0, 1));//行政等级
 //						flw.setJsdj(shuih.getYjsdj());//技术等级
 //						flw.setTsdq(shuih.getTsdqbm());
 //						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);

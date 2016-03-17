@@ -25,15 +25,17 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			tsdqdx("tsdq");
 			if($.cookie("unit2").length!=7)
 			$("img[name='bxs']").attr('style','display:none');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			tsdq("tsdq");
+			//tsdq("tsdq");
 			xmnf("xmnf");
-			showAllxjshbg();
+			//showAllxjshbg();
+			setTimeout("showAllxjshbg()",'1700');
 		});
 		
 		function showAllxjshbg(){
@@ -65,10 +67,9 @@
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
 			
-			var tsdq=$("#tsdq").combobox('getText');
-			if(tsdq=='全部'){
-				tsdq="";
-			}
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			var jsdj=$("#jsdj").combobox('getValues').join(",");
 			var gldj=$("#gldj").combobox('getValues').join(",");
 			
@@ -246,7 +247,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
         						<td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>

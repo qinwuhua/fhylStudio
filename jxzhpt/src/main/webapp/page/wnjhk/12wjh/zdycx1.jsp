@@ -246,7 +246,7 @@ a{text-decoration:none;}
 				<td style="background-color: #ffffff;" align="left">
 					<select name="jsdj" id="jsdj" style="width:160px;" class="easyui-combobox"></select>
 				</td>
-				<td style="background-color: #ffffff;width:15%" align="right">公路等级：</td>
+				<td style="background-color: #ffffff;width:15%" align="right">行政等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select name="gldj" id="gldj" style="width:149px;" class="easyui-combobox"></select>
 				</td>

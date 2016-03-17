@@ -121,7 +121,7 @@
 										<option value="是">是</option>
 									</select>
         						</td>
-        						<td>&nbsp;公路等级：</td>
+        						<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         						<td>
         							&nbsp;<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

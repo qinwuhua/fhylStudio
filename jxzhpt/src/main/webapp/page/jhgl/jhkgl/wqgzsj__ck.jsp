@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 		//	loadBmbm2('jsdj','技术等级');
-			loadBmbm2('gldj','公路等级');
+			loadBmbm2('gldj','行政等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
@@ -238,7 +238,7 @@ text-decoration:none;
         						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 70px;"></select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>

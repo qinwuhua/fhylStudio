@@ -319,6 +319,26 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			System.out.println(gldj);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			List<Kxxyj> list=kxxyjServer.selectSjgzList(lxsh);
 			int count=kxxyjServer.selectSjgzListCount(lxsh);
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -364,6 +384,26 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			System.out.println(gldj);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			List<Kxxyj> list=kxxyjServer.selectSjgzkxbgList(lxsh);
 			int count=kxxyjServer.selectSjgzkxbgListCount(lxsh);
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -427,6 +467,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectLmgzkxList(lxsh);
 		int count=kxxyjServer.selectLmgzkxListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -472,6 +532,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectLmgzkxbgList(lxsh);
 		int count=kxxyjServer.selectLmgzkxbgListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -517,6 +597,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectXjkxList(lxsh);
 		int count=kxxyjServer.selectXjkxListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -562,6 +662,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectXjkxbgList(lxsh);
 		int count=kxxyjServer.selectXjkxbgListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -790,6 +910,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectSjgzkxshList(lxsh);
 		int count=kxxyjServer.selectSjgzkxshListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -828,6 +968,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectLmgzkxshList(lxsh);
 		int count=kxxyjServer.selectLmgzkxshListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -867,6 +1027,26 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
 		List<Kxxyj> list=kxxyjServer.selectXjkxshList(lxsh);
 		int count=kxxyjServer.selectXjkxshListCount(lxsh);
 		EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -1066,6 +1246,26 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			Lxsh l=null;
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
 			if("sjgz".equals(lxsh.getXmlx())){
 				l=kxxyjServer.showsjkxxTjxx(lxsh);
 			}

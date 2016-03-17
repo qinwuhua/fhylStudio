@@ -8,7 +8,14 @@ import java.util.Date;
  *
  */
 public class Sckwqgz implements Serializable{
+private String gldj;
 
+	public String getGldj() {
+	return gldj;
+}
+public void setGldj(String gldj) {
+	this.gldj = gldj;
+}
 	private static final long serialVersionUID = 1L;
 	
 	private String qxjk;

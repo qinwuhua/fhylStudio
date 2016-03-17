@@ -120,7 +120,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			${jsdj}
@@ -158,7 +158,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -196,7 +196,7 @@
 			and xmnf in (${xmnf})
 		</if>		
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -231,7 +231,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -271,7 +271,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -306,7 +306,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -549,7 +549,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -614,7 +614,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -755,7 +755,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -791,7 +791,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}
@@ -827,7 +827,7 @@
 			and xmnf in (${xmnf})
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">
 			and lsjl=#{lsjl}

@@ -25,13 +25,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			tsdq("tsdq");
+			
 			xmnf("xmnf");
-			showAll();
+			setTimeout("showAll()",'1700');
+			
 		});
 		function shangB(){
 			var rows=$('#datagrid').datagrid('getSelections');
@@ -217,7 +219,7 @@ text-decoration:none;
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>公路等级：</td>
+								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         						<td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>

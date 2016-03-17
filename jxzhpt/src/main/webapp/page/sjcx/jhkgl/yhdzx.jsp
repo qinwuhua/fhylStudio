@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('ddlGldj','行政等级');
 			tsdq('tsdq');
 			sbnf('sbnf');
 			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
@@ -135,7 +135,7 @@
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
-								<span>&nbsp;公路等级：</span>
+								<span>&nbsp;行政等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
 								</select>
 								<span>&nbsp;技术等级：</span>

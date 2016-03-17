@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
 			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")},
@@ -152,7 +152,7 @@
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
 								</select>
-								<span style="vertical-align:middle;">&nbsp;公路等级：</span>
+								<span style="vertical-align:middle;">&nbsp;行政等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:104px;vertical-align:middle;"></select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">

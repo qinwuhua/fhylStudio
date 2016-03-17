@@ -46,7 +46,7 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadBmbm3('jsdj','技术等级');
-			loadGldj('gldj','公路等级');
+			loadGldj('gldj','行政等级');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
@@ -339,7 +339,7 @@
 	       						<td><select id="xzqh" style="width:124px;"></select></td>
 	       						<td>&nbsp;技术等级:</td>
 	       						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-	       						<td>&nbsp;公路等级：</td>
+	       						<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 	       					</tr>
 	       					<tr height="32">

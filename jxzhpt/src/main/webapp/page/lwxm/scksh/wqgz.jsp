@@ -20,12 +20,13 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
@@ -188,6 +189,9 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                              </tr>
                               <tr height="32">
+                              <td>行政等级：</td>
+                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
+                              	</select></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />

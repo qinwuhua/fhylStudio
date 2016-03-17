@@ -120,7 +120,7 @@ function userPanduan(unit2){
 	}
 }
 /**
- * 加载公路等级
+ * 加载行政等级
  * @param id
  * @param name
  * @returns

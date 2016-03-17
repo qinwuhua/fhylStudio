@@ -375,7 +375,7 @@
 		       							<option value="否">否</option>
 	       							</select>
        							</td>
-       							<td>&nbsp;公路等级：</td>
+       							<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
        						</tr>
        						<tr>

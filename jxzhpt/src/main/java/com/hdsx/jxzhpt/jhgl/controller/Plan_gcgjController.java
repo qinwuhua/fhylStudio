@@ -240,7 +240,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 			Plan_flwbzbz flw=new Plan_flwbzbz();
 			flw.setXmlx(xmlx);//建设项目类型
 			System.out.println(lx.getLxbm()+"   "+lx.getYjsdj()+"    "+lx.getTsdqbm());
-			flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
+			flw.setGldj(lx.getLxbm().substring(0, 1));//行政等级
 			flw.setJsdj(lx.getYjsdj());//技术等级
 			flw.setTsdq(lx.getTsdqbm());
 			Integer bzzj=null;
@@ -355,7 +355,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 						//设置非路网项目的查询条件，注释，因为没有统一标准
 //						Plan_flwbzbz flw=new Plan_flwbzbz();
 //						flw.setXmlx("工程改造路面改建");//建设项目类型
-//						flw.setGldj(gcgj.getLxbm().substring(0, 1));//公路等级
+//						flw.setGldj(gcgj.getLxbm().substring(0, 1));//行政等级
 //						flw.setJsdj(gcgj.getYjsdj());//技术等级
 //						flw.setTsdq(gcgj.getTsdqbm());
 //						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);

@@ -172,6 +172,66 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}else{
 			sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
 		}
+		if(sckabgc.getTsdq().length()>0){
+			String[] tsdqs=sckabgc.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setTsdq(tsdq);
+		}
+		if(sckabgc.getGldj().length()>0){
+			String[] tsdqs=sckabgc.getGldj().split(",");
+			String tsdq="and substr(lxbm,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i]+"'";
+				else
+					tsdq+=",'"+tsdqs[i]+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setGldj(tsdq);
+		}
+		if(sckabgc.getJsdj().length()>0){
+			String[] tsdqs=sckabgc.getJsdj().split(",");
+			String tsdq="and substr(lxjsdj,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+				else
+					tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setJsdj(tsdq);
+		}
 		List<Sckabgc> list = abgcServer.selectSckabgc(sckabgc);
 		int count = abgcServer.selectAbgcCount(sckabgc);
 		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
@@ -222,6 +282,66 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
 		}else{
 			sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+		}
+		if(sckabgc.getTsdq().length()>0){
+			String[] tsdqs=sckabgc.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setTsdq(tsdq);
+		}
+		if(sckabgc.getGldj().length()>0){
+			String[] tsdqs=sckabgc.getGldj().split(",");
+			String tsdq="and substr(lxbm,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i]+"'";
+				else
+					tsdq+=",'"+tsdqs[i]+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setGldj(tsdq);
+		}
+		if(sckabgc.getJsdj().length()>0){
+			String[] tsdqs=sckabgc.getJsdj().split(",");
+			String tsdq="and substr(lxjsdj,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+				else
+					tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			sckabgc.setJsdj(tsdq);
 		}
 		List<Sckabgc> list = abgcServer.selectSckShabgc(sckabgc);
 		int count = abgcServer.selectAbgcShCount(sckabgc);
@@ -283,6 +403,66 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			}else{
 				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
 			}
+			if(sckabgc.getTsdq().length()>0){
+				String[] tsdqs=sckabgc.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setTsdq(tsdq);
+			}
+			if(sckabgc.getGldj().length()>0){
+				String[] tsdqs=sckabgc.getGldj().split(",");
+				String tsdq="and substr(lxbm,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setGldj(tsdq);
+			}
+			if(sckabgc.getJsdj().length()>0){
+				String[] tsdqs=sckabgc.getJsdj().split(",");
+				String tsdq="and substr(lxjsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setJsdj(tsdq);
+			}
 			JsonUtils.write(abgcServer.selSckAbgcCount(sckabgc), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -299,6 +479,66 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 				sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
 			}else{
 				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+			}
+			if(sckabgc.getTsdq().length()>0){
+				String[] tsdqs=sckabgc.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setTsdq(tsdq);
+			}
+			if(sckabgc.getGldj().length()>0){
+				String[] tsdqs=sckabgc.getGldj().split(",");
+				String tsdq="and substr(lxbm,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setGldj(tsdq);
+			}
+			if(sckabgc.getJsdj().length()>0){
+				String[] tsdqs=sckabgc.getJsdj().split(",");
+				String tsdq="and substr(lxjsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setJsdj(tsdq);
 			}
 			JsonUtils.write(abgcServer.selSckAbgcShCount(sckabgc), getresponse().getWriter());
 		} catch (Exception e) {

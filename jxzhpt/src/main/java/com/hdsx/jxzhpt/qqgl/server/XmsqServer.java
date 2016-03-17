@@ -196,7 +196,7 @@ public interface XmsqServer {
 	 */
 	public Map<String, String> queryLjSh(Xmsq xmsq);
 	/**
-	 * 根据公路等级查询对应的路线
+	 * 根据行政等级查询对应的路线
 	 * @param level 公路行政登记
 	 * @param xzqhdm 行政区划
 	 * @return

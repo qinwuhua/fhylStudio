@@ -20,7 +20,7 @@
  			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id 
  				where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_abgc.tsdq like '%'||#{tsdq}||'%'
+ 				${tsdq}
  				</if>
  			) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
@@ -34,7 +34,7 @@
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -42,8 +42,8 @@
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -51,8 +51,8 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -60,10 +60,11 @@
   <select id="selectSckAbgcCount" parameterType="sckabgc" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_abgc.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1
+ 				${tsdq}
+ 				</if>
+ 			) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null ">
+  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -73,7 +74,7 @@
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -81,8 +82,8 @@
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -90,8 +91,8 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
  <select id="selectSckabgcById" parameterType="sckabgc" resultType="sckabgc">
@@ -124,7 +125,7 @@
  	select * from (
  		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_abgc.tsdq like '%'||#{tsdq}||'%'
+ 				${tsdq}
  				</if>) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -138,7 +139,7 @@
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -146,8 +147,8 @@
  		<if test="shzt!='' and shzt!= null ">
  			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -155,17 +156,20 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
   <select id="selectSckAbgcShCount" parameterType="sckabgc" resultType="int">
- 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
- 		 where sck_sbthcd=7
+ 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 				${tsdq}
+ 				</if>) t 
+ 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null ">
+  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -175,7 +179,7 @@
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -183,8 +187,8 @@
  		<if test="shzt!='' and shzt!= null ">
  			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -192,8 +196,8 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
  <select id="onceSckAbgc" parameterType="sckabgc" resultType="int">
@@ -331,10 +335,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  <select id="selSckAbgcCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_abgc.tsdq like '%'||#{tsdq}||'%'
- 				</if>) t where 1=1
+ 				${tsdq}
+ 				</if>
+ 			) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null ">
+  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -344,7 +349,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -352,8 +357,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -361,18 +366,18 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
  <select id="selSckAbgcShCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_abgc.tsdq like '%'||#{tsdq}||'%'
- 				</if>)
- 		 where sck_sbthcd=7
+ 				${tsdq}
+ 				</if>) t 
+ 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null ">
+  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
 		<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -382,7 +387,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and scxmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf in (${xmnf})
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -390,8 +395,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="shzt!='' and shzt!= null ">
  			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -399,8 +404,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
- 		<if test="bz!='' and bz!= null ">
- 			and sck_lxbm like #{bz}||'%'
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
  <!--  列入计划-->

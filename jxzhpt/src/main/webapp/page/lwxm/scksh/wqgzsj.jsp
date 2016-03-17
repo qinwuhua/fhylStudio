@@ -33,14 +33,20 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
-	rkxmnf("rksj"); 
-	loadBmbm2("gldj", "公路等级");
+	kjfldx('akjfl');
+	xmnfdx("xmnf"); 
+	xmnfdx1("rksj"); 
+	//jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
+	//xmnf("xmnf"); 
+	//rkxmnf("rksj"); 
+	//loadBmbm2("gldj", "行政等级");
 	//loadBmbm2("shzt", "审核状态");
 	//loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
+	//loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
@@ -270,6 +276,22 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
+	
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var rksj=$("#rksj").combobox("getValues").join(",");
+	if(rksj.substr(0,1)==',')
+		rksj=rksj.substr(1,rksj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	var akjfl=$("#akjfl").combobox("getValues").join(",");
+	if(akjfl.substr(0,1)==',')
+		akjfl=akjfl.substr(1,akjfl.length);
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 $("#grid").datagrid({    
 	 url:'/jxzhpt/wqgzsj/selectSckShwqgz.do',
 	 queryParams : {
@@ -281,17 +303,17 @@ $("#grid").datagrid({
 		 	'xzqhdm':xzqhstr,
 		 	'lxmc':$('#lxmc').val(),
 		 	'qlmc':$("#qlmc").val(),
-		 	'xmnf':$("#xmnf").combobox("getValue"),
-		 	'jckwqgzsj.xmrksj':$("#rksj").combobox("getValue"),
+		 	'xmnf':xmnf,
+		 	'jckwqgzsj.xmrksj':rksj,
 		 	'shzt':$("#shzt").combobox("getValue"),
 		 	'jsdj':$("#jsdj").combobox("getValue"),
-		 	'akjfl':$("#akjfl").combobox("getValue"),
+		 	'akjfl':akjfl,
 		 	'bzls':$("#bzls").combobox("getValue"),
 		 	'lxbm': $('#lxbm').val(),
 		 	'qlbh':$("#qlbh").val(),
-		 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
+		 	'tsdq':tsdq,
 		 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
-		 	'jckwqgzsj.gldj':$("#gldj").combobox("getValue"),
+		 	'jckwqgzsj.gldj':gldj,
 		 	'jckwqgzsj.jsxz':$("#jsxz").combobox("getValue")
 		},
 	    striped:true,
@@ -357,7 +379,7 @@ $("#grid").datagrid({
 		        }},
 		        {field:'scthdj',title:'通航等级',width:140,align:'center'},
 		        {field:'qljc',title:'桥梁基础',width:140,align:'center'},
-		        {field:'ydgldj',title:'引道公路等级',width:140,align:'center'},
+		        {field:'ydgldj',title:'引道行政等级',width:140,align:'center'},
 		        {field:'sjsd',title:'设计速度(km/h)',width:140,align:'center'},
 		        {field:'ztz',title:'总投资',width:140,align:'center'},
 		        {field:'nsqbbz',title:'拟申请部（省）级补助资金（万元）',width:140,align:'center'}
@@ -368,9 +390,9 @@ $("#grid").datagrid({
 					sbthcd=7;
 				}else  sbthcd=$.cookie("unit2").length;
 			var data="sck_sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-			"&xmnf="+$("#xmnf").combobox("getValue")+"&shzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.gldj='+$("#gldj").combobox("getValue")+
-			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+
-			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+$("#rksj").combobox("getValue");
+			"&xmnf="+xmnf+"&shzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.gldj='+gldj+'&tsdq='+tsdq+
+			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&bzls="+
+			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+rksj;
 			$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/selectSckShwqgzCount.do",
@@ -400,14 +422,29 @@ function xgSckwqgz(index){
 }
 
 function dcExcel(){
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var rksj=$("#rksj").combobox("getValues").join(",");
+	if(rksj.substr(0,1)==',')
+		rksj=rksj.substr(1,rksj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	var akjfl=$("#akjfl").combobox("getValues").join(",");
+	if(akjfl.substr(0,1)==',')
+		akjfl=akjfl.substr(1,akjfl.length);
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
 	var sbthcd;
  	if($.cookie("unit2")=='______36'){
  		sbthcd=7;
  	}else  sbthcd=$.cookie("unit2").length;
 	var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+
- 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
- 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.xmrksj='+$("#rksj").combobox("getValue");
+	"&xmnf="+xmnf+"&shzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.gldj='+gldj+'&tsdq='+tsdq+
+	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&bzls="+
+	$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+rksj;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckshExcel.do?'+data;
 	 });
@@ -502,7 +539,7 @@ text-decoration:none;
 									<td><select id="rksj" style="width:70px">
 	                              	</select>
 	                              </td>	
-	                               <td>公路等级：</td>
+	                               <td>行政等级：</td>
 						    		<td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
 						  
 									</tr> 
