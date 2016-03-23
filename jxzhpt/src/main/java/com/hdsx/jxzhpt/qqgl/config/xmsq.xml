@@ -248,8 +248,9 @@
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
 				</if>
-				<if test="xmsq.ghlxbh !='' and xmsq.ghlxbh != null ">
-					and ghlxbh like '%'||#{xmsq.ghlxbh}||'%'
+				
+				<if test="xmsq.ghlxbh!=null and xmsq.ghlxbh!=''">
+					and x.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{xmsq.ghlxbh}||'%')
 				</if>
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
 					and lxmc like '%'||#{xmsq.lxmc}||'%'
@@ -297,8 +298,8 @@
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%5___')
 				</if>
-				<if test="xmsq.ghlxbh !='' and xmsq.ghlxbh != null ">
-					and ghlxbh like '%'||#{xmsq.ghlxbh}||'%'
+				<if test="xmsq.ghlxbh!=null and xmsq.ghlxbh!=''">
+					and x.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{xmsq.ghlxbh}||'%')
 				</if>
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
 					and lxmc like '%'||#{xmsq.lxmc}||'%'
@@ -341,8 +342,8 @@
 		<if test="ylxbh!=null and ylxbh!=''">
 			and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 		</if>
-		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -380,8 +381,8 @@
 		<if test="ylxbh!=null and ylxbh!=''">
 			and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
 		</if>
-		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -548,12 +549,12 @@
 			<if test="ylxbh!=null and ylxbh!=''">
 				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 			</if>
-			<if test="ghlxbh !='' and ghlxbh != null ">
-					and ghlxbh like '%'||#{ghlxbh}||'%'
-				</if>
-				<if test="lxmc !='' and lxmc != null ">
-					and lxmc like '%'||#{lxmc}||'%'
-				</if>
+			<if test="ghlxbh!=null and ghlxbh!=''">
+				and xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+			</if>
+			<if test="lxmc !='' and lxmc != null ">
+				and lxmc like '%'||#{lxmc}||'%'
+			</if>
 		)
 	</select>
 	<select id="queryLjSh" parameterType="xmsq" resultType="java.util.Map">
@@ -573,12 +574,12 @@
 			<if test="ylxbh!=null and ylxbh!=''">
 				and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
 			</if>
-			<if test="ghlxbh !='' and ghlxbh != null ">
-					and ghlxbh like '%'||#{ghlxbh}||'%'
-				</if>
-				<if test="lxmc !='' and lxmc != null ">
-					and lxmc like '%'||#{lxmc}||'%'
-				</if>
+			<if test="ghlxbh!=null and ghlxbh!=''">
+				and xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+			</if>
+			<if test="lxmc !='' and lxmc != null ">
+				and lxmc like '%'||#{lxmc}||'%'
+			</if>
 		)
 	</select>
 	<select id="queryLxFromGpsroadByLevel" parameterType="java.util.Map" resultType="java.util.Map">

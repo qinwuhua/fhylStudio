@@ -1016,6 +1016,7 @@ public class WnjhController extends BaseActionSupport{
 			et.add(new Excel_tilte("计划完工年",1,1,15,15));
 			et.add(new Excel_tilte("投资(万元)",1,1,16,16));
 			et.add(new Excel_tilte("补助测算(万元)",1,1,17,17));
+			et.add(new Excel_tilte("备注",1,1,18,18));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);

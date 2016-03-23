@@ -19,7 +19,7 @@
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -48,7 +48,7 @@
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -79,7 +79,7 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
+					${cbsj.tsdq}
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
@@ -110,7 +110,7 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
+					${cbsj.tsdq}
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
@@ -140,7 +140,7 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%3___')
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and l.xjsdj = #{cbsj.xjsdj}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and c.jsjsdj=#{cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -168,7 +168,7 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx_tz lx where ${cbsj.ylxbh} and xmid like '%3___')
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and l.xjsdj = #{cbsj.xjsdj}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and c.jsjsdj=#{cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -198,7 +198,7 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
+					${cbsj.tsdq}
 				</if>
 				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
@@ -228,7 +228,7 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
+					${cbsj.tsdq}
 				</if>
 				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
@@ -259,7 +259,7 @@
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -286,7 +286,7 @@
 				</if>
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
-				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.tsdq like '%'||#{cbsj.tsdq}||'%'</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -313,7 +313,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -335,7 +335,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -359,7 +359,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -381,7 +381,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -405,7 +405,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -427,7 +427,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -450,7 +450,7 @@
 		<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
-		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
@@ -470,7 +470,7 @@
 		<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
-		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -492,7 +492,7 @@
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
-		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
@@ -512,7 +512,7 @@
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
-		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">and l.TSDQ like '%'||#{cbsj.tsdq}||'%' </if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -780,7 +780,7 @@
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
-				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<!-- <if test="sbzt>=0">
@@ -806,7 +806,7 @@
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
-				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -834,7 +834,7 @@
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
-				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
@@ -858,7 +858,7 @@
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
-				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
@@ -881,7 +881,7 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%3___' and jdbs='2')
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-				<if test="tsdq!=null and tsdq!=''">and l.tsdq like '%'||#{tsdq}||'%'</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
@@ -931,7 +931,7 @@
 		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
-		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
@@ -951,7 +951,7 @@
 		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
-		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="tzxz !=null and tzxz !=''">and c.tzxz like '%'||#{tzxz}||'%'</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
@@ -972,7 +972,7 @@
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
-		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
@@ -991,7 +991,7 @@
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
-		<if test="tsdq!=null and tsdq!=''">and l.TSDQ like '%'||#{tsdq}||'%' </if>
+		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="tzxz !=null and tzxz !=''">and c.tzxz like '%'||#{tzxz}||'%'</if>
@@ -999,7 +999,7 @@
 	
 	<select id="loadsjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
-		left join (select xmid,jhlc lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on c.xmbm=lx.xmid
+		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1012,7 +1012,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -1035,7 +1035,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -1047,7 +1047,7 @@
 	
 	<select id="loadlmcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
-		left join (select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on c.xmbm=lx.xmid
+		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1060,7 +1060,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -1083,7 +1083,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>
@@ -1095,7 +1095,7 @@
 	
 	<select id="loadxjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-		left join (select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='1' ) lx on c.xmbm=lx.xmid
+		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1108,7 +1108,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
@@ -1118,7 +1118,7 @@
 	</select>
 	<select id="loadxjcbsjbgTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_xj_tz c left join lxsh_xj l on c.xmbm=l.xmbm
-		left join (select xmid,lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx_tz where jdbs='1' ) lx on c.xmbm=lx.xmid
+		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx_tz where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1131,7 +1131,7 @@
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
-			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{cbsj.tsdq})
+			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 		<if test="cbsj.tzxz !=null and cbsj.tzxz !=''">and c.tzxz like '%'||#{cbsj.tzxz}||'%'</if>

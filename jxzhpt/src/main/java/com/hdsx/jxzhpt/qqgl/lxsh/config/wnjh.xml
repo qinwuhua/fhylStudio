@@ -135,7 +135,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -173,7 +173,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -211,7 +211,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -246,7 +246,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -286,7 +286,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -321,7 +321,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -537,7 +537,7 @@
 	</select>
 	
 	<select id="querywnjhSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'改建' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17 from WNJH_SJGZ t left join
+		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'改建' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17,t.bz v_18 from WNJH_SJGZ t left join
 		(select * from wnjh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -564,14 +564,14 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 	</select>
 	<select id="querywnjhLmgz" parameterType="lxsh" resultType="elist">
-		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'路面改造' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17 from WNJH_LMGZ t left join
+		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'路面改造' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17,t.bz v_18 from WNJH_LMGZ t left join
 		(select * from wnjh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -595,14 +595,14 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 	</select>
 	<select id="querywnjhXj" parameterType="lxsh" resultType="elist">
-		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'新建' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17 from WNJH_XJ t,
+		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,lx.qdmc v_5,lx.zdmc v_6,'新建' v_7,lx.gydw v_8,lx.xzqh v_9,t.tsdq v_10,lx.jsjsdj v_11,lx.xjsdj v_12,t.xmnf v_13,t.jhkgn v_14,t.jhwgn v_15,t.tz v_16,lx.bzcs v_17,t.bz v_18 from WNJH_XJ t,
 		(select * from wnjh_lx where 1=1 and sffirst='1') lx  where 1=1 and t.xmbm=lx.xmid(+)
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -629,7 +629,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -770,7 +770,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -806,7 +806,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
@@ -842,7 +842,7 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
-			and ghlxbh like '%'||#{ghlxbh}||'%'
+			and xmbm in (select distinct xmid from wnjh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'

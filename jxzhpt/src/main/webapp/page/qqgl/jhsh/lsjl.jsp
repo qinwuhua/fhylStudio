@@ -20,6 +20,7 @@
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx.do',
 				queryParams: {xmbm: parent.YMLib.Var.xmbm},
+				height:$(window).height()-1,
 				fitColumns:true,
 				columns:[[
 					{field:'id',title:'项目类型',width:100,align:'center',
@@ -81,7 +82,7 @@
 		}
 	</script>
 </head>
-<body>
-	<table id="grid" width="99%" border="0" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0"></table>
+<body style="overflow: auto;">
+	<table id="grid" height="99%" width="99%" border="0" style="margin-top:1px;margin-left:1px;overflow: auto;" cellspacing="0" cellpadding="0"></table>
 </body>
 </html>

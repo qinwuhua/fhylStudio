@@ -93,7 +93,7 @@ function menuQx(_location,_flag){
          </div>
 </div>
 <div id="foot">
-	<div class="foot"><p>监制单位：江西省公路管理局&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京恒达时讯科技开发有限责任公司<a onclick="clearSession()" href="javascript:void(0)" style="position:absolute;right:20px;color:#f2f8fe;">退出系统</a></p>
+	<div class="foot"><p>监制单位：江西省公路管理局&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京恒达时讯科技股份有限公司<a onclick="clearSession()" href="javascript:void(0)" style="position:absolute;right:20px;color:#f2f8fe;">退出系统</a></p>
 	</div>
 </div>
 </body>

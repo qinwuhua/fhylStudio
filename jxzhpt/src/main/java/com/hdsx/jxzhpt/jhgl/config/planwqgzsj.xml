@@ -11,10 +11,10 @@
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
+ 				<if test="pddj!='' and pddj!= null ">
+				and pddj = #{pddj}
 				</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -25,23 +25,32 @@
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="jsdj != '' and jsdj != null ">
+			${jsdj}
+		</if>
+		<if test="gldj != '' and gldj != null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
  		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm like (#{lxbm})||'%'
-		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -55,18 +64,17 @@
 	</select>
 	<select id="selectwqjhkglcount" parameterType="planwqgzsj" resultType="int">
 		select count(*) from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-					and pddj = #{jsdj}
-				</if>
-				<if test="qlbh!='' and qlbh!= null ">
-					and qlbh like '%'||(#{qlbh})||'%'
+ 				<if test="pddj!='' and pddj!= null ">
+				and pddj = #{pddj}
 				</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -77,21 +85,32 @@
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="jsdj != '' and jsdj != null ">
+			${jsdj}
+		</if>
+		<if test="gldj != '' and gldj != null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
  		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm like (#{lxbm})||'%'
-		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -102,18 +121,17 @@
 	</select>
 		<select id="loadwqjhkglCount" parameterType="planwqgzsj" resultType="planwqgzsj">
 		select count(*) sl,sum(pfztz) pfztz,decode(sfylrbwqk,'是',decode(sum(jhsybzje),null,0,sum(jhsybzje))) jhsybzje,sum(jhsydfzcje) jhsydfzcje,decode(sfylrbwqk,'否',decode(sum(shengbz),null,0,sum(shengbz))) shengbz from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-					and pddj = #{jsdj}
-				</if>
-				<if test="qlbh!='' and qlbh!= null ">
-					and qlbh like '%'||(#{qlbh})||'%'
+ 				<if test="pddj!='' and pddj!= null ">
+				and pddj = #{pddj}
 				</if>) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -124,21 +142,32 @@
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
 		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="jsdj != '' and jsdj != null ">
+			${jsdj}
+		</if>
+		<if test="gldj != '' and gldj != null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
  		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm like (#{lxbm})||'%'
-		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -172,7 +201,7 @@
 		<if test="akjfl!='' and akjfl!= null ">
 			and qllx = #{akjfl}
 		</if>
-		<if test="jsxz!='' and jsxz!= null ">
+		<if test="jsxz!='' anand jhjsxz null ">
 			and jsxz = #{jsxz}
 		</if>
 	</select>
@@ -243,11 +272,12 @@
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-			and pddj = #{jsdj}
-		</if>) t where 1=1 and gydwbm like '1%'
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -260,14 +290,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="qlbh!='' and qlbh!= null ">
-			and qlbh like '%'||(#{qlbh})||'%'
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -276,7 +309,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -295,20 +328,20 @@
 	</select>
 	<select id="selectwqjhksbcount" parameterType="planwqgzsj" resultType="int">
 		select count(*) from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
-			and t.jh_sbthcd>=#{sbthcd} 
-	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!='' and qlbh!= null ">
-				and qlbh like '%'||(#{qlbh})||'%'
-			</if>) t where 1=1 and gydwbm like '1%'
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+					and t.jh_sbthcd>=#{sbthcd} 
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					${tsdq}
+ 				</if>
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -321,9 +354,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -332,7 +373,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -348,19 +389,20 @@
 	</select>
 	<select id="loadwqjhksbCount" parameterType="planwqgzsj" resultType="planwqgzsj">
 		select count(*) sl,sum(pfztz) pfztz,decode(sfylrbwqk,'是',decode(sum(jhsybzje),null,0,sum(jhsybzje))) jhsybzje,sum(jhsydfzcje) jhsydfzcje,decode(sfylrbwqk,'否',decode(sum(shengbz),null,0,sum(shengbz))) shengbz,decode(sum(xdzj),null,0,sum(xdzj)) xdzj from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,zj.xdzj from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id left join plan_zjxd zj on t.id=zj.xmid where 1=1  and t.jh_sbthcd>=#{sbthcd} 
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,z.xdzj, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t left join plan_zjxd z on t.id=z.xmid join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+					and t.jh_sbthcd>=#{sbthcd} 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-					and pddj = #{jsdj}
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
 				</if>
-				<if test="qlbh!='' and qlbh!= null ">
-					and qlbh like '%'||(#{qlbh})||'%'
-				</if>) t where 1=1 and gydwbm like '1%'
+		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -373,9 +415,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -384,7 +434,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -416,11 +466,12 @@
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-			and pddj = #{jsdj}
-		</if>) t where 1=1 and gydwbm like '1%'
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+				) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -436,8 +487,17 @@
 		<if test="qlbh!=null and qlbh!=''">
 			and qlbh like '%'||#{qlbh}||'%'
 		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -446,7 +506,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -471,26 +531,25 @@
 	</select>
 	<select id="selectwqjhksbcount1" parameterType="planwqgzsj" resultType="int">
 		select count(*) from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
-			<if test="sbthcd>=4 ">
-			and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
-			</if>
-			<if test="sbthcd &lt; 4 ">
-			and t.jh_sbthcd>=#{sbthcd} 
-			</if>
-	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!=null and qlbh!=''">
-				and qlbh like '%'||#{qlbh}||'%'
-			</if>
-		) t where 1=1 and gydwbm like '1%'
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 		<if test="sbthcd>=4 ">
+ 					and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
+ 				</if>
+		  		<if test="sbthcd &lt; 4 ">
+					and t.jh_sbthcd>=#{sbthcd} 
+				</if>
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					${tsdq}
+ 				</if>
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+				) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -503,8 +562,20 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
+		<if test="qlbh!=null and qlbh!=''">
+			and qlbh like '%'||#{qlbh}||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -513,7 +584,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -535,25 +606,25 @@
 	</select>
 	<select id="loadwqjhksbCount11" parameterType="planwqgzsj" resultType="planwqgzsj">
 		select count(*) sl,sum(pfztz) pfztz,decode(sfylrbwqk,'是',decode(sum(jhsybzje),null,0,sum(jhsybzje))) jhsybzje,sum(jhsydfzcje) jhsydfzcje,decode(sfylrbwqk,'否',decode(sum(shengbz),null,0,sum(shengbz))) shengbz,decode(sum(xdzj),null,0,sum(xdzj)) xdzj from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,zj.xdzj from plan_wqgz_tz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id left join plan_zjxd zj on t.id=zj.xmid where 1=1
-			<if test="sbthcd>=4 ">
-			and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
-			</if>
-			<if test="sbthcd &lt; 4 ">
-			and t.jh_sbthcd>=#{sbthcd} 
-			</if>
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,z.xdzj,  
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t left join plan_zjxd z on t.id=z.xmid join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 		<if test="sbthcd>=4 ">
+ 					and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
+ 				</if>
+		  		<if test="sbthcd &lt; 4 ">
+					and t.jh_sbthcd>=#{sbthcd} 
+				</if>
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-					and pddj = #{jsdj}
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
 				</if>
-				<if test="qlbh!='' and qlbh!= null ">
-					and qlbh like '%'||(#{qlbh})||'%'
-				</if>) t where 1=1 and gydwbm like '1%'
+				) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -566,11 +637,20 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz = #{tzxz}
+		<if test="qlbh!=null and qlbh!=''">
+			and qlbh like '%'||#{qlbh}||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -579,7 +659,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -603,25 +683,25 @@
 	
 	<select id="loadwqjhksbCount1" parameterType="planwqgzsj" resultType="planwqgzsj">
 		select count(*) sl,sum(pfztz) pfztz,decode(sfylrbwqk,'是',decode(sum(jhsybzje),null,0,sum(jhsybzje))) jhsybzje,sum(jhsydfzcje) jhsydfzcje,decode(sfylrbwqk,'否',decode(sum(shengbz),null,0,sum(shengbz))) shengbz,decode(sum(xdzj),null,0,sum(xdzj)) xdzj from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,zj.xdzj from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id left join plan_zjxd zj on t.id=zj.xmid where 1=1
-			<if test="sbthcd>=4 ">
-			and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
-			</if>
-			<if test="sbthcd &lt; 4 ">
-			and t.jh_sbthcd>=#{sbthcd} 
-			</if>
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,z.xdzj,  
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t left join plan_zjxd z on t.id=z.xmid join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 		<if test="sbthcd>=4 ">
+ 					and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
+ 				</if>
+		  		<if test="sbthcd &lt; 4 ">
+					and t.jh_sbthcd>=#{sbthcd} 
+				</if>
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-					and pddj = #{jsdj}
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
 				</if>
-				<if test="qlbh!='' and qlbh!= null ">
-					and qlbh like '%'||(#{qlbh})||'%'
-				</if>) t where 1=1 and gydwbm like '1%'
+				) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -634,9 +714,20 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="qlbh!=null and qlbh!=''">
+			and qlbh like '%'||#{qlbh}||'%'
+		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -645,7 +736,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -672,7 +763,7 @@
 		select rownum num ,t.*,decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')) sbzt2 from
 		 (select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
 		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
-		 from plan_wqgz_tz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
 		 		<if test="sbthcd>=4 ">
  					and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
  				</if>
@@ -683,11 +774,90 @@
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 					${tsdq}
  				</if>
- 				<if test="jsdj!='' and jsdj!= null ">
-			and pddj = #{jsdj}
-		</if>) t where 1=1 and gydwbm like '1%'
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+				) t where 1=1 and gydwbm like '1%'
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="qlbh!=null and qlbh!=''">
+			and qlbh like '%'||#{qlbh}||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf in (${sbnf})
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="jhzt !='' and jhzt != null ">
+			<if test="jhzt == '未审核'">
+			and spzt='0' and jh_sbthcd='4'
+			</if>
+			<if test="jhzt == '已审核'">
+			and (spzt='1' or shyj is not null)
+			</if>
+			<if test="jhzt == '审核不通过'">
+			and shyj != '同意'
+			</if>
+			<if test="jhzt == '审核通过'">
+			and spzt='1'
+			</if>
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')),spzt desc
+	</select>
+	<select id="selectwqjhksbcount11" parameterType="planwqgzsj" resultType="int">
+		select count(*) from 
+		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 		<if test="sbthcd>=4 ">
+ 					and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
+ 				</if>
+		  		<if test="sbthcd &lt; 4 ">
+					and t.jh_sbthcd>=#{sbthcd} 
+				</if>
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					${tsdq}
+ 				</if>
+ 				<if test="pddj!='' and pddj!= null ">
+					and pddj = #{pddj}
+				</if>
+				) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -703,11 +873,17 @@
 		<if test="qlbh!=null and qlbh!=''">
 			and qlbh like '%'||#{qlbh}||'%'
 		</if>
-		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz = #{tzxz}
+		<if test="akjfl!='' and akjfl!= null ">
+			${akjfl}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -716,80 +892,22 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
 		</if>
-		<if test="shzt!='' and shzt!= null ">
-			<if test="shzt == '未审核'">
+		<if test="jhzt !='' and jhzt != null ">
+			<if test="jhzt == '未审核'">
 			and spzt='0' and jh_sbthcd='4'
 			</if>
-			<if test="shzt == '已审核'">
-			and spzt='1'
+			<if test="jhzt == '已审核'">
+			and (spzt='1' or shyj is not null)
 			</if>
-		</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and
-		t1.num>(#{page}-1)*#{rows}
-		order by decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')),spzt desc
-	</select>
-	<select id="selectwqjhksbcount11" parameterType="planwqgzsj" resultType="int">
-		select count(*) from 
-		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz_tz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
-			<if test="sbthcd>=4 ">
-			and (t.jh_sbthcd>=#{sbthcd} or shyj is not null) 
+			<if test="jhzt == '审核不通过'">
+			and shyj != '同意'
 			</if>
-			<if test="sbthcd &lt; 4 ">
-			and t.jh_sbthcd>=#{sbthcd} 
-			</if>
-	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!=null and qlbh!=''">
-				and qlbh like '%'||#{qlbh}||'%'
-			</if>
-		) t where 1=1 and gydwbm like '1%'
-		<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqhdm!='' and xzqhdm!= null ">
-			${xzqhdm}
-		</if>
-		<if test="lxmc!='' and lxmc!= null ">
-			and lxmc like '%'||(#{lxmc})||'%'
-		</if>
-		<if test="qlmc!='' and qlmc!= null ">
-			and qlmc like '%'||(#{qlmc})||'%'
-		</if>
-		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
-		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz = #{tzxz}
-		</if>
-		<if test="sfylsjl!='' and sfylsjl!= null ">
- 			and sfylsjl like #{sfylsjl}||'%'
- 		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm like (#{lxbm})||'%'
-		</if>
-		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
-		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
-		</if>
-		<if test="shzt!='' and shzt!= null ">
-			<if test="shzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
-			</if>
-			<if test="shzt == '已审核'">
+			<if test="jhzt == '审核通过'">
 			and spzt='1'
 			</if>
 		</if>
@@ -824,7 +942,7 @@
 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and xm.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -838,11 +956,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="pddj!='' and pddj!= null ">
 			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -851,7 +975,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -875,46 +999,47 @@
 			and pl.jh_sbthcd>=#{sbthcd} 
 			</if>
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-				and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!='' and qlbh!= null ">
-				and qlbh like '%'||(#{qlbh})||'%'
-			</if> 
-				
-			<if test="gydw!='' and gydw!= null ">
-				${gydw}
-			</if>
-			<if test="xzqhdm!='' and xzqhdm!= null ">
-				${xzqhdm}
-			</if>
-			<if test="lxmc!='' and lxmc!= null ">
-				and lxmc like '%'||(#{lxmc})||'%'
-			</if>
-			<if test="qlmc!='' and qlmc!= null ">
-				and qlmc like '%'||(#{qlmc})||'%'
-			</if>
-		
-			<if test="akjfl!='' and akjfl!= null ">
-				and akjfl like #{akjfl}||'%'
-			</if>
-			<if test="sfylsjl!='' and sfylsjl!= null ">
-	 			and sfylsjl like #{sfylsjl}||'%'
-	 		</if>
-	 		<if test="lxbm!='' and lxbm!= null ">
-				and lxbm like (#{lxbm})||'%'
-			</if>
-			<if test="sbnf!='' and sbnf!= null ">
-				and sbnf like '%'||(#{sbnf})||'%'
-			</if>
-			<if test="sbzt!='' and sbzt!= null ">
-				and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
-			</if>
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="pddj!='' and pddj!= null ">
+			and pddj = #{jsdj}
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf in (${sbnf})
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
 			<if test="shzt!='' and shzt!= null ">
 				<if test="shzt == '未审核'">
 				and spzt='0' and jh_sbthcd='4'
@@ -942,46 +1067,48 @@
 			and pl.jh_sbthcd>=#{sbthcd} 
 			</if>
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-				and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!='' and qlbh!= null ">
-				and qlbh like '%'||(#{qlbh})||'%'
-			</if> 
-				
-			<if test="gydw!='' and gydw!= null ">
-				${gydw}
-			</if>
-			<if test="xzqhdm!='' and xzqhdm!= null ">
-				${xzqhdm}
-			</if>
-			<if test="lxmc!='' and lxmc!= null ">
-				and lxmc like '%'||(#{lxmc})||'%'
-			</if>
-			<if test="qlmc!='' and qlmc!= null ">
-				and qlmc like '%'||(#{qlmc})||'%'
-			</if>
-		
-			<if test="akjfl!='' and akjfl!= null ">
-				and akjfl like #{akjfl}||'%'
-			</if>
-			<if test="sfylsjl!='' and sfylsjl!= null ">
-	 			and sfylsjl like #{sfylsjl}||'%'
-	 		</if>
-	 		<if test="lxbm!='' and lxbm!= null ">
-				and lxbm like (#{lxbm})||'%'
-			</if>
-			<if test="sbnf!='' and sbnf!= null ">
-				and sbnf like '%'||(#{sbnf})||'%'
-			</if>
-			<if test="sbzt!='' and sbzt!= null ">
-				and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
-			</if>
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="pddj!='' and pddj!= null ">
+			and pddj = #{jsdj}
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf in (${sbnf})
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+
 			<if test="shzt!='' and shzt!= null ">
 				<if test="shzt == '未审核'">
 				and spzt='0' and jh_sbthcd='4'
@@ -1010,71 +1137,10 @@
 			and pl.jh_sbthcd>=#{sbthcd} 
 			</if>
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-				and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-			</if>
-			<if test="tsdq!='' and tsdq!= null ">
-				and xm.tsdq like '%'||#{tsdq}||'%'
-			</if>
-			<if test="jsdj!='' and jsdj!= null ">
-				and pddj = #{jsdj}
-			</if>
-			<if test="qlbh!='' and qlbh!= null ">
-				and qlbh like '%'||(#{qlbh})||'%'
-			</if> 
-				
-			<if test="gydw!='' and gydw!= null ">
-				${gydw}
-			</if>
-			<if test="xzqhdm!='' and xzqhdm!= null ">
-				${xzqhdm}
-			</if>
-			<if test="lxmc!='' and lxmc!= null ">
-				and lxmc like '%'||(#{lxmc})||'%'
-			</if>
-			<if test="qlmc!='' and qlmc!= null ">
-				and qlmc like '%'||(#{qlmc})||'%'
-			</if>
-		
-			<if test="akjfl!='' and akjfl!= null ">
-				and akjfl like #{akjfl}||'%'
-			</if>
-			<if test="sfylsjl!='' and sfylsjl!= null ">
-	 			and sfylsjl like #{sfylsjl}||'%'
-	 		</if>
-	 		<if test="lxbm!='' and lxbm!= null ">
-				and lxbm like (#{lxbm})||'%'
-			</if>
-			<if test="sbnf!='' and sbnf!= null ">
-				and sbnf like '%'||(#{sbnf})||'%'
-			</if>
-			<if test="sbzt!='' and sbzt!= null ">
-				and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
-			</if>
-			<if test="shzt!='' and shzt!= null ">
-				<if test="shzt == '未审核'">
-				and spzt='0' and jh_sbthcd='4'
-				</if>
-				<if test="shzt == '已审核'">
-				and spzt='1'
-				</if>
-			</if>
-		) t 
-	
-	</select>
-	
-	<select id="dcwqgzsjjhshExcel6" parameterType="planwqgzsj" resultType="elist">
-	select 
-	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-	pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-	pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-	pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
-	from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
-	where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
-		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and xm.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -1088,14 +1154,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz=#{tzxz}
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<if test="pddj!='' and pddj!= null ">
 			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -1104,7 +1173,70 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+
+		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '未审核'">
+			and spzt='0' and jh_sbthcd='4'
+			</if>
+			<if test="shzt == '已审核'">
+			and spzt='1'
+			</if>
+		</if>
+		) t 
+	
+	</select>
+	
+	<select id="dcwqgzsjjhshExcel6" parameterType="planwqgzsj" resultType="elist">
+	select 
+	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
+	pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
+	pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
+	pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
+	where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
+		</if>
+		<if test="pddj!='' and pddj!= null ">
+			and pddj = #{jsdj}
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -1125,10 +1257,10 @@
 		from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and xm.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -1142,14 +1274,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz=#{tzxz}
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<if test="pddj!='' and pddj!= null ">
 			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -1158,7 +1293,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
@@ -1180,10 +1315,10 @@
 		from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-			and pl.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
-			and xm.tsdq like '%'||#{tsdq}||'%'
+			${tsdq}
 		</if>
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -1197,14 +1332,17 @@
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
-		<if test="tzxz!='' and tzxz!= null ">
-			and tzxz=#{tzxz}
+		<if test="jsxz!='' and jsxz!= null ">
+			and jhjsxz like '%'||(#{jsxz})||'%'
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
+		<if test="pddj!='' and pddj!= null ">
 			and pddj = #{jsdj}
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
 		</if>
 		<if test="sfylsjl!='' and sfylsjl!= null ">
  			and sfylsjl like #{sfylsjl}||'%'
@@ -1213,7 +1351,7 @@
 			and lxbm like (#{lxbm})||'%'
 		</if>
 		<if test="sbnf!='' and sbnf!= null ">
-			and sbnf like '%'||(#{sbnf})||'%'
+			and sbnf in (${sbnf})
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}

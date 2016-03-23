@@ -24,17 +24,41 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			tsdq('ddlTSDQ');
-			sbnf("sbnf");
-			var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+// 			loadBmbm2('ddlPDDJ','技术等级');
+// 			tsdq('ddlTSDQ');
+// 			sbnf("sbnf");
+			xmnfdx("sbnf"); 
+			jsdjdx('jsdj');
+			xzdjdx('gldj');
+			kjfldx('akjfl');
+			tsdqdx('tsdq');
+			 /*var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
-			wqxm_zjxd(jh,lx);
+			wqxm_zjxd(jh,lx); */
+			searchWqgz();
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#jsdj").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={jhnf:xmnf,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+
+			
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -55,15 +79,7 @@
 			if($('#txtqlbm').val()!=''){
 				lx.qlbh=$('#txtqlbm').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
-			}
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlAKJFL').combobox('getText')!="全部"){
-				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
-			}
+			
 			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
 		}
@@ -71,8 +87,12 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={'lx.gydwbm':lx.gydwbm,'lx.akjfl':lx.akjfl,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,
-					'jh.jh_sbthcd':jh.jh_sbthcd,'jh.sbnf':jh.sbnf,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt};
+			
+			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,
+					'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+					"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+					"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq};
+
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/querySumWqgz.do',
@@ -101,11 +121,26 @@
 			var gydwdm=$.cookie("unit");
 			var gydwbm=getgydw("gydw");
 			var xzqhdm=getxzqhdm('xzqh');
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#jsdj").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
-					"&lx.lxmc="+$('#txtRoad').val()+"&lx.akjfl="+$('#ddlAKJFL').combobox('getValue')+
-					"&lx.qlmc="+$('#txtBridge').val()+"&lx.tsdq="+$('#ddlTSDQ').combo("getValue")+
-					"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
-					"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&jh.sfylrbwqk=是";
+					"&lx.lxmc="+$('#txtRoad').val()+"&lx.lxbm="+$('#lxbm').val()+"&lx.akjfl="+akjfl+
+					"&lx.qlmc="+$('#txtBridge').val()+"&lx.tsdq="+tsdq+
+					"&lx.jsdj="+jsdj+"&lx.gldj="+gldj+
+					"&jh.sbnf="+xmnf+"&jh.sfylrbwqk=是";
 			if($('#ddlSHZT').combo("getValue")=="未开工"){
 				param+="&jh.kgzt=0";
 			}else if($('#ddlSHZT').combo("getValue")=="在建"){
@@ -129,54 +164,73 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:200px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:200px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        						<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:60px;">
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+        						<td>行政区划：</td>
+        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
+        						<td>桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width:75px;"></select></td>
+        						<td>建设状态：</td>
+        						
+        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+									<option selected="selected" value="">全部</option>
+									<option value="未开工">未开工</option>
+									<option value="在建">在建</option>
+									<option value="竣工">竣工</option>
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="ddlTSDQ" class="easyui-combobox" id="tsdq" style="width:80px;">
+								</select></td>
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" class="easyui-combobox" id="jsdj" style="width:65px;">
+								</select></td>
+								<td>行政等级：</td>
+								<td><select name="ddlGldj" class="easyui-combobox" id="gldj" style="width:94px;">
+								</select></td>
+								<td>跨径分类：</td>
+        						<td><select name="ddlAKJFL" class="easyui-combobox" id="akjfl" style="width:94px;">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
-								</select>
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span style=" vertical-align:middle;">桥梁名称：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:120px;vertical-align:middle;" />
-        						<span style="vertical-align:middle;">上报年份：</span>
-        						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
-        						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px;vertical-align:middle;">
-									<option selected="selected" value="">全部</option>
-									<option value="未开工">未开工</option>
-									<option value="在建">在建</option>
-									<option value="竣工">竣工</option>
-								</select>
-								<span style="vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;vertical-align:middle;">
-								</select>
-								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;"></select>
-								<span>&nbsp;是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:60px;">
+								</select></td>
+								<td>建设性质：</td>
+        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+									<option value=""selected>全部</option>
+									<option value="加固改造">加固改造</option>
+									<option value="拆除重建">拆除重建</option>
+<!-- 									<option value="大修">大修</option> -->
+									</select></td>	
+        					</tr>
+							<tr height="32">
+                              <td colspan="12">
+                              
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select>
-								
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        					<span>桥梁编码：</span>
+								<span>桥梁编码：</span>
         						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
 								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('wqgz_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-        					</p>
+							</td>
+                                </tr>
+                                </table>
+        					
         				</div>
         			</fieldset>
         		</td>

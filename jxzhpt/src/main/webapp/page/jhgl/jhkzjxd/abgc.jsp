@@ -25,32 +25,38 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','行政等级');
-			tsdq('ddlTSDQ');
-			sbnf("sbnf");
-			var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			xmnfdx("sbnf"); 
+			jsdjdx('ddlPDDJ');
+			xzdjdx('ddlGldj');
+			tsdqdx('ddlTSDQ');
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jh={jhnf:xmnf,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			abgcxm_zjxd(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:$('#sbnf').combobox('getValue'),jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#ddlPDDJ").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#ddlGldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var tsdq=$("#ddlTSDQ").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
-			}
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
-			if($('#ddlTSDQ').combobox('getValue')!=''){
-				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			if($('#lxbm').val()!=""){
+				lx.lxmc=$('#lxbm').val();
 			}
 			if($('#ddlSHZT').combobox('getValue')=='未开工'){
 				jh.kgzt="0";
@@ -69,8 +75,8 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
-					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+			var param={"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
+					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.gldj":lx.gldj,"lx.lxjsdj":lx.lxjsdj,
 					"lx.lxbm":lx.lxbm,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd};
 			$.ajax({
 				type:'post',
@@ -100,10 +106,22 @@
 			var gydwbm=getgydw("gydw");
 			var xzqhdm=getxzqhdm('xzqh');
 			var gydwdm=$.cookie("unit");
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#ddlPDDJ").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#ddlGldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var tsdq=$("#ddlTSDQ").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
-					"&lx.lxmc="+$('#txtRoad').val()+"&lx.lxjsdj="+$("#ddlPDDJ").combo("getValue")+
-					"&lx.lxbm="+$("#ddlGldj").combo("getValue")+"&lx.tsdq="+$('#ddlTSDQ').combo("getValue")+
-					"&jh.jhnf="+$('#sbnf').combobox('getValue');
+					"&lx.lxmc="+$('#txtRoad').val()+"&lx.lxjsdj="+jsdj+
+					"&lx.lxbm="+$("#lxbm").val()+"&lx.tsdq="+tsdq+"&lx.gldj="+gldj+
+					"&jh.jhnf="+xmnf;
 			if($('#ddlSHZT').combo("getValue")=="未开工"){
 				param+="&jh.kgzt=0";
 			}else if($('#ddlSHZT').combo("getValue")=="在建"){
@@ -134,6 +152,8 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
+        						<span>&nbsp;路线编码：</span>
+        						<input name="txtRoad" type="text" id="lxbm" style="width:100px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<span style=" vertical-align:middle;">上报年份：</span>

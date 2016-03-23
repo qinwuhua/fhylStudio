@@ -31,30 +31,48 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','行政等级');
-			tsdq('ddlTSDQ');
-			sbnf("sbnf");
-			var jh={xmlx:'ab',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			//loadBmbm2('ddlPDDJ','技术等级');
+			//loadBmbm2('ddlGldj','行政等级');
+			//tsdq('ddlTSDQ');
+			//sbnf("sbnf");
+			xmnfdx("sbnf"); 
+			jsdjdx('ddlPDDJ');
+			xzdjdx('ddlGldj');
+			tsdqdx('ddlTSDQ');
+			/* var jh={xmlx:'ab',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
-			}
-			querySumAbgc(jh,lx);
-			abgcxm(jh,lx);
+			} */
+			//querySumAbgc(jh,lx);
+			//abgcxm(jh,lx);
+			searchAbgc();
 		});
 		function searchAbgc(){
-			var jh={xmlx:'ab',jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#ddlPDDJ").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#ddlGldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var tsdq=$("#ddlTSDQ").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={xmlx:'ab',jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+			if($('#lxbm').val()!=""){
+				lx.lxbm=$('#lxbm').val();
 			}
+			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
@@ -88,15 +106,6 @@
 				jh.spzt=null;
 			}
 			
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
-			if($('#ddlTSDQ').combobox('getValue')!=''){
-				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
-			}
 			querySumAbgc(jh,lx);
 			abgcxm(jh,lx);
 		}
@@ -135,6 +144,8 @@ text-decoration:none;
 								</select>
         						<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:100px;" /></td>
         					</tr>
         					<tr height="32">
         						<td>上报年份：</td>

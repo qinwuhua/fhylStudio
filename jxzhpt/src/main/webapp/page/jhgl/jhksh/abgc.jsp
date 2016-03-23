@@ -24,34 +24,37 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','行政等级');
-			tsdq('ddlTSDQ');
-			var myDate = new Date();
-			sbnf("sbnf");
-			$('#sbnf').combobox("setValue",myDate.getFullYear());
-			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
-			//if(roleName()=="省级"){
-				if(getParam("t")=='1'){
-					jh.jh_sbthcd=4;
-					jh.sbzt=null;
-				}
-				querySumAbgc(jh,lx);
-				abgcxm_sh(jh,lx);
+			xmnfdx("sbnf"); 
+			jsdjdx('ddlPDDJ');
+			xzdjdx('ddlGldj');
+			tsdqdx('ddlTSDQ');
+			searchAbgc();
 			/*}else{
 				alert("只有省级用户才能查看审核中的计划信息");
 			}*/
 		});
 		function searchAbgc(){
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#ddlPDDJ").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#ddlGldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var tsdq=$("#ddlTSDQ").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+			if($('#lxbm').val()!=""){
+				lx.lxbm=$('#lxbm').val();
 			}
+			
 			if($('#ddlSHZT').combobox('getValue')=="未审核"){
 				jh.jh_sbthcd=4;
 			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
@@ -60,16 +63,8 @@
 				jh.sbzt='1';
 				jh.jh_sbthcd=4;
 			}
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
-			if($('#ddlTSDQ').combobox('getValue')!=''){
-				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
-			}
-			queryZjqf($('#sbnf').combobox("getValue"));
+			
+			//queryZjqf($('#sbnf').combobox("getValue"));
 			querySumAbgc(jh,lx);
 			abgcxm_sh(jh,lx);
 		}
@@ -189,6 +184,8 @@
         						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
         						<td>路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:100px;" /></td>
         					</tr>
         					<tr height="32">
         						<td>上报年份：</td>

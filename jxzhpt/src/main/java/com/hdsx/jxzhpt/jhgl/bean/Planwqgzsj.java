@@ -11,7 +11,14 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
  *
  */
 public class Planwqgzsj implements Serializable{
+	private String gldj;
 
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String qlmc;

@@ -25,22 +25,58 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','行政等级');
-			tsdq('tsdq');
-			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
-			querySumWqgz(jh,lx);
+			//loadBmbm2('ddlPDDJ','技术等级');
+			//loadBmbm2('ddlGldj','行政等级');
+			//tsdq('tsdq');
+			xmnfdx("sbnf"); 
+			jsdjdx('jsdj');
+			xzdjdx('gldj');
+			kjfldx('akjfl');
+			tsdqdx('tsdq');
+			/* var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			
+			
+			var jh={jhnf:xmnf,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
+			 */
 			//querySumWqgz(jh,lx);
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}
-			wqxm(jh,lx);
+			//querySumWqgz(jh,lx);
+			//wqxm(jh,lx);
+			searchWqgz();
 		});
 		function tjwqgz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#jsdj").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={jhnf:xmnf,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -50,9 +86,7 @@
 			if($('#txtqlbm').val()!=''){
 				lx.qlbh=$('#txtqlbm').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
-			}
+			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
@@ -81,21 +115,29 @@
 					jh.jh_sbthcd=6;
 				}
 			}
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
-			if($('#ddlAKJFL').combobox('getText')!="全部"){
-				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
-			}
+			
 			//wqxm(jh,lx);
 			querySumWqgz(jh,lx);
 		}
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,qlbh:null,akjfl:null};
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#jsdj").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			
+			var jh={jhnf:xmnf,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -105,9 +147,7 @@
 			if($('#txtqlbm').val()!=''){
 				lx.qlbh=$('#txtqlbm').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
-			}
+			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
@@ -136,15 +176,7 @@
 					jh.jh_sbthcd=6;
 				}
 			}
-			if($('#ddlPDDJ').combobox('getText')!="全部"){
-				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
-			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
-			if($('#ddlAKJFL').combobox('getText')!="全部"){
-				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
-			}
+			
 			wqxm(jh,lx);
 			querySumWqgz(jh,lx);
 		}
@@ -184,6 +216,9 @@ text-decoration:none;
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
         						<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+        						
         					</tr>
         					<tr height="32">
         						<td>上报年份：</td>
@@ -198,28 +233,35 @@ text-decoration:none;
 								</select></td>
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
+									<!-- <option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
 									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
+									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option> -->
 								</select></td>
 								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox">
 								</select></td>
 								<td>行政等级：</td>
-								<td><select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
+								<td><select name="gldj" id="gldj" style="width:94px;" class="easyui-combobox">
 								</select></td>
 								<td>跨径分类：</td>
-        						<td><select name="ddlAKJFL" id="ddlAKJFL" style="width:94px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
+        						<td><select name="akjfl" id="akjfl" style="width:94px;" class="easyui-combobox">
+									<!-- <option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option>
+									<option value="小桥">小桥</option> -->
 								</select></td>
+								<td>建设性质：</td>
+        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+									<option value=""selected>全部</option>
+									<option value="加固改造">加固改造</option>
+									<option value="拆除重建">拆除重建</option>
+<!-- 									<option value="大修">大修</option> -->
+									</select></td>	
         					</tr>
 								<tr height="32">
                               <td colspan="10">
