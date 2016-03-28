@@ -563,4 +563,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<Master> userlogin(String master) {
 		return queryList("userlogin", master);
 	}
+
+	@Override
+	public List<TreeNode> createMenu(Unit unit) {
+		return queryList("createMenu", unit);
+	}
 }

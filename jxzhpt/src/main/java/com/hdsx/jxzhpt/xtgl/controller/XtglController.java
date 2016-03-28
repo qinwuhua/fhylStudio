@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -65,6 +66,14 @@ public class XtglController extends BaseActionSupport{
 	private String gmgid;
 	private String id;
 	private String yzm;
+	private String parent;
+	
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
 	/**
 	 * 重置密碼
 	 */
@@ -1166,6 +1175,57 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void createMenu(){
+		try {
+			Unit unit=new Unit();
+			Cookie[] cookies = getRequest().getCookies();
+			String id = "";
+			for (Cookie c : cookies) {
+				/*if ("qx3".equals(c.getName()))
+					id += c.getValue().replaceAll("%2C", ",") + ",";
+				if ("qx4".equals(c.getName()))
+					id += c.getValue().replaceAll("%2C", ",") + ",";
+				if ("qx5".equals(c.getName()))
+					id += c.getValue().replaceAll("%2C", ",") + ",";
+				if ("qx6".equals(c.getName()))
+					id += c.getValue().replaceAll("%2C", ",") + "";*/
+				
+				if("qx3".equals(c.getName())||"qx4".equals(c.getName())||"qx5".equals(c.getName())||"qx6".equals(c.getName()))
+					id += c.getValue().replaceAll("%2C", ",") + ",";
+				else continue;
+			}
+			if(",".equals(id.substring(id.length()-1))){
+				id=id.substring(0,id.length()-1);
+			}
+			unit.setParent(parent);
+			unit.setId(id);
+			List<TreeNode> list = xtglServer.createMenu(unit);
+			
+			TreeNode root = returnRoot(list,list.get(0));
+			List<TreeNode> children = root.getChildren();			
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	private TreeNode returnRoot(List<TreeNode> list, TreeNode zzjgTree){
+
+		for(TreeNode temp : list){
+			
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					zzjgTree.setState("closed");
+					zzjgTree.getChildren().add(temp);
+					returnRoot(list,temp);
+				}
+			}
+		}
+		return zzjgTree;
 	}
 	
 }

@@ -1205,6 +1205,42 @@ function createMenux(_xtype, _json) {// 左侧菜单生成
 	}
 }
 
+
+function createMenuqwh(_xtype, _json) {// 左侧菜单生成
+	switch (_xtype) {
+	case 'LeftMenu':
+		var id = typeof _json.id != 'undefined' ? _json.id : null;
+		var title = typeof _json.title != 'undefined' ? _json.title : null;
+		var imgSrc = typeof _json.imgSrc != 'undefined' ? _json.imgSrc : null;
+		var renderTo = typeof _json.renderTo != 'undefined' ? _json.renderTo
+				: null;
+		var href = typeof _json.href != 'undefined' ? _json.href : null;
+		// var fun = typeof _json.click != 'undefined' ? _json.click : null;
+		
+		var html = "<div id='"+ id+ "' style='float:left;width:180px;heigth:52px;margin:5px 0 0 15px;'>" +
+		'<ul id="sitemap"><li><a href="#">First link</a><ul><li><a href="#">First link</a><ul><li><a href="#">&#x725B;&#x56FE;&#x5E93; link</a></li></ul></li></ul></li></ul>'+"</div>";
+		
+		
+		$("#" + renderTo).append(html);
+		// $("#"+id).click(fun);
+		id = null;
+		title = null;
+		imgSrc = null;
+		renderTo = null;
+		html = null;
+		// fun = null;
+		delete id;
+		delete title;
+		delete imgSrc;
+		delete renderTo;
+		delete html;
+		// delete fun;
+		break;
+	default:
+		alert("错误的类型");
+
+	}
+}
 /*
  * 创建不带图片的菜单
  */
@@ -1987,4 +2023,18 @@ function xmnfdx1(id){
 	$('#'+id).combobox("setText","全部"+'');
 	//$('#id'+id+myDate.getFullYear()).attr('checked', true);
 	
+}
+
+function createMenunew(id){
+	$("#tree"+id).tree({
+        //data : treeData,
+		url:'/jxzhpt/xtgl/createMenu.do?parent='+id,
+        lines : true,
+        onClick : function (node) {
+            if (node.attributes.length!=0) {
+                alert(node.attributes);
+                javascript:window.open(node.attributes,"rightContent");
+            }
+        }
+    });
 }

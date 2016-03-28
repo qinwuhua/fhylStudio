@@ -16,13 +16,13 @@ $(function(){
 	$("#index_user").html($.cookie("truename"));
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10,#Menu_11").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10,#Menu_11").removeClass('now');
 		$("#" + this.id).addClass('now');
 	});
     
     $("#Menu_1").click(function () {
-        $("#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c11").hide();
         $("#c1").show();
         if (c1){
             $("#c1f").attr("src", "page/dzdt/dzdt.jsp");
@@ -30,7 +30,7 @@ $(function(){
     });
 
     $("#Menu_2").click(function () {
-        $("#c1,#c9,#c8,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c11").hide();
         $("#c2").show();
         if (c2) {
             $("#c2f").attr("src", "page/lwxm/Menu.jsp");
@@ -38,7 +38,7 @@ $(function(){
 
     });
     $("#Menu_9").click(function () {
-        $("#c1,#c8,#c2,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c8,#c2,#c3,#c4,#c5,#c6,#c7,#c11").hide();
         $("#c9").show();
         if (c2) {
             $("#c9f").attr("src", "page/wngh/Menu.jsp");
@@ -47,7 +47,7 @@ $(function(){
     });
     
     $("#Menu_8").click(function () {
-        $("#c1,#c2,#c9,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c9,#c3,#c4,#c5,#c6,#c7,#c11").hide();
         $("#c8").show();
         if (c2) {
             $("#c8f").attr("src", "page/qqgl/Menu.jsp");
@@ -57,7 +57,7 @@ $(function(){
     
     //计划管理
     $("#Menu_3").click(function () {
-        $("#c1,#c2,#c9,#c8,#c4,#c5,#c6,#c7,#c10").hide();
+        $("#c1,#c2,#c9,#c8,#c4,#c5,#c6,#c7,#c10,#c11").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/jhgl/Menu.jsp");
@@ -65,7 +65,7 @@ $(function(){
     });
 
     $("#Menu_4").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c5,#c6,#c7,#c10").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c5,#c6,#c7,#c10,#c11").hide();
         $("#c4").show();
         if (c4) {
             $("#c4f").attr("src", "page/gcgl/Menu.jsp");
@@ -73,7 +73,7 @@ $(function(){
     });
 
     $("#Menu_5").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c6,#c7,#c10").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c6,#c7,#c10,#c11").hide();
         $("#c5").show();
         if (c5) {
             $("#c5f").attr("src", "page/gcbb/Menu.jsp");
@@ -83,7 +83,7 @@ $(function(){
 
    
     $("#Menu_6").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c7,#c10").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c7,#c10,#c11").hide();
         $("#c6").show();
         if (c6) {
             $("#c6f").attr("src", "page/sjcx/Menu.jsp");
@@ -92,7 +92,7 @@ $(function(){
     
 
     $("#Menu_7").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c10").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c10,#c11").hide();
         $("#c7").show();
         if (c7) {
             $("#c7f").attr("src", "page/tjfx/Menu.jsp");
@@ -100,10 +100,18 @@ $(function(){
     });
     
     $("#Menu_10").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c11").hide();
         $("#c10").show();
         if (c7) {
             $("#c10f").attr("src", "page/wnjhk/Menu.jsp");
+        }
+    });
+    
+    $("#Menu_11").click(function () {
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c10").hide();
+        $("#c11").show();
+        if (c7) {
+            $("#c11f").attr("src", "page/wnxmk/Menu.jsp");
         }
     });
 });
@@ -129,6 +137,7 @@ function menuQx(){
 				case "6": url="page/sjcx/Menu.jsp";break;
 				case "7": url="page/tjfx/Menu.jsp";break;
 				case "10": url="page/wnjhk/Menu.jsp";break;
+				case "11": url="page/wnxmk/Menu.jsp";break;
 				}
 				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
 				$("#c1f").attr("src", url);

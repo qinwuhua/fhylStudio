@@ -168,4 +168,6 @@ public interface XtglServer {
 	HashMap<String, String> loginCheck(HashMap hm);
 
 	List<Master> userlogin(String master);
+
+	List<TreeNode> createMenu(Unit unit);
 }

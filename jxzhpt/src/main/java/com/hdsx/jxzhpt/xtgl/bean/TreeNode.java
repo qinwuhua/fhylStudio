@@ -25,8 +25,22 @@ public class TreeNode implements Serializable {
 	private String parent;
 	private String bmid;
 	private String checked;
+	private String attributes;
+	private String url;
 	
 	
+	public String getAttributes() {
+		return attributes;
+	}
+	public void setAttributes(String attributes) {
+		this.attributes = attributes;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getChecked() {
 		return checked;
 	}

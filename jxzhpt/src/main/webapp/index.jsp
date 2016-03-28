@@ -35,6 +35,8 @@ function selQxByUser(){
 				var qx2= new Array();
 				var qx3= new Array();
 				var qx4= new Array();
+				var qx5= new Array();
+				var qx6= new Array();
 				for(var i=0;i<msg.length;i++){
 					//第一层
 					if(msg[i].id.length==4) qx1.push(msg[i].id);
@@ -44,15 +46,21 @@ function selQxByUser(){
 					if(msg[i].id.length==8) qx3. push(msg[i].id);
 					//第4层
 					if(msg[i].id.length==10) qx4. push(msg[i].id);
+					if(msg[i].id.length==12) qx5. push(msg[i].id);
+					if(msg[i].id.length==14) qx6. push(msg[i].id);
 				}
 				YMLib.Var.qx1=qx1;
 				YMLib.Var.qx2=qx2;
 				YMLib.Var.qx3=qx3;
 				YMLib.Var.qx4=qx4;
+				YMLib.Var.qx5=qx5;
+				YMLib.Var.qx6=qx6;
 				//$.cookie("qx1",qx1, {expires: 1});
 	     		$.cookie("qx2",qx2, {expires: 1});
 	     		$.cookie("qx3",qx3, {expires: 1});
 	     		$.cookie("qx4",qx4, {expires: 1});
+	     		$.cookie("qx5",qx5, {expires: 1});
+	     		$.cookie("qx6",qx6, {expires: 1});
 	     	 }
 		 }
 	});

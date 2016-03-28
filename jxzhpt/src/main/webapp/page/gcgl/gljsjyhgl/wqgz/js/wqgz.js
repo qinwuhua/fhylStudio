@@ -59,7 +59,7 @@ function ykaigong(index){
 				if(msg){
 					YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
 				}else{
-					alert("工程量都要是100%才能完工");
+					alert("工程量都要是100%才能完工或总完成资金小于批复总投资");
 				}
 			}
 		});
