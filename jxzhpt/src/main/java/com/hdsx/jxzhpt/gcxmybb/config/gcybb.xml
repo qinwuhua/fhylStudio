@@ -3126,4 +3126,230 @@
 			
 			order by xzqhdm,v_1,v_2
 	</select>
+	
+	<select id="getWqgzjsqk" parameterType="gcglwqgz" resultType="elist">
+		select '1' v_0,'合计' v_1,sum(v_17) v_17,sum(v_18) v_18,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_30) v_30,sum(v_31) v_31,sum(v_33) v_33,sum(v_34) v_34,
+		 sum(v_35) v_35,sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_44) v_44,sum(v_45) v_45,decode(sum(v_44),0,0,round(((sum(v_45)/sum(v_44))*100),2)) v_46,
+		 sum(v_47) v_47,sum(v_48) v_48,decode(sum(v_47),0,0,null,0,round(((nvl(sum(v_48),0)/sum(v_47))*100),2)) v_49,sum(v_50) v_50,sum(v_51) v_51,decode(sum(v_50),0,0,null,0,round(((nvl(sum(v_51),0)/sum(v_50))*100),2)) v_52 ,sum(trim(v_53)) v_53,count(*)
+		 from (
+		select  
+		 sc.scxsq v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,xm.xzqhdm v_6,xm.xzqhmc v_7,
+		 sc.sck_lxbm v_8,xm.lxmc v_9,sc.sck_qlzxzh v_10,sc.sck_qlbh v_11,xm.qlmc v_12,jh.xdsj v_13,jh.jhkgsj v_14,jh.jhwgsj v_15,jh.yjjgsj v_16,jh.jhqlqc v_17,jh.jhqlqk v_18,
+		 sc.jsxz v_19,jh.pfwh v_20,round(nvl(jh.pfztz,0),2) v_21,decode(jh.sfylrbwqk,'是',round(nvl(jh.jhsybzje,0),2)，0) v_22,decode(jh.sfylrbwqk,'否',round(nvl(jh.shengbz,0),2)，0) v_23,jh.sjkgsj v_24,jh.sjwgsj v_25,jh.jsdw v_26,jh.sjdw v_27,jh.sgdw v_28,
+		 jh.jldw v_29,jh.jhqlqc v_30,jh.jhqlqk v_31,(case when jh.sjwgsj like '%'||to_char(sysdate,'yyyy')||'%' then '是' else '否' end) v_32,
+		 (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_33,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_34,
+		 decode(jh.kgzt,'0',1,0) v_35,decode(jh.kgzt,'0',jh.jhqlqc,0) v_36,nvl((gc.zytz+gc.dfzc),0) v_37,nvl(gc.zytz,0) v_38,nvl(gc.dfzc,0) v_39,
+		 nvl((gc1.zytz+gc1.dfzc),0) v_40,decode(jh.jgzt,'0',jh.wjgyy) v_41,decode(jg.yssj,null,'否','是') v_42,decode(jg.sfcclq,null,'',jg.sfcclq) v_43,
+		 nvl(zj.btz,0) v_44,nvl(gc.btz,0) v_45,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_46,
+     	nvl(zj.stz,0) v_47,nvl(gc.stz,0) v_48,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_49,
+     	nvl(zj.qttz,0) v_50,nvl(gc.qttz,0) v_51,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_52,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_53,
+		 jh.bz v_54,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
+		from plan_wqgz jh,sck_wqgz sc,xmk_wqgz xm,(select jhid,sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_qttz) qttz,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g group by jhid) gc,
+		(select jhid,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%'  group by jhid) gc1,
+		gcgl_jgys jg,(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) qttz,t.xmid from plan_zjxd t group by t.xmid) zj
+		where jh.sckid=sc.sckid and sc.xmkid=xm.id and jh.id=gc.jhid(+) and jh.id=gc1.jhid(+) and jh.id=jg.jhid(+) and jh.id=zj.xmid(+)
+		and xm.gydwbm like '1%' and jh.spzt='1'
+			<if test="xmnf != null or xmnf !=''">
+				and sbnf in (${xmnf})
+			</if>
+			<if test="gydw != null or gydw !=''">
+				${gydw}
+			</if>
+			<if test="xzqhdm != null or xzqhdm !=''">
+				${xzqhdm}
+			</if>
+			<if test="gldj != null or gldj !=''">
+				${gldj}
+			</if>
+			<if test="sfylrbwqk != null or sfylrbwqk !=''">
+				and jh.sfylrbwqk like '%'||#{sfylrbwqk}||'%'
+			</if>
+			order by xzqhdm
+		) t1
+		
+	</select>
+	<select id="getWqgzjsqk1" parameterType="gcglwqgz" resultType="elist">
+		select rownum+1 v_0,t1.* from (
+		select  
+		 sc.scxsq v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,xm.xzqhdm v_6,xm.xzqhmc v_7,
+		 sc.sck_lxbm v_8,xm.lxmc v_9,sc.sck_qlzxzh v_10,sc.sck_qlbh v_11,xm.qlmc v_12,jh.xdsj v_13,jh.jhkgsj v_14,jh.jhwgsj v_15,jh.yjjgsj v_16,jh.jhqlqc v_17,jh.jhqlqk v_18,
+		 sc.jsxz v_19,jh.pfwh v_20,round(nvl(jh.pfztz,0),2) v_21,decode(jh.sfylrbwqk,'是',round(nvl(jh.jhsybzje,0),2)，0) v_22,decode(jh.sfylrbwqk,'否',round(nvl(jh.shengbz,0),2)，0) v_23,jh.sjkgsj v_24,jh.sjwgsj v_25,jh.jsdw v_26,jh.sjdw v_27,jh.sgdw v_28,
+		 jh.jldw v_29,jh.jhqlqc v_30,jh.jhqlqk v_31,(case when jh.sjwgsj like '%'||to_char(sysdate,'yyyy')||'%' then '是' else '否' end) v_32,
+		 (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_33,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_34,
+		 decode(jh.kgzt,'0',1,0) v_35,decode(jh.kgzt,'0',jh.jhqlqc,0) v_36,nvl((gc.zytz+gc.dfzc),0) v_37,nvl(gc.zytz,0) v_38,nvl(gc.dfzc,0) v_39,
+		 nvl((gc1.zytz+gc1.dfzc),0) v_40,decode(jh.jgzt,'0',jh.wjgyy) v_41,decode(jg.yssj,null,'否','是') v_42,decode(jg.sfcclq,null,'',jg.sfcclq) v_43,
+		 nvl(zj.btz,0) v_44,nvl(gc.btz,0) v_45,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_46,
+     	nvl(zj.stz,0) v_47,nvl(gc.stz,0) v_48,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_49,
+     	nvl(zj.qttz,0) v_50,nvl(gc.qttz,0) v_51,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_52,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_53,
+		 jh.bz v_54,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
+		from plan_wqgz jh,sck_wqgz sc,xmk_wqgz xm,(select jhid,sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_qttz) qttz,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g group by jhid) gc,
+		(select jhid,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%'  group by jhid) gc1,
+		gcgl_jgys jg,(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) qttz,t.xmid from plan_zjxd t group by t.xmid) zj
+		where jh.sckid=sc.sckid and sc.xmkid=xm.id and jh.id=gc.jhid(+) and jh.id=gc1.jhid(+) and jh.id=jg.jhid(+) and jh.id=zj.xmid(+)
+		and xm.gydwbm like '1%' and jh.spzt='1'
+			<if test="xmnf != null or xmnf !=''">
+				and sbnf in (${xmnf})
+			</if>
+			<if test="gydw != null or gydw !=''">
+				${gydw}
+			</if>
+			<if test="xzqhdm != null or xzqhdm !=''">
+				${xzqhdm}
+			</if>
+			<if test="gldj != null or gldj !=''">
+				${gldj}
+			</if>
+			<if test="sfylrbwqk != null or sfylrbwqk !=''">
+				and jh.sfylrbwqk like '%'||#{sfylrbwqk}||'%'
+			</if>
+			order by xzqhdm
+		) t1
+		where 1=1
+	</select>
+	<select id="getAbjsqk" parameterType="gcglwqgz" resultType="elist">
+		select '1' v_0, '合计' v_1,sum(v_12) v_12,sum(v_18) v_18,sum(v_19) v_19,sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,
+		sum(v_34) v_34,decode(sum(v_33),0,0,null,0,round(((nvl(sum(v_34),0)/sum(v_33))*100),2)) v_35,sum(v_36) v_36,sum(v_37) v_37,decode(sum(v_36),0,0,null,0,round(((nvl(sum(v_37),0)/sum(v_36))*100),2)) v_38
+		 from(
+		select 
+		 (case when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'县')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'县'))
+		  when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'市')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'市'))
+		    when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'区')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'区'))
+		    else ' ' end) v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,xm.xzqhdm v_6,xm.xzqhmc v_7,
+		 sc.sck_lxbm v_8,sc.sck_lxmc v_9,sc.scqdzh v_10,sc.sczdzh v_11,p.jhyhlc v_12,sc.jsxz v_13,p.xdsj v_14,p.jhkgsj v_15,p.jhwgsj v_16,p.yjwgsj v_17,p.pfztz v_18,
+		 p.jhsybbzje v_19,p.sjkgsj v_20,p.sjwgsj v_21,p.jsdw v_22,p.sjdw v_23,p.sgdw v_24,p.jldw v_25,decode(p.jgzt,'1',p.jhyhlc,nvl(gc.wcgl,0)) v_26,nvl(gc1.wcgl,0) v_27,
+		 decode(p.jgzt,'1',zj.xdzj,nvl(gc.ztz,0)) v_28,decode(p.jgzt,'1',zj.btz,nvl(gc.btz,0)) v_29,decode(p.jgzt,'1',zj.dftz,nvl(gc.dftz,0)) v_30,nvl(gc1.ztz,0) v_31,
+		 decode(jg.yssj,null,'0',p.jhyhlc) v_32,
+		 nvl(zj.btz,0) v_33,nvl(gc.btz,0) v_34,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_35,
+		 nvl(zj.dftz,0) v_36,nvl(gc.dwdftz,0) v_37,decode(zj.dftz,0,0,null,0,round(((nvl(gc.dwdftz,0)/zj.dftz)*100),2)) v_38,
+		 p.remarks v_39,xm.xzqhdm
+		 
+		from plan_abgc p,sck_abgc sc,xmk_abgc xm,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g group by g.jhid) gc,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%' group by g.jhid) gc1,
+		(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) dftz,sum(t.xdzj) xdzj,t.xmid from plan_zjxd t group by t.xmid) zj,gcgl_jgys jg
+		where p.sckid=sc.sckid and sc.xmkid=xm.id and p.id=gc.jhid(+) and p.id=gc1.jhid(+) and p.id=zj.xmid(+) and p.id=jg.jhid(+)
+		and p.spzt='1'
+		and xm.gydwbm like '1%' 
+		<if test="xmnf != null or xmnf !=''">
+        	and p.jhnf in (${xmnf})
+      	</if>
+      	<if test="gydw != null or gydw !=''">
+	        ${gydw}
+	    </if>
+	    <if test="xzqhdm != null or xzqhdm !=''">
+	        ${xzqhdm}
+	    </if>
+	    <if test="gldj != null or gldj !=''">
+        	${gldj}
+        </if>
+		union all
+		select 
+		 (case when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'县')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'县'))
+		  when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'市')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'市'))
+		    when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'区')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'区'))
+		    else ' ' end) v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,sc.xzqhdm v_6,sc.xzqh v_7,
+		 sc.lxbm v_8,sc.lxmc v_9,sc.qdzh v_10,sc.zdzh v_11,p.jhyhlc v_12,sc.jsxz v_13,p.xdsj v_14,p.jhkgsj v_15,p.jhwgsj v_16,p.yjwgsj v_17,p.pfztz v_18,
+		 p.jhsybbzje v_19,p.sjkgsj v_20,p.sjwgsj v_21,p.jsdw v_22,p.sjdw v_23,p.sgdw v_24,p.jldw v_25,decode(p.jgzt,'1',p.jhyhlc,nvl(gc.wcgl,0)) v_26,nvl(gc1.wcgl,0) v_27,
+		 decode(p.jgzt,'1',zj.xdzj,nvl(gc.ztz,0)) v_28,decode(p.jgzt,'1',zj.btz,nvl(gc.btz,0)) v_29,decode(p.jgzt,'1',zj.dftz,nvl(gc.dftz,0)) v_30,nvl(gc1.ztz,0) v_31,
+		 decode(jg.yssj,null,'0',p.jhyhlc) v_32,
+		 nvl(zj.btz,0) v_33,nvl(gc.btz,0) v_34,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_35,
+		 nvl(zj.dftz,0) v_36,nvl(gc.dwdftz,0) v_37,decode(zj.dftz,0,0,null,0,round(((nvl(gc.dwdftz,0)/zj.dftz)*100),2)) v_38,
+		 p.remarks v_39,sc.xzqhdm
+		 
+		from plan_af p,sck_aqsmfh sc,(select replace(WMSYS.WM_CONCAT(xmk.tsdq),',',',') tsdq,xmbm,min(ld.gydwdm) gydwbm,min(ld.lxbm) sck_lxbm from sck_aqsmfh_ld ld left join xmk_aqsmfh xmk on ld.xmkid=xmk.id group by ld.xmbm) xm,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g group by g.jhid) gc,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%' group by g.jhid) gc1,
+		(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) dftz,sum(t.xdzj) xdzj,t.xmid from plan_zjxd t group by t.xmid) zj,gcgl_jgys jg
+		where p.sckid=sc.id and sc.xmbm=xm.xmbm and p.id=gc.jhid(+) and p.id=gc1.jhid(+) and p.id=zj.xmid(+) and p.id=jg.jhid(+)
+		and p.spzt='1'
+		and sc.gydwdm like '1%'
+		<if test="xmnf != null or xmnf !=''">
+        and p.jhnf in (${xmnf})
+      	</if>
+      	<if test="gydw != null or gydw !=''">
+	        ${gydw}
+	    </if>
+	    <if test="xzqhdm != null or xzqhdm !=''">
+	        ${xzqhdm}
+	    </if>
+	    <if test="gldj != null or gldj !=''">
+        	${gldj}
+        </if>
+		)
+	</select>
+	<select id="getAbjsqk1" parameterType="gcglwqgz" resultType="elist">
+		select rownum+1 v_0,t1.* from(
+		select 
+		 (case when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'县')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'县'))
+		  when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'市')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'市'))
+		    when substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'区')) is not null then substr(xm.xzqhmc,instr(xm.xzqhmc,'市')+1,instr(xm.xzqhmc,'区'))
+		    else ' ' end) v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,xm.xzqhdm v_6,xm.xzqhmc v_7,
+		 sc.sck_lxbm v_8,sc.sck_lxmc v_9,sc.scqdzh v_10,sc.sczdzh v_11,p.jhyhlc v_12,sc.jsxz v_13,p.xdsj v_14,p.jhkgsj v_15,p.jhwgsj v_16,p.yjwgsj v_17,p.pfztz v_18,
+		 p.jhsybbzje v_19,p.sjkgsj v_20,p.sjwgsj v_21,p.jsdw v_22,p.sjdw v_23,p.sgdw v_24,p.jldw v_25,decode(p.jgzt,'1',p.jhyhlc,nvl(gc.wcgl,0)) v_26,nvl(gc1.wcgl,0) v_27,
+		 decode(p.jgzt,'1',zj.xdzj,nvl(gc.ztz,0)) v_28,decode(p.jgzt,'1',zj.btz,nvl(gc.btz,0)) v_29,decode(p.jgzt,'1',zj.dftz,nvl(gc.dftz,0)) v_30,nvl(gc1.ztz,0) v_31,
+		 decode(jg.yssj,null,'0',p.jhyhlc) v_32,
+		 nvl(zj.btz,0) v_33,nvl(gc.btz,0) v_34,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_35,
+		 nvl(zj.dftz,0) v_36,nvl(gc.dwdftz,0) v_37,decode(zj.dftz,0,0,null,0,round(((nvl(gc.dwdftz,0)/zj.dftz)*100),2)) v_38,
+		 p.remarks v_39,xm.xzqhdm
+		 
+		from plan_abgc p,sck_abgc sc,xmk_abgc xm,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g group by g.jhid) gc,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%' group by g.jhid) gc1,
+		(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) dftz,sum(t.xdzj) xdzj,t.xmid from plan_zjxd t group by t.xmid) zj,gcgl_jgys jg
+		where p.sckid=sc.sckid and sc.xmkid=xm.id and p.id=gc.jhid(+) and p.id=gc1.jhid(+) and p.id=zj.xmid(+) and p.id=jg.jhid(+)
+		and p.spzt='1'
+		and xm.gydwbm like '1%'
+		<if test="xmnf != null or xmnf !=''">
+        and p.jhnf in (${xmnf})
+      	</if>
+      	<if test="gydw != null or gydw !=''">
+	        ${gydw}
+	    </if>
+	    <if test="xzqhdm != null or xzqhdm !=''">
+	        ${xzqhdm}
+	    </if>
+	    <if test="gldj != null or gldj !=''">
+        	${gldj}
+        </if>
+		union all
+		select 
+		 (case when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'县')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'县'))
+		  when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'市')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'市'))
+		    when substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'区')) is not null then substr(sc.xzqh,instr(sc.xzqh,'市')+1,instr(sc.xzqh,'区'))
+		    else ' ' end) v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
+		 (case when xm.tsdq like '%原中央苏区%' then '是' else '否' end) v_4,(case when xm.tsdq like '%国家贫困县%' then '是' else '否' end) v_5,sc.xzqhdm v_6,sc.xzqh v_7,
+		 sc.lxbm v_8,sc.lxmc v_9,sc.qdzh v_10,sc.zdzh v_11,p.jhyhlc v_12,sc.jsxz v_13,p.xdsj v_14,p.jhkgsj v_15,p.jhwgsj v_16,p.yjwgsj v_17,p.pfztz v_18,
+		 p.jhsybbzje v_19,p.sjkgsj v_20,p.sjwgsj v_21,p.jsdw v_22,p.sjdw v_23,p.sgdw v_24,p.jldw v_25,decode(p.jgzt,'1',p.jhyhlc,nvl(gc.wcgl,0)) v_26,nvl(gc1.wcgl,0) v_27,
+		 decode(p.jgzt,'1',zj.xdzj,nvl(gc.ztz,0)) v_28,decode(p.jgzt,'1',zj.btz,nvl(gc.btz,0)) v_29,decode(p.jgzt,'1',zj.dftz,nvl(gc.dftz,0)) v_30,nvl(gc1.ztz,0) v_31,
+		 decode(jg.yssj,null,'0',p.jhyhlc) v_32,
+		 nvl(zj.btz,0) v_33,nvl(gc.btz,0) v_34,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_35,
+		 nvl(zj.dftz,0) v_36,nvl(gc.dwdftz,0) v_37,decode(zj.dftz,0,0,null,0,round(((nvl(gc.dwdftz,0)/zj.dftz)*100),2)) v_38,
+		 p.remarks v_39,sc.xzqhdm
+		 
+		from plan_af p,sck_aqsmfh sc,(select replace(WMSYS.WM_CONCAT(xmk.tsdq),',',',') tsdq,xmbm,min(ld.gydwdm) gydwbm,min(ld.lxbm) sck_lxbm from sck_aqsmfh_ld ld left join xmk_aqsmfh xmk on ld.xmkid=xmk.id group by ld.xmbm) xm,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g group by g.jhid) gc,
+		(select g.jhid,sum(g.bywc_gl) wcgl,(sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)) ztz,sum(g.wc_btz) btz,sum(g.wc_qttz) dftz,sum(g.zjdw_btz) dwbtz,sum(g.zjdw_qttz) dwdftz from gcgl_abgc g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%' group by g.jhid) gc1,
+		(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) dftz,sum(t.xdzj) xdzj,t.xmid from plan_zjxd t group by t.xmid) zj,gcgl_jgys jg
+		where p.sckid=sc.id and sc.xmbm=xm.xmbm and p.id=gc.jhid(+) and p.id=gc1.jhid(+) and p.id=zj.xmid(+) and p.id=jg.jhid(+)
+		and p.spzt='1'
+		and sc.gydwdm like '1%'
+		<if test="xmnf != null or xmnf !=''">
+        and p.jhnf in (${xmnf})
+      	</if>
+      	<if test="gydw != null or gydw !=''">
+	        ${gydw}
+	    </if>
+	    <if test="xzqhdm != null or xzqhdm !=''">
+	        ${xzqhdm}
+	    </if>
+	    <if test="gldj != null or gldj !=''">
+        	${gldj}
+        </if>
+		)t1
+	</select>
 </mapper>

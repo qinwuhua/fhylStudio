@@ -807,8 +807,8 @@ public class GcglwqgzController extends BaseActionSupport{
 	
 	public void selectsfkwg(){
 		try {
-			boolean bl = gcglwqgzServer.selectsfkwg(gcglwqgz);
-			ResponseUtils.write(getresponse(), bl + "");
+			Gcglwqgz bl = gcglwqgzServer.selectsfkwg(gcglwqgz);
+			JsonUtils.write(bl, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

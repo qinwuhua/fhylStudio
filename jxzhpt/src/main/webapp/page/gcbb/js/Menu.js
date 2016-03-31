@@ -225,7 +225,20 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/hzlw.jsp'
 	});
-	
+	createMenux('LeftMenu',{
+		id:'menu_0101050218',
+		title:'危桥建设情况明细表',
+		imgSrc:'../../images/menubutton/wqsckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/wqjsqk.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050219',
+		title:'安保建设情况明细表',
+		imgSrc:'../../images/menubutton/absckbb.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/abjsqk.jsp'
+	});
 	
 	
 	createMenux('LeftMenu',{

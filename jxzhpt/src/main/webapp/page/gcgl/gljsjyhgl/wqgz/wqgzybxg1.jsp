@@ -14,56 +14,23 @@
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			$('#xg_sbyf').datebox({    
+			    required:false,
+			    formatter:function(date){
+			    	var y = date.getFullYear();
+			    	var m = date.getMonth()+1;
+			    	return y+'-'+m;
+			    },
+			    onSelect: function(date){
+			    	getYuefen();
+			    }
+			}); 
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 			var d = myDate.getDate();
 			sbsj = y+"-"+m+"-"+d;
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			var mystr3='';
-			var mystr4='';
-			if(m==1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
-				mystr3=(y-1)+'-'+10;
-				mystr4=(y-1)+'-'+9;
-			}
-			else if(m==2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-				mystr3=(y-1)+'-'+11;
-				mystr4=(y-1)+'-'+10;
-			}else if(m==3){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+1;
-				mystr2=y+'-'+2;
-				mystr3=(y-1)+'-'+12;
-				mystr4=(y-1)+'-'+11;
-			}else if(m==4){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+2;
-				mystr2=y+'-'+3;
-				mystr3=y+'-'+1;
-				mystr4=(y-1)+'-'+12;
-			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-				mystr3=y+'-'+(m-3);
-				mystr4=y+'-'+(m-4);
-			}
-
-			$("#xg_sbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#xg_sbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
-			$("#xg_sbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-			$("#xg_sbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
-			$("#xg_sbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 			$("#xg_sbsj").text(sbsj);
-			
 			var data=parent.obj;
 			$("#xg_wc_btz").val(data.wc_btz);
 			$("#xg_wc_stz").val(data.wc_stz);
@@ -78,7 +45,7 @@
 			$("#xg_qksm").val(data.qksm);
 			$("#xg_wcqk").text(data.wcqk);
 			$("#xg_sbsj").text(data.sbsj);
-			$("#xg_sbyf").val(data.sbyf);
+			$("#xg_sbyf").datebox('setValue',data.sbyf);
 			$("#zjc").val(data.zjc);
 			$("#xbgz").val(data.xbgz);
 			$("#sbjg").val(data.sbjg);
@@ -126,8 +93,13 @@
 		    }
 		}
 		function getYuefen(){
-			
-			var data="jhid="+parent.parent.obj1.jhid+"&bfyf="+$("#xg_sbyf").val();
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			var sbyf=$("#xg_sbyf").datebox('getValue');
+			if(sbyf==''||sbyf==null)
+				sbyf=y+"-"+m;
+			var data="jhid="+parent.parent.obj1.jhid+"&bfyf="+sbyf;
 			$.ajax({
 				type:'post',
 				url:'../../../../gcgl/selectcgsyf.do',
@@ -317,7 +289,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
-                                <select id="xg_sbyf" onchange="getYuefen()"></select>
+                                <input type="text" id='xg_sbyf' >
+<!--                                 <select id="xg_sbyf" onchange="getYuefen()"></select> -->
                             </td>
                         </tr>
                     </table>

@@ -79,7 +79,7 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz selectWqgzTj(Gcglwqgz gcglwqgz);
 
-	boolean selectsfkwg(Gcglwqgz gcglwqgz);
+	Gcglwqgz selectsfkwg(Gcglwqgz gcglwqgz);
 
 
 }

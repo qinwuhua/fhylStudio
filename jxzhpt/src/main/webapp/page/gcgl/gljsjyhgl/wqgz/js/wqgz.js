@@ -56,11 +56,28 @@ function ykaigong(index){
 			dataType:'json',
 			url:'/jxzhpt/gcgl/selectsfkwg.do',
 			success:function(msg){
+				if(msg==null){
+					alert("未查询到月报信息");
+				}else{
+					if(parseFloat(msg.xbgz)<100 || parseFloat(msg.zjc)<100){
+						alert("工程量都要是100%才能完工");
+					}else if(parseFloat(msg.wcqk)<100){
+						if(confirm("完成投资小于批复总投资，确认完工吗")){
+							YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
+						}
+					}else{
+						YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
+					}
+				}
+				
+				/*alert(msg.xbgz+"   "+ msg.wcqk+"   "+msg.zjc);
+				alert(parseFloat(msg.xbgz)>=100);
+				
 				if(msg){
 					YMLib.UI.createWindow('wqxx','危桥改造完工','wqgzsjwg.jsp','wqxx',800,350);
 				}else{
 					alert("工程量都要是100%才能完工或总完成资金小于批复总投资");
-				}
+				}*/
 			}
 		});
 		
@@ -221,7 +238,7 @@ function tjwqgzyb(){
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
-	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 //	alert(data +"----");
 	$.ajax({
 		type:'post',
@@ -326,7 +343,7 @@ function tjwqgzyb1(){
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+''+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
-	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data +"----");
 	$.ajax({
@@ -400,7 +417,7 @@ function xgwqgzyb(){
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
-	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").val();
+	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").datebox('getValue');
 //	alert(data);
 	$.ajax({
 		type:'post',
@@ -486,7 +503,7 @@ function xgwqgzyb1(){
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+0+"&gcglwqgz.kgdl="+''+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
-	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").val()
+	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").datebox('getValue')
 	+"&gcglwqgz.zjc="+$("#zjc").val()+"&gcglwqgz.xbgz="+$("#xbgz").val()+"&gcglwqgz.sbjg="+$("#sbjg").val();
 //	alert(data);
 	$.ajax({
