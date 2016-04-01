@@ -29,6 +29,7 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			gcglxmnf("ddlYear");
+			gcglwgnf("wgYear");
 			showAll1();
 		});
 		function dcExcel(){
@@ -152,9 +153,14 @@ a:active {
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select>
+								<span>完工年份：</span> 
+        						<select name="wgYear" id="wgYear" style="width: 70px;">
+        							<option value="">全部</option>
+        						</select>
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="showAll1()"/>
-        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
+        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;"
+        						 onclick="dcExcel()"/>
         					
         					</p>
         				</div>

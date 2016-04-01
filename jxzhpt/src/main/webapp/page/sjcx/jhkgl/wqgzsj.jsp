@@ -167,6 +167,48 @@
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造资金下达',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_zj.jsp",'wq_edit',1000,500);
 		}
+		
+		/* function dcExcel(){
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}var jgzt='1';
+			var yhjb=$.cookie("unit2");
+			var sfsj='';
+			if(yhjb.length==11){
+				yhtype='县级';
+				sfsj=11;
+			}
+			if(yhjb.length==9||yhjb.length==8){
+				yhtype='市级';
+				sfsj=9;
+			}
+			if(yhjb.length<8&&yhjb.length>=2){
+				yhtype='省级';
+				sfsj=7;
+			}
+			var kgzt='';
+			var lxmc=$("#lxmc").val();
+			var qlmc=$("#qlmc").val();
+			var xmnf=$("#ddlYear").val();
+			var ybzt=$("#ybzt").val();
+			var data="gcglwqgz.kgzt="+kgzt+"&gcglwqgz.jgzt="+jgzt+"&gcglwqgz.lxmc="+lxmc+
+		 	"&gcglwqgz.qlmc="+qlmc+"&gcglwqgz.qlbh="+$('#qlbm').val()+
+		 	"&gcglwqgz.ybzt="+ybzt+"&gcglwqgz.sfsj="+sfsj+"&gcglwqgz.xmnf="+xmnf
+		 	+'&gcglwqgz.sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&gcglwqgz.gydwtj='+"and gydwbm like '1%'";
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
+				window.location.href='/jxzhpt/gcgl/dcwqgzsjExcel.do?'+data;
+			 });
+		} */
+		
 	</script>
 <style type="text/css">
 TD {
@@ -254,8 +296,9 @@ text-decoration:none;
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
-				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/> --%>
+				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;"> --%>
+				               <%--  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" 
+				                onclick="dcExcel()"/> --%>
 								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
 							</td>
                             </tr></table>

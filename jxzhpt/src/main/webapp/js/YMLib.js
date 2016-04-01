@@ -1647,7 +1647,64 @@ function gcglxmnf(id){
 	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 	$('#id'+myDate.getFullYear()).attr('checked', true);
 }
-
+function gcglwgnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id2_'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#'+id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id2_'+item.value).attr('checked', true);
+				});
+				$('#'+id).combobox("setValues",values);
+			}else{
+				$('#id2_'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#'+id).combobox("getData");
+			var values = $('#'+id).combobox("getValues");
+			$('#'+id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id2_'+item.value).attr('checked', false);
+					}
+				});
+				$('#'+id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id2_'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+	$('#id2_'+myDate.getFullYear()).attr('checked', true);
+}
 function jsdjdx(id){
 	var years=[];
 	years.push({text:'全部',value:''});

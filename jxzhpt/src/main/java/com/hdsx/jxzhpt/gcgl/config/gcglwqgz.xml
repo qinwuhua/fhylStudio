@@ -203,6 +203,10 @@
 			<if test="xmnf != null and  xmnf != ''">
 					and t1.sbnf in (${xmnf})
 			</if>
+			<!-- 后 添加完工年份 条件 -->
+			<if test="wgnf != null and  wgnf != ''">
+					and substr(t1.sjwgsj,0,4) in (${wgnf})
+			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and t3.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
@@ -261,6 +265,9 @@
 	<if test="xmnf != null and  xmnf != ''">
 			and t1.sbnf in (${xmnf})
 	</if>
+	<if test="wgnf != null and  wgnf != ''">
+					and substr(t1.sjwgsj,0,4) in (${wgnf})
+			</if>
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
 	</if>
