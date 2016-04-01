@@ -38,5 +38,8 @@
  	<action name="getHzyh" class="gcybbController" method="getHzyh"/>
  	<action name="getHzlw" class="gcybbController" method="getHzlw"/>
  	
+ 	<action name="getWqgzjsqk" class="gcybbController" method="getWqgzjsqk"/>
+ 	<action name="getAbjsqk" class="gcybbController" method="getAbjsqk"/>
+ 	
  </package>
 </struts>

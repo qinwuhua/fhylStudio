@@ -13,8 +13,11 @@ function showAlljc(){
 		 	gydw: function(){
 		 		gydw=$("#gydw").combotree("getValues");
 				if(gydw.length==0){
-					if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-						gydwstr=36;
+					if($.cookie("truename")=='省局综规处')
+						//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+							gydwstr='2____36';
+						else if($.cookie("truename")=='省局县乡处')
+							gydwstr='1____36';
 					else gydwstr= $.cookie("unit2");
 				}else if(gydw.length==1){
 					if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
@@ -56,8 +59,11 @@ function exportExcel_zhjc(){
  		else  sbthcd=$.cookie("unit2").length;
  		gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-				gydwstr=36;
+			if($.cookie("truename")=='省局综规处')
+				//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+					gydwstr='2____36';
+				else if($.cookie("truename")=='省局县乡处')
+					gydwstr='1____36';
 			else gydwstr= $.cookie("unit2");
 		}else if(gydw.length==1){
 			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
@@ -84,8 +90,11 @@ function showAllsc(){
 		 	gydw: function(){
 		 		gydw=$("#gydw").combotree("getValues");
 				if(gydw.length==0){
-					if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-						gydwstr=36;
+					if($.cookie("truename")=='省局综规处')
+						//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+							gydwstr='2____36';
+						else if($.cookie("truename")=='省局县乡处')
+							gydwstr='1____36';
 					else gydwstr= $.cookie("unit2");
 				}else if(gydw.length==1){
 					if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
@@ -133,8 +142,11 @@ function exportExcel_zhsc(){
  		else  sbthcd=$.cookie("unit2").length;
  		gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-				gydwstr=36;
+			if($.cookie("truename")=='省局综规处')
+				//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+					gydwstr='2____36';
+				else if($.cookie("truename")=='省局县乡处')
+					gydwstr='1____36';
 			else gydwstr= $.cookie("unit2");
 		}else if(gydw.length==1){
 			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
@@ -161,8 +173,11 @@ function showAlljh(){
 		 	gydw: function(){
 		 		gydw=$("#gydw").combotree("getValues");
 				if(gydw.length==0){
-					if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-						gydwstr=36;
+					if($.cookie("truename")=='省局综规处')
+						//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+							gydwstr='2____36';
+						else if($.cookie("truename")=='省局县乡处')
+							gydwstr='1____36';
 					else gydwstr= $.cookie("unit2");
 				}else if(gydw.length==1){
 					if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
@@ -211,8 +226,11 @@ function exportExcel_zhjh(){
  		else  sbthcd=$.cookie("unit2").length;
  		gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
-				gydwstr=36;
+			if($.cookie("truename")=='省局综规处')
+				//if($.cookie("unit2")=='_____36' || $.cookie("unit2")=='21101360000' )
+					gydwstr='2____36';
+				else if($.cookie("truename")=='省局县乡处')
+					gydwstr='1____36';
 			else gydwstr= $.cookie("unit2");
 		}else if(gydw.length==1){
 			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
