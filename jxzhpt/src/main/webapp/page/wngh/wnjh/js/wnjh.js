@@ -660,8 +660,8 @@ function showAllgj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
-	    width:$(window).width()-30,
+	    height:$(window).height()-190,
+	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
@@ -786,8 +786,8 @@ function showAlllm(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
-	    width:$(window).width()-30,
+	    height:$(window).height()-190,
+	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
@@ -913,8 +913,8 @@ function showAllxj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-180,
-	    width:$(window).width()-30,
+	    height:$(window).height()-190,
+	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,

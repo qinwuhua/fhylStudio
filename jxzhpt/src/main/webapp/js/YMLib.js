@@ -1315,6 +1315,7 @@ function loadDist1(id, dwbm) {
 		});
 }
 function loadUnit1(id, dwbm) {
+
 	$('#' + id).combotree(
 			{
 				checkbox : true,
@@ -2032,7 +2033,7 @@ function createMenunew(id){
         lines : true,
         onClick : function (node) {
             if (node.attributes.length!=0) {
-                alert(node.attributes);
+                //alert(node.attributes);
                 javascript:window.open(node.attributes,"rightContent");
             }
         }

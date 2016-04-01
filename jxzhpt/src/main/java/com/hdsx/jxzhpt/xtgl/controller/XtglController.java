@@ -1219,7 +1219,7 @@ public class XtglController extends BaseActionSupport{
 			
 			if(temp!=zzjgTree){
 				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
-					zzjgTree.setState("closed");
+					//zzjgTree.setState("closed");
 					zzjgTree.getChildren().add(temp);
 					returnRoot(list,temp);
 				}
