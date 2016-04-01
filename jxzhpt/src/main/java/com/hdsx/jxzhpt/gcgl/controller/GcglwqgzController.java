@@ -65,7 +65,9 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
+	private String wgnf;
 
+	
 	private String sfylrbwqk;
 	private String gydwtj;
 	
@@ -192,6 +194,13 @@ public class GcglwqgzController extends BaseActionSupport{
 	}
 	public void setYhtype(String yhtype) {
 		this.yhtype = yhtype;
+	}
+	
+	public String getWgnf() {
+		return wgnf;
+	}
+	public void setWgnf(String wgnf) {
+		this.wgnf = wgnf;
 	}
 	//添加月报
 	public void insertWqgzYb(){
@@ -486,6 +495,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setXmnf(xmnf);
 			gcglwqgz.setSfylrbwqk(sfylrbwqk);
 			gcglwqgz.setGydwtj(gydwtj);
+			gcglwqgz.setWgnf(wgnf);
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}
