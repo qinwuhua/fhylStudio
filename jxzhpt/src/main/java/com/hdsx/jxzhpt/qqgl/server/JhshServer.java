@@ -420,4 +420,6 @@ public interface JhshServer {
 	public int queryJhshYhdzxCount1(Jhsh jhsh);
 	public List<Jhsh> queryJhshSh1(Jhsh jhsh, int page, int rows);
 	public int queryJhshShCount1(Jhsh jhsh);
+	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows);
+	public int queryGsdgzCount(Jhsh jhsh);
 }

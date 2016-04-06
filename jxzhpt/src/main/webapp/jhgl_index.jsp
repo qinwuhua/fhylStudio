@@ -31,6 +31,7 @@
 					<li id="menu_010111" style="display:none;"><a id="Menu_11" href="javascript:void(0)">五年项目库</a></li> 
 					<li id="menu_010112" style="display:none;"><a id="Menu_12" href="javascript:void(0)">前期管理</a></li>
 					<li id="menu_010113" style="display:none;"><a id="Menu_13" href="javascript:void(0)">计划管理</a></li>
+					<li id="menu_010114" style="display:none;"><a id="Menu_14" href="javascript:void(0)">工程管理</a></li>
 					<li id="menu_010109" style="display:none;"><a id="Menu_9" href="javascript:void(0)" >五年规划库</a></li>
 					<li id="menu_010108" style="display:none;"><a id="Menu_8" href="javascript:void(0)" >前期管理</a></li>
 					<li id="menu_010103" style="display:none;"><a id="Menu_3" href="javascript:void(0)">计划管理</a></li>
@@ -52,6 +53,9 @@
 		</div>
 		<div id="c13" style="width:100%;height:100%;display:none">
 			<iframe id="c13f" name="c13f"src="" frameborder='0' height='100%' width='100%'></iframe>
+		</div>
+		<div id="c14" style="width:100%;height:100%;display:none">
+			<iframe id="c14f" name="c14f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c1" style="width:100%;height:100%;">
 			<iframe id="c1f" name="c1f"  src="" frameborder='0' height='100%' width='100%'></iframe>

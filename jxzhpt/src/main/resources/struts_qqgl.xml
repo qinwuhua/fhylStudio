@@ -173,6 +173,7 @@
 		<action name="queryFile" class="cbsjController" method="queryFile"></action>
 		<action name="down" class="cbsjController" method="down"></action>
 		
+		<action name="queryGsdgz" class="jhshController" method="queryGsdgz"></action>
 		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
 		<action name="queryJhsh1" class="jhshController" method="queryJhsh1"></action>
 		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
