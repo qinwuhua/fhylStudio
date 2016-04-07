@@ -1571,7 +1571,42 @@
 		</if>
 		<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
 	</select>
-	
+	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
+		select sum(j.bbzzj) bbzzj,sum(j.sbzzj) sbzzj,sum(l1.lc) lc from gsdgz j left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+		left join (select xmid,(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))) lc from lxsh_lx where xmid like '%1___' and jdbs='2' group by xmid) l1 on j.xmbm = l1.xmid
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="ylxbh!=null and ylxbh!=''">
+			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___' and jdbs='2')
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and l.lsjl=#{jhsh.lsjl}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and l.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and ${xmbm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and j.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xdzt>=0">
+			and j.xdzt=${xdzt}
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and ${jsdj}
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and l.lsjl=#{lsjl}
+		</if>
+		<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+	</select>
 	
 	
 </mapper>

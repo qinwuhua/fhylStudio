@@ -73,5 +73,9 @@ public interface GcglgcgzsjServer {
 	List<Map<String,Object>> selectWqgzjhList2(Gcglgcgzsj gcglgcgzsj);
 
 	int selectWqgzjhListcount1(Gcglgcgzsj gcglgcgzsj);
+
+	List<Map<String, Object>> queryGsdList(Gcglgcgzsj gcglgcgzsj);
+
+	int queryGsdListCount(Gcglgcgzsj gcglgcgzsj);
 	
 }

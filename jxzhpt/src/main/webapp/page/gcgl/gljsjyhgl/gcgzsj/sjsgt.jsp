@@ -20,17 +20,18 @@
 <%-- 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script> --%>
 	<script type="text/javascript">
 		$(function(){
+			$("#xmlx").val(parent.obj.XMBM.substr(10,1));
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/gcgl/querysgtByXmbm.do',
-				data:'cbsj.xmlx='+1+'&cbsj.xmbm='+parent.obj.XMBM,
+				data:'cbsj.xmlx='+parent.obj.XMBM.substr(10,1)+'&cbsj.xmbm='+parent.obj.XMBM,
 				dataType:'json',
 				success:function(msg){
 					if(msg==null){
 						$.ajax({
 							type:'post',
 							url:'/jxzhpt/qqgl/queryCbsjByXmbm.do',
-							data:'cbsj.xmlx='+1+'&cbsj.xmbm='+parent.obj.XMBM,
+							data:'cbsj.xmlx='+parent.obj.XMBM.substr(10,1)+'&cbsj.xmbm='+parent.obj.XMBM,
 							dataType:'json',
 							success:function(data){
 								$('#dq_cd').val("0");
@@ -54,7 +55,7 @@
 						$.ajax({
 							type:'post',
 							url:'/jxzhpt/qqgl/queryCbsjByXmbm.do',
-							data:'cbsj.xmlx='+1+'&cbsj.xmbm='+parent.obj.XMBM,
+							data:'cbsj.xmlx='+parent.obj.XMBM.substr(10,1)+'&cbsj.xmbm='+parent.obj.XMBM,
 							dataType:'json',
 							success:function(data){
 								
@@ -220,7 +221,7 @@
 </head>
 <body style="font-size: 12px;">
 	<div>
-		<form id="cbsj" action="/jxzhpt/qqgl/updatesgt.do">
+		<form id="cbsj" action="/jxzhpt/qqgl/updatesgt.do" method="post">
 			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">

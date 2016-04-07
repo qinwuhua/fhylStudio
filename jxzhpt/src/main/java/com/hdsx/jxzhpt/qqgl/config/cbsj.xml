@@ -1149,8 +1149,14 @@
  	<select id="selectXjsgt" parameterType="cbsj" resultType="cbsj">
  		select * from SGT_XJ where xmbm=#{xmbm}
  	</select>
+ 	<select id="selectLmsgt" parameterType="cbsj" resultType="cbsj">
+ 		select * from SGT_LMGZ where xmbm=#{xmbm}
+ 	</select>
  	<insert id="insertxjsgt" parameterType="cbsj">
  		insert into SGT_XJ(xmbm) values(#{xmbm})
+ 	</insert>
+ 	<insert id="insertlmsgt" parameterType="cbsj">
+ 		insert into SGT_LMGZ(xmbm) values(#{xmbm})
  	</insert>
  	<update id="updatesjsgt" parameterType="cbsj">
 		update sgt_sjgz c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
@@ -1203,7 +1209,57 @@
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
-	
+	<update id="updatelmsgt" parameterType="cbsj">
+		update sgt_lmgz c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
+		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		<if test="dfzc!=null">c.dfzc=#{dfzc},</if>
+		<if test="yhdk!=null">c.yhdk=#{yhdk},</if>
+		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
+		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
+		<if test="lj!=null">c.lj=#{lj},</if> 
+		<if test="ql!=null">c.ql=#{ql},</if>
+		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
+		<if test="hd!=null">c.hd=#{hd},</if>
+		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
+		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
+		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
+		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
+		<if test="sd!=null">c.sd=#{sd},</if>
+		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
+		<if test="dq!=null">c.dq=#{dq},</if>
+		<if test="dq_cd!=null">c.dq_cd=#{dq_cd},</if>
+		<if test="dq_dk!=null">c.dq_dk=#{dq_dk},</if>
+		<if test="sdmc!=null">c.sdmc=#{sdmc},</if>
+		<if test="sd_sfcd!=null">c.sd_sfcd=#{sd_sfcd},</if>
+		<if test="sd_lx!=null">c.sd_lx=#{sd_lx},</if>
+		<if test="jaf!=null">c.jaf=#{jaf},</if>
+		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
+		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
+		<if test="gq!=null">c.gq=#{gq},</if>
+		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
+		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
+		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="jszlc!=null">c.jszlc=#{jszlc},</if>
+		<if test="yilc != null">c.yilc=#{yilc},</if>
+		<if test="erlc != null">c.erlc=#{erlc},</if>
+		<if test="sanlc != null">c.sanlc=#{sanlc},</if>
+		<if test="silc != null">c.silc=#{silc},</if>
+		<if test="dwlc != null">c.dwlc=#{dwlc},</if>
+		<if test="wllc != null">c.wllc=#{wllc},</if>
+		<if test="jhyilc != null">c.jhyilc=#{jhyilc},</if>
+		<if test="jherlc != null">c.jherlc=#{jherlc},</if>
+		<if test="jhsanlc != null">c.jhsanlc=#{jhsanlc},</if>
+		<if test="jhsilc != null">c.jhsilc=#{jhsilc},</if>
+		<if test="jhdwlc != null">c.jhdwlc=#{jhdwlc},</if>
+		<if test="jhwllc != null">c.jhwllc=#{jhwllc},</if>
+		<if test="lc != null">c.lc=#{lc},</if>
+		<if test="gys != null">c.gys=#{gys},</if>
+		sfbj=#{sfbj}
+		where c.xmbm=#{xmbm}
+	</update>
 	<update id="updatexjsgt" parameterType="cbsj">
 		update sgt_xj c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
 		c.qdzh=#{qdzh},c.zdzh=#{zdzh},

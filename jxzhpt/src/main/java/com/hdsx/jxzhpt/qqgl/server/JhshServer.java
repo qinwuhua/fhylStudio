@@ -349,6 +349,12 @@ public interface JhshServer {
 	 */
 	public Map<String, String> queryJhshLjLmsj(Jhsh jhsh);
 	/**
+	 * 计划累计路面升级
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh);
+	/**
 	 * 计划累计路面改造
 	 * @param jhsh
 	 * @return

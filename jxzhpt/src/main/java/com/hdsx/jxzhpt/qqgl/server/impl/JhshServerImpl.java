@@ -525,5 +525,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("jhsh", jhsh);
 		return queryOne("queryGsdgzCount", params);
 	}
-	
+	@Override
+	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh) {
+		return queryOne("queryJhshLjgsdgz",jhsh);
+	}
 }

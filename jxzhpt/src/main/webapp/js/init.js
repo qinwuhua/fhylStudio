@@ -135,12 +135,13 @@ $(function(){
         }
     });
     $("#Menu_14").click(function () {
-        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c10,#c11,#c12,#c3").hide();
+        $("#c1,#c2,#c9,#c8,#c3,#c4,#c5,#c6,#c7,#c10,#c11,#c12,#c13").hide();
         $("#c14").show();
         if (c7) {
             $("#c14f").attr("src", "page/newgcgl/Menu.jsp");
         }
     });
+    
     
 });
 

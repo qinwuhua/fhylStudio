@@ -20,7 +20,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryLxshByXmbm.do',
-				data:'jhsh.xmlx='+1+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#lxsh').form("load",data);
@@ -29,7 +29,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryKxxyjByXmbm.do',
-				data:'xmlx='+1+'&xmbm='+parent.YMLib.Var.xmbm,
+				data:'xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#kxxyj').form("load",data);
@@ -39,7 +39,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryCbsjByXmbm.do',
-				data:'cbsj.xmlx='+1+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
+				data:'cbsj.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
@@ -49,7 +49,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryJhshxxByXmbm.do',
-				data:'jhsh.xmlx='+1+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#jhsh').form("load",data);
@@ -69,7 +69,7 @@
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						改建工程项目 — 立项申请
+						国省道改造 — 立项申请
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -189,7 +189,7 @@
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						改建工程项目 — 可行性研究
+						国省道改造 — 可行性研究
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -307,7 +307,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						改建工程项目 — 初步设计或施工图设计
+						国省道改造 — 初步设计或施工图设计
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -549,7 +549,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						改建工程项目 — 计划审核填报信息
+						国省道改造 — 计划审核填报信息
 					</td>
 				</tr>
 				<tr>

@@ -584,4 +584,106 @@
 				</if>
 			)
 	</select>
+	
+	
+	
+	
+	<select id="queryGsdList"  parameterType="gcglgcgzsj" resultType="hashmap">
+	select * from (
+		select rownum num ,t.*,s.sl sl,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj  from GSDGZ t left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) lxsh on t.xmbm=lxsh.xmbm left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm 
+		left join gcgl_jgys jg on t.xmbm=jg.jhid
+		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
+    	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		where 1=1
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and substr(t.xmbm,0,4) in (${sbnf})
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="xmlx1 != null and  xmlx1 != ''">
+				${xmlx1}
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
+			)
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="queryGsdListCount" resultType="int" parameterType="gcglgcgzsj">
+		select count(*)  from gsdgz t left join gcgl_jgys jg on t.xmbm=jg.jhid
+		where 1=1
+		<if test="jgys != null and  jgys != ''">
+				and decode(jg.id,null,'否','是') = #{jgys}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and substr(t.xmbm,0,4) in (${sbnf})
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and t.xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="xmlx1 != null and  xmlx1 != ''">
+				${xmlx1}
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+				<if test="lxbm != null and  lxbm != ''">
+					and lxbm like '%'||trim(#{lxbm})||'%'
+				</if>
+				<if test="jsdj != null and  jsdj != ''">
+					and xjsdj like '%'||trim(#{jsdj})||'%'
+				</if>
+				<if test="gldj != null and  gldj != ''">
+						and lxbm like trim(#{gldj})||'%'
+				</if>
+			)
+	</select>
 </mapper>

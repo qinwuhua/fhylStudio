@@ -139,7 +139,7 @@
 		update JHSH_LMGZ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglgcgzgj">
-		update JHSH_LMGZ set kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gsztz},sfgk=#{sfgk} where xmbm=#{jhid}
+		update JHSH_LMGZ set kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},sfgk=#{sfgk} where xmbm=#{jhid}
 	</update>
 	<!--  
 	<select id="selectWqgzjhList" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
