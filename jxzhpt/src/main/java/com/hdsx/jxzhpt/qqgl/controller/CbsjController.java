@@ -475,6 +475,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		if(cbsj.getXmbm().substring(10,11).equals("1")){
 			bl=cbsjServer.updatesjsgt(cbsj);
 		}
+		if(cbsj.getXmbm().substring(10,11).equals("2")){
+			bl=cbsjServer.updatelmsgt(cbsj);
+		}
 		if(cbsj.getXmbm().substring(10,11).equals("3")){
 			bl=cbsjServer.updatexjsgt(cbsj);
 		}	

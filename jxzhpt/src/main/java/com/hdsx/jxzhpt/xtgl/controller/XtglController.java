@@ -1191,7 +1191,7 @@ public class XtglController extends BaseActionSupport{
 				if ("qx6".equals(c.getName()))
 					id += c.getValue().replaceAll("%2C", ",") + "";*/
 				
-				if("qx3".equals(c.getName())||"qx4".equals(c.getName())||"qx5".equals(c.getName())||"qx6".equals(c.getName()))
+				if("qx3".equals(c.getName())||"qx4".equals(c.getName())||"qx5".equals(c.getName())||"qx6".equals(c.getName())||"qx7".equals(c.getName()))
 					id += c.getValue().replaceAll("%2C", ",") + ",";
 				else continue;
 			}
@@ -1219,7 +1219,7 @@ public class XtglController extends BaseActionSupport{
 			
 			if(temp!=zzjgTree){
 				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
-					zzjgTree.setState("closed");
+					//zzjgTree.setState("closed");
 					zzjgTree.getChildren().add(temp);
 					returnRoot(list,temp);
 				}

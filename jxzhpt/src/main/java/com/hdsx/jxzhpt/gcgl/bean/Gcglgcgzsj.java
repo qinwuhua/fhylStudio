@@ -4,24 +4,41 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Gcglgcgzsj implements Serializable {
+private String xmlx1;
+private String xmlxs;
 
+	public String getXmlx1() {
+	return xmlx1;
+	}
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+	public String getXmlxs() {
+		return xmlxs;
+	}
+	public void setXmlxs(String xmlxs) {
+		this.xmlxs = xmlxs;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private String jgys;
-private String xdzj;
-private String bfzj;
-
-public String getXdzj() {
-	return xdzj;
-}
-public void setXdzj(String xdzj) {
-	this.xdzj = xdzj;
-}
-public String getBfzj() {
-	return bfzj;
-}
+	private String jgys;
+	private String xdzj;
+	private String bfzj;
+	
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}

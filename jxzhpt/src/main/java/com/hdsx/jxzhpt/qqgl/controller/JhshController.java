@@ -110,6 +110,110 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
+	public void queryGsdgz() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			ylxbhHandle();
+			jhsh.setXmbm(xmbm);
+			jsdjHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx1()!=null)
+				if(jhsh.getXmlx1().length()>0){
+					String[] tsdqs=jhsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					jhsh.setXmlx1(tsdq);
+				}
+			
+			listData=jhshServer.queryGsdgz(jhsh,page,rows);
+			total=jhshServer.queryGsdgzCount(jhsh);
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void queryJhshLjgsdgz(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			String xmbm = jhsh.getXmbm();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+			jhsh.setXmbm(xmbm);
+			ylxbhHandle();
+			jsdjHandle();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			if(jhsh.getXmlx1()!=null)
+				if(jhsh.getXmlx1().length()>0){
+					String[] tsdqs=jhsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					jhsh.setXmlx1(tsdq);
+				}
+				result = jhshServer.queryJhshLjgsdgz(jhsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void queryJhsh1() throws Exception{
 		List<Jhsh> listData=null;
 		int total=0;
@@ -716,6 +820,95 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
+	
+	public void exportJhshxxgsd(){
+		//设置表头
+		ExcelTitleCell [] title=null;
+		title=new ExcelTitleCell[15];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
+		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
+		title[3]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)3), null,20);
+		title[4]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
+		title[5]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
+		title[6]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
+		title[7]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)7), null,20);
+		title[8]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)8), null,20);
+		title[9]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)9), null,20);
+		title[10]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)10), null,20);
+		title[11]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)11), null,20);
+		title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
+		title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
+		title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "qdzh");//起点桩号
+		attribute.put("4", "zdzh");//止点桩号
+		attribute.put("5", "kgsj");//开工时间
+		attribute.put("6", "wgsj");//完工时间
+		attribute.put("7", "gq");//工期（月）
+		attribute.put("8", "gkpfwh");//工可批复文号
+		attribute.put("9", "sjpfwh");//设计批复文号
+		attribute.put("10", "xdwh");//计划下达文号
+		attribute.put("11", "xdsj");//计划下达时间
+		attribute.put("12", "pfztz");//批复总投资
+		attribute.put("13", "bbzzj");//部补助资金
+		attribute.put("14", "sbzzj");//省补助资金
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jsdjHandle();
+		ylxbhHandle();
+		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		List<Object> excelData=new ArrayList<Object>();
+		if(jhsh.getXmlx1()!=null)
+			if(jhsh.getXmlx1().length()>0){
+				String[] tsdqs=jhsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+		String titleName="";
+		String fileName="";
+		excelData.addAll(jhshServer.queryGsdgz(jhsh, 0, 0));
+		titleName="国省道改造";
+		fileName="国省道改造-计划审核";
+		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+	}
+	
+	
+	
 	public void exportJhshYhdzx(){
 		//设置表头、列与字段对应
 		String fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区号,fieid=xzqh>,<title=开工时间,fieid=kgsj>," +
@@ -1003,6 +1196,59 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
+	public void exportZjxdgsd(){
+		//设置表头、设置列与字段对应
+		String fileTitle=null;
+		fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk>,<title=国债,fieid=gz>,<title=国债债券,fieid=gzzq>,<title=省债,fieid=sz>,<title=省债债券,fieid=szzq>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
+		String xmbm = jhsh.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "j.xmbm like '" + xmbm + "%' ";
+		}
+		jhsh.setXmbm(xmbm);
+		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jsdjHandle();
+		ylxbhHandle();
+		if(jhsh.getXmlx1()!=null)
+			if(jhsh.getXmlx1().length()>0){
+				String[] tsdqs=jhsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+		List<Object> excelData=new ArrayList<Object>();
+		String titleName="";
+		String fileName="";
+		excelData.addAll(jhshServer.queryGsdgz(jhsh, 0, 0));
+		titleName="国省道改造";
+		fileName="国省道改造-计划资金下达";
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+	}
+	
 	/**
 	 * 导入计划审核信息
 	 * @throws Exception

@@ -103,6 +103,8 @@ public class Jhsh {
 	private String lsjl;//历史记录
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
+	private String xmlxs;
+	private String xmlx1;
 	private String tsdq;//特殊地区
 	//养护和水毁的字段
 	private String ylxbh;//原路线编号
@@ -617,4 +619,17 @@ public class Jhsh {
 	public void setLsjl(String lsjl) {
 		this.lsjl = lsjl;
 	}
+	public String getXmlxs() {
+		return xmlxs;
+	}
+	public void setXmlxs(String xmlxs) {
+		this.xmlxs = xmlxs;
+	}
+	public String getXmlx1() {
+		return xmlx1;
+	}
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+	
 }

@@ -478,5 +478,12 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		}
 		return update("updatexjsgt",cbsj)==1;
 	}
+	@Override
+	public boolean updatelmsgt(Cbsj cbsj) {
+		if(queryOne("selectLmsgt", cbsj)==null){
+			insert("insertlmsgt", cbsj);
+		}
+		return update("updatelmsgt",cbsj)==1;
+	}
 
 }

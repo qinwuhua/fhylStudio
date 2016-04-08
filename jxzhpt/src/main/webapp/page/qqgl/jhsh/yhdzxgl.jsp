@@ -31,7 +31,7 @@
 					$(item).hide();
 				});
 				$('#ztspan').html("审核状态");
-				$('#项目计划库管理').html("项目立项审核");
+				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
 				$.each($("[name='sheng']"),function(index,item){
 					$(item).hide();

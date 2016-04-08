@@ -549,6 +549,24 @@ function deleteFile(id){
  * @returns {Boolean} 结果？
  */
 function importJhsh(xmlx){
+	if(xmlx==null){
+		var xmlx1=$("#xmlx").combobox("getValues").join(",");
+		if(xmlx1.substr(0,1)==',')
+			xmlx1=xmlx1.substr(1,xmlx1.length);
+		if(xmlx1=='改建工程'){
+			xmlx=1;
+		}
+		else if(xmlx1=='路面改造工程'){
+			xmlx=2;
+		}
+		else if(xmlx1=='新建工程'){
+			xmlx=3;
+		}else{
+			alert('请在项目类型复选框中选择一种项目类型(只一种)');
+			return;
+		}
+			
+	}
 	var url="/jxzhpt/qqgl/importExcelJhxd.do?xmlx="+xmlx;
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
@@ -855,7 +873,11 @@ function openxZjxd1(){
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
 	if(id=="jhxd" || id=="zjzj"){
-		YMLib.Var.xmlx=xmlx;
+		if(xmlx==null)
+			YMLib.Var.xmlx=xmbm.substr(10,1);
+		else
+		    YMLib.Var.xmlx=xmlx;
+		
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
 		if(id=="lmsjedit" || id=="lmsj"){

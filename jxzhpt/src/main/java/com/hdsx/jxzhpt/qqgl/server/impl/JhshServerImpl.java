@@ -513,5 +513,20 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean updateJhshYhzx(Jhsh jhsh) {
 		return update("updateJhshYhzx",jhsh)>0;
 	}
-	
+	@Override
+	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryGsdgz",params);
+	}
+	@Override
+	public int queryGsdgzCount(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryGsdgzCount", params);
+	}
+	@Override
+	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh) {
+		return queryOne("queryJhshLjgsdgz",jhsh);
+	}
 }

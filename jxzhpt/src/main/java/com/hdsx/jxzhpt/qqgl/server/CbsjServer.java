@@ -355,5 +355,7 @@ public interface CbsjServer {
 	public boolean updatesjsgt(Cbsj cbsj);
 
 	public boolean updatexjsgt(Cbsj cbsj);
+
+	public boolean updatelmsgt(Cbsj cbsj);
 	
 }

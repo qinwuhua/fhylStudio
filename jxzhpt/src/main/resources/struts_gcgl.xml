@@ -207,8 +207,8 @@
 	<action name="selectGcgzsjjhFile" class="gcglgcgzsjController" method="selectGcgzsjjhFile"/>
 	<action name="deleteGcgzsjFile" class="gcglgcgzsjController" method="deleteGcgzsjFile"/>
 	<action name="sbGcgzsjYb" class="gcglgcgzsjController" method="sbGcgzsjYb"/>
-		<action name="selectGcgzsjjhList1" class="gcglgcgzsjController" method="selectGcgzsjjhList1"/>
-	
+	<action name="selectGcgzsjjhList1" class="gcglgcgzsjController" method="selectGcgzsjjhList1"/>
+	<action name="selectgsdgzList" class="gcglgcgzsjController" method="selectgsdgzList"/>
 	
 	<!-- hsly -->
 	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>

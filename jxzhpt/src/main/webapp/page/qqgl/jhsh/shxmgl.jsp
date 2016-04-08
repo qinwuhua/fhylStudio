@@ -382,7 +382,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目计划库管理</span>>&nbsp;灾毁重建项目管理</div>
+		<div id="p_top">计划管理>&nbsp;<span id="spantitle">项目立项</span>>&nbsp;灾毁重建项目管理</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 		<tr>

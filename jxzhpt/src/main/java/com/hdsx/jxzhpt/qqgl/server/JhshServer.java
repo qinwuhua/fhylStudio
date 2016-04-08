@@ -349,6 +349,12 @@ public interface JhshServer {
 	 */
 	public Map<String, String> queryJhshLjLmsj(Jhsh jhsh);
 	/**
+	 * 计划累计路面升级
+	 * @param jhsh
+	 * @return
+	 */
+	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh);
+	/**
 	 * 计划累计路面改造
 	 * @param jhsh
 	 * @return
@@ -420,4 +426,6 @@ public interface JhshServer {
 	public int queryJhshYhdzxCount1(Jhsh jhsh);
 	public List<Jhsh> queryJhshSh1(Jhsh jhsh, int page, int rows);
 	public int queryJhshShCount1(Jhsh jhsh);
+	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows);
+	public int queryGsdgzCount(Jhsh jhsh);
 }

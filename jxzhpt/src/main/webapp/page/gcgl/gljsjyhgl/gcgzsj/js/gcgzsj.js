@@ -18,7 +18,17 @@ function sfqxkg(index){
 		sfqxkg='否';
 	if(data1.SFQXKG=='否')
 		sfqxkg='是';
-	var data="flag="+"gcsj"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
+	var flag='';
+	if(data1.XMBM.substr(10,1)=='1'){
+		flag='gcsj';
+	}
+	if(data1.XMBM.substr(10,1)=='2'){
+		flag='gcgj';
+	}
+	if(data1.XMBM.substr(10,1)=='3'){
+		flag='xjgc';
+	}
+	var data="flag="+flag+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/updataSFQX.do',
@@ -77,18 +87,25 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','改建工程项目开工','wqgzkg.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','国省道改造开工','wqgzkg.jsp','wqxx',650,330);
 	}
 }
 function ykaigong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','改建工程项目开工详情','wqgzkg1.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','国省道改造开工详情','wqgzkg1.jsp','wqxx',650,330);
 }
 	function wangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-			YMLib.UI.createWindow('wqxx','改建工程项目完工','wqgzwg.jsp','wqxx',500,300);
+			
+			if(obj1.XMBM.substr(10,1)=='1')
+				YMLib.UI.createWindow('wqxx','改建工程项目完工','wqgzwg.jsp','wqxx',500,300);
+			if(obj1.XMBM.substr(10,1)=='2')
+				YMLib.UI.createWindow('wqxx','路面改造工程项目完工','../gcgzgj/wqgzwg.jsp','wqxx',500,300);
+			if(obj1.XMBM.substr(10,1)=='3')
+				YMLib.UI.createWindow('wqxx','新建工程项目完工','../xjgc/wqgzwg.jsp','wqxx',500,300);
+
 		}	
 	function wwangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
@@ -98,7 +115,13 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','改建工程项目月报信息','gcgzsjyb.jsp','wqxx1',1059,467);
+	if(obj1.XMBM.substr(10,1)=='1')
+		YMLib.UI.createWindow('wqxx1','改建工程项目月报信息','gcgzsjyb.jsp','wqxx1',1059,467);
+	if(obj1.XMBM.substr(10,1)=='2')
+		YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','../gcgzgj/gcgzgjyb.jsp','wqxx1',1059,467);
+	if(obj1.XMBM.substr(10,1)=='3')
+		YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','../xjgc/gcgzgjyb.jsp','wqxx1',1059,467);
+	
 	//window.open("gcgzsjyb.jsp");
 }
 function ybsb__ck(index){
@@ -280,12 +303,24 @@ function tjwqgzkg(){
 //		return;
 //	}
 	var data="gcglgcgzsj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzsj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglgcgzsj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzsj.jldw="+$("#tj_jldw").val()+"&gcglgcgzsj.jsdw="+$("#tj_jsdw").val()
+	+"&gcglgcgzsj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzsj.jldw="+$("#tj_jldw").val()+"&gcglgcgzsj.jsdw="+$("#tj_jsdw").val()+"&gcglgcgzsj.sfgk="+$("#sfgk").val()
 	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+"&gcglgcgzsj.jhid="+parent.obj1.XMBM;
-	//alert(data);
+	var url='';
+	if(parent.obj1.XMBM.substr(10,1)=='1'){
+		url='../../../../gcgl/insertGcgzsjkg.do';
+		data=data.replace(/\gcglgcgzsj/g, "gcglgcgzsj");
+	}
+	if(parent.obj1.XMBM.substr(10,1)=='2'){
+		url='../../../../gcgl/insertGcgzgjkg.do';
+		data=data.replace(/\gcglgcgzsj/g, "gcglgcgzgj");
+	}
+	if(parent.obj1.XMBM.substr(10,1)=='3'){
+		url='../../../../gcgl/insertXjgckg.do';
+		data=data.replace(/\gcglgcgzsj/g, "gcglgcgzgj");
+	}
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzsjkg.do',
+		url:url,
 		data:data,
 		dataType:'json',
 		success:function(msg){
