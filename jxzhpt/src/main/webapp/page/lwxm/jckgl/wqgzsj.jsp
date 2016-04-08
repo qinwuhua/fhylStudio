@@ -449,7 +449,7 @@ text-decoration:none;
                         <tr height="32">
                         	<td>行政区划：</td>
                               	<td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
-							 <td>项目年份：</td>
+							 <td>入库时间：</td>
                              <td style="width:70px"><select id="xmnf"  style="width:70px"></select></td>       
                              <td>评定等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox">

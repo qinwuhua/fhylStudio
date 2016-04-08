@@ -209,6 +209,7 @@
 		<action name="lwBzsbz" class="planwqgzsjController" method="lwBzsbz"></action>
 		<action name="dcwqgzsjjhExcel" class="planwqgzsjController" method="dcwqgzsjjhExcel"></action>
 		<action name="dcwqgzsjjhshExcel" class="planwqgzsjController" method="dcwqgzsjjhshExcel"></action>
+		<action name="dcwqgzsjjhshExcelJhkgl" class="planwqgzsjController" method="dcwqgzsjjhshExcelJhkgl"></action>
 		<action name="dcwqgzsjjhshExcel1" class="planwqgzsjController" method="dcwqgzsjjhshExcel1"></action>
 		<action name="tuihuiWqgzsjById" class="planwqgzsjController" method="tuihuiWqgzsjById"></action>
 		<action name="tzxz" class="planwqgzsjController" method="tzxz"></action>

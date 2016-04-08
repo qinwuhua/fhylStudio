@@ -48,7 +48,16 @@ public class WjglController extends BaseActionSupport{
 	private String gydw;
 	private String kssj;
 	private String jssj;
+	private String wjmc;
 	
+	
+	
+	public String getWjmc() {
+		return wjmc;
+	}
+	public void setWjmc(String wjmc) {
+		this.wjmc = wjmc;
+	}
 	public String getGydw() {
 		return gydw;
 	}
@@ -179,6 +188,7 @@ public class WjglController extends BaseActionSupport{
 		wjgl.setJsdw(gydw);
 		wjgl.setKssj(kssj);
 		wjgl.setJssj(jssj);
+		wjgl.setWjmc(wjmc);
 		wjgl.setPage(page);
 		wjgl.setRows(rows);
 		List<Wjgl> list = wjglServer.selectzcwjlist(wjgl);

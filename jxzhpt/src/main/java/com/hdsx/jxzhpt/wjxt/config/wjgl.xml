@@ -58,6 +58,9 @@
 			<if test="jsdw != null and  jsdw != ''">
 			and trim(#{jsdw}) like '%'||fbdw||'%'
 			</if>
+			<if test="wjmc != null and  wjmc != ''">
+			and wjmc like '%'||#{wjmc}||'%'
+			</if>
 			<if test="kssj != null  and kssj != ''">
 					and to_date(fbsj,'yyyy-mm-dd') >= to_date(#{kssj},'yyyy-mm-dd')
 			</if>
@@ -76,6 +79,9 @@
 			where 1=1
 			<if test="jsdw != null and  jsdw != ''">
 			and trim(#{jsdw}) like '%'||fbdw||'%'
+			</if>
+			<if test="wjmc != null and  wjmc != ''">
+				and wjmc like '%'||#{wjmc}||'%'
 			</if>
 			<if test="kssj != null  and kssj != ''">
 					and to_date(fbsj,'yyyy-mm-dd') >= to_date(#{kssj},'yyyy-mm-dd')

@@ -18,6 +18,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.google.common.base.Strings;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
@@ -67,7 +68,14 @@ public class JckwqgzsjController extends BaseActionSupport{
 	private String bzls;
 	private String sfylrbwqk;
 	private String shzt;
+	private String gldj;
 	
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
 	public String getShzt() {
 		return shzt;
 	}
@@ -1094,6 +1102,7 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			}
 			jckwqgzsj.setTsdq(tsdq);
 		}
+		jckwqgzsj.setGldj(gldj);
 		if(jckwqgzsj.getGldj().length()>0){
 			String[] tsdqs=jckwqgzsj.getGldj().split(",");
 			String tsdq="and substr(qlbh,0,1) in (";
@@ -1147,11 +1156,11 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		et.add(new Excel_tilte("县(市、区)",1,2,2,2));
 		et.add(new Excel_tilte("所在乡镇",1,2,3,3));
 		et.add(new Excel_tilte("行政区划代码",1,2,4,4));
-		et.add(new Excel_tilte("新路线编码",1,2,5,5));
-		et.add(new Excel_tilte("新路线名称",1,2,6,6));
-		et.add(new Excel_tilte("新桥路编码",1,2,7,7));
-		et.add(new Excel_tilte("新中心桩号",1,2,8,8));
-		et.add(new Excel_tilte("桥梁名称",1,2,9,9));
+		et.add(new Excel_tilte("桥梁名称",1,2,5,5));
+		et.add(new Excel_tilte("新路线编码",1,2,6,6));
+		et.add(new Excel_tilte("新路线名称",1,2,7,7));
+		et.add(new Excel_tilte("新桥路编码",1,2,8,8));
+		et.add(new Excel_tilte("新中心桩号",1,2,9,9));
 		et.add(new Excel_tilte("桥梁编号",1,2,10,10));
 		et.add(new Excel_tilte("路线编码",1,2,11,11));
 		et.add(new Excel_tilte("路线名称",1,2,12,12));
@@ -1491,7 +1500,7 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		jckwqgzsj.setLxmc(lxmc);
 		jckwqgzsj.setQlmc(qlmc);
 		jckwqgzsj.setXmnf(xmnf);
-		jckwqgzsj.setShzt(sbzt);
+		jckwqgzsj.setShzt(shzt);
 		jckwqgzsj.setJsdj(jsdj);
 		jckwqgzsj.setAkjfl(akjfl);
 		jckwqgzsj.setLxbm(lxbm);

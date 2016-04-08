@@ -65,13 +65,16 @@
 			}
 			$('#kssj').datebox('setValue', y1+"-"+m1+"-"+d);
 			
+			
 			showAll();
 		});
 		
 		function showAll(){
 			var gydw=$.cookie("unit");
+			var wjmc=$("#wjmc").val();
 			var kssj=$("#kssj").datebox('getValue');
 			var jssj=$("#jssj").datebox('getValue');
+			
 			//alert(kssj+"---"+jssj+"---"+gydw);
 			$('#datagrid').datagrid({    
 			    url:'/jxzhpt/wjxt/selectzcwjlist.do',
@@ -85,7 +88,8 @@
 			    queryParams: {
 			    	gydw: gydw,
 			    	kssj:kssj,
-			    	jssj:jssj
+			    	jssj:jssj,
+			    	wjmc:wjmc
 				},
 			    columns:[[
 			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -204,16 +208,22 @@ a:active {
         							<input type="text" id="kssj" >
         							<span>至</span>
         							<input type="text" id="jssj" >
+        							<span>文件名称：</span>
+        							 <input class="combo-text validatebox-text" id="wjmc" style="width: 113px; height: 20px; line-height: 20px;" type="text">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" /> --%>
+
                                     <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
             
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="xxtztj()" style="border-width:0px;cursor: hand;vertical-align: middle;" />
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  
                                     
+                                 
         					</p>
         				</div>
         			</fieldset>
