@@ -58,6 +58,8 @@
 	<action name="exportwqyb" class="gcglabgcController" method="exportwqyb"/>
 	<action name="exportyhyb" class="gcglabgcController" method="exportyhyb"/>
 	<action name="exportzhyb" class="gcglabgcController" method="exportzhyb"/>
+	<action name="exportgsdyb" class="gcglabgcController" method="exportgsdyb"/>
+	
 	
 	<action name="uploadAbgcFile" class="gcglabgcController" method="uploadAbgcFile"/>
 	<action name="downAbgcFile" class="gcglabgcController" method="downAbgcFile"/>
@@ -209,6 +211,7 @@
 	<action name="sbGcgzsjYb" class="gcglgcgzsjController" method="sbGcgzsjYb"/>
 	<action name="selectGcgzsjjhList1" class="gcglgcgzsjController" method="selectGcgzsjjhList1"/>
 	<action name="selectgsdgzList" class="gcglgcgzsjController" method="selectgsdgzList"/>
+	<action name="selectgsdgzListbf" class="gcglgcgzsjController" method="selectgsdgzListbf"/>
 	
 	<!-- hsly -->
 	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>

@@ -622,4 +622,67 @@ public class GcglgcgzsjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	public void selectgsdgzListbf(){
+		
+		gcglgcgzsj.setPage(page);
+		gcglgcgzsj.setRows(rows);
+		try {
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+		gcglgcgzsj.setGydw(tiaojian1);
+		gcglgcgzsj.setKgzt(kgzt);
+		gcglgcgzsj.setLxmc(lxmc);
+		gcglgcgzsj.setJgzt(jgzt);
+		gcglgcgzsj.setShzt(ybzt);
+		gcglgcgzsj.setTbyf(bfyf);
+		String[] nfs=xmnf.split(",");
+		String tj="";
+		for (int i = 0; i < nfs.length; i++) {
+			if(i==0)
+				tj+=" and ( xdjh.xdsj like '%"+nfs[i]+"%'";
+			else 
+				tj+="or xdjh.xdsj like '%"+nfs[i]+"%'";
+		}
+		tj+=")";
+		System.out.println(tj);
+		gcglgcgzsj.setSbnf(tj);
+		gcglgcgzsj.setTiaojian(bfzt);
+		if(gcglgcgzsj.getXmlx1()!=null)
+			if(gcglgcgzsj.getXmlx1().length()>0){
+				String[] tsdqs=gcglgcgzsj.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				gcglgcgzsj.setXmlx1(tsdq);
+			}
+		List<Map<String,Object>> list=gcglgcgzsjServer.selectgsdgzListbf(gcglgcgzsj);
+		int count=gcglgcgzsjServer.selectgsdgzListbfcount(gcglgcgzsj);
+		EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
+		e.setRows(list);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 }

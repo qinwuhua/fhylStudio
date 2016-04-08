@@ -1,3 +1,18 @@
+ function request(strParame) {
+   	var args = new Object( );
+   	var query = location.search.substring(1);
+
+   	var pairs = query.split("&"); // Break at ampersand
+   	for(var i = 0; i < pairs.length; i++) {
+   	var pos = pairs[i].indexOf('=');
+   	if (pos == -1) continue;
+   	var argname = pairs[i].substring(0,pos);
+   	var value = pairs[i].substring(pos+1);
+   	value = decodeURIComponent(value);
+   	args[argname] = value;
+   	}
+   	return args[strParame];
+   	} 
 function cxqdmc(lxbm,qdzh){
 	$('#qdmc').val('');
 	$.ajax({
@@ -43,15 +58,36 @@ function setJsdj(id) {
 		multiple:true
 	});
 }
-function setxmnf(id){
+function setxmnf(id,flag){
 	var myDate = new Date();
 	var years=[];
 	var first;
 	years.push({text:'全部',value:''});
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	if(flag=='010111010101'||flag=='01011101010101'||flag=='01011101010102'||flag=='01011101010103'){
+		$("#bstext").html('十三五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2020)
+					first=2020;
+				if(first<2016)
+					first=2016;
+			}
+			years.push({text:(2015+5-i),value:(2015+5-i)});
+		}
+	}
+	if(flag=='010111020101'||flag=='01011102010101'||flag=='01011102010102'||flag=='01011102010103'){
+		$("#bstext").html('十四五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2025)
+					first=2025;
+				if(first<2021)
+					first=2021;
+			}
+			years.push({text:(2020+5-i),value:(2020+5-i)});
+		}
 	}
 	$('#'+id).combobox({
 	    data:years,
@@ -98,8 +134,8 @@ function setxmnf(id){
 			}
 		}
 	});
-	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
-	$('#id'+myDate.getFullYear()).attr('checked', true);
+	$('#'+id).combobox("setValue",first+'');
+	$('#id'+first).attr('checked', true);
 }
 function sjxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -1032,7 +1068,14 @@ function dcwnjhExcel(str){
 		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
-	var data="lxsh.xmlx="+str+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
+	var xmlx1='';
+	if(xmlx=='gsdgz'){
+		xmlx1=$("#xmlx").combobox("getValues").join(",");
+		if(xmlx1.substr(0,1)==',')
+			xmlx1=xmlx1.substr(1,xmlx1.length);
+	}
+	
+	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcwnjhExcel.do?'+data;
 	 });

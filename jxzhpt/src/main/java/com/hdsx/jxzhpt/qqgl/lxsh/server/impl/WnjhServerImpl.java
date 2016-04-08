@@ -44,6 +44,14 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		return queryOne("selectGjwnjhCount", lxsh);
 	}
 	@Override
+	public List<Lxsh> selectGsdwnjh(Lxsh lxsh) {
+		return queryList("selectGsdwnjh", lxsh);
+	}
+	@Override
+	public int selectGsdwnjhCount(Lxsh lxsh) {
+		return queryOne("selectGsdwnjhCount", lxsh);
+	}
+	@Override
 	public List<Lxsh> wnjhGpsroad(Lxsh lxsh) {
 		return queryList("wnjhGpsroad", lxsh);
 	}
@@ -84,6 +92,10 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public List<Excel_list> querywnjhSjgz(Lxsh lxsh) {
 		return queryList("querywnjhSjgz", lxsh);
+	}
+	@Override
+	public List<Excel_list> querywnjhGsdgz(Lxsh lxsh) {
+		return queryList("querywnjhGsdgz", lxsh);
 	}
 	@Override
 	public List<Excel_list> querywnjhLmgz(Lxsh lxsh) {
@@ -238,6 +250,10 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public Lxsh showgjtj(Lxsh lxsh) {
 		return queryOne("showgjtj", lxsh);
+	}
+	@Override
+	public Lxsh showgsdtj(Lxsh lxsh) {
+		return queryOne("showgsdtj", lxsh);
 	}
 	@Override
 	public Lxsh showlmtj(Lxsh lxsh) {

@@ -109,6 +109,8 @@ public interface GcglabgcServer {
 
 	Gcglwqgz selectabTJ(Gcglabgc gcglabgc);
 
+	List<Excel_list> exportgsdyb(Gcglabgc gcglabgc);
+
 	
 
 }

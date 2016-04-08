@@ -1067,6 +1067,92 @@ public class GcglabgcController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel		
 		
 	}
+	
+	public void exportgsdyb(){
+		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
+
+		String tiaojian1="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
+		}else{
+			tiaojian1="and xzqhdm in ("+gydw+")";
+		}
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setShzt(ybzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setSbnf(xmnf);
+		gcglabgc.setGydw(tiaojian1);
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		gcglabgc.setJhnf(xmnf);
+		if(gcglabgc.getXmlx1()!=null)
+			if(gcglabgc.getXmlx1().length()>0){
+				String[] tsdqs=gcglabgc.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				gcglabgc.setXmlx1(tsdq);
+			}
+		System.out.println(gcglabgc.getXmlx1());
+		List<Excel_list> list=gcglabgcServer.exportgsdyb(gcglabgc);
+		
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("国省道改造项目车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("国省道改造项目车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("项目编码",1,1,0,0));
+		et.add(new Excel_tilte("项目名称",1,1,1,1));
+		et.add(new Excel_tilte("项目年份",1,1,2,2));
+		et.add(new Excel_tilte("计划开工时间",1,1,3,3));
+		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
+		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
+		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
+		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,7,7));
+		et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
+		et.add(new Excel_tilte("国债(万元)",1,1,9,9));
+		et.add(new Excel_tilte("省债(万元)",1,1,10,10));
+		et.add(new Excel_tilte("财审处意见",1,1,11,11));
+		et.add(new Excel_tilte("填报月份",1,1,12,12));
+		et.add(new Excel_tilte("填报时间",1,1,13,13));
+		et.add(new Excel_tilte("填报人",1,1,14,14));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	
+	
 	//红色
 	public void exporthsyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();

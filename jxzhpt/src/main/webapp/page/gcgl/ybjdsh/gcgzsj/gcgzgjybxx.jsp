@@ -49,6 +49,7 @@
 		$("#xgcsyj").text(ybdata.xgcsyj);
 		$("#cscyj").text(ybdata.cscyj);
 	});
+	
 	function closes(str){
 		 parent.$('#'+str).window('destroy');
 	}

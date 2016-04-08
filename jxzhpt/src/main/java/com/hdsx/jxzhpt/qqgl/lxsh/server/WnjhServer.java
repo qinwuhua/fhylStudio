@@ -53,5 +53,9 @@ public interface WnjhServer {
 	List<Map<String, Object>> selectYlx(Lxsh lxsh);
 	List<Map<String, Object>> selectYSj(String xzqhdm,String xzqhmc);
 	List<Map<String, Object>> selectGhSj(String string,boolean qb);
+	List<Lxsh> selectGsdwnjh(Lxsh lxsh);
+	int selectGsdwnjhCount(Lxsh lxsh);
+	Lxsh showgsdtj(Lxsh lxsh);
+	List<Excel_list> querywnjhGsdgz(Lxsh lxsh);
 
 }

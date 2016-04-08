@@ -15,7 +15,21 @@ public class Gcglabgc implements Serializable {
 	private String qlmc;
 	private String gydwtj;
 	private String qlbh;
+	private String xmlx1;
+	private String xmlxs;
 	
+	public String getXmlx1() {
+		return xmlx1;
+	}
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+	public String getXmlxs() {
+		return xmlxs;
+	}
+	public void setXmlxs(String xmlxs) {
+		this.xmlxs = xmlxs;
+	}
 	public String getQlbh() {
 		return qlbh;
 	}

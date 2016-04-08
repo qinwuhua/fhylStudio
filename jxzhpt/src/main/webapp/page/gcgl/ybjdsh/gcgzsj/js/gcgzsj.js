@@ -43,7 +43,7 @@ function wqxiangxi(index){
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
 	//YMLib.UI.createWindow('gclmsj_xx','改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','改建工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
+	YMLib.UI.createWindow('wqxx','国省道改造项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -58,7 +58,13 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','改建月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
+	if(obj1.XMBM.substr(10,1)=='1')
+		YMLib.UI.createWindow('wqxx1','改建工程项目月报信息','gcgzsjyb.jsp','wqxx1',1059,467);
+	if(obj1.XMBM.substr(10,1)=='2')
+		YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','../gcgzgj/gcgzgjyb.jsp','wqxx1',1059,467);
+	if(obj1.XMBM.substr(10,1)=='3')
+		YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','../xjgc/gcgzgjyb.jsp','wqxx1',1059,467);
+
 	//window.open("wqgzyb.jsp");
 }
 function ybsb__ck(index){

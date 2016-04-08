@@ -333,4 +333,16 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	public int queryGsdListCount(Gcglgcgzsj gcglgcgzsj) {
 		return queryOne("queryGsdListCount", gcglgcgzsj);
 	}
+	
+	@Override
+	public List<Map<String,Object>> selectgsdgzListbf(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectgsdgzListbf", gcglgcgzsj);
+	}
+
+	@Override
+	public int selectgsdgzListbfcount(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectgsdgzListbfcount", gcglgcgzsj);
+	}
 }

@@ -418,6 +418,112 @@ public class WnjhController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	public void selectGsdwnjh(){
+		try {
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqh+")";
+		}
+		System.out.println(tiaojian2);
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		if(xmnf.indexOf(",")>-1){
+			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+		}
+		lxsh.setXmnf(xmnf);
+		lxsh.setTsdq(tsdq);
+		String gldjtj="";
+		if((!"".equals(gldj))&&gldj!=null){
+			String[] jsdjs = gldj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+				else
+					gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+			}
+			gldjtj=gldjtj+")";
+		}
+		lxsh.setGldj(gldjtj);
+		String jsdjtj="";
+		if((!"".equals(jsdj))&&jsdj!=null){
+			String[] jsdjs = jsdj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				else
+					jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+			}
+			jsdjtj=jsdjtj+")";
+		}
+		
+		lxsh.setJsdj(jsdjtj);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		if(lxsh.getTsdq().length()>0){
+			String[] tsdqs=lxsh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			lxsh.setTsdq(tsdq);
+		}
+		if(lxsh.getXmlx1()!=null)
+			if(lxsh.getXmlx1().length()>0){
+				String[] tsdqs=lxsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setXmlx1(tsdq);
+			}
+		
+		List<Lxsh> list=wnjhServer.selectGsdwnjh(lxsh);
+		int count=wnjhServer.selectGsdwnjhCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	
+	
+	
 	public void selectLmwnjh(){
 		try {
 		String tiaojian1="";
@@ -979,6 +1085,31 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			List<Excel_list> elist=new ArrayList<Excel_list>();
+			if("gsdgz".equals(lxsh.getXmlx())){
+				if(lxsh.getXmlx1()!=null)
+					if(lxsh.getXmlx1().length()>0){
+						String[] tsdqs=lxsh.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						lxsh.setXmlx1(tsdq);
+					}
+				xmbt="国省道改造";
+				elist=wnjhServer.querywnjhGsdgz(lxsh);
+			}
 			if("sjgz".equals(lxsh.getXmlx())){
 				xmbt="改建";
 				elist=wnjhServer.querywnjhSjgz(lxsh);
@@ -1200,6 +1331,31 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 		}
 		Lxsh l=new Lxsh();
+		if("gsdgz".equals(xmlx)){
+			if(lxsh.getXmlx1()!=null)
+				if(lxsh.getXmlx1().length()>0){
+					String[] tsdqs=lxsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setXmlx1(tsdq);
+				}
+			l=wnjhServer.showgsdtj(lxsh);
+		}
+			
 		if("sjgz".equals(xmlx))
 				l=wnjhServer.showgjtj(lxsh);
 		if("lmgz".equals(xmlx))

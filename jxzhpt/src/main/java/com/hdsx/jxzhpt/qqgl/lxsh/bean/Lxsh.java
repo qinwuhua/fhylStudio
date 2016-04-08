@@ -11,7 +11,21 @@ public class Lxsh implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String tzxz;
 	private String tzsj;
+	private String xmlx1;
+	private String xmlxs;
 	
+	public String getXmlx1() {
+		return xmlx1;
+	}
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+	public String getXmlxs() {
+		return xmlxs;
+	}
+	public void setXmlxs(String xmlxs) {
+		this.xmlxs = xmlxs;
+	}
 	public String getTzxz() {
 		return tzxz;
 	}

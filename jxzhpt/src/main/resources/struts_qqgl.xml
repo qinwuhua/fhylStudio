@@ -119,6 +119,7 @@
 	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>
 	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
 	      
+	      <action name="selectGsdwnjh" class="wnjhController" method="selectGsdwnjh"/>
 	      <action name="selectGjwnjh" class="wnjhController" method="selectGjwnjh"/>
 	      <action name="selectLmwnjh" class="wnjhController" method="selectLmwnjh"/>
 	      <action name="selectXjwnjh" class="wnjhController" method="selectXjwnjh"/>

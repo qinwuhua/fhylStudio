@@ -34,13 +34,18 @@ function wqxiangxi(index){
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
 	//YMLib.UI.createWindow('wqxx','改建工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
-	YMLib.UI.createWindow('wqxx','改建工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
+	YMLib.UI.createWindow('wqxx','国省道改造项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("gcgzsjxx.jsp");
 }
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw.jsp','wqxx1',900,500);
+	if(obj1.XMBM.substr(10,1)=='1')
+		YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzsjzjdw.jsp','wqxx1',900,500);
+	if(obj1.XMBM.substr(10,1)=='2')
+		YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','../gcgzgj/gcgzgjzjdw.jsp','wqxx1',900,500);
+	if(obj1.XMBM.substr(10,1)=='3')
+		YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','../xjgc/gcgzgjzjdw.jsp','wqxx1',900,500);
 	//window.open("gcgzsjzjdw.jsp");
 }
 function zjdw__ck(index){

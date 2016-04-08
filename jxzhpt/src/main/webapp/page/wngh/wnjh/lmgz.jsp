@@ -29,7 +29,8 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			setxmnf("xmnf");
+			var urlid=request('id');
+			setxmnf("xmnf",urlid);
 			setTimeout("showAlllm()",'1700');
 			//showAlllm();
 		});
@@ -78,7 +79,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">五年项目库>&nbsp;十三五>&nbsp;公路建设项目>&nbsp;国省道改造>&nbsp;路面改造工程项目</div>
+		<div id="p_top">五年项目库>&nbsp;<span id='bstext'></span>>&nbsp;公路建设项目>&nbsp;国省道改造>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
