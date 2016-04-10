@@ -693,7 +693,7 @@
 	
 	<select id="showsjkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -729,7 +729,7 @@
 	</select>
 	<select id="showlmkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_LMGZ t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -765,7 +765,7 @@
 	</select>
 	<select id="showxjkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -802,7 +802,7 @@
 	
 	<select id="showsjkxxbgTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_SJGZ_tz t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -838,7 +838,7 @@
 	</select>
 	<select id="showlmkxxbgTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_LMGZ_tz t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -877,7 +877,7 @@
 	</select>
 	<select id="showxjkxxbgTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_XJ_TZ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,sum(xjsdj) xjsdj,sum(jsjsdj) jsjsdj,sum(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx_TZ where jdbs='1' group by xmid ) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -1124,4 +1124,96 @@
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null)  and t.xmbm=#{xmbm} 
 	 </select>
+	 
+	 
+	 
+	 
+	 <select id="selectgsdkxList" parameterType="lxsh" resultType="kxxyj">
+		select * from (
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*,sl.xmsl from kxgsdgz t Left join 
+		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
+		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
+		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and t.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
+		</if>
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by sbzt1,xmbm
+	</select>
+	<select id="selectgsdkxListCount" parameterType="lxsh" resultType="int">
+		select count(*) from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm where 1=1
+		and (t.sbthcd &lt;=7 or t.sbthcd is null) 
+		<if test="gydw!='' and gydw!= null ">${gydw}</if>
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
+		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and t.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
+		</if>
+	</select>
+	<select id="showgsdkxxTjxx" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		 where 1=1
+		and  t.sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and t.shzt like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and t.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
+		</if>
+	</select>
+	
 </mapper>

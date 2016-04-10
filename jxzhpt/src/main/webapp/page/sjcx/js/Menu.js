@@ -1,5 +1,5 @@
 $(function() {
-	var qx=parent.$.cookie("qx3").split(",");
+	var qx=getQxfromSession('qx3').split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
 		if(qx[i]=='01010601'){

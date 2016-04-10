@@ -25,6 +25,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+// 			if($.cookie('unit')=='36')
+// 				location.href='xjsh.jsp';
 			tsdqdx("tsdq");
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));

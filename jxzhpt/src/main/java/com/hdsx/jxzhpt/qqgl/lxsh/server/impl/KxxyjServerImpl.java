@@ -47,6 +47,18 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		return queryOne("selectSjgzListCount", lxsh);
 	}
 	@Override
+	public List<Kxxyj> selectgsdkxList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectgsdkxList", lxsh);
+	}
+
+	@Override
+	public int selectgsdkxListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectgsdkxListCount", lxsh);
+	}
+	
+	@Override
 	public boolean insertFile(Plan_upload uploads) {
 		return insert("insertFile", uploads)>0;
 	}
@@ -465,6 +477,11 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		return queryOne("showsjkxxTjxx", lxsh);
 	}
 
+	@Override
+	public Lxsh showgsdkxxTjxx(Lxsh lxsh) {
+		return queryOne("showgsdkxxTjxx", lxsh);
+	}
+	
 	@Override
 	public Lxsh showlmkxxTjxx(Lxsh lxsh) {
 		return queryOne("showlmkxxTjxx", lxsh);

@@ -86,6 +86,18 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryCbsjLmsj",params);
 	}
 	@Override
+	public List<Cbsj> queryCbsjgsd(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjgsd",params);
+	}
+	@Override
+	public int queryCbsjgsdCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjgsdCount", params);
+	}
+	@Override
 	public List<Cbsj> queryCbsjLmsjbg(Cbsj cbsj, int page, int rows) {
 		params.put("cbsj", cbsj);
 		params.put("page", page);
@@ -353,6 +365,10 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryLmgzExcel",cbsj);
 	}
 	@Override
+	public List<Object> querygsdExcel(Cbsj cbsj) {
+		return queryList("querygsdExcel",cbsj);
+	}
+	@Override
 	public List<Object> queryYhdzxExcel(Cbsj cbsj) {
 		return queryList("queryYhdzxExcel",cbsj);
 	}
@@ -444,6 +460,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public Lxsh loadlmcbsjTjxx(Cbsj cbsj) {
 		params.put("cbsj", cbsj);
 		return queryOne("loadlmcbsjTjxx", params);
+	}
+	@Override
+	public Lxsh loadgsdcbsjTjxx(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("loadgsdcbsjTjxx", params);
 	}
 	@Override
 	public Lxsh loadlmcbsjbgTjxx(Cbsj cbsj) {

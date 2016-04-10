@@ -214,4 +214,14 @@ public interface LxshServer {
 	boolean qxxmyh1(Lxsh lxsh);
 
 	boolean qxxmzh1(Lxsh lxsh);
+
+	List<Lxsh> selectgsdgzList(Lxsh lxsh);
+
+	int selectgsdgzListCount(Lxsh lxsh);
+
+	Map<String, String> queryLxshLjgsd(Lxsh lxsh);
+
+	List<Excel_list> querylxshgsd(Lxsh lxsh);
+
+	List<Excel_list> querykxxgsd(Lxsh lxsh);
 }

@@ -409,6 +409,11 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	}
 
 	@Override
+	public List<Param> selQxByUser1(Param param) {
+		return queryList("selQxByUser1", param);
+	}
+	
+	@Override
 	public List<TreeNode> selQxByRoleid(Param param) {
 		return queryList("selQxByRoleid", param);
 	}

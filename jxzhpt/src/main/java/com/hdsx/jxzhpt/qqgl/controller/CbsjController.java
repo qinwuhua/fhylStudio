@@ -94,6 +94,30 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			if(cbsj.getXmlx()==1){
 				resultData=cbsjServer.queryCbsjLmsj(cbsj, page, rows);
 				total=cbsjServer.queryCbsjLmsjCount(cbsj);
+			}else if(cbsj.getXmlx()==11){
+				if(cbsj.getXmlx1()!=null)
+					if(cbsj.getXmlx1().length()>0){
+						String[] tsdqs=cbsj.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(c.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or c.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						cbsj.setXmlx1(tsdq);
+					}
+				resultData = cbsjServer.queryCbsjgsd(cbsj, page, rows);
+				total = cbsjServer.queryCbsjgsdCount(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				resultData = cbsjServer.queryCbsjLmgz(cbsj, page, rows);
 				total = cbsjServer.queryCbsjLmgzCount(cbsj);
@@ -240,6 +264,29 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			Lxsh l=null;
 			if(cbsj.getXmlx()==1){
 				l=cbsjServer.loadsjcbsjTjxx(cbsj);
+			}else if(cbsj.getXmlx()==11){
+				if(cbsj.getXmlx1()!=null)
+					if(cbsj.getXmlx1().length()>0){
+						String[] tsdqs=cbsj.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(c.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or c.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						cbsj.setXmlx1(tsdq);
+					}
+				l = cbsjServer.loadgsdcbsjTjxx(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				l = cbsjServer.loadlmcbsjTjxx(cbsj);
 			}else if(cbsj.getXmlx()==3){
@@ -684,6 +731,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			String fileTitle="";
 			if(cbsj.getXmlx()==1){
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=建设后一级公路,fieid=jhyilc>,<title=建设后二级公路,fieid=jherlc>,<title=建设后三级公路,fieid=jhsanlc>,<title=建设后四级公路,fieid=jhsilc>,<title=建设后等外公路,fieid=jhdwlc>,<title=建设后无路,fieid=jhwllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+			}else if(cbsj.getXmlx()==11){
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else if(cbsj.getXmlx()==2){
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else if(cbsj.getXmlx()==3){
@@ -721,6 +770,31 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				titleName="改建工程项目";
 				fileName="改建工程项目初步设计或施工图设计";
 				excelData = cbsjServer.queryLmsjExcel(cbsj);
+			}else if(cbsj.getXmlx()==11){
+				if(cbsj.getXmlx1()!=null)
+					if(cbsj.getXmlx1().length()>0){
+						String[] tsdqs=cbsj.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(c.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or c.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						cbsj.setXmlx1(tsdq);
+					}
+				titleName="国省道改造";
+				fileName="国省道改造初步设计或施工图设计";
+				excelData = cbsjServer.querygsdExcel(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				titleName="路面改造工程";
 				fileName="路面改造初步设计或施工图设计";

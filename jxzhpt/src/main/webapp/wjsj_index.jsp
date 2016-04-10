@@ -71,7 +71,7 @@ $(function(){
 });
 
 function menuQx(){
-	var qx=$.cookie("qx2").split(",");
+	var qx=getQxfromSession('qx2').split(",");
 	//alert(qx.length);
 	var flag=false;
 	for(var i=0;i<qx.length;i++){

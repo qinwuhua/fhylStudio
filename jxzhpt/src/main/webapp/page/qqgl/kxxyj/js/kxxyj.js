@@ -33,7 +33,13 @@ function showkxxTjxx(xmlx){
 	if(xmlx!='xj')
 	var lsjl=$("#lsjl").combobox('getValue');
 	else lsjl='';
-var  data='lxsh.lsjl='+lsjl+'&lxsh.xzqh='+xzqhstr+'&lxsh.gydw='+gydwstr
+	var xmlx1='';
+	if(xmlx=='gsdgz'){
+		xmlx1=$("#xmlx").combobox("getValues").join(",");
+		if(xmlx1.substr(0,1)==',')
+			xmlx1=xmlx1.substr(1,xmlx1.length);
+	}
+var  data='lxsh.lsjl='+lsjl+'&lxsh.xmlx1='+xmlx1+'&lxsh.xzqh='+xzqhstr+'&lxsh.gydw='+gydwstr
 +'&lxsh.xmmc='+xmmc+'&lxsh.xmnf='+xmnf+'&lxsh.tsdq='+tsdq+'&lxsh.jsdj='+jsdj
 +'&lxsh.gldj='+gldj+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.xmlx='+xmlx;
 	$.ajax({

@@ -28,6 +28,7 @@
 		  <action name="insertLmgz" class="lxshController" method="insertLmgz"/>
 		  <action name="insertXj" class="lxshController" method="insertXj"/>
 		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		  <action name="selectgsdgzList" class="lxshController" method="selectgsdgzList"/>
 		  <action name="selectXjList" class="lxshController" method="selectXjList"/>
 		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
@@ -57,6 +58,7 @@
 		  <action name="Xjsfkxx" class="lxshController" method="Xjsfkxx"/>
 		  <action name="qqglGpsroad" class="lxshController" method="qqglGpsroad"/>
 		  <action name="queryLxshLjLmsj" class="lxshController" method="queryLxshLjLmsj"/>
+		  <action name="queryLxshLjgsd" class="lxshController" method="queryLxshLjgsd"/>
 		  <action name="queryLxshShLjLmsj" class="lxshController" method="queryLxshShLjLmsj"/>
 		  <action name="queryLxshLjLmgz" class="lxshController" method="queryLxshLjLmgz"/>
 		  <action name="queryLxshShLjLmgz" class="lxshController" method="queryLxshShLjLmgz"/>
@@ -70,6 +72,7 @@
 		  <action name="showkxxTjxx" class="kxxyjController" method="showkxxTjxx"/>
 		  <action name="showkxxtzTjxx" class="kxxyjController" method="showkxxtzTjxx"/>
 		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
+		  <action name="selectgsdkxList" class="kxxyjController" method="selectgsdkxList"/>
 		  <action name="selectSjgzkxbgList" class="kxxyjController" method="selectSjgzkxbgList"/>
 		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
 		  <action name="selectLmgzkxbgList" class="kxxyjController" method="selectLmgzkxbgList"/>

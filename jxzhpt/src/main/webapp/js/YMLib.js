@@ -2158,3 +2158,19 @@ function gsdxmlx(id){
 	//$('#id全部').attr('checked', true);
 	
 }
+
+//获取权限
+function getQxfromSession(qx){
+	var qxstrng='';
+	$.ajax({
+		data:'qx='+qx,
+		type:'post',
+		dateType:'json',
+		async:false,
+		url:'/jxzhpt/xtgl/getQxfromSession.do',
+		success:function(msg){
+			qxstrng=msg;
+		}
+	});
+	return qxstrng;
+}

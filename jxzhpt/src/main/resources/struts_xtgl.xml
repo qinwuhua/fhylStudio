@@ -98,6 +98,7 @@
 	<action name="userlogin" class="xtglController" method="userlogin"></action>
 	
 	<action name="createMenu" class="xtglController" method="createMenu"></action>
+	<action name="getQxfromSession" class="xtglController" method="getQxfromSession"></action>
 	
  </package>
 </struts>

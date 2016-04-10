@@ -74,11 +74,13 @@ public interface CbsjServer {
 	 * @return 返回数据集合
 	 */
 	public List<Cbsj> queryCbsjLmsj(Cbsj cbsj, int page, int rows);
+	public List<Cbsj> queryCbsjgsd(Cbsj cbsj, int page, int rows);
 	/**
 	 * 查询路面升级项目总数量
 	 * @param cbsj 初步设计数据对象
 	 * @return 返回总数
 	 */
+	public int queryCbsjgsdCount(Cbsj cbsj);
 	public int queryCbsjLmsjCount(Cbsj cbsj);
 	/**
 	 * 根据项目编码查询详细信息
@@ -357,5 +359,9 @@ public interface CbsjServer {
 	public boolean updatexjsgt(Cbsj cbsj);
 
 	public boolean updatelmsgt(Cbsj cbsj);
+
+	public Lxsh loadgsdcbsjTjxx(Cbsj cbsj);
+
+	public List<Object> querygsdExcel(Cbsj cbsj);
 	
 }

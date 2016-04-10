@@ -19,7 +19,7 @@ function edit(){
 }
 $(function(){
 	selSes();
-	$("#index_user").html($.cookie("truename"));
+	$("#index_user").html(getQxfromSession('truename'));
 	menuQx();
 	
 	$("#Menu_1,#Menu_2,#Menu_9,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_10,#Menu_11,#Menu_12,#Menu_13,#Menu_14").click(function(e){
@@ -146,7 +146,10 @@ $(function(){
 });
 
 function menuQx(){
-	var qx=$.cookie("qx2").split(",");
+	
+	//alert(getQxfromSession('qx2'));
+	//var qx=$.cookie("qx2").split(",");
+	var qx=getQxfromSession('qx2').split(",");
 	//alert(qx.length);
 	var flag=false;
 	for(var i=0;i<qx.length;i++){

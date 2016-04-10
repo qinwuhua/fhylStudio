@@ -24,7 +24,7 @@ $(function() {
 	menuQx();
 });
 function menuQx(){
-	var qx=parent.$.cookie("qx3").split(",");
+	var qx=getQxfromSession('qx3').split(",");
 	for(var i=0;i<qx.length;i++){
 		if($("#menu_"+qx[i])!=null) $("#menu_"+qx[i]).show();
 	}

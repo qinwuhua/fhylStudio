@@ -71,8 +71,7 @@ function selQxByUser(){
 }
 
 function menuQx(_location,_flag){
-	
-	var qx=YMLib.Var.qx1;
+	var qx=getQxfromSession('qx1').split(",");
 	var flag=false;
 	for(var i=0;i<qx.length;i++){
 		if(qx[i]==_flag){

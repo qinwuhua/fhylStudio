@@ -515,6 +515,96 @@ public class LxshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectgsdgzList(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf=" xmnf in ("+xmnf+")";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setJsdj(jsdj);
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
+			if(lxsh.getXmlx1()!=null)
+				if(lxsh.getXmlx1().length()>0){
+					String[] tsdqs=lxsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setXmlx1(tsdq);
+				}
+			
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
+			List<Lxsh> list=lxshServer.selectgsdgzList(lxsh);
+			int count=lxshServer.selectgsdgzListCount(lxsh);
+			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+			e.setRows(list);
+			e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 累计立项申请升级
 	 */
@@ -581,6 +671,92 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryLxshLjgsd(){
+		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			if(xmnf.indexOf(",")==-1){
+				xmnf=" xmnf = '"+xmnf+"'";
+			}else{
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+				xmnf=" xmnf in ("+xmnf+")";
+			}
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt1(sbzt);
+			}
+			lxsh.setJsdj(jsdj);
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
+			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setLxmc(lxmc);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
+			if(lxsh.getXmlx1()!=null)
+				if(lxsh.getXmlx1().length()>0){
+					String[] tsdqs=lxsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setXmlx1(tsdq);
+				}
+			
+			Map<String, String> result = lxshServer.queryLxshLjgsd(lxsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryLxshShLjLmsj(){
 		try {
 			String tiaojian1="";
@@ -1632,6 +1808,31 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
+			if("gsdgz".equals(lxsh.getXmlx())){
+				if(lxsh.getXmlx1()!=null)
+					if(lxsh.getXmlx1().length()>0){
+						String[] tsdqs=lxsh.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						lxsh.setXmlx1(tsdq);
+					}
+				xmbt="国省道改造";
+				elist=lxshServer.querylxshgsd(lxsh);
+			}
 			if("sjgz".equals(lxsh.getXmlx())){
 				xmbt="改建";
 				elist=lxshServer.querylxshSjgz(lxsh);
@@ -1766,8 +1967,70 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
+			
+			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			
+			if("gsdgz".equals(lxsh.getXmlx())){
+				if(lxsh.getXmlx1()!=null)
+					if(lxsh.getXmlx1().length()>0){
+						String[] tsdqs=lxsh.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(t.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or t.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						lxsh.setXmlx1(tsdq);
+					}
+				xmbt="国省道";
+				elist=lxshServer.querykxxgsd(lxsh);
+				et.clear();
+				et.add(new Excel_tilte("项目编码",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("行政区划",1,1,2,2));
+				et.add(new Excel_tilte("路线编码",1,1,3,3));
+				et.add(new Excel_tilte("起点桩号",1,1,4,4));
+				et.add(new Excel_tilte("止点桩号",1,1,5,5));
+				et.add(new Excel_tilte("里程",1,1,6,6));
+				et.add(new Excel_tilte("一级公路",1,1,7,7));
+				et.add(new Excel_tilte("二级公路",1,1,8,8));
+				et.add(new Excel_tilte("三级公路",1,1,9,9));
+				et.add(new Excel_tilte("四级公路",1,1,10,10));
+				et.add(new Excel_tilte("等外公路",1,1,11,11));
+				et.add(new Excel_tilte("无路",1,1,12,12));
+				et.add(new Excel_tilte("建设后一级公路",1,1,13,13));
+				et.add(new Excel_tilte("建设后二级公路",1,1,14,14));
+				et.add(new Excel_tilte("建设后三级公路",1,1,15,15));
+				et.add(new Excel_tilte("建设后四级公路",1,1,16,16));
+				et.add(new Excel_tilte("建设后等外公路",1,1,17,17));
+				et.add(new Excel_tilte("建设后无路",1,1,18,18));
+				et.add(new Excel_tilte("建设性质",1,1,19,19));
+				et.add(new Excel_tilte("特大桥(米)",1,1,20,20));
+				et.add(new Excel_tilte("特大桥(座)",1,1,21,21));
+				et.add(new Excel_tilte("建设技术等级",1,1,22,22));
+				et.add(new Excel_tilte("隧道(米)",1,1,23,23));		
+				et.add(new Excel_tilte("隧道(座)",1,1,24,24));
+				et.add(new Excel_tilte("开工年月",1,1,25,25));
+				et.add(new Excel_tilte("完工年月",1,1,26,26));
+				et.add(new Excel_tilte("编制单位",1,1,27,27));
+				et.add(new Excel_tilte("投资估算",1,1,28,28));
+				et.add(new Excel_tilte("地方自筹",1,1,29,29));
+				et.add(new Excel_tilte("银行贷款",1,1,30,30));
+				et.add(new Excel_tilte("工可批复文号",1,1,31,31));
+				et.add(new Excel_tilte("批复时间",1,1,32,32));
+			}
 			if("sjgz".equals(lxsh.getXmlx())){
 				xmbt="改建";
 				elist=lxshServer.querykxxSjgz(lxsh);

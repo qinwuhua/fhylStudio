@@ -123,4 +123,10 @@ public interface KxxyjServer {
 
 	int selectXjkxbgListCount(Lxsh lxsh);
 
+	List<Kxxyj> selectgsdkxList(Lxsh lxsh);
+
+	int selectgsdkxListCount(Lxsh lxsh);
+
+	Lxsh showgsdkxxTjxx(Lxsh lxsh);
+
 }

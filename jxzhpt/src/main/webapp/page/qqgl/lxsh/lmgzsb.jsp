@@ -25,6 +25,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+// 			if($.cookie('unit')=='36')
+// 			location.href='lmgzsh.jsp';
+			
 			tsdqdx("tsdq");
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -170,6 +173,8 @@
 					});
 			}
 		}
+		
+		
 	</script>
 	<style type="text/css">
 TD {
@@ -243,6 +248,7 @@ text-decoration:none;
 								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="dcMoBan('lmgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;">
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
+
 				              </td>
                             </tr></table>
         				</div>

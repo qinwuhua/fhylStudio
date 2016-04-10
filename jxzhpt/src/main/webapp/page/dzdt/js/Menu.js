@@ -138,7 +138,9 @@ function xmlxTj(){
 		async:false,
 		url:"../../xtgl/xmlxCountTj.do",
 		dataType:'json',
-		data:'param.id='+$.cookie("qx4"),
+		
+		data:'param.id='+getQxfromSession('qx4'),
+		//data:'param.id='+$.cookie("qx4"),
 		success:function(msg){
 			if(msg!=null){
 				var htmlStr="";

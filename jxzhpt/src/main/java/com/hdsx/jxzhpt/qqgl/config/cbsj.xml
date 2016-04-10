@@ -1309,4 +1309,117 @@
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
+	
+	
+	<select id="queryCbsjgsd" parameterType="java.util.Map" resultType="cbsj">
+		select * from (
+			select rownum num,t.* from (
+				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
+		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
+		        where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+				</if>
+				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
+				</if>
+				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
+				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
+					${cbsj.tsdq}
+				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
+				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+				<!-- <if test="cbsj.sbzt>=0">
+					and c.sbzt=${cbsj.sbzt}
+				</if> -->
+				<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
+				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+				order by c.shzt,c.xmbm desc) t 
+		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+	</select>
+	<select id="queryCbsjgsdCount" parameterType="java.util.Map" resultType="int">
+		select count(c.id) from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm
+		where 1=1
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+		</if>
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
+		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
+			${cbsj.tsdq}
+		</if>
+		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<!-- <if test="cbsj.sbzt>=0">
+			and c.sbzt=${cbsj.sbzt}
+		</if> -->
+		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+	</select>
+	<select id="loadgsdcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm
+		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
+		where 1=1
+		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+		</if>
+		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
+		</if>
+		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
+		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
+			${cbsj.tsdq}
+		</if>
+		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<!-- <if test="cbsj.sbzt>=0">
+			and c.sbzt=${cbsj.sbzt}
+		</if> -->
+		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
+		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+	</select>
+	
+	<select id="querygsdExcel" parameterType="cbsj" resultType="cbsj">
+		select * from (
+			select rownum num,t.* from (
+				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbgsdgz c left join lxgsdgz l on c.xmbm = l.xmbm
+				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx
+				on c.xmbm = lx.xmid where 1=1
+				<if test="xzqhdm!=null and xzqhdm!=''">
+					and ${xzqhdm}
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+				</if>
+				<if test="ylxbh!=null and ylxbh!=''">and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
+				</if>
+				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
+				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<!-- <if test="sbzt>=0">
+					and c.sbzt=${sbzt}
+				</if> -->
+				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				order by c.shzt,c.xmbm desc ) t 
+		)
+	</select>
+	
+	
 </mapper>

@@ -245,7 +245,22 @@
 		select substr(sourceid,1,12) id from xtgl_role_resource t where roleid=#{roleid}
 		union
 		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid}
 	</select>
+	<select id="selQxByUser1" parameterType="param" resultType="param">
+		select sourceid id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid}
+		
+	</select>
+	
 	<select id="selQxByRoleid" parameterType="param" resultType="treenode">
 		select distinct x.id ,x.name text,parent from xtgl_resource x where  id is not null order by id
 	</select>

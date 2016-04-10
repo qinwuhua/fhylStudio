@@ -798,12 +798,46 @@ public class XtglController extends BaseActionSupport{
 	
 	public void selQxByUser(){
 		List<Param> l=null;
+		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			
 				l=xtglServer.selQxByUser(param);
+				String qx1="";String qx2="";String qx3="";String qx4="";String qx5="";String qx6="";String qx7="";
+				for (Param param : l) {
+					if(param.getId().length()==4)
+						qx1+=","+param.getId();
+					if(param.getId().length()==6)
+						qx2+=","+param.getId();
+					if(param.getId().length()==8)
+						qx3+=","+param.getId();
+					if(param.getId().length()==10)
+						qx4+=","+param.getId();
+					if(param.getId().length()==12)
+						qx5+=","+param.getId();
+					if(param.getId().length()==14)
+						qx6+=","+param.getId();
+					if(param.getId().length()==16)
+						qx7+=","+param.getId();
+				}
+				if(qx1.length()>0)
+				session.setAttribute("qx1", qx1.substring(1));
+				if(qx2.length()>0)
+				session.setAttribute("qx2", qx2.substring(1));
+				if(qx3.length()>0)
+				session.setAttribute("qx3", qx3.substring(1));
+				if(qx4.length()>0)
+				session.setAttribute("qx4", qx4.substring(1));
+				if(qx5.length()>0)
+				session.setAttribute("qx5", qx5.substring(1));
+				if(qx6.length()>0)
+				session.setAttribute("qx6", qx6.substring(1));
+				if(qx7.length()>0)
+				session.setAttribute("qx7", qx7.substring(1));
+				//List<Param> l1	=xtglServer.selQxByUser1(param);
 				session.setAttribute("sour", l);
-		try {
+				
+		
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -811,12 +845,45 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void selQxByUser2(){
 		List<Param> l=null;
+		List<Param> l1=null;
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			if(session.getAttribute("sour")!=null){
 				l=(List<Param>) session.getAttribute("sour");
 			}else{
 				l=xtglServer.selQxByUser(param);
+				String qx1="";String qx2="";String qx3="";String qx4="";String qx5="";String qx6="";String qx7="";
+				for (Param param : l) {
+					if(param.getId().length()==4)
+						qx1+=","+param.getId();
+					if(param.getId().length()==6)
+						qx2+=","+param.getId();
+					if(param.getId().length()==8)
+						qx3+=","+param.getId();
+					if(param.getId().length()==10)
+						qx4+=","+param.getId();
+					if(param.getId().length()==12)
+						qx5+=","+param.getId();
+					if(param.getId().length()==14)
+						qx6+=","+param.getId();
+					if(param.getId().length()==16)
+						qx7+=","+param.getId();
+				}
+				if(qx1.length()>0)
+				session.setAttribute("qx1", qx1.substring(1));
+				if(qx2.length()>0)
+				session.setAttribute("qx2", qx2.substring(1));
+				if(qx3.length()>0)
+				session.setAttribute("qx3", qx3.substring(1));
+				if(qx4.length()>0)
+				session.setAttribute("qx4", qx4.substring(1));
+				if(qx5.length()>0)
+				session.setAttribute("qx5", qx5.substring(1));
+				if(qx6.length()>0)
+				session.setAttribute("qx6", qx6.substring(1));
+				if(qx7.length()>0)
+				session.setAttribute("qx7", qx7.substring(1));
+				//l1=xtglServer.selQxByUser1(param);
 				session.setAttribute("sour", l);
 			};
 		try {
@@ -1179,22 +1246,13 @@ public class XtglController extends BaseActionSupport{
 	public void createMenu(){
 		try {
 			Unit unit=new Unit();
-			Cookie[] cookies = getRequest().getCookies();
+			
 			String id = "";
-			for (Cookie c : cookies) {
-				/*if ("qx3".equals(c.getName()))
-					id += c.getValue().replaceAll("%2C", ",") + ",";
-				if ("qx4".equals(c.getName()))
-					id += c.getValue().replaceAll("%2C", ",") + ",";
-				if ("qx5".equals(c.getName()))
-					id += c.getValue().replaceAll("%2C", ",") + ",";
-				if ("qx6".equals(c.getName()))
-					id += c.getValue().replaceAll("%2C", ",") + "";*/
-				
-				if("qx3".equals(c.getName())||"qx4".equals(c.getName())||"qx5".equals(c.getName())||"qx6".equals(c.getName())||"qx7".equals(c.getName()))
-					id += c.getValue().replaceAll("%2C", ",") + ",";
-				else continue;
-			}
+			HttpSession session = getRequest().getSession();
+				session.getAttribute("qx3");
+					//id += c.getValue().replaceAll("%2C", ",") + ",";
+				id=session.getAttribute("qx3")+","+session.getAttribute("qx4")+","+session.getAttribute("qx5")+","+session.getAttribute("qx6")+","+session.getAttribute("qx7");
+			//System.out.println(id);
 			if(",".equals(id.substring(id.length()-1))){
 				id=id.substring(0,id.length()-1);
 			}
@@ -1226,6 +1284,27 @@ public class XtglController extends BaseActionSupport{
 			}
 		}
 		return zzjgTree;
+	}
+	
+	public void getQxfromSession(){
+		try {
+		HttpSession session = getRequest().getSession();
+		System.out.println((String)session.getAttribute(qx));
+		ResponseUtils.write(getresponse(), (String)session.getAttribute(qx));
+			//JsonUtils.write((String)session.getAttribute(qx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	private String qx;
+
+	public String getQx() {
+		return qx;
+	}
+	public void setQx(String qx) {
+		this.qx = qx;
 	}
 	
 }

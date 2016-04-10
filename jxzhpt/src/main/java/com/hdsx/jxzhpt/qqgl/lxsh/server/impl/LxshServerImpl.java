@@ -612,7 +612,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public List<Excel_list> querylxshSjgz(Lxsh lxsh) {
 		return queryList("querylxshSjgz", lxsh);
 	}
-
+	@Override
+	public List<Excel_list> querylxshgsd(Lxsh lxsh) {
+		return queryList("querylxshgsd", lxsh);
+	}
 	@Override
 	public List<Excel_list> querylxshLmgz(Lxsh lxsh) {
 		return queryList("querylxshLmgz", lxsh);
@@ -628,6 +631,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		return queryList("querykxxSjgz", lxsh);
 	}
 
+	@Override
+	public List<Excel_list> querykxxgsd(Lxsh lxsh) {
+		return queryList("querykxxgsd", lxsh);
+	}
+	
 	@Override
 	public List<Excel_list> querykxxLmgz(Lxsh lxsh) {
 		return queryList("querykxxLmgz", lxsh);
@@ -722,6 +730,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public Map<String, String> queryLxshLjLmsj(Lxsh lxsh) {
 		return queryOne("queryLxshLjLmsj",lxsh);
+	}
+	@Override
+	public Map<String, String> queryLxshLjgsd(Lxsh lxsh) {
+		return queryOne("queryLxshLjgsd",lxsh);
 	}
 	
 	@Override
@@ -911,5 +923,15 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			else {
 				return false;
 			}
+	}
+
+	@Override
+	public List<Lxsh> selectgsdgzList(Lxsh lxsh) {
+		return queryList("selectgsdgzList", lxsh);
+	}
+
+	@Override
+	public int selectgsdgzListCount(Lxsh lxsh) {
+		return queryOne("selectgsdgzListCount", lxsh);
 	}
 }
