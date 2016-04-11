@@ -225,7 +225,7 @@
 	  select  distinct x.id , x.name text from xtgl_resource x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
 	</select>
 	<select id="selectJsById" parameterType="param" resultType="param">
-		select roleid,rolename,desr,(select sys.stragg(to_char(sourceid)||nvl2(sourceid, ',','')) from xtgl_role_resource where  roleid=t.roleid) sourceid from xtgl_role t
+		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource where  roleid=t.roleid) sourceid from xtgl_role t
 		where roleid=#{roleid}
 	</select>
 	<update id="updateJs" parameterType="param">
