@@ -3027,7 +3027,7 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("未完成原因",2,3,41,41));
 					et.add(new Excel_tilte("是否交工验收",2,3,42,42));
 					et.add(new Excel_tilte("是否拆除老桥",2,3,43,43));
-					et.add(new Excel_tilte("车购税补助资金",2,3,44,46));
+					et.add(new Excel_tilte("车购税补助资金",2,2,44,46));
 					et.add(new Excel_tilte("省级补助资金",2,2,47,49));
 					et.add(new Excel_tilte("地方配套资金",2,2,50,52));
 					et.add(new Excel_tilte("以奖代补资金(万元)",2,3,53,53));
