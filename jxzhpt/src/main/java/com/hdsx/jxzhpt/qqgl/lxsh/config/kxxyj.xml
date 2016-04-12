@@ -1177,9 +1177,13 @@
 		</if>
 	</select>
 	<select id="showgsdkxxTjxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
-		 where 1=1
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(t1.bzys),0) bzcs from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm
+		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from (select  xmid,jsxz,xjsdj,jsjsdj,lxbm,bzcs,
+		(case when jsxz like '%改建%' then to_number(jhlc)
+	 	 when jsxz like '%新建%' then to_number(xjlc)
+	    else yilc+erlc+sanlc+silc+dwlc+wllc end) lc
+	   from lxsh_lx where jdbs='1') group by xmid) lx on t.xmbm=lx.xmid
+			 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

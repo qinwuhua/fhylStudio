@@ -2,6 +2,8 @@ package com.hdsx.jxzhpt.xtgl.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -174,6 +176,10 @@ public class XtglController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	
+	
+	
+	
 	
 	public void loginCheck(){
 		HashMap hm=new HashMap();
@@ -1305,6 +1311,36 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setQx(String qx) {
 		this.qx = qx;
+	}
+	
+	
+	public void urllogin(){
+		MessageDigest md5;
+		String temp="";
+
+		try {
+			temp=URLDecoder.decode(master.getTruename(),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
+		HashMap hm=new HashMap();
+		hm.put("truename", temp);
+		hm.put("password", master.getPassword());
+		HashMap<String,String> bl = xtglServer.login(hm);
+		if(bl!=null){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			session.setAttribute("truename", bl.get("TRUENAME"));
+			try {
+				JsonUtils.write(bl, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 	
 }

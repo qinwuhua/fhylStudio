@@ -15,9 +15,52 @@
 <script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript">
+function urllogin(){
+	$.ajax({
+		type : "POST",
+		url : "xtgl/urllogin.do",
+		dataType : 'json',
+		async:false,
+		data :"master.truename="+getUrlParame("un")+"&master.password="+getUrlParame("pw"),
+		success : function(msg){
+			if(msg){
+	     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
+	     		$.cookie("unit",msg.UNIT, {expires: 1});
+	     		var unit2=msg.UNIT;
+	     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+	     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+	     		if(msg.UNIT=="36") $.cookie("unit2","_____36", {expires: 1});
+	     			else $.cookie("unit2",unit2, {expires: 1});
+	     		
+	     		if(msg.UNIT=="36") $.cookie("dist","360000", {expires: 1});
+	     		else $.cookie("dist",msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length), {expires: 1});
+	     		
+	     		var dist2=msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length);
+	     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);
+	     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);		     		
+	     		$.cookie("dist2",dist2, {expires: 1});
+	     		
+	     		$.cookie("roleid",msg.ROLEID, {expires: 1});
+	     		//document.location.href="./index.jsp";
+	     		//$('#index_layout').css('visibility', 'visible');
+	     		selSes();
+	    		selQxByUser();
+	     	 }
+	     	 else{
+	     		alert("用户名或密码不正确！！");
+	     	 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
+
 $(function(){
-	if(getParam("userName")!=""){
-		loginCheck(getParam("userName"));
+
+	if(getUrlParame("un")!=null&&getUrlParame("pw")!=null){
+		alert(getUrlParame("un"));
+		urllogin();
 	}else{
 		selSes();
 		selQxByUser();
@@ -47,24 +90,24 @@ function selQxByUser(){
 					if(msg[i].id.length==8) qx3. push(msg[i].id);
 					//第4层
 					if(msg[i].id.length==10) qx4. push(msg[i].id);
-					if(msg[i].id.length==12) qx5. push(msg[i].id);
-					if(msg[i].id.length==14) qx6. push(msg[i].id);
-					if(msg[i].id.length==16) qx7. push(msg[i].id);
+// 					if(msg[i].id.length==12) qx5. push(msg[i].id);
+// 					if(msg[i].id.length==14) qx6. push(msg[i].id);
+// 					if(msg[i].id.length==16) qx7. push(msg[i].id);
 				}
 				YMLib.Var.qx1=qx1;
 				YMLib.Var.qx2=qx2;
 				YMLib.Var.qx3=qx3;
 				YMLib.Var.qx4=qx4;
-				YMLib.Var.qx5=qx5;
-				YMLib.Var.qx6=qx6;
-				YMLib.Var.qx7=qx7;
+// 				YMLib.Var.qx5=qx5;
+// 				YMLib.Var.qx6=qx6;
+// 				YMLib.Var.qx7=qx7;
 				//$.cookie("qx1",qx1, {expires: 1});
 	     		$.cookie("qx2",qx2, {expires: 1});
 	     		$.cookie("qx3",qx3, {expires: 1});
 	     		$.cookie("qx4",qx4, {expires: 1});
-	     		$.cookie("qx5",qx5, {expires: 1});
-	     		$.cookie("qx6",qx6, {expires: 1});
-	     		$.cookie("qx7",qx7, {expires: 1});
+// 	     		$.cookie("qx5",qx5, {expires: 1});
+// 	     		$.cookie("qx6",qx6, {expires: 1});
+// 	     		$.cookie("qx7",qx7, {expires: 1});
 	     	 }
 		 }
 	});

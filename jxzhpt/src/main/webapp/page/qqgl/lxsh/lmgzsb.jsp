@@ -34,7 +34,7 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			
-			xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			setTimeout("showAlllmgz()",'1700');
 		});
 		

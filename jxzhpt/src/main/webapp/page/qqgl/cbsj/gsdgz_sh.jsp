@@ -292,7 +292,7 @@ text-decoration:none;
 							<tr height="32">
 								<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-        						<td>项目类型：</td>
+        						<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								<td colspan="10">
 									<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

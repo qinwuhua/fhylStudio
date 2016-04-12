@@ -1112,9 +1112,13 @@
 		</if>
 	</select>
 	<select id="queryLxshLjgsd" resultType="java.util.Map" parameterType="lxsh">
-    	select count(xmbm) xmsl,sum(tz) tz,sum(lc) lc,sum(bzcs) bzcs from(
-			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(lx.bzcs) bzcs from lxgsdgz t left join 
-			(select xmid,jhlc lc,xjsdj,jsjsdj,lxbm,bzcs from lxsh_lx where jdbs='0' ) lx 
+    	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs from(
+			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(t.bzys) bzcs from lxgsdgz t left join 
+			(select  xmid,jsxz,
+					(case when jsxz like '%改建%' then to_number(jhlc)
+					  when jsxz like '%新建%' then to_number(xjlc)
+					    else yilc+erlc+sanlc+silc+dwlc+wllc end) lc
+					   from lxsh_lx where jdbs='0' ) lx 
 			on t.xmbm=lx.xmid where 1=1 and sbthcd &lt;=#{sbthcd}
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>

@@ -24,7 +24,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var urlid=request('id');
+			var urlid=getUrlParame('id');
 			setxmnf("xmnf",urlid);
 			
 			tsdqdx('tsdq');
@@ -313,7 +313,7 @@ text-decoration:none;
         						<td><input id='lxbm' type="text" /></td>
         						<td>路线名称：</td>
         						<td><input id='lxmc' type="text" /></td>
-        						<td>项目类型：</td>
+        						<td>建设性质：</td>
         						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
                               <td colspan="10">
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

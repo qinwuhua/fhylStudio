@@ -235,7 +235,7 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         					</tr>
         					<tr height="32">
-        					<td>项目类型：</td>
+        					<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								
                               <td colspan="10">

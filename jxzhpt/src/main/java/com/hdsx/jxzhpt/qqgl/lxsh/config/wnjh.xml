@@ -973,7 +973,11 @@
 		</if>
 	</select>
 	<select id="showgsdtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wngsdgz sj left join (select xmid,sum(jhlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wngsdgz sj left join (select xmid, sum(jhlc) lc from (select  xmid,jsxz,
+(case when jsxz like '%改建%' then to_number(jhlc)
+  when jsxz like '%新建%' then to_number(xjlc)
+    else yilc+erlc+sanlc+silc+dwlc+wllc end) jhlc
+   from wnjh_lx) group by xmid) lx on sj.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>

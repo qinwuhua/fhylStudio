@@ -1897,7 +1897,7 @@ function tsdqdx(id){
 	$.ajax({
 		data:'xzqh='+$.cookie("dist"),
 		type:'post',
-		async:'false',
+		async:false,
 		dataType:'json',
 		url:'/jxzhpt/xmjzbb/settsdq.do',
 		success:function(msg){
@@ -2091,6 +2091,7 @@ function createMenunew(id){
         onClick : function (node) {
             if (node.attributes.length!=0) {
                 //alert(node.attributes);
+            	$.messager.alert('id',node.attributes+"?&id="+node.id);
                 javascript:window.open(node.attributes+"?&id="+node.id,"rightContent");
             }
         }
@@ -2174,3 +2175,18 @@ function getQxfromSession(qx){
 	});
 	return qxstrng;
 }
+function getUrlParame(strParame) {
+   	var args = new Object( );
+   	var query = location.search.substring(1);
+
+   	var pairs = query.split("&"); // Break at ampersand
+   	for(var i = 0; i < pairs.length; i++) {
+   	var pos = pairs[i].indexOf('=');
+   	if (pos == -1) continue;
+   	var argname = pairs[i].substring(0,pos);
+   	var value = pairs[i].substring(pos+1);
+   	value = decodeURIComponent(value);
+   	args[argname] = value;
+   	}
+   	return args[strParame];
+   	} 
