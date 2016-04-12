@@ -33,7 +33,7 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			//tsdqdx("tsdq");
-			xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			//showAllxj();
 			setTimeout("showAllxj()",'1700');
 		});

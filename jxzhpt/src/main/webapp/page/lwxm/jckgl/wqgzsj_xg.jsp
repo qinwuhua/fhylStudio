@@ -47,7 +47,8 @@ $(function(){
 					if(Boolean(msg)){
 						saveWqgz();
 					}else{
-						alert('请您至少添加一张正面照片和一张侧面照片！');
+						saveWqgz();
+						//alert('请您至少添加一张正面照片和一张侧面照片！');
 					}
 				}
 			});
