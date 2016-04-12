@@ -2091,7 +2091,7 @@ function createMenunew(id){
         onClick : function (node) {
             if (node.attributes.length!=0) {
                 //alert(node.attributes);
-            	$.messager.alert('id',node.id);
+            	$.messager.alert('id',node.attributes+"?&id="+node.id);
                 javascript:window.open(node.attributes+"?&id="+node.id,"rightContent");
             }
         }
