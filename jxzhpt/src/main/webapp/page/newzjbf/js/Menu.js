@@ -2,18 +2,18 @@ $(function() {
 	var qx=getQxfromSession('qx3').split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-    	if(qx[i]=='01011401'){
+    	if(qx[i]=='01011501'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '进度填报',
+				title: '资金拨付',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
-			$("#left_menu1").append('<ul id="tree01011401"></ul>');
-			createMenunew('01011401');
+			$("#left_menu1").append('<ul id="tree01011501"></ul>');
+			createMenunew('01011501');
 			j++;
 		}
-    	if(qx[i]=='01011402'){
+    	/*if(qx[i]=='01011402'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
 				title: '进度审核',
@@ -56,7 +56,7 @@ $(function() {
 			$("#left_menu5").append('<ul id="tree01011405"></ul>');
 			createMenunew('01011405');
 			j++;
-		}
+		}*/
     }
 	
    
