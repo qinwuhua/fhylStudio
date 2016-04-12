@@ -260,7 +260,7 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>项目类型：</td>
+								<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								
                               <td colspan="10">
