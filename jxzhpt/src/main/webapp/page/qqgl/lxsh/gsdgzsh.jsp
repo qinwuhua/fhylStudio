@@ -122,17 +122,16 @@
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 			            return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
 			        }},
-			        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-			        	if(row.sbzt1=='0')
-		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb('+index+')">未上报</a>  ';
-			        	else if(row.sbzt1=='1')
-			        		return '已上报';
+			        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
+			        	if(row.shzt=='0')
+		        		return '未审核';
+			        	else if(row.shzt=='1')
+			        		return '已审核';
 			        }},
-			        
-			        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
+			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
 							if(value=="是"){
 								return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -141,6 +140,8 @@
 							}
 						}
 					},
+					{field : 'gydw',title : '管养单位',width : 130,align : 'center'},
+				    {field : 'xzqh',title : '行政区划',width : 80,align : 'center'},
 			        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
 			        	formatter: function(value,row,index){
 			        		if(Number(row.xmsl)>1){
@@ -150,20 +151,28 @@
 			        		}
 			        	}
 			        },
-				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
-				    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
-				    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
+				    {field : 'xmbm',title : '项目编码',width : 100,align : 'center'},
+				    {field : 'JSZLC',title : '里程',width : 60,align : 'center',
+			        	formatter: function(value,row,index){
+			        		if(row.xmbm.substr(10,1)=='1'){
+			        			return row.jszlc;
+			        		}else{
+			        			return row.lc;
+			        		}
+			        	}
+				    },
+				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
 				    {field : 'ghlxbh',title : '路线编号',width : 80,align : 'center'},
 				    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 				    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
-				    {field:'qdmc',title:'起点名称',width:120,align:'center'},
-				    {field:'zdmc',title:'止点名称',width:120,align:'center'},
-				    {field : 'jszlc',title : '里程',width : 90,align : 'center'},
-				    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
-				    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-				    {field : 'tz',title : '投资',width : 100,align : 'center'},
-				    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
-				    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+				    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+				    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+				    {field : 'jhkgn',title : '计划开工年',width : 70,align : 'center'},
+				    {field : 'jhwgn',title : '计划完工年',width : 70,align : 'center'},
+				    {field : 'tz',title : '投资',width : 80,align : 'center'},
+				    {field : 'bzys',title : '补助测算',width : 70,align : 'center'},
+				    {field : 'dfzc',title : '地方自筹',width : 70,align : 'center'},
 				    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 			    ]],
 				view: detailview,

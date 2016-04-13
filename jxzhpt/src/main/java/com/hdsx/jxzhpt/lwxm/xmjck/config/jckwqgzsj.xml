@@ -423,8 +423,8 @@
  		
  		<select id="dcwqgzsjsckExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,qlmc v_5,sck_qlzxzh v_6,scqlqc v_7,scqlqk v_8,fapgdw v_9,fascdw v_10,faspsj v_11,
-      spwh v_12,round(to_number(ztz),0) v_13,jsxz v_14,jsnr v_15,scxmnf v_16,round(to_number(nsqbbz),0) v_17,bz v_18
+      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,xqlbm v_5,qlmc v_6,sck_qlzxzh v_7,scqlqc v_8,scqlqk v_9,fapgdw v_10,fascdw v_11,faspsj v_12,
+      spwh v_13,round(to_number(ztz),0) v_14,jsxz v_15,jsnr v_16,scxmnf v_17,round(to_number(nsqbbz),0) v_18,bz v_19
 	 	 from (
 	 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
@@ -485,8 +485,8 @@
 	 </select>
 	 <select id="dcwqgzsjsckshExcel" parameterType="jckwqgzsj" resultType="elist">
 	 	select 
-      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,qlmc v_5,sck_qlzxzh v_6,scqlqc v_7,scqlqk v_8,fapgdw v_9,fascdw v_10,faspsj v_11,
-      spwh v_12,round(to_number(ztz),0) v_13,jsxz v_14,jsnr v_15,scxmnf v_16,round(to_number(nsqbbz),0) v_17,bz v_18
+     scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,xqlbm v_5,qlmc v_6,sck_qlzxzh v_7,scqlqc v_8,scqlqk v_9,fapgdw v_10,fascdw v_11,faspsj v_12,
+      spwh v_13,round(to_number(ztz),0) v_14,jsxz v_15,jsnr v_16,scxmnf v_17,round(to_number(nsqbbz),0) v_18,bz v_19
 	 	 from (
 	 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 

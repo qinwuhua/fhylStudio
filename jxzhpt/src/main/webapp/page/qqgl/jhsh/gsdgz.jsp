@@ -59,6 +59,20 @@
 						return result;
 					}
 				},
+				{field:'sbzt',title:'审核状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						xmlx=1;
+						alert(row.spzt);
+						if(row.spzt=='0')
+							result='未审核';
+						if(row.spzt=='1')
+							result='已审核';	
+// 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
+// 							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
+						return result;
+					}
+				},
 				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -68,15 +82,7 @@
 						}
 					}
 				},
-				{field:'sbzt',title:'计划审核',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result="";
-						xmlx=1;
-						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
-						return result;
-					}
-				},
+				
 				{field:'xdzt',title:'资金追加',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -247,7 +253,7 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>项目类型：</td>
+								<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								
                             </tr>

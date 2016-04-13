@@ -1456,20 +1456,21 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		et.add(new Excel_tilte("县（市、区）",1,1,2,2));
 		et.add(new Excel_tilte("所在乡镇",1,1,3,3));
 		et.add(new Excel_tilte("桥梁编码",1,1,4,4));
-		et.add(new Excel_tilte("桥梁名称",1,1,5,5));
-		et.add(new Excel_tilte("桥梁中心桩号",1,1,6,6));
-		et.add(new Excel_tilte("桥梁全长（米）",1,1,7,7));
-		et.add(new Excel_tilte("桥梁全宽（米）",1,1,8,8));
-		et.add(new Excel_tilte("方案评估（设计）单位",1,1,9,9));
-		et.add(new Excel_tilte("方案审查（批复）单位",1,1,10,10));
-		et.add(new Excel_tilte("方案审批时间",1,1,11,11));
-		et.add(new Excel_tilte("审批文号",1,1,12,12));
-		et.add(new Excel_tilte("投资估算（万元）",1,1,13,13));
-		et.add(new Excel_tilte("建设性质",1,1,14,14));
-		et.add(new Excel_tilte("建设内容",1,1,15,15));
-		et.add(new Excel_tilte("项目年份",1,1,16,16));
-		et.add(new Excel_tilte("拟申请部（省）级补助资金（万元）",1,1,17,17));
-		et.add(new Excel_tilte("备注",1,1,18,18));
+		et.add(new Excel_tilte("现桥梁编码",1,1,5,5));
+		et.add(new Excel_tilte("桥梁名称",1,1,6,6));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,7,7));
+		et.add(new Excel_tilte("桥梁全长（米）",1,1,8,8));
+		et.add(new Excel_tilte("桥梁全宽（米）",1,1,9,9));
+		et.add(new Excel_tilte("方案评估（设计）单位",1,1,10,10));
+		et.add(new Excel_tilte("方案审查（批复）单位",1,1,11,11));
+		et.add(new Excel_tilte("方案审批时间",1,1,12,12));
+		et.add(new Excel_tilte("审批文号",1,1,13,13));
+		et.add(new Excel_tilte("投资估算（万元）",1,1,14,14));
+		et.add(new Excel_tilte("建设性质",1,1,15,15));
+		et.add(new Excel_tilte("建设内容",1,1,16,16));
+		et.add(new Excel_tilte("项目年份",1,1,17,17));
+		et.add(new Excel_tilte("拟申请部（省）级补助资金（万元）",1,1,18,18));
+		et.add(new Excel_tilte("备注",1,1,19,19));
 
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -1581,20 +1582,21 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		et.add(new Excel_tilte("县（市、区）",1,1,2,2));
 		et.add(new Excel_tilte("所在乡镇",1,1,3,3));
 		et.add(new Excel_tilte("桥梁编码",1,1,4,4));
-		et.add(new Excel_tilte("桥梁名称",1,1,5,5));
-		et.add(new Excel_tilte("桥梁中心桩号",1,1,6,6));
-		et.add(new Excel_tilte("桥梁全长（米）",1,1,7,7));
-		et.add(new Excel_tilte("桥梁全宽（米）",1,1,8,8));
-		et.add(new Excel_tilte("方案评估（设计）单位",1,1,9,9));
-		et.add(new Excel_tilte("方案审查（批复）单位",1,1,10,10));
-		et.add(new Excel_tilte("方案审批时间",1,1,11,11));
-		et.add(new Excel_tilte("审批文号",1,1,12,12));
-		et.add(new Excel_tilte("投资估算（万元）",1,1,13,13));
-		et.add(new Excel_tilte("建设性质",1,1,14,14));
-		et.add(new Excel_tilte("建设内容",1,1,15,15));
-		et.add(new Excel_tilte("项目年份",1,1,16,16));
-		et.add(new Excel_tilte("拟申请部（省）级补助资金（万元）",1,1,17,17));
-		et.add(new Excel_tilte("备注",1,1,18,18));
+		et.add(new Excel_tilte("现桥梁编码",1,1,5,5));
+		et.add(new Excel_tilte("桥梁名称",1,1,6,6));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,7,7));
+		et.add(new Excel_tilte("桥梁全长（米）",1,1,8,8));
+		et.add(new Excel_tilte("桥梁全宽（米）",1,1,9,9));
+		et.add(new Excel_tilte("方案评估（设计）单位",1,1,10,10));
+		et.add(new Excel_tilte("方案审查（批复）单位",1,1,11,11));
+		et.add(new Excel_tilte("方案审批时间",1,1,12,12));
+		et.add(new Excel_tilte("审批文号",1,1,13,13));
+		et.add(new Excel_tilte("投资估算（万元）",1,1,14,14));
+		et.add(new Excel_tilte("建设性质",1,1,15,15));
+		et.add(new Excel_tilte("建设内容",1,1,16,16));
+		et.add(new Excel_tilte("项目年份",1,1,17,17));
+		et.add(new Excel_tilte("拟申请部（省）级补助资金（万元）",1,1,18,18));
+		et.add(new Excel_tilte("备注",1,1,19,19));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse

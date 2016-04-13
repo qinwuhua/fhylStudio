@@ -655,6 +655,16 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void getafBzbz(){
+		try {
+			JsonUtils.write(abgcServer.getafBzbz(bzbz), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 上传文件
 	 * @throws Exception

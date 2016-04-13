@@ -298,8 +298,8 @@
 							}
 							$.ajax({
 								type:'post',
-								url:'../../../jhgl/lwBzbz.do',
-								data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
+								url:'../../../jhgl/getafBzbz.do',
+								data:"bzbz.xmlx="+item.xzqh+"&bzbz.lx="+bz,
 								dataType:'json',
 								success:function(data){
 									bz=data.bz;

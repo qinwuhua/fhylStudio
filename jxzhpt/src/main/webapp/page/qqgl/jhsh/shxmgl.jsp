@@ -22,9 +22,11 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
-		$(function(){
+	var title='';
+	$(function(){
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
+				title='审核状态';
 				$.each($("img[name='sheng']"),function(index,item){
 					$(item).show();
 				});
@@ -34,6 +36,7 @@
 				$('#ztspan').html("审核状态");
 				$('#spantitle').html("项目立项审核");
 			}else if(userPanduan($.cookie("unit2"))!="省"){
+				title='上报状态';
 				$.each($("img[name='sheng']"),function(index,item){
 					$(item).hide();
 				});
@@ -96,7 +99,7 @@
 						return result;
 					}
 				},
-				{field:'sqzt',title:'上报状态',width:100,align:'center',
+				{field:'sqzt',title:title,width:60,align:'center',
 					formatter:function(value,row,index){
 						var result="";
 						if(userPanduan($.cookie('unit2'))!="省"){
@@ -119,16 +122,7 @@
 						return result;
 					}
 				},
-				{field:'tjlx',title:'添加路线',width:100,align:'center',
-					formatter: function(value,row,index){
-						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
-							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
-						}else{
-							return '添加路线';
-						}
-					}
-				},
-				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -137,7 +131,8 @@
 						}
 					}
 				},
-				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				{field:'xzqh',title:'行政区划',width:60,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
 					formatter: function(value,row,index){
 		        		if(Number(row.xmsl)>1){
@@ -147,17 +142,26 @@
 		        		}
 		        	}
 				},
-				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
-				{field:'lc',title:'里程',width:100,align:'center'},
+				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				{field:'lc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:100,align:'center'},
-				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期（月）',width:100,align:'center'},
-				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+				{field:'ylxbh',title:'路线编码',width:60,align:'center'},
+				{field:'qdzh',title:'起点桩号',width:80,align:'center'},
+				{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
+				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
+				{field:'gq',title:'工期（月）',width:60,align:'center'},
+				{field:'ntz',title:'拟投资',width:60,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:120,align:'center'},
+				{field:'tjlx',title:'添加路线',width:60,align:'center',
+					formatter: function(value,row,index){
+						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
+							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+						}else{
+							return '添加路线';
+						}
+					}
+				}]];
 			gridBind(grid);
 		}
 		function loadLj(params){

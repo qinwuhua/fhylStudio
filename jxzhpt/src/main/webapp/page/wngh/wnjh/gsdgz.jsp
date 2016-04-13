@@ -149,10 +149,10 @@
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sjxiangxi('+index+')">详细</a>    ';
 			        }},
-			        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
+			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
 							if(value=="是"){
 								return '<a href="javascript:Lsjl('+"'"+row.id+"'"+')" style="color:#3399CC;">是</a>';
@@ -161,27 +161,28 @@
 							}
 						}
 					},
+					{field : 'qqkz',title : '前期开展',width : 60,align : 'center'},
+					{field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+					{field : 'xmnf',title : '项目年份',width : 60,align : 'center'},
 			        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
 			        	if(row.sl>0)
 			        	return '<font color="red">'+row.xmmc+'</font>';
 			        	else return  row.xmmc;
 			        }},
-			        {field : 'xmnf',title : '项目年份',width : 80,align : 'center'},
-				    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},
-				    {field : 'xzqh',title : '行政区划',width : 100,align : 'center'},
-				    {field : 'ghlxbh',title : '路线编码',width : 80,align : 'center'},
-				    {field : 'lxmc',title : '路线名称',width : 100,align : 'center'},
-				    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
-				    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
-				    {field:'qdmc',title:'起点名称',width:100,align:'center'},
-				    {field:'zdmc',title:'止点名称',width:100,align:'center'},
-				    {field : 'zjhlc',title : '里程',width : 100,align : 'center'},
-				    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
-				    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-				    {field : 'tz',title : '投资',width : 100,align : 'center'},
-				    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
-				    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
-				    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+			        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
+			        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
+				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				    {field : 'ghlxbh',title : '路线编码',width : 60,align : 'center'},
+				    {field : 'minqdzh',title : '起点桩号',width : 60,align : 'center'},
+				    {field : 'maxzdzh',title : '止点桩号',width : 60,align : 'center'},
+				    {field:'qdmc',title:'起点名称',width:80,align:'center'},
+				    {field:'zdmc',title:'止点名称',width:80,align:'center'},
+// 				    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},				    
+// 				    {field : 'lxmc',title : '路线名称',width : 100,align : 'center'},
+				    {field : 'tz',title : '投资',width : 80,align : 'center'},
+				    {field : 'bzys',title : '补助测算',width : 80,align : 'center'},
+// 				    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+				    {field : 'tsdq',title : '特殊地区',width : 150,align : 'center'}
 			    ]],
 				view: detailview,
 				detailFormatter:function(index,row){  

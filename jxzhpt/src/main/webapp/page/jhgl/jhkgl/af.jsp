@@ -97,6 +97,7 @@
 			querySumAbgc(jh,lx);
 		}
 		function searchAbgc(){
+			
 			var xmnf=$("#sbnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);

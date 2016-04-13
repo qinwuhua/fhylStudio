@@ -102,7 +102,7 @@
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 			        	//if(row.sbzt1=='1')
 			        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 			        	if($.cookie("unit2").length!=7)
@@ -111,7 +111,7 @@
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 			        }},
 			       
-			        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
 							if(value=="是"){
 								return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -120,7 +120,10 @@
 							}
 						}
 					},
-			        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+			        
+				    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},
+				    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+				    {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
 						formatter: function(value,row,index){
 			        		if(Number(row.xmsl)>1){
 			        			return '<label style="color:red;">'+value+'</label>';
@@ -129,13 +132,21 @@
 			        		}
 			        	}
 			        },
-				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-				    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+			        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
+			        	formatter: function(value,row,index){
+			        		if(row.xmbm.substr(10,1)=='1'){
+			        			return row.jszlc;
+			        		}else{
+			        			return row.lc;
+			        		}
+			        	}
+				    },
+				    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 				    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
 				    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 				    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-				    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
-				    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+				    
 				    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
 				    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
 				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}

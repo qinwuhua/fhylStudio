@@ -1277,4 +1277,9 @@
 			<if test="remarks!=null">,remarks=#{remarks}</if>
 		where id=#{id}
 	</update>
+	<select id="getafBzbz" parameterType="bzbz" resultType="bzbz">
+		select * from jxpkx where '%'||name||'%' like #{xmlx} 
+		
+	</select>
+	
 </mapper>

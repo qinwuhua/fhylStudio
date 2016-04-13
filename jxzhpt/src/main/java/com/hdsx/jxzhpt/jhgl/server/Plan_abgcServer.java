@@ -89,6 +89,7 @@ public interface Plan_abgcServer {
 	boolean editStatus(Plan_abgc jh);
 	boolean editStatus1(Plan_abgc jh);
 	Bzbz lwBzbz(Bzbz bz);
+	Bzbz getafBzbz(Bzbz bz);
 //	boolean updateGkbg(Plan_abgc jh);
 //	boolean updateSjsgt(Plan_abgc jh);
 	boolean updateGkbg(Plan_upload uploads);

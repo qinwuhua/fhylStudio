@@ -170,6 +170,17 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public Bzbz lwBzbz(Bzbz bz) {
 		return queryOne("lwBzbz", bz);
 	}
+	
+	public Bzbz getafBzbz(Bzbz bz) {
+		Bzbz b=new Bzbz();
+		b.setBl("0.6");
+		b.setFd("1");
+		List<Bzbz> l=queryList("getafBzbz", bz);
+		if(l.size()>0)
+			b.setBz("7");
+		else b.setBz("5");
+		return b;
+	}
 	@Override
 //	public boolean updateGkbg(Plan_abgc jh) {
 //		return update("updateGkbg", jh)>0;

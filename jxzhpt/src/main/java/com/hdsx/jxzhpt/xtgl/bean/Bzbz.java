@@ -14,6 +14,21 @@ public class Bzbz implements Serializable{
 	private String bz;
 	private String bl;
 	private String fd;
+	private String name;
+	private String tsdq;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getId() {
 		return id;
 	}

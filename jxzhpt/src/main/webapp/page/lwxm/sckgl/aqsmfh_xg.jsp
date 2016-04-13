@@ -623,8 +623,8 @@ function deleteFile(id){
 			bz='县乡';
 		$.ajax({
 			type:'post',
-			url:'../../../jhgl/lwBzbz.do',
-			data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
+			url:'../../../jhgl/getafBzbz.do',
+			data:"bzbz.xmlx="+tjldobj.xzqh+"&bzbz.lx="+bz,
 			dataType:'json',
 			success:function(data){
 				bz=data.bz;
