@@ -28,8 +28,12 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			var myDate = new Date();
-			sbnf("sbnf");
-			$('#sbnf').combobox("setValue",myDate.getFullYear());
+			//sbnf("sbnf");
+			//$('#sbnf').combobox("setValue",myDate.getFullYear());
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			setxzdj('ddlGldj',urlid);
+			
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			//if(roleName()=="省级"){

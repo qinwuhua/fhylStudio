@@ -26,7 +26,9 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			var myDate = new Date();
-			plannf("sbnf");
+			//plannf("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:$.cookie("unit2").length,
 					shFlag:'1'};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};

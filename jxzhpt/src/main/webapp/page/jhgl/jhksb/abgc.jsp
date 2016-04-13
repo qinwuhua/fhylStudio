@@ -30,9 +30,12 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			xmnfdx("sbnf"); 
 			jsdjdx('ddlPDDJ');
-			xzdjdx('ddlGldj');
+			//xmnfdx("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('ddlGldj');
+			setxzdj('ddlGldj',urlid);
 			tsdqdx('ddlTSDQ');
 			searchAbgc();
 		});

@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
@@ -27,7 +28,8 @@
 			loadBmbm2('sqzt','申请状态省');
 			loadBmbm2('jb','级别');
 			loadBmbm2('jsxz','建设性质2');
-			xmnf("xmnf");
+			//xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			queryYhzx();
 			loadFileUpload();
 		});

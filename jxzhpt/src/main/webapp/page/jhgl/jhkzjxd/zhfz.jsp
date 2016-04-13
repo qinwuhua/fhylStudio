@@ -25,10 +25,15 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			sbnf("sbnf");
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
+			
+			//sbnf("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			setxzdj('ddlGldj',urlid);
+			
 			var jh={jhnf:$('#sbnf').combobox('getValue'),jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);

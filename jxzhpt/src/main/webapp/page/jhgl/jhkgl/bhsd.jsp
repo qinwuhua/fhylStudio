@@ -22,7 +22,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			plannf("sbnf");
+			//plannf("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('gldj');
+			//setxzdj('gldj',urlid);
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');

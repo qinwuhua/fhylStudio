@@ -22,15 +22,18 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			sbnf("sbnf");
+			//sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			//loadBmbm2('ddlPDDJ','技术等级');
 			//loadBmbm2('ddlGldj','行政等级');
 			//tsdq('tsdq');
-			xmnfdx("sbnf"); 
+			//xmnfdx("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('gldj');
+			setxzdj('gldj',urlid);
 			jsdjdx('jsdj');
-			xzdjdx('gldj');
 			kjfldx('akjfl');
 			tsdqdx('tsdq');
 			/* var xmnf=$("#sbnf").combobox("getValues").join(",");

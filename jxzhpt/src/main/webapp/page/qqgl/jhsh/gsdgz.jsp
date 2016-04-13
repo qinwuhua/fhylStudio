@@ -20,13 +20,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			xmnf("xmnf");
+			//xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
 			YMLib.Var.jdbs=2;
 			queryLmsj();
