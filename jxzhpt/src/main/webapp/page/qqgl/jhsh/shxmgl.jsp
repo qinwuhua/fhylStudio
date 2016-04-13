@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			//根据用户等级展示按钮
@@ -41,7 +42,8 @@
 				});
 				$('#ztspan').html("上报状态");
 			}
-			xmnf("xmnf");
+			//xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			tsdqdx("tsdq");
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit")); 

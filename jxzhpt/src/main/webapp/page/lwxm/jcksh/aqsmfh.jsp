@@ -42,7 +42,9 @@ $(function(){
 	loadBmbm2("bzls", "补助历史");
 // 	tsdq("tsdq");
 	jsdjdx('jsdj');
-	xzdjdx('gldj');
+	//xzdjdx('gldj');
+	var urlid=getUrlParame('id');
+	setxzdj('gldj',urlid);
 	tsdqdx('tsdq');
 	showAll();
 	

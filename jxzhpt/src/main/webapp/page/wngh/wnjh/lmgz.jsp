@@ -29,7 +29,8 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			var urlid=request('id');
+			//var urlid=request('id');
+			var urlid=getUrlParame('id');
 			setxmnf("xmnf",urlid);
 			setTimeout("showAlllm()",'1700');
 			//showAlllm();

@@ -1831,6 +1831,72 @@ function xzdjdx(id){
 	//$('#id全部').attr('checked', true);
 	
 }
+function setxzdj(id,flag){
+	var years=[];
+	years.push({text:'全部',value:''});
+	if(flag=='01011101030105'||flag=='01011101030106'||flag=='01011101030107'||
+	   flag=='01011102030105'||flag=='01011102030106'||flag=='01011102030107'||flag=='01011102030108'||
+	   flag=='0101120101030105'||flag=='0101120101030106'||flag=='0101120101030107'||flag=='0101120101030108'){
+		years.push({text:'国道',value:'G'});
+		years.push({text:'省道',value:'S'});
+	}
+	if(flag=='01011101030205'||flag=='01011101030206'||flag=='01011101030207'||
+	   flag=='01011102030205'||flag=='01011102030206'||flag=='01011102030207'||flag=='01011102030208'||
+	   flag=='0101120101030205'||flag=='0101120101030206'||flag=='0101120101030207'||flag=='0101120101030208'){
+		years.push({text:'县道',value:'X'});
+		years.push({text:'乡道',value:'Y'});
+		years.push({text:'村道',value:'C'});
+		years.push({text:'专道',value:'Z'});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
 function kjfldx(id){
 	var years=[];
 	years.push({text:'全部',value:''});
@@ -2024,6 +2090,120 @@ function xmnfdx(id){
 	$('#id'+id+myDate.getFullYear()).attr('checked', true);
 	
 }
+
+
+function setxmnf(id,flag){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	if(flag!='01011101030108'&flag!='01011101030208'&flag!='01011102030108'&flag!='01011102030208'&flag!='0101120101030108'&flag!='0101120101030208'){
+		years.push({text:'全部',value:''});
+	}
+	if(flag=='0101120101030105'||flag=='0101120101030106'||flag=='0101120101030107'||flag=='0101120101030108'||
+	   flag=='0101120101030205'||flag=='0101120101030206'||flag=='0101120101030207'||flag=='0101120101030208'){
+		//$("#bstext").html('十二五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2015)
+					first=2015;
+				if(first<2010)
+					first=2010;
+			}
+			years.push({text:(2010+5-i),value:(2010+5-i)});
+		}
+	}
+	if(flag=='01011101030105'||flag=='01011101030106'||flag=='01011101030107'||flag=='01011101030108'||
+	   flag=='01011101030205'||flag=='01011101030206'||flag=='01011101030207'||flag=='01011101030208'||
+	   flag=='0101120102030105'||flag=='0101120102030106'||flag=='0101120102030107'||flag=='0101120102030108'||
+	   flag=='0101120102030205'||flag=='0101120102030206'||flag=='0101120102030207'||flag=='0101120102030208'){
+		//$("#bstext").html('十三五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2020)
+					first=2020;
+				if(first<2016)
+					first=2016;
+			}
+			years.push({text:(2015+5-i),value:(2015+5-i)});
+		}
+	}
+	if(flag=='01011102030105'||flag=='01011102030106'||flag=='01011102030107'||flag=='01011102030108'||
+	   flag=='01011102030205'||flag=='01011102030206'||flag=='01011102030207'||flag=='01011102030208'){
+		//$("#bstext").html('十四五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2025)
+					first=2025;
+				if(first<2021)
+					first=2021;
+			}
+			years.push({text:(2020+5-i),value:(2020+5-i)});
+		}
+	}
+	//为单选
+	if(flag=='01011101030108'||flag=='01011101030208'||flag=='01011102030108'||flag=='01011102030208'
+		||flag=='0101120101030108'||flag=='0101120101030208'){
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text'
+		});
+		
+	}else{
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    multiple:true,
+		    formatter:function(row){
+				var opts = $(this).combobox('options');
+				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			},
+			onSelect:function(record){
+				var opts = $(this).combobox('options');
+				if(record[opts.valueField]==""){
+					var values =new Array();
+					var datas = $('#' +id).combobox("getData");
+					$.each(datas,function(index,item){
+						values.push(item.value);
+						$('#id'+item.value).attr('checked', true);
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$('#id'+record.value).attr('checked', true);
+				}
+			},
+			onUnselect:function(record){
+				var opts = $(this).combobox('options');
+				var datas = $('#' +id).combobox("getData");
+				var values = $('#' +id).combobox("getValues");
+				$('#' +id).combobox("clear");
+				if(record[opts.valueField]!=""){
+					if(jQuery.inArray("",values)>=0){
+						values.splice(jQuery.inArray("",values),1);
+					}
+					$.each(datas,function(index,item){
+						if(jQuery.inArray(""+item.value,values)<0){
+							$('#id'+item.value).attr('checked', false);
+						}
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$.each(datas,function(index,item){
+						$('#id'+item.value).attr('checked', false);
+					});
+				}
+			}
+		});
+		
+	}
+	$('#'+id).combobox("setValue",first+'');
+	$('#id'+first).attr('checked', true);
+}
+
 function xmnfdx1(id){
 	var myDate = new Date();
 	var years=[];

@@ -22,9 +22,12 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	
 	loadBmbm2("shzt", "审核状态");
-	xmnfdx("xmnf"); 
+	//xmnfdx("xmnf"); 
+	var urlid=getUrlParame('id');
+	setxmnf("xmnf",urlid);
 	jsdjdx('jsdj');
-	xzdjdx('gldj');
+	//xzdjdx('gldj');
+	setxzdj('gldj',urlid);
 	kjfldx('akjfl');
 	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
