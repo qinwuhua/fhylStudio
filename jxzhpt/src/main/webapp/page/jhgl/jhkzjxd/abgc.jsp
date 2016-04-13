@@ -25,9 +25,12 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			xmnfdx("sbnf"); 
 			jsdjdx('ddlPDDJ');
-			xzdjdx('ddlGldj');
+			//xmnfdx("sbnf"); 
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			setxzdj('ddlGldj',urlid);
+			
 			tsdqdx('ddlTSDQ');
 			var xmnf=$("#sbnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')

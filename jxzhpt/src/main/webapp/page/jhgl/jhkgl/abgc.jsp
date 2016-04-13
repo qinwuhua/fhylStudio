@@ -35,9 +35,14 @@
 			//loadBmbm2('ddlGldj','行政等级');
 			//tsdq('ddlTSDQ');
 			//sbnf("sbnf");
-			xmnfdx("sbnf"); 
+			
+			//xmnfdx("sbnf"); 
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('ddlGldj');
+			setxzdj('ddlGldj',urlid);
+			
 			jsdjdx('ddlPDDJ');
-			xzdjdx('ddlGldj');
 			tsdqdx('ddlTSDQ');
 			/* var jh={xmlx:'ab',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};

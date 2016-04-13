@@ -24,10 +24,11 @@ $(function(){
 	loadBmbm2("bzls", "补助历史");
 	//xmnfdx("xmnf"); 
 	var urlid=getUrlParame('id');
-			setxmnf("xmnf",urlid);
-	jsdjdx('jsdj');
+	setxmnf("xmnf",urlid);
 	//xzdjdx('gldj');
 	setxzdj('gldj',urlid);
+	jsdjdx('jsdj');
+	
 	kjfldx('akjfl');
 	tsdqdx('tsdq');
 	if(getParam("t")=='1') {

@@ -27,9 +27,12 @@
 // 			loadBmbm2('ddlPDDJ','技术等级');
 // 			tsdq('ddlTSDQ');
 // 			sbnf("sbnf");
-			xmnfdx("sbnf"); 
+			//xmnfdx("sbnf"); 
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('gldj');
+			setxzdj('gldj',urlid);
 			jsdjdx('jsdj');
-			xzdjdx('gldj');
 			kjfldx('akjfl');
 			tsdqdx('tsdq');
 			 /*var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};

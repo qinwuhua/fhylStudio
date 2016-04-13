@@ -29,9 +29,12 @@
 			//tsdq('ddlTSDQ');
 			//var myDate = new Date();
 			//sbnf("sbnf");
-			xmnfdx("sbnf"); 
 			jsdjdx('jsdj');
-			xzdjdx('gldj');
+			//xmnfdx("sbnf");
+			var urlid=getUrlParame('id');
+			setxmnf("sbnf",urlid);
+			//xzdjdx('gldj');
+			setxzdj('gldj',urlid);
 			kjfldx('akjfl');
 			tsdqdx('tsdq');
 			searchWqgz();

@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/js/loadTJ.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx("tsdq");
@@ -33,7 +34,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			//tsdq("tsdq");
-			xmnf("xmnf");
+			//xmnf("xmnf");
+			urlxmnf("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
 			setTimeout("showAllgsd()",'1700');
 		});
