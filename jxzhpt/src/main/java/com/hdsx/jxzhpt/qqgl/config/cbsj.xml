@@ -4,10 +4,10 @@
 	<select id="queryCbsjLmgz" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh,  
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
 		        ,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
-		        from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm left join kxxyj_lmgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
@@ -63,10 +63,10 @@
 	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh,
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
 		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
-		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join kxxyj_sjgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
@@ -126,10 +126,10 @@
 	<select id="queryCbsjXj" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh,
 				c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
 				,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
-				from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+				from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join kxxyj_xj k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
@@ -184,7 +184,7 @@
 	<select id="queryCbsjYhdzx" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,
+				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,l.gydw,l.tsdq,l.ntz,
 				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
@@ -246,7 +246,7 @@
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,lx.lc,
+				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,lx.lc,l.gydw,l.tsdq,l.ntz,
 				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
@@ -1314,10 +1314,10 @@
 	<select id="queryCbsjgsd" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.id, c.xmmc, c.xmbm, jsdw, c.xzqh, c.jsxz, lj, ql, hd, mc, jc, dc, sd, dq, sdmc, kgsj, wgsj, gq, sjdw, sjpfwh, pfsj, jaf, 
+				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh, 
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
 		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
-		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
+		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join kxgsdgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>

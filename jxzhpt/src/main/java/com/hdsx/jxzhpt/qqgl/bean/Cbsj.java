@@ -3,6 +3,35 @@ package com.hdsx.jxzhpt.qqgl.bean;
 import java.io.Serializable;
 
 public class Cbsj{
+	private String gydw;
+	private String tz;
+	private String gkpfwh;
+	private String ntz;
+	
+	public String getNtz() {
+		return ntz;
+	}
+	public void setNtz(String ntz) {
+		this.ntz = ntz;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getTz() {
+		return tz;
+	}
+	public void setTz(String tz) {
+		this.tz = tz;
+	}
+	public String getGkpfwh() {
+		return gkpfwh;
+	}
+	public void setGkpfwh(String gkpfwh) {
+		this.gkpfwh = gkpfwh;
+	}
 	@Override
 	public String toString() {
 		return "Cbsj [id=" + id + ", xmbm=" + xmbm + ", xmmc=" + xmmc

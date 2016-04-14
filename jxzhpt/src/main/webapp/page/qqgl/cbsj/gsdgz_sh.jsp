@@ -73,14 +73,23 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'改建工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xxs.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						
 						return result;
 					}
 				},
-				
-				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				{field:'shzt',title:'审核状态',width:60,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						if($.cookie("unit2").length!=7)
+						result = row.shzt==0 ? '未审核' : '已审核';
+						else
+						result = row.shzt==0 ? '未审核' : '已审核';
+						return result;
+					}
+				},
+				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -89,7 +98,14 @@
 						}
 					}
 				},
-				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				
+				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				{field:'xzqh',title:'行政区划',width:60,align:'center'},
+				{field:'xmnf',title:'项目年份',width:60,align:'center',
+					formatter: function(value,row,index){
+		        		return row.xmbm.substr(0,4);
+		        	}
+				},
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
 					formatter: function(value,row,index){
 		        		if(Number(row.xmsl)>1){
@@ -99,11 +115,22 @@
 		        		}
 		        	}
 				},
-				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
+				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				
+				{field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+				{field:'ghlxbh',title:'路线编码',width:60,align:'center'},
+				{field:'qdzh',title:'起点桩号',width:80,align:'center'},
+				{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
+				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
+				{field:'kgsj',title:'开工时间',width:60,align:'center'},
+				{field:'wgsj',title:'完工时间',width:60,align:'center'},
+				{field:'gq',title:'工期（月）',width:60,align:'center'},
+				{field:'tz',title:'拟投资',width:60,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:150,align:'center'},
+				
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
+				
 				{field:'lj',title:'路基（m3）',width:100,align:'center'},
 				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
 				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},
@@ -115,9 +142,9 @@
 				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
 				/* {field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'}, */
-				{field:'gq',title:'工期（月）',width:100,align:'center'},
+				
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
-				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
+				
 				{field:'pfsj',title:'批复时间',width:100,align:'center'},
 				{field:'jaf',title:'建安费',width:100,align:'center'}]];
 			gridBind(grid);

@@ -1,6 +1,28 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Jhsh {
+	private String jsjsdj;
+	private String xjsdj;
+	private String tz;
+	
+	public String getJsjsdj() {
+		return jsjsdj;
+	}
+	public void setJsjsdj(String jsjsdj) {
+		this.jsjsdj = jsjsdj;
+	}
+	public String getXjsdj() {
+		return xjsdj;
+	}
+	public void setXjsdj(String xjsdj) {
+		this.xjsdj = xjsdj;
+	}
+	public String getTz() {
+		return tz;
+	}
+	public void setTz(String tz) {
+		this.tz = tz;
+	}
 	@Override
 	public String toString() {
 		return "Jhsh [id=" + id + ", xmmc=" + xmmc + ", xmbm=" + xmbm

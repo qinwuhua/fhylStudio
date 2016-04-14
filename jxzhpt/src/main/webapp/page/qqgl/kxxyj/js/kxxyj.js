@@ -1,4 +1,105 @@
-
+function urlxmnf(id,flag){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	if(flag=='01011201010101'||flag=='0101120101010101'||flag=='0101120101010102'||flag=='0101120101010103'||
+	   flag=='0101120101010104'||flag=='0101120101010105'||flag=='0101120101010106'||flag=='01011201010102'||
+	   flag=='010112010102'||flag=='010112010105'||flag=='010112020101'||
+	   flag=='01011202010101'||flag=='01011202010102'||flag=='01011202010103'||
+	   flag=='010112030101'||flag=='01011203010101'||flag=='01011203010102'||flag=='01011203010103'||
+	   flag=='010112030103'||flag=='010112040101'||flag=='01011301010101'||flag=='01011301010102'||
+	   flag=='010113010102'||flag=='010113010105'||flag=='01011302010101'||flag=='01011302010102'||
+	   flag=='010113020102'||flag=='010113020105'||flag=='01011303010101'||flag=='01011303010102'||
+	   flag=='010113030102'||flag=='010113030105'||flag=='01011304010101'||
+	   flag=='01011304010102'||flag=='010113040102'||flag=='010113040105'
+	){
+		//$("#bstext").html('十二五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2015)
+					first=2015;
+				if(first<2010)
+					first=2010;
+			}
+			years.push({text:(2010+5-i),value:(2010+5-i)});
+		}
+	}
+	if(flag=='01011201020101'||flag=='0101120102010101'||flag=='0101120102010102'||
+		flag=='0101120102010103'||flag=='0101120102010104'||flag=='0101120102010105'||
+		flag=='0101120102010106'||flag=='01011201020102'||flag=='010112010202'||
+		flag=='010112010205'||flag=='010112020201'||flag=='01011202020101'||
+		flag=='01011202020102'||flag=='01011202020103'||flag=='010112030201'||
+		flag=='01011203020101'||flag=='01011203020102'||flag=='01011203020103'||
+		flag=='010112030203'||flag=='010112040201'||flag=='01011301020101'||
+		flag=='01011301020102'||flag=='010113010202'||flag=='010113010206'||
+		flag=='01011302020101'||flag=='01011302020102'||flag=='010113020202'||
+		flag=='010113020206'||flag=='01011303020101'||flag=='01011303020102'||
+		flag=='010113030202'||flag=='010113030206'||flag=='010113040105'||flag=='01011304020101'||
+		flag=='01011304020102'||flag=='010113040202'||flag=='010113040206'
+	){
+		//$("#bstext").html('十san五');
+		for(var i=0;i<5;i++){
+			if(i==0){
+				first=myDate.getFullYear()-i;
+				if(first>2020)
+					first=2020;
+				if(first<2016)
+					first=2016;
+			}
+			years.push({text:(2015+5-i),value:(2015+5-i)});
+		}
+	}
+	
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setValue",first+'');
+	$('#id'+first).attr('checked', true);
+}
 function showkxxTjxx(xmlx){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
@@ -410,7 +511,7 @@ function showsjgzAll(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
 	        
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -428,14 +529,14 @@ function showsjgzAll(){
 //	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 
 	    ]],
 		view: detailview,
@@ -562,7 +663,7 @@ function showlmgzAll(){
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -573,14 +674,14 @@ function showlmgzAll(){
 			},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -705,7 +806,7 @@ function showxjAll(){
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -716,14 +817,14 @@ function showxjAll(){
 			},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'minqdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'maxzdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}	    ]],
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
 	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
@@ -744,10 +845,10 @@ function showxjAll(){
 						   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							   return '删除';
 					}},
-    			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
-    			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
-    			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
+    			    {field:'xzqh',title:'行政区划',width:60,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:60,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -823,7 +924,7 @@ function showAllsjsh(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 	        	if($.cookie("unit2").length!=7)
@@ -831,9 +932,7 @@ function showAllsjsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
-	        }},
+	        
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -842,7 +941,7 @@ function showAllsjsh(){
 	        	}else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -851,7 +950,9 @@ function showAllsjsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+			{field : 'gydw',title : '管养单位',width : 120,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
 				formatter: function(value,row,index){
 	        		if(Number(row.xmsl)>1){
 	        			return '<label style="color:red;">'+value+'</label>';
@@ -860,16 +961,20 @@ function showAllsjsh(){
 	        		}
 	        	}
 	        },
-		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+	        {field : 'jszlc',title : '里程',width : 60,align : 'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
-		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
+		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
+        }}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -986,10 +1091,7 @@ function showAlllmsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>   <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
-		       
-	        }},
+	        
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -1001,7 +1103,7 @@ function showAlllmsh(){
 	        		return '已审核';
 	        }},
 	        
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -1010,7 +1112,9 @@ function showAlllmsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+			{field : 'gydw',title : '管养单位',width : 120,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
 				formatter: function(value,row,index){
 	        		if(Number(row.xmsl)>1){
 	        			return '<label style="color:red;">'+value+'</label>';
@@ -1019,16 +1123,29 @@ function showAlllmsh(){
 	        		}
 	        	}
 	        },
-		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+	        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
+	        	formatter: function(value,row,index){
+	        		if(row.xmbm.substr(10,1)=='1'){
+	        			return row.jszlc;
+	        		}else{
+	        			return row.lc;
+	        		}
+	        	}
+		    },
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
-		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
+		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
+	       
+        }}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1137,10 +1254,7 @@ function showAllxjsh(){
 
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
-
-	        }},
+	        
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -1151,7 +1265,7 @@ function showAllxjsh(){
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -1160,7 +1274,9 @@ function showAllxjsh(){
 					}
 				}
 			},
-	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
+			{field : 'gydw',title : '管养单位',width : 120,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'xmmc',title : '项目名称',width : 220,align : 'center',
 				formatter: function(value,row,index){
 	        		if(Number(row.xmsl)>1){
 	        			return '<label style="color:red;">'+value+'</label>';
@@ -1169,16 +1285,29 @@ function showAllxjsh(){
 	        		}
 	        	}
 	        },
-		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+	        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
+	        	formatter: function(value,row,index){
+	        		if(row.xmbm.substr(10,1)=='1'){
+	        			return row.jszlc;
+	        		}else{
+	        			return row.lc;
+	        		}
+	        	}
+		    },
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
-		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
+		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
+		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
+
+        }}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1563,7 +1692,7 @@ function showAlllmsh__ck(){
 	        	else if(row.shzt=='1')
 	        		return '已审核';
 	        }},*/
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -1582,14 +1711,14 @@ function showAlllmsh__ck(){
 	        	}
 	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1696,7 +1825,7 @@ function showAllsjsh__ck(){
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},*/
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -1715,14 +1844,14 @@ function showAllsjsh__ck(){
 	        	}
 	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1828,7 +1957,7 @@ function showAllxjsh__ck(){
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},*/
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
 						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -1847,14 +1976,14 @@ function showAllxjsh__ck(){
 	        	}
 	        },
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
-		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-		    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
+		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   

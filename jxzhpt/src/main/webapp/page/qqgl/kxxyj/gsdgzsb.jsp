@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/js/loadTJ.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx("tsdq");
@@ -112,7 +112,14 @@
 
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 			        }},
-			       
+			        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
+			        	if(row.sbzt1=='0'){
+// 			        		if($.cookie("unit2").length!=7)
+			        			return '未审核';
+// 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+			        	}else if(row.sbzt1=='1')
+			        		return '已审核';
+			        }},
 			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
 							if(value=="是"){
@@ -148,10 +155,11 @@
 				    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
 				    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 				    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-				    
+				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 				    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
 				    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
-				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'}
+				    {field : 'tz',title : '投资',width : 80,align : 'center'},
+				    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 			    ]],
 				view: detailview,
 				detailFormatter:function(index,row){   

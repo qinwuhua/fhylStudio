@@ -40,11 +40,15 @@ $(function(){
 	//loadBmbm2("jsdj", "技术等级2");
 	//loadBmbm2("gldj", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	//xmnfdx("jhnf"); 
-	//xzdjdx('gldj');
 	var urlid=getUrlParame('id');
 	setxmnf("jhnf",urlid);
 	setxzdj('gldj',urlid);
+	
+	if(getUrlParame('id')==null){
+		xmnfdx("jhnf"); 
+		xzdjdx('gldj');
+	}
+	
 	jsdjdx('jsdj');
 	tsdqdx('tsdq');
 	//tsdq("tsdq");

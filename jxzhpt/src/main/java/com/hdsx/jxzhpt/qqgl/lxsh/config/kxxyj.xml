@@ -3,7 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.kxxyj">
 	<select id="selectSjgzList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SJGZ t Left join 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SJGZ t Left join 
 		lxsh_sjgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
@@ -108,7 +108,7 @@
 	
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
 		on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,dwlc,wllc,qdmc,zdmc from lxsh_lx 
 		where jdbs='1' and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
@@ -216,7 +216,7 @@
 	
 	<select id="selectXjkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
 		(select qdmc,zdmc,lxmc,qdzh minqdzh,zdzh maxzdzh,xmid, lc,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh
 		from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
@@ -1130,7 +1130,7 @@
 	 
 	 <select id="selectgsdkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*,sl.xmsl from kxgsdgz t Left join 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl from kxgsdgz t Left join 
 		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid

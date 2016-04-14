@@ -11,7 +11,28 @@ public class Kxxyj implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String tzxz;
 	private String tzsj;
+	private String tz;
+	private String tsdq;
+	private String gydw;
 	
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getTz() {
+		return tz;
+	}
+	public void setTz(String tz) {
+		this.tz = tz;
+	}
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getTzxz() {
 		return tzxz;
 	}
