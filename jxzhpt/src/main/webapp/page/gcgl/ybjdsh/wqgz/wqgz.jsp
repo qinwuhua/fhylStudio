@@ -31,7 +31,10 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
-			gcglxmnf("ddlYear");
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
+			setxzdj('ddlGldj',urlid);
 			showAll();
 		});
 	</script>

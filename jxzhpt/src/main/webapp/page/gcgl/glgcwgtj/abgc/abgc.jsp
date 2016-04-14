@@ -29,7 +29,10 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
-			gcglxmnf("ddlYear");
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
+			setxzdj('ddlGldj',urlid);
 			showAll();
 		});
 		

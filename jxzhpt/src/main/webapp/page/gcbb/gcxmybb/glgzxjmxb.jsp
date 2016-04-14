@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<style>
@@ -55,8 +56,9 @@
 		$(function(){
 			ybnf('ybnf');
 			ybyf('ybyf');
-			setjhxdnf();
-			
+			//setjhxdnf();
+			var urlid=getUrlParame('id');
+			urlxmnf("jhxdnf",urlid);
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 		//	loadBmbm2("xmlx","项目类型2");

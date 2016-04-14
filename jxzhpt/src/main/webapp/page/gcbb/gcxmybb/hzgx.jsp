@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<style>
@@ -20,7 +21,7 @@
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
-	function ybnf(id){
+	    function ybnf(id){
 		var myDate = new Date();
 		var years=[];
 		var first;
@@ -50,7 +51,7 @@
 			first=myDate.getMonth()+1;
 
 		$('#'+id).combobox("setValue",+first);
-	}
+	} 
 		$(function(){
 			ybnf('ybnf');
 			ybyf('ybyf');
@@ -59,7 +60,7 @@
 			loadDist("xzqh",$.cookie("dist"));
 		//	loadBmbm2("xmlx","项目类型2");
 			$("#xmlx").combobox("setValue",'升级改造');
-			var myDate = new Date();
+			/* var myDate = new Date();
 			var y = myDate.getFullYear();
 			var arr = new Array(); 
 			var i=0;
@@ -67,7 +68,9 @@
 				arr[i]=x+'';
 				i++;
 			}
-			$("#jhxdnf").combotree("setValues",arr);
+			$("#jhxdnf").combotree("setValues",arr);*/
+			var urlid=getUrlParame('id');
+			urlxmnf("jhxdnf",urlid);
 			showAll();
 		});
 		function setjhxdnf(){

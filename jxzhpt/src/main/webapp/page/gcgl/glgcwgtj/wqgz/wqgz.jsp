@@ -28,7 +28,10 @@
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
-			gcglxmnf("ddlYear");
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
+			setxzdj('ddlGldj',urlid);
 			showAll();
 		});
 		

@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/gcgzsj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -37,7 +38,9 @@
 			tsdq('ddlTSDQ');
 			$('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
-			gcglxmnf("ddlYear");
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			urlxmnf("ddlYear",urlid);
 			showGsd();
 		});
 		

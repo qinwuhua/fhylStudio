@@ -37,7 +37,10 @@
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
 			$('#ddlMonth').val(y+"-"+m);
-			gcglxmnf("ddlYear");
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
+			setxzdj('ddlGldj',urlid);
 			showAll();
 		});
 		function exportAbyb(){

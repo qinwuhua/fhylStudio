@@ -19,13 +19,16 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			$("#ddlYear").val(myDate.getFullYear());
+			//var myDate = new Date();
+			//var y = myDate.getFullYear();
+			// var m = myDate.getMonth()+1; 
+			//for(var x=y;x>=2010;x--){
+			//	$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			//}
+			//$("#ddlYear").val(myDate.getFullYear());
+			
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
 			showAll();
 		});
 		

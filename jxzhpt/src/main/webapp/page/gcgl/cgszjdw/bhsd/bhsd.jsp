@@ -33,12 +33,15 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y+5;x>=2010;x--){
+			/* for(var x=y+5;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
+			} */
 			 $('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
-			$("#ddlYear").val(myDate.getFullYear());
+			//$("#ddlYear").val(myDate.getFullYear());
+			var urlid=getUrlParame('id');
+			setxmnf("ddlYear",urlid);
+			setxzdj('ddlGldj',urlid);
 			showAll();
 		});
 		function exportAbyb(){

@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/yhdzx.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -28,15 +29,17 @@
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
-			var myDate = new Date();
+			 var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y+5;x>=2010;x--){
+		/* for(var x=y+5;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
+			} */
 			$('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
-			$("#ddlYear").val(myDate.getFullYear());
+			//$("#ddlYear").val(myDate.getFullYear());
+			var urlid=getUrlParame('id');
+			urlxmnf("ddlYear",urlid);
 			showAll();
 		});
 		function exportAbyb(){
