@@ -33,11 +33,16 @@
 			//loadBmbm2('ddlPDDJ','技术等级');
 			//loadBmbm2('ddlGldj','行政等级');
 			//tsdq('ddlTSDQ');
-			//xmnfdx("sbnf");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
-			//xzdjdx('gldj');
-			setxzdj('gldj',urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+				xzdjdx('gldj');
+			}else{
+				setxmnf("sbnf",urlid);
+				setxzdj('gldj',urlid);
+			}
+			
 			jsdjdx('jsdj');
 			kjfldx('akjfl');
 			tsdqdx('tsdq');

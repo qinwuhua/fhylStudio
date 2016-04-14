@@ -26,11 +26,14 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			jsdjdx('ddlPDDJ');
 			
-			//xmnfdx("sbnf");
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
-			//xzdjdx('ddlGldj');
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("sbnf",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
 			
 			tsdqdx('ddlTSDQ');
 			searchAbgc();

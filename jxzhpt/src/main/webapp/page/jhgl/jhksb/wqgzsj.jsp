@@ -308,6 +308,45 @@
 			obj=data;
 			alert("未通过原因："+obj.shyj);
 		}
+		
+		function dcExcel(){
+			var sbthcd;
+			if($.cookie("unit2").length==11) sbthcd=0;
+		 	else if($.cookie("unit2").length==9) sbthcd=2;
+	 		else sbthcd=4;
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var data=
+			"sbthcd="+sbthcd+
+			"&gydw="+gydwstr+
+			"&xzqhdm="+xzqhstr+
+			"&lxmc="+$('#lxmc').val()+
+			"&lxbm="+$('#lxbm').val()+
+			"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+xmnf+
+			"&jhzt="+$("#jhzt").combobox("getValue")+
+			"&gldj="+gldj+
+			"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
+			"&pddj="+$("#pddj").combobox("getValue")+
+			"&akjfl="+akjfl+
+			"&sfylsjl="+$("#sfylsjl").combobox("getValue")+
+			"&tsdq="+tsdq+
+			'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+
+			"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/jhgl/jhgljhsbwqgzExcel.do?'+data;
+			 });
+		}
 	</script>
 <style type="text/css">
 TD {
@@ -404,8 +443,8 @@ text-decoration:none;
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />
 								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
-				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/> --%>
+				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">--%>
+				                <%-- <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="dcExcel()"/> --%> 
 								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
 							</td>
                             </tr></table>

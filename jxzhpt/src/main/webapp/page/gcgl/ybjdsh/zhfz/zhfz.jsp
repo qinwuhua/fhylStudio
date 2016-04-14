@@ -32,10 +32,16 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
-			//gcglxmnf("ddlYear");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("ddlYear",urlid);
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
+			
 			showAll();
 		});
 	</script>

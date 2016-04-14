@@ -30,9 +30,16 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			//gcglxmnf("ddlYear");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("ddlYear",urlid);
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
+			
 			showAll();
 		});
 	</script>

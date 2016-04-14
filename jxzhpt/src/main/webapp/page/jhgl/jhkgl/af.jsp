@@ -31,11 +31,17 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			//xmnfdx("sbnf"); 
+			
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
-			//xzdjdx('ddlGldj');
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("sbnf",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
+			
+			
 			jsdjdx('ddlPDDJ');
 			tsdqdx('ddlTSDQ');
 			searchAbgc();

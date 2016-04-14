@@ -22,12 +22,16 @@ $(function(){
 	loadDist1("xzqhmc",$.cookie("dist"));
 	
 	loadBmbm2("shzt", "审核状态");
-	//xmnfdx("xmnf");
 	var urlid=getUrlParame('id');
-	setxmnf("xmnf",urlid);
-	setxzdj('gldj',urlid);
+	if(urlid==null){
+		xmnfdx("xmnf"); 
+		xzdjdx('gldj');
+	}else{
+		setxmnf("xmnf",urlid);
+		setxzdj('gldj',urlid);
+	}
+	
   	jsdjdx('jsdj');
-	//xzdjdx('gldj');
 	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');

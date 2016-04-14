@@ -29,8 +29,14 @@
 			//	$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			//}
 			// $("#ddlYear").val(myDate.getFullYear());
+			
 			var urlid=getUrlParame('id');
-			setxmnf("ddlYear",urlid);
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+			}else{
+				setxmnf("ddlYear",urlid);
+			}
+			
 			showAll();
 		});
 	</script>

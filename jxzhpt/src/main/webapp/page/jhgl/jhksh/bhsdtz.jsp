@@ -27,7 +27,13 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('tzlx','调整类型');
 			var myDate = new Date();
-			plannf("sbnf");
+			//plannf("sbnf");
+			var urlid=getUrlParame('id');
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+			}else{
+				setxmnf("sbnf",urlid);
+			}
 // 			$('#sbnf').combobox("setValue",myDate.getFullYear());
 			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:'1',jh_sbthcd:$.cookie("unit2").length,

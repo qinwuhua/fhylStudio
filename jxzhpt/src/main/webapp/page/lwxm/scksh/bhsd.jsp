@@ -20,9 +20,14 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	//xmnf("xmnf");
+	
 	var urlid=getUrlParame('id');
-	setxmnf("xmnf",urlid);
+	if(urlid==null){
+		xmnf("xmnf");
+	}else{
+		setxmnf("xmnf",urlid);
+	}
+	
 	loadBmbm2("shzt", "审核状态");
 	loadBmbm2("jsdj", "技术等级");
 	loadBmbm2("acdfl", "隧道分类");

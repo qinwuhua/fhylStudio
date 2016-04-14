@@ -31,8 +31,14 @@
 			tsdq('ddlTSDQ');
 			//gcglxmnf("ddlYear");
 			var urlid=getUrlParame('id');
-			setxmnf("ddlYear",urlid);
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
+			
 			showafAll();
 		});
 		

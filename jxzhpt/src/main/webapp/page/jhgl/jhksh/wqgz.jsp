@@ -30,11 +30,16 @@
 			//var myDate = new Date();
 			//sbnf("sbnf");
 			jsdjdx('jsdj');
-			//xmnfdx("sbnf");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
-			//xzdjdx('gldj');
-			setxzdj('gldj',urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+				xzdjdx('gldj');
+			}else{
+				setxmnf("sbnf",urlid);
+				setxzdj('gldj',urlid);
+			}
+			
 			kjfldx('akjfl');
 			tsdqdx('tsdq');
 			searchWqgz();

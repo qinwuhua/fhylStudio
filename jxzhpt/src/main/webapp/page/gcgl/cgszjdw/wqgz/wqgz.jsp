@@ -36,9 +36,16 @@
 			 $('#ddlMonth').simpleCanleder();
 			$('#ddlMonth').val(y+"-"+m);
 			//gcglxmnf("ddlYear");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("ddlYear",urlid);
-			setxzdj('ddlGldj',urlid);
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
+			}
+			
 			showAll();
 		});
 		function exportAbyb(){

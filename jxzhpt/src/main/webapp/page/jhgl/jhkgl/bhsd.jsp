@@ -23,8 +23,14 @@
 	<script type="text/javascript">
 		$(function(){
 			//plannf("sbnf");
+			
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+			}else{
+				setxmnf("sbnf",urlid);
+			}
+			
 			//xzdjdx('gldj');
 			//setxzdj('gldj',urlid);
 			loadUnit1("gydw",$.cookie("unit")); 

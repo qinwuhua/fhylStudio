@@ -28,7 +28,11 @@
 			var myDate = new Date();
 			//plannf("sbnf");
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+			}else{
+				setxmnf("sbnf",urlid);
+			}
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:$.cookie("unit2").length,
 					shFlag:'1'};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};

@@ -24,7 +24,12 @@
 		$(function(){
 			//plannf("sbnf");
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
+			if(urlid==null){
+				plannf("sbnf");
+			}else{
+				setxmnf("sbnf",urlid);
+			}
+			
 			
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));

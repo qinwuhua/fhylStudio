@@ -27,11 +27,16 @@
 // 			loadBmbm2('ddlPDDJ','技术等级');
 // 			tsdq('ddlTSDQ');
 // 			sbnf("sbnf");
-			//xmnfdx("sbnf"); 
+			
 			var urlid=getUrlParame('id');
-			setxmnf("sbnf",urlid);
-			//xzdjdx('gldj');
-			setxzdj('gldj',urlid);
+			if(urlid==null){
+				xmnfdx("sbnf"); 
+				xzdjdx('gldj');
+			}else{
+				setxmnf("sbnf",urlid);
+				setxzdj('gldj',urlid);
+			}
+			
 			jsdjdx('jsdj');
 			kjfldx('akjfl');
 			tsdqdx('tsdq');

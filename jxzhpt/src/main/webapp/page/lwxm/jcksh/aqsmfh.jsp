@@ -35,16 +35,22 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	//xmnf("jhnf"); 
+	
 	//loadBmbm2("sbzt", "审核状态");
 // 	loadBmbm2("jsdj", "技术等级2");
 // 	loadBmbm2("gldj", "行政等级");
 	loadBmbm2("bzls", "补助历史");
 // 	tsdq("tsdq");
 	jsdjdx('jsdj');
-	//xzdjdx('gldj');
+	
+	
 	var urlid=getUrlParame('id');
-	setxzdj('gldj',urlid);
+	if(urlid==null){
+		//xmnf("jhnf"); 
+		xzdjdx('gldj');
+	}else{
+	 	setxzdj('gldj',urlid);
+	}
 	tsdqdx('tsdq');
 	showAll();
 	
