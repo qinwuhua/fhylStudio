@@ -56,7 +56,28 @@
 						return result;
 					}
 				},
-				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				{field:'xdzt',title:'资金下达',width:60,align:'center',
+					formatter:function(value,row,index){
+						xmlx=4;
+						var result = '<a href="javascript:openWindow('+"'yhdzxzjxd'"+','+"'养护大中修 — 资金下达'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/yhdzx_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下达</a>';
+						return result;
+					}
+				},
+				{field:'sbzt',title:'审核状态',width:60,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						xmlx=1;
+						if(row.xdzt=='0')
+							result='未审核';
+						if(row.xdzt=='1')
+							result='已审核';	
+// 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
+// 							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
+						return result;
+					}
+				},
+				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -65,16 +86,15 @@
 						}
 					}
 				},
-				{field:'xdzt',title:'资金下达',width:100,align:'center',
-					formatter:function(value,row,index){
-						xmlx=4;
-						var result = '<a href="javascript:openWindow('+"'yhdzxzjxd'"+','+"'养护大中修 — 资金下达'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/yhdzx_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下达</a>';
-						return result;
-					}
+				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				{field:'xzqh',title:'行政区划',width:60,align:'center'},
+				{field:'xmnf',title:'项目年份',width:60,align:'center',
+					formatter: function(value,row,index){
+		        		return row.xmbm.substr(0,4);
+		        	}
 				},
-				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'xmmc',title:'项目名称',width:250,align:'center',
+				{field:'zyd',title:'重要度排序',width:60,align:'center'},
+				{field:'xmmc',title:'项目名称',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.xmsl)>1){
 		        			return '<label style="color:red;">'+value+'</label>';
@@ -83,17 +103,27 @@
 		        		}
 					}
 				},
-				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'路线编码',width:100,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
-				{field:'lc',title:'里程',width:100,align:'center'},
-				{field:'jsdj',title:'技术等级',width:100,align:'center'},
-				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-				{field:'gq',title:'工期（月）',width:100,align:'center'},
-				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'jsdj',title:'技术等级',width:60,align:'center'},
+				{field:'ylxbh',title:'路线编码',width:60,align:'center'},
+				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
+				{field:'zdzh',title:'止点桩号',width:70,align:'center'},
+				
+				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
+				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
+				{field:'xdwh',title:'下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'下达时间',width:70,align:'center'},
+				{field:'ztz',title:'总投资',width:60,align:'center'},
+				{field:'sysbbzj',title:'燃油税',width:60,align:'center'},
+				{field:'yqdbcgs',title:'贷款',width:60,align:'center'},
+				
+				{field:'qt',title:'其他',width:60,align:'center'},
+				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:100,align:'center'}
+// 				{field:'gq',title:'工期（月）',width:100,align:'center'},
+// 				{field:'ntz',title:'拟投资',width:100,align:'center'}
+				]];
 			gridBind(grid);
 		}
 		function loadLj(params){
@@ -104,10 +134,13 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){
-						$('#spanztz').html(msg.ZTZ);
-						$('#spansbz').html(msg.SYSBB);
-						$('#spanbcgs').html(msg.YQDBCGS);
-						$('#spanlc').html(msg.LC);
+						$("#xmsl").html(msg.SL);
+						 $("#tz").html(msg.TZ);
+						 $("#cgs").html(msg.CGS);
+						 $("#stz").html(msg.STZ);
+						 $("#sjl").html(msg.SJL);
+						 $("#lc").html(msg.LC);
+						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanztz').html("0");
 						$('#spansbz').html("0");
@@ -186,8 +219,14 @@
        	</tr>
        	<tr>
            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-           		<div>总投资累计【<span id="spanztz" style="color: red;">0</span>】,省以上补助资金累计【<span id="spansbz" style="color: red;">0</span>】,
-           		以确定部车购税累计【<span id="spanbcgs" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+           		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+            		建设里程【<span id="lc" style="color: red;">0</span>】公里,
+            		总投资【<span id="tz" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		</div>
            		<div>
            			<table id="grid"></table>
            		</div>

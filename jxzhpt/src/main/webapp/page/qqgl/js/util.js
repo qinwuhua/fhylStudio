@@ -56,15 +56,21 @@ function loadcbsjTjxx(data){
 		dataType:'json',
 		success:function(msg){
 			if(msg!=null){
-				$('#xmsl').html(msg.sl);
-				$('#tz').html(msg.tz);
-				$('#lc').html(msg.lc);
-				$('#bzcs').html(msg.bzcs);
+				 $("#xmsl").html(msg.sl);
+				 $("#tz").html(msg.tz);
+				 $("#cgs").html(msg.bzcs);
+				 $("#stz").html(msg.stz);
+				 $("#sjl").html(msg.sjl);
+				 $("#lc").html(msg.lc);
+				 $("#dftz").html(msg.dftz);
 			}else{
 				$('#xmsl').html('0');
 				$('#tz').html('0');
 				$('#lc').html('0');
-				$('#bzcs').html('0');
+			    $("#cgs").html('0');
+			    $("#stz").html('0');
+			    $("#sjl").html('0');
+			    $("#dftz").html('0');
 			}
 			
 		}

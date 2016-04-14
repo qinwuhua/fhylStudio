@@ -13,7 +13,35 @@ public class Lxsh implements Serializable {
 	private String tzsj;
 	private String xmlx1;
 	private String xmlxs;
+	private String cgs;
+	private String sbz;
+	private String sjl;
+	private String dftz;
 	
+	public String getCgs() {
+		return cgs;
+	}
+	public void setCgs(String cgs) {
+		this.cgs = cgs;
+	}
+	public String getSbz() {
+		return sbz;
+	}
+	public void setSbz(String sbz) {
+		this.sbz = sbz;
+	}
+	public String getSjl() {
+		return sjl;
+	}
+	public void setSjl(String sjl) {
+		this.sjl = sjl;
+	}
+	public String getDftz() {
+		return dftz;
+	}
+	public void setDftz(String dftz) {
+		this.dftz = dftz;
+	}
 	public String getXmlx1() {
 		return xmlx1;
 	}

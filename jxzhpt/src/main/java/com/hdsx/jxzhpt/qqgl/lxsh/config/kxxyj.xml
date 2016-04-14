@@ -692,8 +692,8 @@
 	
 	
 	<select id="showsjkxxTjxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm
+		left join (select xmid,sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -728,7 +728,7 @@
 		</if>
 	</select>
 	<select id="showlmkxxTjxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_LMGZ t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz from KXXYJ_LMGZ t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
 		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
@@ -764,8 +764,8 @@
 		</if>
 	</select>
 	<select id="showxjkxxTjxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
-		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
+		left join (select xmid,sum(xjlc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		 where 1=1
 		and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
@@ -1177,11 +1177,13 @@
 		</if>
 	</select>
 	<select id="showgsdkxxTjxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(t1.bzys),0) bzcs from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm
+		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(t1.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from kxgsdgz t Left join lxgsdgz t1 on t.xmbm=t1.xmbm
 		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from (select  xmid,jsxz,xjsdj,jsjsdj,lxbm,bzcs,
-		(case when jsxz like '%改建%' then to_number(jhlc)
-	 	 when jsxz like '%新建%' then to_number(xjlc)
-	    else yilc+erlc+sanlc+silc+dwlc+wllc end) lc
+		(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+		when jsxz like '%新建%' then to_number(xjlc)
+		else to_number(lc)
+<!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
+		end) lc
 	   from lxsh_lx where jdbs='1') group by xmid) lx on t.xmbm=lx.xmid
 			 where 1=1
 		and  t.sbthcd=7

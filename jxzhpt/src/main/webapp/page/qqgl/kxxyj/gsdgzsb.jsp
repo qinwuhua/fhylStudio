@@ -150,15 +150,15 @@
 			        		}
 			        	}
 				    },
-				    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
-				    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
-				    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
-				    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				    {field : 'xmbm',title : '项目编码',width : 100,align : 'center'},
+				    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
+				    {field : 'qdzh',title : '起点桩号',width : 80,align : 'center'},
+				    {field : 'zdzh',title : '止点桩号',width : 80,align : 'center'},
 				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
-				    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
-				    {field : 'wgny',title : '完工年月',width : 100,align : 'center'},
-				    {field : 'tz',title : '投资',width : 80,align : 'center'},
+				    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
+				    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
+				    {field : 'tz',title : '投资',width : 60,align : 'center'},
 				    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 			    ]],
 				view: detailview,
@@ -281,8 +281,14 @@ text-decoration:none;
 <!--         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="tz" style="color: red;">0</span>】,补助测算累计【<span id="bzcs" style="color: red;">0</span>】,里程累计【<span id="lc" style="color: red;">0</span>】</div>
-            		
+            		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+            		建设里程【<span id="lc" style="color: red;">0</span>】公里,
+            		总投资【<span id="tz" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		</div>
             		<div>
             			<table id="datagrid"></table>
             		</div>

@@ -523,10 +523,13 @@ function showAll(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -823,10 +826,13 @@ function showAllsjsh(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({
@@ -991,10 +997,13 @@ function showAlllmgz(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1153,10 +1162,13 @@ function showAlllmsh(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1319,10 +1331,13 @@ function showAllxj(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({    
@@ -1483,10 +1498,13 @@ function showAllxjsh(){
 			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
 		dataType:'json',
 		success:function(msg){
-			$('#xmsl').html(msg.XMSL);
-			$('#tz').html(msg.TZ);
-			$('#lc').html(msg.LC);
-			$('#bzcs').html(msg.BZCS);
+			$("#xmsl").html(msg.XMSL);
+			 $("#tz").html(msg.TZ);
+			  $("#cgs").html(msg.BZCS);
+			 $("#stz").html(msg.STZ);
+			 $("#sjl").html(msg.SJL);
+			 $("#lc").html(msg.LC);
+			 $("#dftz").html(msg.DFTZ);
 		}
 	});
 	$('#datagrid').datagrid({    

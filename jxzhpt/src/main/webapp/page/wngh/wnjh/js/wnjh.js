@@ -636,8 +636,11 @@ function showgjtj(xmlx){
 		 success : function(msg){
 			 $("#xmsl").html(msg.sl);
 			 $("#tz").html(msg.tz);
-			 $("#bzcs").html(msg.bzys);
+			 $("#cgs").html(msg.bzys);
+			 $("#stz").html(msg.stz);
+			 $("#sjl").html(msg.sjl);
 			 $("#lc").html(msg.lc);
+			 $("#dftz").html(msg.dftz);
 		 }
 		 });
 }

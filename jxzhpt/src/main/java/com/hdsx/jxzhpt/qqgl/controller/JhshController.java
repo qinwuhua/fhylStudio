@@ -143,9 +143,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 							break;
 						}
 						if(i==0)
-							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
 						else
-							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
 					}
 					if(tsdq==""){
 						tsdq="";
@@ -197,9 +197,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 							break;
 						}
 						if(i==0)
-							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
 						else
-							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
 					}
 					if(tsdq==""){
 						tsdq="";
@@ -887,9 +887,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -1229,9 +1229,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";

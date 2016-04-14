@@ -87,15 +87,14 @@
 						}
 					}
 				},
+				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				{field:'xzqh',title:'行政区划',width:60,align:'center'},
 				{field:'xmnf',title:'项目年份',width:60,align:'center',
 					formatter: function(value,row,index){
 		        		return row.xmbm.substr(0,4);
 		        	}
 				},
 				{field:'zyd',title:'重要度排序',width:60,align:'center'},
-				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'xzqh',title:'行政区划',width:60,align:'center'},
-				
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.xmsl)>1){
@@ -119,7 +118,7 @@
 				{field:'xdsj',title:'下达时间',width:70,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:60,align:'center'},
 				{field:'bbzzj',title:'车购税',width:60,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:60,align:'center'},
+// 				{field:'sbzzj',title:'省补助资金',width:60,align:'center'},
 				{field:'gz',title:'国债',width:60,align:'center'},
 				{field:'sz',title:'省债',width:60,align:'center'},
 				{field:'zq',title:'债券',width:60,align:'center'},
@@ -141,9 +140,13 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){
-						$('#spanbbz').html(msg.BBZZJ);
-						$('#spansbz').html(msg.SBZZJ);
-						$('#spanlc').html(msg.LC);
+						$("#xmsl").html(msg.SL);
+						 $("#tz").html(msg.TZ);
+						 $("#cgs").html(msg.CGS);
+						 $("#stz").html(msg.STZ);
+						 $("#sjl").html(msg.SJL);
+						 $("#lc").html(msg.LC);
+						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -235,7 +238,14 @@
         	</tr> -->
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>部补助资金累计【<span id="spanbbz" style="color: red;">0</span>】,省补助资金累计【<span id="spansbz" style="color: red;">0</span>】,里程累计【<span id="spanlc" style="color: red;">0</span>】</div>
+            		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+            		建设里程【<span id="lc" style="color: red;">0</span>】公里,
+            		总投资【<span id="tz" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		</div>
             		<div>
             			<table id="grid"></table>
             		</div>

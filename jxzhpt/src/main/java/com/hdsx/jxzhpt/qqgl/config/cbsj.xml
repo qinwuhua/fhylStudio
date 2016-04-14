@@ -916,7 +916,7 @@
 		select sh.xmbm,sh.xdwh from jhsh_sh sh) where filewh like '%'||#{jhwh}||'%'
 	</select>
 	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
-		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx c left join 
+		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_yhdzx c left join 
 		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
 		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
@@ -958,7 +958,7 @@
 	</select>
 	
 	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
-		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_sh c left join 
+		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_sh c left join 
 		xmsq_sh l on c.xmbm=l.xmbm left join 
 		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
@@ -998,8 +998,8 @@
 	</select>
 	
 	<select id="loadsjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
-		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
+		left join (select xmid, sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1046,8 +1046,8 @@
 	</select>
 	
 	<select id="loadlmcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
-		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		left join (select xmid, sum(lc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1094,8 +1094,8 @@
 	</select>
 	
 	<select id="loadxjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-		left join (select xmid, min(jhlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
+		left join (select xmid, min(xjlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1367,11 +1367,13 @@
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="loadgsdcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm
 		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from (select  xmid,jsxz,xjsdj,jsjsdj,lxbm,bzcs,
-		(case when jsxz like '%改建%' then to_number(jhlc)
-	 	 when jsxz like '%新建%' then to_number(xjlc)
-	    else yilc+erlc+sanlc+silc+dwlc+wllc end) lc
+		(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+		when jsxz like '%新建%' then to_number(xjlc)
+		else to_number(lc)
+<!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
+		end) lc
 	   from lxsh_lx where jdbs='2') group by xmid) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>

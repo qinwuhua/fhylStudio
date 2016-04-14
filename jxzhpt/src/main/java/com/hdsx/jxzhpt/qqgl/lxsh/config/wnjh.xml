@@ -741,7 +741,7 @@
 		group by <if test="qb==false">substr(xmid,5,6),</if>substr(lxbm,0,1)
 	</select>
 	<select id="showgjtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_sjgz sj left join (select xmid,sum(jhlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc,(sum(tz)-sum(bzys)) dftz,'0' sbz,'0' sjl  from wnjh_sjgz sj left join (select xmid,sum(jhlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -777,7 +777,7 @@
 		</if>
 	</select>
 	<select id="showlmtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_lmgz sj left join (select xmid,sum(lc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc,(sum(tz)-sum(bzys)) dftz,'0' sbz,'0' sjl  from wnjh_lmgz sj left join (select xmid,sum(lc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -813,7 +813,7 @@
 		</if>
 	</select>
 	<select id="showxjtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wnjh_xj sj left join (select xmid,sum(xjlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc,(sum(tz)-sum(bzys)) dftz,'0' sbz,'0' sjl  from wnjh_xj sj left join (select xmid,sum(xjlc) lc from wnjh_lx group by xmid) lx on sj.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -973,11 +973,13 @@
 		</if>
 	</select>
 	<select id="showgsdtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc  from wngsdgz sj left join (select xmid, sum(jhlc) lc from (select  xmid,jsxz,
-(case when jsxz like '%改建%' then to_number(jhlc)
-  when jsxz like '%新建%' then to_number(xjlc)
-    else yilc+erlc+sanlc+silc+dwlc+wllc end) jhlc
-   from wnjh_lx) group by xmid) lx on sj.id=lx.xmid where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(lx.lc) lc,'0' cgs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz  from wngsdgz sj left join (select xmid, sum(jhlc) lc from (select  xmid,jsxz,
+		(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+		when jsxz like '%新建%' then to_number(xjlc)
+		else to_number(lc)
+<!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
+		end) jhlc
+   		from wnjh_lx) group by xmid) lx on sj.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>

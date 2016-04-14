@@ -257,7 +257,14 @@ text-decoration:none;
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>项目数量【<span id="xmsl" style="color: red;">0</span>】投资额累计【<span id="tz" style="color: red;">0</span>】,补助测算累计【<span id="bzcs" style="color: red;">0</span>】,里程累计【<span id="lc" style="color: red;">0</span>】</div>
+            		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
+            		建设里程【<span id="lc" style="color: red;">0</span>】公里,
+            		总投资【<span id="tz" style="color: red;">0</span>】万元,
+            		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		</div>
             		<div><table id="datagrid"></table></div>
             	</td>
         	</tr>
