@@ -41,7 +41,7 @@
 					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,
 					sc.scqlqc,sc.scqlqk,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh 
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -188,7 +188,7 @@
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
 	 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -254,7 +254,7 @@
 			sum(jh.jhsydfzcje) as jhsydfzcje,decode(sum(xdzj),null,0,sum(xdzj)) bz 
 			from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
 			right join plan_wqgz jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
-			where 1=1 and jh.sfylrbwqk='是' and lx.gydwbm like '2%'
+			where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>

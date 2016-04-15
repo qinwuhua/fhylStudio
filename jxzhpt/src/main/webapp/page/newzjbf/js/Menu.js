@@ -13,6 +13,17 @@ $(function() {
 			createMenunew('01011501');
 			j++;
 		}
+    	if(qx[i]=='01011502'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '台账',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			$("#left_menu2").append('<ul id="tree01011502"></ul>');
+			createMenunew('01011502');
+			j++;
+		}
     	/*if(qx[i]=='01011402'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",

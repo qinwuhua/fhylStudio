@@ -582,7 +582,7 @@ text-decoration:none;
 					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="scxmnf" />
+					<input id="scxmnf" maxlength="4"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

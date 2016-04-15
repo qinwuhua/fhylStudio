@@ -26,7 +26,7 @@
 	<script type="text/javascript">
 		$(function(){
 			
-			 if($.cookie('unit')=='21101360000')
+			 if($.cookie('unit')=='21101360000'||$.cookie('unit')=='36')
 				location.href='gsdgzsh.jsp?id='+getUrlParame('id'); 
 			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));

@@ -1833,6 +1833,7 @@ function xzdjdx(id){
 }
 function setxzdj(id,flag){
 	var years=[];
+	var first=[];
 	years.push({text:'全部',value:''});
 	if(flag=='01011101030105'||flag=='01011101030106'||flag=='01011101030107'||
 	   flag=='01011102030105'||flag=='01011102030106'||flag=='01011102030107'||flag=='01011102030108'||
@@ -1860,6 +1861,8 @@ function setxzdj(id,flag){
 	){
 		years.push({text:'国道',value:'G'});
 		years.push({text:'省道',value:'S'});
+		first.push('G');
+		first.push('S');
 	}
 	if(flag=='01011101030205'||flag=='01011101030206'||flag=='01011101030207'||
 	   flag=='01011102030205'||flag=='01011102030206'||flag=='01011102030207'||flag=='01011102030208'||
@@ -1881,6 +1884,10 @@ function setxzdj(id,flag){
 		years.push({text:'乡道',value:'Y'});
 		years.push({text:'村道',value:'C'});
 		years.push({text:'专道',value:'Z'});
+		first.push('X');
+		first.push('Y');
+		first.push('C');
+		first.push('Z');
 	}
 	$('#'+id).combobox({
 	    data:years,
@@ -1927,7 +1934,7 @@ function setxzdj(id,flag){
 			}
 		}
 	});
-	$('#'+id).combobox("setText",'全部');
+	$('#'+id).combobox("setValues",first);
 	//$('#id全部').attr('checked', true);
 	
 }
