@@ -14,7 +14,7 @@ function urlxmnf(id,flag){
 	   flag=='010113030102'||flag=='010113030105'||flag=='01011304010101'||
 	   flag=='01011304010102'||flag=='010113040102'||flag=='010113040105'
 	){
-		//$("#bstext").html('十二五');
+		$("#bstext").html('十二五');
 		for(var i=0;i<5;i++){
 			if(i==0){
 				first=myDate.getFullYear()-i;
@@ -39,7 +39,7 @@ function urlxmnf(id,flag){
 		flag=='010113030202'||flag=='010113030206'||flag=='010113040105'||flag=='01011304020101'||
 		flag=='01011304020102'||flag=='010113040202'||flag=='010113040206'
 	){
-		//$("#bstext").html('十san五');
+		$("#bstext").html('十三五');
 		for(var i=0;i<5;i++){
 			if(i==0){
 				first=myDate.getFullYear()-i;

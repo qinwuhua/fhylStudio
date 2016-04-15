@@ -105,7 +105,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;养护中心工程项目</div>
+						<div id="p_top">当前位置>&nbsp;资金拨付>&nbsp;<span id="astext">资金拨付</span>>&nbsp;<span id="bstext"></span>>&nbsp;养护中心工程项目</div>
 					</div>
         	</tr>
         	<tr>

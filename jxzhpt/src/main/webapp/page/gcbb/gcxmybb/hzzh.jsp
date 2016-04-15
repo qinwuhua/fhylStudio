@@ -173,7 +173,7 @@ a:active {
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  style="height: 30px">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;中央车购税灾毁</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;中央车购税灾毁</div>
 					</div>
         	</tr>
         	<tr>

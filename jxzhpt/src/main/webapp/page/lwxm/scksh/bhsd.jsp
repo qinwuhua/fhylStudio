@@ -91,7 +91,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;方案审查库审核>&nbsp;病害隧道项目</div>
+		<div id="p_top">前期管理>&nbsp;<span id="astext">项目立项</span>>&nbsp;<span id='bstext'></span>>&nbsp;路网结构改造工程>&nbsp;隧道</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>

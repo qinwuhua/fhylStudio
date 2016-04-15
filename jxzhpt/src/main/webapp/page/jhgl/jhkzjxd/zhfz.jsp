@@ -123,7 +123,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;灾害防治项目</div>
+		<div id="p_top">计划管理>&nbsp;计划下达>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;灾害防治项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

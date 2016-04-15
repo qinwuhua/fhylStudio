@@ -46,10 +46,11 @@ $(function(){
 	
 	var urlid=getUrlParame('id');
 	if(urlid==null){
-		//xmnf("jhnf"); 
+		xmnfdx("jhnf"); 
 		xzdjdx('gldj');
 	}else{
-	 	setxzdj('gldj',urlid);
+		setxmnf("jhnf",urlid);
+		setxzdj('gldj',urlid);
 	}
 	tsdqdx('tsdq');
 	showAll();
@@ -243,7 +244,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目基础库审核>&nbsp;安全生命防护工程项目</div>
+		<div id="p_top">五年项目库>&nbsp;<span id='bstext'></span>>路网结构改造工程>&nbsp;安全生命防护工程项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
