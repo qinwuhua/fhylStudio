@@ -27,7 +27,7 @@ $(function() {
     	if(qx[i]=='01011403'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
-				title: '完工统计',
+				title: '完工项目',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

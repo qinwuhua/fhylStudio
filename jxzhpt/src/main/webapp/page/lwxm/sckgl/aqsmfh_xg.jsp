@@ -758,7 +758,7 @@ function deleteFile(id){
 					<input type="text" id="jsxz" name='bitian' maxlength="1"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="scjhnf"></td>
+					<input type="text" id="scjhnf" maxlength="4"></td>
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部(省)补助(单位:万元,保留整数)：</td>
