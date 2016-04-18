@@ -137,7 +137,30 @@ public class WnjhController extends BaseActionSupport{
 	private String uploadWGYSFileName;
 	private String lxbm;
 	private String xmlx;
-	
+
+	public void setXmlx1(String str){
+		if(str!=null)
+			if(str.length()>0){
+				String[] tsdqs=str.split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setXmlx1(tsdq);
+			}
+	}
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -341,21 +364,13 @@ public class WnjhController extends BaseActionSupport{
 	//------------------------------------------gj
 	public void selectGjwnjh(){
 		try {
-		String tiaojian1="";
 		String tiaojian2="";
-		if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydw+"%'";
-		}else{
-			tiaojian1="and gydwdm in ("+gydw+")";
-		}
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
 		}else{
 			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
-		System.out.println(tiaojian2);
 		lxsh.setXzqh(tiaojian2);
-		lxsh.setGydw(tiaojian1);
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 		}
@@ -366,9 +381,9 @@ public class WnjhController extends BaseActionSupport{
 			String[] jsdjs = gldj.split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
-					gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+					gldjtj=gldjtj+"and (ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
 				else
-					gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+					gldjtj=gldjtj+"or ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
 			}
 			gldjtj=gldjtj+")";
 		}
@@ -378,14 +393,25 @@ public class WnjhController extends BaseActionSupport{
 			String[] jsdjs = jsdj.split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
-					jsdjtj=jsdjtj+"and (jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"and (xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
 				else
-					jsdjtj=jsdjtj+"or jsjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					jsdjtj=jsdjtj+"or xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
 			}
 			jsdjtj=jsdjtj+")";
 		}
-		
 		lxsh.setJsdj(jsdjtj);
+		String jsjsdj="";
+		if((!"".equals(jsdj))&&jsdj!=null){
+			String[] jsdjs = jsdj.split(",");
+			for (int i = 0; i < jsdjs.length; i++) {
+				if(i==0)
+					jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+				else
+					jsjsdj=jsjsdj+"or jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+			}
+			jsjsdj=jsjsdj+")";
+		}
+		lxsh.setJsjsdj(jsjsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		if(lxsh.getTsdq().length()>0){
@@ -408,6 +434,8 @@ public class WnjhController extends BaseActionSupport{
 			}
 			lxsh.setTsdq(tsdq);
 		}
+		setXmlx1(lxsh.getXmlx1());
+		
 		List<Lxsh> list=wnjhServer.selectGjwnjh(lxsh);
 		int count=wnjhServer.selectGjwnjhCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
