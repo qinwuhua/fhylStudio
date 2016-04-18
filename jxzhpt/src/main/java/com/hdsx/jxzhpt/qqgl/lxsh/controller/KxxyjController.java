@@ -367,10 +367,18 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
-			if(xmnf.indexOf(",")>-1){
-				xmnf = "t1.xmnf in ("+xmnf+")";
+			String newXmnf = null;
+			//int ss = xmnf.indexOf(",");
+			if(xmnf.indexOf(",")==0){
+				newXmnf = xmnf.substring(1);
+				//System.out.println("sssssssssssss"+newXmnf);
 			}else{
-				xmnf = "t1.xmnf = '"+xmnf+"'";
+				newXmnf = xmnf;
+			}
+			if(xmnf.indexOf(",")>-1){
+				xmnf = "t1.xmnf in ("+newXmnf+")";
+			}else{
+				xmnf = "t1.xmnf = '"+newXmnf+"'";
 			}
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
