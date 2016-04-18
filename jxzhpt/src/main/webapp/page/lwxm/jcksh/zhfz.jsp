@@ -139,7 +139,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目基础库审核>&nbsp;灾害防治项目</div>
+		<div id="p_top">五年项目库>&nbsp;<span id='bstext'></span>>路网结构改造工程>&nbsp;灾害防治项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -162,10 +162,10 @@ text-decoration:none;
         						<td><input type="text" id="lxbm"  style="width:100px;" /></td>
 						</tr>
                            <tr height="32">
-							  <td>项目年份：</td>
+							  <!-- <td>项目年份：</td>
                               	<td><select id="xmnf" style="width:70px">
                               		<option selected="selected" value="">全部</option>
-                              	</select>
+                              	</select> -->
                               <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               	</select></td>

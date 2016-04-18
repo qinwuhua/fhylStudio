@@ -133,7 +133,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop" >
-		<div id="p_top">路网项目>&nbsp;项目基础库审核>&nbsp;病害隧道项目</div>
+		<div id="p_top">五年项目库>&nbsp;<span id='bstext'></span>>路网结构改造工程>&nbsp;病害隧道项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -157,9 +157,9 @@ text-decoration:none;
                               	<input type="text" id="sdmc"style="width:70px"/>
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
-							  <span>项目年份：</span>
+							  <!-- <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
-                              	</select>
+                              	</select> -->
                                <span>&nbsp;&nbsp;&nbsp;&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select>
