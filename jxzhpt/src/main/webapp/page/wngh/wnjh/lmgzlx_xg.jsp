@@ -121,7 +121,7 @@ text-decoration:none;
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+
-			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
+			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#ghxlxbm').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updatewnjhsjlx.do',
@@ -202,6 +202,23 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxbm" name="ghxlxbm" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxmc" name="ghxlxmc" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -195,6 +195,10 @@ text-decoration:none;
 			alert("投资不能小于补助测算");
 			return
 		}
+		if($("#xmklx").combobox('getValue')==''||$("#xmklx").combobox('getValue')==null){
+			alert("请选择项目库类型");
+			return
+		}
 		var zh=accSub(tz,bzcs);
 		var dfzc=accSub(zh,yhdk);
 		var dfzc1=accSub(dfzc,gz);
@@ -216,7 +220,8 @@ text-decoration:none;
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
 		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val()
+		+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#ghxlxbm').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue');
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertGjwnjh.do',
@@ -296,6 +301,28 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="zdmc" name="zdmc" style="width: 120px;"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxbm" name="ghxlxbm" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxmc" name="ghxlxmc" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>项目库类型：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='xmklx' class="easyui-combobox" style="width: 120px;">
+						<option value="">请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+					</select>
+					
 				</td>
 			</tr>
 			<tr style="height: 35px;">

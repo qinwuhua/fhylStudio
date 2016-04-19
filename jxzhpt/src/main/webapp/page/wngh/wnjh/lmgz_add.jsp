@@ -208,7 +208,8 @@ a{text-decoration:none;}
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val()
+		+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#ghxlxbm').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue');
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertLmwnjh.do',
@@ -288,6 +289,28 @@ a{text-decoration:none;}
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxbm" name="ghxlxbm" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxmc" name="ghxlxmc" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>项目库类型：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='xmklx' class="easyui-combobox" style="width: 120px;">
+						<option value="">请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+					</select>
+					
 				</td>
 			</tr>
 			<tr style="height: 35px;">

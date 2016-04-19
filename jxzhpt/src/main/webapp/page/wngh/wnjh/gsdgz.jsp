@@ -24,13 +24,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			gsdxmlx('xmlx');
 			var urlid=getUrlParame('id');
 			setxmnf("xmnf",urlid);
-			
 			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
+			loadBmbm3('jsjsdj','技术等级');
 			gsdxmlx('xmlx');
 			loadGldj('gldj');
 			
@@ -39,18 +40,7 @@
 		});
 		
 		function showgsdtj(xmlx){
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
-			}
+			
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -73,8 +63,10 @@
 			var xmlx1=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx1.substr(0,1)==',')
 				xmlx1=xmlx1.substr(1,xmlx1.length);
-			var data="xzqh="+xzqhstr+"&gydw="+gydwstr
-			+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.xmlx1='+xmlx1+"&xmlx="+xmlx+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
+			var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
+			+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
+			+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')
+			+'&lxsh.ghxlxbm='+$("#ghxlxbm").val()+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -93,18 +85,7 @@
 		}
 		function showAllgsd(){
 			showgsdtj('gsdgz');
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
-			}
+			
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -135,11 +116,10 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-190,
+			    height:$(window).height()-220,
 			    width:$(window).width()-20,
 			    queryParams: {
 			    	xzqh:xzqhstr,
-			    	gydw:gydwstr,
 					xmnf:xmnf,
 					tsdq:tsdq,
 					jsdj:jsdj,
@@ -147,8 +127,12 @@
 					'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 					'lxsh.xmmc':$("#xmmc").val(),
 					'lxsh.ghlxbh':$("#lxbm").val(),
+					'lxsh.lxmc':$("#lxmc").val(),
+					'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
+					'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+					'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 					'lxsh.xmlx1':xmlx,
-					'lxsh.lxmc':$("#lxmc").val()
+					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -279,46 +263,61 @@ text-decoration:none;
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 100px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 130px;">
+        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 130px; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" ><select id="gydw" style="width:230px;"></select></td>
+							<tr height="32">
         						<td>行政区划：</td>
         						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
         						<td>项目名称：</td>
         						<td><input id='xmmc' type="text" /></td>
-        					</tr>
-        					<tr height="32">
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width:65px;">
-								</select></td>       					
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:80px;" >
+        						<td>建设技术等级：</td>
+								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" ></select></td>
+								
+        					</tr>
+        					<tr height="32">
+        						<td>现技术等级：</td>
+								<td  width="65px;"><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
 								</select></td>
-								<td>技术等级：</td>
-								<td><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
 								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:80px;" ></select></td>
-        						<td>是否有历史记录：</td>
-        						<td><select id="lsjl" style="width:127px;" class="easyui-combobox">
+								<td><select name="gldj" id="gldj" style="width:100px;" ></select></td>       					
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:125px;" >
+								</select></td>
+								<td>原路线编码：</td>
+        						<td><input id='lxbm' type="text" /></td>
+        						<td>原路线名称：</td>
+        						<td><input id='lxmc' type="text" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>历史记录：</td>
+								<td  width="65px;"><select id="lsjl" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
-								</select></td>
-        					</tr>
-        					<tr height="32">
-        						<td>路线编码：</td>
-        						<td><input id='lxbm' type="text" /></td>
-        						<td>路线名称：</td>
-        						<td><input id='lxmc' type="text" /></td>
+								</select></select></td>
+								</td>
+								<td>规划路线编码：</td>
+        						<td><input id='ghxlxbm' type="text" /></td>
+        						<td>规划路线名称：</td>
+        						<td><input id='ghxlxmc' type="text" /></td>
+								<td>前期开展状态：</td>
+        						<td><select id="qqkzzt" style="width:65px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="已开展">已开展</option>
+									<option value="未开展">未开展</option>
+								</select></select>
+								</td>
         						<td>建设性质：</td>
         						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
+        					</tr>
+        					<tr height="32">
                               <td colspan="10">
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcwnjhExcel('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
