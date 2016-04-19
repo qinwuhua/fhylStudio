@@ -94,7 +94,7 @@ text-decoration:none;
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+							<tr height="32">
         						<td>行政区划：</td>
         						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
         						<td>项目名称：</td>

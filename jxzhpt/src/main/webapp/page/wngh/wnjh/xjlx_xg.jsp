@@ -91,7 +91,7 @@ text-decoration:none;
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()
 		+"&lxsh.xjlc="+$('#xjlc').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
-		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
+		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#xjlxbm').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -218,8 +218,9 @@ text-decoration:none;
 					<input type="text"  id="xjlc" style="font-size: 14px;width: 50px" value="0"/>公里
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				</td>
+					<font color='red' size='2'>*&nbsp;</font>新建路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="ghxlxmc" style="width: 120px"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

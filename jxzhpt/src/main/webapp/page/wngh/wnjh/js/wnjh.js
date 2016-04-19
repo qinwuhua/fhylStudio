@@ -618,8 +618,7 @@ function showgjtj(xmlx){
 	var xmlx1=$("#xmlx").combobox("getValues").join(",");
 	if(xmlx1.substr(0,1)==',')
 		xmlx1=xmlx1.substr(1,xmlx1.length);
-	var data="xzqh="+xzqhstr+"&gydw="+gydwstr
-	+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
+	var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 	+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
 	+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')
 	+'&lxsh.ghxlxbm='+$("#ghxlxbm").val()+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
@@ -640,7 +639,7 @@ function showgjtj(xmlx){
 		 });
 }
 function showAllgj(){
-	//showgjtj('sjgz');
+	showgjtj('sjgz');
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -671,7 +670,7 @@ function showAllgj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-190,
+	    height:$(window).height()-220,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
@@ -763,18 +762,7 @@ function showAllgj(){
 }
 function showAlllm(){
 	showgjtj('lmgz');
-	var gydw=$("#gydw").combotree("getValues");
-	if(gydw.length==0){
-		if($.cookie("unit2")=='_____36')
-			gydwstr=36;
-		else gydwstr= $.cookie("unit2");
-	}else if(gydw.length==1){
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		gydwstr=gydw[0] ;
-	}else{
-		gydwstr= gydw.join(',');
-	}
+	
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -794,6 +782,9 @@ function showAlllm(){
 		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
+	var xmlx=$("#xmlx").combobox("getValues").join(",");
+	if(xmlx.substr(0,1)==',')
+		xmlx=xmlx.substr(1,xmlx.length);
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmwnjh.do',
 	    striped:true,
@@ -802,11 +793,10 @@ function showAlllm(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-190,
+	    height:$(window).height()-220,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
-	    	gydw:gydwstr,
 			tsdq:tsdq,
 			xmnf:xmnf,
 			jsdj:jsdj,
@@ -814,7 +804,12 @@ function showAlllm(){
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val(),
 			'lxsh.ghlxbh':$("#lxbm").val(),
-			'lxsh.lxmc':$("#lxmc").val()
+			'lxsh.lxmc':$("#lxmc").val(),
+			'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
+			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
+			'lxsh.xmlx1':xmlx,
+			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -891,18 +886,7 @@ function showAlllm(){
 }
 function showAllxj(){
 	showgjtj('xj');
-	var gydw=$("#gydw").combotree("getValues");
-	if(gydw.length==0){
-		if($.cookie("unit2")=='_____36')
-			gydwstr=36;
-		else gydwstr= $.cookie("unit2");
-	}else if(gydw.length==1){
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		gydwstr=gydw[0] ;
-	}else{
-		gydwstr= gydw.join(',');
-	}
+	
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -922,6 +906,9 @@ function showAllxj(){
 		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combotree('getText');
 	var gldj=$("#gldj").combobox('getValues').join(",");
+	var xmlx=$("#xmlx").combobox("getValues").join(",");
+	if(xmlx.substr(0,1)==',')
+		xmlx=xmlx.substr(1,xmlx.length);
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjwnjh.do',
 	    striped:true,
@@ -930,11 +917,10 @@ function showAllxj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-190,
+	    height:$(window).height()-220,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
-	    	gydw:gydwstr,
 			xmnf:xmnf,
 			tsdq:tsdq,
 			jsdj:jsdj,
@@ -942,7 +928,12 @@ function showAllxj(){
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val(),
 			'lxsh.ghlxbh':$("#lxbm").val(),
-			'lxsh.lxmc':$("#lxmc").val()
+			'lxsh.lxmc':$("#lxmc").val(),
+			'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
+			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
+			'lxsh.xmlx1':xmlx,
+			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
