@@ -428,4 +428,8 @@ public interface JhshServer {
 	public int queryJhshShCount1(Jhsh jhsh);
 	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows);
 	public int queryGsdgzCount(Jhsh jhsh);
+	public List<Jhsh> queryGsdgzxd(Jhsh jhsh, int page, int rows);
+	public int queryGsdgzxdCount(Jhsh jhsh);
+	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh);
+	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh);
 }

@@ -302,6 +302,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	public void queryJhshLj1(){
+		System.out.println(jhsh.getXmlx());
 		Map<String, String> result = new HashMap<String, String>();
 		try {
 			String xmbm = jhsh.getXmbm();
@@ -347,29 +348,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
-	private void jsdjHandle() {
-		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
-			String xjsdj = jhsh.getJsdj();
-			if(xjsdj.indexOf(",")>-1){
-				String[] split = xjsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
-					}else if(i==split.length-1){
-						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
-					}else{
-						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
-					}
-					if(split.length==1){
-						xjsdj +=")";
-					}
-				}
-			}else{
-				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
-			}
-			jhsh.setJsdj(xjsdj);
-		}
-	}
+	
+	
 	/**
 	 * 查询计划审核列表 养护和水毁
 	 * @throws Exception
@@ -1561,5 +1541,250 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void setFiledName(String filedName) {
 		this.filedName = filedName;
+	}
+	
+	public void queryGsdgzxd() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			
+			xzdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			listData=jhshServer.queryGsdgzxd(jhsh,page,rows);
+			total=jhshServer.queryGsdgzxdCount(jhsh);
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void queryGsdgzxdbz() throws Exception{
+		List<Jhsh> listData=null;
+		try {
+			
+			xzdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			listData=jhshServer.queryGsdgzxdbz(jhsh);
+
+			JsonUtils.write(listData, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void queryJhshLjgsdxd(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			xzdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			result = jhshServer.queryJhshLjgsdxd(jhsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void zjlyHandle(){
+		if(jhsh.getZjly()!=null)
+			if(jhsh.getZjly().length()>0){
+				String[] tsdqs=jhsh.getZjly().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(j."+tsdqs[i]+">0";
+					else
+						tsdq+="or j."+tsdqs[i]+">0";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setZjly(tsdq);
+			}
+	}
+	private void tsdqHandle(){
+		if(jhsh.getTsdq()!=null)
+			if(jhsh.getTsdq().length()>0){
+				String[] tsdqs=jhsh.getTsdq().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(j.tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or j.tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setTsdq(tsdq);
+			}
+	}
+	private void xdztHandle(){
+		if(jhsh.getXdzttj()!=null)
+			if(jhsh.getXdzttj().length()>0){
+				String[] tsdqs=jhsh.getXdzttj().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(j.xdzttj like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or j.xdzttj like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXdzttj(tsdq);
+			}
+	}
+	private void jsxzHandle(){
+		if(jhsh.getXmlx1()!=null)
+			if(jhsh.getXmlx1().length()>0){
+				String[] tsdqs=jhsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+	}
+	private void xzdjHandle() {
+		String ylxbh = jhsh.getXzdj()==null ? "" : jhsh.getXzdj();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			if(ylxbh.indexOf(",")>-1){
+				String[] split = ylxbh.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						ylxbh = "(ghlxbmtj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						ylxbh += " or ghlxbmtj like '%"+split[i]+"%')";
+					}else{
+						ylxbh += " or ghlxbmtj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				ylxbh = " ghlxbmtj like '%"+ylxbh+"%'";
+			}
+			jhsh.setXzdj(ylxbh);
+		}
+	}
+	
+	private void jsdjHandle() {
+		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or l.xjsdj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or l.xjsdj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "l.xjsdj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
+	}
+	private void jsdjHandle1() {
+		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
+			String xjsdj = jhsh.getJsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or xjsdjtj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or xjsdjtj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "xjsdjtj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsdj(xjsdj);
+		}
+	}
+	private void jsjsdjHandle() {
+		if(jhsh.getJsjsdj()!=null && !jhsh.getJsjsdj().equals("")){
+			String xjsdj = jhsh.getJsjsdj();
+			if(xjsdj.indexOf(",")>-1){
+				String[] split = xjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						xjsdj = "(jsjsdjtj like '"+split[i]+"%'";
+					}else if(i==split.length-1){
+						xjsdj += " or jsjsdjtj like '"+split[i]+"%')";
+					}else{
+						xjsdj += " or jsjsdjtj like '"+split[i]+"%'";
+					}
+					if(split.length==1){
+						xjsdj +=")";
+					}
+				}
+			}else{
+				xjsdj = "jsjsdjtj like '"+xjsdj+"%'";
+			}
+			jhsh.setJsjsdj(xjsdj);
+		}
 	}
 }

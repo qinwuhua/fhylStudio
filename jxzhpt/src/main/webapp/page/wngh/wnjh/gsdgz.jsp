@@ -248,14 +248,10 @@
 		}
 	</script>
 	<style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
-.abgc_td td{padding-right:5px;}
-</style>
+	TD {font-size: 12px;}
+	a{text-decoration:none;}
+	.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">

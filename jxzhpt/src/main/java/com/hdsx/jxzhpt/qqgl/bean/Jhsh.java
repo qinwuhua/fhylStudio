@@ -4,7 +4,63 @@ public class Jhsh {
 	private String jsjsdj;
 	private String xjsdj;
 	private String tz;
+	private String ghxlxbm;//规划路线编码
+	private String ghxlxmc;//规划路线名称
+	private String scxdnf;//首次下达年份
+	private String xzdj;//行政等级
+	private String xdzttj;//下达状态
+	private String zjly;//资金来源
+	private String xmnf;//项目年份
+	private String gyfl;//管养分类
 	
+	public String getGyfl() {
+		return gyfl;
+	}
+	public void setGyfl(String gyfl) {
+		this.gyfl = gyfl;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getGhxlxbm() {
+		return ghxlxbm;
+	}
+	public void setGhxlxbm(String ghxlxbm) {
+		this.ghxlxbm = ghxlxbm;
+	}
+	public String getGhxlxmc() {
+		return ghxlxmc;
+	}
+	public void setGhxlxmc(String ghxlxmc) {
+		this.ghxlxmc = ghxlxmc;
+	}
+	public String getScxdnf() {
+		return scxdnf;
+	}
+	public void setScxdnf(String scxdnf) {
+		this.scxdnf = scxdnf;
+	}
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
+	public String getXdzttj() {
+		return xdzttj;
+	}
+	public void setXdzttj(String xdzttj) {
+		this.xdzttj = xdzttj;
+	}
+	public String getZjly() {
+		return zjly;
+	}
+	public void setZjly(String zjly) {
+		this.zjly = zjly;
+	}
 	public String getJsjsdj() {
 		return jsjsdj;
 	}

@@ -544,7 +544,7 @@ function showAll(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);
@@ -847,7 +847,7 @@ function showAllsjsh(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);
@@ -1018,7 +1018,7 @@ function showAlllmgz(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);
@@ -1183,7 +1183,7 @@ function showAlllmsh(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);
@@ -1352,7 +1352,7 @@ function showAllxj(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);
@@ -1519,7 +1519,7 @@ function showAllxjsh(){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
 			  $("#cgs").html(msg.BZCS);
-			 $("#stz").html(msg.STZ);
+			 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
 			 $("#dftz").html(msg.DFTZ);

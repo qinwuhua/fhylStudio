@@ -95,7 +95,7 @@
 					 $("#xmsl").html(msg.XMSL);
 					 $("#tz").html(msg.TZ);
 					 $("#cgs").html(msg.BZCS);
-					 $("#stz").html(msg.STZ);
+					 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
 					 $("#sjl").html(msg.SJL);
 					 $("#lc").html(msg.LC);
 					 $("#dftz").html(msg.DFTZ);
