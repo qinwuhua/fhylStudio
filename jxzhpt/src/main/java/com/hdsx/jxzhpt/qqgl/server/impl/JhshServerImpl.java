@@ -551,4 +551,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh) {
 		return queryList("queryGsdgzxdbz", jhsh);
 	}
+	@Override
+	public boolean planxdAll(List<Jhsh> list) {
+		return insertBatch("planxdAll", list)==list.size();
+	}
 }

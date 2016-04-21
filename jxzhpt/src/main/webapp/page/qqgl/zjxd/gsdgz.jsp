@@ -7,6 +7,7 @@
 	<title>工程路面改建路面升级项目</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
@@ -20,11 +21,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
-<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/datagrid-cellediting.js"></script> --%>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/json2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/datagrid-cellediting.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			
+			$('#bztbsj').datebox('setValue', formatDate(new Date()));
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
 			xdzt('xdzt');
@@ -96,9 +98,10 @@
 			    columns:[[
 			        {field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
+						
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-						"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						result+='&nbsp;<a href="javascript:openWindows('+"'lmsjxx'"+','+"'国省道改造'"+','+"'"+row.xmbm+"'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
 				},
@@ -112,7 +115,6 @@
 				{field:'sbzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						xmlx=1;
 						if(row.xdzt=='0')
 							result='未审核';
 						if(row.xdzt=='1')
@@ -257,8 +259,66 @@
 		function createAll(){
 			endEditing();
 			var rows=$('#jhbz').datagrid('getSelections');
-			alert(rows[0].lc);
+			if(rows.length==0){
+				alert("请勾选要生成统计表的计划");
+				return;
+			}
+			alert(rows[0].bzpfztz);
 		}
+		function planxdwhAll(){
+			/* $.messager.defaults = { ok: "确认", cancel: "取消" };
+			 $.messager.prompt("操作提示", "请您输入计划下达文号？", function (data) {
+		            if (data) {
+		            	planxdAll(data);
+		            }else{
+		            	alert("计划下达文号不能为空");
+		            }
+		      }); */
+			endEditing();
+			var rows=$('#jhbz').datagrid('getSelections');
+			if(rows.length==0){
+				alert("请勾选要下达的计划");
+				return;
+			}
+		      
+			$('#jhxd').dialog("open");
+
+		}
+		function planxdAll(){
+			$('#jhxd').dialog("close");
+			//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
+			var jhxdwh=$('#bzxdwh').val();
+			var bztbsj=$('#bztbsj').datebox('getValue');
+			if(jhxdwh==''||bztbsj==''){
+				alert("请填写计划下达文号或填报时间。");
+				return;
+			}
+			$('#bztbsj').datebox('setValue', formatDate(new Date()));
+			$('#bzxdwh').val("");
+			var rows=$('#jhbz').datagrid('getSelections');
+			if(rows.length==0){
+				alert("请勾选要下达的计划");
+				return;
+			}
+			var json_data = JSON.stringify(rows); 
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/planxdAll.do',
+				data:"json_data="+json_data+"&jhxdwh="+jhxdwh+"&bztbsj="+bztbsj,
+				dataType:'json',
+				success:function(msg){
+					if(msg){
+						alert("下达成功");
+						queryxmList();
+						showMxbAll();
+					}
+						
+				}
+			});
+			
+			
+		}
+		
 		function showMxbAll(){
 
             
@@ -300,11 +360,11 @@
 					}
 				}, */
 				
-				{field:'xzqh',title:'行政区划',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'xzqh',title:'行政区划',width:60,align:'center'},
 				{field:'xmnf',title:'项目年份',width:60,align:'center',
 					formatter: function(value,row,index){
 		        		return row.xmbm.substr(0,4);
-		        	},editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}
+		        	}
 				},
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
 					formatter: function(value,row,index){
@@ -316,30 +376,20 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'jsjsdj',title:'建设技术等级',width:74,align:'center'},
-				{field:'xjsdj',title:'现设技术等级',width:74,align:'center'},
-				{field:'ghxlxbh',title:'规划路线编码',width:74,align:'center'},
-				{field:'ghxqdzh',title:'起点桩号',width:70,align:'center'},
-				{field:'ghxzdzh',title:'止点桩号',width:70,align:'center'},
-				{field:'ghlxbh',title:'原路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'原起点桩号',width:70,align:'center'},
-				{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
-				{field:'kgsj',title:'计划开工时间',width:70,align:'center'},
-				{field:'wgsj',title:'计划完工时间',width:70,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
-				{field:'xdsj',title:'下达时间',width:70,align:'center'},
-				{field:'pfztz',title:'批复总投资',width:60,align:'center'},
-				{field:'bbzzj',title:'车购税',width:60,align:'center'},
-				{field:'gz',title:'国债',width:60,align:'center'},
-				{field:'sz',title:'省债',width:60,align:'center'},
-				{field:'zq',title:'债券',width:60,align:'center'},
-				{field:'dk',title:'贷款',width:60,align:'center'},
-				{field:'jl',title:'奖励',width:60,align:'center'},
-				{field:'qt',title:'其他',width:60,align:'center'},
-				{field:'sjpfwh',title:'初步设计批复文号',width:100,align:'center'},
-				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
-				{field:'tsdq',title:'特殊地区',width:100,align:'center'}
+				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzpfztz',title:'批复总投资',width:65,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzzq',title:'债券',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzdk',title:'贷款',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzjl',title:'奖励',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'tbdw',title:'填报单位',width:100,align:'center',
+					formatter: function(value,row,index){
+		        		return $.cookie('truename');
+		        	}}
 			    ]],
 			    onClickCell: function (rowIndex, field, value) {
 // 			    	alert(field);
@@ -463,7 +513,7 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''
+						 $("#sbz").html(msg.SBZ);
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
@@ -605,7 +655,10 @@
 					    	<table id="grid"></table>
 					    </div>
 					    <div title="计划编制" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-					    	<input type="button" value="生成汇总" onclick="createAll()"><input type="button" value="计划下达">
+					    	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:createAll()" class="button button-tiny button-border button-rounded button-primary">生成汇总</a>
+							<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" class="button button-tiny button-border button-rounded button-primary">计划下达</a>
+							
+<!-- 					    	<input type="button" value="生成汇总" onclick="createAll()"><input type="button" value="计划下达"> -->
 					    	<table id="jhbz">
 					    	
 					    	</table>
@@ -617,5 +670,29 @@
             	</td>
         	</tr>
 		</table>
+		
+		<div id="jhxd" class="easyui-dialog" title="计划下达" style="width:500px;height:150px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+			<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						计划下达文号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="bzxdwh" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						填报时间</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="bztbsj" type="text"  class="easyui-datebox" />
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td colspan="2" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<a style="margin-left: 48%" href="javascript:planxdAll()" class="button button-tiny button-border button-rounded button-primary">下达</a>
+					</td>
+				</tr>
+			</table>
+		</div>
 </body>
 </html>

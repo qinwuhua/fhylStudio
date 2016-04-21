@@ -17,6 +17,9 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,7 @@ import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -64,6 +68,34 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private String jdbs;//阶段标示，用于表明在计划的哪一阶段
 	private String filed;//自定义查询的字段
 	private String filedName;//字段名称
+	private String json_data;
+	private String jhxdwh;
+	private String bztbsj;
+	
+	public String getBztbsj() {
+		return bztbsj;
+	}
+
+	public void setBztbsj(String bztbsj) {
+		this.bztbsj = bztbsj;
+	}
+
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
+
+	public String getJson_data() {
+		return json_data;
+	}
+
+	public void setJson_data(String json_data) {
+		this.json_data = json_data;
+	}
+
 	/**
 	 * 查询计划审核列表
 	 * @throws Exception 
@@ -1786,5 +1818,16 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			jhsh.setJsjsdj(xjsdj);
 		}
+	}
+	
+	public void planxdAll(){
+		JSONArray ja = JSONArray.fromObject(json_data);
+		List<Jhsh> list=(List<Jhsh>)JSONArray.toList(ja, new Jhsh(),new JsonConfig());
+		for (Jhsh jhsh : list) {
+			jhsh.setJhxdwh(jhxdwh);
+			jhsh.setBztbsj(bztbsj);
+		}
+		boolean bl=jhshServer.planxdAll(list);
+		ResponseUtils.write(getresponse(), bl+"");
 	}
 }

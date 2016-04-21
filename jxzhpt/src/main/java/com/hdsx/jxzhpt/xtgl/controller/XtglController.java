@@ -1326,16 +1326,18 @@ public class XtglController extends BaseActionSupport{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-
+		/*String a="ZwsUcorZkCrsujLiL6T2vQ==";
+		System.out.println(DigestUtils.md5Hex(sKey+a));
+		System.out.println(master.getPassword());*/
 		HashMap hm=new HashMap();
 		hm.put("truename", temp);
 		Master m=xtglServer.selectPwd(temp);
 		if(m==null){
 			ResponseUtils.write(getresponse(), "false");
 		}else{
-			String npwd=DigestUtils.md5Hex(sKey+m.getPassword());
+			String npwd=DigestUtils.md5Hex(sKey+m.getPassword());//通过后台取出的密码进行加密
 			if(master.getPassword().equals(npwd)){
-				hm.put("password", master.getPassword());
+				hm.put("password", m.getPassword());
 				HashMap<String,String> bl = xtglServer.login(hm);
 				if(bl!=null){
 					HttpServletRequest request = ServletActionContext.getRequest();

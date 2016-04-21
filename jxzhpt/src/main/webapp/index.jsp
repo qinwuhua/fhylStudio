@@ -48,6 +48,7 @@ function urllogin(){
 	     	 }
 	     	 else{
 	     		alert("用户名或密码不正确！！");
+	     		clearSession();
 	     	 }
 		 },
 		 error : function(){
@@ -59,7 +60,6 @@ function urllogin(){
 $(function(){
 
 	if(getUrlParame("un")!=null&&getUrlParame("pw")!=null){
-		alert(getUrlParame("un"));
 		urllogin();
 	}else{
 		selSes();

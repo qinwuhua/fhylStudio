@@ -15,7 +15,7 @@
 	</update>
 	
 	<select id="selectPwd" parameterType="String" resultType="master">
-	select * from xtgl_master M WHERE M.truename=#{truename}
+	select * from xtgl_master M WHERE M.truename=#{value}
 	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
 	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}

@@ -1849,6 +1849,7 @@
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	            where 1=1
+	            and (xdzttj='未下达' or xdzttj='未完成')
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%||'#{ghlxbh}'||%'
@@ -1884,9 +1885,9 @@
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
-				<if test="xdzttj !=null and xdzttj !=''">
+				<!-- <if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
-				</if>
+				</if> -->
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
@@ -1895,4 +1896,10 @@
 		
 		
 	</select>
+	<insert id="planxdAll" parameterType="java.util.List">
+		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if>)
+		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if>)
+		
+	</insert>
+	
 </mapper>

@@ -889,6 +889,8 @@ function openWindow(id,title,url,width,height){
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
 		if(id=="lmsjedit" || id=="lmsj"){
 			queryLmsj();
+		}else if(id=="gsdgzbz" || id=="gsdgzbz"){
+			queryxmList();
 		}else if(id=="lmgzedit" || id=="lmgz"){
 			queryLmgz();
 		}else if(id=="xjgcedit" || id=="xjgc"){

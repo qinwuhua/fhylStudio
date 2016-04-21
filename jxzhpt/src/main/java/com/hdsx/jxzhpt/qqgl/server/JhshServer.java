@@ -432,4 +432,5 @@ public interface JhshServer {
 	public int queryGsdgzxdCount(Jhsh jhsh);
 	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh);
 	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh);
+	public boolean planxdAll(List<Jhsh> list);
 }
