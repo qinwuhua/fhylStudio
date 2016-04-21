@@ -53,12 +53,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','yhdzxzjdwtj.jsp','wqxx',700,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','yhdzxzjdwtj.jsp','wqxx',700,350);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','yhdzxzjdwxg.jsp','wqxx',700,250);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','yhdzxzjdwxg.jsp','wqxx',700,350);
 }
 
 //添加车购税
@@ -73,8 +73,17 @@ function tjyhdzxcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglyhdzx.cgsdwzj="+0+"&gcglyhdzx.tbr="+$.cookie("truename")+"&gcglyhdzx.tbsj="+$("#tj_tbsj").val()+"&gcglyhdzx.tbyf="+$("#tj_tbyf").val()+"&gcglyhdzx.cscyj="+$("#tj_cscyj").val()+"&gcglyhdzx.stz="+$("#tj_stz").val()
-	+"&gcglyhdzx.jhid="+parent.parent.obj1.XMBM;
+	var data="gcglyhdzx.cgsdwzj="+0+
+	"&gcglyhdzx.tbr="+$.cookie("truename")+
+	"&gcglyhdzx.tbsj="+$("#tj_tbsj").val()+
+	"&gcglyhdzx.tbyf="+$("#tj_tbyf").val()+
+	"&gcglyhdzx.cscyj="+$("#tj_cscyj").val()+
+	"&gcglyhdzx.stz="+$("#tj_stz").val()+
+	"&gcglyhdzx.pfztz="+$("#pfztz").val()+
+	"&gcglyhdzx.rys="+$("#rys").val()+
+	"&gcglyhdzx.yhdk="+$("#dk").val()+
+	"&gcglyhdzx.qt="+$("#qt").val()+
+	"&gcglyhdzx.jhid="+parent.parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -100,8 +109,17 @@ function xgyhdzxcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglyhdzx.cgsdwzj="+0+"&gcglyhdzx.tbsj="+$("#xg_tbsj").val()
-	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.tbyf="+$("#xg_tbyf").val()+"&gcglyhdzx.cscyj="+$("#xg_cscyj").val()+"&gcglyhdzx.stz="+$("#xg_stz").val();
+	var data="gcglyhdzx.cgsdwzj="+0+
+	"&gcglyhdzx.tbsj="+$("#xg_tbsj").val()+
+	"&gcglyhdzx.jhid="+parent.obj.jhid+
+	"&gcglyhdzx.id="+parent.obj.id+
+	"&gcglyhdzx.tbyf="+$("#xg_tbyf").val()+
+	"&gcglyhdzx.cscyj="+$("#xg_cscyj").val()+
+	"&gcglyhdzx.pfztz="+$("#pfztz").val()+
+	"&gcglyhdzx.rys="+$("#rys").val()+
+	"&gcglyhdzx.yhdk="+$("#dk").val()+
+	"&gcglyhdzx.qt="+$("#qt").val()+
+	"&gcglyhdzx.stz="+$("#xg_stz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -144,7 +162,7 @@ function delCgs(index){
 }
 
 
-function showAll(){
+function showAllyh(){
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -353,11 +371,15 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
+				{field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
+				{field:'rys',title:'燃油税(万元)',width:100,align:'center'},
+				{field:'yhdk',title:'贷款(万元)',width:100,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
+				{field:'qt',title:'其他(万元)',width:100,align:'center'},
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
 //				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
 				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 

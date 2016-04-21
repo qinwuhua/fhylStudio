@@ -79,8 +79,28 @@
 	
 			<!-- 添加车购税 -->
 	<insert id="insertGcgzsjCgs" parameterType="gcglgcgzsj">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj<if test="stz != null">,stz</if>,cscyj<if test="sz != null">,sz</if><if test="gz != null">,gz</if><if test="yhdk != null">,yhdk</if>)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj}<if test="stz != null">,#{stz}</if>,#{cscyj}<if test="sz != null">,#{sz}</if><if test="gz != null">,#{gz}</if><if test="yhdk != null">,#{yhdk}</if>)
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj
+		<if test="stz != null">,stz</if>
+		,cscyj
+		<if test="sz != null">,sz</if>
+		<if test="gz != null">,gz</if>
+		<if test="yhdk != null">,yhdk</if>
+		<if test="pfztz != null">,pfztz</if>
+		<if test="zq != null">,zq</if>
+		<if test="jl != null">,jl</if>
+		<if test="qt != null">,qt</if>
+		)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj}
+		<if test="stz != null">,#{stz}</if>
+		,#{cscyj}
+		<if test="sz != null">,#{sz}</if>
+		<if test="gz != null">,#{gz}</if>
+		<if test="yhdk != null">,#{yhdk}</if>
+		<if test="pfztz != null">,#{pfztz}</if>
+		<if test="zq != null">,#{zq}</if>
+		<if test="jl != null">,#{jl}</if>
+		<if test="qt != null">,#{qt}</if>
+		)
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -114,7 +134,16 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzsjCgs" parameterType="gcglgcgzsj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},cscyj=#{cscyj}<if test="stz != null">,stz=#{stz}</if><if test="sz != null">,sz=#{sz}</if><if test="gz != null">,gz=#{gz}</if><if test="yhdk != null">,yhdk=#{yhdk}</if>
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},cscyj=#{cscyj}
+		<if test="stz != null">,stz=#{stz}</if>
+		<if test="sz != null">,sz=#{sz}</if>
+		<if test="gz != null">,gz=#{gz}</if>
+		<if test="yhdk != null">,yhdk=#{yhdk}</if>
+		<if test="pfztz != null">,pfztz=#{pfztz}</if>
+		<if test="zq != null">,zq=#{zq}</if>
+		<if test="jl != null">,jl=#{jl}</if>
+		<if test="qt != null">,qt=#{qt}</if>
+		
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->

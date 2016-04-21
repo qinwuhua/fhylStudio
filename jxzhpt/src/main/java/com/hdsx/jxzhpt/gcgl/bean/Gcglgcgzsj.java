@@ -81,6 +81,9 @@ private String xmlxs;
 	private String tbyf;
 	private String tbsj;
 	private String tbr;
+	private String zq;
+	private String jl;
+	private String qt;
 	//基础
 	private String lxmc;
 	private String lxbm;
@@ -190,6 +193,25 @@ private String xmlxs;
 	private String sanji;
 	private String siji;
 	
+	
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
 	public String getYiji() {
 		return yiji;
 	}

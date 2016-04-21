@@ -13,6 +13,8 @@ private String jgys;
 private String xdzj;
 private String bfzj;
 
+
+
 public String getXdzj() {
 	return xdzj;
 }
@@ -142,7 +144,10 @@ public String getBfzj() {
 	private String jhwgsj;
 	private String xdsj;
 	
-
+	//燃油税，贷款，其他
+	private String rys;
+	private String yhdk;
+	private String qt;
 	
 	private String xjzt;
 	private String sjzt;
@@ -157,6 +162,25 @@ public String getBfzj() {
 	private String ljbfzt;
 	private String xmmc;
 	
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
 	public String getXmmc() {
 		return xmmc;
 	}

@@ -28,6 +28,10 @@
 		$("#yhdk").val(data.yhdk);
 		$("#gz").val(data.gz);
 		$("#sz").val(data.sz);
+		$("#pfztz").val(data.pfztz);
+		$("#zq").val(data.zq);
+		$("#jl").val(data.jl);
+		$("#qt").val(data.qt);
 	});
 	function checkZJ(str1){
 		var str=str1.value;
@@ -70,6 +74,36 @@ text-decoration: none;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
                             <tr style="height: 35px;">
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">批复总投资： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="pfztz"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">债券： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="zq"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">奖励： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="jl"  style="width: 50px" value="0"/>万元
+                                </td>
+                            </tr>
+                            <tr style="height: 35px;">
+                                
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
@@ -79,17 +113,15 @@ text-decoration: none;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
                                     <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="xg_cgsdwzj"  style="width: 50px" value="0"/>万元
                                 </td>
-                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
                                     <font color="#009ACD" style="font-size: 12px">银行贷款： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                     <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="yhdk"  style="width: 50px" value="0"/>万元
                                 </td>
-                            </tr>
-                              <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
@@ -99,14 +131,26 @@ text-decoration: none;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
                                     <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="gz"  style="width: 50px" value="0"/>万元
                                 </td>
+                            </tr>
+                              <tr style="height: 35px;">
+                                
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
                                     <font color="#009ACD" style="font-size: 12px">省债： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
                                     <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="sz"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">其他： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="qt"  style="width: 50px" value="0"/>万元
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
@@ -126,14 +170,14 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="xg_tbr"></span>&nbsp;
+                                <span id="tj_tbr"></span>&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                 text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                 <input type='text' id="xg_tbsj">&nbsp;
+                                <input type='text' id="xg_tbsj">&nbsp;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                 text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
@@ -158,5 +202,6 @@ text-decoration: none;
                     </td>
                 </tr>
             </table>
+            </div>
 	</body>
 </html>
