@@ -176,7 +176,7 @@ text-decoration:none;
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+
 			"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
-		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val();
+		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#ghxlxbm').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updatewnjhsjlx.do',
@@ -245,6 +245,23 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxbm" name="ghxlxbm" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghxlxmc" name="ghxlxmc" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
@@ -261,6 +278,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程

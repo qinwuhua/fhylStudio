@@ -92,6 +92,28 @@ function loadJhkxx(){
 var sbz;
 var sckid;
 function loadBz(){
+	
+	var jhqlqcVal = $("#jhqlqc").val();
+	var jhqlqkVal = $("#jhqlqk").val();
+	
+	var reg =/[^\d]/g;
+	if(reg.test(jhqlqcVal)){
+		alert("请填写数字");
+		$("#jhqlqc").val("");
+	    $("#jhqlqc").css("background-color","darkorange");
+		return false;
+	}else{
+		 $("#jhqlqc").css("background-color","");
+	}
+	if(reg.test(jhqlqkVal)){
+		alert("请填写数字");
+		$("#jhqlqk").val("");
+		 $("#jhqlqk").css("background-color","darkorange");
+		return false;
+	}else{
+		 $("#jhqlqk").css("background-color","");
+	}
+	
 	var sfbk=$("#sfylrbwqk").combobox('getValue');
 	if(sfbk=='是'){
 		loadBbz();
@@ -272,6 +294,28 @@ function ablwhDis(value){
 
 function bzSum(){
 	var pfztz;var sbz;var trzjdx;
+	
+	var pfztzVal = $("#pfztz").val();
+	var shengbzVal = $("#shengbz").val();
+	
+	var reg =/[^\d]/g;
+	if(reg.test(pfztzVal)){
+		alert("请填写数字");
+		$("#pfztz").val("");
+		 $("#pfztz").css("background-color","darkorange");
+		return false;
+	}else{
+		 $("#pfztz").css("background-color","");
+	}
+	if(reg.test(shengbzVal)){
+		alert("请填写数字");
+		$("#shengbz").val("");
+		$("#shengbz").css("background-color","darkorange");
+		return false;
+	}else{
+		 $("#shengbz").css("background-color","");
+	}
+	
 	if($("#pfztz").val()==null||$("#pfztz").val()==''){
 		pfztz=0;
 	}else{

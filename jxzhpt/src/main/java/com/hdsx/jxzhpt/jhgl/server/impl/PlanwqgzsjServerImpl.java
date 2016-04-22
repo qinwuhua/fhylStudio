@@ -389,5 +389,9 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		delete("thtzxjhb",planwqgzsj);
 		return true;
 	}
+	@Override
+	public List<Excel_list> selectwqjhexcel(Planwqgzsj planwqgzsj) {
+		return queryList("selectwqjhexcel",planwqgzsj);
+	}
 	
 }

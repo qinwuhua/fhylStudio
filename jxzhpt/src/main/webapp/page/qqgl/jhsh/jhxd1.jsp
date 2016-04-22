@@ -20,6 +20,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#xmbm').val(parent.YMLib.Var.xmbm);
+			alert(parent.YMLib.Var.xmlx);
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryJhshxxByXmbm2.do',

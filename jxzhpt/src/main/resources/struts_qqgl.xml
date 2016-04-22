@@ -180,6 +180,12 @@
 		<action name="exportZjxdgsd" class="jhshController" method="exportZjxdgsd"></action>
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
+		
+		
+		<action name="planxdAll" class="jhshController" method="planxdAll"></action>
+		<action name="queryGsdgzxdbz" class="jhshController" method="queryGsdgzxdbz"></action>
+		<action name="queryJhshLjgsdxd" class="jhshController" method="queryJhshLjgsdxd"></action>
+		<action name="queryGsdgzxd" class="jhshController" method="queryGsdgzxd"></action>
 		<action name="queryGsdgz" class="jhshController" method="queryGsdgz"></action>
 		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
 		<action name="queryJhsh1" class="jhshController" method="queryJhsh1"></action>

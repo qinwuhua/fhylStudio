@@ -1300,6 +1300,164 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
+	//有问题
+	public void jhgljhsbwqgzExcel(){
+		try{
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String gydw=(String) session.getAttribute("gydwbb");	
+			String xzqh=(String) session.getAttribute("xzqhbb");
+			if(gydw.indexOf(",")==-1){
+				if(gydw.length()==9)
+					planwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+gydw+"'||'00'))");					else
+
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
+			}else{
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			//planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(lxbm);
+			planwqgzsj.setGldj(gldj);
+			//planwqgzsj.setPddj(pddj);
+			if(planwqgzsj.getTsdq()!=null)
+				if(planwqgzsj.getTsdq().length()>0){
+					String[] tsdqs=planwqgzsj.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					planwqgzsj.setTsdq(tsdq);
+				}
+				if(planwqgzsj.getGldj()!=null)
+				if(planwqgzsj.getGldj().length()>0){
+					String[] tsdqs=planwqgzsj.getGldj().split(",");
+					String tsdq="and substr(sck_qlbh,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i]+"'";
+						else
+							tsdq+=",'"+tsdqs[i]+"'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					planwqgzsj.setGldj(tsdq);
+				}
+				if(planwqgzsj.getAkjfl()!=null)
+				if(planwqgzsj.getAkjfl().length()>0){
+					String[] tsdqs=planwqgzsj.getAkjfl().split(",");
+					String tsdq="and akjfl in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i]+"'";
+						else
+							tsdq+=",'"+tsdqs[i]+"'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					planwqgzsj.setAkjfl(tsdq);
+				}
+				if(planwqgzsj.getJsdj()!=null)
+				if(planwqgzsj.getJsdj().length()>0){
+					String[] tsdqs=planwqgzsj.getJsdj().split(",");
+					String tsdq="and substr(jsdj,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+						else
+							tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					planwqgzsj.setJsdj(tsdq);
+				}
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+		List<Excel_list> l = planwqgzsjServer.selectwqjhexcel(planwqgzsj);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("危桥改造（交通局）");//设置第一行
+		eldata.setSheetName("危桥改造（交通局）");//设置sheeet名
+		eldata.setFileName("me危桥改造（交通局）");//设置文件名
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,1,0,0));
+		et.add(new Excel_tilte("审核状态",1,1,1,1));
+		et.add(new Excel_tilte("是否有修建记录",1,1,2,2));
+		et.add(new Excel_tilte("计划类别",1,1,3,3));
+		et.add(new Excel_tilte("上报年份",1,1,4,4));
+		et.add(new Excel_tilte("计划开工年",1,1,5,5));
+		et.add(new Excel_tilte("计划完工年",1,1,6,6));
+		et.add(new Excel_tilte("管养(监管)单位",1,1,7,7));
+		et.add(new Excel_tilte("行政区划名称",1,1,8,8));
+		et.add(new Excel_tilte("路线编码",1,1,9,9));
+		et.add(new Excel_tilte("路线名称",1,1,10,10));
+		et.add(new Excel_tilte("桥梁编码",1,1,11,11));
+		et.add(new Excel_tilte("桥梁名称",1,1,12,12));
+		et.add(new Excel_tilte("批复总投资",1,1,13,13));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		
+			Excel_export.excel_exportbyXH(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void dcwqgzsjjhExcel(){
 		try {
 		HttpServletRequest request = ServletActionContext.getRequest();

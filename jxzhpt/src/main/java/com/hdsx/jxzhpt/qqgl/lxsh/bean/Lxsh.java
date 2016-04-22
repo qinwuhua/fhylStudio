@@ -9,6 +9,11 @@ public class Lxsh implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String ghxlxbm;//规划路线编号
+	private String ghxlxmc;//规划路线名称
+	private String xmklx;//项目库类型
+	private String qqkzzt;//前期开展状态
+	
 	private String tzxz;
 	private String tzsj;
 	private String xmlx1;
@@ -18,6 +23,30 @@ public class Lxsh implements Serializable {
 	private String sjl;
 	private String dftz;
 	
+	public String getGhxlxbm() {
+		return ghxlxbm;
+	}
+	public void setGhxlxbm(String ghxlxbm) {
+		this.ghxlxbm = ghxlxbm;
+	}
+	public String getGhxlxmc() {
+		return ghxlxmc;
+	}
+	public void setGhxlxmc(String ghxlxmc) {
+		this.ghxlxmc = ghxlxmc;
+	}
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
+	public String getQqkzzt() {
+		return qqkzzt;
+	}
+	public void setQqkzzt(String qqkzzt) {
+		this.qqkzzt = qqkzzt;
+	}
 	public String getCgs() {
 		return cgs;
 	}

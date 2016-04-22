@@ -879,15 +879,18 @@ function openxZjxd1(){
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
 	if(id=="jhxd" || id=="zjzj"){
-		if(xmlx==null)
+		//alert(xmbm.substr(10,1)+"    "+xmlx);
+		//if(xmlx==null)
 			YMLib.Var.xmlx=xmbm.substr(10,1);
-		else
-		    YMLib.Var.xmlx=xmlx;
+		//else
+		   // YMLib.Var.xmlx=xmlx;
 		
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
 		if(id=="lmsjedit" || id=="lmsj"){
 			queryLmsj();
+		}else if(id=="gsdgzbz" || id=="gsdgzbz"){
+			queryxmList();
 		}else if(id=="lmgzedit" || id=="lmgz"){
 			queryLmgz();
 		}else if(id=="xjgcedit" || id=="xjgc"){

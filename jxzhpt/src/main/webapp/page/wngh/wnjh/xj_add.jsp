@@ -208,7 +208,7 @@ text-decoration:none;
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').val()+"&lxsh.bz="+$('#bz').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
-		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val();
+		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.gz="+$('#gz').val()+"&lxsh.sz="+$('#sz').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue')+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#xjlxbm').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -328,6 +328,23 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xmmc" style="width: 120px"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>新建路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="ghxlxmc" style="width: 120px"/>
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					项目库类型
+				</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<select id='xmklx' class="easyui-combobox" style="width: 120px;">
+						<option value="">请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

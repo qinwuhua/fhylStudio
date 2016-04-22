@@ -4,7 +4,140 @@ public class Jhsh {
 	private String jsjsdj;
 	private String xjsdj;
 	private String tz;
+	private String ghxlxbm;//规划路线编码
+	private String ghxlxmc;//规划路线名称
+	private String scxdnf;//首次下达年份
+	private String xzdj;//行政等级
+	private String xdzttj;//下达状态
+	private String zjly;//资金来源
+	private String xmnf;//项目年份
+	private String gyfl;//管养分类
+	private String bzxdnf;//编制     下达年份
+	private String bzpfztz;//编制     批复总投资
+	private String bzgz;//编制     国债
+	private String bzsz;//编制     省债
+	private String bzzq;//编制     债券
+	private String bzdk;//编制     贷款
+	private String bzjl;//编制     奖励
+	private String bzqt;//编制     其他
+	private String bzcgs;//编制     车购税
+	private String bztbsj;//编制  填报时间
+	private String tbdw;
 	
+	public String getTbdw() {
+		return tbdw;
+	}
+	public void setTbdw(String tbdw) {
+		this.tbdw = tbdw;
+	}
+	public String getBztbsj() {
+		return bztbsj;
+	}
+	public void setBztbsj(String bztbsj) {
+		this.bztbsj = bztbsj;
+	}
+	public String getBzxdnf() {
+		return bzxdnf;
+	}
+	public void setBzxdnf(String bzxdnf) {
+		this.bzxdnf = bzxdnf;
+	}
+	public String getBzpfztz() {
+		return bzpfztz;
+	}
+	public void setBzpfztz(String bzpfztz) {
+		this.bzpfztz = bzpfztz;
+	}
+	public String getBzgz() {
+		return bzgz;
+	}
+	public void setBzgz(String bzgz) {
+		this.bzgz = bzgz;
+	}
+	public String getBzsz() {
+		return bzsz;
+	}
+	public void setBzsz(String bzsz) {
+		this.bzsz = bzsz;
+	}
+	public String getBzzq() {
+		return bzzq;
+	}
+	public void setBzzq(String bzzq) {
+		this.bzzq = bzzq;
+	}
+	public String getBzdk() {
+		return bzdk;
+	}
+	public void setBzdk(String bzdk) {
+		this.bzdk = bzdk;
+	}
+	public String getBzjl() {
+		return bzjl;
+	}
+	public void setBzjl(String bzjl) {
+		this.bzjl = bzjl;
+	}
+	public String getBzqt() {
+		return bzqt;
+	}
+	public void setBzqt(String bzqt) {
+		this.bzqt = bzqt;
+	}
+	public String getBzcgs() {
+		return bzcgs;
+	}
+	public void setBzcgs(String bzcgs) {
+		this.bzcgs = bzcgs;
+	}
+	public String getGyfl() {
+		return gyfl;
+	}
+	public void setGyfl(String gyfl) {
+		this.gyfl = gyfl;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getGhxlxbm() {
+		return ghxlxbm;
+	}
+	public void setGhxlxbm(String ghxlxbm) {
+		this.ghxlxbm = ghxlxbm;
+	}
+	public String getGhxlxmc() {
+		return ghxlxmc;
+	}
+	public void setGhxlxmc(String ghxlxmc) {
+		this.ghxlxmc = ghxlxmc;
+	}
+	public String getScxdnf() {
+		return scxdnf;
+	}
+	public void setScxdnf(String scxdnf) {
+		this.scxdnf = scxdnf;
+	}
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
+	public String getXdzttj() {
+		return xdzttj;
+	}
+	public void setXdzttj(String xdzttj) {
+		this.xdzttj = xdzttj;
+	}
+	public String getZjly() {
+		return zjly;
+	}
+	public void setZjly(String zjly) {
+		this.zjly = zjly;
+	}
 	public String getJsjsdj() {
 		return jsjsdj;
 	}

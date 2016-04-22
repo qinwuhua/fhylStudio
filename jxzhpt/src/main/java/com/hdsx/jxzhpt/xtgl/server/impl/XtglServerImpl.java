@@ -573,4 +573,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<TreeNode> createMenu(Unit unit) {
 		return queryList("createMenu", unit);
 	}
+
+	@Override
+	public Master selectPwd(String temp) {
+		return queryOne("selectPwd", temp);
+	}
 }

@@ -204,7 +204,7 @@
 	}
 function addjgys(){
 		var data='gcgl_jgys.yssj='+$('#yssj').datebox('getValue')+'&gcgl_jgys.ysdw='+$("#ysdw").val()+'&gcgl_jgys.ysyj='+$("#ysyj").val()+'&gcgl_jgys.jhid='+xxId;
-		if($('#yssj').datebox('getValue')=='' || $("#ysdw").val()=='' || $("#ysyj").val()==''){
+		if($("#sbz").html(msg.SBZ);){
 			return;
 		}
 		if(xxId==''){

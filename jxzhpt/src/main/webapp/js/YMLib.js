@@ -2443,6 +2443,141 @@ function gsdxmlx(id){
 	//$('#id全部').attr('checked', true);
 	
 }
+//xdzt
+function xdzt(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'未下达',value:'未下达'});
+	years.push({text:'未完成',value:'未完成'});
+	years.push({text:'已完成',value:'已完成'});
+	
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+//资金来源，根据类型lx区分
+function zjly(id,lx){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	if(lx=='gsd'){
+		years.push({text:'国债',value:'gz'});
+		years.push({text:'省债',value:'sz'});
+		years.push({text:'债券',value:'zq'});
+		years.push({text:'贷款',value:'dk'});
+		years.push({text:'奖励',value:'jl'});
+		years.push({text:'其他',value:'qt'});
+	}
+	if(lx=='yh'){
+		years.push({text:'燃油税',value:'rys'});
+		years.push({text:'贷款',value:'dk'});
+		years.push({text:'其他',value:'qt'});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+
+
 
 //获取权限
 function getQxfromSession(qx){
@@ -2474,3 +2609,20 @@ function getUrlParame(strParame) {
    	}
    	return args[strParame];
    	} 
+//
+function xmnfnull(id){
+	var myDate = new Date();
+	var years=[];
+	years.push({text:""});
+	for(var i=0;i<=10;i++){
+		if(i==0) first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text',
+	    multiple:true
+	});
+	$('#'+id).combobox("setValue",'');
+}

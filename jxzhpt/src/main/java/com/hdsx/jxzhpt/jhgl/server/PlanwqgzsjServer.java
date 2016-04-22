@@ -93,5 +93,7 @@ public interface PlanwqgzsjServer {
 	boolean thtz(Planwqgzsj planwqgzsj);
 
 	boolean thtz1(Planwqgzsj planwqgzsj);
+
+	List<Excel_list> selectwqjhexcel(Planwqgzsj planwqgzsj);
 	
 }

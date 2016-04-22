@@ -526,7 +526,33 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryGsdgzCount", params);
 	}
 	@Override
+	public List<Jhsh> queryGsdgzxd(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryGsdgzxd",params);
+	}
+	@Override
+	public int queryGsdgzxdCount(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryGsdgzxdCount", params);
+	}
+	
+	@Override
 	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh) {
 		return queryOne("queryJhshLjgsdgz",jhsh);
+	}
+	
+	@Override
+	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh) {
+		return queryOne("queryJhshLjgsdxd",jhsh);
+	}
+	@Override
+	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh) {
+		return queryList("queryGsdgzxdbz", jhsh);
+	}
+	@Override
+	public boolean planxdAll(List<Jhsh> list) {
+		return insertBatch("planxdAll", list)==list.size();
 	}
 }

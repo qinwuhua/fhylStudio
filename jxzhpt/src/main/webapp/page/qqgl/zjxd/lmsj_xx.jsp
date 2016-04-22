@@ -17,10 +17,11 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
+// 			alert(parent.YMLib.Var.xmbm);
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryLxshByXmbm.do',
-				data:'jhsh.xmlx='+1+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#lxsh').form("load",data);
@@ -29,7 +30,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryKxxyjByXmbm.do',
-				data:'xmlx='+1+'&xmbm='+parent.YMLib.Var.xmbm,
+				data:'xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#kxxyj').form("load",data);
@@ -39,7 +40,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryCbsjByXmbm.do',
-				data:'cbsj.xmlx='+1+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
+				data:'cbsj.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
@@ -49,7 +50,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryJhshxxByXmbm.do',
-				data:'jhsh.xmlx='+1+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#jhsh').form("load",data);
