@@ -167,6 +167,7 @@ public class Jhsh {
 	private String wllc;//高速公路里程
 	//查询条件字段
 	private String lxmc;//路线名称
+	private String ylxmc;//原路线名称
 	private String lxbm;//路线编码
 	private String kgzt;//开工竣工
 	//资金下达字段
@@ -191,6 +192,12 @@ public class Jhsh {
 	
 
 	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
 	public String getGldj() {
 		return gldj;
 	}

@@ -316,7 +316,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and scxmnf like '%'||(#{xmnf})||'%'
+			${xmnf}
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -328,7 +328,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and jsdj like '%'||(#{jsdj})||'%'
 		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
 		</if>
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
@@ -339,6 +339,15 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		<if test="tsdq!='' and tsdq!= null">
+			${tsdq}
+		</if>
+		<if test="jsdj!='' and jsdj!= null">
+			${jsdj}
+		</if>
+		 <if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if> 
 	</select>
 	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz"
 		resultType="sjbb">

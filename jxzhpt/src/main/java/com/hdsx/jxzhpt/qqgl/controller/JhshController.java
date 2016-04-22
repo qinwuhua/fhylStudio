@@ -131,7 +131,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 			ylxbhHandle();
 			jhsh.setXmbm(xmbm);
-			jsdjHandle();
+			//jsdjHandle();
+			//原技术等级和现技术等级过滤条件
+			 jsdjHandle_("jsjsdj"); 
+			 jsdjHandle_("xjsdj");
+			
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx1()!=null)
 				if(jhsh.getXmlx1().length()>0){
@@ -165,6 +169,61 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+
+	private void jsdjHandle_(String string) {
+		if(string.equals("jsjsdj")){
+			if(jhsh.getJsjsdj()!=null && !jhsh.getJsjsdj().equals("")){
+				String jsjsdj=jhsh.getJsjsdj();
+				if(jsjsdj.indexOf(",")>-1){
+					String [] split=jsjsdj.split(",");
+					for(int i=0;i<split.length;i++){
+						if(i==0){
+							jsjsdj=" (  lxg.jsjsdj like '"+split[i]+"%'   ";
+						}else if(i==split.length-1){
+							jsjsdj+=" or   lxg.jsjsdj like '"+split[i]+"%') ";
+						}else{
+							jsjsdj+=" or  lxg.jsjsdj like '"+split[i]+"%' ";
+						}
+						if(split.length==1){
+							jsjsdj+=")";
+						}
+					}
+				}else{
+					jsjsdj="   lxg.jsjsdj  like '"+jsjsdj+"'  ";
+				}
+				jhsh.setJsjsdj(jsjsdj);
+				System.out.println("++++++++++++++"+jsjsdj);
+			}
+
+			}
+		if(string.equals("xjsdj")){
+			if(jhsh.getXjsdj()!=null&&!jhsh.getXjsdj().equals("")){
+				String xjsdj=jhsh.getXjsdj();
+				if(xjsdj.indexOf(",")>-1){
+					String [] split=xjsdj.split(",");
+					for(int i=0;i<split.length;i++){
+						if(i==0){
+							xjsdj=" (  lxg.xjsdj like '"+split[i]+"%'   ";
+						}else if(i==split.length-1){
+							xjsdj+=" or lxg.xjsdj like '"+split[i]+"%') ";
+						}else{
+							xjsdj+=" or lxg.xjsdj like '"+split[i]+"%' ";
+						}
+						if(split.length==1){
+							xjsdj+=")";
+						}
+					}
+					
+				}else{
+					xjsdj="  lxg.xjsdj like '"+xjsdj+"%'";
+				}
+				jhsh.setXjsdj(xjsdj);
+				System.out.println("_-----------"+xjsdj);
+			}
+		}
+		
+	}
+
 	public void queryJhshLjgsdgz(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {

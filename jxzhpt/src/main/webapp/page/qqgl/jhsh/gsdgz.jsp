@@ -25,6 +25,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			loadBmbm3('xjsdj','技术等级');
+			loadBmbm3('jsjsdj','技术等级');
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			//xmnf("xmnf");
@@ -43,10 +45,10 @@
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':$('#xdzt').combobox("getValue"),
 					'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue"),
+					'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.xjsdj':$('#xjsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			grid.queryParams=params;
-			loadLj(params);
+// 			loadLj(params);
 			grid.height=$(window).height()-195;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
@@ -248,8 +250,12 @@ text-decoration:none;
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:120px;" /></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 70px;"></select></td>
-        						<td>技术等级：</td>
-								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+        						<td>建设技术等级：</td>
+								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:81px;"></select></td>
+								<td>现技术等级：</td>
+								<td><select name="xjsdj" class="easyui-combobox" id="xjsdj" style="width:81px;"></select></td>
+<!-- 								<td>技术等级：</td> -->
+<!-- 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td> -->
 								<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         					</tr>
