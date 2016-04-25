@@ -60,7 +60,7 @@ public class KxxyjController extends BaseActionSupport{
 	private String xmmc;
 	private String xmnf;
 	private String sbzt;
-	private int shzt;
+	private String shzt;
 	private String tsdq;
 	private String jsdj;
 	private String gldj;
@@ -82,6 +82,29 @@ public class KxxyjController extends BaseActionSupport{
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
 	
+	private String ghlxbm;
+	private String ghlxmc;
+	private String jsjsdj;
+	
+	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
+	public String getJsjsdj() {
+		return jsjsdj;
+	}
+	public void setJsjsdj(String jsjsdj) {
+		this.jsjsdj = jsjsdj;
+	}
 	public String getName() {
 		return name;
 	}
@@ -190,10 +213,10 @@ public class KxxyjController extends BaseActionSupport{
 	public void setSbzt(String sbzt) {
 		this.sbzt = sbzt;
 	}
-	public int getShzt() {
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(int shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public int getSbthcd() {
@@ -286,20 +309,20 @@ public class KxxyjController extends BaseActionSupport{
 	}
 	public void selectSjgzkxList(){
 		try {
-			String tiaojian1="";
+			//String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
+			/*if(gydw.indexOf(",")==-1){
 				tiaojian1="and gydwdm like '%"+gydw+"%'";
 			}else{
 				tiaojian1="and gydwdm in ("+gydw+")";
-			}
+			}*/
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
 				tiaojian2="and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
-			lxsh.setGydw(tiaojian1);
+			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
 			if(xmnf.indexOf(",")>-1){
 				xmnf = "t1.xmnf in ("+xmnf+")";
@@ -310,11 +333,54 @@ public class KxxyjController extends BaseActionSupport{
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
+			
+			/*if(jsdj.indexOf(",")>-1){
+				String[] split = jsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				if(!"".equals(jsdj)||jsdj==null)
+				jsdj = "lx.xjsdj like '%"+jsdj+"%'";
+				else{
+					jsdj = "";
+				}
+			}*/
+			//int ssss = jsjsdj.indexOf(",");
+			//技术等级
+			if(jsjsdj.indexOf(",")>-1){
+				String[] split = jsjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsjsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsjsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsjsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				if(!"".equals(jsjsdj)||jsjsdj==null)
+					jsjsdj = "xjsdj like '%"+jsjsdj+"%'";
+				else{
+					jsjsdj = "";
+				}
+			}
+			
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
 			jsdjHandle();
 			lxsh.setJsdj(jsdj);
+			lxsh.setJsjsdj(jsjsdj);
+			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxmc(ghlxmc);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
@@ -352,20 +418,20 @@ public class KxxyjController extends BaseActionSupport{
 	
 	public void selectgsdkxList(){
 		try {
-			String tiaojian1="";
+			//String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
+			/*if(gydw.indexOf(",")==-1){
 				tiaojian1="and gydwdm like '%"+gydw+"%'";
 			}else{
 				tiaojian1="and gydwdm in ("+gydw+")";
-			}
+			}*/
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
 				tiaojian2="and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
-			lxsh.setGydw(tiaojian1);
+			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
 			String newXmnf = null;
 			//int ss = xmnf.indexOf(",");
@@ -380,6 +446,28 @@ public class KxxyjController extends BaseActionSupport{
 			}else{
 				xmnf = "t1.xmnf = '"+newXmnf+"'";
 			}
+			
+			
+			//技术等级
+			if(jsjsdj.indexOf(",")>-1){
+				String[] split = jsjsdj.split(",");
+				for (int i = 0; i < split.length; i++) {
+					if(i==0){
+						jsjsdj = "(xjsdj like '%"+split[i]+"%'";
+					}else if(i==split.length-1){
+						jsjsdj += " or xjsdj like '%"+split[i]+"%')";
+					}else{
+						jsjsdj += " or xjsdj like '%"+split[i]+"%'";
+					}
+				}
+			}else{
+				if(!"".equals(jsjsdj)||jsjsdj==null)
+					jsjsdj = "xjsdj like '%"+jsjsdj+"%'";
+				else{
+					jsjsdj = "";
+				}
+			}
+			
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
@@ -390,6 +478,9 @@ public class KxxyjController extends BaseActionSupport{
 			jsdjHandle();
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
+			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxmc(ghlxmc);
+			lxsh.setJsjsdj(jsjsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			System.out.println(gldj);
@@ -515,6 +606,7 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	private void jsdjHandle() {
+		//建设技术等级
 		if(jsdj!=null && !jsdj.equals("")){
 			if(jsdj.indexOf(",")>-1){
 				String[] split = jsdj.split(",");
@@ -534,20 +626,20 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	public void selectLmgzkxList(){
-		String tiaojian1="";
+		//String tiaojian1="";
 		String tiaojian2="";
-		if(gydw.indexOf(",")==-1){
+		/*if(gydw.indexOf(",")==-1){
 			tiaojian1="and gydwdm like '%"+gydw+"%'";
 		}else{
 			tiaojian1="and gydwdm in ("+gydw+")";
-		}
+		}*/
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
 		}else{
 			tiaojian2="and t.xzqhdm in ("+xzqh+")";
 		}
 		lxsh.setXzqh(tiaojian2);
-		lxsh.setGydw(tiaojian1);
+		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
 		if(xmnf.indexOf(",")>-1){
 			xmnf = "t1.xmnf in ("+xmnf+")";
@@ -558,11 +650,37 @@ public class KxxyjController extends BaseActionSupport{
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
+		
+		
+		//技术等级
+		if(jsjsdj.indexOf(",")>-1){
+			String[] split = jsjsdj.split(",");
+			for (int i = 0; i < split.length; i++) {
+				if(i==0){
+					jsjsdj = "(xjsdj like '%"+split[i]+"%'";
+				}else if(i==split.length-1){
+					jsjsdj += " or xjsdj like '%"+split[i]+"%')";
+				}else{
+					jsjsdj += " or xjsdj like '%"+split[i]+"%'";
+				}
+			}
+		}else{
+			if(!"".equals(jsjsdj)||jsjsdj==null)
+				jsjsdj = "xjsdj like '%"+jsjsdj+"%'";
+			else{
+				jsjsdj = "";
+			}
+		}
+		
+		
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		jsdjHandle();
 		lxsh.setJsdj(jsdj);
+		lxsh.setJsjsdj(jsjsdj);
+		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxmc(ghlxmc);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
@@ -667,18 +785,18 @@ public class KxxyjController extends BaseActionSupport{
 	public void selectXjkxList(){
 		String tiaojian1="";
 		String tiaojian2="";
-		if(gydw.indexOf(",")==-1){
+		/*if(gydw.indexOf(",")==-1){
 			tiaojian1="and gydwdm like '%"+gydw+"%'";
 		}else{
 			tiaojian1="and gydwdm in ("+gydw+")";
-		}
+		}*/
 		if(xzqh.indexOf(",")==-1){
 			tiaojian2="and t.xzqhdm like '%"+xzqh+"%'";
 		}else{
 			tiaojian2="and t.xzqhdm in ("+xzqh+")";
 		}
 		lxsh.setXzqh(tiaojian2);
-		lxsh.setGydw(tiaojian1);
+		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
 		if(xmnf.indexOf(",")>-1){
 			xmnf = "t1.xmnf in ("+xmnf+")";
@@ -689,6 +807,29 @@ public class KxxyjController extends BaseActionSupport{
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
+		
+
+		//技术等级
+		if(jsjsdj.indexOf(",")>-1){
+			String[] split = jsjsdj.split(",");
+			for (int i = 0; i < split.length; i++) {
+				if(i==0){
+					jsjsdj = "(xjsdj like '%"+split[i]+"%'";
+				}else if(i==split.length-1){
+					jsjsdj += " or xjsdj like '%"+split[i]+"%')";
+				}else{
+					jsjsdj += " or xjsdj like '%"+split[i]+"%'";
+				}
+			}
+		}else{
+			if(!"".equals(jsjsdj)||jsjsdj==null)
+				jsjsdj = "xjsdj like '%"+jsjsdj+"%'";
+			else{
+				jsjsdj = "";
+			}
+		}
+		
+		
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -696,6 +837,9 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
+		lxsh.setJsjsdj(jsjsdj);
+		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxmc(ghlxmc);
 		System.out.println(gldj);
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1333,18 +1477,19 @@ public class KxxyjController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			String tiaojian2="";
-			if(lxsh.getGydw().indexOf(",")==-1){
+			/*if(lxsh.getGydw().indexOf(",")==-1){
 				tiaojian1="and gydwdm like '%"+lxsh.getGydw()+"%'";
 			}else{
 				tiaojian1="and gydwdm in ("+lxsh.getGydw()+")";
-			}
+			}*/
+			String ss = lxsh.getXzqh();
 			if(lxsh.getXzqh().indexOf(",")==-1){
 				tiaojian2="and t.xzqhdm like '%"+lxsh.getXzqh()+"%'";
 			}else{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
 			lxsh.setXzqh(tiaojian2);
-			lxsh.setGydw(tiaojian1);
+			//lxsh.setGydw(tiaojian1);
 			Lxsh l=null;
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");

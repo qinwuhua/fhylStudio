@@ -137,7 +137,7 @@ public class Lxsh implements Serializable {
 	private String xmlx;
 	private int sbthcd;
 	private String sbzt1;
-	private int shzt;
+	private String shzt;
 	private String lxmc;
 	private String jdbs;
 	private String sffirst;
@@ -430,10 +430,10 @@ public class Lxsh implements Serializable {
 	public void setSbzt1(String sbzt1) {
 		this.sbzt1 = sbzt1;
 	}
-	public int getShzt() {
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(int shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public String getXmlx() {
