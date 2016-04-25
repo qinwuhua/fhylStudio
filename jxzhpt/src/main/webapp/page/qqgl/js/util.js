@@ -1,3 +1,39 @@
+function plansb(index){
+	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/plansb.do',
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+			}
+				
+		}
+	});
+	
+}
+function plansh(index){
+	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/plansh.do',
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("审核成功");
+				$("#grid").datagrid('reload');
+			}
+				
+		}
+	});
+	
+}
+
+
 function qxxm(str){
 	var xmbm=str+"";
 	$.ajax({

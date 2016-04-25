@@ -38,14 +38,14 @@
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
 			YMLib.Var.jdbs=2;
-			//queryxmList();
-			showMxbAll();
+			queryxmList();
+			 showMxbAll();
 			$('#tt').tabs({ 
 			    border:false, 
 			    onSelect:function(title,index){ 
 			        cxym(index);
 			    } 
-			});
+			}); 
 			
 		});
 		var flag=false;

@@ -645,6 +645,45 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Map<String, String>> getbzyhhzb() {
 		return queryList("getbzyhhzb");
 	}
-	
+	@Override
+	public boolean plansbgj(Jhsh jhsh) {
+		return update("plansbgj", jhsh)==1;
+	}
+	@Override
+	public boolean plansblm(Jhsh jhsh) {
+		return update("plansblm", jhsh)==1;
+	}
+	@Override
+	public boolean plansbxj(Jhsh jhsh) {
+		return update("plansbxj", jhsh)==1;
+	}
+	@Override
+	public boolean plansbyh(Jhsh jhsh) {
+		return update("plansbyh", jhsh)==1;
+	}
+	@Override
+	public boolean plansbsh(Jhsh jhsh) {
+		return update("plansbsh", jhsh)==1;
+	}
+	@Override
+	public boolean planshgj(Jhsh jhsh) {
+		return update("planshgj", jhsh)==1;
+	}
+	@Override
+	public boolean planshlm(Jhsh jhsh) {
+		return update("planshlm", jhsh)==1;
+	}
+	@Override
+	public boolean planshxj(Jhsh jhsh) {
+		return update("planshxj", jhsh)==1;
+	}
+	@Override
+	public boolean planshyh(Jhsh jhsh) {
+		return update("planshyh", jhsh)==1;
+	}
+	@Override
+	public boolean planshsh(Jhsh jhsh) {
+		return update("planshsh", jhsh)==1;
+	}
 	
 }
