@@ -443,4 +443,14 @@ public interface JhshServer {
 	public List<Jhsh> queryyhxdbz(Jhsh jhsh);
 	public boolean planxdhzadd(List<Jhsh> list);
 	public List<Map<String, String>> getbzyhhzb();
+	public boolean plansbgj(Jhsh jhsh);
+	public boolean plansblm(Jhsh jhsh);
+	public boolean plansbxj(Jhsh jhsh);
+	public boolean plansbyh(Jhsh jhsh);
+	public boolean plansbsh(Jhsh jhsh);
+	public boolean planshgj(Jhsh jhsh);
+	public boolean planshlm(Jhsh jhsh);
+	public boolean planshxj(Jhsh jhsh);
+	public boolean planshyh(Jhsh jhsh);
+	public boolean planshsh(Jhsh jhsh);
 }

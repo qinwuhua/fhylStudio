@@ -31,7 +31,21 @@ public class Jhsh {
 	private String sfsycgs;//是否使用车购税
 	private String rys;//燃油税
 	private String bzrys;//编制    燃油税
+	private String zydpx;//重要度排序
+	private String sbzt;//上报状态
 	
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public String getZydpx() {
+		return zydpx;
+	}
+	public void setZydpx(String zydpx) {
+		this.zydpx = zydpx;
+	}
 	public String getRys() {
 		return rys;
 	}

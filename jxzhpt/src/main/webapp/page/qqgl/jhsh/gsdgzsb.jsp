@@ -42,7 +42,7 @@
 				xmlx=xmlx.substr(1,xmlx.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryGsdgz.do";
-			var params={'jhsh.sbzt':1,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
+			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':$('#xdzt').combobox("getValue"),
 					'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValues").join(','),
 					'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.xjsdj':$('#xjsdj').combobox("getValues").join(","),'lsjl':$('#lsjl').combobox("getValue"),
@@ -63,14 +63,14 @@
 						return result;
 					}
 				},
-				{field:'sbzt',title:'审核',width:60,align:'center',
+				{field:'sbzt',title:'上报',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
-						if(row.xdzt=='0')
-						result='<a href="javascript:plansh('+index+')" style="color:#3399CC;">审核</a>';
+						if(row.sbzt=='0')
+						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">上报</a>';
 						else
-							result='审核';
+							result='上报';
 						return result;
 					}
 				},

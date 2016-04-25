@@ -37,14 +37,14 @@
 			urlxmnf("xmnf",getUrlParame('id'));
 			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
-			//queryYhdzx();
+			queryYhdzx();
 			showMxbAll();
-			$('#tt').tabs({ 
+			 $('#tt').tabs({ 
 			    border:false, 
 			    onSelect:function(title,index){ 
 			        cxym(index);
 			    } 
-			});
+			}); 
 			
 		});
 		var flag=false;

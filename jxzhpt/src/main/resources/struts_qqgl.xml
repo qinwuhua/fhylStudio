@@ -181,7 +181,8 @@
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 		
-		
+		<action name="plansh" class="jhshController" method="plansh"></action>
+		<action name="plansb" class="jhshController" method="plansb"></action>
 		<action name="getbzhzb" class="jhshController" method="getbzhzb"></action>
 		<action name="planxdhzadd" class="jhshController" method="planxdhzadd"></action>
 		<action name="queryjhxdyh" class="jhshController" method="queryjhxdyh"></action>

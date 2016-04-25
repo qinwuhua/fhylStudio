@@ -2024,6 +2024,43 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			
 		}
 	}
+	public void plansb(){
+		boolean bl=false;
+		if(jhsh.getXmlx()==1){
+			bl=jhshServer.plansbgj(jhsh);
+		}
+		if(jhsh.getXmlx()==2){
+			bl=jhshServer.plansblm(jhsh);
+		}
+		if(jhsh.getXmlx()==3){
+			bl=jhshServer.plansbxj(jhsh);
+		}
+		if(jhsh.getXmlx()==4){
+			bl=jhshServer.plansbyh(jhsh);
+		}
+		if(jhsh.getXmlx()==5){
+			bl=jhshServer.plansbsh(jhsh);
+		}
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 	
-	
+	public void plansh(){
+		boolean bl=false;
+		if(jhsh.getXmlx()==1){
+			bl=jhshServer.planshgj(jhsh);
+		}
+		if(jhsh.getXmlx()==2){
+			bl=jhshServer.planshlm(jhsh);
+		}
+		if(jhsh.getXmlx()==3){
+			bl=jhshServer.planshxj(jhsh);
+		}
+		if(jhsh.getXmlx()==4){
+			bl=jhshServer.planshyh(jhsh);
+		}
+		if(jhsh.getXmlx()==5){
+			bl=jhshServer.planshsh(jhsh);
+		}
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 }

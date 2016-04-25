@@ -31,15 +31,17 @@
 	}
 	
 		$(function(){
+			
 			gldj('gldj1');
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryJhshxxByXmbm.do',
-				data:'jhsh.xmlx='+parent.YMLib.Var.xmlx+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#jhxdFrom').form("load",data);
-					$('#xmlx').val(parent.YMLib.Var.xmlx);
+					$('#xmlx').val(parent.YMLib.Var.xmbm.substr(10,1));
+					$('#gldj1').combobox('setValue',data.gldj);
 					$('#xdzt').val("1");
 				}
 			});
@@ -102,12 +104,12 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("审核成功！");
+						alert("编辑成功！");
 						closeWindow("jhxd");
 					}
 				},
 				error:function(msg){
-					alert("修改失败！");
+					alert("编辑失败！");
 				}
 			});
 		}
@@ -173,6 +175,15 @@
 								<input id="gldj" name="gldj" type="hidden"/>
 								
 							</td>
+						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
+							</td>
+							
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
