@@ -1649,8 +1649,8 @@
 			  <if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
-			<if test="xzqh!='' and xzqh!= null ">
-				${xzqh}
+			<if test="xzqhdm!='' and xzqhdm!= null ">
+				${xzqhdm}
 			</if>
 	 		<if test="lxmc!='' and lxmc!= null ">
 	 			and lxmc like '%'||(#{lxmc})||'%'
