@@ -1544,7 +1544,7 @@
 				<if test="jhsh.xjsdj!=null and jhsh.xjsdj!=''">and ${jhsh.xjsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">ad sbzt=#{jhsh.sbzt}</if>
+				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">and sbzt=#{jhsh.sbzt}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -1580,7 +1580,7 @@
 				<if test="jhsh.xjsdj!=null and jhsh.xjsdj!=''">and ${jhsh.xjsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">ad sbzt=#{jhsh.sbzt}</if>
+				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">and  sbzt=#{jhsh.sbzt}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 
@@ -1626,7 +1626,7 @@
 			and l.lsjl=#{lsjl}
 		</if>
 		<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-		<if test="sbzt !=null and sbzt !=''">ad sbzt=#{sbzt}</if>
+		<if test="sbzt !=null and sbzt !=''">and sbzt=#{sbzt}</if>
 	</select>
 	
 	<select id="queryGsdgzxd" parameterType="java.util.Map" resultType="jhsh">
