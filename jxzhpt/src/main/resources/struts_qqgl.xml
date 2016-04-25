@@ -182,6 +182,12 @@
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 		
 		
+		<action name="getbzhzb" class="jhshController" method="getbzhzb"></action>
+		<action name="planxdhzadd" class="jhshController" method="planxdhzadd"></action>
+		<action name="queryjhxdyh" class="jhshController" method="queryjhxdyh"></action>
+		<action name="queryjhxdshbz" class="jhshController" method="queryjhxdshbz"></action>
+		<action name="queryJhbzLj" class="jhshController" method="queryJhbzLj"></action>
+		<action name="queryjhxdsh" class="jhshController" method="queryjhxdsh"></action>
 		<action name="planxdAll" class="jhshController" method="planxdAll"></action>
 		<action name="queryGsdgzxdbz" class="jhshController" method="queryGsdgzxdbz"></action>
 		<action name="queryJhshLjgsdxd" class="jhshController" method="queryJhshLjgsdxd"></action>

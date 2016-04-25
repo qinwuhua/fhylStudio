@@ -22,8 +22,64 @@ public class Jhsh {
 	private String bzqt;//编制     其他
 	private String bzcgs;//编制     车购税
 	private String bztbsj;//编制  填报时间
-	private String tbdw;
+	private String tbdw;//填报单位
+	private String xzqhmc;//行政区划名称
+	private String jhlc;//里程
+	private String zq;//债券
+	private String jl;//奖励
+	private String qt;//其他
+	private String sfsycgs;//是否使用车购税
+	private String rys;//燃油税
+	private String bzrys;//编制    燃油税
 	
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	public String getBzrys() {
+		return bzrys;
+	}
+	public void setBzrys(String bzrys) {
+		this.bzrys = bzrys;
+	}
+	public String getSfsycgs() {
+		return sfsycgs;
+	}
+	public void setSfsycgs(String sfsycgs) {
+		this.sfsycgs = sfsycgs;
+	}
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
 	public String getTbdw() {
 		return tbdw;
 	}

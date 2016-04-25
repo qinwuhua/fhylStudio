@@ -1598,6 +1598,55 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryjhxdsh() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			xzdjHandle();
+			//jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			//jsxzHandle();
+			//zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			listData=jhshServer.queryshxd(jhsh,page,rows);
+			total=jhshServer.queryshxdCount(jhsh);
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void queryjhxdyh() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			
+			xzdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			//jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			listData=jhshServer.queryjhxdyh(jhsh,page,rows);
+			total=jhshServer.queryjhxdyhCount(jhsh);
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	
+	
+	
 	public void queryGsdgzxdbz() throws Exception{
 		List<Jhsh> listData=null;
 		try {
@@ -1618,6 +1667,40 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryjhxdshbz() throws Exception{
+		List<Jhsh> listData=null;
+		try {
+			if(jhsh.getXmlx()==5){//灾毁恢复
+				xzdjHandle();
+				//jsjsdjHandle();
+				jsdjHandle1();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				//jsxzHandle();
+				//zjlyHandle();
+				xdztHandle();
+				tsdqHandle();
+				listData=jhshServer.queryshxdbz(jhsh);
+			}
+			if(jhsh.getXmlx()==4){//养护大中修
+				xzdjHandle();
+				jsjsdjHandle();
+				jsdjHandle1();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				//jsxzHandle();
+				zjlyHandle();
+				xdztHandle();
+				tsdqHandle();
+				listData=jhshServer.queryyhxdbz(jhsh);
+			}
+			
+			JsonUtils.write(listData, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	
 	
 	public void queryJhshLjgsdxd(){
 		Map<String, String> result = new HashMap<String, String>();
@@ -1636,6 +1719,38 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	public void queryJhbzLj(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			if(jhsh.getXmlx()==5){
+				xzdjHandle();
+				jsdjHandle1();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				xdztHandle();
+				tsdqHandle();
+				result = jhshServer.queryJhbzshLj(jhsh);
+			}
+			if(jhsh.getXmlx()==4){
+				xzdjHandle();
+				jsjsdjHandle();
+				jsdjHandle1();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				//jsxzHandle();
+				zjlyHandle();
+				xdztHandle();
+				tsdqHandle();
+				result = jhshServer.queryJhbzyhLj(jhsh);
+			}
+			
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	private void zjlyHandle(){
 		if(jhsh.getZjly()!=null)
@@ -1830,4 +1945,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		boolean bl=jhshServer.planxdAll(list);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	
+	public void planxdhzadd(){
+		JSONArray ja = JSONArray.fromObject(json_data);
+		List<Jhsh> list=(List<Jhsh>)JSONArray.toList(ja, new Jhsh(),new JsonConfig());
+		
+		boolean bl=jhshServer.planxdhzadd(list);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
+	public void getbzhzb(){
+		try {
+			if(jhsh.getXmlx()==4){
+				List<Map<String, String>> list=jhshServer.getbzyhhzb();
+				JsonUtils.write(list, getresponse().getWriter());
+			}
+			
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	
 }

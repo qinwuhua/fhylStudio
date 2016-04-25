@@ -39,6 +39,7 @@
 			gsdxmlx('xmlx');
 			YMLib.Var.jdbs=2;
 			//queryxmList();
+			showMxbAll();
 			$('#tt').tabs({ 
 			    border:false, 
 			    onSelect:function(title,index){ 
@@ -55,12 +56,8 @@
 			}
 			if(str==0 && flag==true){
 				$("#grid").datagrid('reload');
-			}
-			if(str==1 && flag==false){
-				showMxbAll();
 				flag=true;
 			}
-			
 		}
 
 		function queryxmList(){
@@ -377,7 +374,7 @@
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzpfztz',title:'批复总投资',width:65,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
