@@ -433,4 +433,14 @@ public interface JhshServer {
 	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh);
 	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh);
 	public boolean planxdAll(List<Jhsh> list);
+	public List<Jhsh> queryshxd(Jhsh jhsh, int page, int rows);
+	public int queryshxdCount(Jhsh jhsh);
+	public Map<String, String> queryJhbzshLj(Jhsh jhsh);
+	public List<Jhsh> queryshxdbz(Jhsh jhsh);
+	public List<Jhsh> queryjhxdyh(Jhsh jhsh, int page, int rows);
+	public int queryjhxdyhCount(Jhsh jhsh);
+	public Map<String, String> queryJhbzyhLj(Jhsh jhsh);
+	public List<Jhsh> queryyhxdbz(Jhsh jhsh);
+	public boolean planxdhzadd(List<Jhsh> list);
+	public List<Map<String, String>> getbzyhhzb();
 }
