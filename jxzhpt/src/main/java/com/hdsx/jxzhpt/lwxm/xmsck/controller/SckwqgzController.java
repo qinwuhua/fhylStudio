@@ -228,6 +228,26 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			}else{
 				sckwqgz.setXzqhdm("and xzqhdm in ("+sckwqgz.getXzqhdm()+")");
 			}
+			if(sckwqgz.getAkjfl().length()>0){
+				String[] tsdqs=sckwqgz.getAkjfl().split(",");
+				String tsdq="and akjfl in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckwqgz.setAkjfl(tsdq);
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scsh(sckwqgz);
 			//导出设置

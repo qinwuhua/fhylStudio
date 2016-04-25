@@ -387,7 +387,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and jsdj like '%'||(#{jsdj})||'%'
 		</if> -->
 		<if test="akjfl!='' and akjfl!= null ">
-			and akjfl like #{akjfl}||'%'
+			${akjfl}
 		</if>
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'

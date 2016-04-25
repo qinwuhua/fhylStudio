@@ -133,6 +133,51 @@ function tuiHui(){
 			});
 	}
 }
+function exportExcel_wqgz_scsh1(){
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var akjfl="";
+	akjfl=$("#akjfl").combobox("getValues").join(',');
+		if(akjfl.substring(0,1)==','){
+			akjfl=akjfl.substring(1,akjfl.length);
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&qlmc='+$("#qlmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+akjfl+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
+ 	'&sck_sbthcd='+cd;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
+}
 
 </script>
 <style type="text/css">
@@ -204,7 +249,7 @@ text-decoration:none;
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
-                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_wqgz_scsh();" style="border-width:0px;cursor: hand;" />
+                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_wqgz_scsh1();" style="border-width:0px;cursor: hand;" />
 							 </td>
                             </tr></table>
 						</div>

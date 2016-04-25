@@ -130,6 +130,26 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			}else{
 				sckzhfz.setXzqhdm("and xzqhdm in ("+sckzhfz.getXzqhdm()+")");
 			}
+			if(sckzhfz.getLxjsdj().length()>0){
+				String[] tsdqs=sckzhfz.getLxjsdj().split(",");
+				String tsdq="and lxjsdj in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckzhfz.setLxjsdj(tsdq);
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz_scsh(sckzhfz);
 			//导出设置
