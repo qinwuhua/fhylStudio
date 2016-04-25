@@ -303,7 +303,7 @@ function importData_sc(flag){
 //	}
 	var url="";
 	if(flag=='wqgz_sc'){
-		url="/jxzhpt/xmsck/importWqgz_sc.do";
+		url='/jxzhpt/xmsck/importWqgz_sc.do?sbthcd1="'+$.cookie("unit2").length+'"';
 	}
 	if(flag=='abgc_sc'){
 		url="/jxzhpt/xmsck/importAbgc_sc.do";

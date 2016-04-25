@@ -1534,7 +1534,8 @@
 				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and ${jhsh.xmbm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xdzt>=0">and j.xdzt=${jhsh.xdzt}</if>
-				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
+				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsjsdj}</if>
+				<if test="jhsh.xjsdj!=null and jhsh.xjsdj!=''">and ${jhsh.xjsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
 				order by j.xdzt,j.xmbm desc
@@ -1545,37 +1546,36 @@
 		</if>
 	</select>
 	<select id="queryGsdgzCount" parameterType="java.util.Map" resultType="int">
-		select count(j.xmbm) from gsdgz j left join 
-		(select xmid xmbm,min(lx.xzqhdm) xzqhdm from lxsh_lx lx group by lx.xmid) l
-		 on j.xmbm=l.xmbm where 1=1
-		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
-			and ${jhsh.xzqhdm}
-		</if>
-		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
-			and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
-		</if>
-		<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
-			and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%1___' and jdbs='2')
-		</if>
-		<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">
-			and ${jhsh.xmbm}
-		</if>
-		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
-		</if>
-		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-			and l.tsdq like '%'||#{jhsh.tsdq}||'%'
-		</if>
-		<if test="jhsh.xdzt>=0">
-			and j.xdzt=${jhsh.xdzt}
-		</if>
-		<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">
-			and ${jhsh.jsdj}
-		</if>
-		<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
-			and l.lsjl=#{jhsh.lsjl}
-		</if>
-		<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
+		select count(*) from (
+				select j.*,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.tsdq,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+            left join 
+          (select  xmid,jsxz,
+          (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+		  when jsxz like '%新建%' then to_number(xjlc)
+		  else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) end) lc
+          from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
+          on j.xmbm=lx.xmid
+            left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
+            where 1=1
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
+				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{jhsh.ghlxbh}||'%')
+				</if>
+				<if test="jhsh.ylxbh!=null and jhsh.ylxbh!=''">
+					and j.xmbm in (select distinct xmid from lxsh_lx lx where ${jhsh.ylxbh} and xmid like '%1___' and jdbs='2')
+				</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">and l.tsdq like '%'||#{jhsh.tsdq}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and ${jhsh.xmbm}</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xdzt>=0">and j.xdzt=${jhsh.xdzt}</if>
+				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsjsdj}</if>
+				<if test="jhsh.xjsdj!=null and jhsh.xjsdj!=''">and ${jhsh.xjsdj}</if>
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and l.lsjl=#{jhsh.lsjl}</if>
+				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
+				order by j.xdzt,j.xmbm desc
+			) t 
+
 	</select>
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
 		select count(*) sl,sum(j.bbzzj) cgs,sum(j.sbzzj) sbz,sum(l1.lc) lc,sum(j.pfztz) tz,'0' sjl,nvl((sum(j.pfztz)-sum(j.bbzzj)-sum(j.sbzzj)),0) dftz from gsdgz j left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 

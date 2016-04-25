@@ -456,7 +456,6 @@ function dcExcel(){
  	"&tsdq="+tsdq+"&xmnf="+xmnf+"&sbzt="+$('#sbzt').combobox("getValue")+'&jckwqgzsj.gldj='+gldj+
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&bzls="+$("#bzls").combobox("getValue")+
  	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+rksj;
-
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckExcel.do?'+data;
 	 });
