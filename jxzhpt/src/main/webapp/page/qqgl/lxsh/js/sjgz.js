@@ -801,7 +801,7 @@ function getbzcs(gldj,jsdj,lc,xmlx){
 }
 //升级审核
 function showAllsjsh(){
-	var gydw=$("#gydw").combotree("getValues");
+	/*var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
@@ -812,7 +812,7 @@ function showAllsjsh(){
 		gydwstr=gydw[0] ;
 	}else{
 		gydwstr= gydw.join(',');
-	}
+	}*/
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -829,19 +829,32 @@ function showAllsjsh(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
 	var lsjl=$("#lsjl").combobox('getValue');
-	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	/*//var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
 	if(tsdq=='全部'){
 		tsdq="";
-	}
+	}*/
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
+	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmsj.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
-			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		data:{lsjl:lsjl,
+			xzqh:xzqhstr,
+			//gydw:gydwstr,
+			xmmc:xmmc,
+			xmnf:xmnf,
+			sbzt:sbzt,
+			ghlxbh:$("#lxbm").val(),
+			lxmc:$("#lxmc").val(),
+			//tsdq:tsdq,
+			jsdj:jsdj,
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
+			gldj:gldj},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -866,13 +879,18 @@ function showAllsjsh(){
 	    queryParams: {
 	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
-	    	gydw:gydwstr,
+	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
-			tsdq:tsdq,
+			//tsdq:tsdq,
 			jsdj:jsdj,
-			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
+			gldj:gldj,
+			ghlxbh:$("#lxbm").val(),
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
+			lxmc:$("#lxmc").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1140,7 +1158,7 @@ function showAlllmgz(){
 	}); 
 }
 function showAlllmsh(){
-	var gydw=$("#gydw").combotree("getValues");
+	/*var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
@@ -1151,7 +1169,7 @@ function showAlllmsh(){
 		gydwstr=gydw[0] ;
 	}else{
 		gydwstr= gydw.join(',');
-	}
+	}*/
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -1168,16 +1186,29 @@ function showAlllmsh(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
 	var lsjl=$("#lsjl").combobox('getValue');
-	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
+	/*//var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
-		tsdq=tsdq.substr(1,tsdq.length);
+		tsdq=tsdq.substr(1,tsdq.length);*/
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjLmgz.do',
-		data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
-			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		data:{lsjl:lsjl,
+			xzqh:xzqhstr,
+			//gydw:gydwstr,
+			xmmc:xmmc,
+			xmnf:xmnf,
+			sbzt:sbzt,
+			ghlxbh:$("#lxbm").val(),
+			lxmc:$("#lxmc").val(),
+			//tsdq:tsdq,
+			jsdj:jsdj,
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
+			gldj:gldj},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -1202,12 +1233,15 @@ function showAlllmsh(){
 	    queryParams: {
 	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
-	    	gydw:gydwstr,
+	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
-			tsdq:tsdq,
+			//tsdq:tsdq,
 			jsdj:jsdj,
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
 			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[
@@ -1477,7 +1511,7 @@ function showAllxj(){
 	}); 
 }
 function showAllxjsh(){
-	var gydw=$("#gydw").combotree("getValues");
+	/*var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
@@ -1488,7 +1522,7 @@ function showAllxjsh(){
 		gydwstr=gydw[0] ;
 	}else{
 		gydwstr= gydw.join(',');
-	}
+	}*/
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -1504,16 +1538,28 @@ function showAllxjsh(){
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
-	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	/*//var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
-		tsdq=tsdq.substr(1,tsdq.length);
+		tsdq=tsdq.substr(1,tsdq.length);*/
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
+	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryLxshShLjXj.do',
-		data:{xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
-			tsdq:tsdq,jsdj:jsdj,gldj:gldj},
+		data:{xzqh:xzqhstr,
+			//gydw:gydwstr,
+			xmmc:xmmc,
+			xmnf:xmnf,
+			sbzt:sbzt,
+			ghlxbh:$("#lxbm").val(),
+			lxmc:$("#lxmc").val(),
+			//tsdq:tsdq,
+			jsdj:jsdj,
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
+			gldj:gldj},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -1537,12 +1583,15 @@ function showAllxjsh(){
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	xzqh:xzqhstr,
-	    	gydw:gydwstr,
+	    	//gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
-			tsdq:tsdq,
+			//tsdq:tsdq,
 			jsdj:jsdj,
+			ghlxbm:$("#ghlxbm").val(),
+			ghlxmc:$("#ghlxmc").val(),
+			jsjsdj:jsjsdj,
 			gldj:gldj,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val()
 		},
 	    columns:[[

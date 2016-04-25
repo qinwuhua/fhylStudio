@@ -23,6 +23,14 @@ public class Lxsh implements Serializable {
 	private String sjl;
 	private String dftz;
 	
+	private String ylxmc;
+	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
 	public String getGhxlxbm() {
 		return ghxlxbm;
 	}
@@ -175,7 +183,21 @@ public class Lxsh implements Serializable {
 	private String wnid;
 	private String kgny;
 	private String wgny;
+	private String ghlxbm;
+	private String ghlxmc;
 	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
 	public String getKgny() {
 		return kgny;
 	}

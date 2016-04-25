@@ -40,6 +40,7 @@ public class LoadBmbmController extends BaseActionSupport{
 		
 		if(tempList.size()==0) tempList =  xtglServer.loadBmbmList(unit);
 		for(int i=0;i<tempList.size();i++){
+			String ss = tempList.get(i).getText();
 			if(yhm.equals(tempList.get(i).getText())) list.add(tempList.get(i));
 		}
 		

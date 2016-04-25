@@ -216,6 +216,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				
 				xmsq.setXmbm(xmbm);
 			}
+			xmsq.setGhlxbm(xmsq.getGhlxbm());
+			xmsq.setGhlxmc(xmsq.getGhlxmc());
 			jsdjHandle();
 			String ylxbh = xmsq.getYlxbh();
 			if(ylxbh!=null && !ylxbh.equals("")){
@@ -231,8 +233,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			List<Xmsq> list=null;
 			int total=0;
-			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			String sss = xmsq.getJsxz();
+			String aaa = xmsq.getWnxmk();
+			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			xmsq.setJsxz(xmsq.getJsxz());
+			xmsq.setWnxmk(xmsq.getWnxmk());
 			if(xmsq.getXmlx()==4){
 				String gcfl = xmsq.getGcfl();
 				if(gcfl!=null && !gcfl.equals("")){
@@ -346,10 +352,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmbm = "x.xmbm like '" + xmbm + "%' ";
 		}
 		xmsq.setXmbm(xmbm);
+		xmsq.setGhlxbm(xmsq.getGhlxbm());
+		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		jsdjHandle();
-		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
-		
+		xmsq.setJsxz(xmsq.getJsxz());
+		xmsq.setWnxmk(xmsq.getWnxmk());
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
 			String gcfl = xmsq.getGcfl();
