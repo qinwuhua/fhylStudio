@@ -58,6 +58,31 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	//导入Excel
 	private String fileuploadFileName;
 	private File fileupload;
+	
+	private String ghlxbm;
+	private String ghlxmc;
+	private String lxmc;
+	
+	
+	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -89,6 +114,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
+			
+			
+			String s1 = cbsj.getGhlxbm();
+			String s2 = cbsj.getGhlxmc();
+			String s3 = cbsj.getLxmc();
+			cbsj.setGhlxbm(cbsj.getGhlxbm());
+			cbsj.setGhlxmc(cbsj.getGhlxmc());
+			cbsj.setLxmc(cbsj.getLxmc());
+			
 			List<Cbsj> resultData=null;
 			int total=0;
 			if(cbsj.getXmlx()==1){
@@ -125,7 +159,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				resultData = cbsjServer.queryCbsjXj(cbsj, page, rows);
 				total = cbsjServer.queryCbsjXjCount(cbsj);
 			}else if(cbsj.getXmlx()==4){
-				String gcfl = cbsj.getGcfl();
+				/*String gcfl = cbsj.getGcfl();
 				if(gcfl.equals("")){
 					gcfl=null;
 				}else if(gcfl.indexOf(",")>-1){
@@ -142,7 +176,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				}else{
 					gcfl = "l.gcfl like '%" + gcfl + "%'";
 				}
-				cbsj.setGcfl(gcfl);
+				cbsj.setGcfl(gcfl);*/
+				if(cbsj.getXmlx1()!=null)
+					if(cbsj.getXmlx1().length()>0){
+						String[] tsdqs=cbsj.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(c.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or c.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						cbsj.setXmlx1(tsdq);
+					}
 				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				resultData = cbsjServer.queryCbsjYhdzx(cbsj, page, rows);
 				total = cbsjServer.queryCbsjYhdzxCount(cbsj);
@@ -261,6 +316,11 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
+			
+			cbsj.setGhlxbm(cbsj.getGhlxbm());
+			cbsj.setGhlxmc(cbsj.getGhlxmc());
+			cbsj.setLxmc(cbsj.getLxmc());
+			
 			Lxsh l=null;
 			if(cbsj.getXmlx()==1){
 				l=cbsjServer.loadsjcbsjTjxx(cbsj);
@@ -345,6 +405,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		xjsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
+		cbsj.setGhlxbm(cbsj.getGhlxbm());
+		cbsj.setGhlxmc(cbsj.getGhlxmc());
+		cbsj.setLxmc(cbsj.getLxmc());
 		cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(), "xzqhdm"));
 		if(cbsj.getTsdq().length()>0){
 			String[] tsdqs=cbsj.getTsdq().split(",");
@@ -369,7 +432,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		Map<String, String> result = null;
 		
 		if(cbsj.getXmlx()==4){
-			String gcfl = cbsj.getGcfl();
+			/*String gcfl = cbsj.getGcfl();
 			if(gcfl.equals("")){
 				gcfl=null;
 			}else if(gcfl.indexOf(",")>-1){
@@ -386,7 +449,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else{
 				gcfl = "l.gcfl like '%" + gcfl + "%'";
 			}
-			cbsj.setGcfl(gcfl);
+			cbsj.setGcfl(gcfl);*/
 			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 			result = cbsjServer.queryCbsjLjYhdzx(cbsj);
 		}else if(cbsj.getXmlx()==5){
