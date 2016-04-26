@@ -58,14 +58,10 @@
 						return result;
 					}
 				},
-				{field:'sbzt',title:'审核',width:60,align:'center',
-					formatter: function(value,row,index){
-						var result="";
-						xmlx=1;
-						if(row.xdzt=='0')
-						result='<a href="javascript:plansh('+index+')" style="color:#3399CC;">审核</a>';
-						else
-							result='审核';
+				{field:'xdzt',title:'编辑',width:60,align:'center',
+					formatter:function(value,row,index){
+						xmlx=4;
+						var result='<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:#3399CC;">编辑</a>';
 						return result;
 					}
 				},

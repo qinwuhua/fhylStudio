@@ -872,7 +872,7 @@ function deleteZjxdById(id){
 function openJhxd1(url,index){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
-	openWindow('jhxd','计划审核','/jxzhpt/page/qqgl/jhsh/'+url,920,300);
+	openWindow('jhxd','编辑','/jxzhpt/page/qqgl/jhsh/'+url,920,370);
 }
 function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];

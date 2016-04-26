@@ -123,7 +123,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
-			lx.setJdbs("1");
+			if(xmsq.getXmlx()==5){
+				lx.setJdbs("0");
+			}else{
+				lx.setJdbs("1");
+			}
+			
 			lx.setJsjsdj(xmsq.getJsdj());
 			lx.setGpsqdzh(xmsq.getGpsqdzh());
 			lx.setGpszdzh(xmsq.getGpszdzh());
@@ -498,12 +503,22 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				b = xmsqServer.updateYhzxSqzt(xmsq);
 			}
 			//路线阶段添加
-			if(b){
-				Lx lx=new Lx();
-				lx.setXmid(xmsq.getXmbm());
-				lx.setJdbs(xmsq.getJdbs());
-				jhshServer.insertLxJdbs(lx);
+			if(xmsq.getXmlx()==5){
+				if(b){
+					Lx lx=new Lx();
+					lx.setXmid(xmsq.getXmbm());
+					lx.setJdbs("1");
+					jhshServer.insertLxJdbs(lx);
+				}
+			}else{
+				if(b){
+					Lx lx=new Lx();
+					lx.setXmid(xmsq.getXmbm());
+					lx.setJdbs(xmsq.getJdbs());
+					jhshServer.insertLxJdbs(lx);
+				}
 			}
+			
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
@@ -581,6 +596,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				b = xmsqServer.updateSh(xmsq);
 			}
 			if(b){
+				if(xmsq.getXmlx()==5){
+					lx.setJdbs("0");
+				}else{
+					lx.setJdbs("1");
+				}
 				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b).toString());
@@ -801,7 +821,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
-				lx.setJdbs("1");
+				lx.setJdbs("0");
 				lx.setJsjsdj(xmsq.getJsdj());
 				lx.setGpsqdzh(xmsq.getGpsqdzh());
 				lx.setGpszdzh(xmsq.getGpszdzh());

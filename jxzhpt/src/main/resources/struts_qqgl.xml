@@ -66,6 +66,10 @@
 		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
 		  <action name="querygkxmXX" class="kxxyjController" method="querygkxmXX"/>
 		  
+		  <action name="showkxxShxx" class="kxxyjController" method="showkxxShxx"/>
+		  <action name="shshkxx" class="kxxyjController" method="shshkxx"/>
+		  <action name="updateShkxx" class="kxxyjController" method="updateShkxx"/>
+		  <action name="selectShkxList" class="kxxyjController" method="selectShkxList"/>
 		  <action name="thtzxm" class="kxxyjController" method="thtzxm"/>
 		  <action name="thtzxm1" class="kxxyjController" method="thtzxm1"/>
 		  <action name="tzxm" class="kxxyjController" method="tzxm"/>
