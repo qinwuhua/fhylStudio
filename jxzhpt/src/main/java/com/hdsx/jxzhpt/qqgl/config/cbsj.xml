@@ -768,7 +768,7 @@
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
-				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx
+				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
@@ -787,15 +787,15 @@
 					and c.sbzt=${sbzt}
 				</if> -->
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				order by c.shzt,c.xmbm desc ) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>
 	<select id="queryYhdzxExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join 
-				(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx 
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm right join 
+				(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx 
 				on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -815,15 +815,15 @@
 				<if test="shzt>=0">
 					and c.shzt=${shzt}
 				</if>
-				order by c.shzt,c.xmbm desc) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
 	<select id="queryShExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
 			select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
-			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join 
-			(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx 
+			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm right join 
+			(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2'  ) lx 
 			on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -838,7 +838,7 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				order by c.shzt,c.xmbm desc) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
 	<select id="queryLmsjExcel" parameterType="cbsj" resultType="cbsj">
@@ -847,7 +847,7 @@
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
-				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='2' and sffirst='1') lx
+				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -862,7 +862,7 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				order by c.shzt,c.xmbm desc) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
 	<select id="queryXjExcel" parameterType="cbsj" resultType="cbsj">
@@ -871,7 +871,7 @@
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
-				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,xjlxbm xjlxbm, xjqdzh xjqdzh,xjzdzh xjzdzh,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx
+				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,xjlxbm xjlxbm, xjqdzh xjqdzh,xjzdzh xjzdzh,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -885,7 +885,7 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				order by c.shzt,c.xmbm desc) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
 	<select id="queryFj" resultType="plan_upload">
@@ -1403,7 +1403,7 @@
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbgsdgz c left join lxgsdgz l on c.xmbm = l.xmbm
-				left join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='2' and sffirst='1') lx
+				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst  from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
@@ -1423,7 +1423,7 @@
 				</if> -->
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				order by c.shzt,c.xmbm desc ) t 
+				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>
 	
