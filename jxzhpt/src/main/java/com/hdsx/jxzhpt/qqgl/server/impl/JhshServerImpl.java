@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.ibm.icu.math.BigDecimal;
 @Service
 public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public JhshServerImpl(){
@@ -356,6 +357,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryLmgzKxxyjByXmbm",jhsh);
 	}
 	@Override
+	public Kxxyj queryShKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryShKxxyjByXmbm",jhsh);
+	}
+	@Override
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
 		return queryOne("queryXjKxxyjByXmbm",jhsh);
 	}
@@ -526,7 +531,163 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryGsdgzCount", params);
 	}
 	@Override
+	public List<Jhsh> queryGsdgzxd(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryGsdgzxd",params);
+	}
+	@Override
+	public int queryGsdgzxdCount(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryGsdgzxdCount", params);
+	}
+	
+	@Override
 	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh) {
 		return queryOne("queryJhshLjgsdgz",jhsh);
 	}
+	
+	@Override
+	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh) {
+		return queryOne("queryJhshLjgsdxd",jhsh);
+	}
+	@Override
+	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh) {
+		return queryList("queryGsdgzxdbz", jhsh);
+	}
+	@Override
+	public boolean planxdAll(List<Jhsh> list) {
+		return insertBatch("planxdAll", list)==list.size();
+	}
+	@Override
+	public List<Jhsh> queryshxd(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryshxd",params);
+	}
+	@Override
+	public int queryshxdCount(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryshxdCount", params);
+	}
+	@Override
+	public Map<String, String> queryJhbzshLj(Jhsh jhsh) {
+		return queryOne("queryJhbzshLj",jhsh);
+	}
+	@Override
+	public List<Jhsh> queryshxdbz(Jhsh jhsh) {
+		return queryList("queryshxdbz", jhsh);
+	}
+	@Override
+	public List<Jhsh> queryjhxdyh(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryjhxdyh",params);
+	}
+	@Override
+	public int queryjhxdyhCount(Jhsh jhsh) {
+		params.put("jhsh", jhsh);
+		return queryOne("queryjhxdyhCount", params);
+	}
+	@Override
+	public Map<String, String> queryJhbzyhLj(Jhsh jhsh) {
+		return queryOne("queryJhbzyhLj",jhsh);
+	}
+	@Override
+	public List<Jhsh> queryyhxdbz(Jhsh jhsh) {
+		return queryList("queryyhxdbz", jhsh);
+	}
+	@Override
+	public boolean planxdhzadd(List<Jhsh> list) {
+		delete("planxdhzdelete");
+		try {
+			BigDecimal ztz=new BigDecimal("0");
+			BigDecimal rys=new BigDecimal("0");
+			BigDecimal cgs=new BigDecimal("0");
+			BigDecimal gz=new BigDecimal("0");
+			BigDecimal sz=new BigDecimal("0");
+			BigDecimal zq=new BigDecimal("0");
+			BigDecimal dk=new BigDecimal("0");
+			BigDecimal jl=new BigDecimal("0");
+			BigDecimal qt=new BigDecimal("0");
+			
+			
+			//bzpfztz,bzrys,bzcgs,bzgz,bzsz,bzzq,bzdk,bzjl,bzqt
+			for (Jhsh jhsh : list) {
+				System.out.println(jhsh.getBzpfztz()+"  ztz");
+				System.out.println(jhsh.getBzrys()+"  rys");
+				System.out.println(jhsh.getBzcgs()+"cgs");
+				System.out.println(jhsh.getBzgz()+"  gz");
+				System.out.println(jhsh.getBzsz()+"  sz");
+				System.out.println(jhsh.getBzzq()+"  zq");
+				System.out.println(jhsh.getBzdk()+"  dk");
+				System.out.println(jhsh.getBzjl()+"  jl");
+				System.out.println(jhsh.getBzqt()+"  qt");
+				System.out.println(!"".equals(jhsh.getBzcgs()));
+				ztz=jhsh.getBzpfztz()!=null && !"".equals(jhsh.getBzpfztz()) ? new BigDecimal(jhsh.getBzpfztz()):new BigDecimal("0");
+				rys=jhsh.getBzrys()!=null && !"".equals(jhsh.getBzrys()) ? new BigDecimal(jhsh.getBzrys()):new BigDecimal("0");
+				cgs=jhsh.getBzcgs()!=null && !"".equals(jhsh.getBzcgs()) ? new BigDecimal(jhsh.getBzcgs()):new BigDecimal("0");
+				gz=jhsh.getBzgz()!=null && !"".equals(jhsh.getBzgz()) ? new BigDecimal(jhsh.getBzgz()):new BigDecimal("0");
+				sz=jhsh.getBzsz()!=null && !"".equals(jhsh.getBzsz()) ? new BigDecimal(jhsh.getBzsz()):new BigDecimal("0");
+				zq=jhsh.getBzzq()!=null && !"".equals(jhsh.getBzzq()) ? new BigDecimal(jhsh.getBzzq()):new BigDecimal("0");
+				dk=jhsh.getBzdk()!=null && !"".equals(jhsh.getBzdk()) ? new BigDecimal(jhsh.getBzdk()):new BigDecimal("0");
+				jl=jhsh.getBzjl()!=null && !"".equals(jhsh.getBzjl()) ? new BigDecimal(jhsh.getBzjl()):new BigDecimal("0");
+				qt=jhsh.getBzqt()!=null && !"".equals(jhsh.getBzqt()) ? new BigDecimal(jhsh.getBzqt()):new BigDecimal("0");
+				jhsh.setZtz(ztz.add(rys).add(gz).add(sz).add(cgs).add(zq).add(dk).add(jl).add(qt).toString());
+			}
+			
+			return insertBatch("planxdhzadd", list)==list.size();
+		} catch (Exception e) {
+			e.printStackTrace();
+				return false;
+		}
+	}
+	@Override
+	public List<Map<String, String>> getbzyhhzb() {
+		return queryList("getbzyhhzb");
+	}
+	@Override
+	public boolean plansbgj(Jhsh jhsh) {
+		return update("plansbgj", jhsh)==1;
+	}
+	@Override
+	public boolean plansblm(Jhsh jhsh) {
+		return update("plansblm", jhsh)==1;
+	}
+	@Override
+	public boolean plansbxj(Jhsh jhsh) {
+		return update("plansbxj", jhsh)==1;
+	}
+	@Override
+	public boolean plansbyh(Jhsh jhsh) {
+		return update("plansbyh", jhsh)==1;
+	}
+	@Override
+	public boolean plansbsh(Jhsh jhsh) {
+		return update("plansbsh", jhsh)==1;
+	}
+	@Override
+	public boolean planshgj(Jhsh jhsh) {
+		return update("planshgj", jhsh)==1;
+	}
+	@Override
+	public boolean planshlm(Jhsh jhsh) {
+		return update("planshlm", jhsh)==1;
+	}
+	@Override
+	public boolean planshxj(Jhsh jhsh) {
+		return update("planshxj", jhsh)==1;
+	}
+	@Override
+	public boolean planshyh(Jhsh jhsh) {
+		return update("planshyh", jhsh)==1;
+	}
+	@Override
+	public boolean planshsh(Jhsh jhsh) {
+		return update("planshsh", jhsh)==1;
+	}
+	
 }

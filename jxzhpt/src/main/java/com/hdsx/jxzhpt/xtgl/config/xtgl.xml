@@ -13,6 +13,10 @@
 	<update id="updatePassword" parameterType="HashMap" >
 		UPDATE xtgl_MASTER SET PASSWORD=#{mm} WHERE truename=#{id}
 	</update>
+	
+	<select id="selectPwd" parameterType="String" resultType="master">
+	select * from xtgl_master M WHERE M.truename=#{value}
+	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
 	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>

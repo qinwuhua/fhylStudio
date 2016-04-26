@@ -66,6 +66,10 @@
 		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
 		  <action name="querygkxmXX" class="kxxyjController" method="querygkxmXX"/>
 		  
+		  <action name="showkxxShxx" class="kxxyjController" method="showkxxShxx"/>
+		  <action name="shshkxx" class="kxxyjController" method="shshkxx"/>
+		  <action name="updateShkxx" class="kxxyjController" method="updateShkxx"/>
+		  <action name="selectShkxList" class="kxxyjController" method="selectShkxList"/>
 		  <action name="thtzxm" class="kxxyjController" method="thtzxm"/>
 		  <action name="thtzxm1" class="kxxyjController" method="thtzxm1"/>
 		  <action name="tzxm" class="kxxyjController" method="tzxm"/>
@@ -180,6 +184,19 @@
 		<action name="exportZjxdgsd" class="jhshController" method="exportZjxdgsd"></action>
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
+		
+		<action name="plansh" class="jhshController" method="plansh"></action>
+		<action name="plansb" class="jhshController" method="plansb"></action>
+		<action name="getbzhzb" class="jhshController" method="getbzhzb"></action>
+		<action name="planxdhzadd" class="jhshController" method="planxdhzadd"></action>
+		<action name="queryjhxdyh" class="jhshController" method="queryjhxdyh"></action>
+		<action name="queryjhxdshbz" class="jhshController" method="queryjhxdshbz"></action>
+		<action name="queryJhbzLj" class="jhshController" method="queryJhbzLj"></action>
+		<action name="queryjhxdsh" class="jhshController" method="queryjhxdsh"></action>
+		<action name="planxdAll" class="jhshController" method="planxdAll"></action>
+		<action name="queryGsdgzxdbz" class="jhshController" method="queryGsdgzxdbz"></action>
+		<action name="queryJhshLjgsdxd" class="jhshController" method="queryJhshLjgsdxd"></action>
+		<action name="queryGsdgzxd" class="jhshController" method="queryGsdgzxd"></action>
 		<action name="queryGsdgz" class="jhshController" method="queryGsdgz"></action>
 		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
 		<action name="queryJhsh1" class="jhshController" method="queryJhsh1"></action>

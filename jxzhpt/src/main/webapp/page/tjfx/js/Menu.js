@@ -6,6 +6,7 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jcktj/xzqhtj.jsp'
 	});
+
 	
 	createMenu('LeftMenu',{
 		id:'menu_0101070201',
@@ -30,6 +31,15 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./jhktj/xmlxtjqsfx.jsp'
 	});
+
+	createMenu('LeftMenu',{
+		id:'menu_0101070204',
+		title:'补助历史查询',
+		imgSrc:'../../images/bzlscx.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/jhsh/lsjlSearch.jsp'
+	});
+	
 	
 	createMenu('LeftMenu',{
 		id:'menu_0101070301',

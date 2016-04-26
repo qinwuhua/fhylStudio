@@ -172,4 +172,6 @@ public interface XtglServer {
 	List<TreeNode> createMenu(Unit unit);
 
 	List<Param> selQxByUser1(Param param);
+
+	Master selectPwd(String temp);
 }

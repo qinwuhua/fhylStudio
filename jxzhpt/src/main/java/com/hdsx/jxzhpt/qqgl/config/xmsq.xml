@@ -449,9 +449,13 @@
 		from xmsq_yhdzx x where x.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertCbsjSh" parameterType="xmsq">
+		insert into kxxyj_sh(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsdj,jsxz,shzt)
+		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0 
+		from xmsq_sh x where x.xmbm in (${xmbm}))
+	<!-- 
 		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
 		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa 
-		from xmsq_sh x where x.xmbm in (${xmbm})
+		from xmsq_sh x where x.xmbm in (${xmbm}) -->
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
@@ -523,7 +527,7 @@
 				<!-- select x.* from xmsq_yhdzx x  -->
 				select substr(x.xmbm,0,4) xmnf,x.xmbm,x.xmmc,x.xzqh,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,x.ghlxbh,x.xzqhdm,l.*
 				from xmsq_yhdzx x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
-				lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
+				lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='1' ) l where 1=1 and x.xmbm(+)=l.xmid
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -535,14 +539,14 @@
 				<if test="ylxbh!=null and ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___')
 				</if>
-				order by x.sqzt desc,x.xmbm desc) t ) t2
+				order by x.sqzt desc,x.xmbm desc,l.sffirst desc) t ) t2
 	</select>
 	<select id="queryShExport" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
 				select substr(x.xmbm,0,4) xmnf,x.xmbm,x.xmmc,x.xzqh,x.ghlxbh,x.xzqhdm,x.gydw,x.lmkd,x.jsdj,x.ntz,x.jhkgsj,x.jhwgsj,x.gq,x.gcfl,x.jsfa,l.*
 		        from xmsq_sh x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
-		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' and sffirst='1') l where 1=1 and x.xmbm=l.xmid
+		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='1'   ) l where 1=1 and x.xmbm(+)=l.xmid
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -554,7 +558,7 @@
 				<if test="ylxbh!=null and ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
 				</if>
-				order by x.sqzt desc,x.xmbm desc) t ) t2
+				order by x.sqzt desc,x.xmbm desc ,l.sffirst desc) t ) t2
 	</select>
 	<select id="queryAllXzqh" parameterType="string" resultType="treenode">
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)

@@ -358,6 +358,13 @@
 		dfzc=#{dfzc},yhdk=#{yhdk}
 		where xmbm=#{xmbm}
 	</update>
+	<update id="updateShkxx" parameterType="kxxyj">
+		update kxxyj_sh set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		dq_m=#{dq_m},jsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},tbbmbm=#{tbbmbm},
+		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
+		dfzc=#{dfzc},yhdk=#{yhdk}
+		where xmbm=#{xmbm}
+	</update>
 	<update id="updateXjkxx" parameterType="kxxyj">
 		update kxxyj_xj set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
@@ -1306,4 +1313,112 @@
 		</if>
 	</select>
 	
+	
+	
+	
+	<select id="selectShkxList" parameterType="lxsh" resultType="kxxyj">
+		select * from (
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SH t Left join 
+		xmsq_sh t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
+		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
+		left join (select xmid,count(*) xmsl,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
+		replace(WMSYS.WM_CONCAT(ghlxbm),',',',') ghlxbm,replace(WMSYS.WM_CONCAT(ghlxmc),',',',') ghlxmc,replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsdjtj
+  		from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		where 1=1 
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf !='' and xmnf != null ">and substr(t.xmbm,0,4) in (${xmnf})</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ${gldj}</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
+		<if test="lxbm !='' and lxbm != null ">
+			and lxbmtj like '%'||#{lxbm}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm != null ">
+			and sl.ghlxbm like '%'||#{ghlxbm}||'%'
+		</if>
+		<if test="ghlxmc !='' and ghlxmc != null ">
+			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="shzt !='' and shzt != null ">
+			and t.shzt=#{shzt}
+		</if>
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by sbzt1,xmbm
+	</select>
+	<select id="selectShkxListCount" parameterType="lxsh" resultType="int">
+		select count(*) from KXXYJ_SH t Left join xmsq_sh t1 on t.xmbm=t1.xmbm
+		left join (select xmid,count(*) xmsl,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
+		replace(WMSYS.WM_CONCAT(ghlxbm),',',',') ghlxbm,replace(WMSYS.WM_CONCAT(ghlxmc),',',',') ghlxmc,replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsdjtj
+  		from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		where 1=1
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf !='' and xmnf != null ">and substr(t.xmbm,0,4) in (${xmnf})</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ${gldj}</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
+		<if test="lxbm !='' and lxbm != null ">
+			and lxbmtj like '%'||#{lxbm}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm != null ">
+			and sl.ghlxbm like '%'||#{ghlxbm}||'%'
+		</if>
+		<if test="ghlxmc !='' and ghlxmc != null ">
+			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="shzt !='' and shzt != null ">
+			and t.shzt=#{shzt}
+		</if>
+	</select>
+	<select id="showkxxShxx" parameterType="lxsh" resultType="lxsh">
+		select count(*) sl,nvl(sum(t1.ntz),0) tz,nvl(sum(lx.lc),0) lc,'0' bzcs,'0' sbz,'0' sjl,'0' dftz from KXXYJ_SH t Left join xmsq_sh t1 on t.xmbm=t1.xmbm
+		left join (select xmid,count(*) xmsl,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
+		replace(WMSYS.WM_CONCAT(ghlxbm),',',',') ghlxbm,replace(WMSYS.WM_CONCAT(ghlxmc),',',',') ghlxmc,replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsdjtj
+  		from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+  		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
+		where 1=1
+		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
+		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmnf !='' and xmnf != null ">and substr(t.xmbm,0,4) in (${xmnf})</if>
+		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="gldj!='' and gldj!= null ">and ${gldj}</if>
+		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
+		<if test="lxbm !='' and lxbm != null ">
+			and lxbmtj like '%'||#{lxbm}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and lxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm != null ">
+			and sl.ghlxbm like '%'||#{ghlxbm}||'%'
+		</if>
+		<if test="ghlxmc !='' and ghlxmc != null ">
+			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
+		<if test="shzt !='' and shzt != null ">
+			and t.shzt=#{shzt}
+		</if>
+	</select>
+	
+	
+	
+	
+	<update id="shshkxx" parameterType="lxsh">
+		update kxxyj_sh set shzt=1 where xmbm in (${xmbm})
+	</update>
+	<insert id="insertshcb" parameterType="lxsh">
+	insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
+    select k.xmmc,x.xmbm,null,k.xzqh,k.qdzh,k.zdzh,k.jsdj,x.gcfl,k.kgny,k.wgny,x.gq,x.lc,x.jsfa 
+    from xmsq_sh x left join kxxyj_sh k on x.xmbm=k.xmbm where x.xmbm in (${xmbm})
+	</insert>
 </mapper>

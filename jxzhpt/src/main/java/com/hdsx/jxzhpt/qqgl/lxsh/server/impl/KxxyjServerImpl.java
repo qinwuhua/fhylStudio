@@ -78,6 +78,13 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		else return false;
 	}
 	@Override
+	public boolean updateShkxx(Kxxyj kxxyj) {
+		if(update("updateShkxx", kxxyj)>0){
+			return true;
+		}
+		else return false;
+	}
+	@Override
 	public boolean updateXjkxx(Kxxyj kxxyj) {
 		if(update("updateXjkxx", kxxyj)>0){
 			return true;
@@ -831,4 +838,26 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		}
 		return null;
 	}
+
+	@Override
+	public List<Kxxyj> selectShkxList(Lxsh lxsh) {
+		return queryList("selectShkxList",lxsh);
+	}
+
+	@Override
+	public int selectShkxListCount(Lxsh lxsh) {
+		return queryOne("selectShkxListCount", lxsh);
+	}
+
+	@Override
+	public boolean shshkxx(Lxsh lxsh) {
+		if(update("shshkxx", lxsh)==lxsh.getXmbm().split(",").length)
+		insert("insertshcb", lxsh);
+		return true;
+	}
+	@Override
+	public Lxsh showkxxShxx(Lxsh lxsh) {
+		return queryOne("showkxxShxx", lxsh);
+	}
+	
 }

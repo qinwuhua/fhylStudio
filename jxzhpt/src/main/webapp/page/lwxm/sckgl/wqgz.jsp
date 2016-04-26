@@ -165,6 +165,69 @@ function tuiHui(){
 			});
 	}
 }
+//危桥改造审查库管理excel导出
+function exportExcel_wqgz_scgl1(){
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var akjfl="";
+	akjfl=$("#akjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
+	var tsdq="";
+	tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substring(0,1)==',')
+			tsdq=tsdq.substring(1,tsdq.length);
+	var jsdj="";
+	jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substring(0,1)==',')
+			jsdj=jsdj.substring(1,jsdj.length);
+	var gldj="";
+	gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substring(0,1)==','){
+			gldj=gldj.substring(1,gldj.length);
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&qlmc='+$("#qlmc").val()+
+ 	'&xmnf='+xmnf+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&jsdj='+jsdj+
+ 	'&akjfl='+akjfl+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
+ 	'&sck_sbthcd='+cd+
+ 	'&tsdq='+tsdq+
+ 	'&gldj='+gldj;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scgl.do?"+param;
+}
 </script>
 <style type="text/css">
 TD {
@@ -240,7 +303,7 @@ text-decoration:none;
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('wqgz_sc');" style="border-width:0px;" />
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('wqgz_add.jsp','900','500');" style="border-width:0px;" />
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delSckwqgz();" style="border-width:0px;" />
-                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz_scgl()" style="border-width:0px;cursor: hand;" />
+                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz_scgl1()" style="border-width:0px;cursor: hand;" />
 							  </td>
                             </tr></table>
 						</div>

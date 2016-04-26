@@ -579,8 +579,8 @@
 	</select>
 	
 	<select id="querylxshSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_SJGZ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_SJGZ t right join
+		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -599,10 +599,11 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_LMGZ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_LMGZ t right join
+		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -621,10 +622,11 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,t.bzys v_18 from LXSH_XJ t,
-		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx  where 1=1 and t.xmbm=lx.xmid(+)
+		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx  where 1=1 and t.xmbm(+)=lx.xmid
 		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -643,6 +645,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
@@ -650,8 +653,8 @@
 		lx.jhyilc v_13,lx.jherlc v_14,lx.jhsanlc v_15,lx.jhsilc v_16,lx.jhdwlc v_17,lx.jhwllc v_18,
 		'升级改造' v_19,t.dq_m v_20,t.dq v_21,t.jsjsdj v_22,
 		t.sd_m v_23,t.sd v_24,t.kgny v_25,t.wgny v_26,t.bzdw v_27,t.tzgs v_28,t.dfzc v_29,
-		t.yhdk v_30,t.gkpfwh v_31,t.pfsj v_32 from KXXYJ_SJGZ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		t.yhdk v_30,t.gkpfwh v_31,t.pfsj v_32 from KXXYJ_SJGZ t right join
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -666,12 +669,13 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc, lx.sffirst desc
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.yilc v_7,lx.erlc v_8,lx.sanlc v_9,lx.silc v_10,lx.dwlc v_11,
 	    lx.wllc v_12,'路面改造' v_13,t.dq_m v_14,t.dq v_15,t.jsjsdj v_16,
 	    t.sd_m v_17,t.sd v_18,t.kgny v_19,t.wgny v_20,t.bzdw v_21,t.tzgs v_22,t.dfzc v_23,t.yhdk v_24,t.gkpfwh v_25,t.pfsj v_26 
-	    from KXXYJ_LMGZ t left join (select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+	    from KXXYJ_LMGZ t right join (select * from lxsh_lx where 1=1 and jdbs='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -688,12 +692,13 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.xjlxbm v_7,lx.xjqdzh v_8,lx.xjzdzh v_9,lx.xjlc v_10,
 		lx.yilc v_11,lx.erlc v_12,lx.sanlc v_13,lx.silc v_14,lx.dwlc v_15,lx.wllc v_16,'新建' v_17,t.dq_m v_18,t.dq v_19,t.jsjsdj v_20,t.sd_m v_21,t.sd v_22,
-		t.kgny v_23,t.wgny v_24,t.bzdw v_25,t.tzgs v_26,t.dfzc v_27,t.yhdk v_28,t.gkpfwh v_29,t.pfsj v_30 from KXXYJ_XJ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		t.kgny v_23,t.wgny v_24,t.bzdw v_25,t.tzgs v_26,t.dfzc v_27,t.yhdk v_28,t.gkpfwh v_29,t.pfsj v_30 from KXXYJ_XJ t right join
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">
@@ -714,6 +719,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<insert id="importsjgzlxsh" parameterType="hashMap">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
@@ -1217,14 +1223,15 @@
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
+		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querykxxgsd" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.yilc v_7,lx.erlc v_8,lx.sanlc v_9,lx.silc v_10,lx.dwlc v_11,lx.wllc v_12,
 		lx.jhyilc v_13,lx.jherlc v_14,lx.jhsanlc v_15,lx.jhsilc v_16,lx.jhdwlc v_17,lx.jhwllc v_18,
 		'升级改造' v_19,t.dq_m v_20,t.dq v_21,t.jsjsdj v_22,
 		t.sd_m v_23,t.sd v_24,t.kgny v_25,t.wgny v_26,t.bzdw v_27,t.tzgs v_28,t.dfzc v_29,
-		t.yhdk v_30,t.gkpfwh v_31,t.pfsj v_32 from kxgsdgz t left join
-		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		t.yhdk v_30,t.gkpfwh v_31,t.pfsj v_32 from kxgsdgz t right join
+		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -1242,6 +1249,7 @@
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
+		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	
 </mapper>

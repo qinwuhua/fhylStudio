@@ -270,10 +270,12 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-                                <td colspan="10">
-	        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-	        						<img onclick="dckxxModule('gsdgz');" name="bxs" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
-								</td>
+                              <td colspan="10">
+                              
+        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dckxxModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+<!--         					<img onclick="dckxxModule('gsdgz');" name="bxs" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
+										             </td>
                             </tr></table>
         				</div>
         			</fieldset>

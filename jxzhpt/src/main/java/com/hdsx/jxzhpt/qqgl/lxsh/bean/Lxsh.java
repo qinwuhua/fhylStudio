@@ -22,6 +22,7 @@ public class Lxsh implements Serializable {
 	private String sbz;
 	private String sjl;
 	private String dftz;
+
 	
 	private String ylxmc;
 	
@@ -30,6 +31,7 @@ public class Lxsh implements Serializable {
 	}
 	public void setYlxmc(String ylxmc) {
 		this.ylxmc = ylxmc;
+
 	}
 	public String getGhxlxbm() {
 		return ghxlxbm;

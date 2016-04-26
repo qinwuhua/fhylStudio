@@ -23,16 +23,17 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryJhshxxByXmbm2.do',
-				data:'jhsh.xmlx='+parent.YMLib.Var.xmlx+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#jhxdFrom').form("load",data);
-					$('#xmlx').val(parent.YMLib.Var.xmlx);
+					$('#xmlx').val(parent.YMLib.Var.xmbm.substr(10,1));
 					//$('#qdzh').val(parent.YMLib.Var.row.qdzh);
 					//$('#zdzh').val(parent.YMLib.Var.row.zdzh);
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
 					$('#xdzt').val("1");
+					$("#sfsycgs1").combobox('setValue',data.sfsycgs);
 				}
 			});
 			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
@@ -75,10 +76,14 @@
 			});
 		}
 		function updataJhsh(){
+			if($("#sfsycgs1").combobox('getValue')!=''||$("#sfsycgs1").combobox('getValue')!=null)
+			{
+				$("#sfsycgs").val($("#sfsycgs1").combobox('getValue'));
+			}
 			var result =true;
 			result = validateText('ztz','number',result);
-			result = validateText('sysbbzj','number',result);
-			result = validateText('yqdbcgs','number',result);
+// 			result = validateText('sysbbzj','number',result);
+// 			result = validateText('yqdbcgs','number',result);
 			result = validateText('qdzh','number',result);
 			result = validateText('zdzh','number',result);
 			if(!result){
@@ -129,7 +134,7 @@
 		<table width="98%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
 				<td>
-					<form id="jhxdFrom" action="../../../qqgl/updateJhshxx2.do">
+					<form id="jhxdFrom" action="../../../qqgl/updateJhshxx2.do" method="post"> 
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>
 						<input id="xdzt" name="xdzt" value="1" type="hidden"/>
@@ -140,7 +145,7 @@
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								总投资
 							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+							<!-- <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="ztz" name="ztz" type="text" value="0" style="width: 100px;height: 20px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -154,8 +159,52 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="yqdbcgs" name="yqdbcgs" type="text" value="0" style="width: 80px;height: 20px;" />&nbsp;万元
+							</td> -->
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="ztz" name="ztz" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">燃油税：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="rys" name="rys" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">贷款：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="dk" name="dk" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
 						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">其他：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="qt" name="qt" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
+							</td>
+							
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">是否使用车购税：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<select id="sfsycgs1" class="easyui-combobox" style="width: 105px" data-options="panelHeight:'80'"> 
+									<option value="">请选择</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select>
+								<input id="sfsycgs" name="sfsycgs" type="hidden" />
+							</td>
+						</tr>
+						
+						
+						
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								计划下达文号

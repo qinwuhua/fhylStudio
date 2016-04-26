@@ -1,3 +1,39 @@
+function plansb(index){
+	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/plansb.do',
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+			}
+				
+		}
+	});
+	
+}
+function plansh(index){
+	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/plansh.do',
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("审核成功");
+				$("#grid").datagrid('reload');
+			}
+				
+		}
+	});
+	
+}
+
+
 function qxxm(str){
 	var xmbm=str+"";
 	$.ajax({
@@ -836,7 +872,7 @@ function deleteZjxdById(id){
 function openJhxd1(url,index){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
-	openWindow('jhxd','计划审核','/jxzhpt/page/qqgl/jhsh/'+url,920,300);
+	openWindow('jhxd','编辑','/jxzhpt/page/qqgl/jhsh/'+url,920,370);
 }
 function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
@@ -879,15 +915,18 @@ function openxZjxd1(){
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
 	if(id=="jhxd" || id=="zjzj"){
-		if(xmlx==null)
+		//alert(xmbm.substr(10,1)+"    "+xmlx);
+		//if(xmlx==null)
 			YMLib.Var.xmlx=xmbm.substr(10,1);
-		else
-		    YMLib.Var.xmlx=xmlx;
+		//else
+		   // YMLib.Var.xmlx=xmlx;
 		
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
 		if(id=="lmsjedit" || id=="lmsj"){
 			queryLmsj();
+		}else if(id=="gsdgzbz" || id=="gsdgzbz"){
+			queryxmList();
 		}else if(id=="lmgzedit" || id=="lmgz"){
 			queryLmgz();
 		}else if(id=="xjgcedit" || id=="xjgc"){

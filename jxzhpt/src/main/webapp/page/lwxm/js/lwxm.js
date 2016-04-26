@@ -303,7 +303,7 @@ function importData_sc(flag){
 //	}
 	var url="";
 	if(flag=='wqgz_sc'){
-		url="/jxzhpt/xmsck/importWqgz_sc.do";
+		url='/jxzhpt/xmsck/importWqgz_sc.do?sbthcd1="'+$.cookie("unit2").length+'"';
 	}
 	if(flag=='abgc_sc'){
 		url="/jxzhpt/xmsck/importAbgc_sc.do";
@@ -562,11 +562,11 @@ function exportExcel_zhfz_sh(){
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").combobox("getValue")+
+// 	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
+ 	'&lxjsdj='+$("#jsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
- 	'&bz='+$("#bz").combobox("getValue")+
+// 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz_sh.do?"+param;
@@ -757,14 +757,18 @@ function exportExcel_abgc_scsh(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+	var lxjsdj="";
+		lxjsdj=$("#jsdj").combobox("getValues").join(",");
+	if(lxjsdj.substring(0,1)==',')
+		lxjsdj=lxjsdj.substring(1, lxjsdj.length);
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
+ 	'&lxjsdj='+lxjsdj+
  	'&lxbm='+$("#lxbm").val()+
- 	'&bz='+$("#bz").combobox("getValue")+
+// 	'&bz='+$("#bz").combobox("getValue")+
  	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
@@ -796,14 +800,17 @@ function exportExcel_zhfz_scsh(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+	var lxjsdj="";
+	lxjsdj=$("#jsdj").combobox("getValues").join(",");
+	if(lxjsdj.substring(0,1)==',')
+		lxjsdj=lxjsdj.substring(1, lxjsdj.length);
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
+ 	'&lxjsdj='+lxjsdj+
  	'&lxbm='+$("#lxbm").val()+
- 	'&bz='+$("#bz").combobox("getValue")+
  	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	

@@ -922,9 +922,9 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			xmkaqsmfh.setGydw("and ld.gydwdm in ("+gydws+")");
 		}
 		if(xzqhs.indexOf(",")==-1){
-			xmkaqsmfh.setXzqhdm("and xzqhdm like '%"+xzqhs+"%'");
+			xmkaqsmfh.setXzqhdm("and ld.xzqhdm like '%"+xzqhs+"%'");
 		}else{
-			xmkaqsmfh.setXzqhdm("and xzqhdm in ("+xzqhs+")");
+			xmkaqsmfh.setXzqhdm("and ld.xzqhdm in ("+xzqhs+")");
 		}
 		
 		List<Excel_list> l = xmkaqsmfhServer.dcaqsmfhsckExcel(xmkaqsmfh);

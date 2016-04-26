@@ -4,7 +4,210 @@ public class Jhsh {
 	private String jsjsdj;
 	private String xjsdj;
 	private String tz;
+	private String ghxlxbm;//规划路线编码
+	private String ghxlxmc;//规划路线名称
+	private String scxdnf;//首次下达年份
+	private String xzdj;//行政等级
+	private String xdzttj;//下达状态
+	private String zjly;//资金来源
+	private String xmnf;//项目年份
+	private String gyfl;//管养分类
+	private String bzxdnf;//编制     下达年份
+	private String bzpfztz;//编制     批复总投资
+	private String bzgz;//编制     国债
+	private String bzsz;//编制     省债
+	private String bzzq;//编制     债券
+	private String bzdk;//编制     贷款
+	private String bzjl;//编制     奖励
+	private String bzqt;//编制     其他
+	private String bzcgs;//编制     车购税
+	private String bztbsj;//编制  填报时间
+	private String tbdw;//填报单位
+	private String xzqhmc;//行政区划名称
+	private String jhlc;//里程
+	private String zq;//债券
+	private String jl;//奖励
+	private String qt;//其他
+	private String sfsycgs;//是否使用车购税
+	private String rys;//燃油税
+	private String bzrys;//编制    燃油税
+	private String zydpx;//重要度排序
+	private String sbzt;//上报状态
 	
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public String getZydpx() {
+		return zydpx;
+	}
+	public void setZydpx(String zydpx) {
+		this.zydpx = zydpx;
+	}
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	public String getBzrys() {
+		return bzrys;
+	}
+	public void setBzrys(String bzrys) {
+		this.bzrys = bzrys;
+	}
+	public String getSfsycgs() {
+		return sfsycgs;
+	}
+	public void setSfsycgs(String sfsycgs) {
+		this.sfsycgs = sfsycgs;
+	}
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getTbdw() {
+		return tbdw;
+	}
+	public void setTbdw(String tbdw) {
+		this.tbdw = tbdw;
+	}
+	public String getBztbsj() {
+		return bztbsj;
+	}
+	public void setBztbsj(String bztbsj) {
+		this.bztbsj = bztbsj;
+	}
+	public String getBzxdnf() {
+		return bzxdnf;
+	}
+	public void setBzxdnf(String bzxdnf) {
+		this.bzxdnf = bzxdnf;
+	}
+	public String getBzpfztz() {
+		return bzpfztz;
+	}
+	public void setBzpfztz(String bzpfztz) {
+		this.bzpfztz = bzpfztz;
+	}
+	public String getBzgz() {
+		return bzgz;
+	}
+	public void setBzgz(String bzgz) {
+		this.bzgz = bzgz;
+	}
+	public String getBzsz() {
+		return bzsz;
+	}
+	public void setBzsz(String bzsz) {
+		this.bzsz = bzsz;
+	}
+	public String getBzzq() {
+		return bzzq;
+	}
+	public void setBzzq(String bzzq) {
+		this.bzzq = bzzq;
+	}
+	public String getBzdk() {
+		return bzdk;
+	}
+	public void setBzdk(String bzdk) {
+		this.bzdk = bzdk;
+	}
+	public String getBzjl() {
+		return bzjl;
+	}
+	public void setBzjl(String bzjl) {
+		this.bzjl = bzjl;
+	}
+	public String getBzqt() {
+		return bzqt;
+	}
+	public void setBzqt(String bzqt) {
+		this.bzqt = bzqt;
+	}
+	public String getBzcgs() {
+		return bzcgs;
+	}
+	public void setBzcgs(String bzcgs) {
+		this.bzcgs = bzcgs;
+	}
+	public String getGyfl() {
+		return gyfl;
+	}
+	public void setGyfl(String gyfl) {
+		this.gyfl = gyfl;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getGhxlxbm() {
+		return ghxlxbm;
+	}
+	public void setGhxlxbm(String ghxlxbm) {
+		this.ghxlxbm = ghxlxbm;
+	}
+	public String getGhxlxmc() {
+		return ghxlxmc;
+	}
+	public void setGhxlxmc(String ghxlxmc) {
+		this.ghxlxmc = ghxlxmc;
+	}
+	public String getScxdnf() {
+		return scxdnf;
+	}
+	public void setScxdnf(String scxdnf) {
+		this.scxdnf = scxdnf;
+	}
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
+	public String getXdzttj() {
+		return xdzttj;
+	}
+	public void setXdzttj(String xdzttj) {
+		this.xdzttj = xdzttj;
+	}
+	public String getZjly() {
+		return zjly;
+	}
+	public void setZjly(String zjly) {
+		this.zjly = zjly;
+	}
 	public String getJsjsdj() {
 		return jsjsdj;
 	}
@@ -167,6 +370,7 @@ public class Jhsh {
 	private String wllc;//高速公路里程
 	//查询条件字段
 	private String lxmc;//路线名称
+	private String ylxmc;//原路线名称
 	private String lxbm;//路线编码
 	private String kgzt;//开工竣工
 	//资金下达字段
@@ -191,6 +395,12 @@ public class Jhsh {
 	
 
 	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
 	public String getGldj() {
 		return gldj;
 	}

@@ -58,14 +58,18 @@
 						return result;
 					}
 				},
-				{field:'xdzt',title:'计划审核',width:60,align:'center',
-					formatter:function(value,row,index){
-						xmlx=5;
-						var result='<a href="javascript:openJhxd1('+"'jhxd2.jsp',"+index+')" style="color:#3399CC;">计划审核</a>';
+				{field:'sbzt',title:'审核',width:60,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						xmlx=1;
+						if(row.xdzt=='0')
+						result='<a href="javascript:plansh('+index+')" style="color:#3399CC;">审核</a>';
+						else
+							result='审核';
 						return result;
 					}
 				},
-				{field:'sbzt',title:'审核状态',width:60,align:'center',
+				{field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
@@ -132,7 +136,7 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $("#stz").html(msg.STZ);
+						 $("#sbz").html(msg.SBZ);
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);

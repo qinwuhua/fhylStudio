@@ -131,6 +131,26 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			}else{
 				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
 			}
+			if(sckabgc.getLxjsdj().length()>0){
+				String[] tsdqs=sckabgc.getLxjsdj().split(",");
+				String tsdq="and lxjsdj in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setLxjsdj(tsdq);
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=abgcServer.exportExcel_abgc_scsh(sckabgc);
 			//导出设置
