@@ -562,11 +562,11 @@ function exportExcel_zhfz_sh(){
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").combobox("getValue")+
+// 	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
+ 	'&lxjsdj='+$("#jsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
- 	'&bz='+$("#bz").combobox("getValue")+
+// 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz_sh.do?"+param;
