@@ -751,7 +751,7 @@
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and t.shzt like '%'||#{sbzt1}||'%'
@@ -797,7 +797,7 @@
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and t.shzt like '%'||#{sbzt1}||'%'
@@ -843,7 +843,7 @@
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and t.shzt like '%'||#{sbzt1}||'%'
@@ -1285,7 +1285,7 @@
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and t1.xmnf like '%'||#{xmnf}||'%'
+			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and t.shzt like '%'||#{sbzt1}||'%'

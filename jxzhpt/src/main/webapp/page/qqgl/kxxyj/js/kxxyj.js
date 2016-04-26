@@ -1084,6 +1084,8 @@ function showAlllmsh(){
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var lsjl=$("#lsjl").combobox('getValue');
+	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
+	var sbzt=$("#sbzt").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
 	    striped:true,
@@ -1103,9 +1105,9 @@ function showAlllmsh(){
 			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
+			jsjsdj:jsjsdj,
 			ghlxbm:$("#ghlxbm").val(),
 			ghlxmc:$("#ghlxmc").val(),
-			jsjsdj:$("#jsjsdj").combobox('getValues').join(","),
 			gldj:gldj,
 			'lxsh.ghlxbh':$("#lxbm").val(),
 			'lxsh.lxmc':$("#lxmc").val()
@@ -1250,7 +1252,7 @@ function showAllxjsh(){
 		tsdq=tsdq.substr(1,tsdq.length);
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
-	
+	var sbzt=$("#sbzt").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjkxList.do',
 	    striped:true,

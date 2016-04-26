@@ -1514,6 +1514,14 @@ public class KxxyjController extends BaseActionSupport{
 			}
 			lxsh.setXzqh(tiaojian2);
 			//lxsh.setGydw(tiaojian1);
+			String xmnf1 = lxsh.getXmnf();
+			if(xmnf1.indexOf(",")>-1){
+				xmnf = "t1.xmnf in ("+xmnf1+")";
+			}else{
+				xmnf = "t1.xmnf = '"+xmnf1+"'";
+			}
+		lxsh.setXmnf(xmnf);
+			
 			Lxsh l=null;
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
