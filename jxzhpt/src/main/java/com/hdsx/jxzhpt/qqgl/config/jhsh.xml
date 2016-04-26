@@ -593,6 +593,12 @@
 		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
 		<if test="gldj != null">c.gldj=#{gldj},</if>
+		<if test="gz != null">c.gz=#{gz},</if>
+		<if test="sz != null">c.sz=#{sz},</if>
+		<if test="zq != null">c.zq=#{zq},</if>
+		<if test="dk != null">c.dk=#{dk},</if>
+		<if test="jl != null">c.jl=#{jl},</if>
+		<if test="qt != null">c.qt=#{qt},</if>
 		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
 		c.xdzt='0'
 		where c.xmbm=#{xmbm}
@@ -605,6 +611,12 @@
 		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
 		<if test="gldj != null">c.gldj=#{gldj},</if>
+		<if test="gz != null">c.gz=#{gz},</if>
+		<if test="sz != null">c.sz=#{sz},</if>
+		<if test="zq != null">c.zq=#{zq},</if>
+		<if test="dk != null">c.dk=#{dk},</if>
+		<if test="jl != null">c.jl=#{jl},</if>
+		<if test="qt != null">c.qt=#{qt},</if>
 		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
 		c.xdzt='0'
 		where c.xmbm=#{xmbm}
@@ -617,6 +629,12 @@
 		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
 		<if test="gldj != null">c.gldj=#{gldj},</if>
+		<if test="gz != null">c.gz=#{gz},</if>
+		<if test="sz != null">c.sz=#{sz},</if>
+		<if test="zq != null">c.zq=#{zq},</if>
+		<if test="dk != null">c.dk=#{dk},</if>
+		<if test="jl != null">c.jl=#{jl},</if>
+		<if test="qt != null">c.qt=#{qt},</if>
 		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
 		c.xdzt='0' 
 		where c.xmbm=#{xmbm}
@@ -645,19 +663,31 @@
 		<if test="llcl!=null">llcl=#{llcl},</if>
 		<if test="xdwh!=null">xdwh=#{xdwh},</if>
 		<if test="xdsj!=null">xdsj=#{xdsj},</if>
-		xdzt=${xdzt} where c.xmbm=#{xmbm}
+		<if test="dk != null">c.dk=#{dk},</if>
+		<if test="rys != null">c.rys=#{rys},</if>
+		<if test="qt != null">c.qt=#{qt},</if>
+		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
+		<if test="sfsycgs != null">c.sfsycgs=#{sfsycgs},</if>
+		xdzt='0' where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateJhshxxSh" parameterType="jhsh">
 		update jhsh_sh c set 
-		<if test="pfztz!=null">c.pfztz=#{pfztz}</if>
-		<if test="bbzzj!=null">,c.bbzzj=#{bbzzj}</if>
-		<if test="sbzzj!=null">,c.sbzzj=#{sbzzj}</if>
-		<if test="xdwh!=null">,c.xdwh=#{xdwh}</if>
-		<if test="xdsj!=null">,c.xdsj=#{xdsj}</if>
-		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
-		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
-		<if test="lc!=null">,lc=#{lc}</if>
-		,xdzt=${xdzt} where c.xmbm=#{xmbm}
+		<if test="pfztz!=null">c.pfztz=#{pfztz},</if>
+		<if test="bbzzj!=null">c.bbzzj=#{bbzzj},</if>
+		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
+		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
+		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		<if test="qdzh!=null">qdzh=#{qdzh},</if>
+		<if test="zdzh!=null">zdzh=#{zdzh},</if>
+		<if test="lc!=null">lc=#{lc},</if>
+		<if test="gz != null">c.gz=#{gz},</if>
+		<if test="sz != null">c.sz=#{sz},</if>
+		<if test="zq != null">c.zq=#{zq},</if>
+		<if test="dk != null">c.dk=#{dk},</if>
+		<if test="jl != null">c.jl=#{jl},</if>
+		<if test="qt != null">c.qt=#{qt},</if>
+		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
+		xdzt='0' where c.xmbm=#{xmbm}
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
@@ -703,6 +733,11 @@
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
 		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid
+		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
+	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
+	</select>
+	<select id="queryShKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
+		select k.*,k.jsdj jsjsdj,l.*,lxx.* from kxxyj_sh k left join lxsh_lx l on k.xmbm=l.xmid
 		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
 	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>

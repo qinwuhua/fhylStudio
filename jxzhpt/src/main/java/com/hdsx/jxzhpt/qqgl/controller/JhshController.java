@@ -586,7 +586,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 * 养护大中修和水毁的计划下达
 	 * @throws Exception
 	 */
-	public void updateJhshxx2() throws Exception{
+	public void updateJhshxx2(){
+		System.out.println(jhsh.getXmlx());
 		try{
 			boolean b=true;
 			//准备路线桩号信息
@@ -613,11 +614,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			if(b){
 				jhshServer.updateLx(lx);
 			}
+			
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
-			throw e;
 		}
 	}
 	
@@ -1478,6 +1479,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				kxxyj = jhshServer.queryLmgzKxxyjByXmbm(jhsh);
 			}else if(jhsh.getXmlx()==3){
 				kxxyj = jhshServer.queryXjKxxyjByXmbm(jhsh);
+			}
+			else if(jhsh.getXmlx()==5){
+				kxxyj = jhshServer.queryShKxxyjByXmbm(jhsh);
 			}
 			JsonUtils.write(kxxyj, getresponse().getWriter());
 		} catch (Exception e) {

@@ -58,14 +58,14 @@
 						return result;
 					}
 				},
-				{field:'sbzt',title:'审核',width:60,align:'center',
+				{field:'sbzt',title:'上报',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
-						if(row.xdzt=='0')
-						result='<a href="javascript:plansh('+index+')" style="color:#3399CC;">审核</a>';
+						if(row.sbzt=='0')
+						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">上报</a>';
 						else
-							result='审核';
+							result='上报';
 						return result;
 					}
 				},

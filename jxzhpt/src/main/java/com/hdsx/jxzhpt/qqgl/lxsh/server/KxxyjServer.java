@@ -129,4 +129,14 @@ public interface KxxyjServer {
 
 	Lxsh showgsdkxxTjxx(Lxsh lxsh);
 
+	List<Kxxyj> selectShkxList(Lxsh lxsh);
+
+	int selectShkxListCount(Lxsh lxsh);
+
+	boolean updateShkxx(Kxxyj kxxyj);
+
+	boolean shshkxx(Lxsh lxsh);
+
+	Lxsh showkxxShxx(Lxsh lxsh);
+
 }

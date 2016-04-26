@@ -420,9 +420,13 @@
 		from xmsq_yhdzx x where x.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertCbsjSh" parameterType="xmsq">
+		insert into kxxyj_sh(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsdj,jsxz,shzt)
+		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0 
+		from xmsq_sh x where x.xmbm in (${xmbm}))
+	<!-- 
 		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
 		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa 
-		from xmsq_sh x where x.xmbm in (${xmbm})
+		from xmsq_sh x where x.xmbm in (${xmbm}) -->
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">

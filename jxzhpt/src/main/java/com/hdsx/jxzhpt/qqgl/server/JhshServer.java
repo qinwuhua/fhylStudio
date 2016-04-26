@@ -453,4 +453,5 @@ public interface JhshServer {
 	public boolean planshxj(Jhsh jhsh);
 	public boolean planshyh(Jhsh jhsh);
 	public boolean planshsh(Jhsh jhsh);
+	public Kxxyj queryShKxxyjByXmbm(Jhsh jhsh);
 }

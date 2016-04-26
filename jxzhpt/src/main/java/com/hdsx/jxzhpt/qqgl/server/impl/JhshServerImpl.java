@@ -357,6 +357,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryLmgzKxxyjByXmbm",jhsh);
 	}
 	@Override
+	public Kxxyj queryShKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryShKxxyjByXmbm",jhsh);
+	}
+	@Override
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
 		return queryOne("queryXjKxxyjByXmbm",jhsh);
 	}
