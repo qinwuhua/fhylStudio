@@ -352,10 +352,11 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
+			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
-			'&ylxbh='+$('#gldj').combobox("getValues").join(",");
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
+			'&ghlxbh='+$("#lxbm").val()+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").val()+'&ghlxmc='+$("#ghlxmc").val();
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
@@ -488,7 +489,7 @@
        							<td>&nbsp;规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>&nbsp;规划路线名称：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
         						<td>&nbsp;建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
        							

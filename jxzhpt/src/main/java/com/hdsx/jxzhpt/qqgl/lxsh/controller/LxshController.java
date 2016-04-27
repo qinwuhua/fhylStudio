@@ -2070,11 +2070,14 @@ public class LxshController extends BaseActionSupport{
 			xzqh=(String) session.getAttribute("xzqhbb");	
 			String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
-			}else{
-				tiaojian1=" and t.gydwdm in ("+gydw+")";
+			if(!gydw.equals("")&&gydw!=null){
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and t.gydwdm like '%"+gydw+"%'";
+				}else{
+					tiaojian1=" and t.gydwdm in ("+gydw+")";
+				}
 			}
+			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
@@ -2103,6 +2106,24 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setJsdj(xjsdj);
 			}
+			if(!lxsh.getJsjsdj().equals("")&&lxsh.getJsjsdj()!=null){
+				String jsjsdj="";
+				if(lxsh.getJsjsdj().indexOf(",")>-1){
+					String [] spilt=lxsh.getJsjsdj().split(",");
+					for(int i=0;i<spilt.length;i++){
+						if(i==0){
+							jsjsdj+="(lx.jsjsdj like '"+lxsh.getJsjsdj()+"'";
+						}else if(i==spilt.length-1){
+							jsjsdj+=" or lx.jsjsdj like '"+lxsh.getJsjsdj()+"')";
+						}else{
+							jsjsdj+=" or lx.jsjsdj like '"+lxsh.getJsjsdj()+"'";
+						}
+					}
+				}else{
+					jsjsdj="lx.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+				}
+				lxsh.setJsjsdj(jsjsdj);
+			}
 			if(lxsh.getGldj()!=null){
 				if(lxsh.getGldj().indexOf("G,")>-1){
 					lxsh.setGldj("lxbm like 'G%'");
@@ -2122,26 +2143,29 @@ public class LxshController extends BaseActionSupport{
 					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
 				}
 			}
-			if(lxsh.getTsdq().length()>0){
-				String[] tsdqs=lxsh.getTsdq().split(",");
-				String tsdq="and(";
-				for (int i = 0; i < tsdqs.length; i++) {
-					if("全部".equals(tsdqs[i])){
-						tsdq="";
-						break;
+			if(!lxsh.getTsdq().equals("")&&lxsh.getTsdq()!=null){
+				if(lxsh.getTsdq().length()>0){
+					String[] tsdqs=lxsh.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
 					}
-					if(i==0)
-						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
-					else
-						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setTsdq(tsdq);
 				}
-				if(tsdq==""){
-					tsdq="";
-				}else{
-					tsdq+=")";
-				}
-				lxsh.setTsdq(tsdq);
 			}
+			
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
 			String xmbt="";
