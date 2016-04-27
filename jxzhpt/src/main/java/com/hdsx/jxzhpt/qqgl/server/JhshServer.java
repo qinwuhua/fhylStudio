@@ -129,7 +129,7 @@ public interface JhshServer {
 	 * @param jhsh2  养护大中修计划审核
 	 * @return 养护大中修计划审核集合
 	 */
-	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh,int page,int rows);
+	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh);
 	/**
 	 * 计划审核总数量
 	 * @param jhsh2 养护大中修计划审核数量
@@ -167,7 +167,7 @@ public interface JhshServer {
 	 * @param rows 展示数量
 	 * @return
 	 */
-	public List<Jhsh> queryJhshSh(Jhsh jhsh, int page, int rows);
+	public List<Jhsh> queryJhshSh(Jhsh jhsh);
 	/**
 	 * 查询水毁计划审核信息数量
 	 * @param jhsh2 计划审核信息
