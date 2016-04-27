@@ -10,6 +10,15 @@
 		        from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm left join kxxyj_lmgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
+		        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -69,6 +78,15 @@
 		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join kxxyj_sjgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
+		        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -132,6 +150,15 @@
 				from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join kxxyj_xj k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -188,6 +215,15 @@
 				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -207,6 +243,7 @@
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
+				<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
@@ -250,6 +287,15 @@
 				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
+				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -301,7 +347,24 @@
 	
 	<select id="queryCbsjLmgzCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
-		where 1=1
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -347,7 +410,24 @@
 	
 	<select id="queryCbsjLmsjCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
-		where 1=1
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -393,7 +473,24 @@
 
 	<select id="queryCbsjXjCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-		where 1=1
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -438,7 +535,25 @@
 	</select>
 	
 	<select id="queryCbsjYhdzxCount" parameterType="java.util.Map" resultType="int">
-		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm where 1=1
+		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm 
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -455,6 +570,7 @@
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
+		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 	</select>
 	<select id="queryCbsjYhdzxbgCount" parameterType="java.util.Map" resultType="int">
@@ -481,7 +597,24 @@
 	
 	<select id="queryCbsjShCount" parameterType="java.util.Map" resultType="int">
 		select count(c.xmbm) from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
-		where 1=1
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%' and jdbs='2')
@@ -918,7 +1051,17 @@
 	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_yhdzx c left join 
 		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
-		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%4___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc 
+		from lxsh_lx where xmid like '%4___' and jdbs='2'
+		<if test="ghlxmc!='' and ghlxmc!= null ">
+					and lx.ghlxmc=#{ghlxmc}
+		</if>
+		<if test="ghlxbm!='' and ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lx.lxmc=#{lxmc}
+		</if> group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -1001,6 +1144,7 @@
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
+		
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -1094,8 +1238,10 @@
 	</select>
 	
 	<select id="loadxjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-		left join (select xmid, min(xjlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
+		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz 
+		from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
+		left join (select xmid, min(xjlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs 
+		from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
@@ -1320,6 +1466,15 @@
 		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join kxgsdgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
+		        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+					and lx.ghlxmc=#{cbsj.ghlxmc}
+				</if>
+				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+					and lx.ghlxbm=#{cbsj.ghlxbm}
+				</if>
+				<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+					and lx.lxmc=#{cbsj.lxmc}
+				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -1345,7 +1500,24 @@
 	</select>
 	<select id="queryCbsjgsdCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm
-		where 1=1
+		left join lxsh_lx lx
+		     on c.xmbm = lx.xmid
+		left join (select xmid, count(xmid) xmsl
+		                              from lxsh_lx
+		                             where jdbs = '2'
+		                             group by xmid) sl
+		                              on c.xmbm = sl.xmid
+		where 1 = 1 and lx.jdbs = '2'
+                   and lx.sffirst = '1'
+        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and lx.ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and lx.ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lx.lxmc=#{cbsj.lxmc}
+		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
@@ -1374,7 +1546,16 @@
 		else to_number(lc)
 <!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
 		end) lc
-	   from lxsh_lx where jdbs='2') group by xmid) lx on c.xmbm=lx.xmid
+	   from lxsh_lx where jdbs='2'
+	   <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and ghlxmc=#{cbsj.ghlxmc}
+		</if>
+		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
+			and ghlxbm=#{cbsj.ghlxbm}
+		</if>
+		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
+			and lxmc=#{cbsj.lxmc}
+		</if>) group by xmid) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">

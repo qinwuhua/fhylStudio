@@ -58,6 +58,31 @@ public class Xmsq {
 
 	
 	
+	private String ghlxbm;
+	private String ghlxmc;
+	private String wnxmk;
+	
+	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getWnxmk() {
+		return wnxmk;
+	}
+	public void setWnxmk(String wnxmk) {
+		this.wnxmk = wnxmk;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
+	
+	
 	public String getQsmc() {
 		return qsmc;
 	}

@@ -32,6 +32,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
+			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
 			//tsdq("tsdq");
 			//xmnf("xmnf");
@@ -42,7 +43,7 @@
 		function showAllgsd(){
 			
 			showkxxTjxx('gsdgz');
-			var gydw=$("#gydw").combotree("getValues");
+			/* var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
 					gydwstr=36;
@@ -53,7 +54,7 @@
 				gydwstr=gydw[0] ;
 			}else{
 				gydwstr= gydw.join(',');
-			}
+			} */
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -73,9 +74,11 @@
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var jsdj=$("#jsdj").combobox('getValues').join(",");
+			var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 			var gldj=$("#gldj").combobox('getValues').join(",");
 			var lsjl=$("#lsjl").combobox('getValue');
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			var sbzt=$("#sbzt").combobox('getValue');
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			$('#datagrid').datagrid({    
@@ -91,13 +94,16 @@
 			    queryParams: {
 			    	lsjl:lsjl,
 			    	xzqh:xzqhstr,
-			    	gydw:gydwstr,
+			    	//gydw:gydwstr,
 			    	xmmc:xmmc,
 					xmnf:xmnf,
-//					sbzt:sbzt,
+					sbzt:sbzt,
 					tsdq:tsdq,
 					jsdj:jsdj,
+					jsjsdj:jsjsdj,
 					gldj:gldj,
+					ghlxbm:$("#ghlxbm").val(),
+					ghlxmc:$("#ghlxmc").val(),
 					'lxsh.ghlxbh':$("#lxbm").val(),
 					'lxsh.xmlx1':xmlx,
 					'lxsh.lxmc':$("#lxmc").val()
@@ -220,30 +226,32 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<!-- <td>管养单位：</td>
+        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
         						<td>行政区划：</td>
         						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-        						<td>路线编码：</td>
+        						<td>原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>
-        					</tr>
-        					<tr height="32">
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
-        						<!-- <td>审核状态：</td>
+        						<td>审核状态：</td>
         						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option> 
-								</select></td> -->
+								</select></td>
+        					</tr>
+        					<tr height="32">
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:88px;" >
 								</select></td>
-								<td>技术等级：</td>
+								<td>建设技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								<td>技术等级：</td>
+								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
         						<td>是否有历史记录：</td>
@@ -252,13 +260,16 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>路线名称：</td>
+								<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         					</tr>
         					<tr height="32">
         					<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
-								
+                               	<td>规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td>规划路线名称：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
                               <td colspan="10">
                               
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

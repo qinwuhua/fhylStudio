@@ -22,20 +22,16 @@ public class Lxsh implements Serializable {
 	private String sbz;
 	private String sjl;
 	private String dftz;
-	private String ghlxbm;//规划路线编码
-	private String ghlxmc;//规划路线名称
 
-	public String getGhlxbm() {
-		return ghlxbm;
+	
+	private String ylxmc;
+	
+	public String getYlxmc() {
+		return ylxmc;
 	}
-	public void setGhlxbm(String ghlxbm) {
-		this.ghlxbm = ghlxbm;
-	}
-	public String getGhlxmc() {
-		return ghlxmc;
-	}
-	public void setGhlxmc(String ghlxmc) {
-		this.ghlxmc = ghlxmc;
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+
 	}
 	public String getGhxlxbm() {
 		return ghxlxbm;
@@ -143,7 +139,7 @@ public class Lxsh implements Serializable {
 	private String xmlx;
 	private int sbthcd;
 	private String sbzt1;
-	private int shzt;
+	private String shzt;
 	private String lxmc;
 	private String jdbs;
 	private String sffirst;
@@ -189,7 +185,21 @@ public class Lxsh implements Serializable {
 	private String wnid;
 	private String kgny;
 	private String wgny;
+	private String ghlxbm;
+	private String ghlxmc;
 	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
 	public String getKgny() {
 		return kgny;
 	}
@@ -422,10 +432,10 @@ public class Lxsh implements Serializable {
 	public void setSbzt1(String sbzt1) {
 		this.sbzt1 = sbzt1;
 	}
-	public int getShzt() {
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(int shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public String getXmlx() {

@@ -75,8 +75,16 @@
 	</update>
 		<!-- 添加车购税 -->
 	<insert id="insertYhdzxCgs" parameterType="gcglyhdzx">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj
+		<if test="pfztz != null">,pfztz</if>
+		<if test="rys != null">,rys</if>
+		<if test="yhdk != null">,yhdk</if>
+		<if test="qt != null">,qt</if>)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj}
+		<if test="pfztz != null">,#{pfztz}</if>
+		<if test="rys != null">,#{rys}</if>
+		<if test="yhdk != null">,#{yhdk}</if>
+		<if test="qt != null">,#{qt}</if>)
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -110,7 +118,11 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateYhdzxCgs" parameterType="gcglyhdzx">
-			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
+		<if test="pfztz != null">,pfztz=#{pfztz}</if>
+		<if test="rys != null">,rys=#{rys}</if>
+		<if test="yhdk != null">,yhdk=#{yhdk}</if>
+		<if test="qt != null">,qt=#{qt}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 

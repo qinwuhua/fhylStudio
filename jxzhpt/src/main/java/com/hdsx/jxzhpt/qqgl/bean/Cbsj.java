@@ -7,7 +7,21 @@ public class Cbsj{
 	private String tz;
 	private String gkpfwh;
 	private String ntz;
+	private String ghlxbm;
+	private String ghlxmc;
 	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
 	public String getNtz() {
 		return ntz;
 	}

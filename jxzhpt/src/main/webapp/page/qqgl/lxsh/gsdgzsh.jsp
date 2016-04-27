@@ -29,6 +29,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
+			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
 			urlxmnf("xmnf",getUrlParame('id'));
@@ -36,7 +37,7 @@
 			
 		});
 		function showgsd(){
-			var gydw=$("#gydw").combotree("getValues");
+			/* var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
 					gydwstr=36;
@@ -47,7 +48,7 @@
 				gydwstr=gydw[0] ;
 			}else{
 				gydwstr= gydw.join(',');
-			}
+			} */
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -74,10 +75,11 @@
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
 			var sbzt=$("#sbzt").combobox('getValue');
 			var lsjl=$("#lsjl").combobox('getValue');
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			/* //var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
-				tsdq=tsdq.substr(1,tsdq.length);
+				tsdq=tsdq.substr(1,tsdq.length); */
 			var jsdj=$("#jsdj").combobox('getValues').join(",");
+			var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 			var gldj=$("#gldj").combotree('getValues').join(",");
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
@@ -85,8 +87,22 @@
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/queryLxshLjgsd.do',
-				data:{lsjl:lsjl,xzqh:xzqhstr,gydw:gydwstr,xmmc:xmmc,xmnf:xmnf,sbzt:sbzt,ghlxbh:$("#lxbm").val(),lxmc:$("#lxmc").val(),
-					tsdq:tsdq,jsdj:jsdj,gldj:gldj,sbthcd:sbthcd,'lxsh.xmlx1':xmlx},
+				data:{lsjl:lsjl,
+					xzqh:xzqhstr,
+					//gydw:gydwstr,
+					xmmc:xmmc,
+					xmnf:xmnf,
+					sbzt:sbzt,
+					ghlxbh:$("#lxbm").val(),
+					lxmc:$("#lxmc").val(),
+					//tsdq:tsdq,
+					jsdj:jsdj,
+					gldj:gldj,
+					sbthcd:sbthcd,
+					ghlxbm:$("#ghlxbm").val(),
+					ghlxmc:$("#ghlxmc").val(),
+					jsjsdj:jsjsdj,
+					'lxsh.xmlx1':xmlx},
 				dataType:'json',
 				success:function(msg){
 					 $("#xmsl").html(msg.XMSL);
@@ -111,16 +127,19 @@
 			    queryParams: {
 			    	lsjl:lsjl,
 			    	xzqh:xzqhstr,
-			    	gydw:gydwstr,
+			    	//gydw:gydwstr,
 			    	xmmc:xmmc,
 					xmnf:xmnf,
 					sbzt:sbzt,
-					tsdq:tsdq,
+					//tsdq:tsdq,
 					jsdj:jsdj,
 					gldj:gldj,
 					sbthcd:sbthcd,
 					ghlxbh:$("#lxbm").val(),
 					'lxsh.xmlx1':xmlx,
+					ghlxbm:$("#ghlxbm").val(),
+					ghlxmc:$("#ghlxmc").val(),
+					jsjsdj:$("#jsjsdj").val(),
 					lxmc:$("#lxmc").val()
 				},
 			    columns:[[
@@ -236,17 +255,15 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<!-- <td>管养单位：</td>
+        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
         						<td>行政区划：</td>
         						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
         						<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-        						<td>路线编码：</td>
+        						<td>原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>
-        					</tr>
-        					<tr height="32">
-        						<td>项目年份：</td>
+        					<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
         						<td>上报状态：</td>
@@ -255,17 +272,22 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:88px;" >
-								</select></td>
-								<td>技术等级：</td>
-								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-        						<td>路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         					</tr>
         					<tr height="32">
+        						
+								<!-- <td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								</select></td> -->
+								<td>技术等级：</td>
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								<td>建设技术等级：</td>
+								<td>
+								<select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select>
+								</td>
+								<td>行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        						<td>原路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         					<td>是否有历史记录：</td>
         					<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -274,7 +296,13 @@ text-decoration:none;
 								</select></td>
 								<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
-								
+        					</tr>
+        					<tr height="32">
+        					
+								<td>规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+                                <td>规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
                               <td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

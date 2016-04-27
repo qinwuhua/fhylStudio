@@ -31,6 +31,10 @@
 		$("#xg_cscyj").val(data.cscyj);
 		$("#xg_tbr").text(data.tbr);
 		$("#xg_tbsj").val(data.tbsj);
+		$("#pfztz").val(data.pfztz);
+		$("#rys").val(data.rys);
+		$("#dk").val(data.dk);
+		$("#qt").val(data.qt);
 
 		var myDate = new Date();
 		var y = myDate.getFullYear();
@@ -80,12 +84,20 @@
 		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		$("#xg_tbyf").val(data.tbyf);
 	});
-	function checkZJ(){
-		var str=$("#xg_cgsdwzj").val();
+	function checkZJ(str1){
+		/* var str=$("#xg_cgsdwzj").val();
 		var g = /^\d+(?=\.{0,1}\d+$|$)/;
 	    if( !g.test(str)){
 	    	alert("请输入正确的金额");
 	    	$("#tj_cgsdwzj").val('');
+	    } */
+	    var str=str1.value;
+		var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
+		if(str=='')
+			return;
+	    if( !g.test(str)){
+	    	alert("请输入正确的金额");
+	    	$(str1).val('');
 	    }
 	}
 </script>
@@ -131,11 +143,49 @@ text-decoration: none;
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">批复总投资： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="pfztz"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">燃油税： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="rys"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">贷款： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="dk"  style="width: 50px" value="0"/>万元
+                                </td>
+                             </tr>
+                             <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
                                     <font color="#009ACD" style="font-size: 12px">省投资： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="5">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
                                     <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="xg_stz"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">其他： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="5">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="qt"  style="width: 50px" value="0"/>万元
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
@@ -187,5 +237,6 @@ text-decoration: none;
                     </td>
                 </tr>
             </table>
+            </div>
 	</body>
 </html>

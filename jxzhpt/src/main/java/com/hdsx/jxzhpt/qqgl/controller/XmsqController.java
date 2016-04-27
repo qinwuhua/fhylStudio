@@ -11,6 +11,8 @@ import javax.annotation.Resource;
 import net.sf.json.JSONArray;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.google.common.base.Strings;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
@@ -197,21 +199,30 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void queryXmsq(){
 		try {
 			String xmbm = xmsq.getXmbm();
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
-					}else{
-						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+			
+			if(!xmbm.equals("")){
+				if(xmbm.indexOf(",")>-1){
+					/*if(xmbm.indexOf(",") == 0){
+						xmbm = xmbm.substring(0);
+					}*/
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 1; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==1){
+							xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+						}
 					}
+				}else{
+					xmbm = "x.xmbm like '" + xmbm + "%' ";
 				}
-			}else{
-				xmbm = "x.xmbm like '" + xmbm + "%' ";
+				
+				xmsq.setXmbm(xmbm);
 			}
-			xmsq.setXmbm(xmbm);
+			xmsq.setGhlxbm(xmsq.getGhlxbm());
+			xmsq.setGhlxmc(xmsq.getGhlxmc());
 			jsdjHandle();
 			String ylxbh = xmsq.getYlxbh();
 			if(ylxbh!=null && !ylxbh.equals("")){
@@ -227,8 +238,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			List<Xmsq> list=null;
 			int total=0;
-			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			String sss = xmsq.getJsxz();
+			String aaa = xmsq.getWnxmk();
+			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			xmsq.setJsxz(xmsq.getJsxz());
+			xmsq.setWnxmk(xmsq.getWnxmk());
 			if(xmsq.getXmlx()==4){
 				String gcfl = xmsq.getGcfl();
 				if(gcfl!=null && !gcfl.equals("")){
@@ -342,10 +357,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmbm = "x.xmbm like '" + xmbm + "%' ";
 		}
 		xmsq.setXmbm(xmbm);
+		xmsq.setGhlxbm(xmsq.getGhlxbm());
+		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		jsdjHandle();
-		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
-		
+		xmsq.setJsxz(xmsq.getJsxz());
+		xmsq.setWnxmk(xmsq.getWnxmk());
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
 			String gcfl = xmsq.getGcfl();

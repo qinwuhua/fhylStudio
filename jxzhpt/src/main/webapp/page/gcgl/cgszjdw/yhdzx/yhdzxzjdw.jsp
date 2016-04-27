@@ -81,5 +81,7 @@ a:active {
 					</table>
 				</td>
 			</tr>
-		</table></body>
+		</table>
+		</div>
+		</body>
 </html>

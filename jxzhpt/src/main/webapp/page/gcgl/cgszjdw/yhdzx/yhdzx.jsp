@@ -40,7 +40,7 @@
 			//gcglxmnf("ddlYear");
 			var urlid=getUrlParame('id');
 			urlxmnf("ddlYear",urlid);
-			showAll();
+			showAllyh();
 		});
 		function exportAbyb(){
 			var xzqhdm=$("#xzqh").combotree("getValues");
@@ -165,7 +165,7 @@ a:active {
 <!--         						<span>下达年份：</span> -->
 <!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAllyh()"/>        					
                                   <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						 <img onclick="importData_yb('cgszjdw/yhdzx/yhdzx')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>      
                                         </p>

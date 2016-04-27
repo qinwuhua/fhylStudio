@@ -73,8 +73,19 @@ function tjshcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglsh.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglsh.tbr="+$.cookie("truename")+"&gcglsh.tbsj="+$("#tj_tbsj").val()+"&gcglsh.tbyf="+$("#tbyf").val()+"&gcglsh.cscyj="+$("#tj_cscyj").val()
-	+"&gcglsh.sz="+$("#sz").val()+"&gcglsh.gz="+$("#gz").val()+"&gcglsh.yhdk="+$("#yhdk").val()+"&gcglsh.jhid="+parent.parent.obj1.XMBM;
+	var data="gcglsh.cgsdwzj="+$("#tj_cgsdwzj").val()+
+	"&gcglsh.tbr="+$.cookie("truename")+
+	"&gcglsh.tbsj="+$("#tj_tbsj").val()+
+	"&gcglsh.tbyf="+$("#tbyf").val()+
+	"&gcglsh.cscyj="+$("#tj_cscyj").val()+
+	"&gcglsh.sz="+$("#sz").val()+
+	"&gcglsh.gz="+$("#gz").val()+
+	"&gcglsh.yhdk="+$("#yhdk").val()+
+	"&gcglsh.pfztz="+$("#pfztz").val()+
+	"&gcglsh.zq="+$("#zq").val()+
+	"&gcglsh.jl="+$("#jl").val()+
+	"&gcglsh.qt="+$("#qt").val()+
+	"&gcglsh.jhid="+parent.parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -100,8 +111,19 @@ function xgshcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglsh.cgsdwzj="+$("#xg_cgsdwzj").val()+"&gcglsh.tbsj="+$("#xg_tbsj").val()
-	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.tbyf="+$("#tbyf").val()+"&gcglsh.cscyj="+$("#xg_cscyj").val()+"&gcglsh.sz="+$("#sz").val()+"&gcglsh.gz="+$("#gz").val()+"&gcglsh.yhdk="+$("#yhdk").val();
+	var data="gcglsh.cgsdwzj="+$("#xg_cgsdwzj").val()+
+	"&gcglsh.tbsj="+$("#xg_tbsj").val()+
+	"&gcglsh.jhid="+parent.obj.jhid+
+	"&gcglsh.id="+parent.obj.id+
+	"&gcglsh.tbyf="+$("#tbyf").val()+
+	"&gcglsh.cscyj="+$("#xg_cscyj").val()+
+	"&gcglsh.sz="+$("#sz").val()+
+	"&gcglsh.gz="+$("#gz").val()+
+	"&gcglsh.pfztz="+$("#pfztz").val()+
+	"&gcglsh.zq="+$("#zq").val()+
+	"&gcglsh.jl="+$("#jl").val()+
+	"&gcglsh.qt="+$("#qt").val()+
+	"&gcglsh.yhdk="+$("#yhdk").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -143,7 +165,7 @@ function delCgs(index){
 	}	
 }
 
-function showAll(){
+function showAllsh(){
 	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
@@ -354,14 +376,19 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
+				{field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
 				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
 				{field:'gz',title:'国债(万元)',width:100,align:'center'},
 				{field:'sz',title:'省债(万元)',width:100,align:'center'},
+				{field:'zq',title:'债券(万元)',width:100,align:'center'},
+				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
+				{field:'jl',title:'奖励(万元)',width:100,align:'center'},
+				{field:'qt',title:'其他(万元)',width:100,align:'center'},
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
 				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+				
 	    ]]    
 	}); 
 }

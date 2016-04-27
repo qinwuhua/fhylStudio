@@ -78,8 +78,20 @@ function tjgcgzsjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzsj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzsj.tbr="+$.cookie("truename")+"&gcglgcgzsj.tbsj="+$("#tj_tbsj").val()+"&gcglgcgzsj.tbyf="+$("#tbyf").val()+"&gcglgcgzsj.cscyj="+$("#tj_cscyj").val()+"&gcglgcgzsj.sz="+$("#sz").val()
-	+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.yhdk="+$("#yhdk").val()+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM;
+	var data=
+		"gcglgcgzsj.cgsdwzj="+$("#tj_cgsdwzj").val()+
+		"&gcglgcgzsj.tbr="+$.cookie("truename")+
+		"&gcglgcgzsj.tbsj="+$("#tj_tbsj").val()+
+		"&gcglgcgzsj.tbyf="+$("#tbyf").val()+
+		"&gcglgcgzsj.cscyj="+$("#tj_cscyj").val()+
+		"&gcglgcgzsj.sz="+$("#sz").val()+
+		"&gcglgcgzsj.gz="+$("#gz").val()+
+		"&gcglgcgzsj.yhdk="+$("#yhdk").val()+
+		"&gcglgcgzsj.pfztz="+$("#pfztz").val()+
+		"&gcglgcgzsj.zq="+$("#zq").val()+
+		"&gcglgcgzsj.jl="+$("#jl").val()+
+		"&gcglgcgzsj.qt="+$("#qt").val()+
+		"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -105,9 +117,21 @@ function xggcgzsjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzsj.cgsdwzj="+$("#xg_cgsdwzj").val()+"&gcglgcgzsj.tbsj="+$("#xg_tbsj").val()
-	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.tbyf="+$("#tbyf").val()+"&gcglgcgzsj.cscyj="+$("#xg_cscyj").val()+"&gcglgcgzsj.sz="+$("#sz").val()
-	+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.yhdk="+$("#yhdk").val();
+	var dd = $("#pfztz").val();
+	var data="gcglgcgzsj.cgsdwzj="+$("#xg_cgsdwzj").val()+
+	"&gcglgcgzsj.tbsj="+$("#xg_tbsj").val()+
+	"&gcglgcgzsj.jhid="+parent.obj.jhid+
+	"&gcglgcgzsj.id="+parent.obj.id+
+	"&gcglgcgzsj.tbyf="+$("#tbyf").val()+
+	"&gcglgcgzsj.cscyj="+$("#xg_cscyj").val()+
+	"&gcglgcgzsj.sz="+$("#sz").val()+
+	"&gcglgcgzsj.gz="+$("#gz").val()+
+	"&gcglgcgzsj.yhdk="+$("#yhdk").val()+
+	"&gcglgcgzsj.pfztz="+$("#pfztz").val()+
+	"&gcglgcgzsj.zq="+$("#zq").val()+
+	"&gcglgcgzsj.jl="+$("#jl").val()+
+	"&gcglgcgzsj.qt="+$("#qt").val();
+	
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -356,10 +380,14 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
+				{field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
 				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
 				{field:'gz',title:'国债(万元)',width:100,align:'center'},
 				{field:'sz',title:'省债(万元)',width:100,align:'center'},
+				{field:'zq',title:'债券(万元)',width:100,align:'center'},
+				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
+				{field:'jl',title:'奖励(万元)',width:100,align:'center'},
+				{field:'qt',title:'其他(万元)',width:100,align:'center'},
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},

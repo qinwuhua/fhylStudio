@@ -34,6 +34,7 @@
 				$("img[name='bxs']").attr('style','display:none');
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
+			gsdxmlx('xmlx');
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
@@ -65,16 +66,33 @@
 			});
 		}
 		function queryYhdzx(){
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var lxmc = $("#txtlxmc").val();
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':4,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),'cbsj.xmmc':$('#xmmc').val(),
-					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
-					'tsdq':tsdq,'lsjl':$('#lsjl').combobox("getValue")
-					,"jdbs":2,'gcfl':$('#gcfl').combobox("getValues").join(","),'ylxbh':$('#gldj').combobox("getValues").join(',')};
+			var params={'cbsj.xmlx':4,
+					'cbsj.xmlx1':xmlx,
+					'cbsj.xzqhdm':getxzqhdm('xzqh'),
+					'cbsj.ghlxbh':$('#txtlxbm').val(),
+					'cbsj.xmmc':$('#xmmc').val(),
+					'cbsj.xjsdj':$('#yjsdj').combobox("getValues").join(","),
+					//'cbsj.jsjsdj':$('#gjhjsdj').combobox("getValues").join(","),
+					'cbsj.sbzt':-1,
+					'cbsj.shzt':$('#shzt').combobox("getValue"),
+					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'tsdq':tsdq,
+					'lsjl':$('#lsjl').combobox("getValue")
+					,"jdbs":2,
+					//'gcfl':$('#gcfl').combobox("getValues").join(","),
+					'ghlxbm':$("#ghlxbm").val(),
+					'ghlxmc':$("#ghlxmc").val(),
+					'lxmc':$("#txtlxmc").val(),
+					'ylxbh':$('#gldj').combobox("getValues").join(',')};
 			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
@@ -274,13 +292,15 @@ text-decoration:none;
 					<tr height="32">
         						<td>行政区划：</td>
         						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td>路线编码：</td>
+        						<td>原路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+        						<td>原路线名称：</td>
+        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
 								<td>原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>建设技术等级：</td>
-								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>补助历史：</td>
+								<!-- <td>建设技术等级：</td>
+								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td> -->
+								<td>历史记录：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -298,14 +318,20 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-								<td align="right">&nbsp;工程分类：</td>
-	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td>
+								<!-- <td align="right">&nbsp;工程分类：</td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td> -->
 	       						<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-							</tr>
-							<tr height="32">
 								<td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+							</tr>
+							<tr height="32">
+								<td>规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td>规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+        						<td>建设性质：</td>
+								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								<td colspan="10">
 									<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->

@@ -159,6 +159,28 @@ public String getBfzj() {
 	private String dwgz;
 	private String dwsz;
 	
+	private String zq;
+	private String jl;
+	private String qt;
+	
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
 	public String getDwyhdk() {
 		return dwyhdk;
 	}
