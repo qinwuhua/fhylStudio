@@ -73,7 +73,7 @@
 					formatter: function(value,row,index){
 						xmlx=1;
 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'编辑'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,350)" style="color:#3399CC;">编辑</a>';
+							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">编辑</a>';
 						return result;
 					}
 				},

@@ -898,9 +898,9 @@
 	<select id="queryLmgzExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jaf,'') jaf,decode(lx.sffirst,'1',c.dfzc,'') dfzc,decode(lx.sffirst,'1',c.yhdk,'') yhdk,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
 				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
@@ -926,8 +926,8 @@
 	<select id="queryYhdzxExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm right join 
+				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
+				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jsfa,'') jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm right join 
 				(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx 
 				on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -954,8 +954,8 @@
 	<select id="queryShExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-			select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
-			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm right join 
+			select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
+			c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jsfa,'') jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm right join 
 			(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2'  ) lx 
 			on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -977,9 +977,9 @@
 	<select id="queryLmsjExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jaf,'') jaf,decode(lx.sffirst,'1',c.dfzc,'') dfzc,decode(lx.sffirst,'1',c.yhdk,'') yhdk,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
 				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1001,9 +1001,9 @@
 	<select id="queryXjExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jaf,'') jaf,decode(lx.sffirst,'1',c.dfzc,'') dfzc,decode(lx.sffirst,'1',c.yhdk,'') yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
 				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc,xjlxbm xjlxbm, xjqdzh xjqdzh,xjzdzh xjzdzh,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1581,9 +1581,9 @@
 	<select id="querygsdExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbgsdgz c left join lxgsdgz l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jaf,'') jaf,decode(lx.sffirst,'1',c.dfzc,'') dfzc,decode(lx.sffirst,'1',c.yhdk,'') yhdk,lx.* from cbgsdgz c left join lxgsdgz l on c.xmbm = l.xmbm
 				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst  from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
