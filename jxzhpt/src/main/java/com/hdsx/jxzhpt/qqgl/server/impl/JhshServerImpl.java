@@ -171,11 +171,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryJhshxxXjByXmbm", params);
 	}
 	@Override
-	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh,int page,int rows) {
-		params.put("jhsh2", jhsh);
-		params.put("page", page);
-		params.put("rows", rows);
-		return queryList("queryJhshYhdzx",params);
+	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh) {
+		return queryList("queryJhshYhdzx",jhsh);
 	}
 	@Override
 	public List<Jhsh> queryJhshYhdzx1(Jhsh jhsh,int page,int rows) {
@@ -186,8 +183,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public int queryJhshYhdzxCount(Jhsh jhsh) {
-		params.put("jhsh2", jhsh);
-		return queryOne("queryJhshYhdzxCount", params);
+		return queryOne("queryJhshYhdzxCount", jhsh);
 	}
 	@Override
 	public int queryJhshYhdzxCount1(Jhsh jhsh) {
@@ -211,11 +207,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryJhshxxShByXmbm",jhsh);
 	}
 	@Override
-	public List<Jhsh> queryJhshSh(Jhsh jhsh, int page, int rows) {
-		params.put("jhsh2", jhsh);
-		params.put("page", page);
-		params.put("rows", rows);
-		return queryList("queryJhshSh",params);
+	public List<Jhsh> queryJhshSh(Jhsh jhsh) {
+		return queryList("queryJhshSh",jhsh);
 	}
 	@Override
 	public List<Jhsh> queryJhshSh1(Jhsh jhsh, int page, int rows) {
@@ -226,8 +219,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public int queryJhshShCount(Jhsh jhsh) {
-		params.put("jhsh2", jhsh);
-		return queryOne("queryJhshShCount",params);
+		return queryOne("queryJhshShCount",jhsh);
 	}
 	@Override
 	public int queryJhshShCount1(Jhsh jhsh) {

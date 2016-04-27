@@ -48,8 +48,8 @@
 			grid.url="../../../qqgl/queryGsdgz.do";
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
-					'lsjl':$('#lsjl').combobox("getValue"),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':$('#jhxdwh').val()
 					};
@@ -249,42 +249,42 @@ text-decoration:none;
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="32">
-								<td>行政区划：</td>
+								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-								<td style="text-align: right;">项目名称：</td>
+								<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
-								<td>项目年份：</td>
+								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>建设技术等级：</td>
+        						<td align="right">建设技术等级：</td>
 								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
-								<td>技术等级：</td>
+								<td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
         					</tr>
         					<tr height="32">
-        						<td>行政等级：</td>
+        						<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
         						<td align="right">特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:104px;"></select></td>
-								<td>原路线编码：</td>
+								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
-        						<td>原路线名称：</td>
+        						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						<td>规划路线编码：</td>
+        						<td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
         						
                             </tr>
                             <tr height="32">
-        						<td>规划路线名称：</td>
+        						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-        						<td>历史记录：</td>
+        						<td align="right">历史记录：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>建设性质：</td>
+								<td align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
-								<td>计划下达文号：</td>
+								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:100px;" /></td>
         						
                             </tr>

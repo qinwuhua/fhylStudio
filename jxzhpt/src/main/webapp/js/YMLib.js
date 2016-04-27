@@ -2443,6 +2443,73 @@ function gsdxmlx(id){
 	//$('#id全部').attr('checked', true);
 	
 }
+
+//养护大中修项目类型
+function yhxmlx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'大修',value:'大修'});
+	years.push({text:'中修',value:'大修'});
+	years.push({text:'预防性',value:'预防性'});
+	
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+
+
+
+
 //xdzt
 function xdzt(id){
 	var years=[];

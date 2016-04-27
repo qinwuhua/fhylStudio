@@ -34,227 +34,13 @@ public class Jhsh {
 	private String zydpx;//重要度排序
 	private String sbzt;//上报状态
 	private String shzt;//审核状态
+	private int page=1;
+	private int rows=10;
 	
-	public String getShzt() {
-		return shzt;
-	}
-	public void setShzt(String shzt) {
-		this.shzt = shzt;
-	}
-	public String getSbzt() {
-		return sbzt;
-	}
-	public void setSbzt(String sbzt) {
-		this.sbzt = sbzt;
-	}
-	public String getZydpx() {
-		return zydpx;
-	}
-	public void setZydpx(String zydpx) {
-		this.zydpx = zydpx;
-	}
-	public String getRys() {
-		return rys;
-	}
-	public void setRys(String rys) {
-		this.rys = rys;
-	}
-	public String getBzrys() {
-		return bzrys;
-	}
-	public void setBzrys(String bzrys) {
-		this.bzrys = bzrys;
-	}
-	public String getSfsycgs() {
-		return sfsycgs;
-	}
-	public void setSfsycgs(String sfsycgs) {
-		this.sfsycgs = sfsycgs;
-	}
-	public String getZq() {
-		return zq;
-	}
-	public void setZq(String zq) {
-		this.zq = zq;
-	}
-	public String getJl() {
-		return jl;
-	}
-	public void setJl(String jl) {
-		this.jl = jl;
-	}
-	public String getQt() {
-		return qt;
-	}
-	public void setQt(String qt) {
-		this.qt = qt;
-	}
-	public String getJhlc() {
-		return jhlc;
-	}
-	public void setJhlc(String jhlc) {
-		this.jhlc = jhlc;
-	}
-	public String getXzqhmc() {
-		return xzqhmc;
-	}
-	public void setXzqhmc(String xzqhmc) {
-		this.xzqhmc = xzqhmc;
-	}
-	public String getTbdw() {
-		return tbdw;
-	}
-	public void setTbdw(String tbdw) {
-		this.tbdw = tbdw;
-	}
-	public String getBztbsj() {
-		return bztbsj;
-	}
-	public void setBztbsj(String bztbsj) {
-		this.bztbsj = bztbsj;
-	}
-	public String getBzxdnf() {
-		return bzxdnf;
-	}
-	public void setBzxdnf(String bzxdnf) {
-		this.bzxdnf = bzxdnf;
-	}
-	public String getBzpfztz() {
-		return bzpfztz;
-	}
-	public void setBzpfztz(String bzpfztz) {
-		this.bzpfztz = bzpfztz;
-	}
-	public String getBzgz() {
-		return bzgz;
-	}
-	public void setBzgz(String bzgz) {
-		this.bzgz = bzgz;
-	}
-	public String getBzsz() {
-		return bzsz;
-	}
-	public void setBzsz(String bzsz) {
-		this.bzsz = bzsz;
-	}
-	public String getBzzq() {
-		return bzzq;
-	}
-	public void setBzzq(String bzzq) {
-		this.bzzq = bzzq;
-	}
-	public String getBzdk() {
-		return bzdk;
-	}
-	public void setBzdk(String bzdk) {
-		this.bzdk = bzdk;
-	}
-	public String getBzjl() {
-		return bzjl;
-	}
-	public void setBzjl(String bzjl) {
-		this.bzjl = bzjl;
-	}
-	public String getBzqt() {
-		return bzqt;
-	}
-	public void setBzqt(String bzqt) {
-		this.bzqt = bzqt;
-	}
-	public String getBzcgs() {
-		return bzcgs;
-	}
-	public void setBzcgs(String bzcgs) {
-		this.bzcgs = bzcgs;
-	}
-	public String getGyfl() {
-		return gyfl;
-	}
-	public void setGyfl(String gyfl) {
-		this.gyfl = gyfl;
-	}
-	public String getXmnf() {
-		return xmnf;
-	}
-	public void setXmnf(String xmnf) {
-		this.xmnf = xmnf;
-	}
-	public String getGhxlxbm() {
-		return ghxlxbm;
-	}
-	public void setGhxlxbm(String ghxlxbm) {
-		this.ghxlxbm = ghxlxbm;
-	}
-	public String getGhxlxmc() {
-		return ghxlxmc;
-	}
-	public void setGhxlxmc(String ghxlxmc) {
-		this.ghxlxmc = ghxlxmc;
-	}
-	public String getScxdnf() {
-		return scxdnf;
-	}
-	public void setScxdnf(String scxdnf) {
-		this.scxdnf = scxdnf;
-	}
-	public String getXzdj() {
-		return xzdj;
-	}
-	public void setXzdj(String xzdj) {
-		this.xzdj = xzdj;
-	}
-	public String getXdzttj() {
-		return xdzttj;
-	}
-	public void setXdzttj(String xdzttj) {
-		this.xdzttj = xdzttj;
-	}
-	public String getZjly() {
-		return zjly;
-	}
-	public void setZjly(String zjly) {
-		this.zjly = zjly;
-	}
-	public String getJsjsdj() {
-		return jsjsdj;
-	}
-	public void setJsjsdj(String jsjsdj) {
-		this.jsjsdj = jsjsdj;
-	}
-	public String getXjsdj() {
-		return xjsdj;
-	}
-	public void setXjsdj(String xjsdj) {
-		this.xjsdj = xjsdj;
-	}
-	public String getTz() {
-		return tz;
-	}
-	public void setTz(String tz) {
-		this.tz = tz;
-	}
-	@Override
-	public String toString() {
-		return "Jhsh [id=" + id + ", xmmc=" + xmmc + ", xmbm=" + xmbm
-				+ ", xzqh=" + xzqh + ", qdzh=" + qdzh + ", zdzh=" + zdzh
-				+ ", kgsj=" + kgsj + ", wgsj=" + wgsj + ", gq=" + gq
-				+ ", gkpfwh=" + gkpfwh + ", sjpfwh=" + sjpfwh + ", xdwh="
-				+ xdwh + ", xdsj=" + xdsj + ", pfztz=" + pfztz + ", bbzzj="
-				+ bbzzj + ", sbzzj=" + sbzzj + ", xdzt=" + xdzt + ", ghlxbh="
-				+ ghlxbh + ", xzqhdm=" + xzqhdm + ", lsjl=" + lsjl + ", xmlx="
-				+ xmlx + ", tsdq=" + tsdq + ", ylxbh=" + ylxbh + ", gcfl="
-				+ gcfl + ", jhkgsj=" + jhkgsj + ", jhwgsj=" + jhwgsj + ", lc="
-				+ lc + ", ztz=" + ztz + ", sysbbzj=" + sysbbzj + ", yqdbcgs="
-				+ yqdbcgs + ", mclmlx=" + mclmlx + ", mclx=" + mclx + ", mcsl="
-				+ mcsl + ", mcje=" + mcje + ", jclx=" + jclx + ", jcsl=" + jcsl
-				+ ", jcje=" + jcje + ", xfcsl=" + xfcsl + ", xfcje=" + xfcje
-				+ ", bxsl=" + bxsl + ", bxje=" + bxje + ", gfcd=" + gfcd
-				+ ", gfje=" + gfje + ", llcl=" + llcl + ", jsdj=" + jsdj
-				+ ", gydw=" + gydw + ", qdmc=" + qdmc + ", zdmc=" + zdmc
-				+ ", gpsqdzh=" + gpsqdzh + ", gpszdzh=" + gpszdzh + ", yilc="
-				+ yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc="
-				+ silc + ", dwlc=" + dwlc + ", wllc=" + wllc + "]";
-	}
+	
+	
+	
+	
 	private String yhdk;
 	private String gz;
 	private String sz;
@@ -264,54 +50,6 @@ public class Jhsh {
 	private String gzzq;
 	private String szzq;
 	
-	public String getGzzq() {
-		return gzzq;
-	}
-	public void setGzzq(String gzzq) {
-		this.gzzq = gzzq;
-	}
-	public String getSzzq() {
-		return szzq;
-	}
-	public void setSzzq(String szzq) {
-		this.szzq = szzq;
-	}
-	public String getStc() {
-		return stc;
-	}
-	public void setStc(String stc) {
-		this.stc = stc;
-	}
-	public String getDk() {
-		return dk;
-	}
-	public void setDk(String dk) {
-		this.dk = dk;
-	}
-	public String getJhxdwh() {
-		return jhxdwh;
-	}
-	public void setJhxdwh(String jhxdwh) {
-		this.jhxdwh = jhxdwh;
-	}
-	public String getYhdk() {
-		return yhdk;
-	}
-	public void setYhdk(String yhdk) {
-		this.yhdk = yhdk;
-	}
-	public String getGz() {
-		return gz;
-	}
-	public void setGz(String gz) {
-		this.gz = gz;
-	}
-	public String getSz() {
-		return sz;
-	}
-	public void setSz(String sz) {
-		this.sz = sz;
-	}
 	private String id;//ID
 	private String xmmc;//项目名称
 	private String xmbm;//项目编码
@@ -399,20 +137,659 @@ public class Jhsh {
 	private String dfzc;//地方自筹资金
 	private String lxzh;//所在路线桩号
 	private String gldj;
-	
-
-	
+	public String getJsjsdj() {
+		return jsjsdj;
+	}
+	public void setJsjsdj(String jsjsdj) {
+		this.jsjsdj = jsjsdj;
+	}
+	public String getXjsdj() {
+		return xjsdj;
+	}
+	public void setXjsdj(String xjsdj) {
+		this.xjsdj = xjsdj;
+	}
+	public String getTz() {
+		return tz;
+	}
+	public void setTz(String tz) {
+		this.tz = tz;
+	}
+	public String getGhxlxbm() {
+		return ghxlxbm;
+	}
+	public void setGhxlxbm(String ghxlxbm) {
+		this.ghxlxbm = ghxlxbm;
+	}
+	public String getGhxlxmc() {
+		return ghxlxmc;
+	}
+	public void setGhxlxmc(String ghxlxmc) {
+		this.ghxlxmc = ghxlxmc;
+	}
+	public String getScxdnf() {
+		return scxdnf;
+	}
+	public void setScxdnf(String scxdnf) {
+		this.scxdnf = scxdnf;
+	}
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
+	public String getXdzttj() {
+		return xdzttj;
+	}
+	public void setXdzttj(String xdzttj) {
+		this.xdzttj = xdzttj;
+	}
+	public String getZjly() {
+		return zjly;
+	}
+	public void setZjly(String zjly) {
+		this.zjly = zjly;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getGyfl() {
+		return gyfl;
+	}
+	public void setGyfl(String gyfl) {
+		this.gyfl = gyfl;
+	}
+	public String getBzxdnf() {
+		return bzxdnf;
+	}
+	public void setBzxdnf(String bzxdnf) {
+		this.bzxdnf = bzxdnf;
+	}
+	public String getBzpfztz() {
+		return bzpfztz;
+	}
+	public void setBzpfztz(String bzpfztz) {
+		this.bzpfztz = bzpfztz;
+	}
+	public String getBzgz() {
+		return bzgz;
+	}
+	public void setBzgz(String bzgz) {
+		this.bzgz = bzgz;
+	}
+	public String getBzsz() {
+		return bzsz;
+	}
+	public void setBzsz(String bzsz) {
+		this.bzsz = bzsz;
+	}
+	public String getBzzq() {
+		return bzzq;
+	}
+	public void setBzzq(String bzzq) {
+		this.bzzq = bzzq;
+	}
+	public String getBzdk() {
+		return bzdk;
+	}
+	public void setBzdk(String bzdk) {
+		this.bzdk = bzdk;
+	}
+	public String getBzjl() {
+		return bzjl;
+	}
+	public void setBzjl(String bzjl) {
+		this.bzjl = bzjl;
+	}
+	public String getBzqt() {
+		return bzqt;
+	}
+	public void setBzqt(String bzqt) {
+		this.bzqt = bzqt;
+	}
+	public String getBzcgs() {
+		return bzcgs;
+	}
+	public void setBzcgs(String bzcgs) {
+		this.bzcgs = bzcgs;
+	}
+	public String getBztbsj() {
+		return bztbsj;
+	}
+	public void setBztbsj(String bztbsj) {
+		this.bztbsj = bztbsj;
+	}
+	public String getTbdw() {
+		return tbdw;
+	}
+	public void setTbdw(String tbdw) {
+		this.tbdw = tbdw;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
+	public String getSfsycgs() {
+		return sfsycgs;
+	}
+	public void setSfsycgs(String sfsycgs) {
+		this.sfsycgs = sfsycgs;
+	}
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	public String getBzrys() {
+		return bzrys;
+	}
+	public void setBzrys(String bzrys) {
+		this.bzrys = bzrys;
+	}
+	public String getZydpx() {
+		return zydpx;
+	}
+	public void setZydpx(String zydpx) {
+		this.zydpx = zydpx;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public String getShzt() {
+		return shzt;
+	}
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
+	}
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getGz() {
+		return gz;
+	}
+	public void setGz(String gz) {
+		this.gz = gz;
+	}
+	public String getSz() {
+		return sz;
+	}
+	public void setSz(String sz) {
+		this.sz = sz;
+	}
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
+	public String getStc() {
+		return stc;
+	}
+	public void setStc(String stc) {
+		this.stc = stc;
+	}
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getGzzq() {
+		return gzzq;
+	}
+	public void setGzzq(String gzzq) {
+		this.gzzq = gzzq;
+	}
+	public String getSzzq() {
+		return szzq;
+	}
+	public void setSzzq(String szzq) {
+		this.szzq = szzq;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getQdzh() {
+		return qdzh;
+	}
+	public void setQdzh(String qdzh) {
+		this.qdzh = qdzh;
+	}
+	public String getZdzh() {
+		return zdzh;
+	}
+	public void setZdzh(String zdzh) {
+		this.zdzh = zdzh;
+	}
+	public String getKgsj() {
+		return kgsj;
+	}
+	public void setKgsj(String kgsj) {
+		this.kgsj = kgsj;
+	}
+	public String getWgsj() {
+		return wgsj;
+	}
+	public void setWgsj(String wgsj) {
+		this.wgsj = wgsj;
+	}
+	public String getGq() {
+		return gq;
+	}
+	public void setGq(String gq) {
+		this.gq = gq;
+	}
+	public String getGkpfwh() {
+		return gkpfwh;
+	}
+	public void setGkpfwh(String gkpfwh) {
+		this.gkpfwh = gkpfwh;
+	}
+	public String getSjpfwh() {
+		return sjpfwh;
+	}
+	public void setSjpfwh(String sjpfwh) {
+		this.sjpfwh = sjpfwh;
+	}
+	public String getXdwh() {
+		return xdwh;
+	}
+	public void setXdwh(String xdwh) {
+		this.xdwh = xdwh;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
+	}
+	public String getPfztz() {
+		return pfztz;
+	}
+	public void setPfztz(String pfztz) {
+		this.pfztz = pfztz;
+	}
+	public String getBbzzj() {
+		return bbzzj;
+	}
+	public void setBbzzj(String bbzzj) {
+		this.bbzzj = bbzzj;
+	}
+	public String getSbzzj() {
+		return sbzzj;
+	}
+	public void setSbzzj(String sbzzj) {
+		this.sbzzj = sbzzj;
+	}
+	public int getXdzt() {
+		return xdzt;
+	}
+	public void setXdzt(int xdzt) {
+		this.xdzt = xdzt;
+	}
+	public String getGhlxbh() {
+		return ghlxbh;
+	}
+	public void setGhlxbh(String ghlxbh) {
+		this.ghlxbh = ghlxbh;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public int getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(int xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getXmlxs() {
+		return xmlxs;
+	}
+	public void setXmlxs(String xmlxs) {
+		this.xmlxs = xmlxs;
+	}
+	public String getXmlx1() {
+		return xmlx1;
+	}
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
+	public String getYlxbh() {
+		return ylxbh;
+	}
+	public void setYlxbh(String ylxbh) {
+		this.ylxbh = ylxbh;
+	}
+	public String getGcfl() {
+		return gcfl;
+	}
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getLc() {
+		return lc;
+	}
+	public void setLc(String lc) {
+		this.lc = lc;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+	public String getSysbbzj() {
+		return sysbbzj;
+	}
+	public void setSysbbzj(String sysbbzj) {
+		this.sysbbzj = sysbbzj;
+	}
+	public String getYqdbcgs() {
+		return yqdbcgs;
+	}
+	public void setYqdbcgs(String yqdbcgs) {
+		this.yqdbcgs = yqdbcgs;
+	}
+	public String getMclmlx() {
+		return mclmlx;
+	}
+	public void setMclmlx(String mclmlx) {
+		this.mclmlx = mclmlx;
+	}
+	public String getMclx() {
+		return mclx;
+	}
+	public void setMclx(String mclx) {
+		this.mclx = mclx;
+	}
+	public String getMcsl() {
+		return mcsl;
+	}
+	public void setMcsl(String mcsl) {
+		this.mcsl = mcsl;
+	}
+	public String getMcje() {
+		return mcje;
+	}
+	public void setMcje(String mcje) {
+		this.mcje = mcje;
+	}
+	public String getJclx() {
+		return jclx;
+	}
+	public void setJclx(String jclx) {
+		this.jclx = jclx;
+	}
+	public String getJcsl() {
+		return jcsl;
+	}
+	public void setJcsl(String jcsl) {
+		this.jcsl = jcsl;
+	}
+	public String getJcje() {
+		return jcje;
+	}
+	public void setJcje(String jcje) {
+		this.jcje = jcje;
+	}
+	public String getXfcsl() {
+		return xfcsl;
+	}
+	public void setXfcsl(String xfcsl) {
+		this.xfcsl = xfcsl;
+	}
+	public String getXfcje() {
+		return xfcje;
+	}
+	public void setXfcje(String xfcje) {
+		this.xfcje = xfcje;
+	}
+	public String getBxsl() {
+		return bxsl;
+	}
+	public void setBxsl(String bxsl) {
+		this.bxsl = bxsl;
+	}
+	public String getBxje() {
+		return bxje;
+	}
+	public void setBxje(String bxje) {
+		this.bxje = bxje;
+	}
+	public String getGfcd() {
+		return gfcd;
+	}
+	public void setGfcd(String gfcd) {
+		this.gfcd = gfcd;
+	}
+	public String getGfje() {
+		return gfje;
+	}
+	public void setGfje(String gfje) {
+		this.gfje = gfje;
+	}
+	public String getLlcl() {
+		return llcl;
+	}
+	public void setLlcl(String llcl) {
+		this.llcl = llcl;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getJszlc() {
+		return jszlc;
+	}
+	public void setJszlc(String jszlc) {
+		this.jszlc = jszlc;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getYilc() {
+		return yilc;
+	}
+	public void setYilc(String yilc) {
+		this.yilc = yilc;
+	}
+	public String getErlc() {
+		return erlc;
+	}
+	public void setErlc(String erlc) {
+		this.erlc = erlc;
+	}
+	public String getSanlc() {
+		return sanlc;
+	}
+	public void setSanlc(String sanlc) {
+		this.sanlc = sanlc;
+	}
+	public String getSilc() {
+		return silc;
+	}
+	public void setSilc(String silc) {
+		this.silc = silc;
+	}
+	public String getDwlc() {
+		return dwlc;
+	}
+	public void setDwlc(String dwlc) {
+		this.dwlc = dwlc;
+	}
+	public String getWllc() {
+		return wllc;
+	}
+	public void setWllc(String wllc) {
+		this.wllc = wllc;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
 	public String getYlxmc() {
 		return ylxmc;
 	}
 	public void setYlxmc(String ylxmc) {
 		this.ylxmc = ylxmc;
 	}
-	public String getGldj() {
-		return gldj;
+	public String getLxbm() {
+		return lxbm;
 	}
-	public void setGldj(String gldj) {
-		this.gldj = gldj;
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBtzzj() {
+		return btzzj;
+	}
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
 	}
 	public String getQsmc() {
 		return qsmc;
@@ -468,407 +845,69 @@ public class Jhsh {
 	public void setLxzh(String lxzh) {
 		this.lxzh = lxzh;
 	}
-	public String getXmsl() {
-		return xmsl;
-	}
-	public void setXmsl(String xmsl) {
-		this.xmsl = xmsl;
-	}
-	public String getJszlc() {
-		return jszlc;
-	}
-	public void setJszlc(String jszlc) {
-		this.jszlc = jszlc;
-	}
-	public String getXdnf() {
-		return xdnf;
-	}
-	public void setXdnf(String xdnf) {
-		this.xdnf = xdnf;
-	}
-	public String getXdzj() {
-		return xdzj;
-	}
-	public void setXdzj(String xdzj) {
-		this.xdzj = xdzj;
-	}
-	public String getBtzzj() {
-		return btzzj;
-	}
-	public void setBtzzj(String btzzj) {
-		this.btzzj = btzzj;
-	}
-	public String getStz() {
-		return stz;
-	}
-	public void setStz(String stz) {
-		this.stz = stz;
-	}
-	public String getKgzt() {
-		return kgzt;
-	}
-	public void setKgzt(String kgzt) {
-		this.kgzt = kgzt==null ? "" : kgzt;
-	}
-	public String getLxmc() {
-		return lxmc;
-	}
-	public void setLxmc(String lxmc) {
-		this.lxmc = lxmc==null ? "" :lxmc;
-	}
-	public String getLxbm() {
-		return lxbm;
-	}
-	public void setLxbm(String lxbm) {
-		this.lxbm = lxbm == null ? "" : lxbm;
-	}
-	public String getYilc() {
-		return yilc;
-	}
-	public void setYilc(String yilc) {
-		this.yilc = yilc.trim();
-	}
-	public String getErlc() {
-		return erlc;
-	}
-	public void setErlc(String erlc) {
-		this.erlc = erlc.trim();
-	}
-	public String getSanlc() {
-		return sanlc;
-	}
-	public void setSanlc(String sanlc) {
-		this.sanlc = sanlc.trim();
-	}
-	public String getSilc() {
-		return silc;
-	}
-	public void setSilc(String silc) {
-		this.silc = silc.trim();
-	}
-	public String getDwlc() {
-		return dwlc;
-	}
-	public void setDwlc(String dwlc) {
-		this.dwlc = dwlc.trim();
-	}
-	public String getWllc() {
-		return wllc;
-	}
-	public void setWllc(String wllc) {
-		this.wllc = wllc.trim();
-	}
-	public String getGydw() {
-		return gydw;
-	}
-	public void setGydw(String gydw) {
-		this.gydw = gydw==null ? "" : gydw.trim();
-	}
-	public String getGpsqdzh() {
-		return gpsqdzh;
-	}
-	public void setGpsqdzh(String gpsqdzh) {
-		this.gpsqdzh = gpsqdzh.trim();
-	}
-	public String getGpszdzh() {
-		return gpszdzh;
-	}
-	public void setGpszdzh(String gpszdzh) {
-		this.gpszdzh = gpszdzh.trim();
-	}
-	public String getQdmc() {
-		return qdmc;
-	}
-	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
-	}
-	public String getZdmc() {
-		return zdmc;
-	}
-	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getXmmc() {
-		return xmmc;
-	}
-	public void setXmmc(String xmmc) {
-		this.xmmc = xmmc;
-	}
-	public String getXmbm() {
-		return xmbm;
-	}
-	public void setXmbm(String xmbm) {
-		this.xmbm = xmbm;
-	}
-	public String getXzqh() {
-		return xzqh;
-	}
-	public void setXzqh(String xzqh) {
-		this.xzqh = xzqh.trim();
-	}
-	public String getQdzh() {
-		return qdzh;
-	}
-	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh.trim();
-	}
-	public String getZdzh() {
-		return zdzh;
-	}
-	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh.trim();
-	}
-	public String getKgsj() {
-		return kgsj;
-	}
-	public void setKgsj(String kgsj) {
-		this.kgsj = kgsj;
-	}
-	public String getWgsj() {
-		return wgsj;
-	}
-	public void setWgsj(String wgsj) {
-		this.wgsj = wgsj;
-	}
-	public String getGq() {
-		return gq;
-	}
-	public void setGq(String gq) {
-		this.gq = gq;
-	}
-	public String getGkpfwh() {
-		return gkpfwh;
-	}
-	public void setGkpfwh(String gkpfwh) {
-		this.gkpfwh = gkpfwh.trim();
-	}
-	public String getSjpfwh() {
-		return sjpfwh;
-	}
-	public void setSjpfwh(String sjpfwh) {
-		this.sjpfwh = sjpfwh.trim();
-	}
-	public String getXdwh() {
-		return xdwh;
-	}
-	public void setXdwh(String xdwh) {
-		this.xdwh = xdwh.trim();
-	}
-	public String getXdsj() {
-		return xdsj;
-	}
-	public void setXdsj(String xdsj) {
-		this.xdsj = xdsj;
-	}
-	public String getPfztz() {
-		return pfztz;
-	}
-	public void setPfztz(String pfztz) {
-		this.pfztz = pfztz.trim();
-	}
-	public String getBbzzj() {
-		return bbzzj;
-	}
-	public void setBbzzj(String bbzzj) {
-		this.bbzzj = bbzzj.trim();
-	}
-	public String getSbzzj() {
-		return sbzzj;
-	}
-	public void setSbzzj(String sbzzj) {
-		this.sbzzj = sbzzj.trim();
-	}
-	public String getGhlxbh() {
-		return ghlxbh;
-	}
-	public void setGhlxbh(String ghlxbh) {
-		this.ghlxbh = ghlxbh.trim();
-	}
-	public String getXzqhdm() {
-		return xzqhdm;
-	}
-	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm.trim();
-	}
-	public int getXmlx() {
-		return xmlx;
-	}
-	public void setXmlx(int xmlx) {
-		this.xmlx = xmlx;
-	}
-	public String getTsdq() {
-		return tsdq;
-	}
-	public void setTsdq(String tsdq) {
-		this.tsdq = tsdq;
-	}
-	public int getXdzt() {
-		return xdzt;
-	}
-	public void setXdzt(int xdzt) {
-		this.xdzt = xdzt;
-	}
-	public String getYlxbh() {
-		return ylxbh;
-	}
-	public void setYlxbh(String ylxbh) {
-		this.ylxbh = ylxbh.trim();
-	}
-	public String getGcfl() {
-		return gcfl;
-	}
-	public void setGcfl(String gcfl) {
-		this.gcfl = gcfl.trim();
-	}
-	public String getJhkgsj() {
-		return jhkgsj;
-	}
-	public void setJhkgsj(String jhkgsj) {
-		this.jhkgsj = jhkgsj;
-	}
-	public String getJhwgsj() {
-		return jhwgsj;
-	}
-	public void setJhwgsj(String jhwgsj) {
-		this.jhwgsj = jhwgsj;
-	}
-	public String getLc() {
-		return lc;
-	}
-	public void setLc(String lc) {
-		this.lc = lc.trim();
-	}
-	public String getZtz() {
-		return ztz;
-	}
-	public void setZtz(String ztz) {
-		this.ztz = ztz.trim();
-	}
-	public String getSysbbzj() {
-		return sysbbzj;
-	}
-	public void setSysbbzj(String sysbbzj) {
-		this.sysbbzj = sysbbzj.trim();
-	}
-	public String getYqdbcgs() {
-		return yqdbcgs;
-	}
-	public void setYqdbcgs(String yqdbcgs) {
-		this.yqdbcgs = yqdbcgs.trim();
-	}
-	public String getMclmlx() {
-		return mclmlx;
-	}
-	public void setMclmlx(String mclmlx) {
-		this.mclmlx = mclmlx.trim();
-	}
-	public String getMclx() {
-		return mclx;
-	}
-	public void setMclx(String mclx) {
-		this.mclx = mclx.trim();
-	}
-	public String getMcsl() {
-		return mcsl;
-	}
-	public void setMcsl(String mcsl) {
-		this.mcsl = mcsl.trim();
-	}
-	public String getMcje() {
-		return mcje;
-	}
-	public void setMcje(String mcje) {
-		this.mcje = mcje.trim();
-	}
-	public String getJclx() {
-		return jclx;
-	}
-	public void setJclx(String jclx) {
-		this.jclx = jclx.trim();
-	}
-	public String getJcsl() {
-		return jcsl;
-	}
-	public void setJcsl(String jcsl) {
-		this.jcsl = jcsl.trim();
-	}
-	public String getJcje() {
-		return jcje;
-	}
-	public void setJcje(String jcje) {
-		this.jcje = jcje.trim();
-	}
-	public String getXfcsl() {
-		return xfcsl;
-	}
-	public void setXfcsl(String xfcsl) {
-		this.xfcsl = xfcsl.trim();
-	}
-	public String getXfcje() {
-		return xfcje;
-	}
-	public void setXfcje(String xfcje) {
-		this.xfcje = xfcje.trim();
-	}
-	public String getBxsl() {
-		return bxsl;
-	}
-	public void setBxsl(String bxsl) {
-		this.bxsl = bxsl.trim();
-	}
-	public String getBxje() {
-		return bxje;
-	}
-	public void setBxje(String bxje) {
-		this.bxje = bxje.trim();
-	}
-	public String getGfcd() {
-		return gfcd;
-	}
-	public void setGfcd(String gfcd) {
-		this.gfcd = gfcd;
-	}
-	public String getGfje() {
-		return gfje;
-	}
-	public void setGfje(String gfje) {
-		this.gfje = gfje.trim();
-	}
-	public String getLlcl() {
-		return llcl;
-	}
-	public void setLlcl(String llcl) {
-		this.llcl = llcl.trim();
-	}
-	public String getJsdj() {
-		return jsdj;
-	}
-	public void setJsdj(String jsdj) {
-		this.jsdj = jsdj.trim();
-	}
-	public String getLsjl() {
-		return lsjl;
-	}
-	public void setLsjl(String lsjl) {
-		this.lsjl = lsjl;
-	}
-	public String getXmlxs() {
-		return xmlxs;
-	}
-	public void setXmlxs(String xmlxs) {
-		this.xmlxs = xmlxs;
-	}
-	public String getXmlx1() {
-		return xmlx1;
-	}
-	public void setXmlx1(String xmlx1) {
-		this.xmlx1 = xmlx1;
-	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	@Override
+	public String toString() {
+		return "Jhsh [jsjsdj=" + jsjsdj + ", xjsdj=" + xjsdj + ", tz=" + tz
+				+ ", ghxlxbm=" + ghxlxbm + ", ghxlxmc=" + ghxlxmc + ", scxdnf="
+				+ scxdnf + ", xzdj=" + xzdj + ", xdzttj=" + xdzttj + ", zjly="
+				+ zjly + ", xmnf=" + xmnf + ", gyfl=" + gyfl + ", bzxdnf="
+				+ bzxdnf + ", bzpfztz=" + bzpfztz + ", bzgz=" + bzgz
+				+ ", bzsz=" + bzsz + ", bzzq=" + bzzq + ", bzdk=" + bzdk
+				+ ", bzjl=" + bzjl + ", bzqt=" + bzqt + ", bzcgs=" + bzcgs
+				+ ", bztbsj=" + bztbsj + ", tbdw=" + tbdw + ", xzqhmc="
+				+ xzqhmc + ", jhlc=" + jhlc + ", zq=" + zq + ", jl=" + jl
+				+ ", qt=" + qt + ", sfsycgs=" + sfsycgs + ", rys=" + rys
+				+ ", bzrys=" + bzrys + ", zydpx=" + zydpx + ", sbzt=" + sbzt
+				+ ", shzt=" + shzt + ", yhdk=" + yhdk + ", gz=" + gz + ", sz="
+				+ sz + ", jhxdwh=" + jhxdwh + ", stc=" + stc + ", dk=" + dk
+				+ ", gzzq=" + gzzq + ", szzq=" + szzq + ", id=" + id
+				+ ", xmmc=" + xmmc + ", xmbm=" + xmbm + ", xzqh=" + xzqh
+				+ ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", kgsj=" + kgsj
+				+ ", wgsj=" + wgsj + ", gq=" + gq + ", gkpfwh=" + gkpfwh
+				+ ", sjpfwh=" + sjpfwh + ", xdwh=" + xdwh + ", xdsj=" + xdsj
+				+ ", pfztz=" + pfztz + ", bbzzj=" + bbzzj + ", sbzzj=" + sbzzj
+				+ ", xdzt=" + xdzt + ", ghlxbh=" + ghlxbh + ", xzqhdm="
+				+ xzqhdm + ", lsjl=" + lsjl + ", xmlx=" + xmlx + ", xmlxs="
+				+ xmlxs + ", xmlx1=" + xmlx1 + ", tsdq=" + tsdq + ", ylxbh="
+				+ ylxbh + ", gcfl=" + gcfl + ", jhkgsj=" + jhkgsj + ", jhwgsj="
+				+ jhwgsj + ", lc=" + lc + ", ztz=" + ztz + ", sysbbzj="
+				+ sysbbzj + ", yqdbcgs=" + yqdbcgs + ", mclmlx=" + mclmlx
+				+ ", mclx=" + mclx + ", mcsl=" + mcsl + ", mcje=" + mcje
+				+ ", jclx=" + jclx + ", jcsl=" + jcsl + ", jcje=" + jcje
+				+ ", xfcsl=" + xfcsl + ", xfcje=" + xfcje + ", bxsl=" + bxsl
+				+ ", bxje=" + bxje + ", gfcd=" + gfcd + ", gfje=" + gfje
+				+ ", llcl=" + llcl + ", jsdj=" + jsdj + ", jszlc=" + jszlc
+				+ ", gydw=" + gydw + ", qdmc=" + qdmc + ", zdmc=" + zdmc
+				+ ", gpsqdzh=" + gpsqdzh + ", gpszdzh=" + gpszdzh + ", yilc="
+				+ yilc + ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc="
+				+ silc + ", dwlc=" + dwlc + ", wllc=" + wllc + ", lxmc=" + lxmc
+				+ ", ylxmc=" + ylxmc + ", lxbm=" + lxbm + ", kgzt=" + kgzt
+				+ ", xdnf=" + xdnf + ", xdzj=" + xdzj + ", btzzj=" + btzzj
+				+ ", stz=" + stz + ", xmsl=" + xmsl + ", qsmc=" + qsmc
+				+ ", xjmc=" + xjmc + ", jb=" + jb + ", jsxz=" + jsxz
+				+ ", ydbmc=" + ydbmc + ", zbzzj=" + zbzzj + ", zddzjl="
+				+ zddzjl + ", dfzc=" + dfzc + ", lxzh=" + lxzh + ", gldj="
+				+ gldj + "]";
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	
+
 	
 }

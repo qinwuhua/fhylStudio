@@ -281,25 +281,6 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhshLj(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
-			String xmbm = jhsh.getXmbm();
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-					}
-				}
-			}else{
-				xmbm = "j.xmbm like '" + xmbm + "%' ";
-			}
-			jhsh.setXmbm(xmbm);
-			ylxbhHandle();
-			jsdjHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
 				result = jhshServer.queryJhshLjLmsj(jhsh);
 			}else if(jhsh.getXmlx()==2){
@@ -307,12 +288,39 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==3){
 				result = jhshServer.queryJhshLjXj(jhsh);
 			}else if(jhsh.getXmlx()==4){
-				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle();
+				jsxzHandle();
+				zjlyHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
-				jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}else if(jhsh.getXmlx()==6){
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				ylxbhHandle();
+				jsdjHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				result = jhshServer.queryJhshLjYhzx(jhsh);
 			}
 			
@@ -380,32 +388,48 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try{
-			String xmbm = jhsh.getXmbm();
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-					}
-				}
-			}else{
-				xmbm = "j.xmbm like '" + xmbm + "%' ";
-			}
-			jhsh.setXmbm(xmbm);
-			jsdjHandle();
-			ylxbhHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
+			
 			if(jhsh.getXmlx()==4){
-				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle();
+				jsxzHandle();
+				zjlyHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setPage(page);
+				jhsh.setRows(rows);
+				listData=jhshServer.queryJhshYhdzx(jhsh);
 				total=jhshServer.queryJhshYhdzxCount(jhsh);
 			}else if(jhsh.getXmlx()==5){
-				listData=jhshServer.queryJhshSh(jhsh,page,rows);
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle();
+				
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setPage(page);
+				jhsh.setRows(rows);
+				listData=jhshServer.queryJhshSh(jhsh);
 				total=jhshServer.queryJhshShCount(jhsh);
 			}else if (jhsh.getXmlx()==6) {
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				jsdjHandle();
+				ylxbhHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 				listData=jhshServer.queryJhshYhzx(jhsh,page,rows);
 				total=jhshServer.queryJhshYhzxCount(jhsh);
 			}
@@ -944,7 +968,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
 		if(jhsh.getXmlx()==4){
-			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
+			jhsh.setPage(0);
+			jhsh.setRows(0);
+			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh));
 			fileName="养护大中修项目-计划审核";
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
@@ -1078,7 +1104,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
-		excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
+		jhsh.setPage(0);
+		jhsh.setRows(0);
+		excelData.addAll(jhshServer.queryJhshSh(jhsh));
 		titleName="灾毁重建项目";
 		fileName="灾毁重建项目-计划审核";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
@@ -1187,13 +1215,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		else if(jhsh.getXmlx()==4){
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
-			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh, 0, 0));
+			jhsh.setPage(0);
+			jhsh.setRows(0);
+			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh));
 			titleName="养护大中修项目";
 			fileName="养护大中修项目-计划资金下达";
 		}
 		else if(jhsh.getXmlx()==5){
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
-			excelData.addAll(jhshServer.queryJhshSh(jhsh, 0, 0));
+			jhsh.setPage(0);
+			jhsh.setRows(0);
+			excelData.addAll(jhshServer.queryJhshSh(jhsh));
 			titleName="灾毁重建项目";
 			fileName="灾毁重建项目-计划资金下达";
 		}
