@@ -1280,7 +1280,7 @@ function gridBind(grid){
 	    detailFormatter:Rh.detailFormatter,
 	    onExpandRow:Rh.onExpandRow
 	});
-	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
 function gridBind11(grid){
 	gridObj = $('#'+grid.id).datagrid({
@@ -1303,7 +1303,7 @@ function gridBind11(grid){
 	    detailFormatter:Rh11.detailFormatter,
 	    onExpandRow:Rh11.onExpandRow
 	});
-	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
 
 function gridBind1(grid){
@@ -1324,7 +1324,7 @@ function gridBind1(grid){
 	    onClickRow:Rh.onClickRow,
 	    onLoadSuccess:Rh.onLoadSuccess
 	});
-	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
 function gridBindyh(grid){
 	gridObj = $('#'+grid.id).datagrid({
@@ -1347,5 +1347,5 @@ function gridBindyh(grid){
 	    detailFormatter:Qwh.detailFormatter,
 	    onExpandRow:Qwh.onExpandRow
 	});
-	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }

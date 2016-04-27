@@ -146,50 +146,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
-			String xmbm = jhsh.getXmbm();
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-					}
-				}
-			}else{
-				xmbm = "j.xmbm like '" + xmbm + "%' ";
-			}
-			ylxbhHandle();
-			jhsh.setXmbm(xmbm);
-			//jsdjHandle();
-			//原技术等级和现技术等级过滤条件
-			 jsdjHandle_("jsjsdj"); 
-			 jsdjHandle_("xjsdj");
 			
+			jsjsdjHandle();
+			jsdjHandle1();
+			xzdjHandle();
+			tsdqHandle();
+			jsxzHandle();
+			zjlyHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-			if(jhsh.getXmlx1()!=null)
-				if(jhsh.getXmlx1().length()>0){
-					String[] tsdqs=jhsh.getXmlx1().split(",");
-					String tsdq="";
-					for (int i = 0; i < tsdqs.length; i++) {
-						if("全部".equals(tsdqs[i])){
-							tsdq="";
-							break;
-						}
-						if(i==0)
-							tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
-						else
-							tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
-					}
-					if(tsdq==""){
-						tsdq="";
-					}else{
-						tsdq+=")";
-					}
-					jhsh.setXmlx1(tsdq);
-				}
 			
 			listData=jhshServer.queryGsdgz(jhsh,page,rows);
 			total=jhshServer.queryGsdgzCount(jhsh);
@@ -259,47 +223,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhshLjgsdgz(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
-			String xmbm = jhsh.getXmbm();
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-					}
-				}
-			}else{
-				xmbm = "j.xmbm like '" + xmbm + "%' ";
-			}
-			jhsh.setXmbm(xmbm);
-			ylxbhHandle();
-			jsdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			xzdjHandle();
+			tsdqHandle();
+			jsxzHandle();
+			zjlyHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-			if(jhsh.getXmlx1()!=null)
-				if(jhsh.getXmlx1().length()>0){
-					String[] tsdqs=jhsh.getXmlx1().split(",");
-					String tsdq="";
-					for (int i = 0; i < tsdqs.length; i++) {
-						if("全部".equals(tsdqs[i])){
-							tsdq="";
-							break;
-						}
-						if(i==0)
-							tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
-						else
-							tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
-					}
-					if(tsdq==""){
-						tsdq="";
-					}else{
-						tsdq+=")";
-					}
-					jhsh.setXmlx1(tsdq);
-				}
-				result = jhshServer.queryJhshLjgsdgz(jhsh);
+			result = jhshServer.queryJhshLjgsdgz(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1958,7 +1889,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] split = xjsdj.split(",");
 				for (int i = 0; i < split.length; i++) {
 					if(i==0){
-						xjsdj = "(l.xjsdj like '"+split[i]+"%'";
+						xjsdj = "(xjsdjtj like '"+split[i]+"%'";
 					}else if(i==split.length-1){
 						xjsdj += " or xjsdjtj like '"+split[i]+"%')";
 					}else{

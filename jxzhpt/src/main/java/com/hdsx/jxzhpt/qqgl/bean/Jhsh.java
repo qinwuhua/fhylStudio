@@ -33,7 +33,14 @@ public class Jhsh {
 	private String bzrys;//编制    燃油税
 	private String zydpx;//重要度排序
 	private String sbzt;//上报状态
+	private String shzt;//审核状态
 	
+	public String getShzt() {
+		return shzt;
+	}
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
+	}
 	public String getSbzt() {
 		return sbzt;
 	}
