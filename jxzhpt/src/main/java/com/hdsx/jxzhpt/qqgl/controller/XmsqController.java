@@ -629,7 +629,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void exportExcelXmsq(){
 		try{
 			//设置列与字段对应
-			String fileTitle="<title=行政区划代码,fieid=xzqhdm>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原路线编号,fieid=ylxbh>,<title=路线编号,fieid=ghlxbh>,<title=路线名称,fieid=lxmc>,<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路面宽度,fieid=lmkd>,<title=技术等级,fieid=jsdj>,<title=项目年份,fieid=xmnf>,<title=项目名称,fieid=xmmc>,<title=工程分类,fieid=gcfl>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=工期（月）,fieid=gq>,<title=拟投资,fieid=ntz>,<title=建设方案,fieid=jsfa,width=60>,<title=备注,fieid=bz,width=20>,<title=项目编码,fieid=xmbm,hidden=true>";
+			String fileTitle="<title=项目名称,fieid=xmmc>,<title=行政区划代码,fieid=xzqhdm>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原路线编号,fieid=ylxbh>,<title=路线编号,fieid=ghlxbh>,<title=路线名称,fieid=lxmc>,<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路面宽度,fieid=lmkd>,<title=技术等级,fieid=jsdj>,<title=项目年份,fieid=xmnf>,<title=工程分类,fieid=gcfl>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=工期（月）,fieid=gq>,<title=拟投资,fieid=ntz>,<title=建设方案,fieid=jsfa,width=60>,<title=备注,fieid=bz,width=20>,<title=项目编码,fieid=xmbm,hidden=true>";
 			//数据
 			List<Object> excelData=new ArrayList<Object>();
 			//设置标题、文件名称
