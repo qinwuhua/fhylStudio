@@ -696,6 +696,15 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="jsjsdj !='' and jsjsdj !=null">
+			${jsjsdj}
+		</if>
+		<if test="ghlxmc !='' and ghlxmc !=null">
+			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm !=null">
+			and lx.ghlxbm like '%'||#{ghlxbm}||'%'
+		</if>
 		order by t.xmbm desc, lx.sffirst desc
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
@@ -718,6 +727,15 @@
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="jsjsdj !='' and jsjsdj !=null">
+			${jsjsdj}
+		</if>
+		<if test="ghlxmc !='' and ghlxmc !=null">
+			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm !=null">
+			and lx.ghlxbm like '%'||#{ghlxbm}||'%'
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
@@ -745,6 +763,15 @@
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="jsjsdj !='' and jsjsdj !=null">
+			${jsjsdj}
+		</if>
+		<if test="ghlxmc !='' and ghlxmc !=null">
+			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm !=null">
+			and lx.ghlxbm like '%'||#{ghlxbm}||'%'
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
@@ -1284,6 +1311,13 @@
 		</if>
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
+		</if>
+		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
+		<if test="ghlxmc !='' and ghlxmc != null ">
+			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
+		</if>
+		<if test="ghlxbm !='' and ghlxbm != null ">
+			and lx.ghlxbm like '%'||#{ghlxbm}||'%'
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>

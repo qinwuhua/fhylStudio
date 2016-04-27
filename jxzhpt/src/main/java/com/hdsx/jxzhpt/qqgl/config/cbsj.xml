@@ -916,6 +916,10 @@
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+				
 				<!-- <if test="sbzt>=0">
 					and c.sbzt=${sbzt}
 				</if> -->
@@ -942,6 +946,10 @@
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+		
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
@@ -970,6 +978,10 @@
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+				
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
@@ -994,6 +1006,10 @@
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+				
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
@@ -1017,6 +1033,10 @@
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+		
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
@@ -1584,7 +1604,7 @@
 				select decode(lx.sffirst,'1',c.xmbm,'') xmbm,decode(lx.sffirst,'1',c.xmmc,'') xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
 				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jaf,'') jaf,decode(lx.sffirst,'1',c.dfzc,'') dfzc,decode(lx.sffirst,'1',c.yhdk,'') yhdk,lx.* from cbgsdgz c left join lxgsdgz l on c.xmbm = l.xmbm
-				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst  from lxsh_lx where jdbs='2' ) lx
+				right join (select xmid, lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst,ghlxbm,ghlxmc  from lxsh_lx where jdbs='2' ) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
@@ -1604,6 +1624,10 @@
 				</if> -->
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>

@@ -269,7 +269,7 @@ text-decoration:none;
                                	<td>规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                               <td colspan="10">
                               
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

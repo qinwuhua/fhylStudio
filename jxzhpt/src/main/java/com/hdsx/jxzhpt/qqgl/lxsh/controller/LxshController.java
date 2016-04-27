@@ -2251,11 +2251,14 @@ public class LxshController extends BaseActionSupport{
 			xzqh=(String) session.getAttribute("xzqhbb");	
 			String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
-			}else{
-				tiaojian1="and lx.gydwdm in ("+gydw+")";
+			if(!gydw.equals("")&&gydw!=null){
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
+				}else{
+					tiaojian1="and lx.gydwdm in ("+gydw+")";
+				}
 			}
+			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and lx.xzqhdm like '%"+xzqh+"%'";
 			}else{
@@ -2356,6 +2359,24 @@ public class LxshController extends BaseActionSupport{
 						}
 						lxsh.setXmlx1(tsdq);
 					}
+				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+					String jsdj1 ="";
+					if(lxsh.getJsjsdj().indexOf(",")>-1){
+						String[] jsdj2 = lxsh.getJsjsdj().split(",");
+						for (int i = 0; i < jsdj2.length; i++) {
+							if(i==0){
+								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+							}else if(i==jsdj2.length-1){
+								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+							}else{
+								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+							}
+						}
+					}else{
+						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+					}
+					lxsh.setJsjsdj(jsdj1);
+				}
 				xmbt="国省道";
 				elist=lxshServer.querykxxgsd(lxsh);
 				et.clear();
@@ -2394,6 +2415,24 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("批复时间",1,1,32,32));
 			}
 			if("sjgz".equals(lxsh.getXmlx())){
+				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+					String jsdj1 ="";
+					if(lxsh.getJsjsdj().indexOf(",")>-1){
+						String[] jsdj2 = lxsh.getJsjsdj().split(",");
+						for (int i = 0; i < jsdj2.length; i++) {
+							if(i==0){
+								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+							}else if(i==jsdj2.length-1){
+								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+							}else{
+								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+							}
+						}
+					}else{
+						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+					}
+					lxsh.setJsjsdj(jsdj1);
+				}
 				xmbt="改建";
 				elist=lxshServer.querykxxSjgz(lxsh);
 				et.clear();
@@ -2460,6 +2499,24 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("工可批复文号",1,1,25,25));
 				et.add(new Excel_tilte("批复时间",1,1,26,26));
 				xmbt="路面改造";
+				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+					String jsdj1 ="";
+					if(lxsh.getJsjsdj().indexOf(",")>-1){
+						String[] jsdj2 = lxsh.getJsjsdj().split(",");
+						for (int i = 0; i < jsdj2.length; i++) {
+							if(i==0){
+								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+							}else if(i==jsdj2.length-1){
+								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+							}else{
+								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+							}
+						}
+					}else{
+						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+					}
+					lxsh.setJsjsdj(jsdj1);
+				}
 				elist=lxshServer.querykxxLmgz(lxsh);
 			}
 			if("xj".equals(lxsh.getXmlx())){
@@ -2495,6 +2552,24 @@ public class LxshController extends BaseActionSupport{
 				et.add(new Excel_tilte("工可批复文号",1,1,29,29));
 				et.add(new Excel_tilte("批复时间",1,1,30,30));
 				xmbt="新建";
+				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+					String jsdj1 ="";
+					if(lxsh.getJsjsdj().indexOf(",")>-1){
+						String[] jsdj2 = lxsh.getJsjsdj().split(",");
+						for (int i = 0; i < jsdj2.length; i++) {
+							if(i==0){
+								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+							}else if(i==jsdj2.length-1){
+								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+							}else{
+								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+							}
+						}
+					}else{
+						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+					}
+					lxsh.setJsjsdj(jsdj1);
+				}
 				elist=lxshServer.querykxxXj(lxsh);
 			}
 			
