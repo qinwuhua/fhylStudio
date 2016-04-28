@@ -885,22 +885,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("13", "bbzzj");//部补助资金
 		attribute.put("14", "sbzzj");//省补助资金
 		String xmbm = jhsh.getXmbm();
-		if(xmbm.indexOf(",")>-1){
-			String[] xmnfArray = xmbm.split(",");
-			for (int i = 0; i < xmnfArray.length; i++) {
-				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-				}else if(i==0){
-					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+		if(!xmbm.equals("")&&xmbm!=null){
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
 				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
-		}else{
-			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
+		
 		jhsh.setXmbm(xmbm);
 		jsdjHandle();
+		jsjsdjHandle();
 		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
