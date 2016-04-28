@@ -173,6 +173,70 @@
 			querySumWqgz(jh,lx);
 			wqxm_sb(jh,lx);
 		}
+		function dcExcel(){
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var jsdj=$("#jsdj").combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var jh={jhnf:xmnf,sbzt:"",spzt:"",jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:"",jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:"",qlbh:"",akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#txtqlbm').val()!=''){
+				lx.qlbh=$('#txtqlbm').val();
+			}
+			
+			if($('#ddlSHZT').combobox('getValue')=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#ddlSHZT').combobox('getValue')=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}
+// 			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
+// 					'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+// 					"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+// 					"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,
+// 					"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq};
+			var param="jh.sbzt="+jh.sbzt+"&jh.spzt="+jh.spzt+"&jh.sbnf="+jh.jhnf+"&jh.jhkgsj="+jh.jhkgsj+
+					"&jh.sfylsjl="+jh.sfylsjl+"&jh.jh_sbthcd="+jh.jh_sbthcd+
+					"&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+lx.lxmc+
+					"&lx.lxbm="+lx.lxbm+"&lx.qlmc="+lx.qlmc+"&lx.akjfl="+lx.akjfl+"&lx.jsxz="+lx.jsxz+
+					"&lx.jsdj="+lx.jsdj+"&lx.gldj="+lx.gldj+"&lx.tsdq="+lx.tsdq;
+			alert(param);
+			window.location.href="/jxzhpt/jhgl/exportExcelWqgzJhSb.do?"+param;
+		}
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
 				var param={'jh.sbnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,
@@ -313,7 +377,7 @@ text-decoration:none;
         						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
 <%--         						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img alt="导出Excel"  onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								</td>
                             </tr></table>
         				</div>

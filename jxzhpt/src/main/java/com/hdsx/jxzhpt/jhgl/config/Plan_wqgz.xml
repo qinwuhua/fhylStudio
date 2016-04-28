@@ -104,6 +104,76 @@
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	<select id="queryWqgzList1" parameterType="java.util.Map" resultType="wqgz_jh">
+		select * from 
+			(
+				select rownum as num,t.* from
+				(
+					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,
+					sc.scqlqc,sc.scqlqk,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh 
+					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是' <!-- and lx.gydwbm like '2%' -->
+	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
+	 					and jh.sbnf in (${jh.sbnf})
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 					and jh.kgzt=#{jh.kgzt}
+	 				</if>
+	 				<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 					and jh.jgzt=#{jh.jgzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 			and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 					and ${lx.gydwbm}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and ${lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+	 				</if>
+	 				 <if test="lx.jsdj!=null and lx.jsdj!=''">
+	 					${lx.jsdj}
+	 				</if> 
+	 				<if test="lx.gldj!=null and lx.gldj!=''">
+	 					${lx.gldj}
+	 				</if>
+	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
+	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 				</if>
+	 				<if test="lx.qlbh!=null and lx.qlbh!=''">
+	 					and lx.qlbh like '%'||#{lx.qlbh}||'%'
+	 				</if>
+	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 					${lx.akjfl}
+	 				</if>
+	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		${lx.tsdq}
+				 	</if>
+				 	<if test="lx.jsxz!=null and lx.jsxz!=''">
+	 					and sc.jsxz like '%'||#{lx.jsxz}||'%'
+	 				</if>
+	 				order by jh.sbnf desc,jh.jh_sbthcd
+	 			) t order by t.sbnf desc,t.jh_sbthcd
+ 			)
+	</select>
 	<!-- 此方法仅用于导出危桥资金下达Excel的查询 -->
 	<select id="queryWqgzList2" parameterType="java.util.Map" resultMap="wqgz_jh">
 		select * from 
@@ -582,7 +652,7 @@
 				select rownum as num,t.* from
 				(
 					select jh.id,sc.sckid,lx.xzqhmc,lx.gydw,lx.lxbm,lx.lxmc,lx.qlbh,lx.qlmc,lx.qlzxzh,sc.scqlqc,sc.scqlqk,sc.fapgdw,sc.fascdw,sc.faspsj,sc.spwh,sc.tzgs,sc.jsxz,sc.jsnr,sc.scbz,
-					jh.sbnf,to_char(jh.jhkgsj,'yyyy-mm-dd') jhkgsj1,to_char(jh.jhwgsj,'yyyy-mm-dd') jhwgsj1,jh.sjdw,jh.sjpfdw,jh.pfwh,to_char(jh.pfsj,'yyyy-mm-dd') pfsj1,jh.sfsqablbz,jh.ablbzsqwh,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.bz
+					jh.sbnf, jh.jhkgsj  jhkgsj1, jh.jhwgsj  jhwgsj1,jh.sjdw,jh.sjpfdw,jh.pfwh, jh.pfsj pfsj1,jh.sfsqablbz,jh.ablbzsqwh,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.bz
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id) 
 					where 1=1 and jh.sfylrbwqk='是'
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">

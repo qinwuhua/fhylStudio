@@ -256,4 +256,12 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public boolean updateImportWqgzJh(List<Plan_wqgz> list) {
 		return (updateBatch("updateImportWqgzJh", list)==list.size() && updateBatch("updateImportWqgzSh", list)==list.size());
 	}
+
+	@Override
+	public List<Object> queryWqgzList1(Plan_wqgz jh, Jckwqgz lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryWqgzList1",params);
+	}
 }

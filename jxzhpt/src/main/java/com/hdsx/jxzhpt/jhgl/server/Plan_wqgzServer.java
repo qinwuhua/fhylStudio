@@ -136,4 +136,5 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	boolean updateImportWqgzJh(List<Plan_wqgz> list);
+	List<Object> queryWqgzList1(Plan_wqgz jh, Jckwqgz lx);
 }	

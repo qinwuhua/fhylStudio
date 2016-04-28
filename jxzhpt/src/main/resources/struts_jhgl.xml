@@ -102,6 +102,7 @@
 		<action name="queryWqLs" class="plan_wqgzController" method="queryWqLs"/>
 		<action name="editWqZj" class="plan_wqgzController" method="editWqZj"/>
 		<action name="exportExcelWqgzJhSh" class="plan_wqgzController" method="exportExcelWqgzJhSh"/>
+		<action name="exportExcelWqgzJhSb" class="plan_wqgzController" method="exportExcelWqgzJhSb"/>
 		<action name="importWqgzJhSh" class="plan_wqgzController" method="importWqgzJhSh"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>

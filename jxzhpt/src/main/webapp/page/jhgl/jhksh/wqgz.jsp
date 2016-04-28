@@ -202,7 +202,7 @@
 			}else{
 				param+="&jh.jh_sbthcd=4&jh.sbzt=1";
 			}
-			
+			alert(param);
 			window.location.href="/jxzhpt/jhgl/exportExcelWqgzJhSh.do?"+param;
 		}
 		function importWqtzSh(){

@@ -440,6 +440,106 @@ public class Plan_wqgzController extends BaseActionSupport {
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
 	/**
+	 * 计划库上报导出Excel
+	 */
+	public void exportExcelWqgzJhSb(){
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			if(lx.getTsdq()!=null)
+			if(lx.getTsdq().length()>0){
+				String[] tsdqs=lx.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="lx.tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or lx.tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lx.setTsdq(tsdq);
+			}
+			if(lx.getGldj()!=null)
+			if(lx.getGldj().length()>0){
+				String[] tsdqs=lx.getGldj().split(",");
+				String tsdq="and substr(sck_qlbh,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lx.setGldj(tsdq);
+			}
+			if(lx.getAkjfl()!=null)
+			if(lx.getAkjfl().length()>0){
+				String[] tsdqs=lx.getAkjfl().split(",");
+				String tsdq="and lx.akjfl in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lx.setAkjfl(tsdq);
+			}
+			if(lx.getJsdj()!=null)
+			if(lx.getJsdj().length()>0){
+				String[] tsdqs=lx.getJsdj().split(",");
+				String tsdq="and substr(lx.jsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+				
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lx.setJsdj(tsdq);
+			}
+			
+			System.out.println(lx.getJsdj());
+			
+		String fileTitle="<title=行政区划,fieid=xzqhmc>,<title=管养单位,fieid=gydw>,<title=路线编码,fieid=lxbm>,<title=路线名称,fieid=lxmc>,<title=桥梁编号,fieid=qlbh>,<title=桥梁名称,fieid=qlmc>,<title=桥梁中心桩号,fieid=qlzxzh>,<title=审查桥梁全长,fieid=scqlqc>,<title=审查桥梁全宽,fieid=scqlqk>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=批复总投资,fieid=pfztz>";
+		String fileName="危桥改造工程计划库上报";
+		List<Object> excelData=new ArrayList<Object>();
+		excelData =wqgzServer.queryWqgzList1( jh, lx);
+		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
+	}
+	/**
 	 * 导入计划库审核Excel
 	 */
 	public void importWqgzJhSh(){
