@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcxmybb.server.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -557,6 +558,8 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		int count=0;//统计个数
 		String xzqh="总计";
 		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getXzqh()==null)
+				continue;
 			if(xzqh.equals(list.get(i).getXzqh())){
 				count++;
 			}else{
@@ -580,6 +583,8 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		int count=0;//统计个数
 		String xzqh="总计";
 		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getXzqh()==null)
+				continue;
 			if(xzqh.equals(list.get(i).getXzqh())){
 				count++;
 			}else{
@@ -617,5 +622,526 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 			return null;
 		}
 		return l1;
+	}
+
+	@Override
+	public List<Excel_list> getsjssjzhzb(String xmnf) {
+		List<Map<String, Object>> l=queryList("getsjssjzhzb",xmnf);
+		
+		List<Excel_list> list=new ArrayList<Excel_list>();
+		if(l.size()>0)
+		for (int i = 0; i < 24; i++) {
+			if(i==0){
+				Excel_list el=new Excel_list();
+				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("1");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("ZJWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("ZJWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("ZJWCZ").toString());
+					
+				}
+				list.add(el);
+			}
+			if(i==1){
+				Excel_list el=new Excel_list();
+				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("2");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("ZJWCYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("ZJWCYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("ZJWCYM").toString());*/
+					
+				}
+				list.add(el);
+			}
+			if(i==2){
+				Excel_list el=new Excel_list();
+				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("3");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("ZJWCZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("ZJWCZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("ZJWCZTZ").toString());
+					
+				}
+				list.add(el);
+			}
+			if(i==3){
+				Excel_list el=new Excel_list();
+				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成投资（万元）");el.setV_3("中央投资");el.setV_4("4");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("ZJWCBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("ZJWCBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCBTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCBTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCBTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("ZJWCBTZ").toString());
+					
+				}
+				list.add(el);
+			}
+			if(i==4){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达工程量");el.setV_3("单位1");el.setV_4("5");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPXDZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPXDZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPXDZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPXDZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPXDZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPXDZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPXDZ").toString());
+					
+				}list.add(el);
+			}
+			if(i==5){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达工程量");el.setV_3("单位2");el.setV_4("6");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPXDYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPXDYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPXDYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPXDYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPXDYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPXDYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPXDYM").toString());*/
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==6){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("7");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==7){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("8");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCYM").toString());*/
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==8){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("总投资");el.setV_4("9");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPZTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==9){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("中央投资");el.setV_4("10");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPBTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPBTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPBTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPBTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==10){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("地方自筹");el.setV_4("11");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPDFZC").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPDFZC").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPDFZC").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPDFZC").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPDFZC").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPDFZC").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPDFZC").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==11){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("12");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCZTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==12){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("部投资");el.setV_4("13");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCBTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCBTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCBTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCBTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==13){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("地方自筹");el.setV_4("14");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCDFZC").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCDFZC").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCDFZC").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCDFZC").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCDFZC").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCDFZC").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCDFZC").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==14){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("15");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCKNZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCKNZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCKNZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==15){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("16");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCKNYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCKNYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCKNYM").toString());*/
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==16){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("17");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCKNZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCKNZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCKNZTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==17){
+				Excel_list el=new Excel_list();
+				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成投资（万元）");el.setV_3("中央投资");el.setV_4("18");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("BAPWCKNBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("BAPWCKNBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNBTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNBTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNBTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCKNBTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==18){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("19");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==19){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("20");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCYM").toString());*/
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==20){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成投资（万元）");el.setV_3("完成投资（万元）");el.setV_4("21");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCZTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==20){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("22");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCKNZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCKNZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCKNZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCKNZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCKNZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==21){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("23");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCKNYM").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCKNYM").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCKNYM").toString());
+					/*if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCKNYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCKNYM").toString());*/
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==22){
+				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成投资（万元）");el.setV_3("完成投资（万元）");el.setV_4("24");
+				for (Map<String, Object> map : l) {
+					if("1".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCKNZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCKNZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCKNZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCKNZTZ").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNZTZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNZTZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCKNZTZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			
+		}
+		
+		return list;
 	}
 }
