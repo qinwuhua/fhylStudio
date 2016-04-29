@@ -173,7 +173,7 @@
 		
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="flag=flag&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+			var data="flag=1&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getHzlm.do",
