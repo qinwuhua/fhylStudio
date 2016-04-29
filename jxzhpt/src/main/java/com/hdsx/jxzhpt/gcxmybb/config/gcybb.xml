@@ -765,8 +765,8 @@
 			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr
 		from(
         select
-          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
-          to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,substr(p.jhkgsj,0,4) jhkgn,
+          substr(p.jhwgsj,0,4) jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
           jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
           xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
         from xmk_abgc xm,sck_abgc sc,plan_abgc p,
@@ -806,8 +806,8 @@
 			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from(
         select
-          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
-          to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,substr(p.jhkgsj,0,4) jhkgn,
+          substr(p.jhwgsj,0,4) jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
           jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
           xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
         from xmk_abgc xm,sck_abgc sc,plan_abgc p,
@@ -848,8 +848,8 @@
 			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
 		from(
         select
-          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
-          to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,substr(p.jhkgsj,0,4) jhkgn,
+          substr(p.jhwgsj,0,4) jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
           jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
           xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
         from xmk_abgc xm,sck_abgc sc,plan_abgc p,
@@ -886,8 +886,8 @@
 			substr(xzqhdm,0,4) xzqh,tt.*
 		from(
         select
-          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,decode(p.jhwc_c,null,0,p.jhwc_c) jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
-          to_char(p.jhwgsj,'yyyy') jhwgn,decode(jz1.bywcc,null,0,jz1.bywcc) bywcc,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcc,null,0,jz2.yywcc) yywcc,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcc,null,0,jz3.kgwcc) kgwcc,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,decode(p.jhwc_c,null,0,p.jhwc_c) jhc,sc.scyhlc jhgl,substr(p.jhkgsj,0,4) jhkgn,
+          substr(p.jhwgsj,0,4) jhwgn,decode(jz1.bywcc,null,0,jz1.bywcc) bywcc,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcc,null,0,jz2.yywcc) yywcc,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcc,null,0,jz3.kgwcc) kgwcc,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
           decode(jz1.byhj,null,0,jz1.byhj) byhj,decode(jz1.bybtz,null,0,jz1.bybtz) bybtz,decode(jz1.bystz,null,0,jz1.bystz) bystz,decode(jz2.yyhj,null,0,jz2.yyhj) yyhj,decode(jz2.yybtz,null,0,jz2.yybtz) yybtz,decode(jz2.yystz,null,0,jz2.yystz) yystz,decode(jz3.kghj,null,0,jz3.kghj) kghj,decode(jz3.kgbtz,null,0,jz3.kgbtz) kgbtz,decode(jz3.kgstz,null,0,jz3.kgstz) kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
           xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
         from xmk_abgc xm,sck_abgc sc,plan_abgc p,
@@ -3353,5 +3353,10 @@
         	${gldj}
         </if>
 		)t1
+	</select>
+	
+	<!-- 三件实事 -->
+	<select id="getsjssjzhzb" parameterType="string" resultType="hashmap">
+		select * from SJSSJZHZB t where xmnf = #{value}
 	</select>
 </mapper>
