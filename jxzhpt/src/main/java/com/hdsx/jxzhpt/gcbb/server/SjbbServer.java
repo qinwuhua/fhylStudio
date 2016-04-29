@@ -15,4 +15,12 @@ public interface SjbbServer {
 
 	List<Excel_list> getLwjgjsgzb1(SjbbMessage sjbb) throws Exception;
 
+	List<SjbbMessage> getJckhzbAds(SjbbMessage sjbb);
+
+	List<SjbbMessage> getJckhzbAgsxx(SjbbMessage sjbb) throws Exception;
+
+	List<SjbbMessage> getSckhzbAds(SjbbMessage sjbb);
+
+	List<SjbbMessage> getSckhzbAgsxx(SjbbMessage sjbb) throws Exception;
+
 }

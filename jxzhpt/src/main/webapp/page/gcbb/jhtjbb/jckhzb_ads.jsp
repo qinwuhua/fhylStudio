@@ -57,7 +57,7 @@ $(function(){
 	startSearch();
 });
 function startSearch(){
-	$("#titleYear").html($("#year").combotree("getValue"));
+	//$("#titleYear").html($("#year").combotree("getValue"));
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -70,7 +70,7 @@ function startSearch(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-var xzqhdm=$("#xzqh").combotree("getValues");
+	var xzqhdm=$("#xzqh").combotree("getValues");
 	if(xzqhdm.length==0){
 		xzqhstr= $.cookie("dist2");
 		
@@ -89,10 +89,12 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	} */
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getGdzctzjs.do',
+		url:'/jxzhpt/gcbb/getJckhzbAds.do',
 		dataType:"json",
-		data:"dist="+xzqhstr+"&unit="+gydwstr+"&nf="+$("#year").combotree("getValue"),
-		//+"&dwlx="+dwlx,
+		data:"dist="+xzqhstr+
+		"&unit="+gydwstr+
+		"&nf="+$("#year").combotree("getValue"),
+		//"&dwlx="+dwlx,
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -112,46 +114,23 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 							"<td>"+msg[i].v_10+"</td>"+
 							"<td>"+msg[i].v_11+"</td>"+
 							"<td>"+msg[i].v_12+"</td>"+
-							"<td>"+msg[i].v_13+"</td>"
-						 	+"<td>"+msg[i].v_14+"</td>"
-						 	+"<td>"+msg[i].v_15+"</td>"
-							+"<td>"+msg[i].v_16+"</td>"
-							+"<td>"+msg[i].v_17+"</td>"
-							+"<td>"+msg[i].v_18+"</td>"
-							+"<td>"+msg[i].v_19+"</td>"
-							+"<td>"+msg[i].v_20+"</td>"
-							+"<td>"+msg[i].v_21+"</td>"
-							+"<td>"+msg[i].v_22+"</td>"
-							+"<td>"+msg[i].v_23+"</td>"
-							+"<td>"+msg[i].v_24+"</td>"
-							+"<td>"+msg[i].v_25+"</td>"
-							+"<td>"+msg[i].v_26+"</td>"
-							+"<td>"+msg[i].v_27+"</td>"
-							+"<td>"+msg[i].v_28+"</td>"
-							+"<td>"+msg[i].v_29+"</td>"
-							+"<td>"+msg[i].v_30+"</td>"
-							+"<td>"+msg[i].v_31+"</td>"
-							+"<td>"+msg[i].v_32+"</td>"
-							+"<td>"+msg[i].v_33+"</td>"
-							+"<td>"+msg[i].v_34+"</td>"
-							+"<td>"+msg[i].v_35+"</td>"
-							+"<td>"+msg[i].v_36+"</td>"
-							+"<td>"+msg[i].v_37+"</td>"
-							+"<td>"+msg[i].v_38+"</td>"
-							+"<td>"+msg[i].v_39+"</td>" 
-							+"<td>"+msg[i].v_40+"</td>" 
-							+"<td>"+msg[i].v_41+"</td>" 
-							+"<td>"+msg[i].v_42+"</td>" 
-							+"<td>"+msg[i].v_43+"</td>" 
-							+"<td>"+msg[i].v_44+"</td>" 
-							+"<td>"+msg[i].v_45+"</td>" 
-							+"<td>"+msg[i].v_46+"</td>" 
-							+"<td>"+msg[i].v_47+"</td>" 
-							+"<td>"+msg[i].v_48+"</td>" 
-							+"<td>"+msg[i].v_49+"</td>" 
-							+"<td>"+msg[i].v_50+"</td>" 
-							+"<td>"+msg[i].v_51+"</td>" 
-						+"</tr>";
+							"<td>"+msg[i].v_13+"</td>"+
+							"<td>"+msg[i].v_14+"</td>"+
+							"<td>"+msg[i].v_15+"</td>"+
+							"<td>"+msg[i].v_16+"</td>"+
+							"<td>"+msg[i].v_17+"</td>"+
+							"<td>"+msg[i].v_18+"</td>"+
+							"<td>"+msg[i].v_19+"</td>"+
+							"<td>"+msg[i].v_20+"</td>"+
+							"<td>"+msg[i].v_21+"</td>"+
+							"<td>"+msg[i].v_22+"</td>"+
+							"<td>"+msg[i].v_23+"</td>"+
+							"<td>"+msg[i].v_24+"</td>"+
+							/*+"<td>"+msg[i].v_25+"</td>"+"<td>"+msg[i].v_26+"</td>"+"<td>"+msg[i].v_27+"</td>"
+						+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"+"<td>"+msg[i].v_30+"<td>"+msg[i].v_31+"</td>"+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"
+						+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_7+"</td>"
+						+"<td>"+msg[i].v_38+"</td>"+"<td>"+msg[i].v_39+"</td>" */
+						"</tr>";
 				}
 			}else{
 				str+="<tr align='center'><td colspan='22'>暂无数据</td></tr>";
@@ -184,16 +163,16 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	/* var dwlx='';
-	if($.cookie("unit").substr(0,1)=='1'){
+	var dwlx='';
+	/* if($.cookie("unit").substr(0,1)=='1'){
 		dwlx='交通局';
 	}else{
 		dwlx='公路局';
 	} */
 	var data="flag=flag&nf="+$("#year").combotree("getValue");
-	//+"&dwlx="+dwlx;
+			//"&dwlx="+dwlx;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-		window.location.href='/jxzhpt/gcbb/getGdzctzjs.do?'+data;
+		window.location.href='/jxzhpt/gcbb/getJckhzbAds.do?'+data;
 	 });
 }
 </script>
@@ -221,8 +200,6 @@ var xzqhdm=$("#xzqh").combotree("getValues");
         						<select id="xzqh" style="width:150px;"></select>
         						<span>上报年份：</span>
         						<input id="year" style="width:80px;"/>
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " 
                                         onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
@@ -248,85 +225,50 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 								<thead>
 									<tr>
 										<td rowspan="3" style="width: 135px">项目所在地区</td>
-										<td colspan="12">危桥改造</td>
-										<td colspan="12">病隧改造</td>
-										<td colspan="12">安防工程</td>
-										<td colspan="12">灾害防治</td>
-										<td colspan="3">总计</td>
+										<td colspan="6">危桥改造</td>
+										<td colspan="6">病隧改造</td>
+										<td colspan="6">安防工程</td>
+										<td colspan="6">灾害防灾</td>
 									</tr>
 									<tr>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td style="width: 140px">合计</td>
-										<td style="width: 140px">公路</td>
-										<td style="width: 140px">交通</td>
-									</tr>		
+										<td colspan="2">小计</td>
+										<td colspan="2">公路局</td>
+										<td colspan="2">交通局</td>
+										<td colspan="2">小计</td>
+										<td colspan="2">公路局</td>
+										<td colspan="2">交通局</td>
+										<td colspan="2">小计</td>
+										<td colspan="2">公路局</td>
+										<td colspan="2">交通局</td>
+										<td colspan="2">小计</td>
+										<td colspan="2">公路局</td>
+										<td colspan="2">交通局</td>
+									</tr>	
 									<tr>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">隧道长度(m)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">隧道长度(m)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										
+										<td style="width: 55px">隧道长度(m)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">处治里程(km)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">处治里程(km)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										
+										<td style="width: 55px">处治里程(km)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">处治里程(km)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">处治里程(km)</td>
 										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">处治里程(km)</td>
 									</tr>
 								</thead>
 								<tbody id="table_tbody"></tbody>

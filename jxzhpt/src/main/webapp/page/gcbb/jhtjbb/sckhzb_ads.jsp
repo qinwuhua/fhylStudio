@@ -57,7 +57,7 @@ $(function(){
 	startSearch();
 });
 function startSearch(){
-	$("#titleYear").html($("#year").combotree("getValue"));
+	//$("#titleYear").html($("#year").combotree("getValue"));
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -89,7 +89,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	} */
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getGdzctzjs.do',
+		url:'/jxzhpt/gcbb/getSckhzbAds.do',
 		dataType:"json",
 		data:"dist="+xzqhstr+"&unit="+gydwstr+"&nf="+$("#year").combotree("getValue"),
 		//+"&dwlx="+dwlx,
@@ -136,21 +136,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 							+"<td>"+msg[i].v_34+"</td>"
 							+"<td>"+msg[i].v_35+"</td>"
 							+"<td>"+msg[i].v_36+"</td>"
-							+"<td>"+msg[i].v_37+"</td>"
-							+"<td>"+msg[i].v_38+"</td>"
-							+"<td>"+msg[i].v_39+"</td>" 
-							+"<td>"+msg[i].v_40+"</td>" 
-							+"<td>"+msg[i].v_41+"</td>" 
-							+"<td>"+msg[i].v_42+"</td>" 
-							+"<td>"+msg[i].v_43+"</td>" 
-							+"<td>"+msg[i].v_44+"</td>" 
-							+"<td>"+msg[i].v_45+"</td>" 
-							+"<td>"+msg[i].v_46+"</td>" 
-							+"<td>"+msg[i].v_47+"</td>" 
-							+"<td>"+msg[i].v_48+"</td>" 
-							+"<td>"+msg[i].v_49+"</td>" 
-							+"<td>"+msg[i].v_50+"</td>" 
-							+"<td>"+msg[i].v_51+"</td>" 
+							
 						+"</tr>";
 				}
 			}else{
@@ -193,7 +179,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	var data="flag=flag&nf="+$("#year").combotree("getValue");
 	//+"&dwlx="+dwlx;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-		window.location.href='/jxzhpt/gcbb/getGdzctzjs.do?'+data;
+		window.location.href='/jxzhpt/gcbb/getSckhzbAds.do?'+data;
 	 });
 }
 </script>
@@ -248,85 +234,73 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 								<thead>
 									<tr>
 										<td rowspan="3" style="width: 135px">项目所在地区</td>
-										<td colspan="12">危桥改造</td>
-										<td colspan="12">病隧改造</td>
-										<td colspan="12">安防工程</td>
-										<td colspan="12">灾害防治</td>
-										<td colspan="3">总计</td>
+										<td colspan="9">危桥改造</td>
+										<td colspan="9">病隧改造</td>
+										<td colspan="9">安防工程</td>
+										<td colspan="9">灾害防治</td>
+										<!-- //<td colspan="3">总计</td> -->
 									</tr>
 									<tr>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td colspan="4">小计</td>
-										<td colspan="4">公路局</td>
-										<td colspan="4">交通局</td>
-										<td style="width: 140px">合计</td>
+										<td colspan="3">小计</td>
+										<td colspan="3">公路局</td>
+										<td colspan="3">交通局</td>
+										<td colspan="3">小计</td>
+										<td colspan="3">公路局</td>
+										<td colspan="3">交通局</td>
+										<td colspan="3">小计</td>
+										<td colspan="3">公路局</td>
+										<td colspan="3">交通局</td>
+										<td colspan="3">小计</td>
+										<td colspan="3">公路局</td>
+										<td colspan="3">交通局</td>
+										<!-- <td style="width: 140px">合计</td>
 										<td style="width: 140px">公路</td>
-										<td style="width: 140px">交通</td>
+										<td style="width: 140px">交通</td> -->
 									</tr>		
 									<tr>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">座</td>
 										<td style="width: 55px">延米</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
+										
+										<td style="width: 55px">项目数量</td>
+										<td style="width: 140px">隧道长度(m)</td>
+										<td style="width: 140px">投资估算(万元)</td>
+										<td style="width: 55px">项目数量</td>
+										<td style="width: 140px">隧道长度(m)</td>
+										<td style="width: 140px">投资估算(万元)</td>
+										<td style="width: 55px">项目数量</td>
+										<td style="width: 140px">隧道长度(m)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										<td style="width: 55px">项目数量</td>
 										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">投资估算(万元)</td>
 										
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
+									<!-- 	<td style="width: 140px">补助资金(万元)</td>
 										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 55px">项目数量</td>
-										<td style="width: 140px">处治里程(km)</td>
-										<td style="width: 140px">总投资(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
-										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">补助资金(万元)</td> -->
 									</tr>
 								</thead>
 								<tbody id="table_tbody"></tbody>
