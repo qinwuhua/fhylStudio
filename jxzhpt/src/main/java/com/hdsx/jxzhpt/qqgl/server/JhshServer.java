@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.qqgl.server;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -454,4 +455,6 @@ public interface JhshServer {
 	public boolean planshyh(Jhsh jhsh);
 	public boolean planshsh(Jhsh jhsh);
 	public Kxxyj queryShKxxyjByXmbm(Jhsh jhsh);
+	public Collection<? extends Object> queryGsdgz_dc(Jhsh jhsh, int i, int j);
+	public Collection<? extends Object> queryJhshSh_dc(Jhsh jhsh);
 }

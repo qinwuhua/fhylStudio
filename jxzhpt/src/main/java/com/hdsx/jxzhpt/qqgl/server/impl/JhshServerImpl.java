@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.server.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -680,6 +681,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public boolean planshsh(Jhsh jhsh) {
 		return update("planshsh", jhsh)==1;
+	}
+	@Override
+	public Collection<? extends Object> queryGsdgz_dc(Jhsh jhsh, int page, int rows) {
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryGsdgz_dc",params);
+	}
+	@Override
+	public Collection<? extends Object> queryJhshSh_dc(Jhsh jhsh) {
+		return queryList("queryJhshSh_dc",jhsh);
 	}
 	
 }

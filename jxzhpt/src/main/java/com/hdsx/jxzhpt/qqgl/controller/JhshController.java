@@ -931,7 +931,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 		String titleName="";
 		String fileName="";
-		excelData.addAll(jhshServer.queryGsdgz(jhsh, 0, 0));
+		excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
 		titleName="国省道改造";
 		fileName="国省道改造-计划审核";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
@@ -1086,31 +1086,36 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("15", "qdzh");
 		attribute.put("16", "zdzh");
 		attribute.put("17", "lc");
-		String xmbm = jhsh.getXmbm();
-		if(xmbm.indexOf(",")>-1){
-			String[] xmnfArray = xmbm.split(",");
-			for (int i = 0; i < xmnfArray.length; i++) {
-				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-				}else if(i==0){
-					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-				}
-			}
-		}else{
-			xmbm = "j.xmbm like '" + xmbm + "%' ";
-		}
-		jhsh.setXmbm(xmbm);
-		jsdjHandle();
-		ylxbhHandle();
+//		String xmbm = jhsh.getXmbm();
+//		if(xmbm.indexOf(",")>-1){
+//			String[] xmnfArray = xmbm.split(",");
+//			for (int i = 0; i < xmnfArray.length; i++) {
+//				if(i==xmnfArray.length-1){
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//				}else if(i==0){
+//					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}else{
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}
+//			}
+//		}else{
+//			xmbm = "j.xmbm like '" + xmbm + "%' ";
+//		}
+//		jhsh.setXmbm(xmbm);
+//		jsdjHandle();
+//		ylxbhHandle();
+//		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jsdjHandle1();
+		xzdjHandle();
+		tsdqHandle();
+		
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
 		jhsh.setPage(0);
 		jhsh.setRows(0);
-		excelData.addAll(jhshServer.queryJhshSh(jhsh));
+		excelData.addAll(jhshServer.queryJhshSh_dc(jhsh));
 		titleName="灾毁重建项目";
 		fileName="灾毁重建项目-计划审核";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
