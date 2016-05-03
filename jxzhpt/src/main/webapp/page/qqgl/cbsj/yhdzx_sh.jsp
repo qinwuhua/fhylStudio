@@ -34,7 +34,8 @@
 				$("img[name='bxs']").attr('style','display:none');
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
-			gsdxmlx('xmlx');
+			//gsdxmlx('xmlx');
+			yhxmlx('xmlx');
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
