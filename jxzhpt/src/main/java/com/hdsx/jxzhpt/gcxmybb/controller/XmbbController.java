@@ -171,6 +171,28 @@ public class XmbbController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void setjhxdwh(){
+		String tablename="";
+		if("gsd".equals(xzqh))
+			tablename="gsdgz";
+		if("yh".equals(xzqh))
+			tablename="jhsh_yhdzx";
+		if("sh".equals(xzqh))
+			tablename="jhsh_sh";
+		List<TreeNode> list=xmbbServer.setjhxdwh(tablename);
+		int i=1;
+		for (TreeNode treeNode : list) {
+			treeNode.setId(i+"");
+			treeNode.setIconCls("icon-none");
+			i++;
+		}
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void settsdq1(){
 		List<TreeNode> list=xmbbServer.gettsdq(xzqh.replaceAll("0*$",""));
 		int i=1;

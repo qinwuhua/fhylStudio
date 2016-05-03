@@ -520,7 +520,7 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			setXmlx1(lxsh.getXmlx1());
-		
+			System.out.println(lxsh.getXmklx());
 		List<Lxsh> list=wnjhServer.selectGsdwnjh(lxsh);
 		int count=wnjhServer.selectGsdwnjhCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -842,8 +842,8 @@ public class WnjhController extends BaseActionSupport{
 		JhshServer jhsh = new JhshServerImpl();
 		Jhsh j = new Jhsh();
 		j.setXmbm(lxsh.getXmbm());
-		List<Lx> ls = jhsh.queryLsxx1(j);
-		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
+		//List<Lx> ls = jhsh.queryLsxx1(j);
+		//lxsh.setLsjl(ls.size()>0 ? "是" : "否");
 		boolean bl=wnjhServer.updatewnjhxj(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -1357,6 +1357,7 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 		}
 		setXmlx1(lxsh.getXmlx1());
+		
 		Lxsh l=new Lxsh();
 		if("gsdgz".equals(xmlx)){
 			l=wnjhServer.showgsdtj(lxsh);}

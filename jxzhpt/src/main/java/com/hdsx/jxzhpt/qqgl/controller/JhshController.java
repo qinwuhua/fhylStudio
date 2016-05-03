@@ -146,7 +146,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
-			
+			xdwhHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
 			xzdjHandle();
@@ -223,6 +223,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhshLjgsdgz(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
+			xdwhHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
 			xzdjHandle();
@@ -293,12 +294,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle();
 				jsxzHandle();
 				zjlyHandle();
+				xdwhHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle();
+				xdwhHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}else if(jhsh.getXmlx()==6){
@@ -390,6 +393,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		try{
 			int s = jhsh.getXmlx();
 			if(jhsh.getXmlx()==4){
+				xdwhHandle();
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle();
@@ -404,7 +408,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle();
-				
+				xdwhHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 				jhsh.setPage(page);
 				jhsh.setRows(rows);
@@ -1614,7 +1618,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
-			
+			xdwhHandle();
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
@@ -1637,6 +1641,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
+			xdwhHandle();
 			xzdjHandle();
 			//jsjsdjHandle();
 			jsdjHandle1();
@@ -1659,7 +1664,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try {
-			
+			xdwhHandle();
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
@@ -1694,6 +1699,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
+			xdwhHandle();
 			listData=jhshServer.queryGsdgzxdbz(jhsh);
 
 			JsonUtils.write(listData, getresponse().getWriter());
@@ -1706,6 +1712,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		try {
 			if(jhsh.getXmlx()==5){//灾毁恢复
+				xdwhHandle();
 				xzdjHandle();
 				//jsjsdjHandle();
 				jsdjHandle1();
@@ -1717,6 +1724,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				listData=jhshServer.queryshxdbz(jhsh);
 			}
 			if(jhsh.getXmlx()==4){//养护大中修
+				xdwhHandle();
 				xzdjHandle();
 				jsjsdjHandle();
 				jsdjHandle1();
@@ -1740,6 +1748,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhshLjgsdxd(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
+			xdwhHandle();
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
@@ -1758,6 +1767,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		Map<String, String> result = new HashMap<String, String>();
 		try {
 			if(jhsh.getXmlx()==5){
+				xdwhHandle();
 				xzdjHandle();
 				jsdjHandle1();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
@@ -1766,6 +1776,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				result = jhshServer.queryJhbzshLj(jhsh);
 			}
 			if(jhsh.getXmlx()==4){
+				xdwhHandle();
 				xzdjHandle();
 				jsjsdjHandle();
 				jsdjHandle1();
@@ -1923,6 +1934,31 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setJsdj(xjsdj);
 		}
 	}
+	//and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')
+	private void xdwhHandle(){
+		if(jhsh.getJhxdwh()!=null)
+			if(jhsh.getJhxdwh().length()>0){
+				String[] tsdqs=jhsh.getJhxdwh().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and (jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setJhxdwh(tsdq);
+			}
+	}
+	
 	private void jsdjHandle1() {
 		if(jhsh.getJsdj()!=null && !jhsh.getJsdj().equals("")){
 			String xjsdj = jhsh.getJsdj();

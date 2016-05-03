@@ -210,5 +210,10 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 		return queryList("getlwbblist4", xmbb);
 	}
 
+	@Override
+	public List<TreeNode> setjhxdwh(String tablename) {
+		return queryList("setjhxdwh", tablename);
+	}
+
 	
 }

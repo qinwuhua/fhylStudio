@@ -33,6 +33,7 @@
 			zjly("zjly",'gsd');
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
+			jhxdwhdx("jhxdwh",'gsd');
 			xmnfnull("scxdnf");
 			urlxmnf("xmnf",getUrlParame('id'));
 			loadGldj('gldj');
@@ -75,9 +76,11 @@
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
-			
+			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
-					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jhxdwh':$('#jhxdwh').val(),
+					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':$('#xmnf').combobox("getValues").join(','),'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val()};
 			loadLj(params);
@@ -599,7 +602,7 @@
 									</select>
         						</td>
         						<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:110px;" /></td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114spx;" /></td>
         						
         					</tr>
         					<tr height="32">

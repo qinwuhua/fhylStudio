@@ -1000,4 +1000,8 @@
 		</if>
 	 	order by substr(xzqhdm,0,4),xmlx
 	</select>
+	
+	<select id="setjhxdwh" resultType="treenode" parameterType="String">
+		select distinct xdwh id,xdwh text from ${value} where xdwh is not null order by xdwh desc
+	</select>
 </mapper>

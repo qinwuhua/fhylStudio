@@ -620,7 +620,7 @@ function showgjtj(xmlx){
 		xmlx1=xmlx1.substr(1,xmlx1.length);
 	var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 	+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
-	+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')
+	+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')
 	+'&lxsh.ghxlxbm='+$("#ghxlxbm").val()+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
 	$.ajax({
 		 type : "POST",
@@ -686,7 +686,8 @@ function showAllgj(){
 			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx1,
-			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
+			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
+			'lxsh.xmklx':$("#xmklx").combotree('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -809,7 +810,8 @@ function showAlllm(){
 			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx,
-			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
+			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
+			'lxsh.xmklx':$("#xmklx").combotree('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -933,7 +935,8 @@ function showAllxj(){
 			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx,
-			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
+			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
+			'lxsh.xmklx':$("#xmklx").combotree('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -958,12 +961,27 @@ function showAllxj(){
 	        	return '<font color="red">'+row.xmmc+'</font>';
 	        	else return  row.xmmc;
 	        }},
-	        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
+	        {field : 'jhlc',title : '里程',width : 60,align : 'center'},
 	        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-		    {field : 'ghlxbh',title : '路线编码',width : 60,align : 'center'},
-		    {field : 'minqdzh',title : '起点桩号',width : 60,align : 'center'},
-		    {field : 'maxzdzh',title : '止点桩号',width : 60,align : 'center'},
+		    {field : 'ghlxbhs',title : '路线编码',width : 60,align : 'center',formatter:function(value,row,index){
+		    	if(row.ghlxbh=='')
+		    	return row.xjlxbm;
+		    	else
+		    		return row.ghlxbh;
+			}},
+		    {field : 'minqdzhs',title : '起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+		    	if(row.minqdzh=='')
+			    	return row.xjqdzh;
+			    	else
+			    		return row.minqdzh;
+				}},
+		    {field : 'maxzdzhs',title : '止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+		    	if(row.maxzdzh=='')
+			    	return row.xjzdzh;
+			    	else
+			    		return row.maxzdzh;
+				}},
 		    {field:'qdmc',title:'起点名称',width:80,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:80,align:'center'},
 //			    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},				    

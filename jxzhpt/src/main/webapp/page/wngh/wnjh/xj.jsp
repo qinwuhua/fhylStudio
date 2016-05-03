@@ -141,7 +141,14 @@ text-decoration:none;
         						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
         					</tr>
         					<tr height="32">
-        					
+        					<td>项目库类型：</td>
+							<td>
+								<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<option value="">请选择</option>
+									<option value="部库">部库</option>
+									<option value="省库">省库</option>
+								</select>
+							</td>
                               <td colspan="10">
         						<img onclick="showAllxj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('xj_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
