@@ -53,7 +53,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGcfl('gcfl','工程分类');
 			loadGldj('gldj');
-			gsdxmlx('xmlx');
+			//gsdxmlx('xmlx');
+			yhxmlx('xmlx');
 			YMLib.Var.jdbs=1;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');

@@ -162,7 +162,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
@@ -220,7 +223,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -276,7 +282,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
@@ -332,7 +341,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -390,7 +402,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
@@ -447,7 +462,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -504,7 +522,9 @@
 		where id=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
-		update wnjh_XJ set ghlxbh=#{ghlxbh},lxmc=#{lxmc},xjsdj=#{xjsdj},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk},xmmc=#{xmmc},xmnf=#{xmnf},gz=#{gz},sz=#{sz},lsjl=#{lsjl}
+		update wnjh_XJ set ghlxbh=#{ghlxbh},lxmc=#{lxmc},xjsdj=#{xjsdj},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk},xmmc=#{xmmc},xmnf=#{xmnf},gz=#{gz},sz=#{sz}
+
+		<if test="lsjl !=null">,lsjl=#{lsjl}</if>
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
 		<if test="xmklx !=null">,xmklx=#{xmklx}</if>
@@ -936,7 +956,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -992,7 +1015,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -1049,7 +1075,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -1098,7 +1127,7 @@
 		select * from (
 		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
+		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
@@ -1155,7 +1184,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
@@ -1221,7 +1253,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -1287,7 +1322,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
@@ -1353,7 +1391,10 @@
 			${xmlx1}
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
-			qqkzzt like '%'||#{qqkzzt}||'%'
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by xmnf
 		) t1
