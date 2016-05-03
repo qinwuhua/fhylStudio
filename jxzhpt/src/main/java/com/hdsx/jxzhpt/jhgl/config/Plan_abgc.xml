@@ -928,7 +928,7 @@
 				select rownum as num,t.* from 
 				(
 					select lx.lxbm,lx.lxmc,lx.gydw,lx.xzqhmc,sc.scqdzh,sc.sczdzh,sc.sczlc,sc.scyhlc,sc.fapgdw,sc.fascdw,sc.faspsj,sc.spwh,sc.tzgs,sc.jsxz,sc.jsnr,sc.scbz,
-					jh.id,jh.sckid,jh.jhnf,jh.jhkgsj jhkgsj1,jh.jhwgsj jhwgsj1,jh.jhwc_c,jh.sjdw,jh.sjpfdw,jh.pfwh,to_char(jh.pfsj,'yyyy-mm-dd') pfsj1,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,jh.ablbzsqwh,jh.remarks
+					jh.id,jh.sckid,jh.jhnf,jh.jhkgsj jhkgsj1,jh.jhwgsj jhwgsj1,jh.jhwc_c,jh.sjdw,jh.sjpfdw,jh.pfwh, jh.pfsj  pfsj1,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,jh.ablbzsqwh,jh.remarks
 					from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
