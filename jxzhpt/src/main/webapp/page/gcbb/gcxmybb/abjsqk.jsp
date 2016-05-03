@@ -227,7 +227,7 @@ a:active {
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="3000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">市农村公路危桥改造工程项目建设表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">市农村公路安保建设明细表</caption>
 								<thead>
 									<tr>
 										<td rowspan="3" style="width: 125px">序号</td>

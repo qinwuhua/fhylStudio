@@ -74,8 +74,12 @@
 			var lxmc=$("#lxmc").val();
 			var xmnf=$("#ddlYear").val();
 			var ybzt=$("#ybzt").val();
-			var data="gcglabgc.kgzt="+kgzt+"&gcglabgc.jgzt="+jgzt+"&gcglabgc.lxmc="+lxmc+
-		 	"&gcglabgc.ybzt="+ybzt+"&gcglabgc.sfsj="+sfsj+"&gcglabgc.xmnf="+xmnf;
+			var data="gcglabgc.kgzt="+kgzt+
+					"&gcglabgc.jgzt="+jgzt+
+					"&gcglabgc.lxmc="+lxmc+
+		 			"&gcglabgc.ybzt="+ybzt+
+		 			"&gcglabgc.sfsj="+sfsj+
+		 			"&gcglabgc.xmnf="+xmnf;
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
 				window.location.href='/jxzhpt/gcgl/dcabgcExcel.do?'+data;
 			 });

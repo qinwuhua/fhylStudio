@@ -388,7 +388,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try{
-			
+			int s = jhsh.getXmlx();
 			if(jhsh.getXmlx()==4){
 				jsdjHandle1();
 				xzdjHandle();
