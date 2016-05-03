@@ -271,7 +271,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -381,7 +381,7 @@
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				
 				order by j.xdzt,j.xmbm desc
 			) t 
@@ -425,7 +425,7 @@
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				
 				order by j.xdzt,j.xmbm desc
 		) 
@@ -513,7 +513,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -595,7 +595,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -1559,7 +1559,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -1640,7 +1640,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -1835,7 +1835,7 @@
 				<if test="jhsh.zydpx !=null and jhsh.zydpx !=''">and zydpx=#{jhsh.zydpx}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">and j.sbzt=#{jhsh.sbzt}</if>
 				<if test="jhsh.shzt !=null and jhsh.shzt !=''">and j.xdzt=#{jhsh.shzt}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
@@ -1891,7 +1891,7 @@
 				<if test="jhsh.zydpx !=null and jhsh.zydpx !=''">and zydpx=#{jhsh.zydpx}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">and j.sbzt=#{jhsh.sbzt}</if>
 				<if test="jhsh.shzt !=null and jhsh.shzt !=''">and j.xdzt=#{jhsh.shzt}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
@@ -1959,7 +1959,7 @@
 				<if test="jhsh.zydpx !=null and jhsh.zydpx !=''">and zydpx=#{jhsh.zydpx}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.sbzt !=null and jhsh.sbzt !=''">and j.sbzt=#{jhsh.sbzt}</if>
 				<if test="jhsh.shzt !=null and jhsh.shzt !=''">and j.xdzt=#{jhsh.shzt}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
@@ -2024,7 +2024,7 @@
 				<if test="zydpx !=null and zydpx !=''">and zydpx=#{zydpx}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="sbzt !=null and sbzt !=''">and j.sbzt=#{sbzt}</if>
 				<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
 				<if test="zjly !=null and zjly !=''">
@@ -2092,7 +2092,7 @@
 				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
 				</if>
@@ -2163,7 +2163,7 @@
 				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">${jhsh.xmlx1}</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
 				</if>
@@ -2230,7 +2230,7 @@
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -2298,7 +2298,7 @@
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -2376,7 +2376,7 @@
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">and xmlx1 like '%'||#{jhsh.xmlx1}||'%'</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
 					${jhsh.xdzttj}
 				</if>
@@ -2441,7 +2441,7 @@
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">and xmlx1 like '%'||#{jhsh.xmlx1}||'%'</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
 					${xdzttj}
 				</if>
@@ -2502,7 +2502,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
@@ -2563,7 +2563,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
@@ -2627,7 +2627,7 @@
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
 				</if>
@@ -2700,7 +2700,7 @@
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">and j.lsjl=#{jhsh.lsjl}</if>
 				<if test="jhsh.xmlx1 !=null and jhsh.xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">and (jhxdwh like '%'||#{jhsh.jhxdwh}||'%' or xdwh like '%'||#{jhsh.jhxdwh}||'%')</if>
+				<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">${jhsh.jhxdwh}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
 				</if>
@@ -2770,7 +2770,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>
@@ -2839,7 +2839,7 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
-				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
 				</if>

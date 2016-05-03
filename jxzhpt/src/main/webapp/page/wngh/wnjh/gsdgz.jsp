@@ -65,7 +65,7 @@
 				xmlx1=xmlx1.substr(1,xmlx1.length);
 			var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 			+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
-			+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')
+			+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')
 			+'&lxsh.ghxlxbm='+$("#ghxlxbm").val()+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
 			$.ajax({
 				 type : "POST",
@@ -132,7 +132,8 @@
 					'lxsh.ghxlxbm':$("#ghxlxbm").val(),
 					'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 					'lxsh.xmlx1':xmlx,
-					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue')
+					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
+					'lxsh.xmklx':$("#xmklx").combotree('getValue')
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -159,9 +160,24 @@
 			        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
 			        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-				    {field : 'ghlxbh',title : '路线编码',width : 60,align : 'center'},
-				    {field : 'minqdzh',title : '起点桩号',width : 60,align : 'center'},
-				    {field : 'maxzdzh',title : '止点桩号',width : 60,align : 'center'},
+				    {field : 'ghlxbhs',title : '路线编码',width : 60,align : 'center',formatter:function(value,row,index){
+				    	if(row.ghlxbh=='')
+				    	return row.xjlxbm;
+				    	else
+				    		return row.ghlxbh;
+					}},
+				    {field : 'minqdzhs',title : '起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+				    	if(row.minqdzh=='')
+					    	return row.xjqdzh;
+					    	else
+					    		return row.minqdzh;
+						}},
+				    {field : 'maxzdzhs',title : '止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+				    	if(row.maxzdzh=='')
+					    	return row.xjzdzh;
+					    	else
+					    		return row.maxzdzh;
+						}},
 				    {field:'qdmc',title:'起点名称',width:80,align:'center'},
 				    {field:'zdmc',title:'止点名称',width:80,align:'center'},
 // 				    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},				    
@@ -314,6 +330,14 @@
         						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
         					</tr>
         					<tr height="32">
+        					<td>项目库类型：</td>
+							<td>
+								<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<option value="">请选择</option>
+									<option value="部库">部库</option>
+									<option value="省库">省库</option>
+								</select>
+							</td>
                               <td colspan="10">
         						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcwnjhExcel('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

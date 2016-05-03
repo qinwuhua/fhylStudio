@@ -25,6 +25,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
+			jhxdwhdx("jhxdwh",'gsd');
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
@@ -44,6 +45,9 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryGsdgz.do";
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
@@ -51,7 +55,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':$('#jhxdwh').val()
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -291,7 +295,7 @@ text-decoration:none;
 								<td align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
 								<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:100px;" /></td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td>
         						
                             </tr>
                             <tr height="32">

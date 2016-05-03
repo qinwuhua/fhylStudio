@@ -78,5 +78,7 @@ public interface XmbbServer {
 
 	List<Map<String, Object>> getlwbblist4(Xmbb xmbb);
 
+	List<TreeNode> setjhxdwh(String tablename);
+
 
 }

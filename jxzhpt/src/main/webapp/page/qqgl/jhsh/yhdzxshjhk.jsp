@@ -27,6 +27,7 @@
 			tsdqdx("tsdq");
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
+			jhxdwhdx("jhxdwh",'yh');
 			//xmnf("xmnf");
 			urlxmnf("xmnf",getUrlParame('id'));
 			yhxmlx('xmlx');
@@ -44,6 +45,9 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
@@ -51,7 +55,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':$('#jhxdwh').val()};
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-220;
@@ -301,7 +305,7 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td>
 								<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:100px;" /></td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td>
         						
                             </tr>
        					<tr height="32">
