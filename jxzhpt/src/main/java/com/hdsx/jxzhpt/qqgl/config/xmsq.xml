@@ -335,14 +335,14 @@
 		                              on x.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
-        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-			and lx.ghlxmc=#{cbsj.ghlxmc}
+        <if test="ghlxmc!='' and ghlxmc!= null ">
+			and lx.ghlxmc=#{ghlxmc}
 		</if>
-		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
-			and lx.ghlxbm=#{cbsj.ghlxbm}
+		<if test="ghlxbm!='' and ghlxbm!= null ">
+			and lx.ghlxbm=#{ghlxbm}
 		</if>
-		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
-			and lx.lxmc=#{cbsj.lxmc}
+		<if test="lxmc!='' and lxmc!= null ">
+			and lx.lxmc=#{lxmc}
 		</if>
 		<!-- <if test="jsxz!=null and jsxz!=''">
 			and x.gcfl=#{jsxz}
