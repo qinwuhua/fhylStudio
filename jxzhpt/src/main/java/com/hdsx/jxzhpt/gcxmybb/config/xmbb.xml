@@ -682,12 +682,15 @@
 	
 	<!-- 重做 -->
 	<!-- ptgx -->
-	<select id="getptgxlist1" parameterType="xmbb" resultType="hashmap">
-		select decode(substr(xmlx,1,1),'1','一','二') xh,' ' xmlx,decode(substr(xmlx,1,1),'1','普通国省道改造建设项目','红色旅游公路项目') xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
-   		from  gljsxdjh_gsdgzxm
-   		where 1=1
+	<select id="getptgxlist1" parameterType="xmbb" resultType="elist">
+		select decode(substr(xmlx,1,1),'1','一','二') v_0,' ' xmlx,decode(substr(xmlx,1,1),'1','普通国省道改造建设项目','红色旅游公路项目') v_2,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+    	decode(sum(yhlc),null,' ',sum(yhlc)) v_11,sum(sgtlc) v_14,decode(sum(pfztz),null,' ',sum(pfztz)) v_15,sum(btz) v_16,sum(gz) v_17,sum(sz) v_18, sum(zq) v_19,sum(rys) v_20,sum(dk) v_21,sum(jl) v_22,sum(qt) v_23,
+        sum(bnbtz) v_24,sum(bngz) v_25,sum(bnsz) v_26,sum(bnzq) v_27,sum(bnrys) v_28,sum(bndk) v_29,sum(bnjl) v_30,sum(bnqt) v_31,
+        sum(ljbtz) v_32,sum(ljgz) v_33,sum(ljsz) v_34,sum(ljzq) v_35,sum(ljrys) v_36,sum(ljdk) v_37,sum(ljjl) v_38,sum(ljqt) v_39,
+        sum(wbtz) v_40,sum(wgz) v_41,sum(wsz) v_42,sum(wzq) v_43,sum(wrys) v_44,sum(wdk) v_45,sum(wjl) v_46,sum(wqt) v_47,' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_49,
+        decode(sum(jc),null,' ',sum(jc)) v_50,decode(sum(wglc),null,' ',sum(wglc)) v_51,decode(sum(wkglc),null,' ',sum(wkglc)) v_52,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
+        from  gljsxdjh_gsdgzxm
+        where 1=1
    		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -715,12 +718,15 @@
 		group by substr(xmlx,1,1) 
 		order by substr(xmlx,1,1)
 	</select>
-	<select id="getptgxlist2" parameterType="xmbb" resultType="hashmap">
-		select decode(substr(xmlx,0,2),'11','（一）','12','（二）','13','（三）','21','二','') xh,min(xmlx) xmlx,min(substr(xmlx,3)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
-   		from gljsxdjh_gsdgzxm
-   		where 1=1
+	<select id="getptgxlist2" parameterType="xmbb" resultType="elist">
+		select decode(substr(xmlx,0,2),'11','（一）','12','（二）','13','（三）','21','二','') v_0,min(xmlx) xmlx,min(substr(xmlx,3)) v_2,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+	   decode(sum(yhlc),null,' ',sum(yhlc)) v_11,sum(sgtlc) v_14,decode(sum(pfztz),null,' ',sum(pfztz)) v_15,sum(btz) v_16,sum(gz) v_17,sum(sz) v_18, sum(zq) v_19,sum(rys) v_20,sum(dk) v_21,sum(jl) v_22,sum(qt) v_23,
+       sum(bnbtz) v_24,sum(bngz) v_25,sum(bnsz) v_26,sum(bnzq) v_27,sum(bnrys) v_28,sum(bndk) v_29,sum(bnjl) v_30,sum(bnqt) v_31,
+       sum(ljbtz) v_32,sum(ljgz) v_33,sum(ljsz) v_34,sum(ljzq) v_35,sum(ljrys) v_36,sum(ljdk) v_37,sum(ljjl) v_38,sum(ljqt) v_39,
+       sum(wbtz) v_40,sum(wgz) v_41,sum(wsz) v_42,sum(wzq) v_43,sum(wrys) v_44,sum(wdk) v_45,sum(wjl) v_46,sum(wqt) v_47,' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_49,
+       decode(sum(jc),null,' ',sum(jc)) v_50,decode(sum(wglc),null,' ',sum(wglc)) v_51,decode(sum(wkglc),null,' ',sum(wkglc)) v_52,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
+       from  gljsxdjh_gsdgzxm
+       where 1=1
    		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -747,12 +753,15 @@
 		</if>
 		group by xmlx order by substr(xmlx,0,2)
 	</select>
-	<select id="getptgxlist3" parameterType="xmbb" resultType="hashmap">
-		select ' ' xh,min(xmlx) xmlx,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'小计' xmmc,' ' xzqhmc,substr(xzqhdm,0,4) xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
-   		from gljsxdjh_gsdgzxm
-   		where 1=1
+	<select id="getptgxlist3" parameterType="xmbb" resultType="elist">
+		 select ' ' xh,min(xmlx) xmlx,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'小计' v_2,' ' xzqhmc,substr(xzqhdm,0,4) xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+		  decode(sum(yhlc),null,' ',sum(yhlc)) v_11,sum(sgtlc) v_14,decode(sum(pfztz),null,' ',sum(pfztz)) v_15,sum(btz) v_16,sum(gz) v_17,sum(sz) v_18, sum(zq) v_19,sum(rys) v_20,sum(dk) v_21,sum(jl) v_22,sum(qt) v_23,
+       sum(bnbtz) v_24,sum(bngz) v_25,sum(bnsz) v_26,sum(bnzq) v_27,sum(bnrys) v_28,sum(bndk) v_29,sum(bnjl) v_30,sum(bnqt) v_31,
+       sum(ljbtz) v_32,sum(ljgz) v_33,sum(ljsz) v_34,sum(ljzq) v_35,sum(ljrys) v_36,sum(ljdk) v_37,sum(ljjl) v_38,sum(ljqt) v_39,
+       sum(wbtz) v_40,sum(wgz) v_41,sum(wsz) v_42,sum(wzq) v_43,sum(wrys) v_44,sum(wdk) v_45,sum(wjl) v_46,sum(wqt) v_47,' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_49,
+      decode(sum(jc),null,' ',sum(jc)) v_50,decode(sum(wglc),null,' ',sum(wglc)) v_51,decode(sum(wkglc),null,' ',sum(wkglc)) v_52,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
+       from  gljsxdjh_gsdgzxm
+       where 1=1
    		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -780,14 +789,18 @@
 		group by xmlx,substr(xzqhdm,0,4)
 		order by substr(xmlx,0,2),substr(xzqhdm,0,4)
 	</select>
-	<select id="getptgxlist4" parameterType="xmbb" resultType="hashmap">
-		select decode(xmlx,null,' ',xmlx) xmlx,decode(xmmc,null,' ',xmmc) xmmc,decode(xzqhmc,null,' ',xzqhmc) xzqhmc,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(tsdq,null,' ',tsdq) tsdq,
-		decode(xdnf,null,' ',xdnf) xdnf,decode(qdzh,null,' ',qdzh) qdzh,decode(zdzh,null,' ',zdzh) zdzh,decode(yhlc,null,' ',yhlc) yhlc,decode(pfztz,null,' ',pfztz) pfztz,
-		decode(jhxdzj,null,' ',jhxdzj) jhxdzj,decode(bfzj,null,' ',bfzj) bfzj,bnbfzj,decode(wbfzj,null,' ',wbfzj) wbfzj,decode(jszt,null,' ',jszt) jszt,decode(dc,null,' ',dc) dc,
-		decode(jc,null,' ',jc) jc,decode(wglc,null,' ',wglc) wglc,decode(wkglc,null,' ',wkglc) wkglc,decode(sjkgsj,null,' ',sjkgsj) sjkgsj,decode(sfqxkg,null,' ',sfqxkg) sfqxkg,
-		decode(kgdl,null,' ',kgdl) kgdl,decode(sjwgsj,null,' ',sjwgsj) sjwgsj,decode(yjwgsj,null,' ',yjwgsj) yjwgsj,decode(qksm,null,' ',qksm) qksm,decode(xdwh,null,' ',xdwh) xdwh,
-		decode(xgcsyj,null,' ',xgcsyj) xgcsyj,decode(cscyj,null,' ',cscyj) cscyj,decode(gydw,null,' ',gydw) gydw,decode(t.id,null,' ',t.id) id,' 'xh,m.sl xmgs,m.sl from gljsxdjh_gsdgzxm t,(
-				select id,count(*) sl from gljsxdjh_gsdgzxm
+	<select id="getptgxlist4" parameterType="xmbb" resultType="elist">
+		select decode(xmlx,null,' ',xmlx) xmlx,xmbm v_1,decode(xmmc,null,' ',xmmc) v_2,jsxz v_3,decode(xzqhmc,null,' ',xzqhmc) v_4,xsq v_5,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(tsdq,null,' ',tsdq) v_6,
+    decode(xdnf,null,' ',xdnf) v_7,scxdnf v_8,decode(qdzh,null,' ',qdzh) v_9,decode(zdzh,null,' ',zdzh) v_10,decode(yhlc,null,' ',yhlc) v_11,sgtqd v_12,sgtzd v_13,sgtlc v_14,decode(pfztz,null,' ',pfztz) v_15,
+    btz v_16,gz v_17,sz v_18, zq v_19,rys v_20,dk v_21,jl v_22,qt v_23,
+       bnbtz v_24,bngz v_25,bnsz v_26,bnzq v_27,bnrys v_28,bndk v_29,bnjl v_30,bnqt v_31,
+       ljbtz v_32,ljgz v_33,ljsz v_34,ljzq v_35,ljrys v_36,ljdk v_37,ljjl v_38,ljqt v_39,
+       wbtz v_40,wgz v_41,wsz v_42,wzq v_43,wrys v_44,wdk v_45,wjl v_46,wqt v_47,  
+    decode(jszt,null,' ',jszt) v_48,decode(dc,null,' ',dc) v_49,
+    decode(jc,null,' ',jc) v_50,decode(wglc,null,' ',wglc) v_51,decode(wkglc,null,' ',wkglc) v_52,decode(sjkgsj,null,' ',sjkgsj) v_53,decode(sfqxkg,null,' ',sfqxkg) v_54,
+    decode(kgdl,null,' ',kgdl) v_55,decode(sjwgsj,null,' ',sjwgsj) v_56,decode(yjwgsj,null,' ',yjwgsj) v_57,decode(qksm,null,' ',qksm) v_58,decode(xdwh,null,' ',xdwh) v_59,
+    decode(xgcsyj,null,' ',xgcsyj) v_60,decode(cscyj,null,' ',cscyj) v_61,decode(gydw,null,' ',gydw) gydw,decode(t.id,null,' ',t.id) id,' 'xh,m.sl xmgs,m.sl from gljsxdjh_gsdgzxm t,
+    (select id,count(*) sl from gljsxdjh_gsdgzxm
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				where xdnf in (${jhxdnf}) 
 		</if>  group by id) m where t.id=m.id
@@ -818,11 +831,16 @@
 		order by substr(xmlx,0,2),substr(xzqhdm,0,4),xmmc,xdnf
 	</select>
 	<!-- 养护大中修重做 -->
-	<select id="getyhbblist1" parameterType="xmbb" resultType="hashmap">
-		select '是' hb,'全省合计' xzqhmc,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) jhlc,decode(sum(gys),null,' ',sum(gys)) gys,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
-    	from stcyhdzx_gcxmjzb
-		where 1=1
+	<select id="getyhbblist1" parameterType="xmbb" resultType="elist">
+		select '是' hb,'全省合计' xzqhmc,' ' v_0,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) v_10,decode(sum(gys),null,' ',sum(gys)) v_11,
+		sum(btz) v_12,sum(gz) v_13,sum(sz) v_14, sum(zq) v_15,sum(rys) v_16,sum(dk) v_17,sum(jl) v_18,sum(qt) v_19,
+		sum(bnbtz) v_20,sum(bngz) v_21,sum(bnsz) v_22,sum(bnzq) v_23,sum(bnrys) v_24,sum(bndk) v_25,sum(bnjl) v_26,sum(bnqt) v_27,
+		sum(ljbtz) v_28,sum(ljgz) v_29,sum(ljsz) v_30,sum(ljzq) v_31,sum(ljrys) v_32,sum(ljdk) v_33,sum(ljjl) v_34,sum(ljqt) v_35,
+		sum(wbtz) v_36,sum(wgz) v_37,sum(wsz) v_38,sum(wzq) v_39,sum(wrys) v_40,sum(wdk) v_41,sum(wjl) v_42,sum(wqt) v_43,
+		' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_45,
+      	decode(sum(jc),null,' ',sum(jc)) v_46,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) v_50,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+      	from stcyhdzx_gcxmjzb
+    	where 1=1
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -845,11 +863,16 @@
 				 ${wbf}
 		</if>
 	</select>
-	<select id="getyhbblist2" parameterType="xmbb" resultType="hashmap">
-		select '是' hb,min(xzqhdm) xzqhdm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' xzqhmc,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) jhlc,decode(sum(gys),null,' ',sum(gys)) gys,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
-		from stcyhdzx_gcxmjzb
-		where 1=1
+	<select id="getyhbblist2" parameterType="xmbb" resultType="elist">
+		select '是' hb,min(xzqhdm) xzqhdm,min(sqs)||'合计' v_0,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) v_10,decode(sum(gys),null,' ',sum(gys)) v_11,
+		sum(btz) v_12,sum(gz) v_13,sum(sz) v_14, sum(zq) v_15,sum(rys) v_16,sum(dk) v_17,sum(jl) v_18,sum(qt) v_19,
+		sum(bnbtz) v_20,sum(bngz) v_21,sum(bnsz) v_22,sum(bnzq) v_23,sum(bnrys) v_24,sum(bndk) v_25,sum(bnjl) v_26,sum(bnqt) v_27,
+		sum(ljbtz) v_28,sum(ljgz) v_29,sum(ljsz) v_30,sum(ljzq) v_31,sum(ljrys) v_32,sum(ljdk) v_33,sum(ljjl) v_34,sum(ljqt) v_35,
+		sum(wbtz) v_36,sum(wgz) v_37,sum(wsz) v_38,sum(wzq) v_39,sum(wrys) v_40,sum(wdk) v_41,sum(wjl) v_42,sum(wqt) v_43,
+		' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_45,
+      	decode(sum(jc),null,' ',sum(jc)) v_46,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) v_50,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+      	from stcyhdzx_gcxmjzb
+    	where 1=1
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -873,10 +896,16 @@
 		</if>
 		group by substr(xzqhdm,0,4) order by substr(xzqhdm,0,4)
 	</select>
-	<select id="getyhbblist3" parameterType="xmbb" resultType="hashmap">
-		select '是1' hb,min(xzqhdm) xzqhdm,dllx xzqhmc,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) jhlc,decode(sum(gys),null,' ',sum(gys)) gys,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
-    	decode(sum(jc),null,' ',sum(jc)) jc,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
-		from stcyhdzx_gcxmjzb where 1=1
+	<select id="getyhbblist3" parameterType="xmbb" resultType="elist">
+		select '是1' hb,min(xzqhdm) xzqhdm,dllx xzqhmc,substr(dllx,2,length(dllx)) v_1,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,decode(sum(jhlc),null,' ',sum(jhlc)) v_10,decode(sum(gys),null,' ',sum(gys)) v_11,
+		sum(btz) v_12,sum(gz) v_13,sum(sz) v_14, sum(zq) v_15,sum(rys) v_16,sum(dk) v_17,sum(jl) v_18,sum(qt) v_19,
+		sum(bnbtz) v_20,sum(bngz) v_21,sum(bnsz) v_22,sum(bnzq) v_23,sum(bnrys) v_24,sum(bndk) v_25,sum(bnjl) v_26,sum(bnqt) v_27,
+		sum(ljbtz) v_28,sum(ljgz) v_29,sum(ljsz) v_30,sum(ljzq) v_31,sum(ljrys) v_32,sum(ljdk) v_33,sum(ljjl) v_34,sum(ljqt) v_35,
+		sum(wbtz) v_36,sum(wgz) v_37,sum(wsz) v_38,sum(wzq) v_39,sum(wrys) v_40,sum(wdk) v_41,sum(wjl) v_42,sum(wqt) v_43,
+		' ' jszt,decode(sum(dc),null,' ',sum(dc)) v_45,
+      	decode(sum(jc),null,' ',sum(jc)) v_46,' ' kgrq,' ' wgrq,' ' kgdl,decode(sum(wglc),null,' ',sum(wglc)) v_50,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+      	from stcyhdzx_gcxmjzb
+    	where 1=1
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -900,17 +929,22 @@
 		</if>
 		group by substr(xzqhdm,0,4),dllx order by substr(xzqhdm,0,4),substr(dllx,0,1)
 	</select>
-	<select id="getyhbblist4" parameterType="xmbb" resultType="hashmap">
+	<select id="getyhbblist4" parameterType="xmbb" resultType="elist">
 		select 
-			decode(dllx,null,' ',dllx) dllx,decode(xzqhmc,null,' ',xzqhmc) xzqhmc,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(gydw,null,' ',gydw) gydw,
-		    decode(tsdq,null,' ',tsdq) tsdq,decode(xmmc,null,' ',xmmc) xmmc,decode(gcfl,null,' ',gcfl) gcfl,decode(xdnf,null,' ',xdnf) xdnf,
-		    decode(qdzh,null,' ',qdzh) qdzh,decode(zdzh,null,' ',zdzh) zdzh,decode(jhlc,null,' ',jhlc) jhlc,decode(gys,null,' ',gys) gys,
-		    decode(jhxdzj,null,' ',jhxdzj) jhxdzj,decode(bfzj,null,' ',bfzj) bfzj,bnbfzj,decode(wbfzj,null,' ',wbfzj) wbfzj,decode(jszt,null,' ',jszt) jszt,
-		    decode(dc,null,' ',dc) dc,decode(jc,null,' ',jc) jc,decode(kgrq,null,' ',kgrq) kgrq,decode(wgrq,null,' ',wgrq) wgrq,
-		    decode(kgdl,null,' ',kgdl) kgdl,decode(wglc,null,' ',wglc) wglc,decode(qksm,null,' ',qksm) qksm,decode(jhxdwh,null,' ',jhxdwh) jhxdwh,
-		    decode(xgcsyj,null,' ',xgcsyj) xgcsyj,decode(cscyj,null,' ',cscyj) cscyj,' ' hb
-		from stcyhdzx_gcxmjzb
-		where 1=1
+      	decode(dllx,null,' ',dllx) dllx,decode(xzqhmc,null,' ',xzqhmc) xzqhmc,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(gydw,null,' ',gydw) gydw,
+      	xmbm v_1,sqs v_2,xsq v_3,
+        decode(tsdq,null,' ',tsdq) v_4,decode(xmmc,null,' ',xmmc) v_5,decode(gcfl,null,' ',gcfl) v_6,decode(xdnf,null,' ',xdnf) v_7,
+        decode(qdzh,null,' ',qdzh) v_8,decode(zdzh,null,' ',zdzh) v_9,decode(jhlc,null,' ',jhlc) v_10,decode(gys,null,' ',gys) v_11,
+        btz v_12,gz v_13,sz v_14, zq v_15,rys v_16,dk v_17,jl v_18,qt v_19,
+        bnbtz v_20,bngz v_21,bnsz v_22,bnzq v_23,bnrys v_24,bndk v_25,bnjl v_26,bnqt v_27,
+        ljbtz v_28,ljgz v_29,ljsz v_30,ljzq v_31,ljrys v_32,ljdk v_33,ljjl v_34,ljqt v_35,
+        wbtz v_36,wgz v_37,wsz v_38,wzq v_39,wrys v_40,wdk v_41,wjl v_42,wqt v_43,
+        decode(jszt,null,' ',jszt) v_44,
+        decode(dc,null,' ',dc) v_45,decode(jc,null,' ',jc) v_46,decode(kgrq,null,' ',kgrq) v_47,decode(wgrq,null,' ',wgrq) v_48,
+        decode(kgdl,null,' ',kgdl) v_49,decode(wglc,null,' ',wglc) v_50,decode(qksm,null,' ',qksm) v_51,decode(jhxdwh,null,' ',jhxdwh) v_52,
+        decode(xgcsyj,null,' ',xgcsyj) v_53,decode(cscyj,null,' ',cscyj) v_54,' ' hb
+    	from stcyhdzx_gcxmjzb
+    	where 1=1
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -936,13 +970,17 @@
 	</select>
 	
 	<!-- 路网重做 -->
-	<select id="getlwbblist1" parameterType="xmbb" resultType="hashmap">
+	<select id="getlwbblist1" parameterType="xmbb" resultType="elist">
 		select 
- 		xmlx,substr(xmlx,0,1) xh1,substr(xmlx,2,2) xh,'是' hb,' ' szds,substr(xmlx,4) xzqhmc,' ' xmmc,' ' jsxz,' ' qdzh,' ' zdzh,decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,
-     	' ' xdnf,decode(sum(xdzj),null,' ',sum(xdzj)) xdzj,decode(sum(gys),null,' ',sum(gys)) gys,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,sum(bnbfzj) bnbfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(wglc),null,' ',sum(wglc)) wglc,' ' kgrq,' ' wgrq,
-    	' ' yjrq, ' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
- 		from lwjggz_gcxmjzb
- 		where 1=1
+ 		xmlx,substr(xmlx,0,1) xh1,substr(xmlx,2,2) v_0,'是' hb,substr(xmlx,4) v_1,decode(sum(yhlc),null,' ',sum(yhlc)) v_8,
+       sum(btz) v_10,sum(gz) v_11,sum(sz) v_12, sum(zq) v_13,sum(rys) v_14,sum(dk) v_15,sum(jl) v_16,sum(qt) v_17,
+       sum(gys) v_18,
+       sum(bnbtz) v_19,sum(bngz) v_20,sum(bnsz) v_21,sum(bnzq) v_22,sum(bnrys) v_23,sum(bndk) v_24,sum(bnjl) v_25,sum(bnqt) v_26,
+       sum(ljbtz) v_27,sum(ljgz) v_28,sum(ljsz) v_29,sum(ljzq) v_30,sum(ljrys) v_31,sum(ljdk) v_32,sum(ljjl) v_33,sum(ljqt) v_34,
+       sum(wbtz) v_35,sum(wgz) v_36,sum(wsz) v_37,sum(wzq) v_38,sum(wrys) v_39,sum(wdk) v_40,sum(wjl) v_41,sum(wqt) v_42,
+       ' ' jszt,decode(sum(wglc),null,' ',sum(wglc)) v_44
+     	from lwjggz_gcxmjzb
+     	where 1=1
  		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -967,16 +1005,22 @@
 		group by xmlx 
 		order by xh1
 	</select>
-	<select id="getlwbblist2" parameterType="xmbb" resultType="hashmap">
+	<select id="getlwbblist2" parameterType="xmbb" resultType="elist">
 	 select 
-	 		decode(xmlx,null,' ',xmlx) xmlx, decode(xzqhmc,null,' ',xzqhmc) xzqhmc, decode(xzqhdm,null,' ',xzqhdm) xzqhdm, decode(tsdq,null,' ',tsdq) tsdq,
-     		decode(xmmc,null,' ',xmmc) xmmc, decode(jsxz,null,' ',jsxz) jsxz, decode(qdzh,null,' ',qdzh) qdzh, decode(zdzh,null,' ',zdzh) zdzh,
-      		decode(yhlc,null,' ',yhlc) yhlc, decode(xdnf,null,' ',xdnf) xdnf, decode(xdzj,null,' ',xdzj) xdzj, decode(gys,null,' ',gys) gys,
-       		decode(bfzj,null,' ',bfzj) bfzj,bnbfzj, decode(wbfzj,null,' ',wbfzj) wbfzj, decode(jszt,null,' ',jszt) jszt, decode(wglc,null,' ',wglc) wglc,
-       		 kgrq, wgrq,yjrq, decode(qksm,null,' ',qksm) qksm,
-         	decode(jhxdwh,null,' ',jhxdwh) jhxdwh, decode(xgcsyj,null,' ',xgcsyj) xgcsyj, decode(cscyj,null,' ',cscyj) cscyj, decode(gydw,null,' ',gydw) gydw,' '  hb
-	from lwjggz_gcxmjzb 
-	where 1=1
+      decode(xmlx,null,' ',xmlx) xmlx, decode(xzqhmc,null,' ',xzqhmc) xzqhmc, decode(xzqhdm,null,' ',xzqhdm) xzqhdm, 
+          sqs v_1,xsq v_2,decode(tsdq,null,' ',tsdq) v_3,
+        decode(xmmc,null,' ',xmmc) v_4, decode(jsxz,null,' ',jsxz) v_5, decode(qdzh,null,' ',qdzh) v_6, decode(zdzh,null,' ',zdzh) v_7,
+          decode(yhlc,null,' ',yhlc) v_8, decode(xdnf,null,' ',xdnf) v_9,
+          btz v_10,gz v_11,sz v_12, zq v_13,rys v_14,dk v_15,jl v_16,qt v_17,
+       gys v_18,
+       bnbtz v_19,bngz v_20,bnsz v_21,bnzq v_22,bnrys v_23,bndk v_24,bnjl v_25,bnqt v_26,
+       ljbtz v_27,ljgz v_28,ljsz v_29,ljzq v_30,ljrys v_31,ljdk v_32,ljjl v_33,ljqt v_34,
+       wbtz v_35,wgz v_36,wsz v_37,wzq v_38,wrys v_39,wdk v_40,wjl v_41,wqt v_42,
+       decode(jszt,null,' ',jszt) v_43, decode(wglc,null,' ',wglc) v_44,
+       kgrq v_45, wgrq v_46,yjrq v_47, decode(qksm,null,' ',qksm) v_48,
+       decode(jhxdwh,null,' ',jhxdwh) v_49, decode(xgcsyj,null,' ',xgcsyj) v_50, decode(cscyj,null,' ',cscyj) v_51, decode(gydw,null,' ',gydw) gydw,' '  hb
+	  from lwjggz_gcxmjzb 
+	  where 1=1
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -1003,5 +1047,9 @@
 	
 	<select id="setjhxdwh" resultType="treenode" parameterType="String">
 		select distinct xdwh id,xdwh text from ${value} where xdwh is not null order by xdwh desc
+	</select>
+	
+	<select id="getPtgxtz" parameterType="string" resultType="elist">
+		select * from ZJHZ_TZ
 	</select>
 </mapper>

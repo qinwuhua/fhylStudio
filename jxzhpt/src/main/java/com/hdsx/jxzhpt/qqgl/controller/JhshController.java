@@ -124,13 +124,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
-				listData=jhshServer.queryJhshLmsj(jhsh,page,rows);
+				listData=jhshServer.queryJhshLmsj(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmsj(jhsh);
 			}else if(jhsh.getXmlx()==2){
-				listData=jhshServer.queryJhshLmgz(jhsh,page,rows);
+				listData=jhshServer.queryJhshLmgz(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmgz(jhsh);
 			}else if(jhsh.getXmlx()==3){
-				listData=jhshServer.queryJhshXj(jhsh,page,rows);
+				listData=jhshServer.queryJhshXj(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountXj(jhsh);
 			}
 			result.put("total", total);
@@ -154,8 +154,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsxzHandle();
 			zjlyHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-			
-			listData=jhshServer.queryGsdgz(jhsh,page,rows);
+			listData=jhshServer.queryGsdgz(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzCount(jhsh);
 			result.put("total", total);
 			result.put("rows", listData);
@@ -261,13 +260,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsdjHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 			if(jhsh.getXmlx()==1){
-				listData=jhshServer.queryJhshLmsj1(jhsh,page,rows);
+				listData=jhshServer.queryJhshLmsj1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmsj1(jhsh);
 			}else if(jhsh.getXmlx()==2){
-				listData=jhshServer.queryJhshLmgz1(jhsh,page,rows);
+				listData=jhshServer.queryJhshLmgz1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmgz1(jhsh);
 			}else if(jhsh.getXmlx()==3){
-				listData=jhshServer.queryJhshXj1(jhsh,page,rows);
+				listData=jhshServer.queryJhshXj1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountXj1(jhsh);
 			}
 			result.put("total", total);
@@ -434,7 +433,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsdjHandle();
 				ylxbhHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
-				listData=jhshServer.queryJhshYhzx(jhsh,page,rows);
+				listData=jhshServer.queryJhshYhzx(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshYhzxCount(jhsh);
 			}
 			result.put("rows", listData);
@@ -469,13 +468,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			ylxbhHandle();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
-				listData=jhshServer.queryJhshYhdzx1(jhsh,page,rows);
+				listData=jhshServer.queryJhshYhdzx1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshYhdzxCount1(jhsh);
 			}else if(jhsh.getXmlx()==5){
-				listData=jhshServer.queryJhshSh1(jhsh,page,rows);
+				listData=jhshServer.queryJhshSh1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshShCount1(jhsh);
 			}else if (jhsh.getXmlx()==6) {
-				listData=jhshServer.queryJhshYhzx(jhsh,page,rows);
+				listData=jhshServer.queryJhshYhzx(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshYhzxCount(jhsh);
 			}
 			result.put("rows", listData);
@@ -1472,19 +1471,19 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			ylxbhHandle();
 			int total = 0;
 			if(jhsh.getXmlx()==1){
-				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,page,rows);
+				resultlist = jhshServer.zdyQueryLmsj(filed,jhsh,jhsh.getPage(),jhsh.getRows());
 				total = jhshServer.zdyQueryLmsjTotal(filed,jhsh);
 			}else if(jhsh.getXmlx()==2){
-				resultlist = jhshServer.zdyQueryLmgz(filed, jhsh,page,rows);
+				resultlist = jhshServer.zdyQueryLmgz(filed, jhsh,jhsh.getPage(),jhsh.getRows());
 				total = jhshServer.zdyQueryLmgzTotal(filed,jhsh);
 			}else if(jhsh.getXmlx()==3){
-				resultlist = jhshServer.zdyQueryXj(filed, jhsh,page,rows);
+				resultlist = jhshServer.zdyQueryXj(filed, jhsh,jhsh.getPage(),jhsh.getRows());
 				total = jhshServer.zdyQueryXjTotal(filed,jhsh);
 			}else if(jhsh.getXmlx()==4){
-				resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh,page,rows);
+				resultlist = jhshServer.zdyQueryYhdzx(filed, jhsh,jhsh.getPage(),jhsh.getRows());
 				total = jhshServer.zdyQueryYhdzxTotal(filed,jhsh);
 			}else if(jhsh.getXmlx()==5){
-				resultlist = jhshServer.zdyQuerySh(filed, jhsh,page,rows);
+				resultlist = jhshServer.zdyQuerySh(filed, jhsh,jhsh.getPage(),jhsh.getRows());
 				total = jhshServer.zdyQueryShTotal(filed,jhsh);
 			}
 			result.put("rows", resultlist);
@@ -1627,7 +1626,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
-			listData=jhshServer.queryGsdgzxd(jhsh,page,rows);
+			listData=jhshServer.queryGsdgzxd(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzxdCount(jhsh);
 			result.put("total", total);
 			result.put("rows", listData);
@@ -1650,7 +1649,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			//zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
-			listData=jhshServer.queryshxd(jhsh,page,rows);
+			listData=jhshServer.queryshxd(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryshxdCount(jhsh);
 			result.put("total", total);
 			result.put("rows", listData);
@@ -1673,7 +1672,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
-			listData=jhshServer.queryjhxdyh(jhsh,page,rows);
+			listData=jhshServer.queryjhxdyh(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryjhxdyhCount(jhsh);
 			result.put("total", total);
 			result.put("rows", listData);

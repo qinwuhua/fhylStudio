@@ -139,61 +139,61 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 	}
 
 	@Override
-	public List<Map<String, Object>> getptgxlist1(Xmbb xmbb) {
+	public List<Excel_list> getptgxlist1(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getptgxlist1", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getptgxlist2(Xmbb xmbb) {
+	public List<Excel_list> getptgxlist2(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getptgxlist2", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getptgxlist3(Xmbb xmbb) {
+	public List<Excel_list> getptgxlist3(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getptgxlist3", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getptgxlist4(Xmbb xmbb) {
+	public List<Excel_list> getptgxlist4(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getptgxlist4", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getyhbblist1(Xmbb xmbb) {
+	public List<Excel_list> getyhbblist1(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getyhbblist1", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getyhbblist2(Xmbb xmbb) {
+	public List<Excel_list> getyhbblist2(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getyhbblist2", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getyhbblist3(Xmbb xmbb) {
+	public List<Excel_list> getyhbblist3(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getyhbblist3", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getyhbblist4(Xmbb xmbb) {
+	public List<Excel_list> getyhbblist4(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getyhbblist4", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getlwbblist1(Xmbb xmbb) {
+	public List<Excel_list> getlwbblist1(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getlwbblist1", xmbb);
 	}
 
 	@Override
-	public List<Map<String, Object>> getlwbblist2(Xmbb xmbb) {
+	public List<Excel_list> getlwbblist2(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getlwbblist2", xmbb);
 	}
@@ -213,6 +213,11 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 	@Override
 	public List<TreeNode> setjhxdwh(String tablename) {
 		return queryList("setjhxdwh", tablename);
+	}
+
+	@Override
+	public List<Excel_list> getPtgxtz(Xmbb xmbb) {
+		return queryList("getPtgxtz",xmbb);
 	}
 
 	
