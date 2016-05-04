@@ -693,5 +693,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public Collection<? extends Object> queryJhshSh_dc(Jhsh jhsh) {
 		return queryList("queryJhshSh_dc",jhsh);
 	}
+	@Override
+	public Collection<? extends Object> queryJhshYhdzx_dc(Jhsh jhsh) {
+		return queryList("queryJhshYhdzx_dc",jhsh);
+	}
 	
 }

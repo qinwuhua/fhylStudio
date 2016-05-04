@@ -271,7 +271,7 @@
 			var ghlxbm=$("#ghlxbm").val();
 			var param='xmlx=1&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValues").join(",")+'&jsjsdj='+$('#gjhjsdj').combo("getValues").join(",")+
-			'&tsdq='+tsdq+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&lxmc='lxmc+'&jsjsdj='+jsjsdj+
+			'&tsdq='+tsdq+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&lxmc='+lxmc+'&jsjsdj='+jsjsdj+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm;
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}

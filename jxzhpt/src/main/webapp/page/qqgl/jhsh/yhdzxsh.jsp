@@ -185,10 +185,33 @@
 			});
 		}
 		function exportJhshxx(){
-			var param='jhsh.xmlx=4&jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+
-			'&jhsh.ghlxbh='+$('#ylxbh').val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
-			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
-			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',');
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
+// 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
+// 					'jhsh.xmnf':xmnf,'jhsh.sfsycgs':$('#sfsycgs').combobox("getValue"),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
+// 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+// 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
+// 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').val(),
+// 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1,'jhsh.shzt':$('#shzt').combobox("getValue"),
+// 					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly};
+
+			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmmc='+$("#xmmc").val()+
+					'&jhsh.xmnf='+xmnf+'&jhsh.sfsycgs='+$("#sfsycgs").combobox("getValue")+'&jhsh.jsdj='+$("#jsdj").combobox("getValues").join(",")+
+					'&jhsh.xzdj='+$("#gldj").combobox("getValues").join(",")+'&jhsh.tsdq='+tsdq+
+					'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.lxmc='+$("#lxmc").val()+
+					'&jhsh.ghxlxbm='+$("#ghlxbm").val()+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.zydpx='+$("#zydpx").val()+
+					'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.sbzt=1'+'&jhsh.shzt='+$("#shzt").combobox("getValue")+
+					'&jhsh.gyfl='+$("#gyfl").val()+'&jhsh.zjly='+zjly;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param;
 		}
 		function importJhsh(){

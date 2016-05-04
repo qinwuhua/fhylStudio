@@ -953,31 +953,36 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
 				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
 				"<title=灌封长度,fieid=gfcd>,<title=灌封金额,fieid=gfje>,<title=老路处理,fieid=llcl>,";
-		String xmbm = jhsh.getXmbm();
-		if(xmbm.indexOf(",")>-1){
-			String[] xmnfArray = xmbm.split(",");
-			for (int i = 0; i < xmnfArray.length; i++) {
-				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-				}else if(i==0){
-					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-				}
-			}
-		}else{
-			xmbm = "j.xmbm like '" + xmbm + "%' ";
-		}
-		jhsh.setXmbm(xmbm);
-		jsdjHandle();
-		ylxbhHandle();
+//		String xmbm = jhsh.getXmbm();
+//		if(xmbm.indexOf(",")>-1){
+//			String[] xmnfArray = xmbm.split(",");
+//			for (int i = 0; i < xmnfArray.length; i++) {
+//				if(i==xmnfArray.length-1){
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//				}else if(i==0){
+//					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}else{
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}
+//			}
+//		}else{
+//			xmbm = "j.xmbm like '" + xmbm + "%' ";
+//		}
+//		jhsh.setXmbm(xmbm);
+//		jsdjHandle();
+//		ylxbhHandle();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
 		if(jhsh.getXmlx()==4){
+			jsdjHandle1();
+			xzdjHandle();
+			tsdqHandle();
+			jsxzHandle();
+			zjlyHandle();
 			jhsh.setPage(0);
 			jhsh.setRows(0);
-			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh));
+			excelData.addAll(jhshServer.queryJhshYhdzx_dc(jhsh));
 			fileName="养护大中修项目-计划审核";
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
@@ -1229,7 +1234,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			jhsh.setPage(0);
 			jhsh.setRows(0);
-			excelData.addAll(jhshServer.queryJhshYhdzx(jhsh));
+			excelData.addAll(jhshServer.queryJhshYhdzx_dc(jhsh));
 			titleName="养护大中修项目";
 			fileName="养护大中修项目-计划资金下达";
 		}
@@ -1237,7 +1242,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setJsdj(jhsh.getJsdj().replaceAll("xjsdj", "jsdj"));
 			jhsh.setPage(0);
 			jhsh.setRows(0);
-			excelData.addAll(jhshServer.queryJhshSh(jhsh));
+			excelData.addAll(jhshServer.queryJhshSh_dc(jhsh));
 			titleName="灾毁重建项目";
 			fileName="灾毁重建项目-计划资金下达";
 		}
@@ -1247,46 +1252,57 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		//设置表头、设置列与字段对应
 		String fileTitle=null;
 		fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk>,<title=国债,fieid=gz>,<title=国债债券,fieid=gzzq>,<title=省债,fieid=sz>,<title=省债债券,fieid=szzq>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
-		String xmbm = jhsh.getXmbm();
-		if(xmbm.indexOf(",")>-1){
-			String[] xmnfArray = xmbm.split(",");
-			for (int i = 0; i < xmnfArray.length; i++) {
-				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-				}else if(i==0){
-					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
-				}
-			}
-		}else{
-			xmbm = "j.xmbm like '" + xmbm + "%' ";
-		}
-		jhsh.setXmbm(xmbm);
+		
+
+		xzdjHandle();
+		jsjsdjHandle();
+		jsdjHandle1();
 		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-		jsdjHandle();
-		ylxbhHandle();
-		if(jhsh.getXmlx1()!=null)
-			if(jhsh.getXmlx1().length()>0){
-				String[] tsdqs=jhsh.getXmlx1().split(",");
-				String tsdq="";
-				for (int i = 0; i < tsdqs.length; i++) {
-					if("全部".equals(tsdqs[i])){
-						tsdq="";
-						break;
-					}
-					if(i==0)
-						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
-					else
-						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
-				}
-				if(tsdq==""){
-					tsdq="";
-				}else{
-					tsdq+=")";
-				}
-				jhsh.setXmlx1(tsdq);
-			}
+		jsxzHandle();
+		zjlyHandle();
+		xdztHandle();
+		tsdqHandle();
+		
+//		String xmbm = jhsh.getXmbm();
+//		if(xmbm.indexOf(",")>-1){
+//			String[] xmnfArray = xmbm.split(",");
+//			for (int i = 0; i < xmnfArray.length; i++) {
+//				if(i==xmnfArray.length-1){
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//				}else if(i==0){
+//					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}else{
+//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//				}
+//			}
+//		}else{
+//			xmbm = "j.xmbm like '" + xmbm + "%' ";
+//		}
+//		jhsh.setXmbm(xmbm);
+//		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+//		jsdjHandle();
+//		ylxbhHandle();
+//		if(jhsh.getXmlx1()!=null)
+//			if(jhsh.getXmlx1().length()>0){
+//				String[] tsdqs=jhsh.getXmlx1().split(",");
+//				String tsdq="";
+//				for (int i = 0; i < tsdqs.length; i++) {
+//					if("全部".equals(tsdqs[i])){
+//						tsdq="";
+//						break;
+//					}
+//					if(i==0)
+//						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+//					else
+//						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+//				}
+//				if(tsdq==""){
+//					tsdq="";
+//				}else{
+//					tsdq+=")";
+//				}
+//				jhsh.setXmlx1(tsdq);
+//			}
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
