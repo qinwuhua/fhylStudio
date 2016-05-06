@@ -391,11 +391,21 @@
 		</if>
 	</select>
 	<select id="queryJhshSh_dc" parameterType="jhsh" resultType="jhsh">
-				select * from (
-				 select * from  jhxdsh j  right join (
-				  select  *  from  lxsh_lx  where  jdbs='2') l
-				on  j.xmbm = l.xmid 
-		   
+		select * from (	
+			select rownum num,t.* from (
+				select decode(l_.sffirst,'1',j.xmbm,'') xmbm,decode(l_.sffirst,'1',j.xmmc,'') xmmc,decode(l_.sffirst,'1',j.xzqh,l_.xzqh) xzqh,j.jhkgsj kgsj,j.jhwgsj wgsj,decode(l_.sffirst,'1',j.lc,l_.lc) lc ,j.xdwh xdwh,j.xdsj,j.PFZTZ,j.SBZZJ,j.BBZZJ, l_.lxbm ylxbh ,l_.qdzh,l_.zdzh,l_.qdmc,l_.zdmc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,cb.gq from jhxdsh j 
+					left join (select xmbm,sjpfwh,gq from cbsj_sh) cb on j.xmbm=cb.xmbm 
+					left join xmsq_sh lxg on j.xmbm=lxg.xmbm 
+					left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+					left join (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+					when jsxz like '%新建%' then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc from lxsh_lx where jdbs='2' 
+					and sffirst='1' ) lx on j.xmbm=lx.xmid left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid 
+					left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj, 
+					replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+					replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)
+					+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when jsxz like '%新建%' then xjlc else lc end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end)
+					 ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid 
+					 right  join (select * from lxsh_lx lx where lx.jdbs='2') l_ on j.xmbm=l_.xmid 
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -427,12 +437,115 @@
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 				
-				order by j.xdzt,j.xmbm desc
+				order by j.xdzt,j.xmbm desc,l_.sffirst desc
+			) t 
 		) 
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
 	</select>
+	<select id="queryJhshYhdzx_dc" parameterType="jhsh" resultType="jhsh">
+			     select decode(l_.sffirst,'1',j.XMMC,'') xmmc,decode(l_.sffirst,'1',j.XMBM,'') xmbm,j.XZQH,j.JHKGSJ kgsj,j.JHWGSJ wgsj,j.XDWH,j.XDSJ,j.ZTZ,j.SYSBBZJ,j.YQDBCGS,j.YLXBH,l_.qdmc,l_.zdmc,l_.qdzh,l_.zdzh,l_.lc
+				 ,j.MCLMLX,j.MCLX,j.MCSL,j.MCJE,j.JCLX,j.JCSL,j.MCSL,j.XFCSL,j.XFCJE,j.BXSL,j.BXJE,j.GFCD,j.GFJE,j.LLCL,
+				 lx.lc, jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,cb.gq from jhxdyh j 
+				 left join (select xmbm,sjpfwh,gq from cbsj_yhdzx) cb on j.xmbm=cb.xmbm left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm 
+				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+				 left join (select xmid,jsxz, (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) 
+				 when jsxz like '%新建%' then to_number(xjlc) else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) end) lc from lxsh_lx where jdbs='2' 
+			   	 and sffirst='1' ) lx on j.xmbm=lx.xmid left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid 
+			     left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+			     replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+			     replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+
+			     nvl(jhdwlc,0)+nvl(jhwllc,0) when jsxz like '%新建%' then to_number(xjlc) else to_number(lc) end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end) 
+			     ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid 
+			     right join (select * from lxsh_lx lx where jdbs='2') l_ on j.xmbm=l_.xmid
+	              where 1=1 
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
+				</if>
+				<if test="ghxlxbm!=null and ghxlxbm!=''">
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+				</if>
+				<if test="lxmc !=null and lxmc !=''">
+					and ghlxmctj like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(j.xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="tsdq !=null and tsdq !=''">
+					${tsdq}
+				</if>
+				<if test="xzdj !=null and xzdj !=''">
+					and ${xzdj}
+				</if>
+				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+				<if test="xmlx1 !=null and xmlx1 !=''">and xmlx1 like '%'||#{xmlx1}||'%'</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">and (jhxdwh like '%'||#{jhxdwh}||'%' or xdwh like '%'||#{jhxdwh}||'%')</if>
+				<if test="zjly !=null and zjly !=''">
+					${zjly}
+				</if>
+				<if test="gyfl !=null and gyfl !=''">
+					
+				</if>
+				<if test="sfsycgs !=null and sfsycgs !=''">
+					and sfsycgs = #{sfsycgs}
+				</if>
+				order by j.xdzt,j.xmbm desc,l_.sffirst desc
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
+<!-- 	<select id="queryJhshSh_dc" parameterType="jhsh" resultType="jhsh"> -->
+<!-- 				select * from ( -->
+<!-- 				 select * from  jhxdsh j  right join ( -->
+<!-- 				  select  *  from  lxsh_lx  where  jdbs='2') l -->
+<!-- 				on  j.xmbm = l.xmid  -->
+		   
+<!-- 	              where 1=1 -->
+<!-- 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if> -->
+<!-- 				<if test="ghlxbh!=null and ghlxbh!=''"> -->
+<!-- 					and ghlxbmtj like '%'||#{ghlxbh}||'%' -->
+<!-- 				</if> -->
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
+<!-- 				<if test="lxmc !=null and lxmc !=''"> -->
+<!-- 					and ghlxmctj like '%'||#{lxmc}||'%' -->
+<!-- 				</if> -->
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<!-- 				<if test="xmnf !=null and xmnf !=''"> -->
+<!-- 					and substr(j.xmbm,0,4) in (${xmnf}) -->
+<!-- 				</if> -->
+				
+<!-- 				<if test="tsdq !=null and tsdq !=''"> -->
+<!-- 					${tsdq} -->
+<!-- 				</if> -->
+<!-- 				<if test="xzdj !=null and xzdj !=''"> -->
+<!-- 					and ${xzdj} -->
+<!-- 				</if> -->
+<!-- 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if> -->
+<!-- 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if> -->
+<!-- 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if> -->
+<!-- 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if> -->
+<!-- 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if> -->
+<!-- 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> -->
+				
+<!-- 				order by j.xdzt,j.xmbm desc -->
+<!-- 		)  -->
+<!-- 		<if test="page!=null and page!='' and page!=0"> -->
+<!-- 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]> -->
+<!-- 		</if> -->
+<!-- 	</select> -->
 	<select id="queryJhshSh1" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
@@ -1855,7 +1968,7 @@
 		select * from (	
 			select rownum num,t.* from (
 				select decode(l.sffirst,'1',j.xmmc,'') xmmc,decode(l.sffirst,'1',j.xmbm,'') xmbm,j.lsjl,j.gydw,j.xmlx1,j.xmlxs,j.kgsj,j.wgsj
-				,j.gq,decode(l.sffirst,'1',j.gkpfwh,'') gkpfwh ,decode(l.sffirst,'1',j.sjpfwh,'') sjpfwh,decode(l.sffirst,'1',j.jhxdwh,'') jhxdwh,decode(l.sffirst,'1',j.xdsj,'') xdsj,decode(l.sffirst,'1',j.pfztz,'')  pfztz,decode(l.sffirst,'1',j.bbzzj,'')  bbzzj,decode(l.sffirst,'1',j.sbzzj,'') sbzzj,l.lxbm,l.lc,l.qdzh,l.zdzh,l.qdmc,l.zdmc,l.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj  
+				,j.gq,decode(l.sffirst,'1',j.gkpfwh,'') gkpfwh ,decode(l.sffirst,'1',j.sjpfwh,'') sjpfwh,decode(l.sffirst,'1',j.jhxdwh,'') jhxdwh,decode(l.sffirst,'1',j.xdsj,'') xdsj,decode(l.sffirst,'1',j.pfztz,'')  pfztz,decode(l.sffirst,'1',j.bbzzj,'')  bbzzj,decode(l.sffirst,'1',j.sbzzj,'') sbzzj,l.lxbm,l.lc,decode(l.sffirst,'1',j.qdzh,l.qdzh) qdzh,decode(l.sffirst,'1',j.zdzh,l.zdzh) zdzh,l.qdmc,l.zdmc,l.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj 
 				from gsdgz j  
 				left join lxgsdgz lxg 
 				on j.xmbm=lxg.xmbm 
@@ -1865,7 +1978,7 @@
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
-					and substr(xmbm,0,4) in (${jhsh.xmnf})
+					and substr(j.xmbm,0,4) in (${jhsh.xmnf})
 				</if>
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsdj}</if>
