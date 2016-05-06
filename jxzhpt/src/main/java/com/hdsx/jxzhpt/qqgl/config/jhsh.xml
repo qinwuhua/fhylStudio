@@ -1965,16 +1965,22 @@
 		</if>
 	</select>
 	<select id="queryGsdgz_dc" parameterType="java.util.Map" resultType="jhsh">
-		select * from (	
-			select rownum num,t.* from (
-				select decode(l.sffirst,'1',j.xmmc,'') xmmc,decode(l.sffirst,'1',j.xmbm,'') xmbm,j.lsjl,j.gydw,j.xmlx1,j.xmlxs,j.kgsj,j.wgsj
-				,j.gq,decode(l.sffirst,'1',j.gkpfwh,'') gkpfwh ,decode(l.sffirst,'1',j.sjpfwh,'') sjpfwh,decode(l.sffirst,'1',j.jhxdwh,'') jhxdwh,decode(l.sffirst,'1',j.xdsj,'') xdsj,decode(l.sffirst,'1',j.pfztz,'')  pfztz,decode(l.sffirst,'1',j.bbzzj,'')  bbzzj,decode(l.sffirst,'1',j.sbzzj,'') sbzzj,l.lxbm,l.lc,decode(l.sffirst,'1',j.qdzh,l.qdzh) qdzh,decode(l.sffirst,'1',j.zdzh,l.zdzh) zdzh,l.qdmc,l.zdmc,l.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj 
-				from gsdgz j  
-				left join lxgsdgz lxg 
-				on j.xmbm=lxg.xmbm 
-		        right join (select * from LXSH_LX where jdbs='2' ) l
-		        on  j.xmbm=l.xmid
-	            where 1=1
+				 select decode(l_.sffirst,'1',j.xmmc,'') xmmc,decode(l_.sffirst,'1',j.xmbm,'') xmbm,j.lsjl,j.gydw,j.xmlx1,j.xmlxs,j.kgsj,j.wgsj ,j.gq,decode(l_.sffirst,'1',j.gkpfwh,'') gkpfwh ,decode(l_.sffirst,'1',j.sjpfwh,'') 
+				 sjpfwh,decode(l_.sffirst,'1',j.jhxdwh,'') jhxdwh,decode(l_.sffirst,'1',j.xdsj,'') xdsj,decode(l_.sffirst,'1',j.pfztz,'') pfztz,decode(l_.sffirst,'1',j.bbzzj,'') bbzzj,
+				 decode(l_.sffirst,'1',j.sbzzj,'') sbzzj,l_.lxbm,l_.lc,decode(l_.sffirst,'1',j.qdzh,l_.qdzh) qdzh,decode(l_.sffirst,'1',j.zdzh,l_.zdzh) zdzh,l_.qdmc,l_.zdmc,l_.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj
+				 from gsdgz j 
+				 left join lxgsdgz lxg on j.xmbm=lxg.xmbm 
+				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+				 left join (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when jsxz like '%新建%'
+				 then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc from lxsh_lx where jdbs='2' and sffirst='1' ) lx on j.xmbm=lx.xmid 
+				 left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') 
+				 
+				 ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj, replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') 
+				 ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+
+				 nvl(jhwllc,0)) when jsxz like '%新建%' then xjlc else lc end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 
+				 on j.xmbm=lx2.xmid 
+				 right join (select * from LXSH_LX where jdbs='2' ) l_ on j.xmbm=l_.xmid 
+	             where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
@@ -2013,13 +2019,13 @@
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
 				</if>
-				order by j.xdzt,j.xmbm desc,l.sffirst desc
-			) t 
-		) 
+				order by j.xdzt,j.xmbm desc,l_.sffirst desc
+			 
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
 	</select>
+	
 	<select id="queryGsdgzCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from (
 				select j.*,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm

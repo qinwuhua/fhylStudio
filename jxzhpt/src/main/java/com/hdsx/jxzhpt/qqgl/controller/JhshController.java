@@ -1306,7 +1306,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
-		excelData.addAll(jhshServer.queryGsdgz(jhsh, 0, 0));
+		excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
 		titleName="国省道改造";
 		fileName="国省道改造-计划资金下达";
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
