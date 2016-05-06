@@ -408,9 +408,9 @@ public class GcglaqybController extends BaseActionSupport{
 		List<TreeNode> children = root.getChildren();
 		//children1.get(0).setId(yhdw.replaceAll("0*$",""));
 		children1.get(0).setChildren(children);
-		for (TreeNode treeNode : children1) {
+		/*for (TreeNode treeNode : children1) {
 			System.out.println(treeNode.getId());
-		}
+		}*/
 		try{
 		    String s=JSONArray.fromObject(children1).toString();
             ResponseUtils.write(getresponse(), s);
@@ -426,9 +426,9 @@ public class GcglaqybController extends BaseActionSupport{
 		List<TreeNode> children = root.getChildren();
 		//children1.get(0).setId(yhdw.replaceAll("0*$",""));
 		children1.get(0).setChildren(children);
-		for (TreeNode treeNode : children1) {
+		/*for (TreeNode treeNode : children1) {
 			System.out.println(treeNode.getId());
-		}
+		}*/
 		try{
 		    String s=JSONArray.fromObject(children1).toString();
             ResponseUtils.write(getresponse(), s);
@@ -469,7 +469,16 @@ public class GcglaqybController extends BaseActionSupport{
 		for(TreeNode temp : list){
 			if(temp!=zzjgTree){
 				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
-					zzjgTree.setState("closed");
+					if(zzjgTree.getId().length()==6){
+						if(zzjgTree.getId().substring(2).equals("0000")){
+							zzjgTree.setState("open");
+						}else{
+							zzjgTree.setState("closed");
+						}
+					}else{
+						zzjgTree.setState("closed");
+					}
+					
 					zzjgTree.getChildren().add(temp);
 					returnRoot1(list,temp);
 				}

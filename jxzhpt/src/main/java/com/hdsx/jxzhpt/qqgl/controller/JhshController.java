@@ -390,7 +390,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Jhsh> listData=null;
 		int total=0;
 		try{
-			int s = jhsh.getXmlx();
+			int s = jhsh.getXmlx();//谁写的？有嘛用？
 			if(jhsh.getXmlx()==4){
 				xdwhHandle();
 				jsdjHandle1();
@@ -399,8 +399,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsxzHandle();
 				zjlyHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-				jhsh.setPage(page);
-				jhsh.setRows(rows);
+				//jhsh.setPage(page);
+				//jhsh.setRows(rows);
 				listData=jhshServer.queryJhshYhdzx(jhsh);
 				total=jhshServer.queryJhshYhdzxCount(jhsh);
 			}else if(jhsh.getXmlx()==5){
@@ -409,8 +409,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle();
 				xdwhHandle();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-				jhsh.setPage(page);
-				jhsh.setRows(rows);
+				//jhsh.setPage(page);
+				//jhsh.setRows(rows);
 				listData=jhshServer.queryJhshSh(jhsh);
 				total=jhshServer.queryJhshShCount(jhsh);
 			}else if (jhsh.getXmlx()==6) {
@@ -1684,7 +1684,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsjsdjHandle();
 			jsdjHandle1();
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-			//jsxzHandle();
+			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
@@ -1744,7 +1744,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsjsdjHandle();
 				jsdjHandle1();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-				//jsxzHandle();
+				jsxzHandle();
 				zjlyHandle();
 				xdztHandle();
 				tsdqHandle();
@@ -1796,7 +1796,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsjsdjHandle();
 				jsdjHandle1();
 				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-				//jsxzHandle();
+				jsxzHandle();
 				zjlyHandle();
 				xdztHandle();
 				tsdqHandle();

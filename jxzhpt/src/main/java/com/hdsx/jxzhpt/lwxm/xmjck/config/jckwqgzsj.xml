@@ -1021,7 +1021,7 @@
 			and jsdj like '%'||(substr(#{sck_qlbh},0,1))||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and qllx = #{akjfl}
+			and #{akjfl} like '%'||qllx||'%'
 		</if>
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz = #{jsxz}
@@ -1033,7 +1033,7 @@
 			and jsdj like '%'||(substr(#{sck_qlbh},0,1))||'%'
 		</if>
 		<if test="akjfl!='' and akjfl!= null ">
-			and qllx = #{akjfl}
+			and #{akjfl} like '%'||qllx||'%'
 		</if>
 		<if test="jsxz!='' and jsxz!= null ">
 			and jsxz = #{jsxz}

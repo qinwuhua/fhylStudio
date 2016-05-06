@@ -63,7 +63,7 @@
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
-			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
@@ -183,14 +183,14 @@
 			    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-			    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+			    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
 			    			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
 			    			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 			    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 			    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 // 			    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 			    			    {field:'xjsdj',title:'技术等级',width:80,align:'center'},
-			    			    {field:'jhlc',title:'里程',width:60,align:'center'}
+			    			    {field:'lc',title:'里程',width:60,align:'center'}
 			    			]]
 				    	});
 			    	}

@@ -2454,7 +2454,7 @@ function yhxmlx(id){
 		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 	}*/
 	years.push({text:'大修',value:'大修'});
-	years.push({text:'中修',value:'大修'});
+	years.push({text:'中修',value:'中修'});
 	years.push({text:'预防性',value:'预防性'});
 	
 	$('#'+id).combobox({
@@ -2713,7 +2713,7 @@ function jhxdwhdx(id,xmlx){
 				years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 			}*/
 			for ( var i = 0; i < msg.length; i++) {
-				years.push({text:msg[i].text,value:msg[i].text});
+				years.push({text:msg[i].text,value:i+1});
 			}
 			
 			$('#'+id).combobox({
@@ -2761,7 +2761,7 @@ function jhxdwhdx(id,xmlx){
 					}
 				}
 			});
-			$('#'+id).combobox("setText",'全部');
+			//$('#'+id).combobox("setText",'全部');
 			//$('#id全部').attr('checked', true);
 		}
 		

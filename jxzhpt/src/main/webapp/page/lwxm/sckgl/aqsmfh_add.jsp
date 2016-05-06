@@ -520,8 +520,13 @@ function deleteFile(id){
 			data:"bzbz.xmlx="+tjldobj.xzqh+"&bzbz.lx="+bz,
 			dataType:'json',
 			success:function(data){
+				if(data.bz==7){
+					bl=0.85;
+				}else{
+					bl=data.bl;
+				}
 				bz=data.bz;
-				bl=data.bl;
+				//bl=data.bl;
 				fd=data.fd;
 				bzInit();
 			}
@@ -529,8 +534,8 @@ function deleteFile(id){
 	}
 	function bzInit(){
 		bzzj=(parseFloat($("#czzlc").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-		if(parseFloat(($("#cztzgs").val())*0.6)<parseFloat(bzzj))
-		ts=parseFloat(($("#cztzgs").val())*0.6).toFixed(0);
+		if(parseFloat(($("#cztzgs").val())*bl)<parseFloat(bzzj))
+		ts=parseFloat(($("#cztzgs").val())*bl).toFixed(0);
 		else
 		ts=bzzj.toFixed(0);
 		$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");

@@ -129,7 +129,7 @@
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
 				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'},
-				{field:'mc',title:'面层结构',width:300,align:'center',
+				/* {field:'mc',title:'面层结构',width:300,align:'center',
 					formatter:function(value,row,index){
 						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;
 					}
@@ -148,7 +148,7 @@
 					formatter:function(value,row,index){
 						return "灌封长度："+row.gfcd+";灌封金额："+row.gfje;
 					}
-				},
+				}, */
 				{field:'llcl',title:'老路处理',width:100,align:'center'}
 			]];
 			bindLxGrid();
