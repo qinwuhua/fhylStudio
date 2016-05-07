@@ -14,7 +14,7 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('abgc_xx','安保工程项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+	YMLib.UI.createWindow('abgc_xx','安保工程项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc1.jsp",'abgc_xx',1000,500);
 	//window.open("abgcxx.jsp");
 }
 function zjdw(index){

@@ -17,7 +17,7 @@ function wqxiangxi(index,xmlx){
 		YMLib.UI.createWindow('abgc_xx','安防工程',"/jxzhpt/page/jhgl/jhkxx/afgc1.jsp",'abgc_xx',1000,500);
 	}else{
 		YMLib.Var.jhbm=data.id;
-		YMLib.UI.createWindow('abgc_xx','安保工程项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+		YMLib.UI.createWindow('abgc_xx','安保工程项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc1.jsp",'abgc_xx',1000,500);
 
 	}
 		//YMLib.UI.createWindow('wqxx','安保工程开工详情','abgcxx.jsp','wqxx',740,450);
@@ -310,7 +310,7 @@ function tjwqgzkg(xmlx){
 	}
 	var data="gcglabgc.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglabgc.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglabgc.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglabgc.sgdw="+$("#tj_sgdw").val()+"&gcglabgc.jldw="+$("#tj_jldw").val()+"&gcglabgc.jsdw="+$("#tj_jsdw").val()+"&gcglabgc.xdwh="+$("#tj_xdwh").val()
-	+"&gcglabgc.htje="+$("#tj_htje").val()+"&gcglabgc.gys="+$("#tj_gys").val()+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx=af";
+	+"&gcglabgc.htje="+$("#tj_htje").val()+"&gcglabgc.gys="+$("#tj_gys").val()+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx="+xmlx;
 	//alert(data);
 	$.ajax({
 		type:'post',
