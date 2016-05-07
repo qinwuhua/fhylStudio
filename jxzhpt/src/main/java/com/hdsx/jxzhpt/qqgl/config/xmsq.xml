@@ -252,7 +252,7 @@
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">${xmsq.tsdq}</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">and x.lsjl=#{xmsq.lsjl}</if>
 				<if test="xmsq.wnxmk!=null and xmsq.wnxmk!=''">and x.wnxmk=#{xmsq.wnxmk}</if>
-				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">and x.gcfl=#{xmsq.jsxz}</if>
+				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">and x.jsxz=#{xmsq.jsxz}</if>
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
 				</if>
@@ -325,28 +325,7 @@
 	</select>
 	
 	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_yhdzx x 
-		left join lxsh_lx lx
-		     on x.xmbm = lx.xmid
-		left join (select xmid, count(xmid) xmsl
-		                              from lxsh_lx
-		                             where jdbs = '2'
-		                             group by xmid) sl
-		                              on x.xmbm = sl.xmid
-		where 1 = 1 and lx.jdbs = '2'
-                   and lx.sffirst = '1'
-        <if test="ghlxmc!='' and ghlxmc!= null ">
-			and lx.ghlxmc=#{ghlxmc}
-		</if>
-		<if test="ghlxbm!='' and ghlxbm!= null ">
-			and lx.ghlxbm=#{ghlxbm}
-		</if>
-		<if test="lxmc!='' and lxmc!= null ">
-			and lx.lxmc=#{lxmc}
-		</if>
-		<!-- <if test="jsxz!=null and jsxz!=''">
-			and x.gcfl=#{jsxz}
-		</if> -->
+		select count(x.xmbm) from xmsq_yhdzx x where 1=1
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
 		</if>

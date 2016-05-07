@@ -8,6 +8,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -185,5 +186,7 @@ public interface Plan_abgcServer {
 	List<Plan_abgc> queryAfgcList(int page, int rows, Plan_abgc jh, Jckabgc lx);
 
 	int editAfgcById(Plan_abgc jh);
+
+	List<Excel_list> exportExcleAbgc(Plan_abgc jh);
 
 }

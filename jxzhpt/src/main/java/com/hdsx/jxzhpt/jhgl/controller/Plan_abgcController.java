@@ -16,7 +16,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSON;
 
@@ -49,6 +51,10 @@ import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.util.lang.JsonUtil;
@@ -387,6 +393,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryAbgcList(){
 		try {
+			String string = flag;
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
 			if(lx.getGydwbm()!=null){
 				if("af".equals(jh.getXmlx()))
@@ -493,15 +500,17 @@ public class Plan_abgcController extends BaseActionSupport{
 				}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
-			if("af".equals(jh.getXmlx())){
-				jsonMap.put("total", abgcServer.queryAfgcCount(jh, lx));
-				jsonMap.put("rows",abgcServer.queryAfgcList(page, rows, jh, lx));
-			}else{
-				jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
-				jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
-			}
+			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
+				if("af".equals(jh.getXmlx())){
+					jsonMap.put("total", abgcServer.queryAfgcCount(jh, lx));
+					jsonMap.put("rows",abgcServer.queryAfgcList(page, rows, jh, lx));
+				}else{
+					jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
+					jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
+				}
+				
+				JsonUtils.write(jsonMap, getresponse().getWriter());
 			
-			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1044,6 +1053,157 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	//计划查询 安保工程 导出
+	public void jhcxAbgcExcel(){
+		String s = jh.getGydwdm();
+		String s1 = jh.getLxmc();
+		String s2 = jh.getXzqhdm();
+		String s3 = jh.getSfylsjl();
+		String s4 = jh.getGldj();
+		String s5 = jh.getTsdq();
+		String s6 = jh.getJhnf();
+		String s7 = jh.getShzt();
+		String s8 = jh.getJsdj();
+		System.out.println("dd");
+		
+		try {
+			/*HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String gydws=(String) session.getAttribute("gydwbb");	
+			String xzqhs=(String) session.getAttribute("xzqhbb");*/
+			if(s.indexOf(",")==-1){
+				jh.setGydwdm("and lx.gydwbm like '%'||substr('"+s+"',0,4)||'_'||substr('"+s1+"',6)||'%'");
+			}else{
+				jh.setGydwdm("and lx.gydwbm in ("+s+")");
+			}
+			if(s2.indexOf(",")==-1){
+				jh.setXzqhdm("and lx.xzqhdm like '%"+s2+"%'");
+			}else{
+				jh.setXzqhdm("and lx.xzqhdm in ("+s2+")");
+			}
+			 jh.setLxmc(jh.getLxmc());
+			 jh.setSfylsjl(jh.getSfylsjl());
+			 jh.setJhnf(jh.getJhnf());
+			 jh.setShzt(jh.getShzt());
+			
+			if(jh.getTsdq()!=null)
+				if(jh.getTsdq().length()>0){
+					String[] tsdqs=jh.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							if("af".equals(jh.getXmlx()))
+								tsdq+="ts.tsdq like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="lx.tsdq like '%"+tsdqs[i]+"%'";	
+						else
+							if("af".equals(jh.getXmlx()))
+								tsdq+="or ts.tsdq like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or lx.tsdq like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					jh.setTsdq(tsdq);
+				}
+			if(jh.getGldj()!=null)
+				if(jh.getGldj().length()>0){
+					String[] tsdqs=jh.getGldj().split(",");
+					String tsdq="and substr(lxbm,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i]+"'";
+						else
+							tsdq+=",'"+tsdqs[i]+"'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					jh.setGldj(tsdq);
+				}
+				
+			if(jh.getJsdj()!=null)
+				if(jh.getJsdj().length()>0){
+					String[] tsdqs=jh.getJsdj().split(",");
+					String tsdq="and substr(lx.lxjsdj,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+						else
+							tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					jh.setJsdj(tsdq);
+				}
+			List<Excel_list> list = abgcServer.exportExcleAbgc(jh);
+			
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("计划查询安保工程");//设置第一行
+			eldata.setSheetName("计划查询安保工程");//设置sheeet名
+			eldata.setFileName("计划查询安保工程");//设置文件名
+			eldata.setEl(list);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("管养单位",1,1,1,1));
+			et.add(new Excel_tilte("县(市、区)",1,1,2,2));
+			et.add(new Excel_tilte("行政区划代码",1,1,3,3));
+			et.add(new Excel_tilte("路线编码",1,1,4,4));
+			et.add(new Excel_tilte("路线名称",1,1,5,5));
+			et.add(new Excel_tilte("计划年份",1,1,6,6));
+			et.add(new Excel_tilte("计划开工时间",1,1,7,7));
+			et.add(new Excel_tilte("计划完工时间",1,1,8,8));
+			et.add(new Excel_tilte("总投资（万元）",1,1,9,9));
+			et.add(new Excel_tilte("上报状态",1,1,10,10));
+			et.add(new Excel_tilte("审批状态",1,1,11,11));
+			et.add(new Excel_tilte("开工状态",1,1,12,12));
+			et.add(new Excel_tilte("竣工状态",1,1,13,13));
+			et.add(new Excel_tilte("补助历史",1,1,14,14));
+			et.add(new Excel_tilte("起点桩号",1,1,15,15));
+			et.add(new Excel_tilte("止点桩号",1,1,16,16));
+			et.add(new Excel_tilte("养护里程",1,1,17,17));
+			
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			
+				Excel_export.excel_exportjhsh(eldata,response);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// get set
 	public int getPage() {
 		return page;
