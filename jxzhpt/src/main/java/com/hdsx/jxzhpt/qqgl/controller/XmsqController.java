@@ -245,7 +245,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
 			if(xmsq.getXmlx()==4){
-				String gcfl = xmsq.getGcfl();
+				String gcfl = xmsq.getJsxz();
 				if(gcfl!=null && !gcfl.equals("")){
 					if(gcfl.indexOf(",")>-1){
 						String[] gcflArray = gcfl.split(",");
@@ -283,6 +283,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					}
 					xmsq.setTsdq(tsdq);
 				}
+				System.out.println(xmsq.getJsxz());
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -341,6 +342,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}
 	}
 	public void queryLj(){
+		try {
 		String xmbm = xmsq.getXmbm();
 		if(xmbm.indexOf(",")>-1){
 			String[] xmnfArray = xmbm.split(",");
@@ -366,8 +368,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setWnxmk(xmsq.getWnxmk());
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
-			String gcfl = xmsq.getGcfl();
-			if(gcfl!=null && gcfl.equals("")){
+			String gcfl = xmsq.getJsxz();
+			if(gcfl==null || gcfl.equals("")){
 				gcfl=null;
 			}else if(gcfl.indexOf(",")>-1){
 				String[] gcflArray = gcfl.split(",");
@@ -443,7 +445,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		else if(xmsq.getXmlx()==6){
 			result = xmsqServer.queryLjYhzx(xmsq);
 		}
-		try {
+		
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

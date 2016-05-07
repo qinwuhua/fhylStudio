@@ -111,6 +111,16 @@ public class Kxxyj implements Serializable {
 	private String zdmc;//止点名称
 	private String jszlc;//建设总里程
 	private String xmsl;//路线数量
+	private String jhlc;//工可改建查询列表计划里程
+	
+	
+	
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
 	public String getXmsl() {
 		return xmsl;
 	}

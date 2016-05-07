@@ -6,7 +6,7 @@ $(function() {
 		if(qx[i]=='01010301'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '项目计划库管理',
+				title: '项目计划库编制',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

@@ -87,30 +87,45 @@
 					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].SL>1){
-								var j=msg[i].SL;
-								var ybf=0;
-								var bnbf=0;
-								var wbf=0;
-								var sum=0;
+							if(msg[i].sl>1){
+								var j=msg[i].sl;
 								for(var k=0;k<j;k++)
 									{
-										if(msg[i].BFZJ-sum>0 && msg[i].BFZJ-sum>=msg[i+k].JHXDZJ){
-											ybf=msg[i+k].JHXDZJ;
-											wbf=0;
-											sum=sum+msg[i+k].JHXDZJ;
-										}else if(msg[i].BFZJ-sum>0 && msg[i].BFZJ-sum<msg[i+k].JHXDZJ){
-											ybf=msg[i].BFZJ-sum;
-											wbf=msg[i+k].JHXDZJ-(msg[i].BFZJ-sum);
-											sum=sum+msg[i+k].JHXDZJ;
-										}else{
-											ybf=0;
-											wbf=msg[i+k].JHXDZJ;
-											sum=sum+msg[i+k].JHXDZJ;
-										}
-									
+										
 									   if(k==0){
-										   tbodystr=tbodystr+"<tr><td  rowspan="+j+">"+msg[i].XH+"</td><td  rowspan="+j+">"+msg[i].XMMC+"</td><td  rowspan="+j+">"
+										   tbodystr=tbodystr+ "<tr><td >"+msg[i].v_0+"</td><td>"
+											+msg[i].v_1+"</td><td>"
+											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
+											+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+											+msg[i].v_21+"</td><td>"
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+											+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+											+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"
+											+msg[i].v_31+"</td><td>"
+											+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+											+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+											+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+											+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+											+msg[i].v_41+"</td><td>"
+											+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+											+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+											+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+											+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"
+											+msg[i].v_51+"</td><td>"
+											+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
+											+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+											+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
+											+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"+msg[i].v_60+"</td><td>"
+											+msg[i].v_61+"</td></tr>";
+										  /*  tbodystr=tbodystr+"<tr><td  rowspan="+j+">"+msg[i].XH+"</td><td  rowspan="+j+">"+msg[i].XMMC+"</td><td  rowspan="+j+">"
 											+msg[i].XZQHMC+"</td><td  rowspan="+j+">"+msg[i].TSDQ+"</td><td>"
 											+msg[i].XDNF+"</td><td  rowspan="+j+">"+msg[i].QDZH+"</td><td  rowspan="+j+">"
 											+msg[i].ZDZH+"</td><td  rowspan="+j+">"+msg[i].YHLC+"</td><td  rowspan="+j+">"
@@ -121,18 +136,50 @@
 											+msg[i].WKGLC+"</td><td  rowspan="+j+">"+msg[i].SJKGSJ+"</td><td  rowspan="+j+">"
 											+msg[i].SFQXKG+"</td><td  rowspan="+j+">"+msg[i].KGDL+"</td><td  rowspan="+j+">"
 											+msg[i].SJWGSJ+"</td><td  rowspan="+j+">"+msg[i].YJWGSJ+"</td><td  rowspan="+j+">"
-											+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
-											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+											+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>" 
+											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";*/
 										}else{
-											tbodystr=tbodystr+"<tr><td  >"+msg[i+k].XDNF+"</td><td  >"
+											/* tbodystr=tbodystr+"<tr><td  >"+msg[i+k].XDNF+"</td><td  >"
 											+msg[i+k].JHXDZJ+"</td><td  >"+ybf+"</td><td  >"
 											+msg[i].BNBFZJ+"</td><td>"+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
-											+msg[i+k].XGCSYJ+"</td><td  >"+msg[i+k].CSCYJ+"</td></tr>";
+											+msg[i+k].XGCSYJ+"</td><td  >"+msg[i+k].CSCYJ+"</td></tr>"; */
+											tbodystr=tbodystr+ "<tr><td >"+msg[i].v_0+"</td><td>"
+											+msg[i].v_1+"</td><td>"
+											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
+											+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+											+msg[i].v_21+"</td><td>"
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+											+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+											+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"
+											+msg[i].v_31+"</td><td>"
+											+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+											+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+											+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+											+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+											+msg[i].v_41+"</td><td>"
+											+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+											+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+											+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+											+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"
+											+msg[i].v_51+"</td><td>"
+											+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
+											+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+											+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
+											+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"+msg[i].v_60+"</td><td>"
+											+msg[i].v_61+"</td></tr>";
 										}
 									}	
 								i=i+j-1;
 							}else{
-								tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
+								/* tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
 								+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
 								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
 								+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
@@ -144,7 +191,39 @@
 								+msg[i].SFQXKG+"</td><td>"+msg[i].KGDL+"</td><td>"
 								+msg[i].SJWGSJ+"</td><td>"+msg[i].YJWGSJ+"</td><td>"
 								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
-								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"; */
+								tbodystr=tbodystr+ "<tr><td >"+msg[i].v_0+"</td><td>"
+								+msg[i].v_1+"</td><td>"
+								+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+								+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+								+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+								+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
+								+msg[i].v_11+"</td><td>"
+								+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+								+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+								+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+								+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+								+msg[i].v_21+"</td><td>"
+								+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+								+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+								+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+								+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"
+								+msg[i].v_31+"</td><td>"
+								+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+								+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+								+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+								+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+								+msg[i].v_41+"</td><td>"
+								+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+								+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+								+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+								+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"
+								+msg[i].v_51+"</td><td>"
+								+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
+								+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+								+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
+								+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"+msg[i].v_60+"</td><td>"
+								+msg[i].v_61+"</td></tr>";
 							}
 						}
 						tbody.append(tbodystr);
@@ -249,7 +328,7 @@ a:active {
         						<option>竣工</option>
         						</select>
         						<span>资金下达年份：</span>
-        						<input type="text" id="jhxdnf" >
+        						<input type="text" id="jhxdnf" style="width:137px;">
         						<span>特殊地区：</span>
         						<input type="text" id="tsdq"  style="width:73px;">
         						&nbsp;&nbsp;
@@ -278,8 +357,8 @@ a:active {
         							<option value="and (wbfzj is null or wbfzj!=0)">非零</option>
         						</select>
         						&nbsp;&nbsp;
-									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportPtgx()" style="vertical-align: -50%;" />
+<%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
+<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportPtgx()" style="vertical-align: -50%;" /> --%>
         					</p>        					
         				</div>
         			</fieldset>
@@ -298,33 +377,74 @@ a:active {
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通干线公路建设项目进展情况表</caption>
 								<thead>
 									<tr>
-										<td style="width: 67px">序号</td>
-										<td style="width: 160px">项目名称</td>
-										<td style="width: 160px">所在地市</td>
-										<td style="width: 150px">特殊区域</td>
-										<td style="width: 160px">计划年度</td>
-										<td style="width: 160px">起点桩号</td>
-										<td style="width: 160px">讫点桩号</td>
-										<td style="width: 140px">计划里程（里程）</td>
-										<td style="width: 140px">概算总投资(万元)</td>
-										<td style="width: 140px">计划下达资金(万元)</td>
-										<td style="width: 140px">本年拨付资金（万元）</td>
-										<td style="width: 140px">累计拨付资金（万元）</td>
-										<td style="width: 140px">未拨付资金（万元）</td>
-										<td style="width: 140px">建设状态</td>
-										<td style="width: 140px"> 垫层（m³ </td>
-										<td style="width: 140px">基层（m³）</td>
-										<td style="width: 140px">完工里程（公里）</td>
-										<td style="width: 140px">未开工里程(公里)</td>
-										<td style="width: 140px">开工日期</td>
-										<td style="width: 140px">全线开工</td>
-										<td style="width: 140px">开工段落</td>
-										<td style="width: 140px">完工日期</td>
-										<td style="width: 140px"> 预计完工时间 </td>
-										<td style="width: 140px"> 情况说明 </td>
-										<td style="width: 140px"> 计划下达文号 </td>
-										<td style="width: 140px"> 相关处室意见</td>
-										<td style="width: 140px"> 财审处意见 </td>
+										<td rowspan="2" style="width: 67px">序号</td>
+										<td rowspan="2" style="width: 160px">项目编码</td>
+										<td rowspan="2" style="width: 160px">项目名称</td>
+										<td rowspan="2" style="width: 160px">建设类型</td>
+										<td rowspan="2" style="width: 160px">所在地市</td>
+										<td rowspan="2" style="width: 160px">县区</td>
+										<td rowspan="2" style="width: 150px">特殊区域</td>
+										<td rowspan="2" style="width: 160px">计划年度</td>
+										<td rowspan="2" style="width: 160px">首次资金下达年度</td>
+										<td rowspan="2" style="width: 160px">起点桩号</td>
+										<td rowspan="2" style="width: 160px">讫点桩号</td>
+										<td rowspan="2" style="width: 140px">计划里程（里程）</td>
+										<td rowspan="2" style="width: 140px">施工图起点桩号</td>
+										<td rowspan="2" style="width: 140px">施工图讫点桩号</td>
+										<td rowspan="2" style="width: 140px">施工图里程</td>
+										<td rowspan="2" style="width: 140px">概算总投资(万元)</td>
+										<td colspan="8" style="width: 140px">计划下达资金(万元)</td>
+										<td colspan="8" style="width: 140px">本年拨付资金（万元）</td>
+										<td colspan="8" style="width: 140px">累计拨付资金（万元）</td>
+										<td colspan="8" style="width: 140px">未拨付资金（万元）</td>
+										<td rowspan="2" style="width: 140px">建设状态</td>
+										<td rowspan="2" style="width: 140px"> 垫层（m³ </td>
+										<td rowspan="2" style="width: 140px">基层（m³）</td>
+										<td rowspan="2" style="width: 140px">完工里程（公里）</td>
+										<td rowspan="2" style="width: 140px">未开工里程(公里)</td>
+										<td rowspan="2" style="width: 140px">开工日期</td>
+										<td rowspan="2" style="width: 140px">全线开工</td>
+										<td rowspan="2" style="width: 140px">开工段落</td>
+										<td rowspan="2" style="width: 140px">完工日期</td>
+										<td rowspan="2" style="width: 140px"> 预计完工时间 </td>
+										<td rowspan="2" style="width: 140px"> 情况说明 </td>
+										<td rowspan="2" style="width: 140px"> 计划下达文号 </td>
+										<td rowspan="2" style="width: 140px"> 相关处室意见</td>
+										<td rowspan="2" style="width: 140px"> 财审处意见 </td>
+									</tr>
+									<tr>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
 									</tr>
 								</thead>
 								<tbody id="ptgxlist">

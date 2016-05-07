@@ -41,7 +41,7 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
-			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			grid.id="grid";
@@ -120,10 +120,8 @@
 				{field:'zdzh',title:'止点桩号',width:70,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				//{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
-				{field:'kgsj',title:'开工时间',width:70,align:'center'},
-				{field:'wgsj',title:'完工时间',width:70,align:'center'},
-				{field:'gq',title:'工期（月）',width:60,align:'center'},
-				{field:'tz',title:'拟投资',width:60,align:'center'},
+				{field:'jhkgsj',title:'开工时间',width:70,align:'center'},
+				{field:'jhwgsj',title:'完工时间',width:70,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助资金',width:100,align:'center'},

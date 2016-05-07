@@ -1077,7 +1077,7 @@
 					and lx.ghlxmc=#{ghlxmc}
 		</if>
 		<if test="ghlxbm!='' and ghlxbm!= null ">
-			and lx.ghlxbm=#{cbsj.ghlxbm}
+			and lx.ghlxbm=#{ghlxbm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lx.lxmc=#{lxmc}
@@ -1091,7 +1091,7 @@
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
 		</if>
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+		<if test="xmlx1!=null and xmlx1!=''">${xmlx1}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>

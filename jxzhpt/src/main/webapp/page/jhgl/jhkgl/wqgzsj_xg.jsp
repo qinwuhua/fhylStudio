@@ -92,7 +92,7 @@ function loadJhkxx(){
 var sbz;
 var sckid;
 function loadBz(){
-	
+	/* 
 	var jhqlqcVal = $("#jhqlqc").val();
 	var jhqlqkVal = $("#jhqlqk").val();
 	
@@ -113,7 +113,7 @@ function loadBz(){
 	}else{
 		 $("#jhqlqk").css("background-color","");
 	}
-	
+	 */
 	var sfbk=$("#sfylrbwqk").combobox('getValue');
 	if(sfbk=='是'){
 		loadBbz();
@@ -256,7 +256,7 @@ function sjtfileShow(id){
 	//加载文件
 	$.ajax({
 		type:'post',
-		url:'../../../jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
 		data:'uploads.id='+id,
 		success:function(data){
@@ -267,15 +267,17 @@ function sjtfileShow(id){
 			var sjsgt="";
 			for ( var i = 0; i < data.length; i++) {
 				if(data[i].filetype=="设计施工图"){
-					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=sjtdownFile('"+data[i].id+"')>下载</a></td></tr>";
+					//alert(data[i].fileurl);
+					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>"
+					+'<a href="javascript:void(0)" style="text-decoration:none;color:#3399CC;" onclick="sjtdownFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')">下载</a></td></tr>';
 				}
 				}
 			$("#sjsgtTable").append(sjsgt);
 		}
 	});
 }
-function sjtdownFile(id){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+function sjtdownFile(fileurl,filename){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.fileurl="+fileurl+"&uploads.filename="+filename;
 }
 function radioChecked(name,value){
 	$.each($("input[name='"+name+"']"),function(index,item){

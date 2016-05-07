@@ -703,7 +703,7 @@ function showAllgj(){
 					}
 				}
 			},
-			{field : 'qqkz',title : '前期开展',width : 60,align : 'center'},
+			{field : 'qqkzzt',title : '前期开展',width : 60,align : 'center'},
 			{field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
 			{field : 'xmnf',title : '项目年份',width : 60,align : 'center'},
 	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
@@ -828,7 +828,7 @@ function showAlllm(){
 					}
 				}
 			},
-			{field : 'qqkz',title : '前期开展',width : 60,align : 'center'},
+			{field : 'qqkzzt',title : '前期开展',width : 60,align : 'center'},
 			{field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
 			{field : 'xmnf',title : '项目年份',width : 60,align : 'center'},
 	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
@@ -836,7 +836,7 @@ function showAlllm(){
 	        	return '<font color="red">'+row.xmmc+'</font>';
 	        	else return  row.xmmc;
 	        }},
-	        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
+	        {field : 'lc',title : '里程',width : 60,align : 'center'},
 	        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 		    {field : 'ghlxbh',title : '路线编码',width : 60,align : 'center'},
@@ -953,7 +953,7 @@ function showAllxj(){
 					}
 				}
 			},
-			{field : 'qqkz',title : '前期开展',width : 60,align : 'center'},
+			{field : 'qqkzzt',title : '前期开展',width : 60,align : 'center'},
 			{field : 'xzqh',title : '行政区划',width : 60,align : 'center'},
 			{field : 'xmnf',title : '项目年份',width : 60,align : 'center'},
 	        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){

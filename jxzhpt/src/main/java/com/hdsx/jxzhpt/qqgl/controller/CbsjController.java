@@ -187,9 +187,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 								break;
 							}
 							if(i==0)
-								tsdq+="and(c.xmlx1 like '%"+tsdqs[i]+"%'";
+								tsdq+="and(l.gcfl like '%"+tsdqs[i]+"%'";
 							else
-								tsdq+="or c.xmlx1 like '%"+tsdqs[i]+"%'";
+								tsdq+="or l.gcfl like '%"+tsdqs[i]+"%'";
 						}
 						if(tsdq==""){
 							tsdq="";
@@ -450,6 +450,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				gcfl = "l.gcfl like '%" + gcfl + "%'";
 			}
 			cbsj.setGcfl(gcfl);*/
+			if(cbsj.getXmlx1()!=null)
+				if(cbsj.getXmlx1().length()>0){
+					String[] tsdqs=cbsj.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(l.gcfl like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or l.gcfl like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					cbsj.setXmlx1(tsdq);
+				}
+			
 			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 			result = cbsjServer.queryCbsjLjYhdzx(cbsj);
 		}else if(cbsj.getXmlx()==5){

@@ -94,11 +94,6 @@ function loadxx(){
 	setbz();
 }
 $(function(){
-	xxId=parent.obj.sckid;
-	sjtfileShow();
-// 	xmnf1("scxmnf");
-	loadxx();
-	loadUploadify();
 	$("#save_button").click(function(){
 		if($("#scqlqc").val()==null || $("#scqlqc").val()=='' || isNaN($("#scqlqc").val()) || parseFloat($("#scqlqc").val())<=0){
 			alert("请填写正确的桥梁全长！");
@@ -113,8 +108,16 @@ $(function(){
 			bzWqgz();
 	});
 	$("#qx_window").click(function(){
+		alert();
 			parent.$('#lxxx').window('destroy');		
-	});	
+	});
+	loadUploadify();
+	xxId=parent.obj.sckid;
+	sjtfileShow();
+// 	xmnf1("scxmnf");
+	loadxx();
+	//loadUploadify();
+		
 });
 
 function saveWqgz(){
@@ -194,14 +197,14 @@ function loadUploadify(){
 	
 	$("#uploadSjt").uploadify({
 		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadWqgzFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
+		'uploader' : '/jxzhpt/js/uploader/uploadify.swf',
+		'script' : '/jxzhpt/jhgl/uploadWqgzFile.do',
+		'cancelImg' : '/jxzhpt/js/uploader/cancel.png',
 		'queueID' : 'fileQueue1',
 		'fileDataName' : 'uploadSjt',
 		'auto' : false,
 		'multi' : false,
-		'buttonImg': '../../../js/uploader/bdll.png',
+		'buttonImg': '/jxzhpt/js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,

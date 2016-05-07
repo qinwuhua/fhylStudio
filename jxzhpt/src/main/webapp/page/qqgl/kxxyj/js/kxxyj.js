@@ -987,7 +987,7 @@ function showAllsjsh(){
 	        		}
 	        	}
 	        },
-	        {field : 'jszlc',title : '里程',width : 60,align : 'center'},
+	        {field : 'jhlc',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},

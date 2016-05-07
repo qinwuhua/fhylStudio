@@ -86,30 +86,61 @@
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){
-								tbody.append("<tr><td >"+msg[i].XH+"</td><td colspan='3'>"
-										+msg[i].XZQHMC+"</td><td>"
-										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
-										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
-										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
-										+msg[i].GYS+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
-										+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
-										+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
-										+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
-										+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
-										+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
+								tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='4'>"
+										+msg[i].v_1+"</td><td>"
+										+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
+										+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+										+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"
+										+msg[i].v_31+"</td><td>"
+										+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+										+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+										+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+										+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+										+msg[i].v_41+"</td><td>"
+										+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+										+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+										+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+										+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"
+										+msg[i].v_51+"</td></tr>"
 										);
 							}else{
-									tbody.append("<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
-											+msg[i].TSDQ+"</td><td>"+msg[i].XMMC+"</td><td>"
-											+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
-											+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
-											+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
-											+msg[i].GYS+"</td><td>"+msg[i].BNBFZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
-											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
-											+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
-											+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
-											+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
-											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
+									tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"
+											+msg[i].v_1+"</td><td>"
+											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"+msg[i].v_10+"</td><td>"
+											+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td><td>"
+											+msg[i].v_21+"</td><td>"
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+											+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+											+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"+msg[i].v_30+"</td><td>"
+											+msg[i].v_31+"</td><td>"
+											+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+											+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+											+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
+											+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"+msg[i].v_40+"</td><td>"
+											+msg[i].v_41+"</td><td>"
+											+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
+											+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
+											+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
+											+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"+msg[i].v_50+"</td><td>"
+											+msg[i].v_51+"</td></tr>"
 									);
 							}
 						}
@@ -209,7 +240,7 @@ a:active {
         						<span>特殊地区：</span>
         						<input type="text" id="tsdq"  style="width:60px;">
         						<span>资金下达年份：</span>
-        						<input type="text" id="jhxdnf" >
+        						<input type="text" id="jhxdnf" style="width:137px;">
         						<span>项目名称：</span>
         						<input id="xmmc" type="text"  style="width:100px;">
         							&nbsp;&nbsp;
@@ -244,8 +275,8 @@ a:active {
         						
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
-									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportLw()" style="vertical-align: -50%;" />
+<%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
+<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportLw()" style="vertical-align: -50%;" /> --%>
         					</p>        					
         				</div>
         			</fieldset>
@@ -266,16 +297,17 @@ a:active {
 									<tr>
 										<td rowspan="2" style="width: 60px">序号</td>
 										<td rowspan="2" style="width: 140px">所在设区市</td>
+										<td rowspan="2" style="width: 140px">县区</td>
 										<td rowspan="2" style="width: 140px">特殊区域</td>
 										<td rowspan="2" style="width: 140px">项目名称</td>
 										<td rowspan="2" style="width: 140px">建设性质</td>
 										<td colspan="3" >项目段落</td>
 										<td rowspan="2" style="width: 140px">计划下达年度</td>
-										<td rowspan="2" style="width: 140px">计划下达资金（万元）</td>
+										<td colspan="8" style="width: 140px">计划下达资金（万元）</td>
 										<td rowspan="2" style="width: 140px">概预算（万元）</td>
-										<td rowspan="2" style="width: 140px">本年拨付资金（万元）</td>
-										<td rowspan="2" style="width: 140px">累计拨付资金（万元）</td>
-										<td rowspan="2" style="width: 140px">未拨付资金（万元）</td>
+										<td colspan="8" style="width: 140px">本年拨付资金（万元）</td>
+										<td colspan="8" style="width: 140px">累计拨付资金（万元）</td>
+										<td colspan="8" style="width: 140px">未拨付资金（万元）</td>
 										<td rowspan="2" style="width: 140px">建设状态</td>
 										<td rowspan="2" style="width: 140px">完工桥长或隐患里程</td>
 										<td rowspan="2" style="width: 140px">开工日期</td>
@@ -290,6 +322,38 @@ a:active {
 										<td style="width: 140px">起点桩号<br>或中心桩号</td>
 										<td style="width: 140px"> 迄点桩号 </td>
 										<td style="width: 140px">桥长或隐<br>患里程（延米）</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
+										<td style="width: 140px">1、车购税</td>
+										<td style="width: 140px">2、国债</td>
+										<td style="width: 140px">3、省債</td>
+										<td style="width: 140px">4、债券</td>
+										<td style="width: 140px">5、燃油税</td>
+										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">7、奖励</td>
+										<td style="width: 140px">8、其他</td>
 									</tr>
 								</thead>
 								<tbody id="lwlist">

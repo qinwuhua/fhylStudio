@@ -8,6 +8,63 @@ import java.io.Serializable;
  *
  */
 public class Excel_list implements Serializable {
+	private String xh1;
+	private String xmlx;
+	private String xzqhmc;
+	private String hb;
+	private String gydw;
+	private String xmgs;
+	private String sl;
+	private String dllx;
+	
+	public String getDllx() {
+		return dllx;
+	}
+	public void setDllx(String dllx) {
+		this.dllx = dllx;
+	}
+	public String getSl() {
+		return sl;
+	}
+	public void setSl(String sl) {
+		this.sl = sl;
+	}
+	public String getXmgs() {
+		return xmgs;
+	}
+	public void setXmgs(String xmgs) {
+		this.xmgs = xmgs;
+	}
+	public String getXh1() {
+		return xh1;
+	}
+	public void setXh1(String xh1) {
+		this.xh1 = xh1;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getHb() {
+		return hb;
+	}
+	public void setHb(String hb) {
+		this.hb = hb;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
 	/**
 	 * 
 	 */

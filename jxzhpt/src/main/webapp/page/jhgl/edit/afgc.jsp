@@ -302,8 +302,13 @@
 								data:"bzbz.xmlx="+item.xzqh+"&bzbz.lx="+bz,
 								dataType:'json',
 								success:function(data){
+									if(data.bz==7){
+										bl=0.85;
+									}else{
+										bl=data.bl;
+									}
 									bz=data.bz;
-									bl=data.bl;
+									//bl=data.bl;
 									fd=data.fd;
 									bzInit();
 								}

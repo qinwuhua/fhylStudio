@@ -31,6 +31,7 @@
 			xdzt('xdzt');
 			zjly("zjly",'yh');
 			jhxdwhdx("jhxdwh",'yh');
+			yhxmlx('xmlx');
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm3('jsdj','技术等级');
@@ -62,7 +63,7 @@
 		}
 		
 		function queryYhdzx(){
-			var xmlx=$("#xmlx").val();
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
@@ -74,7 +75,7 @@
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
-			var jhxdwh=$("#jhxdwh").combobox("getValues").join(",");
+			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
@@ -97,7 +98,7 @@
 			        {field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindows('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+"'"+row.xmbm+"'"+','+
 						"'/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
@@ -188,14 +189,14 @@
 			    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-			    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+			    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
 			    			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
 			    			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 			    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 			    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 			    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 			    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-			    			    {field:'jhlc',title:'里程',width:60,align:'center'}
+			    			    {field:'lc',title:'里程',width:60,align:'center'}
 			    			]]
 				    	});
 			    	}

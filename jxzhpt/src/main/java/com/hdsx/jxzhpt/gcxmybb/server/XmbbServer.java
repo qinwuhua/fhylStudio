@@ -54,31 +54,33 @@ public interface XmbbServer {
 
 	List<TreeNode> gettsdq(String xzqh);
 
-	List<Map<String, Object>> getptgxlist1(Xmbb xmbb);
+	List<Excel_list> getptgxlist1(Xmbb xmbb);
 
-	List<Map<String, Object>> getptgxlist2(Xmbb xmbb);
+	List<Excel_list> getptgxlist2(Xmbb xmbb);
 
-	List<Map<String, Object>> getptgxlist3(Xmbb xmbb);
+	List<Excel_list> getptgxlist3(Xmbb xmbb);
 
-	List<Map<String, Object>> getptgxlist4(Xmbb xmbb);
+	List<Excel_list> getptgxlist4(Xmbb xmbb);
 
-	List<Map<String, Object>> getyhbblist1(Xmbb xmbb);
+	List<Excel_list> getyhbblist1(Xmbb xmbb);
 
-	List<Map<String, Object>> getyhbblist2(Xmbb xmbb);
+	List<Excel_list> getyhbblist2(Xmbb xmbb);
 
-	List<Map<String, Object>> getyhbblist3(Xmbb xmbb);
+	List<Excel_list> getyhbblist3(Xmbb xmbb);
 
-	List<Map<String, Object>> getyhbblist4(Xmbb xmbb);
+	List<Excel_list> getyhbblist4(Xmbb xmbb);
 
-	List<Map<String, Object>> getlwbblist1(Xmbb xmbb);
+	List<Excel_list> getlwbblist1(Xmbb xmbb);
 
-	List<Map<String, Object>> getlwbblist2(Xmbb xmbb);
+	List<Excel_list> getlwbblist2(Xmbb xmbb);
 
 	List<Map<String, Object>> getlwbblist3(Xmbb xmbb);
 
 	List<Map<String, Object>> getlwbblist4(Xmbb xmbb);
 
 	List<TreeNode> setjhxdwh(String tablename);
+
+	List<Excel_list> getPtgxtz(Xmbb xmbb);
 
 
 }
