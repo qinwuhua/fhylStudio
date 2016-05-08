@@ -214,6 +214,7 @@
 		<action name="queryJhshLj1" class="jhshController" method="queryJhshLj1"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
+		<action name="sfinsert1" class="xmsqController" method="sfinsert1"></action>
 		<action name="sfinsert" class="xmsqController" method="sfinsert"></action>
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
 		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>

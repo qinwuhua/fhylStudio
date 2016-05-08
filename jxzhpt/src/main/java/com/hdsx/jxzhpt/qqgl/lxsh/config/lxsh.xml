@@ -102,7 +102,7 @@
 		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,jszlc  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
-		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
+		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmidz
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
@@ -226,11 +226,18 @@
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,
-		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc  from LXSH_SJGZ t left join
+		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,lxs.lc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc 
 		from lxsh_lx where jdbs='0' and sffirst='1'
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 			<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid
+			
+		left join (select  xmid,jsxz,
+		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when jsxz like '%新建%' then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
+	            from lxsh_lx where jdbs='0' and sffirst='1' ) lxs 
+		        on t.xmbm=lxs.xmid
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and  sbthcd =7
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
@@ -282,11 +289,18 @@
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
-		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc from LXSH_LMGZ t left join 
-		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
+		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc from LXSH_LMGZ t left join 
+		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc from lxsh_lx where jdbs='0' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid 
+		left join (select  xmid,jsxz,
+		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when jsxz like '%新建%' then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
+	            from lxsh_lx where jdbs='0' and sffirst='1' ) lxs 
+		        on t.xmbm=lxs.xmid
+		
 		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and sbthcd =7
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>

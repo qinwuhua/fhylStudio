@@ -1143,5 +1143,6 @@
 		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
+		order by xmid desc
 	</select>
 </mapper>

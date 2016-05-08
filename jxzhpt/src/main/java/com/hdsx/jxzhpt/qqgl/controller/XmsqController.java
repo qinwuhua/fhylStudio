@@ -115,7 +115,54 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			result.put("result", "have");
 			result.put("lx", lxs);
 		}else{
-			result.put("result", new Boolean(true).toString());
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			if(lxs.size()>1){
+				result.put("result", "have");
+				result.put("lx", lxs);
+			}else{
+				result.put("result", new Boolean(true).toString());
+			}
+		}
+		JsonUtils.write(result, getresponse().getWriter());
+	}
+	public void sfinsert1() throws IOException, Exception{
+		int flag = xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm());
+		List<Lx> lxs1=new ArrayList<Lx>();
+		if(flag>0){
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			result.put("result", "have");
+			for (Lx lx : lxs) {
+				if(lx.getXmid().equals(xmsq.getXmbm())){
+					lxs1.add(lx);
+					continue;
+				}
+				if(Integer.parseInt(lx.getXmid().substring(0, 4))>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
+					lxs1.add(lx);
+					continue;
+				}
+			}
+			lxs.removeAll(lxs1);
+			
+			result.put("lx", lxs);
+		}else{
+			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
+			if(lxs.size()>1){
+				result.put("result", "have");
+				for (Lx lx : lxs) {
+					if(lx.getXmid().equals(xmsq.getXmbm())){
+						lxs1.add(lx);
+						continue;
+					}
+					if(Integer.parseInt(lx.getXmid().substring(0, 4))>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
+						lxs1.add(lx);
+						continue;
+					}
+				}
+				lxs.removeAll(lxs1);
+				result.put("lx", lxs);
+			}else{
+				result.put("result", new Boolean(true).toString());
+			}
 		}
 		JsonUtils.write(result, getresponse().getWriter());
 	}

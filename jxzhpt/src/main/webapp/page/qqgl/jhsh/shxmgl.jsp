@@ -126,7 +126,7 @@
 							if(Number(value)==Number($.cookie('unit2').length)){
 								result="已审核";
 							}else if(Number(value)==9){
-								result='<a href="javascript:sp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>';
+								result='<a href="javascript:sp('+index+')" style="color:#3399CC;">未审核</a>';
 							}else{
 								result="未上报";
 							}
@@ -281,20 +281,108 @@
 				alert("请选择要上报的信息！");
 			}
 		}
-		function sp(){
+		function sp(index){
+			
+			var obj=$("#grid").datagrid('getRows')[index];
+			
+			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
+			alert(datas);
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/updateXmsqSp.do',
-				data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+				url:'/jxzhpt/qqgl/sfinsert1.do',
+		        data:datas,
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
-						selArray.splice(0,selArray.length);
-						alert("审核成功!");
-						queryShxm();
+						
+						//insert();
+						$.ajax({
+							type:'post',
+							url:'../../../qqgl/updateXmsqSp.do',
+							data:'xmlx='+5+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+							dataType:'json',
+							success:function(msg){
+								if(msg.result=="true"){
+									selArray.splice(0,selArray.length);
+									alert("审核成功!");
+									queryYhdzx();
+								}
+							}
+						}); 
+						//
+					}else if(msg.result=="have"){
+						var xsxx='';
+						
+						//alert();
+						for(var i=0;i<msg.lx.length;i++){
+							var xmlx='';
+							if(msg.lx[i].xmid.substr(10,1)==1){
+								xmlx='改建';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==2){
+								xmlx='路面改造';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==3){
+								xmlx='新建';
+							}
+							if(msg.lx[i].xmid.substr(10,1)==4){
+								xmlx=msg.lx[i].xjsdj;
+							}
+							if(msg.lx[i].xmid.substr(10,1)==5){
+								xmlx='灾毁重建';
+							}
+							var lc=0;
+							
+							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
+							lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+							
+							//Math.abs(lc/1000);
+							xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+							
+						}
+						if(msg.lx.length>0){
+							$("#lsjl").val("是");
+							alert("存在补助历史\r"+xsxx);
+							if(confirm('是否保存？')){
+								//insert();
+								$.ajax({
+									type:'post',
+									url:'../../../qqgl/updateXmsqSp.do',
+									data:'xmlx='+5+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+									dataType:'json',
+									success:function(msg){
+										if(msg.result=="true"){
+											selArray.splice(0,selArray.length);
+											alert("审核成功!");
+											queryYhdzx();
+										}
+									}
+								}); 
+								//
+							}
+						}else{
+							$("#lsjl").val("否");
+							//insert();
+							$.ajax({
+								type:'post',
+								url:'../../../qqgl/updateXmsqSp.do',
+								data:'xmlx='+5+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+								dataType:'json',
+								success:function(msg){
+									if(msg.result=="true"){
+										selArray.splice(0,selArray.length);
+										alert("审核成功!");
+										queryYhdzx();
+									}
+								}
+							}); 
+							//
+						}
+						
 					}
 				}
 			});
+			
 		}
 		function batchSp(){
 			var selRow = $('#grid').datagrid("getSelections");

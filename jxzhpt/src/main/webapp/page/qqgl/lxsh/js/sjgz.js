@@ -292,75 +292,380 @@ function shangb2(index){
 }
 function shenh(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
-	var id=data1.id;
-	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
-		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
-			 dataType : 'json',
-			 data : data,
-			 success : function(msg){
-				 if(msg){
-					 alert('审核成功！');
-					 $("#datagrid").datagrid('reload');
-				 }else{
-					 alert('审核失败,请选择要上报项目！');
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-		});
-	}
+	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
+	alert(datas);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sfinsert1.do',
+        data:datas,
+		dataType:'json',
+		success:function(msg){
+			if(msg.result=="true"){
+				
+				//insert();
+				var id=data1.id;
+				if(confirm('您确定审核该项目？')){
+					var data = "lxsh.id="+id;
+					$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+							 if(msg){
+								 alert('审核成功！');
+								 $("#datagrid").datagrid('reload');
+							 }else{
+								 alert('审核失败,请选择要上报项目！');
+							 }
+						 },
+						 error : function(){
+							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+						 }
+					});
+				}
+				//
+			}else if(msg.result=="have"){
+				var xsxx='';
+				
+				//alert();
+				for(var i=0;i<msg.lx.length;i++){
+					var xmlx='';
+					if(msg.lx[i].xmid.substr(10,1)==1){
+						xmlx='改建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==2){
+						xmlx='路面改造';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==3){
+						xmlx='新建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==4){
+						xmlx=msg.lx[i].xjsdj;
+					}
+					if(msg.lx[i].xmid.substr(10,1)==5){
+						xmlx='灾毁重建';
+					}
+					var lc=0;
+					
+					if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
+					lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+					
+					//Math.abs(lc/1000);
+					xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+					
+				}
+				if(msg.lx.length>0){
+					$("#lsjl").val("是");
+					alert("存在补助历史\r"+xsxx);
+					if(confirm('是否保存？')){
+						//insert();
+						var id=data1.id;
+						if(confirm('您确定审核该项目？')){
+							var data = "lxsh.id="+id;
+							$.ajax({
+								 type : "POST",
+								 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+								 dataType : 'json',
+								 data : data,
+								 success : function(msg){
+									 if(msg){
+										 alert('审核成功！');
+										 $("#datagrid").datagrid('reload');
+									 }else{
+										 alert('审核失败,请选择要上报项目！');
+									 }
+								 },
+								 error : function(){
+									 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+								 }
+							});
+						}
+						//
+					}
+				}else{
+					$("#lsjl").val("否");
+					//insert();
+					var id=data1.id;
+					if(confirm('您确定审核该项目？')){
+						var data = "lxsh.id="+id;
+						$.ajax({
+							 type : "POST",
+							 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+							 dataType : 'json',
+							 data : data,
+							 success : function(msg){
+								 if(msg){
+									 alert('审核成功！');
+									 $("#datagrid").datagrid('reload');
+								 }else{
+									 alert('审核失败,请选择要上报项目！');
+								 }
+							 },
+							 error : function(){
+								 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+							 }
+						});
+					}
+					//
+				}
+				
+			}
+		}
+	});
+	
 }
 function shenh1(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
-	var id=data1.id;
-	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
-		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
-			 dataType : 'json',
-			 data : data,
-			 success : function(msg){
-				 if(msg){
-					 alert('审核成功！');
-					 $("#datagrid").datagrid('reload');
-				 }else{
-					 alert('审核失败,请选择要上报项目！');
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-		});
-	}
+	
+	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
+	alert(datas);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sfinsert1.do',
+        data:datas,
+		dataType:'json',
+		success:function(msg){
+			if(msg.result=="true"){
+				
+				//insert();
+				var id=data1.id;
+				if(confirm('您确定审核该项目？')){
+					var data = "lxsh.id="+id;
+					$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+							 if(msg){
+								 alert('审核成功！');
+								 $("#datagrid").datagrid('reload');
+							 }else{
+								 alert('审核失败,请选择要上报项目！');
+							 }
+						 },
+						 error : function(){
+							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+						 }
+					});
+				}
+				//
+			}else if(msg.result=="have"){
+				var xsxx='';
+				
+				//alert();
+				for(var i=0;i<msg.lx.length;i++){
+					var xmlx='';
+					if(msg.lx[i].xmid.substr(10,1)==1){
+						xmlx='改建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==2){
+						xmlx='路面改造';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==3){
+						xmlx='新建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==4){
+						xmlx=msg.lx[i].xjsdj;
+					}
+					if(msg.lx[i].xmid.substr(10,1)==5){
+						xmlx='灾毁重建';
+					}
+					var lc=0;
+					
+					if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
+					lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+					
+					//Math.abs(lc/1000);
+					xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+					
+				}
+				if(msg.lx.length>0){
+					$("#lsjl").val("是");
+					alert("存在补助历史\r"+xsxx);
+					if(confirm('是否保存？')){
+						//insert();
+						var id=data1.id;
+						if(confirm('您确定审核该项目？')){
+							var data = "lxsh.id="+id;
+							$.ajax({
+								 type : "POST",
+								 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
+								 dataType : 'json',
+								 data : data,
+								 success : function(msg){
+									 if(msg){
+										 alert('审核成功！');
+										 $("#datagrid").datagrid('reload');
+									 }else{
+										 alert('审核失败,请选择要上报项目！');
+									 }
+								 },
+								 error : function(){
+									 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+								 }
+							});
+						}
+						//
+					}
+				}else{
+					$("#lsjl").val("否");
+					//insert();
+					var id=data1.id;
+					if(confirm('您确定审核该项目？')){
+						var data = "lxsh.id="+id;
+						$.ajax({
+							 type : "POST",
+							 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
+							 dataType : 'json',
+							 data : data,
+							 success : function(msg){
+								 if(msg){
+									 alert('审核成功！');
+									 $("#datagrid").datagrid('reload');
+								 }else{
+									 alert('审核失败,请选择要上报项目！');
+								 }
+							 },
+							 error : function(){
+								 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+							 }
+						});
+					}
+					//
+				}
+				
+			}
+		}
+	});
+	
 }
 function shenh2(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
-	var id=data1.id;
-	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
-		$.ajax({
-			 type : "POST",
-			 url : "/jxzhpt/qqgl/shxjSbzt.do",
-			 dataType : 'json',
-			 data : data,
-			 success : function(msg){
-				 if(msg){
-					 alert('审核成功！');
-					 $("#datagrid").datagrid('reload');
-				 }else{
-					 alert('审核失败,请选择要上报项目！');
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-		});
-	}
+	
+	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
+	alert(datas);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sfinsert1.do',
+        data:datas,
+		dataType:'json',
+		success:function(msg){
+			if(msg.result=="true"){
+				
+				//insert();
+				var id=data1.id;
+				if(confirm('您确定审核该项目？')){
+					var data = "lxsh.id="+id;
+					$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/shxjSbzt.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+							 if(msg){
+								 alert('审核成功！');
+								 $("#datagrid").datagrid('reload');
+							 }else{
+								 alert('审核失败,请选择要上报项目！');
+							 }
+						 },
+						 error : function(){
+							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+						 }
+					});
+				}
+				//
+			}else if(msg.result=="have"){
+				var xsxx='';
+				
+				//alert();
+				for(var i=0;i<msg.lx.length;i++){
+					var xmlx='';
+					if(msg.lx[i].xmid.substr(10,1)==1){
+						xmlx='改建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==2){
+						xmlx='路面改造';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==3){
+						xmlx='新建';
+					}
+					if(msg.lx[i].xmid.substr(10,1)==4){
+						xmlx=msg.lx[i].xjsdj;
+					}
+					if(msg.lx[i].xmid.substr(10,1)==5){
+						xmlx='灾毁重建';
+					}
+					var lc=0;
+					
+					if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
+					lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+					
+					//Math.abs(lc/1000);
+					xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+					
+				}
+				if(msg.lx.length>0){
+					$("#lsjl").val("是");
+					alert("存在补助历史\r"+xsxx);
+					if(confirm('是否保存？')){
+						//insert();
+						var id=data1.id;
+						if(confirm('您确定审核该项目？')){
+							var data = "lxsh.id="+id;
+							$.ajax({
+								 type : "POST",
+								 url : "/jxzhpt/qqgl/shxjSbzt.do",
+								 dataType : 'json',
+								 data : data,
+								 success : function(msg){
+									 if(msg){
+										 alert('审核成功！');
+										 $("#datagrid").datagrid('reload');
+									 }else{
+										 alert('审核失败,请选择要上报项目！');
+									 }
+								 },
+								 error : function(){
+									 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+								 }
+							});
+						}
+						//
+					}
+				}else{
+					$("#lsjl").val("否");
+					//insert();
+					var id=data1.id;
+					if(confirm('您确定审核该项目？')){
+						var data = "lxsh.id="+id;
+						$.ajax({
+							 type : "POST",
+							 url : "/jxzhpt/qqgl/shxjSbzt.do",
+							 dataType : 'json',
+							 data : data,
+							 success : function(msg){
+								 if(msg){
+									 alert('审核成功！');
+									 $("#datagrid").datagrid('reload');
+								 }else{
+									 alert('审核失败,请选择要上报项目！');
+								 }
+							 },
+							 error : function(){
+								 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+							 }
+						});
+					}
+					//
+				}
+				
+			}
+		}
+	});
+	
 }
 //
 function xiangxi1(index){

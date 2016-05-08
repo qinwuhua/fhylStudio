@@ -205,16 +205,13 @@ function afgcxm(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm1('+"'"+row.jckabgc.lxbm+"',"+"'"+row.jckabgc.qdzh+"',"+"'"+row.jckabgc.zdzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		//result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        		var id="'"+row.id+"'";
-//	        		result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">移除</a>';
-	        	}
-	        	else{
-	        		//result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
-//		        	result+='<a style="text-decoration:none;color:black;">移除</a>';
-	        	}
+	        	if((row.jh_sbthcd==6)){
+		        	result+='编辑';
+
+				}else{
+		        	result+='<a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+
+				}
 	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
