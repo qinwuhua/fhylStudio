@@ -20,6 +20,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
@@ -416,5 +417,10 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		params.put("jh", jh);
 		params.put("lx", lx);
 		return queryList("queryAfgcList",params);
+	}
+	@Override
+	public List<Excel_list> exportExcleAbgc(Plan_abgc planabgc) {
+		
+		return queryList("exportExcleAbgc",planabgc);
 	}
 }

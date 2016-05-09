@@ -35,7 +35,7 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
@@ -103,6 +103,43 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
+		
+		 function dcExcel(){
+				
+				var gydwstr = getgydw("gydw");
+				var xzqhstr = getxzqhdm('xzqh');
+				var lxmc=$('#txtRoad').val();
+				var shzt=$('#ddlSHZT').combo("getValue");
+				var jsdj=$('#ddlPDDJ').combobox('getText');
+				var lsjl=$('#sfylsjl').combo("getValue");
+				
+				var jhnf=$("#sbnf").combobox("getValues").join(",");
+				if(jhnf.substr(0,1)==',')
+					jhnf=jhnf.substr(1,jhnf.length);
+				var xzdj=$('#ddlGldj').combobox('getValues').join(",");
+				if(xzdj.substr(0,1)==',')
+					xzdj=xzdj.substr(1,xzdj.length);
+				
+				var tsdq=$('#ddlTSDQ').combobox('getValues').join(",");
+				if(tsdq.substr(0,1)==',')
+					tsdq=tsdq.substr(1,tsdq.length);
+				var data="jh.gydwdm="+gydwstr+
+					"&jh.xzqhdm="+xzqhstr+
+					"&jh.lxmc="+lxmc+
+					"&jh.jhnf="+jhnf+
+					"&jh.shzt="+shzt+
+					"&jh.jsdj="+jsdj+
+					"&jh.gldj="+xzdj+
+					"&jh.tsdq="+tsdq+
+					"&jh.sfylsjl="+lsjl;
+					
+				
+				$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+					window.location.href='/jxzhpt/jhgl/jhcxAbgcExcel.do?'+data;
+				 });
+				
+		} 
+		
 	</script>
 </head>
 <body>
@@ -153,7 +190,8 @@
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-				              </p>
+				             	<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+				             </p>
         				</div>
         			</fieldset>
         		</td>

@@ -697,7 +697,13 @@ $(function() {
 		renderTo:'left_menu5',
 		href:'../sjcx/jhkgl/hslygl.jsp'
 	});
-	
+	createMenux('LeftMenu',{
+		id:'menu_0101030514',
+		title:'安防工程项目',
+		imgSrc:'../../images/ab_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/af.jsp'
+	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030601',
 		title:'危桥改造项目(交通局)',

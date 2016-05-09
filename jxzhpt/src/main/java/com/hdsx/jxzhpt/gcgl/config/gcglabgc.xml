@@ -1513,7 +1513,8 @@
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+					<!-- and pl.jhnf like '%'||trim(#{xmnf})||'%' -->
+					${xmnf}
 			</if>
 		)
 	 </select>
@@ -1603,7 +1604,8 @@
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					and pl.jhnf like '%'||trim(#{xmnf})||'%'
+					<!-- and pl.jhnf like '%'||trim(#{xmnf})||'%' -->
+					${xmnf}
 			</if>
 	 </select>
 	  <select id="dcafgcExcel" parameterType="gcglabgc" resultType="elist">

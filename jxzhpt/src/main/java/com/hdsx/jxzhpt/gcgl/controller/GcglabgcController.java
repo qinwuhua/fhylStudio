@@ -1566,13 +1566,15 @@ public class GcglabgcController extends BaseActionSupport{
 		if(gcglabgc.getSfsj()==11){
 			gcglabgc.setTiaojian("xjzt");
 		}
-		String s = gcglabgc.getJhnf();
-		int i = s.indexOf(",");
-		/*if(){
-			
-		}*/
+		String xmnfStr = gcglabgc.getXmnf();
+		if(xmnfStr.indexOf(",") == -1){
+			xmnf="and pl.jhnf="+xmnfStr;
+		}else{
+			xmnf="and pl.jhnf in ("+xmnfStr+")";
+		}
+		gcglabgc.setXmnf(xmnf);
 		
-		List<Excel_list> l =null;
+		List<Excel_list> l =new ArrayList<Excel_list>();
 		ExcelData eldata=new ExcelData();//创建一个类
 		if("af".equals(gcglabgc.getXmlx())){
 			l = gcglabgcServer.dcafgcExcel(gcglabgc);

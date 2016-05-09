@@ -369,6 +369,7 @@
  				<if test="xmnf!='' and xmnf!= null ">
 					and jh.sbnf in (${xmnf})
 				</if> 
+				 and jh.sfylrbwqk='是'
 	 				order by jh.sbzt,jh.spzt
 	 			) t
  			)

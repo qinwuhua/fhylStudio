@@ -47,7 +47,7 @@
 			YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
 		}
 		function queryLmgz(){
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			var tsdq=$("#tsdq").combobox("getValue").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			grid.id="grid";

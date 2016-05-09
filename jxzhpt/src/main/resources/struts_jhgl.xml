@@ -70,6 +70,7 @@
 		<action name="tzTh" class="plan_abgcController" method="tzTh"/>
 		<action name="queryAbgcTzById" class="plan_abgcController" method="queryAbgcTzById"/>
 		<action name="editAbgcTzById" class="plan_abgcController" method="editAbgcTzById"/>
+		<action name="jhcxAbgcExcel" class="plan_abgcController" method="jhcxAbgcExcel"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>

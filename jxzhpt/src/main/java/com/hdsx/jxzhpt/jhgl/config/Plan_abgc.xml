@@ -103,6 +103,73 @@
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	
+	<select id="exportExcleAbgc"  parameterType="plan_abgc" resultType="elist">
+		select rownum as v_0, t.*
+		  from (select 
+		               
+		               lx.gydw       v_1,
+		               lx.xzqhmc     v_2,
+		               lx.xzqhdm     v_3,
+		               lx.lxbm       v_4,
+		               lx.lxmc       v_5,
+		               jh.jhnf       v_6,
+		               jh.jhkgsj     v_7,
+		               jh.jhwgsj     v_8,
+		               jh.pfztz      v_9,
+		             <!--   jh.jhsybbzje  v_10,
+		               jh.jhsydfzczj v_11,
+		               jh.sfsqablbz  v_12, -->
+		               decode(jh.sbzt,1,'已审核',0,'未审核')  v_10,
+		               decode(jh.spzt,1,'已审批',0,'未审批')  v_11,
+		           
+		               decode(jh.kgzt,1,'已开工',0,'未开工')  v_12,
+		               decode(jh.jgzt,1,'已竣工',0,'未竣工')  v_13,
+		               sc.bzls       v_14,
+		               sc.scqdzh     v_15,
+		               sc.sczdzh     v_16,
+		               sc.scyhlc     v_17
+                	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+					
+				    <if test="jhnf!=null and jhnf!=''">
+				 		and jh.jhnf in (${jhnf})
+				 	</if>
+				 	<if test="sbzt!=null and sbzt!=''">
+				 		and jh.sbzt=#{sbzt}
+				 	</if>
+				 	<if test="spzt!=null and spzt!=''">
+				 		and jh.spzt=#{spzt}
+				 	</if>
+				 	<if test="sfylsjl!=null and sfylsjl!=''">
+				 		and sc.bzls=#{sfylsjl}
+				 	</if>
+				 	<if test="gydwdm!=null and gydwdm!=''">
+				 		${gydwdm}
+				 	</if>
+				 	<if test="xzqhdm!=null and xzqhdm!=''">
+				 		${xzqhdm}
+				 	</if>
+				 	<if test="lxmc!=null and lxmc!=''">
+				 		and lx.lxmc like '%'||#{lxmc}||'%'
+				 	</if>
+				 	<if test="lxbm!=null and lxbm!=''">
+				 		and lx.lxbm like '%'||#{lxbm}||'%'
+				 	</if>
+				 	<if test="jsdj!=null and jsdj!=''">
+				 		${jsdj}
+				 	</if>
+				 	<if test="tsdq!=null and tsdq!=''">
+				 		${tsdq}
+				 	</if>
+				 	<if test="gldj!=null and gldj!=''">
+				 		${gldj}
+				 	</if>
+	    			order by jh.jhnf desc,jh.jh_sbthcd
+	    		) t  order by t.v_6 desc
+    		
+	</select>
+	
 	<select id="queryAfgcList"  parameterType="java.util.Map"  resultMap="abgc_jh">
 		select * from 
 			(

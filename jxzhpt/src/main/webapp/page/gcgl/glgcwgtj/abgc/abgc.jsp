@@ -72,7 +72,7 @@
 			}
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
-			var xmnf=$("#ddlYear").val();
+			var xmnf=$('#ddlYear').combobox("getValues").join(',');
 			var ybzt=$("#ybzt").val();
 			var data="gcglabgc.kgzt="+kgzt+
 					"&gcglabgc.jgzt="+jgzt+
