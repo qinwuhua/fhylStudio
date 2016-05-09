@@ -264,20 +264,39 @@ text-decoration: none;
                                 未开工里程（公里）：
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
                                 <input type="text" id="wkglc" style="width: 50px;" />
+                            </td>
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                <font color="#009ACD" style=" font-size: 12px">沥青路面完成情况：</font>
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <input name="LQLMWCQK" type="text" id="tj_lqlmwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                         
                         <tr style="height: 35px;">
+                        	
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
                                 <b><font color="#009ACD" style="font-size: 12px">情况说明：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="QKSM" type="text" id="tj_qksm" style="width: 350px;" />
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+                                <input name="QKSM" type="text" id="tj_qksm" style="width: 50px;" />
+                            </td>
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                <font color="#009ACD" style=" font-size: 12px">水泥路面完成情况：</font>
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <input name="SNLMWCQK" type="text" id="tj_snlmwcqk"  style="width: 50px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                       
