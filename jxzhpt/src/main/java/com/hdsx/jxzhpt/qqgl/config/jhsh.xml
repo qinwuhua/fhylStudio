@@ -242,6 +242,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -352,6 +355,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -597,6 +603,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -680,6 +689,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
@@ -1673,6 +1685,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -1755,6 +1770,9 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
@@ -1928,7 +1946,7 @@
 	<select id="queryGsdgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lx.lc lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lx.lc lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -1948,6 +1966,10 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+		        <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
+		        
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
@@ -2078,6 +2100,9 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+		         <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
@@ -2143,6 +2168,9 @@
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+		         <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		        </if>
 	            where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>

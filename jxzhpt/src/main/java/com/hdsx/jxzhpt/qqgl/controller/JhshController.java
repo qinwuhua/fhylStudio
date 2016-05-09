@@ -1961,9 +1961,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and (jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+						tsdq+="and (j.jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+						tsdq+="or j.jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";

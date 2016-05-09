@@ -172,21 +172,21 @@ public class XmbbController extends BaseActionSupport{
 		}
 	}
 	public void setjhxdwh(){
-		String tablename="";
-		if("gsd".equals(xzqh))
-			tablename="gsdgz";
-		if("yh".equals(xzqh))
-			tablename="jhsh_yhdzx";
-		if("sh".equals(xzqh))
-			tablename="jhsh_sh";
-		List<TreeNode> list=xmbbServer.setjhxdwh(tablename);
-		int i=1;
-		for (TreeNode treeNode : list) {
-			treeNode.setId(i+"");
-			treeNode.setIconCls("icon-none");
-			i++;
-		}
 		try {
+			String tablename="";
+			if("gsd".equals(xzqh))
+				tablename="and (xmid like '__________1___' or xmid like '__________2___' or xmid like '__________3___')";
+			if("yh".equals(xzqh))
+				tablename="and (xmid like '__________4___')";
+			if("sh".equals(xzqh))
+				tablename="and (xmid like '__________5___')";
+			List<TreeNode> list=xmbbServer.setjhxdwh(tablename);
+			int i=1;
+			for (TreeNode treeNode : list) {
+				treeNode.setId(i+"");
+				treeNode.setIconCls("icon-none");
+				i++;
+			}
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

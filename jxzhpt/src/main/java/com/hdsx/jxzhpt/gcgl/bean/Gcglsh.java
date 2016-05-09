@@ -9,19 +9,64 @@ public class Gcglsh implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private String jgys;
-private String xdzj;
-private String bfzj;
-
-public String getXdzj() {
-	return xdzj;
-}
-public void setXdzj(String xdzj) {
-	this.xdzj = xdzj;
-}
-public String getBfzj() {
-	return bfzj;
-}
+	private String jgys;
+	private String xdzj;
+	private String bfzj;
+	private String lqlmwcqk;//沥青路面完成情况
+	private String snlmwcqk;//水泥路面完成情况
+	private String yiji;//一级
+	private String erji;//二级
+	private String sanji;//三级
+	private String siji;//四级
+	
+	public String getLqlmwcqk() {
+		return lqlmwcqk;
+	}
+	public void setLqlmwcqk(String lqlmwcqk) {
+		this.lqlmwcqk = lqlmwcqk;
+	}
+	public String getSnlmwcqk() {
+		return snlmwcqk;
+	}
+	public void setSnlmwcqk(String snlmwcqk) {
+		this.snlmwcqk = snlmwcqk;
+	}
+	public String getYiji() {
+		return yiji;
+	}
+	public void setYiji(String yiji) {
+		this.yiji = yiji;
+	}
+	public String getErji() {
+		return erji;
+	}
+	public void setErji(String erji) {
+		this.erji = erji;
+	}
+	public String getSanji() {
+		return sanji;
+	}
+	public void setSanji(String sanji) {
+		this.sanji = sanji;
+	}
+	public String getSiji() {
+		return siji;
+	}
+	public void setSiji(String siji) {
+		this.siji = siji;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}

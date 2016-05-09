@@ -10,13 +10,32 @@ public class Gcglgcgzgj implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String jgys;
-	private String yiji;
-	private String erji;
-	private String sanji;
-	private String siji;
+	
 	private String xdzj;
 	private String bfzj;
+	private String lqlmwcqk;//沥青路面完成情况
+	private String snlmwcqk;//水泥路面完成情况
+	private String yiji;//一级
+	private String erji;//二级
+	private String sanji;//三级
+	private String siji;//四级
 	
+	
+	public String getLqlmwcqk() {
+		return lqlmwcqk;
+	}
+	public void setLqlmwcqk(String lqlmwcqk) {
+		this.lqlmwcqk = lqlmwcqk;
+	}
+	public String getSnlmwcqk() {
+		return snlmwcqk;
+	}
+	public void setSnlmwcqk(String snlmwcqk) {
+		this.snlmwcqk = snlmwcqk;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
 	public String getXdzj() {
 		return xdzj;
 	}

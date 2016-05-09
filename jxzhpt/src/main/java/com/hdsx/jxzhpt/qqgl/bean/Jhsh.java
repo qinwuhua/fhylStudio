@@ -37,7 +37,7 @@ public class Jhsh {
 	private int page=1;
 	private int rows=10;
 	
-	
+	private String bcxd;//本次下达
 	
 	
 	
@@ -906,6 +906,12 @@ public class Jhsh {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getBcxd() {
+		return bcxd;
+	}
+	public void setBcxd(String bcxd) {
+		this.bcxd = bcxd;
 	}
 	
 

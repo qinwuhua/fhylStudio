@@ -48,6 +48,9 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%';
+			
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),

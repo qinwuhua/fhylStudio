@@ -177,7 +177,7 @@
 				(
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
-               		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc
+               		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc
                 	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -797,7 +797,7 @@
 				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 				 	</if>
 				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
-				 		and lx.lxbm like '%'|#{lx.lxbm}||'%'
+				 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		${lx.lxjsdj}
@@ -812,7 +812,7 @@
 	</select>
 	<select id="querySumAfgc" resultMap="abgc_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
-	    sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(select count(*) as id,sum(jh.jhzlc) as zlc,sum(jh.jhyhlc) as yhlc,
+	    sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(select count(*) as id,sum(lx.zdzh)-sum(lx.qdzh) as zlc,sum(lx.yhlc) as yhlc,
 	      sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
 	      from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
 	      where 1=1
@@ -850,7 +850,7 @@
 				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
 				 	</if>
 				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
-				 		and lx.lxbm like '%'|#{lx.lxbm}||'%'
+				 		and lx.lxbm like '%'||#{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		${lx.lxjsdj}

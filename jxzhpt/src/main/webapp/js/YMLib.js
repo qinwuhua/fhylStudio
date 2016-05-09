@@ -2691,7 +2691,7 @@ function xmnfnull(id){
 	    textField:'text',
 	    multiple:true
 	});
-	$('#'+id).combobox("setValue",'');
+	//$('#'+id).combobox("setValue",'');
 }
 
 //下达文号多选

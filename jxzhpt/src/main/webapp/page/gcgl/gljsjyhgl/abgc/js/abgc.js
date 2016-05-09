@@ -329,11 +329,11 @@ function tjwqgzkg(xmlx){
 	});	
 }
 //完工
-function tjwqgzwg(){
+function tjwqgzwg(xmlx){
 	if(!confirm("确认完工吗？")){
 		return;
 	}
-	var data="gcglabgc.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx=af";
+	var data="gcglabgc.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx="+xmlx;
 	//alert(data);
 	$.ajax({
 		type:'post',

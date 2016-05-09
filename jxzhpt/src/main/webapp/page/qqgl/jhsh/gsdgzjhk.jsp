@@ -48,6 +48,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%';
 			grid.id="grid";
 			grid.url="../../../qqgl/queryGsdgz.do";
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
@@ -148,6 +150,7 @@
 				{field:'xdsj',title:'下达时间',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
+				{field:'bcxd',title:'本次下达',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			bindLxGrid();
 			gridBind(grid);
