@@ -91,6 +91,7 @@
 				$('#jhnfxx').html(data.jhnf);
 				$('#JHKGSJ').html(data.jhkgsj);
 				$('#JHWGSJ').html(data.jhwgsj);
+				$('#sjwgsj').html(data.sjwgsj);
 				$('#JHXDSJ').html(data.xdsj);
 				$('#JHWC_C').html(data.jhwc_c);
 				$('#SJDW').html(data.sjdw);
@@ -636,8 +637,11 @@
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="htje"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">概预算（万元）：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="3">
+				<td style="background-color: #ffffff; height: 20px;" align="left" >
 					<span id="gys"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" >
+					<span id="sjwgsj"></span></td>
 			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjwgsj"></span></td> -->
