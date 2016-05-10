@@ -242,8 +242,8 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+	             <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -355,8 +355,8 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+	             <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
