@@ -121,10 +121,14 @@
 				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
 				{field:'gq',title:'工期（月）',width:60,align:'center'},
-				{field:'tz',title:'拟投资',width:60,align:'center'},
+// 				{field:'tz',title:'拟投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
-				{field:'ztz',title:'总投资',width:100,align:'center'},
-				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center'},
+				{field:'ztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
+					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100+parseFloat(row.yqdbcgs)*100)/100;
+				}},
+				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center',formatter:function(value,row,index){
+					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
+				}},
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
 				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'},
