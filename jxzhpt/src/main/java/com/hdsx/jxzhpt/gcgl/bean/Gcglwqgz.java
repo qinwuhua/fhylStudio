@@ -11,7 +11,28 @@ public class Gcglwqgz implements Serializable {
 	private String zbz;
 	private String jlzj;
 	private String sl;
+	private String wcbtz;
+	private String wcstz;
+	private String wcztz;
 	
+	public String getWcbtz() {
+		return wcbtz;
+	}
+	public void setWcbtz(String wcbtz) {
+		this.wcbtz = wcbtz;
+	}
+	public String getWcstz() {
+		return wcstz;
+	}
+	public void setWcstz(String wcstz) {
+		this.wcstz = wcstz;
+	}
+	public String getWcztz() {
+		return wcztz;
+	}
+	public void setWcztz(String wcztz) {
+		this.wcztz = wcztz;
+	}
 	public String getSl() {
 		return sl;
 	}

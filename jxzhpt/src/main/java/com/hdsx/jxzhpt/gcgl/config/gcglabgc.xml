@@ -161,9 +161,12 @@
 		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.id jhid,t1.id,
 		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_abgc g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1'
@@ -210,9 +213,12 @@
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
 		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID
 		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_abgc g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1'
@@ -1210,7 +1216,7 @@
 		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
 		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join 
 		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
@@ -1220,6 +1226,9 @@
 	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_abgc g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1' 
@@ -1281,7 +1290,7 @@
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
 		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID left join 
 		(select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
@@ -1291,6 +1300,9 @@
 	    from(select sum(pz.xdzj) ztz,xmid from plan_zjxd pz group by pz.xmid) tb1, 
 	    (select sum(gc.cgsdwzj+gc.stz) ztz,jhid from gcgl_cgs gc group by gc.jhid) tb2
 	    where tb1.xmid=tb2.jhid) tb3 on t1.id=tb3.xmid
+	    left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_abgc g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where t1.spzt='1' 

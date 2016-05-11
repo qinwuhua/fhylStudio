@@ -161,11 +161,14 @@
 		select m.*,rownum rn from (
 		select 
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
-		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,
+		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,wcg.wcbtz,wcg.wcstz,wcg.wcztz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
 	    from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select decode(max(jhxdwh),null,'-',max(jhxdwh)) jhxdwh,xmid from plan_zjxd group by xmid) zj on t1.id=zj.xmid
 	    left join gcgl_jgys jg on t1.id=jg.jhid
+	    left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_wqgz g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 	    left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t1.id=xd.xmid
 	    left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t1.id=bf.jhid
 		where  t1.spzt='1'
@@ -399,9 +402,12 @@
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
 		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
 		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select max(jhid) jhid,sum(t.cgsdwzj) cgsdwzj,max(tbyf) tbyf,max(tbsj) tbsj,max(tbr) tbr,sum(stz) stz,max(cscyj) cscyj,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from gcgl_cgs t  where tbyf=#{tbyf} group by jhid,t.tbyf) c on t1.id=c.jhid
 		left join (select xmid jhid,WMSYS.WM_CONCAT(xdnf) xdsj from plan_zjxd group by xmid) xdjh on t1.id=xdjh.jhid
+		left join (
+	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_wqgz g group by g.jhid
+	    ) wcg on t1.id=wcg.jhid
 		left join (select 
 	    (case when tb1.ztz&lt;=tb2.ztz then '已全部拨付'
 	      else '未全部拨付' end) ljbfzt,tb1.xmid
