@@ -122,7 +122,7 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'jhlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:70,align:'center'},
 				{field:'ylxbh',title:'路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
