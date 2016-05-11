@@ -221,6 +221,43 @@ public class Planwqgzsj implements Serializable{
 	private String tzsj;
 	private String nsqsbz;
 	
+	private String scakjfl;
+	private String xlxbm;
+	private String xqlbm;
+	private String xzxzh;
+	private String xlxmc;
+	
+	
+	public String getScakjfl() {
+		return scakjfl;
+	}
+	public void setScakjfl(String scakjfl) {
+		this.scakjfl = scakjfl;
+	}
+	public String getXlxbm() {
+		return xlxbm;
+	}
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+	public String getXqlbm() {
+		return xqlbm;
+	}
+	public void setXqlbm(String xqlbm) {
+		this.xqlbm = xqlbm;
+	}
+	public String getXzxzh() {
+		return xzxzh;
+	}
+	public void setXzxzh(String xzxzh) {
+		this.xzxzh = xzxzh;
+	}
+	public String getXlxmc() {
+		return xlxmc;
+	}
+	public void setXlxmc(String xlxmc) {
+		this.xlxmc = xlxmc;
+	}
 	public String getJhzt() {
 		return jhzt;
 	}

@@ -5,7 +5,7 @@ $(function() {
     	if(qx[i]=='01011301'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '计划库',
+				title: '计划申报',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -16,7 +16,7 @@ $(function() {
     	if(qx[i]=='01011302'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
-				title: '计划上报',
+				title: '计划审核',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -27,7 +27,7 @@ $(function() {
     	if(qx[i]=='01011303'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
-				title: '计划审核',
+				title: '计划下达',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -38,7 +38,7 @@ $(function() {
     	if(qx[i]=='01011304'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
-				title: '计划下达',
+				title: '计划查询',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

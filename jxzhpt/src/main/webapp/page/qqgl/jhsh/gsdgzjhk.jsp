@@ -72,25 +72,31 @@
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
 						if(row.xmbm.substr(10,1)=='1')
 						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
+								//+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
+								;
 						if(row.xmbm.substr(10,1)=='2')
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+								"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
+								//+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
+								;
 						if(row.xmbm.substr(10,1)=='3')
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
+								//+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
+								;
 							
 								return result;
 					}
 				},
-				{field:'sbzt',title:'编辑',width:60,align:'center',
+				/* {field:'sbzt',title:'编辑',width:60,align:'center',
 					formatter: function(value,row,index){
 						xmlx=1;
 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'编辑'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">编辑</a>';
 						return result;
 					}
-				},
+				}, */
 				{field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -170,6 +176,7 @@
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
+						 $("#bcxd").html(msg.BCXD);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -339,6 +346,7 @@ text-decoration:none;
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
+            		本次下达【<span id="bcxd" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方投资【<span id="dftz" style="color: red;">0</span>】万元。

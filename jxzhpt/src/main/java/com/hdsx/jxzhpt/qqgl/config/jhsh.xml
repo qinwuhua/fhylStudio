@@ -2147,8 +2147,8 @@
 
 	</select>
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(sbzzj),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,nvl((sum(pfztz)-sum(bbzzj)-sum(sbzzj)),0) dftz from (
-				select j.*,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+		select count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(sbzzj),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,nvl((sum(pfztz)-sum(bbzzj)-sum(sbzzj)),0) dftz<if test="jhxdwh !=null and jhxdwh !=''">,nvl(sum(bcxd),0) bcxd</if> from (
+				select j.*,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxd bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
