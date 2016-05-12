@@ -159,8 +159,8 @@
 				{field:'gq',title:'工期（月）',width:100,align:'center'},
 				{field:'tz',title:'拟投资',width:100,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
-				{field:'xdwh',title:'下达文号',width:100,align:'center'},
-				{field:'xdsj',title:'下达时间',width:100,align:'center'},
+				/* {field:'xdwh',title:'下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'下达时间',width:100,align:'center'}, */
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
