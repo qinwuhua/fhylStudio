@@ -572,7 +572,7 @@
             		</div>
            		<div id="tt" border="false" class="easyui-tabs" style="">
             		<script type="text/javascript" >
-                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:390px;');
+                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:'+($(window).height()*0.7)+'px;');
      				</script>
 	            		<div title="项目列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 					    	<table id="grid"></table>
