@@ -258,10 +258,11 @@
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
         						<span>&nbsp;隧道名称：</span>
         						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
+        						
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
+        						<span>&nbsp;隧道代码：</span>
+        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
         						<span>计划年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
@@ -275,8 +276,6 @@
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
 								</select>
-        					</p>
-							<p style="margin:8px 0px 4px 20px;">
 <!-- 								<span>是否有补助历史：</span> -->
 <!-- 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;"> -->
 <!-- 									<option value="" selected="selected">全部</option> -->
@@ -290,7 +289,7 @@
 <%-- 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('bhsd','gl')"/> --%>
 				                <img onclick="shangB()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="th_jhkgl('bhsd_th.jsp','500','200');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
-							</p>
+        					</p>
         				</div>
         			</fieldset>
         		</td>

@@ -597,7 +597,7 @@
         						<td align="right">建设技术等级：</td>
         						<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:114px;"></select></td>
         						<td align="right">现技术等级：</td>
-        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
         						
         					</tr>
         					<tr height="32">
@@ -610,9 +610,9 @@
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
         						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
-        						<td align="right">规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
         						
+        						<td align="right">下达状态：</td>
+        						<td><input name="xdzt" type="text" id="xdzt" style="width:55px;" /></td>
         					</tr>
         					<tr height="32">
         						
@@ -620,37 +620,36 @@
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						<td align="right">管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
-        						<td align="right">下达状态：</td>
-        						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
+        						<td align="right">计划下达文号：</td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114spx;" /></td>
         						<td align="right">历史记录：</td>
         						<td>
-        							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
+        							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:55px;">
 										<option value="" selected="selected">全部</option>
 										<option value="否">否</option>
 										<option value="是">是</option>
 									</select>
         						</td>
-        						<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114spx;" /></td>
-        						
         					</tr>
         					<tr height="32">
-        						
         						<td align="right">首次下达年份：</td>
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         						<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:114px;" ></select></td>
 								<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:114px;" /></td>
-        					</tr>
-        					<tr height="32">
-        						
         						<td colspan="10">
         							<img onclick="queryxmList()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<img onclick="importJhshZjzj(4)" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         						</td>
         					</tr>
+        					<!-- <tr height="32">
+        						
+        						
+        					</tr> -->
         				</table>
         				</div>
         			</fieldset>

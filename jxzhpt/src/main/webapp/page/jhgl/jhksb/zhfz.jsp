@@ -185,43 +185,44 @@ text-decoration:none;
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
-        						<td>行政区划：</td>
-        						<td colspan="3" style="width:225px;"><select id="xzqh" style="width:224px;"></select></td>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
-        					</tr>
-        				<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 75px;"></select></td>
-        						<td>上报状态：</td>
-        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
-									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select></td>
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;"></select></td>
-								<td>行政等级：</td>
-								<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="" selected="selected">全部</option>
-									<option value="无">否</option>
-									<option value="是">是</option>
-								</select></td>
-        					</tr>
-        					<tr height="32">
-                              <td colspan="10">
-        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchZhfz()" style="vertical-align:middle;padding-left: 8px;"/>
-<%--         								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-        								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-                                	</td>
-                                </tr>
+								<tr height="32">
+	        						<td>管养单位：</td>
+	        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+	        						<td>行政区划：</td>
+	        						<td colspan="3" style="width:225px;"><select id="xzqh" style="width:224px;"></select></td>
+	        						<td>路线名称：</td>
+	        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+	        						<td>特殊地区：</td>
+									<td><select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select></td>
+	        					</tr>
+	        					<tr height="32">
+	        						<td>上报年份：</td>
+	        						<td><select id="sbnf" style="width: 75px;"></select></td>
+	        						<td>上报状态：</td>
+	        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+										<option selected="selected" value="">全部</option>
+										<option value="未上报">未上报</option>
+										<option value="已上报">已上报</option>
+									</select></td>
+									
+									<td>技术等级：</td>
+									<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;"></select></td>
+									<td>行政等级：</td>
+									<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select></td>
+									<td>是否有补助历史：</td>
+									<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+										<option value="" selected="selected">全部</option>
+										<option value="无">否</option>
+										<option value="是">是</option>
+									</select></td>
+	        					</tr>
+	        					<tr height="32">
+	                              <td colspan="10">
+	        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchZhfz()" style="vertical-align:middle;padding-left: 8px;"/>
+	<%--         								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
+	        								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+	                                	</td>
+	                                </tr>
         					</table>
         				</div>
         			</fieldset>

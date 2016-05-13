@@ -100,7 +100,7 @@ text-decoration:none;
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<p style="margin:8px 0px 4px 20px;">
+						<p style="margin:8px 0px 4px 20px;">
 					            <span>管养单位：</span>
                               	<select id="gydw" style="width:235px">
                               	</select>
@@ -111,32 +111,33 @@ text-decoration:none;
         						<input type="text" id="sddm" style="width:72px;" />
                               	<span>&nbsp;隧道名称：</span>
                               	<input id="sdmc" type="text" style="width:76px"/>
-                              	<span>&nbsp;路线编码：</span>
-        						<input type="text" id="lxbm" style="width:70px;" />
+                              	
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
-							  <span>项目年份：</span>
-                              	<select id="xmnf" style="width:70px">
-                              	</select>
-                               <span>&nbsp;&nbsp;&nbsp;&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px"class="easyui-combobox">
-                              	</select>
-                              <span>&nbsp;&nbsp;&nbsp;&nbsp;技术等级：</span>
-                              	<select id="jsdj" style="width:70px"class="easyui-combobox">
-                              	</select>
-                              	<span>&nbsp;隧道分类：</span>
-                              	<select id="acdfl" style="width:65px"class="easyui-combobox">
-                              	</select>
-                              	<span>&nbsp;路线名称：</span>
-        						<input type="text" id="lxmc" style="width:70px;" />
-                             </p>
-                             <p style="margin:8px 0px 4px 20px;">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshBhsd();"style="border-width:0px;cursor: hand;" />
-								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
-                                <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="th_scksh('bhsd_th.jsp','500','200');" style="border-width:0px;" />
-                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_bhsd_scsh();" style="border-width:0px;cursor: hand;" />
-							  </p>
-						</div>
+				  			<span>项目年份：</span>
+                           	<select id="xmnf" style="width:70px">
+                           	</select>
+                             <span>&nbsp;&nbsp;&nbsp;&nbsp;审核状态：</span>
+                           	<select id="shzt" style="width:70px"class="easyui-combobox">
+                           	</select>
+                             <span>&nbsp;&nbsp;&nbsp;&nbsp;技术等级：</span>
+                           	<select id="jsdj" style="width:70px"class="easyui-combobox">
+                           	</select>
+                           	<span>&nbsp;隧道分类：</span>
+                           	<select id="acdfl" style="width:65px"class="easyui-combobox">
+                           	</select>
+                           	<span>&nbsp;路线名称：</span>
+     						<input type="text" id="lxmc" style="width:70px;" />
+                         	<span>&nbsp;路线编码：</span>
+     						<input type="text" id="lxbm" style="width:70px;" />
+                          </p>
+                       <p style="margin:8px 0px 4px 20px;">
+							<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshBhsd();"style="border-width:0px;cursor: hand;" />
+							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
+                            <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="th_scksh('bhsd_th.jsp','500','200');" style="border-width:0px;" />
+                            <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_bhsd_scsh();" style="border-width:0px;cursor: hand;" />
+					  </p>
+					</div>
 				</fieldset>
 			</td>
 		</tr>

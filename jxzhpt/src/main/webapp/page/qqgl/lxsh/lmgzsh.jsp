@@ -205,12 +205,7 @@ text-decoration:none;
         					<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
-        						<td>审核状态：</td>
-        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
-								</select></td>
+        						
         					</tr>
         					<tr height="32">
         						
@@ -226,14 +221,19 @@ text-decoration:none;
         						<td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         						<td>是否有历史记录：</td>
-        					<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
+        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
         					</tr>
         					<tr height="32">
-        					
+        						<td>审核状态：</td>
+        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
+								</select></td>
 								<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                 <td>规划路线编码：</td>

@@ -266,55 +266,55 @@ text-decoration:none;
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
-        						<td style="text-align: right;">行政区划：</td>
-        						<td><select id="xzqh" style="width:160px;"></select></td>
-        						<td style="text-align: right;">原路线编码：</td>
-        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-        						<td style="text-align: right;">原路线名称：</td>
-        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
-								<td style="text-align: right;">原技术等级：</td>
-								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<!-- <td style="text-align: right;">建设技术等级：</td>
-								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td> -->
-								<td style="text-align: right;">历史记录：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
-									<option value="" selected="selected">全部</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-								</select></td>
-        					</tr>
-        					<tr height="32">
-        						<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-								<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 100px;"></select></td>
-								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
-									<option selected="selected" value="-1">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
-								</select></td>
-								<td style="text-align: right;">行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-							</tr>
-							<tr height="32">
-								<td>项目名称：</td>
-        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-								<td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-								<td colspan="10">
-									<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-									<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
-									<img name="bxs" onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-									<!-- <img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
-									<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-									<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-        						</td>
-                        	</tr>
-                        </table>
+								<tr height="32">
+	        						<td>行政区划：</td>
+	        						<td><select id="xzqh" style="width:160px;"></select></td>
+	        						<td style="text-align: right;">原路线编码：</td>
+	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+	        						<td style="text-align: right;">原路线名称：</td>
+	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
+									<td style="text-align: right;">原技术等级：</td>
+									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
+									<!-- <td style="text-align: right;">建设技术等级：</td>
+									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td> -->
+									<td style="text-align: right;">历史记录：</td>
+									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+										<option value="" selected="selected">全部</option>
+										<option value="是">是</option>
+										<option value="否">否</option>
+									</select></td>
+	        					</tr>
+	        					<tr height="32">
+	        						<td>特殊地区：</td>
+									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+									<td style="text-align: right;">项目年份：</td>
+	        						<td><select id="xmnf" style="width: 100px;"></select></td>
+									<td style="text-align: right;">项目名称：</td>
+	        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+									<td style="text-align: right;">行政等级：</td>
+									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+									<td align="right">审核状态：</td>
+	        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
+										<option selected="selected" value="-1">全部</option>
+										<option value="0">未审核</option>
+										<option value="1">已审核</option>
+									</select></td>
+								</tr>
+								<tr height="32">
+									<td>规划路线编码：</td>
+	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+	        						<td>规划路线名称：</td>
+	        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+									<td colspan="10">
+										<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+										<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
+										<img name="bxs" onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+										<!-- <img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
+										<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+										<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+	        						</td>
+	                        	</tr>
+                       		 </table>
         				</div>
         			</fieldset>
         		</td>

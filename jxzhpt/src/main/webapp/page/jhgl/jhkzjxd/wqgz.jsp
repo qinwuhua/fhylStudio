@@ -173,7 +173,7 @@
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+							<tr height="32">
         						<td>管养单位：</td>
         						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
         						<td>行政区划：</td>
@@ -182,8 +182,6 @@
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
         						<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
-        						<td>路线编码：</td>
-        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
         					</tr>
         					<tr height="32">
         						<td>上报年份：</td>
@@ -213,6 +211,8 @@
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select></td>
+        					</tr>
+							<tr height="32">
 								<td>建设性质：</td>
         						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
 									<option value=""selected>全部</option>
@@ -220,9 +220,9 @@
 									<option value="拆除重建">拆除重建</option>
 <!-- 									<option value="大修">大修</option> -->
 									</select></td>	
-        					</tr>
-							<tr height="32">
-                              <td colspan="12">
+								<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+                              	<td colspan="12">
                               
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
@@ -236,9 +236,8 @@
 								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('wqgz_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 							</td>
-                                </tr>
-                                </table>
-        					
+                           </tr>
+                          </table>
         				</div>
         			</fieldset>
         		</td>

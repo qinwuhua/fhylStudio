@@ -183,8 +183,7 @@
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
         						<span>&nbsp;隧道名称：</span>
         						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
+        						
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>计划年份：</span>
@@ -198,6 +197,8 @@
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 								</select>
+								<span>&nbsp;隧道代码：</span>
+        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>

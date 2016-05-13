@@ -314,20 +314,21 @@ text-decoration:none;
         					<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-								<td align="right">项目年份：</td>
+								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
+								<td>项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+								<!-- <td align="right">&nbsp;工程分类：</td>
+	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td> -->
+	       						<td>&nbsp;行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td align="right">审核状态：</td>
         						<td><select id="shzt" style="width:71px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-								<!-- <td align="right">&nbsp;工程分类：</td>
-	       						<td><select name="gcfl" class="easyui-combobox" id="gcfl" style="width:70px;"></select></td> -->
-	       						<td>&nbsp;行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-								<td>项目名称：</td>
-        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+								
 							</tr>
 							<tr height="32">
 								<td>规划路线编码：</td>

@@ -319,67 +319,69 @@ text-decoration:none;
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
-        						<td>行政区划：</td>
-        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
-        						<td>桥梁名称：</td>
-        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
-        						<td>路线编码：</td>
-        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
-        					</tr>
-        					<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 75px;"></select></td>
-        						<td>上报状态：</td>
-        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
-									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="ddlTSDQ" class="easyui-combobox" id="tsdq" style="width:80px;">
-								</select></td>
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" class="easyui-combobox" id="jsdj" style="width:65px;">
-								</select></td>
-								<td>行政等级：</td>
-								<td><select name="ddlGldj" class="easyui-combobox" id="gldj" style="width:94px;">
-								</select></td>
-								<td>跨径分类：</td>
-        						<td><select name="ddlAKJFL" class="easyui-combobox" id="akjfl" style="width:94px;">
-									<!-- <option selected="selected" value="">全部</option>
-									<option value="特大桥">特大桥</option>
-									<option value="大桥">大桥</option>
-									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option> -->
-								</select></td>
-								<td>建设性质：</td>
-        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
-									<option value=""selected>全部</option>
-									<option value="加固改造">加固改造</option>
-									<option value="拆除重建">拆除重建</option>
-<!-- 									<option value="大修">大修</option> -->
-									</select></td>	
-        					</tr>
-							<tr height="32">
-                              <td colspan="10">
-								<span>是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="" selected="selected">全部</option>
-									<option value="无">否</option>
-									<option value="是">是</option>
-								</select>
-								<span>桥梁编码：</span>
-        						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
-<%--         						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-        						<img alt="导出Excel"  onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								</td>
-                            </tr></table>
+								<tr height="32">
+	        						<td>管养单位：</td>
+	        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+	        						<td>行政区划：</td>
+	        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
+	        						<td>路线名称：</td>
+	        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
+	        						<td>桥梁名称：</td>
+	        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
+	        						
+	        					</tr>
+	        					<tr height="32">
+	        						<td>上报年份：</td>
+	        						<td><select id="sbnf" style="width: 75px;"></select></td>
+	        						<td>上报状态：</td>
+	        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+										<option selected="selected" value="">全部</option>
+										<option value="未上报">未上报</option>
+										<option value="已上报">已上报</option>
+									</select></td>
+									<td>特殊地区：</td>
+									<td><select name="ddlTSDQ" class="easyui-combobox" id="tsdq" style="width:80px;">
+									</select></td>
+									<td>技术等级：</td>
+									<td><select name="ddlPDDJ" class="easyui-combobox" id="jsdj" style="width:65px;">
+									</select></td>
+									<td>行政等级：</td>
+									<td><select name="ddlGldj" class="easyui-combobox" id="gldj" style="width:94px;">
+									</select></td>
+									<td>跨径分类：</td>
+	        						<td><select name="ddlAKJFL" class="easyui-combobox" id="akjfl" style="width:94px;">
+										<!-- <option selected="selected" value="">全部</option>
+										<option value="特大桥">特大桥</option>
+										<option value="大桥">大桥</option>
+										<option value="中桥">中桥</option>
+										<option value="小桥">小桥</option> -->
+									</select></td>
+	        					</tr>
+								<tr height="32">
+									<td>路线编码：</td>
+	        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+									<td>建设性质：</td>
+	        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+										<option value=""selected>全部</option>
+										<option value="加固改造">加固改造</option>
+										<option value="拆除重建">拆除重建</option>
+	<!-- 									<option value="大修">大修</option> -->
+										</select></td>	
+									<span>是否有补助历史：</span>
+									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+										<option value="" selected="selected">全部</option>
+										<option value="无">否</option>
+										<option value="是">是</option>
+									</select>
+									<span>桥梁编码：</span>
+	        						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
+	                              	<td colspan="10">
+									
+									<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
+	<%--         						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
+	        						<img alt="导出Excel"  onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+									</td>
+	                            </tr></table>
         				</div>
         			</fieldset>
         		</td>

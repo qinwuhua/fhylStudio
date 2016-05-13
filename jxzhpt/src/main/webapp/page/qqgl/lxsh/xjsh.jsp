@@ -204,12 +204,7 @@ text-decoration:none;
         					<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
-        						<td>审核状态：</td>
-        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
-								</select></td>
+        						
         					</tr>
         					<tr height="32">
         						
@@ -224,13 +219,19 @@ text-decoration:none;
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         						<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-                                <td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td>审核状态：</td>
+        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
+								</select></td>
         					</tr>
         					<tr height="32">
         						
+								<td>规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+                                <td>规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
                               <td colspan="10">
         						<img onclick="showAllxjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
