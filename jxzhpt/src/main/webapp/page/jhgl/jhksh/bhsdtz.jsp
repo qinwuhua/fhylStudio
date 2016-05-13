@@ -122,10 +122,11 @@
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
         						<span>&nbsp;隧道名称：</span>
         						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
+        						
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
+        						<span>&nbsp;隧道代码：</span>
+        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
         						<span>计划年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;审定状态：</span>

@@ -117,7 +117,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;计划库>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;灾害防治项目</div>
+		<div id="p_top">计划管理>&nbsp;计划查询>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;灾害防治项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -141,8 +141,7 @@ text-decoration:none;
 									<option value="已入库">已入库</option>
 									<option value="已下达">已下达</option>
 								</select></td>
-        						<td align="right">路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+        						
         					</tr>
         					<tr height="32">
         						<td>上报年份：</td>
@@ -161,14 +160,17 @@ text-decoration:none;
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
-								<td>是否有补助历史：</td>
+								
+        					</tr>
+        					<tr height="32">
+        						<td>是否有补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select></td>
-        					</tr>
-        					<tr height="32">
+								<td align="right">路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
                               <td colspan="10">
         								<img onclick="searchZhfz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 										<img onclick="exportModule('Plan_Disaster')" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

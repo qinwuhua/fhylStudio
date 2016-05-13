@@ -241,7 +241,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;计划库>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;病害隧道项目</div>
+		<div id="p_top">计划管理>&nbsp;计划查询>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;病害隧道项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -260,10 +260,11 @@
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
         						<span>&nbsp;隧道名称：</span>
         						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
+        						
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
+        						<span>&nbsp;隧道代码：</span>
+        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
         						<span>计划年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
