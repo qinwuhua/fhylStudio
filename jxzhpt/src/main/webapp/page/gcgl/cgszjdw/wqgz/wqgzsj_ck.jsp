@@ -30,8 +30,9 @@ $(function(){
 	fileShow24(parent.obj1.id,'施工许可');
 });
 function loadJzxx(){
+	
 	var data=parent.obj1;
-	$("#jhjsxz").html(msg.jhjsxz);
+	$("#jhjsxz").html(data.jhjsxz);
 	$('#xdsj').html(data.xdsj);
 	$('#sjkgsj').html(data.sjkgsj);
 	$('#yjwgsj').html(data.yjjgsj);
@@ -42,6 +43,9 @@ function loadJzxx(){
 	$('#zljdwj').html(data.zljdwj);
 	$('#htje').html(data.htje);
 	$('#gys').html(data.gys);
+	$('#wcbtz').html(data.wcbtz);
+	$('#wcstz').html(data.wcstz);
+	$('#wcztz').html(data.wcztz);
 }
 
 function loadJhkxx(){
@@ -760,6 +764,17 @@ text-decoration:none;
 			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjwgsj"></span></td> -->
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成总投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcztz"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成中央投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" >
+					<span id="wcbtz"></span></td>
+			 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成省投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcstz"></span></td> 
 			</tr>
 			<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可（附件上传）：</td>

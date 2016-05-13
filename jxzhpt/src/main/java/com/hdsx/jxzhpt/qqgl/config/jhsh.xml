@@ -222,7 +222,7 @@
 	<select id="queryJhshYhdzx" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,to_char(lx.lc,'fm9999999990.000') jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -1664,7 +1664,7 @@
 	</select>
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(sysbbzj),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,nvl((nvl(sum(ztz),0)-nvl(sum(yqdbcgs),0)-nvl(sum(sysbbzj),0)),0) dftz from (
+		select count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl((sum(sysbbzj)+sum(rys)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,nvl((nvl(sum(ztz),0)-nvl(sum(yqdbcgs),0)-nvl(sum(sysbbzj),0)-nvl(sum(rys),0)-nvl(sum(dk),0)),0) dftz from (
 				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))

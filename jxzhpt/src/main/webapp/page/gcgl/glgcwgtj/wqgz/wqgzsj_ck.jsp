@@ -44,6 +44,10 @@ function loadJzxx(){
 	$('#htje').html(data.htje);
 	$('#gys').html(data.gys);
 	$('#sjwgsj').html(data.sjwgsj);
+	
+	$('#wcbtz').html(data.wcbtz);
+	$('#wcstz').html(data.wcstz);
+	$('#wcztz').html(data.wcztz);
 }
 function loadJhkxx(){
 	$.ajax({
@@ -798,6 +802,18 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjwgsj"></span></td> 
 			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成总投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcztz"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成中央投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" >
+					<span id="wcbtz"></span></td>
+			 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成省投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcstz"></span></td> 
+			</tr>
+			
 			<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可（附件上传）：</td>
 				<td id="td_sgxk" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">

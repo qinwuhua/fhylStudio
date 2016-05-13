@@ -124,9 +124,9 @@
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助资金',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
-				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}
+				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}/* , */
+				/* {field:'xdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'计划下达时间',width:100,align:'center'} */
 			]];
 			bindLxGrid();
 			gridBind(grid);

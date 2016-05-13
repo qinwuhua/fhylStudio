@@ -122,7 +122,7 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'jhlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:70,align:'center'},
 				{field:'ylxbh',title:'路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
@@ -131,13 +131,17 @@
 				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
 				{field:'gq',title:'工期（月）',width:60,align:'center'},
-				{field:'tz',title:'拟投资',width:60,align:'center'},
+// 				{field:'tz',title:'拟投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
-				{field:'ztz',title:'总投资',width:100,align:'center'},
-				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center'},
-				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
-				{field:'xdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'ztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
+					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100+parseFloat(row.yqdbcgs)*100)/100;
+				}},
+				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center',formatter:function(value,row,index){
+					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
+				}},
+				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'}/* , */
+				/* {field:'xdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}, */
 				/* {field:'mc',title:'面层结构',width:300,align:'center',
 					formatter:function(value,row,index){
 						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;
@@ -158,7 +162,7 @@
 						return "灌封长度："+row.gfcd+";灌封金额："+row.gfje;
 					}
 				}, */
-				{field:'llcl',title:'老路处理',width:100,align:'center'}
+				/* {field:'llcl',title:'老路处理',width:100,align:'center'} */
 			]];
 			bindLxGrid();
 			gridBind(grid);

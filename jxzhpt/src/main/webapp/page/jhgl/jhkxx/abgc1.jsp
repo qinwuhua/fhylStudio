@@ -164,6 +164,9 @@
 	//	$('#zljdwj').html(data.zljdwj);
 		$('#htje').html(data.htje);
 		$('#gys').html(data.gys);
+		$('#wcbtz').html(data.wcbtz);
+		$('#wcstz').html(data.wcstz);
+		$('#wcztz').html(data.wcztz);
 	}
 	
 	function loadZjxdList(){
@@ -645,6 +648,17 @@
 			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjwgsj"></span></td> -->
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成总投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcztz"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成中央投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" >
+					<span id="wcbtz"></span></td>
+			 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成省投资（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="wcstz"></span></td> 
 			</tr>
 			<!-- <div id="divBBZJE"></div>
 			<tr id="trSY" style="height: 25px;">
