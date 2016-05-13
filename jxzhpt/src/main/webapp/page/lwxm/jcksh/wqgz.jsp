@@ -161,9 +161,6 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
         						<td>路线编码：</td>
                               	<td><input type="text" id="lxbm"style="width:70px"/></td>
-                              <td>桥梁名称：</td>
-                              	<td><input type="text" id="qlmc"style="width:70px"/></td>
-						
                        </tr>
                        <tr height="32">
 							  <!-- <td>项目年份：</td>
@@ -190,7 +187,9 @@ text-decoration:none;
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                         </tr>
-                             <tr height="32">
+                         <tr height="32">
+                              <td>桥梁名称：</td>
+                              	<td><input type="text" id="qlmc"style="width:70px"/></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />

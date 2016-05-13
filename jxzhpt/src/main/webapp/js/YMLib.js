@@ -2219,7 +2219,7 @@ function setxmnf(id,flag){
 	}
 	if(flag=='01011102030105'||flag=='01011102030106'||flag=='01011102030107'||flag=='01011102030108'||
 	   flag=='01011102030205'||flag=='01011102030206'||flag=='01011102030207'||flag=='01011102030208'){
-		//$("#bstext").html('十四五');
+		$("#bstext").html('十四五');
 		for(var i=0;i<5;i++){
 			if(i==0){
 				first=myDate.getFullYear()-i;

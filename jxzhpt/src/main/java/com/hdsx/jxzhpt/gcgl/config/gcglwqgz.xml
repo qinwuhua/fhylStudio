@@ -307,7 +307,7 @@
 			and t3.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="gydwtj != null and  gydwtj != ''">
-			and gydwbm like #{gydwtj}||'%'
+			${gydwtj}
 		</if>
 		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
 			and t1.sfylrbwqk = #{sfylrbwqk}
@@ -324,6 +324,9 @@
 		<if test="xmnf != null and  xmnf != ''">
 			and t1.sbnf in (${xmnf})
 		</if>
+		<if test="wgnf != null and  wgnf != ''">
+					and substr(t1.sjwgsj,0,4) in (${wgnf})
+			</if>
 		<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
 		</if>

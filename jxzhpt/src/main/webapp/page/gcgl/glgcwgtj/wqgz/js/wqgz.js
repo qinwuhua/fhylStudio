@@ -314,6 +314,9 @@ function showtj(){
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
+	var wgnf=$("#wgYear").combobox('getValues').join(",");
+	if(wgnf.substr(0,1)==',')
+		wgnf=wgnf.substr(1,wgnf.length);
 	var data="gydw="+gydwstr+
 	"&kgzt="+kgzt+
 	"&jgzt="+jgzt+
@@ -323,8 +326,9 @@ function showtj(){
 	"&ybzt="+''+
 	"&sfsj="+7+
 	"&xmnf="+xmnf+
+	"&wgnf="+wgnf+
 	"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+
-	"&gydwtj="+"1"+
+	"&gydwtj="+"and gydwbm like '1%'"+
 	'&gcglwqgz.xzqh='+xzqhstr+
 	'&gcglwqgz.gldj='+$("#ddlGldj").combobox('getValue')+
 	'&gcglwqgz.tsdq='+$("#ddlTSDQ").combobox('getText')+
@@ -354,8 +358,9 @@ function showtj(){
 	"&ybzt="+''+
 	"&sfsj="+7+
 	"&xmnf="+xmnf+
+	"&wgnf="+wgnf+
 	"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+
-	"&gydwtj="+"1"+
+	"&gydwtj="+"and gydwbm like '1%'"+
 	'&gcglwqgz.xzqh='+xzqhstr+
 	'&gcglwqgz.gldj='+$("#ddlGldj").combobox('getValue')+
 	'&gcglwqgz.tsdq='+$("#ddlTSDQ").combobox('getText')+

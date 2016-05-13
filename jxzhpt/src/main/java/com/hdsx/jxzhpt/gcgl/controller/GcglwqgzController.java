@@ -546,6 +546,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setXmnf(xmnf);
 			gcglwqgz.setSfylrbwqk(sfylrbwqk);
 			gcglwqgz.setGydwtj(gydwtj);
+			gcglwqgz.setWgnf(wgnf);
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}

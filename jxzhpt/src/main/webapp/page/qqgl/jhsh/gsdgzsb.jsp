@@ -264,7 +264,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;<span id="astext">计划库</span>>&nbsp;<span id="bstext"></span>>&nbsp;国省道改造</div>
+		<div id="p_top">计划管理>&nbsp;<span id="astext">计划申报</span>>&nbsp;<span id="bstext"></span>>&nbsp;国省道改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
