@@ -593,8 +593,20 @@
 		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz from gcgl_wqgz t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
 		and pl.spzt='1' 
+			<if test="jgys != null and  jgys != ''">
+					and decode(ys.id,null,'否','是') = #{jgys}
+			</if>
+			<if test="akjfl != null and  akjfl != ''">
+					and xm.akjfl like '%'||#{akjfl}||'%'
+			</if> 
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
 			</if>
 			<if test="gydwtj != null and  gydwtj != ''">
 					${gydwtj}
@@ -609,7 +621,11 @@
 					and pl.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					and pl.sbnf like '%'||trim(#{xmnf})||'%'
+					and pl.sbnf in (${xmnf})
+			</if>
+			<!-- 后 添加完工年份 条件 -->
+			<if test="wgnf != null and  wgnf != ''">
+					and substr(pl.sjwgsj,0,4) in (${wgnf})
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and xm.lxmc like '%'||trim(#{lxmc})||'%'
@@ -622,6 +638,9 @@
 			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+	 		<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
 			</if>
 		
 		)
@@ -659,8 +678,20 @@
 		(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz from gcgl_wqgz t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
 		and pl.spzt='1'  and gydwbm like '1%'
+		 	<if test="jgys != null and  jgys != ''">
+					and decode(ys.id,null,'否','是') = #{jgys}
+			</if>
+			<if test="akjfl != null and  akjfl != ''">
+					and xm.akjfl like '%'||#{akjfl}||'%'
+			</if> 
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
 			</if>
 			<if test="gydwtj != null and  gydwtj != ''">
 					${gydwtj}
@@ -675,7 +706,11 @@
 					and pl.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					and pl.sbnf like '%'||trim(#{xmnf})||'%'
+					and pl.sbnf in (${xmnf})
+			</if>
+			<!-- 后 添加完工年份 条件 -->
+			<if test="wgnf != null and  wgnf != ''">
+					and substr(pl.sjwgsj,0,4) in (${wgnf})
 			</if>
 			<if test="lxmc != null and  lxmc != ''">
 					and xm.lxmc like '%'||trim(#{lxmc})||'%'
@@ -689,7 +724,10 @@
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
-	 	
+	 		<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+			
 	 </select>
 	 <select id="selectsfkwg" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select nvl(sum(g.xbgz),0) xbgz,nvl(sum(g.zjc),0) zjc,nvl(sum(g.wcqk),0) wcqk,jhid from gcgl_wqgz g where jhid=#{id} group by jhid 
