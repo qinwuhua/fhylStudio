@@ -1666,15 +1666,15 @@
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
 		select 
 		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl((sum(rys)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz
+		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
 		</if>
 		 from (
 				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
 				<if test="jhxdwh !=null and jhxdwh !=''">
-					,bcztz,bccgs,bcstz,bcjl,bcdftz
+					,bcztz,bccgs,bcrys,bcdk,bcjl,bcdftz
 				</if>
 				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
@@ -1697,7 +1697,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	            <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0) bcrys,nvl(j.dk,0) bcdk,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -2936,7 +2936,7 @@
 			) t 
 	</select>
 	<select id="queryJhbzyhLj" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(nvl(sum(zrys),0)+nvl(sum(zdk),0)+nvl(sum(zjl),0),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)),0) dftz from (
+		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(sum(zrys),0) rys,nvl(sum(zdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)),0) dftz from (
 				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.qt zqt,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh 
 				
 				from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm

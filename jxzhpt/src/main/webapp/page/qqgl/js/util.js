@@ -822,7 +822,27 @@ function queryxZjxd1(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
-
+//养护大中修
+function queryZjxdyhdzx(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'ztz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'rys',title : '燃油税',width : 150,align : 'center'}, 
+		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
 function queryZjxd1(xmbm){
 	grid.id="zjxdList";
 	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";

@@ -22,7 +22,36 @@ public class Plan_zjxd {
 	private String dk;
 	private String gzzq;
 	private String szzq;
+	private String zq;
+	private String jl;
+	private String qt;
+	private String rys;
 	
+	
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
 	public String getGzzq() {
 		return gzzq;
 	}

@@ -133,12 +133,15 @@
 				{field:'gq',title:'工期（月）',width:60,align:'center'},
 // 				{field:'tz',title:'拟投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
-				{field:'ztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
+				{field:'ztz',title:'总投资',width:100,align:'center'},
+				{field:'rys',title:'燃油税',width:100,align:'center'},
+				{field:'dk',title:'贷款',width:100,align:'center'},
+				/* {field:'ztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100+parseFloat(row.yqdbcgs)*100)/100;
 				}},
 				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center',formatter:function(value,row,index){
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
-				}},
+				}}, */
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'}/* , */
 				/* {field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}, */
@@ -178,7 +181,8 @@
 						$("#xmsl").html(msg.SL);
 						 $("#tz").html(msg.TZ);
 						 $("#cgs").html(msg.CGS);
-						 $("#sbz").html(msg.SBZ);
+						 $("#rys").html(msg.RYS);
+						 $("#dk").html(msg.DK);
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
@@ -361,7 +365,8 @@ text-decoration:none;
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
-            		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
+            		燃油税【<span id="rys" style="color: red;">0</span>】万元,
+            		贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
             		</div>
