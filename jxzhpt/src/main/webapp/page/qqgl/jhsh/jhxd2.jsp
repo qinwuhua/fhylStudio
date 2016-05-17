@@ -226,17 +226,6 @@
 						</tr>
 						
 						
-						<tr style="height: 30px;font-size: 10px;">
-							
-							
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								计划下达文号
-							</td>
-							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="xdwh" name="xdwh" type="text"  style="width: 100px;height: 20px;" />
-							</td>
-							
-						</tr>
 						
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -252,21 +241,16 @@
 							</td>
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								计划下达时间
-							</td>
-							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="xdsj" name="xdsj" type="text" class="easyui-datebox" style="width: 105px;height: 25px;" />
-							</td>
+							
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
 							</td>
-							<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
 							</td>
 							
 						</tr>
-						<tr style="height: 30px;font-size: 10px;">
+						<!-- <tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文件：</font></b>
 							</td>
@@ -286,7 +270,7 @@
 									</tr>
 								</table>
 							</td>
-						</tr>
+						</tr> -->
 					</table>
 					<table width="98%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

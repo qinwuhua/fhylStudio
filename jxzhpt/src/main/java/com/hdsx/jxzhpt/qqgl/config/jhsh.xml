@@ -222,7 +222,7 @@
 	<select id="queryJhshYhdzx" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,to_char(lx.lc,'fm9999999990.000') jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,to_char(lx.lc,'fm9999999990.000') jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -243,7 +243,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	             <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.btzzj bcxd,j.jhxdwh bcxdwh,j.xdnf bcxdsj,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs  from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -335,7 +335,7 @@
 	<select id="queryJhshSh" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -356,7 +356,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	             <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.btzzj bcxd,j.jhxdwh bcxdwh,j.xdnf bcxdsj,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} ) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -604,7 +604,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	             <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.btzzj bcxd,j.jhxdwh bcxdwh,j.xdnf bcxdsj,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} ) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -690,7 +690,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	             <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.btzzj bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} ) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1664,8 +1664,19 @@
 	</select>
 	
 	<select id="queryJhshLjYhdzx" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl((sum(rys)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz from (
-				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+		select 
+		<if test="jhxdwh ==null or jhxdwh ==''">
+		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl((sum(rys)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz
+		</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		</if>
+		 from (
+				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
+				<if test="jhxdwh !=null and jhxdwh !=''">
+					,bcztz,bccgs,bcstz,bcjl,bcdftz
+				</if>
+				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -1686,7 +1697,7 @@
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 	            <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1749,8 +1760,19 @@
 		<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
 	</select>
 	<select id="queryJhshLjSh" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(dk),0)+nvl(sum(jl),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(jl),0) sjl,nvl((nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)),0) dftz from (
-				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
+		select 
+		<if test="jhxdwh ==null or jhxdwh ==''">
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz
+		</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		</if>
+		 from (
+				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
+				<if test="jhxdwh !=null and jhxdwh !=''">
+					,bcztz,bccgs,bcstz,bcjl,bcdftz
+				</if>
+				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
 	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -1770,8 +1792,8 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	             <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from jhxdsh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+	            <if test="jhxdwh !=null and jhxdwh !=''">
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from jhxdyh g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
 		        </if>
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -1946,7 +1968,7 @@
 	<select id="queryGsdgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,lx.lc lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lx.lc lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bccgs bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -1967,7 +1989,7 @@
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 		        <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} ) wh on j.xmbm=wh.xmid
 		        </if>
 		        
 	            where 1=1
@@ -2101,7 +2123,7 @@
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 		         <if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhsh.jhxdwh} ) wh on j.xmbm=wh.xmid
 		        </if>
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
@@ -2147,8 +2169,19 @@
 
 	</select>
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(bbzzj),0) cgs,nvl(sum(jl),0)+nvl(sum(dk),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(pfztz),0) tz,nvl(sum(jl),0) sjl,nvl((sum(gz)+sum(sz)+sum(zq)),0) dftz<if test="jhxdwh !=null and jhxdwh !=''">,nvl(sum(bcxd),0) bcxd</if> from (
-				select j.*,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxd bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+		select 
+		<if test="jhxdwh ==null or jhxdwh ==''">
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz
+		</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bccgs),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		</if>
+		 from (
+				select j.*,lx2.zjhlc jhlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj
+				<if test="jhxdwh !=null and jhxdwh !=''">
+					,bcztz,bccgs,bcstz,bcjl,bcdftz
+				</if>
+				from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -2169,7 +2202,7 @@
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 		         <if test="jhxdwh !=null and jhxdwh !=''">
-		         left join (select j.xmid,sum(j.btzzj) bcxd from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh} group by j.xmid) wh on j.xmbm=wh.xmid
+		         left join (select j.xmid,j.jl bcjl,j.ztz bcztz,nvl(j.rys,0)+nvl(j.dk,0)+nvl(j.jl,0) bcstz,j.btzzj bccgs,nvl(j.gz,0)+nvl(j.sz,0)+nvl(j.zq,0) bcdftz from gsdgz g left join plan_zjxd j on g.xmbm=j.xmid where 1=1 ${jhxdwh}) wh on j.xmbm=wh.xmid
 		        </if>
 	            where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -2998,7 +3031,7 @@
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
-	              where 1=1 and xdzt=1
+	              where 1=1 and xdzt=1  and (xdzttj='未下达' or xdzttj='未完成')
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'

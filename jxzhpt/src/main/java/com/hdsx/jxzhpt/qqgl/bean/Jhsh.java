@@ -38,7 +38,11 @@ public class Jhsh {
 	private int rows=10;
 	
 	private String bcxd;//本次下达
-	
+	private String bcxdwh;//本次下达
+	private String bcxdsj;//本次下达
+	private String bcztz;//本次下达
+	private String bccgs;//本次下达
+	private String bcstz;//本次下达
 	
 	
 	private String yhdk;
@@ -912,6 +916,36 @@ public class Jhsh {
 	}
 	public void setBcxd(String bcxd) {
 		this.bcxd = bcxd;
+	}
+	public String getBcxdwh() {
+		return bcxdwh;
+	}
+	public void setBcxdwh(String bcxdwh) {
+		this.bcxdwh = bcxdwh;
+	}
+	public String getBcxdsj() {
+		return bcxdsj;
+	}
+	public void setBcxdsj(String bcxdsj) {
+		this.bcxdsj = bcxdsj;
+	}
+	public String getBcztz() {
+		return bcztz;
+	}
+	public void setBcztz(String bcztz) {
+		this.bcztz = bcztz;
+	}
+	public String getBccgs() {
+		return bccgs;
+	}
+	public void setBccgs(String bccgs) {
+		this.bccgs = bccgs;
+	}
+	public String getBcstz() {
+		return bcstz;
+	}
+	public void setBcstz(String bcstz) {
+		this.bcstz = bcstz;
 	}
 	
 
