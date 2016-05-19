@@ -61,9 +61,13 @@
 					});
 				}
 			});
-			queryZjxd1(parent.YMLib.Var.xmbm);
+			queryZjxdgsdzh(parent.YMLib.Var.xmbm);
 		});
 	</script>
+	<style type="text/css">
+	/* 控制input标签没有边界  */
+	input{outline:medium;border:none;}
+	</style>
 </head>
 <body style="font-size: 12px;">
 	<div>

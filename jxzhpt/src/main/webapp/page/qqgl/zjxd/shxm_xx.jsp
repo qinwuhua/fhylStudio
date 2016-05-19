@@ -58,7 +58,7 @@
 					});
 				}
 			});
-			queryZjxd1(parent.YMLib.Var.xmbm);
+			queryZjxdgsdzh(parent.YMLib.Var.xmbm);
 		});
 	</script>
 </head>

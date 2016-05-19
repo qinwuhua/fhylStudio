@@ -1230,9 +1230,9 @@
     	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs,(sum(tz)-sum(bzcs)) dftz,'0' sbz,'0' sjl from(
 			select t.xmbm,t.tz ,sum(lx.lc) lc,sum(t.bzys) bzcs from lxgsdgz t left join 
 			(select  xmid,jsxz,
-					(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
-					  when jsxz like '%新建%' then to_number(xjlc)
-					    else to_number(lc)
+					(case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+					  when jsxz like '%新建%' then xjlc
+					    else lc
 <!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
 		end) lc from lxsh_lx where jdbs='0' 
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
