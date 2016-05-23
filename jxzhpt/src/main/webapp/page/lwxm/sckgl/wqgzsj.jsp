@@ -316,14 +316,14 @@ function sckglWqgz(){
 					if($.cookie("unit2").length==7)
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					//'<span style="color:grey;">编辑</span>  '+
-					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<span style="color:grey;">编辑</span>  '+
+// 					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<span style="color:grey;">删除</span>';
 					else{
 						return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						//'<span style="color:grey;">编辑</span>  '+
-						'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+						'<span style="color:grey;">编辑</span>  '+
+// 						'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<span style="color:grey;">删除</span>';
 					}
 				}
