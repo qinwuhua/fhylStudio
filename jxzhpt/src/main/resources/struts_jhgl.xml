@@ -199,6 +199,8 @@
 		<action name="loadwqgzsckbyid" class="planwqgzsjController" method="loadwqgzsckbyid"></action>
 		<action name="loadwqgzxmkbyid" class="planwqgzsjController" method="loadwqgzxmkbyid"></action>
 		<action name="loadwqgzsbzbyid" class="planwqgzsjController" method="loadwqgzsbzbyid"></action>
+		<action name="loadwqgzsjlbyid" class="planwqgzsjController" method="loadwqgzsjlbyid"></action>
+		
 		<action name="editwqgzsj" class="planwqgzsjController" method="editwqgzsj"></action>
 		<action name="selectwqjhksb" class="planwqgzsjController" method="selectwqjhksb"></action>
 		<action name="loadwqjhksbCount" class="planwqgzsjController" method="loadwqjhksbCount"></action>

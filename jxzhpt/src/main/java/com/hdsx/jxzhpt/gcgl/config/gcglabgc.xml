@@ -270,17 +270,17 @@
 			${gydw}
 	</if>
 	<if test="xzqhdm != null and  xzqhdm != ''">
-					${xzqhdm}
-			</if>
-			<if test="jsdj != null and  jsdj != ''">
-					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
-			</if>
-			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
-			</if>
-			<if test="tsdq != null and  tsdq != ''">
-					and t3.tsdq like '%'||trim(#{tsdq})||'%'
-			</if>
+			${xzqhdm}
+	</if>
+	<if test="jsdj != null and  jsdj != ''">
+			and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
+	</if>
+	<if test="gldj != null and  gldj != ''">
+			and t3.lxbm like trim(#{gldj})||'%'
+	</if>
+	<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
 	</if>

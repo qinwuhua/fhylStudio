@@ -1358,4 +1358,16 @@ public class XtglController extends BaseActionSupport{
 		
 	}
 	
+	//qwh添加项目筛选
+	public void insertxmsx(){
+		ResponseUtils.write(getresponse(), ""+xtglServer.insertxmsx(param));
+	}
+	//查询项目筛选
+	public void selectXmsx(){
+		try {
+			JsonUtils.write(xtglServer.selectXmsx(), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -934,4 +934,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public int selectgsdgzListCount(Lxsh lxsh) {
 		return queryOne("selectgsdgzListCount", lxsh);
 	}
+
+	@Override
+	public List<Wqbzbz> selectWqjlbz() {
+		return queryList("selectWqjlbz");
+	}
 }

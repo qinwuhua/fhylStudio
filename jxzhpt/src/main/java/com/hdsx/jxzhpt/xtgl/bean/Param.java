@@ -24,7 +24,78 @@ public class Param implements Serializable{
 	private String state;
 	private String bz;
 	private String desr;
+	private String sfwn;
+	private String sfserw;
+	private String nd;
+	private String sfgj;
+	private String sflm;
+	private String sfxj;
+	private String sfzh;
+	private String sfdx;
+	private String sfzx;
+	private String sfyfx;
 	
+	
+	public String getSfwn() {
+		return sfwn;
+	}
+	public void setSfwn(String sfwn) {
+		this.sfwn = sfwn;
+	}
+	public String getSfserw() {
+		return sfserw;
+	}
+	public void setSfserw(String sfserw) {
+		this.sfserw = sfserw;
+	}
+	public String getNd() {
+		return nd;
+	}
+	public void setNd(String nd) {
+		this.nd = nd;
+	}
+	public String getSfgj() {
+		return sfgj;
+	}
+	public void setSfgj(String sfgj) {
+		this.sfgj = sfgj;
+	}
+	public String getSflm() {
+		return sflm;
+	}
+	public void setSflm(String sflm) {
+		this.sflm = sflm;
+	}
+	public String getSfxj() {
+		return sfxj;
+	}
+	public void setSfxj(String sfxj) {
+		this.sfxj = sfxj;
+	}
+	public String getSfzh() {
+		return sfzh;
+	}
+	public void setSfzh(String sfzh) {
+		this.sfzh = sfzh;
+	}
+	public String getSfdx() {
+		return sfdx;
+	}
+	public void setSfdx(String sfdx) {
+		this.sfdx = sfdx;
+	}
+	public String getSfzx() {
+		return sfzx;
+	}
+	public void setSfzx(String sfzx) {
+		this.sfzx = sfzx;
+	}
+	public String getSfyfx() {
+		return sfyfx;
+	}
+	public void setSfyfx(String sfyfx) {
+		this.sfyfx = sfyfx;
+	}
 	public String getParent() {
 		return parent;
 	}

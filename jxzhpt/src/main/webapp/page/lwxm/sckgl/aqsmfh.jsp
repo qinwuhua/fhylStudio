@@ -120,11 +120,20 @@ $("#grid").datagrid({
 						'<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delone('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';			
 					}else{
-						return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
- 						'<span style="color:grey;">编辑</span>'+
-// '<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<span style="color:grey;">删除</span>';			
+						if($.cookie("unit2").length==7){
+							return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+// 	 						'<span style="color:grey;">编辑</span>'+
+							'<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<span style="color:grey;">删除</span>';	
+						}else{
+							return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href=javascript:ckxmxx('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+// 	 						'<span style="color:grey;">编辑</span>'+
+	'<a href=javascript:edit('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+							'<span style="color:grey;">删除</span>';		
+						}
+							
 					} 
 				}else{
 					if(row.tbdwdm=='36' || row.shzt!='已审核'){

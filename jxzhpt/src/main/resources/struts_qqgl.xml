@@ -122,6 +122,7 @@
 	       <action name="xgybmrsjd" class="lxshController" method="xgybmrsjd"/> 
 	       <action name="selectYbmrsjd" class="lxshController" method="selectYbmrsjd"/> 
 	      <action name="selectWqbzbz" class="lxshController" method="selectWqbzbz"/>
+	      <action name="selectWqjlbz" class="lxshController" method="selectWqjlbz"/>
 	      <action name="tjwqbzbz" class="lxshController" method="tjwqbzbz"/>
 	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>
 	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
@@ -240,6 +241,8 @@
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
 		<action name="selectlxbgList" class="jhshController" method="selectlxbgList"></action>
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
+		<action name="querywnxx" class="jhshController" method="querywnxx"></action>
+		
 		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
@@ -262,6 +265,8 @@
 		<action name="queryXmqq" class="lxshController" method="queryXmqq"></action>
 		<action name="ghksjfxXjAndGj" class="wnjhController" method="ghksjfxXjAndGj"/>
 		<action name="ghkfxSelect" class="wnjhController" method="ghkfxSelect"/>
+		<action name="getWninfobyid" class="wnjhController" method="getWninfobyid"/>
+		
 	<!-- rh -->
 	
 	    <action name="insertYhzx" class="xmsqController" method="insertYhzx"></action>

@@ -1400,5 +1400,15 @@
 		) t1
 	</select>
 	
+	
+	<select id="getWngjinfobyid" parameterType="String" resultType="lxsh">
+		select * from wnjh_sjgz where id=#{value}
+	</select>
+	<select id="getWnlminfobyid" parameterType="String" resultType="lxsh">
+		select * from wnjh_lmgz where id=#{value}
+	</select>
+	<select id="getWnxjinfobyid" parameterType="String" resultType="lxsh">
+		select * from wnjh_xj where id=#{value}
+	</select>
 </mapper>
 

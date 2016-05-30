@@ -32,17 +32,16 @@ function loadTable(){
 	$("#wqbztable").html("");
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/qqgl/selectWqbzbz.do',
+		url:'/jxzhpt/qqgl/selectWqjlbz.do',
 		dataType:'json',
 		data:"",
 		success:function(data){
 			var tbody="";
 			for(var i=0;i<data.length;i++){
 				array[i]=data[i];
-				tbody=tbody+"<tr><td><a href='#' onclick=edit('"+i+"')>编辑</a>   <a href='#' onclick=del('"+data[i].id+"')>删除</a>"
-				+"<td>"+data[i].qllx+"</td>"+"<td>"+data[i].jsxz+"</td>"
-				+"<td>"+data[i].jsdj1+"</td>"+"<td>"+data[i].zdkd+"</td>"
-				+"<td>"+data[i].bzje+"</td>"+"<td>"+data[i].bzjb+"</td></tr>"
+				tbody=tbody+"<tr><td>"+data[i].qllx+"</td>"+"<td>"+data[i].minqc+"</td>"
+				+"<td>"+data[i].maxqc+"</td>"+"<td>"+data[i].qk+"</td>"
+				+"<td>"+data[i].jsdj1+"</td>"+"<td>"+data[i].jlzj+"</td></tr>"
 				;
 			}
 			$("#wqbztable").html(tbody);
@@ -79,13 +78,13 @@ function del(id){
     </div>
     <div style="height:450px;margin-top:10px;margin-left:10px;overflow: auto;" >
     	<table width="100%" class="bgg" border="0" cellpadding="0" cellspacing="1">
-    		<tr style="font-weight:700;font-size:16px;"><td width="16%">操作</td><td width="14%">桥梁类型</td><td width="14%">建设性质</td><td width="14%">行政等级</td><td width="14%">最大宽度</td><td width="14%">补助金额(元/每平方米)</td><td width="14%">补助级别</td></tr>
+    		<tr style="font-weight:700;font-size:16px;"><td width="14%">桥梁类型</td><td width="14%">最小桥长</td><td width="14%">最大桥长</td><td width="14%">最大宽度</td><td width="14%">行政等级</td><td width="14%">奖励金额(元/每平方米)</td></tr>
     		<tbody id="wqbztable"></tbody>
     	</table>
-    	<div style="width:80%;margin-top:10px;text-align:center;">
+    	<!-- <div style="width:80%;margin-top:10px;text-align:center;">
     		<a id="tjwqbz" iconCls="icon-add" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false"  onclick="YMLib.UI.createWindow('lxxx','危桥补助标准添加','wqbzbz_add.jsp','lxxx',400,300);">添    加</a>
-<!--     		<a id="dwgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false" >保　存</a> -->
-    	</div>
+    		<a id="dwgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false" >保　存</a>
+    	</div> -->
     </div>
 </div>
 </body>

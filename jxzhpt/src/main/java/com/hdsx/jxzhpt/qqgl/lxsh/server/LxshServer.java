@@ -224,4 +224,6 @@ public interface LxshServer {
 	List<Excel_list> querylxshgsd(Lxsh lxsh);
 
 	List<Excel_list> querykxxgsd(Lxsh lxsh);
+
+	List<Wqbzbz> selectWqjlbz();
 }

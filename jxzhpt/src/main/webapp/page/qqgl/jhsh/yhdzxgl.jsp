@@ -151,6 +151,15 @@
 						}
 					}
 				},
+				{field:'wnxmk',title:'五年项目库',width:70,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openwnxmk('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
+					}
+				},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
 				{field:'xzqh',title:'行政区划',width:60,align:'center'},
 				{field:'xmmc',title:'项目名称',width:150,align:'center',
@@ -301,7 +310,7 @@
 			var obj=$("#grid").datagrid('getRows')[index];
 			
 			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
-			alert(datas);
+			//alert(datas);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -331,26 +340,20 @@
 						//alert();
 						for(var i=0;i<msg.lx.length;i++){
 							var xmlx='';
-							if(msg.lx[i].xmid.substr(10,1)==1){
-								xmlx='改建';
+							if(msg.lx[i].jsxz!='改建' && msg.lx[i].jsxz!='新建' && msg.lx[i].jsxz!='路面改造' && msg.lx[i].jsxz!='恢复重建' && msg.lx[i].jsxz!='大修' && msg.lx[i].jsxz!='中修'){
+								if(msg.lx[i].xmid.substr(10,1)==4)
+								xmlx='预防性养护';
+								else
+									xmlx=msg.lx[i].jsxz;
+							}else{
+								xmlx=msg.lx[i].jsxz;
 							}
-							if(msg.lx[i].xmid.substr(10,1)==2){
-								xmlx='路面改造';
-							}
-							if(msg.lx[i].xmid.substr(10,1)==3){
-								xmlx='新建';
-							}
-							if(msg.lx[i].xmid.substr(10,1)==4){
-								xmlx=msg.lx[i].xjsdj;
-							}
-							if(msg.lx[i].xmid.substr(10,1)==5){
-								xmlx='灾毁重建';
-							}
+							
 							var lc=0;
 							
 							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
 							lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
-							
+
 							//Math.abs(lc/1000);
 							xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
 							

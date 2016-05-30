@@ -353,4 +353,23 @@
 	<select id="createMenu" parameterType="unit" resultType="treenode">
 		select * from (select t.*,t.name text,url attributes from xtgl_resource t where t.id like #{parent}||'%') where id in (${id}) order by id
 	</select>
+	<update id="insertxmsx" parameterType="param">
+		update XTGL_XMSS
+    <set >
+      <if test="sfwn != null" >SFWN = #{sfwn},</if>
+      <if test="sfserw != null" >SFSERW = #{sfserw},</if>
+      <if test="nd != null" >ND = #{nd},</if>
+      <if test="sfgj != null" >SFGJ = #{sfgj},</if>
+      <if test="sflm != null" >SFLM = #{sflm},</if>
+      <if test="sfxj != null" >SFXJ = #{sfxj},</if>
+      <if test="sfzh != null" >SFZH = #{sfzh},</if>
+      <if test="sfdx != null" >SFDX = #{sfdx},</if>
+      <if test="sfzx != null" >SFZX = #{sfzx},</if>
+      <if test="sfyfx != null" >SFYFX = #{sfyfx},</if>
+    </set>
+    
+	</update>
+	<select id="selectXmsx" parameterType="String" resultType="param">
+		select * from XTGL_XMSS
+	</select>
 </mapper>

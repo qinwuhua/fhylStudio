@@ -199,6 +199,23 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		return jck;
 	}
 	
+	//省奖励
+	@Override
+	public Planwqgzsj loadwqgzsjlbyid(String id) {
+		Planwqgzsj jck=queryOne("cxtiaojian", id);
+		if(jck!=null){
+			Wqbzbz w=queryOne("cxwqjlbz", jck);
+			if(w != null)  jck.setNsqsjl(w.getJlzj());
+			else jck.setNsqsjl("0");
+			
+			return jck;
+		}else{
+			Planwqgzsj j=new Planwqgzsj();
+			j.setNsqsjl("0");
+			return j;
+		}
+	}
+	
 	@Override
 	public boolean editwqgzsj(Planwqgzsj planwqgzsj) {
 		return update("editwqgzsj", planwqgzsj)==1;

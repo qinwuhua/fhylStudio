@@ -389,20 +389,27 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzzq',title:'债券',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzdk',title:'贷款',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzjl',title:'奖励',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzcgs',title:'车购税',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzgz',title:'国债',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzsz',title:'省债',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzzq',title:'债券',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzdk',title:'贷款',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzjl',title:'奖励',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzdfzc',title:'地方自筹',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'bzyhdk',title:'银行贷款',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
+				{field:'zyjsnr',title:'主要建设内容',width:160,align:'center',editor:{type:'text',options:{required:false}}},
+				{field:'xzscnl',title:'新增能力',width:160,align:'center',editor:{type:'text',options:{required:false}}}
+				
+				/* ,
+				
+				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{required:false}}},
 				{field:'tbdw',title:'填报单位',width:100,align:'center',
 					formatter: function(value,row,index){
 		        		return $.cookie('truename');
-		        	}}
+		        	}} */
 			    ]],
 			    onClickCell: function (rowIndex, field, value) {
 // 			    	alert(field);

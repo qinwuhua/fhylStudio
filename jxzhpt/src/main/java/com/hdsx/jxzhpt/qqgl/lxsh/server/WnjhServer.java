@@ -57,5 +57,8 @@ public interface WnjhServer {
 	int selectGsdwnjhCount(Lxsh lxsh);
 	Lxsh showgsdtj(Lxsh lxsh);
 	List<Excel_list> querywnjhGsdgz(Lxsh lxsh);
+	Lxsh getWngjinfobyid(String xmbm);
+	Lxsh getWnlminfobyid(String xmbm);
+	Lxsh getWnxjinfobyid(String xmbm);
 
 }

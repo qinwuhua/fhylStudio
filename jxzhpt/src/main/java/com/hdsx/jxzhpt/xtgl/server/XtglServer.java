@@ -174,4 +174,8 @@ public interface XtglServer {
 	List<Param> selQxByUser1(Param param);
 
 	Master selectPwd(String temp);
+
+	boolean insertxmsx(Param param);
+
+	Param selectXmsx();
 }

@@ -56,14 +56,14 @@ function loadJhkxx(){
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
 			 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
-			 $("#jhjsxz").combobox('setValue',msg.jhjsxz);
+			 //$("#jhjsxz").combobox('setValue',msg.jhjsxz);
 			 $("#sbnf").combobox('setValue',msg.sbnf);
 			 $("#jhkgsj").combobox('setValue',msg.jhkgsj);
 			 $("#jhwgsj").combobox('setValue',msg.jhwgsj);
-			 $("#sjdw").val(msg.sjdw);
-			 $("#sjpfdw").val(msg.sjpfdw);
-			 $("#jhpfwh").val(msg.pfwh);
-			 $("#pfsj").datebox('setValue',msg.pfsj);
+			 //$("#sjdw").val(msg.sjdw);
+			// $("#sjpfdw").val(msg.sjpfdw);
+			 //$("#jhpfwh").val(msg.pfwh);
+			// $("#pfsj").datebox('setValue',msg.pfsj);
 			 radioChecked("sfsqablbz",msg.sfsqablbz);
 			if(msg.sfsqablbz=="否"){
 				$('#ablbzwh').attr("disabled",'true');
@@ -76,16 +76,20 @@ function loadJhkxx(){
 				 $("#shengbz").val(msg.shengbz);
 			 }
 			 $("#dfzc").html(msg.jhsydfzcje);
-			 $("#qlszxz").val(msg.qlszxz);
+			 //$("#qlszxz").val(msg.qlszxz);
 			 $("#qljsgm").val(msg.qljsgm);
 			 $("#zyjsnr").val(msg.zyjsnr);
 			 $("#jhbz").val(msg.bz);
 			 $("#jhqlqc").val(msg.jhqlqc);
 			 $("#jhqlqk").val(msg.jhqlqk);
-			 bzSum();
+			
+			 $("#nsqsjl").val(msg.nsqsjl);
+			 $("#shijbz").val(msg.shijbz);
+			 $("#xianjbz").val(msg.xianjbz);
+			 
 			// loadSbz(msg.sckid);
 			sckid=msg.sckid;
-			loadBz();
+			
 		 }
 	});
 }
@@ -126,7 +130,7 @@ function loadSbz(){
 		 type : "POST",
 		 url : "/jxzhpt/jhgl/loadwqgzsbzbyid.do",
 		 dataType : 'json',
-		 data : 'id='+sckid+'&jsxz='+$("#jhjsxz").combobox('getValue'),
+		 data : 'id='+sckid+'&jsxz='+$("#jsxz").html(),
 		 success : function(item){
 			 sbz=Math.round(parseFloat(item.shengbz));
 			 
@@ -138,7 +142,7 @@ function loadBbz(id){
 	$.ajax({
 		 type:'post',
 			url:'/jxzhpt/jhgl/lwBzbz.do',
-			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jhjsxz").combobox('getValue'),
+			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jsxz").html(),
 			dataType:'json',
 			async:false,
 			success:function(data){
@@ -248,6 +252,9 @@ function loadSckxx(id){
 				$("#nsqbbz").html(item.nsqbbz);$("#rksj").html(item.rksj);$("#cjqz").html(item.cjqz);
 				$("#scthdj").html(item.scthdj);$("#qljc").html(item.qljc);$("#ydgldj").html(item.ydgldj);
 				$("#sjsd").html(item.sjsd);$("#scsqs").html(item.scsqs);$("#scxsq").html(item.scxsq);$("#scszxz").html(item.scszxz);
+				bzSum();
+				loadBz();
+				setshengjl();
 		 }
 	});
 }
@@ -363,6 +370,19 @@ function setshengbz(){
 		bzSum();
 	}
 }
+//查询省奖励资金
+function setshengjl(){
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzsjlbyid.do",
+		 dataType : 'json',
+		 data : 'id='+sckid,
+		 success : function(item){
+			 $("#nsqsjl").val(item.nsqsjl);
+		 }
+	 });
+}
+
 
 function editWqgz(){
 	if($("#shengbz").val()==''||$("#pfztz").val()==''){
@@ -390,12 +410,15 @@ function editWqgz(){
 		shengbz=$("#shengbz").val();
 	}
 	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
-	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')+"&planwqgzsj.sjdw="+$("#sjdw").val()+"&planwqgzsj.sjpfdw="+$("#sjpfdw").val()
-	+"&planwqgzsj.pfwh="+$("#jhpfwh").val()+"&planwqgzsj.pfsj="+$("#pfsj").datebox('getValue')+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
+	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')
+	+"&planwqgzsj.sjdw="+''+"&planwqgzsj.sjpfdw="+''
+	+"&planwqgzsj.pfwh="+''+"&planwqgzsj.pfsj="+''
+	+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
 	+"&planwqgzsj.ablbzsqwh="+$("#ablbzwh").val()+"&planwqgzsj.pfztz="+$("#pfztz").val()+"&planwqgzsj.shengbz="+shengbz+"&planwqgzsj.jhsybzje="+jhsybzje+"&planwqgzsj.jhsydfzcje="+$("#dfzc").html()
-	+"&planwqgzsj.qlszxz="+$("#qlszxz").val()+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
-	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val()+"&planwqgzsj.jhjsxz="+$("#jhjsxz").combobox('getValue')
-	+"&planwqgzsj.jhqlqc="+$("#jhqlqc").val()+"&planwqgzsj.jhqlqk="+$("#jhqlqk").val();
+	+"&planwqgzsj.qlszxz="+''+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
+	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val()+"&planwqgzsj.jhjsxz="+$("#jsxz").html()
+	+"&planwqgzsj.jhqlqc="+$("#jhqlqc").val()+"&planwqgzsj.jhqlqk="+$("#jhqlqk").val()
+	+"&planwqgzsj.nsqsjl="+$("#nsqsjl").val()+"&planwqgzsj.shijbz="+$("#shijbz").val()+"&planwqgzsj.xianjbz="+$("#xianjbz").val();
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/jhgl/editwqgzsj.do',
@@ -772,7 +795,7 @@ text-decoration:none;
 					<input id="jhwgsj" type="text" class="easyui-combobox"/>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<!-- <tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="sjdw" type="text" /></td>
@@ -783,23 +806,22 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jhpfwh" type="text" />
 				</td>
-			</tr>
+			</tr> -->
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+				<!-- <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="pfsj" type="text" class="easyui-datebox"/></td>
+					<input id="pfsj" type="text" class="easyui-datebox"/></td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					长<input onchange="loadBz()" type="text" id="jhqlqc" style="width: 53px"/> 宽<input onchange="loadBz()" type="text" id="jhqlqk" style="width: 53px"/></td>	
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td> -->
+				<!-- <td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jhjsxz" class="easyui-combobox" data-options="panelHeight:'50'" >
 						<option value="加固改造" selected>加固改造</option>
 						<option value="拆除重建">拆除重建</option>
 					</select>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
+				</td> -->
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="pfztz" onchange="bzSum()"/></td>
@@ -807,13 +829,13 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="radio" name="sfsqablbz" onchange="ablwhDis('是')" id="sfsqablbz0" value="是"/>是
 					<input type="radio" name="sfsqablbz" onchange="ablwhDis('否')" id="sfsqablbz1" value="否"/>否</td>
+			</tr>
+			<tr style="height: 30px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="ablbzwh" style="display:;"/>
 				</td>
-				
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用部(省)补助金额(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id='shengbz'  onchange="setshengbz()"/><br><span id="trshengbz" style="color: red"></span></td>
@@ -821,9 +843,22 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qlszxz" /></td>
+					<input type="text" class='easyui-numberbox' id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市级补助资金(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" class="easyui-numberbox" id='shijbz'>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县级自筹(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" class="easyui-numberbox" id='xianjbz'>
+				</td>
+				<!-- <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qlszxz" /></td> -->
 			</tr>
 			<tr id="sftr" style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">计划类别：</td>

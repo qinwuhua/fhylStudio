@@ -100,6 +100,9 @@
 	<action name="createMenu" class="xtglController" method="createMenu"></action>
 	<action name="getQxfromSession" class="xtglController" method="getQxfromSession"></action>
 	<action name="urllogin" class="xtglController" method="urllogin"></action>
+	<action name="insertxmsx" class="xtglController" method="insertxmsx"></action>
+	<action name="selectXmsx" class="xtglController" method="selectXmsx"></action>
+	
 	
  </package>
 </struts>

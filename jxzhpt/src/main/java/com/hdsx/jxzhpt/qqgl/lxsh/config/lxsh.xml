@@ -1335,6 +1335,8 @@
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
-	
+	<select id="selectWqjlbz" resultType="wqbzbz">
+		select * from xtgl_wqjlbz 
+	</select>
 </mapper>
 

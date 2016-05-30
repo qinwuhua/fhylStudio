@@ -1055,18 +1055,18 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void exportJhshSh(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[18];
-		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
-		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
-		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-		title[3]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)3), null,20);
-		title[4]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)4), null,20);
-		title[5]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)5), null,20);
-		title[6]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)6), null,20);
-		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,20);
-		title[8]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)8), null,20);
-		title[9]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)9), null,20);
-		title[10]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)10), null,20);
-		title[11]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)11), null,20);
+		title[0]=new ExcelTitleCell("项目名称",true, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("项目编码",true, new ExcelCoordinate(0, (short)1), null,20);
+		title[2]=new ExcelTitleCell("行政区划",true, new ExcelCoordinate(0, (short)2), null,20);
+		title[3]=new ExcelTitleCell("开工时间",true, new ExcelCoordinate(0, (short)3), null,20);
+		title[4]=new ExcelTitleCell("完工时间",true, new ExcelCoordinate(0, (short)4), null,20);
+		title[5]=new ExcelTitleCell("工期（月）",true, new ExcelCoordinate(0, (short)5), null,20);
+		title[6]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)6), null,20);
+		title[7]=new ExcelTitleCell("计划下达文号",true, new ExcelCoordinate(0, (short)7), null,20);
+		title[8]=new ExcelTitleCell("计划下达时间",true, new ExcelCoordinate(0, (short)8), null,20);
+		title[9]=new ExcelTitleCell("批复总投资",true, new ExcelCoordinate(0, (short)9), null,20);
+		title[10]=new ExcelTitleCell("省补助资金",true, new ExcelCoordinate(0, (short)10), null,20);
+		title[11]=new ExcelTitleCell("部补助资金",true, new ExcelCoordinate(0, (short)11), null,20);
 		title[12]=new ExcelTitleCell("原路线编号",false, new ExcelCoordinate(0, (short)12), null,20);
 		title[13]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)13), null,20);
 		title[14]=new ExcelTitleCell("止点名称",false, new ExcelCoordinate(0, (short)14), null,20);
@@ -1436,6 +1436,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryLsxx(){
 		try{
 			JsonUtils.write(jhshServer.queryLsxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void querywnxx(){
+		try{
+			JsonUtils.write(jhshServer.querywnxx(jhsh), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -2022,14 +2030,20 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	
 	public void planxdAll(){
-		JSONArray ja = JSONArray.fromObject(json_data);
-		List<Jhsh> list=(List<Jhsh>)JSONArray.toList(ja, new Jhsh(),new JsonConfig());
-		for (Jhsh jhsh : list) {
-			jhsh.setJhxdwh(jhxdwh);
-			jhsh.setBztbsj(bztbsj);
+		
+		try {
+			JSONArray ja = JSONArray.fromObject(json_data);
+			List<Jhsh> list = (List<Jhsh>) JSONArray.toList(ja, new Jhsh(),
+					new JsonConfig());
+			for (Jhsh jhsh : list) {
+				jhsh.setJhxdwh(jhxdwh);
+				jhsh.setBztbsj(bztbsj);
+			}
+			boolean bl = jhshServer.planxdAll(list);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		boolean bl=jhshServer.planxdAll(list);
-		ResponseUtils.write(getresponse(), bl+"");
 	}
 	
 	public void planxdhzadd(){

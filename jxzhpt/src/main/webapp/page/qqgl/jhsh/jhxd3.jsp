@@ -86,13 +86,7 @@
 			});
 		}
 		function updataJhsh(){
-			if($("#gldj1").combobox('getValue')==''||$("#gldj1").combobox('getValue')==null)
-			{
-				alert("请选择行政等级");
-				return;
-			}else{
-				$("#gldj").val($("#gldj1").combobox('getValue'));
-			}
+			
 			var result =true;
 			result = validateText('pfztz','number',result);
 			//result = validateText('bbzzj','number',result);
@@ -192,28 +186,48 @@
 								<input id="qt" name="qt" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">行政等级：</font></b>
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">地方自筹：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input type="text" id='gldj1' class="easyui-combobox"  style="width: 105px" data-options="panelHeight:'50'">
-								<input id="gldj" name="gldj" type="hidden"/>
+								<input type="text" id='dfzc' name="dfzc" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" data-options="panelHeight:'50'">
+							</td>
+						</tr>
+						
+						<tr style="height: 30px;font-size: 10px;">
+							
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">银行贷款：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input type="text" id='yhdk' name="yhdk" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" data-options="panelHeight:'50'">
 								
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
+							</td>
+							<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
 							</td>
 							
 						</tr>
 						
 						<tr style="height: 30px;font-size: 10px;">
-							
-							
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
+						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">主要建设内容：</font></b>
 							</td>
-							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
+							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="zyjsnr" name="zyjsnr" type="text" style="width: 70%"/>
 							</td>
-							
-							
 						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<b><font color="#009ACD" style="cursor: hand; font-size: 12px">新增能力：</font></b>
+							</td>
+							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+									<input id="xzscnl" name="xzscnl" type="text" style="width: 70%"/>
+							</td>
+						</tr>
+						
 						<!-- 
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

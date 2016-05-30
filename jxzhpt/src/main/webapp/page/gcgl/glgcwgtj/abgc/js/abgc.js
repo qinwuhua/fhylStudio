@@ -108,10 +108,11 @@ function showtj(xmlx){
 	"&xmnf="+xmnf+
 	'&xzqh='+xzqhstr+
 	'&gcglabgc.xmlx='+xmlx+
-	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValue')+
+	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValues')+
 	'&gcglabgc.tsdq='+$("#ddlTSDQ").combobox('getText')+
 	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
 	'&gcglabgc.jgys='+$("#jgys").combobox('getValue');
+	
 	$.ajax({
 		data:data,
 		type:'post',
@@ -178,7 +179,7 @@ function showAll(){
 	    	xmnf:xmnf,
 	    	xzqh:xzqhstr,
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues'),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.jgys':$("#jgys").combobox('getValue')
 		},
@@ -249,7 +250,7 @@ function showafAll(){
 	    	xmnf:xmnf,
 	    	xzqh:xzqhstr,
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues'),
 	    	'gcglabgc.xmlx':'af',
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.jgys':$("#jgys").combobox('getValue')

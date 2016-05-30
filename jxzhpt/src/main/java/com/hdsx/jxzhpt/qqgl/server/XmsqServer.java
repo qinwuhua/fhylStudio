@@ -272,4 +272,6 @@ public interface XmsqServer {
 	 */
 	public List<Object> queryYhzxExport(Xmsq xmsq);
 	public List<Lx> queryLslist(Xmsq xmsq);
+	public List<Lx> queryLslistwnxmk(Xmsq xmsq);
+	public List<Lx> queryLslistserw(Xmsq xmsq);
 }

@@ -24,7 +24,35 @@ public class Wqbzbz implements Serializable {
 	private String nf;
 	private String yf1;
 	private String nf1;
+	private String minqc;
+	private String maxqc;
+	private String qk;
+	private String jlzj;
 	
+	public String getMinqc() {
+		return minqc;
+	}
+	public void setMinqc(String minqc) {
+		this.minqc = minqc;
+	}
+	public String getMaxqc() {
+		return maxqc;
+	}
+	public void setMaxqc(String maxqc) {
+		this.maxqc = maxqc;
+	}
+	public String getQk() {
+		return qk;
+	}
+	public void setQk(String qk) {
+		this.qk = qk;
+	}
+	public String getJlzj() {
+		return jlzj;
+	}
+	public void setJlzj(String jlzj) {
+		this.jlzj = jlzj;
+	}
 	public String getYf1() {
 		return yf1;
 	}

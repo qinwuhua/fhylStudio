@@ -116,7 +116,14 @@ public class Lx {
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
 	private String xmmc;//项目名称
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getJhyilc() {
 		return jhyilc;
 	}

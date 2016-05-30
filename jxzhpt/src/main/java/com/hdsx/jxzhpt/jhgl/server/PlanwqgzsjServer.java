@@ -95,5 +95,7 @@ public interface PlanwqgzsjServer {
 	boolean thtz1(Planwqgzsj planwqgzsj);
 
 	List<Excel_list> selectwqjhexcel(Planwqgzsj planwqgzsj);
+
+	Planwqgzsj loadwqgzsjlbyid(String id);
 	
 }

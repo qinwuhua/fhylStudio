@@ -479,6 +479,16 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void loadwqgzsjlbyid(){
+		try{
+			System.out.println(id);
+			Planwqgzsj p = planwqgzsjServer.loadwqgzsjlbyid(id);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void editwqgzsj(){
 		if(planwqgzsj.getAblbzsqwh()==null)
 			planwqgzsj.setAblbzsqwh("");

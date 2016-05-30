@@ -281,6 +281,84 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		queryLsjlList(result, lx);
 		return result;
 	}
+	
+	@Override
+	public List<Lx> queryLslistwnxmk(Xmsq xmsq) {
+		List<Lx> result =new ArrayList<Lx>();
+		Lx lx=new Lx();
+		lx.setLxbm(xmsq.getYlxbh());
+		lx.setQdzh(xmsq.getQdzh());
+		lx.setZdzh(xmsq.getZdzh());
+		queryLsjlListwnxmk(result, lx);
+		return result;
+	}
+	
+	@Override
+	public List<Lx> queryLslistserw(Xmsq xmsq) {
+		List<Lx> result =new ArrayList<Lx>();
+		Lx lx=new Lx();
+		lx.setLxbm(xmsq.getYlxbh());
+		lx.setQdzh(xmsq.getQdzh());
+		lx.setZdzh(xmsq.getZdzh());
+		queryLsjlListserw(result, lx);
+		return result;
+	}
+	
+	
+	private void queryLsjlListwnxmk(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		try {
+			List<Lx> queryList = queryList("queryLsjlListwnxmk", params);
+			boolean flag = true;
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = false;
+					}
+				}
+				if (flag){
+					result.add(queryList.get(i));
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void queryLsjlListserw(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		try {
+			List<Lx> queryList = queryList("queryLsjlListserw", params);
+			boolean flag = true;
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = false;
+					}
+				}
+				if (flag){
+					result.add(queryList.get(i));
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
 	private void queryLsjlList(List<Lx> result, Lx item) {
 		//查询原路线信息
 		List<Lx> ylx = queryList("queryYLx",item);

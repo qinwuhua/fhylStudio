@@ -227,7 +227,31 @@ public class Planwqgzsj implements Serializable{
 	private String xzxzh;
 	private String xlxmc;
 	
+	private String sfth;//是否通航    0不是  1 是
+	private String sfgz;//是否赣州    0不是  1 是
+	private String nsqsjl;//
+	private String shijbz;
+	private String xianjbz;
 	
+	
+	public String getNsqsjl() {
+		return nsqsjl;
+	}
+	public void setNsqsjl(String nsqsjl) {
+		this.nsqsjl = nsqsjl;
+	}
+	public String getShijbz() {
+		return shijbz;
+	}
+	public void setShijbz(String shijbz) {
+		this.shijbz = shijbz;
+	}
+	public String getXianjbz() {
+		return xianjbz;
+	}
+	public void setXianjbz(String xianjbz) {
+		this.xianjbz = xianjbz;
+	}
 	public String getScakjfl() {
 		return scakjfl;
 	}
@@ -1476,6 +1500,18 @@ public class Planwqgzsj implements Serializable{
 	}
 	public void setYjjgsj(String yjjgsj) {
 		this.yjjgsj = yjjgsj;
+	}
+	public String getSfth() {
+		return sfth;
+	}
+	public void setSfth(String sfth) {
+		this.sfth = sfth;
+	}
+	public String getSfgz() {
+		return sfgz;
+	}
+	public void setSfgz(String sfgz) {
+		this.sfgz = sfgz;
 	}
 	
 }

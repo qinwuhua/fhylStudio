@@ -84,6 +84,21 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./ybmrsjd.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010413',
+		title:'危桥奖励标准',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./wqjlbz.jsp'
+	});
+	
+	createMenu('LeftMenu',{
+		id:'menu_010414',
+		title:'项目筛选',
+		imgSrc:'../../images/bzbz.png',
+		renderTo:'left_menu1',
+		href:'./xmss.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

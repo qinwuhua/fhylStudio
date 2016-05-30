@@ -2876,7 +2876,14 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	public void selectWqjlbz(){
+		try {
+		List<Wqbzbz> list=lxshServer.selectWqjlbz();
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void tjwqbzbz(){
 		boolean bl=lxshServer.tjwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");

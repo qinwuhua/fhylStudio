@@ -1478,5 +1478,24 @@ public class WnjhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void getWninfobyid(){
+		try {
+			Lxsh l = null;
+			if ("改建".equals(xmlx)) {
+				l = wnjhServer.getWngjinfobyid(xmbm);
+			}
+			if ("路面改造".equals(xmlx)) {
+				l = wnjhServer.getWnlminfobyid(xmbm);
+			}
+			if ("新建".equals(xmlx)) {
+				l = wnjhServer.getWnxjinfobyid(xmbm);
+			}
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
 

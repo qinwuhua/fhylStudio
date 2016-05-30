@@ -4,11 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import net.sf.json.JSONArray;
+
+import org.apache.commons.beanutils.BeanComparator;
+import org.apache.commons.collections.comparators.ComparatorChain;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -21,7 +25,10 @@ import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
+import com.hdsx.jxzhpt.xtgl.server.XtglServer;
+import com.hdsx.jxzhpt.xtgl.server.impl.XtglServerImpl;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -126,45 +133,93 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		JsonUtils.write(result, getresponse().getWriter());
 	}
 	public void sfinsert1() throws IOException, Exception{
-		int flag = xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm());
-		List<Lx> lxs1=new ArrayList<Lx>();
-		if(flag>0){
-			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
-			result.put("result", "have");
-			for (Lx lx : lxs) {
-				if(lx.getXmid().equals(xmsq.getXmbm())){
-					lxs1.add(lx);
-					continue;
-				}
-				if(Integer.parseInt(lx.getXmid().substring(0, 4))>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
-					lxs1.add(lx);
+		//查询项目筛选
+		XtglServer x=new XtglServerImpl();
+		Param p = x.selectXmsx();
+		List<Lx> dlx=new ArrayList<Lx>();//用来删除
+		List<Lx> lxwn=new ArrayList<Lx>();
+		List<Lx> lxserw=new ArrayList<Lx>();
+		if("是".equals(p.getSfwn())){
+			lxwn=xmsqServer.queryLslistwnxmk(xmsq);
+		}
+		if("是".equals(p.getSfserw())){
+			lxserw=xmsqServer.queryLslistserw(xmsq);
+		}
+		
+		lxwn.addAll(lxserw);
+		
+		for (Lx lx : lxwn) {
+			if(Integer.parseInt(lx.getXmnf())>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
+				dlx.add(lx);
+				continue;
+			}
+			if(lx.getXmid().equals(xmsq.getXmbm())){
+				dlx.add(lx);
+				continue;
+			}
+			if(p.getNd().indexOf(lx.getXmnf())==-1){
+				dlx.add(lx);
+				continue;
+			}
+			if("否".equals(p.getSfgj())){
+				if("改建".equals(lx.getJsxz())){
+					dlx.add(lx);
 					continue;
 				}
 			}
-			lxs.removeAll(lxs1);
+			if("否".equals(p.getSflm())){
+				if("路面改造".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
+			if("否".equals(p.getSfxj())){
+				if("新建".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
+			if("否".equals(p.getSfzh())){
+				if("恢复重建".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
+			if("否".equals(p.getSfdx())){
+				if("大修".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
+			if("否".equals(p.getSfzx())){
+				if("中修".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
+			if("否".equals(p.getSfyfx())){
+				if(!"改建".equals(lx.getJsxz()) && !"路面改造".equals(lx.getJsxz()) && !"新建".equals(lx.getJsxz()) && !"恢复重建".equals(lx.getJsxz()) && !"大修".equals(lx.getJsxz()) && !"中修".equals(lx.getJsxz())){
+					dlx.add(lx);
+					continue;
+				}
+			}
 			
-			result.put("lx", lxs);
+		}
+		lxwn.removeAll(dlx);
+		
+		/*
+		ComparatorChain chain = new ComparatorChain();        
+		chain.addComparator(new BeanComparator("xmnf"),false);//true,fase正序反序
+		Collections.sort(lxwn,chain);*/
+		
+		if(lxwn.size()==0){
+			result.put("result", new Boolean(true).toString());
 		}else{
-			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
-			if(lxs.size()>1){
-				result.put("result", "have");
-				for (Lx lx : lxs) {
-					if(lx.getXmid().equals(xmsq.getXmbm())){
-						lxs1.add(lx);
-						continue;
-					}
-					if(Integer.parseInt(lx.getXmid().substring(0, 4))>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
-						lxs1.add(lx);
-						continue;
-					}
-				}
-				lxs.removeAll(lxs1);
-				result.put("lx", lxs);
-			}else{
-				result.put("result", new Boolean(true).toString());
-			}
+			result.put("result", "have");
+			result.put("lx", lxwn);
 		}
 		JsonUtils.write(result, getresponse().getWriter());
+		
 	}
 	public void insertXmsq() throws Exception{
 		try{
@@ -176,6 +231,15 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				lx.setJdbs("0");
 			}else{
 				lx.setJdbs("1");
+			}
+			if(xmsq.getXmlx()==4){
+				List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
+				if(l.size()>0){
+					xmsq.setWnxmk("是");
+				}else{
+					xmsq.setWnxmk("否");
+				}
+				
 			}
 			
 			lx.setJsjsdj(xmsq.getJsdj());
@@ -192,6 +256,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			//xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
 			list.add(xmsq);
 			if(xmsq.getXmlx()==4){
+				
 				b = xmsqServer.insertXmsqYhdzx(list);
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.insertXmsqSh(list);

@@ -578,4 +578,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public Master selectPwd(String temp) {
 		return queryOne("selectPwd", temp);
 	}
+
+	@Override
+	public boolean insertxmsx(Param param) {
+		return update("insertxmsx", param)==1;
+	}
+
+	@Override
+	public Param selectXmsx() {
+		return queryOne("selectXmsx", "");
+	}
 }

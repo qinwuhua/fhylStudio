@@ -190,8 +190,12 @@
 		select * from xmk_wqgz where id=#{value}
 	</select>
 	<select id="cxtiaojian" parameterType="string" resultType="planwqgzsj">
-		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
-		where sckid=#{value}
+		select sc.sckid,sc.jsxz,sc.sck_qlbh,decode(p.jhqlqk,null,sc.scqlqk,0,sc.scqlqk,p.jhqlqk) scqlqk,decode(p.jhqlqc,null,sc.scqlqc,0,sc.scqlqc,p.jhqlqc) scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,xm.thdj,xm.xzqhmc, 
+		(case when xm.xzqhdm like '3607%' then '1' else '0' end) sfgz,
+		(case when xm.thdj like '%Ⅴ%'or xm.thdj like  '%Ⅵ%' or xm.thdj like  '%Ⅶ%' or xm.thdj like  '%Ⅷ%' or xm.thdj like  '%Ⅸ%' then '1' else '0' end) sfth 
+
+		from plan_wqgz p left join sck_wqgz sc on p.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id 
+		where sc.sckid=#{value}
 	</select>
 	<select id="selectshibz" parameterType="planwqgzsj" resultType="wqbzbz">
 		select * from xtgl_wqbzbz where 1=1 and bzjb='市级'
@@ -238,6 +242,9 @@
 		<if test="jhqlqc!=null">,jhqlqc=#{jhqlqc}</if>
 		<if test="jhqlqk!=null">,jhqlqk=#{jhqlqk}</if>
 		<if test="jhjsxz!=null">,jhjsxz=#{jhjsxz}</if>
+		<if test="nsqsjl != null">,nsqsjl=#{nsqsjl}</if>
+		<if test="shijbz != null">,shijbz=#{shijbz}</if>
+		<if test="xianjbz != null">,xianjbz=#{xianjbz}</if>
 		where id=#{id}
 	</update>
 	<update id="editwqgzsj1" parameterType="planwqgzsj">
@@ -1500,4 +1507,32 @@
 	 <delete id="thtzxjhb" parameterType="planwqgzsj">
 	 	delete from  plan_wqgz_tz where id=#{id}
 	 </delete>
+	 
+	 
+	 <select id="cxwqjlbz" parameterType="planwqgzsj" resultType="wqbzbz">
+	 	select (
+	 	case when #{sfgz}='1' and #{sfth}='1' and qk is null then ((to_number(jlzj)+200)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='1' and #{sfth}='1' and qk is not null and to_number(#{scqlqk})&lt;=to_number(qk) then ((to_number(jlzj)+200)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='1' and #{sfth}='1' and qk is not null and to_number(#{scqlqk})>to_number(qk) then ((to_number(jlzj)+200)*to_number(#{scqlqc})*to_number(qk))/10000
+	 	
+	 	 when #{sfgz}='1' and #{sfth}='0' and qk is null then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='1' and #{sfth}='0' and qk is not null and to_number(#{scqlqk})&lt;=to_number(qk) then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='1' and #{sfth}='0' and qk is not null and to_number(#{scqlqk})>to_number(qk) then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(qk))/10000
+	 	
+	 	 when #{sfgz}='0' and #{sfth}='1' and qk is null then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='0' and #{sfth}='1' and qk is not null and to_number(#{scqlqk})&lt;=to_number(qk) then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='0' and #{sfth}='1' and qk is not null and to_number(#{scqlqk})>to_number(qk) then ((to_number(jlzj)+100)*to_number(#{scqlqc})*to_number(qk))/10000
+	 	
+	 	 when #{sfgz}='0' and #{sfth}='0' and qk is null then (to_number(jlzj)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='0' and #{sfth}='0' and qk is not null and to_number(#{scqlqk})&lt;=to_number(qk) then (to_number(jlzj)*to_number(#{scqlqc})*to_number(#{scqlqk}))/10000
+	 	 when #{sfgz}='0' and #{sfth}='0' and qk is not null and to_number(#{scqlqk})>to_number(qk) then (to_number(jlzj)*to_number(#{scqlqc})*to_number(qk))/10000
+	 	
+	 	 else 0 end
+	 	) jlzj from xtgl_wqjlbz where qllx like #{akjfl}
+	 	and to_number(minqc)&lt;=#{scqlqc} and to_number(maxqc)>=#{scqlqc} 
+	 	<if test="sck_qlbh!='' and sck_qlbh!= null ">
+			and jsdj like '%'||(substr(#{sck_qlbh},0,1))||'%'
+		</if>
+		
+	 </select>
 </mapper>

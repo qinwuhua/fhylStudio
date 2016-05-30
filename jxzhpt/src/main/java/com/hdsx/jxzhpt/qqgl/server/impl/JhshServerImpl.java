@@ -284,6 +284,57 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	
 	@Override
+	public List<Lx> querywnxx(Jhsh jhsh) {
+		Lx lx=new Lx();
+		lx.setXmid(jhsh.getXmbm());
+		//返回结果
+		List<Lx> result =new ArrayList<Lx>();
+		//查询此计划所有的路线信息
+		List<Lx> lxList=queryList("queryLxMaxJdbs",lx);
+		for (Lx item : lxList) {
+			querywnxxList(result, item);
+		}
+		return result;
+	}
+	
+	
+	private void querywnxxList(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		List<Lx> queryList = queryList("queryLsjlListwnxmk",params);
+		boolean flag=true;
+		if(result.size()>0&&queryList.size()>0){
+			for (Lx l1 : queryList) {
+				flag=true;
+				for (Lx l2 : result) {
+					if(l1.getXmid().equals(l2.getXmid()))
+						flag=false;
+				}
+				if(flag)
+					result.add(l1);
+			}
+		}
+		if(result.size()==0){
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = false;
+					}
+				}
+				if (flag){
+					result.add(queryList.get(i));
+				}
+			}
+		}
+		
+	}
+	
+	
+	
+	@Override
 	public List<Lx> queryLsxx1(Jhsh jhsh) {
 		Lx lx=new Lx();
 		lx.setXmid(jhsh.getXmbm());

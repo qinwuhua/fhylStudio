@@ -285,6 +285,18 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		params.put("qb", qb);
 		return queryList("selectGhSj", params);
 	}
+	@Override
+	public Lxsh getWngjinfobyid(String xmbm) {
+		return queryOne("getWngjinfobyid", xmbm);
+	}
+	@Override
+	public Lxsh getWnlminfobyid(String xmbm) {
+		return queryOne("getWnlminfobyid", xmbm);
+	}
+	@Override
+	public Lxsh getWnxjinfobyid(String xmbm) {
+		return queryOne("getWnxjinfobyid", xmbm);
+	}
 	
 
 }

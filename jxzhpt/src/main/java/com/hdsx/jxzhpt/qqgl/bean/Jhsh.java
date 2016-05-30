@@ -20,6 +20,8 @@ public class Jhsh {
 	private String bzdk;//编制     贷款
 	private String bzjl;//编制     奖励
 	private String bzqt;//编制     其他
+	private String bzdfzc;//编制     奖励
+	private String bzyhdk;//编制     其他
 	private String bzcgs;//编制     车购税
 	private String bztbsj;//编制  填报时间
 	private String tbdw;//填报单位
@@ -141,6 +143,33 @@ public class Jhsh {
 	private String dfzc;//地方自筹资金
 	private String lxzh;//所在路线桩号
 	private String gldj;
+	private String zyjsnr;
+	private String xzscnl;
+	
+	public String getBzdfzc() {
+		return bzdfzc;
+	}
+	public void setBzdfzc(String bzdfzc) {
+		this.bzdfzc = bzdfzc;
+	}
+	public String getBzyhdk() {
+		return bzyhdk;
+	}
+	public void setBzyhdk(String bzyhdk) {
+		this.bzyhdk = bzyhdk;
+	}
+	public String getZyjsnr() {
+		return zyjsnr;
+	}
+	public void setZyjsnr(String zyjsnr) {
+		this.zyjsnr = zyjsnr;
+	}
+	public String getXzscnl() {
+		return xzscnl;
+	}
+	public void setXzscnl(String xzscnl) {
+		this.xzscnl = xzscnl;
+	}
 	public String getJsjsdj() {
 		return jsjsdj;
 	}
