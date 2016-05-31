@@ -307,6 +307,10 @@
 				alert("请勾选要下达的计划");
 				return;
 			}
+			for(var i=0;i<rows.length;i++){
+				rows[i].jhxdwh=jhxdwh;
+				rows[i].bztbsj=bztbsj;
+			}
 			var json_data = JSON.stringify(rows); 
 			$.ajax({
 				type:'post',

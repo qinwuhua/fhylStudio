@@ -2035,10 +2035,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			JSONArray ja = JSONArray.fromObject(json_data);
 			List<Jhsh> list = (List<Jhsh>) JSONArray.toList(ja, new Jhsh(),
 					new JsonConfig());
-			for (Jhsh jhsh : list) {
-				jhsh.setJhxdwh(jhxdwh);
-				jhsh.setBztbsj(bztbsj);
-			}
+			
 			boolean bl = jhshServer.planxdAll(list);
 			ResponseUtils.write(getresponse(), bl + "");
 		} catch (Exception e) {

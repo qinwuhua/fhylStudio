@@ -26,7 +26,9 @@ public class Plan_zjxd {
 	private String jl;
 	private String qt;
 	private String rys;
-	
+	private String dfzc;//地方自筹
+	private String zyjsnr;//主要建设内容
+	private String xzscnl;//新增能力
 	
 	public String getZq() {
 		return zq;
@@ -178,4 +180,23 @@ public class Plan_zjxd {
 	public void setPfztz(String pfztz) {
 		this.pfztz = pfztz;
 	}
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
+	public String getZyjsnr() {
+		return zyjsnr;
+	}
+	public void setZyjsnr(String zyjsnr) {
+		this.zyjsnr = zyjsnr;
+	}
+	public String getXzscnl() {
+		return xzscnl;
+	}
+	public void setXzscnl(String xzscnl) {
+		this.xzscnl = xzscnl;
+	}
+	
 }

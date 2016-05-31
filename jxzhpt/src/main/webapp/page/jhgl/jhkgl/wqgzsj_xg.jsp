@@ -83,9 +83,9 @@ function loadJhkxx(){
 			 $("#jhqlqc").val(msg.jhqlqc);
 			 $("#jhqlqk").val(msg.jhqlqk);
 			
-			 $("#nsqsjl").val(msg.nsqsjl);
-			 $("#shijbz").val(msg.shijbz);
-			 $("#xianjbz").val(msg.xianjbz);
+			 $("#nsqsjl").numberbox('setValue',msg.nsqsjl);
+			 $("#shijbz").numberbox('setValue',msg.shijbz);
+			 $("#xianjbz").numberbox('setValue',msg.xianjbz);
 			 
 			// loadSbz(msg.sckid);
 			sckid=msg.sckid;

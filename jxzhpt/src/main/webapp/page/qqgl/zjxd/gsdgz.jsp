@@ -310,11 +310,15 @@
 				alert("请勾选要下达的计划");
 				return;
 			}
+			for(var i=0;i<rows.length;i++){
+				rows[i].jhxdwh=jhxdwh;
+				rows[i].bztbsj=bztbsj;
+			}
 			var json_data = JSON.stringify(rows); 
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/planxdAll.do',
-				data:"json_data="+json_data+"&jhxdwh="+jhxdwh+"&bztbsj="+bztbsj,
+				data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
 				dataType:'json',
 				success:function(msg){
 					if(msg){
