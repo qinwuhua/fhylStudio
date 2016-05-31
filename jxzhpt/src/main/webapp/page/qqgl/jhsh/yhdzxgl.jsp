@@ -179,7 +179,7 @@
 				{field:'zdzh',title:'止点桩号',width:80,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
-				{field:'gq',title:'工期（月）',width:60,align:'center'},
+				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 				{field:'ntz',title:'拟投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:120,align:'center'},
 				{field:'tjlx',title:'添加路线',width:100,align:'center',

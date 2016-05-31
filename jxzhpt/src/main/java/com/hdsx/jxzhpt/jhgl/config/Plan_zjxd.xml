@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.plan_zjxd">
 	<select id="queryZjxdByXmId" parameterType="string" resultType="plan_zjxd">
-		select * from plan_zjxd where xmid=#{id} order by xdnf
+		select p.*,nvl(p.btzzj,0)+nvl(p.rys,0)+nvl(p.dk,0)+nvl(p.jl,0) zbz from plan_zjxd p where xmid=#{id} order by xdnf
 	</select>
 	<select id="queryZjxdSumByXmid" parameterType="string" resultType="plan_zjxd">
 		select count(z.xmid) as xmid,nvl(sum(z.xdzj),0) as xdzj,

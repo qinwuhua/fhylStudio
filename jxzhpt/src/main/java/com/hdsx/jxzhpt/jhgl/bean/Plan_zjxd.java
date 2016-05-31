@@ -29,7 +29,14 @@ public class Plan_zjxd {
 	private String dfzc;//地方自筹
 	private String zyjsnr;//主要建设内容
 	private String xzscnl;//新增能力
+	private String zbz;//总补助
 	
+	public String getZbz() {
+		return zbz;
+	}
+	public void setZbz(String zbz) {
+		this.zbz = zbz;
+	}
 	public String getZq() {
 		return zq;
 	}

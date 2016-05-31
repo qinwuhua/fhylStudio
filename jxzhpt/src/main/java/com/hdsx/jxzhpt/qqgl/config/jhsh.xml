@@ -2280,7 +2280,7 @@
 	<select id="queryJhshLjgsdgz" parameterType="jhsh" resultType="java.util.Map">
 		select 
 		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(yhdk),0) dftz
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
 		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bccgs),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
@@ -2511,8 +2511,8 @@
 			) t 
 	</select>
 	<select id="queryJhshLjgsdxd" parameterType="jhsh" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(nvl(sum(zrys),0)+nvl(sum(zdk),0)+nvl(sum(zjl),0),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)),0) dftz from (
-				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.qt zqt,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+		select count(*) sl,nvl(sum(zcgs),0) cgs,nvl(nvl(sum(zrys),0)+nvl(sum(zdk),0)+nvl(sum(zjl),0),0) sbz,nvl(sum(zjhlc),0) lc,nvl(sum(zztz),0) tz,nvl(sum(zjl),0) sjl,nvl((nvl(sum(zgz),0)+nvl(sum(zsz),0)+nvl(sum(zzq),0)+nvl(sum(zyhdk),0)),0) dftz from (
+				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.yhdk zyhdk,zxd.qt zqt,lx.lc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
 		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 	            when jsxz like '%新建%' then xjlc
@@ -2533,7 +2533,7 @@
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
 		        left join 
-	            (select xmid,nvl(sum(ztz),0) ztz,nvl(sum(btzzj),0) cgs,nvl(sum(gz),0) gz,nvl(sum(sz),0) sz,nvl(sum(dk),0) dk,nvl(sum(zq),0) zq,nvl(sum(jl),0) jl,nvl(sum(qt),0) qt,nvl(sum(rys),0) rys  from plan_zjxd xd group by xd.xmid) zxd
+	            (select xmid,nvl(sum(ztz),0) ztz,nvl(sum(btzzj),0) cgs,nvl(sum(gz),0) gz,nvl(sum(sz),0) sz,nvl(sum(dk),0) dk,nvl(sum(zq),0) zq,nvl(sum(jl),0) jl,nvl(sum(qt),0) qt,nvl(sum(rys),0) rys,nvl(sum(yhdk),0) yhdk  from plan_zjxd xd group by xd.xmid) zxd
 	            on j.xmbm=zxd.xmid
 	            where 1=1 and xdzt=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>

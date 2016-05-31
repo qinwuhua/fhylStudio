@@ -840,7 +840,7 @@ function queryZjxdyhdzx(xmbm){
 	grid.columns=[[
 		
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'ztz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'rys',title : '燃油税',width : 150,align : 'center'}, 
 		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
@@ -865,7 +865,7 @@ function queryZjxdgsd(xmbm){
 			}
 		},*/
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'ztz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
@@ -898,7 +898,7 @@ function queryZjxdgsdzh(xmbm){
 			}
 		},*/
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'ztz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
