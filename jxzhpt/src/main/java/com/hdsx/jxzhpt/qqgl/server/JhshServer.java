@@ -459,4 +459,5 @@ public interface JhshServer {
 	public Collection<? extends Object> queryJhshSh_dc(Jhsh jhsh);
 	public Collection<? extends Object> queryJhshYhdzx_dc(Jhsh jhsh);
 	public List<Lx> querywnxx(Jhsh jhsh);
+	public String queryylmlx(Lx lx);
 }

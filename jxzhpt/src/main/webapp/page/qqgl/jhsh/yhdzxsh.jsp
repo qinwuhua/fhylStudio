@@ -129,7 +129,7 @@
 				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
-// 				{field:'tz',title:'拟投资',width:60,align:'center'},
+// 				{field:'tz',title:'总投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},

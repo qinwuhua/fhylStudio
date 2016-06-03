@@ -334,9 +334,14 @@
 		}
 		
 		function showMxbAll(){
-			var xmnf=$("#xmnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
+			//var xmnf=$("#xmnf").combobox("getValues").join(",");
+			//if(xmnf.substr(0,1)==',')
+				//xmnf=xmnf.substr(1,xmnf.length);
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
@@ -541,6 +546,7 @@
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
+						 $("#yhdk").html(msg.YHDK);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -684,7 +690,8 @@
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
             		</div>
             		<div id="tt" border="false" class="easyui-tabs" >
             		<script type="text/javascript">

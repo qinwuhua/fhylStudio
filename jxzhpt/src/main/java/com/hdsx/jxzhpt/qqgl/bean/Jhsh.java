@@ -145,7 +145,21 @@ public class Jhsh {
 	private String gldj;
 	private String zyjsnr;
 	private String xzscnl;
+	private String ylmlx;
+	private String ylmjg;
 	
+	public String getYlmlx() {
+		return ylmlx;
+	}
+	public void setYlmlx(String ylmlx) {
+		this.ylmlx = ylmlx;
+	}
+	public String getYlmjg() {
+		return ylmjg;
+	}
+	public void setYlmjg(String ylmjg) {
+		this.ylmjg = ylmjg;
+	}
 	public String getBzdfzc() {
 		return bzdfzc;
 	}

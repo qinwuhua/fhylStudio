@@ -14,7 +14,7 @@ public class Xmsq {
 	private String lc;//里程
 	private String lmkd;//路面宽度
 	private String jsdj;//技术等级
-	private String ntz;//拟投资
+	private String ntz;//总投资
 	private String jhkgsj;//计划开工时间
 	private String jhwgsj;//计划完工时间
 	private String gq;//工期（月）
@@ -61,8 +61,22 @@ public class Xmsq {
 	private String ghlxbm;
 	private String ghlxmc;
 	private String wnxmk;
+	private String ylmlx;//原路面类型
+	private String ylmjg;//原路面结构
 	
 	
+	public String getYlmlx() {
+		return ylmlx;
+	}
+	public void setYlmlx(String ylmlx) {
+		this.ylmlx = ylmlx;
+	}
+	public String getYlmjg() {
+		return ylmjg;
+	}
+	public void setYlmjg(String ylmjg) {
+		this.ylmjg = ylmjg;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}

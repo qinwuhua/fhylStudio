@@ -102,7 +102,7 @@
 		  		}
 		  	}).result(
 				function(e, item) {
-					$('#ylxbh').val(item.lxbm);
+					//$('#ylxbh').val(item.lxbm);
 					$('#ghlxbh').val(item.lxbm);
 					$('#lxmc').val(item.lxmc);
 					$('#qdmc').val(item.qdmc);
@@ -117,6 +117,7 @@
 					$('#jsdj').val(item.xjsdj);
 					$('#lmkd').val(item.ylmlx);
 					queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					$.ajax({
 						type:'post',
 						url:'../../../qqgl/queryTsdq.do',
@@ -313,6 +314,24 @@
 					<input id="lc" name="lc" type="text" style="width: 80px;"/>&nbsp;km&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
+            
+             <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					原路面类型</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ylmlx" name="ylmlx" type="text" style="width: 120px;"/>&nbsp;
+					<span style="color: red;">*</span><br/>
+					
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					原路面结构</td>
+				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ylmjg" name="ylmjg" type="text" style="width: 120px;"/>&nbsp;
+					<span style="color: red;">*</span><br/>
+				</td>
+				
+            </tr>
+            
             <tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					技术等级及里程
@@ -361,7 +380,7 @@
 					<input id="xmmc" name="xmmc" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					拟投资</td>
+					总投资</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="ntz" name="ntz" type="text" style="width: 80px;"/>&nbsp;万元
 				</td>

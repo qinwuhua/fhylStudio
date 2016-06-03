@@ -391,7 +391,7 @@ function showAll(){
 			{field:'JHKGSJ',title:'计划开工时间',width:100,align:'center'},
 			{field:'JHWGSJ',title:'计划完工时间',width:100,align:'center'},
 //			{field:'GQ',title:'工期（月）',width:100,align:'center'},
-//			{field:'NTZ',title:'拟投资',width:100,align:'center'}
+//			{field:'NTZ',title:'总投资',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   

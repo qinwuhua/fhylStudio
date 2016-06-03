@@ -274,6 +274,7 @@
 	    <action name="updateYhzxSp" class="xmsqController" method="updateYhzxSp"></action>
 	    <action name="updateJhshYhzx" class="jhshController" method="updateJhshYhzx"></action>
 	    <action name="exportJhshYhzx" class="jhshController" method="exportJhshYhzx"></action>
+	    <action name="queryylmlx" class="jhshController" method="queryylmlx"></action>
 	    
 	</package>
 </struts>

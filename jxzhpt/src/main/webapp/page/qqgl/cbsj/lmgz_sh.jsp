@@ -140,7 +140,7 @@
 				{field:'kgsj',title:'开工时间',width:80,align:'center'},
 				{field:'wgsj',title:'完工时间',width:80,align:'center'}, 
 				{field:'gq',title:'工期（月）',width:60,align:'center'},
-				{field:'tz',title:'拟投资',width:60,align:'center'},
+				{field:'tz',title:'总投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:150,align:'center'},
 				
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},

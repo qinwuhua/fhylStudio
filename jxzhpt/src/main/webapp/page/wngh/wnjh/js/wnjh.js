@@ -250,6 +250,8 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 		}
 	});
 }
+
+
 function checkdfzc(str){
 	checkSZ(str);
 	$("#dfzc").html('');

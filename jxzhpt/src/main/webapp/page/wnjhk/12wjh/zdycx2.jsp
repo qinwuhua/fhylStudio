@@ -373,7 +373,7 @@ a{text-decoration:none;}
 									<td style="padding-left: 10px;"><input type="checkbox" id="x.jsfa" name="xmsq" value="x.jsfa-建设方案"/>建设方案</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="x.ntz" name="xmsq" value="x.ntz-拟投资"/>拟投资</td>
+									<td><input type="checkbox" id="x.ntz" name="xmsq" value="x.ntz-总投资"/>总投资</td>
 									<td style="padding-left: 10px;"></td>
 								</tr>
 							</table>

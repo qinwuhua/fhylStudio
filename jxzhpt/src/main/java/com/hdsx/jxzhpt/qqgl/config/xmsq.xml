@@ -124,7 +124,9 @@
 		<if test="zdmc!=null">,zdmc</if>
 		<if test="lxmc!=null">,lxmc</if>
 		<if test="bz!=null">,bz</if>
-		<if test="wnxmk!=null">,wnxmk</if>) 
+		<if test="wnxmk!=null">,wnxmk</if>
+		<if test="ylmlx != null">,ylmlx</if>
+		<if test="ylmjg != null">,ylmjg</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -151,7 +153,9 @@
 		<if test="zdmc!=null">,#{zdmc}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
 		<if test="bz!=null">,#{bz}</if>
-		<if test="wnxmk!=null">,#{wnxmk}</if>)
+		<if test="wnxmk!=null">,#{wnxmk}</if>
+		<if test="ylmlx != null">,#{ylmlx}</if>
+		<if test="ylmjg != null">,#{ylmjg}</if>)
 	</insert>
 	<insert id="insertXmsqSh" parameterType="java.util.List">
 		insert into xmsq_sh (

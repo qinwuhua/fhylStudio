@@ -727,6 +727,17 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	
+	public void queryylmlx() throws Exception{
+		try{
+			String s = jhshServer.queryylmlx(lx);
+			jhsh.setYlmlx(s);
+			JsonUtils.write(jhsh, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	/**
 	 * 根据项目编码查询立项审核信息
 	 * @throws Exception
@@ -1969,9 +1980,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and (j.jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+						tsdq+="and (j.jhxdwh like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.jhxdwh like '%"+tsdqs[i]+"%' or xdwh like '%"+tsdqs[i]+"%'";
+						tsdq+="or j.jhxdwh like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";

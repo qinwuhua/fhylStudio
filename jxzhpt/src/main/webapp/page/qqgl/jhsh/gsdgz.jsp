@@ -145,7 +145,7 @@
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
 				//{field:'gq',title:'工期（月）',width:100,align:'center'},
-				{field:'tz',title:'拟投资',width:100,align:'center'},
+				{field:'tz',title:'总投资',width:100,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				/* {field:'xdwh',title:'下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'下达时间',width:100,align:'center'}, */
@@ -170,6 +170,7 @@
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
+						 $("#yhdk").html(msg.YHDK);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");
@@ -353,7 +354,8 @@ text-decoration:none;
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>
