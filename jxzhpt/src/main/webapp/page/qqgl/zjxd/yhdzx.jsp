@@ -78,9 +78,11 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var xmnf=$("#xmnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
@@ -504,18 +506,18 @@
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:110px;" /></td>
-        						<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 114px;"></select></td>
+        						<td style="display: none" align="right">项目年份：</td>
+        						<td style="display: none" ><select id="xmnf" style="width: 114px;"></select></td>
         						<td align="right">技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
         						<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
+        						<td align="right">特殊地区：</td>
+        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						
         					</tr>
         					<tr height="32">
         						
-        						<td align="right">特殊地区：</td>
-        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
         						<td align="right">原路线名称：</td>
@@ -524,10 +526,11 @@
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
+        					<td align="right">管养分类：</td>
+        						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
+        						
         					</tr>
         					<tr height="32">
-        						<td align="right">管养分类：</td>
-        						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         						<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
         						<td align="right">历史记录：</td>
@@ -542,11 +545,12 @@
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
         						<td align="right">首次下达年份：</td>
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
+        					<td>建设性质：</td>
+								<td><input name="xmlx" type="text" id="xmlx" style="width:110px;" /></td>
+								
         					</tr>
         					<tr height="32">
-        						<td>建设性质：</td>
-								<td><input name="xmlx" type="text" id="xmlx" style="width:110px;" /></td>
-								<td align="right">资金来源：</td>
+        						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:114px;" /></td>
         						<td align="right">是否使用车购税：</td>
         						<td>

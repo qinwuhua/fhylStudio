@@ -62,9 +62,11 @@
 		}
 
 		function queryxmList(){
-			var xmnf=$("#xmnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
@@ -609,18 +611,18 @@
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:110px;" /></td>
-        						<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 114px;"></select></td>
+        						<td style="display: none" align="right">项目年份：</td>
+        						<td style="display: none"><select id="xmnf" style="width: 114px;"></select></td>
         						<td align="right">建设技术等级：</td>
         						<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:114px;"></select></td>
         						<td align="right">现技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
+        						<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         						
         					</tr>
         					<tr height="32">
         						
-        						<td align="right">行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         						<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
         						<td align="right">原路线编码：</td>
@@ -630,11 +632,12 @@
         						
         						<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:55px;" /></td>
+        					<td align="right">规划路线名称：</td>
+        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
+        						
         					</tr>
         					<tr height="32">
         						
-        						<td align="right">规划路线名称：</td>
-        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						<td align="right">管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         						<td align="right">规划路线编码：</td>
@@ -649,10 +652,11 @@
 										<option value="是">是</option>
 									</select>
         						</td>
-        					</tr>
-        					<tr height="32">
         						<td align="right">首次下达年份：</td>
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
+        						
+        					</tr>
+        					<tr height="32">
         						<td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:114px;" ></select></td>
 								<td align="right">资金来源：</td>
