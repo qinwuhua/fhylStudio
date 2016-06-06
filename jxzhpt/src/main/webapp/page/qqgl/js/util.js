@@ -861,8 +861,8 @@ function queryZjxdyhdzx(xmbm){
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'rys',title : '燃油税',width : 150,align : 'center'}, 
 		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
-		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
-		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
 //国省道
@@ -894,7 +894,8 @@ function queryZjxdgsd(xmbm){
 		{field : 'yhdk',title : '银行贷款',width : 150,align : 'center'}, 
 		{field : 'zyjsnr',title : '主要建设内容',width : 150,align : 'center'}, 
 		{field : 'xzscnl',title : '新增能力',width : 150,align : 'center'}, 
-		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'},
+		{field : 'xdsj',title : '下达时间',width : 150,align : 'center'}
 		//, 
 		//{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
 		]];
@@ -926,8 +927,8 @@ function queryZjxdgsdzh(xmbm){
 		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
 		
-		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
-		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
 
@@ -950,9 +951,8 @@ function queryZjxd1(xmbm){
 		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
-		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}
-		//, 
-		//{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
+		{field : 'tbdw',title : '下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}
 		]];
 	gridBind1(grid);
 }
