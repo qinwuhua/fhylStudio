@@ -382,6 +382,62 @@ function showAll(){
 	}
 	
 
+	function doExcel(){
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
+	 	if($.cookie("unit2")=='______36') 
+	 		sbthcd = 7;
+	 	else 
+	 		sbthcd = $.cookie("unit2").length;
+		var param='xmkaqsmfh.sbthcd='+sbthcd+
+		'&xmkaqsmfh.unitcode='+gydwstr+
+	 	'&xmkaqsmfh.distcode='+xzqhstr+
+	 	'&xmkaqsmfh.roadname='+$('#roadname').val()+
+	 	'&xmkaqsmfh.jhnf='+''+
+	 	'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+
+	 	'&xmkaqsmfh.jsdj='+jsdj+
+	 	'&xmkaqsmfh.roadcode='+$("#roadcode").val()+
+	 	'&xmkaqsmfh.gldj='+gldj+
+	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+
+	 	'&xmkaqsmfh.tsdq='+tsdq;
+		
+		
+		//特殊地区 条件	
+		window.location.href="/jxzhpt/aqsmfh/xmkaqsmfhDoExcel.do?"+param;
+		
+	}
+	
 </script>
 <style type="text/css">
 TD {
@@ -445,7 +501,7 @@ text-decoration:none;
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
 <!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('aqsmfh_add.jsp','900','450');" style="border-width:0px;" /> -->
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
-<%--                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/> --%>
+                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="doExcel()"/>
 							  </td>
 							 </tr>
 							</table>

@@ -1057,5 +1057,117 @@ public class XmkaqsmfhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	//shm 路网项目----基础库管理---安全生命防护--导出excel
+	public void xmkaqsmfhDoExcel(){
+		try {
+			if(xmkaqsmfh.getUnitcode().indexOf(",")==-1){
+				if(xmkaqsmfh.getUnitcode().length()==9)
+					xmkaqsmfh.setUnitcode("and (unitcode='"+xmkaqsmfh.getUnitcode()+"'||'00' or unitcode in(select id from xtgl_department where parent='"+xmkaqsmfh.getUnitcode()+"'||'00'))");					else
+						xmkaqsmfh.setUnitcode("and unitcode like '%'||substr('"+xmkaqsmfh.getUnitcode()+"',0,4)||'_'||substr('"+xmkaqsmfh.getUnitcode()+"',6)||'%'");
+			}else{
+				xmkaqsmfh.setUnitcode("and unitcode in ("+xmkaqsmfh.getUnitcode()+")");
+			}
+			if(xmkaqsmfh.getDistcode().indexOf(",")==-1){
+				xmkaqsmfh.setDistcode("and distcode like '%"+xmkaqsmfh.getDistcode()+"%'");
+			}else{
+				xmkaqsmfh.setDistcode("and distcode in ("+xmkaqsmfh.getDistcode()+")");
+			}
+			//xmkaqsmfh.setPage(page);
+			//xmkaqsmfh.setRows(rows);
+			if(xmkaqsmfh.getTsdq().length()>0){
+				String[] tsdqs=xmkaqsmfh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmkaqsmfh.setTsdq(tsdq);
+			}
+			if(xmkaqsmfh.getGldj().length()>0){
+				String[] tsdqs=xmkaqsmfh.getGldj().split(",");
+				String tsdq="and substr(roadcode,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmkaqsmfh.setGldj(tsdq);
+			}
+			if(xmkaqsmfh.getJsdj().length()>0){
+				String[] tsdqs=xmkaqsmfh.getJsdj().split(",");
+				String tsdq="and substr(jsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmkaqsmfh.setJsdj(tsdq);
+			}
+			
+			List<Excel_list> l = xmkaqsmfhServer.xmkaqsmfhDoExcel(xmkaqsmfh);
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("安全生命防护工程");//设置第一行
+			eldata.setSheetName("安防");//设置sheeet名
+			eldata.setFileName("安全生命防护工程");//设置文件名
+			eldata.setEl(l);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号 ",1,1,0,0));
+			et.add(new Excel_tilte("审核状态",1,1,1,1));
+			et.add(new Excel_tilte("路线编码",1,1,2,2));
+			et.add(new Excel_tilte("路线名称",1,1,3,3));
+			et.add(new Excel_tilte("桩号起点",1,1,4,4));
+			et.add(new Excel_tilte("桩号止点",1,1,5,5));
+			et.add(new Excel_tilte("技术等级",1,1,6,6));
+			et.add(new Excel_tilte("行政等级",1,1,7,7));
+			et.add(new Excel_tilte("方向",1,1,8,8));
+			et.add(new Excel_tilte("排查时间",1,1,9,9));
+			et.add(new Excel_tilte("路段分类",1,1,10,10));
+			et.add(new Excel_tilte("管养单位",1,1,11,11));
+			et.add(new Excel_tilte("行政区划",1,1,12,12));
+			et.add(new Excel_tilte("处置投资估算",1,1,13,13));
+			et.add(new Excel_tilte("计划实施安防工程年份",1,1,14,14));
+			et.add(new Excel_tilte("上报状态",1,1,15,15));
+			
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	
 
 }
