@@ -53,6 +53,12 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return insert("insertLx", lx)>0;
 	}
 	@Override
+	public boolean insertLx(Lx lx,Xmsq xmsq) {
+		params.put("lx", lx);
+		params.put("xmsq", xmsq);
+		return insert("insertYhdzxlx", params)>0;
+	}
+	@Override
 	public List<String> queryTsdq(Xmsq xmsq) {
 		return queryList("queryTsdq",xmsq);
 	}
@@ -115,6 +121,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		}
 		return updateBatch("updateYhdzxSqzt", list)==list.size();
 	}
+	
 	@Override
 	public boolean updateShSqzt(Xmsq xmsq) {
 		String[] split = xmsq.getXmbm().split(",");
@@ -383,5 +390,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public List<Xmsq> queryyhdzxcb(Xmsq xmsq) {
+		return queryList("queryyhdzxcb", xmsq);
 	}
 }

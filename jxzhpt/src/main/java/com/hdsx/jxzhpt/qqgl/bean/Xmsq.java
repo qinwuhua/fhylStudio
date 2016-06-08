@@ -64,7 +64,69 @@ public class Xmsq {
 	private String ylmlx;//原路面类型
 	private String ylmjg;//原路面结构
 	
+	//补助
+	private String lqhntmc;
+	private String gxlqhntmc;  
+	private String snhntmc; 
+	private String lqlmjdrzs;  
+	private String lqlmcbrzs;  
+	private String swjc;  
+	private String lqlmpmlqjdlzs;  
+	private String lqlmrhlqjdlzs;  
+	private String lqlmcblzs;
+	private String xzrxjc;  
+	private String swjclzs;  
+	private String xfc;  
+	private String wcsnmb;  
+	private String wcswjc;  
+	private String snhntmchb;  
+	private String bx;  
+	private String snhntmcssh;
+	//厚度
+	private String lqhntmchd;
+	private String gxlqhntmchd;  
+	private String snhntmchd; 
+	private String lqlmjdrzshd;  
+	private String lqlmcbrzshd;  
+	private String swjchd;  
+	private String lqlmpmlqjdlzshd;  
+	private String lqlmrhlqjdlzshd;  
+	private String lqlmcblzshd;
+	private String xzrxjchd;  
+	private String swjclzshd;  
+	private String xfchd;  
+	private String wcsnmbhd;  
+	private String wcswjchd;  
+	private String snhntmchbhd;  
+	private String bxhd;  
+	private String snhntmcsshhd;
+	//单价
+	private String lqhntmcdj;
+	private String gxlqhntmcdj;  
+	private String snhntmcdj; 
+	private String lqlmjdrzsdj;  
+	private String lqlmcbrzsdj;  
+	private String swjcdj;  
+	private String lqlmpmlqjdlzsdj;  
+	private String lqlmrhlqjdlzsdj;  
+	private String lqlmcblzsdj;
+	private String xzrxjcdj;  
+	private String swjclzsdj;  
+	private String xfcdj;  
+	private String wcsnmbdj;  
+	private String wcswjcdj;  
+	private String snhntmchbdj;  
+	private String bxdj;  
+	private String snhntmcsshdj;
+	private String sbzj;//省补资金
 	
+	
+	public String getSbzj() {
+		return sbzj;
+	}
+	public void setSbzj(String sbzj) {
+		this.sbzj = sbzj;
+	}
 	public String getYlmlx() {
 		return ylmlx;
 	}
@@ -397,4 +459,311 @@ public class Xmsq {
 	public void setJdbs(String jdbs) {
 		this.jdbs = jdbs;
 	}
+	public String getLqhntmc() {
+		return lqhntmc;
+	}
+	public void setLqhntmc(String lqhntmc) {
+		this.lqhntmc = lqhntmc;
+	}
+	public String getGxlqhntmc() {
+		return gxlqhntmc;
+	}
+	public void setGxlqhntmc(String gxlqhntmc) {
+		this.gxlqhntmc = gxlqhntmc;
+	}
+	public String getSnhntmc() {
+		return snhntmc;
+	}
+	public void setSnhntmc(String snhntmc) {
+		this.snhntmc = snhntmc;
+	}
+	public String getLqlmjdrzs() {
+		return lqlmjdrzs;
+	}
+	public void setLqlmjdrzs(String lqlmjdrzs) {
+		this.lqlmjdrzs = lqlmjdrzs;
+	}
+	public String getLqlmcbrzs() {
+		return lqlmcbrzs;
+	}
+	public void setLqlmcbrzs(String lqlmcbrzs) {
+		this.lqlmcbrzs = lqlmcbrzs;
+	}
+	public String getSwjc() {
+		return swjc;
+	}
+	public void setSwjc(String swjc) {
+		this.swjc = swjc;
+	}
+	public String getLqlmpmlqjdlzs() {
+		return lqlmpmlqjdlzs;
+	}
+	public void setLqlmpmlqjdlzs(String lqlmpmlqjdlzs) {
+		this.lqlmpmlqjdlzs = lqlmpmlqjdlzs;
+	}
+	public String getLqlmrhlqjdlzs() {
+		return lqlmrhlqjdlzs;
+	}
+	public void setLqlmrhlqjdlzs(String lqlmrhlqjdlzs) {
+		this.lqlmrhlqjdlzs = lqlmrhlqjdlzs;
+	}
+	public String getLqlmcblzs() {
+		return lqlmcblzs;
+	}
+	public void setLqlmcblzs(String lqlmcblzs) {
+		this.lqlmcblzs = lqlmcblzs;
+	}
+	public String getXzrxjc() {
+		return xzrxjc;
+	}
+	public void setXzrxjc(String xzrxjc) {
+		this.xzrxjc = xzrxjc;
+	}
+	public String getSwjclzs() {
+		return swjclzs;
+	}
+	public void setSwjclzs(String swjclzs) {
+		this.swjclzs = swjclzs;
+	}
+	public String getXfc() {
+		return xfc;
+	}
+	public void setXfc(String xfc) {
+		this.xfc = xfc;
+	}
+	public String getWcsnmb() {
+		return wcsnmb;
+	}
+	public void setWcsnmb(String wcsnmb) {
+		this.wcsnmb = wcsnmb;
+	}
+	public String getWcswjc() {
+		return wcswjc;
+	}
+	public void setWcswjc(String wcswjc) {
+		this.wcswjc = wcswjc;
+	}
+	public String getSnhntmchb() {
+		return snhntmchb;
+	}
+	public void setSnhntmchb(String snhntmchb) {
+		this.snhntmchb = snhntmchb;
+	}
+	public String getBx() {
+		return bx;
+	}
+	public void setBx(String bx) {
+		this.bx = bx;
+	}
+	public String getSnhntmcssh() {
+		return snhntmcssh;
+	}
+	public void setSnhntmcssh(String snhntmcssh) {
+		this.snhntmcssh = snhntmcssh;
+	}
+	public String getLqhntmchd() {
+		return lqhntmchd;
+	}
+	public void setLqhntmchd(String lqhntmchd) {
+		this.lqhntmchd = lqhntmchd;
+	}
+	public String getGxlqhntmchd() {
+		return gxlqhntmchd;
+	}
+	public void setGxlqhntmchd(String gxlqhntmchd) {
+		this.gxlqhntmchd = gxlqhntmchd;
+	}
+	public String getSnhntmchd() {
+		return snhntmchd;
+	}
+	public void setSnhntmchd(String snhntmchd) {
+		this.snhntmchd = snhntmchd;
+	}
+	public String getLqlmjdrzshd() {
+		return lqlmjdrzshd;
+	}
+	public void setLqlmjdrzshd(String lqlmjdrzshd) {
+		this.lqlmjdrzshd = lqlmjdrzshd;
+	}
+	public String getLqlmcbrzshd() {
+		return lqlmcbrzshd;
+	}
+	public void setLqlmcbrzshd(String lqlmcbrzshd) {
+		this.lqlmcbrzshd = lqlmcbrzshd;
+	}
+	public String getSwjchd() {
+		return swjchd;
+	}
+	public void setSwjchd(String swjchd) {
+		this.swjchd = swjchd;
+	}
+	public String getLqlmpmlqjdlzshd() {
+		return lqlmpmlqjdlzshd;
+	}
+	public void setLqlmpmlqjdlzshd(String lqlmpmlqjdlzshd) {
+		this.lqlmpmlqjdlzshd = lqlmpmlqjdlzshd;
+	}
+	public String getLqlmrhlqjdlzshd() {
+		return lqlmrhlqjdlzshd;
+	}
+	public void setLqlmrhlqjdlzshd(String lqlmrhlqjdlzshd) {
+		this.lqlmrhlqjdlzshd = lqlmrhlqjdlzshd;
+	}
+	public String getLqlmcblzshd() {
+		return lqlmcblzshd;
+	}
+	public void setLqlmcblzshd(String lqlmcblzshd) {
+		this.lqlmcblzshd = lqlmcblzshd;
+	}
+	public String getXzrxjchd() {
+		return xzrxjchd;
+	}
+	public void setXzrxjchd(String xzrxjchd) {
+		this.xzrxjchd = xzrxjchd;
+	}
+	public String getSwjclzshd() {
+		return swjclzshd;
+	}
+	public void setSwjclzshd(String swjclzshd) {
+		this.swjclzshd = swjclzshd;
+	}
+	public String getXfchd() {
+		return xfchd;
+	}
+	public void setXfchd(String xfchd) {
+		this.xfchd = xfchd;
+	}
+	public String getWcsnmbhd() {
+		return wcsnmbhd;
+	}
+	public void setWcsnmbhd(String wcsnmbhd) {
+		this.wcsnmbhd = wcsnmbhd;
+	}
+	public String getWcswjchd() {
+		return wcswjchd;
+	}
+	public void setWcswjchd(String wcswjchd) {
+		this.wcswjchd = wcswjchd;
+	}
+	public String getSnhntmchbhd() {
+		return snhntmchbhd;
+	}
+	public void setSnhntmchbhd(String snhntmchbhd) {
+		this.snhntmchbhd = snhntmchbhd;
+	}
+	public String getBxhd() {
+		return bxhd;
+	}
+	public void setBxhd(String bxhd) {
+		this.bxhd = bxhd;
+	}
+	public String getSnhntmcsshhd() {
+		return snhntmcsshhd;
+	}
+	public void setSnhntmcsshhd(String snhntmcsshhd) {
+		this.snhntmcsshhd = snhntmcsshhd;
+	}
+	public String getLqhntmcdj() {
+		return lqhntmcdj;
+	}
+	public void setLqhntmcdj(String lqhntmcdj) {
+		this.lqhntmcdj = lqhntmcdj;
+	}
+	public String getGxlqhntmcdj() {
+		return gxlqhntmcdj;
+	}
+	public void setGxlqhntmcdj(String gxlqhntmcdj) {
+		this.gxlqhntmcdj = gxlqhntmcdj;
+	}
+	public String getSnhntmcdj() {
+		return snhntmcdj;
+	}
+	public void setSnhntmcdj(String snhntmcdj) {
+		this.snhntmcdj = snhntmcdj;
+	}
+	public String getLqlmjdrzsdj() {
+		return lqlmjdrzsdj;
+	}
+	public void setLqlmjdrzsdj(String lqlmjdrzsdj) {
+		this.lqlmjdrzsdj = lqlmjdrzsdj;
+	}
+	public String getLqlmcbrzsdj() {
+		return lqlmcbrzsdj;
+	}
+	public void setLqlmcbrzsdj(String lqlmcbrzsdj) {
+		this.lqlmcbrzsdj = lqlmcbrzsdj;
+	}
+	public String getSwjcdj() {
+		return swjcdj;
+	}
+	public void setSwjcdj(String swjcdj) {
+		this.swjcdj = swjcdj;
+	}
+	public String getLqlmpmlqjdlzsdj() {
+		return lqlmpmlqjdlzsdj;
+	}
+	public void setLqlmpmlqjdlzsdj(String lqlmpmlqjdlzsdj) {
+		this.lqlmpmlqjdlzsdj = lqlmpmlqjdlzsdj;
+	}
+	public String getLqlmrhlqjdlzsdj() {
+		return lqlmrhlqjdlzsdj;
+	}
+	public void setLqlmrhlqjdlzsdj(String lqlmrhlqjdlzsdj) {
+		this.lqlmrhlqjdlzsdj = lqlmrhlqjdlzsdj;
+	}
+	public String getLqlmcblzsdj() {
+		return lqlmcblzsdj;
+	}
+	public void setLqlmcblzsdj(String lqlmcblzsdj) {
+		this.lqlmcblzsdj = lqlmcblzsdj;
+	}
+	public String getXzrxjcdj() {
+		return xzrxjcdj;
+	}
+	public void setXzrxjcdj(String xzrxjcdj) {
+		this.xzrxjcdj = xzrxjcdj;
+	}
+	public String getSwjclzsdj() {
+		return swjclzsdj;
+	}
+	public void setSwjclzsdj(String swjclzsdj) {
+		this.swjclzsdj = swjclzsdj;
+	}
+	public String getXfcdj() {
+		return xfcdj;
+	}
+	public void setXfcdj(String xfcdj) {
+		this.xfcdj = xfcdj;
+	}
+	public String getWcsnmbdj() {
+		return wcsnmbdj;
+	}
+	public void setWcsnmbdj(String wcsnmbdj) {
+		this.wcsnmbdj = wcsnmbdj;
+	}
+	public String getWcswjcdj() {
+		return wcswjcdj;
+	}
+	public void setWcswjcdj(String wcswjcdj) {
+		this.wcswjcdj = wcswjcdj;
+	}
+	public String getSnhntmchbdj() {
+		return snhntmchbdj;
+	}
+	public void setSnhntmchbdj(String snhntmchbdj) {
+		this.snhntmchbdj = snhntmchbdj;
+	}
+	public String getBxdj() {
+		return bxdj;
+	}
+	public void setBxdj(String bxdj) {
+		this.bxdj = bxdj;
+	}
+	public String getSnhntmcsshdj() {
+		return snhntmcsshdj;
+	}
+	public void setSnhntmcsshdj(String snhntmcsshdj) {
+		this.snhntmcsshdj = snhntmcsshdj;
+	}
+	
 }

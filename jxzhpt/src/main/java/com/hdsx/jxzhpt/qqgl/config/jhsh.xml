@@ -1131,6 +1131,115 @@
 		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
 <!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
 		<if test="jszlc!=null and jszlc!=''">l.jhlc=#{jszlc},</if>
+		<if test="lqhntmchd != null">
+        LQHNTMCHD = #{lqhntmchd},
+      </if>
+      <if test="lqhntmc != null">
+        LQHNTMC = #{lqhntmc},
+      </if>
+      <if test="gxlqhntmchd != null">
+        GXLQHNTMCHD = #{gxlqhntmchd},
+      </if>
+      <if test="gxlqhntmc != null">
+        GXLQHNTMC = #{gxlqhntmc},
+      </if>
+      <if test="snhntmchd != null">
+        SNHNTMCHD = #{snhntmchd},
+      </if>
+      <if test="snhntmc != null">
+        SNHNTMC = #{snhntmc},
+      </if>
+      <if test="lqlmjdrzshd != null">
+        LQLMJDRZSHD = #{lqlmjdrzshd},
+      </if>
+      <if test="lqlmjdrzs != null">
+        LQLMJDRZS = #{lqlmjdrzs},
+      </if>
+      <if test="lqlmcbrzshd != null">
+        LQLMCBRZSHD = #{lqlmcbrzshd},
+      </if>
+      <if test="lqlmcbrzs != null">
+        LQLMCBRZS = #{lqlmcbrzs},
+      </if>
+      <if test="swjchd != null">
+        SWJCHD = #{swjchd},
+      </if>
+      <if test="swjc != null">
+        SWJC = #{swjc},
+      </if>
+      <if test="lqlmpmlqjdlzshd != null">
+        LQLMPMLQJDLZSHD = #{lqlmpmlqjdlzshd},
+      </if>
+      <if test="lqlmpmlqjdlzs != null">
+        LQLMPMLQJDLZS = #{lqlmpmlqjdlzs},
+      </if>
+      <if test="lqlmrhlqjdlzshd != null">
+        LQLMRHLQJDLZSHD = #{lqlmrhlqjdlzshd},
+      </if>
+      <if test="lqlmrhlqjdlzs != null">
+        LQLMRHLQJDLZS = #{lqlmrhlqjdlzs},
+      </if>
+      <if test="lqlmcblzshd != null">
+        LQLMCBLZSHD = #{lqlmcblzshd},
+      </if>
+      <if test="lqlmcblzs != null">
+        LQLMCBLZS = #{lqlmcblzs},
+      </if>
+      <if test="xzrxjchd != null">
+        XZRXJCHD = #{xzrxjchd},
+      </if>
+      <if test="xzrxjc != null">
+        XZRXJC = #{xzrxjc},
+      </if>
+      <if test="swjclzshd != null">
+        SWJCLZSHD = #{swjclzshd},
+      </if>
+      <if test="swjclzs != null">
+        SWJCLZS = #{swjclzs},
+      </if>
+      <if test="xfchd != null">
+        XFCHD = #{xfchd},
+      </if>
+      <if test="xfc != null">
+        XFC = #{xfc},
+      </if>
+      <if test="wcsnmbhd != null">
+        WCSNMBHD = #{wcsnmbhd},
+      </if>
+      <if test="wcsnmb != null">
+        WCSNMB = #{wcsnmb},
+      </if>
+      <if test="wcswjchd != null">
+        WCSWJCHD = #{wcswjchd},
+      </if>
+      <if test="wcswjc != null">
+        WCSWJC = #{wcswjc},
+      </if>
+      <if test="snhntmchbhd != null">
+        SNHNTMCHBHD = #{snhntmchbhd},
+      </if>
+      <if test="snhntmchb != null">
+        SNHNTMCHB = #{snhntmchb},
+      </if>
+      <if test="bxhd != null">
+        BXHD = #{bxhd},
+      </if>
+      <if test="bx != null">
+        BX = #{bx},
+      </if>
+      <if test="snhntmcsshhd != null">
+        SNHNTMCSSHHD = #{snhntmcsshhd},
+      </if>
+      <if test="snhntmcssh != null">
+        SNHNTMCSSH = #{snhntmcssh},
+      </if>
+		<if test="lmkd != null">
+        lxlmkd = #{lmkd},
+      </if>
+		<if test="sbzj != null">
+        sbzj = #{sbzj},
+      </if>
+		
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
 		
 		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if>
@@ -1139,6 +1248,156 @@
 		<if test="sffirst==1">and sffirst=1</if>
 		<if test="id!=null and id!=''">and id=#{id}</if>
 	</update>
+	
+	<update id="updateyhdzxLx" parameterType="hashmap">
+		update lxsh_lx l set 
+		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
+		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>
+		<if test="lx.yilc!=null and lx.yilc!=''">l.yilc=#{lx.yilc},</if>
+		<if test="lx.erlc!=null and lx.erlc!=''">l.erlc=#{lx.erlc},</if>
+		<if test="lx.sanlc!=null and lx.sanlc!=''">l.sanlc=#{lx.sanlc},</if>
+		<if test="lx.silc!=null and lx.silc!=''">l.silc=#{lx.silc},</if>
+		<if test="lx.dwlc!=null and lx.dwlc!=''">l.dwlc=#{lx.dwlc},</if>
+		<if test="lx.wllc!=null and lx.wllc!=''">l.wllc=#{lx.wllc},</if>
+		<if test="lx.jhyilc!=null and lx.jhyilc!=''">l.jhyilc=#{lx.jhyilc},</if>
+		<if test="lx.jherlc!=null and lx.jherlc!=''">l.jherlc=#{lx.jherlc},</if>
+		<if test="lx.jhsanlc!=null and lx.jhsanlc!=''">l.jhsanlc=#{lx.jhsanlc},</if>
+		<if test="lx.jhsilc!=null and lx.jhsilc!=''">l.jhsilc=#{lx.jhsilc},</if>
+		<if test="lx.jhdwlc!=null and lx.jhdwlc!=''">l.jhdwlc=#{lx.jhdwlc},</if>
+		<if test="lx.jhwllc!=null and lx.jhwllc!=''">l.jhwllc=#{lx.jhwllc},</if>
+		<if test="lx.xjlxbm!=null and lx.xjlxbm!=''">l.xjlxbm=#{lx.xjlxbm},</if>
+		<if test="lx.xjqdzh!=null">l.xjqdzh=#{lx.xjqdzh},</if>
+		<if test="lx.xjzdzh!=null">l.xjzdzh=#{lx.xjzdzh},</if>
+		<if test="lx.xjlc!=null and lx.xjlc!=''">l.xjlc=#{lx.xjlc},</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">l.lxbm=#{lx.lxbm},</if>
+		<if test="lx.qdzh!=null and lx.qdzh!=''">l.qdzh=#{lx.qdzh},</if>
+		<if test="lx.zdzh!=null and lx.zdzh!=''">l.zdzh=#{lx.zdzh},</if>
+		<if test="lx.gydw!=null and lx.gydw!=''">l.gydw=#{lx.gydw},</if>
+		<if test="lx.gydwdm!=null and lx.gydwdm!=''">l.gydwdm=#{lx.gydwdm},</if>
+		<if test="lx.xzqh!=null and lx.xzqh!=''">l.xzqh=#{lx.xzqh},</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">l.xzqhdm=#{lx.xzqhdm},</if>
+		<if test="lx.jsjsdj!=null and lx.jsjsdj!=''">l.jsjsdj=#{lx.jsjsdj},</if>
+		<if test="lx.xjsdj!=null and lx.xjsdj!=''">l.xjsdj=#{lx.xjsdj},</if>
+<!-- 		<if test="lx.bzcs!=null and lx.bzcs!=''">l.bzcs=#{lx.bzcs},</if> -->
+		<if test="lx.jszlc!=null and lx.jszlc!=''">l.jhlc=#{lx.jszlc},</if>
+		<if test="xmsq.lqhntmchd != null">
+        LQHNTMCHD = #{xmsq.lqhntmchd},
+      </if>
+      <if test="xmsq.lqhntmc != null">
+        LQHNTMC = #{xmsq.lqhntmc},
+      </if>
+      <if test="xmsq.gxlqhntmchd != null">
+        GXLQHNTMCHD = #{xmsq.gxlqhntmchd},
+      </if>
+      <if test="xmsq.gxlqhntmc != null">
+        GXLQHNTMC = #{xmsq.gxlqhntmc},
+      </if>
+      <if test="xmsq.snhntmchd != null">
+        SNHNTMCHD = #{xmsq.snhntmchd},
+      </if>
+      <if test="xmsq.snhntmc != null">
+        SNHNTMC = #{xmsq.snhntmc},
+      </if>
+      <if test="xmsq.lqlmjdrzshd != null">
+        LQLMJDRZSHD = #{xmsq.lqlmjdrzshd},
+      </if>
+      <if test="xmsq.lqlmjdrzs != null">
+        LQLMJDRZS = #{xmsq.lqlmjdrzs},
+      </if>
+      <if test="xmsq.lqlmcbrzshd != null">
+        LQLMCBRZSHD = #{xmsq.lqlmcbrzshd},
+      </if>
+      <if test="xmsq.lqlmcbrzs != null">
+        LQLMCBRZS = #{xmsq.lqlmcbrzs},
+      </if>
+      <if test="xmsq.swjchd != null">
+        SWJCHD = #{xmsq.swjchd},
+      </if>
+      <if test="xmsq.swjc != null">
+        SWJC = #{xmsq.swjc},
+      </if>
+      <if test="xmsq.lqlmpmlqjdlzshd != null">
+        LQLMPMLQJDLZSHD = #{xmsq.lqlmpmlqjdlzshd},
+      </if>
+      <if test="xmsq.lqlmpmlqjdlzs != null">
+        LQLMPMLQJDLZS = #{xmsq.lqlmpmlqjdlzs},
+      </if>
+      <if test="xmsq.lqlmrhlqjdlzshd != null">
+        LQLMRHLQJDLZSHD = #{xmsq.lqlmrhlqjdlzshd},
+      </if>
+      <if test="xmsq.lqlmrhlqjdlzs != null">
+        LQLMRHLQJDLZS = #{xmsq.lqlmrhlqjdlzs},
+      </if>
+      <if test="xmsq.lqlmcblzshd != null">
+        LQLMCBLZSHD = #{xmsq.lqlmcblzshd},
+      </if>
+      <if test="xmsq.lqlmcblzs != null">
+        LQLMCBLZS = #{xmsq.lqlmcblzs},
+      </if>
+      <if test="xmsq.xzrxjchd != null">
+        XZRXJCHD = #{xmsq.xzrxjchd},
+      </if>
+      <if test="xmsq.xzrxjc != null">
+        XZRXJC = #{xmsq.xzrxjc},
+      </if>
+      <if test="xmsq.swjclzshd != null">
+        SWJCLZSHD = #{xmsq.swjclzshd},
+      </if>
+      <if test="xmsq.swjclzs != null">
+        SWJCLZS = #{xmsq.swjclzs},
+      </if>
+      <if test="xmsq.xfchd != null">
+        XFCHD = #{xmsq.xfchd},
+      </if>
+      <if test="xmsq.xfc != null">
+        XFC = #{xmsq.xfc},
+      </if>
+      <if test="xmsq.wcsnmbhd != null">
+        WCSNMBHD = #{xmsq.wcsnmbhd},
+      </if>
+      <if test="xmsq.wcsnmb != null">
+        WCSNMB = #{xmsq.wcsnmb},
+      </if>
+      <if test="xmsq.wcswjchd != null">
+        WCSWJCHD = #{xmsq.wcswjchd},
+      </if>
+      <if test="xmsq.wcswjc != null">
+        WCSWJC = #{xmsq.wcswjc},
+      </if>
+      <if test="xmsq.snhntmchbhd != null">
+        SNHNTMCHBHD = #{xmsq.snhntmchbhd},
+      </if>
+      <if test="xmsq.snhntmchb != null">
+        SNHNTMCHB = #{xmsq.snhntmchb},
+      </if>
+      <if test="xmsq.bxhd != null">
+        BXHD = #{xmsq.bxhd},
+      </if>
+      <if test="xmsq.bx != null">
+        BX = #{xmsq.bx},
+      </if>
+      <if test="xmsq.snhntmcsshhd != null">
+        SNHNTMCSSHHD = #{xmsq.snhntmcsshhd},
+      </if>
+      <if test="xmsq.snhntmcssh != null">
+        SNHNTMCSSH = #{xmsq.snhntmcssh},
+      </if>
+		<if test="xmsq.sbzj != null">
+        sbzj = #{xmsq.sbzj},
+      </if>
+		
+		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc}</if>
+		
+		<if test="lx.lc==null or lx.lc==''">l.lc=to_number(#{lx.zdzh})-to_number(#{lx.qdzh})</if>
+		
+		where l.xmid=#{lx.xmid} 
+		<if test="lx.jdbs!=null and lx.jdbs!=''">and jdbs=#{lx.jdbs}</if>
+		<if test="lx.sffirst==1">and sffirst=1</if>
+		<if test="lx.id!=null and lx.id!=''">and id=#{lx.id}</if>
+	</update>
+	
+	
+	
 	<insert id="insertLx" parameterType="lx">
 		insert into lxsh_lx (
 		<if test="xmid!=null">xmid</if>
@@ -1173,7 +1432,116 @@
 		<if test="jhsanlc!=null">,jhsanlc</if>
 		<if test="jhsilc!=null">,jhsilc</if>
 		<if test="jhdwlc!=null">,jhdwlc</if>
-		<if test="jhwllc!=null">,jhwllc</if>)
+		<if test="jhwllc!=null">,jhwllc</if>
+		<if test="lqhntmchd != null">
+        ,LQHNTMCHD
+	      </if>
+	      <if test="lqhntmc != null">
+	        ,LQHNTMC
+	      </if>
+	      <if test="gxlqhntmchd != null">
+	        ,GXLQHNTMCHD
+	      </if>
+	      <if test="gxlqhntmc != null">
+	        ,GXLQHNTMC
+	      </if>
+	      <if test="snhntmchd != null">
+	        ,SNHNTMCHD
+	      </if>
+	      <if test="snhntmc != null">
+	        ,SNHNTMC
+	      </if>
+	      <if test="lqlmjdrzshd != null">
+	        ,LQLMJDRZSHD
+	      </if>
+	      <if test="lqlmjdrzs != null">
+	        ,LQLMJDRZS
+	      </if>
+	      <if test="lqlmcbrzshd != null">
+	        ,LQLMCBRZSHD
+	      </if>
+	      <if test="lqlmcbrzs != null">
+	        ,LQLMCBRZS
+	      </if>
+	      <if test="swjchd != null">
+	        ,SWJCHD
+	      </if>
+	      <if test="swjc != null">
+	        ,SWJC
+	      </if>
+	      <if test="lqlmpmlqjdlzshd != null">
+	        ,LQLMPMLQJDLZSHD
+	      </if>
+	      <if test="lqlmpmlqjdlzs != null">
+	        ,LQLMPMLQJDLZS
+	      </if>
+	      <if test="lqlmrhlqjdlzshd != null">
+	        ,LQLMRHLQJDLZSHD
+	      </if>
+	      <if test="lqlmrhlqjdlzs != null">
+	        ,LQLMRHLQJDLZS
+	      </if>
+	      <if test="lqlmcblzshd != null">
+	        ,LQLMCBLZSHD
+	      </if>
+	      <if test="lqlmcblzs != null">
+	        ,LQLMCBLZS
+	      </if>
+	      <if test="xzrxjchd != null">
+	        ,XZRXJCHD
+	      </if>
+	      <if test="xzrxjc != null">
+	        ,XZRXJC
+	      </if>
+	      <if test="swjclzshd != null">
+	        ,SWJCLZSHD
+	      </if>
+	      <if test="swjclzs != null">
+	        ,SWJCLZS
+	      </if>
+	      <if test="xfchd != null">
+	        ,XFCHD
+	      </if>
+	      <if test="xfc != null">
+	        ,XFC
+	      </if>
+	      <if test="wcsnmbhd != null">
+	        ,WCSNMBHD
+	      </if>
+	      <if test="wcsnmb != null">
+	        ,WCSNMB
+	      </if>
+	      <if test="wcswjchd != null">
+	        ,WCSWJCHD
+	      </if>
+	      <if test="wcswjc != null">
+	        ,WCSWJC
+	      </if>
+	      <if test="snhntmchbhd != null">
+	        ,SNHNTMCHBHD
+	      </if>
+	      <if test="snhntmchb != null">
+	        ,SNHNTMCHB
+	      </if>
+	      <if test="bxhd != null">
+	        ,BXHD
+	      </if>
+	      <if test="bx != null">
+	        ,BX
+	      </if>
+	      <if test="snhntmcsshhd != null">
+	        ,SNHNTMCSSHHD
+	      </if>
+	      <if test="snhntmcssh != null">
+	        ,SNHNTMCSSH
+	      </if>
+	      <if test="sbzj != null">
+	        ,SBZJ
+	      </if>
+		<if test="lmkd != null">
+	        ,lxlmkd
+	      </if>
+		)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -1206,7 +1574,116 @@
 		<if test="jhsanlc!=null">,#{jhsanlc}</if>
 		<if test="jhsilc!=null">,#{jhsilc}</if>
 		<if test="jhdwlc!=null">,#{jhdwlc}</if>
-		<if test="jhwllc!=null">,#{jhwllc}</if>)
+		<if test="jhwllc!=null">,#{jhwllc}</if>
+		<if test="lqhntmchd != null">
+	        ,#{lqhntmchd}
+	      </if>
+	      <if test="lqhntmc != null">
+	        ,#{lqhntmc}
+	      </if>
+	      <if test="gxlqhntmchd != null">
+	        ,#{gxlqhntmchd}
+	      </if>
+	      <if test="gxlqhntmc != null">
+	        ,#{gxlqhntmc}
+	      </if>
+	      <if test="snhntmchd != null">
+	        ,#{snhntmchd}
+	      </if>
+	      <if test="snhntmc != null">
+	        ,#{snhntmc}
+	      </if>
+	      <if test="lqlmjdrzshd != null">
+	        ,#{lqlmjdrzshd}
+	      </if>
+	      <if test="lqlmjdrzs != null">
+	        ,#{lqlmjdrzs}
+	      </if>
+	      <if test="lqlmcbrzshd != null">
+	        ,#{lqlmcbrzshd}
+	      </if>
+	      <if test="lqlmcbrzs != null">
+	        ,#{lqlmcbrzs}
+	      </if>
+	      <if test="swjchd != null">
+	        ,#{swjchd}
+	      </if>
+	      <if test="swjc != null">
+	        ,#{swjc}
+	      </if>
+	      <if test="lqlmpmlqjdlzshd != null">
+	        ,#{lqlmpmlqjdlzshd}
+	      </if>
+	      <if test="lqlmpmlqjdlzs != null">
+	        ,#{lqlmpmlqjdlzs}
+	      </if>
+	      <if test="lqlmrhlqjdlzshd != null">
+	        ,#{lqlmrhlqjdlzshd}
+	      </if>
+	      <if test="lqlmrhlqjdlzs != null">
+	        ,#{lqlmrhlqjdlzs}
+	      </if>
+	      <if test="lqlmcblzshd != null">
+	        ,#{lqlmcblzshd}
+	      </if>
+	      <if test="lqlmcblzs != null">
+	        ,#{lqlmcblzs}
+	      </if>
+	      <if test="xzrxjchd != null">
+	        ,#{xzrxjchd}
+	      </if>
+	      <if test="xzrxjc != null">
+	        ,#{xzrxjc}
+	      </if>
+	      <if test="swjclzshd != null">
+	        ,#{swjclzshd}
+	      </if>
+	      <if test="swjclzs != null">
+	        ,#{swjclzs}
+	      </if>
+	      <if test="xfchd != null">
+	        ,#{xfchd}
+	      </if>
+	      <if test="xfc != null">
+	        ,#{xfc}
+	      </if>
+	      <if test="wcsnmbhd != null">
+	        ,#{wcsnmbhd}
+	      </if>
+	      <if test="wcsnmb != null">
+	        ,#{wcsnmb}
+	      </if>
+	      <if test="wcswjchd != null">
+	        ,#{wcswjchd}
+	      </if>
+	      <if test="wcswjc != null">
+	        ,#{wcswjc}
+	      </if>
+	      <if test="snhntmchbhd != null">
+	        ,#{snhntmchbhd}
+	      </if>
+	      <if test="snhntmchb != null">
+	        ,#{snhntmchb}
+	      </if>
+	      <if test="bxhd != null">
+	        ,#{bxhd}
+	      </if>
+	      <if test="bx != null">
+	        ,#{bx}
+	      </if>
+	      <if test="snhntmcsshhd != null">
+	        ,#{snhntmcsshhd}
+	      </if>
+	      <if test="snhntmcssh != null">
+	        ,#{snhntmcssh}
+	      </if>
+		  <if test="sbzj != null">
+	        ,#{sbzj}
+	      </if>
+		  <if test="lmkd != null">
+	        ,#{lmkd}
+	      </if>
+		)
 	</insert>
 	<delete id="deleteLx" parameterType="lx">
 		delete from lxsh_lx where id=#{id}

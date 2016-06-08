@@ -230,6 +230,242 @@
 		<if test="yilc!=null">,#{yilc}</if><if test="erlc!=null">,#{erlc}</if><if test="sanlc!=null">,#{sanlc}</if>
 		<if test="silc!=null">,#{silc}</if><if test="dwlc!=null">,#{dwlc}</if><if test="wllc!=null">,#{wllc}</if>)
 	</insert>
+	
+	
+	<insert id="insertYhdzxlx" parameterType="hashmap">
+		insert into lxsh_lx (
+		<if test="lx.xmid!=null">xmid</if><if test="lx.lxbm!=null">,lxbm</if><if test="lx.lxmc!=null">,lxmc</if>
+		<if test="lx.xzqh!=null">,xzqh</if><if test="lx.xzqhdm!=null">,xzqhdm</if><if test="lx.gydw!=null">,gydw</if>
+		<if test="lx.gydwdm!=null">,gydwdm</if><if test="lx.qdzh!=null">,qdzh</if><if test="lx.zdzh!=null">,zdzh</if>
+		<if test="lx.jsjsdj!=null">,jsjsdj</if><if test="lx.lc!=null">,lc</if><if test="lx.xjsdj!=null">,xjsdj</if>
+		<if test="lx.jsxz!=null">,jsxz</if><if test="lx.qdmc!=null">,qdmc</if><if test="lx.zdmc!=null">,zdmc</if>
+		<if test="lx.bzcs!=null">,bzcs</if><if test="lx.sffirst!=null">,sffirst</if><if test="lx.jdbs!=null">,jdbs</if>
+		<if test="lx.gpsqdzh!=null and lx.gpsqdzh!=''">,gpsqdzh</if><if test="lx.gpszdzh!=null and lx.gpszdzh!=''">,gpszdzh</if><if test="lx.jsfa!=null and lx.jsfa!=''">,jsfa</if>
+		<if test="lx.yilc!=null">,yilc</if><if test="lx.erlc!=null">,erlc</if><if test="lx.sanlc!=null">,sanlc</if>
+		<if test="lx.silc!=null">,silc</if><if test="lx.dwlc!=null">,dwlc</if><if test="lx.wllc!=null">,wllc</if>
+		<if test="xmsq.lqhntmchd != null">
+        ,LQHNTMCHD
+	      </if>
+	      <if test="xmsq.lqhntmc != null">
+	        ,LQHNTMC
+	      </if>
+	      <if test="xmsq.gxlqhntmchd != null">
+	        ,GXLQHNTMCHD
+	      </if>
+	      <if test="xmsq.gxlqhntmc != null">
+	        ,GXLQHNTMC
+	      </if>
+	      <if test="xmsq.snhntmchd != null">
+	        ,SNHNTMCHD
+	      </if>
+	      <if test="xmsq.snhntmc != null">
+	        ,SNHNTMC
+	      </if>
+	      <if test="xmsq.lqlmjdrzshd != null">
+	        ,LQLMJDRZSHD
+	      </if>
+	      <if test="xmsq.lqlmjdrzs != null">
+	        ,LQLMJDRZS
+	      </if>
+	      <if test="xmsq.lqlmcbrzshd != null">
+	        ,LQLMCBRZSHD
+	      </if>
+	      <if test="xmsq.lqlmcbrzs != null">
+	        ,LQLMCBRZS
+	      </if>
+	      <if test="xmsq.swjchd != null">
+	        ,SWJCHD
+	      </if>
+	      <if test="xmsq.swjc != null">
+	        ,SWJC
+	      </if>
+	      <if test="xmsq.lqlmpmlqjdlzshd != null">
+	        ,LQLMPMLQJDLZSHD
+	      </if>
+	      <if test="xmsq.lqlmpmlqjdlzs != null">
+	        ,LQLMPMLQJDLZS
+	      </if>
+	      <if test="xmsq.lqlmrhlqjdlzshd != null">
+	        ,LQLMRHLQJDLZSHD
+	      </if>
+	      <if test="xmsq.lqlmrhlqjdlzs != null">
+	        ,LQLMRHLQJDLZS
+	      </if>
+	      <if test="xmsq.lqlmcblzshd != null">
+	        ,LQLMCBLZSHD
+	      </if>
+	      <if test="xmsq.lqlmcblzs != null">
+	        ,LQLMCBLZS
+	      </if>
+	      <if test="xmsq.xzrxjchd != null">
+	        ,XZRXJCHD
+	      </if>
+	      <if test="xmsq.xzrxjc != null">
+	        ,XZRXJC
+	      </if>
+	      <if test="xmsq.swjclzshd != null">
+	        ,SWJCLZSHD
+	      </if>
+	      <if test="xmsq.swjclzs != null">
+	        ,SWJCLZS
+	      </if>
+	      <if test="xmsq.xfchd != null">
+	        ,XFCHD
+	      </if>
+	      <if test="xmsq.xfc != null">
+	        ,XFC
+	      </if>
+	      <if test="xmsq.wcsnmbhd != null">
+	        ,WCSNMBHD
+	      </if>
+	      <if test="xmsq.wcsnmb != null">
+	        ,WCSNMB
+	      </if>
+	      <if test="xmsq.wcswjchd != null">
+	        ,WCSWJCHD
+	      </if>
+	      <if test="xmsq.wcswjc != null">
+	        ,WCSWJC
+	      </if>
+	      <if test="xmsq.snhntmchbhd != null">
+	        ,SNHNTMCHBHD
+	      </if>
+	      <if test="xmsq.snhntmchb != null">
+	        ,SNHNTMCHB
+	      </if>
+	      <if test="xmsq.bxhd != null">
+	        ,BXHD
+	      </if>
+	      <if test="xmsq.bx != null">
+	        ,BX
+	      </if>
+	      <if test="xmsq.snhntmcsshhd != null">
+	        ,SNHNTMCSSHHD
+	      </if>
+	      <if test="xmsq.snhntmcssh != null">
+	        ,SNHNTMCSSH
+	      </if>
+	      <if test="xmsq.sbzj != null">
+	        ,SBZJ
+	      </if>
+		)
+		values(<if test="lx.xmid!=null">#{lx.xmid}</if><if test="lx.lxbm!=null">,#{lx.lxbm}</if><if test="lx.lxmc!=null">,#{lx.lxmc}</if>
+		<if test="lx.xzqh!=null">,#{lx.xzqh}</if><if test="lx.xzqhdm!=null">,#{lx.xzqhdm}</if><if test="lx.gydw!=null">,#{lx.gydw}</if>
+		<if test="lx.gydwdm!=null">,#{lx.gydwdm}</if><if test="lx.qdzh!=null">,#{lx.qdzh}</if><if test="lx.zdzh!=null">,#{lx.zdzh}</if>
+		<if test="lx.jsjsdj!=null">,#{lx.jsjsdj}</if><if test="lx.lc!=null">,#{lx.lc}</if><if test="lx.xjsdj!=null">,#{lx.xjsdj}</if>
+		<if test="lx.jsxz!=null">,#{lx.jsxz}</if><if test="lx.qdmc!=null">,#{lx.qdmc}</if><if test="lx.zdmc!=null">,#{lx.zdmc}</if>
+		<if test="lx.bzcs!=null">,#{lx.bzcs}</if><if test="lx.sffirst!=null">,#{lx.sffirst}</if><if test="lx.jdbs!=null">,#{lx.jdbs}</if>
+		<if test="lx.gpsqdzh!=null and lx.gpsqdzh!=''">,#{lx.gpsqdzh}</if><if test="lx.gpszdzh!=null and lx.gpszdzh!=''">,#{lx.gpszdzh}</if><if test="lx.jsfa!=null and lx.jsfa!=''">,#{lx.jsfa}</if>
+		<if test="lx.yilc!=null">,#{lx.yilc}</if><if test="lx.erlc!=null">,#{lx.erlc}</if><if test="lx.sanlc!=null">,#{lx.sanlc}</if>
+		<if test="lx.silc!=null">,#{lx.silc}</if><if test="lx.dwlc!=null">,#{lx.dwlc}</if><if test="lx.wllc!=null">,#{lx.wllc}</if>
+		<if test="xmsq.lqhntmchd != null">
+	        ,#{xmsq.lqhntmchd}
+	      </if>
+	      <if test="xmsq.lqhntmc != null">
+	        ,#{xmsq.lqhntmc}
+	      </if>
+	      <if test="xmsq.gxlqhntmchd != null">
+	        ,#{xmsq.gxlqhntmchd}
+	      </if>
+	      <if test="xmsq.gxlqhntmc != null">
+	        ,#{xmsq.gxlqhntmc}
+	      </if>
+	      <if test="xmsq.snhntmchd != null">
+	        ,#{xmsq.snhntmchd}
+	      </if>
+	      <if test="xmsq.snhntmc != null">
+	        ,#{xmsq.snhntmc}
+	      </if>
+	      <if test="xmsq.lqlmjdrzshd != null">
+	        ,#{xmsq.lqlmjdrzshd}
+	      </if>
+	      <if test="xmsq.lqlmjdrzs != null">
+	        ,#{xmsq.lqlmjdrzs}
+	      </if>
+	      <if test="xmsq.lqlmcbrzshd != null">
+	        ,#{xmsq.lqlmcbrzshd}
+	      </if>
+	      <if test="xmsq.lqlmcbrzs != null">
+	        ,#{xmsq.lqlmcbrzs}
+	      </if>
+	      <if test="xmsq.swjchd != null">
+	        ,#{xmsq.swjchd}
+	      </if>
+	      <if test="xmsq.swjc != null">
+	        ,#{xmsq.swjc}
+	      </if>
+	      <if test="xmsq.lqlmpmlqjdlzshd != null">
+	        ,#{xmsq.lqlmpmlqjdlzshd}
+	      </if>
+	      <if test="xmsq.lqlmpmlqjdlzs != null">
+	        ,#{xmsq.lqlmpmlqjdlzs}
+	      </if>
+	      <if test="xmsq.lqlmrhlqjdlzshd != null">
+	        ,#{xmsq.lqlmrhlqjdlzshd}
+	      </if>
+	      <if test="xmsq.lqlmrhlqjdlzs != null">
+	        ,#{xmsq.lqlmrhlqjdlzs}
+	      </if>
+	      <if test="xmsq.lqlmcblzshd != null">
+	        ,#{xmsq.lqlmcblzshd}
+	      </if>
+	      <if test="xmsq.lqlmcblzs != null">
+	        ,#{xmsq.lqlmcblzs}
+	      </if>
+	      <if test="xmsq.xzrxjchd != null">
+	        ,#{xmsq.xzrxjchd}
+	      </if>
+	      <if test="xmsq.xzrxjc != null">
+	        ,#{xmsq.xzrxjc}
+	      </if>
+	      <if test="xmsq.swjclzshd != null">
+	        ,#{xmsq.swjclzshd}
+	      </if>
+	      <if test="xmsq.swjclzs != null">
+	        ,#{xmsq.swjclzs}
+	      </if>
+	      <if test="xmsq.xfchd != null">
+	        ,#{xmsq.xfchd}
+	      </if>
+	      <if test="xmsq.xfc != null">
+	        ,#{xmsq.xfc}
+	      </if>
+	      <if test="xmsq.wcsnmbhd != null">
+	        ,#{xmsq.wcsnmbhd}
+	      </if>
+	      <if test="xmsq.wcsnmb != null">
+	        ,#{xmsq.wcsnmb}
+	      </if>
+	      <if test="xmsq.wcswjchd != null">
+	        ,#{xmsq.wcswjchd}
+	      </if>
+	      <if test="xmsq.wcswjc != null">
+	        ,#{xmsq.wcswjc}
+	      </if>
+	      <if test="xmsq.snhntmchbhd != null">
+	        ,#{xmsq.snhntmchbhd}
+	      </if>
+	      <if test="xmsq.snhntmchb != null">
+	        ,#{xmsq.snhntmchb}
+	      </if>
+	      <if test="xmsq.bxhd != null">
+	        ,#{xmsq.bxhd}
+	      </if>
+	      <if test="xmsq.bx != null">
+	        ,#{xmsq.bx}
+	      </if>
+	      <if test="xmsq.snhntmcsshhd != null">
+	        ,#{xmsq.snhntmcsshhd}
+	      </if>
+	      <if test="xmsq.snhntmcssh != null">
+	        ,#{xmsq.snhntmcssh}
+	      </if>
+		  <if test="xmsq.sbzj != null">
+	        ,#{xmsq.sbzj}
+	      </if>
+		)
+	</insert>
+	
 	<delete id="deleteLxByXmbm" parameterType="xmsq">
 		delete from lxsh_lx where xmid=#{xmbm}
 	</delete>
@@ -465,7 +701,11 @@
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
-		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc 
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,
+		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
+		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
+		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj 
 		from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
@@ -1335,5 +1575,9 @@
 	        ]]>
 		</foreach>
 		order by xmid desc
+	</select>
+	
+	<select id="queryyhdzxcb" parameterType="xmsq" resultType="xmsq">
+		select * from cbsj_yhdzx where xmbm in (${xmbm})
 	</select>
 </mapper>
