@@ -947,7 +947,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		String fileName="";
 		excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
 		titleName="国省道改造";
-		fileName="国省道改造-计划审核";
+		fileName="计划下达表格（2015-44号）";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
@@ -994,7 +994,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setPage(0);
 			jhsh.setRows(0);
 			excelData.addAll(jhshServer.queryJhshYhdzx_dc(jhsh));
-			fileName="养护大中修项目-计划审核";
+			fileName="计划下达表格（2015-49号）";
 		}
 		ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 	}
@@ -1136,7 +1136,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jhsh.setRows(0);
 		excelData.addAll(jhshServer.queryJhshSh_dc(jhsh));
 		titleName="灾毁重建项目";
-		fileName="灾毁重建项目-计划审核";
+		fileName="计划下达表格（2015-47号）";
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}

@@ -117,7 +117,28 @@
 				{field:'bcxdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'zjly',title:'资金来源',width:100,align:'center'},
 				{field:'zydpx',title:'重要度排序',width:100,align:'center'},
-				{field:'xzdj',title:'行政等级',width:100,align:'center'},
+				{field:'xzdj',title:'行政等级',width:100,align:'center',
+					formatter: function(value,row,index){
+						if(row.ghlxbh.substr(0,1)=='G'){
+		        			return '国道';
+		        		}
+						if(row.ghlxbh.substr(0,1)=='S'){
+		        			return '省道';
+		        		}
+						if(row.ghlxbh.substr(0,1)=='X'){
+		        			return '县道';
+		        		}
+						if(row.ghlxbh.substr(0,1)=='Y'){
+		        			return '乡道';
+		        		}
+						if(row.ghlxbh.substr(0,1)=='C'){
+		        			return '村道';
+		        		}
+						if(row.ghlxbh.substr(0,1)=='Z'){
+		        			return '专道';
+		        		}
+					}	
+				},
 				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
 				{field:'ylxmc',title:'原路线名称',width:100,align:'center'},
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
