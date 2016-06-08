@@ -75,7 +75,7 @@
 					}
 				},
 				
-				{field:'shzt',title:'审核状态',width:60,align:'center',
+				/* {field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
@@ -87,8 +87,8 @@
 // 							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">计划审核</a>';
 						return result;
 					}
-				},
-				{field:'lsjl',title:'历史记录',width:60,align:'center',
+				}, */
+			/* 	{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -96,8 +96,8 @@
 							return value;
 						}
 					}
-				},
-				{field:'gydw',title:'管养单位',width:100,align:'center'},
+				}, */
+// 				{field:'gydw',title:'管养单位',width:100,align:'center'},
 				{field:'xzqh',title:'行政区划',width:60,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
 					formatter: function(value,row,index){
@@ -108,23 +108,47 @@
 		        		}
 					}
 				},
-				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'jsxz',title:'建设性质',width:100,align:'center'},
 				{field:'jsdj',title:'技术等级',width:80,align:'center'},
+				{field:'xmnf',title:'项目年份',width:100,align:'center'},
+				{field:'bcxdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'zjly',title:'资金来源',width:100,align:'center'},
+				{field:'zydpx',title:'重要度排序',width:100,align:'center'},
+				{field:'xzdj',title:'行政等级',width:100,align:'center'},
+				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
+				{field:'ylxmc',title:'原路线名称',width:100,align:'center'},
+				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ghlxmc',title:'规划路线名称',width:100,align:'center'},
+				 {field:'sfybzls',title:'是否有补助历史',width:60,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
+					}
+				}, 
+				{field:'sfsycgs',title:'是否使用车购税',width:100,align:'center'},
+// 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
+// 				{field:'lc',title:'里程',width:60,align:'center'},
+// 				{field:'jsdj',title:'技术等级',width:80,align:'center'},
 // 				{field:'xjsdj',title:'现设技术等级',width:100,align:'center'},
-				{field:'ghlxbh',title:'路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:70,align:'center'},
-				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
+// 				{field:'ghlxbh',title:'路线编码',width:60,align:'center'},
+// 				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
+// 				{field:'zdzh',title:'止点桩号',width:70,align:'center'},
+// 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				//{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
-				{field:'jhkgsj',title:'开工时间',width:70,align:'center'},
+				/* {field:'jhkgsj',title:'开工时间',width:70,align:'center'},
 				{field:'jhwgsj',title:'完工时间',width:70,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'bcztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bccgs',title:'部补助资金',width:100,align:'center'},
-				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
-				{field:'bcxdwh',title:'计划下达文号',width:100,align:'center'},
-				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'}
+				{field:'bcstz',title:'省补助资金',width:100,align:'center'}, */
+				/* {field:'bcxdwh',title:'计划下达文号',width:100,align:'center'}, */
+// 				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
+				{field:'gyfl',title:'管养分类',width:100,align:'center'},
+				{field:'xdzt',title:'下达状态',width:100,align:'center'}
 			]];
 			bindLxGrid();
 			gridBind(grid);
