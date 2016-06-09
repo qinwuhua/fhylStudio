@@ -25,74 +25,30 @@
 		var qdStr;
 		var zdStr;
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
-			$('#xmbm').html(parent.YMLib.Var.xmbm);
-			$('#jdbs').val(parent.YMLib.Var.jdbs);
-			autoCompleteLXBM();
+			$('#lx').form("load",parent.YMLib.Var.Obj);
+			$("#lmkd").val(parent.YMLib.Var.Obj.lxlmkd);
+			var msg=parent.YMLib.Var.Obj;
+			if(msg.xfchd=='是'){
+				$("#xfcse").attr('checked','checked');
+			}
+			if(msg.snhntmchbhd=='是'){
+				$("#snhntmchbse").attr('checked','checked');
+			}
+			if(msg.bxhd=='是'){
+				$("#bxse").attr('checked','checked');
+			}
+			if(msg.snhntmcsshhd=='是'){
+				$("#snhntmcsshse").attr('checked','checked');
+			}
+			$("#sbzj1").html(msg.sbzj);
+			$("#sbzj").val(msg.sbzj);
+			
+			loadUnit("gydw",parent.YMLib.Var.Obj.gydwdm);
+			loadDist("xzqh",parent.YMLib.Var.Obj.xzqhdm);
+			$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
 		});
-		function autoCompleteLXBM(){
-			var url = "/jxzhpt/qqgl/queryAutoList.do";
-			$("#lxbm").autocomplete(url, {
-				multiple : false,minChars :4,multipleSeparator : ' ',
-				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
-		  		extraParams : {
-		  			'ylxbh':function() {
-		  				var d = $("#lxbm").val();
-		  				return d;
-		  			},
-		  			'xzqhdm':function() {
-		  				var d = $.cookie("dist");
-		  				return d;
-		  			}
-		  		},
-		  		dataType:'json',// 返回类型
-		  		// 对返回的json对象进行解析函数，函数返回一个数组
-		  		parse : function(data) {
-		  			var aa = [];
-		  			aa = $.map(eval(data), function(row) {
-		  					return {
-		  					data : row,
-		  					value : row.lxbm.replace(/(\s*$)/g,""),
-		  					result : row.lxbm.replace(/(\s*$)/g,"")
-		  				};
-		  			});
-		  			return aa;
-		  		},
-		  		formatItem : function(row, i, max) {
-		  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
-		  		}
-		  	}).result(
-				function(e, item) {
-					$('#lmkd').val(item.lmkd);
-					//$('#lxbm').val(item.lxbm);
-					$('#lxmc').val(item.lxmc);
-					$('#qdmc').val(item.qdmc);
-					$('#zdmc').val(item.zdmc);
-					$('#qdzh').val(item.qdzh);
-					$('#gpsqdzh').val(item.qdzh);
-					$('#qd').html("起点桩号不能小于"+item.qdzh);
-					$('#zdzh').val(item.zdzh);
-					$('#gpszdzh').val(item.zdzh);
-					$('#zd').html("止点桩号不能大于"+item.zdzh);
-					$('#lc').val(item.lc);
-					$('#jsdj').val(item.xjsdj);
-					$('#lmkd').val(item.ylmlx);
-					queryJsdjAndLc($('#lxbm').val(),$('#qdzh').val(),$('#zdzh').val());
-					$.ajax({
-						type:'post',
-						url:'../../../qqgl/queryTsdq.do',
-						data:'ylxbh='+$('#lxbm').val()+'&qdzh='+$('#qdzh').val()+'&zdzh='+$('#zdzh').val(),
-						dataType:'json',
-						success:function(msg){
-							$('#tsdq1').html(msg.tsdq);
-							$('#tsdq').val(msg.tsdq);
-						}
-					});
-			});
-		}
 		function updateLx(){
-			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').html(),'lx.lxmc':$('#lxmc').val(),
+			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').html(),'lx.id':$('#id').val(),'lx.lxmc':$('#lxmc').val(),
 					'lx.lxbm':$('#lxbm').val(),'lx.zdzh':$('#zdzh').val(),'lx.qdzh':$('#qdzh').val(),
 					'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),
 					'lx.gydw':$('#gydw').combobox("getText"),'lx.gydwdm':$('#gydw').combobox("getValue"),
@@ -112,24 +68,21 @@
 					,'lx.xzrxjchd':$('#xzrxjchd').val(),'lx.swjclzshd':$('#swjclzshd').val(),'lx.xfchd':$('#xfchd').val()
 					,'lx.wcsnmbhd':$('#wcsnmbhd').val(),'lx.wcswjchd':$('#wcswjchd').val(),'lx.snhntmchbhd':$('#snhntmchbhd').val()
 					,'lx.bxhd':$('#bxhd').val(),'lx.snhntmcsshhd':$('#snhntmcsshhd').val(),'lx.sbzj':$('#sbzj').val(),'lx.lmkd':$('#lmkd').val()
-					                              
-			};
+					};
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/qqgl/insertLx.do',
+				url:'/jxzhpt/qqgl/updateLx.do',
 		        data:params,
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
 						alert("保存成功!");
-						if(parent.YMLib.Var.xmbm.substring(10,11)=="4"){
+						if(parent.YMLib.Var.Obj.xmid.substring(10,11)=="4"){
 							parent.queryYhdzx();
-						}else if(parent.YMLib.Var.xmbm.substring(10,11)=="5"){
+						}else if(parent.YMLib.Var.Obj.xmid.substring(10,11)=="5"){
 							parent.queryShxm();
 						}
 						closeWindow(parent.YMLib.Var.id);
-					}else if(msg.result=="have"){
-						alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 					}else{
 						alert("保存失败！");
 					}
@@ -199,7 +152,6 @@
 				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
 					<input id="lmkd" name="lmkd" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
 				</td>
-				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -208,7 +160,6 @@
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
 					<span id="qd"></span>
-					<input type="hidden" id="gpsqdzh" name="gpsqdzh"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>止点桩号：
@@ -216,7 +167,6 @@
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span>
-					<input type="hidden" id="gpszdzh" name="gpszdzh"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>里程：
@@ -242,7 +192,7 @@
 					<font color='red' size='2'>*&nbsp;</font>建设性质：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="jsxz" id="jsxz" style="width:120px" type="text"/>
+					<input name="jsxz" id="jsxz" style="width:120px"  type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -258,13 +208,13 @@
 					无路：<input id="wllc" name="wllc" onchange="cesuan2()" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
-			
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设方案</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea id="jsfa" name="jsfa" rows="" cols="" style="width: 650px;height: 60px;"></textarea>
 				</td>
 			</tr>
+			
 			<tbody id='bzsf'>
 	            <tr>
 	            	<td rowspan="5" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -586,8 +536,6 @@
 	            </tr>
 	            
             </tbody>
-			
-			
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:updateLx()" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>

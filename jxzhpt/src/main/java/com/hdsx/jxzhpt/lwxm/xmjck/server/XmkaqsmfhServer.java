@@ -90,5 +90,7 @@ public interface XmkaqsmfhServer {
 
 	Xmkaqsmfh loadscktjld1(Xmkaqsmfh xmkaqsmfh);
 
+	List<Excel_list> xmkaqsmfhDoExcel(Xmkaqsmfh xmkaqsmfh);
+
 
 }

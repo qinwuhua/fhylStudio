@@ -7,6 +7,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
@@ -460,4 +461,5 @@ public interface JhshServer {
 	public Collection<? extends Object> queryJhshYhdzx_dc(Jhsh jhsh);
 	public List<Lx> querywnxx(Jhsh jhsh);
 	public String queryylmlx(Lx lx);
+	public boolean updateLx(Lx lx, Xmsq xmsq);
 }

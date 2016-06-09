@@ -301,6 +301,10 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 		System.out.println(xxString);
 		return xxString;
 	}
+	@Override
+	public List<Excel_list> xmkaqsmfhDoExcel(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("xmkaqsmfhDoExcel",xmkaqsmfh);
+	}
 	
 	
 }

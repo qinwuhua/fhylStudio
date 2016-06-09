@@ -262,7 +262,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				b = xmsqServer.insertXmsqSh(list);
 			}
 			if(b){
-				xmsqServer.insertLx(lx);
+				if(xmsq.getXmlx()==4)
+				xmsqServer.insertLx(lx,xmsq);
+				else
+				xmsqServer.insertLx(lx);	
 			}
 			result.put("result", new Boolean(b).toString());
 			/*Lx queryHaveLx = xmsq.getXmlx()==4 ? jhshServer.queryHaveLx(lx) : null;
@@ -624,6 +627,14 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 				if(b){
+					List<Xmsq> x=xmsqServer.queryyhdzxcb(xmsq);
+					String xmbm=xmsq.getXmbm();
+					if(x.size()>0)
+					for (Xmsq xm : x) {
+						if(xmbm.indexOf(xm.getXmbm())>-1)
+							xmbm=xmbm.replaceAll(xm.getXmbm(), "");
+					}
+					xmsq.setXmbm(xmbm);
 					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
 			}else if(xmsq.getXmlx()==5){
@@ -658,6 +669,26 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	
+	public void updateXmsqthSp() throws Exception{
+		try{
+			boolean b=true;
+			xmsq.setSqzt(xmsq.getXzqhdm().length()+2);
+			if(xmsq.getXmlx()==4){
+				b = xmsqServer.updateYhdzxSqzt(xmsq);
+				
+			}
+			
+			
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	
 	/**
 	 * 通过申请，并在计划审核中加入数据---養護中心項目
@@ -730,10 +761,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(b){
 				if(xmsq.getXmlx()==5){
 					lx.setJdbs("0");
+					jhshServer.updateLx(lx);
 				}else{
 					lx.setJdbs("1");
+					jhshServer.updateLx(lx,xmsq);
 				}
-				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());

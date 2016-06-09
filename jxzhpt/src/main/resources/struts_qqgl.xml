@@ -224,6 +224,8 @@
 		<action name="deleteXmsq" class="xmsqController" method="deleteXmsq"></action>
 		<action name="updateXmsqSbzt" class="xmsqController" method="updateXmsqSbzt"></action>
 		<action name="updateXmsqSp" class="xmsqController" method="updateXmsqSp"></action>
+		<action name="updateXmsqthSp" class="xmsqController" method="updateXmsqthSp"></action>
+		
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>

@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -244,6 +245,12 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public boolean updateLx(Lx lx) {
 		return update("updateLx",lx)>0;
+	}
+	@Override
+	public boolean updateLx(Lx lx,Xmsq xmsq) {
+		params.put("lx", lx);
+		params.put("xmsq", xmsq);
+		return update("updateyhdzxLx",params)>0;
 	}
 	@Override
 	public boolean insertLx(Lx lx) {

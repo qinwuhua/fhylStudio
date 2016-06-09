@@ -368,6 +368,14 @@ function importExcelqwh(url,flag){
 	});
 	weatherDlg.ShowDialog();
 }
+///加法
+function accAdd(arg1,arg2){  
+    var r1,r2,m;  
+    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  
+    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}  
+    m=Math.pow(10,Math.max(r1,r2));
+    return (arg1*m+arg2*m)/m;  
+}
 function accSub(arg1,arg2){
 	 var r1,r2,m,n;
 	 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
@@ -378,6 +386,27 @@ function accSub(arg1,arg2){
 	n=(r1>=r2)?r1:r2;
 	return ((arg1*m-arg2*m)/m).toFixed(n);
 	}
+//乘法
+function accMul(arg1,arg2)  
+{  
+    var m=0,s1=arg1.toString(),s2=arg2.toString();  
+    try{m+=s1.split(".")[1].length;}catch(e){
+    }  
+    try{m+=s2.split(".")[1].length;}catch(e){
+    }  
+    return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);  
+}
+//除法
+function accDiv(arg1,arg2){  
+    var t1=0,t2=0,r1,r2;  
+    try{t1=arg1.toString().split(".")[1].length;}catch(e){}  
+    try{t2=arg2.toString().split(".")[1].length;}catch(e){}  
+    with(Math){  
+        r1=Number(arg1.toString().replace(".",""));  
+        r2=Number(arg2.toString().replace(".",""));  
+        return (r1/r2)*pow(10,t2-t1);  
+    }  
+}
 /**
  * 历史记录弹窗
  * @param xmbm 项目编码
@@ -1130,6 +1159,9 @@ function updateLxWin(index,xmbm,id){
 	}else if(xmbm.substring(10,11)=="2"){
 		YMLib.UI.createWindow(id,'编辑路线信息','lmgzlx_edit.jsp',id,900,350);
 	}
+	else if(xmbm.substring(10,11)=="4"){
+		YMLib.UI.createWindow(id,'编辑路线信息','lx_update.jsp',id,900,350);
+	}
 	YMLib.UI.createWindow(id,'编辑路线信息','lx_add.jsp',id,900,350);
 }
 function loadLxWin(index,xmbm,id){
@@ -1458,4 +1490,282 @@ function gridBindyh(grid){
 	    onExpandRow:Qwh.onExpandRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
+}
+
+
+
+//计算yhdzx费用
+function jsbzzj(flag){
+	var yi=$("#yilc").val();
+	var er=$("#erlc").val();
+	var san=$("#sanlc").val();
+	var si=$("#silc").val();
+	var dw=$("#dwlc").val();
+	var wl=$("#wllc").val();
+	if(yi==''||yi==null)
+	yi=0;
+	if(er==''||er==null)
+	er=0;
+	if(san==''||san==null)
+	san=0;
+	if(si==''||si==null)
+	si=0;
+	if(dw==''||dw==null)
+	dw=0;
+	if(wl==''||wl==null)
+	wl=0;
+	var zlc=accAdd(accAdd((accAdd(parseFloat(yi),parseFloat(er))),(accAdd(parseFloat(san),parseFloat(si)))),(accAdd(parseFloat(dw),parseFloat(wl))));  
+	var elc=accSub(zlc,parseFloat(yi));
+	var zj1=0;
+	var zj2=0;
+	var zj3=0;
+	var zj4=0;
+	var zj5=0;
+	var zj6=0;
+	var zj7=0;
+	var zj8=0;
+	var zj9=0;
+	var zj10=0;
+	var zj11=0;
+	var zj12=0;
+	var zj13=0;
+	var zj14=0;
+	var zj15=0;
+	var zj16=0;
+	var zj17=0;
+	
+	
+	if(flag=='lqhntmc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqhntmchd").numberbox('getValue')!=null && $("#lqhntmchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqhntmchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqhntmcdj").html())),1000000);
+			$("#lqhntmc").val(bz);
+		}else{
+			$("#lqhntmc").val('');
+		}
+	}
+	if(flag=='gxlqhntmc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#gxlqhntmchd").numberbox('getValue')!=null && $("#gxlqhntmchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#gxlqhntmchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#gxlqhntmcdj").html())),1000000);
+			$("#gxlqhntmc").val(bz);
+		}else{
+			$("#gxlqhntmc").val('');
+		}
+	}
+	if(flag=='snhntmc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#snhntmchd").numberbox('getValue')!=null && $("#snhntmchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#snhntmchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#snhntmcdj").html())),1000000);
+			$("#snhntmc").val(bz);
+		}else{
+			$("#snhntmc").val('');
+		}
+	}
+	if(flag=='lqlmjdrzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqlmjdrzshd").numberbox('getValue')!=null && $("#lqlmjdrzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqlmjdrzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqlmjdrzsdj").html())),1000000);
+			$("#lqlmjdrzs").val(bz);
+		}else{
+			$("#lqlmjdrzs").val('');
+		}
+	}
+	if(flag=='lqlmcbrzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqlmcbrzshd").numberbox('getValue')!=null && $("#lqlmcbrzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqlmcbrzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqlmcbrzsdj").html())),1000000);
+			$("#lqlmcbrzs").val(bz);
+		}else{
+			$("#lqlmcbrzs").val('');
+		}
+	}
+	if(flag=='swjc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#swjchd").numberbox('getValue')!=null && $("#swjchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#swjchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#swjcdj").html())),1000000);
+			$("#swjc").val(bz);
+		}else{
+			$("#swjc").val('');
+		}
+	}
+	if(flag=='lqlmpmlqjdlzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqlmpmlqjdlzshd").numberbox('getValue')!=null && $("#lqlmpmlqjdlzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqlmpmlqjdlzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqlmpmlqjdlzsdj").html())),1000000);
+			$("#lqlmpmlqjdlzs").val(bz);
+		}else{
+			$("#lqlmpmlqjdlzs").val('');
+		}
+	}
+	if(flag=='lqlmrhlqjdlzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqlmrhlqjdlzshd").numberbox('getValue')!=null && $("#lqlmrhlqjdlzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqlmrhlqjdlzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqlmrhlqjdlzsdj").html())),1000000);
+			$("#lqlmrhlqjdlzs").val(bz);
+		}else{
+			$("#lqlmrhlqjdlzs").val('');
+		}
+	}
+	if(flag=='lqlmcblzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqlmcblzshd").numberbox('getValue')!=null && $("#lqlmcblzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#lqlmcblzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#lqlmcblzsdj").html())),1000000);
+			$("#lqlmcblzs").val(bz);
+		}else{
+			$("#lqlmcblzs").val('');
+		}
+	}
+	if(flag=='xzrxjc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#xzrxjchd").numberbox('getValue')!=null && $("#xzrxjchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#xzrxjchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#xzrxjcdj").html())),1000000);
+			$("#xzrxjc").val(bz);
+		}else{
+			$("#xzrxjc").val('');
+		}
+	}
+	if(flag=='swjclzs'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#swjclzshd").numberbox('getValue')!=null && $("#swjclzshd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#swjclzshd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#swjclzsdj").html())),1000000);
+			$("#swjclzs").val(bz);
+		}else{
+			$("#swjclzs").val('');
+		}
+	}
+	if(flag=='xfc'){
+		
+		if($("#lmkd").val()!=null && $("#lmkd").val()!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			if($("#xfcse").attr("checked")=="checked"){
+				var bz=accDiv(accMul(mj,parseFloat($("#xfcdj").html())),10000);
+				$("#xfc").val(bz);
+				$("#xfchd").val("是");
+			}else{
+				$("#xfc").val('');
+				$("#xfchd").val("否");
+				}
+		}else{
+			$("#xfc").val('');
+		}
+	}
+	if(flag=='wcsnmb'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#wcsnmbhd").numberbox('getValue')!=null && $("#wcsnmbhd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#wcsnmbhd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#wcsnmbdj").html())),1000000);
+			$("#wcsnmb").val(bz);
+		}else{
+			$("#wcsnmb").val('');
+		}
+	}
+	if(flag=='wcswjc'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#wcswjchd").numberbox('getValue')!=null && $("#wcswjchd").numberbox('getValue')!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			var tj=accMul(parseFloat($("#wcswjchd").val()),mj);
+			var bz=accDiv(accMul(tj,parseFloat($("#wcswjcdj").html())),1000000);
+			$("#wcswjc").val(bz);
+		}else{
+			$("#wcswjc").val('');
+		}
+	}
+	if(flag=='snhntmchb'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			if($("#snhntmchbse").attr("checked")=="checked"){
+				var bz=accDiv(accMul(mj,parseFloat($("#snhntmchbdj").html())),10000);
+				$("#snhntmchb").val(bz);
+				$("#snhntmchbhd").val("是");
+			}else{
+				$("#snhntmchb").val('');
+				$("#snhntmchbhd").val("否");
+				}
+		}else{
+			$("#snhntmchb").val('');
+		}
+	}
+	if(flag=='bx'){
+		if(zlc!=null && zlc!=''){
+			
+			if($("#bxse").attr("checked")=="checked"){
+				var bz1=accDiv(accMul(elc,parseFloat($("#bxerdj").html())),10000);
+				var bz2=accDiv(accMul(yi,parseFloat($("#bxyidj").html())),10000);
+				var bz=accAdd(bz1,bz2);
+				$("#bxhd").val("是");
+				$("#bx").val(bz);
+			}else{
+				$("#bxhd").val("否");
+				$("#bx").val('');
+				}
+		}else{
+			$("#bx").val('');
+		}
+	}
+	if(flag=='snhntmcssh'){
+		if($("#lmkd").val()!=null && $("#lmkd").val()!=''){
+			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			if($("#snhntmcsshse").attr("checked")=="checked"){
+				var bz=accDiv(accMul(mj,parseFloat($("#snhntmcsshdj").html())),10000);
+				$("#snhntmcsshhd").val("是");
+				$("#snhntmcssh").val(bz);
+			}else{
+				$("#snhntmcsshhd").val("否");
+				$("#snhntmcssh").val('');
+				}
+		}else{
+			$("#snhntmcssh").val('');
+		}
+	}
+	
+	
+	if($("#lqhntmc").val()!='')
+	zj1=$("#lqhntmc").val();
+	if($("#gxlqhntmc").val()!='')
+	zj2=$("#gxlqhntmc").val();
+	if($("#snhntmc").val()!='')
+	zj3=$("#snhntmc").val();
+	if($("#lqlmjdrzs").val()!='')
+	zj4=$("#lqlmjdrzs").val();
+	if($("#lqlmcbrzs").val()!='')
+	zj5=$("#lqlmcbrzs").val();
+	if($("#swjc").val()!='')
+	zj6=$("#swjc").val();
+	if($("#lqlmpmlqjdlzs").val()!='')
+	zj7=$("#lqlmpmlqjdlzs").val();
+	if($("#lqlmrhlqjdlzs").val()!='')
+	zj8=$("#lqlmrhlqjdlzs").val();
+	if($("#lqlmcblzs").val()!='')
+	zj9=$("#lqlmcblzs").val();
+	if($("#xzrxjc").val()!='')
+	zj10=$("#xzrxjc").val();
+	if($("#swjclzs").val()!='')
+	zj11=$("#swjclzs").val();
+	if($("#xfc").val()!='')
+	zj12=$("#xfc").val();
+	if($("#wcsnmb").val()!='')
+	zj13=$("#wcsnmb").val();
+	if($("#wcswjc").val()!='')
+	zj14=$("#wcswjc").val();
+	if($("#snhntmchb").val()!='')
+	zj15=$("#snhntmchb").val();
+	if($("#bx").val()!='')
+	zj16=$("#bx").val();
+	if($("#snhntmcssh").val()!='')
+	zj17=$("#snhntmcssh").val();
+	var zbz=accAdd(accAdd(accAdd(accAdd(accAdd(zj1,zj2),accAdd(zj3,zj4)),accAdd(accAdd(zj5,zj6),accAdd(zj7,zj8))),accAdd(accAdd(accAdd(zj9,zj10),accAdd(zj11,zj12)),accAdd(accAdd(zj13,zj14),accAdd(zj15,zj16)))),zj17);
+	$("#sbzj1").html(zbz);
+	$("#sbzj").val(zbz);
+	
 }

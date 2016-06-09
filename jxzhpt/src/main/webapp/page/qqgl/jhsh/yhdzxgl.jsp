@@ -131,7 +131,8 @@
 							}
 						}else if(userPanduan($.cookie('unit2'))=="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
-								result="已审核";
+								result='<a href="javascript:thsp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">已审核</a>';
+
 							}else if(Number(value)==9){
 								result='<a href="javascript:sp('+index+')" style="color:#3399CC;">未审核</a>';
 							}else{
@@ -361,7 +362,7 @@
 						if(msg.lx.length>0){
 							$("#lsjl").val("是");
 							alert("存在补助历史\r"+xsxx);
-							if(confirm('是否保存？')){
+							if(confirm('是否审核？')){
 								//insert();
 								$.ajax({
 									type:'post',
@@ -403,6 +404,27 @@
 			
 			
 		}
+		
+		//退回审批
+		function thsp(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/updateXmsqthSp.do',
+				data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("退回成功!");
+						queryYhdzx();
+					}
+				}
+			}); 
+			
+			
+		}
+		
+		
 		function batchSp(){
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;

@@ -50,6 +50,7 @@ public interface XmsqServer {
 	 * @return 执行结果
 	 */
 	public boolean insertLx(Lx lx);
+	public boolean insertLx(Lx lx,Xmsq xmsq);
 	/**
 	 * 根据路线编号和起止点桩号查询特殊地区
 	 * @param xmsq 项目申请信息
@@ -274,4 +275,5 @@ public interface XmsqServer {
 	public List<Lx> queryLslist(Xmsq xmsq);
 	public List<Lx> queryLslistwnxmk(Xmsq xmsq);
 	public List<Lx> queryLslistserw(Xmsq xmsq);
+	public List<Xmsq> queryyhdzxcb(Xmsq xmsq);
 }
