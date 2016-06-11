@@ -111,9 +111,13 @@
 		        		}
 					}
 				},
-				{field:'jsxz',title:'建设性质',width:100,align:'center'},
+				{field:'gcfl',title:'建设性质',width:100,align:'center'},
 				{field:'jsdj',title:'技术等级',width:80,align:'center'},
-				{field:'xmnf',title:'项目年份',width:100,align:'center'},
+				{field:'xmnf',title:'项目年份',width:100,align:'center',
+					formatter: function(value,row,index){
+						return row.xmbm.substr(0,4);
+					}
+				},
 				{field:'bcxdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'zjly',title:'资金来源',width:100,align:'center'},
 				{field:'zydpx',title:'重要度排序',width:100,align:'center'},
@@ -140,10 +144,10 @@
 					}	
 				},
 				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
-				{field:'ylxmc',title:'原路线名称',width:100,align:'center'},
+				{field:'lxmc',title:'原路线名称',width:100,align:'center'},
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'ghlxmc',title:'规划路线名称',width:100,align:'center'},
-				 {field:'sfybzls',title:'是否有补助历史',width:60,align:'center',
+				 {field:'lsjl',title:'是否有补助历史',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -200,7 +204,15 @@
 // 				{field:'llcl',title:'老路处理',width:100,align:'center'}
 				{field:'tsdq',title:'五年项目库特殊地区',width:100,align:'center'},
 				{field:'gyfl',title:'管养分类',width:100,align:'center'},
-				{field:'xdzt',title:'下达状态',width:100,align:'center'}
+				{field:'xdzt',title:'下达状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						if(row.xdzt=="1"){
+							return '已下达';
+						}else{
+							return '未下达';
+						}
+					}
+				}
 			]];
 			bindLxGrid();
 			gridBind(grid);

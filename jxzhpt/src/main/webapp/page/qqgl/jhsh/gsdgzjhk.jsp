@@ -173,7 +173,7 @@
 				{field:'ylxmc',title:'原路线名称',width:100,align:'center'},
 				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'lxmc',title:'规划路线名称',width:100,align:'center'},
-				 {field:'sfybzls',title:'是否有补助历史',width:60,align:'center',
+				 {field:'lsjl',title:'是否有补助历史',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
 							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
@@ -184,7 +184,16 @@
 				}, 
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'gyfl',title:'管养分类',width:100,align:'center'},
-				{field:'xdzt',title:'下达状态',width:100,align:'center'},
+				{field:'xdzts',title:'下达状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						if(row.xdzt=="1"){
+							return '已下达';
+						}else{
+							return '未下达';
+						}
+					}
+					
+				},
 				{field:'xmklx',title:'项目库类型',width:100,align:'center'}
  				/* {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
