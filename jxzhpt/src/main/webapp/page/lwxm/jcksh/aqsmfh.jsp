@@ -218,7 +218,7 @@ var obj=new Object();
 var id;
 function ckxmxx(index){
 	obj=$("#grid").datagrid('getRows')[index];
-	YMLib.UI.createWindow('lxxx','项目信息','../sckgl/aqsmfh_ck.jsp','lxxx',900,450);
+	YMLib.UI.createWindow('lxxx','项目信息','../jckgl/aqsmfh_ck.jsp','lxxx',900,450);
 }
 
 function shengh(index){
