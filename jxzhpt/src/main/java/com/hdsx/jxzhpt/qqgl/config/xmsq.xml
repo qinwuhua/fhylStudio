@@ -738,6 +738,8 @@
 		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
 		<if test="bz!=null">,bz=#{bz}</if>
+		<if test="ylmlx!=null">,ylmlx=#{ylmlx}</if>
+		<if test="ylmjg!=null">,ylmjg=#{ylmjg}</if>
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateSh" parameterType="xmsq">

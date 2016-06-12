@@ -81,5 +81,7 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz selectsfkwg(Gcglwqgz gcglwqgz);
 
+	Gcglwqgz queryGcgltjInYb(String jhid);
+
 
 }

@@ -64,9 +64,9 @@
 		function queryxmList(){
 			var xmnf='';
 			if(getUrlParame('id').substr(0,10)=='0101130301')
-				xmnf='2011,2012,2013,2014,2015';
+				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
-				xmnf='2016,2017,2018,2019,2020';
+				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
@@ -338,9 +338,9 @@
 		function showMxbAll(){
 			var xmnf='';
 			if(getUrlParame('id').substr(0,10)=='0101130301')
-				xmnf='2011,2012,2013,2014,2015';
+				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
-				xmnf='2016,2017,2018,2019,2020';
+				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			//var xmnf=$("#xmnf").combobox("getValues").join(",");
 			//if(xmnf.substr(0,1)==',')
 				//xmnf=xmnf.substr(1,xmnf.length);

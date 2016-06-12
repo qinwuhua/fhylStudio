@@ -2767,3 +2767,14 @@ function jhxdwhdx(id,xmlx){
 		
 	});
 }
+
+
+function queryGcgltjInYb(jhid){
+	$.post('/jxzhpt/gcgl/queryGcgltjInYb.do',{jhid:jhid},
+		function(msg){
+			
+		
+		
+		},'json');
+	
+}

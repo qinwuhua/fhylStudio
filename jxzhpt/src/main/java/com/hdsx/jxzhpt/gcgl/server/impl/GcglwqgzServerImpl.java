@@ -447,4 +447,9 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		return g;
 	}
 
+	@Override
+	public Gcglwqgz queryGcgltjInYb(String jhid) {
+		return queryOne("queryGcgltjInYb", jhid);
+	}
+
 }
