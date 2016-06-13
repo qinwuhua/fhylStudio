@@ -66,7 +66,6 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String bfyf;
 	private String xmnf;
 	private String wgnf;
-
 	
 	private String sfylrbwqk;
 	private String gydwtj;
@@ -823,6 +822,16 @@ public class GcglwqgzController extends BaseActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void queryGcgltjInYb(){
+		System.out.println(jhid);
+		try {
+			JsonUtils.write(gcglwqgzServer.queryGcgltjInYb(jhid), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
 	
