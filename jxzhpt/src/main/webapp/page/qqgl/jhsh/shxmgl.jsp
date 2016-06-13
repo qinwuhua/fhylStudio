@@ -525,7 +525,6 @@
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>
 	       					</tr>
 	       					<tr height="32">
-	       						
 	       						<!-- <td>&nbsp;技术等级:</td>
 	       						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
 	       						<td>规划路线编码：</td>
@@ -563,6 +562,8 @@
 	       						<td><select id="sqzt" class="easyui-combobox" name="jhzt" style="width: 70px;"></select></td>
 	       					</tr>
 	       					<tr height="32">
+	       					<td>&nbsp;管养单位：</td>
+	       						<td><select id="gydw" style="width:170px;"></select></td>
 	       						<!-- <td>&nbsp;特殊地区：</td>
 	       						<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
 	       						<td>原路线名称：</td>

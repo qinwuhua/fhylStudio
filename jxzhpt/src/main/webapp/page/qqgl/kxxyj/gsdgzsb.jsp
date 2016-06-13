@@ -289,6 +289,12 @@ text-decoration:none;
 	        						<td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" style="width:88px;" >
 									</select></td>
+									<td>审核状态：</td>
+	        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
+										<option selected="selected" value="">全部</option>
+										<option value="0">未审核</option>
+										<option value="1">已审核</option> 
+									</select></td>
 	        					</tr>
 	        					<tr height="32">
 	        						<!-- <td>原路线名称：</td>
@@ -302,12 +308,9 @@ text-decoration:none;
 	                              	<td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" style="width:88px;" >
 									</select></td> -->
-	                              	<td>审核状态：</td>
-	        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
-										<option selected="selected" value="">全部</option>
-										<option value="0">未审核</option>
-										<option value="1">已审核</option> 
-									</select></td>
+	                              	
+									<td>管养单位：</td>
+	        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
 	                            </tr>
 	                            <tr height="32">
 	                            	<td colspan="10">

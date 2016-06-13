@@ -504,7 +504,7 @@
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
-        						<td>历史记录：</td>
+        						<td>是否有补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
 										<option value="" selected="selected">全部</option>
@@ -532,6 +532,8 @@
 								<td><input type="text" id='xmlx' name='xmlx' style="width:114px;"></td> -->
 								<td>下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        						<td align="right">首次下达年份：</td>
+        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         					</tr>
         					
        					<tr height="32">

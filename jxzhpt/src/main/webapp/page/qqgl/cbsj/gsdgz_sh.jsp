@@ -360,7 +360,7 @@ text-decoration:none;
 	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
 	        						<td>规划路线名称：</td>
 	        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-	        						<td>补助历史：</td>
+	        						<td>是否有补助历史：</td>
 									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 										<option value="" selected="selected">全部</option>
 										<option value="是">是</option>

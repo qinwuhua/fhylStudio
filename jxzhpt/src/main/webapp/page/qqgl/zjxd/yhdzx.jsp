@@ -588,7 +588,9 @@
         					<td>管养分类：</td>
         					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         					<td>下达状态：</td>
-        						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        					<td align="right">首次下达年份：</td>
+        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         					</tr>
         				<!-- 	<tr height="32">
         						<td align="right">资金来源：</td>

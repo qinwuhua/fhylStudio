@@ -328,7 +328,7 @@ text-decoration:none;
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>原技术等级：</td>
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td align="right">项目年份：</td>
+								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
         						<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
@@ -372,7 +372,6 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td> -->
-        						
         						<td>审核状态：</td>
         						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>

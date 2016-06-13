@@ -263,8 +263,8 @@ text-decoration:none;
 									<option value="1">已审核</option> 
 								</select></td>
         					</tr>
-        					<!--<tr height="32">
-	        					 <td>行政等级：</td>
+        					<tr height="32">
+	        					 <!-- <td>行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td> 
@@ -275,8 +275,10 @@ text-decoration:none;
 									<option value="1">已审核</option> 
 								</select></td>
 								<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td> 
-        					</tr>-->
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>  -->
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        					</tr>
         					<tr height="32">
 	                            <td colspan="10">
 	        						<img onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

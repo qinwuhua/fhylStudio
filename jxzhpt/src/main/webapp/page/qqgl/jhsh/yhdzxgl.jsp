@@ -648,6 +648,8 @@
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
        							<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td> -->
+								<td>&nbsp;管养单位：</td>
+       							<td><select id="gydw" style="width:170px;"></select></td>
        						</tr>
        						<tr height="32">
        							<td colspan="8">
