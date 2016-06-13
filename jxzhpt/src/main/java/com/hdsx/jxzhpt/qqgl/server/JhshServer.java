@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JhshServer {
 	/**
@@ -462,4 +463,5 @@ public interface JhshServer {
 	public List<Lx> querywnxx(Jhsh jhsh);
 	public String queryylmlx(Lx lx);
 	public boolean updateLx(Lx lx, Xmsq xmsq);
+	public List<Excel_list> queryGsdgz_dc(Jhsh jhsh);
 }

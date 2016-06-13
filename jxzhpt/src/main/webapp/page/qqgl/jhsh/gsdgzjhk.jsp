@@ -193,7 +193,7 @@
 				+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
 				'&jhsh.xmnf='+xmnf;
-			window.location.href="/jxzhpt/qqgl/exportJhshxxgsd.do?"+param;
+			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 

@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.ibm.icu.math.BigDecimal;
 @Service
 public class JhshServerImpl extends BaseOperate implements JhshServer {
@@ -758,6 +759,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public String queryylmlx(Lx lx) {
 		return queryOne("queryylmlx", lx);
+	}
+	@Override
+	public List<Excel_list> queryGsdgz_dc(Jhsh jhsh) {
+		return queryList("queryGsdgz_dcexcel",jhsh);
 	}
 	
 }

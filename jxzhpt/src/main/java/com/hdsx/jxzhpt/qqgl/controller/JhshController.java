@@ -39,6 +39,10 @@ import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -864,92 +868,92 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	
 	public void exportJhshxxgsd(){
 		//设置表头
-		ExcelTitleCell [] title=null;
-		title=new ExcelTitleCell[15];
-		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
-		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
-		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-		title[3]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)3), null,20);
-		title[4]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
-		title[5]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
-		title[6]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
-		title[7]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)7), null,20);
-		title[8]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)8), null,20);
-		title[9]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)9), null,20);
-		title[10]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)10), null,20);
-		title[11]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)11), null,20);
-		title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
-		title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
-		title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
-		//设置列与字段对应
-		Map<String, String> attribute=new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "qdzh");//起点桩号
-		attribute.put("4", "zdzh");//止点桩号
-		attribute.put("5", "kgsj");//开工时间
-		attribute.put("6", "wgsj");//完工时间
-		attribute.put("7", "gq");//工期（月）
-		attribute.put("8", "gkpfwh");//工可批复文号
-		attribute.put("9", "sjpfwh");//设计批复文号
-		attribute.put("10", "xdwh");//计划下达文号
-		attribute.put("11", "xdsj");//计划下达时间
-		attribute.put("12", "pfztz");//批复总投资
-		attribute.put("13", "bbzzj");//部补助资金
-		attribute.put("14", "sbzzj");//省补助资金
-		String xmbm = jhsh.getXmbm();
-		if(!xmbm.equals("")&&xmbm!=null){
-			if(xmbm.indexOf(",")>-1){
-				String[] xmnfArray = xmbm.split(",");
-				for (int i = 0; i < xmnfArray.length; i++) {
-					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
-					}else if(i==0){
-						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+				ExcelTitleCell [] title=null;
+				title=new ExcelTitleCell[15];
+				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+				title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
+				title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
+				title[3]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)3), null,20);
+				title[4]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
+				title[5]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
+				title[6]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
+				title[7]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)7), null,20);
+				title[8]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)8), null,20);
+				title[9]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)9), null,20);
+				title[10]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)10), null,20);
+				title[11]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)11), null,20);
+				title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
+				title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
+				title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
+				//设置列与字段对应
+				Map<String, String> attribute=new HashMap<String, String>();
+				attribute.put("0", "xmmc");//项目名称
+				attribute.put("1", "xmbm");//项目编码
+				attribute.put("2", "xzqh");//行政区划
+				attribute.put("3", "qdzh");//起点桩号
+				attribute.put("4", "zdzh");//止点桩号
+				attribute.put("5", "kgsj");//开工时间
+				attribute.put("6", "wgsj");//完工时间
+				attribute.put("7", "gq");//工期（月）
+				attribute.put("8", "gkpfwh");//工可批复文号
+				attribute.put("9", "sjpfwh");//设计批复文号
+				attribute.put("10", "xdwh");//计划下达文号
+				attribute.put("11", "xdsj");//计划下达时间
+				attribute.put("12", "pfztz");//批复总投资
+				attribute.put("13", "bbzzj");//部补助资金
+				attribute.put("14", "sbzzj");//省补助资金
+				String xmbm = jhsh.getXmbm();
+				if(!xmbm.equals("")&&xmbm!=null){
+					if(xmbm.indexOf(",")>-1){
+						String[] xmnfArray = xmbm.split(",");
+						for (int i = 0; i < xmnfArray.length; i++) {
+							if(i==xmnfArray.length-1){
+								xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+							}else if(i==0){
+								xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+							}else{
+								xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+							}
+						}
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm = "j.xmbm like '" + xmbm + "%' ";
 					}
 				}
-			}else{
-				xmbm = "j.xmbm like '" + xmbm + "%' ";
-			}
-		}
-		
-		jhsh.setXmbm(xmbm);
-		jsdjHandle();
-		jsjsdjHandle();
-		ylxbhHandle();
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
-		List<Object> excelData=new ArrayList<Object>();
-		if(jhsh.getXmlx1()!=null)
-			if(jhsh.getXmlx1().length()>0){
-				String[] tsdqs=jhsh.getXmlx1().split(",");
-				String tsdq="";
-				for (int i = 0; i < tsdqs.length; i++) {
-					if("全部".equals(tsdqs[i])){
-						tsdq="";
-						break;
+				
+				jhsh.setXmbm(xmbm);
+				jsdjHandle();
+				jsjsdjHandle();
+				ylxbhHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				List<Object> excelData=new ArrayList<Object>();
+				if(jhsh.getXmlx1()!=null)
+					if(jhsh.getXmlx1().length()>0){
+						String[] tsdqs=jhsh.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						jhsh.setXmlx1(tsdq);
 					}
-					if(i==0)
-						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
-					else
-						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
-				}
-				if(tsdq==""){
-					tsdq="";
-				}else{
-					tsdq+=")";
-				}
-				jhsh.setXmlx1(tsdq);
-			}
-		String titleName="";
-		String fileName="";
-		excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
-		titleName="国省道改造";
-		fileName="计划下达表格（2015-44号）";
-		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+				String titleName="";
+				String fileName="";
+				excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
+				titleName="国省道改造";
+				fileName="计划下达表格（2015-44号）";
+				ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
+				ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
 	
 	
@@ -2112,4 +2116,103 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	//qwh导出国省道excel
+	public void exportJhshxxgsdexcel(){
+		String xmbm = jhsh.getXmbm();
+		if(!xmbm.equals("")&&xmbm!=null){
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "j.xmbm like '" + xmbm + "%' ";
+			}
+		}
+		
+		jhsh.setXmbm(xmbm);
+		jsdjHandle();
+		jsjsdjHandle();
+		ylxbhHandle();
+		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		if(jhsh.getXmlx1()!=null)
+			if(jhsh.getXmlx1().length()>0){
+				String[] tsdqs=jhsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+
+		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
+		
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路建设计划（国省道改造项目）");//设置第一行
+		eldata.setSheetName("国省道改造");//设置sheeet名
+		eldata.setFileName("公路建设计划（国省道改造项目）");//设置文件名
+		
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,2,0,0));
+		et.add(new Excel_tilte("设区市",1,2,1,1));
+		et.add(new Excel_tilte("项目名称",1,2,2,2));
+		et.add(new Excel_tilte("建设性质",1,2,3,3));
+		et.add(new Excel_tilte("建 设 规 模（ 公 里 ）/（ 延 米 ）",1,1,4,10));
+		et.add(new Excel_tilte("建设年限",1,1,11,12));
+		et.add(new Excel_tilte("总投资",1,2,13,13));
+		et.add(new Excel_tilte("中央投资",1,2,14,14));
+		et.add(new Excel_tilte("到2014年底累计完成投资（万元）中央投资",1,1,15,16));
+		et.add(new Excel_tilte("2015年建设计划（万元）",1,1,17,22));
+		et.add(new Excel_tilte("前期工作情况",1,1,23,24));
+		et.add(new Excel_tilte("合计",2,2,4,4));
+		et.add(new Excel_tilte("一级公路",2,2,5,5));
+		et.add(new Excel_tilte("二级公路",2,2,6,6));
+		et.add(new Excel_tilte("三级公路",2,2,7,7));
+		et.add(new Excel_tilte("四级公路",2,2,8,8));
+		et.add(new Excel_tilte("大桥",2,2,9,9));
+		et.add(new Excel_tilte("隧道",2,2,10,10));
+		et.add(new Excel_tilte("开工年",2,2,11,11));
+		et.add(new Excel_tilte("完工年",2,2,12,12));
+		et.add(new Excel_tilte("合计",2,2,15,15));
+		et.add(new Excel_tilte("内：中央车购税",2,2,16,16));
+		et.add(new Excel_tilte("合计",2,2,17,17));
+		et.add(new Excel_tilte("中央投资车购税",2,2,18,18));
+		et.add(new Excel_tilte("地方自筹",2,2,19,19));
+		et.add(new Excel_tilte("国内贷款",2,2,20,20));
+		et.add(new Excel_tilte("主要建设内容",2,2,21,21));
+		et.add(new Excel_tilte("新增能力",2,2,22,22));
+		et.add(new Excel_tilte("工可批复文号",2,2,23,23));
+		et.add(new Excel_tilte("设计批复文号",2,2,24,24));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
 }

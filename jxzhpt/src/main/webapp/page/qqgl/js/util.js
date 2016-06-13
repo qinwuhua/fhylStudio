@@ -1765,7 +1765,7 @@ function jsbzzj(flag){
 	if($("#snhntmcssh").val()!='')
 	zj17=$("#snhntmcssh").val();
 	var zbz=accAdd(accAdd(accAdd(accAdd(accAdd(zj1,zj2),accAdd(zj3,zj4)),accAdd(accAdd(zj5,zj6),accAdd(zj7,zj8))),accAdd(accAdd(accAdd(zj9,zj10),accAdd(zj11,zj12)),accAdd(accAdd(zj13,zj14),accAdd(zj15,zj16)))),zj17);
-	$("#sbzj1").html(zbz);
-	$("#sbzj").val(zbz);
+	$("#sbzj1").html(zbz.toFixed(1));
+	$("#sbzj").val(zbz.toFixed(1));
 	
 }
