@@ -148,7 +148,15 @@ public class Jckwqgz implements Serializable{
 	private String xzxzh;
 	private String xlxmc;
 	private String gldj;
+	private String gydwlx;
 	
+	
+	public String getGydwlx() {
+		return gydwlx;
+	}
+	public void setGydwlx(String gydwlx) {
+		this.gydwlx = gydwlx;
+	}
 	public String getGldj() {
 		return gldj;
 	}

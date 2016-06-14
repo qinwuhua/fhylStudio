@@ -28,6 +28,7 @@
 		if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
 			xian=false;
 		}
+		var gljjtj="";
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
@@ -45,7 +46,7 @@
 				setxmnf("sbnf",urlid);
 				setxzdj('ddlGldj',urlid);
 			}
-			
+			gljjtj=getgljjtj(urlid);
 			jsdjdx('ddlPDDJ');
 			tsdqdx('ddlTSDQ');
 			/* var jh={xmlx:'ab',jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
@@ -74,7 +75,7 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

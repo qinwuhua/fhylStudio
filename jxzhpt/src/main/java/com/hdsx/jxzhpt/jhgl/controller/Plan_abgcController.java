@@ -99,10 +99,20 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void querySumAbgc(){
 		try {
-			if("af".equals(jh.getXmlx()))
+			if("af".equals(jh.getXmlx())){
 				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
-			else 
+				if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+					lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwdm like '"+lx.getGydwlx()+"%'");
+				}
+			}
+				
+			else {
 				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+				if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+					lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+				}
+			}
+				
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			if(lx.getTsdq()!=null)
 				if(lx.getTsdq().length()>0){
@@ -201,6 +211,7 @@ public class Plan_abgcController extends BaseActionSupport{
 							lx.setLxjsdj(tsdq);
 						}
 				}
+				
 			if("af".equals(jh.getXmlx()))
 				JsonUtils.write(abgcServer.querySumAfgc(jh,lx), getresponse().getWriter());
 			else 
@@ -396,10 +407,19 @@ public class Plan_abgcController extends BaseActionSupport{
 			String string = flag;
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
 			if(lx.getGydwbm()!=null){
-				if("af".equals(jh.getXmlx()))
+				if("af".equals(jh.getXmlx())){
 					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
-				else 
+					if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+						lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwdm like '"+lx.getGydwlx()+"%'");
+					}
+				}
+					
+				else {
 					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+					if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+						lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+					}
+				}
 			}
 			if(lx.getTsdq()!=null)
 				if(lx.getTsdq().length()>0){

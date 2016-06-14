@@ -251,6 +251,8 @@
 		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid}
 		union
 		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid}
+		union
+		select substr(sourceid,1,18) id from xtgl_role_resource t where roleid=#{roleid}
 	</select>
 	<select id="selQxByUser1" parameterType="param" resultType="param">
 		select sourceid id from xtgl_role_resource t where roleid=#{roleid}

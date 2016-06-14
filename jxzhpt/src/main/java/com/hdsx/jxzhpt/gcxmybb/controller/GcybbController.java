@@ -2094,11 +2094,18 @@ public class GcybbController extends BaseActionSupport{
 			}
 			gcglabgc.setGydw(tiaojian1);
 			gcglabgc.setLxmc(lxmc);
-			gcglabgc.setTiaojian(xzdj);
+			gcglabgc.setTiaojian(getcxtj("lxbm",xzdj));
 			gcglabgc.setXzqhdm(tiaojian2);
 			gcglabgc.setXmnf(xmnf);
 			gcglabgc.setXmmc(xmmc);
 			//查总合list
+			//getcxtj
+			gcglabgc.setYjsdj(getcxtj("v_11",gcglabgc.getYjsdj()));
+			gcglabgc.setJsjsdj(getcxtj("v_12",gcglabgc.getJsjsdj()));
+			gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
+			gcglabgc.setGljslx(getcxtj("v_13",gcglabgc.getGljslx()));
+			gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
+			
 			
 			List<Excel_list> list1=gcybbServer.getGlgzxj(gcglabgc);
 			
@@ -3312,6 +3319,21 @@ public class GcybbController extends BaseActionSupport{
 			}catch (Exception e) {
 					e.printStackTrace();
 			}
+		}
+		
+		public String getcxtj(String id,String param){
+			String tj="";
+			if(param!=null&&!"".equals(param)){
+				String[] s=param.split(",");
+				for (int i = 0; i < s.length; i++) {
+					if(i==0)
+					tj+=" and ("+id+" like '%"+s[i]+"%'";
+					else
+					tj+=" or "+id+" like '%"+s[i]+"%'";
+				}
+				tj+=")";
+			}
+			return tj;
 		}
 		
 		

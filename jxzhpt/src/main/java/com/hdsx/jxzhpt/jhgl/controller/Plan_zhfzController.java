@@ -97,6 +97,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void querySumZhfz(){
 		try {
 			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
@@ -170,6 +173,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void queryZhfzList(){
 		try {
 			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
 			System.out.println("个数："+list.size());

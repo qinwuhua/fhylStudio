@@ -56,6 +56,14 @@ public class Jckabgc implements Serializable{
 	private int page;
 	private int rows;
 	private String sbzt2;
+	private String gydwlx;
+	
+	public String getGydwlx() {
+		return gydwlx;
+	}
+	public void setGydwlx(String gydwlx) {
+		this.gydwlx = gydwlx;
+	}
 	public String getId() {
 		return id;
 	}

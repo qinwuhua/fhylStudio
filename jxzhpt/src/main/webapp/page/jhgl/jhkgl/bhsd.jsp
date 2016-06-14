@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
+	var gljjtj="";
 		$(function(){
 			//plannf("sbnf");
 			
@@ -30,7 +31,7 @@
 			}else{
 				setxmnf("sbnf",urlid);
 			}
-			
+			gljjtj=getgljjtj(urlid);
 			//xzdjdx('gldj');
 			//setxzdj('gldj',urlid);
 			loadUnit1("gydw",$.cookie("unit")); 
@@ -75,7 +76,7 @@
 // 	 		}
 	 		var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,
 					jh_sbthcd:$.cookie("unit2").length};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:null,lxbm:null,sddm:null};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:null,lxbm:null,sddm:null};
 			
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();

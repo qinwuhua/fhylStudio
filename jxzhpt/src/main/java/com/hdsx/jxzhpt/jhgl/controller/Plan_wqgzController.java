@@ -197,8 +197,10 @@ public class Plan_wqgzController extends BaseActionSupport {
 				}
 				lx.setJsdj(tsdq);
 			}
-			
-			System.out.println(lx.getJsdj());
+			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+			}
+			System.out.println(lx.getGydwlx());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
 			jsonMap.put("rows", wqgzServer.queryWqgzList(page, rows, jh, lx));
@@ -301,7 +303,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 					}
 					lx.setJsdj(tsdq);
 				}
-				
+				if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+					lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+				}
 				System.out.println(lx.getTsdq());
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {

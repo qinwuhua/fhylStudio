@@ -115,6 +115,9 @@ public class Plan_bhsdController extends BaseActionSupport {
 	public void queryBhsdList(){
 		try {
 			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
@@ -132,6 +135,9 @@ public class Plan_bhsdController extends BaseActionSupport {
 	public void querySumBhsd(){
 		try {
 			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
+			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
+				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
+			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {

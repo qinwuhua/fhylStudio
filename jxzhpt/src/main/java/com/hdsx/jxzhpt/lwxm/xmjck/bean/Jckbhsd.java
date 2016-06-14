@@ -62,7 +62,16 @@ public class Jckbhsd implements Serializable{
 	private String nsdzxzh;
 	private String nlxmc;
 	private String qlzxzh;
+	private String gydwlx;
 	
+	public String getGydwlx() {
+		return gydwlx;
+	}
+
+	public void setGydwlx(String gydwlx) {
+		this.gydwlx = gydwlx;
+	}
+
 	public String getQlzxzh() {
 		return qlzxzh;
 	}

@@ -20,8 +20,56 @@ public class Gcglabgc implements Serializable {
 	private String wcbtz;
 	private String wcstz;
 	private String wcztz;
+	private String yjsdj;
+	private String jsjsdj;
+	private String gljslx;
+	private String jhnd;
+	private String jzzt;
+	private String bnjhtz;
+	private String bndsslc;
 	
-	
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
+	public String getJsjsdj() {
+		return jsjsdj;
+	}
+	public void setJsjsdj(String jsjsdj) {
+		this.jsjsdj = jsjsdj;
+	}
+	public String getGljslx() {
+		return gljslx;
+	}
+	public void setGljslx(String gljslx) {
+		this.gljslx = gljslx;
+	}
+	public String getJhnd() {
+		return jhnd;
+	}
+	public void setJhnd(String jhnd) {
+		this.jhnd = jhnd;
+	}
+	public String getJzzt() {
+		return jzzt;
+	}
+	public void setJzzt(String jzzt) {
+		this.jzzt = jzzt;
+	}
+	public String getBnjhtz() {
+		return bnjhtz;
+	}
+	public void setBnjhtz(String bnjhtz) {
+		this.bnjhtz = bnjhtz;
+	}
+	public String getBndsslc() {
+		return bndsslc;
+	}
+	public void setBndsslc(String bndsslc) {
+		this.bndsslc = bndsslc;
+	}
 	public String getWcbtz() {
 		return wcbtz;
 	}
