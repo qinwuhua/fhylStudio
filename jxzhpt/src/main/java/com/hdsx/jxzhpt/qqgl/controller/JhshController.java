@@ -2349,6 +2349,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						}
 
 					List<Excel_list> l = jhshServer.queryYhdzx_dc(jhsh);
+					for (int i = 0; i < l.size(); i++) {
+						if(i!=0)
+						l.get(i).setV_0(i+"");
+					}
 					System.out.println(l+"111");
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
