@@ -764,5 +764,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Excel_list> queryGsdgz_dc(Jhsh jhsh) {
 		return queryList("queryGsdgz_dcexcel",jhsh);
 	}
+	@Override
+	public List<Excel_list> queryZhhf_dc(Jhsh jhsh) {
+		return queryList("queryZhhf_dcexcel",jhsh);
+	}
+	@Override
+	public List<Excel_list> queryYhdzx_dc(Jhsh jhsh) {
+		return queryList("queryYhdzx_dcexcel",jhsh);
+	}
+	@Override
+	public List<Excel_list> queryYhdzxDetail_dc(Jhsh jhsh) {
+		return queryList("queryYhdzxDetail_dcexcel",jhsh);
+	}
 	
 }

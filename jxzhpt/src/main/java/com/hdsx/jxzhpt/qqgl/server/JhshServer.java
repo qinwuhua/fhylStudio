@@ -464,4 +464,7 @@ public interface JhshServer {
 	public String queryylmlx(Lx lx);
 	public boolean updateLx(Lx lx, Xmsq xmsq);
 	public List<Excel_list> queryGsdgz_dc(Jhsh jhsh);
+	public List<Excel_list> queryZhhf_dc(Jhsh jhsh);
+	public List<Excel_list> queryYhdzx_dc(Jhsh jhsh);
+	public List<Excel_list> queryYhdzxDetail_dc(Jhsh jhsh);
 }
