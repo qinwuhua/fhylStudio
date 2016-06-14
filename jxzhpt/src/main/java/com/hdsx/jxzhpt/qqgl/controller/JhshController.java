@@ -2453,6 +2453,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						}
 
 					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc(jhsh);
+					for (int i = 0; i < l.size(); i++) {
+						l.get(i).setV_0((i+1)+"");
+					}
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
 					eldata.setSheetName("明细表");//设置sheeet名
