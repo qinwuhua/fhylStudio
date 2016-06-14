@@ -3920,14 +3920,14 @@
 					(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
 					from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid 
 					left join (
-					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=2014 group by lm.jhid
+					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
 					union all
-					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_xj lm where substr(lm.sbyf,0,4)&lt;=2014 group by lm.jhid
+					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_xj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
 					union all
-					select jhid,sum(nvl(sj.bywctze,0))+sum(nvl(sj.zycgs,0)) ztz14,sum(nvl(sj.zycgs,0)) btz14 from gcgl_gcgzsj sj where substr(sj.sbyf,0,4)&lt;=2014 group by sj.jhid
+					select jhid,sum(nvl(sj.bywctze,0))+sum(nvl(sj.zycgs,0)) ztz14,sum(nvl(sj.zycgs,0)) btz14 from gcgl_gcgzsj sj where substr(sj.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by sj.jhid
 					) wc14 on j.xmbm=wc14.jhid
 					left join(
-					select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p where p.xdnf='2015' group by p.xmid 
+					select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid 
 					) jh15 on j.xmbm=jh15.xmid
 	             where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -3994,14 +3994,14 @@
 					(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
 					from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid 
 					left join (
-					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=2014 group by lm.jhid
+					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
 					union all
-					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_xj lm where substr(lm.sbyf,0,4)&lt;=2014 group by lm.jhid
+					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_xj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
 					union all
-					select jhid,sum(nvl(sj.bywctze,0))+sum(nvl(sj.zycgs,0)) ztz14,sum(nvl(sj.zycgs,0)) btz14 from gcgl_gcgzsj sj where substr(sj.sbyf,0,4)&lt;=2014 group by sj.jhid
+					select jhid,sum(nvl(sj.bywctze,0))+sum(nvl(sj.zycgs,0)) ztz14,sum(nvl(sj.zycgs,0)) btz14 from gcgl_gcgzsj sj where substr(sj.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by sj.jhid
 					) wc14 on j.xmbm=wc14.jhid
 					left join(
-					select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p where p.xdnf='2015' group by p.xmid 
+					select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid 
 					) jh15 on j.xmbm=jh15.xmid
 	             where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -4049,6 +4049,13 @@
 <!-- 下面是导出灾毁恢复的sql -->	
 	<select id="queryZhhf_dcexcel" parameterType="jhsh" resultType="elist">
 	select 
+		null v_0,null v_1,'全省汇总' v_2,count(*)||'' v_3,sum(v_4) v_4,sum(v_5) v_5,
+		sum(v_6) v_6,sum(v_7) v_7,null v_8,null v_9,
+		null v_10,sum(v_11)||'' v_11,sum(v_12)||'' v_12,sum(v_13) v_13,
+		sum(v_14) v_14,sum(v_15) v_15,null v_16,null v_17
+	from(
+	
+	select 
 	rownum v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
 	l.zlc v_4,
 	l.yilc v_5,l.erlc v_6,l.sanlc v_7,x.jsfa v_8,
@@ -4062,7 +4069,7 @@
 	on j.xmbm=x.xmbm
 	 left join
 	(select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
-	from plan_zjxd p where p.xdnf='2015' group by p.xmid) xd on j.xmbm=xd.xmid
+	from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid) xd on j.xmbm=xd.xmid
 	left join (
 	select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
 	decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
@@ -4070,57 +4077,119 @@
 	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
 	 where 1=1
 	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf !=null and xmnf !=''">
-			and substr(j.xmbm,0,4) in (${xmnf})
-		</if>
-		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
-		
-		<if test="ghlxbh!=null and ghlxbh!=''">
-			and j.ghlxbh like '%'||#{ghlxbh}||'%'
-		</if>
-		<if test="ghxlxbm!=null and ghxlxbm!=''">
-			and l.ghlxbm like '%'||#{ghxlxbm}||'%'
-		</if>
-		<if test="lxmc !=null and lxmc !=''">
-			and l.lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
-			and l.ghlxmc like '%'||#{ghxlxmc}||'%'
-		</if> -->
-		<if test="tsdq !=null and tsdq !=''">
-			${tsdq}
-		</if>
-		<if test="xzdj !=null and xzdj !=''">
-			and ${xzdj}
-		</if>
-		<if test="zydpx !=null and zydpx !=''">and zydpx=#{zydpx}</if>
-		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-		<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-		<if test="sbzt !=null and sbzt !=''">and j.sbzt=#{sbzt}</if>
-		<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
-		<if test="zjly !=null and zjly !=''">
-			${zjly}
-		</if>
-		<if test="gyfl !=null and gyfl !=''">
-		</if>
+	<if test="ghlxbh!=null and ghlxbh!=''">
+		and ghlxbmtj like '%'||#{ghlxbh}||'%'
+	</if>
+	<if test="ghxlxbm!=null and ghxlxbm!=''">
+		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+	</if>
+	<if test="lxmc !=null and lxmc !=''">
+		and ghlxmctj like '%'||#{lxmc}||'%'
+	</if>
+	<if test="ghxlxmc !=null and ghxlxmc !=''">
+		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+	</if>
+	<if test="xmnf !=null and xmnf !=''">
+		and substr(j.xmbm,0,4) in (${xmnf})
+	</if>
+	
+	<if test="tsdq !=null and tsdq !=''">
+		${tsdq}
+	</if>
+	<if test="xzdj !=null and xzdj !=''">
+		and ${xzdj}
+	</if>
+	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+	)
+	union all
+	
+	select 
+	rownum v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
+	l.zlc v_4,
+	l.yilc v_5,l.erlc v_6,l.sanlc v_7,x.jsfa v_8,
+	j.jhkgsj v_9,
+	j.jhwgsj v_10,j.pfztz v_11,j.bbzzj v_12,xd.ztz v_13,xd.btz v_14,
+	xd.dftz v_15,'' v_16,c.sjpfwh v_17
+	from 	Jhxdsh   j
+	left join cbsj_sh c
+	on j.xmbm=c.xmbm
+	left join xmsq_sh x
+	on j.xmbm=x.xmbm
+	 left join
+	(select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
+	from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid) xd on j.xmbm=xd.xmid
+	left join (
+	select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
+	decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
+	(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
+	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
+	 where 1=1
+	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+	<if test="ghlxbh!=null and ghlxbh!=''">
+		and ghlxbmtj like '%'||#{ghlxbh}||'%'
+	</if>
+	<if test="ghxlxbm!=null and ghxlxbm!=''">
+		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+	</if>
+	<if test="lxmc !=null and lxmc !=''">
+		and ghlxmctj like '%'||#{lxmc}||'%'
+	</if>
+	<if test="ghxlxmc !=null and ghxlxmc !=''">
+		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+	</if>
+	<if test="xmnf !=null and xmnf !=''">
+		and substr(j.xmbm,0,4) in (${xmnf})
+	</if>
+	
+	<if test="tsdq !=null and tsdq !=''">
+		${tsdq}
+	</if>
+	<if test="xzdj !=null and xzdj !=''">
+		and ${xzdj}
+	</if>
+	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
 	</select>
 <!-- 下面是导出养护大中修汇总的sql -->
 	<select id="queryYhdzx_dcexcel" parameterType="jhsh" resultType="elist">
 	select 
-(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end) cj,
-(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end) gz,
-(case when l.jsxz like '%预防性%' then l.zlc else 0 end) yfx,
-decode(substr(lxbm,0,1),'G',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) gdcj,
-decode(substr(lxbm,0,1),'G',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) gdgz,
-decode(substr(lxbm,0,1),'G',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) gdyfx,
-decode(substr(lxbm,0,1),'S',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) sdcj,
-decode(substr(lxbm,0,1),'S',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) sdgz,
-decode(substr(lxbm,0,1),'S',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) sdyfx
-from jhxdyh j
-left join ( select p.xmid,
+	'全省汇总' v_1,sum(cj)+sum(gz)+sum(yfx) v_2,sum(cj) v_3,sum(gz) v_4,sum(yfx) v_5,
+	sum(gdcj)+sum(gdgz)+sum(gdyfx) v_6,sum(gdcj) v_7,sum(gdgz) v_8,sum(gdyfx) v_9,
+	sum(sdcj)+sum(sdgz)+sum(sdyfx) v_10,sum(sdcj) v_11,sum(sdgz) v_12,sum(sdyfx) v_13,
+	sum(cjtz)+sum(gztz)+sum(yfxtz) v_14,sum(cjtz) v_15,sum(gztz) v_16,sum(yfxtz) v_17,
+	sum(gdcjtz)+sum(gdgztz)+sum(gdyfxtz) v_18,sum(gdcjtz) v_19,sum(gdgztz) v_20,sum(gdyfxtz) v_21,
+	sum(sdcjtz)+sum(sdgztz)+sum(sdyfxtz) v_12,sum(sdcjtz) v_13,sum(sdgztz) v_24,sum(sdyfxtz) v_25,'36' xzqh
+	from(
+	select 
+	(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end) cj,
+	(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end) gz,
+	(case when l.jsxz like '%预防性%' then l.zlc else 0 end) yfx,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) gdcj,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) gdgz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) gdyfx,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) sdcj,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) sdgz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) sdyfx,
+	(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end) cjtz,
+	(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end) gztz,
+	(case when l.jsxz like '%预防性%' then xd.ztz else 0 end) yfxtz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end),0) gdcjtz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end),0) gdgztz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz like '%预防性%' then xd.ztz else 0 end),0) gdyfxtz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end),0) sdcjtz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end),0) sdgztz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz like '%预防性%' then xd.ztz else 0 end),0) sdyfxtz,substr(l.xzqhdm,0,4) xzqh
+	from jhxdyh j
+	left join ( select p.xmid,
        sum(p.ztz) ztz,
        sum(p.rys) rys,
        sum(p.dk) dk,
@@ -4128,12 +4197,11 @@ left join ( select p.xmid,
        sum(p.dfzc) dfzc,
        sum(p.yhdk) yhdk,
        sum(gz) + sum(sz) + sum(zq) dftz
-  from plan_zjxd p
- where p.xdnf = '2015'
- group by p.xmid )  xd  on  j.xmbm=xd.xmid
-left  join(
-           select xmid,
-                  decode(substr(xmid, 11, 1),
+  	from plan_zjxd p
+ 	where p.xdnf = #{xmnf}
+ 	group by p.xmid )  xd  on  j.xmbm=xd.xmid
+	left  join(
+           select xmid,decode(substr(xmid, 11, 1),
                          '1',
                          (sum(nvl(jhyilc, 0)) + sum(nvl(jherlc, 0)) +
                          sum(nvl(jhsanlc, 0)) + sum(nvl(jhsilc, 0)) +
@@ -4161,44 +4229,160 @@ left  join(
             where jdbs = '2'
             group by xmid)  l
             on j.XMBM=l.xmid
-	 where 1=1
-	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="xmnf !=null and xmnf !=''">
-			and substr(j.xmbm,0,4) in (${xmnf})
-		</if>
-		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
+   where 1=1
+   <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+	<if test="ghlxbh!=null and ghlxbh!=''">
+		and ghlxbmtj like '%'||#{ghlxbh}||'%'
+	</if>
+	<if test="ghxlxbm!=null and ghxlxbm!=''">
+		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+	</if>
+	<if test="lxmc !=null and lxmc !=''">
+		and ghlxmctj like '%'||#{lxmc}||'%'
+	</if>
+	<if test="ghxlxmc !=null and ghxlxmc !=''">
+		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+	</if>
+	<if test="xmnf !=null and xmnf !=''">
+		and substr(j.xmbm,0,4) in (${xmnf})
+	</if>
+	<if test="tsdq !=null and tsdq !=''">
+		${tsdq}
+	</if>
+	<if test="xzdj !=null and xzdj !=''">
+		and ${xzdj}
+	</if>
+	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+	<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+	<if test="zjly !=null and zjly !=''">
+		${zjly}
+	</if>
+	<if test="gyfl !=null and gyfl !=''">
 		
-		<if test="ghlxbh!=null and ghlxbh!=''">
-			and j.ghlxbh like '%'||#{ghlxbh}||'%'
-		</if>
-		<if test="ghxlxbm!=null and ghxlxbm!=''">
-			and l.ghlxbm like '%'||#{ghxlxbm}||'%'
-		</if>
-		<if test="lxmc !=null and lxmc !=''">
-			and l.lxmc like '%'||#{lxmc}||'%'
-		</if>
-		<if test="ghxlxmc !=null and ghxlxmc !=''">
-			and l.ghlxmc like '%'||#{ghxlxmc}||'%'
-		</if>
-		<if test="tsdq !=null and tsdq !=''">
-			${tsdq}
-		</if>
-		<if test="xzdj !=null and xzdj !=''">
-			and ${xzdj}
-		</if>
-		<if test="zydpx !=null and zydpx !=''">and zydpx=#{zydpx}</if>
-		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-		<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-		<if test="sbzt !=null and sbzt !=''">and j.sbzt=#{sbzt}</if>
-		<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
-		<if test="zjly !=null and zjly !=''">
-			${zjly}
-		</if>
-		<if test="gyfl !=null and gyfl !=''">
-		</if>
+	</if>
+	<if test="sfsycgs !=null and sfsycgs !=''">
+		and sfsycgs = #{sfsycgs}
+	</if>
+   
+) t 
+	union all
+	
+	select to_char((select name from xtgl_xzqh where id = xzqh||'00')) v_1,sum(cj)+sum(gz)+sum(yfx) v_2,sum(cj) v_3,sum(gz) v_4,sum(yfx) v_5,
+	sum(gdcj)+sum(gdgz)+sum(gdyfx) v_6,sum(gdcj) v_7,sum(gdgz) v_8,sum(gdyfx) v_9,
+	sum(sdcj)+sum(sdgz)+sum(sdyfx) v_10,sum(sdcj) v_11,sum(sdgz) v_12,sum(sdyfx) v_13,
+	sum(cjtz)+sum(gztz)+sum(yfxtz) v_14,sum(cjtz) v_15,sum(gztz) v_16,sum(yfxtz) v_17,
+	sum(gdcjtz)+sum(gdgztz)+sum(gdyfxtz) v_18,sum(gdcjtz) v_19,sum(gdgztz) v_20,sum(gdyfxtz) v_21,
+	sum(sdcjtz)+sum(sdgztz)+sum(sdyfxtz) v_12,sum(sdcjtz) v_13,sum(sdgztz) v_24,sum(sdyfxtz) v_25,xzqh
+	from(
+	select 
+	(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end) cj,
+	(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end) gz,
+	(case when l.jsxz like '%预防性%' then l.zlc else 0 end) yfx,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) gdcj,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) gdgz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) gdyfx,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then l.zlc else 0 end),0) sdcj,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '中修' or l.jsxz = '改造' then l.zlc else 0 end),0) sdgz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz like '%预防性%' then l.zlc else 0 end),0) sdyfx,
+	(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end) cjtz,
+	(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end) gztz,
+	(case when l.jsxz like '%预防性%' then xd.ztz else 0 end) yfxtz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end),0) gdcjtz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end),0) gdgztz,
+	decode(substr(lxbm,0,1),'G',(case when l.jsxz like '%预防性%' then xd.ztz else 0 end),0) gdyfxtz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '大修' or l.jsxz = '重修' or l.jsxz = '重建' then xd.ztz else 0 end),0) sdcjtz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz = '中修' or l.jsxz = '改造' then xd.ztz else 0 end),0) sdgztz,
+	decode(substr(lxbm,0,1),'S',(case when l.jsxz like '%预防性%' then xd.ztz else 0 end),0) sdyfxtz,substr(l.xzqhdm,0,4) xzqh
+	from jhxdyh j
+	left join ( select p.xmid,
+       sum(p.ztz) ztz,
+       sum(p.rys) rys,
+       sum(p.dk) dk,
+       sum(p.btzzj) btz,
+       sum(p.dfzc) dfzc,
+       sum(p.yhdk) yhdk,
+       sum(gz) + sum(sz) + sum(zq) dftz
+  	from plan_zjxd p
+ 	where p.xdnf = #{xmnf}
+ 	group by p.xmid )  xd  on  j.xmbm=xd.xmid
+	left  join(
+           select xmid,decode(substr(xmid, 11, 1),
+                         '1',
+                         (sum(nvl(jhyilc, 0)) + sum(nvl(jherlc, 0)) +
+                         sum(nvl(jhsanlc, 0)) + sum(nvl(jhsilc, 0)) +
+                         sum(nvl(jhdwlc, 0)) + sum(nvl(jhwllc, 0))),
+                         (sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +
+                         sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) +
+                         sum(nvl(dwlc, 0)) + sum(nvl(wllc, 0)))) zlc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (sum(nvl(jhyilc, 0))),
+                         (sum(nvl(yilc, 0)))) yilc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (sum(nvl(jherlc, 0))),
+                         (sum(nvl(erlc, 0)))) erlc,
+                  (sum(nvl(jhsanlc, 0))),
+                  (sum(nvl(sanlc, 0))) sanlc,
+                  (sum(nvl(jhsilc, 0))),
+                  (sum(nvl(silc, 0))) silc,
+                  min(jsxz) jsxz,
+                  min(xzqhdm) xzqhdm,
+                  min(gydw) gydw,
+                  min(lxbm) lxbm
+             from lxsh_lx
+            where jdbs = '2'
+            group by xmid)  l
+            on j.XMBM=l.xmid
+   where 1=1
+   <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+	<if test="ghlxbh!=null and ghlxbh!=''">
+		and ghlxbmtj like '%'||#{ghlxbh}||'%'
+	</if>
+	<if test="ghxlxbm!=null and ghxlxbm!=''">
+		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+	</if>
+	<if test="lxmc !=null and lxmc !=''">
+		and ghlxmctj like '%'||#{lxmc}||'%'
+	</if>
+	<if test="ghxlxmc !=null and ghxlxmc !=''">
+		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+	</if>
+	<if test="xmnf !=null and xmnf !=''">
+		and substr(j.xmbm,0,4) in (${xmnf})
+	</if>
+	<if test="tsdq !=null and tsdq !=''">
+		${tsdq}
+	</if>
+	<if test="xzdj !=null and xzdj !=''">
+		and ${xzdj}
+	</if>
+	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+	<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+	<if test="zjly !=null and zjly !=''">
+		${zjly}
+	</if>
+	<if test="gyfl !=null and gyfl !=''">
+		
+	</if>
+	<if test="sfsycgs !=null and sfsycgs !=''">
+		and sfsycgs = #{sfsycgs}
+	</if>
+   
+) t group by t.xzqh order by xzqh
+
+
+
 	</select>
 	<!-- 下面是导出养护大中修明细的sql -->
 	<select id="queryYhdzxDetail_dcexcel" parameterType="jhsh" resultType="elist">
