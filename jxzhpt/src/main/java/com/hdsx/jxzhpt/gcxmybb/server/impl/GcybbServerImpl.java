@@ -447,13 +447,13 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		for (int i = 0; i < l2.size(); i++) {
 			l4.add(l2.get(i));
 			for (int j = 0; j < l3.size(); j++) {
-				if(l2.get(i).getV_67().equals(l3.get(j).getV_67())){
+				if(l2.get(i).getV_72().equals(l3.get(j).getV_72())){
 					l4.add(l3.get(j));
 				}
 			}
 			int t=1;
 			for (int j = 0; j < l1.size(); j++) {
-				if(l2.get(i).getV_67().equals(l1.get(j).getV_67())){
+				if(l2.get(i).getV_72().equals(l1.get(j).getV_72())){
 					l1.get(j).setV_0(t+"");
 					l4.add(l1.get(j));
 					t++;

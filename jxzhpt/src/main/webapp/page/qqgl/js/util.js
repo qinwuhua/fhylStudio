@@ -924,7 +924,7 @@ function queryZjxdgsd(xmbm){
 		{field : 'zyjsnr',title : '主要建设内容',width : 150,align : 'center'}, 
 		{field : 'xzscnl',title : '新增能力',width : 150,align : 'center'}, 
 		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'},
-		{field : 'xdsj',title : '下达时间',width : 150,align : 'center'}
+		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}
 		//, 
 		//{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
 		]];
