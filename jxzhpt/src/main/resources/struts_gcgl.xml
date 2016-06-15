@@ -4,7 +4,7 @@
 <struts>
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
 
-	<action name="queryGcgltjInYb" class="gcglwqgzController" method="queryGcgltjInYb"/>
+	<action name="queryGcglwqtjInYb" class="gcglwqgzController" method="queryGcglwqtjInYb"/>
 	<action name="ybyshbwsh" class="gcglwqgzController" method="ybyshbwsh"/>
 	<action name="insertWqgzYb" class="gcglwqgzController" method="insertWqgzYb"/>
 	<action name="insertWqgzYb1" class="gcglwqgzController" method="insertWqgzYb1"/>

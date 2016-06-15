@@ -2805,10 +2805,31 @@ function jhxdwhdx(id,xmlx){
 
 
 function queryGcgltjInYb(jhid){
-	$.post('/jxzhpt/gcgl/queryGcgltjInYb.do',{jhid:jhid},
+	$.post('/jxzhpt/gcgl/queryGcglwqtjInYb.do',{jhid:jhid},
 		function(msg){
-			
-		
+			if(msg!=null){
+				$("#qc").html(msg.qc);
+				$("#ztz").html(msg.ztz);
+				$("#btz").html(msg.btz);
+				$("#stz").html(msg.stz);
+				$("#wcztz").html(msg.wcztz);
+				$("#wcbtz").html(msg.wcbtz);
+				$("#wcstz").html(msg.wcstz);
+				$("#bnztz").html(msg.bnztz);
+				$("#xbgz").html(msg.xbgz);
+				$("#sbgz").html(msg.sbgz);
+			}else{
+				$("#qc").html('0');
+				$("#ztz").html('0');
+				$("#btz").html('0');
+				$("#stz").html('0');
+				$("#wcztz").html('0');
+				$("#wcbtz").html('0');
+				$("#wcstz").html('0');
+				$("#bnztz").html('0');
+				$("#xbgz").html('0');
+				$("#sbgz").html('0');
+			}
 		
 		},'json');
 	

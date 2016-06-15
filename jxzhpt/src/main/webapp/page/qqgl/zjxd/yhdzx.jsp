@@ -481,6 +481,75 @@
 			alert(param);
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
+		
+		function exportJhshxx(){
+			/* var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
+			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
+			'&jhsh.xmnf='+xmnf;
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param; */
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#scxdnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
+			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#scxdnf').combobox("getValues").join(',')+
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
+			'&jhsh.xmnf='+xmnf;
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel.do?"+param;
+		}
+		function exportJhshxx1(){
+			/* var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
+			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
+			'&jhsh.xmnf='+xmnf;
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param; */
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#scxdnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
+			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#scxdnf').combobox("getValues").join(',')+
+			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
+			'&jhsh.xmnf='+xmnf;
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel.do?"+param;
+		}
 	</script>
 	<style type="text/css">
 		TD {font-size: 12px;}
@@ -607,7 +676,8 @@
        					<tr height="32">
        						<td colspan="4">
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="exportJhshxx()" onmouseover="this.src='../../../images/Button/dchz2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dchz1.gif'" src="../../../images/Button/dchz1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="exportJhshxx1()" onmouseover="this.src='../../../images/Button/dcmx2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcmx1.gif'" src="../../../images/Button/dcmx1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhshZjzj(7)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
        						</td>
        					</tr>

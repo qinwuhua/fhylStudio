@@ -824,10 +824,10 @@ public class GcglwqgzController extends BaseActionSupport{
 		}
 	}
 	
-	public void queryGcgltjInYb(){
+	public void queryGcglwqtjInYb(){
 		System.out.println(jhid);
 		try {
-			JsonUtils.write(gcglwqgzServer.queryGcgltjInYb(jhid), getresponse().getWriter());
+			JsonUtils.write(gcglwqgzServer.queryGcglwqtjInYb(jhid), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

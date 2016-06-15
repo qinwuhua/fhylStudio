@@ -734,6 +734,17 @@
 	 	
 	 </select>
 	 
-	 
+	 <select id="queryGcglwqtjInYb" parameterType="String" resultType="gcglwqgz">
+	 select nvl(p.jhqlqc,0) qc,nvl(p.pfztz,0) ztz,nvl(p.jhsybzje,0) btz,nvl(p.shengbz,0) stz,nvl(zwc.wcztz,0) wcztz,nvl(zwc.wcbtz,0) wcbtz,nvl(zwc.wcstz,0) wcstz,nvl(bn.bnztz,0) bnztz,nvl(bn.xbgz,0) xbgz,nvl(bn.sbgz,0) sbgz from plan_wqgz p
+		left join
+		(
+		select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz from gcgl_wqgz g group by g.jhid
+		) zwc on p.id=zwc.jhid
+		left join
+		(
+		select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnztz,max(g.xbgz) xbgz,max(g.sbjg) sbgz from gcgl_wqgz g where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy') group by g.jhid
+		) bn on p.id=bn.jhid
+		where p.id=#{value}
+	 </select>
 	 
 </mapper>
