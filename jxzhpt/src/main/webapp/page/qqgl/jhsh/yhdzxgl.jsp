@@ -582,17 +582,14 @@
        							<td>&nbsp;行政区划：</td>
        							<td><select id="xzqh" style="width:124px;"></select></td>
        							<td>&nbsp;项目名称：</td>
-       							<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
+       							<td><input name="xmmc" id="xmmc" style="width:95px;" type="text"/></td>
        							<td>&nbsp;建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
 								<td>&nbsp;技术等级：</td>
        							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
        							<td>项目年份：</td>
        							<td><select id="xmnf" style="width: 70px;"></select></td>
-       							<td>&nbsp;行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-								 <td>&nbsp;原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
+       							
        						</tr>
        						<tr height="32">
        							<!-- <td>&nbsp;原路线编码：</td>
@@ -612,32 +609,17 @@
        							</td>
         						<td><span id="ztspan">上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td> -->
+       							<td>&nbsp;行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+								 <td>&nbsp;原路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
        							<td>&nbsp;原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         						<td>&nbsp;规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>&nbsp;规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-        						<td>&nbsp;历史记录：</td>
-       							<td>
-       								<select id="lsjl" class="easyui-combobox" style="width: 81px;">
-		       							<option value="" selected="selected">全部</option>
-		       							<option value="是">是</option>
-		       							<option value="否">否</option>
-	       							</select>
-       							</td>
-       							<td>&nbsp;五年项目库：</td>
-       							<td>
-       								<select id="wnxmk" class="easyui-combobox" style="width: 81px;">
-		       							<option value="" selected="selected">全部</option>
-		       							<option value="是">是</option>
-		       							<option value="否">否</option>
-	       							</select>
-       							</td>
-       							<td>&nbsp;特殊地区：</td>
-       							<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
-       							<td><span id="ztspan">上报状态</span>：</td>
-       							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
+        						
        						</tr>
        						<tr>
        						    <!-- <td>&nbsp;特殊地区：</td>
@@ -648,10 +630,32 @@
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
        							<td>&nbsp;行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td> -->
-								<td>&nbsp;管养单位：</td>
-       							<td><select id="gydw" style="width:170px;"></select></td>
+								<!-- <td>&nbsp;管养单位：</td>
+       							<td><select id="gydw" style="width:170px;"></select></td> -->
        						</tr>
        						<tr height="32">
+       						<td>&nbsp;历史记录：</td>
+       							<td>
+       								<select id="lsjl" class="easyui-combobox" style="width: 81px;">
+		       							<option value="" selected="selected">全部</option>
+		       							<option value="是">是</option>
+		       							<option value="否">否</option>
+	       							</select>
+       							</td>
+       							<td>&nbsp;五年项目库：</td>
+       							<td>
+       								<select id="wnxmk" class="easyui-combobox" style="width: 70px;">
+		       							<option value="" selected="selected">全部</option>
+		       							<option value="是">是</option>
+		       							<option value="否">否</option>
+	       							</select>
+       							</td>
+       							<td>&nbsp;特殊地区：</td>
+       							<td><select name="tsdq" id="tsdq" style="width:100px;" class="easyui-combobox"></select></td>
+       							<td><span id="ztspan">上报状态</span>：</td>
+       							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
+       							</tr>
+       							<tr height="32">
        							<td colspan="8">
        								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>

@@ -60,6 +60,7 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
+			
 			var sbthcd='';
 			var yhjb=$.cookie("unit2");
 			if(yhjb.length==11){
@@ -71,10 +72,12 @@
 			if(yhjb.length<8&&yhjb.length>=2){
 				sbthcd=7;
 			}
+			
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
 			var sbzt=$("#sbzt").combobox('getValue');
 			var lsjl=$("#lsjl").combobox('getValue');
+			
 			/* //var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length); */
@@ -84,6 +87,7 @@
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
+			
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/queryLxshLjgsd.do',
@@ -266,7 +270,7 @@ text-decoration:none;
 								<select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select>
 								</td>
 								<td>现技术等级：</td>
-								<td><select name="jsdj" id="xjsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 					</tr>
 					<tr height="32">
 								<td>项目年份：</td>
@@ -345,8 +349,8 @@ text-decoration:none;
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                 <td>规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td> -->
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+<!--         						<td>管养单位：</td> -->
+<!--         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
                               <td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

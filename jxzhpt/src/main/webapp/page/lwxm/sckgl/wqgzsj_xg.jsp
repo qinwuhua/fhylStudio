@@ -78,7 +78,8 @@ function loadxx(){
 	$("#hzdj").val(item.hzdj);
 	$("#scsjhspl").val(item.scsjhspl);
 	$("#sck_sbjgxs").val(item.sck_sbjgxs);
-	$("#kjzh").val(item.kjzh);
+	$("#kjzh1").val(item.kjzh.split("*")[0]);
+	$("#kjzh2").val(item.kjzh.split("*")[1]);
 	$("#ztz").val(item.ztz);
 	$("#sck_xbjgxs").val(item.sck_xbjgxs);
 	$("#sgtpfsj").datebox('setValue',item.sgtpfsj);
@@ -150,11 +151,11 @@ function saveWqgz(){
 	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").val()+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
 	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.zdezj="+$("#zdezj").val()+"&jckwqgzsj.scakjfl="+$("#scakjfl").combobox('getValue')
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
-	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
+	+"&jckwqgzsj.kjzh="+$("#kjzh1").val()+"*"+$("#kjzh2").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+''+"&jckwqgzsj.pfwh="+''+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+cjqz
 	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").combobox('getValue')
-	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&jckwqgzsj.nsqsjl="+$("#nsqsjl").val();
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/wqgzsj/updateSckwqgz.do',
@@ -328,6 +329,25 @@ function setbz(){
 		getSbz();
 	}
 	
+	setshengjl();
+}
+//查询省奖励资金
+function setshengjl(){
+	var kjfl="";
+	if(parseInt($("#kjzh2").val())>=40)
+		kjfl="大桥";
+	if(parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)
+		kjfl="中桥";
+	
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzsjlbyid1.do",
+		 dataType : 'json',
+		 data : 'planwqgzsj.id='+xmkid+"&planwqgzsj.akjfl="+kjfl+"&planwqgzsj.scqlqc="+$("#scqlqc").val()+"&planwqgzsj.scqlqk="+$("#scqlqk").val(),
+		 success : function(item){
+			 $("#nsqsjl").val(item.nsqsjl);
+		 }
+	 });
 }
 var trzjdx;
 function setnsqbbz(){
@@ -357,6 +377,8 @@ function checksfzq(){
 	}
 	
 }
+
+
 </script>
 <style type="text/css">
 TD {
@@ -623,7 +645,7 @@ text-decoration:none;
 					<input type="text" id="scsjhspl" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text"  id="kjzh" style="width: 150px" /></td>
+					<input type="text" name='bitian' id="kjzh1" style="width: 50px" />*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sck_sbjgxs" style="width: 150px" />
@@ -680,21 +702,22 @@ text-decoration:none;
 						<option value="是" selected>是</option>
 					</select>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				</td>
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度(km/h)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sjsd" style="width: 150px" />
 				</td>
+			</tr>
+			<tr style="height: 30px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总投资：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="ztz" style="width: 115px" onchange="setnsqbbz()"/>&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="nsqbbz" style="width: 150px" onblur="checksfzq()"/>&nbsp;&nbsp;<span style="color: red" id='trzjdx'></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" style="width: 100px" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>

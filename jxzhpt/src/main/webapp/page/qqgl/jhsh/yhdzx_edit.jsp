@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
+		
 			loadBmbm2("gcfl1",'工程分类');
 			$.ajax({
 				type:'post',
@@ -28,7 +29,7 @@
 				data:'xmlx='+4+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
-					loadDist("xzqh1",msg.xzqhdm);
+					loadDistedit("xzqh1",$.cookie("dist"),msg.xzqhdm2);
 					loadUnits("gydw1",$.cookie('unit'),msg.gydwdm);
 					$('#submit').form("load",msg);
 					$('#span_qdzh').html(msg.gpsqdzh);
@@ -61,7 +62,9 @@
 			$('#gydw').val($('#gydw1').combo("getText"));
 			$('#gydwdm').val($('#gydw1').combo("getValue"));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
-			$('#xzqhdm').val($('#xzqh1').combo("getValue"));
+			$('#xzqhdm').val($("#xmbm").val().substr(4,6));
+			//$("#xzqhdm").val($.cookie("dist"));
+			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			var result=true;
 			result = validateText('ylxbh',null,result);
 			result = validateText('ghlxbh',null,result);
@@ -207,6 +210,7 @@
 					<input id="xzqh1" name="xzqh1" type="text" style="width: 124px;"/>
 					<input id="xzqh" name="xzqh" type="hidden"/>
 					<input id="xzqhdm" name="xzqhdm" type="hidden"/>
+					<input id="xzqhdm2" name="xzqhdm2" type="hidden"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					管养单位</td>

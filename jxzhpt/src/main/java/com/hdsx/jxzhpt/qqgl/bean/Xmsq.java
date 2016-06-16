@@ -120,7 +120,14 @@ public class Xmsq {
 	private String snhntmcsshdj;
 	private String sbzj;//省补资金
 	
+	private String xzqhdm2;//跨县行政区划
 	
+	public String getXzqhdm2() {
+		return xzqhdm2;
+	}
+	public void setXzqhdm2(String xzqhdm2) {
+		this.xzqhdm2 = xzqhdm2;
+	}
 	public String getSbzj() {
 		return sbzj;
 	}

@@ -488,6 +488,15 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void loadwqgzsjlbyid1(){
+		try{
+			Planwqgzsj p = planwqgzsjServer.loadwqgzsjlbyid1(planwqgzsj);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void editwqgzsj(){
 		if(planwqgzsj.getAblbzsqwh()==null)

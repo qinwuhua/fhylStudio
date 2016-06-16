@@ -356,7 +356,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			String sss = xmsq.getJsxz();
 			String aaa = xmsq.getWnxmk();
 			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
-			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
 			if(xmsq.getXmlx()==4){
@@ -1063,7 +1063,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	 * @return
 	 */
 	public String xzqhBm(String bh,String name){
-		String result=null;
+		String result="";
 		if(bh!=null){
 			if(bh.indexOf(",")==-1){
 				int i=0;
@@ -1074,7 +1074,16 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				bh=bh.substring(0,bh.length()-i);
 			}
-			result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
 		}
 		return result;
 	}

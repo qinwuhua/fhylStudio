@@ -215,7 +215,7 @@ text-decoration:none;
 								<select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select>
 								</td>
 								<td>现技术等级：</td>
-								<td><select name="jsdj" id="xjsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
@@ -275,8 +275,8 @@ text-decoration:none;
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                 <td>规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td> -->
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+<!--         						<td>管养单位：</td> -->
+<!--         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
                               <td colspan="10">
         						<img onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>

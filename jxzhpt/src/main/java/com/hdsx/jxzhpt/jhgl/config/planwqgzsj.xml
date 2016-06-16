@@ -178,7 +178,7 @@
 		group by sfylrbwqk
 	</select>
 	<select id="loadwqgzjhkbyid" parameterType="string" resultType="planwqgzsj">
-		select * from plan_wqgz where id=#{value}
+		select t.*,sc.xmkid from plan_wqgz t left join sck_wqgz sc on t.sckid=sc.sckid where id=#{value}
 	</select>
 	<select id="loadwqgzjhkbyid1" parameterType="string" resultType="planwqgzsj">
 		select * from plan_wqgz_tz where id=#{value}
@@ -197,6 +197,15 @@
 		from plan_wqgz p left join sck_wqgz sc on p.sckid=sc.sckid left join xmk_wqgz xm on sc.xmkid=xm.id 
 		where sc.sckid=#{value}
 	</select>
+	<select id="cxtiaojianbyxmk" parameterType="planwqgzsj" resultType="planwqgzsj">
+		select xm.qlbh sck_qlbh,#{scqlqk} scqlqk,#{scqlqc} scqlqc,xm.tsdq,#{akjfl} akjfl,xm.thdj,xm.xzqhmc, 
+		(case when xm.xzqhdm like '3607%' then '1' else '0' end) sfgz,
+		(case when xm.thdj like '%Ⅴ%'or xm.thdj like  '%Ⅵ%' or xm.thdj like  '%Ⅶ%' or xm.thdj like  '%Ⅷ%' or xm.thdj like  '%Ⅸ%' then '1' else '0' end) sfth 
+
+		from xmk_wqgz xm 
+		where xm.id=#{id}
+	</select>
+	
 	<select id="selectshibz" parameterType="planwqgzsj" resultType="wqbzbz">
 		select * from xtgl_wqbzbz where 1=1 and bzjb='市级'
 		<if test="sck_qlbh!='' and sck_qlbh!= null ">

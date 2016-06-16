@@ -63,7 +63,7 @@
 					$('#xmbm').val($("#xmnf").combobox('getValue')+$.cookie('dist')+msg.xmbm);
 				}
 			});
-			loadDist("xzqh1",$.cookie("dist"));
+			loadDistadd("xzqh1",$.cookie("dist"));
 			loadUnit("gydw1",$.cookie("unit"));
 			autoCompleteLXBM();
 		});
@@ -144,7 +144,8 @@
 			$('#gydw').val($('#gydw1').combo("getText"));
 			$('#gydwdm').val($('#gydw1').combo("getValue"));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
-			$('#xzqhdm').val($('#xzqh1').combo("getValue"));
+			$("#xzqhdm").val($.cookie("dist"));
+			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			var result=true;
 			result = validateText('ylxbh',null,result);
 			result = validateText('ghlxbh',null,result);
@@ -261,6 +262,7 @@
 					<input id="xzqh1" name="xzqh1" type="text" style="width: 124px;"/>
 					<input id="xzqh" name="xzqh" type="hidden"/>
 					<input id="xzqhdm" name="xzqhdm" type="hidden"/>
+					<input id="xzqhdm2" name="xzqhdm2" type="hidden"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					管养单位</td>

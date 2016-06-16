@@ -54,6 +54,8 @@ function loadJhkxx(){
 		 dataType : 'json',
 		 data : 'id='+parent.obj,
 		 success : function(msg){
+			 sckid=msg.sckid;
+			 xmkid=msg.xmkid;
 			 loadSckxx(msg.sckid);
 			 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
 			 //$("#jhjsxz").combobox('setValue',msg.jhjsxz);
@@ -82,14 +84,12 @@ function loadJhkxx(){
 			 $("#jhbz").val(msg.bz);
 			 $("#jhqlqc").val(msg.jhqlqc);
 			 $("#jhqlqk").val(msg.jhqlqk);
-			
-			 $("#nsqsjl").numberbox('setValue',msg.nsqsjl);
+			 $("#nsqsjl").val(msg.nsqsjl);
 			 $("#shijbz").numberbox('setValue',msg.shijbz);
 			 $("#xianjbz").numberbox('setValue',msg.xianjbz);
 			 
 			// loadSbz(msg.sckid);
-			sckid=msg.sckid;
-			
+						
 		 }
 	});
 }
@@ -124,6 +124,8 @@ function loadBz(){
 	}else{
 		loadSbz();
 	}
+	
+	setshengjl();
 }
 function loadSbz(){
 	$.ajax({
@@ -242,6 +244,7 @@ function loadSckxx(id){
 				$("#scsjhspl").html(item.scsjhspl);
 				$("#sck_sbjgxs").html(item.sck_sbjgxs);
 				$("#kjzh").html(item.kjzh);
+				kjzh=item.kjzh.split("*")[1];
 				$("#ztz").html(item.ztz);
 				$("#sck_xbjgxs").html(item.sck_xbjgxs);
 				$("#sgtpfsj").html(item.sgtpfsj);
@@ -254,11 +257,13 @@ function loadSckxx(id){
 				$("#sjsd").html(item.sjsd);$("#scsqs").html(item.scsqs);$("#scxsq").html(item.scxsq);$("#scszxz").html(item.scszxz);
 				bzSum();
 				loadBz();
-				setshengjl();
+				
+				//setshengjl();
 		 }
 	});
 }
-
+var kjzh;
+var xmkid;
 function sjtfileShow(id){
 	//加载文件
 	$.ajax({
@@ -307,9 +312,9 @@ function bzSum(){
 	var pfztzVal = $("#pfztz").val();
 	var shengbzVal = $("#shengbz").val();
 	
-	var reg =/[^\d]/g;
+	var reg =/(\d+)(\d{3})/;
 	if(reg.test(pfztzVal)){
-		alert("请填写数字");
+		alert(pfztzVal+"不为数字，请填写数字");
 		$("#pfztz").val("");
 		 $("#pfztz").css("background-color","darkorange");
 		return false;
@@ -317,7 +322,7 @@ function bzSum(){
 		 $("#pfztz").css("background-color","");
 	}
 	if(reg.test(shengbzVal)){
-		alert("请填写数字");
+		alert(shengbzVal+"不为数字，请填写数字");
 		$("#shengbz").val("");
 		$("#shengbz").css("background-color","darkorange");
 		return false;
@@ -372,6 +377,8 @@ function setshengbz(){
 }
 //查询省奖励资金
 function setshengjl(){
+	/* 
+	
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/jhgl/loadwqgzsjlbyid.do",
@@ -380,7 +387,24 @@ function setshengjl(){
 		 success : function(item){
 			 $("#nsqsjl").val(item.nsqsjl);
 		 }
+	 }); */
+	var kjfl="";
+	if(parseInt(kjzh)>=40)
+		kjfl="大桥";
+	if(parseInt(kjzh)>=20 && parseInt(kjzh) < 40)
+		kjfl="中桥";
+	
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzsjlbyid1.do",
+		 dataType : 'json',
+		 data : 'planwqgzsj.id='+xmkid+"&planwqgzsj.akjfl="+kjfl+"&planwqgzsj.scqlqc="+$("#jhqlqc").val()+"&planwqgzsj.scqlqk="+$("#jhqlqk").val(),
+		 success : function(item){
+			// $("#nsqsjl").val(item.nsqsjl);
+			 $("#nsqsjl").val(item.nsqsjl);
+		 }
 	 });
+	 
 }
 
 
@@ -847,7 +871,7 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" class='easyui-numberbox' id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
+					<input type="text" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市级补助资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" class="easyui-numberbox" id='shijbz'>

@@ -76,7 +76,7 @@
 					'tsdq':tsdq,
 					'jsdj':$('#jsdj').combobox("getValues").join(","),
 					'sqzt':-1,
-					"jdbs":1,
+					"jdbs":0,
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'xmbm':$('#xmnf').combobox("getValues").join(','),
@@ -562,8 +562,8 @@
 	       						<td><select id="sqzt" class="easyui-combobox" name="jhzt" style="width: 70px;"></select></td>
 	       					</tr>
 	       					<tr height="32">
-	       					<td>&nbsp;管养单位：</td>
-	       						<td><select id="gydw" style="width:170px;"></select></td>
+	       					<!-- <td>&nbsp;管养单位：</td>
+	       						<td><select id="gydw" style="width:170px;"></select></td> -->
 	       						<!-- <td>&nbsp;特殊地区：</td>
 	       						<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
 	       						<td>原路线名称：</td>

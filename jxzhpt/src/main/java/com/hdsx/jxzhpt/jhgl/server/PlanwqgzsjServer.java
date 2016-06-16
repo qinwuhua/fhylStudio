@@ -97,5 +97,7 @@ public interface PlanwqgzsjServer {
 	List<Excel_list> selectwqjhexcel(Planwqgzsj planwqgzsj);
 
 	Planwqgzsj loadwqgzsjlbyid(String id);
+
+	Planwqgzsj loadwqgzsjlbyid1(Planwqgzsj planwqgzsj);
 	
 }

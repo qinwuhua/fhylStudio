@@ -82,7 +82,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			for (int i = 0; i < strs.length; i++) {
 				list.add(strs[i]);
 			}
-			if(deleteBatch("tuihuiWqgzsjsckById", list)>0) return true;
+			if(deleteBatch("tuihuiWqgzsjsckById", list)>0 && deleteBatch("tuihuiWqgzsjsckByIdjh", list)>0) return true;
 			else return false;
 		
 	}	
@@ -264,6 +264,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
 			Planwqgzsj planwqgzsj = queryOne("cxplanwqgzbyid", jckwqgzsj);
 			if(planwqgzsj!=null){
+				
 				return true;
 			}
 			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
@@ -272,7 +273,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 				jckwqgzsj.setBz("0");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
-			if(jck.getTsdq()!=null)
+			/*if(jck.getTsdq()!=null)
 			if(jck.getTsdq().indexOf("省直管试点县")!=-1){
 				Wqbzbz wq1=queryOne("selectshibz", jck);
 				if(wq1==null){
@@ -297,14 +298,14 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 				else{
 					jckwqgzsj.setScqlqk(jck.getScqlqk());
 				}
-			}
+			}*/
 			jckwqgzsj.setScqlqc(jck.getScqlqc());
-			BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(jckwqgzsj.getScqlqk().trim()));
+			/*BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc().trim()).multiply(new BigDecimal(jckwqgzsj.getScqlqk().trim()));
 			BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje().trim())).divide(new BigDecimal("10000"));
 			if(jckwqgzsj.getShibz()==null){
 				jckwqgzsj.setShibz("0");
-			}
-			jckwqgzsj.setShengbz(b2.add(new BigDecimal(jckwqgzsj.getShibz()))+"");	
+			}*/
+//			jckwqgzsj.setShengbz(b2.add(new BigDecimal(jckwqgzsj.getShibz()))+"");	
 			jckwqgzsj.setShibz("0");
 			jckwqgzsj.setSfylrbwqk(jck.getSfylrbwqk());
 			jckwqgzsj.setBzls(jck.getBzls());
@@ -318,11 +319,21 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			jckwqgzsj.setFascdw(jck.getFascdw());
 			jckwqgzsj.setPfwh(jck.getSpwh());
 			jckwqgzsj.setZtz(jck.getZtz());
+			jckwqgzsj.setNsqsjl(jck.getNsqsjl());
+			if("是".equals(jckwqgzsj.getSfylrbwqk())){
+				jckwqgzsj.setNsqbbz(jck.getNsqbbz());
+				//jckwqgzsj.setShengbz("0");
+			}
+			else{
+				//jckwqgzsj.setNsqbbz(jck.getNsqbbz());
+				jckwqgzsj.setShengbz(jck.getNsqbbz());
+			}
+				
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;
 			}
-		else return false;
+		return false;
 	}
 
 	@Override

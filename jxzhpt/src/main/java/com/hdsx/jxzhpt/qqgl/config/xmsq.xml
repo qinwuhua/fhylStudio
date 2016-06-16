@@ -106,6 +106,7 @@
 		<if test="ylxbh!=null">,ylxbh</if>
 		<if test="xzqh!=null">,xzqh</if>
 		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="xzqhdm2!=null">,xzqhdm2</if>
 		<if test="qdzh!=null">,qdzh</if>
 		<if test="zdzh!=null">,zdzh</if>
 		<if test="lc!=null">,lc</if>
@@ -135,6 +136,7 @@
 		<if test="ylxbh!=null">,#{ylxbh}</if>
 		<if test="xzqh!=null">,#{xzqh}</if>
 		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="xzqhdm2!=null">,#{xzqhdm2}</if>
 		<if test="qdzh!=null">,#{qdzh}</if>
 		<if test="zdzh!=null">,#{zdzh}</if>
 		<if test="lc!=null">,#{lc}</if>
@@ -166,6 +168,7 @@
 		<if test="ylxbh!=null">,ylxbh</if>
 		<if test="xzqh!=null">,xzqh</if>
 		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="xzqhdm2!=null">,xzqhdm2</if>
 		<if test="qdzh!=null">,qdzh</if>
 		<if test="zdzh!=null">,zdzh</if>
 		<if test="lc!=null">,lc</if>
@@ -191,6 +194,7 @@
 		<if test="ylxbh!=null">,#{ylxbh}</if>
 		<if test="xzqh!=null">,#{xzqh}</if>
 		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="xzqhdm2!=null">,#{xzqhdm2}</if>
 		<if test="qdzh!=null">,#{qdzh}</if>
 		<if test="zdzh!=null">,#{zdzh}</if>
 		<if test="lc!=null">,#{lc}</if>
@@ -517,7 +521,7 @@
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
-				where l.jdbs='1' and l.sffirst='1' 
+				where l.jdbs='0' and l.sffirst='1' 
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -710,7 +714,7 @@
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
 		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc
-		from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
+		from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='0'
 	</select>
 	
 	<update id="updateYhdzx" parameterType="xmsq">
@@ -722,6 +726,7 @@
 		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
 		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
 		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="xzqhdm2!=null">,xzqhdm2=#{xzqhdm2}</if>
 		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
 		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
 		<if test="qdmc!=null">,qdmc=#{qdmc}</if>
@@ -751,6 +756,7 @@
 		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
 		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
 		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="xzqhdm2!=null">,xzqhdm2=#{xzqhdm2}</if>
 		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
 		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
 		<if test="qdmc!=null">,qdmc=#{qdmc}</if>

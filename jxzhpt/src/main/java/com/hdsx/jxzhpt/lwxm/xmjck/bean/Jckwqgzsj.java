@@ -121,7 +121,7 @@ public class Jckwqgzsj implements Serializable{
 	private String qtlx;
 	private String pzlx;
 	private String sfyapjh;
-	private String  sqs;
+	private String sqs;
 	private String xsq;
 	
 	private String rksj;
@@ -147,7 +147,14 @@ public class Jckwqgzsj implements Serializable{
 	private String xlxmc;
 	private String nsqsbz;
 	private String gldj;
+	private String nsqsjl;
 	
+	public String getNsqsjl() {
+		return nsqsjl;
+	}
+	public void setNsqsjl(String nsqsjl) {
+		this.nsqsjl = nsqsjl;
+	}
 	public String getGldj() {
 		return gldj;
 	}

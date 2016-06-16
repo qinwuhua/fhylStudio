@@ -1314,6 +1314,40 @@ function loadDist1(id, dwbm) {
 				}
 		});
 }
+//添加的行政区划
+function loadDistadd(id, dwbm) {
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					//$('#' + id).combotree('setValue', dwbm);
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
+				}
+		});
+}
+//添加的行政区划
+function loadDistedit(id, dwbm,dwbm2) {
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValues', dwbm2.split(","));
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
+				}
+		});
+}
+
+
 function loadUnit1(id, dwbm) {
 
 	$('#' + id).combotree(

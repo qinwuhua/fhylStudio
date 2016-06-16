@@ -188,6 +188,9 @@
 		  <update id="tuihuiWqgzsjsckById" parameterType="java.util.List">
 		 	update sck_wqgz set sck_shzt='未审核' where sckid=#{String}
 		 </update>
+		  <update id="tuihuiWqgzsjsckByIdjh" parameterType="java.util.List">
+		 	delete from plan_wqgz where sckid=#{String}
+		 </update>
 		  <update id="tuihuiAfsckById" parameterType="java.util.List">
 		 	update SCK_AQSMFH set shzt='未审核',shyj='' where id=#{String}
 		 </update>
@@ -741,10 +744,10 @@
 		insert into
 		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_qlbh,sck_qlzxzh,
 		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,hzdj,scsjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq,sfylrbwqk,
-		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz,sfkxg,zdezj,scakjfl<if test="nsqsbz !=null">,nsqsbz</if>)
+		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz,sfkxg,zdezj,scakjfl<if test="nsqsbz !=null">,nsqsbz</if><if test="nsqsjl !=null">,nsqsjl</if>)
 		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{hzdj},#{scsjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},#{sfylrbwqk},
-		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg},#{zdezj},#{scakjfl}<if test="nsqsbz !=null">,#{nsqsbz}</if>)
+		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg},#{zdezj},#{scakjfl}<if test="nsqsbz !=null">,#{nsqsbz}</if><if test="nsqsjl !=null">,#{nsqsjl}</if>)
 	</insert>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
 	 	delete from sck_wqgz where sckid =#{String}
@@ -764,6 +767,7 @@
 		scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk},sjdwmc=#{sjdwmc},hzdj=#{hzdj},scsjhspl=#{scsjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
 		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq}, zdezj=#{zdezj},
 		rksj=#{rksj},cjqz=#{cjqz},scthdj=#{scthdj},qljc=#{qljc},ydgldj=#{ydgldj},sjsd=#{sjsd},scsqs=#{scsqs},scxsq=#{scxsq},scszxz=#{scszxz},nsqbbz=#{nsqbbz},sfylrbwqk=#{sfylrbwqk}<if test="nsqsbz != null">,nsqsbz=#{nsqsbz}</if>
+		<if test="nsqsjl != null">,nsqsjl=#{nsqsjl}</if>
 		<if test="scakjfl!='' and scakjfl!= null ">
 			,scakjfl=#{scakjfl}
 		</if>
@@ -986,7 +990,6 @@
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
 		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd
 		<if test="shibz!='' and shibz!= null ">,shibz</if>
-		<if test="shengbz!='' and shengbz!= null ">,shengbz</if>
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,sfylrbwqk</if>
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,sfkxg</if>
 		<if test="bzls!='' and bzls!= null ">,sfylsjl</if>
@@ -996,10 +999,18 @@
 		<if test="faspsj!='' and faspsj!= null ">,pfsj</if>
 		<if test="sjdwmc!='' and sjdwmc!= null ">,sjdw</if>
 		<if test="fascdw!='' and fascdw!= null ">,sjpfdw</if>
-		<if test="pfwh!='' and pfwh!= null ">,pfwh</if><!-- ,pfztz -->) 
+		<if test="pfwh!='' and pfwh!= null ">,pfwh</if>
+		<if test="ztz!='' and ztz!= null ">,pfztz</if>
+		<if test="nsqsjl !='' and nsqsjl!= null ">,nsqsjl</if>
+		<if test="sfylrbwqk !='' and sfylrbwqk!= null and nsqbbz!= null ">
+			,jhsybzje
+		</if>
+		<if test="sfylrbwqk !='' and sfylrbwqk!= null and shengbz!= null ">
+			,shengbz
+		</if>
+		<!-- ,pfztz -->) 
 		values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz}
 		<if test="shibz!='' and shibz!= null ">,#{shibz}</if>
-		<if test="shengbz!='' and shengbz!= null ">,#{shengbz}</if>
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,#{sfylrbwqk}</if>
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">,decode(#{sfylrbwqk},'是','是','否','否')</if>
 		<if test="bzls!='' and bzls!= null ">,#{bzls}</if>
@@ -1009,10 +1020,19 @@
 		<if test="faspsj!='' and faspsj!= null ">,#{faspsj}</if>
 		<if test="sjdwmc!='' and sjdwmc!= null ">,#{sjdwmc}</if>
 		<if test="fascdw!='' and fascdw!= null ">,#{fascdw}</if>
-		<if test="pfwh!='' and pfwh!= null ">,#{pfwh}</if><!-- ,#{ztz} -->)
+		<if test="pfwh!='' and pfwh!= null ">,#{pfwh}</if>
+		<if test="ztz!='' and ztz!= null ">,#{ztz}</if>
+		<if test="nsqsjl !='' and nsqsjl!= null ">,#{nsqsjl}</if>
+		<if test="sfylrbwqk !='' and sfylrbwqk!= null and nsqbbz!= null ">
+			,#{nsqbbz}
+		</if>
+		<if test="sfylrbwqk !='' and sfylrbwqk!= null and shengbz!= null ">
+			,#{shengbz}
+		</if>
+		<!-- ,#{ztz} -->)
 	</insert>
 	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
-		select sckid,sc.sck_qlbh,fapgdw,fascdw,spwh,ztz,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,sc.scsqs,sc.scxsq,sc.scszxz,decode(sc.jsnr,null,' ',sc.jsnr) jsnr,decode(sc.jsxz,null,' ',sc.jsxz) jsxz,decode(sc.faspsj,null,to_char(sysdate,'yyyy-mm-dd') ,sc.faspsj) faspsj from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
+		select sckid,sc.sck_qlbh,fapgdw,fascdw,spwh,ztz,nsqbbz,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls,sc.scsqs,sc.scxsq,sc.scszxz,decode(sc.jsnr,null,' ',sc.jsnr) jsnr,decode(sc.jsxz,null,' ',sc.jsxz) jsxz,decode(sc.faspsj,null,to_char(sysdate,'yyyy-mm-dd') ,sc.faspsj) faspsj,sc.nsqsjl from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
 		where sckid=#{id}
 	</select>
 	<select id="selectshibz" parameterType="jckwqgzsj" resultType="wqbzbz">
