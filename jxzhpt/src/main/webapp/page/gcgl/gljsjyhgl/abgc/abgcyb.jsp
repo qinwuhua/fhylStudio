@@ -18,7 +18,8 @@
 		$(function(){
 			showYBlist();
 			$("#nf").text(new Date().getFullYear());
-			shezhi();
+			//shezhi();
+			queryAbxmYb(parent.obj1.jhid);//查询工程管理安保项目月报页面内的那行统计。
 		});
 		
 	</script>
@@ -52,7 +53,7 @@ a:active {
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元，
                     其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。 -->
-                                 计划里程【<span id="qc" style="color: Red; font-weight: bold;"></span>】公里， 
+                                 计划里程【<span id="jhlc" style="color: Red; font-weight: bold;"></span>】公里， 
 	                总投资【<span id="ztz" style="color: Red; font-weight: bold;"></span>】万元。
 	                其中部投资【<span id="btz" style="color: Red; font-weight: bold;"></span>】万元，
 	                省投资【<span id="stz" style="color: Red; font-weight: bold;"></span>】万元。
@@ -60,9 +61,9 @@ a:active {
 	                其中完成部投资【<span id="wcbtz" style="color: Red; font-weight: bold;"></span>】万元。
 	                省投资【<span id="wcstz" style="color: Red; font-weight: bold;"></span>】万元。
 	                本年完成投资【<span id="bnztz" style="color: Red; font-weight: bold;"></span>】万元。
-			完成隐患里程【<span id="xbgz" style="color: Red; font-weight: bold;"></span>】公里，
-			其中本年完成【<span id="sbgz" style="color: Red; font-weight: bold;"></span>】公里。
-                </td>
+			完成隐患里程【<span id="wcyhlc" style="color: Red; font-weight: bold;"></span>】公里，
+			其中本年完成【<span id="bnwc" style="color: Red; font-weight: bold;"></span>】公里。
+		    </td>
             </tr>
             <tr>
                 <td>                    

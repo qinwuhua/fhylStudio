@@ -340,15 +340,21 @@ function showtj(){
 		dataType:'json',
 		url:'/jxzhpt/gcgl/selectWqtj.do',
 		success:function(msg){
-			$("#sl").html(msg.sl);
-			$("#pfztz").html(msg.pfztz);
+			$("#jhqc").html(msg.jhqc);
+			$("#ztz").html(msg.ztz);
 			$("#btz").html(msg.btz);
 			$("#stz").html(msg.stz);
-			$("#dftz").html(msg.dftz);
-			$("#zbz").html(msg.zbz);
-			$("#jlzj").html(msg.jlzj);
+			$("#jcqc").html(msg.jcqc);
+			$("#wcztz").html(msg.wcztz);
+			$("#wcbtz").html(msg.wcbtz);
+			$("#wcstz").html(msg.wcstz);
+			$("#bnwctz").html(msg.bnwctz);
 		}
 	});
+	
+	
+	
+	//buguan
 	var data1="gydw="+gydwstr+
 	"&kgzt="+kgzt+
 	"&jgzt="+jgzt+

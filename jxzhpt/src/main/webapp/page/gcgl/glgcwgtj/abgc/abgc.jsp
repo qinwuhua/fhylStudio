@@ -146,6 +146,10 @@ a:active {
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select>
+								<span>完工年份：</span> 
+        						<select name="wgYear" id="wgYear" style="width: 70px;">
+        							<option value="">全部</option>
+        						</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
                                  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
@@ -158,14 +162,23 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 1%;padding-left:10px;">
                     <div>
-                    共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个项目，
+              <!--       共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个项目，
         			批复总投资【&nbsp;<span id="pfztz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中省投资【&nbsp;<span id="stz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			总补助资金【&nbsp;<span id="zbz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-                                                    总申请奖励资金【&nbsp;<span id="jlzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
-                    
+                                                    总申请奖励资金【&nbsp;<span id="jlzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。 -->
+                                    计划里程【<span id="jhlc" style="color: Red; font-weight: bold;"></span>】公里， 
+	                总投资【<span id="ztz" style="color: Red; font-weight: bold;"></span>】万元。
+	                其中部投资【<span id="qzbtz" style="color: Red; font-weight: bold;"></span>】万元，
+	                省投资【<span id="qzstz" style="color: Red; font-weight: bold;"></span>】万元。
+	          实际完成隐患里程 【<span id="sjwcyhlc" style="color: Red; font-weight: bold;"></span>】公里，     
+	                共完成总投资【<span id="wcztz" style="color: Red; font-weight: bold;"></span>】万元，
+	                其中完成部投资【<span id="wcbtz" style="color: Red; font-weight: bold;"></span>】万元。
+	                省投资【<span id="wcstz" style="color: Red; font-weight: bold;"></span>】万元。
+	                本年完成投资【<span id="bnwctz" style="color: Red; font-weight: bold;"></span>】万元。    
+	                其中本年完成【<span id="bnwcgl" style="color: Red; font-weight: bold;"></span>】公里。    
 				<table id="datagrid" >
 				</table>
 				</div>

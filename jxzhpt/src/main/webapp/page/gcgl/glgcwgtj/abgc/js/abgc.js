@@ -113,18 +113,26 @@ function showtj(xmlx){
 	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
 	'&gcglabgc.jgys='+$("#jgys").combobox('getValue');
 	
+   
 	$.ajax({
 		data:data,
 		type:'post',
 		dataType:'json',
 		url:'/jxzhpt/gcgl/selectAbtj.do',
 		success:function(msg){
-			$("#sl").html(msg.sl);
-			$("#pfztz").html(msg.pfztz);
-			$("#btz").html(msg.btz);
-			$("#stz").html('0');
+			//$("#sl").html(msg.sl);
+			$("#jhlc").html(msg.jhlc);
+			$("#ztz").html(msg.ztz);
+			$("#qzbtz").html(msg.qzbtz);
+			$("#qzstz").html("0");
+			$("#sjwcyhlc").html(msg.wcyhlc);
+			$("#wcztz").html(msg.wcztz);
+			$("#wcbtz").html(msg.wcbtz);
+			$("#wcstz").html(msg.wcstz);
+			$("#bnwctz").html(msg.bnwctz);
+			$("#bnwcgl").html(msg.bnwcgl);
 			$("#dftz").html(msg.dftz);
-			$("#zbz").html(msg.zbz);
+			//alert(msg.zbz);
 			$("#jlzj").html(msg.jlzj);
 		}
 	})

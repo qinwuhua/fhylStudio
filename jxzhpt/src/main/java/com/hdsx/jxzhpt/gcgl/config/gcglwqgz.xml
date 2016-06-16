@@ -150,7 +150,7 @@
 		update PLAN_WQGZ set WJGYY=#{wjgyy} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglwqgz">
-		update PLAN_WQGZ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
+		update PLAN_WQGZ set SJWGSJ=#{sjwgsj},SJJCQC=#{jcqc},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglwqgz">
 		update PLAN_WQGZ set xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjjgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},zljdwj=#{zljdwj} where ID=#{jhid}
@@ -163,7 +163,7 @@
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
 		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,wcg.wcbtz,wcg.wcstz,wcg.wcztz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
-		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,t1.sjjcqc jcqc
 	    from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select decode(max(jhxdwh),null,'-',max(jhxdwh)) jhxdwh,xmid from plan_zjxd group by xmid) zj on t1.id=zj.xmid
 	    left join gcgl_jgys jg on t1.id=jg.jhid
 	    left join (
@@ -283,11 +283,23 @@
 	 </select>
 	 
 	  <select id="selectWqgzTj" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybzje),0) btz,nvl(sum(t1.shengbz),0) stz,nvl(sum(t1.jhsydfzcje),0) dftz,
+	 	<!-- select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybzje),0) btz,nvl(sum(t1.shengbz),0) stz,nvl(sum(t1.jhsydfzcje),0) dftz,
 		nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj
 		from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
 		left join gcgl_jgys jg on t1.id=jg.jhid
-		where  t1.spzt='1'
+		where  t1.spzt='1' -->
+		select count(*) sl,nvl(sum(t1.JHQLQC),0) jhqc,nvl(sum(t1.pfztz),0) ztz,nvl(sum(t1.JHSYBZJE),0) btz, nvl(sum(t1.SHENGBZ),0) stz, nvl(sum(t1.sjjcqc),0) jcqc,
+		nvl(sum(t4.wcztz),0) wcztz,nvl(sum(t4.wcbtz),0) wcbtz,nvl(sum(t4.wcstz),0) wcstz,nvl(sum(t5.bnwctz),0)  bnwctz   
+  		from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join
+	    (select  g.jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz)  wcztz ,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz 
+		from  gcgl_wqgz  g   group by g.jhid) t4
+		on t1.id=t4.jhid
+	    left join(
+		select g.jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g 
+		where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy') group by  g.jhid) t5
+		on t1.id=t5.jhid where  t1.spzt='1'
 		<if test="jgys != null and  jgys != ''">
 			and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
@@ -296,6 +308,7 @@
 		</if>
 		<if test="gydw != null and  gydw != ''">
 			${gydw}
+			
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
 			${xzqhdm}

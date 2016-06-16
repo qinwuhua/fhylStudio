@@ -305,6 +305,10 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	public List<Excel_list> xmkaqsmfhDoExcel(Xmkaqsmfh xmkaqsmfh) {
 		return queryList("xmkaqsmfhDoExcel",xmkaqsmfh);
 	}
+	@Override
+	public List<Excel_list> shaqsmfhDoExcel(Xmkaqsmfh xmkaqsmfh) {
+		return queryList("shaqsmfhDoExcel",xmkaqsmfh);
+	}
 	
 	
 }

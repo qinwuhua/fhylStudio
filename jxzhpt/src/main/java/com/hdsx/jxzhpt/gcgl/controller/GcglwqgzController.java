@@ -507,6 +507,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			System.out.println(gcglwqgz.getQlbh());
 			int count=gcglwqgzServer.selectWqgzjhListCount(gcglwqgz);
 			List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
+			System.out.println(list+"111");
 			EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
 			e.setRows(list);
 			e.setTotal(count);

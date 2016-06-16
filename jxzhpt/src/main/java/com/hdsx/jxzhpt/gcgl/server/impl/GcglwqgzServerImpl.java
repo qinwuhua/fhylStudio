@@ -248,6 +248,7 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
 	@Override
 	public Boolean insertWqgzwg(Gcglwqgz gcglwqgz) {
+		//System.out.println(gcglwqgz.getJcqc()+"********");
 		gcglwqgz.setJgzt("1");
 		if(update("insertWqgzwg", gcglwqgz)>0){
 			return true;

@@ -438,4 +438,10 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public Gcglwqgz selectabTJ(Gcglabgc gcglabgc) {
 		return queryOne("selectabTJ", gcglabgc);
 	}
+
+	@Override
+	public Gcglabgc queryAbxmYb(String jhid) {
+		return queryOne("queryAbxmYb", jhid);
+	}
+	
 }

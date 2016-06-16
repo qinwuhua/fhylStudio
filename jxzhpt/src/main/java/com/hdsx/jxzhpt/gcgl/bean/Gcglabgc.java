@@ -27,7 +27,79 @@ public class Gcglabgc implements Serializable {
 	private String jzzt;
 	private String bnjhtz;
 	private String bndsslc;
+	private String jhlc;
+	private String ztz;
+	private String bnztz;
+	private String btz;
+	private String bnwc;
+	private String wcyhlc;
+	private String qzbtz;
+	private String qzstz;
+	private String sjwcyhlc;
+	private String bnwctz;
+	private String bnwcgl;
 	
+	public String getQzbtz() {
+		return qzbtz;
+	}
+	public void setQzbtz(String qzbtz) {
+		this.qzbtz = qzbtz;
+	}
+	public String getQzstz() {
+		return qzstz;
+	}
+	public void setQzstz(String qzstz) {
+		this.qzstz = qzstz;
+	}
+	public String getSjwcyhlc() {
+		return sjwcyhlc;
+	}
+	public void setSjwcyhlc(String sjwcyhlc) {
+		this.sjwcyhlc = sjwcyhlc;
+	}
+	public String getBnwctz() {
+		return bnwctz;
+	}
+	public void setBnwctz(String bnwctz) {
+		this.bnwctz = bnwctz;
+	}
+	public String getBnwcgl() {
+		return bnwcgl;
+	}
+	public void setBnwcgl(String bnwcgl) {
+		this.bnwcgl = bnwcgl;
+	}
+	public String getWcyhlc() {
+		return wcyhlc;
+	}
+	public void setWcyhlc(String wcyhlc) {
+		this.wcyhlc = wcyhlc;
+	}
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+	public String getBnztz() {
+		return bnztz;
+	}
+	public void setBnztz(String bnztz) {
+		this.bnztz = bnztz;
+	}
+	public String getBtz() {
+		return btz;
+	}
+	public void setBtz(String btz) {
+		this.btz = btz;
+	}
+
 	public String getYjsdj() {
 		return yjsdj;
 	}
@@ -944,6 +1016,12 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setSjwgsj(String sjwgsj) {
 		this.sjwgsj = sjwgsj;
+	}
+	public String getBnwc() {
+		return bnwc;
+	}
+	public void setBnwc(String bnwc) {
+		this.bnwc = bnwc;
 	}
 	
 }
