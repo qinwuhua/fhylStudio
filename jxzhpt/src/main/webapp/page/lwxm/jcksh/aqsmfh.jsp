@@ -231,6 +231,60 @@ function showshyj(index){
 function showcsyj(index){
 	$.messager.alert('不同意意见',$("#grid").datagrid('getRows')[index].csyj,'warning');  
 }
+//wdd导出项目审核里的安全生命防护工程 start
+function doExcel(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqhmc").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var jsdj=$("#jsdj").combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var gldj=$("#gldj").combobox("getValues").join(",");
+	if(gldj.substr(0,1)==',')
+		gldj=gldj.substr(1,gldj.length);
+	
+	var tsdq=$("#tsdq").combobox("getValues").join(",");
+	if(tsdq.substr(0,1)==',')
+		tsdq=tsdq.substr(1,tsdq.length);
+ 	if($.cookie("unit2")=='______36') 
+ 		sbthcd = 7;
+ 	else 
+ 		sbthcd = $.cookie("unit2").length;
+	var param='xmkaqsmfh.sbthcd='+sbthcd+
+	'&xmkaqsmfh.unitcode='+gydwstr+
+ 	'&xmkaqsmfh.distcode='+xzqhstr+
+ 	'&xmkaqsmfh.roadname='+$('#lxmc').val()+
+ 	'&xmkaqsmfh.jhnf='+''+
+ 	'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&xmkaqsmfh.jsdj='+jsdj+
+ 	'&xmkaqsmfh.roadcode='+$("#lxbm").val()+
+ 	'&xmkaqsmfh.gldj='+gldj+
+ 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+
+ 	'&xmkaqsmfh.tsdq='+tsdq;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/aqsmfh/shaqsmfhDoExcel.do?"+param;
+	//wdd导出项目审核里的安全生命防护工程 end	
+}
 </script>
 <style type="text/css">
 TD {
@@ -303,6 +357,7 @@ text-decoration:none;
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
 <%-- 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>		 --%>
+								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="doExcel()"/>
 							 </td>
                             </tr></table>
 						</div>

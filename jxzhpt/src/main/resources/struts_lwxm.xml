@@ -231,6 +231,7 @@
  	<action name="afXmkCs" class="xmkaqsmfhController" method="afXmkCs"/>
  	<action name="afXmkZs" class="xmkaqsmfhController" method="afXmkZs"/>
  	<action name="xmkaqsmfhDoExcel" class="xmkaqsmfhController" method="xmkaqsmfhDoExcel"/>
+ 	<action name="shaqsmfhDoExcel" class="xmkaqsmfhController" method="shaqsmfhDoExcel"/>
  	
  	
  	

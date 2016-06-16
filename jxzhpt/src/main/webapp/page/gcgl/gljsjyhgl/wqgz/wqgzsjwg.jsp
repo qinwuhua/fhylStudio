@@ -160,7 +160,7 @@
 		yzcmzp();
 		if(cmzp=='false')
 			return;
-		var data="gcglwqgz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglwqgz.jhid="+parent.obj1.jhid;
+		var data="gcglwqgz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglwqgz.jcqc="+$("#tj_jcqc").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -204,8 +204,14 @@ a:active {
                             <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
                                 <b><font color="#009ACD" style=" font-size: 12px">实际完工时间：</font></b>
                             </td>
-                            <td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+                            <td  style="background-color: #ffffff; height: 20px;" align="left">
                                 <input style="width: 150px" type="text" id="tj_sjwgsj" />
+                            </td>
+                              <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="left">
+                                <b><font color="#009ACD" style=" font-size: 12px">实际建成桥长(延米)：</font></b>
+                            </td>
+                            <td style="background-color: #ffffff; height: 20px;" colspan="5" align="left">
+                                <input type="text" id='tj_jcqc'/>
                             </td>
                         </tr>
                   <tr style="height: 35px;">

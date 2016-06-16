@@ -32,7 +32,9 @@ $(function(){
 	fileShow24(parent.obj1.id,'施工许可');
 });
 function loadJzxx(){
+	alert("11");
 	var data=parent.obj1;
+	
 	$('#xdsj').html(data.xdsj);
 	$('#sjkgsj').html(data.sjkgsj);
 	$('#yjwgsj').html(data.yjjgsj);
@@ -48,6 +50,7 @@ function loadJzxx(){
 	$('#wcbtz').html(data.wcbtz);
 	$('#wcstz').html(data.wcstz);
 	$('#wcztz').html(data.wcztz);
+	$('#sjjcqc').html(data.jcqc);
 }
 function loadJhkxx(){
 	$.ajax({
@@ -816,13 +819,16 @@ text-decoration:none;
 			
 			<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可（附件上传）：</td>
-				<td id="td_sgxk" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td id="td_sgxk" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
 								cellpadding="1" cellspacing="1">
 						<tbody id="sgxkTable"></tbody>
 					</table>
 					
 				</td>
+				 <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际建成桥长（延米）：</td>
+				<td  colspan="3"  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjjcqc"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工桥梁正面照片：</td>

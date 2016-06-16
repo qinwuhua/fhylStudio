@@ -143,7 +143,7 @@
 		update PLAN_ABGC set WJGYY=#{wjgyy} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglabgc">
-		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
+		update PLAN_ABGC set SJWGSJ=#{sjwgsj},sjwcyhlc=#{sjwcyhlc},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertafwg" parameterType="gcglabgc">
 		update PLAN_AF set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
@@ -301,11 +301,26 @@
 		</if>
 	 </select>
 	 <select id="selectabTJ" parameterType="gcglabgc" resultType="gcglwqgz">
-	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
+	 	<!-- select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
     	nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
     	left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
 	 	left join gcgl_jgys jg on t1.id=jg.jhid
-	 	where 1=1 and spzt='1'
+	 	where 1=1 and spzt='1' -->
+	 	select count(*) sl,nvl(sum(t1.jhyhlc),0) jhlc,nvl(sum(t1.pfztz),0) ztz,nvl(sum(t1.jhsybbzje),0) qzbtz,
+		nvl(sum(t1.sjwcyhlc),0) wcyhlc,nvl(sum(t4.wcztz),0) wcztz,nvl(sum(t4.wcbtz),0) wcbtz,nvl(sum(t4.wcstz),0) wcstz,
+		nvl(sum(t5.bnwctz),0) bnwctz,nvl(sum(t5.bnwcgl),0) bnwcgl,nvl(sum(t1.jhsydfzczj),0) dftz,
+		nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID 
+		left join XMK_ABGC t3 on t2.xmkid=t3.id 
+		left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+		left join gcgl_jgys jg on t1.id=jg.jhid
+		left join(
+		select g.jhid,sum(g.bywc_gl) sjwcyhlc,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) wcztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz 
+		from gcgl_abgc g group by g.jhid) t4 on  t1.id=t4.jhid
+		left join(
+		select g.jhid,sum(g.bywctz) bnwctz,sum(g.bywc_gl) bnwcgl from gcgl_abgc g where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy')
+		group by g.jhid) t5
+		on  t1.id=t5.jhid
+		where 1=1 and spzt='1' -->
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -1660,5 +1675,21 @@
 			<if test="xmnf != null and  xmnf != ''">
 					and pl.jhnf like '%'||trim(#{xmnf})||'%'
 			</if>
+	 </select>
+	 <select id="queryAbxmYb" parameterType="String" resultType="gcglabgc">
+ select  nvl(t2.jhyhlc,0) jhlc,nvl(t2.pfztz,0) ztz,nvl(t1.btz,0) btz,nvl(t1.stz,0) stz,nvl(t1.ztz,0) wcztz,nvl(t1.wcbtz,0) 
+wcbtz,nvl(t1.wcstz,0) wcstz,nvl(t1.bntz,0) bnztz,nvl(t1.wcyhlc,0) wcyhlc,nvl(t3.wcyhlc,0) bnwc
+from 
+plan_abgc t2
+left join
+(
+select  g.jhid, sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz) ztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz,
+sum(g.wc_btz)+sum(g.wc_stz) bntz,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g group by g.jhid) t1
+on  t2.id=t1.jhid
+left join(
+select g.jhid,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g   where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy') group by g.jhid
+) t3
+on  t2.id=t3.jhid
+		where t2.id=#{value}
 	 </select>
 </mapper>

@@ -2834,3 +2834,35 @@ function queryGcgltjInYb(jhid){
 		},'json');
 	
 }
+//查询工程管理安保项目月报页面内的那行统计 start
+function queryAbxmYb(jhid){
+	$.post('/jxzhpt/gcgl/queryAbxmYb.do',{jhid:jhid},
+		function(msg){
+			if(msg!=null){
+				$("#jhlc").html(msg.jhlc);
+				$("#ztz").html(msg.ztz);
+				$("#btz").html(msg.btz);
+				$("#stz").html(msg.stz);
+				$("#wcztz").html(msg.wcztz);
+				$("#wcbtz").html(msg.wcbtz);
+				$("#wcstz").html(msg.wcstz);
+				$("#bnztz").html(msg.bnztz);
+				$("#wcyhlc").html(msg.wcyhlc);
+				$("#bnwc").html(msg.bnwc);
+			}else{
+				$("#jhlc").html('0');
+				$("#ztz").html('0');
+				$("#btz").html('0');
+				$("#stz").html('0');
+				$("#wcztz").html('0');
+				$("#wcbtz").html('0');
+				$("#wcstz").html('0');
+				$("#bnztz").html('0');
+				$("#wcyhlc").html('0');
+				$("#bnwc").html('0');
+			}
+		
+		},'json');
+	
+}//查询工程管理安保项目月报页面内的那行统计 end
+

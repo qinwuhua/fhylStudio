@@ -111,6 +111,7 @@ public interface GcglabgcServer {
 
 	List<Excel_list> exportgsdyb(Gcglabgc gcglabgc);
 
+	Gcglabgc queryAbxmYb(String jhid);
 	
 
 }

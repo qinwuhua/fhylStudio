@@ -1698,6 +1698,16 @@ public class GcglabgcController extends BaseActionSupport{
 		e1.printStackTrace();
 	}
 	}
-	
-	
+//wdd查询工程管理安保项目月报页面内的那行统计  start
+	public void queryAbxmYb(){
+		System.out.println(jhid+"========");
+		try {
+			Gcglabgc ga=gcglabgcServer.queryAbxmYb(jhid);
+			System.out.println(ga+"-------------");
+			JsonUtils.write(gcglabgcServer.queryAbxmYb(jhid), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//wdd查询工程管理安保项目月报页面内的那行统计	end	
+	}
 }

@@ -333,7 +333,7 @@ function tjwqgzwg(xmlx){
 	if(!confirm("确认完工吗？")){
 		return;
 	}
-	var data="gcglabgc.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx="+xmlx;
+	var data="&gcglabgc.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglabgc.sjwcyhlc="+$("#tj_sjwcyhlc").val()+"&gcglabgc.jhid="+parent.obj1.jhid+"&gcglabgc.xmlx="+xmlx;
 	//alert(data);
 	$.ajax({
 		type:'post',

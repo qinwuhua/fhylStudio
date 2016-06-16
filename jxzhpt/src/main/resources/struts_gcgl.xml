@@ -76,6 +76,7 @@
 	<action name="selectabgcxx" class="gcglabgcController" method="selectabgcxx"/>
 	<action name="dcabgcExcel" class="gcglabgcController" method="dcabgcExcel"/>
 	<action name="selectAbtj" class="gcglabgcController" method="selectAbtj"/>
+	<action name="queryAbxmYb" class="gcglabgcController" method="queryAbxmYb"/>
 
 	<!-- zhfz -->
 	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>

@@ -18,8 +18,82 @@ public class Gcglwqgz implements Serializable {
 	private String ztz;
 	private String bnztz;
 	private String sbgz;
-
+	private String jhqc;
+	private String jcqc;
+	private String bnwctz;
+	private String jhlc;
+//	private String ztz;
+//	private String bnztz;
+//	private String btz;
+	private String bnwc;
+	private String wcyhlc;
+	private String qzbtz;
+	private String qzstz;
+	private String sjwcyhlc;
+//	private String bnwctz;
+	private String bnwcgl;
 	
+	
+	public String getJhlc() {
+		return jhlc;
+	}
+	public void setJhlc(String jhlc) {
+		this.jhlc = jhlc;
+	}
+	public String getBnwc() {
+		return bnwc;
+	}
+	public void setBnwc(String bnwc) {
+		this.bnwc = bnwc;
+	}
+	public String getWcyhlc() {
+		return wcyhlc;
+	}
+	public void setWcyhlc(String wcyhlc) {
+		this.wcyhlc = wcyhlc;
+	}
+	public String getQzbtz() {
+		return qzbtz;
+	}
+	public void setQzbtz(String qzbtz) {
+		this.qzbtz = qzbtz;
+	}
+	public String getQzstz() {
+		return qzstz;
+	}
+	public void setQzstz(String qzstz) {
+		this.qzstz = qzstz;
+	}
+	public String getSjwcyhlc() {
+		return sjwcyhlc;
+	}
+	public void setSjwcyhlc(String sjwcyhlc) {
+		this.sjwcyhlc = sjwcyhlc;
+	}
+	public String getBnwcgl() {
+		return bnwcgl;
+	}
+	public void setBnwcgl(String bnwcgl) {
+		this.bnwcgl = bnwcgl;
+	}
+	public String getJhqc() {
+		return jhqc;
+	}
+	public void setJhqc(String jhqc) {
+		this.jhqc = jhqc;
+	}
+	public String getJcqc() {
+		return jcqc;
+	}
+	public void setJcqc(String jcqc) {
+		this.jcqc = jcqc;
+	}
+	public String getBnwctz() {
+		return bnwctz;
+	}
+	public void setBnwctz(String bnwctz) {
+		this.bnwctz = bnwctz;
+	}
 	public String getQc() {
 		return qc;
 	}
