@@ -476,7 +476,7 @@
 								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
         					<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> -->
-        						<td >行政区划：</td>
+        						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td>项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:110px;" /></td>
@@ -486,10 +486,11 @@
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
         						<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
-        						<td align="right">行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
-        					</tr>
+        						</tr>
         					<tr height="32">
+        					<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:114px;" class="easyui-combobox"></select></td>
+        					
         						<!-- <td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
         						<td align="right">原路线名称：</td>
@@ -508,7 +509,9 @@
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
-        						<td>是否有补助历史：</td>
+        						</tr>
+        					<tr height="32">
+        					<td>是否有补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
 										<option value="" selected="selected">全部</option>
@@ -518,8 +521,7 @@
         						</td>
         						<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
-        					</tr>
-        					<tr height="32">
+        					
         						<!-- <td align="right">历史记录：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">

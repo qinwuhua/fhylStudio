@@ -323,18 +323,20 @@ text-decoration:none;
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>重要度排序：</td>
+        						
+        						
+        					</tr>
+        					<tr height="32">
+        					<td>重要度排序：</td>
         						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
 		                              	<option value="" selected>请选择</option>
 										<option value="升序">升序</option>
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        						<td>行政等级：</td>
+        					<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
 								
-        					</tr>
-        					<tr height="32">
         						<!-- <td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td>
 								<td>原路线编码：</td>
@@ -355,7 +357,11 @@ text-decoration:none;
         						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
         						<td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
-        						<td>规划路线名称：</td>
+        						
+								
+                            </tr>
+                            <tr height="32">
+                            <td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
         						<td>是否有补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:55px;">
@@ -363,7 +369,7 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>是否使用车购税：</td>
+                           <td>是否使用车购税：</td>
 								<td><select name="sfsycgs" id="sfsycgs" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -371,9 +377,7 @@ text-decoration:none;
 								</select></td>
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td>
-								
-                            </tr>
-                           <!-- <tr height="32">
+								<!-- 
                             	 <td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
 								<td>行政等级：</td>
@@ -387,15 +391,16 @@ text-decoration:none;
 									<option value="" selected="selected">全部</option>
 									<option value="1">已上报</option>
 									<option value="0">未上报</option>
-								</select></td> 
-                        </tr>-->
-       					<tr height="32">
-       					<td>上报状态：</td>
+								</select></td> -->
+								<td>上报状态：</td>
 								<td><select name="sbzt" id="sbzt" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已上报</option>
 									<option value="0">未上报</option>
 								</select></td> 
+                        </tr>
+       					<tr height="32">
+       					
        						<td colspan="8">
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">

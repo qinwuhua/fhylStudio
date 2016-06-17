@@ -593,11 +593,12 @@
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
         						<td>计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
+        						
+        						</tr>
+        					<tr height="32">
         						 <td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:114px;" /></td>
-        					</tr>
-        					<tr height="32">
-        						
+        					
         						<!-- <td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
         						<td align="right">原路线名称：</td>
@@ -616,7 +617,10 @@
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
         						<td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
-        						<td>规划路线名称：</td>
+        						
+        					</tr>
+        					<tr height="32">
+        					<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						<td>是否有补助历史：</td>
         						<td>
@@ -626,8 +630,6 @@
 										<option value="是">是</option>
 									</select>
         						</td>
-        					</tr>
-        					<tr height="32">
         						<!-- <td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
         						<td align="right">历史记录：</td>
@@ -656,10 +658,6 @@
         					<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> 
         					<td>管养分类：</td>
         					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
-        					<td>下达状态：</td>
-        					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
-        					<td align="right">首次下达年份：</td>
-        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         					</tr>
         				<!-- 	<tr height="32">
         						<td align="right">资金来源：</td>
@@ -674,6 +672,12 @@
         						</td> 
         					</tr>-->
        					<tr height="32">
+       					
+        					<td>下达状态：</td>
+        					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        					<td align="right">首次下达年份：</td>
+        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
+        					</tr>
        						<td colspan="4">
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="exportJhshxx()" onmouseover="this.src='../../../images/Button/dchz2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dchz1.gif'" src="../../../images/Button/dchz1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
