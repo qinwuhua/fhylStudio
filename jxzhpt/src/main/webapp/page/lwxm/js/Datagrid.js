@@ -299,7 +299,7 @@ var xzqhstr;
 				pagination:true,
 				rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
+			    pageSize:50,
 			    height:$(window).height()-180,
 				width:$(window).width()-10,
 		    columns:[[    
@@ -899,7 +899,7 @@ function jckshAbgc(){
 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:50,
 		    height:$(window).height()-185,
 			width:$(window).width()-15,
 	    columns:[[    
@@ -1289,7 +1289,7 @@ function sckglAbgc(){
 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:50,
 		    height:$(window).height()-185,
 			width:$(window).width()-15,
 	    columns:[[    
@@ -1670,7 +1670,7 @@ function sckshAbgc(){
 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:50,
 		    height:$(window).height()-185,
 			width:$(window).width()-15,
 	    columns:[[    

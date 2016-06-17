@@ -320,7 +320,7 @@ $("#grid").datagrid({
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
-	    pageSize:10,
+	    pageSize:50,
 	    height:$(window).height()-195,
 		width:$(window).width()-15,
 	    columns:[[    
@@ -328,10 +328,12 @@ $("#grid").datagrid({
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_shzt=="未审核"){
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  ';
 				}else{
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  ';
 				}
 			}},    
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
@@ -348,6 +350,7 @@ $("#grid").datagrid({
 			}},
 // 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 				{field:'bzls',title:'补助历史',width:60,align:'center'},
+				{field:'bz',title:'备注',width:60,align:'center'},
 			 	{field:'gydw',title:'管养（监管）单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -427,12 +430,16 @@ function ckwqgz(index){
 	obj=data;
 	YMLib.UI.createWindow('lxxx','危桥详情','wqgzsj_ck.jsp','lxxx',900,450);
 }
-function xgSckwqgz(index){
+/* function xgSckwqgz(index){
 	var data=$("#grid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('lxxx','危桥编辑','wqgzsj_xg.jsp','lxxx',900,450);
+} */
+function xgSckwqgz(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','危桥编辑','/jxzhpt/page/lwxm/sckgl/wqgzsj_xg.jsp','lxxx',900,450);
 }
-
 function dcExcel(){
 	var xmnf=$("#xmnf").combobox("getValues").join(",");
 	if(xmnf.substr(0,1)==',')
@@ -458,6 +465,7 @@ function dcExcel(){
 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&bzls="+
 	$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+rksj;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		//window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckshExcel.do?'+data;
 		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckshExcel.do?'+data;
 	 });
 }

@@ -96,7 +96,7 @@
 			    pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
+			    pageSize:50,
 			    height:$(window).height()-197,
 				width:$(window).width()-25,
 			    columns:[[    

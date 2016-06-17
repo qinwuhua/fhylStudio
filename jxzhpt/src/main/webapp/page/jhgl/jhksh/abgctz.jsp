@@ -87,7 +87,7 @@
 					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 					"lx.lxbm":lx.lxbm,'lx.tsdq':lx.tsdq,'jh.jh_sbthcd':jh.jh_sbthcd};
 			var grid={id:'grid',url:'../../../jhgl/queryAbgcTzList.do',pagination:true,rownumbers:false,
-			    pageNumber:1,pageSize:10,height:$(window).height()-188,width:$('#searchField').width(),queryParams:params,
+			    pageNumber:1,pageSize:50,height:$(window).height()-188,width:$('#searchField').width(),queryParams:params,
 			    columns:[[
 			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 			        	var result="";

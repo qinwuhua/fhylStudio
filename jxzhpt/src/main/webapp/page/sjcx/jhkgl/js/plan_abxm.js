@@ -86,7 +86,7 @@ function abgcxm(jh,lx){
 			'&lx.xzqhdm='+lx.xzqhdm+
 			'&lx.lxmc='+lx.lxmc;
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+	    pageNumber:1,pageSize:50,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

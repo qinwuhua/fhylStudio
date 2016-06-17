@@ -70,6 +70,9 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
 			 queryParams : {
@@ -92,13 +95,14 @@
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':tsdq,
 				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
-				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val(),
+				 	'planzjxd.jhxdwh':jhxdwh
 				},
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
+			    pageSize:50,
 			    height:$(window).height()-197,
 				width:$(window).width()-25,
 			    columns:[[    
@@ -146,6 +150,7 @@
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:100,align:'center'},
 		        {field:'qlbh',title:'桥梁编码',width:100,align:'center'},
+		        {field:'jhxdwh',title:'计划下达文号',width:100,align:'center'},
 		        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
 		        {field:'pfztz',title:'批复总投资',width:100,align:'center'}
 			    ]]    
@@ -170,7 +175,7 @@
 				"&sbnf="+xmnf+"&jhzt="+"已审核"+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
 				"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
 				$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
-				+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+				+"&planwqgzsj.qlbh="+$('#txtqlbm').val()+"&planzjxd.jhxdwh="+$('#jhxdwh').combobox("getValue");
 				$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
@@ -338,6 +343,17 @@ text-decoration:none;
 								</select></td>
 								<td>桥梁编码：</td>
         						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+        						<td>计划下达文号：</td>
+        						<td><select id="jhxdwh" class="easyui-combobox"  style="width: 150px">
+								<option value="" selected>全部</option>
+								<option value="赣交规划字［2014］245、赣路县字［2014］72号" >赣交规划字［2014］245、赣路县字［2014］72号</option>
+								<option value="赣交规划字[2015]92号、赣路县字［2015］39号">赣交规划字[2015]92号、赣路县字［2015］39号</option>
+								<option value="赣交规015]92号、赣路县字［2015］39号划字[2">赣交规015]92号、赣路县字［2015］39号划字[2</option>
+								<option value="赣路县字［2011］38号">赣路县字［2011］38号</option>
+								<option value="赣交规划字[2015]121号、赣路县字[2015]48号">赣交规划字[2015]121号、赣路县字[2015]48号</option>
+								<option value="赣路县字［2011］38号、赣路县字［2015］43号">赣路县字［2011］38号、赣路县字［2015］43号</option>
+								<option value="赣交规划字［2014］140号、赣路县字［2014］41号">赣交规划字［2014］140号、赣路县字［2014］41号</option>
+								</select></td>
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

@@ -296,7 +296,7 @@ function sckglWqgz(){
 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:50,
 		    height:$(window).height()-195,
 			width:$(window).width()-15,
 	    columns:[[    
@@ -457,6 +457,7 @@ function dcExcel(){
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&bzls="+$("#bzls").combobox("getValue")+
  	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&jckwqgzsj.jsxz='+$("#jsxz").combobox("getValue")+'&jckwqgzsj.xmrksj='+rksj;
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		//window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckExcel.do?'+data;
 		window.location.href='/jxzhpt/wqgzsj/dcwqgzsjsckExcel.do?'+data;
 	 });
 }
