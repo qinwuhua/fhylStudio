@@ -126,7 +126,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			ylxbhHandle();
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmsj(jhsh);
@@ -157,7 +157,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			tsdqHandle();
 			jsxzHandle();
 			zjlyHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			listData=jhshServer.queryGsdgz(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzCount(jhsh);
 			result.put("total", total);
@@ -233,7 +233,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			tsdqHandle();
 			jsxzHandle();
 			zjlyHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			result = jhshServer.queryJhshLjgsdgz(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -262,7 +262,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			ylxbhHandle();
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj1(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmsj1(jhsh);
@@ -298,14 +298,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsxzHandle();
 				zjlyHandle();
 				xdwhHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle();
 				xdwhHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}else if(jhsh.getXmlx()==6){
 				String xmbm = jhsh.getXmbm();
@@ -326,7 +326,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jhsh.setXmbm(xmbm);
 				ylxbhHandle();
 				jsdjHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjYhzx(jhsh);
 			}
 			
@@ -359,7 +359,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setXmbm(xmbm);
 			ylxbhHandle();
 			jsdjHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx()==1){
 				result = jhshServer.queryJhshLjLmsj1(jhsh);
 			}else if(jhsh.getXmlx()==2){
@@ -402,7 +402,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle();
 				jsxzHandle();
 				zjlyHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				//jhsh.setPage(page);
 				//jhsh.setRows(rows);
 				listData=jhshServer.queryJhshYhdzx(jhsh);
@@ -412,7 +412,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				tsdqHandle();
 				xdwhHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				//jhsh.setPage(page);
 				//jhsh.setRows(rows);
 				listData=jhshServer.queryJhshSh(jhsh);
@@ -843,7 +843,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jhsh.setXmbm(xmbm);
 		jsdjHandle();
 		ylxbhHandle();
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
@@ -924,7 +924,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsdjHandle();
 				jsjsdjHandle();
 				ylxbhHandle();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				List<Object> excelData=new ArrayList<Object>();
 				if(jhsh.getXmlx1()!=null)
 					if(jhsh.getXmlx1().length()>0){
@@ -986,7 +986,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //		jhsh.setXmbm(xmbm);
 //		jsdjHandle();
 //		ylxbhHandle();
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
 		if(jhsh.getXmlx()==4){
@@ -1022,7 +1022,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
 		String fileName="";
 		if(jhsh.getXmlx()==6){
@@ -1127,12 +1127,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //		jhsh.setXmbm(xmbm);
 //		jsdjHandle();
 //		ylxbhHandle();
-//		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+//		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		jsdjHandle1();
 		xzdjHandle();
 		tsdqHandle();
 		
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
@@ -1224,7 +1224,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xmbm = "j.xmbm like '" + xmbm + "%' ";
 		}
 		jhsh.setXmbm(xmbm);
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		jsdjHandle();
 		ylxbhHandle();
 		List<Object> excelData=new ArrayList<Object>();
@@ -1272,7 +1272,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		xzdjHandle();
 		jsjsdjHandle();
 		jsdjHandle1();
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		jsxzHandle();
 		zjlyHandle();
 		xdztHandle();
@@ -1294,7 +1294,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //			xmbm = "j.xmbm like '" + xmbm + "%' ";
 //		}
 //		jhsh.setXmbm(xmbm);
-//		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+//		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 //		jsdjHandle();
 //		ylxbhHandle();
 //		if(jhsh.getXmlx1()!=null)
@@ -1584,6 +1584,33 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		return result;
 	}
+	public String xzqhBm2(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" (j."+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or j."+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	
+	
 	//get set 方法
 	public Jhsh getJhsh() {
 		return jhsh;
@@ -1660,7 +1687,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
@@ -1683,7 +1710,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xzdjHandle();
 			//jsjsdjHandle();
 			jsdjHandle1();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			//jsxzHandle();
 			//zjlyHandle();
 			xdztHandle();
@@ -1706,7 +1733,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
@@ -1732,7 +1759,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
@@ -1754,7 +1781,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				//jsjsdjHandle();
 				jsdjHandle1();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				//jsxzHandle();
 				//zjlyHandle();
 				xdztHandle();
@@ -1766,7 +1793,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				jsjsdjHandle();
 				jsdjHandle1();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				jsxzHandle();
 				zjlyHandle();
 				xdztHandle();
@@ -1790,7 +1817,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xzdjHandle();
 			jsjsdjHandle();
 			jsdjHandle1();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
@@ -1808,7 +1835,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xdwhHandle();
 				xzdjHandle();
 				jsdjHandle1();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				xdztHandle();
 				tsdqHandle();
 				result = jhshServer.queryJhbzshLj(jhsh);
@@ -1818,7 +1845,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				jsjsdjHandle();
 				jsdjHandle1();
-				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				jsxzHandle();
 				zjlyHandle();
 				xdztHandle();
@@ -2140,7 +2167,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
-		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		if(jhsh.getXmlx1()!=null)
 			if(jhsh.getXmlx1().length()>0){
 				String[] tsdqs=jhsh.getXmlx1().split(",");
@@ -2236,7 +2263,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsdjHandle();
 			jsjsdjHandle();
 			ylxbhHandle();
-			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx1()!=null)
 				if(jhsh.getXmlx1().length()>0){
 					String[] tsdqs=jhsh.getXmlx1().split(",");
@@ -2325,7 +2352,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jsdjHandle();
 					jsjsdjHandle();
 					ylxbhHandle();
-					jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 					if(jhsh.getXmlx1()!=null)
 						if(jhsh.getXmlx1().length()>0){
 							String[] tsdqs=jhsh.getXmlx1().split(",");
@@ -2429,7 +2456,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jsdjHandle();
 					jsjsdjHandle();
 					ylxbhHandle();
-					jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 					if(jhsh.getXmlx1()!=null)
 						if(jhsh.getXmlx1().length()>0){
 							String[] tsdqs=jhsh.getXmlx1().split(",");

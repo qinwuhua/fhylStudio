@@ -283,8 +283,7 @@ text-decoration:none;
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        						<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
+        						
         					</tr>
         					<tr height="32">
         						<!-- <td align="right">特殊地区：</td>
@@ -301,6 +300,8 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
+								<td>行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
         						<td>原路线名称：</td>
@@ -309,7 +310,10 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-        						<td>是否有补助历史：</td>
+        						
+                            </tr>
+                            <tr height="32">
+                            <td>是否有补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -318,8 +322,6 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td> 
 								
-                            </tr>
-                            <tr height="32">
         						<!-- <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
 								<td align="right">行政等级：</td>

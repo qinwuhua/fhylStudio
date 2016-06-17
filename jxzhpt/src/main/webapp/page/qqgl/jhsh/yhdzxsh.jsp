@@ -39,17 +39,21 @@
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
+			
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
+			
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.sfsycgs':$('#sfsycgs').combobox("getValue"),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
@@ -310,21 +314,25 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								<td>项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
+        						<td>建设性质：</td>
+								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
         						<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>资金来源：</td>
+        						
+        					</tr>
+        					<tr height="32">
+        					<td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
-        						<td>重要度排序：</td>
+        						
+        					<td>重要度排序：</td>
         						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
 		                              	<option value="" selected>请选择</option>
 										<option value="升序">升序</option>
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        					</tr>
-        					<tr height="32">
         						<!-- <td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td>
 								<td>原路线编码：</td>
@@ -345,9 +353,14 @@ text-decoration:none;
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
         						<td>原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						<td>规划路线编码：</td>
+        						
+								
+                            </tr>
+                            <tr height="32">
+                            <td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
-        						<td>规划路线名称：</td>
+        						
+                            <td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
         						<td>是否有补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:55px;">
@@ -355,9 +368,6 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								
-                            </tr>
-                            <tr height="32">
         						<!-- <td>管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:100px;" /></td>
         						<td>规划路线名称：</td>
@@ -380,16 +390,19 @@ text-decoration:none;
 								</select></td>
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td>
-								<td>管养分类：</td>
+								
+								
+                            </tr>
+       					<tr height="32">
+       					<td>管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:100px;" /></td>
-        						<td>审核状态：</td>
-								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:55px;">
+        						
+       					<td>审核状态：</td>
+       					<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
-                            </tr>
-       					<tr height="32">
        						<!-- <td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
        						<td>是否使用车购税：</td>

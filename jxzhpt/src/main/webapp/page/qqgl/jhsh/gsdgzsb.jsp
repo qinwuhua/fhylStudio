@@ -293,11 +293,12 @@ text-decoration:none;
 								<td>建设技术等级：</td>
 								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
 								<td>现技术等级：</td>
-								<td><select name="jsdj" class="easyui-combobox" id="xjsdj" style="width:104px;"></select></td>
-								<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 104px;"></select></td>
+								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
+								
         					</tr>
         					<tr height="32">
+        					<td>项目年份：</td>
+        						<td><select id="xmnf" style="width: 104px;"></select></td>
         						<!-- <td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
         						<td>特殊地区：</td>
@@ -319,12 +320,13 @@ text-decoration:none;
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
         						<td>原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-								<td>规划路线编码：</td>
+								
+                            </tr>
+                            <tr height="32">
+                            <td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
 								<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-                            </tr>
-                            <tr height="32">
         						<!-- <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
         						<td>上报状态：</td>
