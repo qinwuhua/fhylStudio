@@ -36,7 +36,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm3('jsdj','技术等级');
 			xmnfnull("scxdnf");
-			urlxmnf("xmnf",getUrlParame('id'));
+			urlxmnf("scxdnf",getUrlParame('id'));
 			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			queryYhdzx();

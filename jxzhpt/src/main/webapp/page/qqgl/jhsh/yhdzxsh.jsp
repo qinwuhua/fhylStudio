@@ -317,7 +317,12 @@ text-decoration:none;
         						<td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
         						<td>重要度排序：</td>
-        						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
         					</tr>
         					<tr height="32">
         						<!-- <td>特殊地区：</td>

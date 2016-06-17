@@ -275,7 +275,12 @@ text-decoration:none;
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 104px;"></select></td>
         						<td>重要度排序：</td>
-        						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
+		                              	<option value="" selected>请选择</option>
+										<option value="升序">升序</option>
+										<option value="降序">降序</option>
+									</select>
+        						</td>
         						<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
         					</tr>

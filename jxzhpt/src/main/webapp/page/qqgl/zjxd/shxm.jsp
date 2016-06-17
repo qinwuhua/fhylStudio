@@ -31,7 +31,7 @@
 			jhxdwhdx("jhxdwh",'sh');
 			xmnfnull("scxdnf");
 			//xmnf("xmnf");
-			urlxmnf("xmnf",getUrlParame('id'));
+			urlxmnf("scxdnf",getUrlParame('id'));
 			loadGldj('gldj');
 			YMLib.Var.jdbs=2;
 			showMxbAll();

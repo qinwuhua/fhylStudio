@@ -34,8 +34,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			jhxdwhdx("jhxdwh",'gsd');
-			xmnfnull("scxdnf");
-			urlxmnf("xmnf",getUrlParame('id'));
+			//xmnfnull("scxdnf");
+			urlxmnf("scxdnf",getUrlParame('id'));
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
 			YMLib.Var.jdbs=2;
