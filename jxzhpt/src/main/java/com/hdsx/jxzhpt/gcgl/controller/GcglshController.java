@@ -427,7 +427,7 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		gcglsh.setJhid(jhid);
-		gcglsh.setGydw(tiaojian1);
+		gcglsh.setGydw(xzqhBm2(gydw,"xzqhdm2"));
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
@@ -522,7 +522,7 @@ public class GcglshController extends BaseActionSupport{
 			}else{
 				tiaojian1="and xzqhdm in ("+gydw+")";
 			}
-		gcglsh.setGydw(tiaojian1);
+		gcglsh.setGydw(xzqhBm2(gydw,"xzqhdm2"));
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
@@ -551,6 +551,32 @@ public class GcglshController extends BaseActionSupport{
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	public String xzqhBm2(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
 	}
 }
 

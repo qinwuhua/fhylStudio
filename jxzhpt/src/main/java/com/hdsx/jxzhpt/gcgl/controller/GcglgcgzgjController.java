@@ -498,6 +498,31 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	    return data; 
 	}
 	
+	public String xzqhBm2(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
 	
 	//查询jihua
 	public void selectGcgzgjjhList1(){
@@ -511,7 +536,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
-		gcglgcgzgj.setGydw(tiaojian1);
+		gcglgcgzgj.setGydw(xzqhBm2(gydw,"xzqhdm2"));
 		gcglgcgzgj.setKgzt(kgzt);
 		gcglgcgzgj.setLxmc(lxmc);
 		gcglgcgzgj.setJgzt(jgzt);
@@ -552,7 +577,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			gcglgcgzgj.setPage(page);
 			gcglgcgzgj.setRows(rows);
 			gcglgcgzgj.setJhid(jhid);
-			gcglgcgzgj.setGydw(tiaojian1);
+			gcglgcgzgj.setGydw(xzqhBm2(gydw,"xzqhdm2"));
 			gcglgcgzgj.setKgzt(kgzt);
 			gcglgcgzgj.setLxmc(lxmc);
 			gcglgcgzgj.setJgzt(jgzt);

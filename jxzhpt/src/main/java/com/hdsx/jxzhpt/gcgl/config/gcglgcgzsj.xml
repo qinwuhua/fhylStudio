@@ -648,11 +648,12 @@
 		<if test="xmlx1 != null and  xmlx1 != ''">
 				${xmlx1}
 		</if>
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
-				${gydw}
-				</if>
+				
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
@@ -696,11 +697,12 @@
 		<if test="xmlx1 != null and  xmlx1 != ''">
 				${xmlx1}
 		</if>
+		<if test="gydw!='' and gydw!= null ">
+		${gydw}
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
-				${gydw}
-				</if>
+				
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
@@ -766,11 +768,12 @@
 		<if test="xmlx1 != null and  xmlx1 != ''">
 				${xmlx1}
 		</if>
-		and t.xmbm in (
-				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
+		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 				</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
@@ -834,11 +837,12 @@
 		<if test="xmlx1 != null and  xmlx1 != ''">
 				${xmlx1}
 		</if>
+		<if test="gydw!='' and gydw!= null ">
+		${gydw}
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
-				<if test="gydw!='' and gydw!= null ">
-				${gydw}
-				</if>
+				
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>

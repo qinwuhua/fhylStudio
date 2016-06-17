@@ -300,7 +300,7 @@
 	 
 	 <select id="queryGcgjList"  parameterType="gcglyhdzx" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*,s.sl sl,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj  from JHSH_YHDZX t 
+		select rownum num ,t.*,s.sl sl,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj  from jhxdyh t 
 		left join (select count(*) sl, xmid xmbm from lxsh_lx where jdbs='2' group by xmid) s on t.xmbm=s.xmbm 
 		left join gcgl_jgys jg on t.xmbm=jg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
@@ -349,7 +349,7 @@
 		order by xmbm
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglyhdzx">
-		select count(*)  from JHSH_YHDZX t 
+		select count(*)  from jhxdyh t 
 		left join gcgl_jgys jg on t.xmbm=jg.jhid
 		where 1=1
 		<if test="jgys != null and  jgys != ''">
