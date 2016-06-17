@@ -330,10 +330,11 @@ text-decoration:none;
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
-        						<td>&nbsp;行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-        					</tr>
+        						</tr>
         					<tr height="32">
+        					<td>&nbsp;行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        					
         					<!-- 	<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
         						<td>&nbsp;行政等级：</td>
@@ -356,7 +357,9 @@ text-decoration:none;
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
         						<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-        						<td>是否有补助历史：</td>
+        						</tr>
+							<tr height="32">
+							<td>是否有补助历史：</td>
 								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -364,8 +367,7 @@ text-decoration:none;
 								</select></td>
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-							</tr>
-							<tr height="32">
+							
 								<!-- <td>项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
         						<td>规划路线编码：</td>

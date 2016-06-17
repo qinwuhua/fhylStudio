@@ -214,12 +214,8 @@ text-decoration:none;
         						<td>建设技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>现技术等级：</td>
-								<td><select name="jsjsdj" id="xjsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								 <td>项目年份：</td>
-        						<td><select id="xmnf" style="width:70px;">
-								</select></td>
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
+								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								 
         					</tr>
         					<tr height="32">
         						
@@ -241,13 +237,22 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
+								<td>项目年份：</td>
+        						<td><select id="xmnf" style="width:70px;">
+								</select></td>
+								<td>行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>
 								<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         						<td>规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-        						<td>规划路线名称：</td>
+        						
+        					</tr>
+        					<tr height="32">
+        					
+        					<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
         						<td>是否有历史记录：</td>
         						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
@@ -263,8 +268,9 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-        					</tr>
-        					<tr height="32">
+        					
+        					
+        					
         						<!-- <td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
@@ -275,8 +281,8 @@ text-decoration:none;
         						<td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                -->  
-								<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> 
+<!-- 								<td>管养单位：</td> -->
+<!--         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>  -->
                             </tr>
 							<tr height="32">
 								<td colspan="10">

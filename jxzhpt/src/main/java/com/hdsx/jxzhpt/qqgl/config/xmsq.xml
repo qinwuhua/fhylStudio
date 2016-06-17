@@ -520,7 +520,7 @@
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
-				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on x.xmbm=sl.xmid
+				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='0' and l.sffirst='1' 
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
@@ -816,7 +816,7 @@
 			select rownum num,t.* from (
 				select decode(l.sffirst,'1',substr(x.xmbm,0,4),substr(x.xmbm,0,4)) xmnf,decode(l.sffirst,'1',x.xmbm,'') xmbm,decode(l.sffirst,'1',x.xmmc,'') xmmc,decode(l.sffirst,'1',x.xzqh,x.xzqh) xzqh,decode(l.sffirst,'1',x.ghlxbh,x.ghlxbh) ghlxbh,decode(l.sffirst,'1',x.xzqhdm,x.xzqhdm)  xzqhdm,decode(l.sffirst,'1',x.gydw,x.gydw) gydw,decode(l.sffirst,'1',x.lmkd,x.lmkd)  lmkd,decode(l.sffirst,'1',x.jsdj,x.jsdj)  jsdj,decode(l.sffirst,'1',x.ntz,x.ntz)  ntz,decode(l.sffirst,'1',x.jhkgsj,x.jhkgsj)  jhkgsj,decode(l.sffirst,'1',x.jhwgsj,x.jhwgsj)  jhwgsj,decode(l.sffirst,'1',x.gq,x.gq)  gq,decode(l.sffirst,'1',x.gcfl,x.gcfl)  gcfl,decode(l.sffirst,'1',x.jsfa,x.jsfa)  jsfa,l.*
 		        from xmsq_sh x,(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,qdmc qdmc,zdmc zdmc,
-		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst,ghlxbm,ghlxmc from lxsh_lx where jdbs='1'   ) l where 1=1 and x.xmbm(+)=l.xmid
+		        lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst,ghlxbm,ghlxmc from lxsh_lx where jdbs='0'   ) l where 1=1 and x.xmbm(+)=l.xmid
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>

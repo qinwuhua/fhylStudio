@@ -52,6 +52,7 @@
 				tsdq=tsdq.substr(1,tsdq.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
+			//alert();
 			var params={'cbsj.xmlx':5,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
 					'cbsj.ghlxbh':$('#txtlxbm').val(),
@@ -293,10 +294,11 @@ text-decoration:none;
 	        						<td><select id="xmnf" style="width: 100px;"></select></td>
 	        						<td style="text-align: right;">行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-									<td style="text-align: right;">原路线编码：</td>
-	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-	        					</tr>
+									</tr>
 	        					<tr height="32">
+	        					<td style="text-align: right;">原路线编码：</td>
+	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+	        					
 	        						<!-- <td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
 									<td style="text-align: right;">项目年份：</td>
@@ -323,14 +325,13 @@ text-decoration:none;
 										<option value="是">是</option>
 										<option value="否">否</option>
 									</select></td>
-									<td>特殊地区：</td>
-									<td><select id="shzt" style="width:70px;" class="easyui-combobox">
-										<option selected="selected" value="-1">全部</option>
-										<option value="0">未审核</option>
-										<option value="1">已审核</option>
-									</select></td> 
 								</tr>
 								<tr height="32">
+								
+									<td>特殊地区：</td>
+									<td><select id="tsdq" style="width:100px;" class="easyui-combobox">
+										
+									</select></td> 
 									<!-- <td>规划路线编码：</td>
 	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
 	        						<td>规划路线名称：</td>

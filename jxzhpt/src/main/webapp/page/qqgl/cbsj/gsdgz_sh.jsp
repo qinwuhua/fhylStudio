@@ -55,7 +55,7 @@
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
-			var lxmc = $("#txtlxmc").val();
+// 			var lxmc = $("#txtlxmc").val();
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':11,
 					'cbsj.xmlx1':xmlx,
@@ -333,11 +333,14 @@ text-decoration:none;
 									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 									<td>原技术等级：</td>
 									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-									<td>&nbsp;行政等级：</td>
-									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 									
 	        					</tr>
 	        					<tr height="32">
+	        					<td>项目年份：</td>
+	        						<td><select id="xmnf" style="width:70px;">
+	        					<td>&nbsp;行政等级：</td>
+									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+									
 	        						<!-- <td>特殊地区：</td>
 									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
 	        						<td>&nbsp;行政等级：</td>
@@ -358,32 +361,36 @@ text-decoration:none;
 	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
 									<td>规划路线编码：</td>
 	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-	        						<td>规划路线名称：</td>
+	        						
+									
+								</tr>
+	                            <tr height="32">
+	                            <td>规划路线名称：</td>
 	        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-	        						<td>是否有补助历史：</td>
-									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+	        						
+	                            <td>是否有补助历史：</td>
+	                            <td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 										<option value="" selected="selected">全部</option>
 										<option value="是">是</option>
 										<option value="否">否</option>
 									</select></td>
 									<td>特殊地区：</td>
-									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-								</tr>
-	                            <tr height="32">
+									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:140px;"></select></td>
 								<!-- 	<td align="right">项目年份：</td>
 	        						<td><select id="xmnf" style="width: 100px;"></select></td>
 	        						<td>建设技术等级：</td>
 									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 	                            	<td>项目名称：</td>
 	        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-	        						<td>建设性质：</td>
-									<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td> -->
+	        						 -->
 										<td>审核状态：</td>
 	        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 										<option selected="selected" value="-1">全部</option>
 										<option value="0">未审核</option>
 										<option value="1">已审核</option>
 									</select></td> 
+<!-- 									<td>建设性质：</td> -->
+<!-- 									<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td> -->
 								</tr>
 								<tr height="32">
 									<td colspan="10">

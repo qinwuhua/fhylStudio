@@ -89,7 +89,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	public void queryCbsj() throws Exception{
 		try {
-			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -216,7 +216,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void queryCbsjbg() throws Exception{
 		try {
-			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -291,7 +291,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	
 	public void loadcbsjTjxx() throws Exception{
 		try {
-			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -360,7 +360,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void loadcbsjbgTjxx() throws Exception{
 		try {
-			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -807,6 +807,32 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		}
 		return result;
 	}
+	
+	public String xzqhBm2(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
 	public void exportExcelCbsj(){
 		try {
 			xmbmHandle();
@@ -825,7 +851,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else{
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=讫点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建设方案,fieid=jsfa>";
 			}
-			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
