@@ -138,6 +138,31 @@ public class WnjhController extends BaseActionSupport{
 	private String lxbm;
 	private String xmlx;
 
+	public String xzqhBm(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
 	public void setXmlx1(String str){
 		if(str!=null)
 			if(str.length()>0){
@@ -370,7 +395,7 @@ public class WnjhController extends BaseActionSupport{
 		}else{
 			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
-		lxsh.setXzqh(tiaojian2);
+		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 		}
@@ -455,7 +480,7 @@ public class WnjhController extends BaseActionSupport{
 			}else{
 				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
-			lxsh.setXzqh(tiaojian2);
+			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			}
@@ -543,7 +568,7 @@ public class WnjhController extends BaseActionSupport{
 			}else{
 				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
-			lxsh.setXzqh(tiaojian2);
+			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			}
@@ -627,7 +652,7 @@ public class WnjhController extends BaseActionSupport{
 			}else{
 				tiaojian2="and xzqhdm in ("+xzqh+")";
 			}
-			lxsh.setXzqh(tiaojian2);
+			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			}
@@ -1056,7 +1081,7 @@ public class WnjhController extends BaseActionSupport{
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
-			lxsh.setXzqh(tiaojian2);
+			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			lxsh.setGydw(tiaojian1);
 			String gldjtj="";
 			if((!"".equals(lxsh.getGldj()))&&lxsh.getGldj()!=null){
@@ -1292,7 +1317,7 @@ public class WnjhController extends BaseActionSupport{
 		}else{
 			tiaojian2="and xzqhdm in ("+xzqh+")";
 		}
-		lxsh.setXzqh(tiaojian2);
+		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 		}

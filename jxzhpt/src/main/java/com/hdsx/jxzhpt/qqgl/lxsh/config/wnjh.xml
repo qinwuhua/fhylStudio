@@ -26,16 +26,16 @@
 		select * from wnjh_xj where ghlxbh=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh}))
 	</select>
 	<insert id="insertGjwnjh" parameterType="lxsh">
-		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,ghxlxbm,ghxlxmc,xmklx,qqkzzt)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{ghxlxbm},#{ghxlxmc},#{xmklx},'未开展')
+		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,ghxlxbm,ghxlxmc,xmklx,qqkzzt<if test="xzqhdm2 != null">,xzqhdm2</if>)
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{ghxlxbm},#{ghxlxmc},#{xmklx},'未开展'<if test="xzqhdm2 != null">,#{xzqhdm2}</if>)
 	</insert>
 	<insert id="insertLmwnjh" parameterType="lxsh">
-		insert into WNJH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,ghxlxbm,ghxlxmc,xmklx,qqkzzt)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{ghxlxbm},#{ghxlxmc},#{xmklx},'未开展')
+		insert into WNJH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,ghxlxbm,ghxlxmc,xmklx,qqkzzt<if test="xzqhdm2 != null">,xzqhdm2</if>)
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{ghxlxbm},#{ghxlxmc},#{xmklx},'未开展'<if test="xzqhdm2 != null">,#{xzqhdm2}</if>)
 	</insert>
 	<insert id="insertXjwnjh" parameterType="lxsh">
-		insert into WNJH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,xmklx,qqkzzt)
-		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{xmklx},'未开展')
+		insert into WNJH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,xmklx,qqkzzt<if test="xzqhdm2 != null">,xzqhdm2</if>)
+		values(#{xmbm},#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{gz},#{sz},#{xmklx},'未开展'<if test="xzqhdm2 != null">,#{xzqhdm2}</if>)
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
 		insert into WNJH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh
@@ -51,8 +51,8 @@
 		<if test="jhdwlc!=null">,jhdwlc</if>
 		<if test="jhwllc!=null">,jhwllc</if>
 		<if test="jhlc!=null">,jhlc</if>
-		<if test="ghxlxbm !='' and ghxlxbm !=null">,ghxlxbm</if>
-		<if test="ghxlxmc !='' and ghxlxmc !=null">,ghxlxmc</if>)
+		<if test="ghxlxbm !=null">,ghxlxbm</if>
+		<if test="ghxlxmc !=null">,ghxlxmc</if>)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs},#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
@@ -511,7 +511,8 @@
 		update wnjh_sjgz set lxmc=#{lxmc},ghlxbh=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf},gz=#{gz},sz=#{sz},lsjl=#{lsjl}
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
-		<if test="xmklx !=null">,xmklx=#{xmklx}</if>  
+		<if test="xmklx !=null">,xmklx=#{xmklx}</if>
+		<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		where id=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
@@ -519,6 +520,7 @@
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
 		<if test="xmklx !=null">,xmklx=#{xmklx}</if>
+		<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		where id=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
@@ -528,6 +530,7 @@
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
 		<if test="xmklx !=null">,xmklx=#{xmklx}</if>
+		<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		where id=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
@@ -588,21 +591,21 @@
 	</select>
 	<select id="cxwnghsjByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx, 
-		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
+		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,jhlc
 		from wnjh_sjgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghlmByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
-		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
+		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 
 		from wnjh_lmgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghxjByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
-		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
+		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc  
 		from wnjh_xj l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
@@ -658,13 +661,19 @@
 		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
 	</select>
 	<update id="updatesjgz" parameterType="lxsh">
-		update lxsh_sjgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+		update lxsh_sjgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) 
+		
+		where xmbm=#{xmbm}
 	</update>
 	<update id="updatelmgz" parameterType="lxsh">
-		update lxsh_lmgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+		update lxsh_lmgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys})
+		
+		 where xmbm=#{xmbm}
 	</update>
 	<update id="updatexj" parameterType="lxsh">
-		update lxsh_xj set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+		update lxsh_xj set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys})
+		
+		 where xmbm=#{xmbm}
 	</update>
 	<delete id="deleteLx" parameterType="lxsh">
 		delete from lxsh_lx where xmid=#{xmbm} and id=#{id} 

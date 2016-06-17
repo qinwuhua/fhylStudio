@@ -25,7 +25,15 @@ public class Lxsh implements Serializable {
 
 	
 	private String ylxmc;
+	private String xzqhdm2;
 	
+	
+	public String getXzqhdm2() {
+		return xzqhdm2;
+	}
+	public void setXzqhdm2(String xzqhdm2) {
+		this.xzqhdm2 = xzqhdm2;
+	}
 	public String getYlxmc() {
 		return ylxmc;
 	}
