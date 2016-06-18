@@ -1362,6 +1362,39 @@ function loadUnit1(id, dwbm) {
 		});
 }
 
+//添加管养单位多选
+function loadUnitadd(id, dwbm) {
+
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					//$('#' + id).combotree('setValue', dwbm);
+				}
+		});
+}
+
+//bianjioe
+function loadUnitedit(id, dwbm,dwbm2) {
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValues', dwbm2.split(","));
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
+				}
+		});
+}
+
+
 function loadUnits(id, dwbm,gydw) {
 	$('#' + id).combotree(
 			{

@@ -33,7 +33,6 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	@Resource(name = "planwqgzsjServerImpl")
 	private PlanwqgzsjServer planwqgzsjServer;
 	private Planwqgzsj planwqgzsj=new Planwqgzsj();
-	private Plan_zjxd planzjxd=new Plan_zjxd();
 	private String gydw;
  	private String xzqhdm;
  	private String lxmc;
@@ -52,7 +51,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
  	private String tzxz;
  	private String lxbm;
  	private String pddj;
+ 	private String jsdw;
  	
+	public String getJsdw() {
+		return jsdw;
+	}
+	public void setJsdw(String jsdw) {
+		this.jsdw = jsdw;
+	}
 	public String getPddj() {
 		return pddj;
 	}
@@ -197,6 +203,12 @@ public class PlanwqgzsjController extends BaseActionSupport {
 			}else{
 				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
 			}
+			String jsdw="and(";
+			if(jsdw!=null){
+				planwqgzsj.setJsdw("and xzqhdm");
+			}
+			
+			planwqgzsj.setJsdw(jsdw);
 			planwqgzsj.setLxmc(lxmc);
 			planwqgzsj.setQlmc(qlmc);
 			planwqgzsj.setSbnf(sbnf);
@@ -1083,28 +1095,6 @@ public class PlanwqgzsjController extends BaseActionSupport {
 					planwqgzsj.setTsdq(tsdq);
 				}
 			
-			//wdd添加的查询 尚未完成
-			if(planzjxd.getJhxdwh()!=null)
-				if(planzjxd.getJhxdwh().length()>0){
-					String[] zjxds=planzjxd.getJhxdwh().split(",");
-					String zjxd="and(";
-					for (int i = 0; i < zjxds.length; i++) {
-						if("全部".equals(zjxds[i])){
-							zjxd="";
-							break;
-						}
-						if(i==0)
-							zjxd+="zjxd like '%"+zjxds[i]+"%'";
-						else
-							zjxd+="or zjxd like '%"+zjxds[i]+"%'";
-					}
-					if(zjxd==""){
-						zjxd="";
-					}else{
-						zjxd+=")";
-					}
-					planzjxd.setJhxdwh(zjxd);
-				}//wdd添加的查询 尚未完成  end
 				if(planwqgzsj.getGldj()!=null)
 				if(planwqgzsj.getGldj().length()>0){
 					String[] tsdqs=planwqgzsj.getGldj().split(",");
