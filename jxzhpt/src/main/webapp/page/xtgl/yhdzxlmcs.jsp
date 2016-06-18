@@ -33,10 +33,10 @@
 			    pageNumber:1,
 			    fitColumns:true,
 			    queryParams:{
-			    	'yhdzxcs.cslx':$('#selCslx').val()
+			    	//'yhdzxcs.cslx':$('#selCslx').val()
 			    },
 			    pageSize:10,
-			    height:455,
+			    height:460,
 			    //width:1000,
 				columns:[[
 					{field:'id',title:'操作',width:80,align:'center',
@@ -46,10 +46,11 @@
 							return '<a href="javascript:update('+"'"+row.id+"'"+')">编辑</a>';
 						}
 					},
-					{field:'cslx',title:'参数类型',width:100,align:'center'},
-					{field:'clmc',title:'材料名称',width:100,align:'center'},
-					{field:'lfmdj',title:'立方米单价',width:100,align:'center'},
-					{field:'sddj',title:'审定单价',width:150,align:'center'}
+					{field:'cslx',title:'类型',width:100,align:'center'},
+					{field:'clmc',title:'项目',width:100,align:'center'},
+					{field:'dw',title:'单位',width:100,align:'center'},
+					{field:'lfmdj',title:'单价（元）',width:100,align:'center'},
+					{field:'bz',title:'备注',width:150,align:'center'}
 				]],
 				onSelect:function(rowIndex,rowData){
 					row=rowData;
@@ -106,11 +107,12 @@
 			$('#addsellmjg').val(row.cslx);
 			$('#txtclmc').val(row.clmc);
 			$('#txtlfmdj').val(row.lfmdj);
-			$('#txtsddj').val(row.sddj);
+			$('#txtdw').val(row.dw);
+			$('#txtbz').val(row.bz);
 		}
 		function updateBtn(){
 			var yhdzxcs={'yhdzxcs.id':$('#yhdzxcsid').val(),'yhdzxcs.cslx':$('#addsellmjg').val(),'yhdzxcs.clmc':$('#txtclmc').val(),
-					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.sddj':$('#txtsddj').val()};
+					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.bz':$('#txtbz').val(),'yhdzxcs.dw':$('#txtdw').val()};
 			$.ajax({
 				type:'post',
 				async:false,
@@ -128,7 +130,7 @@
 		}
 		function addYhdzxcs(){
 			var yhdzxcs={'yhdzxcs.cslx':$('#addsellmjg').val(),'yhdzxcs.clmc':$('#txtclmc').val(),
-					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.sddj':$('#txtsddj').val()};
+					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.bz':$('#txtbz').val(),'yhdzxcs.dw':$('#txtdw').val()};
 			$.ajax({
 				type:'post',
 				async:false,
@@ -154,19 +156,18 @@
 			</div>
 		</div>
 		<div style="margin-left: 20px;margin-bottom: 5px;">
-			<span>参数类型：</span>
-			<select id="selCslx" style="width: 80px;" onchange="loadData()">
+<!-- 			<span>参数类型：</span> -->
+		<!-- 	<select id="selCslx" style="width: 80px;" onchange="loadData()">
 				<option value="" selected="selected">-请选择-</option>
-				<option value="上面层">上面层</option>
-				<option value="中面层">中面层</option>
-				<option value="下面层">下面层</option>
-				<option value="封层">封层</option>
-				<option value="上基层">上基层</option>
-				<option value="中基层">中基层</option>
-				<option value="下基层">下基层</option>
-				<option value="垫层">垫层</option>
-				<option value="原路">原路</option>
-			</select>
+				<option selected="selected">-请选择-</option>
+				<option value="面层">面层</option>
+				<option value="基层">基层</option>
+				<option value="下封层">下封层</option>
+				<option value="打板">打板</option>
+				<option value="碎石化">碎石化</option>
+				<option value="挖除面层与基层">挖除面层与基层</option>
+				<option value="标线">标线</option>
+			</select> -->
 		</div>
 		<div region="center" border="false" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 			<table id="xtgl_flwbzbz_table"></table>
@@ -176,39 +177,43 @@
         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 		<table>
 			<tr style="height: 25px;">
-				<td width="100" align="right" style="padding-right: 10px;">参数类型</td>
+				<td width="100" align="right" style="padding-right: 10px;">类型</td>
 				<td width="150" align="left">
 					<input type="hidden" id="yhdzxcsid"/>
 					<select id="addsellmjg" style="width: 80px;">
 						<option selected="selected">-请选择-</option>
-						<option value="上面层">上面层</option>
-						<option value="中面层">中面层</option>
-						<option value="下面层">下面层</option>
-						<option value="封层">封层</option>
-						<option value="上基层">上基层</option>
-						<option value="中基层">中基层</option>
-						<option value="下基层">下基层</option>
-						<option value="垫层">垫层</option>
-						<option value="原路">原路</option>
+						<option value="面层">面层</option>
+						<option value="基层">基层</option>
+						<option value="下封层">下封层</option>
+						<option value="打板">打板</option>
+						<option value="碎石化">碎石化</option>
+						<option value="挖除面层与基层">挖除面层与基层</option>
+						<option value="标线">标线</option>
 					</select>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">材料名称</td>
+				<td align="right" style="padding-right: 10px;">项目</td>
 				<td>
 					<input id="txtclmc" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">立方米单价</td>
+				<td align="right" style="padding-right: 10px;">单位</td>
+				<td>
+					<input type="text" id="txtdw"/>
+				</td>
+			</tr>
+			<tr style="height: 25px;">
+				<td align="right" style="padding-right: 10px;">单价(元)</td>
 				<td>
 					<input type="text" id="txtlfmdj"/>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">审定单价</td>
+				<td align="right" style="padding-right: 10px;">备注</td>
 				<td>
-					<input id="txtsddj" type="text">
+					<input id="txtbz" type="text">
 				</td>
 			</tr>
 			<tr style="height: 25px;">

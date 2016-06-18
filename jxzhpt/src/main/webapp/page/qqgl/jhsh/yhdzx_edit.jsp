@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
-		
+			queryyhdzxsfdj();
 			loadBmbm2("gcfl1",'工程分类');
 			$.ajax({
 				type:'post',
@@ -52,11 +52,24 @@
 					}
 					$("#sbzj1").html(msg.sbzj);
 					$("#sbzj").val(msg.sbzj);
-					
+					if(msg.ylmlx==''||msg.ylmlx==null){
+						queryYlmlxByLxInfo(msg.ylxbh,msg.qdzh,msg.zdzh,msg.xzqhdm);
+					}
 					
 				}
 			});
 		});
+		//查询原路面类型
+		function queryYlmlxByLxInfo(ylxbh,qdzh,zdzh,xzqhdm){
+			$.post('/jxzhpt/qqgl/queryYlmlxByLxInfo.do',{ylxbh:ylxbh,qdzh:qdzh,zdzh:zdzh,xzqhdm:xzqhdm},
+					function(msg){
+				//alert(msg.ylmlx);
+					 $("#ylmlx").val(msg.ylmlx);
+				},'json');
+		}
+		
+		
+		
 		function update(){
 			$('#gcfl').val($('#gcfl1').combo("getText"));
 			$('#gydw').val($('#gydw1').combo("getText"));

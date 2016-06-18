@@ -1,3 +1,27 @@
+//获取养护大中修算费单价
+function queryyhdzxsfdj(){
+			$.post('/jxzhpt/qqgl/queryyhdzxsfdj.do',{},
+					function(msg){   
+					$("#lqhntmcdj").html(msg.lqhntmcdj);
+					$("#gxlqhntmcdj").html(msg.gxlqhntmcdj);
+					$("#snhntmcdj").html(msg.snhntmcdj);
+					$("#lqlmjdrzsdj").html(msg.lqlmjdrzsdj);
+					$("#lqlmcbrzsdj").html(msg.lqlmcbrzsdj);
+					$("#swjcdj").html(msg.swjcdj);
+					$("#lqlmpmlqjdlzsdj").html(msg.lqlmpmlqjdlzsdj);
+					$("#lqlmrhlqjdlzsdj").html(msg.lqlmrhlqjdlzsdj);
+					$("#lqlmcblzsdj").html(msg.lqlmcblzsdj);
+					$("#xzrxjcdj").html(msg.xzrxjcdj);
+					$("#swjclzsdj").html(msg.swjclzsdj);
+					$("#xfcdj").html(msg.xfcdj);
+					$("#wcsnmbdj").html(msg.wcsnmbdj);
+					$("#wcswjcdj").html(msg.wcswjcdj);
+					$("#snhntmchbdj").html(msg.snhntmchbdj);
+					$("#bxyidj").html(msg.bxyidj);
+					$("#bxerdj").html(msg.bxerdj);
+					$("#snhntmcsshdj").html(msg.snhntmcsshdj);
+				},'json');
+		}
 function queryylmlx(lxbm,qdzh,zdzh){
 	if(lxbm.substr(0,1)=='Y' || lxbm.substr(0,1)=='C')
 		lxbm=lxbm+xzqh;

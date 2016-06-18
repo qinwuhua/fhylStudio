@@ -117,11 +117,24 @@ public class Xmsq {
 	private String wcswjcdj;  
 	private String snhntmchbdj;  
 	private String bxdj;  
+	private String bxerdj;private String bxyidj;
 	private String snhntmcsshdj;
 	private String sbzj;//省补资金
 	
 	private String xzqhdm2;//跨县行政区划
 	
+	public String getBxerdj() {
+		return bxerdj;
+	}
+	public void setBxerdj(String bxerdj) {
+		this.bxerdj = bxerdj;
+	}
+	public String getBxyidj() {
+		return bxyidj;
+	}
+	public void setBxyidj(String bxyidj) {
+		this.bxyidj = bxyidj;
+	}
 	public String getXzqhdm2() {
 		return xzqhdm2;
 	}

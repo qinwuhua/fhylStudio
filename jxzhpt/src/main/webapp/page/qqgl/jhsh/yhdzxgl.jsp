@@ -319,12 +319,24 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
+						var ls='';var wn='';
+						if(obj.lsjl=='是'){
+							alert("该条数据未查询到历史记录，后台数据有误");
+							ls="否";
+						}
+						else if(obj.wnxmk=='是'){
+							alert("该条数据未查询到历史记录，后台数据有误");
+							wn='否';
+						}
 						
+						if(!confirm('是否审核？')){
+							return;
+						}
 						//insert();
 						$.ajax({
 							type:'post',
 							url:'../../../qqgl/updateXmsqSp.do',
-							data:'xmlx='+4+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+							data:'xmlx='+4+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs+"&wnxmk="+wn+"&lsjl="+ls,
 							dataType:'json',
 							success:function(msg){
 								if(msg.result=="true"){
@@ -352,11 +364,25 @@
 							
 							var lc=0;
 							
-							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
-							lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh)){
+								var qd;var zd;
+								if(parseFloat(msg.lx[i].qdzh)<parseFloat(obj.qdzh)){
+									qd=parseFloat(obj.qdzh);
+								}else{
+									qd=parseFloat(msg.lx[i].qdzh);
+								}
+								if(parseFloat(msg.lx[i].zdzh)>parseFloat(obj.zdzh)){
+									zd=parseFloat(obj.zdzh);
+								}else{
+									zd=parseFloat(msg.lx[i].zdzh);
+								}
+								lc=accSub(zd,qd);
+								
+							}
+							//lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
 
 							//Math.abs(lc/1000);
-							xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+							xsxx+="   项目年份："+msg.lx[i].xmnf+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+lc+"\r";
 							
 						}
 						if(msg.lx.length>0){

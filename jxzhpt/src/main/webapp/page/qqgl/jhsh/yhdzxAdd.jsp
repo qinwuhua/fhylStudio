@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 	function xmnf1(id){
+		queryyhdzxsfdj();
 		var myDate = new Date();
 		var years=[];
 		var first;

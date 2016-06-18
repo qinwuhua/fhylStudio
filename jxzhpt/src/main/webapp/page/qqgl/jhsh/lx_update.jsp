@@ -25,6 +25,7 @@
 		var qdStr;
 		var zdStr;
 		$(function(){
+			queryyhdzxsfdj();
 			$('#lx').form("load",parent.YMLib.Var.Obj);
 			$("#lmkd").val(parent.YMLib.Var.Obj.lxlmkd);
 			var msg=parent.YMLib.Var.Obj;

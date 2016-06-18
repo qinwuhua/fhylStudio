@@ -41,6 +41,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryList("queryAutoList",xmsq);
 	}
 	@Override
+	public Lx queryAutoList1(Xmsq xmsq) {
+		return queryOne("queryAutoList1",xmsq);
+	}
+	@Override
 	public int queryLsjl(String ylxbh, String qdzh, String zdzh,String xmbm) {
 		params.put("lxbm", ylxbh);
 		params.put("qdzh", qdzh);
@@ -117,6 +121,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			Xmsq item =new Xmsq();
 			item.setXmbm(x);
 			item.setSqzt(xmsq.getSqzt());
+			item.setLsjl(xmsq.getLsjl());
+			item.setWnxmk(xmsq.getWnxmk());
 			list.add(item);
 		}
 		return updateBatch("updateYhdzxSqzt", list)==list.size();
@@ -293,6 +299,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public List<Lx> queryLslistwnxmk(Xmsq xmsq) {
 		List<Lx> result =new ArrayList<Lx>();
 		Lx lx=new Lx();
+		lx.setXmid(xmsq.getXmbm());
 		lx.setLxbm(xmsq.getYlxbh());
 		lx.setQdzh(xmsq.getQdzh());
 		lx.setZdzh(xmsq.getZdzh());
@@ -304,6 +311,8 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public List<Lx> queryLslistserw(Xmsq xmsq) {
 		List<Lx> result =new ArrayList<Lx>();
 		Lx lx=new Lx();
+		//System.out.println(xmsq.getXmbm());
+		lx.setXmid(xmsq.getXmbm());
 		lx.setLxbm(xmsq.getYlxbh());
 		lx.setQdzh(xmsq.getQdzh());
 		lx.setZdzh(xmsq.getZdzh());
@@ -315,6 +324,18 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	private void queryLsjlListwnxmk(List<Lx> result, Lx item) {
 		//查询原路线信息
 		List<Lx> ylx = queryList("queryYLx",item);
+		//查询项目编码下的其他路线
+		System.out.println(item.getXmid()+"xmid");
+		System.out.println(item.getQdzh()+"qdzh");
+		System.out.println(item.getZdzh()+"zdzh");
+		List<Lx> qtlx = queryList("queryQTLx",item);
+		if(qtlx.size()>0){
+			for (Lx lx : qtlx) {
+				List<Lx> qtylx = queryList("queryYLx",lx);
+				ylx.addAll(qtylx);
+			}
+		}
+		
 		params.put("lx", item);
 		params.put("ylx", ylx);
 		try {
@@ -341,6 +362,13 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	private void queryLsjlListserw(List<Lx> result, Lx item) {
 		//查询原路线信息
 		List<Lx> ylx = queryList("queryYLx",item);
+		List<Lx> qtlx = queryList("queryQTLx",item);
+		if(qtlx.size()>0){
+			for (Lx lx : qtlx) {
+				List<Lx> qtylx = queryList("queryYLx",lx);
+				ylx.addAll(qtylx);
+			}
+		}
 		params.put("lx", item);
 		params.put("ylx", ylx);
 		try {
@@ -394,5 +422,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public List<Xmsq> queryyhdzxcb(Xmsq xmsq) {
 		return queryList("queryyhdzxcb", xmsq);
+	}
+	@Override
+	public Xmsq queryyhdzxsfdj() {
+		return queryOne("queryyhdzxsfdj", "");
 	}
 }

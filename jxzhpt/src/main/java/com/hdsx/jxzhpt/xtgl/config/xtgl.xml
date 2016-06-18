@@ -300,8 +300,8 @@
 		delete from xtgl_yhdzxcs where id=#{id}
 	</delete>
 	<select id="queryYhdzxcs" resultType="yhdzxcs">
-		select * from xtgl_yhdzxcs 
-		<if test="cslx!=null and cslx!=''">where  cslx=#{cslx}</if>
+		select * from xtgl_yhdzxcs order by decode(cslx,'面层',1,'基层',2,'下封层',3,'挖除面层与基层',4,'打板',5,'标线',6,'碎石化',7)
+<!-- 		<if test="cslx!=null and cslx!=''">where  cslx=#{cslx}</if> -->
 	</select>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
 		select name id,#{roadcode}||#{xzqh} parent ,name,#{roadcode} bmid from (
@@ -328,10 +328,10 @@
 		select * from xtgl_yhdzxcs where cslx=#{cslx}
 	</select>
 	<insert id="addYhdzxcs" parameterType="yhdzxcs">
-		insert into xtgl_yhdzxcs values (sys_guid(),#{cslx},#{clmc},#{lfmdj},#{sddj})
+		insert into xtgl_yhdzxcs(id,cslx,clmc,lfmdj,dw,bz) values (sys_guid(),#{cslx},#{clmc},#{lfmdj},#{dw},#{bz})
 	</insert>
 	<update id="updateYhdzxcs" parameterType="yhdzxcs">
-		update xtgl_yhdzxcs set cslx=#{cslx},clmc=#{clmc},lfmdj=#{lfmdj},sddj=#{sddj}
+		update xtgl_yhdzxcs set cslx=#{cslx},clmc=#{clmc},lfmdj=#{lfmdj},dw=#{dw},bz=#{bz}
 		where id=#{id}
 	</update>
 	<select id="queryFlwxmFdfw" resultType="flwbzbz">

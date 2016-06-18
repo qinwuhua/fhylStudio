@@ -6,6 +6,23 @@ public class Yhdzxcs {
 	private String clmc;
 	private String lfmdj;
 	private String sddj;
+	
+	private String dw;//单位
+	private String bz;//备注
+	
+	
+	public String getDw() {
+		return dw;
+	}
+	public void setDw(String dw) {
+		this.dw = dw;
+	}
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
 	public String getId() {
 		return id;
 	}

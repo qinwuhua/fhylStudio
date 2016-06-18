@@ -88,6 +88,17 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	
+	public void queryYlmlxByLxInfo(){
+		try{
+			Lx l = xmsqServer.queryAutoList1(xmsq);
+			//System.out.println(l.getYlmlx());
+			JsonUtils.write(l, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 查询特殊地区
 	 * @throws Exception
@@ -621,6 +632,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	 * @throws Exception
 	 */
 	public void updateXmsqSp() throws Exception{
+		System.out.println(xmsq.getWnxmk()+"   "+xmsq.getLsjl());
 		try{
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
@@ -1169,4 +1181,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
 	}
+	
+	public void queryyhdzxsfdj(){
+		try {
+			JsonUtils.write(xmsqServer.queryyhdzxsfdj(), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} 
+	
 }

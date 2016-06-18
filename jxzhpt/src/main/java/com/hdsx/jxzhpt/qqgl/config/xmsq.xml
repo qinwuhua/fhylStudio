@@ -12,6 +12,15 @@
 		select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx from (
 		select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
 	</select>
+	
+	<select id="queryAutoList1" parameterType="xmsq" resultType="lx">
+	
+		select replace(WMSYS.WM_CONCAT(ylmlx),',','、') ylmlx from(
+			select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx from (
+			select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
+		) where to_number(qdzh)&lt;=to_number(#{qdzh}) and to_number(zdzh)>=to_number(#{zdzh})
+		
+	</select>
 	<select id="queryLsjl" parameterType="java.util.Map" resultType="int">
 		<![CDATA[
 		select c1_x.CON1+c1_y.CON2 + c2_x.CON1+c2_y.CON2 + c3_x.CON1+c3_y.CON2 + c4_x.CON1+c4_y.CON2 + c5_x.CON1+c5_y.CON2 from
@@ -672,7 +681,10 @@
 	</delete>
 	
 	<update id="updateYhdzxSqzt" parameterType="xmsq">
-		update xmsq_yhdzx set sqzt=${sqzt} where xmbm=#{xmbm}
+		update xmsq_yhdzx set sqzt=${sqzt}
+		<if test="lsjl!='' and lsjl!=null">,lsjl=#{lsjl}</if>
+		<if test="wnxmk!='' and wnxmk!=null">,wnxmk=#{wnxmk}</if>
+		 where xmbm=#{xmbm}
 	</update>
 	<update id="updateShSqzt" parameterType="xmsq">
 		update xmsq_sh set sqzt=${sqzt} where xmbm=#{xmbm}
@@ -1131,6 +1143,10 @@
 				</if>
 	</select>
 	
+	
+	<select id="queryQTLx" parameterType="lx" resultType="lx">
+		select * from lxsh_lx where jdbs=1 and to_number(qdzh)!=to_number(#{qdzh}) and to_number(zdzh)!=to_number(#{zdzh}) and xmid=#{xmid}
+	</select>
 	<select id="queryYLx" parameterType="lx" resultType="lx">
 		<![CDATA[select ylxbm ylxbm,(case when Xqdzh<${qdzh} then YQDZH+${qdzh}-XQDZH else yqdzh end) yqdzh,
 		(case when ${zdzh}<Xzdzh then YZDZH-XZDZH+${zdzh} else yzdzh end ) yzdzh ,
@@ -1587,5 +1603,28 @@
 	
 	<select id="queryyhdzxcb" parameterType="xmsq" resultType="xmsq">
 		select * from cbsj_yhdzx where xmbm in (${xmbm})
+	</select>
+	
+	<select id="queryyhdzxsfdj" parameterType="String" resultType="xmsq">
+		select 
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青混凝土面层') lqhntmcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='改性沥青混凝土面层') gxlqhntmcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='水泥混凝土面层') snhntmcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青路面就地热再生') lqlmjdrzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青路面场拌热再生') lqlmcbrzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='水稳基层') swjcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青路面泡沫沥青就地冷再生') lqlmpmlqjdlzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青路面乳化沥青就地冷再生') lqlmrhlqjdlzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='沥青路面场拌冷再生') lqlmcblzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='新做柔性基层') xzrxjcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='水稳基层冷再生') swjclzsdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='下封层') xfcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='挖除水泥面板') wcsnmbdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='挖除水稳基层') wcswjcdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='水泥混凝土面层换板') snhntmchbdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='标线（二级及以下公路）') bxerdj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='标线（一级公路）') bxyidj,
+		(select lfmdj from XTGL_YHDZXCS where clmc='水泥混凝土面层碎石化') snhntmcsshdj
+		from dual
 	</select>
 </mapper>

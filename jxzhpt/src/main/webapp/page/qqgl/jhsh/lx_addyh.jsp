@@ -25,6 +25,7 @@
 		var qdStr;
 		var zdStr;
 		$(function(){
+			queryyhdzxsfdj();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 			$('#xmbm').html(parent.YMLib.Var.xmbm);

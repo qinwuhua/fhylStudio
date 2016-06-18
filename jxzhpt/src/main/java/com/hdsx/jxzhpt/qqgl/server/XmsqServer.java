@@ -36,6 +36,7 @@ public interface XmsqServer {
 	 * @return 反映列表
 	 */
 	public List<Lx> queryAutoList(Xmsq xmsq);
+	public Lx queryAutoList1(Xmsq xmsq);
 	/**
 	 * 查询是否有历史记录
 	 * @param ylxbh 路线编号
@@ -276,4 +277,5 @@ public interface XmsqServer {
 	public List<Lx> queryLslistwnxmk(Xmsq xmsq);
 	public List<Lx> queryLslistserw(Xmsq xmsq);
 	public List<Xmsq> queryyhdzxcb(Xmsq xmsq);
+	public Xmsq queryyhdzxsfdj();
 }
