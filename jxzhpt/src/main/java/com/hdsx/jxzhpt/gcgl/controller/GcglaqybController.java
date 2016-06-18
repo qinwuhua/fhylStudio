@@ -475,10 +475,16 @@ public class GcglaqybController extends BaseActionSupport{
 						}else{
 							zzjgTree.setState("closed");
 						}
+					}
+					else if(zzjgTree.getId().length()==11){
+						if(zzjgTree.getId().substring(7).equals("0000")){
+							zzjgTree.setState("open");
+						}else{
+							zzjgTree.setState("closed");
+						}
 					}else{
 						zzjgTree.setState("closed");
 					}
-					
 					zzjgTree.getChildren().add(temp);
 					returnRoot1(list,temp);
 				}

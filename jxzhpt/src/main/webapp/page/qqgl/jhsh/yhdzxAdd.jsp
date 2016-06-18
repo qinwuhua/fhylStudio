@@ -59,7 +59,7 @@
 			loadBmbm2("gcfl1",'工程分类');
 			loadDistadd("xzqh1",$.cookie("dist"));
 			
-			loadUnit("gydw1",$.cookie("unit"));
+			loadUnitadd("gydw1",$.cookie("unit"));
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryNextXmbm.do',
@@ -217,7 +217,7 @@
 		function insert(){
 			$('#gcfl').val($('#gcfl1').combo("getText"));
 			$('#gydw').val($('#gydw1').combo("getText"));
-			$('#gydwdm').val($('#gydw1').combo("getValue"));
+			$('#gydwdm').val($('#gydw1').combo("getValues").join(','));
 			$("#xzqhdm").val($.cookie("dist"));
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
@@ -301,7 +301,7 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					路面宽度</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lmkd" name="lmkd" type="text" style="width: 80px;"/>&nbsp;米&nbsp;<span style="color: red;">*</span>
+					<input id="lmkd" name="lmkd" type="text" style="width: 80px;"  disabled/>&nbsp;米&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
             <tr style="height: 30px;">

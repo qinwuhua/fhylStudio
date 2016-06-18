@@ -70,9 +70,9 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var jhxdwh=$("#jhxdwh").combobox("getText");
+			 var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
-				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length); 
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
 			 queryParams : {
@@ -96,7 +96,7 @@
 				 	'tsdq':tsdq,
 				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
 				 	'planwqgzsj.qlbh':$('#txtqlbm').val(),
-				 	'planzjxd.jhxdwh':jhxdwh
+				 	'planzjxd.jhxdwh':$("#jhxdwh").combobox("getValue")
 				},
 			    striped:true,
 			    pagination:true,
@@ -248,7 +248,7 @@
 					"&lx.lxmc="+$('#lxmc').val()+"&lx.lxbm="+$('#lxbm').val()+"&lx.akjfl="+akjfl+
 					"&lx.qlmc="+$('#qlmc').val()+"&lx.tsdq="+tsdq+
 					"&lx.pddj="+$('#pddj').combobox('getValue')+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
-					"&jh.sbnf="+xmnf+"&jh.sfylrbwqk="+$('#sfylrbwqk').combobox('getValue');
+					"&jh.sbnf="+xmnf+"&jh.sfylrbwqk="+$('#sfylrbwqk').combobox('getValue')+"&planzjxd.jhxdwh="+$("#jhxdwh").combobox("getValue");
 /* 			if($('#ddlSHZT').combo("getValue")=="未开工"){
 				param+="&jh.kgzt=0";
 			}else if($('#ddlSHZT').combo("getValue")=="在建"){

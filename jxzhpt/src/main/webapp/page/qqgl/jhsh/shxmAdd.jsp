@@ -64,7 +64,7 @@
 				}
 			});
 			loadDistadd("xzqh1",$.cookie("dist"));
-			loadUnit("gydw1",$.cookie("unit"));
+			loadUnitadd("gydw1",$.cookie("unit"));
 			autoCompleteLXBM();
 		});
 		function autoCompleteLXBM(){
@@ -142,7 +142,7 @@
 		}
 		function insert(){
 			$('#gydw').val($('#gydw1').combo("getText"));
-			$('#gydwdm').val($('#gydw1').combo("getValue"));
+			$('#gydwdm').val($('#gydw1').combo("getValues").join(','));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
 			$("#xzqhdm").val($.cookie("dist"));
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
