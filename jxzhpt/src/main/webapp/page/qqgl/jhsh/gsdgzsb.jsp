@@ -53,7 +53,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').val(),
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
 					'jhsh.sbzt':$('#sbzt').combobox("getValue")
 					};
 			grid.queryParams=params;
@@ -395,7 +395,8 @@ text-decoration:none;
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

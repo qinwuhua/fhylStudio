@@ -174,13 +174,27 @@ public class XmbbController extends BaseActionSupport{
 	public void setjhxdwh(){
 		try {
 			String tablename="";
-			if("gsd".equals(xzqh))
+			List<TreeNode> list=null;
+			if("gsd".equals(xzqh)){
 				tablename="and (xmid like '__________1___' or xmid like '__________2___' or xmid like '__________3___')";
-			if("yh".equals(xzqh))
+				list=xmbbServer.setjhxdwh(tablename);
+			}
+			if("yh".equals(xzqh)){
 				tablename="and (xmid like '__________4___')";
-			if("sh".equals(xzqh))
+				list=xmbbServer.setjhxdwh(tablename);
+			}
+			if("sh".equals(xzqh)){
 				tablename="and (xmid like '__________5___')";
-			List<TreeNode> list=xmbbServer.setjhxdwh(tablename);
+				list=xmbbServer.setjhxdwh(tablename);
+			}
+			if(("wqgz").equals(xzqh)){
+				tablename="select distinct z.jhxdwh id,z.jhxdwh text from plan_wqgz p left join plan_zjxd z on p.id=z.xmid where z.jhxdwh is not null";
+				list=xmbbServer.setjhxdwh1(tablename);
+			}
+			if(("abgc").equals(xzqh)){
+				tablename="select distinct z.jhxdwh id,z.jhxdwh text from plan_abgc p left join plan_zjxd z on p.id=z.xmid where z.jhxdwh is not null";
+				list=xmbbServer.setjhxdwh1(tablename);
+			}
 			int i=1;
 			for (TreeNode treeNode : list) {
 				treeNode.setId(i+"");

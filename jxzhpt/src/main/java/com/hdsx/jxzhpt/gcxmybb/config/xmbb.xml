@@ -1049,7 +1049,9 @@
 	<select id="setjhxdwh" resultType="treenode" parameterType="String">
 		select distinct jhxdwh id,jhxdwh text from plan_zjxd where jhxdwh is not null ${value} order by jhxdwh desc
 	</select>
-	
+	<select id="setjhxdwh1" resultType="treenode" parameterType="String">
+		${value}
+	</select>
 	<select id="getPtgxtz" parameterType="string" resultType="elist">
 		select * from ZJHZ_TZ
 	</select>

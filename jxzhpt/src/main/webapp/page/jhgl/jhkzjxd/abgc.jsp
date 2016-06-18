@@ -26,7 +26,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			jsdjdx('ddlPDDJ');
-			
+			jhxdwhdx('jhxdwh','abgc');
 			var urlid=getUrlParame('id');
 			if(urlid==null){
 				xmnfdx("sbnf"); 
@@ -37,28 +37,37 @@
 			}
 			
 			tsdqdx('ddlTSDQ');
-			var xmnf=$("#sbnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
-			var jh={jhnf:xmnf,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
-			queryMessage(jh,lx);
-			abgcxm_zjxd(jh,lx);
+			//var xmnf=$("#sbnf").combobox("getValues").join(",");
+			//if(xmnf.substr(0,1)==',')
+				//xmnf=xmnf.substr(1,xmnf.length);
+			//var jh={jhnf:xmnf,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			//var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
+			//queryMessage(jh,lx);
+			//abgcxm_zjxd(jh,lx);
+			searchAbgc();
 		});
 		function searchAbgc(){
+			
 			var xmnf=$("#sbnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			
 			var jsdj=$("#ddlPDDJ").combobox("getValues").join(",");
 			if(jsdj.substr(0,1)==',')
 				jsdj=jsdj.substr(1,jsdj.length);
 			var gldj=$("#ddlGldj").combobox("getValues").join(",");
 			if(gldj.substr(0,1)==',')
 				gldj=gldj.substr(1,gldj.length);
+			
 			var tsdq=$("#ddlTSDQ").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var jh={jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length); 
+			//alert(jhxdwh);
+			var jh={jhxdwh:jhxdwh,jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -76,6 +85,7 @@
 				jh.kgzt="1";
 				jh.jgzt="1";
 			}
+			
 			queryMessage(jh,lx);
 			abgcxm_zjxd(jh,lx);
 		}
@@ -83,7 +93,7 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
+			var param={"jh.jhxdwh":jh.jhxdwh,"jh.xmlx":jh.xmlx,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
 					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,"lx.gldj":lx.gldj,"lx.lxjsdj":lx.lxjsdj,
 					"lx.lxbm":lx.lxbm,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd};
 			$.ajax({
@@ -167,7 +177,7 @@
         						<span style=" vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px; vertical-align:middle;"></select>
 								<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px; vertical-align:middle;">
+								<select name="ddlTSDQ" id="ddlTSDQ" class='easyui-combobox' style="width:80px; vertical-align:middle;">
 								</select>
 								<span style=" vertical-align:middle;">&nbsp;建设状态：</span>
         						<select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px; vertical-align:middle;">
@@ -187,7 +197,11 @@
 									<option value="是">是</option>
 								</select>
         					</p>
+        					
         					<p style="margin:8px 0px 4px 20px;">
+        					<span>计划下达文号：</span>
+        						<select id="jhxdwh" class="easyui-combobox"  style="width: 150px">
+        						</select>
         						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;"/>
         						<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('abgc_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>

@@ -52,7 +52,12 @@
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,sc.bzls as sfylsjl,
                		lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc,yhlc
                 	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) 
+						left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on jh.id=xd.xmid
+					where 1=1
+					<if test="jh.jhxdwh!='' and jh.jhxdwh!= null ">
+						${jh.jhxdwh}
+					</if>
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -462,7 +467,12 @@
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
-			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+			left join xmk_abgc lx on (sc.xmkid=lx.id) 
+				left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on jh.id=xd.xmid
+			where 1=1
+			<if test="jh.jhxdwh!='' and jh.jhxdwh!= null ">
+				${jh.jhxdwh}
+			</if>
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -762,7 +772,11 @@
 			select count(jh.id) as id,sum(jh.jhzlc) as zlc,sum(jh.jhyhlc) as yhlc,
 			sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
 			from xmk_abgc lx right join sck_abgc sc on (lx.id=sc.xmkid) right join plan_abgc jh on (sc.sckid=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
+		  	left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on jh.id=xd.xmid
 			where 1=1
+			<if test="jh.jhxdwh!='' and jh.jhxdwh!= null ">
+				${jh.jhxdwh}
+			</if>
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>

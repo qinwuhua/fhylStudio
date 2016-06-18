@@ -55,7 +55,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').val(),'jhsh.sbzt':1,
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
 					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly
 					};
 			grid.queryParams=params;

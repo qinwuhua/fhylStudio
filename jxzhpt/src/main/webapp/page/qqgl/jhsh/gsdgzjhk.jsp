@@ -378,8 +378,8 @@ text-decoration:none;
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		<!-- 地方投资【<span id="dftz" style="color: red;">0</span>】万元。、银行贷款 -->
-            		地方自筹【<span id="dfzc" style="color: red;">0</span>】万元。
-            		银行贷款 【<span id="yhdk" style="color: red;">0</span>】万元。
+            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

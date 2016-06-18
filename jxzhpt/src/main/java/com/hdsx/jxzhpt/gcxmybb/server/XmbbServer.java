@@ -82,5 +82,7 @@ public interface XmbbServer {
 
 	List<Excel_list> getPtgxtz(Xmbb xmbb);
 
+	List<TreeNode> setjhxdwh1(String tablename);
+
 
 }

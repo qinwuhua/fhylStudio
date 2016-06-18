@@ -282,7 +282,9 @@
 		select rownum num ,t.*,decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')) sbzt2 from
 		 (select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
 		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
-		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id 
+		 left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on t.id=xd.xmid
+		 where 1=1
 					and t.jh_sbthcd>=#{sbthcd} 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
@@ -292,6 +294,9 @@
  				</if>
  				<if test="pddj!='' and pddj!= null ">
 					and pddj = #{pddj}
+				</if>
+				<if test="jhxdwh!='' and jhxdwh!= null ">
+					${jhxdwh}
 				</if>
 		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
@@ -396,7 +401,9 @@
 		select count(*) from 
 		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
 		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
-		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id
+		  left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on t.id=xd.xmid
+		 where 1=1
 					and t.jh_sbthcd>=#{sbthcd} 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
@@ -406,6 +413,9 @@
  				</if>
  				<if test="pddj!='' and pddj!= null ">
 					and pddj = #{pddj}
+				</if>
+				<if test="jhxdwh!='' and jhxdwh!= null ">
+					${jhxdwh}
 				</if>
 		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">
@@ -457,7 +467,9 @@
 		select count(*) sl,sum(pfztz) pfztz,decode(sfylrbwqk,'是',decode(sum(jhsybzje),null,0,sum(jhsybzje))) jhsybzje,sum(jhsydfzcje) jhsydfzcje,decode(sfylrbwqk,'否',decode(sum(shengbz),null,0,sum(shengbz))) shengbz,decode(sum(xdzj),null,0,sum(xdzj)) xdzj from 
 		(select t.*,xm.xzqhdm,xm.gydwbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm,z.xdzj, 
 		 xm.xzqhmc,xm.gydw,xm.qlbh,xm.tsdq,sc.sck_qlbh,sc.sck_qlzxzh
-		 from plan_wqgz t left join plan_zjxd z on t.id=z.xmid join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1
+		 from plan_wqgz t left join plan_zjxd z on t.id=z.xmid join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id 
+		  left join (select xmid,replace(WMSYS.WM_CONCAT(jhxdwh),',',',') jhxdwh from plan_zjxd group by xmid) xd on t.id=xd.xmid
+		 where 1=1
 					and t.jh_sbthcd>=#{sbthcd} 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
@@ -467,6 +479,9 @@
  				</if>
  				<if test="pddj!='' and pddj!= null ">
 					and pddj = #{pddj}
+				</if>
+				<if test="jhxdwh!='' and jhxdwh!= null ">
+					${jhxdwh}
 				</if>
 		) t where 1=1 and gydwbm like '1%'
 		<if test="gydw!='' and gydw!= null ">

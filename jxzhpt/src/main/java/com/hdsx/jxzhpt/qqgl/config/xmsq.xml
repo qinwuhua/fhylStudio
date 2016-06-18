@@ -507,7 +507,7 @@
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">${xmsq.tsdq}</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">and x.lsjl=#{xmsq.lsjl}</if>
 				<if test="xmsq.wnxmk!=null and xmsq.wnxmk!=''">and x.wnxmk=#{xmsq.wnxmk}</if>
-				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">and x.jsxz=#{xmsq.jsxz}</if>
+<!-- 				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">and x.jsxz=#{xmsq.jsxz}</if> -->
 				<if test="xmsq.ylxbh!=null and xmsq.ylxbh!=''">
 					and x.xmbm in (select xmid from lxsh_lx lx where ${xmsq.ylxbh} and xmid like '%4___')
 				</if>

@@ -211,7 +211,7 @@ public class Plan_abgcController extends BaseActionSupport{
 							lx.setLxjsdj(tsdq);
 						}
 				}
-				
+			jh.setJhxdwh(getTiaoJian(jh.getJhxdwh(),"xd.jhxdwh"));	
 			if("af".equals(jh.getXmlx()))
 				JsonUtils.write(abgcServer.querySumAfgc(jh,lx), getresponse().getWriter());
 			else 
@@ -404,8 +404,9 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryAbgcList(){
 		try {
-			String string = flag;
+			
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
+			jh.setJhxdwh(getTiaoJian(jh.getJhxdwh(),"xd.jhxdwh"));
 			if(lx.getGydwbm()!=null){
 				if("af".equals(jh.getXmlx())){
 					lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwdm"));
@@ -518,6 +519,8 @@ public class Plan_abgcController extends BaseActionSupport{
 							lx.setLxjsdj(tsdq);
 						}
 				}
+				
+
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
@@ -534,6 +537,31 @@ public class Plan_abgcController extends BaseActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public String getTiaoJian(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
 	}
 	//批量审批用到
 	public void editAbgcStatusBatch(){
