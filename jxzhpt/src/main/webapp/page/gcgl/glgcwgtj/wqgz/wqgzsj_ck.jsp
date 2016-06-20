@@ -32,7 +32,6 @@ $(function(){
 	fileShow24(parent.obj1.id,'施工许可');
 });
 function loadJzxx(){
-	alert("11");
 	var data=parent.obj1;
 	
 	$('#xdsj').html(data.xdsj);
