@@ -660,7 +660,7 @@
        							<td><select id="gydw" style="width:170px;"></select></td> -->
        						</tr>
        						<tr height="32">
-       						<td>&nbsp;历史记录：</td>
+       						<td>&nbsp;是否有补助历史：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 81px;">
 		       							<option value="" selected="selected">全部</option>

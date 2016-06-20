@@ -287,8 +287,8 @@
         						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
         						<td>项目名称：</td>
         						<td><input id='xmmc' type="text" /></td>
-        						<td>项目年份：</td>
-        						<td><select id="xmnf" style="width:65px;">
+        						<td>建设性质：</td>
+        						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
         						<td>建设技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" ></select></td>
 								
@@ -297,28 +297,32 @@
         						<td>现技术等级：</td>
 								<td  width="65px;"><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
 								</select></td>
+								<td>项目年份：</td>
+        						<td><select id="xmnf" style="width:65px;">
 								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" ></select></td>       					
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:125px;" >
-								</select></td>
+								
 								<td>原路线编码：</td>
         						<td><input id='lxbm' type="text" /></td>
         						<td>原路线名称：</td>
         						<td><input id='lxmc' type="text" /></td>
         					</tr>
         					<tr height="32">
-        						<td>历史记录：</td>
+        						
+								<td>规划路线编码：</td>
+        						<td><input id='ghxlxbm' type="text" /></td>
+        						<td>规划路线名称：</td>
+        						<td><input id='ghxlxmc' type="text" /></td>
+        						<td>是否有补助历史：</td>
 								<td  width="65px;"><select id="lsjl" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></select></td>
 								</td>
-								<td>规划路线编码：</td>
-        						<td><input id='ghxlxbm' type="text" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input id='ghxlxmc' type="text" /></td>
+        						<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:125px;" >
+								</select></td>
 								<td>前期开展状态：</td>
         						<td><select id="qqkzzt" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -326,8 +330,6 @@
 									<option value="未开展">未开展</option>
 								</select></select>
 								</td>
-        						<td>建设性质：</td>
-        						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
         					</tr>
         					<tr height="32">
         					<td>项目库类型：</td>

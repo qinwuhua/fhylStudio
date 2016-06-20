@@ -328,7 +328,6 @@ text-decoration:none;
 	        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
 	        						<td>桥梁名称：</td>
 	        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
-	        						
 	        					</tr>
 	        					<tr height="32">
 	        						<td>上报年份：</td>
@@ -372,7 +371,7 @@ text-decoration:none;
 										<option value="" selected="selected">全部</option>
 										<option value="无">否</option>
 										<option value="是">是</option>
-									</select>
+									</select> 
 									<span>桥梁编码：</span>
 	        						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
 	                              	<td colspan="10">
