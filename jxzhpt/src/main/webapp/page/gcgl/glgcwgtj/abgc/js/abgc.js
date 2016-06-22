@@ -73,6 +73,9 @@ function showtj(xmlx){
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var wgnf=$("#wgYear").combobox('getValues').join(",");
+	if(wgnf.substr(0,1)==',')
+		wgnf=wgnf.substr(1,wgnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -106,6 +109,7 @@ function showtj(xmlx){
 	"&ybzt="+''+
 	"&sfsj="+7+
 	"&xmnf="+xmnf+
+	"&wgnf="+wgnf+
 	'&xzqh='+xzqhstr+
 	'&gcglabgc.xmlx='+xmlx+
 	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValues')+
@@ -142,6 +146,9 @@ function showAll(){
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var wgnf=$("#wgYear").combobox('getValues').join(",");
+	if(wgnf.substr(0,1)==',')
+		wgnf=wgnf.substr(1,wgnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -189,7 +196,8 @@ function showAll(){
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues'),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
-	    	'gcglabgc.jgys':$("#jgys").combobox('getValue')
+	    	'gcglabgc.jgys':$("#jgys").combobox('getValue'),
+	    	 wgnf:wgnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

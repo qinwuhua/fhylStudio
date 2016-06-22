@@ -168,7 +168,8 @@
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
-						 $("#bcxd").html(msg.BCXD);
+						 $("#bcxd").html(msg.BCXD);//BCXD是哪里的 实体里没找到  上面还有几个也没找到
+						 $("#yhdk").html(msg.YHDK);
 					}else{
 						$('#spanbbz').html("0");
 						$('#spansbz').html("0");

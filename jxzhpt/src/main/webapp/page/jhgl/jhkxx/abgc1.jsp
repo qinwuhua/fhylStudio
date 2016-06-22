@@ -75,6 +75,7 @@
 							$('#sczdzh').html(data.sczdzh);
 							$('#sczlc').html(data.sczdzh);
 							$('#scyhlc').html(data.scyhlc);
+							$('#sjwcyhlc').html(data.sjwcyhlc);
 							$('#fapgdw').html(data.fapgdw);
 							$('#fascdw').html(data.fascdw);
 							$('#faspsj').html(data.faspsj);
@@ -153,7 +154,7 @@
 		});
 	}
 	function loadJzxx(){
-		var data=parent.obj1;
+		var data=parent.obj1;//这个是去的那一行，所以你差列表有那个属性这里就能赋值
 		$('#xdsj').html(data.xdsj);
 		$('#sjkgsj').html(data.sjkgsj);
 		$('#yjwgsj').html(data.yjwgsj);
@@ -167,6 +168,8 @@
 		$('#wcbtz').html(data.wcbtz);
 		$('#wcstz').html(data.wcstz);
 		$('#wcztz').html(data.wcztz);
+		$('#sjwcyhlc').html(data.sjwcyhlc);
+		
 	}
 	
 	function loadZjxdList(){
@@ -659,6 +662,11 @@
 			 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完成省投资（万元）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="wcstz"></span></td> 
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完成隐患里程（公里）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjwcyhlc"></span></td> 
 			</tr>
 			<!-- <div id="divBBZJE"></div>
 			<tr id="trSY" style="height: 25px;">

@@ -38,7 +38,14 @@ public class Gcglabgc implements Serializable {
 	private String sjwcyhlc;
 	private String bnwctz;
 	private String bnwcgl;
+	private String wgnf;
 	
+	public String getWgnf() {
+		return wgnf;
+	}
+	public void setWgnf(String wgnf) {
+		this.wgnf = wgnf;
+	}
 	public String getQzbtz() {
 		return qzbtz;
 	}

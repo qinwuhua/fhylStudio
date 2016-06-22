@@ -81,7 +81,13 @@ public class GcglabgcController extends BaseActionSupport{
 	private String xmnf;
 	private String sfylrbwqk;
 	private String xzqh;
-	
+	private String wgnf;
+	public String getWgnf() {
+		return wgnf;
+	}
+	public void setWgnf(String wgnf) {
+		this.wgnf = wgnf;
+	}
 	public String getXzqh() {
 		return xzqh;
 	}
@@ -1677,6 +1683,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setShzt(ybzt);
 		gcglabgc.setXmnf(xmnf);
+		gcglabgc.setWgnf(wgnf);
 		if(sfsj==7){
 			gcglabgc.setTiaojian("sjsh");
 		}

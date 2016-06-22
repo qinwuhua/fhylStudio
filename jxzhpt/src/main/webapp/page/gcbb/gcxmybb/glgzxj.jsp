@@ -360,13 +360,23 @@
 		        				<input id="jhnd" type="text"  style="width: 80px">
         						<span>项目进展状态：</span>
         						<input id="jzzt" type="text"  style="width: 64px">
-        						<span>本年计划投资：</span>
+        					<!-- 	<span>本年计划投资：</span>
         						<input id="bnjhtz" type="text"  style="width: 60px">
         						<span>本年度实施里程：</span>
         						<input id="bndsslc" type="text"  style="width: 60px">
-        						</select>
-        						
-        						
+        						</select> -->
+        						<span>本年计划投资：</span>
+        						<select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:104px;">
+									<option value="" selected="selected">全部</option>
+									<option value="0">0</option>
+									<option value="非0">非0</option>
+								</select>
+        						<span>本年度实施里程：</span>
+        						<select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:104px;">
+									<option value="" selected="selected">全部</option>
+									<option value="0">0</option>
+									<option value="非0">非0</option>
+								</select>
 							</p>
         					<p style="margin: 8px 0px 8px 20px;">
         						

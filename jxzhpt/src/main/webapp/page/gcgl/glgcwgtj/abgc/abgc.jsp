@@ -34,9 +34,11 @@
 			var urlid=getUrlParame('id');
 			if(urlid==null){
 				xmnfdx("ddlYear"); 
+				wgnfdx("wgYear"); 
 				xzdjdx('ddlGldj');
 			}else{
 				setxmnf("ddlYear",urlid);
+				setwgnf("wgYear",urlid);
 				setxzdj('ddlGldj',urlid);
 			}
 			
@@ -73,13 +75,15 @@
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var xmnf=$('#ddlYear').combobox("getValues").join(',');
+			var wgnf=$('#wgYear').combobox("getValues").join(',');
 			var ybzt=$("#ybzt").val();
 			var data="gcglabgc.kgzt="+kgzt+
 					"&gcglabgc.jgzt="+jgzt+
 					"&gcglabgc.lxmc="+lxmc+
 		 			"&gcglabgc.ybzt="+ybzt+
 		 			"&gcglabgc.sfsj="+sfsj+
-		 			"&gcglabgc.xmnf="+xmnf;
+		 			"&gcglabgc.xmnf="+xmnf+
+		 			"&gcglabgc.wgnf="+wgnf;
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
 				window.location.href='/jxzhpt/gcgl/dcabgcExcel.do?'+data;
 			 });

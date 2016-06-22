@@ -311,7 +311,7 @@
 			var obj=$("#grid").datagrid('getRows')[index];
 			
 			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
-			//alert(datas);
+			alert(datas);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -387,7 +387,8 @@
 						}
 						if(msg.lx.length>0){
 							$("#lsjl").val("是");
-							alert("存在补助历史\r"+xsxx);
+							//alert("存在补助历史\r"+xsxx);
+							alert("重复项目\r"+xsxx);
 							if(confirm('是否审核？')){
 								//insert();
 								$.ajax({
