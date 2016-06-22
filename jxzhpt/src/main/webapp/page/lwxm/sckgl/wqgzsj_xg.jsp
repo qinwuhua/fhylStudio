@@ -109,7 +109,7 @@ $(function(){
 			bzWqgz();
 	});
 	$("#qx_window").click(function(){
-		alert();
+		//alert();
 			parent.$('#lxxx').window('destroy');		
 	});
 	loadUploadify();
@@ -174,7 +174,7 @@ function saveWqgz(){
 	});  
 }
 function bzWqgz(){
-	var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val();
+	var datas="lxbm="+$("#lxbm").html().trim()+"&qlzxzh="+$("#qlzxzh").html().trim()+"&qlbh="+$("#qlbh").html().trim();
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/bzWqgz.do',

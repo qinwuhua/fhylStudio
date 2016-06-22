@@ -1089,9 +1089,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			String[] s = bh.split(",");
 			for (int i = 0; i < s.length; i++) {
 				if(i==0)
-					result+=" ("+name+" like '%"+s[i]+"%'";
+					result+=" (x."+name+" like '%"+s[i]+"%'";
 				else
-					result+=" or "+name+" like '%"+s[i]+"%'";
+					result+=" or x."+name+" like '%"+s[i]+"%'";
 			}
 			result+=")";
 			//System.out.println(result);
