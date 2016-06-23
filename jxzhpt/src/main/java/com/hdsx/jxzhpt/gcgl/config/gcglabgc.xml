@@ -200,6 +200,9 @@
 		<if test="xmnf != null and  xmnf != ''">
 				and t1.jhnf in (${xmnf})
 		</if>
+		<if test="wgnf != null and  wgnf != ''">
+		and substr(t1.sjwgsj,0,4) in (${wgnf})
+		</if>
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
@@ -296,8 +299,11 @@
 	<if test="xmnf != null and  xmnf != ''">
 			and t1.jhnf in (${xmnf})
 	</if>
+	<if test="wgnf != null and  wgnf != ''">
+		and substr(t1.sjwgsj,0,4) in (${wgnf})
+		</if>
 	<if test="jgys != null and  jgys != ''">
-			and decode(jg.id,null,'否','是') = #{jgys}
+		and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
 	 </select>
 	 <select id="selectabTJ" parameterType="gcglabgc" resultType="gcglwqgz">

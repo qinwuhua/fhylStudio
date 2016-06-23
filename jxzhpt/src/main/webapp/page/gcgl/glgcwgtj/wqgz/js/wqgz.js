@@ -447,8 +447,8 @@ function showAll1(){
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.akjfl':$("#akjfl").combobox('getValue'),
-	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue'),
-	    	wgnf:wgnf
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue'),//这种赋值直接就在实体里，直接赋值给实体的属性
+	    	wgnf:wgnf//这个赋值可以赋值给任何属性，但必须提供getset接受，然后才能取到值
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

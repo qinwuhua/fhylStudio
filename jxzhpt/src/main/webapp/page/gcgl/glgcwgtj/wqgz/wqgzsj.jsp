@@ -29,7 +29,7 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			gcglxmnf("ddlYear");
-			gcglwgnf("wgYear");
+			gcglwgnf("wgYear");//给标签赋值
 			showAll1();
 		});
 		function dcExcel(){

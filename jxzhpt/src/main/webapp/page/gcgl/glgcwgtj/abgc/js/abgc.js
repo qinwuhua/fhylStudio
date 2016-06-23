@@ -197,7 +197,7 @@ function showAll(){
 	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues'),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.jgys':$("#jgys").combobox('getValue'),
-	    	 wgnf:wgnf
+	    	'gcglabgc.wgnf':wgnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

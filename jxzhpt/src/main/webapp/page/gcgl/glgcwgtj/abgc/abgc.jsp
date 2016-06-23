@@ -30,15 +30,15 @@
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
 			//gcglxmnf("ddlYear");
-			
+			gcglwgnf("wgYear");//给标签赋值
 			var urlid=getUrlParame('id');
 			if(urlid==null){
 				xmnfdx("ddlYear"); 
-				wgnfdx("wgYear"); 
+				//wgnfdx("wgYear"); 
 				xzdjdx('ddlGldj');
 			}else{
 				setxmnf("ddlYear",urlid);
-				setwgnf("wgYear",urlid);
+				//setwgnf("wgYear",urlid);
 				setxzdj('ddlGldj',urlid);
 			}
 			
