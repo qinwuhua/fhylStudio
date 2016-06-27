@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -113,11 +114,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 					}else if(i==0){
 						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 					}
 				}
 			}else{
@@ -157,6 +158,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			tsdqHandle();
 			jsxzHandle();
 			zjlyHandle();
+			xdztHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			listData=jhshServer.queryGsdgz(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzCount(jhsh);
@@ -249,11 +251,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 					}else if(i==0){
 						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 					}
 				}
 			}else{
@@ -298,6 +300,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsxzHandle();
 				zjlyHandle();
 				xdwhHandle();
+				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
@@ -305,6 +308,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				tsdqHandle();
 				xdwhHandle();
+				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}else if(jhsh.getXmlx()==6){
@@ -313,11 +317,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					String[] xmnfArray = xmbm.split(",");
 					for (int i = 0; i < xmnfArray.length; i++) {
 						if(i==xmnfArray.length-1){
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 						}else if(i==0){
 							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 						}else{
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 						}
 					}
 				}else{
@@ -346,11 +350,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 					}else if(i==0){
 						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 					}
 				}
 			}else{
@@ -402,6 +406,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle();
 				jsxzHandle();
 				zjlyHandle();
+				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				//jhsh.setPage(page);
 				//jhsh.setRows(rows);
@@ -412,6 +417,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xzdjHandle();
 				tsdqHandle();
 				xdwhHandle();
+				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				//jhsh.setPage(page);
 				//jhsh.setRows(rows);
@@ -423,11 +429,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					String[] xmnfArray = xmbm.split(",");
 					for (int i = 0; i < xmnfArray.length; i++) {
 						if(i==xmnfArray.length-1){
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 						}else if(i==0){
 							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 						}else{
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 						}
 					}
 				}else{
@@ -457,11 +463,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 					}else if(i==0){
 						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 					}
 				}
 			}else{
@@ -830,11 +836,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			String[] xmnfArray = xmbm.split(",");
 			for (int i = 0; i < xmnfArray.length; i++) {
 				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 				}else if(i==0){
 					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 				}
 			}
 		}else{
@@ -908,11 +914,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						String[] xmnfArray = xmbm.split(",");
 						for (int i = 0; i < xmnfArray.length; i++) {
 							if(i==xmnfArray.length-1){
-								xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+								xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 							}else if(i==0){
 								xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 							}else{
-								xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+								xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 							}
 						}
 					}else{
@@ -936,9 +942,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 								break;
 							}
 							if(i==0)
-								tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+								tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 							else
-								tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+								tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 						}
 						if(tsdq==""){
 							tsdq="";
@@ -973,11 +979,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //			String[] xmnfArray = xmbm.split(",");
 //			for (int i = 0; i < xmnfArray.length; i++) {
 //				if(i==xmnfArray.length-1){
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 //				}else if(i==0){
 //					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}else{
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}
 //			}
 //		}else{
@@ -1011,11 +1017,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			String[] xmnfArray = xmbm.split(",");
 			for (int i = 0; i < xmnfArray.length; i++) {
 				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 				}else if(i==0){
 					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 				}
 			}
 		}else{
@@ -1114,11 +1120,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //			String[] xmnfArray = xmbm.split(",");
 //			for (int i = 0; i < xmnfArray.length; i++) {
 //				if(i==xmnfArray.length-1){
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 //				}else if(i==0){
 //					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}else{
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}
 //			}
 //		}else{
@@ -1213,11 +1219,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			String[] xmnfArray = xmbm.split(",");
 			for (int i = 0; i < xmnfArray.length; i++) {
 				if(i==xmnfArray.length-1){
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 				}else if(i==0){
 					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 				}else{
-					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 				}
 			}
 		}else{
@@ -1283,11 +1289,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //			String[] xmnfArray = xmbm.split(",");
 //			for (int i = 0; i < xmnfArray.length; i++) {
 //				if(i==xmnfArray.length-1){
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 //				}else if(i==0){
 //					xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}else{
-//					xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+//					xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 //				}
 //			}
 //		}else{
@@ -1307,9 +1313,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 //						break;
 //					}
 //					if(i==0)
-//						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+//						tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 //					else
-//						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+//						tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 //				}
 //				if(tsdq==""){
 //					tsdq="";
@@ -1874,9 +1880,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(j."+tsdqs[i]+">0";
+						tsdq+=" and (j."+tsdqs[i]+">0";
 					else
-						tsdq+="or j."+tsdqs[i]+">0";
+						tsdq+=" or j."+tsdqs[i]+">0";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -1897,9 +1903,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(j.tsdq like '%"+tsdqs[i]+"%'";
+						tsdq+=" and (j.tsdq like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.tsdq like '%"+tsdqs[i]+"%'";
+						tsdq+=" or j.tsdq like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -1920,9 +1926,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(j.xdzttj like '%"+tsdqs[i]+"%'";
+						tsdq+=" and (j.xdzttj like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.xdzttj like '%"+tsdqs[i]+"%'";
+						tsdq+=" or j.xdzttj like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -1943,9 +1949,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -2011,9 +2017,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and (j.jhxdwh like '%"+tsdqs[i]+"%'";
+						tsdq+=" and (j.jhxdwh like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.jhxdwh like '%"+tsdqs[i]+"%'";
+						tsdq+=" or j.jhxdwh like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -2075,9 +2081,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		
 		try {
 			JSONArray ja = JSONArray.fromObject(json_data);
-			List<Jhsh> list = (List<Jhsh>) JSONArray.toList(ja, new Jhsh(),
-					new JsonConfig());
-			
+			List<Jhsh> list = (List<Jhsh>) JSONArray.toList(ja, new Jhsh(),new JsonConfig());
+			for (Jhsh jhsh : list) {
+				System.out.println(jhsh.getXmlx()+"     "+jhsh.getXmmc());
+			}
 			boolean bl = jhshServer.planxdAll(list);
 			ResponseUtils.write(getresponse(), bl + "");
 		} catch (Exception e) {
@@ -2151,18 +2158,18 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
 					if(i==xmnfArray.length-1){
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 					}else if(i==0){
 						xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 					}else{
-						xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+						xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 					}
 				}
 			}else{
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 		}
-		
+		xdwhHandle();
 		jhsh.setXmbm(xmbm);
 		jsdjHandle();
 		jsjsdjHandle();
@@ -2178,9 +2185,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						break;
 					}
 					if(i==0)
-						tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 					else
-						tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+						tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 				}
 				if(tsdq==""){
 					tsdq="";
@@ -2207,8 +2214,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		et.add(new Excel_tilte("建设年限",1,1,11,12));
 		et.add(new Excel_tilte("总投资",1,2,13,13));
 		et.add(new Excel_tilte("中央投资",1,2,14,14));
-		et.add(new Excel_tilte("到2014年底累计完成投资（万元）中央投资",1,1,15,16));
-		et.add(new Excel_tilte("2015年建设计划（万元）",1,1,17,22));
+		et.add(new Excel_tilte("累计完成投资（万元）中央投资",1,1,15,16));
+		et.add(new Excel_tilte("建设计划（万元）",1,1,17,22));
 		et.add(new Excel_tilte("前期工作情况",1,1,23,24));
 		et.add(new Excel_tilte("合计",2,2,4,4));
 		et.add(new Excel_tilte("一级公路",2,2,5,5));
@@ -2247,22 +2254,23 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					String[] xmnfArray = xmbm.split(",");
 					for (int i = 0; i < xmnfArray.length; i++) {
 						if(i==xmnfArray.length-1){
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 						}else if(i==0){
 							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 						}else{
-							xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 						}
 					}
 				}else{
 					xmbm = "j.xmbm like '" + xmbm + "%' ";
 				}
 			}
-			
+			xdwhHandle();
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
 			jsjsdjHandle();
 			ylxbhHandle();
+			xdztHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx1()!=null)
 				if(jhsh.getXmlx1().length()>0){
@@ -2274,9 +2282,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 							break;
 						}
 						if(i==0)
-							tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 						else
-							tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+							tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 					}
 					if(tsdq==""){
 						tsdq="";
@@ -2336,11 +2344,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 							String[] xmnfArray = xmbm.split(",");
 							for (int i = 0; i < xmnfArray.length; i++) {
 								if(i==xmnfArray.length-1){
-									xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 								}else if(i==0){
 									xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 								}else{
-									xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 								}
 							}
 						}else{
@@ -2352,6 +2360,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jsdjHandle();
 					jsjsdjHandle();
 					ylxbhHandle();
+					zjlyHandle();
+					xdztHandle();
+					xdwhHandle();
 					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 					if(jhsh.getXmlx1()!=null)
 						if(jhsh.getXmlx1().length()>0){
@@ -2363,9 +2374,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 									break;
 								}
 								if(i==0)
-									tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+									tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 								else
-									tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+									tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 							}
 							if(tsdq==""){
 								tsdq="";
@@ -2440,11 +2451,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 							String[] xmnfArray = xmbm.split(",");
 							for (int i = 0; i < xmnfArray.length; i++) {
 								if(i==xmnfArray.length-1){
-									xmbm += "or j.xmbm like '" + xmnfArray[i] + "%') ";
+									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
 								}else if(i==0){
 									xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
 								}else{
-									xmbm += "or j.xmbm like '" + xmnfArray[i] + "%' ";
+									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
 								}
 							}
 						}else{
@@ -2456,6 +2467,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jsdjHandle();
 					jsjsdjHandle();
 					ylxbhHandle();
+					zjlyHandle();
+					xdztHandle();
+					xdwhHandle();
 					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 					if(jhsh.getXmlx1()!=null)
 						if(jhsh.getXmlx1().length()>0){
@@ -2467,9 +2481,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 									break;
 								}
 								if(i==0)
-									tsdq+="and(j.xmlx1 like '%"+tsdqs[i]+"%'";
+									tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
 								else
-									tsdq+="or j.xmlx1 like '%"+tsdqs[i]+"%'";
+									tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
 							}
 							if(tsdq==""){
 								tsdq="";

@@ -271,7 +271,7 @@
 			var jhxdwh=$('#bzxdwh').val();
 			var bztbsj=$('#bztbsj').datebox('getValue');
 			if(jhxdwh==''||bztbsj==''){
-				alert("请填写计划下达文号或填报时间。");
+				alert("请填写计划下达文号或计划下达时间。");
 				return;
 			}
 			$('#bztbsj').datebox('setValue', formatDate(new Date()));
@@ -285,6 +285,7 @@
 			for(var i=0;i<rows.length;i++){
 				rows[i].jhxdwh=jhxdwh;
 				rows[i].bztbsj=bztbsj;
+				rows[i].xmlx=rows[i].xmbm.substr(10,1);
 			}
 			var json_data = JSON.stringify(rows); 
 			$.ajax({
@@ -356,15 +357,7 @@
 		        		return row.xmbm.substr(0,4);
 		        	}
 				},
-				{field:'xmmc',title:'项目名称',width:250,align:'center',
-					formatter: function(value,row,index){
-						if(Number(row.xmsl)>1){
-		        			return '<label style="color:red;">'+value+'</label>';
-		        		}else{
-		        			return value;
-		        		}
-					}
-				},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
@@ -431,16 +424,21 @@
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
-			var xmnf=$("#scxdnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			var param="jhsh.xmlx="+'5'+"&jhsh.xzqhdm="+getxzqhdm('xzqh')+"&jhsh.xmmc="+$("#xmmc").val()+
-			"&jhsh.xmnf="+xmnf+"&jhsh.jsdj="+$("#jsdj").combobox("getValues").join(",")+
+			"&jhsh.xmnf="+$('#scxdnf').combobox("getValues").join(',')+"&jhsh.jsdj="+$("#jsdj").combobox("getValues").join(",")+
 			"&jhsh.gldj="+$("#gldj").combobox("getValues").join(",")+"&jhsh.tsdq="+tsdq+
 			"&jhsh.ghlxbh="+$("#lxbm").val()+"&jhsh.lxmc="+$("#lxmc").val()+
 			"&jhsh.ghxlxbm="+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
-			"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+$("#jhxdwh").val()
-			+"&jhsh.xmbm="+xmnf;
+			"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh
+			+"&jhsh.xmbm="+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt;
 			window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 	</script>
@@ -595,7 +593,7 @@
 						<input id="bzxdwh" type="text"/>
 					</td>
 				</tr>
-				<tr style="height: 30px;font-size: 10px;display: none;">
+				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						填报时间</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">

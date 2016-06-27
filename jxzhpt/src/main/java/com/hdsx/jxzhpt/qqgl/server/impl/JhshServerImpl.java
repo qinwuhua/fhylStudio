@@ -610,7 +610,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean planxdAll(List<Jhsh> list) {
-		return insertBatch("planxdAll", list)==list.size();
+		return insertBatch("planxdAll", list)==list.size() && updateBatch("planxdAllmc", list)==list.size();
 	}
 	@Override
 	public List<Jhsh> queryshxd(Jhsh jhsh, int page, int rows) {

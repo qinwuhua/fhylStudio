@@ -299,7 +299,7 @@
 			var jhxdwh=$('#bzxdwh').val();
 			var bztbsj=$('#bztbsj').datebox('getValue');
 			if(jhxdwh==''||bztbsj==''){
-				alert("请填写计划下达文号或填报时间。");
+				alert("请填写计划下达文号或计划下达时间。");
 				return;
 			}
 			$('#bztbsj').datebox('setValue', formatDate(new Date()));
@@ -312,6 +312,7 @@
 			for(var i=0;i<rows.length;i++){
 				rows[i].jhxdwh=jhxdwh;
 				rows[i].bztbsj=bztbsj;
+				rows[i].xmlx=rows[i].xmbm.substr(10,1);
 			}
 			var json_data = JSON.stringify(rows); 
 			$.ajax({
@@ -389,15 +390,7 @@
 		        		return row.xmbm.substr(0,4);
 		        	}
 				},
-				{field:'xmmc',title:'项目名称',width:250,align:'center',
-					formatter: function(value,row,index){
-						if(Number(row.xmsl)>1){
-		        			return '<label style="color:red;">'+value+'</label>';
-		        		}else{
-		        			return value;
-		        		}
-					}
-				},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
@@ -453,7 +446,7 @@
 		});
 		
 		function exportZjxd(){
-			var xmlx=$("#xmlx").val();
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
@@ -465,6 +458,14 @@
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':$('#jhxdwh').val(),
@@ -476,9 +477,9 @@
 			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').val()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$('#ghlxbm').val()+'&jhsh.ghxlxmc='+$('#ghlxmc').val()+'&jhsh.lxmc='+$('#lxmc').val()+
 			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+$('#jhxdwh').val()+
 			'&jhsh.xdzt=1'+'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.scxdnf='+$('#scxdnf').combobox("getValues").join(',')+
-			'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xmbm=';
+			'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xmbm='+xmnf;
 
-			alert(param);
+			//alert(param);
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
 		
@@ -505,15 +506,26 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var xmnf=$("#scxdnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#scxdnf').combobox("getValues").join(',')+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
-			'&jhsh.xmnf='+xmnf;
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
+			'&jhsh.xmnf='+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel.do?"+param;
 		}
 		function exportJhshxx1(){
@@ -539,15 +551,26 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var xmnf=$("#scxdnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length);
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2016,2017,2018,2019,2020';
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#scxdnf').combobox("getValues").join(',')+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
-			'&jhsh.xmnf='+xmnf;
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
+			'&jhsh.xmnf='+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel.do?"+param;
 		}
 	</script>
@@ -591,11 +614,14 @@
 								<td><input name="xmlx" type="text" id="xmlx" style="width:110px;" /></td>
 								<td>技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
+        						<td align="right">首次下达年份：</td>
+        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
+        						</tr>
+        						
+        					<tr height="32">
         						<td>计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
         						
-        						</tr>
-        					<tr height="32">
         						 <td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:114px;" /></td>
         					
@@ -615,11 +641,12 @@
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
         						<td>原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
-        						<td>规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
         						
         					</tr>
         					<tr height="32">
+        					<td>规划路线编码：</td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
+        						
         					<td>规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						<td>是否有补助历史：</td>
@@ -656,8 +683,6 @@
         						</td>	
         					<td>特殊地区：</td>
         					<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> 
-        					<td>管养分类：</td>
-        					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         					</tr>
         				<!-- 	<tr height="32">
         						<td align="right">资金来源：</td>
@@ -672,12 +697,12 @@
         						</td> 
         					</tr>-->
        					<tr height="32">
-       					
+       						<td>管养分类：</td>
+        					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
+        					
         					<td>下达状态：</td>
         					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
-        					<td align="right">首次下达年份：</td>
-        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
-        					</tr>
+        					
        						<td colspan="4">
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="exportJhshxx()" onmouseover="this.src='../../../images/Button/dchz2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dchz1.gif'" src="../../../images/Button/dchz1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
@@ -703,7 +728,7 @@
             		</div>
            		<div id="tt" border="false" class="easyui-tabs" style="">
             		<script type="text/javascript" >
-                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:'+($(window).height()*0.7)+'px;');
+                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:'+($(window).height()*0.75)+'px;');
      				</script>
 	            		<div title="项目列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 					    	<table id="grid"></table>
@@ -734,9 +759,9 @@
 						<input id="bzxdwh" type="text"/>
 					</td>
 				</tr>
-				<tr style="height: 30px;font-size: 10px;display: none;">
+				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						填报时间</td>
+						计划下达时间</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="bztbsj" type="text"  class="easyui-datebox" />
 					</td>

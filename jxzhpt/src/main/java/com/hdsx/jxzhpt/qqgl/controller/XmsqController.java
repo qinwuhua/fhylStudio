@@ -160,10 +160,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		lxwn.addAll(lxserw);
 		
 		for (Lx lx : lxwn) {
-			if(Integer.parseInt(lx.getXmnf())>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
+			/*if(Integer.parseInt(lx.getXmnf())>Integer.parseInt(xmsq.getXmbm().substring(0, 4))){
 				dlx.add(lx);
 				continue;
-			}
+			}*/
 			if(lx.getXmid().equals(xmsq.getXmbm())){
 				dlx.add(lx);
 				continue;

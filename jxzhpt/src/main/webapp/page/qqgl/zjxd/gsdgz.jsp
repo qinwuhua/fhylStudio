@@ -64,7 +64,7 @@
 		function queryxmList(){
 			var xmnf='';
 			if(getUrlParame('id').substr(0,10)=='0101130301')
-				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
+				xmnf='2011,2012,2013,2014,2015';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
 				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
@@ -302,7 +302,7 @@
 			var jhxdwh=$('#bzxdwh').val();
 			var bztbsj=$('#bztbsj').datebox('getValue');
 			if(jhxdwh==''||bztbsj==''){
-				alert("请填写计划下达文号或填报时间。");
+				alert("请填写计划下达文号或计划下达时间。");
 				return;
 			}
 			$('#bztbsj').datebox('setValue', formatDate(new Date()));
@@ -315,6 +315,8 @@
 			for(var i=0;i<rows.length;i++){
 				rows[i].jhxdwh=jhxdwh;
 				rows[i].bztbsj=bztbsj;
+				//alert(rows[i].xmbm.substr(10,1));
+				rows[i].xmlx=rows[i].xmbm.substr(10,1);
 			}
 			var json_data = JSON.stringify(rows); 
 			$.ajax({
@@ -338,7 +340,7 @@
 		function showMxbAll(){
 			var xmnf='';
 			if(getUrlParame('id').substr(0,10)=='0101130301')
-				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
+				xmnf='2011,2012,2013,2014,2015';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
 				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			//var xmnf=$("#xmnf").combobox("getValues").join(",");
@@ -361,7 +363,7 @@
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':xmnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val()};
 			//loadLj(params);
 			$('#jhbz').datagrid({    
@@ -390,15 +392,7 @@
 		        		return row.xmbm.substr(0,4);
 		        	}
 				},
-				{field:'xmmc',title:'项目名称',width:250,align:'center',
-					formatter: function(value,row,index){
-						if(Number(row.xmsl)>1){
-		        			return '<label style="color:red;">'+value+'</label>';
-		        		}else{
-		        			return value;
-		        		}
-					}
-				},
+				{field:'xmmc',title:'项目名称',width:250,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{required:false}}},
 				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'numberbox',options:{required:false}}},
@@ -558,6 +552,11 @@
 			});
 		}
 		function exportZjxd(){
+			var xmnf='';
+			if(getUrlParame('id').substr(0,10)=='0101130301')
+				xmnf='2011,2012,2013,2014,2015';
+			if(getUrlParame('id').substr(0,10)=='0101130302')
+				xmnf='2011,2012,2013,2014,2015,2016,2017,2018,2019,2020';
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
@@ -570,6 +569,9 @@
 			var zjly=$("#zjly").combobox("getValues").join(",");
 			if(zjly.substr(0,1)==',')
 				zjly=zjly.substr(1,zjly.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			/* var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jhxdwh':$('#jhxdwh').val(),
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':$('#xmnf').combobox("getValues").join(','),'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
@@ -580,13 +582,17 @@
 					+'&jhsh.xdzt=1'+'&jhsh.lsjl='+$("#lsjl").combobox("getValue")+'&jhsh.xmbm='+$("#scxdnf").combobox("getValues").join(",")+'&jhsh.scxdnf='+$("#scxdnf").combobox("getValues").join(",")
 					+'&jhsh.xzdj='+$("#gldj").combobox("getValues").join(",")+"&jhsh.gyfl="+$("#gyfl").val(); */
   
- var param='jhsh.xmbm='+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xmlx1='+xmlx
-	+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').val()+'&jhsh.scxdnf='+$("#scxdnf").combobox("getValues").join(",")
-	+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",")
-	+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
-	+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+$("#jhxdwh").val()
-	+'&jhsh.xmnf='+$('#scxdnf').combobox("getValues").join(',');
- 
+		  var param='jhsh.xmbm='+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xmlx1='+xmlx
+			+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').val()+'&jhsh.scxdnf='+$("#scxdnf").combobox("getValues").join(",")
+			+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",")
+			+'&jhsh.xdzt=1'+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
+			+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
+			+'&jhsh.xmnf='+$('#scxdnf').combobox("getValues").join(',')+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly; 
+			/* var params={'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
+					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jsjsdj':$('#jsjsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':xmnf,
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val()};
+  */
 			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -775,9 +781,9 @@
 						<input id="bzxdwh" type="text"/>
 					</td>
 				</tr>
-				<tr style="height: 30px;font-size: 10px;display: none">
+				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						填报时间</td>
+						计划下达时间</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="bztbsj" type="text"  class="easyui-datebox" />
 					</td>

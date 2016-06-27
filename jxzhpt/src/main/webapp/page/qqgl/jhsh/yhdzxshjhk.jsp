@@ -25,6 +25,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
+			xdzt('xdzt');
+			zjly("zjly",'yh');
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			jhxdwhdx("jhxdwh",'yh');
@@ -50,13 +52,18 @@
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			if(jhxdwh==null||jhxdwh=='')
 				jhxdwh='%';
-			
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.sfsycgs':$('#sfsycgs').combobox("getValue"),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
-					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
-					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
+					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,'jhsh.gyfl':$('#gyfl').val(),
+					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh};
 			grid.queryParams=params;
@@ -212,12 +219,23 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%';
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
-			'&jhsh.xmnf='+xmnf;
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
+			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel.do?"+param;
 		}
 		function exportJhshxx1(){
@@ -246,12 +264,23 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%';
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
+			var zjly=$("#zjly").combobox("getValues").join(",");
+			if(zjly.substr(0,1)==',')
+				zjly=zjly.substr(1,zjly.length);
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+$("#jhxdwh").val()+
-			'&jhsh.xmnf='+xmnf;
+			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
+			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel.do?"+param;
 		}
 		function importJhsh(){
@@ -350,11 +379,11 @@ text-decoration:none;
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
-								
+								<td>项目年份：</td>
+        						<td><select id="xmnf" style="width: 104px;"></select></td>
         					</tr>
         					<tr height="32">
-        					<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 104px;"></select></td>
+        					
         						<td>计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td> 
         						<!-- <td align="right">特殊地区：</td>
@@ -367,16 +396,19 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td> -->
+        						 <td>资金来源：</td>
+        						<td><input name="zjly" type="text" id="zjly" style="width:114px;" /></td>
+        					
         						<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
+        						<td>原路线名称：</td>
+        						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
         						
                             </tr>
                             <tr height="32">
-                            <td>原路线名称：</td>
-        						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						
+                            
                             <td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
         						<td>规划路线名称：</td>
@@ -403,9 +435,7 @@ text-decoration:none;
 								</select></td>
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td> -->
-        						</tr>
-       					<tr height="32">
-       					<td>是否使用车购税：</td>
+        						<td>是否使用车购税：</td>
 								<td><select name="sfsycgs" id="sfsycgs" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
@@ -413,10 +443,19 @@ text-decoration:none;
 								</select></td>
 								 <td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:130px;"></select></td>
-                            
+                           
+        						</tr>
+       					<tr height="32">
+       					 <td>管养分类：</td>
+        					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
+        					<td>下达状态：</td>
+        					<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
+        					
        						<td colspan="8">
+       							
+        					
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
+<!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
 								<img onclick="exportJhshxx()" onmouseover="this.src='../../../images/Button/dchz2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dchz1.gif'" src="../../../images/Button/dchz1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="exportJhshxx1()" onmouseover="this.src='../../../images/Button/dcmx2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcmx1.gif'" src="../../../images/Button/dcmx1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->

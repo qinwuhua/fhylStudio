@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			xdzt('xdzt');
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
 			jhxdwhdx("jhxdwh",'sh');
@@ -44,6 +45,9 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var xdzt=$("#xdzt").combobox("getValues").join(",");
+			if(xdzt.substr(0,1)==',')
+				xdzt=xdzt.substr(1,xdzt.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			if(jhxdwh==null||jhxdwh=='')
@@ -53,7 +57,7 @@
 					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.xdzttj':xdzt
 					};
 			
 			grid.queryParams=params;
@@ -176,7 +180,7 @@
 				"&jhsh.gldj="+$("#gldj").combobox("getValues").join(",")+"&jhsh.tsdq="+tsdq+
 				"&jhsh.ghlxbh="+$("#lxbm").val()+"&jhsh.lxmc="+$("#lxmc").val()+
 				"&jhsh.ghxlxbm="+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
-				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+$("#jhxdwh").val();
+				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+$("#jhxdwh").val()+'&jhsh.xdzttj='+xdzt;
 		window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 		function importJhsh(){
@@ -323,9 +327,11 @@ text-decoration:none;
                            -->
                             </tr>
        					<tr height="32">
+       							<td>下达状态：</td>
+        						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
        						<td colspan="8">
        							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
+<!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
        						</td>

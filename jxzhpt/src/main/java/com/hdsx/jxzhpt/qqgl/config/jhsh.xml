@@ -294,6 +294,9 @@
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
 				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 				
 			) t 
@@ -409,7 +412,9 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-				
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -463,7 +468,9 @@
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-				
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by j.xdzt,j.xmbm desc,l_.sffirst desc
 			) t 
 		) 
@@ -524,6 +531,9 @@
 				</if>
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
 				</if>
 				order by j.xdzt,j.xmbm desc,l_.sffirst desc
 		<if test="page!=null and page!='' and page!=0">
@@ -675,6 +685,9 @@
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
 				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -761,6 +774,9 @@
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -2290,6 +2306,9 @@
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
 				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -2390,6 +2409,9 @@
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -2609,6 +2631,9 @@
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
 				</if>
+				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
+					${jhsh.xdzttj}
+				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
 				</if>
@@ -2669,6 +2694,9 @@
 				<if test="jhsh.shzt !=null and jhsh.shzt !=''">and j.xdzt=#{jhsh.shzt}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
+				</if>
+				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
+					${jhsh.xdzttj}
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
@@ -2754,6 +2782,9 @@
 				<if test="jhsh.shzt !=null and jhsh.shzt !=''">and j.xdzt=#{jhsh.shzt}</if>
 				<if test="jhsh.zjly !=null and jhsh.zjly !=''">
 					${jhsh.zjly}
+				</if>
+				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
+					${jhsh.xdzttj}
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
@@ -2852,6 +2883,9 @@
 				<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
 				</if>
 				<if test="gyfl !=null and gyfl !=''">
 					
@@ -3151,7 +3185,18 @@
 		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
 		
 	</insert>
-	
+	<insert id="planxdAllmc" parameterType="java.util.List">
+		update <if test="xmlx == 1">jhsh_sjgz</if>
+				<if test="xmlx == 2">jhsh_lmgz</if>
+				<if test="xmlx == 3">jhsh_xj</if>
+				<if test="xmlx == 4">jhsh_yhdzx</if>
+				<if test="xmlx == 5">jhsh_sh</if>
+				set xmmc=#{xmmc} where xmbm=#{xmbm}
+		<!-- 
+		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if><if test="bzrys != null">,rys</if><if test="bzyhdk != null">,yhdk</if><if test="bzdfzc != null">,dfzc</if><if test="zyjsnr != null">,zyjsnr</if><if test="xzscnl != null">,xzscnl</if>)
+		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
+		 -->
+	</insert>
 	
 	
 	
@@ -3929,38 +3974,42 @@
 					) jh15 on j.xmbm=jh15.xmid
 	             where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
-				</if>
-				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
-				
 				<if test="ghlxbh!=null and ghlxbh!=''">
-					and j.ghlxbh like '%'||#{ghlxbh}||'%'
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
 				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and l.ghlxbm like '%'||#{ghxlxbm}||'%'
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
 				</if>
 				<if test="lxmc !=null and lxmc !=''">
-					and l.lxmc like '%'||#{lxmc}||'%'
+					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
-					and l.ghlxmc like '%'||#{ghxlxmc}||'%'
-				</if> -->
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="scxdnf !=null and scxdnf !=''">
+					and scxdnf in (${scxdnf})
+				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
 				</if>
 				<if test="xzdj !=null and xzdj !=''">
 					and ${xzdj}
 				</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-				<if test="sbzt !=null and sbzt !=''">and j.sbzt=#{sbzt}</if>
-				<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
 				</if>
 				<if test="gyfl !=null and gyfl !=''">
 					
@@ -4002,44 +4051,46 @@
 					) jh15 on j.xmbm=jh15.xmid
 	             where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
-				</if>
-				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
-				
 				<if test="ghlxbh!=null and ghlxbh!=''">
-					and j.ghlxbh like '%'||#{ghlxbh}||'%'
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
 				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and l.ghlxbm like '%'||#{ghxlxbm}||'%'
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
 				</if>
 				<if test="lxmc !=null and lxmc !=''">
-					and l.lxmc like '%'||#{lxmc}||'%'
+					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
-					and l.ghlxmc like '%'||#{ghxlxmc}||'%'
-				</if> -->
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="scxdnf !=null and scxdnf !=''">
+					and scxdnf in (${scxdnf})
+				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
 				</if>
 				<if test="xzdj !=null and xzdj !=''">
 					and ${xzdj}
 				</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xdzt>=0">and j.xdzt=${xdzt}</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
 				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-				<if test="sbzt !=null and sbzt !=''">and j.sbzt=#{sbzt}</if>
-				<if test="shzt !=null and shzt !=''">and j.xdzt=#{shzt}</if>
 				<if test="zjly !=null and zjly !=''">
 					${zjly}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
 				</if>
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
-			
-			 
 		
 	</select>
 <!-- 下面是导出灾毁恢复的sql -->	
@@ -4073,34 +4124,37 @@
 	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
 	 where 1=1
 	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-	<if test="ghlxbh!=null and ghlxbh!=''">
-		and ghlxbmtj like '%'||#{ghlxbh}||'%'
-	</if>
-	<if test="ghxlxbm!=null and ghxlxbm!=''">
-		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-	</if>
-	<if test="lxmc !=null and lxmc !=''">
-		and ghlxmctj like '%'||#{lxmc}||'%'
-	</if>
-	<if test="ghxlxmc !=null and ghxlxmc !=''">
-		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-	</if>
-	<if test="xmnf !=null and xmnf !=''">
-		and substr(j.xmbm,0,4) in (${xmnf})
-	</if>
-	
-	<if test="tsdq !=null and tsdq !=''">
-		${tsdq}
-	</if>
-	<if test="xzdj !=null and xzdj !=''">
-		and ${xzdj}
-	</if>
-	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
-	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
-	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and ghlxbmtj like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+		</if>
+		<if test="lxmc !=null and lxmc !=''">
+			and ghlxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghxlxmc !=null and ghxlxmc !=''">
+			and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+		</if>
+		<if test="xmnf !=null and xmnf !=''">
+			and substr(j.xmbm,0,4) in (${xmnf})
+		</if>
+		
+		<if test="tsdq !=null and tsdq !=''">
+			${tsdq}
+		</if>
+		<if test="xzdj !=null and xzdj !=''">
+			and ${xzdj}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+		<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+		<if test="xdzttj !=null and xdzttj !=''">
+			${xdzttj}
+		</if>
 	)
 	union all
 	
@@ -4154,6 +4208,9 @@
 	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+	<if test="xdzttj !=null and xdzttj !=''">
+		${xdzttj}
+	</if>
 	</select>
 <!-- 下面是导出养护大中修汇总的sql -->
 	<select id="queryYhdzx_dcexcel" parameterType="jhsh" resultType="elist">
@@ -4227,43 +4284,46 @@
             on j.XMBM=l.xmid
    where 1=1
    <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-	<if test="ghlxbh!=null and ghlxbh!=''">
-		and ghlxbmtj like '%'||#{ghlxbh}||'%'
-	</if>
-	<if test="ghxlxbm!=null and ghxlxbm!=''">
-		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-	</if>
-	<if test="lxmc !=null and lxmc !=''">
-		and ghlxmctj like '%'||#{lxmc}||'%'
-	</if>
-	<if test="ghxlxmc !=null and ghxlxmc !=''">
-		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-	</if>
-	<if test="xmnf !=null and xmnf !=''">
-		and substr(j.xmbm,0,4) in (${xmnf})
-	</if>
-	<if test="tsdq !=null and tsdq !=''">
-		${tsdq}
-	</if>
-	<if test="xzdj !=null and xzdj !=''">
-		and ${xzdj}
-	</if>
-	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
-	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
-	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-	<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-	<if test="zjly !=null and zjly !=''">
-		${zjly}
-	</if>
-	<if test="gyfl !=null and gyfl !=''">
-		
-	</if>
-	<if test="sfsycgs !=null and sfsycgs !=''">
-		and sfsycgs = #{sfsycgs}
-	</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
+				</if>
+				<if test="ghxlxbm!=null and ghxlxbm!=''">
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+				</if>
+				<if test="lxmc !=null and lxmc !=''">
+					and ghlxmctj like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(j.xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="tsdq !=null and tsdq !=''">
+					${tsdq}
+				</if>
+				<if test="xzdj !=null and xzdj !=''">
+					and ${xzdj}
+				</if>
+				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="zjly !=null and zjly !=''">
+					${zjly}
+				</if>
+				<if test="gyfl !=null and gyfl !=''">
+					
+				</if>
+				<if test="sfsycgs !=null and sfsycgs !=''">
+					and sfsycgs = #{sfsycgs}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
    
 ) t 
 	union all
@@ -4336,44 +4396,47 @@
             group by xmid)  l
             on j.XMBM=l.xmid
    where 1=1
-   <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-	<if test="ghlxbh!=null and ghlxbh!=''">
-		and ghlxbmtj like '%'||#{ghlxbh}||'%'
-	</if>
-	<if test="ghxlxbm!=null and ghxlxbm!=''">
-		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-	</if>
-	<if test="lxmc !=null and lxmc !=''">
-		and ghlxmctj like '%'||#{lxmc}||'%'
-	</if>
-	<if test="ghxlxmc !=null and ghxlxmc !=''">
-		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-	</if>
-	<if test="xmnf !=null and xmnf !=''">
-		and substr(j.xmbm,0,4) in (${xmnf})
-	</if>
-	<if test="tsdq !=null and tsdq !=''">
-		${tsdq}
-	</if>
-	<if test="xzdj !=null and xzdj !=''">
-		and ${xzdj}
-	</if>
-	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
-	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
-	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-	<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-	<if test="zjly !=null and zjly !=''">
-		${zjly}
-	</if>
-	<if test="gyfl !=null and gyfl !=''">
-		
-	</if>
-	<if test="sfsycgs !=null and sfsycgs !=''">
-		and sfsycgs = #{sfsycgs}
-	</if>
+  <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
+				</if>
+				<if test="ghxlxbm!=null and ghxlxbm!=''">
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+				</if>
+				<if test="lxmc !=null and lxmc !=''">
+					and ghlxmctj like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(j.xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="tsdq !=null and tsdq !=''">
+					${tsdq}
+				</if>
+				<if test="xzdj !=null and xzdj !=''">
+					and ${xzdj}
+				</if>
+				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="zjly !=null and zjly !=''">
+					${zjly}
+				</if>
+				<if test="gyfl !=null and gyfl !=''">
+					
+				</if>
+				<if test="sfsycgs !=null and sfsycgs !=''">
+					and sfsycgs = #{sfsycgs}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
    
 ) t group by t.xzqh order by xzqh
 
@@ -4430,43 +4493,46 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
             on j.XMBM=l.xmid
    where 1=1
    <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-	<if test="ghlxbh!=null and ghlxbh!=''">
-		and ghlxbmtj like '%'||#{ghlxbh}||'%'
-	</if>
-	<if test="ghxlxbm!=null and ghxlxbm!=''">
-		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-	</if>
-	<if test="lxmc !=null and lxmc !=''">
-		and ghlxmctj like '%'||#{lxmc}||'%'
-	</if>
-	<if test="ghxlxmc !=null and ghxlxmc !=''">
-		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-	</if>
-	<if test="xmnf !=null and xmnf !=''">
-		and substr(j.xmbm,0,4) in (${xmnf})
-	</if>
-	<if test="tsdq !=null and tsdq !=''">
-		${tsdq}
-	</if>
-	<if test="xzdj !=null and xzdj !=''">
-		and ${xzdj}
-	</if>
-	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
-	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
-	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-	<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
-	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-	<if test="zjly !=null and zjly !=''">
-		${zjly}
-	</if>
-	<if test="gyfl !=null and gyfl !=''">
-		
-	</if>
-	<if test="sfsycgs !=null and sfsycgs !=''">
-		and sfsycgs = #{sfsycgs}
-	</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and ghlxbmtj like '%'||#{ghlxbh}||'%'
+				</if>
+				<if test="ghxlxbm!=null and ghxlxbm!=''">
+					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+				</if>
+				<if test="lxmc !=null and lxmc !=''">
+					and ghlxmctj like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghxlxmc !=null and ghxlxmc !=''">
+					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+				</if>
+				<if test="xmnf !=null and xmnf !=''">
+					and substr(j.xmbm,0,4) in (${xmnf})
+				</if>
+				<if test="tsdq !=null and tsdq !=''">
+					${tsdq}
+				</if>
+				<if test="xzdj !=null and xzdj !=''">
+					and ${xzdj}
+				</if>
+				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
+				<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+				<if test="zjly !=null and zjly !=''">
+					${zjly}
+				</if>
+				<if test="gyfl !=null and gyfl !=''">
+					
+				</if>
+				<if test="sfsycgs !=null and sfsycgs !=''">
+					and sfsycgs = #{sfsycgs}
+				</if>
+				<if test="xdzttj !=null and xdzttj !=''">
+					${xdzttj}
+				</if>
    order by xzqhdm
 	</select>
 </mapper>
