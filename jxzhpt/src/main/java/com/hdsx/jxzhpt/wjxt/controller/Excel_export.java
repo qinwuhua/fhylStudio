@@ -2172,6 +2172,7 @@ public class Excel_export {
 			int y1=excel_tilte.getY1();
 			int y2=excel_tilte.getY2();
 			if(x1!=x2||y1!=y2){
+				System.out.println(x1+"   "+x2+"    "+y1+"   "+y2);
 				CellRangeAddress range = new CellRangeAddress(x1,x2,y1,y2);
 				sheet.addMergedRegion(range);
 				setRegionStyle(style1,range,sheet);

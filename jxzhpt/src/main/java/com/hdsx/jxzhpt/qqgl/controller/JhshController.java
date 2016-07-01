@@ -661,6 +661,51 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		os.flush();
 		os.close();
 	}
+	//
+	public void batchUploadJhxd() throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		boolean b = false;
+		try {
+			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\";
+			File file =new File(fileurl);
+			if(uploadJhxd!=null){
+				CbsjServer cbsjServer = new CbsjServerImpl();
+				//List<Plan_upload> queryJhXm = cbsjServer.queryJhXm(jhsh.getXdwh());
+				//if(queryJhXm.size()>0){
+					//for (Plan_upload itemp : queryJhXm){
+						String fid=UUID.randomUUID().toString();
+						Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", "计划下达文件", 
+								"D:/江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
+						uploads.setFid(fid);
+						Plan_upload result = cbsjServer.queryFileByWh(uploads);
+						if(result==null && cbsjServer.insertFile(uploads)){
+							uploadFile(file,uploadJhxdFileName);
+						}
+
+						b = true;
+					//}
+				//}else{
+					//response.getWriter().print("没有文号为【"+jhsh.getXdwh()+"】的项目");
+				//}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				response.getWriter().print(uploadJhxdFileName+"上传失败！");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}finally{
+			if(b){
+				response.getWriter().print(uploadJhxdFileName+"上传成功！");
+			}else {
+				response.getWriter().print(uploadJhxdFileName+"上传失败！");
+			}
+		}
+	}
+	
+	
+	
 	public void batchUploadJhsh() throws IOException{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		boolean b = false;

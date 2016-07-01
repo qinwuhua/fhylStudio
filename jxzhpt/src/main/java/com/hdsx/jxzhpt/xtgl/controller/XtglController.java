@@ -811,6 +811,7 @@ public class XtglController extends BaseActionSupport{
 			
 				l=xtglServer.selQxByUser(param);
 				String qx1="";String qx2="";String qx3="";String qx4="";String qx5="";String qx6="";String qx7="";String qx8="";
+				String qx9="";
 				for (Param param : l) {
 					if(param.getId().length()==4)
 						qx1+=","+param.getId();
@@ -828,6 +829,8 @@ public class XtglController extends BaseActionSupport{
 						qx7+=","+param.getId();
 					if(param.getId().length()==18)
 						qx8+=","+param.getId();
+					if(param.getId().length()==20)
+						qx9+=","+param.getId();
 				}
 				if(qx1.length()>0)
 				session.setAttribute("qx1", qx1.substring(1));
@@ -845,6 +848,8 @@ public class XtglController extends BaseActionSupport{
 				session.setAttribute("qx7", qx7.substring(1));
 				if(qx8.length()>0)
 					session.setAttribute("qx8", qx8.substring(1));
+				if(qx9.length()>0)
+					session.setAttribute("qx9", qx9.substring(1));
 				//List<Param> l1	=xtglServer.selQxByUser1(param);
 				session.setAttribute("sour", l);
 				
@@ -864,6 +869,7 @@ public class XtglController extends BaseActionSupport{
 			}else{
 				l=xtglServer.selQxByUser(param);
 				String qx1="";String qx2="";String qx3="";String qx4="";String qx5="";String qx6="";String qx7="";String qx8="";
+				String qx9="";
 				for (Param param : l) {
 					if(param.getId().length()==4)
 						qx1+=","+param.getId();
@@ -881,6 +887,8 @@ public class XtglController extends BaseActionSupport{
 						qx7+=","+param.getId();
 					if(param.getId().length()==18)
 						qx8+=","+param.getId();
+					if(param.getId().length()==20)
+						qx9+=","+param.getId();
 				}
 				if(qx1.length()>0)
 				session.setAttribute("qx1", qx1.substring(1));
@@ -898,6 +906,8 @@ public class XtglController extends BaseActionSupport{
 				session.setAttribute("qx7", qx7.substring(1));
 				if(qx8.length()>0)
 					session.setAttribute("qx8", qx8.substring(1));
+				if(qx9.length()>0)
+					session.setAttribute("qx9", qx9.substring(1));
 				//l1=xtglServer.selQxByUser1(param);
 				session.setAttribute("sour", l);
 			};
@@ -1266,7 +1276,7 @@ public class XtglController extends BaseActionSupport{
 			HttpSession session = getRequest().getSession();
 				session.getAttribute("qx3");
 					//id += c.getValue().replaceAll("%2C", ",") + ",";
-				id=session.getAttribute("qx3")+","+session.getAttribute("qx4")+","+session.getAttribute("qx5")+","+session.getAttribute("qx6")+","+session.getAttribute("qx7")+","+session.getAttribute("qx8");
+				id=session.getAttribute("qx3")+","+session.getAttribute("qx4")+","+session.getAttribute("qx5")+","+session.getAttribute("qx6")+","+session.getAttribute("qx7")+","+session.getAttribute("qx8")+","+session.getAttribute("qx9");
 			//System.out.println(id);
 			if(",".equals(id.substring(id.length()-1))){
 				id=id.substring(0,id.length()-1);

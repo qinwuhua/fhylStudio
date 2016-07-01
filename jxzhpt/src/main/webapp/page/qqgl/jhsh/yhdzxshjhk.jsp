@@ -140,7 +140,11 @@
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
 				}}, */
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
-				{field:'bcxdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+					formatter: function(value,row,index){
+						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
+					}
+				},
 				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'}/* , */
 				/* {field:'mc',title:'面层结构',width:300,align:'center',
 					formatter:function(value,row,index){
@@ -481,6 +485,20 @@ text-decoration:none;
            	</td>
        	</tr>
 	</table>
+	<div id="wj" class="easyui-dialog" title="计划下达文件" style="width:500px;height:200px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+					<table width="99.9%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 100%;" cellspacing="0" cellpadding="0">
+		
+				<tr style="height: 100%;font-size: 10px;">
+					
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="wjTable"></tbody>
+						</table>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
 	<div id="plsc" class="easyui-dialog" title="批量上传计划下达文件" style="width:500px;height:150px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 			<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 30px;font-size: 10px;">

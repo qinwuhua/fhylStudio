@@ -883,11 +883,21 @@
 		select f.id,filename,xmbm,filetype,fileurl,filewh from plan_file f left join plan_upload u on f.fid=u.id
 		where xmbm=#{parentid} and filetype=#{filetype}
 	</select>
+	<select id="queryxdFileByWh" parameterType="plan_upload" resultType="plan_upload">
+		select * from plan_upload u
+		where filewh=#{parentid} and filetype=#{filetype} and parentid=#{filetype}
+	</select>
+	<select id="getWjbyxmbm" parameterType="plan_upload" resultType="plan_upload">
+		select * from plan_upload u
+		where filewh in (select distinct jhxdwh from plan_zjxd where xmid=#{parentid}) and filetype=#{filetype} and parentid=#{filetype}
+	</select>
+	
 	<insert id="insertFile" parameterType="plan_upload">
 		insert into plan_upload(id,filename,
 		<if test="filewh!=null">filewh,</if>
+		<if test="xmbm !=null">parentid,</if>
 		filetype,fileurl) values(#{id},#{filename},
-		<if test="filewh!=null">#{filewh},</if>#{filetype},#{fileurl})
+		<if test="filewh!=null">#{filewh},</if><if test="xmbm !=null">#{xmbm},</if>#{filetype},#{fileurl})
 	</insert>
 	<select id="queryFileByWh" parameterType="plan_upload" resultType="plan_upload">
 		select * from plan_upload where filetype=#{filetype} and filewh=#{filewh} and filename=#{filename}

@@ -1894,22 +1894,18 @@ function xzdjdx(id){
 			}
 		}
 	});
-	$('#'+id).combobox("setText",'全部');
+	//$('#'+id).combobox("setText",'全部');
 	//$('#id全部').attr('checked', true);
 	
 }
 function getgljjtj(flag){
-	if(flag=='010113040103030101'||flag=='010113040103030102'||flag=='010113040103030103'||flag=='010113040103030104'         
-	   ||flag=='010113040103030201'||flag=='010113040103030202'||flag=='010113040103030203'||flag=='010113040103030204'
-	   ||flag=='010113040203030101'||flag=='010113040203030102'||flag=='010113040203030103'||flag=='010113040203030104' 
-	   ||flag=='010113040203030201'||flag=='010113040203030202'||flag=='010113040203030203'||flag=='010113040203030204'         
-		)
+	if(flag=='01011304010302030101'||flag=='01011304010302030102'||flag=='01011304010302030103'||flag=='01011304010302030104'         
+	   ||flag=='01011304010302030201'||flag=='01011304010302030202'||flag=='01011304010302030203'||flag=='01011304010302030204'
+	   )
 		return '2';
-	else if(flag=='010113040103040201'||flag=='010113040103040202'||flag=='010113040103040203'||flag=='010113040103040204'
-	   ||flag=='010113040203040201'||flag=='010113040203040202'||flag=='010113040203040203'||flag=='010113040203040204'
-	   ||flag=='010113040103040101'||flag=='010113040103040102'||flag=='010113040103040103'||flag=='010113040103040104'	
-	   ||flag=='010113040203040101'||flag=='010113040203040102'||flag=='010113040203040103'||flag=='010113040203040104'
-	)
+	else if(flag=='01011304010302040101'||flag=='01011304010302040102'||flag=='01011304010302040103'||flag=='01011304010302040104'
+	   ||flag=='01011304010302040201'||flag=='01011304010302040202'||flag=='01011304010302040203'||flag=='01011304010302040204'
+	   )
 		return '1';
 	else return '';
 }
@@ -1941,11 +1937,13 @@ function setxzdj(id,flag){
 	   flag=='0101140302030101'||flag=='0101140302030102'||flag=='0101140302030103'||flag=='0101140302030104'||
 	   flag=='0101150101030101'||flag=='0101150101030102'||flag=='0101150101030103'||flag=='0101150101030104'||
 	   flag=='0101150102030101'||flag=='0101150102030102'||flag=='0101150102030103'||flag=='0101150102030104'
-	   ||flag=='010113040103030101'||flag=='010113040103030102'||flag=='010113040103030103'||flag=='010113040103030104'         
-	   ||flag=='010113040103040101'||flag=='010113040103040102'||flag=='010113040103040103'||flag=='010113040103040104'
-	   ||flag=='010113040203030101'||flag=='010113040203030102'||flag=='010113040203030103'||flag=='010113040203030104'         
-	   ||flag=='010113040203040101'||flag=='010113040203040102'||flag=='010113040203040103'||flag=='010113040203040104'
+	   ||flag=='01011304010302030101'||flag=='01011304010302030102'||flag=='01011304010302030103'||flag=='01011304010302030104'         
+	   ||flag=='01011304020302030101'||flag=='01011304020302030102'||flag=='01011304020302030103'||flag=='01011304020302030104'         
+			   
 		   
+	   ||flag=='010113040103010101'||flag=='010113040103010102'||flag=='010113040103010103'||flag=='010113040103010104'
+	   ||flag=='010113040203010101'||flag=='010113040203010102'||flag=='010113040203010103'||flag=='010113040203010104'
+						    
 	){
 		years.push({text:'国道',value:'G'});
 		years.push({text:'省道',value:'S'});
@@ -1966,11 +1964,12 @@ function setxzdj(id,flag){
 	   flag=='0101130302030201'||flag=='0101130302030202'||flag=='0101130302030203'||flag=='0101130302030204'||
 	   flag=='0101130401030201'||flag=='0101130401030202'||flag=='0101130401030203'||flag=='0101130401030204'||
 	   flag=='0101130402030201'||flag=='0101130402030202'||flag=='0101130402030203'||flag=='0101130402030204'
-	   ||flag=='010113040103030201'||flag=='010113040103030202'||flag=='010113040103030203'||flag=='010113040103030204'         
-	   ||flag=='010113040103040201'||flag=='010113040103040202'||flag=='010113040103040203'||flag=='010113040103040204'
-	   ||flag=='010113040203030201'||flag=='010113040203030202'||flag=='010113040203030203'||flag=='010113040203030204'         
-	   ||flag=='010113040203040201'||flag=='010113040203040202'||flag=='010113040203040203'||flag=='010113040203040204'
-				
+		   
+	   ||flag=='01011304010302030201'||flag=='01011304010302030202'||flag=='01011304010302030203'||flag=='01011304010302030204'
+	   ||flag=='01011304020302030201'||flag=='01011304020302030202'||flag=='01011304020302030203'||flag=='01011304020302030204'
+	   ||flag=='010113040103010201'||flag=='010113040103010202'||flag=='010113040103010203'||flag=='010113040103010204'
+	   ||flag=='010113040203010201'||flag=='010113040203010202'||flag=='010113040203010203'||flag=='010113040203010204'
+		  		
 		   
 	){
 		years.push({text:'县道',value:'X'});
@@ -2258,11 +2257,14 @@ function setxmnf(id,flag){
 	   flag=='0101140301030101'||flag=='0101140301030102'||flag=='0101140301030103'||flag=='0101140301030104'||
 	   flag=='0101150101030101'||flag=='0101150101030102'||flag=='0101150101030103'||flag=='0101150101030104'||
 	   flag=='0101130501030104'
-	   ||flag=='010113040103030101'||flag=='010113040103030102'||flag=='010113040103030103'||flag=='010113040103030104'         
-	   ||flag=='010113040103040101'||flag=='010113040103040102'||flag=='010113040103040103'||flag=='010113040103040104'
-	   ||flag=='010113040103030201'||flag=='010113040103030202'||flag=='010113040103030203'||flag=='010113040103030204'         
-	   ||flag=='010113040103040201'||flag=='010113040103040202'||flag=='010113040103040203'||flag=='010113040103040204'
-	   
+	   ||flag=='010113040103010101'||flag=='010113040103010102'||flag=='010113040103010103'||flag=='010113040103010104'         
+	   ||flag=='010113040103010201'||flag=='010113040103010202'||flag=='010113040103010203'||flag=='010113040103010204'
+	   ||flag=='01011304010302030101'||flag=='01011304010302030102'||flag=='01011304010302030103'||flag=='01011304010302030104'         
+	   ||flag=='01011304010302030201'||flag=='01011304010302030202'||flag=='01011304010302030203'||flag=='01011304010302030204'         
+	   ||flag=='01011304010302040101'||flag=='01011304010302040102'||flag=='01011304010302040103'||flag=='01011304010302040104'         
+	   ||flag=='01011304010302040201'||flag=='01011304010302040202'||flag=='01011304010302040203'||flag=='01011304010302040204'         
+			   		
+		   
 	){
 		if(flag=='0101120401020105'||flag=='0101120401020106'||flag=='0101120401020107'||flag=='0101120401020108'||
 		   flag=='0101120401020205'||flag=='0101120401020206'||flag=='0101120401020207'||flag=='0101120401020208'){
@@ -2298,10 +2300,13 @@ function setxmnf(id,flag){
 	   flag=='0101140202030101'||flag=='0101140202030102'||flag=='0101140202030103'||flag=='0101140202030104'||
 	   flag=='0101140302030101'||flag=='0101140302030102'||flag=='0101140302030103'||flag=='0101140302030104'||
 	   flag=='0101150102030101'||flag=='0101150102030102'||flag=='0101150102030103'||flag=='0101150102030104'
-	   ||flag=='010113040203030201'||flag=='010113040203030202'||flag=='010113040203030203'||flag=='010113040203030204'         
-	   ||flag=='010113040203040201'||flag=='010113040203040202'||flag=='010113040203040203'||flag=='010113040203040204'
-	   ||flag=='010113040203030101'||flag=='010113040203030102'||flag=='010113040203030103'||flag=='010113040203030104'         
-	   ||flag=='010113040203040101'||flag=='010113040203040102'||flag=='010113040203040103'||flag=='010113040203040104'		  
+	   ||flag=='010113040203010101'||flag=='010113040203010102'||flag=='010113040203010103'||flag=='010113040203010104'         
+	   ||flag=='010113040203010201'||flag=='010113040203010202'||flag=='010113040203010203'||flag=='010113040203010204'
+	   ||flag=='01011304020302030101'||flag=='01011304020302030102'||flag=='01011304020302030103'||flag=='01011304020302030104'         
+	   ||flag=='01011304020302030201'||flag=='01011304020302030202'||flag=='01011304020302030203'||flag=='01011304020302030204'         
+	   ||flag=='01011304020302040101'||flag=='01011304020302040102'||flag=='01011304020302040103'||flag=='01011304020302040104'         
+	   ||flag=='01011304020302040201'||flag=='01011304020302040202'||flag=='01011304020302040203'||flag=='01011304020302040204'         
+			   	   
 	){
 		if(flag=='0101120402020105'||flag=='0101120402020106'||flag=='0101120402020107'||flag=='0101120402020108'||
 		   flag=='0101120402020205'||flag=='0101120402020206'||flag=='0101120402020207'||flag=='0101120402020208'){
@@ -2483,6 +2488,133 @@ function createMenunew(id){
         }
     });
 }
+
+//报表项目类型
+function bbxmlx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'改建',value:'改建'});
+	years.push({text:'路面改造',value:'路面改造'});
+	years.push({text:'新建',value:'新建'});
+	years.push({text:'灾毁重建',value:'灾毁重建'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	//$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+//报表项目类型
+function xmjzzt(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/
+	years.push({text:'未开工',value:'未开工'});
+	years.push({text:'已开工',value:'已开工'});
+	years.push({text:'完工',value:'完工'});
+	//years.push({text:'灾毁重建',value:'灾毁重建'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	//$('#'+id).combobox("setText",'全部');
+	//$('#id全部').attr('checked', true);
+	
+}
+
+
 //国省道改造项目类型
 function gsdxmlx(id){
 	var years=[];
@@ -2545,6 +2677,8 @@ function gsdxmlx(id){
 	//$('#id全部').attr('checked', true);
 	
 }
+
+
 
 //养护大中修项目类型
 function yhxmlx(id){

@@ -776,6 +776,25 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		os.flush();
 		os.close();
 	}
+	public void queryFileByWh(){
+		try {
+			List<Plan_upload> list = cbsjServer.queryxdFileByWh(file);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	public void getWjbyxmbm(){
+		try {
+			List<Plan_upload> list = cbsjServer.getWjbyxmbm(file);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
 	public void queryFileByXmbm() throws Exception{
 		try {
 			List<Plan_upload> list = cbsjServer.queryFileByXmbm(file);

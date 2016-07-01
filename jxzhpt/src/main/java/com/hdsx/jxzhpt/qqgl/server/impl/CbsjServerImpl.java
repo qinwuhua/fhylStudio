@@ -67,6 +67,10 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("queryFileByXmbm",upload);
 	}
 	@Override
+	public List<Plan_upload> queryxdFileByWh(Plan_upload upload) {
+		return queryList("queryxdFileByWh",upload);
+	}
+	@Override
 	public boolean deleteLmgzByXmbm(String xmbm) {
 		String[] split = xmbm.split(",");
 		List<Cbsj> list=new ArrayList<Cbsj>();
@@ -406,6 +410,7 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	}
 	@Override
 	public Plan_upload queryFileByWh(Plan_upload uploads) {
+		//System.out.println(uploads.getFiletype()+"   "+uploads.getFilewh()+"    "+uploads.getFilename());
 		return queryOne("queryFileByWh", uploads);
 	}
 	@Override
@@ -505,6 +510,10 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 			insert("insertlmsgt", cbsj);
 		}
 		return update("updatelmsgt",cbsj)==1;
+	}
+	@Override
+	public List<Plan_upload> getWjbyxmbm(Plan_upload file) {
+		return queryList("getWjbyxmbm",file);
 	}
 
 }

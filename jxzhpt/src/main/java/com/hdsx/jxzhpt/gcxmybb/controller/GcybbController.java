@@ -2105,8 +2105,8 @@ public class GcybbController extends BaseActionSupport{
 			gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
 			gcglabgc.setGljslx(getcxtj("v_13",gcglabgc.getGljslx()));
 			gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
-			
-			
+			gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
+			gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));
 			List<Excel_list> list1=gcybbServer.getGlgzxj(gcglabgc);
 			
 			if("1".equals(flag)){
@@ -2117,11 +2117,11 @@ public class GcybbController extends BaseActionSupport{
 				eldata.setFileName("公路改造工程新上、续建工程项目完成情况明细表");//设置文件名
 				eldata.setEl(list1);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-				et.add(new Excel_tilte("一、 项 目 计 划",1,1,0,28));
-				et.add(new Excel_tilte("二、 本年元月至本月完成情况",1,1,29,46));
-				et.add(new Excel_tilte("三、本月进展情况",1,1,47,49));
-				et.add(new Excel_tilte("四、 自开工至本月底累计完成情况",1,1,50,70));
-				et.add(new Excel_tilte("备注",1,1,71,71));
+				et.add(new Excel_tilte("一、 项 目 计 划",1,1,0,35));
+				et.add(new Excel_tilte("二、 本年元月至本月完成情况",1,1,36,55));
+				et.add(new Excel_tilte("三、本月进展情况",1,1,56,58));
+				et.add(new Excel_tilte("四、 自开工至本月底累计完成情况",1,1,59,81));
+				et.add(new Excel_tilte("备注",1,4,82,82));
 				et.add(new Excel_tilte("序号",2,4,0,0));
 				et.add(new Excel_tilte("计划唯一编码",2,4,1,1));
 				et.add(new Excel_tilte("项目所在地市",2,4,2,2));
@@ -2141,72 +2141,83 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("施工图起点桩号",2,4,16,16));
 				et.add(new Excel_tilte("施工图止点桩号",2,4,17,17));
 				et.add(new Excel_tilte("总投资（万元）",2,4,18,18));
-				et.add(new Excel_tilte("中央车购税（万元）",2,4,19,19));
-				et.add(new Excel_tilte("地方配套（万元）",2,4,20,20));
-				et.add(new Excel_tilte("本年度计划投资（万元）",2,4,21,21));
-				et.add(new Excel_tilte("",2,2,22,22));
-				et.add(new Excel_tilte("本年实施里程(公里)",2,4,23,23));
-				et.add(new Excel_tilte("项目在建个数（个）",2,4,24,24));
-				et.add(new Excel_tilte("项目完工个数（个）",2,4,25,25));
-				et.add(new Excel_tilte("项目未开工个数（个）",2,4,26,26));
-				et.add(new Excel_tilte("开工时间",2,4,27,27));
-				et.add(new Excel_tilte("完工时间",2,4,28,28));
-				et.add(new Excel_tilte("累计资金到位（万 元）",2,2,29,36));
-				et.add(new Excel_tilte("项目完成投资(万元)",2,4,37,37));
-				et.add(new Excel_tilte("占投资比例（%）",2,4,38,38));
-				et.add(new Excel_tilte("完 成 工 程 量（公里)",2,2,39,46));
-				et.add(new Excel_tilte("新增资金到位（万元）",2,4,47,47));
-				et.add(new Excel_tilte("新增完成工程量（公里）",2,4,48,48));
-				et.add(new Excel_tilte("新增项目完成投资（万元）",2,4,49,49));
-				et.add(new Excel_tilte("累计资金到位（万元）",2,2,50,57));
-				et.add(new Excel_tilte("项目完成投资（万元）",2,4,58,58));
-				et.add(new Excel_tilte("累 计 完 成 工 程 量 （ 公 里 )",2,2,59,66));
-				et.add(new Excel_tilte("项目未完工程量（公里）",2,4,67,67));
-				et.add(new Excel_tilte("完成工程量比例（%）",2,4,68,68));
-				et.add(new Excel_tilte("车购税到位比例（%）",2,4,69,69));
-				et.add(new Excel_tilte("完成投资比例（%）",2,4,70,70));
-				et.add(new Excel_tilte("",2,2,71,71));
-				et.add(new Excel_tilte("其中中央车购税（万元）",3,4,22,22));
-				et.add(new Excel_tilte("合计",3,4,29,29));
-				et.add(new Excel_tilte("中央车购税",3,4,30,30));
-				et.add(new Excel_tilte("地方配套",3,3,31,34));
-				et.add(new Excel_tilte("省厅贴息(贷款)",3,4,35,35));
-				et.add(new Excel_tilte("其他资金",3,4,36,36));
-				et.add(new Excel_tilte("按技术等级",3,3,39,43));
-				et.add(new Excel_tilte("按路面类型",3,3,44,45));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,46,46));
-				et.add(new Excel_tilte("合计",3,4,50,50));
-				et.add(new Excel_tilte("中央车购税",3,4,51,51));
-				et.add(new Excel_tilte("地方配套",3,3,52,55));
-				et.add(new Excel_tilte("省厅贴息(贷款)",3,4,56,56));
-				et.add(new Excel_tilte("其他资金",3,4,57,57));
-				et.add(new Excel_tilte("按技术等级",3,3,59,63));
-				et.add(new Excel_tilte("按路面类型",3,3,64,65));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,66,66));
-				et.add(new Excel_tilte("",3,3,71,71));
-				et.add(new Excel_tilte("小计",4,4,31,31));
-				et.add(new Excel_tilte("其中：银行贷款",4,4,32,32));
-				et.add(new Excel_tilte("国债",4,4,33,33));
-				et.add(new Excel_tilte("省债",4,4,34,34));
-				et.add(new Excel_tilte("小计",4,4,39,39));
-				et.add(new Excel_tilte("一级",4,4,40,40));
-				et.add(new Excel_tilte("二级",4,4,41,41));
-				et.add(new Excel_tilte("三级",4,4,42,42));
-				et.add(new Excel_tilte("四级",4,4,43,43));
-				et.add(new Excel_tilte("沥青路",4,4,44,44));
-				et.add(new Excel_tilte("水泥砼",4,4,45,45));
-				et.add(new Excel_tilte("小计",4,4,52,52));
-				et.add(new Excel_tilte("其中：银行贷款",4,4,53,53));
-				et.add(new Excel_tilte("国债",4,4,54,54));
-				et.add(new Excel_tilte("省债",4,4,55,55));
-				et.add(new Excel_tilte("小计",4,4,59,59));
-				et.add(new Excel_tilte("一级",4,4,60,60));
-				et.add(new Excel_tilte("二级",4,4,61,61));
-				et.add(new Excel_tilte("三级",4,4,62,62));
-				et.add(new Excel_tilte("四级",4,4,63,63));
-				et.add(new Excel_tilte("沥青路",4,4,64,64));
-				et.add(new Excel_tilte("水泥砼",4,4,65,65));
-				et.add(new Excel_tilte("",4,4,71,71));
+				et.add(new Excel_tilte("车购税（万元）",2,4,19,19));
+				et.add(new Excel_tilte("国债（万元）",2,4,20,20));
+				et.add(new Excel_tilte("省债（万元）",2,4,21,21));
+				et.add(new Excel_tilte("债券（万元）",2,4,22,22));
+				et.add(new Excel_tilte("贷款（万元）",2,4,23,23));
+				et.add(new Excel_tilte("奖励（万元）",2,4,24,24));
+				et.add(new Excel_tilte("其他（万元）",2,4,25,25));
+				et.add(new Excel_tilte("地方自筹（万元）",2,4,26,26));
+				et.add(new Excel_tilte("银行贷款（万元）",2,4,27,27));
+				et.add(new Excel_tilte("本年度计划投资（万元）",2,4,28,28));
+				et.add(new Excel_tilte("",2,2,29,29));
+				et.add(new Excel_tilte("本年实施里程(公里)",2,4,30,30));
+				et.add(new Excel_tilte("项目在建个数（个）",2,4,31,31));
+				et.add(new Excel_tilte("项目完工个数（个）",2,4,32,32));
+				et.add(new Excel_tilte("项目未开工个数（个）",2,4,33,33));
+				et.add(new Excel_tilte("开工时间",2,4,34,34));
+				et.add(new Excel_tilte("完工时间",2,4,35,35));
+				et.add(new Excel_tilte("累计资金到位（万 元）",2,2,36,45));
+				et.add(new Excel_tilte("项目完成投资(万元)",2,4,46,46));
+				et.add(new Excel_tilte("占投资比例（%）",2,4,47,47));
+				et.add(new Excel_tilte("完 成 工 程 量（公里)",2,2,48,55));
+				et.add(new Excel_tilte("新增资金到位（万元）",2,4,56,56));
+				et.add(new Excel_tilte("新增完成工程量（公里）",2,4,57,57));
+				et.add(new Excel_tilte("新增项目完成投资（万元）",2,4,58,58));
+				et.add(new Excel_tilte("累计资金到位（万元）",2,2,59,68));
+				et.add(new Excel_tilte("项目完成投资（万元）",2,4,69,69));
+				et.add(new Excel_tilte("累 计 完 成 工 程 量 （ 公 里 )",2,2,70,77));
+				et.add(new Excel_tilte("项目未完工程量（公里）",2,4,78,78));
+				et.add(new Excel_tilte("完成工程量比例（%）",2,4,79,79));
+				et.add(new Excel_tilte("车购税到位比例（%）",2,4,80,80));
+				et.add(new Excel_tilte("完成投资比例（%）",2,4,81,81));
+				//et.add(new Excel_tilte("",2,2,82,82));
+				et.add(new Excel_tilte("其中中央车购税（万元）",3,4,29,29));
+				et.add(new Excel_tilte("总投资",3,4,36,36));
+				et.add(new Excel_tilte("车购税",3,4,37,37));
+				et.add(new Excel_tilte("国债",3,4,38,38));
+				et.add(new Excel_tilte("省债",3,4,39,39));
+				et.add(new Excel_tilte("债券",3,4,40,40));
+				et.add(new Excel_tilte("贷款",3,4,41,41));
+				et.add(new Excel_tilte("奖励",3,4,42,42));
+				et.add(new Excel_tilte("其他",3,4,43,43));
+				et.add(new Excel_tilte("地方自筹",3,4,44,44));
+				et.add(new Excel_tilte("银行贷款",3,4,45,45));
+				et.add(new Excel_tilte("按技术等级",3,3,48,52));
+				et.add(new Excel_tilte("按路面类型",3,3,53,54));
+				et.add(new Excel_tilte("砂石垫层通车",3,4,55,55));
+				et.add(new Excel_tilte("总投资",3,4,59,59));
+				et.add(new Excel_tilte("车购税",3,4,60,60));
+				et.add(new Excel_tilte("国债",3,4,61,61));
+				et.add(new Excel_tilte("省债",3,4,62,62));
+				et.add(new Excel_tilte("债券",3,4,63,63));
+				et.add(new Excel_tilte("贷款",3,4,64,64));
+				et.add(new Excel_tilte("奖励",3,4,65,65));
+				et.add(new Excel_tilte("其他",3,4,66,66));
+				et.add(new Excel_tilte("地方自筹",3,4,67,67));
+				et.add(new Excel_tilte("银行贷款",3,4,68,68));
+				et.add(new Excel_tilte("按技术等级",3,3,70,74));
+				et.add(new Excel_tilte("按路面类型",3,3,75,76));
+				et.add(new Excel_tilte("砂石垫层通车",3,4,77,77));
+				//et.add(new Excel_tilte("",3,3,71,71));
+				
+				et.add(new Excel_tilte("小计",4,4,48,48));
+				et.add(new Excel_tilte("一级",4,4,49,49));
+				et.add(new Excel_tilte("二级",4,4,50,50));
+				et.add(new Excel_tilte("三级",4,4,51,51));
+				et.add(new Excel_tilte("四级",4,4,52,52));
+				et.add(new Excel_tilte("沥青路",4,4,53,53));
+				et.add(new Excel_tilte("水泥砼",4,4,54,54));
+				
+				et.add(new Excel_tilte("小计",4,4,70,70));
+				et.add(new Excel_tilte("一级",4,4,71,71));
+				et.add(new Excel_tilte("二级",4,4,72,72));
+				et.add(new Excel_tilte("三级",4,4,73,73));
+				et.add(new Excel_tilte("四级",4,4,74,74));
+				et.add(new Excel_tilte("沥青路",4,4,75,75));
+				et.add(new Excel_tilte("水泥砼",4,4,76,76));
+				//et.add(new Excel_tilte("",4,4,71,71));
 			
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -3345,5 +3356,37 @@ public class GcybbController extends BaseActionSupport{
 			return tj;
 		}
 		
-		
+		public String getcxtj1(String id,String param){
+			String tj="";
+			if(param!=null&&!"".equals(param)){
+				String[] s=param.split(",");
+				for (int i = 0; i < s.length; i++) {
+					if(i==0){
+						if("非0".equals(s[i])){
+							tj+="and (("+id+" !=0 or "+id+" is not null)";
+						}
+						else if("0".equals(s[i])){
+							tj+="and (("+id+" =0 or "+id+" is null)";
+						}else{
+							tj+="and (1=1";
+						}
+						
+					}
+					
+					else{
+						if("非0".equals(s[i])){
+							tj+="or ("+id+" !=0 or "+id+" is not null)";
+						}
+						else if("0".equals(s[i])){
+							tj+="or ("+id+" =0 or "+id+" is null)";
+						}else{
+							tj+="or 1=1";
+						}
+					}
+					
+				}
+				tj+=")";
+			}
+			return tj;
+		}
 }

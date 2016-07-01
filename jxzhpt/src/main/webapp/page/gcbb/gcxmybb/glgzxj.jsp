@@ -35,14 +35,19 @@
 	<script type="text/javascript">
 	$(function(){
 		setjhxdnf("ddlYear1");
-		setjhxdnf("jhnd");
+		setjhxdnf1("jhnd");
 		loadUnit1("gydw",$.cookie("unit"));
 		loadDist1("xzqh",$.cookie("dist"));
-		loadBmbm3("xzdj","行政等级");
+		//loadBmbm3("xzdj","行政等级");
 		loadBmbm3('yjsdj','技术等级');
 		loadBmbm3('jsjsdj','技术等级');
-		loadBmbm3('jzzt','进展状态');
-		loadBmbm3('gljslx','项目类型2');
+		//loadBmbm3('jzzt','进展状态');
+		xzdjdx('xzdj');
+		xmjzzt("jzzt");
+		bbxmlx('gljslx');
+		setbnjhtz('bnjhtz');
+		setbndsslc('bndsslc');
+		//loadBmbm3('gljslx','项目类型2');
 		var myDate = new Date();
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1; 
@@ -57,6 +62,72 @@
 		
 		showAll();
 	});
+	function setjhxdnf1(id){
+		var myDate = new Date();
+		var years=[];
+		//var first;
+		years.push({text:'全部',value:''});
+		for(var i=0;i<=10;i++){
+			if(i==0)
+				first=myDate.getFullYear()-i;
+			years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+		}
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    multiple:true,
+		    formatter:function(row){
+				var opts = $(this).combobox('options');
+				return '<input id="name'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			},
+			onSelect:function(record){
+				var opts = $(this).combobox('options');
+				if(record[opts.valueField]==""){
+					var values =new Array();
+					var datas = $('#' +id).combobox("getData");
+					$.each(datas,function(index,item){
+						values.push(item.value);
+						$('#name'+item.value).attr('checked', true);
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$('#name'+record.value).attr('checked', true);
+				}
+			},
+			onUnselect:function(record){
+				var opts = $(this).combobox('options');
+				var datas = $('#' +id).combobox("getData");
+				var values = $('#' +id).combobox("getValues");
+				$('#' +id).combobox("clear");
+				if(record[opts.valueField]!=""){
+					if(jQuery.inArray("",values)>=0){
+						values.splice(jQuery.inArray("",values),1);
+					}
+					$.each(datas,function(index,item){
+						if(jQuery.inArray(""+item.value,values)<0){
+							$('#name'+item.value).attr('checked', false);
+						}
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$.each(datas,function(index,item){
+						$('#name'+item.value).attr('checked', false);
+					});
+				}
+			}
+		});
+		var arr1 = new Array(); 
+		for(var i=0;i<=10;i++){
+			arr1[i]=myDate.getFullYear()+5-i;
+			//if(i==0)
+			//	first=myDate.getFullYear()-i;
+			//years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+			$('#name'+(myDate.getFullYear()+5-i)).attr('checked', true);
+		}
+		$('#'+id).combobox("setValues",arr1);
+		
+	}
 	function setjhxdnf(id){
 		var myDate = new Date();
 		var years=[];
@@ -112,11 +183,132 @@
 				}
 			}
 		});
-		$('#'+id).combobox("setValue",myDate.getFullYear()+'');
-		$('#id'+myDate.getFullYear()).attr('checked', true);
+		var arr1 = new Array(); 
+		for(var i=0;i<=10;i++){
+			arr1[i]=myDate.getFullYear()+5-i;
+			//if(i==0)
+			//	first=myDate.getFullYear()-i;
+			//years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+			$('#id'+(myDate.getFullYear()+5-i)).attr('checked', true);
+		}
+		$('#'+id).combobox("setValues",arr1);
+		//$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+		//$('#id'+myDate.getFullYear()).attr('checked', true);
 		
 	}
+	
+	
+	function setbnjhtz(id){
+		var years=[];
+		years.push({text:'全部',value:''});
+		years.push({text:'0',value:'0'});
+		years.push({text:'非0',value:'非0'});
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    multiple:true,
+		    formatter:function(row){
+				var opts = $(this).combobox('options');
+				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			},
+			onSelect:function(record){
+				var opts = $(this).combobox('options');
+				if(record[opts.valueField]==""){
+					var values =new Array();
+					var datas = $('#' +id).combobox("getData");
+					$.each(datas,function(index,item){
+						values.push(item.value);
+						$('#id'+item.value).attr('checked', true);
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$('#id'+record.value).attr('checked', true);
+				}
+			},
+			onUnselect:function(record){
+				var opts = $(this).combobox('options');
+				var datas = $('#' +id).combobox("getData");
+				var values = $('#' +id).combobox("getValues");
+				$('#' +id).combobox("clear");
+				if(record[opts.valueField]!=""){
+					if(jQuery.inArray("",values)>=0){
+						values.splice(jQuery.inArray("",values),1);
+					}
+					$.each(datas,function(index,item){
+						if(jQuery.inArray(""+item.value,values)<0){
+							$('#id'+item.value).attr('checked', false);
+						}
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$.each(datas,function(index,item){
+						$('#id'+item.value).attr('checked', false);
+					});
+				}
+			}
+		});
+		
+	}
+	
+	function setbndsslc(id){
+		var years=[];
+		years.push({text:'全部',value:''});
+		years.push({text:'0',value:'0'});
+		years.push({text:'非0',value:'非0'});
+		$('#'+id).combobox({
+		    data:years,
+		    valueField:'value',
+		    textField:'text',
+		    multiple:true,
+		    formatter:function(row){
+				var opts = $(this).combobox('options');
+				return '<input id="name'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			},
+			onSelect:function(record){
+				var opts = $(this).combobox('options');
+				if(record[opts.valueField]==""){
+					var values =new Array();
+					var datas = $('#' +id).combobox("getData");
+					$.each(datas,function(index,item){
+						values.push(item.value);
+						$('#name'+item.value).attr('checked', true);
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$('#name'+record.value).attr('checked', true);
+				}
+			},
+			onUnselect:function(record){
+				var opts = $(this).combobox('options');
+				var datas = $('#' +id).combobox("getData");
+				var values = $('#' +id).combobox("getValues");
+				$('#' +id).combobox("clear");
+				if(record[opts.valueField]!=""){
+					if(jQuery.inArray("",values)>=0){
+						values.splice(jQuery.inArray("",values),1);
+					}
+					$.each(datas,function(index,item){
+						if(jQuery.inArray(""+item.value,values)<0){
+							$('#name'+item.value).attr('checked', false);
+						}
+					});
+					$('#' +id).combobox("setValues",values);
+				}else{
+					$.each(datas,function(index,item){
+						$('#name'+item.value).attr('checked', false);
+					});
+				}
+			}
+		});
+		
+	}
+	var flagi=1;
 	function showAll(){
+		if(flagi==0){
+			alert("数据正在响应，请您耐心等待。");
+			return;
+		}	
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
@@ -154,18 +346,19 @@
 		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
 		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
 		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
-		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
-		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
+		+"&gcglabgc.bnjhtz="+$("#bnjhtz").combobox('getValues').join(',')
+		+"&gcglabgc.bndsslc="+$("#bndsslc").combobox('getValues').join(',');
 		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
+		flagi=0;
 		$.ajax({
 			url:"/jxzhpt/gcybb/getGlgzxj.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
-				
+				flagi=1;
 				$("#nian").text($("#ddlYear").val());
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
@@ -205,7 +398,12 @@
 									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
 									+msg[i].v_66+"</td><td>"+msg[i].v_67+"</td><td>"
 									+msg[i].v_68+"</td><td>"+msg[i].v_69+"</td><td>"
-									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td></tr>"
+									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td><td>"
+									+msg[i].v_72+"</td><td>"+msg[i].v_73+"</td><td>"
+									+msg[i].v_74+"</td><td>"+msg[i].v_75+"</td><td>"
+									+msg[i].v_76+"</td><td>"+msg[i].v_77+"</td><td>"
+									+msg[i].v_78+"</td><td>"+msg[i].v_79+"</td><td>"
+									+msg[i].v_80+"</td><td>"+msg[i].v_81+"</td><td>"+msg[i].v_82+"</td></tr>"
 							);
 						}else{
 							tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
@@ -243,7 +441,12 @@
 									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
 									+msg[i].v_66+"</td><td>"+msg[i].v_67+"</td><td>"
 									+msg[i].v_68+"</td><td>"+msg[i].v_69+"</td><td>"
-									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td></tr>"
+									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td><td>"
+									+msg[i].v_72+"</td><td>"+msg[i].v_73+"</td><td>"
+									+msg[i].v_74+"</td><td>"+msg[i].v_75+"</td><td>"
+									+msg[i].v_76+"</td><td>"+msg[i].v_77+"</td><td>"
+									+msg[i].v_78+"</td><td>"+msg[i].v_79+"</td><td>"
+									+msg[i].v_80+"</td><td>"+msg[i].v_81+"</td><td>"+msg[i].v_82+"</td></tr>"
 							);
 						}
 					}
@@ -366,16 +569,16 @@
         						<input id="bndsslc" type="text"  style="width: 60px">
         						</select> -->
         						<span>本年计划投资：</span>
-        						<select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:104px;">
-									<option value="" selected="selected">全部</option>
+        						<select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:54px;">
+									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
-									<option value="非0">非0</option>
+									<option value="非0">非0</option> -->
 								</select>
         						<span>本年度实施里程：</span>
-        						<select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:104px;">
-									<option value="" selected="selected">全部</option>
+        						<select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:54px;">
+									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
-									<option value="非0">非0</option>
+									<option value="非0">非0</option> -->
 								</select>
 							</p>
         					<p style="margin: 8px 0px 8px 20px;">
@@ -401,10 +604,10 @@
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 公路局<span id='nian' style="font-size: x-large;"></span>年公路改造工程项目完成情况表</caption>
 								<thead>
 									<tr>
-										<td colspan="29">一、 项 目 计 划</td>
-										<td colspan="18">二、 本年元月至本月完成情况</td>
+										<td colspan="36">一、 项 目 计 划</td>
+										<td colspan="20">二、 本年元月至本月完成情况</td>
 										<td colspan="3">三、本月进展情况</td>
-										<td colspan="21">四、 自开工至本月底累计完成情况</td>
+										<td colspan="23">四、 自开工至本月底累计完成情况</td>
 										<td rowspan="4">备注</td>
 									</tr>
 									<tr>
@@ -427,8 +630,15 @@
 										<td rowspan="3" style="width: 125px;">施工图起点桩号</td>
 										<td rowspan="3" style="width: 125px;">施工图止点桩号</td>
 										<td rowspan="3" style="width: 125px;">总投资<br>(万元)</td>
-										<td rowspan="3" style="width: 125px;">中央车购税<br>(万元)</td>
-										<td rowspan="3" style="width: 125px;">地方配套<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">车购税<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">国债<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">省债<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">债券<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">贷款<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">奖励<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">其他<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">地方自筹<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">银行贷款<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">本年度计划投资<br>(万元)</td>
 										<td rowspan="2" style="width: 125px;"></td>
 										<td rowspan="3" style="width: 125px;">本年度实施里程<br>(公里)</td>
@@ -437,14 +647,14 @@
 										<td rowspan="3" style="width: 125px;">项目未开工个数<br>(个)</td>
 										<td rowspan="3" style="width: 125px;">开工时间(精确到月)</td>
 										<td rowspan="3" style="width: 125px;">完工时间(精确到月)</td>
-										<td colspan="8">累计资金到位<br>(万 元)</td>
+										<td colspan="10">累计资金到位<br>(万 元)</td>
 										<td rowspan="3" style="width: 125px;">项目完成投资<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">占投资比例<br>(%)</td>
 										<td colspan="8">完   成  工  程  量<br>(公里)</td>
 										<td rowspan="3">新增资金到位<br>(万 元)</td>
 										<td rowspan="3">新增完成路面工程量<br>(公里)</td>
 										<td rowspan="3">新增项目完成投资<br>(万 元)</td>
-										<td colspan="8">累计资金到位<br>(万 元)</td>
+										<td colspan="10">累计资金到位<br>(万 元)</td>
 										<td rowspan="3">项目完成投资<br>(万 元)</td>
 										<td colspan="8">累  计  完   成  工  程  量<br>(公里)</td>
 										<td rowspan="3" style="width: 125px;">项目未完工程量<br>(万元)</td>
@@ -453,29 +663,36 @@
 										<td rowspan="3" style="width: 125px;">完成投资比例(%)</td>
 									</tr>	
 									<tr>
-										<td rowspan="2" style="width: 125px;">合计</td>
-										<td rowspan="2" style="width: 125px;">中央车购税</td>
-										<td colspan="4" >地方配套</td>
-										<td rowspan="2" style="width: 125px;">省厅贴息<br>(贷款)</td>
-										<td rowspan="2" style="width: 125px;">其他资金</td>
+										<td rowspan="2" style="width: 125px;">总投资</td>
+										<td rowspan="2" style="width: 125px;">车购税</td>
+										<td rowspan="2" style="width: 125px;">国债</td>
+										<td rowspan="2" style="width: 125px;">省债</td>
+										<td rowspan="2" style="width: 125px;">债券</td>
+										<td rowspan="2" style="width: 125px;">贷款</td>
+										<td rowspan="2" style="width: 125px;">奖励</td>
+										<td rowspan="2" style="width: 125px;">其他</td>
+										<td rowspan="2" style="width: 125px;">地方自筹</td>
+										<td rowspan="2" style="width: 125px;">银行贷款</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
 										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
-										<td rowspan="2" style="width: 125px;">合计</td>
-										<td rowspan="2" style="width: 125px;">中央车购税</td>
-										<td colspan="4" >地方配套</td>
-										<td rowspan="2" style="width: 125px;">省厅贴息<br>(贷款)</td>
-										<td rowspan="2" style="width: 125px;">其他资金</td>
+										<td rowspan="2" style="width: 125px;">总投资</td>
+										<td rowspan="2" style="width: 125px;">车购税</td>
+										<td rowspan="2" style="width: 125px;">国债</td>
+										<td rowspan="2" style="width: 125px;">省债</td>
+										<td rowspan="2" style="width: 125px;">债券</td>
+										<td rowspan="2" style="width: 125px;">贷款</td>
+										<td rowspan="2" style="width: 125px;">奖励</td>
+										<td rowspan="2" style="width: 125px;">其他</td>
+										<td rowspan="2" style="width: 125px;">地方自筹</td>
+										<td rowspan="2" style="width: 125px;">银行贷款</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
 										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
 									</tr>
 									<tr>
 										<td style="width: 100px;">其中：中央车购税</td>
-										<td style="width: 100px;">小计</td>
-										<td style="width: 100px;">其中：银行贷款</td>
-										<td style="width: 100px;">国债</td>
-										<td style="width: 100px;">省债</td>
+										
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">一级</td>
 										<td style="width: 100px;">二级</td>
@@ -483,10 +700,7 @@
 										<td style="width: 100px;">四级</td>
 										<td style="width: 100px;">沥青路</td>
 										<td style="width: 100px;">水泥砼</td>
-										<td style="width: 100px;">小计</td>
-										<td style="width: 100px;">其中：银行贷款</td>
-										<td style="width: 100px;">国债</td>
-										<td style="width: 100px;">省债</td>
+										
 										<td style="width: 100px;">小计</td>
 										<td style="width: 100px;">一级</td>
 										<td style="width: 100px;">二级</td>

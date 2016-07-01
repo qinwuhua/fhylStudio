@@ -42,8 +42,53 @@
 			    } 
 			});
 			
-			
+			loadFileUpload();
 		});
+		function loadFileUpload(){
+			
+			$("#uploadJhxd").uploadify({
+				/*注意前面需要书写path的代码*/
+				'uploader' : '../../../js/uploader/uploadify.swf',
+				'script' : '../../../qqgl/batchUploadJhxd.do',
+				'cancelImg' : '../../../js/uploader/cancel.png',
+				'queueID' : 'fileQueue',
+				'fileDataName' : 'uploadJhxd',
+				'auto' : false,
+				'multi' : false,
+				'buttonImg': '../../../js/uploader/bdll.png',
+				'simUploadLimit' : 3,
+				'sizeLimit' : 20000000,
+				'queueSizeLimit' : 5,
+				'fileDesc' : '支持格式:xls',
+				'fileExt' : '',
+				'height' : 30,
+				'width' : 92,
+				'scriptData' : {
+					'jhsh.xdwh':$("#bzxdwh").val()
+				},
+				onComplete : function(event, queueID, fileObj, response, data) {
+					alert(response);
+					fileShowByWh($("#bzxdwh").val(),"计划下达文件");
+				},
+				onError : function(event, queueID, fileObj) {
+					alert("文件:" + fileObj.name + "上传失败");
+				},
+				onCancel : function(event, queueID, fileObj) {
+				},
+				onQueueFull : function(event, queueSizeLimit) {
+					alert("最多支持上传文件数为：" + queueSizeLimit);
+				}
+			});
+		}
+		function upload(){
+			if($('#bzxdwh').val()!=""){
+				$("#uploadJhxd").uploadifySettings('scriptData',{'jhsh.xdwh':$('#bzxdwh').val()});
+				$('#uploadJhxd').uploadifyUpload();
+			}else{
+				alert("必须填写计划下达文号！");
+			}
+		}
+		
 		var flag=false;
 		function cxym(str){
 			if(str==0 && flag==false){
@@ -153,7 +198,11 @@
 						{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
 						{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
 						{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
-						{field:'xdwh',title:'计划下达文号',width:120,align:'center'},
+						{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+							formatter: function(value,row,index){
+								return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
+							}
+						},
 						{field:'xdsj',title:'下达时间',width:70,align:'center'},
 						{field:'pfztz',title:'批复总投资',width:60,align:'center'},
 						{field:'bbzzj',title:'车购税',width:60,align:'center'},
@@ -583,8 +632,21 @@
        	</tr>
 	</table>
 	
-	
-		<div id="jhxd" class="easyui-dialog" title="计划下达" style="width:500px;height:150px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+	<div id="wj" class="easyui-dialog" title="计划下达文件" style="width:500px;height:200px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+					<table width="99.9%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 100%;" cellspacing="0" cellpadding="0">
+		
+				<tr style="height: 100%;font-size: 10px;">
+					
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="wjTable"></tbody>
+						</table>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="jhxd" class="easyui-dialog" title="计划下达" style="width:500px;height:250px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 			<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -595,9 +657,29 @@
 				</tr>
 				<tr style="height: 30px;font-size: 10px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						填报时间</td>
+						计划下达时间</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="bztbsj" type="text"  class="easyui-datebox" />
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						下达文件</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="sjpfTable"></tbody>
+						</table>
+						<table>
+							<tr>
+								<td colspan="2">待上传：<div id="fileQueue" ></div></td>
+							</tr>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('/jxzhpt/js/uploader/bdll.png');" name="uploadJhxd" id="uploadJhxd" /></td>
+								<td>
+									<img name="uploadFile" id="uploadFile" src="/jxzhpt/js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 				<tr style="height: 30px;font-size: 10px;">

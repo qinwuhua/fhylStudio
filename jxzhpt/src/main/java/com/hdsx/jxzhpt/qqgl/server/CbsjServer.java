@@ -363,5 +363,9 @@ public interface CbsjServer {
 	public Lxsh loadgsdcbsjTjxx(Cbsj cbsj);
 
 	public List<Object> querygsdExcel(Cbsj cbsj);
+
+	public List<Plan_upload> queryxdFileByWh(Plan_upload file);
+
+	public List<Plan_upload> getWjbyxmbm(Plan_upload file);
 	
 }

@@ -605,6 +605,49 @@ function fileShow(xmbm,type){
 		}
 	});
 }
+
+/**
+ * 查询设计批复文件
+ * @param xmbm
+ */
+function fileShowByWh(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryFileByWh.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#sjpfTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+				'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>  |  ' +
+				"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				$("#sjpfTable").append(tr);
+			}
+		}
+	});
+}
+
+function getWj(index,type){
+	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	$("#wjTable").empty();
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/getWjbyxmbm.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'><font color='#48D1CC'>文号：</font>" + data[i].filewh +"&nbsp;&nbsp;</td><td style='background-color: #ffffff; height: 25px;' align='left'><font color='#48D1CC'>文件：</font>" + data[i].filename +"&nbsp;&nbsp;</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+				'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>   ' ;
+				$("#wjTable").append(tr);
+			}
+		}
+	});
+	
+	$('#wj').dialog("open");
+}
+
 /**
  * 查询设计批复文件
  * @param id 元素ID
