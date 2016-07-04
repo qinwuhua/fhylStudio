@@ -13,6 +13,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class XmsqServerImpl extends BaseOperate implements XmsqServer {
@@ -426,5 +427,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public Xmsq queryyhdzxsfdj() {
 		return queryOne("queryyhdzxsfdj", "");
+	}
+	@Override
+	public List<Excel_list> queryYhdzxExport1(Xmsq xmsq) {
+		
+		return queryList("queryYhdzxExport1", xmsq);
 	}
 }

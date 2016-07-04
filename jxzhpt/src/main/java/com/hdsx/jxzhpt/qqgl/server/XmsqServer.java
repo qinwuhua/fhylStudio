@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface XmsqServer {
@@ -278,4 +279,5 @@ public interface XmsqServer {
 	public List<Lx> queryLslistserw(Xmsq xmsq);
 	public List<Xmsq> queryyhdzxcb(Xmsq xmsq);
 	public Xmsq queryyhdzxsfdj();
+	public List<Excel_list> queryYhdzxExport1(Xmsq xmsq);
 }

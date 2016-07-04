@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 
 import org.apache.commons.beanutils.BeanComparator;
@@ -25,6 +27,10 @@ import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
@@ -1189,5 +1195,104 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	} 
+	
+	
+	public void exportExcelXmsq1(){
+		List<Excel_list>  l=new ArrayList<Excel_list>();
+		String xmbm = xmsq.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "x.xmbm like '" + xmbm + "%' ";
+		}
+		xmsq.setXmbm(xmbm);
+		String ylxbh = xmsq.getYlxbh();
+		if(ylxbh!=null && !ylxbh.equals("")){
+			String[] split1 = ylxbh.split(",");
+			ylxbh="";
+			for (int i = 0; i < split1.length; i++) {
+				ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+			}
+			if(ylxbh!=null && ylxbh.equals("")){
+				ylxbh = "("+ylxbh+")";
+			}
+			xmsq.setYlxbh(ylxbh);
+		}
+		jsdjHandle();
+		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+		if(xmsq.getXmlx()==4){
+			if(xmsq.getTsdq().length()>0){
+				String[] tsdqs=xmsq.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmsq.setTsdq(tsdq);
+			}
+			l= xmsqServer.queryYhdzxExport1(xmsq);
+		}
+		
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("养护大中修工程建议计划表");//设置第一行
+		eldata.setSheetName("养护大中修");//设置sheeet名
+		eldata.setFileName("养护大中修工程建议计划表");//设置文件名
+		
+		eldata.setEl(l);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,1,0,0));
+		et.add(new Excel_tilte("行政等级",1,1,1,1));
+		et.add(new Excel_tilte("路线编号",1,1,2,2));
+		et.add(new Excel_tilte("原路线编码",1,1,3,3));
+		et.add(new Excel_tilte("工程项目名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("实施里程（km）",1,1,7,7));
+		et.add(new Excel_tilte("技术等级",1,1,8,8));
+		et.add(new Excel_tilte("路面宽度",1,1,9,9));
+		et.add(new Excel_tilte("原路面类型",1,1,10,10));
+		et.add(new Excel_tilte("原路面结构",1,1,11,11));
+		et.add(new Excel_tilte("建设性质（大修、中修、预防性）",1,1,12,12));
+		et.add(new Excel_tilte("技术处治方案",1,1,13,13));
+		et.add(new Excel_tilte("按统一单价计算省补助资金（万元）",1,1,14,14));
+		et.add(new Excel_tilte("总投资（万元）",1,1,15,15));
+		et.add(new Excel_tilte("立项文号或施工图批复文号",1,1,16,16));
+		et.add(new Excel_tilte("管养单位",1,1,17,17));
+		et.add(new Excel_tilte("最近建设时间",1,1,18,18));
+		et.add(new Excel_tilte("为在建高速公路损坏普通国省道路段",1,1,19,19));
+		et.add(new Excel_tilte("通过村镇、街道路段",1,1,20,20));
+		et.add(new Excel_tilte("电子地图路面宽度",1,1,21,21));
+		et.add(new Excel_tilte("备注",1,1,22,22));
+		et.add(new Excel_tilte("计划核对结果",1,1,23,23));
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

@@ -233,6 +233,8 @@
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
+		<action name="exportExcelXmsq1" class="xmsqController" method="exportExcelXmsq1"></action>
+		
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
 		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		
