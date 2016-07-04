@@ -123,7 +123,7 @@
 	 		</if>
 	 		<if test="gldj != '' and gldj != null ">
 	 			${gldj}
-	 		</if>)
+	 		</if>) order by v_4
 	 			
 	 </select>
 	 
@@ -275,7 +275,7 @@
  		<if test="gldj != '' and gldj != null ">
  			${gldj}
  		</if>
-	 	)
+	 	) order by v_4
 	 			
 	 </select>
  		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -489,7 +489,7 @@
 		</if>
 		<if test="gldj != '' and gldj != null ">
  			${gldj}
- 		</if>)
+ 		</if> order by xzqhdm)
 	 			
 	 </select>
 	 <select id="dcwqgzsjsckshExcel" parameterType="jckwqgzsj" resultType="elist">
@@ -568,7 +568,7 @@
 		</if>
 		<if test="gldj != '' and gldj != null ">
  			${gldj}
- 		</if>)
+ 		</if> order by xzqhdm)
 	 			
 	 </select>
 	 

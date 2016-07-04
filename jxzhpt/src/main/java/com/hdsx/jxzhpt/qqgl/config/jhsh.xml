@@ -260,15 +260,26 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
+				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
+				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+				</if> -->
+				
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -387,15 +398,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
+				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
+				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+				</if> -->
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -651,15 +672,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
+				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
+				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+				</if> -->
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -761,15 +792,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
+				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
+				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+				</if> -->
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
@@ -2272,15 +2313,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
+				<!-- <if test="ghxlxbm!=null and ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
+				<!-- <if test="ghxlxmc !=null and ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+				</if> -->
+				<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -2396,15 +2447,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
@@ -2607,15 +2668,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
+				<!-- <if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
+				<!-- <if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+				</if> -->
+				<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.tsdq !=null and jhsh.tsdq !=''">
 					${jhsh.tsdq}
 				</if>
@@ -2672,15 +2743,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and j.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and l.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and l.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and l.lxmc like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and l.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and l.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.tsdq !=null and jhsh.tsdq !=''">
 					${jhsh.tsdq}
 				</if>
@@ -2760,15 +2841,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.tsdq !=null and jhsh.tsdq !=''">
 					${jhsh.tsdq}
 				</if>
@@ -2861,15 +2952,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+			<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
 				</if>
@@ -2922,15 +3023,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -2993,15 +3104,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -3070,15 +3191,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>
@@ -3138,15 +3269,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>
@@ -3228,15 +3369,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(j.xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -3293,15 +3444,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -3362,15 +3523,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -3423,15 +3594,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -3487,15 +3668,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(j.xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -3560,15 +3751,25 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
+				)
+			</if>
+			<if test="jhsh.ghxlxmc != '' and jhsh.ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{jhsh.ghxlxmc}||'%')
+				)
+			</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(j.xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -3639,15 +3840,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -3708,15 +3919,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -3977,15 +4198,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>
@@ -4054,15 +4285,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>
@@ -4127,15 +4368,25 @@
 		<if test="ghlxbh!=null and ghlxbh!=''">
 			and ghlxbmtj like '%'||#{ghlxbh}||'%'
 		</if>
-		<if test="ghxlxbm!=null and ghxlxbm!=''">
-			and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-		</if>
+<!-- 		<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 			and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 		</if> -->
 		<if test="lxmc !=null and lxmc !=''">
 			and ghlxmctj like '%'||#{lxmc}||'%'
 		</if>
-		<if test="ghxlxmc !=null and ghxlxmc !=''">
-			and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-		</if>
+<!-- 		<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 			and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 		</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 		<if test="xmnf !=null and xmnf !=''">
 			and substr(j.xmbm,0,4) in (${xmnf})
 		</if>
@@ -4183,15 +4434,25 @@
 	<if test="ghlxbh!=null and ghlxbh!=''">
 		and ghlxbmtj like '%'||#{ghlxbh}||'%'
 	</if>
-	<if test="ghxlxbm!=null and ghxlxbm!=''">
-		and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-	</if>
+<!-- 	<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 		and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 	</if> -->
 	<if test="lxmc !=null and lxmc !=''">
 		and ghlxmctj like '%'||#{lxmc}||'%'
 	</if>
-	<if test="ghxlxmc !=null and ghxlxmc !=''">
-		and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-	</if>
+<!-- 	<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 		and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 	</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 	<if test="xmnf !=null and xmnf !=''">
 		and substr(j.xmbm,0,4) in (${xmnf})
 	</if>
@@ -4287,15 +4548,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4400,15 +4671,25 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4496,15 +4777,25 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-				<if test="ghxlxbm!=null and ghxlxbm!=''">
-					and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
-				</if>
+<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
+<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
+<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-				<if test="ghxlxmc !=null and ghxlxmc !=''">
-					and ghxlxmctj like '%'||#{ghxlxmc}||'%'
-				</if>
+<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
+<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
+<!-- 				</if> -->
+<if test="ghxlxbm != null and ghxlxbm != ''">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+				)
+			</if>
+			<if test="ghxlxmc != '' and ghxlxmc != null ">
+				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+				)
+			</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>

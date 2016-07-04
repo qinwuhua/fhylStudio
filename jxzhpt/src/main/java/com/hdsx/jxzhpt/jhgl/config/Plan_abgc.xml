@@ -171,7 +171,7 @@
 				 		${gldj}
 				 	</if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd
-	    		) t  order by t.v_6 desc
+	    		) t  order by t.v_3,t.v_6 desc
     		
 	</select>
 	
@@ -568,6 +568,7 @@
 		<if test="tbdw!=null and tbdw!=''">
 		 	and scbmbm like #{tbdw}||'%'
 	    </if>
+	    order by v_0
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="sjbb">
 		select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
@@ -619,7 +620,7 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
-		order by jh.jhnf desc
+		order by v_5,jh.jhnf desc
 	</select>
 	<select id="exportExcel_jh1" parameterType="hashMap" resultType="sjbb">
 		select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqh v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
@@ -671,7 +672,7 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
-		order by jh.jhnf desc
+		order by v_5,jh.jhnf desc
 	</select>
 	
 	<delete id="dropAbgcById" parameterType="string">

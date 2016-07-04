@@ -740,7 +740,7 @@
 	 		<if test="tsdq != null and  tsdq != ''">
 					and xm.tsdq like '%'||trim(#{tsdq})||'%'
 			</if>
-			
+			order by xzqhdm
 	 </select>
 	 <select id="selectsfkwg" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select nvl(sum(g.xbgz),0) xbgz,nvl(sum(g.zjc),0) zjc,nvl(sum(g.wcqk),0) wcqk,jhid from gcgl_wqgz g where jhid=#{id} group by jhid 

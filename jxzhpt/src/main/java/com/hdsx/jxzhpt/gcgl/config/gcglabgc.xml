@@ -1640,6 +1640,7 @@
 					<!-- and pl.jhnf like '%'||trim(#{xmnf})||'%' -->
 					${xmnf}
 			</if>
+			order by xzqhdm
 	 </select>
 	  <select id="dcafgcExcel" parameterType="gcglabgc" resultType="elist">
 	 	select 

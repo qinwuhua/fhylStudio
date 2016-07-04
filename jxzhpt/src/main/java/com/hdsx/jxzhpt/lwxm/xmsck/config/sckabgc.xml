@@ -278,6 +278,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bz!='' and bz!= null ">
  			and sck_lxbm like #{bz}||'%'
  		</if>
+ 		order by v_2
  </select>
   <select id="exportExcel_abgc_scsh" parameterType="sckabgc" resultType="sjbb">
  	select
@@ -314,6 +315,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bz!='' and bz!= null ">
  			and sck_lxbm like #{bz}||'%'
  		</if>
+ 		order by v_2
  </select>
   <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
  	select 

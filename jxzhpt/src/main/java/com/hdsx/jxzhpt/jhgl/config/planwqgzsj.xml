@@ -396,6 +396,7 @@
 		<if test="shzt!='' and shzt!= null ">
 			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
 		</if>
+		order by v_8
 	</select>
 	<select id="selectwqjhksbcount" parameterType="planwqgzsj" resultType="int">
 		select count(*) from 
@@ -1075,6 +1076,7 @@
 			and spzt='1'
 			</if>
 		</if>
+		order by xm.xzqhdm
 	</select>
 	<select id="dcwqgzsjjhshExcel3" parameterType="planwqgzsj" resultType="elist">
 	select 
@@ -1296,7 +1298,7 @@
 			and spzt='1'
 			</if>
 		</if>
-		) t 
+		) t  order by xzqhdm
 	
 	</select>
 	
@@ -1501,7 +1503,7 @@
 			and spzt='1'
 			</if>
 		</if>
-		) t 
+		) t order by xzqhdm
 	
 	</select>
 	
