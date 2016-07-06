@@ -280,4 +280,5 @@ public interface XmsqServer {
 	public List<Xmsq> queryyhdzxcb(Xmsq xmsq);
 	public Xmsq queryyhdzxsfdj();
 	public List<Excel_list> queryYhdzxExport1(Xmsq xmsq);
+	public Xmsq getghxx(Xmsq xmsq);
 }

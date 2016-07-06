@@ -1738,4 +1738,10 @@
 	
 	
 	</select>
+	<select id="getghxx1" parameterType="xmsq" resultType="xmsq">
+		select xmid,WMSYS.WM_CONCAT(distinct ghlxbm||'('||qcqd||','||qczd||')') ghlxbm from LX_CLSD1 t where xmid=#{xmbm} group by xmid
+	</select>
+	<select id="getghxx2" parameterType="xmsq" resultType="xmsq">
+		select xmid,WMSYS.WM_CONCAT(distinct ghlxbm||'('||qcqd||','||qczd||')') ghlxbm from LX_CLSD t where xmid=#{xmbm} group by xmid
+	</select>
 </mapper>

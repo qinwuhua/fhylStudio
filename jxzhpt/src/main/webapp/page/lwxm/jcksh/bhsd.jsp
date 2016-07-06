@@ -153,10 +153,11 @@ text-decoration:none;
         						<input type="text" id="lxmc" style="width:70px;" />
         						<span>&nbsp;路线编码：</span>
                               	<input type="text" id="lxbm"style="width:70px"/>
-                              <span>&nbsp;隧道名称：</span>
-                              	<input type="text" id="sdmc"style="width:70px"/>
+                              
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
+                        <span>&nbsp;隧道名称：</span>
+                              	<input type="text" id="sdmc"style="width:70px"/>
 							  <!-- <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
                               	</select> -->

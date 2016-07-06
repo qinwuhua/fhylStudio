@@ -350,7 +350,7 @@ $("#grid").datagrid({
 			}},
 // 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 				{field:'bzls',title:'补助历史',width:60,align:'center'},
-				{field:'bz',title:'备注',width:60,align:'center'},
+				{field:'scbz',title:'备注',width:120,align:'center'},
 			 	{field:'gydw',title:'管养（监管）单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},

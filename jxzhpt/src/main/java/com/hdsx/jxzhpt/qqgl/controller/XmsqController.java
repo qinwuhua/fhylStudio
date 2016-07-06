@@ -351,7 +351,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					xmbm = "x.xmbm like '" + xmbm + "%' ";
 				}
 				
-				xmsq.setXmbm(xmbm);
+				//xmsq.setXmbm(xmbm);
+				xmsq.setXmbm("substr(x.xmbm,0,4) in ("+xmsq.getXmbm()+")");
+				
 			}
 			xmsq.setGhlxbm(xmsq.getGhlxbm());
 			xmsq.setGhlxmc(xmsq.getGhlxmc());
@@ -1295,4 +1297,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		
 	}
 	
+	
+	public void getghxx(){
+		try {
+			JsonUtils.write(xmsqServer.getghxx(xmsq), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

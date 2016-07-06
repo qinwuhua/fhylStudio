@@ -65,6 +65,9 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,
@@ -79,7 +82,7 @@
 					"jdbs":0,
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
-					'xmbm':$('#xmnf').combobox("getValues").join(','),
+					'xmbm':xmnf,
 					'ghlxbm':$("#ghlxbm").val(),
 					'ghlxmc':$("#ghlxmc").val(),
 					"ylxbh":$('#gldj').combobox("getValues").join(",")};

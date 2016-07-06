@@ -62,7 +62,23 @@
 				}
 			});
 			queryZjxdgsd(parent.YMLib.Var.xmbm);
+			getghxx(parent.YMLib.Var.xmbm);
 		});
+		function getghxx(xmid){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/getghxx.do',
+				data:"xmsq.xmbm="+xmid+"&xmsq.jsxz=jh",
+				dataType:'json',
+				success:function(msg){
+					$("#ghlx").html(msg.ghlxbm);
+					
+				},
+				error : function(){
+				 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+			 }
+			});	
+		}
 	</script>
 </head>
 <body style="font-size: 12px;">

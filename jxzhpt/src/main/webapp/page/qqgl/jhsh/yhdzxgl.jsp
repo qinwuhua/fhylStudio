@@ -68,6 +68,9 @@
 			var jsxz=$("#xmlx").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,
@@ -86,7 +89,7 @@
 					'ghlxbm':$("#ghlxbm").val(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'jsxz':jsxz,
-					'xmbm':$('#xmnf').combobox("getValues").join(','),
+					'xmbm':xmnf,
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
 					"ylxbh":$('#gldj').combobox("getValues").join(",")};
 			var sqzt = $('#sqzt').combobox("getValue");
@@ -311,7 +314,7 @@
 			var obj=$("#grid").datagrid('getRows')[index];
 			
 			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
-			alert(datas);
+			//alert(datas);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -320,14 +323,14 @@
 				success:function(msg){
 					if(msg.result=="true"){
 						var ls='';var wn='';
-						if(obj.lsjl=='是'){
-							alert("该条数据未查询到历史记录，后台数据有误");
-							ls="否";
+						/* if(obj.lsjl=='是'){
+							//alert("该条数据未查询到历史记录，后台数据有误");
+							//ls="否";
 						}
 						else if(obj.wnxmk=='是'){
-							alert("该条数据未查询到历史记录，后台数据有误");
-							wn='否';
-						}
+							//alert("该条数据未查询到历史记录，后台数据有误");
+							//wn='否';
+						} */
 						
 						if(!confirm('是否审核？')){
 							return;

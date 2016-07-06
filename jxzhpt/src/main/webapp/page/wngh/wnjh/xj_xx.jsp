@@ -67,7 +67,23 @@ text-decoration:none;
 		$('#yhdk').html(data.yhdk);
 		$('#bz').html(data.bz);
 		sfylx();
+		getghxx(data.id);
 	});
+	function getghxx(xmid){
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/getghxx.do',
+			data:"xmsq.xmbm="+xmid+"&xmsq.jsxz=wn",
+			dataType:'json',
+			success:function(msg){
+				$("#ghlx").html(msg.ghlxbm);
+				
+			},
+			error : function(){
+			 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+		 }
+		});	
+	}
 	function sfylx(){
 		var data="lxsh.xmbm="+parent.obj.xmbm+"&lxsh.jdbs=0";
 		$.ajax({
@@ -186,6 +202,13 @@ text-decoration:none;
 					项目名称： </td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmmc" style="font-size: 14px"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					规划路线信息</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="ghlx"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

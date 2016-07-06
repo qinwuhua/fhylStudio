@@ -399,6 +399,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			}
 		}
 		
+		List<Lx> queryList1 = queryList("queryLsjlListnew",params);
+		result.addAll(queryList1);
+		
 	}
 	@Override
 	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh) {

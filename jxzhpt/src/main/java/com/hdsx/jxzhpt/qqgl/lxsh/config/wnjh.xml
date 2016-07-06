@@ -167,6 +167,14 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -228,6 +236,14 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -287,6 +303,14 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -345,6 +369,14 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
 		</if>
 		order by xmnf
 		) t1
@@ -407,6 +439,14 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -466,6 +506,14 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
 		</if>
 		order by xmnf
 		) t1
@@ -737,6 +785,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		
 		order by t.id desc,lx.sffirst desc
 	</select>
 	<select id="querywnjhLmgz" parameterType="lxsh" resultType="elist">
@@ -970,6 +1019,14 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1028,6 +1085,14 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
 		</if>
 		order by xmnf
 		) t1
@@ -1088,6 +1153,14 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="ghxlxbm!=null and ghxlxbm!=''">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc!='' and ghxlxmc!= null ">
+			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
 		</if>
 		order by xmnf
 		) t1

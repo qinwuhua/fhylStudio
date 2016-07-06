@@ -1790,11 +1790,24 @@
 		from XTGL_LXSJ t where  t.xlxbm like #{lxbm} || '%' and 
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
+	<select id="queryLsjlListnew" parameterType="java.util.Map" resultType="lx">
+		select distinct l.xmid,decode(substr(l.xmid,11,1),'1',(select xmmc from jhsh_sjgz where xmbm=l.xmid),
+		'2',(select xmmc from jhsh_lmgz where xmbm=l.xmid),
+		'3',(select xmmc from jhsh_xj where xmbm=l.xmid),
+		'4',(select xmmc from jhsh_yhdzx where xmbm=l.xmid),
+		'5',(select xmmc from jhsh_sh where xmbm=l.xmid)
+		) xmmc,
+		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,lx.jsxz  xjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
+		where 1=1
+		and l.ghlxbm like '%'||#{lx.lxbm}||'%'
+		and to_number(l.qczd) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qcqd)
+	</select>
+	
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,j.gcfl xjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
 	    )
 <!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
 	    
@@ -1818,7 +1831,7 @@
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
 	    )
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -1841,7 +1854,7 @@
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
 	    )
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -1864,7 +1877,7 @@
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh))
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh))
 	    )
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
@@ -1887,7 +1900,7 @@
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,'' xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) >= ${lx.qdzh} and ${lx.zdzh} >= to_number(l.qdzh)) 
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
 	    )
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>

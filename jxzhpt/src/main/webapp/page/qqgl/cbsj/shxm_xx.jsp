@@ -52,7 +52,23 @@
 				}
 			});
 			loadFileUpload();
+			getghxx(parent.YMLib.Var.xmbm);
 		});
+		function getghxx(xmid){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/getghxx.do',
+				data:"xmsq.xmbm="+xmid+"&xmsq.jsxz=jh",
+				dataType:'json',
+				success:function(msg){
+					$("#ghlx").html(msg.ghlxbm);
+					
+				},
+				error : function(){
+				 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+			 }
+			});	
+		}
 		function loadFileUpload(){
 			$("#uploadSjpf").uploadify({
 				/*注意前面需要书写path的代码*/
@@ -134,6 +150,13 @@
 					<input id="lc" name="lc" type="text" style="width: 80px;"/>&nbsp;km&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
+            <tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					规划路线信息</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="ghlx"></span>
+				</td>
+			</tr>
             <tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					技术等级及里程
