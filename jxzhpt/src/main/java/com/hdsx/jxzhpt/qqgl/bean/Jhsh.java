@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Jhsh {
+	private String yjsdj;
 	private String jsjsdj;
 	private String xjsdj;
 	private String tz;
@@ -989,6 +990,12 @@ public class Jhsh {
 	}
 	public void setBcstz(String bcstz) {
 		this.bcstz = bcstz;
+	}
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
 	}
 	
 

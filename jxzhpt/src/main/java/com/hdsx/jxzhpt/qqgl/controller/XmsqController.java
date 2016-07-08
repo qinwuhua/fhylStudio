@@ -1305,4 +1305,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	public void getghxxbyone(){
+		try {
+			JsonUtils.write(xmsqServer.getghxxbyone(xmsq), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

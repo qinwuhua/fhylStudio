@@ -280,6 +280,7 @@
 	    <action name="batchUploadJhxd" class="jhshController" method="batchUploadJhxd"></action>
 	
 		<action name="getghxx" class="xmsqController" method="getghxx"></action>
+		<action name="getghxxbyone" class="xmsqController" method="getghxxbyone"></action>
 	
 		<action name="queryyhdzxsfdj" class="xmsqController" method="queryyhdzxsfdj"></action>
 		<action name="queryYlmlxByLxInfo" class="xmsqController" method="queryYlmlxByLxInfo"></action>

@@ -40,16 +40,13 @@
 							return row.xmnf;
 						}
 					},
-					{field:'lxbm',title:'现路线编码',width:100,align:'center'},
-					{field:'jsjsdj',title:'现技术等级',width:100,align:'center'},
-					{field:'qdzh',title:'现起点桩号',width:100,align:'center'},
-					{field:'zdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
+					{field:'lxbm',title:'规划路线编码',width:100,align:'center'},
+					{field:'jsjsdj',title:'规划技术等级',width:100,align:'center'},
+					{field:'qdzh',title:'规划起点桩号',width:100,align:'center'},
+					{field:'zdzh',title:'规划止点桩号',width:150,fixed:true,align:'center'},
 					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
 					{field:'xx',title:'原技术等级',width:100,align:'center',formatter:function(value,row,index){
-						if(row.xmid.substring(10,11)=="4")
-						return '';
-						else
-							return row .xjsdj;
+						 return row .yjsdj;
 					}},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}

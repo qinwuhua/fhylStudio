@@ -31,6 +31,8 @@
 			//loadBmbm2('jsdj','技术等级');
 			//loadBmbm2('gldj','行政等级');
 			//tsdq('tsdq');
+			jhpcdx('jhpc','wqgz');
+			
 			loadwqjhkgl();
 		});
 		var gydwstr;
@@ -108,6 +110,9 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			 var jhpc=$("#jhpc").combobox("getText");
+				if(jhpc.substr(0,2)=='全部')
+					jhpc='';
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/jhgl/selectwqjhksb1.do',
 			 queryParams : {
@@ -130,7 +135,8 @@
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':tsdq,
 				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
-				 	'planwqgzsj.qlbh':$('#txtqlbm').val()
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val(),
+				 	'planwqgzsj.jhpc':jhpc
 				},
 			    striped:true,
 			    pagination:true,
@@ -201,11 +207,14 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var jhpc=$("#jhpc").combobox("getText");
+			if(jhpc.substr(0,2)=='全部')
+				jhpc='';
 			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
 			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
 			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
 			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
-			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val()+"&planwqgzsj.jhpc="+jhpc;
 			$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
@@ -364,6 +373,9 @@ text-decoration:none;
 								</select></td>
 								<td>桥梁编码：</td>
         						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+                              	<td>计划批次：</td>
+        						<td><select id="jhpc" class="easyui-combobox"  style="width: 80px"></td>
+                              
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />

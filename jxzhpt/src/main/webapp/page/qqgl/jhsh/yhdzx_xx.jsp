@@ -30,7 +30,6 @@
 				success:function(msg){
 					loadDist("xzqh1",msg.xzqhdm);
 					loadUnit("gydw1",msg.gydwdm);
-					
 					$("#ylxbh").val(msg.ylxbh);
 					$("#zdzh").val(msg.zdzh);
 					$("#zdmc").val(msg.zdmc);
@@ -54,6 +53,7 @@
 					}
 					$("#sbzj1").html(msg.sbzj);
 					$("#sbzj").val(msg.sbzj);
+					getghxxone(parent.YMLib.Var.xmbm,msg.qdzh,msg.zdzh);
 					$('#submit').form("load",msg);
 				}
 			});
@@ -74,12 +74,45 @@
 			 }
 			});	
 		}
+		function getghxxone(xmid,qdzh,zdzh){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/getghxxbyone.do',
+				data:"xmsq.xmbm="+xmid+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.jsxz=jh",
+				dataType:'json',
+				success:function(msg){
+					$("#ghlxbm").val(msg.ghlxbm);
+					$("#ghqdzh").val(msg.ghqdzh);
+					$("#ghzdzh").val(msg.ghzdzh);
+				},
+				error : function(){
+				 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+			 }
+			});	
+		}
 	</script>
 </head>
 <body>
 	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
 		<form id="submit" action="">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
+            <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划路线编码</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					规划起点桩号</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ghqdzh" name="ghqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					规划止点桩号</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ghzdzh" name="ghzdzh" type="text" style="width: 80px;"/>&nbsp;米&nbsp;<span style="color: red;">*</span>
+				</td>
+            </tr>
             <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					原路线编号</td>
@@ -148,9 +181,9 @@
 				
             </tr>
             <tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
-					规划路线信息</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					共线信息</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<span id="ghlx"></span>
 				</td>
 			</tr>

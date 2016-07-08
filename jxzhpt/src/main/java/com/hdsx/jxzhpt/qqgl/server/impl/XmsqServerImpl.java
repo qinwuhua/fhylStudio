@@ -441,4 +441,12 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			return queryOne("getghxx2", xmsq);
 		return null;
 	}
+	@Override
+	public Xmsq getghxxbyone(Xmsq xmsq) {
+		if("wn".equals(xmsq.getJsxz()))
+			return queryOne("getghxxbyone1", xmsq);
+			if("jh".equals(xmsq.getJsxz()))
+				return queryOne("getghxxbyone2", xmsq);
+			return null;
+	}
 }

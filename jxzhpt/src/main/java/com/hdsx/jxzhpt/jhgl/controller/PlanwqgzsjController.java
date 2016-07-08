@@ -647,6 +647,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 				planwqgzsj.setShzt(jhzt);
 			}
 			planwqgzsj.setSbthcd(sbthcd);
+			planwqgzsj.setJhpc(getTiaoJian(planwqgzsj.getJhpc(),"jhpc"));
 			List<Planwqgzsj> list = planwqgzsjServer.selectwqjhksb1(planwqgzsj);
 			int count = planwqgzsjServer.selectwqjhksbcount1(planwqgzsj);
 			
@@ -911,6 +912,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 				planwqgzsj.setShzt(jhzt);
 			}
 			planwqgzsj.setSbthcd(sbthcd);
+			planwqgzsj.setJhpc(getTiaoJian(planwqgzsj.getJhpc(),"jhpc"));
 			Planwqgzsj p = planwqgzsjServer.loadwqjhksbCount1(planwqgzsj);
 			JsonUtils.write(p, getresponse().getWriter());
 		} catch (Exception e) {

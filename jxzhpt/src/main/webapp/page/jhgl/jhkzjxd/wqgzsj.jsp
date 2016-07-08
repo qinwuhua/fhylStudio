@@ -174,7 +174,7 @@
 				var tsdq=$("#tsdq").combobox("getValues").join(",");
 				if(tsdq.substr(0,1)==',')
 					tsdq=tsdq.substr(1,tsdq.length);
-				 var jhxdwh=$("#jhxdwh").combobox("getValues").join(',');
+				 var jhxdwh=$("#jhxdwh").combobox("getText");
 					if(jhxdwh.substr(0,1)==',')
 						jhxdwh=jhxdwh.substr(1,jhxdwh.length); 
 				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+

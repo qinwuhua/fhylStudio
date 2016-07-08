@@ -25,22 +25,22 @@
 				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val()},
 				fitColumns:true,
 				columns:[[
-					{field:'id',title:'项目类型',width:150,fixed:true,align:'center',
+					{field:'id',title:'项目类型',width:100,align:'center',
 						formatter:function(value,row,index){
 							if(row.xmid.substring(10,11)=="1"){
-								return "升级改造工程项目";
+								return "改建";
 							}else if(row.xmid.substring(10,11)=="2"){
-								return "路面改造工程项目";
+								return "路面改造";
 							}else if(row.xmid.substring(10,11)=="3"){
-								return '新建工程项目';
+								return '新建';
 							}else if(row.xmid.substring(10,11)=="4"){
 								return row.xjsdj;
 							}else if(row.xmid.substring(10,11)=="5"){
-								return "水毁项目";
+								return "灾毁重建";
 							}
 						}
 					},
-					{field:'xmmc',title:'项目名称',width:170,fixed:true,align:'center',
+					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
 							var a='<a href="javascript:msgxx('+"'"+row.xmid+"'"+')" style="color:#0066CB;font-size:12px;">';
 							a+=value+'</a>';
@@ -52,20 +52,17 @@
 							return value.substring(0,4);
 						}
 					},
-					{field:'lxbm',title:'现路线编码',width:100,align:'center'},
-					{field:'jsjsdj',title:'现技术等级',width:100,align:'center'},
-					{field:'qdzh',title:'现起点桩号',width:100,align:'center'},
-					{field:'zdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
-					{field:'ylxbm',title:'路线编码',width:100,align:'center'},
+					{field:'lxbm',title:'规划路线编码',width:110,align:'center'},
+					{field:'jsjsdj',title:'规划技术等级',width:110,align:'center'},
+					{field:'qdzh',title:'规划起点桩号',width:110,align:'center'},
+					{field:'zdzh',title:'规划止点桩号',width:110,fixed:true,align:'center'},
+					{field:'ylxbm',title:'原路线编码',width:100,align:'center'},
 					{field:'xx',title:'原技术等级',width:100,align:'center',formatter:function(value,row,index){
-						if(row.xmid.substring(10,11)=="4")
-						return '';
-						else
-							return row .xjsdj;
+						return row .yjsdj;
 					}},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
-				]]
+					]]
 			});
 		}
 		function msgxx(xmid){

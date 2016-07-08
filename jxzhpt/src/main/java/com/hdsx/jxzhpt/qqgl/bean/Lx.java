@@ -78,6 +78,7 @@ public class Lx {
 	public void setSbzj(String sbzj) {
 		this.sbzj = sbzj;
 	}
+	private String yjsdj;
 	private String sbzj;//省补资金
 	private String id;//ID
 	private String xmid;//项目编码
@@ -194,6 +195,12 @@ public class Lx {
 	
 	
 	
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
 	public String getLxlmkd() {
 		return lxlmkd;
 	}

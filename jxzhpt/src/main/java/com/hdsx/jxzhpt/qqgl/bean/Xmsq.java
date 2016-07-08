@@ -57,7 +57,8 @@ public class Xmsq {
 	private String lxzh;//所在路线桩号
 
 	
-	
+	private String ghqdzh;
+	private String ghzdzh;
 	private String ghlxbm;
 	private String ghlxmc;
 	private String wnxmk;
@@ -123,6 +124,19 @@ public class Xmsq {
 	
 	private String xzqhdm2;//跨县行政区划
 	
+	
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
 	public String getBxerdj() {
 		return bxerdj;
 	}

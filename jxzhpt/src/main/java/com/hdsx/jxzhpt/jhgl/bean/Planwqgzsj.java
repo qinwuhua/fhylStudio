@@ -11,6 +11,14 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
  *
  */
 public class Planwqgzsj implements Serializable{
+	private String jhpc;//计划批次
+	
+	public String getJhpc() {
+		return jhpc;
+	}
+	public void setJhpc(String jhpc) {
+		this.jhpc = jhpc;
+	}
 	private String gldj;
 
 	public String getGldj() {
