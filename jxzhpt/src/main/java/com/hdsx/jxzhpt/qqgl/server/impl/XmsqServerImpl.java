@@ -42,6 +42,11 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryList("queryAutoList",xmsq);
 	}
 	@Override
+	public List<Lx> queryAutoghList(Xmsq xmsq) {
+		return queryList("queryAutoghList",xmsq);
+	}
+	
+	@Override
 	public Lx queryAutoList1(Xmsq xmsq) {
 		return queryOne("queryAutoList1",xmsq);
 	}
@@ -324,21 +329,18 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	
 	private void queryLsjlListwnxmk(List<Lx> result, Lx item) {
 		//查询原路线信息
-		List<Lx> ylx = queryList("queryYLx",item);
+		//List<Lx> ylx = queryList("queryYLx",item);
 		//查询项目编码下的其他路线
-		System.out.println(item.getXmid()+"xmid");
-		System.out.println(item.getQdzh()+"qdzh");
-		System.out.println(item.getZdzh()+"zdzh");
 		List<Lx> qtlx = queryList("queryQTLx",item);
-		if(qtlx.size()>0){
+		/*if(qtlx.size()>0){
 			for (Lx lx : qtlx) {
 				List<Lx> qtylx = queryList("queryYLx",lx);
 				ylx.addAll(qtylx);
 			}
-		}
+		}*/
 		
 		params.put("lx", item);
-		params.put("ylx", ylx);
+		params.put("ylx", qtlx);
 		try {
 			List<Lx> queryList = queryList("queryLsjlListwnxmk", params);
 			boolean flag = true;
@@ -362,16 +364,16 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	
 	private void queryLsjlListserw(List<Lx> result, Lx item) {
 		//查询原路线信息
-		List<Lx> ylx = queryList("queryYLx",item);
+		//List<Lx> ylx = queryList("queryYLx",item);
 		List<Lx> qtlx = queryList("queryQTLx",item);
-		if(qtlx.size()>0){
+		/*if(qtlx.size()>0){
 			for (Lx lx : qtlx) {
 				List<Lx> qtylx = queryList("queryYLx",lx);
 				ylx.addAll(qtylx);
 			}
-		}
+		}*/
 		params.put("lx", item);
-		params.put("ylx", ylx);
+		params.put("ylx", qtlx);
 		try {
 			List<Lx> queryList = queryList("queryLsjlListserw", params);
 			boolean flag = true;
@@ -448,5 +450,42 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			if("jh".equals(xmsq.getJsxz()))
 				return queryOne("getghxxbyone2", xmsq);
 			return null;
+	}
+	@Override
+	public List<Xmsq> getghlxinfo(Xmsq xmsq) {
+		return queryList("getghlxinfo", xmsq);
+	}
+	@Override
+	public Xmsq getylxinfo(Xmsq xmsq) {
+		List<Xmsq> l=queryList("getylxinfo", xmsq);
+		if(l.size()>0)
+			return l.get(0);
+			else
+				return null;
+	}
+	@Override
+	public Lx getylxlminfo(Xmsq xmsq) {
+		List<Lx> l=queryList("getylxlminfo", xmsq);
+		if(l.size()>0)
+		return l.get(0);
+		else
+			return null;
+	}
+	@Override
+	public List<Xmsq> getgxlxinfo(Xmsq xmsq) {
+		try {
+			List<Xmsq> x = queryList("getylxinfo1", xmsq);
+			//List<Xmsq> ll = queryList("getgxlxinfo", x);
+			List<Xmsq> ll = new ArrayList<Xmsq>();
+			for (Xmsq xmsq2 : x) {
+				List<Xmsq> ll1 = queryList("getgxlxinfo", xmsq2);
+				ll.addAll(ll1);
+			}
+			//List<Xmsq> l = queryList("getgxlxinfo", x);
+			return ll;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

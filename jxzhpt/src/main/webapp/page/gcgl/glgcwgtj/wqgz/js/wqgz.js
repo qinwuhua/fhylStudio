@@ -214,6 +214,7 @@ function showAll(){
 	}); 
 }
 function showAll__ck(){
+	showtj1();
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
@@ -264,7 +265,11 @@ function showAll__ck(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	sfylrbwqk:'是',
-	    	gydwtj:"and 1=1"
+	    	gydwtj:"and 1=1",
+	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -468,9 +473,13 @@ function showAll1(){
 	}); 
 }
 function showAll1__ck(){
+	showtj();
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var wgnf=$("#wgYear").combobox('getValues').join(",");
+	if(wgnf.substr(0,1)==',')
+		wgnf=wgnf.substr(1,wgnf.length);
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -504,8 +513,8 @@ function showAll1__ck(){
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
-	    pageSize:10,
-	    height:$(window).height()-160,
+	    pageSize:50,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -518,7 +527,13 @@ function showAll1__ck(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
-	    	gydwtj:"and gydwbm like '1%'"
+	    	gydwtj:"and gydwbm like '1%'",
+	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.akjfl':$("#akjfl").combobox('getValue'),
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue'),//这种赋值直接就在实体里，直接赋值给实体的属性
+	    	wgnf:wgnf//这个赋值可以赋值给任何属性，但必须提供getset接受，然后才能取到值
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

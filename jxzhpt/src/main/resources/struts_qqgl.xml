@@ -222,6 +222,8 @@
 		<action name="sfinsert1" class="xmsqController" method="sfinsert1"></action>
 		<action name="sfinsert" class="xmsqController" method="sfinsert"></action>
 		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
+		
+		<action name="queryAutoghList" class="xmsqController" method="queryAutoghList"></action>
 		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
 		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>
 		<action name="queryXmsq" class="xmsqController" method="queryXmsq"></action>
@@ -234,7 +236,11 @@
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
 		<action name="exportExcelXmsq1" class="xmsqController" method="exportExcelXmsq1"></action>
+		<action name="getghlxinfo" class="xmsqController" method="getghlxinfo"></action>
 		
+		<action name="getgxlxinfo" class="xmsqController" method="getgxlxinfo"></action>
+		<action name="getylxinfo" class="xmsqController" method="getylxinfo"></action>
+		<action name="getylxlminfo" class="xmsqController" method="getylxlminfo"></action>
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
 		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		

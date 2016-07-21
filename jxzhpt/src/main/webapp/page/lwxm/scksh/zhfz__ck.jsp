@@ -20,16 +20,28 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+// 	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "行政等级");
+// 	loadBmbm2("lxjsdj", "技术等级");
+// 	loadBmbm2("bz", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	jsdjdx('jsdj');
+	
+	var urlid=getUrlParame('id');
+	if(urlid==null){
+		xmnfdx("xmnf"); 
+		xzdjdx('gldj');
+	}else{
+		setxmnf("xmnf",urlid);
+		setxzdj('gldj',urlid);
+	}
+	
+	tsdqdx('tsdq');
+// 	tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
-	sckshZhfz__ck();
+	sckshZhfz123();
 });
 
 function xgShzt(){
@@ -96,7 +108,7 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
-	if(rows[i].shzt='已审核'){
+	if(rows[i].shzt=='已审核'){
 		alert("对不起，项目已审核，不能执行退回操作！");
 		return;
 	}
@@ -138,7 +150,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目审查库审核>&nbsp;灾害防治项目</div>
+		<div id="p_top">前期管理>&nbsp;<span id="astext">项目立项</span>>&nbsp;<span id='bstext'></span>>&nbsp;路网结构改造工程>&nbsp;灾害防治项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -174,10 +186,10 @@ text-decoration:none;
                               	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">
                               	</select></td>
                               <td>技术等级：</td>
-                              	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>行政等级：</td>
-                              	<td><select id="bz" style="width:104px"class="easyui-combobox">
+                              	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:104px"class="easyui-combobox">
@@ -185,7 +197,7 @@ text-decoration:none;
                              </tr>
                             <tr height="32">
                               <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz__ck();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz123();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" /> -->
 <!--                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_zhfz_scsh();" style="border-width:0px;cursor: hand;" />

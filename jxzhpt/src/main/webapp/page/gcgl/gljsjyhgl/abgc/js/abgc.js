@@ -573,7 +573,17 @@ function showAll__ck(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
@@ -598,7 +608,7 @@ function showAll__ck(){
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
-	    pageSize:10,
+	    pageSize:50,
 	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
@@ -608,7 +618,11 @@ function showAll__ck(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	xmnf:xmnf,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	xzqh:xzqhstr,
+	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

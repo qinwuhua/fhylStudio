@@ -22,16 +22,19 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	//xmnf("xmnf"); 
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "行政等级");
+	////loadBmbm2("lxjsdj", "技术等级");
+	//loadBmbm2("bz", "行政等级");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
-	sckglZhfz__ck();
+	sckglZhfz123();
 });
 
 function delSckzhfz(){
@@ -59,7 +62,7 @@ function delSckzhfz(){
 				 success : function(msg){
 					 if(msg){
 						 alert('删除成功！');
-						 sckglZhfz();
+						 sckglZhfz123();
 					 }else{
 						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
 					 }
@@ -213,10 +216,10 @@ text-decoration:none;
                               	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">
                               	</select></td>
                              <td>技术等级：</td>
-                              	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>行政等级：</td>
-                              	<td><select id="bz" style="width:104px"class="easyui-combobox">
+                              	<td><select id="gldj" style="width:104px"class="easyui-combobox">
                               	</select></td>
                               	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:104px"class="easyui-combobox">
@@ -224,14 +227,14 @@ text-decoration:none;
                              </tr>
                             <tr height="32">
                               <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglZhfz__ck();" style="border-width:0px;cursor: hand;" />
-								<!-- <img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
-								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule_sc('SCK_Disaster')" style="border-width:0px;cursor: hand;" />
-								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('zhfz_sc');" style="border-width:0px;" />
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('zhfz_add.jsp','900','500');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:delSckzhfz();" style="border-width:0px;" />
-         -->                        <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_zhfz_scgl()" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglZhfz123();" style="border-width:0px;cursor: hand;" />
+<!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" /> -->
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
+<!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule_sc('SCK_Disaster')" style="border-width:0px;cursor: hand;" /> -->
+<!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('zhfz_sc');" style="border-width:0px;" /> -->
+<!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('zhfz_add.jsp','900','500');" style="border-width:0px;" /> -->
+<!--                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:delSckzhfz();" style="border-width:0px;" /> -->
+                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_zhfz_scgl()" style="border-width:0px;cursor: hand;" />
 							</td>
                             </tr></table>
 						</div>

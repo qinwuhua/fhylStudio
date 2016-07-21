@@ -52,7 +52,16 @@
 		<if test="jhwllc!=null">,jhwllc</if>
 		<if test="jhlc!=null">,jhlc</if>
 		<if test="ghxlxbm !=null">,ghxlxbm</if>
-		<if test="ghxlxmc !=null">,ghxlxmc</if>)
+		<if test="ghxlxmc !=null">,ghxlxmc</if>
+		<if test="ghlxbm !=null">,ghlxbm</if>
+		<if test="ghlxmc !=null">,ghlxmc</if>
+		<if test="ghqdzh !=null">,ghqdzh</if>
+		<if test="ghzdzh !=null">,ghzdzh</if>
+		<if test="gxlxbm !=null">,gxlxbm</if>
+		<if test="gxqdzh !=null">,gxqdzh</if>
+		<if test="gxzdzh !=null">,gxzdzh</if>
+		
+		)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs},#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
@@ -67,7 +76,15 @@
 		<if test="jhwllc!=null">,#{jhwllc}</if>
 		<if test="jhlc!=null">,#{jhlc}</if>
 		<if test="ghxlxbm !=null">,#{ghxlxbm}</if>
-		<if test="ghxlxmc !=null">,#{ghxlxmc}</if>)
+		<if test="ghxlxmc !=null">,#{ghxlxmc}</if>
+		<if test="ghlxbm !=null">,#{ghlxbm}</if>
+		<if test="ghlxmc !=null">,#{ghlxmc}</if>
+		<if test="ghqdzh !=null">,#{ghqdzh}</if>
+		<if test="ghzdzh !=null">,#{ghzdzh}</if>
+		<if test="gxlxbm !=null">,#{gxlxbm}</if>
+		<if test="gxqdzh !=null">,#{gxqdzh}</if>
+		<if test="gxzdzh !=null">,#{gxzdzh}</if>
+		)
 	</insert>
 	<update id="updateGjlsjl" parameterType="lxsh">
 	update ${xmlx} set lsjl=#{lsjl} where id=#{xmbm}
@@ -114,6 +131,10 @@
 		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from WNJH_SJGZ t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
+		,WMSYS.WM_CONCAT(to_char(ghlxbm)) ghlxbm,WMSYS.WM_CONCAT(to_char(ghqdzh)) ghqdzh
+		,WMSYS.WM_CONCAT(to_char(ghzdzh)) ghzdzh,WMSYS.WM_CONCAT(to_char(ghlxmc)) ghlxmc
+		,WMSYS.WM_CONCAT(to_char(gxlxbm)) gxlxbm,WMSYS.WM_CONCAT(to_char(gxqdzh)) gxqdzh
+		,WMSYS.WM_CONCAT(to_char(gxzdzh)) gxzdzh
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -251,7 +272,10 @@
 		select * from (
 		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc,t.qqkzzt  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
+		sum(dwlc) dwlc,sum(wllc) wllc,WMSYS.WM_CONCAT(to_char(ghlxbm)) ghlxbm,WMSYS.WM_CONCAT(to_char(ghqdzh)) ghqdzh
+		,WMSYS.WM_CONCAT(to_char(ghzdzh)) ghzdzh,WMSYS.WM_CONCAT(to_char(ghlxmc)) ghlxmc
+		,WMSYS.WM_CONCAT(to_char(gxlxbm)) gxlxbm,WMSYS.WM_CONCAT(to_char(gxqdzh)) gxqdzh
+		,WMSYS.WM_CONCAT(to_char(gxzdzh)) gxzdzh from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
 		left join (select xmid,sum(lc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -522,8 +546,12 @@
 	
 	
 	<select id="wnjhGpsroad" parameterType="lxsh" resultType="lxsh">
-		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj,xzqhdm xzqh
-		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
+		<!-- select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj,xzqhdm xzqh
+		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh -->
+
+		select substr(ylxbm,0,4) ghlxbh,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ghlxbh}||'%'||#{xzqh}||'%'
+		order by to_number(yqdzh)
+		
 	</select>
 	<select id="wnjhGpsroad1" parameterType="lxsh" resultType="lxsh">
 		select max(lxmc) lxmc

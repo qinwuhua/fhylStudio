@@ -19,18 +19,101 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
+function xzdjurl(id){
+	
+	var years=[];
+	var first=[];
+	years.push({text:'全部',value:''});
+	/*for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}*/if(getUrlParame('id')=='01011101030101'){
+		years.push({text:'国道',value:'G'});
+		years.push({text:'省道',value:'S'});
+		first.push('G');
+		first.push('S');
+		}else{
+			years.push({text:'县道',value:'X'});
+			years.push({text:'乡道',value:'Y'});
+			years.push({text:'村道',value:'C'});
+			years.push({text:'专道',value:'Z'});
+			first.push('X');
+			first.push('Y');
+			first.push('C');
+			first.push('Z');
+		}
+	
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#id'+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#id'+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setValues",first);
+}
+
 $(function(){
+	if(getUrlParame('id')!=null){
+		xzdjurl('gldj');
+	}else{xzdjdx('gldj');}
+
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
+	//loadBmbm2("jsdj", "技术等级");
+	//loadBmbm2("akjfl", "跨径分类");
+	//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
-	jckglWqgz__ck();
+	
+	jckglWqgz123();
 });
 
 function delJckwqgz(){
@@ -205,25 +288,27 @@ text-decoration:none;
                               <td width="66" sytle="overflow:hidden">上报状态：</td>
                               <td><select id="sbzt" style="width:70px"class="easyui-combobox"></select></td>
                               <td>特殊地区：</td>
-                              <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
+                              <td><select id="tsdq" style="width:80px"class="easyui-combobox"></select></td>
                              <td>技术等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
                               <td>按跨径分类：</td>
                               <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
                               <td>桥梁编号：</td>
                               <td><input type="text" id="qlbh"style="width:70px"/></td>
+                              <td>行政等级：</td>
+                              <td><select id="gldj" style="width:70px"class="easyui-combobox"></select></td>
                            </tr>
                            
                              <tr height="32">
                               <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz__ck();" style="border-width:0px;cursor: hand;" />
-								<!-- <img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
-								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" />
-								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" />
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgz_add.jsp','900','450');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
- -->                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz123();" style="border-width:0px;cursor: hand;" />
+<!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" /> -->
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
+<!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" /> -->
+<!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" /> -->
+<!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgz_add.jsp','900','450');" style="border-width:0px;" /> -->
+<!--                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" /> -->
+                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" />
                            </td>
                             </tr></table>
 					</div>

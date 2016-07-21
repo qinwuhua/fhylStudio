@@ -20,15 +20,16 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "行政等级");
-	tsdq("tsdq");
+	xmnfdx("xmnf");
+  	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {                           
 		$('#shzt').combobox("setValue",'未审核');
 	}
-	jckshAbgc__ck();
+	jckshAbgc123();
 });
 
 function xgShzt(){
@@ -91,7 +92,7 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
-	if(rows[i].shzt='已审核'){
+	if(rows[i].shzt=='已审核'){
 		alert("对不起，项目已审核，不能执行退回操作！");
 		return;
 	}
@@ -168,18 +169,18 @@ text-decoration:none;
                               	<td><select id="tsdq" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               <td>技术等级：</td>
-                              	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>行政等级：</td>
-                              	<td><select id="bz" style="width:105px"class="easyui-combobox">
+                              	<td><select id="gldj" style="width:105px"class="easyui-combobox">
                               	</select></td>
                              </tr>
                          <tr height="32">
                               <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshAbgc__ck();"style="border-width:0px;cursor: hand;" />
-								<!-- <img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
- -->                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_abgc_sh();" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshAbgc123();"style="border-width:0px;cursor: hand;" />
+<!-- 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" /> -->
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
+                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_abgc_sh();" style="border-width:0px;cursor: hand;" />
 							</td>
                             </tr></table>
 						</div>

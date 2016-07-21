@@ -253,7 +253,7 @@ function showAll__ck(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var jgzt='0';
+	var jgzt='';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
@@ -281,6 +281,10 @@ function showAll__ck(){
 	    	bfzt:$("#bfzt").val(),
 	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
+//	    	'gcglgcgzgj.xdsj':$("#xdnf").val(),
+	    	'gcglgcgzgj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzgj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzgj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglgcgzgj.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},

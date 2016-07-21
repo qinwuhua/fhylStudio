@@ -312,16 +312,16 @@ function bzSum(){
 	var pfztzVal = $("#pfztz").val();
 	var shengbzVal = $("#shengbz").val();
 	
-	var reg =/(\d+)(\d{3})/;
+	/* var reg =/(\d+)(\d{3})/;
 	if(reg.test(pfztzVal)){
-		alert(pfztzVal+"不为数字，请填写数字");
+		//alert(pfztzVal+"不为数字，请填写数字");
 		$("#pfztz").val("");
 		 $("#pfztz").css("background-color","darkorange");
 		return false;
 	}else{
 		 $("#pfztz").css("background-color","");
-	}
-	if(reg.test(shengbzVal)){
+	} */
+	/* if(reg.test(shengbzVal)){
 		alert(shengbzVal+"不为数字，请填写数字");
 		$("#shengbz").val("");
 		$("#shengbz").css("background-color","darkorange");
@@ -329,7 +329,7 @@ function bzSum(){
 	}else{
 		 $("#shengbz").css("background-color","");
 	}
-	
+	 */
 	if($("#pfztz").val()==null||$("#pfztz").val()==''){
 		pfztz=0;
 	}else{

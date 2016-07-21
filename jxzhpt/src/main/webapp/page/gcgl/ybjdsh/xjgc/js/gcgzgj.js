@@ -281,9 +281,15 @@ function showAll__ck(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzgj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzgj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzgj.lxmc':$("#lxmc").val(),
+	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
-	    columns:[[
+		columns:[[
 	         {field:'c',title:'操作',width:320,align:'center',formatter:function(value,row,index){
  	        	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb__ck('+index+')">月报审核</a>    ';
  	        }},

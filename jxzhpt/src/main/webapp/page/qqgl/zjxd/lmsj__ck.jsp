@@ -47,7 +47,7 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'改建工程项目'"+','+
 								"'/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
@@ -63,7 +63,7 @@
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjzjxd'"+','+"'升级改造工程项目 — 资金下达'"+','+
+						var result='<a href="javascript:openWindow('+"'lmsjzjxd'"+','+"'改建工程项目 — 资金下达'"+','+
 							"'/jxzhpt/page/qqgl/zjxd/lmsj_zjxd__ck.jsp'"+',900,400)" style="color:#3399CC;">资金下达</a>';
 						return result;
 					}
@@ -85,7 +85,7 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			bindLxGrid();
-			gridBind(grid);
+			gridBind1(grid);
 		}
 		function loadLj(params){
 			$.ajax({
@@ -94,9 +94,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}

@@ -35,11 +35,13 @@ $(function(){
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
-	loadBmbm2("shzt", "审核状态");
-	//loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
-	tsdq("tsdq");
+	kjfldx('akjfl');
+	xmnfdx("xmnf"); 
+	//jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
+	loadBmbm2("bzls", "补助历史");
+	//tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
@@ -207,6 +209,20 @@ var xzqhstr;
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		
+		var xmnf=$("#xmnf").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var akjfl=$("#akjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/wqgzsj/selectJckShwqgz.do',
 		 queryParams : {
@@ -218,41 +234,31 @@ var xzqhstr;
 			 	'xzqhdm':xzqhstr,
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
-			 	'xmnf':$("#xmnf").combobox("getValue"),
+			 	'xmnf':xmnf,
 			 	'sbzt':$("#shzt").combobox("getValue"),
 			 	'jsdj':$("#jsdj").combobox("getValue"),
-			 	'akjfl':$("#akjfl").combobox("getValue"),
+			 	'akjfl':akjfl,
 			 	'lxbm':$("#lxbm").val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
+			 	'tsdq':tsdq,
+			 	'jckwqgzsj.bzls':$("#bzls").combobox("getValue"),
+			 	'jckwqgzsj.gldj':gldj,
 			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
 			},
 		    striped:true,
 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:50,
 		    height:$(window).height()-185,
 			width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			/* {field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 					return '<a href=javascript:locationXm1("'+row.qlbh+'","'+row.akjfl+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
-			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sbthcd!=7){
-					return '<a href=javascript:shenghwtg('+index+') style="text-decoration:none;color:#3399CC; ">审核未通过</a>  ';
-				}else{
-					if(row.shzt=="已审核"){
-						return '<span style="color:grey;">已审核</span>';
-					}else{
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-					//return '已审核  ';
-					}
-				}
-				
-			}}, */
+			
 			 	{field:'gydw',title:'管养（监管）单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -269,9 +275,9 @@ var xzqhstr;
  	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
-	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+
-	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+"&tsdq="+tsdq+
+	 	"&xmnf="+xmnf+"&sbzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.bzls='+$("#bzls").combobox("getValue")+'&jckwqgzsj.gldj='+gldj+
+	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+
 	 	"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
 		$.ajax({
 			 type : "POST",
@@ -295,9 +301,22 @@ var xzqhstr;
 	 	if($.cookie("unit2")=='______36'){
 	 		sbthcd=7;
 	 	}else  sbthcd=$.cookie("unit2").length;
-		var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#shzt').combobox("getValue")+
-	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+
+	 	var xmnf=$("#xmnf").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var akjfl=$("#akjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
+		var data=ata="sbthcd="+sbthcd+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+"&tsdq="+tsdq+
+	 	"&xmnf="+xmnf+"&sbzt="+$('#shzt').combobox("getValue")+'&jckwqgzsj.bzls='+$("#bzls").combobox("getValue")+'&jckwqgzsj.gldj='+gldj+
+	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+
 	 	"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/wqgzsj/dcwqgzsjxmkshExcel.do?'+data;
@@ -333,6 +352,11 @@ text-decoration:none;
 
                               	<td>审核状态：</td>
                               	<td><select id="shzt" style="width:70px"class="easyui-combobox">
+                              	<option value="">全部</option>
+                              	<option value="未审核">未审核</option>
+                              	<option value="已审核">已审核</option>
+                              	<option value="审核同意">审核通过</option>
+                              	<option value="审核不同意">审核不通过</option>
                               	</select></td>
                              <td>特殊地区：</td>
                               	<td><select id="tsdq" class="easyui-combobox" style="width:70px">
@@ -374,6 +398,12 @@ text-decoration:none;
 								<option value="否">否</option>
 								<option value="是">是</option>
 								</select></td>
+								<td>补助历史：</td>
+                              	<td><select id="bzls" style="width:70px"class="easyui-combobox">
+                              	</select></td>
+                              	<td>行政等级：</td>
+						   		 <td><select id="gldj" style="width:70px" class="easyui-combobox"></select></td>
+						  
                               <td colspan="6">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangb()"  style="border-width:0px;" /> -->

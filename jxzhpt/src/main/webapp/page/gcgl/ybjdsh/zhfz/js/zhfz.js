@@ -204,6 +204,17 @@ function showAll__ck(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
 	var jgzt='0';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
@@ -238,7 +249,11 @@ function showAll__ck(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	'gcglzhfz.xzqh':xzqhstr,
+	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

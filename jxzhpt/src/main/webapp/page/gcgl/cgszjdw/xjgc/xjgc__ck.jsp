@@ -17,6 +17,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/gcgzgj.js"></script>
 	<style>
@@ -29,52 +31,12 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			var mystr3='';
-			var mystr4='';
-			if(m==1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
-				mystr3=(y-1)+'-'+10;
-				mystr4=(y-1)+'-'+9;
-			}
-			else if(m==2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-				mystr3=(y-1)+'-'+11;
-				mystr4=(y-1)+'-'+10;
-			}else if(m==3){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+1;
-				mystr2=y+'-'+2;
-				mystr3=(y-1)+'-'+12;
-				mystr4=(y-1)+'-'+11;
-			}else if(m==4){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+2;
-				mystr2=y+'-'+3;
-				mystr3=y+'-'+1;
-				mystr4=(y-1)+'-'+12;
-			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-				mystr3=y+'-'+(m-3);
-				mystr4=y+'-'+(m-4);
-			}
-			$("#ddlMonth").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#ddlMonth").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
-			$("#ddlYear").val(myDate.getFullYear());
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','行政等级');
+			tsdq('ddlTSDQ');
+			$('#ddlMonth').simpleCanleder();
+			$('#ddlMonth').val(y+"-"+m);
+			gcglxmnf("ddlYear");
 			showAll__ck();
 		});
 		function exportAbyb(){
@@ -89,14 +51,22 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			var jgzt='0';
+			var jgzt='';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var myDate = new Date();
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();    //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y
+			+"&bfzt="+$("#bfzt").val()+
+	    	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
+	    	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValue')+
+	    	'&gcglabgc.lxbm='+$("#lxbm").val()+
+	    	'&gcglabgc.xmmc='+$("#xmmc").val()+
+	    	'&gcglabgc.lxmc='+$("#lxmc").val()+
+	    	'&gcglabgc.tsdq='+$("#ddlTSDQ").combobox('getText')+
+	    	'&gcglabgc.ljbfzt='+$("#ljbfzt").combobox('getValue');
 			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:xzqhstr} ,function(){
 				window.location.href="/jxzhpt/gcgl/exportxjyb.do?"+data;
 			    });
@@ -105,7 +75,7 @@
 			var weatherDlg = new J.dialog( {
 				id : 'id4',
 				title : '车购税信息导入',
-				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS.do"+'&flag='+flag,
+				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS2.do"+'&flag='+flag,
 				width : 570,
 				height : 440,
 				top : 0,
@@ -153,24 +123,47 @@ a:active {
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>行政区划：</span>
         						<input id="xzqh" style="width: 150px;">
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<span>下达年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 68px;">
         						<option value="">全部</option>
         						</select>
-        						<span>拨付月份：</span> <select name="ddlMonth"
+        						<span>拨付月份：</span> <input name="ddlMonth"
 									id="ddlMonth" style="width: 60px;">
-								</select> <span>拨付状态：</span> <select id=bfzt
+								<span>拨付状态：</span> <select id=bfzt
 									style="width: 50px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
 								</select> 
+								<span>路线名称：</span>
+        							<input type="text" id="lxmc" style="width: 138px;">
+								</p>
+								   <p style="margin: 1% 0% 1% 2%;">
+								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
+								<span style=" vertical-align:middle;">&nbsp;行政等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:115px; vertical-align:middle;">
+								</select>
+								
+        						<span>累计拨付状态：</span>
+        						<select id="ljbfzt" class="easyui-combobox" style="width:83px;">
+									<option value="" selected="selected">全部</option>
+									<option value="已全部拨付">已全部拨付</option>
+									<option value="未全部拨付">未全部拨付</option>
+								</select>
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								<span>路线编码：</span>
+        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
+        						<span>项目名称：</span>
+        						<span><input type="text" id="xmmc" style="width:95px;" /></span>
+<!--         						<span>下达年份：</span> -->
+<!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll__ck()"/>
-<%-- 								<img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-<%--         						 <img onclick="importData_yb('cgszjdw/gcgzgj/gcgzgj')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> --%>
+								<img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                  </p>
         				</div>
         			</fieldset>

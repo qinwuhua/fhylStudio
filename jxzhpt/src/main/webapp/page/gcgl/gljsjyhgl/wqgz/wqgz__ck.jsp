@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -24,16 +26,22 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2("kgzt","开工状态");
+			loadDist1("xzqh",$.cookie("dist")); 
+			loadBmbm2('ddlGldj','行政等级');
+			tsdq('ddlTSDQ');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			
+			var urlid=getUrlParame('id');
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
+			}else{
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
 			}
-			$("#ddlYear").val(myDate.getFullYear());
+			
 			showAll__ck();
 		});
 	</script>
@@ -60,7 +68,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 0.1%; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;危桥改造工程项目</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">进度填报</span>>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;危桥改造工程项目</div>
 					</div>
 	           
         	</tr>
@@ -76,27 +84,37 @@ a:active {
         						<input id="gydw" style="width: 150px;">
         						
         						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 60px;">
+        						<input id="kgzt" style="width: 70px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc"  style="width: 100px;">
+        							<input type="text" id="lxmc" style="width: 100px;">
         						<span>桥梁名称：</span>
         						<input type="text" id="qlmc" style="width: 100px;">
         						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
-        						<option value="">全部</option>
+        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
         						</select>
-        						<span>月报状态：</span>
+        						
+        						 <p style="margin: 1% 0% 1% 2%;">
+								<span>行政区划：</span>
+        						<select id="xzqh" style="width:150px;"></select>
+								<span style=" vertical-align:middle;">行政等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:102px; vertical-align:middle;">
+								</select>
+								
+        							<span>桥梁编码：</span>
+        						<input type="text" id="qlbm" style="width: 100px;">
+        							<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select>
-        						</p>
-        						<p style="margin: 1% 0% 1% 2%;">
-        						<span>桥梁编码：</span>
-        						<input type="text" id="qlbm" style="width: 100px;">
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll__ck()"/>        
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -60%;" onclick="showAll__ck()"/>        
                               </p>
         				</div>
         			</fieldset>

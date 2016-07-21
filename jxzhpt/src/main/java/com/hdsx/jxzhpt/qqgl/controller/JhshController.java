@@ -127,7 +127,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			ylxbhHandle();
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
-			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			jhsh.setXzqhdm(getcxtj("xzqhdm",jhsh.getXzqhdm()));
 			if(jhsh.getXmlx()==1){
 				listData=jhshServer.queryJhshLmsj(jhsh,jhsh.getPage(),jhsh.getRows());
 				total=jhshServer.queryJhshCountLmsj(jhsh);
@@ -146,7 +146,20 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
-	
+	public String getcxtj(String id,String param){
+		String tj="";
+		if(param!=null&&!"".equals(param)){
+			String[] s=param.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+				tj+=" ("+id+" like '%"+s[i]+"%'";
+				else
+				tj+=" or "+id+" like '%"+s[i]+"%'";
+			}
+			tj+=")";
+		}
+		return tj;
+	}
 	public void queryGsdgz() throws Exception{
 		List<Jhsh> listData=null;
 		int total=0;
@@ -288,10 +301,61 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		Map<String, String> result = new HashMap<String, String>();
 		try {
 			if(jhsh.getXmlx()==1){
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				jhsh.setXzqhdm(getcxtj("xzqhdm",jhsh.getXzqhdm()));
 				result = jhshServer.queryJhshLjLmsj(jhsh);
 			}else if(jhsh.getXmlx()==2){
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				jhsh.setXzqhdm(getcxtj("xzqhdm",jhsh.getXzqhdm()));
 				result = jhshServer.queryJhshLjLmgz(jhsh);
 			}else if(jhsh.getXmlx()==3){
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				jhsh.setXzqhdm(getcxtj("xzqhdm",jhsh.getXzqhdm()));
 				result = jhshServer.queryJhshLjXj(jhsh);
 			}else if(jhsh.getXmlx()==4){
 				jsdjHandle1();

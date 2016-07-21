@@ -17,6 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/sh.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -24,13 +27,12 @@
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			$("#ddlYear").val(myDate.getFullYear());
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','行政等级');
+			tsdq('ddlTSDQ');
+			gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+// 			urlxmnf("ddlYear",urlid);
 			showAll__ck();
 		});
 	</script>
@@ -57,7 +59,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;月报进度审核管理>&nbsp;灾毁重建工程项目</div>
+				<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">完工项目</span>>&nbsp;<span id="bstext"></span>>&nbsp;灾毁重建工程项目</div>
 			</div>     
         	</tr>
         	<tr>
@@ -67,17 +69,38 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0px 1% 2%;">
+        					<p style="margin: 1% 0% 1% 2%;">
         						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 200px;">
+        						<input id="xzqh" style="width: 208px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
+        							<input type="text" id="lxmc" style="width: 116px" >
         						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
         						<option value="">全部</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>路线编码：</span>
+        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
+        						</p>
+								   <p style="margin: 1% 0% 1% 2%;">
+								<span style=" vertical-align:middle;">技术等级：</span>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
+								<span style=" vertical-align:middle;">行政等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:120px; vertical-align:middle;">
+								</select>
+        						<span>项目名称：</span>
+        						<span><input type="text" id="xmmc" style="width:95px;" /></span>
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								
+        						
+        						<span>是否交工验收：</span>
+								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
+									<option value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll__ck()"/>        					</p>
         				</div>

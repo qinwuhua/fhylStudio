@@ -453,8 +453,13 @@ function querymc(id){
 		cxqdmc($('#ylxbh').val(),$('#qdzh').val());
 	}else if(id=="zdzh"){
 		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+	}else{
+		cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 	}
-	queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	
+	getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }

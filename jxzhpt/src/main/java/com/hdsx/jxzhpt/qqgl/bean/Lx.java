@@ -1,6 +1,14 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Lx {
+	private String ylxmc;
+	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
 	public Lx(){
 		super();
 	};
@@ -78,6 +86,36 @@ public class Lx {
 	public void setSbzj(String sbzj) {
 		this.sbzj = sbzj;
 	}
+	private String jsqdzh;
+	private String jszdzh;
+	
+	public String getJsqdzh() {
+		return jsqdzh;
+	}
+	public void setJsqdzh(String jsqdzh) {
+		this.jsqdzh = jsqdzh;
+	}
+	public String getJszdzh() {
+		return jszdzh;
+	}
+	public void setJszdzh(String jszdzh) {
+		this.jszdzh = jszdzh;
+	}
+	private String xmqd;
+	private String xmzd;
+	
+	public String getXmqd() {
+		return xmqd;
+	}
+	public void setXmqd(String xmqd) {
+		this.xmqd = xmqd;
+	}
+	public String getXmzd() {
+		return xmzd;
+	}
+	public void setXmzd(String xmzd) {
+		this.xmzd = xmzd;
+	}
 	private String yjsdj;
 	private String sbzj;//省补资金
 	private String id;//ID
@@ -126,8 +164,10 @@ public class Lx {
 	private String yzdzh;//原止点桩号
 	private String xmmc;//项目名称
 	private String xmnf;
-	
-	
+	private String xlxbm;//路线编码
+	private String xqdzh;//原起点桩号
+	private String xzdzh;//原止点桩号
+	private String xlxmc;//原止点桩号
 	
 	//补助
 	private String lqhntmc;
@@ -190,11 +230,75 @@ public class Lx {
 	
 	
 	
+	private String ghlxbm;
+	private String ghlxmc;
+	private String ghqdzh;
+	private String ghzdzh;
+	private String gxlxbm;
+	private String gxqdzh;
+	private String gxzdzh;
 	
 	
-	
-	
-	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
+	public String getXlxbm() {
+		return xlxbm;
+	}
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+	public String getXqdzh() {
+		return xqdzh;
+	}
+	public void setXqdzh(String xqdzh) {
+		this.xqdzh = xqdzh;
+	}
+	public String getXzdzh() {
+		return xzdzh;
+	}
+	public void setXzdzh(String xzdzh) {
+		this.xzdzh = xzdzh;
+	}
 	public String getYjsdj() {
 		return yjsdj;
 	}
@@ -783,4 +887,11 @@ public class Lx {
 	public void setWllc(String wllc) {
 		this.wllc = wllc;
 	}
+	public String getXlxmc() {
+		return xlxmc;
+	}
+	public void setXlxmc(String xlxmc) {
+		this.xlxmc = xlxmc;
+	}
+	
 }

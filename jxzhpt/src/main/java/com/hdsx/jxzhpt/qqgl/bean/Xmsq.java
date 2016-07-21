@@ -1,6 +1,24 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Xmsq {
+	private String ylxmc;
+	
+	public String getYlxmc() {
+		return ylxmc;
+	}
+	public void setYlxmc(String ylxmc) {
+		this.ylxmc = ylxmc;
+	}
+	private String qd;
+	private String zd;
+	private String ylxbm;
+	private String yqdzh;
+	private String yzdzh;
+	private String cfld;
+	private String xlxbm;
+	private String xqdzh;
+	private String xzdzh;
+	private String xlxmc;
 	private String id;
 	private String xmbm;//项目编码
 	private String xmmc;//项目名称
@@ -64,7 +82,9 @@ public class Xmsq {
 	private String wnxmk;
 	private String ylmlx;//原路面类型
 	private String ylmjg;//原路面结构
-	
+	private String gxlxbm;
+	private String gxqdzh;
+	private String gxzdzh;
 	//补助
 	private String lqhntmc;
 	private String gxlqhntmc;  
@@ -123,8 +143,32 @@ public class Xmsq {
 	private String sbzj;//省补资金
 	
 	private String xzqhdm2;//跨县行政区划
+	private String lxbm;
 	
-	
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public String getGhqdzh() {
 		return ghqdzh;
 	}
@@ -798,6 +842,66 @@ public class Xmsq {
 	}
 	public void setSnhntmcsshdj(String snhntmcsshdj) {
 		this.snhntmcsshdj = snhntmcsshdj;
+	}
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getCfld() {
+		return cfld;
+	}
+	public void setCfld(String cfld) {
+		this.cfld = cfld;
+	}
+	public String getXlxbm() {
+		return xlxbm;
+	}
+	public void setXlxbm(String xlxbm) {
+		this.xlxbm = xlxbm;
+	}
+	public String getXqdzh() {
+		return xqdzh;
+	}
+	public void setXqdzh(String xqdzh) {
+		this.xqdzh = xqdzh;
+	}
+	public String getXzdzh() {
+		return xzdzh;
+	}
+	public void setXzdzh(String xzdzh) {
+		this.xzdzh = xzdzh;
+	}
+	public String getXlxmc() {
+		return xlxmc;
+	}
+	public void setXlxmc(String xlxmc) {
+		this.xlxmc = xlxmc;
+	}
+	public String getQd() {
+		return qd;
+	}
+	public void setQd(String qd) {
+		this.qd = qd;
+	}
+	public String getZd() {
+		return zd;
+	}
+	public void setZd(String zd) {
+		this.zd = zd;
 	}
 	
 }

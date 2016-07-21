@@ -20,16 +20,25 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
 	loadBmbm2("bzls", "补助历史");
-	tsdq("tsdq");
+	var urlid=getUrlParame('id');
+	if(urlid==null){
+		xmnfdx("xmnf"); 
+		xzdjdx('gldj');
+	}else{
+		setxmnf("xmnf",urlid);
+		setxzdj('gldj',urlid);
+	}
+	
+	jsdjdx('jsdj');
+	
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
-	sckshWqgz__ck();
+	sckshWqgz123();
 });
 
 function xgShzt(){
@@ -124,6 +133,51 @@ function tuiHui(){
 			});
 	}
 }
+function exportExcel_wqgz_scsh1(){
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var akjfl="";
+	akjfl=$("#akjfl").combobox("getValues").join(',');
+		if(akjfl.substring(0,1)==','){
+			akjfl=akjfl.substring(1,akjfl.length);
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&qlmc='+$("#qlmc").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+akjfl+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
+ 	'&sck_sbthcd='+cd;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
+}
 
 </script>
 <style type="text/css">
@@ -138,7 +192,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目审查库审核>&nbsp;危桥改造项目</div>
+		<div id="p_top">前期管理>&nbsp;<span id="astext">项目立项</span>>&nbsp;<span id='bstext'></span>>&nbsp;路网结构改造工程>&nbsp;危桥改造项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -149,51 +203,58 @@ text-decoration:none;
 					<div>
 					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-								<td>管养单位：</td>
-                              	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
-                              	</select></td>
-                             	<td>行政区划：</td>
-                              	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
-                              	</select></td>
-                               <td align="right">桥梁编号：</td>
-        						<td><input type="text" id="qlbh" style="width:70px;" /></td>
-                              	<td>桥梁名称：</td>
-                              	<td><input id="qlmc" type="text" style="width:76px"/></td>
-                              	<td>路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:70px;" /></td>
-						</tr>
+						<td>管养单位：</td>
+                      	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
+                      	</select></td>
+                     	<td>行政区划：</td>
+                      	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
+                      	</select></td>
+                       	<td align="right">桥梁编号：</td>
+						<td><input type="text" id="qlbh" style="width:70px;" /></td>
+                      	<td>桥梁名称：</td>
+                      	<td><input id="qlmc" type="text" style="width:76px"/></td>
+                              	
+					</tr>
                        <tr height="32">
-							  <td>项目年份：</span>
+							  	<td>项目年份：</span>
                               	<td><select id="xmnf" style="width:70px">
                               	</select>
-                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
+                              	<span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               	</select></td>
-                               <td>审核状态：</td>
+                               	<td>审核状态：</td>
                               	<td><select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              <td>特殊地区：</td>
+                              	<td>特殊地区：</td>
                               	<td><select id="tsdq" style="width:70px"class="easyui-combobox">
                               	</select></td>
                              <td>技术等级：</td>
-                              <td>	<select id="jsdj" style="width:70px"class="easyui-combobox">
-                              	</select></td>
+                              	<td>	
+                              		<select id="jsdj" style="width:70px"class="easyui-combobox">
+                              		</select>
+                              	</td>
                               	<td>按跨径分类：</td>
                               	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
                               	</select>
                               	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:80px"class="easyui-combobox">
                               	</select></td>
-                              	<td>路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
+                              	
                              </tr>
-                              <tr height="32">
-                              <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshWqgz();"style="border-width:0px;cursor: hand;" />
-								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
-                                <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
-                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_wqgz_scsh();" style="border-width:0px;cursor: hand;" />
-							 </td>
+                             <tr height="32">
+	                              <td>路线名称：</td>
+	        						<td><input type="text" id="lxmc" style="width:70px;" /></td>
+	                              <td>路线编码：</td>
+	        						<td><input type="text" id="lxbm" style="width:70px;" /></td>
+	                              <td>行政等级：</td>
+	                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
+	                              	</select></td>
+	                              <td colspan="10">
+									<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshWqgz123();"style="border-width:0px;cursor: hand;" />
+<!-- 									<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" /> -->
+<!-- 	                                <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
+	                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_wqgz_scsh1();" style="border-width:0px;cursor: hand;" />
+								 </td>
                             </tr></table>
 						</div>
 				</fieldset>

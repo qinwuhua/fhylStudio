@@ -24,15 +24,16 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("sbzt", "上报状态");
-	loadBmbm2("lxjsdj", "技术等级");
-	loadBmbm2("bz", "行政等级");
-	tsdq("tsdq");
+	xmnfdx("xmnf"); 
+	jsdjdx('jsdj');
+	xzdjdx('gldj');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
-	jckglAbgc__ck();
+	jckglAbgc123();
 	
 });
 
@@ -216,14 +217,14 @@ text-decoration:none;
 							  <td>特殊地区：</td>
 							  <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>技术等级：</td>
-							  <td><select id="lxjsdj" style="width:70px"class="easyui-combobox"></select></td>
+							  <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>行政等级：</td>
-							  <td><select id="bz" style="width:105px" class="easyui-combobox"></select></td>
+							  <td><select id="gldj" style="width:105px" class="easyui-combobox"></select></td>
 							  
 							</tr>
 							<tr   height="32">
 							  <td colspan="10">
-							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglAbgc__ck();"style="border-width:0px;cursor: hand;" />
+							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglAbgc123();"style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" /> -->
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
 <!-- 								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Security');" style="border-width:0px;cursor: hand;" /> -->

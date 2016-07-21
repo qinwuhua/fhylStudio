@@ -47,14 +47,7 @@
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'ck',checkbox:true},
-				{field:'cz',title:'操作',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						return result;
-					}
-				},
+				
 				
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center',
@@ -82,7 +75,7 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			bindLxGrid();
-			gridBind(grid);
+			gridBind1(grid);
 		}
 		function loadLj(params){
 			$.ajax({
@@ -91,9 +84,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}
@@ -196,12 +195,12 @@ text-decoration:none;
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:124px;"></select></td>
 								<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:120px;" /></td>
-								<td align="right">下达状态：</td>
+								<td align="right">审核状态：</td>
 								<td>
 	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
 		       							<option value="-1" selected="selected">全部</option>
-		       							<option value="0">未下达</option>
-		       							<option value="1">已下达</option>
+		       							<option value="0">未审核</option>
+		       							<option value="1">已审核</option>
 	       							</select>
 	       						</td>
         						<td>补助历史：</td>
@@ -214,10 +213,7 @@ text-decoration:none;
                             <tr height="32">
                             	<td colspan="8">
                             		<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<!-- 	<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;">
-                            		<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-									<img onclick="importJhsh(3)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
-                            	</td>
+									</td>
                             </tr>
         				</table>
         				</div>

@@ -367,17 +367,28 @@
 							
 							var lc=0;
 							
-							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh)){
+							if(parseFloat(msg.lx[i].jsqdzh)!=parseFloat(msg.lx[i].xmzd)&&parseFloat(msg.lx[i].jszdzh)!=parseFloat(msg.lx[i].xmqd)){
 								var qd;var zd;
-								if(parseFloat(msg.lx[i].qdzh)<parseFloat(obj.qdzh)){
-									qd=parseFloat(obj.qdzh);
-								}else{
-									qd=parseFloat(msg.lx[i].qdzh);
+								// alert(msg.lx[i].yqdzh+"    "+msg.lx[i].xmqd+"     "+msg.lx[i].yzdzh+"     "+msg.lx[i].xmzd)
+								/*var zjbl=0;//中间变量
+								if(msg.lx[i].yqdzh>msg.lx[i].yzdzh){
+									zjbl=msg.lx[i].yqdzh;msg.lx[i].yqdzh=msg.lx[i].yzdzh;msg.lx[i].yzdzh=zjbl;
+									zjbl=0;
 								}
-								if(parseFloat(msg.lx[i].zdzh)>parseFloat(obj.zdzh)){
-									zd=parseFloat(obj.zdzh);
+								alert(msg.lx[i].yqdzh+"    "+msg.lx[i].xmqd+"     "+msg.lx[i].yzdzh+"     "+msg.lx[i].xmzd) */
+								/* if(msg.lx[i].yqdzh>msg.lx[i].yzdzh){
+									zjbl=msg.lx[i].yqdzh;msg.lx[i].yqdzh=msg.lx[i].yzdzh;msg.lx[i].yzdzh=zjbl;
+									zjbl=0;
+								} */	
+								if(parseFloat(msg.lx[i].jsqdzh)<parseFloat(msg.lx[i].xmqd)){
+									qd=parseFloat(msg.lx[i].xmqd);
 								}else{
-									zd=parseFloat(msg.lx[i].zdzh);
+									qd=parseFloat(msg.lx[i].jsqdzh);
+								}
+								if(parseFloat(msg.lx[i].jszdzh)>parseFloat(msg.lx[i].xmzd)){
+									zd=parseFloat(msg.lx[i].xmzd);
+								}else{
+									zd=parseFloat(msg.lx[i].jszdzh);
 								}
 								lc=accSub(zd,qd);
 								

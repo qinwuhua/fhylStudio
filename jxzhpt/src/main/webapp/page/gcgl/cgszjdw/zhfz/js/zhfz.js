@@ -206,7 +206,17 @@ function showAll__ck(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
 	var jgzt='0';
 	var kgzt='';
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
@@ -232,8 +242,16 @@ function showAll__ck(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
-	    	bfzt:$("#bfzt").val()
+	    	bfzt:$("#bfzt").val(),
+	    	'gcglzhfz.xzqh':xzqhstr,
+	    	'gcglzhfz.lxbm':$("#lxbm").val(),
+//	    	'gcglzhfz.xdsj':$("#xdnf").val(),
+	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglzhfz.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},
+
 	    columns:[[
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw__ck('+index+')">资金拨付</a>   ';

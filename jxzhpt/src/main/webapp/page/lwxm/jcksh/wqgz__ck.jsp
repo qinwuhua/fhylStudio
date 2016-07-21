@@ -20,15 +20,24 @@
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
-	xmnf("xmnf"); 
+	
 	loadBmbm2("shzt", "审核状态");
-	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类");
-	tsdq("tsdq");
+	
+	var urlid=getUrlParame('id');
+	if(urlid==null){
+		xmnfdx("xmnf"); 
+		xzdjdx('gldj');
+	}else{
+		setxmnf("xmnf",urlid);
+		setxzdj('gldj',urlid);
+	}
+	jsdjdx('jsdj');
+	kjfldx('akjfl');
+	tsdqdx('tsdq');
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
-	jckshWqgz__ck();
+	jckshWqgz123();
 });
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
@@ -90,7 +99,7 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
-	if(rows[i].shzt='已审核'){
+	if(rows[i].shzt=='已审核'){
 		alert("对不起，项目已审核，不能执行退回操作！");
 		return;
 	}
@@ -131,7 +140,7 @@ text-decoration:none;
 </head>
 <body>
 <div id="righttop">
-		<div id="p_top">路网项目>&nbsp;项目基础库审核>&nbsp;危桥改造项目</div>
+		<div id="p_top">五年项目库>&nbsp;<span id='bstext'></span>>路网结构改造工程>&nbsp;危桥改造项目</div>
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -152,17 +161,14 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
         						<td>路线编码：</td>
                               	<td><input type="text" id="lxbm"style="width:70px"/></td>
-                              <td>桥梁名称：</td>
-                              	<td><input type="text" id="qlmc"style="width:70px"/></td>
-						
                        </tr>
                        <tr height="32">
-							  <td>项目年份：</td>
-                              <td>	<select id="xmnf" style="width:70px">
-                              	</select>
-                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px;display: none;">
-                              	</select></td>
+							  <!-- <td>项目年份：</td>
+                              <td>	
+                                <select id="xmnf" style="width:70px"></select>
+                                <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;"></select>
+                              </td> -->
                                <td>审核状态：</td>
                               	<td><select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select></td>
@@ -177,10 +183,15 @@ text-decoration:none;
                               	</select></td>
                               <td>桥梁编号：</td>
                               <td>	<input type="text" id="qlbh"style="width:70px"/></td>
+                              <td>行政等级：</td>
+                              	<td><select id="gldj" style="width:70px"class="easyui-combobox">
+                              	</select></td>
                         </tr>
-                             <tr height="32">
+                         <tr height="32">
+                              <td>桥梁名称：</td>
+                              	<td><input type="text" id="qlmc"style="width:70px"/></td>
                               <td colspan="10">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshWqgz__ck();"style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshWqgz123();"style="border-width:0px;cursor: hand;" />
 <!-- 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" /> -->
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz_sh();" style="border-width:0px;cursor: hand;" />

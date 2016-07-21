@@ -14,6 +14,11 @@ public class Lxsh implements Serializable {
 	private String xmklx;//项目库类型
 	private String qqkzzt;//前期开展状态
 	
+	private String ghqdzh;//规划路线编号
+	private String ghzdzh;//规划路线编号
+	private String gxlxbm;//规划路线编号
+	private String gxqdzh;//规划路线编号
+	private String gxzdzh;//规划路线编号
 	private String tzxz;
 	private String tzsj;
 	private String xmlx1;
@@ -28,6 +33,36 @@ public class Lxsh implements Serializable {
 	private String xzqhdm2;
 	
 	
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
 	public String getXzqhdm2() {
 		return xzqhdm2;
 	}

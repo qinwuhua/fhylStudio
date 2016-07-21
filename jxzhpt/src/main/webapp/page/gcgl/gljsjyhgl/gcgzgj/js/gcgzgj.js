@@ -578,6 +578,9 @@ function showAll__ck(){
 	    	xmnf:xmnf,
 	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglgcgzgj.lxbm':$("#lxbm").val(),
+	    	'gcglgcgzgj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzgj.lxmc':$("#lxmc").val(),
 	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[

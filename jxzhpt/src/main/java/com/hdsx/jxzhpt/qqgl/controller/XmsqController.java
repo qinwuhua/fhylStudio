@@ -96,6 +96,17 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	
 	
+	public void queryAutoghList() throws Exception{
+		try{
+			if(xmsq.getYlxbh()==null||"".equals(xmsq.getYlxbh()))
+				return;
+			JsonUtils.write(xmsqServer.queryAutoghList(xmsq), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryYlmlxByLxInfo(){
 		try{
 			Lx l = xmsqServer.queryAutoList1(xmsq);
@@ -235,6 +246,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			result.put("result", "have");
 			result.put("lx", lxwn);
 		}
+		
 		JsonUtils.write(result, getresponse().getWriter());
 		
 	}
@@ -244,6 +256,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+			lx.setGhlxbm(xmsq.getGhlxbm());
+			lx.setGhqdzh(xmsq.getGhqdzh());
+			lx.setGhzdzh(xmsq.getGhzdzh());
+			lx.setGxlxbm(xmsq.getGxlxbm());
+			lx.setGxqdzh(xmsq.getGxqdzh());
+			lx.setGxzdzh(xmsq.getGxzdzh());
+			
 			if(xmsq.getXmlx()==5){
 				lx.setJdbs("0");
 			}else{
@@ -1312,5 +1331,49 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	public void getghlxinfo(){
+		List<Xmsq> l=xmsqServer.getghlxinfo(xmsq);
+		List<Xmsq> l1=new ArrayList<Xmsq>();
+		for (Xmsq xm : l) {
+			if(xm.getYlxbm().equals(xm.getXlxbm())&&xm.getYqdzh().equals(xm.getXqdzh())&&xm.getYzdzh().equals(xm.getXzdzh())){
+				//System.out.println("删除");
+				l1.add(xm);
+			}
+			System.out.println(xmsq.getXlxbm()+"      ------------------------------------------------------------");
+		}
+		l.removeAll(l1);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void getylxinfo(){
+		Xmsq l=xmsqServer.getylxinfo(xmsq);
+		
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void getylxlminfo(){
+		Lx l=xmsqServer.getylxlminfo(xmsq);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void getgxlxinfo(){
+		List<Xmsq> l=xmsqServer.getgxlxinfo(xmsq);
+		
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

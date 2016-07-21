@@ -30,7 +30,7 @@
 					});
 				}
 			});
-			queryZjxd1(parent.YMLib.Var.xmbm);
+			queryxZjxd1(parent.YMLib.Var.xmbm);
 		});
 	</script>
 </head>
@@ -89,12 +89,7 @@
 						<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;"></table>
 					</td>
 				</tr>
-				<tr style="height: 25px;">
-					<td colspan="6"  style="text-align: center;">
-<!-- 						<a><img onclick="openZjxd()" id="imgAdd" alt="添加" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src="../../../images/Button/tianj1.gif" style="text-align: center;"/></a> -->
-						<a><img onclick="closeWindow('lmgzzjxd')" alt="返回" src="../../../images/Button/fanhui1.GIF" onmouseover="this.src='../../../images/Button/fanhui2.GIF'" onmouseout="this.src='../../../images/Button/fanhui1.GIF'" style="text-align: center;"></a>
-					</td>
-				</tr>
+				
 			</table>
 		</form>
 	</div>

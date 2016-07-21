@@ -3144,3 +3144,376 @@ function queryAbxmYb(jhid){
 	
 }//查询工程管理安保项目月报页面内的那行统计 end
 
+///加法
+function accAdd(arg1,arg2){  
+    var r1,r2,m;  
+    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  
+    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}  
+    m=Math.pow(10,Math.max(r1,r2));
+    return (arg1*m+arg2*m)/m;  
+}
+function accSub(arg1,arg2){
+	 var r1,r2,m,n;
+	 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
+	try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
+	m=Math.pow(10,Math.max(r1,r2));
+	//last modify by deeka
+	//动态控制精度长度
+	n=(r1>=r2)?r1:r2;
+	return ((arg1*m-arg2*m)/m).toFixed(n);
+	}
+function getghlxinfo(lxbm,qdzh,zdzh){
+	//alert(lxbm);
+	if(parseFloat(qdzh)<parseFloat(zdzh))
+		queryJsdjAndLc1(lxbm,qdzh,zdzh);
+	else
+		queryJsdjAndLc1(lxbm,zdzh,qdzh);
+	$.ajax({
+		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/getghlxinfo.do',
+		success:function(msg){
+			var ghlxbm='';var ghqdzh='';var ghzdzh='';var xlxmc;
+			var qd='';var zd='';var qcqd='';var qczd=''; var cfld='';
+			if(msg.length!=0){
+				ghlxbm=msg[0].xlxbm;ghqdzh=msg[0].qd;ghzdzh=msg[0].zd;xlxmc=msg[0].xlxmc;
+				/*for ( var i = 0; i < msg.length; i++) {
+					
+				}*/
+				//alert(msg.length>0);
+				if(msg.length>1){
+						xlxmc=msg[0].xlxmc;
+						cfld=msg[1].xlxbm;
+						if(msg[0].qdzh>msg[1].qdzh)
+							qd=msg[0].qdzh;
+						else
+							qd=msg[1].qdzh;
+						if(msg[0].zdzh>msg[1].zdzh)
+							zd=msg[1].zdzh;
+						else
+							zd=msg[0].zdzh;
+						if(msg[1].qd<msg[1].zd){
+							qcqd=accAdd(accSub(parseFloat(msg[1].qd),parseFloat(msg[1].qdzh)),parseFloat(qd)); // parseFloat(msg[1].qd)-parseFloat(msg[1].yqdzh)+parseFloat(qd);
+							qczd=accSub(accAdd(parseFloat(qcqd),parseFloat(zd)),parseFloat(qd));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
+						}else{
+							qcqd=accSub(accAdd(parseFloat(msg[1].qd),parseFloat(zd)),parseFloat(msg[1].zdzh));   //parseFloat(msg[1].qd)+parseFloat(zd)-parseFloat(msg[1].yzdzh);
+							qczd=accSub(accAdd(parseFloat(qcqd),parseFloat(qd)),parseFloat(zd));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
+						}
+							
+				}
+			}
+			
+			$('#ghlxmc').val(xlxmc);
+			$("#ghlxbm").val(ghlxbm.substr(0,4));$("#ghqdzh").val(ghqdzh);$("#ghzdzh").val(ghzdzh);
+			$("#gxlxbm").val(cfld.substr(0,4));$("#gxqdzh").val(qcqd);$("#gxzdzh").val(qczd);
+//			alert("规划信息"+ghlxbm+"   "+ghqdzh+"    "+ghzdzh);
+//			alert("共线信息"+cfld+"   "+qcqd+"    "+qczd);
+			
+		}
+	});
+	
+	
+	
+}
+
+//获取规划信息
+function autoCompleteGHLXBM(){
+	var url = "/jxzhpt/qqgl/queryAutoghList.do";
+	$("#ghlxbm").autocomplete(url, {
+		multiple : false,minChars :4,multipleSeparator : ' ',
+		mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+  		extraParams : {
+  			'ylxbh':function() {
+  				var d = $("#ghlxbm").val();
+  				return d;
+  			},
+  			'xzqhdm':function() {
+  				var d = $.cookie("dist2");
+  				return d;
+  			}
+  		},
+  		dataType:'json',// 返回类型
+  		// 对返回的json对象进行解析函数，函数返回一个数组
+  		parse : function(data) {
+  			var aa = [];
+  			aa = $.map(eval(data), function(row) {
+  					return {
+  					data : row,
+  					value : row.xlxbm.replace(/(\s*$)/g,""),
+  					result : row.xlxbm.replace(/(\s*$)/g,"")
+  				};
+  			});
+  			return aa;
+  		},
+  		formatItem : function(row, i, max) {
+  			return row.xlxbm.replace(/(\s*$)/g,"")+"("+row.xqdzh+","+row.xzdzh+")"+"<br/>"+row.xlxmc.replace(/(\s*$)/g,"");
+  		}
+  	}).result(
+		function(e, item) {
+			
+			$('#ghqdzh').val(item.xqdzh);
+			$('#ghzdzh').val(item.xzdzh);
+			$('#ghlxmc').val(item.xlxmc);
+			//alert(item.lxmc);
+			$('#lxmc').val(item.lxmc);
+			getylxinfo(item.xlxbm,item.xqdzh,item.xzdzh);
+			getgxlxinfo(item.xlxbm,item.xqdzh,item.xzdzh);
+	});
+}
+
+function querymcbygh(){
+	getylxinfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
+	
+}
+
+function getylxinfo(lxbm,qdzh,zdzh){
+	$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
+	$.ajax({
+		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/getylxinfo.do',
+		success:function(msg){
+			var qd='';var zd='';
+			if(parseFloat(msg.yqdzh)<parseFloat(msg.yzdzh)){
+				qd=accAdd(accSub(parseFloat(qdzh),parseFloat(msg.xqdzh)),parseFloat(msg.yqdzh));
+				zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
+				getylxlminfo(msg.ylxbm,qd,zd);
+			}else{
+				//qd=msg.yqdzh;zd=msg.yzdzh;
+				qd=accSub(accAdd(parseFloat(msg.yqdzh),parseFloat(zdzh)),parseFloat(msg.xzdzh)); 
+				zd=accSub(accAdd(parseFloat(qd),parseFloat(qdzh)),parseFloat(zdzh));
+				
+				getylxlminfo(msg.ylxbm,zd,qd);
+			}
+			
+			
+			
+			//$("#lxmc").val(msg.lxmc);
+			$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#qdzh").val(qd);$("#zdzh").val(zd);
+			$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#gpsqdzh").val(qd);$("#gpszdzh").val(zd);
+			cxqdmc1(msg.ylxbm.substr(0,4),qd);
+			cxzdmc1(msg.ylxbm.substr(0,4),zd);
+			$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
+			$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
+			
+			if(parseFloat(qd)<parseFloat(zd)){
+				$('#span_qdzh').html(">="+qd);
+				$('#span_zdzh').html("<="+zd);
+			}else{
+				$('#span_qdzh').html("<="+qd);
+				$('#span_zdzh').html(">="+zd);
+			}
+			getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
+		}
+	});
+}
+
+function getgxlxinfo(lxbm,qdzh,zdzh,qd,zd){
+	$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
+	$.ajax({
+		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/getgxlxinfo.do',
+		success:function(msg){
+			var gxbm='';var gxqd='';var gxzd='';
+			for(var i=0;i<msg.length;i++){
+				var xqd='';var xzd='';var qcqd='';var qczd='';
+				if(parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
+					var _qd='';var _zd='';
+					if(parseFloat(qd)<parseFloat(zd)){
+						_qd=qd;_zd=zd;
+					}else{
+						_qd=zd;_zd=qd;
+					}
+					if(msg[i].yqdzh<_qd)
+						xqd=_qd;
+					else xqd=msg[i].yqdzh;
+					if(msg[i].yzdzh<_zd)
+						xzd=msg[i].yzdzh;
+					else xzd=_zd;
+					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yqdzh)),parseFloat(xqd));
+					qczd=accAdd(accSub(parseFloat(xzd),parseFloat(xqd)),parseFloat(qcqd));
+				}else{
+					var _qd='';var _zd='';
+					if(parseFloat(qd)<parseFloat(zd)){
+						_qd=zd;_zd=qd;
+					}else{
+						_qd=qd;_zd=zd;
+					}
+					if(msg[i].yqdzh>_qd)
+						xqd=_qd;
+					else
+						xqd=msg[i].yqdzh;	
+					if(msg[i].yzdzh>_zd)
+						xzd=msg[i].yzdzh;
+					else
+						xzd=_zd;
+					
+					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yzdzh)),parseFloat(xzd));
+					qczd=accAdd(accSub(parseFloat(xqd),parseFloat(xzd)),parseFloat(qcqd));
+				}
+				//alert(qcqd+"   ----"+msg.xqdzh);
+				
+				if(parseFloat(qd)<parseFloat(zd)&&parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
+					gxbm+=","+msg[i].xlxbm.substr(0,4);
+					gxqd+=","+qcqd;
+					gxzd+=","+qczd;
+					
+				}
+				else{
+					gxbm+=","+msg[i].xlxbm.substr(0,4);
+					gxqd+=","+qczd;
+					gxzd+=","+qcqd;
+					//$("#gxlxbm").val(msg[i].xlxbm.substr(0,4));$("#gxqdzh").val(qczd);$("#gxzdzh").val(qcqd);
+				}
+				
+				
+				
+			}
+			$("#gxlxbm").val(gxbm.substring(1, gxbm.length));$("#gxqdzh").val(gxqd.substring(1, gxqd.length));$("#gxzdzh").val(gxzd.substring(1, gxzd.length));
+			
+				/*var xqd='';var xzd='';var qcqd='';var qczd='';
+				if(parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
+					var _qd='';var _zd='';
+					if(parseFloat(qd)<parseFloat(zd)){
+						_qd=qd;_zd=zd;
+					}else{
+						_qd=zd;_zd=qd;
+					}
+					if(msg[i].yqdzh<_qd)
+						xqd=_qd;
+					else xqd=msg[i].yqdzh;
+					if(msg[i].yzdzh<_zd)
+						xzd=msg[i].yzdzh;
+					else xzd=_zd;
+					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yqdzh)),parseFloat(xqd));
+					qczd=accAdd(accSub(parseFloat(xzd),parseFloat(xqd)),parseFloat(qcqd));
+				}else{
+					var _qd='';var _zd='';
+					if(parseFloat(qd)<parseFloat(zd)){
+						_qd=zd;_zd=qd;
+					}else{
+						_qd=qd;_zd=zd;
+					}
+					if(msg[i].yqdzh>_qd)
+						xqd=_qd;
+					else
+						xqd=msg[i].yqdzh;	
+					if(msg[i].yzdzh>_zd)
+						xzd=msg[i].yzdzh;
+					else
+						xzd=_zd;
+					
+					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yzdzh)),parseFloat(xzd));
+					qczd=accAdd(accSub(parseFloat(xqd),parseFloat(xzd)),parseFloat(qcqd));
+				}
+				//alert(qcqd+"   ----"+msg[i].xqdzh);
+				
+				if(parseFloat(qd)<parseFloat(zd)&&parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
+					$("#gxlxbm").val(msg[i].xlxbm.substr(0,4));$("#gxqdzh").val(qcqd);$("#gxzdzh").val(qczd);
+				}
+				else{
+					$("#gxlxbm").val(msg[i].xlxbm.substr(0,4));$("#gxqdzh").val(qczd);$("#gxzdzh").val(qcqd);
+				}*/
+			} 	
+		});
+}
+
+function getylxlminfo(lxbm,qdzh,zdzh){
+	//alert();
+	$.ajax({
+		data:'xmsq.lxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/getylxlminfo.do',
+		success:function(msg){
+			$("#lmkd").val(msg.lmkd);	
+			$("#ylmlx").val(msg.ylmlx);	
+			//alert(msg.lxmc);
+			//$("#lxmc").val(msg.lxmc);	
+			queryJsdjAndLc1(lxbm.substr(0,4),qdzh,zdzh);
+			//queryylmlx1(lxbm.substr(0,4),qdzh,zdzh);
+			
+		}
+	});
+}
+
+
+
+/**
+ * 根据路线编码和起点桩号查询起点名称
+ * @param lxbm 路线编码
+ * @param qdzh  起点桩号
+ */
+function cxqdmc1(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#qdmc').val(msg.qdmc);
+		}
+	});
+}
+/**
+ * 根据路线编码和止点桩号查询止点名称
+ * @param lxbm 路线编码
+ * @param zdzh 止点桩号
+ */
+function cxzdmc1(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#zdmc').val(msg.zdmc);
+		}
+	});
+}
+/**
+ * 查询起止点桩号间的技术等级和里程
+ * @param lxbm
+ * @param qdzh
+ * @param zdzh
+ * @returns
+ */
+function queryJsdjAndLc1(lxbm,qdzh,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
+        data:'lx.lxbm='+lxbm+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yilc').val(msg.yilc);
+			$('#erlc').val(msg.erlc);
+			$('#sanlc').val(msg.sanlc);
+			$('#silc').val(msg.silc);
+			$('#dwlc').val(msg.dwlc);
+			$('#wllc').val(msg.wllc);
+			if($('#jsdj')){
+				$('#jsdj').val(msg.xjsdj);
+			}
+		}
+	});
+}
+
+function queryylmlx1(lxbm,qdzh,zdzh){
+	if(lxbm.substr(0,1)=='Y' || lxbm.substr(0,1)=='C')
+		lxbm=lxbm+xzqh;
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'/jxzhpt/qqgl/queryylmlx.do',
+        data:'lx.lxbm='+lxbm+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$("#ylmlx").val(msg.ylmlx);
+			//alert(msg.ylmlx);
+		}
+	});
+}

@@ -336,7 +336,14 @@ function showAll__ck(){
 	    	lxmc:lxmc,
 	    	ybzt:'',
 	    	sfsj:7,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglsh.lxbm':$("#lxbm").val(),
+	    	'gcglsh.xmmc':$("#xmmc").val(),
+	    	'gcglsh.lxmc':$("#lxmc").val(),
+	    	'gcglsh.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglsh.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglsh.jgys':$("#jgys").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

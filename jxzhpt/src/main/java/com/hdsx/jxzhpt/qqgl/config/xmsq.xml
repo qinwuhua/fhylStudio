@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xmsq">
+	<select id="queryAutoghList" parameterType="xmsq" resultType="lx">
+		select ylxbm,yqdzh,yzdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,cfld,ylxmc lxmc from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		order by to_number(xqdzh)
+	</select>
 	<select id="queryYhdzxNextXmbm" resultType="string">
 		select NVL(max(substr(c.xmbm,11)),4000)+1 from xmsq_yhdzx c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
 	</select>
@@ -9,8 +13,11 @@
 	</select>
 	
 	<select id="queryAutoList" parameterType="xmsq" resultType="lx">
-		select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx from (
+		<!-- select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx,x.ylmkd lmkd from (
 		select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
+		 -->
+		select substr(ylxbm,0,4) lxbm,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		order by to_number(yqdzh)
 	</select>
 	
 	<select id="queryAutoList1" parameterType="xmsq" resultType="lx">
@@ -111,7 +118,7 @@
 		<if test="xmbm!=null">xmbm</if>
 		<if test="xmmc!=null">,xmmc</if>
 		<if test="gcfl!=null">,gcfl</if>
-		<if test="ghlxbh!=null">,ghlxbh</if>
+		<if test="ghlxbm!=null">,ghlxbh</if>
 		<if test="ylxbh!=null">,ylxbh</if>
 		<if test="xzqh!=null">,xzqh</if>
 		<if test="xzqhdm!=null">,xzqhdm</if>
@@ -141,7 +148,7 @@
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
 		<if test="gcfl!=null">,#{gcfl}</if>
-		<if test="ghlxbh!=null">,#{ghlxbh}</if>
+		<if test="ghlxbm!=null">,#{ghlxbm}</if>
 		<if test="ylxbh!=null">,#{ylxbh}</if>
 		<if test="xzqh!=null">,#{xzqh}</if>
 		<if test="xzqhdm!=null">,#{xzqhdm}</if>
@@ -173,7 +180,7 @@
 		<if test="xmbm!=null">xmbm</if>
 		<if test="xmmc!=null">,xmmc</if>
 		<if test="gcfl!=null">,gcfl</if>
-		<if test="ghlxbh!=null">,ghlxbh</if>
+		<if test="ghlxbm!=null">,ghlxbh</if>
 		<if test="ylxbh!=null">,ylxbh</if>
 		<if test="xzqh!=null">,xzqh</if>
 		<if test="xzqhdm!=null">,xzqhdm</if>
@@ -199,7 +206,7 @@
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
 		<if test="gcfl!=null">,#{gcfl}</if>
-		<if test="ghlxbh!=null">,#{ghlxbh}</if>
+		<if test="ghlxbm!=null">,#{ghlxbm}</if>
 		<if test="ylxbh!=null">,#{ylxbh}</if>
 		<if test="xzqh!=null">,#{xzqh}</if>
 		<if test="xzqhdm!=null">,#{xzqhdm}</if>
@@ -232,7 +239,9 @@
 		<if test="bzcs!=null">,bzcs</if><if test="sffirst!=null">,sffirst</if><if test="jdbs!=null">,jdbs</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if><if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if><if test="jsfa!=null and jsfa!=''">,jsfa</if>
 		<if test="yilc!=null">,yilc</if><if test="erlc!=null">,erlc</if><if test="sanlc!=null">,sanlc</if>
-		<if test="silc!=null">,silc</if><if test="dwlc!=null">,dwlc</if><if test="wllc!=null">,wllc</if>)
+		<if test="silc!=null">,silc</if><if test="dwlc!=null">,dwlc</if><if test="wllc!=null">,wllc</if>
+		<if test="ghlxbm != null">,ghlxbm</if><if test="ghqdzh != null">,ghqdzh</if><if test="ghzdzh != null">,ghzdzh</if>
+		<if test="gxlxbm != null">,gxlxbm</if><if test="gxqdzh != null">,gxqdzh</if><if test="gxzdzh != null">,gxzdzh</if>)
 		values(<if test="xmid!=null">#{xmid}</if><if test="lxbm!=null">,#{lxbm}</if><if test="lxmc!=null">,#{lxmc}</if>
 		<if test="xzqh!=null">,#{xzqh}</if><if test="xzqhdm!=null">,#{xzqhdm}</if><if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if><if test="qdzh!=null">,#{qdzh}</if><if test="zdzh!=null">,#{zdzh}</if>
@@ -241,7 +250,9 @@
 		<if test="bzcs!=null">,#{bzcs}</if><if test="sffirst!=null">,#{sffirst}</if><if test="jdbs!=null">,#{jdbs}</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if><if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if><if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>
 		<if test="yilc!=null">,#{yilc}</if><if test="erlc!=null">,#{erlc}</if><if test="sanlc!=null">,#{sanlc}</if>
-		<if test="silc!=null">,#{silc}</if><if test="dwlc!=null">,#{dwlc}</if><if test="wllc!=null">,#{wllc}</if>)
+		<if test="silc!=null">,#{silc}</if><if test="dwlc!=null">,#{dwlc}</if><if test="wllc!=null">,#{wllc}</if>
+		<if test="ghlxbm != null">,#{ghlxbm}</if><if test="ghqdzh != null">,#{ghqdzh}</if><if test="ghzdzh != null">,#{ghzdzh}</if>
+		<if test="gxlxbm != null">,#{gxlxbm}</if><if test="gxqdzh != null">,#{gxqdzh}</if><if test="gxzdzh != null">,#{gxzdzh}</if>)
 	</insert>
 	
 	
@@ -256,6 +267,8 @@
 		<if test="lx.gpsqdzh!=null and lx.gpsqdzh!=''">,gpsqdzh</if><if test="lx.gpszdzh!=null and lx.gpszdzh!=''">,gpszdzh</if><if test="lx.jsfa!=null and lx.jsfa!=''">,jsfa</if>
 		<if test="lx.yilc!=null">,yilc</if><if test="lx.erlc!=null">,erlc</if><if test="lx.sanlc!=null">,sanlc</if>
 		<if test="lx.silc!=null">,silc</if><if test="lx.dwlc!=null">,dwlc</if><if test="lx.wllc!=null">,wllc</if>
+		<if test="lx.ghlxbm != null">,ghlxbm</if><if test="lx.ghqdzh != null">,ghqdzh</if><if test="lx.ghzdzh != null">,ghzdzh</if>
+		<if test="lx.gxlxbm != null">,gxlxbm</if><if test="lx.gxqdzh != null">,gxqdzh</if><if test="lx.gxzdzh != null">,gxzdzh</if>
 		<if test="xmsq.lqhntmchd != null">
         ,LQHNTMCHD
 	      </if>
@@ -371,6 +384,8 @@
 		<if test="lx.gpsqdzh!=null and lx.gpsqdzh!=''">,#{lx.gpsqdzh}</if><if test="lx.gpszdzh!=null and lx.gpszdzh!=''">,#{lx.gpszdzh}</if><if test="lx.jsfa!=null and lx.jsfa!=''">,#{lx.jsfa}</if>
 		<if test="lx.yilc!=null">,#{lx.yilc}</if><if test="lx.erlc!=null">,#{lx.erlc}</if><if test="lx.sanlc!=null">,#{lx.sanlc}</if>
 		<if test="lx.silc!=null">,#{lx.silc}</if><if test="lx.dwlc!=null">,#{lx.dwlc}</if><if test="lx.wllc!=null">,#{lx.wllc}</if>
+		<if test="lx.ghlxbm != null">,#{lx.ghlxbm}</if><if test="lx.ghqdzh != null">,#{lx.ghqdzh}</if><if test="lx.ghzdzh != null">,#{lx.ghzdzh}</if>
+		<if test="lx.gxlxbm != null">,#{lx.gxlxbm}</if><if test="lx.gxqdzh != null">,#{lx.gxqdzh}</if><if test="lx.gxzdzh != null">,#{lx.gxzdzh}</if>
 		<if test="xmsq.lqhntmchd != null">
 	        ,#{xmsq.lqhntmchd}
 	      </if>
@@ -1336,32 +1351,56 @@
 	</select> -->
 	<select id="queryLsjlListwnxmk" parameterType="java.util.Map" resultType="lx">
 		select distinct tab.* from (
-		select  l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,'改建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_sjgz j on l.xmid=j.id 
+		select  l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'改建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_sjgz j on l.xmid=j.id 
 		where l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
-			
-	    )
+	    ) 
 	   and (to_number(l.qdzh)!=${lx.zdzh}) and (to_number(l.zdzh)!=${lx.qdzh})
 		
 	    
 	    union all 
 	    
-		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,'路面改造' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_lmgz j on l.xmid=j.id 
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'路面改造' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_lmgz j on l.xmid=j.id 
 		where l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
-	    )
+	    ) 
 	   and (to_number(l.qdzh)!=${lx.zdzh}) and (to_number(l.zdzh)!=${lx.qdzh})
 		
 	    union all 
 	    
-		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,'新建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_xj j on l.xmid=j.id 
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'新建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_xj j on l.xmid=j.id 
 		where l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
 	    )
+	    
 	   and (to_number(l.qdzh)!=${lx.zdzh}) and (to_number(l.zdzh)!=${lx.qdzh})
+	   <foreach collection="ylx" item="item">
+	   union all
+	   select  l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'改建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_sjgz j on l.xmid=j.id 
+		where l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+	    ) 
+	   and (to_number(l.qdzh)!=${item.zdzh}) and (to_number(l.zdzh)!=${item.qdzh})
+	    union all 
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'路面改造' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_lmgz j on l.xmid=j.id 
+		where l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+	    ) 
+	   and (to_number(l.qdzh)!=${item.zdzh}) and (to_number(l.zdzh)!=${item.qdzh})
+	    union all 
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'新建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd1 cl right join wnjh_lx l on cl.xmid=l.xmid right join wnjh_xj j on l.xmid=j.id 
+		where l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+	    )
+	   and (to_number(l.qdzh)!=${item.zdzh}) and (to_number(l.zdzh)!=${item.qdzh})
+	   </foreach>
+	   
 	)tab
 	
 		
@@ -1376,48 +1415,125 @@
 		'4',(select xmmc from jhsh_yhdzx where xmbm=l.xmid),
 		'5',(select xmmc from jhsh_sh where xmbm=l.xmid)
 		) xmmc,
-		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,lx.jsxz  xjsdj,lx.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
+		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,decode(l.lxbm, null, lx.lxbm, l.lxbm) ylxbm,decode(l.qdzh, null, lx.qdzh, l.qdzh) yqdzh,decode(l.zdzh, null, lx.zdzh, l.zdzh) yzdzh,lx.jsxz  xjsdj,lx.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj,l.qcqd jsqdzh,l.qczd jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
 		where 1=1
 		and l.ghlxbm like '%'||#{lx.lxbm}||'%'
 		and to_number(l.qczd) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qcqd)
 	union all
-	select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
+	select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	   
 <!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh))
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${lx.qdzh} xmqd,${lx.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
+		<foreach collection="ylx" item="item">
+		union all
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,lx.jsxz,decode(substr(l.xmid,11,1),'1',(select xmmc from jhsh_sjgz where xmbm=l.xmid),
+		'2',(select xmmc from jhsh_lmgz where xmbm=l.xmid),
+		'3',(select xmmc from jhsh_xj where xmbm=l.xmid),
+		'4',(select xmmc from jhsh_yhdzx where xmbm=l.xmid),
+		'5',(select xmmc from jhsh_sh where xmbm=l.xmid)
+		) xmmc,
+		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,decode(l.lxbm, null, lx.lxbm, l.lxbm) ylxbm,decode(l.qdzh, null, lx.qdzh, l.qdzh) yqdzh,decode(l.zdzh, null, lx.zdzh, l.zdzh) yzdzh,lx.jsxz  xjsdj,lx.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj,l.qcqd jsqdzh,l.qczd jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
+		where 1=1
+		and l.ghlxbm like '%'||#{item.lxbm}||'%'
+		and to_number(l.qczd) > ${item.qdzh} and ${item.zdzh} > to_number(l.qcqd)
+	union all
+	select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	   
+<!-- 	    to_number(l.qdzh)&lt;${item.zdzh} and to_number(l.zdzh)>${item.qdzh} -->
+	    
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		
+		union all
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh))
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj,decode(cl.qdzh, null, l.qdzh, cl.qdzh) jsqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) jszdzh,${item.qdzh} xmqd,${item.zdzh} xmzd from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+		</foreach>
 		
 	) tab
 	 order by xmid desc
@@ -1433,47 +1549,62 @@
 		'4',(select xmmc from jhsh_yhdzx where xmbm=l.xmid),
 		'5',(select xmmc from jhsh_sh where xmbm=l.xmid)
 		) xmmc,
-		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,lx.jsxz  xjsdj,lx.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
+		l.ghlxbm lxbm,l.ghlxmc lxmc,l.qcqd qdzh,l.qczd zdzh,decode(l.lxbm, null, lx.lxbm, l.lxbm) ylxbm,decode(l.qdzh, null, lx.qdzh, l.qdzh) yqdzh,decode(l.zdzh, null, lx.zdzh, l.zdzh) yzdzh,lx.jsxz  xjsdj,lx.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',lx.jsjsdj,lx.xjsdj) jsjsdj from lx_clsd l left join lxsh_lx lx on l.xmid=lx.xmid
 		where 1=1
 		and l.ghlxbm like '%'||#{lx.lxbm}||'%'
 		and to_number(l.qczd) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qcqd)
 	union all
-	select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
+	select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
-			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh))
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh))  
 	    )
+	    
 <!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
 	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh))
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		union all
-		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,l.lxbm ylxbm,l.qdzh yqdzh, l.zdzh yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
+		select distinct l.xmid,substr(l.xmid,0,4) xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.xmid=l.xmid right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
 			(to_number(l.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${lx.qdzh} and ${lx.zdzh} > to_number(cl.qdzh)) 
 	    )
+	    
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		
 	) tab
@@ -1580,5 +1711,86 @@
 		and qdzh=#{qdzh}
 		and zdzh=#{zdzh}
 		group by xmid
+	</select>
+	
+	<select id="getghlxinfo" parameterType="xmsq" resultType="xmsq">
+		select t.*,
+    (case when to_number( yqdzh)&lt;to_number(yzdzh) then to_number(qd)+to_number(zdzh)-to_number(qdzh)
+          when to_number( yqdzh)>to_number(yzdzh) then to_number(qd)+to_number(qdzh)-to_number(zdzh)
+     end ) zd,abs(to_number(qdzh)-to_number(zdzh)) lc from(
+    select 
+    ylxbm,yqdzh,yzdzh,xlxbm,xqdzh,xzdzh,xlxmc,cfld,
+    (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{qdzh}) then to_number(xqdzh)+to_number(#{qdzh})-to_number(yqdzh)
+          when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)>to_number(#{qdzh}) then to_number(xqdzh)+to_number(yqdzh)-to_number(yqdzh)
+<!--           when to_number( yqdzh)>to_number(yzdzh) and to_number(yzdzh)>to_number(#{qdzh}) then to_number(xqdzh)+to_number(yzdzh)-to_number(yzdzh) -->
+<!--           when to_number( yqdzh)>to_number(yzdzh) and to_number(yzdzh)&lt;=to_number(#{qdzh}) then to_number(xqdzh)+to_number(#{qdzh})-to_number(yzdzh) -->
+   		when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)>to_number(#{zdzh}) then to_number(xzdzh)+to_number(#{zdzh})-to_number(yqdzh)
+		when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{zdzh}) then to_number(xzdzh)+to_number(yqdzh)-to_number(yqdzh)
+     end ) qd,
+    (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{qdzh}) then to_number(#{qdzh})
+          when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)>to_number(#{qdzh}) then to_number(yqdzh)
+          when to_number( yqdzh)>to_number(yzdzh) and to_number(yzdzh)>to_number(#{qdzh}) then to_number(yzdzh)
+          when to_number( yqdzh)>to_number(yzdzh) and to_number(yzdzh)&lt;=to_number(#{qdzh}) then to_number(#{qdzh})
+     end ) qdzh,
+    (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yzdzh)&lt;=to_number(#{zdzh}) then to_number(yzdzh)
+          when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yzdzh)>to_number(#{zdzh}) then to_number(#{zdzh})
+          when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)>to_number(#{zdzh}) then to_number(#{zdzh})
+          when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{zdzh}) then to_number(yqdzh)
+     end ) zdzh
+     from ghlx g where g.ylxbm like #{ylxbm}||'%'||#{xzqh}||'%' and ((to_number(g.yqdzh)&lt;to_number(#{zdzh}) and to_number(g.yzdzh)>to_number(#{qdzh})) or (to_number(g.yqdzh)>to_number(#{zdzh}) and to_number(g.yzdzh)&lt;to_number(#{qdzh}) ))
+<!--   	and (ylxbm!=xlxbm and yqdzh!=xqdzh and yzdzh!=xzdzh) -->
+    )t order by lc desc
+		
+		
+	</select>
+	<select id="getylxinfo" parameterType="xmsq" resultType="xmsq">
+		select * from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)
+		
+	</select>
+	<select id="getylxlminfo" parameterType="xmsq" resultType="lx">
+	
+		<![CDATA[
+		select max(f116) ylmlx,round(avg(to_number(f018)),2) lmkd,min(lxmc) lxmc
+		from (select substr(f114,1,2) f114,f014,max(f116) f116,avg(to_number(f018)) f018,min(roadname) lxmc
+		from (select g.roadcode,to_char(decode(g.f114,null,'无路',g.f114)) f114,f014,f116,f018,roadname,
+		case when g.roadstart < ${qdzh} then ${qdzh} when g.roadstart > ${qdzh} then g.roadstart when g.roadstart = ${qdzh} then g.roadstart end roadstart,
+		case when g.roadends < ${zdzh} then g.roadends when g.roadends > ${zdzh} then ${zdzh} when g.roadends = ${zdzh} then g.roadends end roadends from gpsroad g
+		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X', 'Y', 'C', 'Z') and g.roadcode like #{lxbm} || '%'
+		and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends) or (g.roadstart > ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh})))
+		group by f114,f014 order by f014)
+		]]>
+	</select>
+	
+	<select id="getgxlxinfo" parameterType="xmsq" resultType="xmsq">
+		select g.*,(to_number(xzdzh)-to_number(xqdzh)) lc from ghlx g where ylxbm = #{ylxbm} 
+		<if test="cfld != null">
+			and xlxbm=#{cfld}
+		</if>
+		and (
+		(to_number(yzdzh)>to_number(#{yqdzh}) and to_number(#{yzdzh})>to_number(yqdzh)) 
+		or
+		(to_number(yqdzh)>to_number(#{yqdzh}) and to_number(#{yzdzh})>to_number(yzdzh)) 
+		)
+		and to_number(xqdzh)!=to_number(#{xqdzh}) and to_number(xzdzh)!=to_number(#{xzdzh})
+		order by lc desc
+	</select>
+	
+	<select id="getylxinfo1" parameterType="xmsq" resultType="xmsq">
+		select ylxbm,(
+		case when to_number(yzdzh)>to_number(yqdzh)
+		 then 
+		 to_number(#{qdzh})-to_number(xqdzh)+to_number(yqdzh)
+		 else
+		 to_number(#{zdzh})-to_number(xzdzh)+to_number(yqdzh)
+		  end
+		) yqdzh,(
+		case when to_number(yzdzh)>to_number(yqdzh)
+		 then 
+		 to_number(#{qdzh})-to_number(xqdzh)+to_number(yqdzh)+to_number(#{zdzh})-to_number(#{qdzh})
+		 else
+		 to_number(#{zdzh})-to_number(xzdzh)+to_number(yqdzh)-(to_number(#{zdzh})-to_number(#{qdzh}))
+		  end
+		) yzdzh,xlxbm,xqdzh,xzdzh from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)
+		
 	</select>
 </mapper>

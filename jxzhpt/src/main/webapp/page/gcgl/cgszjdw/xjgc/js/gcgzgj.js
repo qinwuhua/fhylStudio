@@ -248,7 +248,7 @@ function showAll__ck(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var jgzt='0';
+	var jgzt='';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
@@ -273,8 +273,17 @@ function showAll__ck(){
 	    	sfsj:7,
 	    	xmnf:xmnf,
 	    	bfyf:bfyf,
-	    	bfzt:$("#bfzt").val()
+	    	bfzt:$("#bfzt").val(),
+	    	'gcglgcgzgj.jsdj':$("#ddlPDDJ").combobox('getValue'),
+	    	'gcglgcgzgj.lxbm':$("#lxbm").val(),
+//	    	'gcglgcgzgj.xdsj':$("#xdnf").val(),
+	    	'gcglgcgzgj.xmmc':$("#xmmc").val(),
+	    	'gcglgcgzgj.lxmc':$("#lxmc").val(),
+	    	'gcglgcgzgj.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglgcgzgj.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglgcgzgj.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},
+
 	    columns:[[
 	        {field:'c',title:'操作',width:320,align:'center',formatter:function(value,row,index){
   				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>       '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw__ck('+index+')">资金拨付</a>   ';

@@ -16,6 +16,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SimpleCanleder.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/SimpleCanleder.js"></script>
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/zhfz.js"></script>
 	<style>
@@ -28,52 +30,21 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
-			for(var x=y;x>=2010;x--){
-				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			}
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			var mystr3='';
-			var mystr4='';
-			if(m==1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
-				mystr3=(y-1)+'-'+10;
-				mystr4=(y-1)+'-'+9;
-			}
-			else if(m==2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-				mystr3=(y-1)+'-'+11;
-				mystr4=(y-1)+'-'+10;
-			}else if(m==3){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+1;
-				mystr2=y+'-'+2;
-				mystr3=(y-1)+'-'+12;
-				mystr4=(y-1)+'-'+11;
-			}else if(m==4){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+2;
-				mystr2=y+'-'+3;
-				mystr3=y+'-'+1;
-				mystr4=(y-1)+'-'+12;
+			loadDist1("xzqh",$.cookie("dist")); 
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','行政等级');
+			tsdq('ddlTSDQ');
+			$('#ddlMonth').simpleCanleder();
+			$('#ddlMonth').val(y+"-"+m);
+			//gcglxmnf("ddlYear");
+			var urlid=getUrlParame('id');
+			if(urlid==null){
+				xmnfdx("ddlYear"); 
+				xzdjdx('ddlGldj');
 			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-				mystr3=y+'-'+(m-3);
-				mystr4=y+'-'+(m-4);
+				setxmnf("ddlYear",urlid);
+				setxzdj('ddlGldj',urlid);
 			}
-			$("#ddlMonth").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#ddlMonth").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
-			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
-			$("#ddlYear").val(myDate.getFullYear());
 			showAll__ck();
 		});
 		function exportAbyb(){
@@ -89,15 +60,29 @@
 			}else{
 				gydwstr= gydw.join(',');
 			}
-		
-			var jgzt='0';
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			var jgzt='';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();        //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
-			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydwstr} ,function(){
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y+'&gcglabgc.lxbm='+$("#lxbm").val()+
+	    	'&gcglabgc.jsdj='+$("#ddlPDDJ").combobox('getValue')+
+	    	'&gcglabgc.gldj='+$("#ddlGldj").combobox('getValue')+
+	    	'&gcglabgc.tsdq='+$("#ddlTSDQ").combobox('getText')+
+	    	'&gcglabgc.ljbfzt='+$("#ljbfzt").combobox('getValue');
+			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydwstr,xzqh:xzqhstr} ,function(){
 				window.location.href="/jxzhpt/gcgl/exportzhyb.do?"+data;
 			    });
 		}
@@ -140,7 +125,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;灾害防治工程项目</div>
+						<div id="p_top">当前位置>&nbsp;资金拨付>&nbsp;<span id="astext">资金拨付</span>>&nbsp;<span id="bstext"></span>>&nbsp;路网结构工程>&nbsp;灾害防治工程项目</div>
 					</div>
         	</tr>
         	<tr>
@@ -153,24 +138,47 @@ a:active {
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 150px;">
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<span>行政区划：</span>
+        						<select id="xzqh" style="width:150px;"></select>
+        						<span>下达年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 65px;">
         						<option value="">全部</option>
         						</select>
-        						<span>拨付月份：</span> <select name="ddlMonth"
-									id="ddlMonth" style="width: 60px;">
-								</select> <span>拨付状态：</span> <select id=bfzt
-									style="width: 50px;">
+        						<span>拨付月份：</span> <input name="ddlMonth"
+									id="ddlMonth"  style="width: 58px;">
+								<span>拨付状态：</span> <select id=bfzt
+									style="width: 55px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
 								</select> 
+                                </p>
+                                   <p style="margin: 1% 0% 1% 2%;">
+								
+								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
+								<span style=" vertical-align:middle;">&nbsp;行政等级：</span>
+								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
+        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;">
+								</select>
+								<span>路线名称：</span>
+        							<input type="text" id="lxmc" style="width: 138px;">
+        						<span>累计拨付状态：</span>
+        						<select id="ljbfzt" class="easyui-combobox" style="width:83px;">
+									<option value="" selected="selected">全部</option>
+									<option value="已全部拨付">已全部拨付</option>
+									<option value="未全部拨付">未全部拨付</option>
+								</select>
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								<span>路线编码：</span>
+        							<input type="text" id="lxbm" style="width: 138px;">
+<!-- 								<span>下达年份：</span> -->
+<!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll__ck()"/>        					
-<%--                                <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-<%--         						 <img onclick="importData_yb('cgszjdw/zhfz/zhfz')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>          --%>
+                               <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                         </p>
         				</div>
         			</fieldset>

@@ -454,8 +454,8 @@ function showAll1__ck(){
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
-	    pageSize:10,
-	    height:$(window).height()-160,
+	    pageSize:50,
+	    height:$(window).height()-195,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
@@ -468,7 +468,10 @@ function showAll1__ck(){
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
 	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
-	    	gydwtj:"and gydwbm like '1%'"
+	    	gydwtj:"and gydwbm like '1%'",
+	    	'gcglwqgz.xzqh':xzqhstr,
+	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

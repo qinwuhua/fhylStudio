@@ -282,4 +282,9 @@ public interface XmsqServer {
 	public List<Excel_list> queryYhdzxExport1(Xmsq xmsq);
 	public Xmsq getghxx(Xmsq xmsq);
 	public Xmsq getghxxbyone(Xmsq xmsq);
+	public List<Xmsq> getghlxinfo(Xmsq xmsq);
+	public List<Lx> queryAutoghList(Xmsq xmsq);
+	public Xmsq getylxinfo(Xmsq xmsq);
+	public Lx getylxlminfo(Xmsq xmsq);
+	public List<Xmsq> getgxlxinfo(Xmsq xmsq);
 }

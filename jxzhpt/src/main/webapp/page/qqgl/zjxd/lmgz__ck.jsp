@@ -85,7 +85,7 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			bindLxGrid();
-			gridBind(grid);
+			gridBind1(grid);
 		}
 		function loadLj(params){
 			$.ajax({
@@ -94,9 +94,15 @@
 				data:params,
 				dataType:'json',
 				success:function(msg){
-					$('#spanbbz').html(msg.BBZZJ);
-					$('#spansbz').html(msg.SBZZJ);
-					$('#spanlc').html(msg.LC);
+					if(msg!=null){
+						$('#spanbbz').html(msg.BBZZJ);
+						$('#spansbz').html(msg.SBZZJ);
+						$('#spanlc').html(msg.LC);
+					}else{
+						$('#spanbbz').html("0");
+						$('#spansbz').html("0");
+						$('#spanlc').html("0");
+					}
 				}
 			});
 		}
