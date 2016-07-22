@@ -390,6 +390,7 @@
 								}else{
 									zd=parseFloat(msg.lx[i].jszdzh);
 								}
+								//alert(zd+"    "+qd);
 								lc=accSub(zd,qd);
 								
 							}

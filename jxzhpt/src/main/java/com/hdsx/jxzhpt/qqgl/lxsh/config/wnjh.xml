@@ -190,10 +190,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -259,10 +261,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -329,10 +333,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -396,10 +402,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -465,10 +473,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -533,10 +543,12 @@
 		</if>
 		<if test="ghxlxbm!=null and ghxlxbm!=''">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxbm like '%'||#{ghxlxbm}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxbm like '%'||#{ghxlxbm}||'%')
 			)
 		</if>
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
+				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
 		order by xmnf
@@ -631,7 +643,13 @@
 		<if test="jhlc!=null">,jhlc=#{jhlc}</if>
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
-		
+		<if test="ghlxbm !=null">,ghlxbm=#{ghlxbm}</if>
+		<if test="ghlxmc !=null">,ghlxmc=#{ghlxmc}</if>
+		<if test="ghqdzh !=null">,ghqdzh=#{ghqdzh}</if>
+		<if test="ghzdzh !=null">,ghzdzh=#{ghzdzh}</if>
+		<if test="gxlxbm !=null">,gxlxbm=#{gxlxbm}</if>
+		<if test="gxqdzh !=null">,gxqdzh=#{gxqdzh}</if>
+		<if test="gxzdzh !=null">,gxzdzh=#{gxzdzh}</if>
 		where xmid=#{xmbm} and sffirst='1' 
 	</update>
 	<update id="updatewnjhsjlx" parameterType="lxsh">
@@ -656,6 +674,13 @@
 		<if test="jhlc!=null">,jhlc=#{jhlc}</if>
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
+		<if test="ghlxbm !=null">,ghlxbm=#{ghlxbm}</if>
+		<if test="ghlxmc !=null">,ghlxmc=#{ghlxmc}</if>
+		<if test="ghqdzh !=null">,ghqdzh=#{ghqdzh}</if>
+		<if test="ghzdzh !=null">,ghzdzh=#{ghzdzh}</if>
+		<if test="gxlxbm !=null">,gxlxbm=#{gxlxbm}</if>
+		<if test="gxqdzh !=null">,gxqdzh=#{gxqdzh}</if>
+		<if test="gxzdzh !=null">,gxzdzh=#{gxzdzh}</if>
 		where xmid=#{xmbm} and id=#{id} 
 	</update>
 	
@@ -669,21 +694,21 @@
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx, 
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,jhlc
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,jhlc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from wnjh_sjgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghlmByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from wnjh_lmgz l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<select id="cxwnghxjByid" parameterType="lxsh" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.ghxlxbm,l.ghxlxmc,l.xmklx,  
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk,gz,sz, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc  
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghqdzh,l1.ghzdzh,l1.ghlxmc,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh  
 		from wnjh_xj l left join wnjh_lx l1 on l.id=l1.xmid where l.id=#{xmbm}  and l1.sffirst='1'
 	</select>
 	<delete id="delwnjhSjgz" parameterType="hashmap">

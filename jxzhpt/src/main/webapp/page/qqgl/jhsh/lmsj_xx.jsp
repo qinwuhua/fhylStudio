@@ -24,7 +24,7 @@
 				dataType:'json',
 				success:function(data){
 					$('#lxsh').form("load",data);
-					getghxxone(parent.YMLib.Var.xmbm,data.qdzh,data.zdzh);
+					//getghxxone(parent.YMLib.Var.xmbm,data.qdzh,data.zdzh);
 				}
 			});
 			$.ajax({
@@ -106,75 +106,100 @@
 					</td>
 				</tr>
 				<tr style="height: 30px;">
-            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					规划路线编码</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				规划路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					规划起点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				规划起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghqdzh" name="ghqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					规划止点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="ghzdzh" name="ghzdzh" type="text" style="width: 80px;"/>&nbsp;米&nbsp;<span style="color: red;">*</span>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">					
+				规划止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghzdzh" name="ghzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
-				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="gydw" style="font-size: 14px;width:120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="xzqh" style="width: 120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-					<td style="background-color: #ffffff; height: 25px;" align="left">
-						<input name="tsdq" type="text" style="font-size: 14px;width: 120px;"/></td>
-				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input id="ghlxbh" name="ghlxbh" style="width: 120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
-					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-						<input id="lxmc" name="lxmc" style="width:120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目名称：</td>
-					<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-						<input id="xmmc" name="xmmc" style="width:120px;"/></td>
-				</tr>
-				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdzh" style="width: 120px;" type="text"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
-					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="qdmc" type="text" style="width:120px;"/><br/>
-					</td>
 				</tr>
-				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点名称：</td>
-					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="zdmc" type="text" style="width:120px;"/><br/>
-					</td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="jsxz" style="width:120px;" type="text"/>
-					</td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-					<td style="background-color: #ffffff; height: 20px;" align="left">
-					</td>
-				</tr>
-				<tr style="height: 35px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					共线信息</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="ghlx"></span>
+				<tr style="height: 30px;">
+            	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					共线路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input disabled="disabled" id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					共线起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input disabled="disabled" id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					共线止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input disabled="disabled" id="gxzdzh" name="gxzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
+				</td>
+            </tr>
+			<tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="lxmc" name="lxmc" type="text" style="width: 120px;"/>
+				</td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="qdmc" name="qdmc" style="width: 120px;" type="text"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="zdmc" name="zdmc" style="width: 120px;" type="text"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					<input id="ghlxmc" name="ghlxmc" style="width:120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					
+				</td>
+				
+				
 			</tr>
 				<tr style="height: 35px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

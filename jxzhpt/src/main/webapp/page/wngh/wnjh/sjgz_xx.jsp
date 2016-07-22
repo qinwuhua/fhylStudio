@@ -70,6 +70,7 @@ text-decoration:none;
 		$('#gz').html(data.gz);
 		$('#sz').html(data.sz);
 		$("#bz").html(data.bz);
+		$("#ghlxmc").html(data.ghlxmc);
 		$("#ghlxbm").val(data.ghlxbm);
 		$("#ghqdzh").val(data.ghqdzh);
 		$("#ghzdzh").val(data.ghzdzh);
@@ -229,6 +230,25 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="zdmc" style="font-size: 14px"></span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					<span id="ghlxmc"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
+					</td>
+				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
+					
+				</td>
+				
+				
 			</tr>
 			<tr style="height: 35px;">
 				

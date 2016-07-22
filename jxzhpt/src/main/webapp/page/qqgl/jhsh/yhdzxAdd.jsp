@@ -135,8 +135,11 @@
 					//$('#lmkd').val(item.lmkd);
 					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					
+					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+					getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					else
+					getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
 					$.ajax({
 						type:'post',
 						url:'../../../qqgl/queryTsdq.do',
