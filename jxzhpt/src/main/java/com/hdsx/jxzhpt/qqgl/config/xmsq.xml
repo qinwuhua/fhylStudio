@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xmsq">
 	<select id="queryAutoghList" parameterType="xmsq" resultType="lx">
-		select ylxbm,yqdzh,yzdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,cfld,ylxmc lxmc from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		select distinct ylxbm,yqdzh,yzdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,cfld,ylxmc lxmc from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
 		order by to_number(xqdzh)
 	</select>
 	<select id="queryYhdzxNextXmbm" resultType="string">
@@ -16,7 +16,7 @@
 		<!-- select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx,x.ylmkd lmkd from (
 		select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
 		 -->
-		select substr(ylxbm,0,4) lxbm,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		select distinct substr(ylxbm,0,4) lxbm,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
 		order by to_number(yqdzh)
 	</select>
 	

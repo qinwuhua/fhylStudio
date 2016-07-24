@@ -1109,20 +1109,21 @@
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, 
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
+		 from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2, 
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
 		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
-		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	

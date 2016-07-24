@@ -561,7 +561,7 @@
 		<!-- select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj,xzqhdm xzqh
 		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh -->
 
-		select substr(ylxbm,0,4) ghlxbh,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ghlxbh}||'%'||#{xzqh}||'%'
+		select distinct substr(ylxbm,0,4) ghlxbh,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ghlxbh}||'%'||#{xzqh}||'%'
 		order by to_number(yqdzh)
 		
 	</select>

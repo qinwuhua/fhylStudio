@@ -77,8 +77,8 @@ text-decoration:none;
 		$("#gxzdzh").val(data.gxzdzh);
 		
 		sfylx();
-		getghxx(data.xmbm);
-		getghxxone(parent.obj.xmbm,parent.obj.qdzh,parent.obj.zdzh);
+		//getghxx(data.xmbm);
+		//getghxxone(parent.obj.xmbm,parent.obj.qdzh,parent.obj.zdzh);
 	});
 	function getghxx(xmid){
 		$.ajax({
