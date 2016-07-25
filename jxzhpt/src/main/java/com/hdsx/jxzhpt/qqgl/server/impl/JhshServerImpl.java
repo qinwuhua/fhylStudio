@@ -371,6 +371,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		//查询原路线信息
 		//List<Lx> ylx = queryList("queryYLx",item);
 		List<Lx> ylx = new ArrayList<Lx>();
+		//ylx = queryList("queryYlx",item);
 		params.put("lx", item);
 		params.put("ylx", ylx);
 		List<Lx> queryList = queryList("queryLsjlList",params);
