@@ -4,7 +4,56 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Kxxyj implements Serializable {
-
+	private String ghlxbm;//规划路线编号
+	private String ghlxmc;//规划路线编号
+	private String ghqdzh;//规划路线编号
+	private String ghzdzh;//规划路线编号
+	private String gxlxbm;//规划路线编号
+	private String gxqdzh;//规划路线编号
+	private String gxzdzh;//规划路线编号
+	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhlxmc() {
+		return ghlxmc;
+	}
+	public void setGhlxmc(String ghlxmc) {
+		this.ghlxmc = ghlxmc;
+	}
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
 	/**
 	 * 
 	 */
@@ -532,5 +581,6 @@ public class Kxxyj implements Serializable {
 	public void setGpszdzh1(String gpszdzh1) {
 		this.gpszdzh1 = gpszdzh1;
 	}
+	
 	
 }

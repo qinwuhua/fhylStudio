@@ -1313,6 +1313,13 @@ public class LxshController extends BaseActionSupport{
 		lx.setLc(lxsh.getLc());
 		lx.setSffirst("1");
 		lx.setJdbs("0");
+		lx.setGhlxbm(lxsh.getGhlxbm());
+		lx.setGhqdzh(lxsh.getGhqdzh());
+		lx.setGhzdzh(lxsh.getGhzdzh());
+		lx.setGxlxbm(lxsh.getGxlxbm());
+		lx.setGxqdzh(lxsh.getGxqdzh());
+		lx.setGxzdzh(lxsh.getGxzdzh());
+		lx.setGhlxmc(lxsh.getGhlxmc());
 		if(bl){
 			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
@@ -1334,6 +1341,13 @@ public class LxshController extends BaseActionSupport{
 			lx.setJsjsdj(lxsh.getJsjsdj());
 			lx.setSffirst("1");
 			lx.setJdbs("0");
+			lx.setGhlxbm(lxsh.getGhlxbm());
+			lx.setGhqdzh(lxsh.getGhqdzh());
+			lx.setGhzdzh(lxsh.getGhzdzh());
+			lx.setGxlxbm(lxsh.getGxlxbm());
+			lx.setGxqdzh(lxsh.getGxqdzh());
+			lx.setGxzdzh(lxsh.getGxzdzh());
+			lx.setGhlxmc(lxsh.getGhlxmc());
 			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{

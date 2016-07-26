@@ -88,9 +88,17 @@
 	<div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
 		<table>
 			<tr>
-				<td>路线编码：<input id="lxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
-				<td>起点桩号：<input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
-				<td>止点桩号：<input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+				<td >原路线编码：<input id="lxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+				<td >原起点桩号：<input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+				<td >原止点桩号：<input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+				<td>
+<%-- 				<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/> --%>
+				</td>
+			</tr>
+			<tr>
+				<td >规划路线编码：<input id="ghlxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+				<td >规划起点桩号：<input id="ghqdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+				<td >规划止点桩号：<input id="ghzdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
 				<td><img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/></td>
 			</tr>
 		</table>

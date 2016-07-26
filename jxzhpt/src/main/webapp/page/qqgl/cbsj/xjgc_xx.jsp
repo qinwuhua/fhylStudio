@@ -75,7 +75,7 @@
 			<table style="width: 97%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						新建工程项目 — 立项申请
+						立项申请
 					</td>
 				</tr>
 				<tr>
@@ -266,13 +266,13 @@
 				</td>
             </tr>
 				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input id="lxbm" name="ghlxbh" style="width: 120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdzh" style="width: 120px;" type="text"/></td>
 				</tr>
@@ -452,7 +452,7 @@
 			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						新建工程项目 — 初步设计或施工图设计
+						初步设计或施工图设计
 					</td>
 				</tr>
 				<tr style="height: 30px;">

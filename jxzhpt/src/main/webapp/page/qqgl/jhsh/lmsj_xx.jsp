@@ -123,13 +123,13 @@
 				</td>
             </tr>
 				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input id="ghlxbh" name="ghlxbh" style="width: 120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdzh" style="width: 120px;" type="text"/></td>
 				</tr>
@@ -152,7 +152,7 @@
             </tr>
 			<tr style="height: 35px;">
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
+					<font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="lxmc" name="lxmc" type="text" style="width: 120px;"/>
 				</td>

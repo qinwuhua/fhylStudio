@@ -45,7 +45,7 @@ text-decoration:none;
 				$('#bzcs').val(msg.bzys);
 				$("#dfzc").html(msg.dfzc);
 				$("#lxmc").html(msg.lxmc);
-				$("#lxbm").val(msg.ghlxbh);
+				$("#ylxbh").val(msg.ghlxbh);
 				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm);
 				$("#gydw").combotree('setValues',msg.gydwdm.split(","));
 				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm2);
@@ -84,7 +84,7 @@ text-decoration:none;
 		load();
 		/*$('#jsjsdj').combobox({
 		    onSelect:function(rec){
-		    	getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		    	getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		    }
 		});*/
 		$("#save_button").click(function(){
@@ -249,7 +249,7 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.xmbm="+$("#xmbm").html()
+		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#ylxbh").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").val()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValues").join(',')+"&lxsh.xzqhdm="+$("#xmbm").html().substr(4,6)+"&lxsh.xzqhdm2="+$('#xzqh').combo("getValues").join(",")+"&lxsh.tsdq="+$("#tsdq").html()
@@ -291,13 +291,13 @@ text-decoration:none;
 		}
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").val(zlc);
-		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
+		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		//getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
 	}
 </script>
 <form action="" id="lxsh">
@@ -341,7 +341,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="lxbm" id="lxbm" style="width: 120px" /></td>
+					<input type="text" name="ylxbh" id="ylxbh" style="width: 120px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -385,8 +385,11 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

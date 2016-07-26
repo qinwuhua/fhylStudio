@@ -1190,13 +1190,13 @@
 		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
 <!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
 		<if test="jszlc!=null and jszlc!=''">l.jhlc=#{jszlc},</if>
-		<if test="xmsq.ghlxbm != null">l.ghlxbm=#{xmsq.ghlxbm},</if>
-		<if test="xmsq.ghlxmc != null">l.ghlxmc=#{xmsq.ghlxmc},</if>
-		<if test="xmsq.ghqdzh != null">l.ghqdzh=#{xmsq.ghqdzh},</if>
-		<if test="xmsq.ghzdzh != null">l.ghzdzh=#{xmsq.ghzdzh},</if>
-		<if test="xmsq.gxlxbm != null">l.gxlxbm=#{xmsq.gxlxbm},</if>
-		<if test="xmsq.gxqdzh != null">l.gxqdzh=#{xmsq.gxqdzh},</if>
-		<if test="xmsq.gxzdzh != null">l.gxzdzh=#{xmsq.gxzdzh},</if>
+		<if test="ghlxbm != null">l.ghlxbm=#{ghlxbm},</if>
+		<if test="ghlxmc != null">l.ghlxmc=#{ghlxmc},</if>
+		<if test="ghqdzh != null">l.ghqdzh=#{ghqdzh},</if>
+		<if test="ghzdzh != null">l.ghzdzh=#{ghzdzh},</if>
+		<if test="gxlxbm != null">l.gxlxbm=#{gxlxbm},</if>
+		<if test="gxqdzh != null">l.gxqdzh=#{gxqdzh},</if>
+		<if test="gxzdzh != null">l.gxzdzh=#{gxzdzh},</if>
 		<if test="lqhntmchd != null">
         LQHNTMCHD = #{lqhntmchd},
       </if>

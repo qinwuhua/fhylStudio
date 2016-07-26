@@ -25,7 +25,7 @@
 				dataType:'json',
 				success:function(data){
 					$('#lxsh').form("load",data);
-					getghxxone(parent.YMLib.Var.xmbm,data.qdzh,data.zdzh);
+					//getghxxone(parent.YMLib.Var.xmbm,data.qdzh,data.zdzh);
 				}
 			});
 			$.ajax({
@@ -63,7 +63,7 @@
 				}
 			});
 			queryZjxdgsd(parent.YMLib.Var.xmbm);
-			getghxx(parent.YMLib.Var.xmbm);
+			//getghxx(parent.YMLib.Var.xmbm);
 		});
 		function getghxx(xmid){
 			$.ajax({
@@ -125,10 +125,10 @@
 				</td>
             </tr>
 				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input id="ghlxbh" name="ghlxbh" style="width: 120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线名称：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input id="lxmc" name="lxmc" style="width:120px;"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目名称：</td>
@@ -136,10 +136,10 @@
 						<input id="xmmc" name="xmmc" style="width:120px;"/></td>
 				</tr>
 				<tr style="height: 35px;">
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="zdzh" style="width: 120px;" type="text"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
