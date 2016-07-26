@@ -318,13 +318,13 @@ text-decoration:none;
 					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					起点桩号</td>
+					原起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					止点桩号</td>
+					原止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 					<span id="span_zdzh" style="font-size: small;color: red;"></span>
@@ -398,7 +398,7 @@ text-decoration:none;
 					<span id="zd"></span>
 				</td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
+					<font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				<!-- 					<span id="lxmc"></span>-->
 				<input type="text" id='lxmc' style="width: 120px"/> 
