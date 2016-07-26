@@ -1836,6 +1836,23 @@
 		from ghlx t where  t.xlxbm like #{lxbm} || '%' and 
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
+	<select id="queryYlxnew" parameterType="lx" resultType="lx">
+		<![CDATA[select ylxbm ylxbm,(case when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then to_number(YQDZH)+${ghqdzh}-to_number(XQDZH)
+    when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yqdzh
+    when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then ${ghqdzh}-to_number(xqdzh)+to_number(yzdzh)
+    when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yzdzh end) qdzh,
+      (case when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then to_number(YZDZH)-to_number(XZDZH)+${ghzdzh}
+      when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then  yzdzh
+      when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then ${ghzdzh}-to_number(xzdzh)+to_number(yqdzh)
+      when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then yqdzh
+      end ) zdzh ,
+    substr(ylxbm,0,4) as lxbm,
+     (case when Xqdzh<${ghqdzh} then ${ghqdzh} else xqdzh end ) xqdzh,
+    (case when ${ghzdzh}<Xzdzh then ${ghzdzh} else xzdzh end) xzdzh 
+    from ghlx t where  t.xlxbm like #{ghlxbm} || '%' and 
+    t.Xqdzh<${ghzdzh} and t.Xzdzh>${ghqdzh}]]>
+	</select>
+	
 	<select id="queryLsjlListnew" parameterType="java.util.Map" resultType="lx">
 		select distinct l.xmid,decode(substr(l.xmid,11,1),'1',(select xmmc from jhsh_sjgz where xmbm=l.xmid),
 		'2',(select xmmc from jhsh_lmgz where xmbm=l.xmid),
@@ -1848,6 +1865,69 @@
 		and l.ghlxbm like '%'||#{lx.lxbm}||'%'
 		and to_number(l.qczd) > ${lx.qdzh} and ${lx.zdzh} > to_number(l.qcqd)
 	</select>
+	
+	<select id="queryLsjlListqwh" parameterType="java.util.Map" resultType="lx">
+
+		<foreach collection="lx" item="item" separator="UNION ALL">
+		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+<!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
+	    
+		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		
+		union all
+		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh))
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		union all
+		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		(
+			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			or
+			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
+	    )
+	    
+		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
+		
+		</foreach>
+		
+	
+	
+	</select>
+	
 	
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
 	select distinct tab.* from(

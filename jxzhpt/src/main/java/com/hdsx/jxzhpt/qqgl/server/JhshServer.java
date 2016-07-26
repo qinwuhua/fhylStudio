@@ -240,6 +240,7 @@ public interface JhshServer {
 	 */
 	public List<Lx> queryLsxx(Jhsh jhsh);
 	public List<Lx> queryLsxx2(Lx lx);
+	public List<Lx> queryLsxx2new(Lx lx);
 	/**
 	 * 根据项目编码查询升级项目的可行性研究信息
 	 * @param jhsh 项目编码

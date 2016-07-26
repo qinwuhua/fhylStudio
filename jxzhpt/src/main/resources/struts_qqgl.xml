@@ -259,6 +259,7 @@
 		
 		<action name="queryLsxx1" class="jhshController" method="queryLsxx1"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
+		<action name="queryLsxx2new" class="jhshController" method="queryLsxx2new"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
 		<action name="updateLx" class="jhshController" method="updateLx"></action>

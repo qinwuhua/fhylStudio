@@ -362,6 +362,13 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		queryLsjlList(result, lx);
 		return result;
 	}
+	
+	@Override
+	public List<Lx> queryLsxx2new(Lx lx) {
+		List<Lx> result=new ArrayList<Lx>();
+		queryLsjlListnew(result, lx);
+		return result;
+	}
 	/**
 	 * 根据路线和原路线查询历史记录
 	 * @param result 返回结果
@@ -403,6 +410,49 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		
 		//List<Lx> queryList1 = queryList("queryLsjlListnew",params);
 		//result.addAll(queryList1);
+		
+	}
+	
+	
+	
+	
+	private void queryLsjlListnew(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = new ArrayList<Lx>();
+		
+		if(item.getGhlxbm()!=null && !"".equals(item.getGhlxbm()))
+			ylx = queryList("queryYlxnew",item);
+		if(item.getLxbm()!=null && !"".equals(item.getLxbm()))
+		ylx.add(item);
+		params.put("lx", ylx);
+		List<Lx> queryList = queryList("queryLsjlListqwh",params);
+		boolean flag=true;
+		if(result.size()>0&&queryList.size()>0){
+			for (Lx l1 : queryList) {
+				flag=true;
+				for (Lx l2 : result) {
+					if(l1.getXmid().equals(l2.getXmid()))
+						flag=false;
+				}
+				if(flag)
+					result.add(l1);
+			}
+		}
+		if(result.size()==0){
+			for (int i = 0; i < queryList.size(); i++) {
+				flag = true;
+				for (int j = i+1; j < queryList.size(); j++) {
+					if(queryList.get(i).getXmid().equals(queryList.get(j).getXmid())){
+						flag = true;
+					}
+				}
+				if (flag){
+					result.add(queryList.get(i));
+				}
+			}
+		}
+		
+		
 		
 	}
 	@Override

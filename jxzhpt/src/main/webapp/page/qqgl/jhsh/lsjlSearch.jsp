@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
@@ -21,8 +22,9 @@
 		});
 		function search(){
 			$('#grid').datagrid({
-				url:'../../../qqgl/queryLsxx2.do',
-				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val()},
+				url:'../../../qqgl/queryLsxx2new.do',
+				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
+					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val()},
 				fitColumns:true,
 				columns:[[
 					{field:'id',title:'项目类型',width:100,align:'center',
@@ -79,20 +81,78 @@
 				YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
 			}
 		}
+		
+		function reset(){
+			$("#lxbm").val("");
+			$("#qdzh").val("");
+			$("#zdzh").val("");
+			$("#ghlxbm").val("");
+			$("#ghqdzh").val("");
+			$("#ghzdzh").val("");
+		}
 	</script>
 </head>
 <body>
 	<div id="righttop">
 		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;补助历史查询</div>
 	</div>
-	<div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
+	<form action="">
+	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+        	<tr>
+        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
+        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
+        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+        					<font style="color: #0866A0; font-weight: bold"></font>
+        				</legend>
+        				<div>
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="32">
+								<td style="text-align: right;">原路线编码：</td>
+        						<td style="text-align: left;"><input id="lxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+								<td style="text-align: right;">原起点桩号：</td>
+        						<td style="text-align: left;"><input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+								<td style="text-align: right;">原止点桩号：</td>
+        						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        					</tr>
+        					<tr height="32">
+								<td style="text-align: right;">规划路线编码：</td>
+        						<td style="text-align: left;"><input id="ghlxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+								<td style="text-align: right;">规划起点桩号：</td>
+        						<td style="text-align: left;"><input id="ghqdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+								<td style="text-align: right;">规划止点桩号：</td>
+        						<td style="text-align: left;"><input id="ghzdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        					</tr>
+                            <tr height="32">
+                            	<td colspan="6">
+								<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:search()" class="button button-tiny button-raised button-primary">查询</a>
+                            	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:reset()" class="button button-tiny button-raised button-primary">重置</a>
+                            	
+                            	
+<!--                             		<img onclick="search()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/> -->
+									
+								</td>
+                            </tr>
+        					</table>
+        					
+        				</div>
+        			</fieldset>
+        		</td>
+        	</tr>
+       
+        	
+		</table>
+	</form>
+	
+	
+	
+	<%-- <div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
 		<table>
 			<tr>
 				<td >原路线编码：<input id="lxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
 				<td >原起点桩号：<input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
 				<td >原止点桩号：<input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
 				<td>
-<%-- 				<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/> --%>
+				<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				</td>
 			</tr>
 			<tr>
@@ -102,7 +162,7 @@
 				<td><img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/></td>
 			</tr>
 		</table>
-	</div>
+	</div> --%>
 	<table id="grid" width="98%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
 		<thead>
         	<tr>

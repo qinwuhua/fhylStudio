@@ -1599,6 +1599,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	public void queryLsxx2new(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx2new(lx), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public void queryKxxyjByXmbm() throws Exception{
 		try {
 			Kxxyj kxxyj=new Kxxyj();

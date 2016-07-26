@@ -209,7 +209,7 @@ text-decoration:none;
 					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px;" align="right">
-					路线名称：</td>
+					原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
 					<span id="lxmc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px;" align="right">
