@@ -67,6 +67,7 @@ text-decoration:none;
 				$("#gxlxbm").val(msg.gxlxbm);
 				$("#gxqdzh").val(msg.gxqdzh);
 				$("#gxzdzh").val(msg.gxzdzh);
+				
 				if(parseFloat(msg.gpsqdzh)<parseFloat(msg.gpszdzh)){
 					$('#span_qdzh').html(">="+msg.gpsqdzh);
 					$('#span_zdzh').html("<="+msg.gpszdzh);
@@ -238,7 +239,7 @@ text-decoration:none;
 			}
 			saveLxsh();
 		});
-
+		autoCompleteGHLXBM();
 	});
 	
 	function saveLxsh(){

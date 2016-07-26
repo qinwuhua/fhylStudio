@@ -58,7 +58,90 @@
 					
 				}
 			});
+			
+			autoCompleteLXBM();
+			autoCompleteGHLXBM();
 		});
+		
+		function autoCompleteLXBM(){
+			var url = "/jxzhpt/qqgl/queryAutoList.do";
+			$("#ylxbh").autocomplete(url, {
+				multiple : false,minChars :4,multipleSeparator : ' ',
+				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+		  		extraParams : {
+		  			'ylxbh':function() {
+		  				var d = $("#ylxbh").val();
+		  				return d;
+		  			},
+		  			'xzqhdm':function() {
+		  				var d = $.cookie("dist2");
+		  				return d;
+		  			}
+		  		},
+		  		dataType:'json',// 返回类型
+		  		// 对返回的json对象进行解析函数，函数返回一个数组
+		  		parse : function(data) {
+		  			var aa = [];
+		  			aa = $.map(eval(data), function(row) {
+		  					return {
+		  					data : row,
+		  					value : row.lxbm.replace(/(\s*$)/g,""),
+		  					result : row.lxbm.replace(/(\s*$)/g,"")
+		  				};
+		  			});
+		  			return aa;
+		  		},
+		  		formatItem : function(row, i, max) {
+		  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+		  		}
+		  	}).result(
+				function(e, item) {
+					//$('#ylxbh').val(item.lxbm);
+					//$('#ghlxbh').val(item.lxbm);
+					
+					$('#lxmc').val(item.lxmc);
+					//$('#qdmc').val(item.qdmc);
+					//$('#zdmc').val(item.zdmc);
+					$('#qdzh').val(item.qdzh);
+					$('#gpsqdzh').val(item.qdzh);
+					
+					$('#zdzh').val(item.zdzh);
+					$('#gpszdzh').val(item.zdzh);
+					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						$('#span_qdzh').html(">="+item.qdzh);
+						$('#span_zdzh').html("<="+item.zdzh);
+					}else{
+						$('#span_qdzh').html("<="+item.qdzh);
+						$('#span_zdzh').html(">="+item.zdzh);
+					}
+					$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					//$('#lc').val(item.lc);
+					//$('#jsdj').val(item.xjsdj);
+					//$('#lmkd').val(item.lmkd);
+					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+					getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					else
+					getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+					$.ajax({
+						type:'post',
+						url:'../../../qqgl/queryTsdq.do',
+						data:'ylxbh='+$('#ylxbh').val()+'&qdzh='+$('#qdzh').val()+'&zdzh='+$('#zdzh').val(),
+						dataType:'json',
+						success:function(msg){
+							$('#tsdq1').html(msg.tsdq);
+							$('#tsdq').val(msg.tsdq);
+						}
+					});
+			});
+		}
+		
+		
+		
+		
+		
 		//查询原路面类型
 		function queryYlmlxByLxInfo(ylxbh,qdzh,zdzh,xzqhdm){
 			$.post('/jxzhpt/qqgl/queryYlmlxByLxInfo.do',{ylxbh:ylxbh,qdzh:qdzh,zdzh:zdzh,xzqhdm:xzqhdm},
