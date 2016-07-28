@@ -93,12 +93,12 @@ text-decoration:none;
 				return false;
 			}
 			
-			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
+			/* if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
 			}
-			
+			 */
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
 				return false;
@@ -290,14 +290,14 @@ text-decoration:none;
 // 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 	function changeZlc2(){
-		if(parseFloat($("#xjqdzh").val())>parseFloat(zdStr)){
+		 if(parseFloat($("#xjqdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#xjqdzh").val(qdStr);
 		}
 		if(parseFloat($("#xjzdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#xjzdzh").val(zdStr);
-		}
+		} 
 		var qd=0;
 		var zd=0;
 		if($("#xjzdzh").val()==''){
