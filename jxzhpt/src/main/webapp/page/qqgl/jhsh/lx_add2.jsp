@@ -319,7 +319,7 @@
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="xjsdj" id="xjsdj" type="text" style="width: 120px;"/>
+					<input name="jsdj" id="jsdj" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>

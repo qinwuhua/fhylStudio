@@ -1161,6 +1161,7 @@
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">
 		update lxsh_lx l set 
+		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
 		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
 		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
 		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
@@ -1318,6 +1319,7 @@
 	
 	<update id="updateyhdzxLx" parameterType="hashmap">
 		update lxsh_lx l set 
+		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
 		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
 		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
 		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>

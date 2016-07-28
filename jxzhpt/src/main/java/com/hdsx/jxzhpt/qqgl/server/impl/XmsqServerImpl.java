@@ -56,7 +56,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		params.put("qdzh", qdzh);
 		params.put("zdzh", zdzh);
 		params.put("xmbm", xmbm);
-		return queryOne("queryLsjl", params);
+		int x=queryOne("querysfyLsjl", params);
+		return x;
+		//return queryOne("queryLsjl", params);
 	}
 	@Override
 	public boolean insertLx(Lx lx) {

@@ -52,7 +52,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj','行政等级');
-			YMLib.Var.jdbs=1;
+			YMLib.Var.jdbs=0;
 			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
 			}else{

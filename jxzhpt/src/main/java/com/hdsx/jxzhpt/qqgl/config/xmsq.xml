@@ -107,6 +107,11 @@
 		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c5_y
 		]]>
 	</select>
+	<select id="querysfyLsjl" parameterType="java.util.Map" resultType="int">
+	select decode(fun_bzls(#{xmbm},#{lxbm},#{qdzh},#{zdzh}),'是',1,0) from dual
+	
+	</select>
+	
 	<select id="queryTsdq" parameterType="xmsq" resultType="string">
 		<![CDATA[SELECT DISTINCT X.NAME FROM XTGL_XZQHTSDQ T,XTGL_TSDQ X WHERE T.XZQHDM IN(
 		select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{ylxbh}
