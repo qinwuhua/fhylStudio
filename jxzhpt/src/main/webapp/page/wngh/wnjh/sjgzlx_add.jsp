@@ -17,6 +17,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
+<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+
 <style type="text/css">
 TD {
 font-size: 12px;
@@ -32,12 +34,12 @@ text-decoration:none;
 	var zdStr;
 	var xzqh;
 	$(function(){
-		loadUnit4("gydw",$.cookie("unit"));
-		loadDist4("xzqh",$.cookie("dist"));
+		loadUnitadd("gydw",$.cookie("unit"));
+		loadDistadd("xzqh",$.cookie("dist"));
 		$("#save_button").click(function(){
-			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
+			if($("#ylxbh").val()=="" || $("#ylxbh").val()==null){
 				alert("请填写路线编码！");
-				$("#lxbm").focus();
+				$("#ylxbh").focus();
 				return false;
 			}
 			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
@@ -77,7 +79,7 @@ text-decoration:none;
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/selectGjwnjhcf.do',
-		        data:'lxsh.ghlxbh='+$("#lxbm").val()+xzqh+'&lxsh.qdzh='+$("#qdzh").val()+'&lxsh.zdzh='+$("#zdzh").val(),
+		        data:'lxsh.ghlxbh='+$("#ylxbh").val()+xzqh+'&lxsh.qdzh='+$("#qdzh").val()+'&lxsh.zdzh='+$("#zdzh").val(),
 				dataType:'json',
 				success:function(msg){
 					if(msg!=null){
@@ -90,24 +92,25 @@ text-decoration:none;
 			
 		});
 		autoCompleteLXBM();
+		autoCompleteGHLXBM();
 	});
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
-		$("#lxbm").autocomplete(url, {
+		$("#ylxbh").autocomplete(url, {
 			multiple : false,
 			minChars :4,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,
 	  		delay : 200,
-	  		max : 50,
+	  		max : 100,
 	  		extraParams : {
 	  			lxbm:function() {
-	  				var d = $("#lxbm").val();
+	  				var d = $("#ylxbh").val();
 	  				return d;
 	  			},
 	  			xzqh:function() {
-	  				var d = $.cookie("dist");
+	  				var d = $.cookie("dist2");
 	  				return d;
 	  			}
 	  		},
@@ -130,38 +133,72 @@ text-decoration:none;
 	  	}).result(
 				function(e, item) {
 					if(item==undefined) return ;
+					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
 					xzqh=item.xzqh;
-					$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
-					$("#lxmc").html(item.lxmc);
+					$("#lxmc").val(item.lxmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					$("#jsjsdj").val(item.xjsdj);
-					$("#xjsdj").val(item.xjsdj);
-					$("#qdmc").val(item.qdmc);
-					$("#zdmc").val(item.zdmc);
+					//$("#jsjsdj").val(item.xjsdj);
+					//$("#xjsdj").val(item.xjsdj);
+					//$("#qdmc").val(item.qdmc);
+					//$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
+					$("#gpsqdzh").val(qdStr);
+					$("#gpszdzh").val(zdStr);
+					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
+					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						$('#span_qdzh').html(">="+item.qdzh);
+						$('#span_zdzh').html("<="+item.zdzh);
+					}else{
+						$('#span_qdzh').html("<="+item.qdzh);
+						$('#span_zdzh').html(">="+item.zdzh);
+					}
+					
+					//querymc('qdzh');
+					//querymc('zdzh');
+					//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
+					//getylxlminfo(item.ghlxbh,item.qdzh,item.zdzh);
 // 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
 // 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
-					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
+					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 				});
 	}
+	
 	function saveLxsh(){
 		var id=parent.obj.id;		
 			sbthcd=7;
-		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()
+		/* var xzqhdm=$("#xzqh").combobox("getValues")[0];
+		if(xzqhdm=='360000')
+			xzqhdm=$("#xzqh").combobox("getValues")[1].substr(0,4)+"00";
+		else{
+			xzqhdm=$("#xzqh").combobox("getValues")[0].substr(0,4)+"00";
+		}
+		 */
+		var data ="lxsh.ghlxbh="+$("#ylxbh").val()+"&lxsh.lxmc="+$("#lxmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.jhlc="+$("#jhlc").html()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+'改建'
-		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()+"&lxsh.xmbm="+id+"&lxsh.xmnf="+parent.obj.xmnf+"&lxsh.xmlx=wnjh_sjgz"
+		+"&lxsh.gydw="+$("#gydw").combobox("getText")
+		+"&lxsh.xzqh="+$("#xzqh").combobox("getText")
+		+"&lxsh.gydwdm="+$("#gydw").combobox("getValues").join(',')
+		+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValues").join(',')
+		+"&lxsh.tsdq="+$("#tsdq").html()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#jsdj").val()+"&lxsh.xmbm="+id+"&lxsh.xmnf="+parent.obj.xmnf+"&lxsh.xmlx=wnjh_sjgz"
 		+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
+		
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
+		
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
-		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+"&lxsh.ghxlxmc="+$('#ghxlxmc').val()+"&lxsh.ghxlxbm="+$('#ghxlxbm').val();
+		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()
+		+"&lxsh.ghxlxmc="+$('#ghlxmc').val()+"&lxsh.ghxlxbm="+$('#ghlxbm').val()
+		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
+		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+		;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertGjlxwnjh.do',
@@ -189,14 +226,14 @@ text-decoration:none;
 		} */
 // 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 // 		$("#lc").html(zlc);
-		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		jslc();
 		cesuan();
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
-		cxqdmc($("#lxbm").val(),$("#qdzh").val());
+		cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
-		cxzdmc($("#lxbm").val(),$("#zdzh").val());
+		cxzdmc($("#ylxbh").val(),$("#zdzh").val());
 	}
 	
 </script>
@@ -204,27 +241,29 @@ text-decoration:none;
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线编码：</td>
+					<font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="lxbm" id="lxbm" style="width: 120px" /></td>
+					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
+					<input type="text" name="ylxbh" id="ylxbh" style="width: 120px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
+					<font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lxmc"></span>
+					<input type="text" id='lxmc' style="width: 120px"/> 
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
+					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
-					<span id="qd"></span>
+					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>止点桩号：</td>
+					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
-					<span id="zd"></span>
+					<span id="span_zdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
@@ -237,40 +276,59 @@ text-decoration:none;
 					<input id="zdmc" name="zdmc" style="width: 120px;"/>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>规划路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="ghxlxbm" name="ghxlxbm" style="width: 120px;" />
+			 <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划路线编号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					
 				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					规划止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+				</td>
+            </tr>
+            <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线路线编号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<span style="color: red;">*</span>
+					
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<span style="color: red;">*</span><br/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					共线止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxzdzh" name="gxzdzh" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<span style="color: red;">*</span><br/>
+				</td>
+            </tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="ghxlxmc" name="ghxlxmc" style="width: 120px;" />
+					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="xjsdj" name="xjsdj" style="width: 120px;" />
+					<input id="jsdj" name="jsdj" style="width: 120px;" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					
-				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

@@ -1161,6 +1161,7 @@
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">
 		update lxsh_lx l set 
+		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
 		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
 		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
 		<if test="yilc!=null and yilc!=''">l.yilc=#{yilc},</if>
@@ -1317,6 +1318,7 @@
 	
 	<update id="updateyhdzxLx" parameterType="hashmap">
 		update lxsh_lx l set 
+		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
 		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
 		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>
 		<if test="lx.yilc!=null and lx.yilc!=''">l.yilc=#{lx.yilc},</if>
@@ -1473,8 +1475,8 @@
 	
 	
 	<insert id="insertLx" parameterType="lx">
-		insert into lxsh_lx (
-		<if test="xmid!=null">xmid</if>
+		insert into lxsh_lx (id
+		<if test="xmid!=null">,xmid</if>
 		<if test="lxbm!=null">,lxbm</if>
 		<if test="lxmc!=null">,lxmc</if>
 		<if test="xzqh!=null">,xzqh</if>
@@ -1615,15 +1617,16 @@
 		<if test="lmkd != null">
 	        ,lxlmkd
 	      </if>
-	     <if test="xmsq.ghlxbm != null">,ghlxbm</if>
-		<if test="xmsq.ghlxmc != null">,ghlxmc</if>
-		<if test="xmsq.ghqdzh != null">,ghqdzh</if>
-		<if test="xmsq.ghzdzh != null">,ghzdzh</if>
-		<if test="xmsq.gxlxbm != null">,gxlxbm</if>
-		<if test="xmsq.gxqdzh != null">,gxqdzh</if>
-		<if test="xmsq.gxzdzh != null">,gxzdzh</if>
+	     <if test="ghlxbm != null">,ghlxbm</if>
+		<if test="ghlxmc != null">,ghlxmc</if>
+		<if test="ghqdzh != null">,ghqdzh</if>
+		<if test="ghzdzh != null">,ghzdzh</if>
+		<if test="gxlxbm != null">,gxlxbm</if>
+		<if test="gxqdzh != null">,gxqdzh</if>
+		<if test="gxzdzh != null">,gxzdzh</if>
 		)
-		values(<if test="xmid!=null">#{xmid}</if>
+		values(sys_guid()
+		<if test="xmid!=null">,#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
 		<if test="xzqh!=null">,#{xzqh}</if>
@@ -1764,13 +1767,13 @@
 		  <if test="lmkd != null">
 	        ,#{lmkd}
 	      </if>
-	      <if test="xmsq.ghlxbm != null">,#{xmsq.ghlxbm}</if>
-		<if test="xmsq.ghlxmc != null">,#{xmsq.ghlxmc}</if>
-		<if test="xmsq.ghqdzh != null">,#{xmsq.ghqdzh}</if>
-		<if test="xmsq.ghzdzh != null">,#{xmsq.ghzdzh}</if>
-		<if test="xmsq.gxlxbm != null">,#{xmsq.gxlxbm}</if>
-		<if test="xmsq.gxqdzh != null">,#{xmsq.gxqdzh}</if>
-		<if test="xmsq.gxzdzh != null">,#{xmsq.gxzdzh}</if>
+	      <if test="ghlxbm != null">,#{ghlxbm}</if>
+		<if test="ghlxmc != null">,#{ghlxmc}</if>
+		<if test="ghqdzh != null">,#{ghqdzh}</if>
+		<if test="ghzdzh != null">,#{ghzdzh}</if>
+		<if test="gxlxbm != null">,#{gxlxbm}</if>
+		<if test="gxqdzh != null">,#{gxqdzh}</if>
+		<if test="gxzdzh != null">,#{gxzdzh}</if>
 		)
 	</insert>
 	<delete id="deleteLx" parameterType="lx">

@@ -104,7 +104,15 @@
 		<if test="jhwllc!=null">,jhwllc</if>
 		<if test="jhlc!=null">,jhlc</if>
 		<if test="ghxlxbm !='' and ghxlxbm !=null">,ghxlxbm</if>
-		<if test="ghxlxmc !='' and ghxlxmc !=null">,ghxlxmc</if>)
+		<if test="ghxlxmc !='' and ghxlxmc !=null">,ghxlxmc</if>
+		<if test="ghlxbm !=null">,ghlxbm</if>
+		<if test="ghlxmc !=null">,ghlxmc</if>
+		<if test="ghqdzh !=null">,ghqdzh</if>
+		<if test="ghzdzh !=null">,ghzdzh</if>
+		<if test="gxlxbm !=null">,gxlxbm</if>
+		<if test="gxqdzh !=null">,gxqdzh</if>
+		<if test="gxzdzh !=null">,gxzdzh</if>
+		)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},'0','0',#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
@@ -119,7 +127,16 @@
 		<if test="jhwllc!=null">,#{jhwllc}</if>
 		<if test="jhlc!=null">,#{jhlc}</if>
 		<if test="ghxlxbm !=null">,#{ghxlxbm}</if>
-		<if test="ghxlxmc !=null">,#{ghxlxmc}</if>)
+		<if test="ghxlxmc !=null">,#{ghxlxmc}</if>
+		<if test="ghlxbm !=null">,#{ghlxbm}</if>
+		<if test="ghlxmc !=null">,#{ghlxmc}</if>
+		<if test="ghqdzh !=null">,#{ghqdzh}</if>
+		<if test="ghzdzh !=null">,#{ghzdzh}</if>
+		<if test="gxlxbm !=null">,#{gxlxbm}</if>
+		<if test="gxqdzh !=null">,#{gxqdzh}</if>
+		<if test="gxzdzh !=null">,#{gxzdzh}</if>
+		
+		)
 	</insert>
 	
 	<select id="querylxlist" parameterType="lxsh" resultType="lxsh">

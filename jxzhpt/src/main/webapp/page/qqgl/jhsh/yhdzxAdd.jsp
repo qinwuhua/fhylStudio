@@ -138,8 +138,8 @@
 					}
 					$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					//$('#lc').val(item.lc);
-					//$('#jsdj').val(item.xjsdj);
-					//$('#lmkd').val(item.lmkd);
+					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
