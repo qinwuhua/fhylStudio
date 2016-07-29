@@ -177,7 +177,7 @@ text-decoration:none;
 		load();
 		autoCompleteLXBM();
 		$("#save_button").click(function(){
-			
+			/* 
 			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
 				alert("请填写起点名称！");
 				return false;
@@ -213,7 +213,7 @@ text-decoration:none;
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
-			}
+			} */
 			/* if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
 				$("#qdzh").focus();

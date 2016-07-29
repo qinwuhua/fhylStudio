@@ -84,7 +84,7 @@ text-decoration:none;
 		xmnf2("jhwgn");
 		load();
 			$("#save_button").click(function(){
-			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+			/* if($("#xmmc").val()=="" || $("#xmmc").val()==null){
 				alert("请填写项目名称！");
 				$("#xmmc").focus();
 				return false;
@@ -124,7 +124,7 @@ text-decoration:none;
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
-			}
+			} */
 			/* if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
 				$("#qdzh").focus();

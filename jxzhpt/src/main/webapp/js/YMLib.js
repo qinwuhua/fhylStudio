@@ -3293,21 +3293,25 @@ function getylxinfo(lxbm,qdzh,zdzh){
 			
 			
 			//$("#lxmc").val(msg.lxmc);
-			$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#qdzh").val(qd);$("#zdzh").val(zd);
-			$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#gpsqdzh").val(qd);$("#gpszdzh").val(zd);
-			cxqdmc1(msg.ylxbm.substr(0,4),qd);
-			cxzdmc1(msg.ylxbm.substr(0,4),zd);
-			$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
-			$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
-			
-			if(parseFloat(qd)<parseFloat(zd)){
-				$('#span_qdzh').html(">="+qd);
-				$('#span_zdzh').html("<="+zd);
-			}else{
-				$('#span_qdzh').html("<="+qd);
-				$('#span_zdzh').html(">="+zd);
+			$("#ylxbh").val(msg.ylxbm.substr(0,4));
+			if(qd!='NaN'){
+				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#qdzh").val(qd);$("#zdzh").val(zd);
+				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#gpsqdzh").val(qd);$("#gpszdzh").val(zd);
+				cxqdmc1(msg.ylxbm.substr(0,4),qd);
+				cxzdmc1(msg.ylxbm.substr(0,4),zd);
+				$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
+				$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
+				
+				if(parseFloat(qd)<parseFloat(zd)){
+					$('#span_qdzh').html(">="+qd);
+					$('#span_zdzh').html("<="+zd);
+				}else{
+					$('#span_qdzh').html("<="+qd);
+					$('#span_zdzh').html(">="+zd);
+				}
+				getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
 			}
-			getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
+			
 		}
 	});
 }

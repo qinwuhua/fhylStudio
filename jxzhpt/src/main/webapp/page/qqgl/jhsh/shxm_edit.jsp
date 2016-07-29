@@ -72,7 +72,8 @@
 			}
 		}
 		function zhuanghao(){
-			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
+			return true;
+			/* if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
 				alert("起点桩号不能小于"+$('#span_qdzh').html());
 				return false;
 			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
@@ -83,7 +84,7 @@
 				return false;
 			}else{
 				return true;
-			}
+			} */
 		}
 	</script>
 </head>

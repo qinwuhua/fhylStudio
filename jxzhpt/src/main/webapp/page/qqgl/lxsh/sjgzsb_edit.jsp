@@ -89,7 +89,7 @@ text-decoration:none;
 		});*/
 		$("#save_button").click(function(){
 			
-			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+			/* if($("#xmmc").val()=="" || $("#xmmc").val()==null){
 				alert("请填写项目名称！");
 				$("#xmmc").focus();
 				return false;
@@ -139,7 +139,7 @@ text-decoration:none;
 				alert("对不起，止点桩号不能大于"+zdStr+"！");
 				$("#zdzh").focus();
 				return false;
-			}
+			} */
 			/* if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
