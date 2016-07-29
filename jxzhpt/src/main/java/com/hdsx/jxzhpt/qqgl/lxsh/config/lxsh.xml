@@ -9,6 +9,15 @@
 	<insert id="updateqqgllx" parameterType="lxsh">
 		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid=#{wnid}
 	</insert>
+	<insert id="updateqqglsj" parameterType="lxsh">
+		update wnjh_sjgz set qqkzzt='已开展' where id=#{wnid}
+	</insert>
+	<insert id="updateqqgllm" parameterType="lxsh">
+		update wnjh_lm set qqkzzt='已开展' where id=#{wnid}
+	</insert>
+	<insert id="updateqqglxj" parameterType="lxsh">
+		update wnjh_xj set qqkzzt='已开展' where id=#{wnid}
+	</insert>
 	<select id="loadjsdjcd" parameterType="lxsh" resultType="lxsh">
 		select sum(t.yilc) yilc,sum(t.erlc) erlc,sum(t.sanlc) sanlc,sum(t.silc) silc,sum(t.dwlc) dwlc,sum(t.wllc) wllc,
        sum(t.jhyilc) jhyilc,sum(t.jherlc) jherlc,sum(t.jhsanlc) jhsanlc,sum(t.jhsilc) jhsilc,sum(t.jhdwlc) jhdwlc,sum(t.jhwllc) jhwllc,
@@ -674,7 +683,7 @@
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
 	<select id="qqglGpsroad" parameterType="hashmap" resultType="lxsh">
-		select * from ${xmlx} where xmmc like '%'||#{xmmc}||'%' and xzqhdm like '%'||#{xzqh}||'%' 
+		select * from ${xmlx} where xmmc like '%'||#{xmmc}||'%' and xzqhdm2 like '%'||#{xzqh}||'%' and qqkzzt !='已开展'
 	</select>
 	<update id="updatesjgz" parameterType="lxsh">
 		update lxsh_sjgz set <!-- bzys=#{bzys}, -->lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}

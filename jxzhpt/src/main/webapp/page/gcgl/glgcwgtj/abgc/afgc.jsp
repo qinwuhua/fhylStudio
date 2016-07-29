@@ -43,6 +43,12 @@
 		});
 		
 		function dcExcel(){
+			var xmnf=$("#ddlYear").combobox('getValues').join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var wgnf=$("#wgYear").combobox('getValues').join(",");
+			if(wgnf.substr(0,1)==',')
+				wgnf=wgnf.substr(1,wgnf.length);
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
@@ -54,28 +60,35 @@
 				gydwstr=gydw[0] ;
 			}else{
 				gydwstr= gydw.join(',');
-			}var jgzt='1';
-			var yhjb=$.cookie("unit2");
-			var sfsj='';
-			if(yhjb.length==11){
-				yhtype='县级';
-				sfsj=11;
 			}
-			if(yhjb.length==9||yhjb.length==8){
-				yhtype='市级';
-				sfsj=9;
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
 			}
-			if(yhjb.length<8&&yhjb.length>=2){
-				yhtype='省级';
-				sfsj=7;
-			}
-			var kgzt='';
+			var jgzt='1';
+			var kgzt='1';
 			var lxmc=$("#lxmc").val();
-			var xmnf=$("#ddlYear").val();
-			var ybzt=$("#ybzt").val();
-			var data="gcglabgc.kgzt="+kgzt+"&gcglabgc.jgzt="+jgzt+"&gcglabgc.lxmc="+lxmc+
-		 	"&gcglabgc.ybzt="+ybzt+"&gcglabgc.sfsj="+sfsj+"&gcglabgc.xmnf="+xmnf+"&gcglabgc.xmlx=af";
-			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
+			var data=
+			"gcglabgc.gydw="+ gydwstr+
+	    	"&gcglabgc.kgzt="+ kgzt+
+	    	"&gcglabgc.jgzt="+ jgzt+
+	    	"&gcglabgc.lxmc="+lxmc+
+	    	"&gcglabgc.ybzt="+''+
+	    	"&gcglabgc.sfsj="+7+
+	    	"&gcglabgc.xmnf="+xmnf+
+	    	"&gcglabgc.jsdj="+$("#ddlPDDJ").combobox('getValue')+
+	    	"&gcglabgc.gldj="+$("#ddlGldj").combobox('getValues')+
+	    	"&gcglabgc.tsdq="+$("#ddlTSDQ").combobox('getText')+
+	    	"&gcglabgc.jgys="+$("#jgys").combobox('getValue')+
+	    	"&gcglabgc.wgnf="+wgnf+"&gcglabgc.xmlx=af";
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/gcgl/dcabgcExcel.do?'+data;
 			 });
 		}

@@ -452,10 +452,10 @@ function xmnf2(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
-	for(var i=0;i<=10;i++){
+	for(var i=0;i<=20;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+		years.push({text:(myDate.getFullYear()+10-i),value:(myDate.getFullYear()+10-i)});
 	}
 	$('#'+id).combobox({
 	    data:years,

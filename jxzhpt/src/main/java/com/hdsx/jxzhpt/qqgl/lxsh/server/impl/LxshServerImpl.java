@@ -83,6 +83,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertSjgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			update("updateqqglsj", lxsh);
 			return true;
 		} else
 			return false;
@@ -93,6 +94,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertLmgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			update("updateqqgllm", lxsh);
 			return true;
 		} else
 			return false;
@@ -102,6 +104,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertXj", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			update("updateqqglxj", lxsh);
 			return true;
 		} else
 			return false;

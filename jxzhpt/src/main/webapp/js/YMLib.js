@@ -3206,7 +3206,9 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 			
 			$('#ghlxmc').val(xlxmc);
 			$("#ghlxbm").val(ghlxbm.substr(0,4));$("#ghqdzh").val(ghqdzh);$("#ghzdzh").val(ghzdzh);
-			$("#gxlxbm").val(cfld.substr(0,4));$("#gxqdzh").val(qcqd);$("#gxzdzh").val(qczd);
+			if(qcqd!='NaN'){
+				$("#gxlxbm").val(cfld.substr(0,4));$("#gxqdzh").val(qcqd);$("#gxzdzh").val(qczd);
+			}
 //			alert("规划信息"+ghlxbm+"   "+ghqdzh+"    "+ghzdzh);
 //			alert("共线信息"+cfld+"   "+qcqd+"    "+qczd);
 			
@@ -3373,51 +3375,13 @@ function getgxlxinfo(lxbm,qdzh,zdzh,qd,zd){
 				
 				
 			}
-			$("#gxlxbm").val(gxbm.substring(1, gxbm.length));$("#gxqdzh").val(gxqd.substring(1, gxqd.length));$("#gxzdzh").val(gxzd.substring(1, gxzd.length));
+		
+			if(gxqd!='NaN'){
+				$("#gxlxbm").val(gxbm.substring(1, gxbm.length));$("#gxqdzh").val(gxqd.substring(1, gxqd.length));$("#gxzdzh").val(gxzd.substring(1, gxzd.length));
+
+			}
 			
-				/*var xqd='';var xzd='';var qcqd='';var qczd='';
-				if(parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
-					var _qd='';var _zd='';
-					if(parseFloat(qd)<parseFloat(zd)){
-						_qd=qd;_zd=zd;
-					}else{
-						_qd=zd;_zd=qd;
-					}
-					if(msg[i].yqdzh<_qd)
-						xqd=_qd;
-					else xqd=msg[i].yqdzh;
-					if(msg[i].yzdzh<_zd)
-						xzd=msg[i].yzdzh;
-					else xzd=_zd;
-					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yqdzh)),parseFloat(xqd));
-					qczd=accAdd(accSub(parseFloat(xzd),parseFloat(xqd)),parseFloat(qcqd));
-				}else{
-					var _qd='';var _zd='';
-					if(parseFloat(qd)<parseFloat(zd)){
-						_qd=zd;_zd=qd;
-					}else{
-						_qd=qd;_zd=zd;
-					}
-					if(msg[i].yqdzh>_qd)
-						xqd=_qd;
-					else
-						xqd=msg[i].yqdzh;	
-					if(msg[i].yzdzh>_zd)
-						xzd=msg[i].yzdzh;
-					else
-						xzd=_zd;
-					
-					qcqd=accAdd(accSub(parseFloat(msg[i].xqdzh),parseFloat(msg[i].yzdzh)),parseFloat(xzd));
-					qczd=accAdd(accSub(parseFloat(xqd),parseFloat(xzd)),parseFloat(qcqd));
-				}
-				//alert(qcqd+"   ----"+msg[i].xqdzh);
-				
-				if(parseFloat(qd)<parseFloat(zd)&&parseFloat(msg[i].yqdzh)<parseFloat(msg[i].yzdzh)){
-					$("#gxlxbm").val(msg[i].xlxbm.substr(0,4));$("#gxqdzh").val(qcqd);$("#gxzdzh").val(qczd);
-				}
-				else{
-					$("#gxlxbm").val(msg[i].xlxbm.substr(0,4));$("#gxqdzh").val(qczd);$("#gxzdzh").val(qcqd);
-				}*/
+			
 			} 	
 		});
 }

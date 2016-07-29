@@ -103,8 +103,8 @@
 		<if test="jhdwlc!=null">,jhdwlc</if>
 		<if test="jhwllc!=null">,jhwllc</if>
 		<if test="jhlc!=null">,jhlc</if>
-		<if test="ghxlxbm !='' and ghxlxbm !=null">,ghxlxbm</if>
-		<if test="ghxlxmc !='' and ghxlxmc !=null">,ghxlxmc</if>
+		<if test="ghxlxbm !=null">,ghxlxbm</if>
+		<if test="ghxlxmc !=null">,ghxlxmc</if>
 		<if test="ghlxbm !=null">,ghlxbm</if>
 		<if test="ghlxmc !=null">,ghlxmc</if>
 		<if test="ghqdzh !=null">,ghqdzh</if>

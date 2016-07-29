@@ -1545,10 +1545,12 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 	
 	public void dcabgcExcel(){
+		System.out.println(gcglabgc.getWgnf());
 		try {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		String gydws=(String) session.getAttribute("gydwbb");
+		String xzqhs=(String) session.getAttribute("xzqhbb");
 		if("af".equals(gcglabgc.getXmlx())){
 			if(gydws.indexOf(",")==-1){
 				gcglabgc.setGydw("and xm.gydwdm like '%'||substr('"+gydws+"',0,4)||'_'||substr('"+gydws+"',6)||'%'");
@@ -1563,6 +1565,13 @@ public class GcglabgcController extends BaseActionSupport{
 			}
 		}
 		
+		String tiaojian2="";
+		if(xzqhs.indexOf(",")==-1){
+			tiaojian2="and xm.xzqhdm like '%'||'"+xzqhs+"'||'%'";
+		}else{
+			tiaojian2="and xm.xzqhdm in ("+xzqhs+")";
+		}
+		gcglabgc.setXzqhdm(tiaojian2);
 		if(gcglabgc.getSfsj()==7){
 			gcglabgc.setTiaojian("sjsh");
 		}

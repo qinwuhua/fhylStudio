@@ -1533,22 +1533,37 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			<if test="jsdj != null and  jsdj != ''">
+					and xm.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
 			</if>
-			<if test="shzt != null and  shzt != ''">
-					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
 			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					<!-- and pl.jhnf like '%'||trim(#{xmnf})||'%' -->
-					${xmnf}
-			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and pl.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and pl.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and xm.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		
+		<if test="xmnf != null and  xmnf != ''">
+			${xmnf}
+		</if>
+		<if test="wgnf != null and  wgnf != ''">
+		and substr(pl.sjwgsj,0,4) in (${wgnf})
+		</if>
+		<if test="jgys != null and  jgys != ''">
+				and decode(ys.id,null,'否','是') = #{jgys}
+		</if>
 		)
 	 </select>
 	 
@@ -1581,27 +1596,43 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			<if test="jsdj != null and  jsdj != ''">
+					and xm.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
 			</if>
-			<if test="shzt != null and  shzt != ''">
-					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
 			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					and pl.jhnf like '%'||trim(#{xmnf})||'%'
-			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and pl.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and pl.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and xm.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		
+		<if test="xmnf != null and  xmnf != ''">
+			${xmnf}
+		</if>
+		<if test="wgnf != null and  wgnf != ''">
+		and substr(pl.sjwgsj,0,4) in (${wgnf})
+		</if>
+		<if test="jgys != null and  jgys != ''">
+				and decode(ys.id,null,'否','是') = #{jgys}
+		</if>
 		)
 	 </select>
 	 
 	 <select id="dcabgcExcel" parameterType="gcglabgc" resultType="elist">
 	 	select 
-			rownum v_0,
+			
 			(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
 			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
 			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
@@ -1621,7 +1652,7 @@
 			(select t.jhid,sum(t.wc_btz) btz,sum(t.wc_stz) stz,sum(t.wc_qttz) qttz,sum(t.bywc_gl) wcgl from gcgl_abgc t where substr(t.sbyf,0,4)=to_char(sysdate,'yyyy') group by t.jhid) gc1
 			where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=ys.jhid(+) and pl.id=zjxd.xmid(+)
 			and pl.spzt='1'
-			<if test="gydw != null and  gydw != ''">
+			<!-- <if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
@@ -1637,14 +1668,49 @@
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
 			<if test="xmnf != null and  xmnf != ''">
-					<!-- and pl.jhnf like '%'||trim(#{xmnf})||'%' -->
+					and pl.jhnf like '%'||trim(#{xmnf})||'%'
 					${xmnf}
+			</if> -->
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
 			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
+			</if>
+			<if test="jsdj != null and  jsdj != ''">
+					and xm.lxjsdj like '%'||trim(#{jsdj})||'%'
+			</if>
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
+			</if>
+			<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
+			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and pl.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and pl.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and xm.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		
+		<if test="xmnf != null and  xmnf != ''">
+			${xmnf}
+		</if>
+		<if test="wgnf != null and  wgnf != ''">
+		and substr(pl.sjwgsj,0,4) in (${wgnf})
+		</if>
+		<if test="jgys != null and  jgys != ''">
+				and decode(ys.id,null,'否','是') = #{jgys}
+		</if>
+			
 			order by xzqhdm
 	 </select>
 	  <select id="dcafgcExcel" parameterType="gcglabgc" resultType="elist">
 	 	select 
-			rownum v_0,
+			
 			(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_1,
 			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='罗霄山脉连片特困地区'),null,'否','是') v_2,
 			decode((select t1.name from xtgl_tsdq t1 left join xtgl_xzqhtsdq t2 on t1.id=t2.parent where t2.xzqhdm=xm.xzqhdm and t1.name='38个省领导定点联系县'),null,'否','是') v_3,
@@ -1667,21 +1733,38 @@
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and pl.kgzt like '%'||trim(#{kgzt})||'%'
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					${xzqhdm}
 			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and pl.jgzt like '%'||trim(#{jgzt})||'%'
+			<if test="jsdj != null and  jsdj != ''">
+					and xm.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and xm.lxmc like '%'||trim(#{lxmc})||'%'
+			<if test="gldj != null and  gldj != ''">
+					and xm.lxbm like trim(#{gldj})||'%'
 			</if>
-			<if test="shzt != null and  shzt != ''">
-					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			<if test="tsdq != null and  tsdq != ''">
+					and xm.tsdq like '%'||trim(#{tsdq})||'%'
 			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					and pl.jhnf like '%'||trim(#{xmnf})||'%'
-			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and pl.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and pl.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and xm.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		
+		<if test="xmnf != null and  xmnf != ''">
+			${xmnf}
+		</if>
+		<if test="wgnf != null and  wgnf != ''">
+		and substr(pl.sjwgsj,0,4) in (${wgnf})
+		</if>
+		<if test="jgys != null and  jgys != ''">
+				and decode(ys.id,null,'否','是') = #{jgys}
+		</if>
+		order by xzqhdm
 	 </select>
 	 <select id="queryAbxmYb" parameterType="String" resultType="gcglabgc">
  select  nvl(t2.jhyhlc,0) jhlc,nvl(t2.pfztz,0) ztz,nvl(t1.btz,0) btz,nvl(t1.stz,0) stz,nvl(t1.ztz,0) wcztz,nvl(t1.wcbtz,0) 

@@ -410,6 +410,11 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		List<Excel_list> list=new ArrayList<Excel_list>();
 		Excel_list ll=queryOne("dcabgcExcelhj", gcglabgc);
 		List<Excel_list> l=queryList("dcabgcExcel", gcglabgc);
+		int i=1;
+		for (Excel_list ex : l) {
+			ex.setV_0(i+"");
+			i++;
+		}
 		if(l.size()>0){
 			list.add(ll);
 			list.addAll(l);
@@ -422,6 +427,11 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		List<Excel_list> list=new ArrayList<Excel_list>();
 		Excel_list ll=queryOne("dcafgcExcelhj", gcglabgc);
 		List<Excel_list> l=queryList("dcafgcExcel", gcglabgc);
+		int i=1;
+		for (Excel_list ex : l) {
+			ex.setV_0(i+"");
+			i++;
+		}
 		if(l.size()>0){
 			list.add(ll);
 			list.addAll(l);
