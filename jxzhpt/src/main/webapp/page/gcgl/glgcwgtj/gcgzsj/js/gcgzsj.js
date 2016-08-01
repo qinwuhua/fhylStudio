@@ -297,7 +297,7 @@ function showYBlist(){
 					{field:'jcwcqk',title:'本月完成基层（公里）',width:130,align:'center',rowspan:2},
 					{field:'bywcmc',title:'本月完成面层（公里）',width:130,align:'center',rowspan:2},
 					{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-					 {title:'本月到位投资（万元）',colspan:7},
+					 {title:'本月到位资金（万元）',colspan:7},
 				        {field:'bywctze',title:'本月完成投资（万元）',width:120,align:'center',rowspan:2},
 				        {field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
 		             ],

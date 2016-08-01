@@ -612,6 +612,8 @@ function showgjtj(xmlx){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -656,6 +658,8 @@ function showAllgj(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -780,6 +784,8 @@ function showAlllm(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -906,6 +912,8 @@ function showAlllm123(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -1034,6 +1042,8 @@ function showAllxj(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -1175,6 +1185,8 @@ function showAllxj123(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -1326,6 +1338,8 @@ function dcwnjhExcel(str){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox("getValues").join(",");
 	if(tsdq.substr(0,1)==',')
 		tsdq=tsdq.substr(1,tsdq.length);
@@ -1517,7 +1531,8 @@ function showAllgj__ck(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
-	var tsdq=$("#tsdq").combobox('getText');
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
 	}
@@ -1642,6 +1657,8 @@ function showAlllm__ck(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -1768,6 +1785,8 @@ function showAllxj__ck(){
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
+	if(xmnf.substr(0,1)==',')
+		xmnf=xmnf.substr(1,xmnf.length);
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";

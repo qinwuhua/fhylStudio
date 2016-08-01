@@ -18,13 +18,16 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			
+			bbxmlx1('xmlx');
 		});
 		function search(){
+			var xmlx=$("#xmlx").combobox("getValues").join(",");
+			if(xmlx.substr(0,1)==',')
+				xmlx=xmlx.substr(1,xmlx.length);
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val()},
+					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx},
 				fitColumns:true,
 				columns:[[
 					{field:'id',title:'项目类型',width:100,align:'center',
@@ -113,6 +116,8 @@
         						<td style="text-align: left;"><input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">原止点桩号：</td>
         						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">项目类型：</td>
+        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 80px;margin-right: 10px;"/></td>
         					</tr>
         					<tr height="32">
 								<td style="text-align: right;">规划路线编码：</td>

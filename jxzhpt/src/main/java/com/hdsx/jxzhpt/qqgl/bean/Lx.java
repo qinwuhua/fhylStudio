@@ -13,7 +13,14 @@ public class Lx {
 		super();
 	};
 	private String jszlc;
+	private String xmlx;
 	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getJszlc() {
 		return jszlc;
 	}

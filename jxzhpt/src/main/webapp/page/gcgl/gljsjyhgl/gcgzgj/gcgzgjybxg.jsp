@@ -54,13 +54,14 @@
 		$("#wc_yhdk").val(data.yhdk);
 		$("#wc_gz").val(data.gz);
 		$("#wc_sz").val(data.sz);
+		
 		$("#zjdw_yhdk").val(data.dwyhdk);
 		$("#zjdw_gz").val(data.dwgz);
 		$("#zjdw_sz").val(data.dwsz);
 		$("#tjyhdk").text(data.dwyhdk);
 		$("#tjgz").text(data.dwgz);
 		$("#tjsz").text(data.dwsz);
-		getYuefen();
+		//getYuefen();
 		
 		pfztz=parent.parent.obj1.PFZTZ;
 		pfbtz=parent.parent.obj1.BBZZJ;
@@ -205,12 +206,12 @@ text-decoration: none;
                                 <div>
                                 <table>
                                 <tr>
-                                <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="xg_zjdw_btz" /></td>
-                                <td style="width: 157px;">银行贷款：<span style="width: 50px" id="tjyhdk"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_yhdk" /></td>
-                                 <td style="width: 157px;">国债：<span style="width: 50px" id="tjgz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_gz" /></td>
+                                <td style="width: 157px;">部投资：<!-- <span style="width: 50px" id="tjbtz"></span> --><input style="width: 50px" name="ZJ_BTZ" type="text" id="xg_zjdw_btz" /></td>
+                                <td style="width: 157px;">银行贷款：<!-- <span style="width: 50px" id="tjyhdk"></span> --><input style="width: 50px" name="ZJ_STZ" type="text" id="zjdw_yhdk" /></td>
+                                 <td style="width: 157px;">国债：<!-- <span style="width: 50px" id="tjgz"></span> --><input style="width: 50px" name="ZJ_STZ" type="text" id="zjdw_gz" /></td>
                                  </tr>
                                  <tr>
-                                  <td style="width: 157px;">省债：<span style="width: 50px" id="tjsz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="zjdw_sz" /></td>
+                                  <td style="width: 157px;">省债：<!-- <span style="width: 50px" id="tjsz"></span> --><input style="width: 50px" name="ZJ_STZ" type="text" id="zjdw_sz" /></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="xg_zjdw_qttz"  onblur='check(this)'/><font color="red">*</font></td>
                                 </tr>
                                 </table>

@@ -45,7 +45,7 @@
 			$("#wcqk").text(datayb.wcqk);
 			$("#gz").text(datayb.gz);
 			$("#sz").text(datayb.sz);
-			getYuefen();
+			//getYuefen();
 
 		});
 	function check(str){
@@ -229,8 +229,8 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5"
                                 class="style1">
                                 中央车购税：
-                           <span style="width: 50px" id="tjbtz"></span>万元
-                           <input name="ZYCGS" type="hidden" id="tj_zycgs"  style="width: 30px;"/>&nbsp;
+                          <!--  <span style="width: 50px" id="tjbtz"></span>万元 -->
+                           <input name="ZYCGS" type="text" id="tj_zycgs"  style="width: 30px;"/>万元&nbsp;
                                 地方补助：<input onblur="check(this)" name="DFBZ" type="text" id="tj_dfbz"  style="width: 50px;"/>万元&nbsp;&nbsp; 省厅贴息：<input onblur="check(this)" name="STTX" type="text" id="tj_sttxdk"  style="width: 50px;"/>万元&nbsp;&nbsp; 其他投资：<input onblur="check(this)" name="QTTZ" type="text" id="tj_qtzj"  style="width: 50px;"/>万元<br>
                                 	银行贷款：<input  name="YHDK" type="text" id="tj_yhdk"  style="width: 50px;" value="0"/>万元&nbsp;&nbsp;国债：<input   type="text" id="gz"  style="width: 50px;"  value="0"/>万元&nbsp;&nbsp;省债：<input  type="text" id="sz"  style="width: 50px;" value="0"/>万元&nbsp;&nbsp;
                             </td>

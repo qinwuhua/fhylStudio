@@ -75,6 +75,10 @@
 			
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
+			if(xmnf=='')
+				xmnf=new Date().getFullYear();
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			var sbzt=$("#sbzt").combobox('getValue');
 			var lsjl=$("#lsjl").combobox('getValue');
 			

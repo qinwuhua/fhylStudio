@@ -32,11 +32,16 @@
 			queryLmsj();
 		});
 		function queryLmsj(){
+			var xmnf=$("#xmnf").combobox('getValues').join(",");
+			if(xmnf=='')
+				xmnf=new Date().getFullYear();
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
+					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':xmnf,
 					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;

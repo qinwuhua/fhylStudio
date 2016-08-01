@@ -89,11 +89,11 @@ function shewcqk(){
 	if(wcb=='') wcb=0;
 	if(wcs=='') wcs=0;
 	if(wcq=='') wcq=0;
-	var pfztz=parent.parent.obj1.PFZTZ;
+	var pfztz=parent.parent.obj1.ZTZ;
 	if(parseFloat(pfztz)==0){
 		$("#tj_wcqk").text("0");
 	}else
-	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(dwb)+parseFloat(dws)+parseFloat(dwq))*100).toFixed(2));
+	$("#tj_wcqk").text(((parseFloat(wcb)+parseFloat(wcs)+parseFloat(wcq))/(parseFloat(pfztz))*100).toFixed(2));
 	
 }
 	</script>
@@ -161,8 +161,8 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
-                                <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
+                                <td style="width: 157px;">部投资：<!-- <span style="width: 50px" id="tjbtz"></span> --><input style="width: 50px" name="ZJ_BTZ" type="text" id="tj_zjdw_btz" /></td>
+                                <td style="width: 157px;">省投资：<!-- <span style="width: 50px" id="tjstz"></span> --><input style="width: 50px" name="ZJ_STZ" type="text" id="tj_zjdw_stz" /></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color="red">*</font></td>
                                 </tr>
                                 </table>

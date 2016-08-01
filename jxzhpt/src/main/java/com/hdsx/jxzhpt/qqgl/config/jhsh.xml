@@ -1872,8 +1872,10 @@
 	</select>
 	
 	<select id="queryLsjlListqwh" parameterType="java.util.Map" resultType="lx">
-
-		<foreach collection="lx" item="item" separator="UNION ALL">
+		select * from (
+			<foreach collection="lx" item="item" separator="union all">
+		<trim suffixOverrides="union all">
+		<if test="item.xmlx!=null and item.xmlx.indexOf('养护大中修')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,j.gcfl xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_yhdzx j on l.xmid=j.xmbm right join cbsj_yhdzx c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
 		(
@@ -1882,11 +1884,10 @@
 			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
 	    )
 	    
-<!-- 	    to_number(l.qdzh)&lt;${lx.zdzh} and to_number(l.zdzh)>${lx.qdzh} -->
-	    
 		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
-		
 		union all
+		</if>
+		<if test="item.xmlx!=null and item.xmlx.indexOf('灾毁重建')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_sh j on l.xmid=j.xmbm right join cbsj_sh c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
 		(
@@ -1897,6 +1898,8 @@
 	    
 		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
 		union all
+		</if>
+		<if test="item.xmlx!=null and item.xmlx.indexOf('路面改造')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_lmgz j on l.xmid=j.xmbm right join cbsj_lmgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
 		(
@@ -1907,6 +1910,8 @@
 	    
 		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
 		union all
+		</if>
+		<if test="item.xmlx!=null and item.xmlx.indexOf('改建')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_sjgz j on l.xmid=j.xmbm right join cbsj_sjgz c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
 		(
@@ -1917,6 +1922,8 @@
 	    
 		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
 		union all
+		</if>
+		<if test="item.xmlx!=null and item.xmlx.indexOf('新建')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
 		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
 		(
@@ -1926,8 +1933,13 @@
 	    )
 	    
 		<if test="item.xmid!=null and item.xmid!=''">and j.xmbm!=#{item.xmid}</if>
-		
+		union all
+		</if>
+		</trim>
 		</foreach>
+		
+		) order by yqdzh
+		
 		
 	
 	

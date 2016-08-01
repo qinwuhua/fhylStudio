@@ -109,7 +109,7 @@
     	if(wcb=='') wcb=0;
     	if(wcs=='') wcs=0;
     	if(wcq=='') wcq=0;
-    	var pfztz=parent.parent.obj1.PFZTZ;
+    	var pfztz=parent.parent.obj1.ZTZ;
     	if(parseFloat(pfztz)==0){
     		$("#xg_wcqk").text("0");
     	}else
@@ -181,8 +181,8 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="xg_zjdw_btz" /></td>
-                                <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="xg_zjdw_stz" /></td>
+                                <td style="width: 157px;">部投资：<!-- <span style="width: 50px" id="tjbtz"></span> --><input style="width: 50px" name="ZJ_BTZ" type="text" id="xg_zjdw_btz" /></td>
+                                <td style="width: 157px;">省投资：<!-- <span style="width: 50px" id="tjstz"></span> --><input style="width: 50px" name="ZJ_STZ" type="text" id="xg_zjdw_stz" /></td>
                                 <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="xg_zjdw_qttz"  onblur='check(this)'/><font color="red">*</font></td>
                                 </tr>
                                 </table>
