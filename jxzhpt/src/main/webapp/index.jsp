@@ -56,11 +56,23 @@ function urllogin(){
 		 }
 	});
 }
+function clearscSession(){
+	$.ajax({
+		 type : "POST",
+		 url : "xtgl/clearSession.do",
+		 dataType : 'json',
+	     success : function(msg){
+	    	 urllogin();
+		  },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
 
 $(function(){
-
 	if(getUrlParame("un")!=null&&getUrlParame("pw")!=null){
-		urllogin();
+		clearscSession();
 	}else{
 		selSes();
 		selQxByUser();
