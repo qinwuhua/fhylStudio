@@ -984,39 +984,58 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void exportJhshxxgsd(){
 		//设置表头
 				ExcelTitleCell [] title=null;
-				title=new ExcelTitleCell[15];
+				title=new ExcelTitleCell[24];
 				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
 				title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
 				title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-				title[3]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)3), null,20);
-				title[4]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
-				title[5]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
-				title[6]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
-				title[7]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)7), null,20);
-				title[8]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)8), null,20);
-				title[9]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)9), null,20);
-				title[10]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)10), null,20);
-				title[11]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)11), null,20);
-				title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
-				title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
-				title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
+				title[3]=new ExcelTitleCell("原路线编码",false, new ExcelCoordinate(0, (short)3), null,20);
+				title[4]=new ExcelTitleCell("原路线名称",false, new ExcelCoordinate(0, (short)4), null,20);
+				title[5]=new ExcelTitleCell("原起点桩号",false, new ExcelCoordinate(0, (short)5), null,20);
+				title[6]=new ExcelTitleCell("原止点桩号",false, new ExcelCoordinate(0, (short)6), null,20);
+				title[7]=new ExcelTitleCell("规划路线编码",false, new ExcelCoordinate(0, (short)7), null,20);
+				title[8]=new ExcelTitleCell("规划路线名称",false, new ExcelCoordinate(0, (short)8), null,20);
+				title[9]=new ExcelTitleCell("规划起点桩号",false, new ExcelCoordinate(0, (short)9), null,20);
+				title[10]=new ExcelTitleCell("规划止点桩号",false, new ExcelCoordinate(0, (short)10), null,20);
+				title[11]=new ExcelTitleCell("共线路线编码",false, new ExcelCoordinate(0, (short)11), null,20);
+				title[12]=new ExcelTitleCell("共线起点桩号",false, new ExcelCoordinate(0, (short)12), null,20);
+				title[13]=new ExcelTitleCell("共线止点桩号",false, new ExcelCoordinate(0, (short)13), null,20);
+				
+				title[14]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)14), null,20);
+				title[15]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)15), null,20);
+				title[16]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)16), null,20);
+				title[17]=new ExcelTitleCell("工可批复文号",false, new ExcelCoordinate(0, (short)17), null,20);
+				title[18]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)18), null,20);
+				title[19]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)19), null,20);
+				title[20]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)20), null,20);
+				title[21]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)21), null,20);
+				title[22]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)22), null,20);
+				title[23]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)23), null,20);
 				//设置列与字段对应
 				Map<String, String> attribute=new HashMap<String, String>();
 				attribute.put("0", "xmmc");//项目名称
 				attribute.put("1", "xmbm");//项目编码
 				attribute.put("2", "xzqh");//行政区划
-				attribute.put("3", "qdzh");//起点桩号
-				attribute.put("4", "zdzh");//止点桩号
-				attribute.put("5", "kgsj");//开工时间
-				attribute.put("6", "wgsj");//完工时间
-				attribute.put("7", "gq");//工期（月）
-				attribute.put("8", "gkpfwh");//工可批复文号
-				attribute.put("9", "sjpfwh");//设计批复文号
-				attribute.put("10", "xdwh");//计划下达文号
-				attribute.put("11", "xdsj");//计划下达时间
-				attribute.put("12", "pfztz");//批复总投资
-				attribute.put("13", "bbzzj");//部补助资金
-				attribute.put("14", "sbzzj");//省补助资金
+				attribute.put("3", "lxbm");//起点桩号
+				attribute.put("4", "lxmc");//起点桩号
+				attribute.put("5", "qdzh");//起点桩号
+				attribute.put("6", "zdzh");//止点桩号
+				attribute.put("7", "ghlxbm");//起点桩号
+				attribute.put("8", "ghlxmc");//起点桩号
+				attribute.put("9", "ghqdzh");//起点桩号
+				attribute.put("10", "ghzdzh");//止点桩号
+				attribute.put("11", "gxlxbm");//起点桩号
+				attribute.put("12", "gxqdzh");//起点桩号
+				attribute.put("13", "gxzdzh");//止点桩号
+				attribute.put("14", "kgsj");//开工时间
+				attribute.put("15", "wgsj");//完工时间
+				attribute.put("16", "gq");//工期（月）
+				attribute.put("17", "gkpfwh");//工可批复文号
+				attribute.put("18", "sjpfwh");//设计批复文号
+				attribute.put("19", "xdwh");//计划下达文号
+				attribute.put("20", "xdsj");//计划下达时间
+				attribute.put("21", "pfztz");//批复总投资
+				attribute.put("22", "bbzzj");//部补助资金
+				attribute.put("23", "sbzzj");//省补助资金
 				String xmbm = jhsh.getXmbm();
 				if(!xmbm.equals("")&&xmbm!=null){
 					if(xmbm.indexOf(",")>-1){
@@ -1079,7 +1098,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				"<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=下达文号,fieid=xdwh>,<title=下达时间,fieid=xdsj>," +
 				"<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=以确定部车购税,fieid=yqdbcgs>,<title=原路线编号,fieid=ylxbh>," +
 				"<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
-				"<title=里程,fieid=lc>,<title=面层路面类型,fieid=mclmlx>,<title=面层材料类型,fieid=mclx>,<title=面层数量,fieid=mcsl>," +
+				"<title=规划路线编号,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编号,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,"
+				+"<title=里程,fieid=lc>,<title=面层路面类型,fieid=mclmlx>,<title=面层材料类型,fieid=mclx>,<title=面层数量,fieid=mcsl>," +
 				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
 				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
 				"<title=灌封长度,fieid=gfcd>,<title=灌封金额,fieid=gfje>,<title=老路处理,fieid=llcl>,";
@@ -1184,25 +1204,33 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 */
 	public void exportJhshSh(){
 		//设置表头
-		ExcelTitleCell [] title=new ExcelTitleCell[18];
-		title[0]=new ExcelTitleCell("项目名称",true, new ExcelCoordinate(0, (short)0), null,20);
-		title[1]=new ExcelTitleCell("项目编码",true, new ExcelCoordinate(0, (short)1), null,20);
-		title[2]=new ExcelTitleCell("行政区划",true, new ExcelCoordinate(0, (short)2), null,20);
-		title[3]=new ExcelTitleCell("开工时间",true, new ExcelCoordinate(0, (short)3), null,20);
-		title[4]=new ExcelTitleCell("完工时间",true, new ExcelCoordinate(0, (short)4), null,20);
-		title[5]=new ExcelTitleCell("工期（月）",true, new ExcelCoordinate(0, (short)5), null,20);
-		title[6]=new ExcelTitleCell("设计批复文号",true, new ExcelCoordinate(0, (short)6), null,20);
-		title[7]=new ExcelTitleCell("计划下达文号",true, new ExcelCoordinate(0, (short)7), null,20);
-		title[8]=new ExcelTitleCell("计划下达时间",true, new ExcelCoordinate(0, (short)8), null,20);
-		title[9]=new ExcelTitleCell("批复总投资",true, new ExcelCoordinate(0, (short)9), null,20);
-		title[10]=new ExcelTitleCell("省补助资金",true, new ExcelCoordinate(0, (short)10), null,20);
-		title[11]=new ExcelTitleCell("部补助资金",true, new ExcelCoordinate(0, (short)11), null,20);
+		ExcelTitleCell [] title=new ExcelTitleCell[26];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
+		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
+		title[3]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)3), null,20);
+		title[4]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)4), null,20);
+		title[5]=new ExcelTitleCell("工期（月）",false, new ExcelCoordinate(0, (short)5), null,20);
+		title[6]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)6), null,20);
+		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,20);
+		title[8]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)8), null,20);
+		title[9]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)9), null,20);
+		title[10]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)10), null,20);
+		title[11]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)11), null,20);
 		title[12]=new ExcelTitleCell("原路线编号",false, new ExcelCoordinate(0, (short)12), null,20);
-		title[13]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)13), null,20);
-		title[14]=new ExcelTitleCell("止点名称",false, new ExcelCoordinate(0, (short)14), null,20);
-		title[15]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)15), null,20);
-		title[16]=new ExcelTitleCell("止点桩号",false, new ExcelCoordinate(0, (short)16), null,20);
-		title[17]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)17), null,20);
+		title[13]=new ExcelTitleCell("原路线名称",false, new ExcelCoordinate(0, (short)13), null,20);
+		title[14]=new ExcelTitleCell("原起点桩号",false, new ExcelCoordinate(0, (short)14), null,20);
+		title[15]=new ExcelTitleCell("原止点桩号",false, new ExcelCoordinate(0, (short)15), null,20);
+		title[16]=new ExcelTitleCell("规划路线编号",false, new ExcelCoordinate(0, (short)16), null,20);
+		title[17]=new ExcelTitleCell("规划路线名称",false, new ExcelCoordinate(0, (short)17), null,20);
+		title[18]=new ExcelTitleCell("规划起点桩号",false, new ExcelCoordinate(0, (short)18), null,20);
+		title[19]=new ExcelTitleCell("规划止点桩号",false, new ExcelCoordinate(0, (short)19), null,20);
+		title[20]=new ExcelTitleCell("共线路线编号",false, new ExcelCoordinate(0, (short)20), null,20);
+		title[21]=new ExcelTitleCell("共线起点桩号",false, new ExcelCoordinate(0, (short)21), null,20);
+		title[22]=new ExcelTitleCell("共线止点桩号",false, new ExcelCoordinate(0, (short)22), null,20);
+		title[23]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)23), null,20);
+		title[24]=new ExcelTitleCell("止点名称",false, new ExcelCoordinate(0, (short)24), null,20);
+		title[25]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)25), null,20);
 				
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
@@ -1219,11 +1247,19 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("10", "sbzzj");//省补助资金
 		attribute.put("11", "bbzzj");//部补助资金
 		attribute.put("12", "ylxbh");
-		attribute.put("13", "qdmc");
-		attribute.put("14", "zdmc");
-		attribute.put("15", "qdzh");
-		attribute.put("16", "zdzh");
-		attribute.put("17", "lc");
+		attribute.put("13", "lxmc");
+		attribute.put("14", "qdzh");
+		attribute.put("15", "zdzh");
+		attribute.put("16", "ghlxbm");
+		attribute.put("17", "ghlxmc");
+		attribute.put("18", "ghqdzh");
+		attribute.put("19", "ghzdzh");
+		attribute.put("20", "gxlxbm");
+		attribute.put("21", "gxqdzh");
+		attribute.put("22", "gxzdzh");
+		attribute.put("23", "qdmc");
+		attribute.put("24", "zdmc");
+		attribute.put("25", "lc");
 //		String xmbm = jhsh.getXmbm();
 //		if(xmbm.indexOf(",")>-1){
 //			String[] xmnfArray = xmbm.split(",");

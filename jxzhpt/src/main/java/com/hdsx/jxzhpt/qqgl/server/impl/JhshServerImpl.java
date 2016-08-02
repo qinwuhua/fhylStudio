@@ -422,6 +422,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		
 		if(item.getGhlxbm()!=null && !"".equals(item.getGhlxbm()))
 			ylx = queryList("queryYlxnew",item);
+		for (Lx lx : ylx) {
+			lx.setXmlx(item.getXmlx());
+		}
 		if(item.getLxbm()!=null && !"".equals(item.getLxbm()))
 		ylx.add(item);
 		

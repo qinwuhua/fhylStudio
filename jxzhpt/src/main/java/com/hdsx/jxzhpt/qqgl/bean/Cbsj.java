@@ -9,7 +9,42 @@ public class Cbsj{
 	private String ntz;
 	private String ghlxbm;
 	private String ghlxmc;
+	private String ghqdzh;
+	private String ghzdzh;
+	private String gxlxbm;
+	private String gxzdzh;
+	private String gxqdzh;
 	
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
+	public String getGxlxbm() {
+		return gxlxbm;
+	}
+	public void setGxlxbm(String gxlxbm) {
+		this.gxlxbm = gxlxbm;
+	}
+	public String getGxzdzh() {
+		return gxzdzh;
+	}
+	public void setGxzdzh(String gxzdzh) {
+		this.gxzdzh = gxzdzh;
+	}
+	public String getGxqdzh() {
+		return gxqdzh;
+	}
+	public void setGxqdzh(String gxqdzh) {
+		this.gxqdzh = gxqdzh;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}

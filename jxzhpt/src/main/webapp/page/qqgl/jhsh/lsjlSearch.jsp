@@ -24,6 +24,9 @@
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
+			if(xmlx==''){
+				xmlx='改建,路面改造,新建,养护大中修,灾毁重建';
+			}
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),

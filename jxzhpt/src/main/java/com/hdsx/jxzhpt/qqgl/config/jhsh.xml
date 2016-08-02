@@ -446,7 +446,9 @@
 	<select id="queryJhshSh_dc" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select decode(l_.sffirst,'1',j.xmbm,'') xmbm,decode(l_.sffirst,'1',j.xmmc,'') xmmc,decode(l_.sffirst,'1',j.xzqh,l_.xzqh) xzqh,j.jhkgsj kgsj,j.jhwgsj wgsj,decode(l_.sffirst,'1',j.lc,l_.lc) lc ,j.xdwh xdwh,j.xdsj,j.PFZTZ,j.SBZZJ,j.BBZZJ, l_.lxbm ylxbh ,l_.qdzh,l_.zdzh,l_.qdmc,l_.zdmc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,cb.gq from jhxdsh j 
+				select decode(l_.sffirst,'1',j.xmbm,'') xmbm,decode(l_.sffirst,'1',j.xmmc,'') xmmc,decode(l_.sffirst,'1',j.xzqh,l_.xzqh) xzqh,j.jhkgsj kgsj,j.jhwgsj wgsj,decode(l_.sffirst,'1',j.lc,l_.lc) lc ,j.xdwh xdwh,j.xdsj,j.PFZTZ,j.SBZZJ,j.BBZZJ, l_.lxbm ylxbh ,l_.qdzh,l_.zdzh,l_.qdmc,l_.zdmc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,cb.gq,
+				l_.lxmc,l_.ghlxbm,l_.ghlxmc,l_.ghqdzh,l_.ghzdzh,l_.gxlxbm,l_.gxqdzh,l_.gxzdzh
+				 from jhxdsh j 
 					left join (select xmbm,sjpfwh,gq from cbsj_sh) cb on j.xmbm=cb.xmbm 
 					left join xmsq_sh lxg on j.xmbm=lxg.xmbm 
 					left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
@@ -502,7 +504,9 @@
 	<select id="queryJhshYhdzx_dc" parameterType="jhsh" resultType="jhsh">
 			     select decode(l_.sffirst,'1',j.XMMC,'') xmmc,decode(l_.sffirst,'1',j.XMBM,'') xmbm,j.XZQH,j.JHKGSJ kgsj,j.JHWGSJ wgsj,j.XDWH,j.XDSJ,j.ZTZ,j.SYSBBZJ,j.YQDBCGS,j.YLXBH,l_.qdmc,l_.zdmc,l_.qdzh,l_.zdzh,l_.lc
 				 ,j.MCLMLX,j.MCLX,j.MCSL,j.MCJE,j.JCLX,j.JCSL,j.MCSL,j.XFCSL,j.XFCJE,j.BXSL,j.BXJE,j.GFCD,j.GFJE,j.LLCL,
-				 lx.lc, jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,cb.gq from jhxdyh j 
+				 lx.lc, jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,cb.gq,
+				 l_.lxmc,l_.ghlxbm,l_.ghlxmc,l_.ghqdzh,l_.ghzdzh,l_.gxlxbm,l_.gxqdzh,l_.gxzdzh
+				 from jhxdyh j 
 				 left join (select xmbm,sjpfwh,gq from cbsj_yhdzx) cb on j.xmbm=cb.xmbm left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm 
 				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 				 left join (select xmid,jsxz, (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) 
@@ -1872,7 +1876,7 @@
 	</select>
 	
 	<select id="queryLsjlListqwh" parameterType="java.util.Map" resultType="lx">
-		select * from (
+		select distinct * from (
 			<foreach collection="lx" item="item" separator="union all">
 		<trim suffixOverrides="union all">
 		<if test="item.xmlx!=null and item.xmlx.indexOf('养护大中修')!=-1 ">
@@ -2885,7 +2889,8 @@
 	<select id="queryGsdgz_dc" parameterType="java.util.Map" resultType="jhsh">
 				 select decode(l_.sffirst,'1',j.xmmc,'') xmmc,decode(l_.sffirst,'1',j.xmbm,'') xmbm,j.lsjl,j.gydw,j.xmlx1,j.xmlxs,j.kgsj,j.wgsj ,j.gq,decode(l_.sffirst,'1',j.gkpfwh,'') gkpfwh ,decode(l_.sffirst,'1',j.sjpfwh,'') 
 				 sjpfwh,decode(l_.sffirst,'1',j.jhxdwh,'') jhxdwh,decode(l_.sffirst,'1',j.xdsj,'') xdsj,decode(l_.sffirst,'1',j.pfztz,'') pfztz,decode(l_.sffirst,'1',j.bbzzj,'') bbzzj,
-				 decode(l_.sffirst,'1',j.sbzzj,'') sbzzj,l_.lxbm,l_.lc,decode(l_.sffirst,'1',j.qdzh,l_.qdzh) qdzh,decode(l_.sffirst,'1',j.zdzh,l_.zdzh) zdzh,l_.qdmc,l_.zdmc,l_.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj
+				 decode(l_.sffirst,'1',j.sbzzj,'') sbzzj,l_.lxbm,l_.lc,decode(l_.sffirst,'1',j.qdzh,l_.qdzh) qdzh,decode(l_.sffirst,'1',j.zdzh,l_.zdzh) zdzh,l_.qdmc,l_.zdmc,l_.xzqh,lxg.tz,lxg.jsjsdj,lxg.xjsdj,
+				 l_.lxmc,l_.ghlxbm,l_.ghlxmc,l_.ghqdzh,l_.ghzdzh,l_.gxlxbm,l_.gxqdzh,l_.gxzdzh
 				 from gsdgz j 
 				 left join lxgsdgz lxg on j.xmbm=lxg.xmbm 
 				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
