@@ -420,14 +420,32 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		//查询原路线信息
 		List<Lx> ylx = new ArrayList<Lx>();
 		
-		if(item.getGhlxbm()!=null && !"".equals(item.getGhlxbm()))
-			ylx = queryList("queryYlxnew",item);
-		for (Lx lx : ylx) {
-			lx.setXmlx(item.getXmlx());
+		if(item.getGhlxbm()!=null && !"".equals(item.getGhlxbm())){
+			if("".equals(item.getGhqdzh().trim()))
+			item.setGhqdzh("0");
+			if("".equals(item.getGhzdzh().trim()))
+				item.setGhzdzh("90000");
+			ylx = queryList("queryYlxnew",item);	
+			for (Lx lx : ylx) {
+				lx.setXmlx(item.getXmlx());
+			}
 		}
-		if(item.getLxbm()!=null && !"".equals(item.getLxbm()))
-		ylx.add(item);
-		
+		if(item.getLxbm()!=null && !"".equals(item.getLxbm())){
+			if("".equals(item.getQdzh().trim()))
+				item.setQdzh("0");
+			if("".equals(item.getZdzh().trim()))
+				item.setZdzh("90000");
+			ylx.add(item);
+		}
+		if(ylx.size()<=1){
+			if(ylx.size()==1){
+				if(ylx.get(0).getYlxbm()==null||"".equals(item.getLxbm())){
+					return;
+				}
+			}else{
+				return;
+			}
+		}
 		params.put("lx", ylx);
 		List<Lx> queryList = queryList("queryLsjlListqwh",params);
 		boolean flag=true;

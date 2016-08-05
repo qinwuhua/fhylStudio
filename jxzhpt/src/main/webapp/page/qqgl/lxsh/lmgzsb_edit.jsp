@@ -41,7 +41,7 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				$('#lxsh').form("load",msg);
-				
+				$("#sfbflx").combobox('setValue',msg.sfbflx);
 				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm);
 				$("#gydw").combotree('setValues',msg.gydwdm.split(","));
 				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm2);
@@ -249,7 +249,10 @@ text-decoration:none;
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		//alert(data);
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
-			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val();
+			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val()
+			+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
+			+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+			+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateLmgz.do',
@@ -378,6 +381,15 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
+						<option value="否" selected="selected">否</option>
+						<option value="是">是</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

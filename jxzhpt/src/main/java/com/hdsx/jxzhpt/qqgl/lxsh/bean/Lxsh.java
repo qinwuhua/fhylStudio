@@ -13,7 +13,14 @@ public class Lxsh implements Serializable {
 	private String ghxlxmc;//规划路线名称
 	private String xmklx;//项目库类型
 	private String qqkzzt;//前期开展状态
+	private String sfbflx;
 	
+	public String getSfbflx() {
+		return sfbflx;
+	}
+	public void setSfbflx(String sfbflx) {
+		this.sfbflx = sfbflx;
+	}
 	private String ghqdzh;//规划路线编号
 	private String ghzdzh;//规划路线编号
 	private String gxlxbm;//规划路线编号

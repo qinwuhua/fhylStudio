@@ -239,7 +239,7 @@ text-decoration:none;
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').val();
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
-		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl;
+		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
 		//alert(data);
 		$.ajax({
 			type:'post',

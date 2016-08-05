@@ -41,6 +41,7 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				$('#lxsh').form("load",msg);
+				$("#sfbflx").combobox('setValue',msg.sfbflx);
 				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm);
 				$("#gydw").combotree('setValues',msg.gydwdm.split(","));
 				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm2);
@@ -201,7 +202,7 @@ text-decoration:none;
 		+"&lx.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+
 		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
-		"&lxsh.yhdk="+$('#yhdk').val();
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
 		//alert(data);
 		$.ajax({
 			type:'post',

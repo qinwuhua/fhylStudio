@@ -191,15 +191,29 @@ text-decoration:none;
 					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
 					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
-					loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
+					
+					loadUnitedit("gydw",'36',item.gydwdm);
+					$("#gydw").combotree('setValues',item.gydwdm.split(","));
+					loadDistedit("xzqh",'36',item.xzqhdm2);
+					$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
+					
+					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					//$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
 					qdStr=(parseFloat(item.qdzh)-5);
 					zdStr=(parseFloat(item.zdzh)+5);
+					
+					$("#ghlxmc").val(item.ghlxmc);
+					$("#ghlxbm").val(item.ghlxbm);
+					$("#ghqdzh").val(item.ghqdzh);
+					$("#ghzdzh").val(item.ghzdzh);
+					$("#gxlxbm").val(item.gxlxbm);
+					$("#gxqdzh").val(item.gxqdzh);
+					$("#gxzdzh").val(item.gxzdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
 					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
@@ -227,21 +241,38 @@ text-decoration:none;
 				$("#jhdwlc").val(msg.jhdwlc);
 				$("#jhwllc").val(msg.jhwllc);
 				var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+				var jhyilc=0;var jherlc=0;var jhsanlc=0;var jhsilc=0;var jhwulc=0;var jhdwlc=0;
 				if($('#jhyilc').val()!='')
-					yilc=parseFloat($('#jhyilc').val());
+					jhyilc=parseFloat($('#jhyilc').val());
 				if($('#jherlc').val()!='')
-					erlc=parseFloat($('#jherlc').val());
+					jherlc=parseFloat($('#jherlc').val());
 				if($('#jhsanlc').val()!='')
-					sanlc=parseFloat($('#jhsanlc').val());
+					jhsanlc=parseFloat($('#jhsanlc').val());
 				if($('#jhsilc').val()!='')
-					silc=parseFloat($('#jhsilc').val());
+					jhsilc=parseFloat($('#jhsilc').val());
 				if($('#jhwllc').val()!='')
-					wllc=parseFloat($('#jhwllc').val());
+					jhwllc=parseFloat($('#jhwllc').val());
 				if($('#jhdwlc').val()!='')
-					dwlc=parseFloat($('#jhdwlc').val());
-				var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+					jhdwlc=parseFloat($('#jhdwlc').val());
+				var hj1=accAdd(jhyilc,jherlc);var hj2=accAdd(jhsanlc,jhsilc);var hj3=accAdd(jhwulc,jhdwlc);
 				var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 				$('#jszlc').val(hj5);
+				
+				if($('#yilc').val()!='')
+					yilc=parseFloat($('#yilc').val());
+				if($('#erlc').val()!='')
+					erlc=parseFloat($('#erlc').val());
+				if($('#sanlc').val()!='')
+					sanlc=parseFloat($('#sanlc').val());
+				if($('#silc').val()!='')
+					silc=parseFloat($('#silc').val());
+				if($('#wllc').val()!='')
+					wllc=parseFloat($('#wllc').val());
+				if($('#dwlc').val()!='')
+					dwlc=parseFloat($('#dwlc').val());
+				var hj11=accAdd(yilc,erlc);var hj21=accAdd(sanlc,silc);var hj31=accAdd(wulc,dwlc);
+				var hj41=accAdd(hj11,hj21);var hj51=accAdd(hj31,hj41);
+				$('#lc').html(hj51);
 			}
 		});
 	}
@@ -273,7 +304,10 @@ text-decoration:none;
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
 		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl;
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl
+		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
+		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertSjgz.do',
@@ -320,6 +354,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xmmc" style="width: 120px"/>
+
 				</td>
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -352,6 +387,41 @@ text-decoration:none;
 					<input id="zdmc" name="zdmc" style="width: 120px;"/>
 				</td>
 			</tr>
+			<tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划路线编号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					规划止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+				</td>
+            </tr>
+            <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线路线编号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;
+					
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线起点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<br/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					共线止点桩号</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="gxzdzh" name="gxzdzh" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<br/>
+				</td>
+            </tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
@@ -363,20 +433,32 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
+						<option value="否" selected="selected">否</option>
+						<option value="是">是</option>
+					</select>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程
 				</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-					二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-					三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-					四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-					等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					一级：<input id="yilc" onblur="jsyzlc()" name="yilc" style="width: 50px;" type="text"/>
+					二级：<input id="erlc" onblur="jsyzlc()" name="erlc" style="width: 50px;" type="text"/>
+					三级：<input id="sanlc" onblur="jsyzlc()" name="sanlc" style="width: 50px;" type="text"/>
+					四级：<input id="silc" onblur="jsyzlc()" name="silc" style="width: 50px;" type="text"/>
+					等外：<input id="dwlc" onblur="jsyzlc()" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" onblur="jsyzlc()" name="wllc" style="width: 50px;" type="text"/>
 					现状总里程：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>

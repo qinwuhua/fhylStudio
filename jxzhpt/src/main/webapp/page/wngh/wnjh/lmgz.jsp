@@ -135,6 +135,7 @@ text-decoration:none;
         						<td><select id="qqkzzt" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="已开展">已开展</option>
+									<option value="部分开展">部分开展</option>
 									<option value="未开展">未开展</option>
 								</select></select>
 								</td>

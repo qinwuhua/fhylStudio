@@ -42,6 +42,8 @@ text-decoration:none;
 			success:function(msg){
 				$('#lc').val(msg.lc);
 				$('#lxsh').form("load",msg);
+				
+				$("#sfbflx").combobox('setValue',msg.sfbflx);
 				$('#bzcs').val(msg.bzys);
 				$("#dfzc").html(msg.dfzc);
 				$("#lxmc").html(msg.lxmc);
@@ -56,6 +58,55 @@ text-decoration:none;
 				$("#xmnf").combobox("setValue",msg.xmnf);
 				$("#jhkgn").combobox("setValue",msg.jhkgn);
 				$("#jhwgn").combobox("setValue",msg.jhwgn);
+				
+				
+				
+				
+				$("#yilc").val(msg.yilc);
+				$("#erlc").val(msg.erlc);
+				$("#sanlc").val(msg.sanlc);
+				$("#silc").val(msg.silc);
+				$("#dwlc").val(msg.dwlc);
+				$("#wllc").val(msg.wllc);
+				$("#jhyilc").val(msg.jhyilc);
+				$("#jherlc").val(msg.jherlc);
+				$("#jhsanlc").val(msg.jhsanlc);
+				$("#jhsilc").val(msg.jhsilc);
+				$("#jhdwlc").val(msg.jhdwlc);
+				$("#jhwllc").val(msg.jhwllc);
+				var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+				var jhyilc=0;var jherlc=0;var jhsanlc=0;var jhsilc=0;var jhwulc=0;var jhdwlc=0;
+				if($('#jhyilc').val()!='')
+					jhyilc=parseFloat($('#jhyilc').val());
+				if($('#jherlc').val()!='')
+					jherlc=parseFloat($('#jherlc').val());
+				if($('#jhsanlc').val()!='')
+					jhsanlc=parseFloat($('#jhsanlc').val());
+				if($('#jhsilc').val()!='')
+					jhsilc=parseFloat($('#jhsilc').val());
+				if($('#jhwllc').val()!='')
+					jhwllc=parseFloat($('#jhwllc').val());
+				if($('#jhdwlc').val()!='')
+					jhdwlc=parseFloat($('#jhdwlc').val());
+				var hj1=accAdd(jhyilc,jherlc);var hj2=accAdd(jhsanlc,jhsilc);var hj3=accAdd(jhwulc,jhdwlc);
+				var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+				$('#jszlc').val(hj5);
+				
+				if($('#yilc').val()!='')
+					yilc=parseFloat($('#yilc').val());
+				if($('#erlc').val()!='')
+					erlc=parseFloat($('#erlc').val());
+				if($('#sanlc').val()!='')
+					sanlc=parseFloat($('#sanlc').val());
+				if($('#silc').val()!='')
+					silc=parseFloat($('#silc').val());
+				if($('#wllc').val()!='')
+					wllc=parseFloat($('#wllc').val());
+				if($('#dwlc').val()!='')
+					dwlc=parseFloat($('#dwlc').val());
+				var hj11=accAdd(yilc,erlc);var hj21=accAdd(sanlc,silc);var hj31=accAdd(wulc,dwlc);
+				var hj41=accAdd(hj11,hj21);var hj51=accAdd(hj31,hj41);
+				$('#lc').val(hj51);
 			}
 		});
 		
@@ -261,9 +312,9 @@ text-decoration:none;
 		data+="&lx.jhyilc="+$('#jhyilc').val()+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+
 		"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+
 		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()
-		+"&lxsh.ghxlxmc="+$('#ghlxmc').val()+"&lxsh.ghxlxbm="+$('#ghlxbm').val()+"&lxsh.xmklx="+$('#xmklx').combobox('getValue')
 		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
-		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val();
+		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateSjgz.do',
@@ -389,6 +440,15 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>规划路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
+						<option value="否" selected="selected">否</option>
+						<option value="是">是</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

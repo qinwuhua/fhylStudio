@@ -1227,6 +1227,7 @@ function jsyzlc(){
 		dwlc=parseFloat($('#dwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#lc').html(hj5);
 	$('#lc').val(hj5);
 }
 function cesuan(){
