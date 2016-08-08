@@ -19,38 +19,36 @@
 	<script type="text/javascript">
 		$(function(){
 			bbxmlx1('xmlx');
+			loadDist1("xzqh",$.cookie("dist"));
 		});
 		function search(){
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			if(xmlx==''){
-				xmlx='改建,路面改造,新建,养护大中修,灾毁重建';
+				xmlx='改建,路面改造,新建,养护大中修,灾毁重建,路网结构工程';
+			}
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
 			}
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx},
+					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr},
 				fitColumns:true,
 				columns:[[
-					{field:'id',title:'项目类型',width:100,align:'center',
-						formatter:function(value,row,index){
-							if(row.xmid.substring(10,11)=="1"){
-								return "改建";
-							}else if(row.xmid.substring(10,11)=="2"){
-								return "路面改造";
-							}else if(row.xmid.substring(10,11)=="3"){
-								return '新建';
-							}else if(row.xmid.substring(10,11)=="4"){
-								return row.xjsdj;
-							}else if(row.xmid.substring(10,11)=="5"){
-								return "灾毁重建";
-							}
-						}
-					},
+					{field:'xjsdj',title:'项目类型',width:100,align:'center'},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
-							var a='<a href="javascript:msgxx('+"'"+row.xmid+"'"+')" style="color:#0066CB;font-size:12px;">';
+							var a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xjsdj+"'"+')" style="color:#0066CB;font-size:12px;">';
 							a+=value+'</a>';
 							return a;
 						}
@@ -73,19 +71,39 @@
 					]]
 			});
 		}
-		function msgxx(xmid){
+		var obj;
+		function msgxx(xmid,jsdj){
+		
 			YMLib.Var.xmbm=xmid;
-			if(xmid.substring(10,11)=="1"){
-				YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
-			}else if(xmid.substring(10,11)=="2"){
-				YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
-			}else if(xmid.substring(10,11)=="3"){
-				YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
-			}else if(xmid.substring(10,11)=="4"){
-				YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
-			}else if(xmid.substring(10,11)=="5"){
-				YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+			if(jsdj=='安防工程'||jsdj=='危桥改造'||jsdj=='灾害防治'){
+				obj=xmid.substr(4,xmid.length);
+				if(jsdj=='危桥改造'){
+					YMLib.UI.createWindow('lmsjxx','危桥改造项目','/jxzhpt/page/jhgl/jhkxx/wqgz.jsp','lmsjxx',980,400);
+				}
+				if(jsdj=='安防工程'){
+					YMLib.Var.jhbm=xmid.substr(4,xmid.length);
+					YMLib.UI.createWindow('abgc_xx','安防工程',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+				}
+				if(jsdj=='灾害防治'){
+					YMLib.Var.jhbm=xmid.substr(4,xmid.length);
+					YMLib.UI.createWindow('zhfz_xx','灾害防治',"/jxzhpt/page/jhgl/jhkxx/zhfz.jsp",'zhfz_xx',1000,500);
+				}
+				
+			}else{
+				if(xmid.substring(10,11)=="1"){
+					YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+				}else if(xmid.substring(10,11)=="2"){
+					YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
+				}else if(xmid.substring(10,11)=="3"){
+					YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
+				}else if(xmid.substring(10,11)=="4"){
+					YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
+				}else if(xmid.substring(10,11)=="5"){
+					YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+				}
 			}
+			
+			
 		}
 		
 		function reset(){
@@ -120,7 +138,7 @@
 								<td style="text-align: right;">原止点桩号：</td>
         						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目类型：</td>
-        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 180px;margin-right: 10px;"/></td>
         					</tr>
         					<tr height="32">
 								<td style="text-align: right;">规划路线编码：</td>
@@ -129,6 +147,9 @@
         						<td style="text-align: left;"><input id="ghqdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">规划止点桩号：</td>
         						<td style="text-align: left;"><input id="ghzdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">行政区划：</td>
+        						<td style="text-align: left;"><input id="xzqh" type="text" style="width: 180px;margin-right: 10px;"/></td>
+        					
         					</tr>
                             <tr height="32">
                             	<td colspan="6">

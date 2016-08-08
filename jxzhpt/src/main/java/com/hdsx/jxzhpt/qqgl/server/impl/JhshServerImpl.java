@@ -419,7 +419,6 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	private void queryLsjlListnew(List<Lx> result, Lx item) {
 		//查询原路线信息
 		List<Lx> ylx = new ArrayList<Lx>();
-		
 		if(item.getGhlxbm()!=null && !"".equals(item.getGhlxbm())){
 			if("".equals(item.getGhqdzh().trim()))
 			item.setGhqdzh("0");
@@ -428,6 +427,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 			ylx = queryList("queryYlxnew",item);	
 			for (Lx lx : ylx) {
 				lx.setXmlx(item.getXmlx());
+				lx.setXzdzh(item.getXzdzh());
 			}
 		}
 		if(item.getLxbm()!=null && !"".equals(item.getLxbm())){
@@ -439,13 +439,14 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		}
 		if(ylx.size()<=1){
 			if(ylx.size()==1){
-				if(ylx.get(0).getYlxbm()==null||"".equals(item.getLxbm())){
+				if(ylx.get(0).getLxbm()==null||"".equals(item.getLxbm())){
 					return;
 				}
 			}else{
 				return;
 			}
 		}
+		
 		params.put("lx", ylx);
 		List<Lx> queryList = queryList("queryLsjlListqwh",params);
 		boolean flag=true;

@@ -2566,6 +2566,7 @@ function bbxmlx1(id){
 	years.push({text:'新建',value:'新建'});
 	years.push({text:'养护大中修',value:'养护大中修'});
 	years.push({text:'灾毁重建',value:'灾毁重建'});
+	years.push({text:'路网结构工程',value:'路网结构工程'});
 	$('#'+id).combobox({
 	    data:years,
 	    valueField:'value',
