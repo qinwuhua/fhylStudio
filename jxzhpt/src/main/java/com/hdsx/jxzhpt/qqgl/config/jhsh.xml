@@ -1859,7 +1859,13 @@
      (case when Xqdzh<${ghqdzh} then ${ghqdzh} else xqdzh end ) xqdzh,
     (case when ${ghzdzh}<Xzdzh then ${ghzdzh} else xzdzh end) xzdzh 
     from ghlx t where  t.xlxbm like #{ghlxbm} || '%' and 
-    t.Xqdzh<${ghzdzh} and t.Xzdzh>${ghqdzh}]]>
+    t.Xqdzh<${ghzdzh} and t.Xzdzh>${ghqdzh}
+    
+    ]]>
+    <if test="xzqhdm!=null and xzqhdm !=''">
+    	and ${xzqhdm}
+    </if>
+    and ylxbm is not null and yqdzh is not null and yzdzh is not null
 	</select>
 	
 	<select id="queryLsjlListnew" parameterType="java.util.Map" resultType="lx">
@@ -1963,11 +1969,8 @@
 		</trim>
 		</foreach>
 		
-		) order by yqdzh,yzdzh
+		) order by lxbm,to_number(qdzh),ylxbm,to_number(yqdzh),substr(xmid,4) 
 		
-		
-	
-	
 	</select>
 	
 	

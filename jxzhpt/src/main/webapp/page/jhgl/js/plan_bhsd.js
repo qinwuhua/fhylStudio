@@ -17,7 +17,7 @@ function queryZjqf(nf){
 		}
 	});
 }
-function querySumWqgz(jh,lx){
+/*function querySumWqgz(jh,lx){
 	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
@@ -39,6 +39,37 @@ function querySumWqgz(jh,lx){
 					$('#lblDFTZ').html(data.jhsydfzcje);
 			}else{
 				$('#lblCount').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
+			}
+		}
+	});
+}*/
+
+function querySumBhsd(jh,lx){
+	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
+			'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.sdmc":lx.sdmc,"lx.sddm":lx.sddm,"lx.acdfl":lx.acdfl,"lx.jsdj":lx.jsdj,"lx.tbbmbm":$.cookie("unit2"),
+			"jh.shFlag":jh.shFlag,"jh.jh_sdzt":jh.jh_sdzt};
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/querySumBhsd.do',
+		data:param,
+		dataType:'json',
+		success:function(data){
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				if(data.pfztz!=null && data.pfztz!="")
+					$('#lblZTZ').html(data.pfztz);
+				if(data.jhsybzje!=null && data.jhsybzje!="")
+					$('#lblBTZ').html(data.jhsybzje);
+				if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
+					$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
 				$('#lblZTZ').html("0");
 				$('#lblBTZ').html("0");
 				$('#lblDFTZ').html("0");
@@ -88,7 +119,7 @@ function openZjxdWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('zjxd_bhsd','病害隧道资金下达',"/jxzhpt/page/jhgl/zjxd/bhsd.jsp",'zjxd_bhsd',1000,500);
 }
-function wqxm(jh,lx){
+/*function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
@@ -201,6 +232,123 @@ function wqxm(jh,lx){
 	};
 	gridBind(grid);
 }
+*/
+function bhxm(jh,lx){
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
+			'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.sdmc":lx.sdmc,"lx.sddm":lx.sddm,"lx.acdfl":lx.acdfl,"lx.jsdj":lx.jsdj,
+			"lx.tbbmbm":$.cookie("unit2"),"jh.shFlag":jh.shFlag,"jh.jh_sdzt":jh.jh_sdzt};
+	var grid={
+	        id:'grid',
+	        url:'/jxzhpt/jhgl/queryBhsdList.do',
+			pagination:true,
+			rownumbers:false,
+		    pageNumber:1,
+		    pageSize:10,
+		    height:$(window).height()-180,
+		    width:$('#searchField').width(),
+		    queryParams:params,
+		    columns:[[
+		        {field:'ck',checkbox:true},
+		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+		        	var result='<a href="javascript:locationXm('+"'"+row.sddm+"',"+"'"+row.sdzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	if((roleName()=="县级" && row.jh_sbthcd==11 && (row.spzt==''||row.spzt==null||row.spzt=='0')) 
+		        			|| (roleName()=="市级" && row.jh_sbthcd==9 && (row.spzt==''||row.spzt==null||row.spzt=='0')) 
+		        			|| (roleName()=="省级" && row.jh_sbthcd==7 && (row.spzt==''||row.spzt==null||row.spzt=='0'))){
+		        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+			        	result+='<a href="javascript:dropWqgzs1('+"'"+row.id+"'"+",'"+row.sckid+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	}else{
+		        		result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
+			        	result+='<a style="text-decoration:none;color:black;">删除</a>';
+		        	}
+		        	
+		        	return result;
+		        }},
+//		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
+//		        	var result="";
+//		        	if(row.sbzt=="0"&& $.cookie("unit2").length!=7){
+//		        		if(row.jh_thyj==""||row.jh_thyj==null){
+//		        		result='<a href=javascript:shangB1("'+row.id+'","'+row.sbzt+'"); style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+//		        		}else {
+//		        			result='<a href=javascript:shangB1("'+row.id+'","'+row.sbzt+'"); style="text-decoration:none;color:#3399CC; " title="退回意见：'+row.jh_thyj+'">未上报(退回)</a>  ';	
+//						}
+//		        		}
+//		        	else if(row.sbzt=="0"&& $.cookie("unit2").length==7){
+//		        		result="未上报";
+//		        	}
+//		        	else if(row.sbzt=="1"){result="已上报";}
+//					return result;
+//		        }},
+//		        {field:'spzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
+//		        	var result="";
+//		        	if(row.spzt==''|| row.spzt==null||row.spzt=='0'){result="未审核";}
+//		        	else if(row.spzt=='1'){result="已审核";}
+//					return result;
+//		        }},
+//		        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+//		        	var id="'"+row.id+"'";
+//	        		return '<a href="javascript:openZjzjWindow('+"'grid','editBhZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//		        }},
+//		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+//		        	if(row.sfylsjl=='无')
+//		        		return '无';
+//		        	else if(row.sfylsjl=='有')
+//		        		return '有';
+//		        }},
+		        {field:'sbnf',title:'计划年份',width:80,align:'center'},
+		        {field:'gydw',title:'管养单位',width:150,align:'center',
+		        	formatter:function(value, row, index){
+		        		return row.gydw;
+		        	}
+		        },
+		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
+		        	formatter:function(value, row, index){
+		        		return row.xzqhmc;
+		        	}
+		        },
+		        {field:'lxbm',title:'路线编码',width:80,align:'center',
+		        	formatter:function(value,row,index){
+			        	return row.lxbm;
+		        	}
+		        },
+		        {field:'lxmc',title:'路线名称',width:80,align:'center',
+		        	formatter:function(value,row,index){
+			        	return row.lxmc;
+		        	}
+		        },
+		        {field:'sddm',title:'隧道代码',width:60,align:'center',
+		        	formatter:function(value,row,index){
+			        	return row.sddm;
+		        	}
+		       },
+		        {field:'qlmc',title:'隧道名称',width:60,align:'center',
+		    	   formatter:function(value,row,index){
+			        	return row.sdmc;
+		        	}
+		    	},
+		        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
+		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'}
+		    ]],
+		    onClickRow:function(rowIndex,rowDate){
+				if(oldIndex!=-1){
+					gridObj.datagrid("unselectRow",oldIndex);
+				}
+				selRow.push(rowIndex);
+				gridObj.datagrid("selectRow",rowIndex);
+				oldIndex=rowIndex;
+			},
+			onLoadSuccess:function(data){
+				querySumWqgz(jh,lx);
+			}
+	};
+	gridBind(grid);
+}
+
+
+
 
 function wqxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,

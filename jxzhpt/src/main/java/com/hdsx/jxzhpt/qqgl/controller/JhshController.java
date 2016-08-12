@@ -1637,7 +1637,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void queryLsxx2new(){
 		try{
-			lx.setXzqh(getcxtj("l.xzqhdm",lx.getXzqh()));
+			String xzqh=lx.getXzqh();
+			lx.setXzqh(getcxtj("l.xzqhdm",xzqh));
+			lx.setXzqhdm(getcxtj("t.xlxbm",xzqh));
 			JsonUtils.write(jhshServer.queryLsxx2new(lx), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

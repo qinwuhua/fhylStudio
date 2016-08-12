@@ -39,10 +39,15 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
+			var lxbm=$('#lxbm').val();
+			var ghlxbm=$('#ghlxbm').val();
+			if(lxbm=='') lxbm='%';
+			if(lxbm=='%'&&ghlxbm=='') ghlxbm='%';
+			
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
-				queryParams: {'lx.lxbm': $('#lxbm').val(),'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': $('#ghlxbm').val(),'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr},
+				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
+					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr},
 				fitColumns:true,
 				columns:[[
 					{field:'xjsdj',title:'项目类型',width:100,align:'center'},

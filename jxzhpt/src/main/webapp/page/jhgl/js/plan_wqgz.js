@@ -40,6 +40,7 @@ function querySumWqgz(jh,lx){
 					$('#lblDFTZ').html(data.jhsydfzcje);
 			}else{
 				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
 				$('#lblZTZ').html("0");
 				$('#lblBTZ').html("0");
 				$('#lblDFTZ').html("0");

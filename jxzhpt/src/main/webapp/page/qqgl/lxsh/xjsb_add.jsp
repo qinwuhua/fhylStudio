@@ -41,7 +41,7 @@ text-decoration:none;
 		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'xj');
 		//Stsdq1('tsdq','');
 		$("#save_button").click(function(){
-			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
+			/* if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
 				return false;
@@ -91,7 +91,7 @@ text-decoration:none;
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
-			}
+			} */
 			
 			/* if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");

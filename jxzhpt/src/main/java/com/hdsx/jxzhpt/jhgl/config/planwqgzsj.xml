@@ -1089,13 +1089,14 @@
 		order by xm.xzqhdm
 	</select>
 	<select id="dcwqgzsjjhshExcel3" parameterType="planwqgzsj" resultType="elist">
+
 	select 
-	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-	pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-	pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-	pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
-	from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
-	where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+	    sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,substr(xm.xzqhdm,0,4)||'00' v_30,
+	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	    from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+	    where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sbthcd>=4 ">
 			and (pl.jh_sbthcd>=#{sbthcd} or shyj is not null) 
 			</if>
@@ -1161,15 +1162,15 @@
 		order by v_30
 	</select>
 	<select id="dcwqgzsjjhshExcel2" parameterType="planwqgzsj" resultType="elist"> 
-	select t.xzqhmc||'小计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12,t.xzqhdm v_30
+	select t.xzqhmc||'小计' v_1,' ' v_4,count(*) v_6,sum(v_7) v_7,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,t.xzqhdm v_30
 	from (
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
-		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
-		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+	    sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,substr(xm.xzqhdm,0,4)||'00' v_30,
+	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	    from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+	    where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sbthcd>=4 ">
 			and (pl.jh_sbthcd>=#{sbthcd} or shyj is not null) 
 			</if>
@@ -1236,15 +1237,15 @@
 	
 	</select>
 	<select id="dcwqgzsjjhshExcel1" parameterType="planwqgzsj" resultType="elist"> 
-	select '全省合计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12
+	select '全省合计' v_1,' ' v_4,'' v_5,count(*) v_6,sum(v_7) v_7,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13
 	from (
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
-		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
-		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
+	    sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,substr(xm.xzqhdm,0,4)||'00' v_30,
+	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	    from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
+	    where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sbthcd>=4 ">
 			and (pl.jh_sbthcd>=#{sbthcd} or shyj is not null) 
 			</if>
@@ -1314,10 +1315,10 @@
 	
 	<select id="dcwqgzsjjhshExcel6" parameterType="planwqgzsj" resultType="elist">
 	select 
-	sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-	pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-	pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-	pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	 sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,
+    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
 	from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
 	where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
@@ -1379,13 +1380,13 @@
 		order by v_30
 	</select>
 	<select id="dcwqgzsjjhshExcel5" parameterType="planwqgzsj" resultType="elist"> 
-	select t.xzqhmc||'小计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12,t.xzqhdm v_30
+	select t.xzqhmc||'小计' v_1,' ' v_4,count(*) v_6,sum(v_7) v_7,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13,t.xzqhdm v_30
 	from (
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+		 sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,
+	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
 		from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
@@ -1448,13 +1449,13 @@
 	
 	</select>
 	<select id="dcwqgzsjjhshExcel4" parameterType="planwqgzsj" resultType="elist"> 
-	select '全省合计' v_1,' ' v_4,count(*) v_5,sum(v_6) v_6,sum(v_10) v_10,sum(v_11) v_11,sum(v_12) v_12
+	select '全省合计' v_1,' ' v_4,count(*) v_6,sum(v_7) v_7,sum(v_11) v_11,sum(v_12) v_12,sum(v_13) v_13
 	from (
 		select 
-		sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,
-		pl.jhjsxz v_8,pl.zyjsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_11,
-		pl.jhsydfzcje v_12,pl.jhkgsj v_13,pl.jhwgsj v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,
-		pl.pfwh v_18,pl.bz v_19,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+		 sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
+	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
+	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,
+	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
 		from plan_wqgz_tz pl,sck_wqgz sc,xmk_wqgz xm 
 		where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">

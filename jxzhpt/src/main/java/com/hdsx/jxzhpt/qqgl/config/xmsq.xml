@@ -507,7 +507,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl,x.wnxmk
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,x.wnxmk
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' 
@@ -555,7 +555,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc ,sl.xmsl
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='0' and l.sffirst='1' 
