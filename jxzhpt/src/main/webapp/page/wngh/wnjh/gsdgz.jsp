@@ -160,19 +160,22 @@
 			        {field : 'zjhlc',title : '里程',width : 60,align : 'center'},
 			        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-				    {field : 'ghlxbhs',title : '路线编码',width : 60,align : 'center',formatter:function(value,row,index){
+				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				    {field : 'ghlxbhs',title : '原路线编码',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.ghlxbh=='')
 				    	return row.xjlxbm;
 				    	else
 				    		return row.ghlxbh;
 					}},
-				    {field : 'minqdzhs',title : '起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+				    {field : 'minqdzhs',title : '原起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.minqdzh=='')
 					    	return row.xjqdzh;
 					    	else
 					    		return row.minqdzh;
 						}},
-				    {field : 'maxzdzhs',title : '止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+				    {field : 'maxzdzhs',title : '原止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 				    	if(row.maxzdzh=='')
 					    	return row.xjzdzh;
 					    	else
@@ -207,9 +210,12 @@
 			    			    {field:'gydw',title:'管养单位',width:120,align:'center'},    
 			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
 			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-			    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
-			    			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
-			    			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+			    			    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+							    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+							    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+			    			    {field:'ghlxbh',title:'原路线编码',width:100,align:'center'},
+			    			    {field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+			    			    {field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 			    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
 			    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
 			    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},

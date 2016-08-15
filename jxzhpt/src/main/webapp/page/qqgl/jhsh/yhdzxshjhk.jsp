@@ -121,15 +121,12 @@
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'jhlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:70,align:'center'},
-				{field:'ylxbh',title:'路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:70,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:70,align:'center'},
-				{field:'sjpfwh',title:'施工图批复文号',width:100,align:'center'},
-				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
-				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
-				//{field:'gq',title:'工期（月）',width:60,align:'center'},
-// 				{field:'tz',title:'总投资',width:60,align:'center'},
-				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
+				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
+				{field:'qdzh',title:'原起点桩号',width:70,align:'center'},
+				{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},
 				{field:'dk',title:'贷款',width:100,align:'center'},
@@ -145,7 +142,13 @@
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
 					}
 				},
-				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'}/* , */
+				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
+				//{field:'gq',title:'工期（月）',width:60,align:'center'},
+// 				{field:'tz',title:'总投资',width:60,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
+				{field:'sjpfwh',title:'施工图批复文号',width:100,align:'center'},
+				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
+				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'}/* , */
 				/* {field:'mc',title:'面层结构',width:300,align:'center',
 					formatter:function(value,row,index){
 						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;

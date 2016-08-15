@@ -49,6 +49,8 @@
 				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
 					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr},
 				fitColumns:true,
+				height:$(window).height()-120,
+			    width:$(window).width()-20,
 				columns:[[
 					{field:'xjsdj',title:'项目类型',width:100,align:'center'},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
@@ -126,10 +128,10 @@
 		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;补助历史查询</div>
 	</div>
 	<form action="">
-	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
-        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
+        			<fieldset id="searchField" style="width:99.7%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -198,21 +200,21 @@
 		</table>
 	</div> --%>
 	<table id="grid" width="98%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
-		<thead>
+		 <thead>
         	<tr>
         		<th data-options="field:'xmlx',width:150,fixed:true,align:'center'">项目类型</th>
         		<th data-options="field:'scbz',width:150,fixed:true,align:'center'">项目名称</th>
         		<th data-options="field:'jhnf',width:150,fixed:true,align:'center'">计划年份</th>
-				<th data-options="field:'lxbm',width:100,align:'center'">现路线编码</th>
-				<th data-options="field:'gjjsdj',width:100,align:'center'">现技术等级</th>
-				<th data-options="field:'xqdzh',width:100,align:'center'">现起点桩号</th>
-				<th data-options="field:'xzdzh',width:100,align:'center'">现指点桩号</th>
-				<th data-options="field:'ylxbm',width:100,align:'center'">路线编码</th>
+				<th data-options="field:'lxbm',width:100,align:'center'">规划路线编码</th>
+				<th data-options="field:'gjjsdj',width:100,align:'center'">规划技术等级</th>
+				<th data-options="field:'xqdzh',width:100,align:'center'">规划起点桩号</th>
+				<th data-options="field:'xzdzh',width:100,align:'center'">规划止点桩号</th>
+				<th data-options="field:'ylxbm',width:100,align:'center'">原路线编码</th>
 				<th data-options="field:'yjsjd',width:100,align:'center'">原技术等级</th>
 				<th data-options="field:'yqdzh',width:100,align:'center'">原起点桩号</th>
 				<th data-options="field:'yzdzh',width:100,align:'center'">原止点桩号</th>
         	</tr>
-    	</thead>
+    	</thead> 
 	</table>
 </body>
 </html>

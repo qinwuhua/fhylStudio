@@ -1293,7 +1293,7 @@
 		select * from (
 		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh
+		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,min(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,min(ghlxbm) ghlxbm,max(ghqdzh) ghqdzh,max(ghzdzh) ghzdzh
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,

@@ -143,26 +143,29 @@
 				{field:'lc',title:'里程',width:100,align:'center'},
 				{field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 				{field:'xjsdj',title:'现设技术等级',width:100,align:'center'},
-				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
-				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
-				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
-				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
-				{field:'kgsj',title:'开工时间',width:100,align:'center'},
-				{field:'wgsj',title:'完工时间',width:100,align:'center'},
-				//{field:'gq',title:'工期（月）',width:100,align:'center'},
-				{field:'tz',title:'拟投资',width:100,align:'center'},
-				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
+				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				{field:'ghlxbh',title:'原路线编码',width:100,align:'center'},
+				{field:'qdzh',title:'原起点桩号',width:100,align:'center'},
+				{field:'zdzh',title:'原止点桩号',width:100,align:'center'},
+				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
+				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
+				{field:'bcxd',title:'本次下达',width:100,align:'center'},
+				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
 				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
 					formatter: function(value,row,index){
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
 					}
 				},
 				{field:'xdsj',title:'下达时间',width:100,align:'center'},
-				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
-				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
-				{field:'bcxd',title:'本次下达',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
+				//{field:'gq',title:'工期（月）',width:100,align:'center'},
+// 				{field:'tz',title:'拟投资',width:100,align:'center'},
+				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
+				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
+				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
+				{field:'kgsj',title:'开工时间',width:100,align:'center'},
+				{field:'wgsj',title:'完工时间',width:100,align:'center'}]];
 			bindLxGrid();
 			gridBind(grid);
 		}

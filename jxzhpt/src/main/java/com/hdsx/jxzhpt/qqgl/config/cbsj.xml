@@ -6,7 +6,7 @@
 			select rownum num,t.* from (
 				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh,  
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
-		        ,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        ,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh
 		        from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm left join kxxyj_lmgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		        where lx.jdbs='2' and lx.sffirst='1' 
@@ -85,7 +85,7 @@
 			select rownum num,t.* from (
 				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh,
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
-		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh
 		        from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm left join kxxyj_sjgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
@@ -243,7 +243,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,l.gydw,l.tsdq,l.ntz,
-				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
@@ -325,7 +325,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,lx.lc,l.gydw,l.tsdq,l.ntz,
-				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 				left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
@@ -1643,7 +1643,7 @@
 			select rownum num,t.* from (
 				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc, c.kgsj, c.wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh, 
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
-		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl
+		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh
 		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join kxgsdgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		        left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
