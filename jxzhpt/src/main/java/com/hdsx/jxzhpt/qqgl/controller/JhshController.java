@@ -360,7 +360,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==4){
 				jsdjHandle1();
 				xzdjHandle();
-				tsdqHandle();
+				tsdqHandle1();
 				jsxzHandle();
 				zjlyHandle();
 				xdwhHandle();
@@ -370,7 +370,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==5){
 				jsdjHandle1();
 				xzdjHandle();
-				tsdqHandle();
+				tsdqHandle1();
 				xdwhHandle();
 				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
@@ -467,7 +467,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xdwhHandle();
 				jsdjHandle1();
 				xzdjHandle();
-				tsdqHandle();
+				tsdqHandle1();
 				jsxzHandle();
 				zjlyHandle();
 				xdztHandle();
@@ -479,7 +479,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==5){
 				jsdjHandle1();
 				xzdjHandle();
-				tsdqHandle();
+				tsdqHandle1();
 				xdwhHandle();
 				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
@@ -2070,6 +2070,30 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jhsh.setTsdq(tsdq);
 			}
 	}
+	private void tsdqHandle1(){
+		if(jhsh.getTsdq()!=null)
+			if(jhsh.getTsdq().length()>0){
+				String[] tsdqs=jhsh.getTsdq().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+=" and (lxg.tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+=" or lxg.tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setTsdq(tsdq);
+			}
+	}
+	
 	private void xdztHandle(){
 		if(jhsh.getXdzttj()!=null)
 			if(jhsh.getXdzttj().length()>0){

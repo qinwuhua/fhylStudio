@@ -723,9 +723,9 @@ function showAllgj(){
 		    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 		    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 		    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-		    {field : 'ghlxbh',title : '原路线编码',width : 60,align : 'center'},
-		    {field : 'minqdzh',title : '原起点桩号',width : 60,align : 'center'},
-		    {field : 'maxzdzh',title : '原止点桩号',width : 60,align : 'center'},
+		    {field:'ghlxbh',title:'原路线编码',width:60,align : 'center'},
+		    {field:'minqdzh',title:'原起点桩号',width:60,align : 'center'},
+		    {field:'maxzdzh',title:'原止点桩号',width:60,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:80,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:80,align:'center'},
 //			    {field : 'gydw',title : '管养单位',width : 120,align : 'center'},				    
@@ -1363,7 +1363,8 @@ function dcwnjhExcel(str){
 		if(xmlx1.substr(0,1)==',')
 			xmlx1=xmlx1.substr(1,xmlx1.length);
 	}
-	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue');
+
+	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmnf="+xmnf+"&lxsh.tsdq="+tsdq+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue');
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr="",xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/qqgl/dcwnjhExcel.do?'+data;
 	 });

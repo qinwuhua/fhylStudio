@@ -825,10 +825,14 @@
 	<select id="querywnjhSjgz" parameterType="lxsh" resultType="elist">
 		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
-		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,
-		lx.qdmc v_12,lx.zdmc v_13,lx.jsxz v_14,lx.gydw v_15,lx.xzqh v_16,t.tsdq v_17,lx.jsjsdj v_18,lx.xjsdj v_19,t.xmnf v_20,t.jhkgn v_21,t.jhwgn v_22,t.tz v_23,lx.bzcs v_24,t.bz v_25
+		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
+		lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,lx.xjsdj v_20,t.xmnf v_21,t.jhkgn v_22,t.jhwgn v_23,decode(lx.sffirst,'1',t.tz,'') v_24,decode(lx.sffirst,'1',lx.bzcs,'') v_25,t.xmklx v_26,t.bz v_27
 		from WNJH_SJGZ t right join
-		(select * from wnjh_lx where 1=1 and jdbs='0' ) lx on t.id=lx.xmid where 1=1
+		(select w.*,(case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+					  when jsxz like '%新建%' then xjlc
+					    else lc
+        end) wlc
+		from WNJH_LX w where 1=1 and jdbs='0' ) lx on t.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -859,17 +863,23 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
-		
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
+		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
 	<select id="querywnjhLmgz" parameterType="lxsh" resultType="elist">
 		select 
 		t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
-		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,
-		lx.qdmc v_12,lx.zdmc v_13,lx.jsxz v_14,lx.gydw v_15,lx.xzqh v_16,t.tsdq v_17,lx.jsjsdj v_18,lx.xjsdj v_19,t.xmnf v_20,t.jhkgn v_21,t.jhwgn v_22,t.tz v_23,lx.bzcs v_24,t.bz v_25
+		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
+		lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,lx.xjsdj v_20,t.xmnf v_21,t.jhkgn v_22,t.jhwgn v_23,decode(lx.sffirst,'1',t.tz,'') v_24,decode(lx.sffirst,'1',lx.bzcs,'') v_25,t.xmklx v_26,t.bz v_27
 		from WNJH_LMGZ t right join
-		(select * from wnjh_lx where 1=1 and jdbs='0' ) lx on t.id=lx.xmid where 1=1
+		(select w.*,(case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+					  when jsxz like '%新建%' then xjlc
+					    else lc
+        end) wlc
+		from WNJH_LX w where 1=1 and jdbs='0' ) lx on t.id=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -896,6 +906,9 @@
 		</if>
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
 		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
@@ -903,10 +916,14 @@
 		select 
 			t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
-		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,
-		lx.qdmc v_12,lx.zdmc v_13,lx.jsxz v_14,lx.gydw v_15,lx.xzqh v_16,t.tsdq v_17,lx.jsjsdj v_18,lx.xjsdj v_19,t.xmnf v_20,t.jhkgn v_21,t.jhwgn v_22,t.tz v_23,lx.bzcs v_24,t.bz v_25
+		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
+		lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,lx.xjsdj v_20,t.xmnf v_21,t.jhkgn v_22,t.jhwgn v_23,decode(lx.sffirst,'1',t.tz,'') v_24,decode(lx.sffirst,'1',lx.bzcs,'') v_25,t.xmklx v_26,t.bz v_27
 		from WNJH_XJ t,
-		(select * from wnjh_lx where 1=1  ) lx  where 1=1 and t.xmbm(+)=lx.xmid
+		(select w.*,(case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+					  when jsxz like '%新建%' then xjlc
+					    else lc
+        end) wlc
+		from WNJH_LX w where 1=1  ) lx  where 1=1 and t.xmbm(+)=lx.xmid
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -937,7 +954,10 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
-		order by t.xmbm desc,lx.sffirst desc	
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		order by t.id desc,lx.sffirst desc	
 	</select>
 
 	<insert id="importsjgzwnjh" parameterType="hashMap">
@@ -1500,10 +1520,13 @@
 		select * from (
 		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
-		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,
-		lx.qdmc v_12,lx.zdmc v_13,lx.jsxz v_14,lx.gydw v_15,lx.xzqh v_16,t.tsdq v_17,lx.jsjsdj v_18,lx.xjsdj v_19,t.xmnf v_20,t.jhkgn v_21,t.jhwgn v_22,t.tz v_23,lx.bzcs v_24,t.bz v_25,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
-		(select *
-		from WNJH_LX) lx on t.id=lx.xmid 
+		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
+		lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,lx.xjsdj v_20,t.xmnf v_21,t.jhkgn v_22,t.jhwgn v_23,decode(lx.sffirst,'1',t.tz,'') v_24,decode(lx.sffirst,'1',lx.bzcs,'') v_25,t.xmklx v_26,t.bz v_27,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
+		(select w.*,(case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+					  when jsxz like '%新建%' then xjlc
+					    else lc
+        end) wlc
+		from WNJH_LX w) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
 		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -1564,7 +1587,7 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
-		order by xmnf
+		order by id,lx.sffirst desc
 		) t1
 	</select>
 	

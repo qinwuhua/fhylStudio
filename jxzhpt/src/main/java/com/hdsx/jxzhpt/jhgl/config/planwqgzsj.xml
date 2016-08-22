@@ -599,13 +599,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -680,13 +680,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -755,13 +755,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -835,13 +835,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -913,13 +913,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -991,13 +991,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1074,13 +1074,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1147,13 +1147,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1221,13 +1221,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1297,13 +1297,13 @@
 
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1365,13 +1365,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1433,13 +1433,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
@@ -1502,13 +1502,13 @@
 		</if>
 		<if test="jhzt !='' and jhzt != null ">
 			<if test="jhzt == '未审核'">
-			and spzt='0' and jh_sbthcd='4'
+			and spzt='0' and jh_sbthcd>='4'
 			</if>
 			<if test="jhzt == '已审核'">
-			and (spzt = '1' or (shyj is not null and jh_sbthcd=2))
+			and (spzt = '1' or (shyj is not null and jh_sbthcd&lt;4))
 			</if>
 			<if test="jhzt == '审核不通过'">
-			and shyj != '同意' and jh_sbthcd='2'
+			and shyj != '同意' and jh_sbthcd&lt;4
 			</if>
 			<if test="jhzt == '审核通过'">
 			and spzt='1'
