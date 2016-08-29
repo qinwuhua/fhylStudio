@@ -283,6 +283,9 @@
 	<update id="afXmkZs" parameterType="xmkaqsmfh" >
 			update XMK_AQSMFH set zszt=#{zszt},sbthcd=#{sbthcd},cszt=#{cszt},zsyj=#{zsyj} where id =#{id} 
 	</update>
+ 	<update id="afXmkZsbeatch" parameterType="hashmap" >
+			update XMK_AQSMFH set zszt=#{zszt},sbthcd=#{sbthcd},cszt=#{cszt},zsyj=#{zsyj} where id =#{id} 
+	</update>
  		
 	
 	<select id="smfhGpsroad" parameterType="hashmap" resultType="xmkaqsmfh">

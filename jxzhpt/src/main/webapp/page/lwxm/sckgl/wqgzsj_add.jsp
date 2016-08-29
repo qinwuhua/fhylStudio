@@ -53,6 +53,17 @@ $(function(){
 			$("#scqlqk").focus();
 			return false;
 		}
+		var flag=true;
+		$("input[name='bitian']").each(function(){
+	        if ($(this).val() == ""||$(this).val() == null){
+	        	alert("请将页面除备注外的信息填写完整。");
+	        	flag=false;
+	        	return false;
+	        }
+	    });
+		if(!flag)
+			return;
+		
 		var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val()+"&scxmnf="+$("#scxmnf").val();
 		$.ajax({
 			type:'post',
@@ -85,7 +96,7 @@ $(function(){
 	});	
 });
 function autoCompleteQLBH(){
-	var url = "/jxzhpt/wqgzsj/JckWqgzRoad.do";
+	var url = "/jxzhpt/wqgzsj/JckWqgzRoad1.do";
 	$("#qlbh").autocomplete(url, {
 		multiple : false,
 		minChars :4,
@@ -828,27 +839,27 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scsqs" name='bitian' style="width: 120px" /></td>
+					<input name='bitian' type="text" id="scsqs" name='bitian' style="width: 120px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scxsq" name='bitian' style="width: 120px" />
+					<input name='bitian' type="text" id="scxsq" name='bitian' style="width: 120px" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scszxz" name='bitian' style="width: 120px" />
+					<input name='bitian' type="text" id="scszxz" name='bitian' style="width: 120px" />
 				</td>
 			</tr>
 			
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="jsnr"rows="2"  style="width:99%"></textarea>
+					<textarea name='bitian' id="jsnr"rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="scbz"rows="2" style="width:99%"></textarea>
+					<textarea name='bitian' id="scbz"rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
 				<tr>

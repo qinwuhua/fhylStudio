@@ -22,15 +22,58 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			sbnf("sbnf");
+			xmnfdx("sbnf"); 
+			xzdjdx('gldj');
+			kjfldx('akjfl');
+			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('gldj','行政等级');
-			tsdq('tsdq');
+			//loadBmbm2('jsdj','技术等级');
+			//loadBmbm2('gldj','行政等级');
+			//tsdq('tsdq');
+			jhpcdx('jhpc','wqgz');
+			
 			loadwqjhkgl();
 		});
 		var gydwstr;
 		var xzqhstr;
+		function tuihui(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要退回的项目！");
+				return;
+			}
+			var id=rows[0].id;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].spzt!='1'){
+					alert('请勾选已审核的项目！');
+					return;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+			}
+			if(confirm('确定退回到未审核状态？')){
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/jhgl/tuihuiWqgzsjById.do",
+					 dataType : 'json',
+					 data : 'planwqgzsj.id=' +id,
+					 success : function(msg){
+						 if(msg){
+							 alert('退回成功！');
+							 loadwqjhkgl();
+						 }else{
+							 YMLib.Tools.Show('退回失败！',3000);
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+			}
+		}
+		
 		function loadwqjhkgl(){
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
@@ -55,8 +98,23 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			 var jhpc=$("#jhpc").combobox("getText");
+				if(jhpc.substr(0,2)=='全部')
+					jhpc=jhpc.substr(3,jhpc.length);
 		$("#grid").datagrid({    
-			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
+			 url:'/jxzhpt/jhgl/selectwqjhksb1.do',
 			 queryParams : {
 				 'sbthcd':function(){
 					 if($.cookie("unit2").length==11) return 0;
@@ -66,15 +124,19 @@
 				 	'gydw': gydwstr,
 				 	'xzqhdm':xzqhstr,
 				 	'lxmc':$('#lxmc').val(),
+				 	'lxbm':$('#lxbm').val(),
 				 	'qlmc':$("#qlmc").val(),
-				 	'sbnf':$("#sbnf").combobox("getValue"),
-				 	'jhzt':'已审核',
-				 	'jsdj':$("#jsdj").combobox("getValue"),
-				 	'gldj':$("#gldj").combobox("getValue"),
-				 	'akjfl':$("#akjfl").combobox("getValue"),
+				 	'sbnf':xmnf,
+				 	'planwqgzsj.jhzt':'',
+				 	'pddj':$("#pddj").combobox("getValue"),
+				 	'planwqgzsj.jsxz':$("#jsxz").combobox("getValue"),
+				 	'gldj':gldj,
+				 	'akjfl':akjfl,
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
-				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
-				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
+				 	'tsdq':tsdq,
+				 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue"),
+				 	'planwqgzsj.qlbh':$('#txtqlbm').val(),
+				 	'planwqgzsj.jhpc':jhpc
 				},
 			    striped:true,
 			    pagination:true,
@@ -84,30 +146,16 @@
 			    height:$(window).height()-197,
 				width:$(window).width()-25,
 			    columns:[[    
-					/* {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},     */     
+					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					/* 	if(row.sfylrbwqk=='是')
-							return '<a href="javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'")" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>'; 
-							else*/
+						/* if(row.sfylrbwqk=='是')
+							return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
+							else */
 								return '<a href="javascript:locationQl('+"'"+row.sck_qlbh+"','"+row.sck_qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 					}},    
-					/*  {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
-								 if(row.spzt=='0')
-								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-								 else  return "已审核";
-					}},  
-				 {field:'zjxf',title:'资金下达',width:80,align:'center',formatter:function(value,row,index){
-			        	return '<a href="javascript:zjxf('+"'"+row.id+"'"+')" style=" text-decoration:none;color:#3399CC;">资金下达</a>';
-			        }},*/
-			        {field:'jszt',title:'建设状态',width:120,align:'center',formatter:function(value,row,index){
-			        	if(row.kgzt=='0')
-			        		return '未开工';
-			        	else if(row.jgzt='1')
-			        		return '竣工'
-			        		else return '在建';
-			        }},
+					 
 		 		{field:'sfylsjl',title:'是否有修建记录',width:120,align:'center',formatter:function(value,row,index){
 		        	if(row.sfylsjl=='无')
 		        		return '无';
@@ -121,8 +169,8 @@
 		        		return '省补';
 		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+		        {field:'jhkgsj',title:'计划开工年',width:100,align:'center'},
+		        {field:'jhwgsj',title:'计划完工年',width:100,align:'center'},
 		        {field:'gydw',title:'管养（监管）单位',width:150,align:'center'},
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
@@ -132,42 +180,65 @@
 		        {field:'pfztz',title:'批复总投资',width:100,align:'center'}
 			    ]]    
 				}); 
-				var sbthcd;
-				if($.cookie("unit2").length==11) sbthcd=0;
-			 	else if($.cookie("unit2").length==9) sbthcd=2;
-		 		else sbthcd=4;
-				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+'已审核'+"&gldj="+$("#gldj").combobox("getValue")+
-				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
-				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
-				$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
-				 dataType : 'json',
-				 data : data,
-				 success : function(msg){
-					 $("#sl").html(msg.sl);
-					 $("#pfztz").html(msg.pfztz);
-					 $("#btz").html(msg.jhsybzje);
-					 $("#stz").html(msg.shengbz);
-					 $("#dftz").html(msg.jhsydfzcje);
-					 $("#xdzj").html(msg.xdzj);
-				 }
-			});
+		tjwqgz();
+		}
+		function tjwqgz(){
+			var sbthcd;
+			if($.cookie("unit2").length==11) sbthcd=0;
+		 	else if($.cookie("unit2").length==9) sbthcd=2;
+	 		else sbthcd=4;
+			var xmnf=$("#sbnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var gldj=$("#gldj").combobox("getValues").join(",");
+			if(gldj.substr(0,1)==',')
+				gldj=gldj.substr(1,gldj.length);
+			var akjfl=$("#akjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			 var jhpc=$("#jhpc").combobox("getText");
+				if(jhpc.substr(0,2)=='全部')
+					jhpc=jhpc.substr(3,jhpc.length);
+			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
+			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val()+"&planwqgzsj.jhpc="+jhpc;
+			$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/loadwqjhksbCount1.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 $("#sl").html(msg.sl);
+				 $("#pfztz").html(msg.pfztz);
+				 $("#btz").html(msg.jhsybzje);
+				 $("#stz").html(msg.shengbz);
+				 $("#dftz").html(msg.jhsydfzcje);
+			 }
+		});
 		}
 		var obj;
-
+		function edit(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
+		}
+		function tz(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_tz','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_tz.jsp",'wq_tz',500,200);
+		}
 		function ckwqgz(id){
 			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_ck.jsp",'wq_edit',1000,500);
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
 		}
-		function shangb1(id){
+		var tsdq1;
+		function shangb1(id,tsdq){
 			obj=id;
+			tsdq1=tsdq;
 			YMLib.UI.createWindow('wq_edit','省级审核',"/jxzhpt/page/jhgl/jhksh/wqgzsj_sh.jsp",'wq_edit',500,300);
-		}
-		function zjxf(id){
-			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造资金下达',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_zj.jsp",'wq_edit',1000,500);
 		}
 		
 		function dcExcel(){
@@ -187,18 +258,21 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
-			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+
-			"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-			"&sbnf="+xmnf+"&gldj="+gldj+
-			+"&akjfl="+akjfl+"&sfylsjl="+
-			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+
-			'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
+			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
+			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
+			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcelJhkgl.do?'+data;
+				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;
 			 });
 		}
-		
+		function shenghwtg(index){
+			var data=$("#grid").datagrid('getRows')[index];
+			obj=data;
+			alert("未通过原因："+obj.shyj);
+		}
 	</script>
 <style type="text/css">
 TD {
@@ -212,7 +286,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;危桥改造项目</div>
+		<div id="p_top">计划管理>&nbsp;项目计划库审核>&nbsp;危桥改造项目</div>
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -223,73 +297,75 @@ text-decoration:none;
         				</legend>
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+							<tr height="32">
         						<td>管养（监管）单位：</td>
-        						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<td  colspan="3" style="width:120px;"><select id="gydw" style="width:220px;"></select></td>
         						
-								<td>行政等级：</td>
-								<td><select name="ddlGldj" id="gldj" style="width:60px;" class="easyui-combobox">
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:70px;" class="easyui-combobox">
+									
 								</select></td>
-								<td>跨径分类：</td>
-        						<td><select name="ddlAKJFL" id="akjfl" style="width:70px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="特大桥">特大桥</option>
-									<option value="大桥">大桥</option>
-									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option>
+        						<td>跨径分类：</td>
+        						<td><select name="ddlAKJFL" id="akjfl" style="width:80px;" class="easyui-combobox">
+									
 								</select></td>
-        						
         						<td>桥梁名称：</td>
         						<td><input name="txtBridge" type="text" id="qlmc" style="width:80px;" /></td>
-        						<td>是否有补助历史：</td>
+        						<td>路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>行政区划：</td>
+        						<td  colspan="3" style="width:120px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 60px;"></select></td>
+        						<td>评定等级：</td>
+                              <td><select id="pddj" style="width:65px"class="easyui-combobox">
+                              	<option value="" selected>全部</option>
+								
+								<option value="四类">四类</option>
+								<option value="五类">五类</option>
+                              </select></td>
+								<td>行政等级：</td>
+								<td><select name="ddlGldj" id="gldj" style="width:80px;" class="easyui-combobox">
+								</select></td>
+								
+								
+        						<td>建设性质：</td>
+								<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+									<option value=""selected>全部</option>
+									<option value="加固改造">加固改造</option>
+									<option value="拆除重建">拆除重建</option>
+<!-- 									<option value="大修">大修</option> -->
+									</select></td>	
+								<td>是否有补助历史：</td>
         						<td>
-									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:80px;">
+									<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:74px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="有">是</option>
 									</select>
 								</td>
         					</tr>
-        					<tr height="32">
-        					<td>行政区划：</td>
-        						<td  colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 60px;"></select></td>    
-								<td>评定等级：</td>
-								<td><select id="jsdj" style="width:65px"class="easyui-combobox">
-                              	<option value="" selected>全部</option>
-								
-								<option value="四类">四类</option>
-								<option value="五类">五类</option>
-                              </select></td>
-								<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="lxmc" style="width:80px;" /></td>
-        						<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select></td>
-        					</tr>
 								<tr height="32">
-								<td>是否部库：</td>
-                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
+								
+								<td>计划类别：</td>
+                              	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 52px">
 								<option value="" selected>全部</option>
-								<option value="否" >否</option>
-								<option value="是">是</option>
+								<option value="是" >车购税</option>
+								<option value="否">省补</option>
 								</select></td>
+								<td>桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+                              	<td>计划批次：</td>
+        						<td><select id="jhpc" class="easyui-combobox"  style="width: 80px"></td>
+                              
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
-								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
-								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
-				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;"> --%>
-				               <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" 
-				                onclick="dcExcel()"/>
-								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" /> -->
+								 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="dcExcel()"/>
 							</td>
                             </tr></table>
         				</div>
@@ -302,8 +378,7 @@ text-decoration:none;
         			批复总投资【&nbsp;<span id="pfztz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中省投资【&nbsp;<span id="stz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			总补助资金【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

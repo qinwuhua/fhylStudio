@@ -49,6 +49,16 @@ $(function(){
 			alert("请选择是否部库！");
 			return false;
 		}
+		var flag=true;
+		$("input[name='bitian']").each(function(){
+	        if ($(this).val() == ""||$(this).val() == null){
+	        	alert("请将页面除备注外的信息填写完整。");
+	        	flag=false;
+	        	return false;
+	        }
+	    });
+		if(!flag)
+			return;
 			var datas="jckwqgzsj.id="+xmbm;
 			$.ajax({
 				type:'post',
@@ -92,6 +102,7 @@ $(function(){
 		});
 	});	
  	autoCompleteLXBM();
+ 	autoCompleteLXBM1();
 });
 function autoCompleteLXBM(){
 	var url = "/jxzhpt/xmjck/wqgzGpsroad1.do";
@@ -173,8 +184,105 @@ function autoCompleteLXBM(){
 				$("#sqs").val(item.sqs);
 				$("#xsq").val(item.xsq);
 				$("#szxz").val(item.szxz);
+				$("#xqlbm").val(item.xqlbh);
+				$("#xqlmc").val(item.xqlmc);
+				$("#xzxzh").val(item.xzxzh);
+				$("#xlxbm").val(item.xqlbh.substr(0,10));
+				
 			});
 }
+
+function autoCompleteLXBM1(){
+	var url = "/jxzhpt/xmjck/wqgzGpsroad11.do";
+	$("#xqlbm").autocomplete(url, {
+		multiple : false,
+		minChars :4,
+		multipleSeparator : ' ',
+		mustMatch: true,
+  		cacheLength : 0,
+  		delay : 200,
+  		max : 50,
+  		extraParams : {
+  			qlbh:function() {
+  				var d = $("#xqlbm").val();
+  				return d;
+  			},
+  			gydwbm:function() {
+  				var d = $.cookie("unit2");
+  				if(d=='_____36') return "";
+  				else return d;
+  			},
+  			xzqhdm:function() {
+  				var d = $.cookie("dist");
+  				if(d=='360000') return "";
+  				else return d;
+  			}
+			},
+  		dataType : 'json',// 返回类型
+  		// 对返回的json对象进行解析函数，函数返回一个数组
+  		parse : function(data) {
+  			var aa = [];
+  			aa = $.map(eval(data), function(row) {
+  					return {
+  						data : row,
+  						value : row.xqlbh.replace(/(\s*$)/g,""),
+  						result : row.xqlbh.replace(/(\s*$)/g,"")
+  					};
+  				});
+  			return aa;
+  		},
+  		formatItem : function(row, i, max) {
+  			return row.xqlbh.replace(/(\s*$)/g,"")+"("+row.xzxzh+")"+"<br/>"+row.xqlmc.replace(/(\s*$)/g,"");
+  		}
+  	}).result(
+			function(e, item) {
+				if(item==undefined) return ;
+				selectTSDQ(item.xzqhdm);
+				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
+				ptx=item.ptx;
+				pty=item.pty;
+				$("#jd").val(item.ptx);
+				$("#wd").val(item.pty);
+				$("#qlmc").html(item.qlmc);
+				$("#qlzxzh").html(parseFloat(item.qlzxzh));
+				$("#gydw").html(item.gydw);
+				$("#xzqhdm").html(item.xzqhdm);
+				$("#xzqhmc").html(item.xzqhmc);
+				$("#lxmc").html(item.lxmc);
+				$("#lxbm").html(item.lxbm);
+				$("#kjzc").html(item.kjzc);
+				$("#qlqc").html(item.qlqc);
+				$("#qlkd").html(item.qlkd);
+				$("#dkzdkj").html(item.dkzdkj);
+				$("#jsdj").html(item.pddj);
+				$("#xjgjnd").html(item.xjgjnd);
+				$("#akjfl").html(item.akjfl);
+				$("#sbjgxs").val(item.sbjgxs);
+				$("#xmtype").html('待上报');
+				$("#bhnr").val(item.bhnr);
+				$("#bz").val(item.bz);
+				$("#qdlx").val(item.qdlx);
+				$("#qmjk").val(item.qmjk);
+				$("#qxjk").val(item.qxjk);
+				$("#zqks").val(item.zqks);
+				$("#kydwlx").val(item.kydwlx);
+				$("#thdj").val(item.thdj);
+				$("#qtlx").val(item.qtlx);
+				$("#pzlx").val(item.pzlx);
+				$("#sqs").val(item.sqs);
+				$("#xsq").val(item.xsq);
+				$("#szxz").val(item.szxz);
+				$("#qlbh").val(item.qlbh);
+			//	$("#xqlbm").val(item.xqlbh);
+				$("#xqlmc").val(item.xqlmc);
+				$("#xzxzh").val(item.xzxzh);
+				$("#xlxbm").val(item.xqlbh.substr(0,10));
+				
+			});
+}
+
+
+
 function saveWqgz(){
 	var sbthcd=$.cookie("unit2").length;
 	if($.cookie("unit2")=="______36"){
@@ -190,7 +298,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xqlmc="+$("#xqlmc").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
 	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
 	 $.ajax({
@@ -333,7 +441,7 @@ function newGuid()
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养（监管）单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gydw"></span>
-					<input type="text" id="gydwbm" style="display:none"/></td>
+					<input type="text"  id="gydwbm" style="display:none"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xzqhdm"></span></td>
@@ -384,7 +492,7 @@ function newGuid()
 					<span id="akjfl"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sbjgxs" />
+					<input name='bitian' type="text" id="sbjgxs" />
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -395,10 +503,10 @@ function newGuid()
 				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xlxbm" /></td>
+					<input name='bitian' type="text" id="xlxbm" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xlxmc" /></td>
+					<input name='bitian' type="text" id="xlxmc" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="xqlbm" />
@@ -406,17 +514,33 @@ function newGuid()
 				
 			</tr>
 			<tr style="height: 35px;">
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xzxzh" />
+					<input type="text" id="xqlmc" />
+					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input name='bitian' type="text" id="xzxzh" />
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><!-- 新中心桩号： --></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+<!-- 					<input name='bitian' type="text" id="xzxzh" /> -->
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">经度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="jd" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">纬度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="wd" />
+					<input name='bitian' type="text" id="wd" />
 					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><!-- 新中心桩号： --></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+<!-- 					<input name='bitian' type="text" id="xzxzh" /> -->
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
@@ -424,7 +548,7 @@ function newGuid()
 					<span id="xmtype"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sqs" />
+					<input name='bitian' type="text" id="sqs" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
@@ -434,7 +558,7 @@ function newGuid()
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="szxz" />
+					<input name='bitian' type="text" id="szxz" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按建筑材料和&nbsp;&nbsp;<br>使用年限分类：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
@@ -446,56 +570,56 @@ function newGuid()
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率(年)：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sjhspl" />
+					<input name='bitian' type="text" id="sjhspl" />
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净宽（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qxjkuan" />
+					<inpu name='bitian't type="text" id="qxjkuan" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净空（米）：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qxjkong" />
+					<input name='bitian' type="text" id="qxjkong" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主桥孔数（孔）：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="zqks" />
+					<input name='bitian' type="text" id="zqks" />
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥面净宽（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qmjk" />
+					<input name='bitian' type="text" id="qmjk" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨越地物类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="kydwlx" />
+					<input name='bitian' type="text" id="kydwlx" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="thdj" />
+					<input name='bitian' type="text" id="thdj" />
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路桥梁用途：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="glqlyt" />
+					<input name='bitian' type="text" id="glqlyt" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥墩类型：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qdlx" />
+					<input name='bitian' type="text" id="qdlx" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥台类型：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qtlx" />
+					<input name='bitian' type="text" id="qtlx" />
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">铺装类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="pzlx" />
+					<input name='bitian' type="text" id="pzlx" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否入部危桥库：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -514,22 +638,22 @@ function newGuid()
 				
                	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁养护工程师：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qlyhgcs" /></td>
+					<input name='bitian' type="text" id="qlyhgcs" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qljggcs" />
+					<input name='bitian' type="text" id="qljggcs" />
 				</td>
 			</tr>            	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="bhnr" rows="2"  style="width:99%"></textarea>
+					<textarea name='bitian' id="bhnr" rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置意见和建议：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="czyjhjy" rows="2"  style="width:99%"></textarea>
+					<textarea name='bitian' id="czyjhjy" rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>

@@ -308,6 +308,40 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		// TODO Auto-generated method stub
 		return update("shbtyWqgzshById", planwqgzsj)==1;
 	}
+	
+	@Override
+	public boolean shtyWqgzshByIdbeatch(Planwqgzsj planwqgzsj) {
+		String[] strs = planwqgzsj.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", planwqgzsj.getSbbm());
+			hm.put("sbthcd", planwqgzsj.getSbthcd());
+			lm.add(hm);
+		}
+		
+		return updateBatch("shtyWqgzshByIdbeatch", lm)>0;
+		
+	}
+	
+	
+	@Override
+	public boolean shbtyWqgzshByIdbeatch(Planwqgzsj planwqgzsj) {
+		String[] strs = planwqgzsj.getId().split(",");
+		String[] sbcd = planwqgzsj.getSbthcd().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", planwqgzsj.getSbbm());
+			hm.put("shyj1", planwqgzsj.getShyj1());
+			hm.put("sbthcd", sbcd[i]);
+			lm.add(hm);
+		}
+		
+		return updateBatch("shbtyWqgzshByIdbeatch", lm)>0;
+	}
 	@Override
 	public String lwBzsbz(Planwqgzsj planwqgzsj) {
 		try{

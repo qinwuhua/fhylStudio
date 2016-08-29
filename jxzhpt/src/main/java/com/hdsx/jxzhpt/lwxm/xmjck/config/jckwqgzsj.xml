@@ -7,12 +7,12 @@
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
 		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,
-		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh) 
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh,xxcsj<if test="xqlmc != null">,xqlmc</if>) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
 		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},
-		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh})
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh},'是'<if test="xqlmc != null">,#{xqlmc}</if>)
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -21,7 +21,7 @@
 	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
 	 			where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%' and xxcsj='是'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -78,7 +78,7 @@
       qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
 	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -131,7 +131,7 @@
 	 		select count(*) from xmk_wqgz t
 	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -203,6 +203,10 @@
 		 <update id="xgJckwqgzSbzt" parameterType="hashmap" >
  			update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
  		</update>
+ 		<update id="sjshbtyWqgzsjByIdbeatch" parameterType="hashmap" >
+ 			update xmk_wqgz set shzt='未审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shzt1='未审核',shyj2=#{shyj2} where id =#{id} 
+ 		</update>
+ 		
  		 <update id="shtyWqgzsjById" parameterType="jckwqgzsj" >
  			update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd},shzt1='已审核',shyj1='同意' where id =#{id} 
  		</update>
@@ -217,7 +221,7 @@
       qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
 	 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -284,7 +288,7 @@
  		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
  		where (sbthcd=7 or shyj2 is not null)
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -350,7 +354,7 @@
  		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
  		where (sbthcd=7 or shyj2 is not null)
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -413,14 +417,20 @@
  		<update id="sjshtyWqgzsjById" parameterType="jckwqgzsj" >
  			update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shyj2='同意' where id =#{id} 
  		</update>
+ 		<update id="sjshtyWqgzsjByIdbeatch" parameterType="jckwqgzsj" >
+ 			update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shyj2='同意' where 1=1 and ${id}
+ 		</update>
  		<update id="sjshbtyWqgzsjById" parameterType="jckwqgzsj" >
  			update xmk_wqgz set shzt='未审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shzt1='未审核',shyj2=#{shyj2} where id =#{id} 
  		</update>
+ 		
+ 		
  		<update id="updateWqgz" parameterType="jckwqgzsj">
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},pddj=#{pddj},sbjgxs=#{sbjgxs},
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},jsdj=#{jsdj},
  			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk},xlxbm=#{xlxbm},xlxmc=#{xlxmc},xqlbm=#{xqlbm},xzxzh=#{xzxzh},ptx=#{ptx},pty=#{pty}
+ 			<if test="xqlmc != null">,xqlmc=#{xqlmc}</if>
  			where id=#{id}
  		</update>
  		
@@ -447,7 +457,7 @@
  					and xm.xmnf in (${xmrksj})
  				</if>
  				) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -515,7 +525,7 @@
  				<if test="xmrksj !='' and xmrksj != null ">
  					and xmk_wqgz.xmnf in (${xmrksj})
  				</if>) t where 
-			(sck_sbthcd &lt;=7 or sck_shyj2 is not null) and gydwbm like '1%'
+			(sck_sbthcd &lt;=7 or sck_shyj2 is not null) and gydwbm like '1%' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -586,7 +596,7 @@
  					and xm.xmnf in (${xmrksj})
  				</if>
  				) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -645,7 +655,7 @@
  					and xm.xmnf in (${xmrksj})
  				</if>
  				) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -701,7 +711,7 @@
  					and xm.xmnf in (${xmrksj})
  				</if>
  				) t where 
-			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%'
+			sck_sbthcd &lt;=#{sck_sbthcd} and gydwbm like '1%' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -751,7 +761,15 @@
 				and gydwbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
 			</if>
 	 	order by qlbh
- </select>
+ 		</select>
+ 
+ 	 <select id="JckWqgzRoad1" parameterType="hashmap" resultType="jckwqgzsj">
+	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' and xxcsj='是'
+	 	<if test="gydwbm!='' and gydwbm!= null ">
+				and gydwbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
+			</if>
+	 	order by qlbh
+ 		</select>
  
  	<insert id="insertSckwqgz" parameterType="jckwqgzsj">
 		insert into

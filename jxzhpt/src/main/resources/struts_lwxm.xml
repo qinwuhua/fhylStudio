@@ -35,6 +35,7 @@
 	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
 	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
 	<action name="wqgzGpsroad1" class="jckwqgzController" method="wqgzGpsroad1"/>
+	<action name="wqgzGpsroad11" class="jckwqgzController" method="wqgzGpsroad11"/>
 	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
 	<action name="selectJckShwqgz" class="jckwqgzController" method="selectJckShwqgz"/>
 	<action name="xgJckWqgzTH" class="jckwqgzController" method="xgJckWqgzTH"/>
@@ -194,12 +195,15 @@
  	 <action name="selectJckShwqgz" class="jckwqgzsjController" method="selectJckShwqgz"/>
  	 <action name="selectWqgzShCount" class="jckwqgzsjController" method="selectWqgzShCount"/>
  	 <action name="sjshtyWqgzsjById" class="jckwqgzsjController" method="sjshtyWqgzsjById"/>
+ 	 <action name="sjshtyWqgzsjByIdbeatch" class="jckwqgzsjController" method="sjshtyWqgzsjByIdbeatch"/>
+ 	<action name="sjshbtyWqgzsjByIdbeatch" class="jckwqgzsjController" method="sjshbtyWqgzsjByIdbeatch"/>
  	 <action name="sjshbtyWqgzsjById" class="jckwqgzsjController" method="sjshbtyWqgzsjById"/>
  	 <action name="updateWqgz" class="jckwqgzsjController" method="updateWqgz"/>
  	 
  	 <action name="selectSckwqgz" class="jckwqgzsjController" method="selectSckwqgz"/>
  	 <action name="selectSckwqgzCount" class="jckwqgzsjController" method="selectSckwqgzCount"/>
  	 <action name="JckWqgzRoad" class="jckwqgzsjController" method="JckWqgzRoad"/>
+ 	 <action name="JckWqgzRoad1" class="jckwqgzsjController" method="JckWqgzRoad1"/>
  	 <action name="insertSckwqgz" class="jckwqgzsjController" method="insertSckwqgz"/>
  	 <action name="deleteSckWqgz" class="jckwqgzsjController" method="deleteSckWqgz"/>
  	 <action name="xgSckWqgzSbzt" class="jckwqgzsjController" method="xgSckWqgzSbzt"/>
@@ -230,6 +234,7 @@
  	<action name="deleteAfxmkById" class="xmkaqsmfhController" method="deleteAfxmkById"/>
  	<action name="afXmkCs" class="xmkaqsmfhController" method="afXmkCs"/>
  	<action name="afXmkZs" class="xmkaqsmfhController" method="afXmkZs"/>
+ 	<action name="afXmkZsbeatch" class="xmkaqsmfhController" method="afXmkZsbeatch"/>
  	<action name="xmkaqsmfhDoExcel" class="xmkaqsmfhController" method="xmkaqsmfhDoExcel"/>
  	<action name="shaqsmfhDoExcel" class="xmkaqsmfhController" method="shaqsmfhDoExcel"/>
  	

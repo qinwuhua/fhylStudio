@@ -36,7 +36,7 @@ public interface JckwqgzsjServer {
 	boolean sjshtyWqgzsjById(Jckwqgzsj jckwqgzsj);
 
 	boolean sjshbtyWqgzsjById(Jckwqgzsj jckwqgzsj);
-
+	boolean sjshbtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj);
 	boolean updateWqgz(Jckwqgzsj jckwqgzsj);
 
 	List<Jckwqgzsj> selectSckwqgz(Jckwqgzsj jckwqgzsj);
@@ -82,4 +82,8 @@ public interface JckwqgzsjServer {
 	Jckwqgzsj selectSckwqgzCount1(Jckwqgzsj jckwqgzsj);
 
 	boolean tuihuiAfsckById(Jckwqgzsj jckwqgzsj);
+
+	boolean sjshtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj);
+
+	List<Jckwqgzsj> JckWqgzRoad1(Jckwqgzsj jckwqgzsj);
 }

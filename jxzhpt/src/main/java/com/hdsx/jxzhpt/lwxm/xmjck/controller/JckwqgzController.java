@@ -330,6 +330,14 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 				e.printStackTrace();
 			}
 		}
+		
+		public void wqgzGpsroad11(){
+			try {
+				JsonUtils.write(wqgzServer.selectGpsroad11(jckwqgz), getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
 	public void JckWqgzRoad(){
 		try {
 			JsonUtils.write(wqgzServer.JckWqgzRoad(jckwqgz), getresponse().getWriter());
@@ -337,6 +345,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+
 	public void selectJckShwqgz(){
 		if(jckwqgz.getGydw().indexOf(",")==-1){
 			jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");

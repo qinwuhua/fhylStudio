@@ -56,6 +56,33 @@ $(function(){
 	showAll();
 	
 });
+
+var ob=new Object();
+function shenpi(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要审核的项目！");
+		return;
+	}
+	var id=rows[0].id;
+	var tsdq=rows[0].tsdq;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].zszt=="已审核"){
+			alert("有项目已审核，请勿重复操作！");
+			return ;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+		tsdq+=","+rows[i].tsdq ;
+	}
+	ob.id=id;
+	ob.tsdq=tsdq;
+	YMLib.UI.createWindow('lxxx','省级审核','aqsmfh_sh1.jsp','lxxx',500,300);
+}
+
+
+
 function showAll(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
@@ -355,8 +382,8 @@ text-decoration:none;
                               	</select></td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
-<%-- 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>		 --%>
+	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;" />
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								 -->
 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="doExcel()"/>
 							 </td>
                             </tr></table>

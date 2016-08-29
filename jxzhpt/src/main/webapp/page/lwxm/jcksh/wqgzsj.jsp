@@ -132,6 +132,30 @@ function shangb(index){
 	}
 }
 
+var ob=new Object();
+function shenpi(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要审核的项目！");
+		return;
+	}
+	var id=rows[0].id;
+	var tsdq=rows[0].tsdq;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt=="已审核"){
+			alert("有项目已审核，请勿重复操作！");
+			return ;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+		tsdq+=","+rows[i].tsdq ;
+	}
+	ob.id=id;
+	ob.tsdq=tsdq;
+	YMLib.UI.createWindow('lxxx','省级审核','wqgzsj_sh1.jsp','lxxx',500,300);
+}
+
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	if(rows.length==0) {
@@ -276,6 +300,9 @@ var xzqhstr;
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
 		        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 		        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
+		        {field:'xqlbm',title:'新桥梁编号',width:120,align:'center'},
+		        {field:'xqlmc',title:'新桥梁名称',width:120,align:'center'},
+		        {field:'xzxzh',title:'新桥梁中心桩号',width:120,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
@@ -418,13 +445,8 @@ text-decoration:none;
 						  
                               <td colspan="6">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
-<!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangb()"  style="border-width:0px;" /> -->
+	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />
-<!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" /> -->
-<!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" /> -->
-<!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgzsj_add.jsp','900','450');" style="border-width:0px;" /> -->
-<!--                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" /> -->
-<!--                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" /> -->
 								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="dcExcel()"/>
                            </td>
                             </tr></table>

@@ -123,6 +123,26 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		else return false;
 	}
 
+	
+	@Override
+	public boolean sjshbtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj) {
+		String[] strs = jckwqgzsj.getId().split(",");
+		String[] sbth = jckwqgzsj.getSbthcd1().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			System.out.println(strs[i]);
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", jckwqgzsj.getShbm());
+			hm.put("shyj2", jckwqgzsj.getShyj2());
+			hm.put("sbthcd", sbth[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("sjshbtyWqgzsjByIdbeatch", lm)>0) return true;
+		else return false;
+		
+	}
+	
 	@Override
 	public boolean shtyWqgzsjById(Jckwqgzsj jckwqgzsj) {
 		if(update("shtyWqgzsjById", jckwqgzsj)>0) return true;
@@ -152,7 +172,12 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		if(update("sjshtyWqgzsjById", jckwqgzsj)>0) return true;
 		else return false;
 	}
-
+	@Override
+	public boolean sjshtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj) {
+		if(update("sjshtyWqgzsjByIdbeatch", jckwqgzsj)>0) return true;
+		else return false;
+	}
+	
 	@Override
 	public boolean sjshbtyWqgzsjById(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshbtyWqgzsjById", jckwqgzsj)>0) return true;
@@ -190,6 +215,14 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		return queryList("JckWqgzRoad", hm);
 	}
 
+	@Override
+	public List<Jckwqgzsj> JckWqgzRoad1(Jckwqgzsj jckwqgzsj) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("qlbh", jckwqgzsj.getQlbh());
+		hm.put("gydwbm", jckwqgzsj.getGydwbm());
+		return queryList("JckWqgzRoad1", hm);
+	}
+	
 	@Override
 	public boolean insertSckwqgz(Jckwqgzsj jckwqgzsj) {
 		if(insert("insertSckwqgz",jckwqgzsj)>0)

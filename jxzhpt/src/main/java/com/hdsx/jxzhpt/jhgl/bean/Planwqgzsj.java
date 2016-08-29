@@ -11,6 +11,7 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
  *
  */
 public class Planwqgzsj implements Serializable{
+	private String xqlmc;
 	private String jhpc;//计划批次
 	
 	public String getJhpc() {
@@ -1520,6 +1521,12 @@ public class Planwqgzsj implements Serializable{
 	}
 	public void setSfgz(String sfgz) {
 		this.sfgz = sfgz;
+	}
+	public String getXqlmc() {
+		return xqlmc;
+	}
+	public void setXqlmc(String xqlmc) {
+		this.xqlmc = xqlmc;
 	}
 	
 }

@@ -212,7 +212,7 @@ public class XmbbController extends BaseActionSupport{
 			String tablename="";
 			List<TreeNode> list=null;
 			if(("wqgz").equals(xzqh)){
-				tablename="select distinct p.jhpc id,p.jhpc text from plan_wqgz p where p.jhpc is not null";
+				tablename="select distinct p.jhpc id,p.jhpc text from plan_wqgz p where p.jhpc is not null order by decode(p.jhpc,'第一批',1,'第二批',2,'第三批',3,'第四批',4,'第五批',5,'第六批',6,'第七批',7,8)";
 				list=xmbbServer.setjhxdwh1(tablename);
 			}
 			

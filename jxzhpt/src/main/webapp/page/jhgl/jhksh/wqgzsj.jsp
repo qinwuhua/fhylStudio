@@ -281,6 +281,32 @@
 			obj=data;
 			alert("未通过原因："+obj.shyj);
 		}
+		
+		
+		var ob=new Object();
+		function shenpi(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要审核的项目！");
+				return;
+			}
+			var id=rows[0].id;
+			var tsdq=rows[0].tsdq;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].spzt=='1'){
+					alert("有项目已审核，请勿重复操作！");
+					return ;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+				tsdq+=","+rows[i].tsdq ;
+			}
+			ob.id=id;
+			ob.tsdq=tsdq;
+			
+			YMLib.UI.createWindow('wq_edit','省级审核','wqgzsj_sh1.jsp','wq_edit',500,300);
+		}
 	</script>
 <style type="text/css">
 TD {
@@ -378,6 +404,7 @@ text-decoration:none;
                               
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
+	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;vertical-align:middle;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />
 								 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="dcExcel()"/>
 							</td>

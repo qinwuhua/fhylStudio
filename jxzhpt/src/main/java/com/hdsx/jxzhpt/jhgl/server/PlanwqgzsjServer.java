@@ -99,5 +99,9 @@ public interface PlanwqgzsjServer {
 	Planwqgzsj loadwqgzsjlbyid(String id);
 
 	Planwqgzsj loadwqgzsjlbyid1(Planwqgzsj planwqgzsj);
+
+	boolean shtyWqgzshByIdbeatch(Planwqgzsj planwqgzsj);
+
+	boolean shbtyWqgzshByIdbeatch(Planwqgzsj planwqgzsj);
 	
 }

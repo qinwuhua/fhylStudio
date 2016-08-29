@@ -105,7 +105,7 @@ function loadJckxx(id){
 				$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
 				$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
 				$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
-				$("#xlxmc").html(item.xlxmc);$("#xlxbm").html(item.xlxbm);$("#xqlbm").html(item.xqlbm);$("#xzxzh").html(item.xzxzh);$("#jd").html(item.ptx);$("#wd").html(item.pty);
+				$("#xlxmc").html(item.xlxmc);$("#xlxbm").html(item.xlxbm);$("#xqlbm").html(item.xqlbm+"("+item.xqlmc+")");$("#xzxzh").html(item.xzxzh);$("#jd").html(item.ptx);$("#wd").html(item.pty);
 			}
 	});
 }
@@ -607,7 +607,7 @@ text-decoration:none;
 					<span id="jhwgsj"></span>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<!-- <tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sjdw"></span></td>
@@ -618,11 +618,11 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jhpfwh"></span>
 				</td>
-			</tr>
+			</tr> -->
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="pfsj"></span></td>
+					<span id="pfsj"></span></td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="sfsqablbz"></span></td>
@@ -630,11 +630,12 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="ablbzwh"></span>
 				</td>
-			</tr>
-			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="pfztz"></span></td>
+			</tr>
+			<tr style="height: 30px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font id="wenz">计划使用省补助金额(万元)：</font></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="shengbz"></span></td>
@@ -642,18 +643,19 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qlszxz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					长<span id="jhqlqc"></span>&nbsp;&nbsp;宽<span id="jhqlqk"></span></td>
+			</tr>
+			<!-- <tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qlszxz"></span></td>
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jhjsxz"></span></td>
-			</tr>
+			</tr> -->
 			<tr id="sftr" style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">

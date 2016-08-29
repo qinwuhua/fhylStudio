@@ -569,9 +569,27 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		}
 	}
 	
+	public void sjshtyWqgzsjByIdbeatch(){
+		try {
+			jckwqgzsj.setId(getcxtj(jckwqgzsj.getId(),"id"));
+			JsonUtils.write(jckwqgzsjServer.sjshtyWqgzsjByIdbeatch(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void sjshbtyWqgzsjById(){
 		try {
 			JsonUtils.write(jckwqgzsjServer.sjshbtyWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sjshbtyWqgzsjByIdbeatch(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.sjshbtyWqgzsjByIdbeatch(jckwqgzsj),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -786,6 +804,18 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		jckwqgzsj.setGydwbm(gydw);
 		jckwqgzsj.setXzqhdm(xzqhdm);
 		List<Jckwqgzsj> list = jckwqgzsjServer.JckWqgzRoad(jckwqgzsj);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void JckWqgzRoad1(){
+		jckwqgzsj.setQlbh(qlbh);
+		jckwqgzsj.setGydwbm(gydw);
+		jckwqgzsj.setXzqhdm(xzqhdm);
+		List<Jckwqgzsj> list = jckwqgzsjServer.JckWqgzRoad1(jckwqgzsj);
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
@@ -1613,6 +1643,23 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	public String getcxtj(String bh,String name){
+		String result="";
+		if(bh!=null){
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+					}
+		return result;
 	}
 	
 }

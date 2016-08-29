@@ -148,7 +148,7 @@ public class Jckwqgzsj implements Serializable{
 	private String nsqsbz;
 	private String gldj;
 	private String nsqsjl;
-	
+	private String xqlmc;
 	public String getNsqsjl() {
 		return nsqsjl;
 	}
@@ -989,6 +989,12 @@ public class Jckwqgzsj implements Serializable{
 				+ ", kjzh=" + kjzh + ", sck_xbjgxs=" + sck_xbjgxs + ", ztz="
 				+ ztz + ", sgtpfsj=" + sgtpfsj + ", pfwh=" + pfwh + ", zgq="
 				+ zgq + ", xmsqbzzjje=" + xmsqbzzjje + "]";
+	}
+	public String getXqlmc() {
+		return xqlmc;
+	}
+	public void setXqlmc(String xqlmc) {
+		this.xqlmc = xqlmc;
 	}
 	
 }

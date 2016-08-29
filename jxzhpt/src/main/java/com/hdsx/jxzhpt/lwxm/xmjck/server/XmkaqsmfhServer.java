@@ -94,5 +94,7 @@ public interface XmkaqsmfhServer {
 
 	List<Excel_list> shaqsmfhDoExcel(Xmkaqsmfh xmkaqsmfh);
 
+	boolean afXmkZsbeatch(Xmkaqsmfh xmkaqsmfh);
+
 
 }

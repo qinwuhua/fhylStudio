@@ -1329,6 +1329,15 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		boolean bl=planwqgzsjServer.shbtyWqgzshById(planwqgzsj);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	public void shtyWqgzshByIdbeatch(){
+		boolean bl=planwqgzsjServer.shtyWqgzshByIdbeatch(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void shbtyWqgzshByIdbeatch(){
+		boolean bl=planwqgzsjServer.shbtyWqgzshByIdbeatch(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
 	public void lwBzsbz(){
 		String sbz=planwqgzsjServer.lwBzsbz(planwqgzsj);
 		planwqgzsj.setShengbz(sbz);

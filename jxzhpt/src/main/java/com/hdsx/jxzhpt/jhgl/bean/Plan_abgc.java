@@ -73,7 +73,8 @@ public class Plan_abgc {
 	private String gjxjnd;
 	private String tzxz;//调整状态
 	private String tzsj;//调整时间
-	
+	private String jhyhlc;//调整时间
+	private String jhzlc;//调整时间
 	private String id;
 
     private String province;
@@ -1284,6 +1285,18 @@ public class Plan_abgc {
 	}
 	public void setStr7(String str7) {
 		this.str7 = str7;
+	}
+	public String getJhyhlc() {
+		return jhyhlc;
+	}
+	public void setJhyhlc(String jhyhlc) {
+		this.jhyhlc = jhyhlc;
+	}
+	public String getJhzlc() {
+		return jhzlc;
+	}
+	public void setJhzlc(String jhzlc) {
+		this.jhzlc = jhzlc;
 	}
 	
 }

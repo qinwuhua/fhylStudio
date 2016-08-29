@@ -59,12 +59,21 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		return queryList("selectGpsroad1", hm);
 	}
 	@Override
+	public List<Jckwqgz> selectGpsroad11(Jckwqgz wqgz) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("qlbh", wqgz.getQlbh());
+		hm.put("gydwbm", wqgz.getGydwbm());
+		hm.put("xzqhdm", wqgz.getXzqhdm());
+		return queryList("selectGpsroad11", hm);
+	}
+	@Override
 	public List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("qlbh", wqgz.getQlbh());
 		hm.put("gydwbm", wqgz.getGydwbm());
 		return queryList("JckWqgzRoad", hm);
 	}
+
 
 	@Override
 	public boolean deleteWqgzById(String delstr) {

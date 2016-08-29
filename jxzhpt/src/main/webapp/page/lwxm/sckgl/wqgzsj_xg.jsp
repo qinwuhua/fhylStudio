@@ -143,6 +143,18 @@ function saveWqgz(){
 		alert("总投资不能小于补助金额");
 		return;
 	}
+	var flag=true;
+	$("input[name='bitian']").each(function(){
+        if ($(this).val() == ""||$(this).val() == null){
+        	alert("请将页面除备注外的信息填写完整。");
+        	flag=false;
+        	return false;
+        }
+    });
+	if(!flag)
+		return;
+	
+	
 	var cjqz = $("#cjqz1").combobox('getValue')+$("#cjqz").val();
 	var data ="jckwqgzsj.xmkid="+xmkid+"&jckwqgzsj.fapgdw="+$("#fapgdw").val()+"&jckwqgzsj.fascdw="+$("#fascdw").val()+
 	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+''+
@@ -601,31 +613,31 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" onchange="setbz()"/></td>
+					<input name='bitian' type="text" name="scqlqc" id="scqlqc" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
+					<input name='bitian' type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="scxmnf" maxlength="4"/>
+					<input name='bitian' id="scxmnf" maxlength="4"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估(设计)单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
+					<input name='bitian' type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审核(批复)单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="fascdw"id="fascdw" style="width: 150px" /></td>
+					<input name='bitian' type="text" name="fascdw"id="fascdw" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案(施工图)批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="faspsj" class="easyui-datebox" />
+					<input name='bitian' type="text" id="faspsj" class="easyui-datebox" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
+					<input name='bitian' type="text" name="spwh" id="spwh" style="width: 150px" /></td>
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -635,46 +647,46 @@ text-decoration:none;
 					</select>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">荷载等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="hzdj" style="width: 150px" /></td>
+					<input name='bitian' type="text" id="hzdj" style="width: 150px" /></td>
 			</tr>
 			
 			
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scsjhspl" style="width: 150px" /></td>
+					<input name='bitian' type="text" id="scsjhspl" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bitian' id="kjzh1" style="width: 50px" />*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
+					<input name='bitian' type="text" name='bitian' id="kjzh1" style="width: 50px" />*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sck_sbjgxs" style="width: 150px" />
+					<input name='bitian' type="text" id="sck_sbjgxs" style="width: 150px" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">下部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sck_xbjgxs" style="width: 150px" />
+					<input name='bitian' type="text" id="sck_xbjgxs" style="width: 150px" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总工期：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="zgq" style="width: 150px" />
+					<input name='bitian' type="text" id="zgq" style="width: 150px" />
 				</td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">重建桥址：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id='cjqz1' class='easyui-combobox' style="width: 80px;">
 						<option value="原桥址上游">原桥址上游</option>
 						<option value="原桥址下游">原桥址下游</option>
-					</select><input type="text" id="cjqz" style="width: 45px;vertical-align: middle;" />米</td>
+					</select><input name='bitian' type="text" id="cjqz" style="width: 45px;vertical-align: middle;" />米</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scthdj" style="width: 150px" />
+					<input name='bitian' type="text" id="scthdj" style="width: 150px" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁基础：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qljc" style="width: 150px" /></td>
+					<input name='bitian' type="text" id="qljc" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道行政等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id='ydgldj' class='easyui-combobox' data-options="panelHeight:'100'" >
@@ -704,7 +716,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度(km/h)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sjsd" style="width: 150px" />
+					<input name='bitian' type="text" id="sjsd" style="width: 150px" />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -722,14 +734,14 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scsqs" style="width: 150px" /></td>
+					<input name='bitian' type="text" id="scsqs" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scxsq" style="width: 150px" />
+					<input name='bitian' type="text" id="scxsq" style="width: 150px" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scszxz" style="width: 150px" />
+					<input name='bitian' type="text" id="scszxz" style="width: 150px" />
 				</td>
 			</tr>
 			<tr id="sf1"  style="height: 30px;display: none">

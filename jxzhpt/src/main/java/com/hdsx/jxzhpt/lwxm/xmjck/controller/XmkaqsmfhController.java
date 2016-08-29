@@ -461,7 +461,14 @@ public class XmkaqsmfhController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.afXmkZs(xmkaqsmfh)+"");	
 	}
 	
-	
+	public void afXmkZsbeatch(){
+		try {
+			ResponseUtils.write(getresponse(),
+					xmkaqsmfhServer.afXmkZsbeatch(xmkaqsmfh) + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
 	
 	
 	

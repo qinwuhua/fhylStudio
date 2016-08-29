@@ -169,7 +169,7 @@ function abgcxm(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -281,7 +281,7 @@ function afgcxm(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -373,7 +373,7 @@ function abgcxm_sb(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -466,7 +466,7 @@ function afgcxm_sb(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -558,7 +558,7 @@ function abgcxm_sh(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -650,7 +650,7 @@ function afgcxm_sh(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -738,7 +738,7 @@ function abgcxm_zjxd(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -823,7 +823,7 @@ function afgcxm_zjxd(jh,lx){
 	        },
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center',
 	        	formatter : function(value, row, index) {
-					return row.jckabgc.scyhlc;
+					return row.jckabgc.jhyhlc;
 				}
 	        },
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'}
@@ -979,6 +979,11 @@ function dropOne(id){
 	}
 }
 function editAbgc(xmlx){
+	if(new Date($("#JHKGSJ").datebox('getValue'))> new Date($("#JHWGSJ").datebox('getValue'))){
+		alert("开工年不能大于完工年");
+		return;
+	}
+	
 	var jh;
 	if(xmlx=='af'){
 		jh={'jh.xmlx':xmlx,'jh.id':$('#jhid').val(),

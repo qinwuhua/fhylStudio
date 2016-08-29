@@ -269,6 +269,28 @@ public class XmkaqsmfhServerImpl extends BaseOperate implements XmkaqsmfhServer 
 	public boolean afXmkZs(Xmkaqsmfh xmkaqsmfh) {
 		return update("afXmkZs", xmkaqsmfh)==1;
 	}
+	
+	@Override
+	public boolean afXmkZsbeatch(Xmkaqsmfh xmkaqsmfh) {
+		String[] strs = xmkaqsmfh.getId().split(",");
+		String[] sbth = xmkaqsmfh.getSbthcd().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("cszt", xmkaqsmfh.getCszt());
+			hm.put("zszt", xmkaqsmfh.getZszt());
+			hm.put("zsyj", xmkaqsmfh.getZsyj());
+			hm.put("sbthcd", sbth[i]);
+			lm.add(hm);
+		}
+		
+		
+		return updateBatch("afXmkZsbeatch", lm)>0;
+	}
+	
+	
+	
 	@Override
 	public List<Excel_list> dcaqsmfhsckExcel(Xmkaqsmfh xmkaqsmfh) {
 		return queryList("dcaqsmfhsckExcel",xmkaqsmfh);

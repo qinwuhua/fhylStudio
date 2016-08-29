@@ -433,6 +433,23 @@ function editWqgz(){
 	}else{
 		shengbz=$("#shengbz").val();
 	}
+	
+	if($("#jhkgsj").combobox('getValue')>$("#jhwgsj").combobox('getValue')){
+		alert("开工年不能大于完工年");
+		return;
+	}
+	
+	var flag=true;
+	$("input[name='bitian']").each(function(){
+        if ($(this).val() == ""||$(this).val() == null){
+        	alert("请将页面除备注外的信息填写完整。");
+        	flag=false;
+        	return false;
+        }
+    });
+	if(!flag)
+		return;
+	
 	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
 	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')
 	+"&planwqgzsj.sjdw="+''+"&planwqgzsj.sjpfdw="+''
@@ -442,7 +459,7 @@ function editWqgz(){
 	+"&planwqgzsj.qlszxz="+''+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
 	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val()+"&planwqgzsj.jhjsxz="+$("#jsxz").html()
 	+"&planwqgzsj.jhqlqc="+$("#jhqlqc").val()+"&planwqgzsj.jhqlqk="+$("#jhqlqk").val()
-	+"&planwqgzsj.nsqsjl="+$("#nsqsjl").val()+"&planwqgzsj.shijbz="+$("#shijbz").val()+"&planwqgzsj.xianjbz="+$("#xianjbz").val();
+	+"&planwqgzsj.nsqsjl="+$("#nsqsjl").val()+"&planwqgzsj.shijbz="+$("#shijbz").numberbox('getValue')+"&planwqgzsj.xianjbz="+$("#xianjbz").numberbox('getValue');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/jhgl/editwqgzsj.do',
@@ -837,7 +854,7 @@ text-decoration:none;
 					<input id="pfsj" type="text" class="easyui-datebox"/></td> -->
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					长<input onchange="loadBz()" type="text" id="jhqlqc" style="width: 53px"/> 宽<input onchange="loadBz()" type="text" id="jhqlqk" style="width: 53px"/></td>	
+					长<input name='bitian' onchange="loadBz()" type="text" id="jhqlqc" style="width: 53px"/> 宽<input onchange="loadBz()" type="text" id="jhqlqk" style="width: 53px"/></td>	
 			<!-- 	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td> -->
 				<!-- <td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jhjsxz" class="easyui-combobox" data-options="panelHeight:'50'" >
@@ -848,7 +865,7 @@ text-decoration:none;
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="pfztz" onchange="bzSum()"/></td>
+					<input name='bitian' type="text" id="pfztz" onchange="bzSum()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="radio" name="sfsqablbz" onchange="ablwhDis('是')" id="sfsqablbz0" value="是"/>是
@@ -871,7 +888,7 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
+					<input name='bitian' type="text" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市级补助资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" class="easyui-numberbox" id='shijbz'>

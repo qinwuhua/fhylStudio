@@ -15,6 +15,7 @@ public interface JckwqgzServer {
 	boolean updateWqgzById(Jckwqgz wqgz);
 	List<Jckwqgz> selectGpsroad(Jckwqgz wqgz);
 	List<Jckwqgz> selectGpsroad1(Jckwqgz wqgz);
+	List<Jckwqgz> selectGpsroad11(Jckwqgz wqgz);
 	List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz);
 	boolean deleteWqgzById(String delstr);
 	boolean xgJckWqgzShzt(String delstr,Jckwqgz wqgz);
