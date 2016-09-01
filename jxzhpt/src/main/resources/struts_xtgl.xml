@@ -3,6 +3,8 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="xtgl" extends="struts-default" namespace="/xtgl">
+	<action name="getBmbmByName" class="bmbmController" method="getBmbmByName"></action>
+
 	<action name="czPassword" class="xtglController" method="czPassword"/>
 	<action name="selQx" class="xtglController" method="selQx"/>
 	<action name="clearSession" class="xtglController" method="clearSession"/>

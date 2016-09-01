@@ -24,11 +24,7 @@ function xzdjurl(id){
 	var years=[];
 	var first=[];
 	years.push({text:'全部',value:''});
-	/*for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-	}*/if(getUrlParame('id')=='01011101030101'){
+	if(getUrlParame('id')=='01011101030101'){
 		years.push({text:'国道',value:'G'});
 		years.push({text:'省道',value:'S'});
 		first.push('G');

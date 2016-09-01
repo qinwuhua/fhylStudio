@@ -588,4 +588,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public Param selectXmsx() {
 		return queryOne("selectXmsx", "");
 	}
+
+	@Override
+	public List<HashMap<String, String>> selBmbmList() {
+		return queryList("selBmbmList");
+	}
 }

@@ -67,7 +67,7 @@ text-decoration:none;
 	}
 	
 	$(function(){
-
+		getBmbm('安防建设性质,安防是否申请按比例补助','jsxz,sfsqablbz');
 		loadUploadify();
 		showLd();
 		$('#faspsj').datebox({    
@@ -230,6 +230,7 @@ function saveAbgc(){
 	    	return;
 	    }
 	    if(parseFloat($("#nsqbbz").val())>parseFloat(ts)){
+	    	
 	    	alert("拟申请部(省)补助不能大于"+ts);
 	    	return;
 	    }
@@ -538,7 +539,11 @@ function deleteFile(id){
 		ts=parseFloat(($("#cztzgs").val())*bl).toFixed(0);
 		else
 		ts=bzzj.toFixed(0);
+		if(ts!='NaN')
 		$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+		else{
+			$("#bbzts").html("");
+		}
 	}
 </script>
 		<table style="width: 100%; background-color: #aacbf8; font-size: 12px;"
@@ -652,8 +657,10 @@ function deleteFile(id){
 					<input type="text" id="cztzgs" name='bitian' onchange="sfcgwbw()" onblur="jsnsqbz()"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助(0、否1、是)：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sfsqablbz" maxlength="1"></td>
+<!-- 					<input type="text" id="sfsqablbz" maxlength="1"></td> -->
 				
+					<select id="sfsqablbz" style="width: 120px;">
+  				 	</select>
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
@@ -661,7 +668,11 @@ function deleteFile(id){
 					<input type="text" id="ablbzsqwh"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质(1、中修2、大修)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz" name='bitian' maxlength="1"></td>
+<!-- 					<input type="text" id="jsxz" name='bitian' maxlength="1"> -->
+					<select id="jsxz" style="width: 120px;">
+  				 	</select>
+					
+					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="scjhnf" maxlength="4"></td>

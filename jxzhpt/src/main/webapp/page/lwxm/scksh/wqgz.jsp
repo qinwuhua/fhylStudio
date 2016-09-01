@@ -25,14 +25,14 @@ $(function(){
 	var urlid=getUrlParame('id');
 	if(urlid==null){
 		xmnfdx("xmnf"); 
-		xzdjdx('gldj');
+		//xzdjdx('gldj');
 	}else{
 		setxmnf("xmnf",urlid);
-		setxzdj('gldj',urlid);
+		//setxzdj('gldj',urlid);
 	}
 	
 	jsdjdx('jsdj');
-	
+	xzdjdx('gldj');
 	kjfldx('akjfl');
 	tsdqdx('tsdq');
 	if(getParam("t")=='1') {

@@ -171,6 +171,7 @@ function autoCompleteQLBH(){
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#scakjfl").combobox('setValue',item.akjfl);
+			
 				scakjfl=item.akjfl;
 				$("#sbjgxs").html(item.sbjgxs);
 				$("#xmnf").html(item.xmnf);
@@ -444,12 +445,70 @@ function setbz(){
 }
 //查询省奖励资金
 function setshengjl(){
-	var kjfl="";
-	if(parseInt($("#kjzh2").val())>=40)
-		kjfl="大桥";
-	if(parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)
-		kjfl="中桥";
+	var dkkj=parseInt($("#kjzh1").val())*parseInt($("#kjzh2").val());
 	
+	var kjfl="";
+	var kj1=0;var kj2=0;
+	if(parseInt($("#kjzh2").val())>150)
+		kj1=5;
+	if(dkkj>1000)
+		kj2=5;
+	
+	if(parseInt($("#kjzh2").val())>=40 && parseInt($("#kjzh2").val())<=150)
+		kj1=4;
+	if(dkkj>=100 && dkkj<=1000)
+		kj2=4;
+	if(parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)
+		kj1=3;
+	if(dkkj>30 && dkkj<100)
+		kj2=3;
+	if(parseInt($("#kjzh2").val())>=5 && parseInt($("#kjzh2").val()) < 20)
+		kj1=2;
+	if(dkkj>=8 && dkkj<=30)
+		kj2=2;
+	if((parseInt($("#kjzh2").val()) < 5)){
+		kj1=1;
+		kj2=1;
+	}
+	if(kj1>kj2){
+		if(kj1==1)
+			kjfl='涵洞';
+		if(kj1==2)
+			kjfl='小桥';
+		if(kj1==3)
+			kjfl='中桥';
+		if(kj1==4)
+			kjfl='大桥';
+		if(kj1==5)
+			kjfl='特大桥';
+	}else{
+		if(kj2==1)
+			kjfl='涵洞';
+		if(kj2==2)
+			kjfl='小桥';
+		if(kj2==3)
+			kjfl='中桥';
+		if(kj2==4)
+			kjfl='大桥';
+		if(kj2==5)
+			kjfl='特大桥';
+	}
+		
+	
+	
+	
+	/* if((parseInt($("#kjzh2").val())>150)||(dkkj>1000))
+		kjfl="特大桥";
+	if((parseInt($("#kjzh2").val())>=40 && parseInt($("#kjzh2").val())<=150)||(dkkj>=100 && dkkj<=1000))
+		kjfl="大桥";
+	if((parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)||(dkkj>30 && dkkj<100))
+		kjfl="中桥";
+	if((parseInt($("#kjzh2").val())>=5 && parseInt($("#kjzh2").val()) < 20)||(dkkj>=8 && dkkj<=30))
+		kjfl="小桥";
+	if((parseInt($("#kjzh2").val()) < 5))
+		kjfl="涵洞"; */
+	
+	$("#scakjfl").combobox('setValue',kjfl);
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/jhgl/loadwqgzsjlbyid1.do",
@@ -476,6 +535,7 @@ function setnsqbbz(){
 	}else{
 		trzjdx=Math.round(parseFloat(nsqbbz));
 	}
+
 	if($("#sfylrbwqk").combobox('getValue')=='是')
 	$("#trzjdx").html("小于等于"+trzjdx);
 	else
@@ -805,12 +865,13 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id='scakjfl' class='easyui-combobox' data-options="panelHeight:'100'" >
+					 <select id='scakjfl' class='easyui-combobox' data-options="panelHeight:'100'" >
 						<option value="特大桥">特大桥</option>
 						<option value="大桥">大桥</option>
 						<option value="中桥">中桥</option>
 						<option value="小桥">小桥</option>
-					</select>
+						<option value="涵洞">涵洞</option>
+					</select> 
 				</td>
 				<td  style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%; " align="right">是否入部危桥库：</td>
 				<td  style="background-color: #ffffff; height: 20px;" align="left">

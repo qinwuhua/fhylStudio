@@ -25,6 +25,8 @@ var bzls='';
 var sfylrbwqk='是';
 var sfkxg; 
 $(function(){
+	getBmbm('上部结构形式,通航等级,荷载等级,行政等级','sck_sbjgxs,scthdj,hzdj,ydgldj');
+	
 	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
 	//$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#scakjfl").combobox({onChange:function (n,o) {setbz();}});
@@ -246,7 +248,7 @@ function saveWqgz(){
 	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").val()+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
 	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.scakjfl="+$("#scakjfl").combobox('getValue')
 	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
-	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
+	+"&jckwqgzsj.kjzh="+$("#kjzh1").val()+"*"+$("#kjzh2").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
 	+"&jckwqgzsj.sgtpfsj="+''+"&jckwqgzsj.pfwh="+''+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.nsqsbz="+$("#nsqsbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+cjqz
 	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()+"&jckwqgzsj.zdezj="+zdezj
@@ -461,6 +463,61 @@ function checksfzq(){
 function upload(id){
 	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').val(),'uploads.parentid':xxId});
 	$('#'+id).uploadifyUpload();
+}
+
+function setshengjl(){
+	var dkkj=parseInt($("#kjzh1").val())*parseInt($("#kjzh2").val());
+	
+	var kjfl="";
+	var kj1=0;var kj2=0;
+	if(parseInt($("#kjzh2").val())>150)
+		kj1=5;
+	if(dkkj>1000)
+		kj2=5;
+	
+	if(parseInt($("#kjzh2").val())>=40 && parseInt($("#kjzh2").val())<=150)
+		kj1=4;
+	if(dkkj>=100 && dkkj<=1000)
+		kj2=4;
+	if(parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)
+		kj1=3;
+	if(dkkj>30 && dkkj<100)
+		kj2=3;
+	if(parseInt($("#kjzh2").val())>=5 && parseInt($("#kjzh2").val()) < 20)
+		kj1=2;
+	if(dkkj>=8 && dkkj<=30)
+		kj2=2;
+	if((parseInt($("#kjzh2").val()) < 5)){
+		kj1=1;
+		kj2=1;
+	}
+	if(kj1>kj2){
+		if(kj1==1)
+			kjfl='涵洞';
+		if(kj1==2)
+			kjfl='小桥';
+		if(kj1==3)
+			kjfl='中桥';
+		if(kj1==4)
+			kjfl='大桥';
+		if(kj1==5)
+			kjfl='特大桥';
+	}else{
+		if(kj2==1)
+			kjfl='涵洞';
+		if(kj2==2)
+			kjfl='小桥';
+		if(kj2==3)
+			kjfl='中桥';
+		if(kj2==4)
+			kjfl='大桥';
+		if(kj2==5)
+			kjfl='特大桥';
+	}
+
+	
+	$("#scakjfl").combobox('setValue',kjfl);
+
 }
 </script>
 <style type="text/css">
@@ -690,7 +747,7 @@ text-decoration:none;
 					<input type="text" name="scqlqk" id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="scxmnf" name='bitian'/>
+					<input id="scxmnf" maxlength="4" name='bitian' />
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -718,7 +775,9 @@ text-decoration:none;
 					</select>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">荷载等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bitian' id="hzdj" style="width: 150px" /></td>
+<!-- 					<input type="text" name='bitian' id="hzdj" style="width: 150px" /></td> -->
+				<select id="hzdj" style="width: 120px;">
+  				 	</select>
 			</tr>
 
 			<tr style="height: 30px;">
@@ -727,10 +786,16 @@ text-decoration:none;
 					<input type="text" name='bitian' id="scsjhspl" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bitian' id="kjzh" style="width: 150px" /></td>
+<!-- 					<input type="text" name='bitian' id="kjzh" style="width: 150px" /> -->
+					<input type="text" name='bitian' id="kjzh1" style="width: 50px" />*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
+					
+					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bitian' id="sck_sbjgxs" style="width: 150px" />
+<!-- 					<input type="text" name='bitian' id="sck_sbjgxs" style="width: 150px" /> -->
+				
+					<select id="sck_sbjgxs" style="width: 120px;">
+  				 	</select>
 				</td>
 				
 			</tr>
@@ -754,14 +819,19 @@ text-decoration:none;
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scthdj" name='bitian' style="width: 150px" />
+<!-- 					<input type="text" id="scthdj" name='bitian' style="width: 150px" /> -->
+					<select id="scthdj" style="width: 120px;">
+  				 	</select>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁基础：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qljc" name='bitian' style="width: 150px" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道行政等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="ydgldj" name='bitian' style="width: 150px" /></td>
+<!-- 					<input type="text" id="ydgldj" name='bitian' style="width: 150px" /> -->
+					<select id="ydgldj" style="width: 120px;">
+  				 	</select>
+					</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>

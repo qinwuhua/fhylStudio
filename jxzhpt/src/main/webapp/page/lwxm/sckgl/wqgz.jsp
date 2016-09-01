@@ -23,8 +23,17 @@ $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	loadBmbm2("sbzt", "上报状态");
-	xmnfdx("xmnf"); 
-	jsdjdx('jsdj');
+	//xmnfdx("xmnf"); 
+	//jsdjdx('jsdj');
+	var urlid=getUrlParame('id');
+	if(urlid==null){
+		xmnfdx("xmnf"); 
+		//xzdjdx('gldj');
+	}else{
+		setxmnf("xmnf",urlid);
+		//setxzdj('gldj',urlid);
+	}
+	
 	xzdjdx('gldj');
 	kjfldx('akjfl');
 	tsdqdx('tsdq');
@@ -311,7 +320,7 @@ text-decoration:none;
 			</td>
 		</tr>
 		<tr>
-                   <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
+              <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目。</td>
         </tr>
          <tr>

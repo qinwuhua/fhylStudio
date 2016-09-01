@@ -141,7 +141,7 @@ function showAll(){
 			}},    
 			{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
 
-				if(row.sbzt2=="未上报" && row.sbthbmcd==11){
+				if(row.sbzt2=="未上报" && row.sbthcd==11){
 					if(row.cszt=='未审核'){
 						if(row.tsdq.indexOf('省直管试点县')!=-1){
 							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
@@ -150,13 +150,13 @@ function showAll(){
 					}else
 					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}
-				else if(row.sbzt2=="未上报" && row.sbthbmcd==9){
+				else if(row.sbzt2=="未上报" && row.sbthcd==9){
 					if(row.shzt=='未审核'){
 						return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:showshyj('+index+') style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 					}else
 					return '<a href=javascript:chuS('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 					}
-				else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==9&&row.sbthbmcd==7){
+				else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==9&&row.sbthcd==7){
 					return '<span style="color:grey;">已初审</span>';
 					}
 				else if(row.sbzt2=="已上报"&&$.cookie("unit2").length==11){
@@ -169,6 +169,7 @@ function showAll(){
 							return '<span style="color:grey;">  未审核  </span>';	
 					
 				}
+				
 			}},
 				//{field:'shzt',title:'审核状态',width:80,align:'center'},
 				{field:'roadcode',title:'公路编号',width:80,align:'center'},

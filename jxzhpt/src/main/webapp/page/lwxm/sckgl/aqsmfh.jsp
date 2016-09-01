@@ -41,7 +41,16 @@ $(function(){
 	//loadBmbm2("gldj", "行政等级");
 	loadBmbm2("bzls", "补助历史");
 	//tsdq("tsdq");
-	xmnfdx("jhnf"); 
+	
+	var urlid=getUrlParame('id');
+	if(urlid==null){
+		xmnfdx("jhnf"); 
+		//xzdjdx('gldj');
+	}else{
+		setxmnf("jhnf",urlid);
+		//setxzdj('gldj',urlid);
+	}
+	//xmnfdx("jhnf"); 
 	jsdjdx('jsdj');
 	xzdjdx('gldj');
 	tsdqdx('tsdq');

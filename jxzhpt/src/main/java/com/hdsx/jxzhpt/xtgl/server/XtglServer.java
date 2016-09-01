@@ -178,4 +178,6 @@ public interface XtglServer {
 	boolean insertxmsx(Param param);
 
 	Param selectXmsx();
+
+	List<HashMap<String, String>> selBmbmList();
 }

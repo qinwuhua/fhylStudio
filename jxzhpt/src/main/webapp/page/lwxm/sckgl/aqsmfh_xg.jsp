@@ -103,8 +103,14 @@ text-decoration:none;
 						$("#jsnr").html(str);
 					$("#scxjgjnd").val(item.xjgjnd);$("#cztzgs").val(item.cztzgs);$("#czzlc").val(item.czzlc);
 					$("#fapgdw").val(item.fapgdw);$("#fascdw").val(item.fascdw);
-					$("#faspsj").datebox('setValue',item.faspsj);$("#spwh").val(item.spwh);$("#sfsqablbz").val(item.sfsqablbz);
-			 		$("#ablbzsqwh").val(item.ablbzsqwh);$("#jsxz").val(item.jsxz);$("#bz").val(item.bz);
+					$("#faspsj").datebox('setValue',item.faspsj);$("#spwh").val(item.spwh);
+					getBmbm('安防建设性质','jsxz',item.jsxz);
+					getBmbm('安防是否申请按比例补助','sfsqablbz',item.sfsqablbz);
+
+					//$("#sfsqablbz").val(item.sfsqablbz);
+			 		$("#ablbzsqwh").val(item.ablbzsqwh);
+			 		//$("#jsxz").val(item.jsxz);
+			 		$("#bz").val(item.bz);
 					$("#scjhnf").combobox('setValue',item.jhnf);
 					$("#nsqbbz").val(item.nsqbbz);
 					jsnsqbz();
@@ -645,7 +651,11 @@ function deleteFile(id){
 		ts=parseFloat(($("#cztzgs").val())*bl).toFixed(0);
 		else
 		ts=bzzj.toFixed(0);
+		if(ts!='NaN')
 		$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+		else{
+			$("#bbzts").html("");
+		}
 	}
 </script>
 
@@ -751,7 +761,9 @@ function deleteFile(id){
 					<input type="text" id="cztzgs" name='bitian' onchange="sfcgwbw()" onblur="jsnsqbz()"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助(0、否1、是)：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sfsqablbz" maxlength="1"></td>
+<!-- 					<input type="text" id="sfsqablbz" maxlength="1"> -->
+					<select id="sfsqablbz" style="width: 120px;"></select>
+					</td>
 				
 			</tr>		
 			<tr style="height: 35px;">
@@ -760,7 +772,9 @@ function deleteFile(id){
 					<input type="text" id="ablbzsqwh"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质(1、中修2、大修)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz" name='bitian' maxlength="1"></td>
+<!-- 					<input type="text" id="jsxz" name='bitian' maxlength="1"> -->
+					<select id="jsxz" style="width: 120px;"></select>
+					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="scjhnf" maxlength="4"></td>
