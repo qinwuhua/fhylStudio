@@ -421,7 +421,7 @@ text-decoration:none;
 								<option value="五类">五类</option>
                               </select></td>
 
-                              	<td>按跨径分类：</td>
+                              	<td>大小桥分类：</td>
                               	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
                               	</select></td>
                               <td>桥梁编号：</td>

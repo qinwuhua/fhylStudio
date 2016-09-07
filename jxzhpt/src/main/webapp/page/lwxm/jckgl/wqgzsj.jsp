@@ -298,26 +298,30 @@ var xzqhstr;
 				width:$(window).width()-10,
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				{field:'cz',title:'操作',width:230,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:qqsj('+index+') style="text-decoration:none;color:#3399CC; ">前期工作时间</a>  '+		
 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}if(row.sbzt2=="未上报" && row.sbthcd==7&&(row.shzt=='未审核'||row.shzt==''||row.shzt==null)){
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:qqsj('+index+') style="text-decoration:none;color:#3399CC; ">前期工作时间</a>  '+		
 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
 						if(row.sbthcd==7&&row.shzt!='已审核'){
 							return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+							'<a href=javascript:qqsj('+index+') style="text-decoration:none;color:#3399CC; ">前期工作时间</a>  '+		
 							'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 							'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 						}else
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:qqsj('+index+') style="text-decoration:none;color:#3399CC; ">前期工作时间</a>  '+		
 						'<span style="color:grey;">编辑</span>  '+
 						'<span style="color:grey;">删除</span>';
 // 						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -391,6 +395,13 @@ var xzqhstr;
 		YMLib.UI.createWindow('lxxx','危桥编辑','wqgzsj_xg.jsp','lxxx',900,450);
 	}
 	
+	function qqsj(index){
+		var data=$("#grid").datagrid('getRows')[index];
+		obj=data;
+		YMLib.UI.createWindow('lxxx','拟完成前期工作时间','qqgzsj.jsp','lxxx',400,300);
+	}
+	
+	
 	function dcExcel(){
 		var sbthcd;
 	 	if($.cookie("unit2")=='______36'){
@@ -462,7 +473,7 @@ text-decoration:none;
 								<option value="四类">四类</option>
 								<option value="五类">五类</option>
                               </select></td>
-                              <td>按跨径分类：</td>
+                              <td>大小桥分类：</td>
                               <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
                               <td>桥梁编号：</td>
                               <td><input type="text" id="qlbh"style="width:70px"/></td>

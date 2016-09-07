@@ -527,6 +527,10 @@ function xgwqgzyb1(){
 
 //开工
 function tjwqgzkg(){
+	var sgxk='';
+	if($("#qlzmTable").html()=='')
+		sgxk='未上传';
+	else sgxk='已上传';
 	if($("#tj_sgdw").val()==''){
 		alert("请您输入施工单位");
 		return;
@@ -549,7 +553,7 @@ function tjwqgzkg(){
 	}
 	var data="gcglwqgz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglwqgz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglwqgz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglwqgz.sgdw="+$("#tj_sgdw").val()+"&gcglwqgz.jldw="+$("#tj_jldw").val()+"&gcglwqgz.jsdw="+$("#tj_jsdw").val()+"&gcglwqgz.xdwh="+$("#tj_xdwh").val()+"&gcglwqgz.zljdwj="+$("#tj_zljdwj").val()
-	+"&gcglwqgz.htje="+$("#tj_htje").val()+"&gcglwqgz.gys="+$("#tj_gys").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
+	+"&gcglwqgz.htje="+$("#tj_htje").val()+"&gcglwqgz.gys="+$("#tj_gys").val()+"&gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.sgxk="+sgxk;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -662,6 +666,9 @@ function showAll(){
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var xzdj=$("#ddlGldj").combobox('getValues').join(",");
+	if(xzdj.substr(0,1)==',')
+		xzdj=xzdj.substr(1,xzdj.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -684,8 +691,8 @@ function showAll(){
 	    	sfylrbwqk:'是',
 	    	gydwtj:'and 1=1',
 	    	'gcglwqgz.xzqh':xzqhstr,
-	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglwqgz.gldj':xzdj,
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText').replace('全部','')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -813,7 +820,7 @@ function showAll1(){
 	}else if(gydw.length==1){
 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		gydwstr=gydw[0] ;
+		gydwstr=gydw[0];
 	}else{
 		gydwstr= gydw.join(',');
 	}
@@ -851,6 +858,12 @@ function showAll1(){
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
+	var xzdj=$("#ddlGldj").combobox('getValues').join(",");
+	if(xzdj.substr(0,1)==',')
+		xzdj=xzdj.substr(1,xzdj.length);
+	var akjfl=$("#akjfl").combobox('getValues').join(",");
+	if(akjfl.substr(0,1)==',')
+		akjfl=xzdj.substr(1,akjfl.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -873,8 +886,9 @@ function showAll1(){
 	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue'),
 	    	gydwtj:"and gydwbm like '1%'",
 	    	'gcglwqgz.xzqh':xzqhstr,
-	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglwqgz.gldj':xzdj,
+	    	'gcglwqgz.akjfl':akjfl,
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText').replace('全部','')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -903,12 +917,13 @@ function showAll1(){
 	        	if(row.kgzt=='0')
 	        		return '未开工';
 	        	else if(row.jgzt=='1')
-	        		return '竣工'
+	        		return '竣工';
 	        		else return '在建';
 	        }},
 	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
 	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
-	        {field:'sjkgsj',title:'项目开工时间',width:100,align:'center'}
+	        {field:'sjkgsj',title:'项目开工时间',width:100,align:'center'},
+	        {field:'sgxk',title:'施工许可',width:100,align:'center'}
 	    ]]    
 	}); 
 }

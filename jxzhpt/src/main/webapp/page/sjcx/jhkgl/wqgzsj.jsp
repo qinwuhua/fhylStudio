@@ -127,7 +127,7 @@
 				 	'lxbm':$('#lxbm').val(),
 				 	'qlmc':$("#qlmc").val(),
 				 	'sbnf':xmnf,
-				 	'planwqgzsj.jhzt':'',
+				 	'planwqgzsj.jhzt':'审核通过',
 				 	'pddj':$("#pddj").combobox("getValue"),
 				 	'planwqgzsj.jsxz':$("#jsxz").combobox("getValue"),
 				 	'gldj':gldj,
@@ -203,7 +203,7 @@
 				if(jhpc.substr(0,2)=='全部')
 					jhpc=jhpc.substr(3,jhpc.length);
 			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
-			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
+			"&sbnf="+xmnf+"&planwqgzsj.jhzt=已审核"+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
 			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
 			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
 			+"&planwqgzsj.qlbh="+$('#txtqlbm').val()+"&planwqgzsj.jhpc="+jhpc;
@@ -259,7 +259,7 @@
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
-			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
+			"&sbnf="+xmnf+"&planwqgzsj.jhzt=审核通过"+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
 			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
 			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
 			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();

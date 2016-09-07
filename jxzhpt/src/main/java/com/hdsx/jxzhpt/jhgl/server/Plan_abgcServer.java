@@ -189,4 +189,6 @@ public interface Plan_abgcServer {
 
 	List<Excel_list> exportExcleAbgc(Plan_abgc jh);
 
+	boolean tuihuiAfById(String jh);
+
 }

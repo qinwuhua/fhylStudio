@@ -423,4 +423,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		
 		return queryList("exportExcleAbgc",planabgc);
 	}
+	@Override
+	public boolean tuihuiAfById(String jh) {
+		return update("tuihuiAfById", jh)>0;
+	}
 }

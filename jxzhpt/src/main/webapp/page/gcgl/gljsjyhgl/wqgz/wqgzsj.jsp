@@ -27,8 +27,10 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2("kgzt","开工状态");
 			loadDist1("xzqh",$.cookie("dist")); 
-			loadBmbm2('ddlGldj','行政等级');
-			tsdq('ddlTSDQ');
+			//loadBmbm2('ddlGldj','行政等级');
+			xzdjdx('ddlGldj');
+			tsdqdx('ddlTSDQ');
+			kjfldx('akjfl');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}
@@ -66,10 +68,16 @@
 			var lxmc=$("#lxmc").val();
 			var qlmc=$("#qlmc").val();
 			var ybzt=$("#ybzt").val();
-			var xmnf=$("#ddlYear").val();
+			var xmnf=$("#ddlYear").combobox('getValues').join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var xzdj=$("#ddlGldj").combobox('getValues').join(",");
+			if(xzdj.substr(0,1)==',')
+				xzdj=xzdj.substr(1,xzdj.length);
+			
 			var data="gcglwqgz.kgzt="+kgzt+"&gcglwqgz.jgzt="+jgzt+"&gcglwqgz.lxmc="+lxmc+
 		 	"&gcglwqgz.qlmc="+qlmc+"&gcglwqgz.qlbh="+$('#qlbm').val()+
-		 	"&gcglwqgz.ybzt="+ybzt+"&gcglwqgz.sfsj="+sfsj+"&gcglwqgz.xmnf="+xmnf
+		 	"&gcglwqgz.ybzt="+ybzt+"&gcglwqgz.sfsj="+sfsj+"&gcglwqgz.xmnf="+xmnf+"&gcglwqgz.tsdq="+$("#ddlTSDQ").combobox('getText').replace('全部','')
 		 	+'&gcglwqgz.sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")+'&gcglwqgz.gydwtj='+"and gydwbm like '1%'";
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr},function(){
 				window.location.href='/jxzhpt/gcgl/dcwqgzsjExcel.do?'+data;
@@ -151,7 +159,8 @@ a:active {
 									</select>
 								</p>
 								<p style="margin: 1% 0% 1% 2%;">
-									
+								<span>桥梁分类：</span>
+								<input type="text" id="akjfl" style="width: 100px;">	
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll1()"/>        					
                                 <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>

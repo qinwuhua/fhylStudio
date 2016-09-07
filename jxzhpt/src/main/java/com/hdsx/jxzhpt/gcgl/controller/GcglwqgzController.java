@@ -495,6 +495,10 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setSfylrbwqk(sfylrbwqk);
 			gcglwqgz.setGydwtj(gydwtj);
 			gcglwqgz.setWgnf(wgnf);
+			gcglwqgz.setAkjfl(getcxtj(gcglwqgz.getAkjfl(),"t2.scakjfl"));
+			//t3.Xlxbm
+			gcglwqgz.setGldj(getcxtj(gcglwqgz.getGldj(),"t3.lxbm"));
+			gcglwqgz.setTsdq(getcxtj(gcglwqgz.getTsdq(),"t3.tsdq"));
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}
@@ -833,6 +837,27 @@ public class GcglwqgzController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	
+	
+	
+	
+	
+	
+	public String getcxtj(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+					}
+		return result;
 	}
 }
 	

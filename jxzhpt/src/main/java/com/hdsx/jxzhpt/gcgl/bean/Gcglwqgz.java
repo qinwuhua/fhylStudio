@@ -6,6 +6,8 @@ import java.util.Date;
 public class Gcglwqgz implements Serializable {
 	//private String pfztz;
 	//private String stz;
+	private String sgxk;
+	private String xzdj;
 	private String btz;
 	private String dftz;
 	private String zbz;
@@ -34,6 +36,12 @@ public class Gcglwqgz implements Serializable {
 	private String bnwcgl;
 	
 	
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
 	public String getJhlc() {
 		return jhlc;
 	}
@@ -1170,4 +1178,11 @@ public class Gcglwqgz implements Serializable {
 	public void setSjwgsj(String sjwgsj) {
 		this.sjwgsj = sjwgsj;
 	}
+	public String getSgxk() {
+		return sgxk;
+	}
+	public void setSgxk(String sgxk) {
+		this.sgxk = sgxk;
+	}
+	
 }

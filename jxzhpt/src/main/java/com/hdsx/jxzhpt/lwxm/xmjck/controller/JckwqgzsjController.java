@@ -1662,6 +1662,10 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 		return result;
 	}
 	
+	public void lrqqgzsj(){
+		ResponseUtils.write(getresponse(), ""+jckwqgzsjServer.lrqqgzsj(jckwqgzsj));
+	}
+	
 }
 
 	

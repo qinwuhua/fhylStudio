@@ -184,6 +184,8 @@
 		<action name="importWqgz_jh" class="plan_wqgzController" method="importWqgz_jh"/>
 		<action name="importZhfz_jh" class="plan_zhfzController" method="importZhfz_jh"/>
 		<action name="queryTsdq" class="plan_abgcController" method="queryTsdq"/>
+		<action name="tuihuiAfById" class="plan_abgcController" method="tuihuiAfById"/>
+		
 		
 		<action name="queryChildGydw" class="plan_zjqfController" method="queryChildGydw"></action>
 		<action name="queryZjqfByGydwbm" class="plan_zjqfController" method="queryZjqfByGydwbm"></action>

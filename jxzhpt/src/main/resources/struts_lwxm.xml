@@ -181,6 +181,8 @@
      <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>
  </package>
  <package name="wqgzsj" extends="struts-default" namespace="/wqgzsj">
+ 	<action name="lrqqgzsj" class="jckwqgzsjController" method="lrqqgzsj"/>
+ 
 	 <action name="deleteqlzpbyxmbm" class="jckwqgzsjController" method="deleteqlzpbyxmbm"/>
   	 <action name="insertWqgz" class="jckwqgzsjController" method="insertWqgz"/>
  	 <action name="selectWqgz" class="jckwqgzsjController" method="selectWqgz"/>

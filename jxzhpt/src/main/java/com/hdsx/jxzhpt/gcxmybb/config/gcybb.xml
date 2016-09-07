@@ -1241,7 +1241,7 @@
 				and lxbm like trim(#{tiaojian})||'%'
 		</if>
 		<if test="xmnf != null and  xmnf != ''">
-				and sbnf =${xmnf}
+				and sbnf in (${xmnf})
 		</if>
 		<if test="wgnf != null and  wgnf != ''">
 				and substr(pl.sjwgsj,0,4)=#{wgnf}
@@ -1274,7 +1274,7 @@
 				and lxbm like trim(#{tiaojian})||'%'
 		</if>
 		<if test="xmnf != null and  xmnf != ''">
-				and sbnf =${xmnf}
+				and sbnf in (${xmnf})
 		</if>
 		<if test="wgnf != null and  wgnf != ''">
 				and substr(pl.sjwgsj,0,4)=#{wgnf}
@@ -1307,7 +1307,7 @@
 				and lxbm like trim(#{tiaojian})||'%'
 		</if>
 		<if test="xmnf != null and  xmnf != ''">
-				and sbnf =${xmnf}
+				and sbnf in (${xmnf})
 		</if>
 		<if test="wgnf != null and  wgnf != ''">
 				and substr(pl.sjwgsj,0,4)=#{wgnf}

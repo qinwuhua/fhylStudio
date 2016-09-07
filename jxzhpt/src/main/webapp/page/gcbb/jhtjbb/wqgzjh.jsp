@@ -21,7 +21,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			xmnf('ddlYear1');
+			xmnfdx('ddlYear1');
 			xmnf1('wgnf');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -83,6 +83,9 @@
 				alert("请选择项目年份");
 				return;
 			}
+			var xmnf1=$("#ddlYear1").combobox("getValues").join(",");
+			if(xmnf1.substr(0,1)==',')
+				xmnf1=xmnf1.substr(1,xmnf1.length);
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
@@ -107,11 +110,11 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xzdj=$("#xzdj").combobox("getValue");
-			var data="gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.wgnf="+$("#wgnf").combobox("getValue").replace('不选择','');
+			var data="gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf1+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.wgnf="+$("#wgnf").combobox("getValue").replace('不选择','');
 			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			$("#btnf").html(xmnf);
+			$("#btnf").html(xmnf1);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getWqgzjh.do",
 				data:data,

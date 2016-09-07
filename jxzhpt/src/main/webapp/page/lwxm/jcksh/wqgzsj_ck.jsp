@@ -73,6 +73,7 @@ function loadxx(){
 	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
 	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
 	$("#xlxmc").html(item.xlxmc);$("#xlxbm").html(item.xlxbm);$("#xqlbm").html(item.xqlbm+"("+item.xqlmc+")");$("#xzxzh").html(item.xzxzh);$("#jd").html(item.ptx);$("#wd").html(item.pty);
+	$("#qqgzsj").html(item.qqgzsj);
 }
 
 function selectTSDQ(str){
@@ -279,8 +280,12 @@ function selectTSDQ(str){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qljggcs"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟完成前期工作时间：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qqgzsj"></span>
 				</td>
 				
 			</tr>

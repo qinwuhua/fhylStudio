@@ -49,6 +49,7 @@ import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
@@ -87,6 +88,25 @@ public class Plan_abgcController extends BaseActionSupport{
 	private String uploadGkFileName;
 	private File uploadSjt;
 	private String uploadSjtFileName;
+	public String getcxtj(String bh,String name){
+		String result="";
+		if(bh!=null){
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+					}
+		return result;
+	}
+	public void tuihuiAfById(){
+		String cxtj="";
+		cxtj=getcxtj(jh.getId(),"id");
+		ResponseUtils.write(getresponse(), ""+abgcServer.tuihuiAfById(cxtj));
+	}
 	
 	public void queryAbgcListByStatus(){
 		try {

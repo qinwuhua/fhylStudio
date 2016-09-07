@@ -28,7 +28,7 @@
 			loadBmbm2("kgzt","开工状态");
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlGldj','行政等级');
-			tsdq('ddlTSDQ');
+			tsdqdx('ddlTSDQ');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}

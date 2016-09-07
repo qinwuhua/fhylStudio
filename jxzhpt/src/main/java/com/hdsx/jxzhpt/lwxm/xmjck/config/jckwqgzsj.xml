@@ -1090,5 +1090,9 @@
 			and jsxz = #{jsxz}
 		</if>
 	</select>
+	<update id="lrqqgzsj" parameterType="jckwqgzsj">
+	update xmk_wqgz set qqgzsj=#{qqgzsj} where id=#{id}
+	</update>
+	
 </mapper>
 

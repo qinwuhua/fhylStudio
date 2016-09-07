@@ -11,6 +11,7 @@ import java.util.Date;
 public class Jckwqgzsj implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private String qqgzsj;
 	private String id;
 	private String qlmc;
 	private String qlbh;
@@ -995,6 +996,12 @@ public class Jckwqgzsj implements Serializable{
 	}
 	public void setXqlmc(String xqlmc) {
 		this.xqlmc = xqlmc;
+	}
+	public String getQqgzsj() {
+		return qqgzsj;
+	}
+	public void setQqgzsj(String qqgzsj) {
+		this.qqgzsj = qqgzsj;
 	}
 	
 }

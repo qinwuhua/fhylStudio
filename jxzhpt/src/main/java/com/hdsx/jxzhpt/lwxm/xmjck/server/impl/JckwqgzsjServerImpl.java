@@ -395,4 +395,9 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	public List<Excel_list> dcwqgzsjsckshExcel(Jckwqgzsj jckwqgzsj) {
 		return queryList("dcwqgzsjsckshExcel", jckwqgzsj);
 	}
+
+	@Override
+	public boolean lrqqgzsj(Jckwqgzsj jckwqgzsj) {
+		return update("lrqqgzsj", jckwqgzsj)==1;
+	}
 }

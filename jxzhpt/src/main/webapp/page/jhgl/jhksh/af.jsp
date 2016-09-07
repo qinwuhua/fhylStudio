@@ -198,6 +198,46 @@
 			YMLib.Var.id=id;
 			YMLib.UI.createWindow('ab_tz','安防工程',"/jxzhpt/page/jhgl/jhkgl/abgc_tz.jsp",'wq_tz',500,200);
 		}
+		
+		function tuihui(){
+			var rows=$('#grid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要退回的项目！");
+				return;
+			}
+			var id=rows[0].id;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].spzt!='1'){
+					alert('请勾选已审核的项目！');
+					return;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+			}
+			if(confirm('确定退回到未审核状态？')){
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/jhgl/tuihuiAfById.do",
+					 dataType : 'json',
+					 data : 'jh.id=' +id,
+					 success : function(msg){
+						 if(msg){
+							 alert('退回成功！');
+							 searchAbgc();
+						 }else{
+							 YMLib.Tools.Show('退回失败！',3000);
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+			}
+		}
+		
+		
+		
 	</script>
 	<style type="text/css">
 		TD {font-size: 12px;}
@@ -254,6 +294,7 @@
                               	<td colspan="10">
         							<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
 <%--         							<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/> --%>
+        							<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;vertical-align:middle;" />
         							<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 <!--         							<img id="drExcel" onclick="importAbgcSh()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
                              	</td>

@@ -19,7 +19,8 @@
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
-	<script type="text/javascript">function ybnf(id){
+	<script type="text/javascript">
+	function ybnf(id){
 		var myDate = new Date();
 		var years=[];
 		var first;
@@ -51,6 +52,8 @@
 		$('#'+id).combobox("setValue",+first);
 	}
 		$(function(){
+			kjfldx('akjfl');
+			xzdjdx('xzdj');
 			ybnf('ybnf');
 			ybyf('ybyf');
 			setjhxdnf();
@@ -126,6 +129,14 @@
 				alert("请选择年份");
 				return;
 			}
+			var akjfl=$("#akjfl").combotree("getValues");
+			if(akjfl.join(",").substr(0,1)==',')
+				akjfl=akjfl.join(",").substr(1,akjfl.join(",").length).split(',');
+			var xzdj=$("#xzdj").combotree("getValues");
+			if(xzdj.join(",").substr(0,1)==',')
+				xzdj=xzdj.join(",").substr(1,xzdj.join(",").length).split(',');
+			
+			
 			var biaotou = $("#biaotou");
 			var str1='';
 			var str2='';
@@ -149,7 +160,7 @@
 			biaotou.append(biaotstr);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
-			var data="gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue');
+			var data="gcglwqgz.xmnf="+xmnf+"&gcglwqgz.ybnf="+$("#ybnf").combobox('getValue')+"&gcglwqgz.ybyf="+$("#ybyf").combobox('getValue')+"&gcglwqgz.akjfl="+akjfl+"&gcglwqgz.xzdj="+xzdj;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getWqgzhzb.do",
@@ -268,12 +279,17 @@ a:active {
 								<span>截至进展年份：</span>
         						<input type="text" id="ybnf"  style="width:80px;">
         						<span>截至进展月份：</span>
-        						<input type="text" id="ybyf"  style="width:80px;">	
-        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<input type="text" id="ybyf"  style="width:80px;">
+        						<span>按跨径分类</span>	
+        						<input type="text" id="akjfl"  style="width:80px;">
+        						<span>行政等级</span>	
+        						<input type="text" id="xzdj"  style="width:80px;">
+        						
+        						
        							<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                       onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+                                       onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
 								 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                       onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                       onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: middle;" />
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
 

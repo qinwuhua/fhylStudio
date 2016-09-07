@@ -86,4 +86,6 @@ public interface JckwqgzsjServer {
 	boolean sjshtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj);
 
 	List<Jckwqgzsj> JckWqgzRoad1(Jckwqgzsj jckwqgzsj);
+
+	boolean lrqqgzsj(Jckwqgzsj jckwqgzsj);
 }

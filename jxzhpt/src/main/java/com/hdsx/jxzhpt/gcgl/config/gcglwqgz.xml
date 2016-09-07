@@ -153,13 +153,13 @@
 		update PLAN_WQGZ set SJWGSJ=#{sjwgsj},SJJCQC=#{jcqc},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglwqgz">
-		update PLAN_WQGZ set xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjjgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},zljdwj=#{zljdwj} where ID=#{jhid}
+		update PLAN_WQGZ set sgxk=#{sgxk},xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjjgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},zljdwj=#{zljdwj} where ID=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglwqgz" resultType="gcglwqgz">
 		select * from (
 		select m.*,rownum rn from (
-		select 
+		select t1.sgxk,
 		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,t1.zljdwj,t1.jhqlqc,t1.jhqlqk,
 		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,t1.sfylrbwqk,t1.shengbz,wcg.wcbtz,wcg.wcstz,wcg.wcztz,
 		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
@@ -176,7 +176,7 @@
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
 		<if test="akjfl != null and  akjfl != ''">
-				and t3.akjfl like '%'||#{akjfl}||'%'
+				and ${akjfl}
 		</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
@@ -185,10 +185,10 @@
 					${xzqhdm}
 			</if>
 			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
+					and ${gldj}
 			</if>
 			<if test="tsdq != null and  tsdq != ''">
-					and t3.tsdq like '%'||trim(#{tsdq})||'%'
+					and ${tsdq}
 			</if>
 			
 			<if test="gydwtj != null and  gydwtj != ''">
@@ -236,50 +236,51 @@
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
 		<if test="akjfl != null and  akjfl != ''">
-				and t3.akjfl like '%'||#{akjfl}||'%'
+				and ${akjfl}
 		</if>
-	<if test="gydw != null and  gydw != ''">
-			${gydw}
-	</if>
-	<if test="xzqhdm != null and  xzqhdm != ''">
-					${xzqhdm}
-			</if>
-			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
-			</if>
-			<if test="tsdq != null and  tsdq != ''">
-					and t3.tsdq like '%'||trim(#{tsdq})||'%'
-			</if>
-	<if test="gydwtj != null and  gydwtj != ''">
-				${gydwtj}
-	</if>
-	<if test="sfylrbwqk != null and  sfylrbwqk != ''">
-			and t1.sfylrbwqk = #{sfylrbwqk}
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="jgzt != null and  jgzt != ''">
-			and t1.jgzt like '%'||trim(#{jgzt})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf in (${xmnf})
-	</if>
-	<if test="wgnf != null and  wgnf != ''">
-					and substr(t1.sjwgsj,0,4) in (${wgnf})
-			</if>
-	<if test="qlmc != null and  qlmc != ''">
-			and t3.qlmc like '%'||trim(#{qlmc})||'%'
-	</if>
-	<if test="qlbh != null and  qlbh != ''">
-			and t3.qlbh like '%'||trim(#{qlbh})||'%'
-	</if>
-	 <if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>	
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="gldj != null and  gldj != ''">
+				and ${gldj}
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and ${tsdq}
+		</if>
+				
+		<if test="gydwtj != null and  gydwtj != ''">
+					${gydwtj}
+		</if>
+		<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+				and t1.sfylrbwqk = #{sfylrbwqk}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t3.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t1.sbnf in (${xmnf})
+		</if>
+		<if test="wgnf != null and  wgnf != ''">
+						and substr(t1.sjwgsj,0,4) in (${wgnf})
+				</if>
+		<if test="qlmc != null and  qlmc != ''">
+				and t3.qlmc like '%'||trim(#{qlmc})||'%'
+		</if>
+		<if test="qlbh != null and  qlbh != ''">
+				and t3.qlbh like '%'||trim(#{qlbh})||'%'
+		</if>
+		 <if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>	
 	 </select>
 	 
 	  <select id="selectWqgzTj" parameterType="gcglwqgz" resultType="gcglwqgz">
