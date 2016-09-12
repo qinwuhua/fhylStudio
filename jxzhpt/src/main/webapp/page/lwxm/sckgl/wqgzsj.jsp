@@ -29,7 +29,7 @@ $(function(){
 		czzt="初审状态";
 	}
 	if($.cookie("unit2").length==7){
-		czzt="审核状态";
+		czzt="上报状态";
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
@@ -349,9 +349,9 @@ function sckglWqgz(){
 					return '已初审  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
-					if(row.sck_shzt=='已审核'){return '<span style="color:grey;">已审核</span>';}		
+					/* if(row.sck_shzt=='已审核'){return '<span style="color:grey;">已审核</span>';}		
 					else return '<span style="color:grey;">未审核</span>';
-					}else{
+					}else{ */
 					return '<span style="color:grey;">已上报</span>';
 				}
 				

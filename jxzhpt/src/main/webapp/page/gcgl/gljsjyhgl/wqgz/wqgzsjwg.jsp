@@ -154,12 +154,12 @@
 		if(!confirm("确认完工吗？")){
 			return;
 		}
-		yzzmzp();
+		/* yzzmzp();
 		if(zmzp=='false')
 			return;
 		yzcmzp();
 		if(cmzp=='false')
-			return;
+			return; */
 		var data="gcglwqgz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglwqgz.jcqc="+$("#tj_jcqc").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
 		//alert(data);
 		$.ajax({

@@ -191,7 +191,24 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	
 	public void selwqgzsjZdy(){
 		try {
-			zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
+			//zdycx.setXzqhdm(zdycx.getXzqhdm().replaceAll("0*$",""));
+			if(zdycx.getGydw().indexOf(",")==-1){
+				if(zdycx.getGydw().length()==9)
+					zdycx.setGydw("and (gydwbm='"+zdycx.getGydw()+"'||'00' or gydwbm in(select id from xtgl_department where parent='"+zdycx.getGydw()+"'||'00'))");					else
+						zdycx.setGydw("and gydwbm like '%'||substr('"+zdycx.getGydw()+"',0,4)||'_'||substr('"+zdycx.getGydw()+"',6)||'%'");
+			}else{
+				zdycx.setGydw("and gydwbm in ("+zdycx.getGydw()+")");
+			}
+			if(zdycx.getXzqhdm().indexOf(",")==-1){
+				zdycx.setXzqhdm("and xzqhdm like '%"+zdycx.getXzqhdm()+"%'");
+			}else{
+				zdycx.setXzqhdm("and xzqhdm in ("+zdycx.getXzqhdm()+")");
+			}
+			zdycx.setTsdq(getcxtj(zdycx.getTsdq(), "tsdq"));
+			zdycx.setXzdj(getcxtj(zdycx.getXzdj(), "substr(qlbh,0,1)"));
+			zdycx.setJhpc(getcxtj(zdycx.getJhpc(), "jhpc"));
+			
+			
 			List<Gcglwqgz> list = zdycxServer.selwqgzsjZdy(zdycx);
 			int count = zdycxServer.selwqgzsjZdyCount(zdycx);
 			
@@ -393,5 +410,20 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 	@Override
 	public Zdycx getModel() {
 		return zdycx;
+	}
+	
+	public String getcxtj(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+					}
+		return result;
 	}
 }

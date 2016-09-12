@@ -110,6 +110,15 @@ public class Zdycx {
 		private String xmmc;
 		private String gldj;
 		
+		private String rksj;
+		private String xdnf;
+	
+		private String xzdj;
+		private String jhpc;
+		
+		
+		
+		
 		public String getGldj() {
 			return gldj;
 		}
@@ -697,6 +706,30 @@ public class Zdycx {
 		}
 		public void setJhnf(String jhnf) {
 			this.jhnf = jhnf;
+		}
+		public String getRksj() {
+			return rksj;
+		}
+		public void setRksj(String rksj) {
+			this.rksj = rksj;
+		}
+		public String getXdnf() {
+			return xdnf;
+		}
+		public void setXdnf(String xdnf) {
+			this.xdnf = xdnf;
+		}
+		public String getXzdj() {
+			return xzdj;
+		}
+		public void setXzdj(String xzdj) {
+			this.xzdj = xzdj;
+		}
+		public String getJhpc() {
+			return jhpc;
+		}
+		public void setJhpc(String jhpc) {
+			this.jhpc = jhpc;
 		}
 		
 		

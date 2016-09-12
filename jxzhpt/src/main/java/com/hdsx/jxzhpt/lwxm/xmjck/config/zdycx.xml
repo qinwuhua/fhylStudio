@@ -321,52 +321,101 @@
 		sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,pl.sbnf,pl.jhkgsj,pl.jhwgsj,
 		pl.sjdw,pl.sjpfdw,pl.pfwh jhpfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,pl.pfztz,pl.jhsybzje jhbbz,
 		pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,
-		pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
-		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm where pl.sckid=sc.sckid and sc.xmkid=xm.id) t
+		pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,xm.gydwbm,xm.xzqhdm,(case when pl.kgzt='0' then '未开工'  when pl.kgzt='1' and pl.jgzt='0' then '在建' when pl.jgzt='1' then '完工' end) kgzt,
+        (case when pl.jgzt='1' and jg.id is null then '完工未验收' when pl.jgzt='1' and jg.id is not null then '完工已验收' end)  wgzt,sc.scakjfl akjfl,xm.xmnf rksj,decode(pl.xdsj,null,pl.sbnf,substr(pl.xdsj,0,4)) xdnf,xm.pddj,pl.jhpc
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,gcgl_jgys jg where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=jg.jhid(+))  t
 		where 1=1 and gydwbm like '1%'
-		<if test="gydw != null and  gydw != ''">and gydwbm like '%'||trim(#{gydw})||'%'</if>
-		<if test="xzqhdm != null and  xzqhdm != ''">and xzqhdm like #{xzqhdm}||'%'</if>
-		<if test="kgzt != null and  kgzt != ''">and kgzt like '%'||trim(#{kgzt})||'%'</if>
+		<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
 		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||trim(#{lxmc})||'%'</if>
+		<if test="akjfl != null and  akjfl != ''">and akjfl like '%'||trim(#{akjfl})||'%'</if>
+		<if test="tsdq != null and  tsdq != ''">and ${tsdq}</if>
+		<if test="xmlx != null and  xmlx != ''">and sfylrbwqk like '%'||trim(#{xmlx})||'%'</if>
+		<if test="kgzt != null and  kgzt != ''">
+			<if test="kgzt != '完工未验收' and  kgzt != '完工已验收' "> and kgzt like #{kgzt}</if>
+			<if test="kgzt == '完工未验收' or  kgzt == '完工已验收' "> and wgzt like #{kgzt}</if>
+		</if>
 		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||trim(#{lxbm})||'%'</if>
-		<if test="xmnf != null and  xmnf != ''">and sbnf like '%'||trim(#{xmnf})||'%'</if>
-		<if test="xmlx != null and  xmlx != ''">and sfylrbwqk like '%'||trim(#{xmlx})||'%'</if>) m 
+		<if test="xmnf != null and  xmnf != ''">and sbnf in (${xmnf})</if>
+		<if test="xdnf != null and  xdnf != ''">and xdnf in (${xdnf})</if>
+		<if test="rksj != null and  rksj != ''">and rksj in (${rksj})</if>
+		<if test="pddj != null and  pddj != ''">and pddj like '%'||trim(#{pddj})||'%'</if>
+		<if test="qlbh != null and  qlbh != ''">and qlbh like '%'||trim(#{qlbh})||'%'</if>
+		<if test="qlmc != null and  qlmc != ''">and qlmc like '%'||trim(#{qlmc})||'%'</if>
+		<if test="xzdj != null and  xzdj != ''">and ${xzdj}</if>
+		<if test="jhpc != null and  jhpc != ''">and ${jhpc}</if>
+		<if test="jsxz != null and  jsxz != ''">and jsxz like '%'||trim(#{jsxz})||'%'</if>
+		
+		) m 
 		where <![CDATA[rownum<=(#{page} * #{rows})]]> ) where RN>((#{page} - 1) * #{rows})
 	 </select>
 	 
 	 <select id="selwqgzsjZdyCount" parameterType="zdycx" resultType="int">
-	 	select count(*) from (select sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
-		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj,sc.pfwh scpfwh,sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,
-		sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,pl.sbnf,pl.jhkgsj,pl.jhwgsj,pl.sjdw,pl.sjpfdw,pl.pfwh pfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,
-		pl.pfztz,pl.jhsybzje jhbbz,pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,
-		pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,
-		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm
-		where pl.sckid=sc.sckid and sc.xmkid=xm.id) t where 1=1
-		<if test="gydw != null and  gydw != ''">and gydwbm like '%'||trim(#{gydw})||'%'</if>
-		<if test="xzqhdm != null and  xzqhdm != ''">and xzqhdm like #{xzqhdm}||'%'</if>
-		<if test="kgzt != null and  kgzt != ''">and kgzt like '%'||trim(#{kgzt})||'%'</if>
+	 	select count(*) from (select sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,
+	 	xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
+		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj sgtpfsj,sc.pfwh scpfwh,
+		sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,pl.sbnf,pl.jhkgsj,pl.jhwgsj,
+		pl.sjdw,pl.sjpfdw,pl.pfwh jhpfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,pl.pfztz,pl.jhsybzje jhbbz,
+		pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,
+		pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,xm.gydwbm,xm.xzqhdm,(case when pl.kgzt='0' then '未开工'  when pl.kgzt='1' and pl.jgzt='0' then '在建' when pl.jgzt='1' then '完工' end) kgzt,
+        (case when pl.jgzt='1' and jg.id is null then '完工未验收' when pl.jgzt='1' and jg.id is not null then '完工已验收' end)  wgzt,sc.scakjfl akjfl,xm.xmnf rksj,decode(pl.xdsj,null,pl.sbnf,substr(pl.xdsj,0,4)) xdnf,xm.pddj,pl.jhpc
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,gcgl_jgys jg where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=jg.jhid(+))  t
+		where 1=1 and gydwbm like '1%'
+		<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
 		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||trim(#{lxmc})||'%'</if>
-		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||trim(#{lxbm})||'%'</if>
-		<if test="xmnf != null and  xmnf != ''">and sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="akjfl != null and  akjfl != ''">and akjfl like '%'||trim(#{akjfl})||'%'</if>
+		<if test="tsdq != null and  tsdq != ''">and ${tsdq}</if>
 		<if test="xmlx != null and  xmlx != ''">and sfylrbwqk like '%'||trim(#{xmlx})||'%'</if>
+		<if test="kgzt != null and  kgzt != ''">
+			<if test="kgzt != '完工未验收' and  kgzt != '完工已验收' "> and kgzt like #{kgzt}</if>
+			<if test="kgzt == '完工未验收' or  kgzt == '完工已验收' "> and wgzt like #{kgzt}</if>
+		</if>
+		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and sbnf in (${xmnf})</if>
+		<if test="xdnf != null and  xdnf != ''">and xdnf in (${xdnf})</if>
+		<if test="rksj != null and  rksj != ''">and rksj in (${rksj})</if>
+		<if test="pddj != null and  pddj != ''">and pddj like '%'||trim(#{pddj})||'%'</if>
+		<if test="qlbh != null and  qlbh != ''">and qlbh like '%'||trim(#{qlbh})||'%'</if>
+		<if test="qlmc != null and  qlmc != ''">and qlmc like '%'||trim(#{qlmc})||'%'</if>
+		<if test="xzdj != null and  xzdj != ''">and ${xzdj}</if>
+		<if test="jhpc != null and  jhpc != ''">and ${jhpc}</if>
+		<if test="jsxz != null and  jsxz != ''">and jsxz like '%'||trim(#{jsxz})||'%'</if>
+		
 	 </select>
 	 
 	<select id="exportExcel_wqsjzdy" parameterType="zdycx" resultType="sjbb">
-		select ${colName} from (select sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
-		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj,sc.pfwh scpfwh,sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,
-		sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,pl.sbnf,pl.jhkgsj,pl.jhwgsj,pl.sjdw,pl.sjpfdw,pl.pfwh pfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,
-		pl.pfztz,pl.jhsybzje jhbbz,pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,
-		pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,
-		xm.gydwbm,xm.xzqhdm,decode(pl.kgzt,'0','未开工','已开工') kgzt
-		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm where pl.sckid=sc.sckid and sc.xmkid=xm.id)
-	 	where 1=1
-		<if test="gydw != null and  gydw != ''">and gydwbm like '%'||trim(#{gydw})||'%'</if>
-		<if test="xzqhdm != null and  xzqhdm != ''">and xzqhdm like #{xzqhdm}||'%'</if>
-		<if test="kgzt != null and  kgzt != ''">and kgzt like '%'||trim(#{kgzt})||'%'</if>
+		select ${colName} from (select sc.scsqs,sc.scxsq,xm.lxbm,xm.lxmc,
+	 	xm.qlbh,xm.qlmc,sc.sck_qlzxzh,xm.xzqhmc,xm.gydw,xm.tsdq,sc.scqlqk,sc.scqlqc,sc.fapgdw,sc.fascdw,sc.faspsj,
+		sc.spwh,sc.jsxz,sc.tzgs,sc.hzdj,sc.scsjhspl,sc.kjzh,sc.sck_sbjgxs,sc.sck_xbjgxs,sc.sgtpfsj sgtpfsj,sc.pfwh scpfwh,
+		sc.zgq,sc.cjqz||'米' cjqz,sc.sjsd,sc.scthdj,sc.qljc,sc.ztz,sc.nsqbbz,pl.sbnf,pl.jhkgsj,pl.jhwgsj,
+		pl.sjdw,pl.sjpfdw,pl.pfwh jhpfwh,pl.pfsj,'长'||pl.jhqlqc||'-'||'宽'||pl.jhqlqk qljsgm,pl.zyjsnr,pl.pfztz,pl.jhsybzje jhbbz,
+		pl.jhsydfzcje jhdfzc,pl.sfsqablbz ablbz,pl.ablbzsqwh ablbwh,pl.xdsj,pl.jhxdwh,pl.sjkgsj,pl.yjjgsj yjwgsj,pl.sgdw,
+		pl.jsdw,pl.jldw,pl.zljdwj,pl.htje,pl.gys,pl.sfylrbwqk,xm.gydwbm,xm.xzqhdm,(case when pl.kgzt='0' then '未开工'  when pl.kgzt='1' and pl.jgzt='0' then '在建' when pl.jgzt='1' then '完工' end) kgzt,
+        (case when pl.jgzt='1' and jg.id is null then '完工未验收' when pl.jgzt='1' and jg.id is not null then '完工已验收' end)  wgzt,sc.scakjfl akjfl,xm.xmnf rksj,decode(pl.xdsj,null,pl.sbnf,substr(pl.xdsj,0,4)) xdnf,xm.pddj,pl.jhpc
+		from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm,gcgl_jgys jg where pl.sckid=sc.sckid and sc.xmkid=xm.id and pl.id=jg.jhid(+))  t
+		where 1=1 and gydwbm like '1%'
+		<if test="gydw != null and  gydw != ''">${gydw}</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">${xzqhdm}</if>
 		<if test="lxmc != null and  lxmc != ''">and lxmc like '%'||trim(#{lxmc})||'%'</if>
-		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||trim(#{lxbm})||'%'</if>
-		<if test="xmnf != null and  xmnf != ''">and sbnf like '%'||trim(#{xmnf})||'%'</if>
+		<if test="akjfl != null and  akjfl != ''">and akjfl like '%'||trim(#{akjfl})||'%'</if>
+		<if test="tsdq != null and  tsdq != ''">and ${tsdq}</if>
 		<if test="xmlx != null and  xmlx != ''">and sfylrbwqk like '%'||trim(#{xmlx})||'%'</if>
+		<if test="kgzt != null and  kgzt != ''">
+			<if test="kgzt != '完工未验收' and  kgzt != '完工已验收' "> and kgzt like #{kgzt}</if>
+			<if test="kgzt == '完工未验收' or  kgzt == '完工已验收' "> and wgzt like #{kgzt}</if>
+		</if>
+		<if test="lxbm != null and  lxbm != ''">and lxbm like '%'||trim(#{lxbm})||'%'</if>
+		<if test="xmnf != null and  xmnf != ''">and sbnf in (${xmnf})</if>
+		<if test="xdnf != null and  xdnf != ''">and xdnf in (${xdnf})</if>
+		<if test="rksj != null and  rksj != ''">and rksj in (${rksj})</if>
+		<if test="pddj != null and  pddj != ''">and pddj like '%'||trim(#{pddj})||'%'</if>
+		<if test="qlbh != null and  qlbh != ''">and qlbh like '%'||trim(#{qlbh})||'%'</if>
+		<if test="qlmc != null and  qlmc != ''">and qlmc like '%'||trim(#{qlmc})||'%'</if>
+		<if test="xzdj != null and  xzdj != ''">and ${xzdj}</if>
+		<if test="jhpc != null and  jhpc != ''">and ${jhpc}</if>
+		<if test="jsxz != null and  jsxz != ''">and jsxz like '%'||trim(#{jsxz})||'%'</if>
+		
 	</select>
 	<select id="selZdyBhsd" parameterType="zdycx" resultType="gcglbhsd">
 	select * from (

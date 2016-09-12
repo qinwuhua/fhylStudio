@@ -394,6 +394,9 @@
  		<if test="lxbm!='' and lxbm!= null "  >
  			or (lxbm=#{lxbm} and to_number(qlzxzh)=to_number(#{qlzxzh}))
  		</if>
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydwbm like #{gydw}||'%'
+ 		</if>
  </select>
  
  <sql id="wqgz_commonsql">

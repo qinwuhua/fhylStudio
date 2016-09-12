@@ -57,7 +57,7 @@ $(function(){
 		        data:datas,
 				success:function(msg){
 					if(Boolean(msg)){
-						var datas1="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
+						var datas1="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydw=2";
 						$.ajax({
 							type:'post',
 							url:'/jxzhpt/xmjck/onceWqgz.do',

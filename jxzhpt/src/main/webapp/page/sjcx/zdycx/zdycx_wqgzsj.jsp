@@ -33,11 +33,22 @@ text-decoration:none;
 		var tableCol;
 		var gydw=parent.YMLib.Var.gydw;
 		var xzqhdm=parent.YMLib.Var.xzqhdm;
-		var kgzt=parent.YMLib.Var.kgzt;
 		var lxmc=parent.YMLib.Var.lxmc;
-		var lxbm=parent.YMLib.Var.lxbm;
+		var akjfl=parent.YMLib.Var.akjfl;
+		var tsdq=parent.YMLib.Var.tsdq;
 		var xmlx=parent.YMLib.Var.xmlx;
+		var kgzt=parent.YMLib.Var.kgzt;
+		var lxbm=parent.YMLib.Var.lxbm;
+		var rksj=parent.YMLib.Var.rksj;
+		var xdnf=parent.YMLib.Var.xdnf;
 		var xmnf=parent.YMLib.Var.xmnf;
+		var pddj=parent.YMLib.Var.pddj;
+		var qlbh=parent.YMLib.Var.qlbh;
+		var qlmc=parent.YMLib.Var.qlmc;
+		var xzdj=parent.YMLib.Var.xzdj;
+		var jhpc=parent.YMLib.Var.jhpc;
+		var jsxz=parent.YMLib.Var.jsxz;
+		
 		$("#save_button").click(function(){
 			nameValue=new Array();
 			colValue= new Array();
@@ -72,29 +83,23 @@ text-decoration:none;
 			parent.$("#grid").datagrid({    
 					 url:'/jxzhpt/zdycx/selwqgzsjZdy.do', 
 					 queryParams: {
-					    	gydw: function(){
-					    		if(gydw.substr(gydw.length-2,2)=='00'){
-					    			gydw=gydw.substr(0,gydw.length-2);
-					    			if(gydw.substr(gydw.length-2,2)=='00'){
-					    				gydw=gydw.substr(0,gydw.length-2);
-					    			}
-					    		}
-					    		return gydw;
-					    	},
-					    	xzqhdm:function(){
-					    		if(gydw.substr(gydw.length-2,2)=='00'){
-					    			gydw=gydw.substr(0,gydw.length-2);
-					    			if(gydw.substr(gydw.length-2,2)=='00'){
-					    				gydw=gydw.substr(0,gydw.length-2);
-					    			}
-					    		}
-					    		return gydw;
-						 	},
-					    	kgzt: kgzt,
+					    	gydw:gydw,
+					    	xzqhdm:xzqhdm,
 					    	lxmc:lxmc,
-					    	lxbm:lxbm,
-					    	xmlx:xmlx,
-					    	xmnf:xmnf
+							akjfl:akjfl,
+							tsdq:tsdq,
+							xmlx:xmlx,
+							kgzt:kgzt,
+							lxbm:lxbm,
+							rksj:rksj,
+							xdnf:xdnf,
+							xmnf:xmnf,
+							pddj:pddj,
+							qlbh:qlbh,
+							qlmc:qlmc,
+							xzdj:xzdj,
+							jhpc:jhpc,
+							jsxz:jsxz
 						},
 					striped:true,
 				    pagination:true,
@@ -106,7 +111,6 @@ text-decoration:none;
 			}); 
  			var this_width;
 			if (nameValue.length > 7) {
-
 				this_width = 120;
 			} else {
 				this_width = 1080 / (nameValue.length) - 10;
@@ -208,12 +212,12 @@ text-decoration:none;
 					<input  type="radio" value="bx" name="radio" id="bx"/>不选
 				</td>
 			</tr>
-			<tr  style="height: 30px;">
+			<tr style="height: 30px;">
 				<td colspan="2" style="background-color: #ffffff;width:33%" align="center">项目基本信息</td>
 				<td colspan="2" style="background-color: #ffffff;width:34%" align="center">年度计划</td>
 				<td colspan="2"  style="background-color: #ffffff;" align="center">施工进展</td>
 			</tr>
-			<tr  style="height: 30px;">
+			<tr style="height: 30px;">
 				<td colspan="2" style="background-color: #ffffff;" align="center">
 					<input  type="radio" value="qx" name="radio1" id="qx1"/>全选
 					<input  type="radio" value="fx" name="radio1" id="fx1"/>反选

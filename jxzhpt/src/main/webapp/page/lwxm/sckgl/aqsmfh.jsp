@@ -31,7 +31,7 @@ $(function(){
 		czzt="初审状态";
 	}
 	if($.cookie("unit2").length==7){
-		czzt="审核状态";
+		czzt="上报状态";
 	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
@@ -183,10 +183,11 @@ $("#grid").datagrid({
 				return '<span style="color:grey;">已上报</span>';
 				}
 			else if($.cookie("unit2").length==7){
-				if(row.shzt!='')
+				/* if(row.shzt!='')
 					return '<span style="color:grey;">  '+row.shzt+'   </span>';
 					else
-						return '<span style="color:grey;">  未审核  </span>';	
+						return '<span style="color:grey;">  未审核  </span>';	 */
+				return '<span style="color:grey;">  已上报  </span>';	
 				
 			}
 			
