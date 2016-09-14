@@ -110,7 +110,7 @@
  		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id 
  		where 1=1 
- 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+ 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是' and sfsc is null
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>

@@ -21,7 +21,7 @@
 	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
 	 			where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%' and xxcsj='是'
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%' and xxcsj='是' and sfsc is null
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -131,7 +131,7 @@
 	 		select count(*) from xmk_wqgz t
 	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是' and sfsc is null
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
@@ -185,6 +185,7 @@
 		 <update id="tuihuiWqgzsjById" parameterType="java.util.List">
 		 	update xmk_wqgz set shzt='未审核' where id=#{String}
 		 </update>
+		
 		  <update id="tuihuiWqgzsjsckById" parameterType="java.util.List">
 		 	update sck_wqgz set sck_shzt='未审核' where sckid=#{String}
 		 </update>
@@ -221,7 +222,7 @@
       qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
 	 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是' and sfsc is null
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -288,7 +289,7 @@
  		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
  		where (sbthcd=7 or shyj2 is not null)
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是' and sfsc is null
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -354,7 +355,7 @@
  		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
 	 			on t.id=t1.id
  		where (sbthcd=7 or shyj2 is not null)
-			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+			and sbthcd>=#{sbthcd} and gydwbm like '1%'  and xxcsj='是' and sfsc is null
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -425,6 +426,15 @@
  		</update>
  		
  		
+ 		<update id="xgwqsfsc" parameterType="jckwqgzsj" >
+ 			update xmk_wqgz set sfsc='是' where id =#{xmkid} 
+ 		</update>
+ 		<update id="xgwqsfscbeatch" parameterType="java.util.List" >
+ 			update xmk_wqgz set sfsc=null where 1=1 and id in (select xmkid from sck_wqgz where sckid=#{value})
+ 		</update>
+ 		
+ 		
+ 		
  		<update id="updateWqgz" parameterType="jckwqgzsj">
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},pddj=#{pddj},sbjgxs=#{sbjgxs},
@@ -446,7 +456,7 @@
 	      spwh v_15,round(to_number(ztz),0) v_16,jsxz v_17,jsnr v_18,scxmnf v_19,round(to_number(nsqbbz),0) v_20,bz v_21
 		 	 from (
 		 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-			 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1 
+			 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1  and sfjh is null
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
@@ -514,7 +524,7 @@
 	      spwh v_15,round(to_number(ztz),0) v_16,jsxz v_17,jsnr v_18,scxmnf v_19,round(to_number(nsqbbz),0) v_20,bz v_21
 		 	 from (
 		 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-			 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1 
+			 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1   and sfjh is null
 		 
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
@@ -585,7 +595,7 @@
  		<select id="selectSckwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-		 (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		 (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1  and sfjh is null
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
@@ -644,7 +654,7 @@
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectSckwqgzCount" parameterType="jckwqgzsj" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1  and sfjh is null
 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
@@ -700,7 +710,7 @@
  		</if>
 	</select>
 	<select id="selectSckwqgzCount1" parameterType="jckwqgzsj" resultType="jckwqgzsj">
-		select count(*) id,sum(ztz) ztz,sum(nsqbbz) nsqbbz from (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		select count(*) id,sum(ztz) ztz,sum(nsqbbz) nsqbbz from (select * from sck_wqgz t join xmk_wqgz xm on xmkid=xm.id where 1=1  and sfjh is null
 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
  					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 				</if>
@@ -807,7 +817,7 @@
  	<select id="selectSckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1  and sfjh is null
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 			</if>
@@ -876,7 +886,7 @@
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectSckShwqgzCount" parameterType="jckwqgzsj" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1  and sfjh is null
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 			</if>
@@ -943,7 +953,7 @@
 	</select>	
 	
 	<select id="selectSckShwqgzCount1" parameterType="jckwqgzsj" resultType="jckwqgzsj">
-		select count(*) id,sum(ztz) ztz,sum(nsqbbz) nsqbbz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+		select count(*) id,sum(ztz) ztz,sum(nsqbbz) nsqbbz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1  and sfjh is null
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 			</if>
@@ -1014,6 +1024,10 @@
 	<update id="sjshtyWqgzsjwqgz" parameterType="jckwqgzsj" >
 		update sck_wqgz set sck_shzt='已审核',lrjh='已列入',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shyj2='同意' where sckid =#{id} 
 	</update>
+	<update id="xgsfjhty" parameterType="jckwqgzsj" >
+		update sck_wqgz set sfjh='是' where sckid =#{id} 
+	</update>
+	
 	<update id="sjshbtyWqgzsjwqgz" parameterType="jckwqgzsj" >
 		update sck_wqgz set sck_shzt='未审核',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shzt1='未审核',sck_shyj2=#{shyj2} where sckid =#{id} 
 	</update>

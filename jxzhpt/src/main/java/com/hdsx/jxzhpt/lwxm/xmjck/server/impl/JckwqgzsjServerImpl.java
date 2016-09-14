@@ -71,7 +71,9 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			for (int i = 0; i < strs.length; i++) {
 				list.add(strs[i]);
 			}
-			if(deleteBatch("tuihuiWqgzsjById", list)>0) return true;
+			if(deleteBatch("tuihuiWqgzsjById", list)>0){ 
+				
+				return true;}
 			else return false;
 		
 	}
@@ -169,12 +171,21 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 
 	@Override
 	public boolean sjshtyWqgzsjById(Jckwqgzsj jckwqgzsj) {
-		if(update("sjshtyWqgzsjById", jckwqgzsj)>0) return true;
+		if(update("sjshtyWqgzsjById", jckwqgzsj)>0){ 
+			//jckwqgzsj.setBz("是");//将其存入备注中
+			//修改一个字段，让他们查询不到基础库的数据
+			//update("xgwqsfsc", jckwqgzsj);//修改危桥字段，是否审查
+			return true;
+		}
 		else return false;
 	}
 	@Override
 	public boolean sjshtyWqgzsjByIdbeatch(Jckwqgzsj jckwqgzsj) {
-		if(update("sjshtyWqgzsjByIdbeatch", jckwqgzsj)>0) return true;
+		if(update("sjshtyWqgzsjByIdbeatch", jckwqgzsj)>0){ 
+			//jckwqgzsj.setBz("是");//将其存入备注中
+			//修改一个字段，让他们查询不到基础库的数据
+			//update("xgwqsfscbeatch", jckwqgzsj);//修改危桥字段，是否审查
+			return true;}
 		else return false;
 	}
 	
@@ -225,8 +236,10 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	
 	@Override
 	public boolean insertSckwqgz(Jckwqgzsj jckwqgzsj) {
-		if(insert("insertSckwqgz",jckwqgzsj)>0)
+		if(insert("insertSckwqgz",jckwqgzsj)>0){
+			update("xgwqsfsc", jckwqgzsj);
 			return true;
+		}
 		else return false;
 	}
 
@@ -240,7 +253,9 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			delete("deleteqlzpbyxmbm",jckwqgzsj1);
 			list.add(strs[i]);
 		}
-		if(deleteBatch("deleteSckWqgz", list)>0) return true;
+		if(deleteBatch("deleteSckWqgz", list)>0){ 
+			updateBatch("xgwqsfscbeatch", list);
+			return true;}
 		else return false;
 	}
 	
@@ -295,6 +310,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	@Override
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
+			update("xgsfjhty", jckwqgzsj);
 			Planwqgzsj planwqgzsj = queryOne("cxplanwqgzbyid", jckwqgzsj);
 			if(planwqgzsj!=null){
 				

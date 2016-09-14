@@ -529,7 +529,8 @@ function openAddWqgz(){
 	openAdd('wqgz_add','添加安保工程项目','../add/wqgzAdd.jsp');
 }
 function dropWqgzs(){
-	var sel=gridObj.datagrid("getSelections");
+	var sel=$('#grid').datagrid('getSelections');
+	
 	if(sel.length==0){
 		alert("请选择要删除的计划！");
 		return;

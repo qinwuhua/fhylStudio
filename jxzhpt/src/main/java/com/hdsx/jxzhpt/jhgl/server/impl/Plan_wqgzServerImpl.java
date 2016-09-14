@@ -73,6 +73,7 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		for(int i=0;i<ids.length;i++){
 			idlist.add(ids[i]);
 		}
+		updateBatch("qkWqsfjhlist",idlist);
 		return deleteBatch("dropWqgzById",idlist)==idlist.size();
 	}
 

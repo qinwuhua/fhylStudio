@@ -491,6 +491,9 @@
 	<delete id="dropWqgzById" parameterType="string">
 		delete from plan_wqgz jh where jh.id=#{id}
 	</delete>
+	<delete id="qkWqsfjhlist" parameterType="string">
+		update sck_wqgz set sfjh=null where sckid in ( select sckid from plan_wqgz jh where jh.id=#{id})
+	</delete>
 	<update id="editWqgzById" parameterType="plan_wqgz">
 		update plan_wqgz set sbnf=#{sbnf}
 		<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
