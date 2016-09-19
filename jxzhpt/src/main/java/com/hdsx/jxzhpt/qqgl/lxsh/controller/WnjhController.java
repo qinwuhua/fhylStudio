@@ -646,6 +646,7 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void selectXjwnjh(){
 		try {
+			System.out.println(lxsh.getGydw());
 			String tiaojian2="";
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and xzqhdm like '%"+xzqh+"%'";

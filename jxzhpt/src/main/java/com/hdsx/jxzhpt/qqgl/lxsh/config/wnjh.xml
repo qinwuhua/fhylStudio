@@ -215,6 +215,9 @@
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -285,6 +288,9 @@
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -358,6 +364,9 @@
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -426,6 +435,9 @@
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -498,6 +510,9 @@
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -567,6 +582,9 @@
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 				or t.id in (select xmid from wnjh_lx where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -866,6 +884,9 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
 	<select id="querywnjhLmgz" parameterType="lxsh" resultType="elist">
@@ -909,6 +930,9 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
@@ -956,6 +980,9 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by t.id desc,lx.sffirst desc	
 	</select>
@@ -1131,6 +1158,9 @@
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1197,6 +1227,9 @@
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -1265,6 +1298,9 @@
 		<if test="ghxlxmc!='' and ghxlxmc!= null ">
 			and (t.id in (select distinct xmid from lx_clsd1 where ghlxmc like '%'||#{ghxlxmc}||'%')
 			)
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -1375,6 +1411,9 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
@@ -1444,6 +1483,9 @@
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
 		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
 		order by xmnf
 		) t1
 	</select>
@@ -1512,6 +1554,9 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by xmnf
 		) t1
@@ -1586,6 +1631,9 @@
 		</if>
 		<if test="xmklx !='' and xmklx != null ">
 			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
 		</if>
 		order by id,lx.sffirst desc
 		) t1

@@ -344,10 +344,13 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < ids.length; i++) {
 			hm=new HashMap<String, Object>();
+			update("delwnsjgz", ids[i]);
 			hm.put("xmbm", ids[i]);
 			lm.add(hm);
 		}
-		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
+		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
+			
+			return true;}
 		else return false;
 	}
 	@Override
@@ -357,9 +360,13 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		for (int i = 0; i < ids.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("xmbm", ids[i]);
+			update("delwnlm", ids[i]);
 			lm.add(hm);
 		}
-		if(deleteBatch("delLmgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
+		if(deleteBatch("delLmgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
+			//updateBatch("delwnlm", lm);
+			
+			return true;}
 		else return false;
 	}
 	@Override
@@ -369,9 +376,13 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		for (int i = 0; i < ids.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("xmbm", ids[i]);
+			update("delwnxj", ids[i]);
 			lm.add(hm);
 		}
-		if(deleteBatch("delXj", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
+		if(deleteBatch("delXj", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
+			//updateBatch("delwnxj", lm);
+			
+			return true;}
 		else return false;
 	}
 	@Override

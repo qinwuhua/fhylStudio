@@ -175,8 +175,14 @@ a{text-decoration:none;}
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
-					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
-					loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
+					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);
+					loadUnitedit("gydw",'36',item.gydwdm);
+					$("#gydw").combotree('setValues',item.gydwdm.split(","));
+					loadDistedit("xzqh",'36',item.xzqhdm2);
+					$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
+					
+					//$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
+					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
@@ -297,9 +303,11 @@ a{text-decoration:none;}
 					<input type="text" id="xmmcs" style="width: 120px"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lxmc"></span></td>
+					<font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="hidden" name="xzqhdm" id="xzqhdm" style="width: 120px" />
+					<input type="hidden" name="gydwdm" id="gydwdm" style="width: 120px" />
+					<input type="text" name="lxbm" id="lxbm" style="width: 120px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -401,13 +409,11 @@ a{text-decoration:none;}
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>路线编码：</td>
-					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="hidden" name="xzqhdm" id="xzqhdm" style="width: 120px" />
-					<input type="hidden" name="gydwdm" id="gydwdm" style="width: 120px" />
-					<input type="text" name="lxbm" id="lxbm" style="width: 120px" /></td>
 				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="lxmc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="xmbm"></span>

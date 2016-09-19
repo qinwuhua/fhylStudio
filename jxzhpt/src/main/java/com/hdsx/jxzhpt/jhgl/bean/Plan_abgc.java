@@ -279,7 +279,14 @@ public class Plan_abgc {
 	    private String str7;
 	    
 	    private String xmlx;
+	    private String thlxbm;
 	    
+	public String getThlxbm() {
+			return thlxbm;
+		}
+		public void setThlxbm(String thlxbm) {
+			this.thlxbm = thlxbm;
+		}
 	public String getXmlx() {
 			return xmlx;
 		}

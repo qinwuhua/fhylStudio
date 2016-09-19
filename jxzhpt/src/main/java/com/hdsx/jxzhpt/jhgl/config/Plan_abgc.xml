@@ -31,6 +31,7 @@
 		<result property="tzsj" column="tzsj"/>
 		<result property="jhyhlc" column="jhyhlc"/>
 		<result property="jhzlc" column="jhzlc"/>
+		<result property="thlxbm" column="thlxbm"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="sckabgc"  id="abgc_lx">
@@ -185,7 +186,7 @@
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
                		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc
-                	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
+                	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>

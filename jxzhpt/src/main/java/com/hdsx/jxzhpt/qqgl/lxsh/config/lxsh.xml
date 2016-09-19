@@ -21,10 +21,10 @@
 	<update id="updateqqgllm" parameterType="lxsh">
 	
 	<if test="sfbflx eq '是'.toString()">
-		update wnjh_lm set qqkzzt='部分开展' where id=#{wnid}
+		update wnjh_lmgz set qqkzzt='部分开展' where id=#{wnid}
 	</if>
 	<if test="sfbflx eq '否'.toString()">
-		update wnjh_lm set qqkzzt='已开展' where id=#{wnid}
+		update wnjh_lmgz set qqkzzt='已开展' where id=#{wnid}
 	</if>
 	</update>
 	<update id="updateqqglxj" parameterType="lxsh">
@@ -518,12 +518,21 @@
 	<delete id="delSjgz" parameterType="hashmap">
 		delete from LXSH_SJGZ where xmbm=#{xmbm}
 	</delete>
+	<update id="delwnsjgz" parameterType="String">
+		update wnjh_sjgz set QQKZZT = '未开展' where id=(select wnid from LXSH_SJGZ where xmbm=#{xmbm})
+	</update>
 	<delete id="delLmgz" parameterType="hashmap">
 		delete from LXSH_LMGZ where xmbm=#{xmbm}
 	</delete>
+	<update id="delwnlm" parameterType="String">
+		update wnjh_lmgz set QQKZZT = '未开展' where id=(select wnid from LXSH_LMGZ where xmbm=#{xmbm})
+	</update>
 	<delete id="delXj" parameterType="hashmap">
 		delete from LXSH_XJ where xmbm=#{xmbm}
 	</delete>
+	<update id="delwnxj" parameterType="String">
+		update wnjh_xj set QQKZZT = '未开展' where id=(select wnid from LXSH_xj where xmbm=#{xmbm})
+	</update>
 	<delete id="delSjgzlx" parameterType="hashmap">
 		delete from LXSH_LX where xmid=#{xmbm}
 	</delete>

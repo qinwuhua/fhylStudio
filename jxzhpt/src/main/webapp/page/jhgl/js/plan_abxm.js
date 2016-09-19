@@ -259,7 +259,7 @@ function afgcxm(jh,lx){
 					return row.jckabgc.xzqhmc;
 				}
 	        },
-	        {field:'lxbm',title:'路线编码',width:80,align:'center',
+	        {field:'thlxbm',title:'路线编码',width:80,align:'center',
 	        	formatter : function(value, row, index) {
 					return row.jckabgc.lxbm;
 				}

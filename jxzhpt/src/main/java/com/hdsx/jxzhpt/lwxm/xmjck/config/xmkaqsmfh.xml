@@ -74,9 +74,9 @@
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			${tsdq}
 	 		</if>
-	 			<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
- 		</if>
+ 			<if test="bzls!='' and bzls!= null ">
+	 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+	 		</if>
 	</select>
 	<select id="loadXmkaqsmfhXMKCount" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 	 		select count(*) sbthcd,decode(sum(zlc),null,0,sum(zlc)) zlc from XMK_AQSMFH t 
@@ -141,13 +141,13 @@
  					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or  (zsyj is not null and sbthcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
 				<if test="sbzt == '审核同意'">
-	 					and zsyj = '同意' and sbthcd = 7
+	 					and zsyj = '同意' and sbthcd = 7 and (decode(zszt,null,'未审核',zszt) like '已审核')
 				</if>
 				
 	 		</if>
@@ -198,13 +198,13 @@
  					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or  (zsyj is not null and sbthcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
 				<if test="sbzt == '审核同意'">
-	 					and zsyj = '同意' and sbthcd = 7
+	 					and zsyj = '同意' and sbthcd = 7 and (decode(zszt,null,'未审核',zszt) like '已审核')
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -252,13 +252,13 @@
  					and (zszt like '%'||(#{sbzt})||'%' or zszt is null) and sbthcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(zszt,null,'未审核',zszt) like '%'||(#{sbzt})||'%' or  (zsyj is not null and sbthcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and zsyj is not null and sbthcd != 7
 				</if>
 				<if test="sbzt == '审核同意'">
-	 					and zsyj = '同意' and sbthcd = 7
+	 					and zsyj = '同意' and sbthcd = 7 and (decode(zszt,null,'未审核',zszt) like '已审核')
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
@@ -959,7 +959,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%'  or (shyj is not null and sbthbmcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
@@ -1044,7 +1044,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%'  or (shyj is not null and sbthbmcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
@@ -1126,7 +1126,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
-	 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' 
+	 					and (decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%'  or (shyj is not null and sbthbmcd != 7))
 				</if>
 				<if test="sbzt == '审核不同意'">
 	 					and shyj is not null and sbthbmcd != 7
@@ -1711,7 +1711,7 @@
  					and (shzt like '%'||(#{sbzt})||'%' or shzt is null) and sbthbmcd=7
 				</if>
 				<if test="sbzt == '已审核'">
- 					and decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%' and sbthbmcd=7
+ 					and (decode(shzt,null,'未审核',shzt) like '%'||(#{sbzt})||'%'  or (shyj is not null and sbthbmcd != 7))
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
