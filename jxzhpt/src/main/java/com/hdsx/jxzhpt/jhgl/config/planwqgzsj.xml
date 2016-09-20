@@ -1115,6 +1115,9 @@
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 		</if>
+		<if test="jhpc!='' and jhpc!= null ">
+			${jhpc}
+		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
@@ -1188,6 +1191,9 @@
 			</if>
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="jhpc!='' and jhpc!= null ">
+			${jhpc}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
@@ -1263,6 +1269,9 @@
 			</if>
 	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+		</if>
+		<if test="jhpc!='' and jhpc!= null ">
+			${jhpc}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}

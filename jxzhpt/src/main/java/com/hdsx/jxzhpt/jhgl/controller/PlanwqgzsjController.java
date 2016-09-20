@@ -1840,6 +1840,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
 			planwqgzsj.setShzt(jhzt);
 		}
+		planwqgzsj.setJhpc(getTiaoJian(planwqgzsj.getJhpc(),"jhpc"));
 		planwqgzsj.setSbthcd(sbthcd);
 		List<Excel_list> l=new ArrayList<Excel_list>();
 		List<Excel_list> l1 = planwqgzsjServer.dcwqgzsjjhshExcel1(planwqgzsj);

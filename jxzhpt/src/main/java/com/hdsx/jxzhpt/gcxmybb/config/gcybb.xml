@@ -3247,8 +3247,8 @@
 	
 	<select id="getWqgzjsqk" parameterType="gcglwqgz" resultType="elist">
 		select '1' v_0,'合计' v_1,sum(v_17) v_17,sum(v_18) v_18,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_30) v_30,sum(v_31) v_31,sum(v_33) v_33,sum(v_34) v_34,
-		 sum(v_35) v_35,sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_44) v_44,sum(v_45) v_45,decode(sum(v_44),0,0,round(((sum(v_45)/sum(v_44))*100),2)) v_46,
-		 sum(v_47) v_47,sum(v_48) v_48,decode(sum(v_47),0,0,null,0,round(((nvl(sum(v_48),0)/sum(v_47))*100),2)) v_49,sum(v_21-v_22-v_23) v_50,sum(v_51) v_51,decode(sum(v_50),0,0,null,0,round(((nvl(sum(v_51),0)/sum(v_50))*100),2)) v_52 ,sum(trim(v_53)) v_53,count(*)
+		 sum(v_35) v_35,sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_46) v_46,sum(v_47) v_47,decode(sum(v_46),0,0,round(((sum(v_47)/sum(v_46))*100),2)) v_48,
+		 sum(v_49) v_49,sum(v_50) v_50,decode(sum(v_49),0,0,null,0,round(((nvl(sum(v_50),0)/sum(v_49))*100),2)) v_51,sum(v_21-v_22-v_23) v_52,sum(v_53) v_53,decode(sum(v_52),0,0,null,0,round(((nvl(sum(v_53),0)/sum(v_52))*100),2)) v_54 ,sum(trim(v_55)) v_55,count(*) v_12
 		 from (
 		select  
 		 sc.scxsq v_1,(case when xm.tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when xm.tsdq like '%38个省领导定点联系县%' then '是' else '否' end) v_3,
@@ -3256,32 +3256,41 @@
 		 sc.sck_lxbm v_8,xm.lxmc v_9,sc.sck_qlzxzh v_10,sc.sck_qlbh v_11,xm.qlmc v_12,jh.xdsj v_13,jh.jhkgsj v_14,jh.jhwgsj v_15,jh.yjjgsj v_16,jh.jhqlqc v_17,jh.jhqlqk v_18,
 		 sc.jsxz v_19,jh.pfwh v_20,round(nvl(jh.pfztz,0),2) v_21,decode(jh.sfylrbwqk,'是',round(nvl(jh.jhsybzje,0),2)，0) v_22,decode(jh.sfylrbwqk,'否',round(nvl(jh.shengbz,0),2)，0) v_23,jh.sjkgsj v_24,jh.sjwgsj v_25,jh.jsdw v_26,jh.sjdw v_27,jh.sgdw v_28,
 		 jh.jldw v_29,jh.jhqlqc v_30,jh.jhqlqk v_31,(case when jh.sjwgsj like '%'||to_char(sysdate,'yyyy')||'%' then '是' else '否' end) v_32,
-		 (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_33,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_34,
-		 decode(jh.kgzt,'0',1,0) v_35,decode(jh.kgzt,'0',jh.jhqlqc,0) v_36,nvl((gc.zytz+gc.dfzc),0) v_37,nvl(gc.zytz,0) v_38,nvl(gc.dfzc,0) v_39,
-		 nvl((gc1.zytz+gc1.dfzc),0) v_40,decode(jh.jgzt,'0',jh.wjgyy) v_41,decode(jg.yssj,null,'否','是') v_42,decode(jg.sfcclq,null,'',jg.sfcclq) v_43,
-		 nvl(zj.btz,0) v_44,nvl(gc.btz,0) v_45,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_46,
-     	nvl(zj.stz,0) v_47,nvl(gc.stz,0) v_48,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_49,
-     	nvl(zj.qttz,0) v_50,nvl(gc.qttz,0) v_51,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_52,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_53,
-		 jh.bz v_54,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
+		(case when jh.jgzt='1' then '1' else '0' end) v_33,(case when jh.jgzt='1' then jh.jhqlqc else 0 end) v_34, (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_35,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_36,
+		 decode(jh.kgzt,'0',1,0) v_37,decode(jh.kgzt,'0',jh.jhqlqc,0) v_38,nvl((gc.zytz+gc.dfzc),0) v_39,nvl(gc.zytz,0) v_40,nvl(gc.dfzc,0) v_41,
+		 nvl((gc1.zytz+gc1.dfzc),0) v_42,decode(jh.jgzt,'0',jh.wjgyy) v_43,decode(jg.yssj,null,'否','是') v_44,decode(jg.sfcclq,null,'',jg.sfcclq) v_45,
+		 nvl(zj.btz,0) v_46,nvl(gc.btz,0) v_47,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_48,
+     	nvl(zj.stz,0) v_49,nvl(gc.stz,0) v_50,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_51,
+     	nvl(zj.qttz,0) v_52,nvl(gc.qttz,0) v_53,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_54,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_55,
+		 jh.bz v_56,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
 		from plan_wqgz jh,sck_wqgz sc,xmk_wqgz xm,(select jhid,sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_qttz) qttz,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g group by jhid) gc,
 		(select jhid,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%'  group by jhid) gc1,
 		gcgl_jgys jg,(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) qttz,t.xmid from plan_zjxd t group by t.xmid) zj
 		where jh.sckid=sc.sckid and sc.xmkid=xm.id and jh.id=gc.jhid(+) and jh.id=gc1.jhid(+) and jh.id=jg.jhid(+) and jh.id=zj.xmid(+)
 		and xm.gydwbm like '1%' and jh.spzt='1'
-			<if test="xmnf != null or xmnf !=''">
+			<if test="xmnf != null and xmnf !=''">
 				and sbnf in (${xmnf})
 			</if>
-			<if test="gydw != null or gydw !=''">
+			<if test="gydw != null and gydw !=''">
 				${gydw}
 			</if>
-			<if test="xzqhdm != null or xzqhdm !=''">
+			<if test="xzqhdm != null and xzqhdm !=''">
 				${xzqhdm}
 			</if>
-			<if test="gldj != null or gldj !=''">
+			<if test="gldj != null and gldj !=''">
 				${gldj}
 			</if>
-			<if test="sfylrbwqk != null or sfylrbwqk !=''">
+			<if test="sfylrbwqk != null and sfylrbwqk !=''">
 				and jh.sfylrbwqk like '%'||#{sfylrbwqk}||'%'
+			</if>
+			<if test="tsdq != null and tsdq !=''">
+				 ${tsdq}
+			</if>
+			<if test="akjfl != null and akjfl !=''">
+				 ${akjfl}
+			</if>
+			<if test="jsxz != null and jsxz !=''">
+				 ${jsxz}
 			</if>
 			order by xzqhdm
 		) t1
@@ -3295,34 +3304,41 @@
 		 sc.sck_lxbm v_8,xm.lxmc v_9,sc.sck_qlzxzh v_10,sc.sck_qlbh v_11,xm.qlmc v_12,jh.xdsj v_13,jh.jhkgsj v_14,jh.jhwgsj v_15,jh.yjjgsj v_16,jh.jhqlqc v_17,jh.jhqlqk v_18,
 		 sc.jsxz v_19,jh.pfwh v_20,round(nvl(jh.pfztz,0),2) v_21,decode(jh.sfylrbwqk,'是',round(nvl(jh.jhsybzje,0),2)，0) v_22,decode(jh.sfylrbwqk,'否',round(nvl(jh.shengbz,0),2)，0) v_23,jh.sjkgsj v_24,jh.sjwgsj v_25,jh.jsdw v_26,jh.sjdw v_27,jh.sgdw v_28,
 		 jh.jldw v_29,jh.jhqlqc v_30,jh.jhqlqk v_31,(case when jh.sjwgsj like '%'||to_char(sysdate,'yyyy')||'%' then '是' else '否' end) v_32,
-		 (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_33,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_34,
-		 decode(jh.kgzt,'0',1,0) v_35,decode(jh.kgzt,'0',jh.jhqlqc,0) v_36,nvl((gc.zytz+gc.dfzc),0) v_37,nvl(gc.zytz,0) v_38,nvl(gc.dfzc,0) v_39,
-		 nvl((gc1.zytz+gc1.dfzc),0) v_40,decode(jh.jgzt,'0',jh.wjgyy) v_41,decode(jg.yssj,null,'否','是') v_42,decode(jg.sfcclq,null,'',jg.sfcclq) v_43,
-		 nvl(zj.btz,0) v_44,nvl(gc.btz,0) v_45,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_46,
-     	nvl(zj.stz,0) v_47,nvl(gc.stz,0) v_48,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_49,
-     	nvl((round(nvl(jh.pfztz, 0), 2))-decode(jh.sfylrbwqk,'是',round(nvl(jh.jhsybzje, 0), 2) ,0)- decode(jh.sfylrbwqk,
-                              '否',
-                              round(nvl(jh.shengbz, 0), 2) ,0), 0) v_50,nvl(gc.qttz,0) v_51,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_52,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_53,
-		 jh.bz v_54,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
+		(case when jh.jgzt='1' then '1' else '0' end) v_33,(case when jh.jgzt='1' then jh.jhqlqc else 0 end) v_34, (case when jh.kgzt='1' and jh.jgzt='0' then '1' else '0' end) v_35,(case when jh.kgzt='1' and jh.jgzt='0' then jh.jhqlqc else 0 end) v_36,
+		 decode(jh.kgzt,'0',1,0) v_37,decode(jh.kgzt,'0',jh.jhqlqc,0) v_38,nvl((gc.zytz+gc.dfzc),0) v_39,nvl(gc.zytz,0) v_40,nvl(gc.dfzc,0) v_41,
+		 nvl((gc1.zytz+gc1.dfzc),0) v_42,decode(jh.jgzt,'0',jh.wjgyy) v_43,decode(jg.yssj,null,'否','是') v_44,decode(jg.sfcclq,null,'',jg.sfcclq) v_45,
+		 nvl(zj.btz,0) v_46,nvl(gc.btz,0) v_47,decode(zj.btz,0,0,null,0,round(((nvl(gc.btz,0)/zj.btz)*100),2)) v_48,
+     	nvl(zj.stz,0) v_49,nvl(gc.stz,0) v_50,decode(zj.stz,0,0,null,0,round(((nvl(gc.stz,0)/zj.stz)*100),2)) v_51,
+     	nvl(zj.qttz,0) v_52,nvl(gc.qttz,0) v_53,decode(zj.qttz,0,0,null,0,round(((nvl(gc.qttz,0)/zj.qttz)*100),2)) v_54,decode(jg.nsqsjjlzj,null,' ',jg.nsqsjjlzj) v_55,
+		 jh.bz v_56,xm.gydwbm,xm.xzqhdm,jh.sbnf xmnf,substr(sc.sck_lxbm,0,1) xzdj 
 		from plan_wqgz jh,sck_wqgz sc,xmk_wqgz xm,(select jhid,sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_qttz) qttz,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g group by jhid) gc,
 		(select jhid,(sum(g.wc_btz)+sum(g.wc_stz)) zytz,sum(g.wc_qttz) dfzc,sum(decode(substr(g.bywcmc,-1),'米',substr(g.bywcmc,0,length(g.bywcmc)-1),g.bywcmc)) wc from gcgl_wqgz g where g.sbyf like '%'||to_char(sysdate,'yyyy')||'%'  group by jhid) gc1,
 		gcgl_jgys jg,(select sum(t.btzzj) btz,sum(t.stz) stz,(sum(t.xdzj)-sum(t.btzzj)-sum(t.stz)) qttz,t.xmid from plan_zjxd t group by t.xmid) zj
 		where jh.sckid=sc.sckid and sc.xmkid=xm.id and jh.id=gc.jhid(+) and jh.id=gc1.jhid(+) and jh.id=jg.jhid(+) and jh.id=zj.xmid(+)
 		and xm.gydwbm like '1%' and jh.spzt='1'
-			<if test="xmnf != null or xmnf !=''">
+			<if test="xmnf != null and xmnf !=''">
 				and sbnf in (${xmnf})
 			</if>
-			<if test="gydw != null or gydw !=''">
+			<if test="gydw != null and gydw !=''">
 				${gydw}
 			</if>
-			<if test="xzqhdm != null or xzqhdm !=''">
+			<if test="xzqhdm != null and xzqhdm !=''">
 				${xzqhdm}
 			</if>
-			<if test="gldj != null or gldj !=''">
+			<if test="gldj != null and gldj !=''">
 				${gldj}
 			</if>
-			<if test="sfylrbwqk != null or sfylrbwqk !=''">
+			<if test="sfylrbwqk != null and sfylrbwqk !=''">
 				and jh.sfylrbwqk like '%'||#{sfylrbwqk}||'%'
+			</if>
+			<if test="tsdq != null and tsdq !=''">
+				 ${tsdq}
+			</if>
+			<if test="akjfl != null and akjfl !=''">
+				 ${akjfl}
+			</if>
+			<if test="jsxz != null and jsxz !=''">
+				 ${jsxz}
 			</if>
 			order by xzqhdm
 		) t1

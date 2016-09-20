@@ -33,7 +33,13 @@ $(function(){
 	if($.cookie("unit2").length==7){
 		czzt="审核状态";
 	}
-	loadUnit1("gydw",$.cookie("unit"));
+	
+	//alert($.cookie("unit"));
+	
+	if($.cookie("unit")=='11101360000')
+		loadUnit1("gydw",'36');
+	else
+	    loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	kjfldx('akjfl');
 	xmnfdx("xmnf"); 

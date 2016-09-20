@@ -31,6 +31,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
+			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
 			
 			urlxmnf("xmnf",getUrlParame('id'));

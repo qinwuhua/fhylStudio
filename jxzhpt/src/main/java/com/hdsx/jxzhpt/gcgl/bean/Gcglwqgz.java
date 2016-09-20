@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Gcglwqgz implements Serializable {
 	private String qqgzsj;
-	
+	private String jzjznf;
 	private String gydwbm;
 	private String gydwdm;
 	
@@ -1923,6 +1923,12 @@ public class Gcglwqgz implements Serializable {
 	}
 	public void setYjwgsj(String yjwgsj) {
 		this.yjwgsj = yjwgsj;
+	}
+	public String getJzjznf() {
+		return jzjznf;
+	}
+	public void setJzjznf(String jzjznf) {
+		this.jzjznf = jzjznf;
 	}
 	
 	

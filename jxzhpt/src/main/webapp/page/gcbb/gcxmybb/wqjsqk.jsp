@@ -23,13 +23,36 @@
 		$(function(){
 			xmnfdx('ddlYear1');
 			xzdjdx("xzdj");
+			tsdqdx('tsdq');
+			kjfldx('kjfl');
 			//xmnf1('wgnf');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			
+			ybnf('jzjznf');
 			
 			showAll();
 		});
+		function ybnf(id){
+			var myDate = new Date();
+			var years=[];
+			var first;
+			for(var i=myDate.getFullYear();i>=2005;i--){
+				years.push({text:(i),value:(i)});
+			}
+			$('#'+id).combobox({
+			    data:years,
+			    valueField:'value',
+			    textField:'text'
+			});
+				first=myDate.getFullYear();
+			$('#'+id).combobox("setValue",+first);
+		}
+		
+		
+		
+		
+		
+		
 		
 		var fls=1;
 		function showAll(){
@@ -63,8 +86,22 @@
 			var gldj=$("#xzdj").combobox("getValues").join(",");
 			if(gldj.substr(0,1)==',')
 				gldj=gldj.substr(1,gldj.length);
-			var data="flag=''+&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+gldj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
-
+			
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			
+			var jsxz=$("#jsxz").combobox("getValue");
+			var akjfl=$("#kjfl").combobox("getValues").join(",");
+			if(akjfl.substr(0,1)==',')
+				akjfl=akjfl.substr(1,akjfl.length);
+			var jzjznf=$("#jzjznf").combobox("getValues").join(",");
+			if(jzjznf.substr(0,1)==',')
+				jzjznf=jzjznf.substr(1,jzjznf.length);
+			
+			var data="flag=''+&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+gldj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')
+			+"&gcglwqgz.tsdq="+tsdq+"&gcglwqgz.jsxz="+jsxz+"&gcglwqgz.akjfl="+akjfl+"&gcglwqgz.jzjznf="+jzjznf;
+			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
 			//$("#btnf").html(xmnf);
@@ -104,7 +141,8 @@
 								+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"
 								+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"
 								+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
-								+msg[i].v_54+"</td></tr>");
+								+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
+								+msg[i].v_56+"</td></tr>");
 							}
 						}
 					}
@@ -192,7 +230,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%;height:70px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%;height:100px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -205,7 +243,7 @@ a:active {
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
         						<span>行政等级：</span>
-        						<input type="text" id="xzdj" style="width:50px;">
+        						<input type="text" id="xzdj" style="width:70px;">
 								<span>是否部库：</span>
 	                           	<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 50px">
 								<option value="" selected>全部</option>
@@ -214,8 +252,37 @@ a:active {
 								</select>
 								</p>
 							<p style="margin: 8px 0px 8px 20px;">
-<!-- 										<span>完工年份：</span> -->
-<!--         									<select  id="wgnf" style="width: 80px;"></select> -->
+									<span>特殊地区：</span>
+       									<input type="text" id='tsdq'>
+       								<span>建设性质：</span>
+        									<select id='jsxz' class="easyui-combobox" style="width:150px;">
+        										<option value="" selected>全部</option>
+												<option value="加固改造">加固改造</option>
+												<option value="拆除重建">拆除重建</option>
+        									</select>
+ 									<span>跨径分类：</span>
+     									<input type="text" id='kjfl'>
+   									<span>截止进展年份：</span>
+     									<input type="text" id='jzjznf' style="width:100px;">
+       								<%-- <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
+								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: middle;" /> --%>
+        					</p>
+        					
+        					<p style="margin: 8px 0px 8px 20px;">
+									<!-- <span>特殊地区：</span>
+       									<input type="text" id='tsdq'>
+       								<span>建设性质：</span>
+        									<select id='jsxz' class="easyui-combobox" style="width:150px;">
+        										<option value="" selected>全部</option>
+												<option value="加固改造">加固改造</option>
+												<option value="拆除重建">拆除重建</option>
+        									</select>
+ 									<span>跨径分类：</span>
+     									<input type="text" id='kjfl'>
+   									<span>截止进展年份：</span>
+     									<input type="text" id='jzjznf' style="width:100px;"> -->
        								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
 								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
@@ -244,7 +311,7 @@ a:active {
 										<td rowspan="3" style="width: 125px">是否38个原中央苏区和特困片区县</td>
 										<td rowspan="3" style="width: 125px">是否54个赣南等原中央苏区县</td>
 										<td rowspan="3" style="width: 125px">是否21个国家贫困县</td>
-										<td colspan="18" style="width: 125px">计划情况</td>
+										<td colspan="20" style="width: 125px">计划情况</td>
 										<td colspan="20" style="width: 125px">建设进展情况</td>
 										<td colspan="10" style="width: 125px">资金落实情况</td>
 										<td rowspan="3" style="width: 125px">备注</td>
@@ -277,6 +344,8 @@ a:active {
 										<td rowspan="2" style="width: 125px">实际建成桥长（米）</td>
 										<td rowspan="2" style="width: 125px">实际建成桥宽（米）</td>
 										<td rowspan="2" style="width: 125px">是否本年完成</td>
+										<td rowspan="2" style="width: 125px">完成(座)</td>
+										<td rowspan="2" style="width: 125px">延米</td>
 										<td rowspan="2" style="width: 125px">在建(座)</td>
 										<td rowspan="2" style="width: 125px">延米</td>
 										<td rowspan="2" style="width: 125px">未开工(座)</td>
@@ -311,7 +380,7 @@ a:active {
 									<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
 									<td>31</td><td>32</td><td>33</td><td>34</td><td>35</td><td>36</td><td>37</td><td>38</td><td>39</td><td>40</td>
 									<td>41</td><td>42</td><td>43</td><td>44</td><td>45</td><td>46</td><td>47</td><td>48</td><td>49</td><td>50</td>
-									<td>51</td><td>52</td><td>53</td><td>54</td><td>55</td>
+									<td>51</td><td>52</td><td>53</td><td>54</td><td>55</td><td>56</td><td>57</td>
 									</tr>	
 									
 								</thead>

@@ -266,11 +266,15 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			 var jhpc=$("#jhpc").combobox("getText");
+				if(jhpc.substr(0,2)=='全部')
+					jhpc=jhpc.substr(3,jhpc.length);
+			
 			var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&lxbm="+$('#lxbm').val()+"&qlmc="+$("#qlmc").val()+
 			"&sbnf="+xmnf+"&planwqgzsj.jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+gldj+"&planwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+
 			"&pddj="+$("#pddj").combobox("getValue")+"&akjfl="+akjfl+"&sfylsjl="+
 			$("#sfylsjl").combobox("getValue")+"&tsdq="+tsdq+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue")
-			+"&planwqgzsj.qlbh="+$('#txtqlbm').val();
+			+"&planwqgzsj.qlbh="+$('#txtqlbm').val()+"&planwqgzsj.jhpc="+jhpc;
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/jhgl/dcwqgzsjjhshExcel.do?'+data;

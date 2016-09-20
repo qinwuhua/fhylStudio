@@ -77,8 +77,11 @@
       qlqc v_19,akjfl v_20,synf v_21,jsdj v_22,kjzc v_23,dkzdkj v_24,sjhspl v_25,qxjkuan v_26,qxjkong v_27,zqks v_28,
       qlkd v_29,qmjk v_30,kydwlx v_31,thdj v_32,glqlyt v_33,sbjgxs v_34,qdlx v_35,qtlx v_36,pzlx v_37,bhnr v_38,pddj v_39,bz v_40,sfylrbwqk v_41
 	 	 from (
-	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
-	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%'  and xxcsj='是'
+	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t 
+	 		left join (select count(*) jhsl,a3.id from plan_wqgz a1 left join sck_wqgz a2 on a1.sckid=a2.sckid left join xmk_wqgz a3 on a2.xmkid=a3.id group by a3.id) t1
+	 			on t.id=t1.id
+	 			where 1=1 
+	 			and  sbthcd &lt;=#{sbthcd} and gydwbm like '1%' and xxcsj='是' and sfsc is null
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>

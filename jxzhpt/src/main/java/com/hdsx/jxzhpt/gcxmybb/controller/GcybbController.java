@@ -2974,6 +2974,7 @@ public class GcybbController extends BaseActionSupport{
 				}else{
 					tiaojian2="and xzqhdm in ("+xzqhdm+")";
 				}
+				
 				gcglwqgz.setGydw(tiaojian1);
 				gcglwqgz.setGldj(xzdj);
 				gcglwqgz.setXzqhdm(tiaojian2);
@@ -2999,7 +3000,10 @@ public class GcybbController extends BaseActionSupport{
 					}
 					gcglwqgz.setGldj(tsdq);
 				}
-				
+				gcglwqgz.setTsdq(getcxtj("xm.tsdq", gcglwqgz.getTsdq()));
+				gcglwqgz.setJsxz(getcxtj("sc.jsxz", gcglwqgz.getJsxz()));
+				gcglwqgz.setAkjfl(getcxtj("sc.scakjfl", gcglwqgz.getAkjfl()));
+				gcglwqgz.setJzjznf(getcxtj("sc.jzjznf", gcglwqgz.getJzjznf()));
 				List<Excel_list> list=gcybbServer.getWqgzjsqk(gcglwqgz);
 				if(flag.equals("flag")){
 					ExcelData eldata=new ExcelData();//创建一个类
@@ -3014,10 +3018,10 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("是否38个原中央苏区和特困片区县",1,3,3,3));
 					et.add(new Excel_tilte("是否54个赣南等原中央苏区县",1,3,4,4));
 					et.add(new Excel_tilte("是否21个国家贫困县",1,3,5,5));
-					et.add(new Excel_tilte("计划情况",1,1,6,23));
-					et.add(new Excel_tilte("建设进展情况",1,1,24,43));
-					et.add(new Excel_tilte("资金落实情况",1,1,44,53));
-					et.add(new Excel_tilte("备注",1,3,54,54));
+					et.add(new Excel_tilte("计划情况",1,1,6,25));
+					et.add(new Excel_tilte("建设进展情况",1,1,26,45));
+					et.add(new Excel_tilte("资金落实情况",1,1,46,55));
+					et.add(new Excel_tilte("备注",1,3,56,56));
 					et.add(new Excel_tilte("行政区划代码",2,3,6,6));
 					et.add(new Excel_tilte("行政区划名称",2,3,7,7));
 					et.add(new Excel_tilte("路线编码",2,3,8,8));
@@ -3045,31 +3049,33 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("实际建成桥长（米）",2,3,30,30));
 					et.add(new Excel_tilte("实际建成桥宽（米）",2,3,31,31));
 					et.add(new Excel_tilte("是否本年完成",2,3,32,32));
-					et.add(new Excel_tilte("在建(座)",2,3,33,33));
+					et.add(new Excel_tilte("完工(座)",2,3,33,33));
 					et.add(new Excel_tilte("延米",2,3,34,34));
-					et.add(new Excel_tilte("未开工(座)",2,3,35,35));
+					et.add(new Excel_tilte("在建(座)",2,3,35,35));
 					et.add(new Excel_tilte("延米",2,3,36,36));
-					et.add(new Excel_tilte("完成总投资(万元)",2,3,37,37));
-					et.add(new Excel_tilte("完成中央投资(万元)",2,3,38,38));
-					et.add(new Excel_tilte("完成地方自筹(万元)",2,3,39,39));
-					et.add(new Excel_tilte("本年完成投资(万元)",2,3,40,40));
-					et.add(new Excel_tilte("未完成原因",2,3,41,41));
-					et.add(new Excel_tilte("是否交工验收",2,3,42,42));
-					et.add(new Excel_tilte("是否拆除老桥",2,3,43,43));
-					et.add(new Excel_tilte("车购税补助资金",2,2,44,46));
-					et.add(new Excel_tilte("省级补助资金",2,2,47,49));
-					et.add(new Excel_tilte("地方配套资金",2,2,50,52));
-					et.add(new Excel_tilte("以奖代补资金(万元)",2,3,53,53));
-					et.add(new Excel_tilte("计划补助资金(万元)",3,3,44,44));
+					et.add(new Excel_tilte("未开工(座)",2,3,37,37));
+					et.add(new Excel_tilte("延米",2,3,38,38));
+					et.add(new Excel_tilte("完成总投资(万元)",2,3,39,39));
+					et.add(new Excel_tilte("完成中央投资(万元)",2,3,40,40));
+					et.add(new Excel_tilte("完成地方自筹(万元)",2,3,41,41));
+					et.add(new Excel_tilte("本年完成投资(万元)",2,3,42,42));
+					et.add(new Excel_tilte("未完成原因",2,3,43,43));
+					et.add(new Excel_tilte("是否交工验收",2,3,44,44));
+					et.add(new Excel_tilte("是否拆除老桥",2,3,45,45));
+					et.add(new Excel_tilte("车购税补助资金",2,2,46,48));
+					et.add(new Excel_tilte("省级补助资金",2,2,49,51));
+					et.add(new Excel_tilte("地方配套资金",2,2,52,54));
+					et.add(new Excel_tilte("以奖代补资金(万元)",2,3,55,55));
+					et.add(new Excel_tilte("计划补助资金(万元)",3,3,46,46));
 					
-					et.add(new Excel_tilte("到位金额(万元) ",3,3,45,45));
-					et.add(new Excel_tilte("到位率(%)",3,3,46,46));
-					et.add(new Excel_tilte("计划补助资金(万元)",3,3,47,47));
-					et.add(new Excel_tilte("到位金额(万元) ",3,3,48,48));
-					et.add(new Excel_tilte("到位率(%)",3,3,49,49));
-					et.add(new Excel_tilte("应配套资金(万元)",3,3,50,50));
-					et.add(new Excel_tilte("到位金额(万元) ",3,3,51,51));
-					et.add(new Excel_tilte("到位率(%)",3,3,52,52));
+					et.add(new Excel_tilte("到位金额(万元) ",3,3,47,47));
+					et.add(new Excel_tilte("到位率(%)",3,3,48,48));
+					et.add(new Excel_tilte("计划补助资金(万元)",3,3,49,49));
+					et.add(new Excel_tilte("到位金额(万元) ",3,3,50,50));
+					et.add(new Excel_tilte("到位率(%)",3,3,51,51));
+					et.add(new Excel_tilte("应配套资金(万元)",3,3,52,52));
+					et.add(new Excel_tilte("到位金额(万元) ",3,3,53,53));
+					et.add(new Excel_tilte("到位率(%)",3,3,54,54));
 				
 					
 					
@@ -3128,7 +3134,8 @@ public class GcybbController extends BaseActionSupport{
 					et.add(new Excel_tilte("53",4,4,52,52));
 					et.add(new Excel_tilte("54",4,4,53,53));
 					et.add(new Excel_tilte("55",4,4,54,54));
-					
+					et.add(new Excel_tilte("56",4,4,55,55));
+					et.add(new Excel_tilte("57",4,4,56,56));
 					eldata.setEt(et);//将表头内容设置到类里面
 					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 					Excel_export.excel_export1(eldata,response);
