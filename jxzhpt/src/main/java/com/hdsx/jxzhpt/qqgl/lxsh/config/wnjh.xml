@@ -1635,7 +1635,7 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
-		order by id,lx.sffirst desc
+		order by t.id,lx.sffirst desc
 		) t1
 	</select>
 	

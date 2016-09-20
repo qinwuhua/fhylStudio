@@ -714,7 +714,7 @@
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
 	<select id="qqglGpsroad" parameterType="hashmap" resultType="lxsh">
-		select t.*,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh from ${xmlx} t left join (select * from wnjh_lx l where sffirst=1) ll on t.id=ll.xmid where xmmc like '%'||#{xmmc}||'%' and xzqhdm2 like '%'||#{xzqh}||'%' and qqkzzt !='已开展'
+		select t.*,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh from ${xmlx} t left join (select * from wnjh_lx l where sffirst=1) ll on t.id=ll.xmid where xmmc like '%'||#{xmmc}||'%' and xzqhdm2 like '%'||#{xzqh}||'%' and qqkzzt !='已开展' and znsjck is null
 	</select>
 	<update id="updatesjgz" parameterType="lxsh">
 		update lxsh_sjgz set <!-- bzys=#{bzys}, -->lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
