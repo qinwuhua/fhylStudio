@@ -955,15 +955,18 @@ function showAllsjsh(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:180,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
-	        	if($.cookie("unit2").length!=7)
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑 ';
+	        	//if($.cookie("unit2").length!=7)
+	        		//return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑 ';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
-	        }},
+	        	var res ='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>';
+	        	return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        
+	        
+	        }},
+		   
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0'){
 	        		if($.cookie("unit2").length!=7)
@@ -1005,16 +1008,14 @@ function showAllsjsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tz',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
-		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
-        }}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
 	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	var parentindex=index;
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
@@ -1025,7 +1026,14 @@ function showAllsjsh(){
     			columns:[[
 					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
-							return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							var result = '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+								result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+							}
+							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+								result+='&nbsp;删除';
+							return result;
+						
 						}
 					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -1262,10 +1270,14 @@ function showAlllmsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    ';
-	        	if($.cookie("unit2").length!=7)
+	        	/*if($.cookie("unit2").length!=7)
 		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑  ';
+*/
+	        	var re = '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
+	        
+        		return re+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a> ';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>   <a href="javascript:tz('+"'"+row.xmbm+"','lmgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+	        
 	        }},
 	        
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
@@ -1320,17 +1332,18 @@ function showAlllmsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tz',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
 	       
-        }}
+        }}*/
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
 	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	parentindex=index;
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
@@ -1341,7 +1354,13 @@ function showAlllmsh(){
     			columns:[[
 					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
-							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							var result= '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						
+							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+				        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+				        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+				        		   result+= '&nbsp;删除';
+				        	   return result;
 						}
 					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -1576,10 +1595,12 @@ function showAllxjsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	        	//if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
-	        	if($.cookie("unit2").length!=7)
+	        	/*if($.cookie("unit2").length!=7)
 		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+' 编辑 ';
+*/
+	        	var re= '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>';
+        		return re+'   <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>     <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  <a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        }},
 	        
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
@@ -1630,11 +1651,11 @@ function showAllxjsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tz',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
 
-        }}
+        }}*/
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1958,7 +1979,7 @@ function delsjlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0",
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=1",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
@@ -1978,7 +1999,7 @@ function dellmlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=lmgz",
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=lmgz"+"&lxsh.jdbs=1",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
@@ -1997,7 +2018,7 @@ function delxjlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=xj",
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=xj"+"&lxsh.jdbs=1",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){

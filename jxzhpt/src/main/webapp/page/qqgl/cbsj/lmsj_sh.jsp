@@ -75,18 +75,18 @@
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'ck',checkbox:true},
-				{field:'cz',title:'操作',width:150,align:'center',
+				{field:'cz',title:'操作',width:200,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'改建工程项目'"+','+
 						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
-							if($.cookie("unit2").length!=7)
+							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
-								else
+								else */
 							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'改建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd2('+"'lmsj','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}
@@ -345,7 +345,7 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 100px;"></select></td>
         						</tr>
         					<tr height="32">
-        					<td>&nbsp;行政等级：</td>
+        					<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
         					
         					<!-- 	<td>特殊地区：</td>

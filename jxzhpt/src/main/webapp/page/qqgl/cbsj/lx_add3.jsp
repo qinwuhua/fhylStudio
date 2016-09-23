@@ -35,7 +35,7 @@ text-decoration:none;
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqh",$.cookie("dist"));
-		$('#xmbm').html(parent.obj.xmbm);
+		$('#xmbm').html(parent.YMLib.Var.xmbm);
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
@@ -162,7 +162,7 @@ text-decoration:none;
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.sffirst=0"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''"
+		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.sffirst=0"+"&lxsh.jdbs=2"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''"
 		+"&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+
 		"&lxsh.sanlc="+$('#sanlc').val()+"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
@@ -176,9 +176,9 @@ text-decoration:none;
 				if(msg.result=="true"){
 					alert("保存成功！");
 					if(YMLib.Var.sq=="sq"){
-						parent.showAllxj();
+						parent.queryXj();
 					}else{
-						parent.showAllxjsh();
+						parent.queryXj();
 					}
 					removes('lxxx');
 				}else if(msg.result=="have"){

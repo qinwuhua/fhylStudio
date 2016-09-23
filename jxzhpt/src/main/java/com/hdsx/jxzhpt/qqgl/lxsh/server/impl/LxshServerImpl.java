@@ -575,7 +575,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean deleteLx(Lxsh lxsh) {
 		if(insert("deleteLx", lxsh)>0){
-			Double bzcs=queryOne("queryMaxbzcs",lxsh);
+			return true;
+			/*Double bzcs=queryOne("queryMaxbzcs",lxsh);
 			Double lc=queryOne("queryMaxlc",lxsh);
 			if(lc!=null)
 			lxsh.setLc(lc+"");
@@ -596,7 +597,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 			}else{
 				return true;
-			}
+			}*/
 		}
 		return false;
 	}

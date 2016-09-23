@@ -883,10 +883,15 @@ function showAll(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:190,align:'center',formatter:function(value,row,index){
 	            //if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
+	        	var re= '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
+	        	if(row.sbzt1=='0')
+	        		return re+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
+        		else if(row.sbzt1=='1')
+	        		return re+'添加路线';
+        		
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -894,11 +899,11 @@ function showAll(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
+	       /* {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        	//if(row.sbzt1=='0')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
-		        else if(row.sbzt1=='1')
-	        		return '添加路线';
+		       // else if(row.sbzt1=='1')
+	        	//	return '添加路线';
 	        }},*/
 	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
@@ -959,12 +964,12 @@ function showAll(){
 		        		   result+= '&nbsp;删除';
 		        	   return result;
 		           }},*/
-		          {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+		          {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
 		        	   var result ='<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-		        	   /*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+		        	   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
 		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-		        		   result+= '&nbsp;删除';*/
+		        		   result+= '&nbsp;删除';
 		        	   return result;
 		           }},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -1560,7 +1565,7 @@ function showAllsjsh123(){
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
 			 $("#tz").html(msg.TZ);
-			  $("#cgs").html(msg.BZCS);
+			 $("#cgs").html(msg.BZCS);
 			 $("#sbz").html(msg.SBZ);
 			 $("#sjl").html(msg.SJL);
 			 $("#lc").html(msg.LC);
@@ -1774,7 +1779,12 @@ function showAlllmgz(){
 	        {field:'c',title:'操作',width:180,align:'center',formatter:function(value,row,index){
 	            //if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    '+'删除 ';
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del1('+index+')">删除</a>  ';
+	        	var re = '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del1('+index+')">删除</a>  ';
+	        
+	        	if(row.sbzt1=='0')
+        		return re+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
+	        	else if(row.sbzt1=='1')
+        		return re+'添加路线';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -1782,11 +1792,11 @@ function showAlllmgz(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
+/*	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+//	        	if(row.sbzt1=='0')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
-		        else if(row.sbzt1=='1')
-	        		return '添加路线';
+//		        else if(row.sbzt1=='1')
+//	        		return '添加路线';
 	        }},*/
 	        {field:'lsjl',title:'是否有历史记录',width:100,align:'center',
 				formatter: function(value,row,index){
@@ -1841,11 +1851,11 @@ function showAlllmgz(){
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-							result+='&nbsp;删除';*/
+							result+='&nbsp;删除';
 						return result;
 					}},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -1861,8 +1871,9 @@ function showAlllmgz(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'},
-    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'}
+//    			    ,
+//    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -2490,10 +2501,15 @@ function showAllxj(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        {field:'c',title:'操作',width:190,align:'center',formatter:function(value,row,index){
 	            //if(row.sbzt1=='1')
 	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    '+'删除 ';
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del2('+index+')">删除</a>  ';
+	        	var re= '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del2('+index+')">删除</a>  ';
+	        
+	        	if(row.sbzt1=='0')
+	        		return re+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
+		        else if(row.sbzt1=='1')
+	        		return re+'添加路线';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -2501,7 +2517,7 @@ function showAllxj(){
 	        	else if(row.sbzt1=='1')
 	        		return '已上报';
 	        }},
-	        /*{field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	      /*  {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
 		        else if(row.sbzt1=='1')
@@ -2562,11 +2578,11 @@ function showAllxj(){
 					}},*/
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-							result+='&nbsp;删除';*/
+							result+='&nbsp;删除';
 						return result;
 					}},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -3152,19 +3168,19 @@ function tjsjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
 	YMLib.Var.sq='sq';
-	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add2.jsp','lxxx',900,300);
+	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add2.jsp','lxxx',900,400);
 }
 function tjlmlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
 	YMLib.Var.sq='sq';
-	YMLib.UI.createWindow('lxxx','添加路线信息','lmgzlx_add2.jsp','lxxx',900,300);
+	YMLib.UI.createWindow('lxxx','添加路线信息','lmgzlx_add2.jsp','lxxx',900,400);
 }
 function tjxjlx(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.Var.sq='sq';
-	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,300);
+	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,400);
 }
 function delsjlx(index1,index){
 	var data=$("#table_lx"+index1).datagrid('getRows')[index];
@@ -4322,4 +4338,26 @@ function showAllxjsh__ck(){
 	    	});
 	    }   
 	}); 
+}
+
+
+
+
+function jslc(){
+	var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+	if($('#yilc').val()!='')
+		yilc=parseFloat($('#yilc').val());
+	if($('#erlc').val()!='')
+		erlc=parseFloat($('#erlc').val());
+	if($('#sanlc').val()!='')
+		sanlc=parseFloat($('#sanlc').val());
+	if($('#silc').val()!='')
+		silc=parseFloat($('#silc').val());
+	if($('#wllc').val()!='')
+		wllc=parseFloat($('#wllc').val());
+	if($('#dwlc').val()!='')
+		dwlc=parseFloat($('#dwlc').val());
+	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+	$('#lc').html(hj5);
 }

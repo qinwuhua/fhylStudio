@@ -326,7 +326,14 @@ function openLxAdd2(id,xmbm,jdbs){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.jdbs=jdbs;
 	YMLib.Var.id=id;
+	
+	if(id=='lmsj')
 	openWindow(id,'添加路线','/jxzhpt/page/qqgl/cbsj/lx_add.jsp',980,400);
+	else if(id=='lmgz')
+	openWindow('lxxx','添加路线','/jxzhpt/page/qqgl/cbsj/lx_add2.jsp',980,400);	
+	else if(id=='xjgc')
+		openWindow('lxxx','添加路线','/jxzhpt/page/qqgl/cbsj/lx_add3.jsp',980,400);	
+		
 }
 /**
  * 删除路线
@@ -1227,14 +1234,15 @@ function updateLxWin(index,xmbm,id){
 	YMLib.Var.Obj=data;
 	YMLib.Var.id=id;
 	if(xmbm.substring(10,11)=="1"){
-		YMLib.UI.createWindow(id,'编辑路线信息','sjgzlx_edit.jsp',id,900,350);
+		YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_edit.jsp','lxxx',900,350);
 	}else if(xmbm.substring(10,11)=="2"){
-		YMLib.UI.createWindow(id,'编辑路线信息','lmgzlx_edit.jsp',id,900,350);
+		YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_edit.jsp','lxxx',900,350);
 	}
 	else if(xmbm.substring(10,11)=="4"){
-		YMLib.UI.createWindow(id,'编辑路线信息','lx_update.jsp',id,900,350);
+		YMLib.UI.createWindow('lxxx','编辑路线信息','lx_update.jsp','lxxx',900,350);
 	}
-	YMLib.UI.createWindow(id,'编辑路线信息','lx_add.jsp',id,900,350);
+	else if(xmbm.substring(10,11)=="5")
+		YMLib.UI.createWindow(id,'编辑路线信息','lx_update1.jsp',id,900,350);
 }
 function loadLxWin(index,xmbm,id){
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
@@ -1508,6 +1516,8 @@ function gridBind(grid){
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
+
+
 function gridBind11(grid){
 	gridObj = $('#'+grid.id).datagrid({
 	    url:grid.url,
@@ -1849,7 +1859,7 @@ function jsbzzj(flag){
 	if($("#snhntmcssh").val()!='')
 	zj17=$("#snhntmcssh").val();
 	var zbz=accAdd(accAdd(accAdd(accAdd(accAdd(zj1,zj2),accAdd(zj3,zj4)),accAdd(accAdd(zj5,zj6),accAdd(zj7,zj8))),accAdd(accAdd(accAdd(zj9,zj10),accAdd(zj11,zj12)),accAdd(accAdd(zj13,zj14),accAdd(zj15,zj16)))),zj17);
-	$("#sbzj1").html(zbz.toFixed(1));
-	$("#sbzj").val(zbz.toFixed(1));
+	$("#sbzj1").html(zbz.toFixed(0));
+	$("#sbzj").val(zbz.toFixed(0));
 	
 }
