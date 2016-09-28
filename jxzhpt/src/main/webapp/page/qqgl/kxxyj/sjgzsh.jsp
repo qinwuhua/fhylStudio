@@ -25,10 +25,23 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
 <%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
 	<script type="text/javascript">
+	var title;
 		$(function(){
 			tsdqdx("tsdq");
-			if($.cookie("unit2").length!=7)
-			$("img[name='bxs']").attr('style','display:none');
+			if($.cookie("unit2").length!=7){
+				title='上报状态';
+				$("img[name='bxs']").attr('style','display:none');
+				$('#sqzttext').html('上报状态');
+				$("#sqzt1").attr('style','display:none');
+				$("#sqzt2").attr('style','');
+			}else{
+				title='审核状态';
+				$('#sqzttext').html('审核状态');
+				$("img[name='bxs']").attr('style','');
+				$("#sqzt1").attr('style','');
+				$("#sqzt2").attr('style','display:none');
+			}
+			
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
@@ -261,12 +274,26 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:88px;" >
 								</select></td>
-								<td>审核状态：</td>
-        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
+								<td><span id='sqzttext'>审核状态：</span>   </td>
+        						<td>
+        						<span id='sqzt1'>
+        						<select id="sbzt"  style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option> 
-								</select></td>
+								</select>
+        						</span>
+        						<span id='sqzt2' >
+        						<select id="shzt"  style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								
+								</td>
+								
+								
 	        					 <!-- <td>行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
 								<td>技术等级：</td>

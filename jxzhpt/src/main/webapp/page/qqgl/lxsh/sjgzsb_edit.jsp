@@ -341,7 +341,7 @@ text-decoration:none;
 			$("#zdzh").val(zdStr);
 		} */
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		$("#lc").val(zlc);
+		//$("#lc").val(zlc);
 		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		//getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');

@@ -311,6 +311,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		List<Lx> ylx = queryList("queryYLx",item);
 		params.put("lx", item);
 		params.put("ylx", ylx);
+		//insert("getwnlxview", "");
+		
 		List<Lx> queryList = queryList("queryLsjlListwnxmk",params);
 		boolean flag=true;
 		if(result.size()>0&&queryList.size()>0){

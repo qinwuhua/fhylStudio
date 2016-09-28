@@ -967,13 +967,20 @@ function showAllsjsh(){
 	        
 	        }},
 		   
-	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'){
-	        		if($.cookie("unit2").length!=7)
-	        			return '未审核';
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
-	        	}else if(row.sbzt1=='1')
-	        		return '已审核';
+	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.sbzts=='0'){
+        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbao('+index+')">未上报</a>';
+        			}else{
+        				return '已上报';
+        			}
+	        	}else{
+	        		if(row.sbzt1=='0'){
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+	        		}else if(row.sbzt1=='1')
+		        		return '已审核';
+        		}
+	        	
 	        }},
 	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){

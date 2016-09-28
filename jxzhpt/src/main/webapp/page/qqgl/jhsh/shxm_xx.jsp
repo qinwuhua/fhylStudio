@@ -26,8 +26,9 @@
 				data:'xmlx='+5+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
-					loadDist("xzqh",msg.xzqhdm);
-					loadUnit("gydw",msg.gydwdm);
+					//loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm2);
+					//loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm);
+					//$("#gydw").combotree('setValues',msg.gydwdm.split(","));
 					//getghxxone(parent.YMLib.Var.xmbm,msg.qdzh,msg.zdzh);
 					$('#submit').form("load",msg);
 					var inputArray= $('input');

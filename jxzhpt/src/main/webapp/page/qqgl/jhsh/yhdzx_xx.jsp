@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>养护大中修详细</title>
 	<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
@@ -28,8 +27,11 @@
 				data:'xmlx='+4+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
-					loadDist("xzqh1",msg.xzqhdm);
-					loadUnit("gydw1",msg.gydwdm);
+					//loadDist("xzqh1",msg.xzqhdm);
+					//loadUnit("gydw1",msg.gydwdm);
+					$("#lmkd").val(msg.lmkd);
+					loadDistedit("xzqh1",$.cookie("dist"),msg.xzqhdm2);
+					loadUnitedit("gydw1",$.cookie('unit'),msg.gydwdm);
 					$("#ylxbh").val(msg.ylxbh);
 					$("#zdzh").val(msg.zdzh);
 					$("#zdmc").val(msg.zdmc);

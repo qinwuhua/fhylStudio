@@ -1221,7 +1221,7 @@ function jsjszlc(){
 	if($('#jhsilc').val()!='')
 		silc=parseFloat($('#jhsilc').val());
 	if($('#jhwllc').val()!='')
-		wllc=parseFloat($('#jhwllc').val());
+		wulc=parseFloat($('#jhwllc').val());
 	if($('#jhdwlc').val()!='')
 		dwlc=parseFloat($('#jhdwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
@@ -1239,7 +1239,7 @@ function jsyzlc(){
 	if($('#silc').val()!='')
 		silc=parseFloat($('#silc').val());
 	if($('#wllc').val()!='')
-		wllc=parseFloat($('#wllc').val());
+		wulc=parseFloat($('#wllc').val());
 	if($('#dwlc').val()!='')
 		dwlc=parseFloat($('#dwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);

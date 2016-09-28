@@ -103,6 +103,7 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
+
 			saveLxsh();
 			/*
 				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=xj";
@@ -174,8 +175,8 @@ text-decoration:none;
 					$("#tsdq").val(item.tsdq);$("#xmnf").combobox('setValue',item.xmnf);
 					$("#jhkgn").combobox('setValue',item.jhkgn);
 					$("#jhwgn").combobox('setValue',item.jhwgn);
-					$("#qdzh").val(parseFloat(item.qdzh));
-					$("#zdzh").val(parseFloat(item.zdzh));
+					$("#qdzh").val(item.qdzh);
+					$("#zdzh").val(item.zdzh);
 					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
 					$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);
 					$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
@@ -188,17 +189,21 @@ text-decoration:none;
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					
+					if(!isNaN(parseFloat($("#zdzh").val())))
+					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					else
+						$("#lc").html('');
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
 					qdStr=(parseFloat(item.qdzh)-5);
 					zdStr=(parseFloat(item.zdzh)+5);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+					//$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+					//$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//cesuan2(); 
 					loadjsdjcd();
+					//changeZlc2()
 				});
 	}
 	function loadjsdjcd(){
@@ -217,6 +222,7 @@ text-decoration:none;
 				$("#xjlxbm").val(msg.xjlxbm);
 				$("#xjqdzh").val(msg.xjqdzh);
 				$("#xjzdzh").val(msg.xjzdzh);
+				$("#xjlc").val(accSub(parseFloat(msg.xjzdzh),parseFloat(msg.xjqdzh)));
 			}
 		});
 	}
@@ -234,6 +240,7 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
+
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
@@ -242,10 +249,13 @@ text-decoration:none;
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
+		
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
 		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').val();
+		
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
+		alert();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -382,6 +392,15 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>新建里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xjlc" style="font-size: 14px">0</span>&nbsp;公里
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
+						<option value="否" selected="selected">否</option>
+						<option value="是">是</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

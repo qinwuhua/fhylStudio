@@ -239,11 +239,11 @@
 			$('#xzqh').val($('#xzqh1').combo("getText"));
 			var result=true;
 			result = validateText('ylxbh',null,result);
-			result = validateText('ghlxbm',null,result);
-			result = validateText('lmkd','number',result);
-			result = validateText('qdzh','number',result);
-			result = validateText('zdzh','number',result);
-			result = validateText('lc','number',result);
+			//result = validateText('ghlxbm',null,result);
+			//result = validateText('lmkd','number',result);
+			//result = validateText('qdzh','number',result);
+			//result = validateText('zdzh','number',result);
+			//result = validateText('lc','number',result);
 			result = validateText('xmmc',null,result);
 			if($('#ntz').val()!="" && $('#ntz').val()!=null){
 				result = validateText('ntz','number',result);
@@ -255,6 +255,7 @@
 			
 			if(zhuanghao()){
 				$("#bzsf input").removeAttr("disabled");
+				$("#lmkd").removeAttr("disabled");
 				$('#submit').ajaxSubmit({
 					dataType:'json',
 					success:function(msg){

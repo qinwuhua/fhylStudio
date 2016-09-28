@@ -268,7 +268,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				lx.setJdbs("1");
 			}
-			if(xmsq.getXmlx()==4){
+			if(xmsq.getXmlx()==4||xmsq.getXmlx()==5){
+				//lxserw=xmsqServer.queryLslistserw(xmsq);
 				List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
 				if(l.size()>0){
 					xmsq.setWnxmk("是");
@@ -277,7 +278,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 				
 			}
-			
+		
 			lx.setJsjsdj(xmsq.getJsdj());
 			lx.setGpsqdzh(xmsq.getGpsqdzh());
 			lx.setGpszdzh(xmsq.getGpszdzh());
@@ -288,8 +289,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setSilc(xmsq.getSilc());
 			lx.setDwlc(xmsq.getDwlc());
 			lx.setWllc(xmsq.getWllc());
+			lx.setLmkd(xmsq.getLmkd());
 			List<Xmsq> list=new ArrayList<Xmsq>();
-			//xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+			xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+			
+			
 			list.add(xmsq);
 			if(xmsq.getXmlx()==4){
 				

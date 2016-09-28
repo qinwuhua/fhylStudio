@@ -30,7 +30,8 @@
 				dataType:'json',
 				success:function(msg){
 					loadDistedit("xzqh1",$.cookie("dist"),msg.xzqhdm2);
-					loadUnits("gydw1",$.cookie('unit'),msg.gydwdm);
+					loadUnitedit("gydw1",$.cookie('unit'),msg.gydwdm);
+					//$("#lmkd").val(msg.lxlmkd);
 					$('#submit').form("load",msg);
 					$('#span_qdzh').html(msg.gpsqdzh);
 					$('#span_zdzh').html(msg.gpszdzh);
@@ -163,17 +164,18 @@
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			var result=true;
 			result = validateText('ylxbh',null,result);
-			result = validateText('ghlxbm',null,result);
-			result = validateText('lmkd','number',result);
-			result = validateText('qdzh','number',result);
-			result = validateText('zdzh','number',result);
-			result = validateText('lc','number',result);
+			//result = validateText('ghlxbm',null,result);
+			//result = validateText('lmkd','number',result);
+			//result = validateText('qdzh','number',result);
+			//result = validateText('zdzh','number',result);
+			//result = validateText('lc','number',result);
 			result = validateText('xmmc',null,result);
 			if(!result){
 				return;
 			}
 			if(zhuanghao()){
 				$("#bzsf input").removeAttr("disabled");
+				$("#lmkd").removeAttr("disabled");
 				$('#submit').ajaxSubmit({
 					dataType:'json',
 					success:function(msg){

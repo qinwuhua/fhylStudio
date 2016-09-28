@@ -335,8 +335,8 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		$("#lc").html(zlc);
+		//var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		//$("#lc").html(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());

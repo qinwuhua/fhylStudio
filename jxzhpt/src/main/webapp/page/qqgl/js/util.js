@@ -309,6 +309,10 @@ function openLxAdd(id,xmbm,jdbs){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.jdbs=jdbs;
 	YMLib.Var.id=id;
+	
+	if(id=='shxm'){
+		openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add3.jsp',980,400);
+	}else
 	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add2.jsp',980,400);
 }
 function openLxAddyh(id,xmbm,jdbs){

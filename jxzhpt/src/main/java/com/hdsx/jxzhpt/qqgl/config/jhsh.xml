@@ -4269,7 +4269,7 @@
 	</update>
 	
 	<select id="queryLsjlListwnxmk" parameterType="java.util.Map" resultType="lx">
-	select distinct tab.* from (
+	<!-- select distinct tab.* from (
 		select  l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'改建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd1 cl right join wnjh_lx l on cl.id=l.id right join wnjh_sjgz j on l.xmid=j.id 
 		where l.lxbm like '%'||#{lx.lxbm}||'%' and 
 		(
@@ -4299,6 +4299,36 @@
 	    )
 	   
 	   and (to_number(l.qdzh)!=${lx.zdzh}) and (to_number(l.zdzh)!=${lx.qdzh})
+	)tab
+	
+		
+	    order by xmnf desc -->
+	    
+	    
+	    select distinct tab.* from (
+		select  l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'改建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd1 cl right join wnjh_lx l on cl.id=l.id right join wnjh_sjgz j on l.xmid=j.id 
+		where l.lxbm like '%'||#{lx.lxbm}||'%' 
+		and (${lx.zdzh} > ((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))  
+		 and ((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end)) > ${lx.qdzh} )  
+	     and (((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))!=${lx.zdzh}) and (((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end))!=${lx.qdzh})
+		
+	    
+	    union all 
+	    
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'路面改造' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd1 cl right join wnjh_lx l on cl.id=l.id right join wnjh_lmgz j on l.xmid=j.id 
+		where l.lxbm like '%'||#{lx.lxbm}||'%' 
+		and (${lx.zdzh} > ((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))  
+		 and ((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end)) > ${lx.qdzh} )  
+	     and (((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))!=${lx.zdzh}) and (((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end))!=${lx.qdzh})
+		
+	    union all 
+	    
+		select l.xmid,xmnf,l.jsxz,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,'新建' xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd1 cl right join wnjh_lx l on cl.id=l.id right join wnjh_xj j on l.xmid=j.id 
+		where l.lxbm like '%'||#{lx.lxbm}||'%' 
+		and (${lx.zdzh} > ((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))  
+		 and ((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end)) > ${lx.qdzh} )  
+	     and (((case when (select f_str_or_num(l.qdzh) from dual)=1 then 9999 else to_number(l.qdzh) end))!=${lx.zdzh}) and (((case when (select f_str_or_num(l.zdzh) from dual)=1 then 0 else to_number(l.zdzh) end))!=${lx.qdzh})
+		
 	)tab
 	
 		
