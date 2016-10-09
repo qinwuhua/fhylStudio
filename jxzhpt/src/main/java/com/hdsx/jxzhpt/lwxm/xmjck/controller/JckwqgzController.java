@@ -103,6 +103,86 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			}else{
 				jckwqgz.setXzqhdm("and xzqhdm in ("+jckwqgz.getXzqhdm()+")");
 			}
+			if(jckwqgz.getTsdq().length()>0){
+				String[] tsdqs=jckwqgz.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setTsdq(tsdq);
+			}
+			if(jckwqgz.getGldj().length()>0){
+				String[] tsdqs=jckwqgz.getGldj().split(",");
+				String tsdq="and substr(qlbh,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setGldj(tsdq);
+			}
+			if(jckwqgz.getJsdj().length()>0){
+				String[] tsdqs=jckwqgz.getJsdj().split(",");
+				String tsdq="and substr(jsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setJsdj(tsdq);
+			}
+			if(jckwqgz.getAkjfl().length()>0){
+				String[] tsdqs=jckwqgz.getAkjfl().split(",");
+				String tsdq="and akjfl in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setAkjfl(tsdq);
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz(jckwqgz);
 			System.out.println("------------"+list.size()+"--------------");
@@ -140,6 +220,86 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 				jckwqgz.setXzqhdm("and xzqhdm like '%"+jckwqgz.getXzqhdm()+"%'");
 			}else{
 				jckwqgz.setXzqhdm("and xzqhdm in ("+jckwqgz.getXzqhdm()+")");
+			}
+			if(jckwqgz.getTsdq().length()>0){
+				String[] tsdqs=jckwqgz.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setTsdq(tsdq);
+			}
+			if(jckwqgz.getGldj().length()>0){
+				String[] tsdqs=jckwqgz.getGldj().split(",");
+				String tsdq="and substr(qlbh,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setGldj(tsdq);
+			}
+			if(jckwqgz.getJsdj().length()>0){
+				String[] tsdqs=jckwqgz.getJsdj().split(",");
+				String tsdq="and substr(jsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setJsdj(tsdq);
+			}
+			if(jckwqgz.getAkjfl().length()>0){
+				String[] tsdqs=jckwqgz.getAkjfl().split(",");
+				String tsdq="and akjfl in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jckwqgz.setAkjfl(tsdq);
 			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_sh(jckwqgz);

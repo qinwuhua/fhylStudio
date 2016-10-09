@@ -859,5 +859,19 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	public Lxsh showkxxShxx(Lxsh lxsh) {
 		return queryOne("showkxxShxx", lxsh);
 	}
+
+	@Override
+	public boolean sbgcxmkxx(Lxsh lxsh) {
+		if("1".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sjgz");
+		if("2".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_lmgz");
+		if("3".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_xj");
+		if("5".equals(lxsh.getXmlx()))
+			lxsh.setBz("kxxyj_sh");
+		return update("sbgcxmkxx", lxsh)>0;
+
+	}
 	
 }

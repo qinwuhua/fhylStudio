@@ -124,7 +124,7 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'zlc',title:'里程',width:60,align:'center'},
 				{field:'jsdj',title:'技术等级',width:70,align:'center'},
 				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},

@@ -112,11 +112,11 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-			var zlc=$("#jszlc").val();
+			/* var zlc=$("#jszlc").val();
 			if(parseFloat(zlc)>(parseFloat($('#lc').html())*1.2)){
 				alert("对不起，建设技术等级里程不能大于现状里程的120%");
 				return false;
-			} 
+			}  */
 			saveLxsh();
 			/*var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=sjgz";
 			$.ajax({
@@ -187,6 +187,7 @@ text-decoration:none;
 					$("#tsdq").html(item.tsdq);$("#xmnf").combobox('setValue',item.xmnf);
 					$("#jhkgn").combobox('setValue',item.jhkgn);
 					$("#jhwgn").combobox('setValue',item.jhwgn);
+				
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
@@ -218,6 +219,7 @@ text-decoration:none;
 					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//cesuan2(); 
+					
 					loadjsdjcd();
 				});
 	}
@@ -240,7 +242,7 @@ text-decoration:none;
 				$("#jhsilc").val(msg.jhsilc);
 				$("#jhdwlc").val(msg.jhdwlc);
 				$("#jhwllc").val(msg.jhwllc);
-				var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+				var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wllc=0;var dwlc=0;
 				var jhyilc=0;var jherlc=0;var jhsanlc=0;var jhsilc=0;var jhwulc=0;var jhdwlc=0;
 				if($('#jhyilc').val()!='')
 					jhyilc=parseFloat($('#jhyilc').val());
@@ -251,7 +253,7 @@ text-decoration:none;
 				if($('#jhsilc').val()!='')
 					jhsilc=parseFloat($('#jhsilc').val());
 				if($('#jhwllc').val()!='')
-					jhwllc=parseFloat($('#jhwllc').val());
+					jhwulc=parseFloat($('#jhwllc').val());
 				if($('#jhdwlc').val()!='')
 					jhdwlc=parseFloat($('#jhdwlc').val());
 				var hj1=accAdd(jhyilc,jherlc);var hj2=accAdd(jhsanlc,jhsilc);var hj3=accAdd(jhwulc,jhdwlc);
@@ -270,9 +272,12 @@ text-decoration:none;
 					wllc=parseFloat($('#wllc').val());
 				if($('#dwlc').val()!='')
 					dwlc=parseFloat($('#dwlc').val());
-				var hj11=accAdd(yilc,erlc);var hj21=accAdd(sanlc,silc);var hj31=accAdd(wulc,dwlc);
+				var hj11=accAdd(yilc,erlc);var hj21=accAdd(sanlc,silc);var hj31=accAdd(wllc,dwlc);
 				var hj41=accAdd(hj11,hj21);var hj51=accAdd(hj31,hj41);
 				$('#lc').html(hj51);
+				//alert(hj51);
+				
+				//alert(yilc+"+"+erlc+"+"+sanlc+"+"+silc);
 			}
 		});
 	}
@@ -458,7 +463,7 @@ text-decoration:none;
 					四级：<input id="silc" onblur="jsyzlc()" name="silc" style="width: 50px;" type="text"/>
 					等外：<input id="dwlc" onblur="jsyzlc()" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input id="wllc" onblur="jsyzlc()" name="wllc" style="width: 50px;" type="text"/>
-					现状总里程：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
+					总计：<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -472,7 +477,7 @@ text-decoration:none;
 					四级：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 					等外：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-					建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+					总计：<input id="jszlc" name="jszlc" style="width: 50px;" readonly="readonly"  type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

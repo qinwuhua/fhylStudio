@@ -367,14 +367,28 @@ function exportExcel_wqgz(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var akjfl=$("#akjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
+	
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&sbzt='+$("#sbzt").combobox("getValue")+
- 	'&jsdj='+$("#jsdj").combobox("getValue")+
- 	'&akjfl='+$("#akjfl").combobox("getValue")+'&lxbm='+$("#lxbm").val()+
+ 	'&jsdj='+jsdj+'&gldj='+gldj+'&tsdq='+tsdq+
+ 	'&akjfl='+akjfl+'&lxbm='+$("#lxbm").val()+
  	'&qlbh='+$("#qlbh").val()+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
@@ -482,14 +496,26 @@ function exportExcel_wqgz_sh(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var akjfl=$("#akjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	//'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&jsdj='+$("#jsdj").combobox("getValue")+
- 	'&akjfl='+$("#akjfl").combobox("getValue")+'&lxbm='+$("#lxbm").val()+
+ 	'&jsdj='+jsdj+'&gldj='+gldj+'&tsdq='+tsdq+
+ 	'&akjfl='+akjfl+'&lxbm='+$("#lxbm").val()+
  	'&qlbh='+$("#qlbh").val()+
  	'&sbthcd='+cd;
 	//特殊地区 条件	

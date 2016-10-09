@@ -400,7 +400,7 @@
  </select>
  
  <sql id="wqgz_commonsql">
- 	and  sbthcd &lt;=#{sbthcd}
+ 	and  sbthcd &lt;=#{sbthcd} and sfylrbwqk='是'
  	<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -422,11 +422,17 @@
 	<if test="sbzt!='' and sbzt!= null ">
 		and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	</if>
-	<if test="jsdj!='' and jsdj!= null ">
-		and jsdj like '%'||(#{jsdj})||'%'
+	<if test="gldj!='' and gldj!= null">
+		${gldj}
 	</if>
-	<if test="akjfl!='' and akjfl!= null ">
-		and akjfl like '%'||(#{akjfl})||'%'
+	<if test="jsdj!='' and jsdj!= null">
+		${jsdj}
+	</if>
+	<if test="akjfl!='' and akjfl!= null">
+		${akjfl}
+	</if>
+	<if test="tsdq!='' and tsdq!= null and tsdq !='全部'">
+		${tsdq}
 	</if>
 	<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like '%'||(#{lxbm})||'%'

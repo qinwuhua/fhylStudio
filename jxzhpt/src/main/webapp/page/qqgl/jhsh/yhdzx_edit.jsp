@@ -649,7 +649,7 @@
 						挖除水泥面板
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						单价：<span id="wcsnmbdj">100</span>100元/立方米
+						单价：<span id="wcsnmbdj">100</span>元/立方米
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						备注：5MP
@@ -693,6 +693,8 @@
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						选择：<input id='snhntmchbse' onclick="jsbzzj('snhntmchb')" type="checkbox"/>
 						<input type="hidden" id='snhntmchbhd' name='snhntmchbhd'>
+						面积：<input type="text" value='0' onchange="jsbzzj('snhntmchb')" id='snhntmchbmj' name='snhntmchbmj' class="easyui-numberbox" style="width:50px;"/>㎡
+						
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						补助：<input id='snhntmchb' name='snhntmchb' type="text" style="width: 50px;" disabled="disabled"/>万元

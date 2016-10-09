@@ -14,7 +14,14 @@ public class Lx {
 	};
 	private String jszlc;
 	private String xmlx;
+	private String snhntmchbmj;
 	
+	public String getSnhntmchbmj() {
+		return snhntmchbmj;
+	}
+	public void setSnhntmchbmj(String snhntmchbmj) {
+		this.snhntmchbmj = snhntmchbmj;
+	}
 	public String getXmlx() {
 		return xmlx;
 	}

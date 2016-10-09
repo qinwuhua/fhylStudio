@@ -221,7 +221,7 @@ text-decoration:none;
 					四级：<span id="silc"></span>
 					等外：<span id="dwlc"></span>
 					无路：<span id="wllc"></span>
-					现状总里程：<span id="lc"></span>
+					总计：<span id="lc"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -235,7 +235,7 @@ text-decoration:none;
 					四级：<span id="jhsilc"></span>
 					等外：<span id="jhdwlc"></span>
 					无路：<span id="jhwllc"></span>
-					建设总里程：<span id="jszlc"></span>
+					总计：<span id="jszlc"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -364,7 +364,7 @@ text-decoration:none;
 					四级：<span id="silc1"></span>
 					等外：<span id="dwlc1"></span>
 					无路：<span id="wllc1"></span>
-					现状总里程：<span id="lc1"></span>
+					总计：<span id="lc1"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -378,7 +378,7 @@ text-decoration:none;
 					四级：<span id="jhsilc1"></span>
 					等外：<span id="jhdwlc1"></span>
 					无路：<span id="jhwllc1"></span>
-					建设总里程：<span id="jszlc1"></span>
+					总计：<span id="jszlc1"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

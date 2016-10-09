@@ -1784,5 +1784,10 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	
+	public void sbgcxmkxx(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.sbgcxmkxx(lxsh));
+		
+	}
+	
 }
 

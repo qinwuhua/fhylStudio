@@ -1781,8 +1781,12 @@ function jsbzzj(flag){
 	}
 	if(flag=='snhntmchb'){
 		if($("#lmkd").val()!=null && $("#lmkd").val()!=''){
-			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
-			if($("#snhntmchbse").attr("checked")=="checked"){
+			var mj;
+			if($("#snhntmchbmj").val()!=null && $("#snhntmchbmj").val()!='' && $("#snhntmchbmj").val()!='0')
+				mj=parseFloat($("#snhntmchbmj").val());
+			else
+			mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
+			if($("#snhntmchbse").attr("checked")=="checked"||($("#snhntmchbmj").val()!=null && $("#snhntmchbmj").val()!='' && $("#snhntmchbmj").val()!='0')){
 				var bz=accDiv(accMul(mj,parseFloat($("#snhntmchbdj").html())),10000);
 				$("#snhntmchb").val(bz);
 				$("#snhntmchbhd").val("是");

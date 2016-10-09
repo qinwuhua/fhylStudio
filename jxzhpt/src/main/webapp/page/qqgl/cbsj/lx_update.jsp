@@ -148,7 +148,7 @@
 					,'lx.lqlmjdrzshd':$('#lqlmjdrzshd').val(),'lx.lqlmcbrzshd':$('#lqlmcbrzshd').val(),'lx.swjchd':$('#swjchd').val()
 					,'lx.lqlmpmlqjdlzshd':$('#lqlmpmlqjdlzshd').val(),'lx.lqlmrhlqjdlzshd':$('#lqlmrhlqjdlzshd').val(),'lx.lqlmcblzshd':$('#lqlmcblzshd').val()
 					,'lx.xzrxjchd':$('#xzrxjchd').val(),'lx.swjclzshd':$('#swjclzshd').val(),'lx.xfchd':$('#xfchd').val()
-					,'lx.wcsnmbhd':$('#wcsnmbhd').val(),'lx.wcswjchd':$('#wcswjchd').val(),'lx.snhntmchbhd':$('#snhntmchbhd').val()
+					,'lx.wcsnmbhd':$('#wcsnmbhd').val(),'lx.wcswjchd':$('#wcswjchd').val(),'lx.snhntmchbhd':$('#snhntmchbhd').val(),'lx.snhntmchbmj':$('#snhntmchbmj').val()
 					,'lx.bxhd':$('#bxhd').val(),'lx.snhntmcsshhd':$('#snhntmcsshhd').val(),'lx.sbzj':$('#sbzj').val(),'lx.lmkd':$('#lmkd').val()
 					,"lx.ghlxmc":$('#ghlxmc').val(),"lx.ghlxbm":$('#ghlxbm').val(),"lx.ghqdzh":$('#ghqdzh').val(),"lx.ghzdzh":$('#ghzdzh').val()
 					,"lx.gxlxbm":$('#gxlxbm').val(),"lx.gxqdzh":$('#gxqdzh').val(),"lx.gxzdzh":$('#gxzdzh').val()
@@ -637,6 +637,7 @@
 					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						选择：<input id='bxse' onclick="jsbzzj('bx')" type="checkbox"/>
 						<input type="hidden" id='bxhd' name='bxhd'>
+						面积：<input type="text" value='0' onchange="jsbzzj('snhntmchb')" id='snhntmchbmj' name='snhntmchbmj' class="easyui-numberbox" style="width:50px;"/>㎡
 						
 					</td>
 					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">

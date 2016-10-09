@@ -242,6 +242,7 @@ text-decoration:none;
 			qd=parseFloat($("#qdzh").val());
 		}
 		var zlc=accSub(zd,qd);
+		if(!isNaN(zlc))
 		$("#lc").html(zlc);
 // 		selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
 // 		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
@@ -272,6 +273,7 @@ text-decoration:none;
 			qd=parseFloat($("#xjqdzh").val());
 		}
 		var zlc=accSub(zd,qd);
+		if(!isNaN(zlc))
 		$("#xjlc").html(zlc);
 	}
 </script>

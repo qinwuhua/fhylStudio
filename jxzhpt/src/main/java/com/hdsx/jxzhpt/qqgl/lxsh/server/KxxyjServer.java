@@ -139,4 +139,6 @@ public interface KxxyjServer {
 
 	Lxsh showkxxShxx(Lxsh lxsh);
 
+	boolean sbgcxmkxx(Lxsh lxsh);
+
 }

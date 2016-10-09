@@ -11,7 +11,14 @@ public class Kxxyj implements Serializable {
 	private String gxlxbm;//规划路线编号
 	private String gxqdzh;//规划路线编号
 	private String gxzdzh;//规划路线编号
+	private String jszlc1;
 	
+	public String getJszlc1() {
+		return jszlc1;
+	}
+	public void setJszlc1(String jszlc1) {
+		this.jszlc1 = jszlc1;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}
@@ -158,12 +165,18 @@ public class Kxxyj implements Serializable {
 	private String lxmc;//路线名称
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
-	private String jszlc;//建设总里程
+	private String jszlc;//总计
 	private String xmsl;//路线数量
 	private String jhlc;//工可改建查询列表计划里程
+	private String sbzts;
 	
 	
-	
+	public String getSbzts() {
+		return sbzts;
+	}
+	public void setSbzts(String sbzts) {
+		this.sbzts = sbzts;
+	}
 	public String getJhlc() {
 		return jhlc;
 	}

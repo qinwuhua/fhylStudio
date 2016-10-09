@@ -43,6 +43,14 @@ public class Jhsh2 {
 	private int xmlx;//项目类型
 	private String jsdj;//技术等级
 	private String tsdq;//特殊地区
+	private String zlc;
+	
+	public String getZlc() {
+		return zlc;
+	}
+	public void setZlc(String zlc) {
+		this.zlc = zlc;
+	}
 	public String getTsdq() {
 		return tsdq;
 	}

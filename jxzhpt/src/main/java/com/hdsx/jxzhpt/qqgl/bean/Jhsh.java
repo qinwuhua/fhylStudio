@@ -107,7 +107,7 @@ public class Jhsh {
 	private String gfje;//灌缝金额
 	private String llcl;//老路处理
 	private String jsdj;//技术等级
-	private String jszlc;//建设总里程
+	private String jszlc;//总计
 	//用于路线信息的字段
 	private String gydw;//管养单位
 	private String qdmc;//起点名称
@@ -156,7 +156,14 @@ public class Jhsh {
 	private String gxlxbm;
 	private String gxqdzh;
 	private String gxzdzh;
+	private String zlc;
 	
+	public String getZlc() {
+		return zlc;
+	}
+	public void setZlc(String zlc) {
+		this.zlc = zlc;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}

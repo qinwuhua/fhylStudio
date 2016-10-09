@@ -174,7 +174,7 @@
 						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
 						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
-						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+						总计：<input id="lc" name="lc" type="text" style="width: 50px;"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -188,7 +188,7 @@
 						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+						总计：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -270,7 +270,7 @@
 						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
 						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
-						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+						总计：<input id="lc" name="lc" type="text" style="width: 50px;"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -284,7 +284,7 @@
 						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+						总计：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -425,7 +425,7 @@
 						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
 						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
-						现状总里程：<input id="lc" name="lc" type="text" style="width: 50px;"/>
+						总计：<input id="lc" name="lc" type="text" style="width: 50px;"/>
 					</td>
 				</tr>
 				<tr style="height: 35px;">
@@ -439,7 +439,7 @@
 						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-						建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+						总计：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">

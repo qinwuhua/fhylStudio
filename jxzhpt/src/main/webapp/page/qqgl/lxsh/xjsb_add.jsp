@@ -184,16 +184,15 @@ text-decoration:none;
 					$("#gydw").combotree('setValues',item.gydwdm.split(","));
 					loadDistedit("xzqh",'36',item.xzqhdm2);
 					$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
-					
+					$("#xjlc").html(item.xjlc);
+					//alert(item.jszlc);
+					$("#lc").html(item.jszlc);
 					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
 					
-					if(!isNaN(parseFloat($("#zdzh").val())))
-					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					else
-						$("#lc").html('');
+					
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
 					qdStr=(parseFloat(item.qdzh)-5);
@@ -222,7 +221,7 @@ text-decoration:none;
 				$("#xjlxbm").val(msg.xjlxbm);
 				$("#xjqdzh").val(msg.xjqdzh);
 				$("#xjzdzh").val(msg.xjzdzh);
-				$("#xjlc").val(accSub(parseFloat(msg.xjzdzh),parseFloat(msg.xjqdzh)));
+				//$("#xjlc").val(accSub(parseFloat(msg.xjzdzh),parseFloat(msg.xjqdzh)));
 			}
 		});
 	}
@@ -297,6 +296,7 @@ text-decoration:none;
 			qd=parseFloat($("#qdzh").val());
 		}
 		var zlc=accSub(zd,qd);
+		if(!isNaN(zlc))
 		$("#lc").html(zlc);
 // 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 // 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
@@ -327,6 +327,7 @@ text-decoration:none;
 			qd=parseFloat($("#xjqdzh").val());
 		}
 		var zlc=accSub(zd,qd);
+		if(!isNaN(zlc))
 		$("#xjlc").html(zlc);
 	}
 

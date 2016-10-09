@@ -969,10 +969,11 @@ function showAllsjsh(){
 		   
 	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
-	        		if(row.sbzts=='0'){
-        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbao('+index+')">未上报</a>';
+	        		if(row.sbzts=='1'){
+	        			return '已上报';
         			}else{
-        				return '已上报';
+	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbao('+index+')">未上报</a>';
+
         			}
 	        	}else{
 	        		if(row.sbzt1=='0'){
@@ -1002,7 +1003,7 @@ function showAllsjsh(){
 	        		}
 	        	}
 	        },
-	        {field : 'jhlc',title : '里程',width : 60,align : 'center'},
+	        {field : 'jszlc1',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
@@ -1318,15 +1319,7 @@ function showAlllmsh(){
 	        		}
 	        	}
 	        },
-	        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
-	        	formatter: function(value,row,index){
-	        		if(row.xmbm.substr(10,1)=='1'){
-	        			return row.jszlc;
-	        		}else{
-	        			return row.lc;
-	        		}
-	        	}
-		    },
+	        {field : 'jszlc1',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
@@ -1640,15 +1633,7 @@ function showAllxjsh(){
 	        		}
 	        	}
 	        },
-	        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
-	        	formatter: function(value,row,index){
-	        		if(row.xmbm.substr(10,1)=='1'){
-	        			return row.jszlc;
-	        		}else{
-	        			return row.lc;
-	        		}
-	        	}
-		    },
+	        {field : 'jszlc1',title : '里程',width : 60,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
@@ -2068,7 +2053,7 @@ function importsjgzkxx(flag){
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : '工可信息导入',
-		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importsjgzkxx.do"+'&flag='+flag,
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importsjgzkxx.do"+'&flag='+flag+".jsp?id="+getUrlParame('id'),
 		width : 570,
 		height : 440,
 		top : 0,
@@ -2507,4 +2492,73 @@ function showAllxjsh__ck(){
 	    	});
 	    }   
 	}); 
+}
+
+
+function shangbao(index){
+	//alert(index);
+	var xmlx="";
+	var xmbm='';
+	if(index==null){
+		var rows=$('#datagrid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzts=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+		var xmbm1=rows[0].xmbm;
+		xmlx=xmbm1.substr(10,1);
+		for ( var i = 1; i < rows.length; i++) {
+			xmbm1+=","+rows[i].xmbm;
+		}
+		xmbm=xmbm1;
+	}else{
+		var da=$("#datagrid").datagrid('getRows')[index];
+		if(da.sbzts=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+		xmlx=da.xmbm.substr(10,1);
+		xmbm=da.xmbm;
+	}
+	
+	
+	//alert(xmlx+"   "+xmbm);
+	
+	
+	sbthcd=$.cookie("unit2").length-2;
+	
+	
+	
+	if(confirm('您确定上报吗？')){
+		var data = "lxsh.xmbm="+xmbm+"&lxsh.sbthcd="+sbthcd+"&lxsh.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sbgcxmkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+	
+	
+//	var sbthcd;
+	
+	
+	//alert(data.xmbm.substr(10,1)+"     "+xmbm.substr(10,1));
 }

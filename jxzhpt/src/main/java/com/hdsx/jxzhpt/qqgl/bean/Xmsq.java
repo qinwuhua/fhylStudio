@@ -144,7 +144,21 @@ public class Xmsq {
 	
 	private String xzqhdm2;//跨县行政区划
 	private String lxbm;
+	private String zlc;
+	private String snhntmchbmj;
 	
+	public String getSnhntmchbmj() {
+		return snhntmchbmj;
+	}
+	public void setSnhntmchbmj(String snhntmchbmj) {
+		this.snhntmchbmj = snhntmchbmj;
+	}
+	public String getZlc() {
+		return zlc;
+	}
+	public void setZlc(String zlc) {
+		this.zlc = zlc;
+	}
 	public String getGxlxbm() {
 		return gxlxbm;
 	}

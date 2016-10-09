@@ -113,6 +113,9 @@
 	      <action name="importsjgzkxx" class="kxxyjController" method="importsjgzkxx"/>
 	      <action name="importlmgzkxx" class="kxxyjController" method="importlmgzkxx"/>
           <action name="importxjkxx" class="kxxyjController" method="importxjkxx"/>
+          <action name="sbgcxmkxx" class="kxxyjController" method="sbgcxmkxx"/>
+	       
+	       
 	       
 	       <action name="cxsfcgsjd" class="lxshController" method="cxsfcgsjd"/> 
 	       <action name="delybsjd" class="lxshController" method="delybsjd"/> 

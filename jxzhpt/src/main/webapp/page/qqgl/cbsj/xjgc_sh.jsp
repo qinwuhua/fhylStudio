@@ -133,6 +133,7 @@
 				{field:'ghlxbh',title:'路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:80,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+				{field:'zlc',title:'里程',width:80,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:80,align:'center'},

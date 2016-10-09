@@ -14,7 +14,14 @@ public class Cbsj{
 	private String gxlxbm;
 	private String gxzdzh;
 	private String gxqdzh;
+	private String zlc;
 	
+	public String getZlc() {
+		return zlc;
+	}
+	public void setZlc(String zlc) {
+		this.zlc = zlc;
+	}
 	public String getGhqdzh() {
 		return ghqdzh;
 	}
@@ -214,7 +221,7 @@ public class Cbsj{
 	private String jhwllc;//建设后无路里程
 	private String dfzc;//地方自筹
 	private String yhdk;//银行贷款
-	private String jszlc;//建设总里程
+	private String jszlc;//总计
 	private String xmsl;//路线数量
 	public String getXmsl() {
 		return xmsl;

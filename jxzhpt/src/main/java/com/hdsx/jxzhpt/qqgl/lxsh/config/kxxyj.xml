@@ -3,7 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.kxxyj">
 	<select id="selectSjgzList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SJGZ t Left join 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SJGZ t Left join 
 		lxsh_sjgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -15,7 +15,7 @@
 		<if test="jsjsdj!='' and jsjsdj!= null ">
 			and ${jsjsdj}
 		</if>) lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -138,7 +138,7 @@
 	
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
 		on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,dwlc,wllc,qdmc,zdmc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx 
 		where jdbs='1' and jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -150,7 +150,7 @@
 		<if test="jsjsdj!='' and jsjsdj!= null ">
 			and ${jsjsdj}
 		</if>) lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -275,7 +275,7 @@
 	
 	<select id="selectXjkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz,t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
 		(select qdmc,zdmc,lxmc,qdzh minqdzh,zdzh maxzdzh,xmid, lc,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh
 		from lxsh_lx where jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -287,7 +287,7 @@
 		<if test="jsjsdj!='' and jsjsdj!= null ">
 			and ${jsjsdj}
 		</if>) lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1323,21 +1323,21 @@
 	 	select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SJGZ t Left join 
 		lxsh_sjgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,qdmc,zdmc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null)  and t.xmbm=#{xmbm} 
 	 </select>
 	 <select id="querygkxmXXlm" parameterType="lxsh" resultType="kxxyj">
 	 	select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
 		on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,dwlc,wllc,qdmc,zdmc from lxsh_lx 
 		where jdbs='1' and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null)  and t.xmbm=#{xmbm} 
 	 </select>
 	 <select id="querygkxmXXxj" parameterType="lxsh" resultType="kxxyj">
 	 	select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_XJ t left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
 		(select qdmc,zdmc,lxmc,qdzh minqdzh,zdzh maxzdzh,xmid, lc,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh 
 		from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null)  and t.xmbm=#{xmbm} 
 	 </select>
 	 
@@ -1346,7 +1346,7 @@
 	 
 	 <select id="selectgsdkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl from kxgsdgz t Left join 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
 		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -1358,7 +1358,7 @@
 		<if test="jsjsdj!='' and jsjsdj!= null ">
 			and ${jsjsdj}
 		</if>) lx on t.xmbm=lx.xmid 
-		left join (select xmid,count(xmid) xmsl from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
+		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1499,7 +1499,7 @@
 	
 	<select id="selectShkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,lx.*,sl.xmsl from KXXYJ_SH t Left join 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SH t Left join 
 		xmsq_sh t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(*) xmsl,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
@@ -1632,4 +1632,8 @@
     select k.xmmc,x.xmbm,null,k.xzqh,k.qdzh,k.zdzh,k.jsdj,x.gcfl,k.kgny,k.wgny,x.gq,x.lc,x.jsfa 
     from xmsq_sh x left join kxxyj_sh k on x.xmbm=k.xmbm where x.xmbm in (${xmbm})
 	</insert>
+	
+	<update id="sbgcxmkxx" parameterType="lxsh">
+	update ${bz} set sbzt='1',sbthcd=#{sbthcd} where xmbm in (${xmbm})
+	</update>
 </mapper>

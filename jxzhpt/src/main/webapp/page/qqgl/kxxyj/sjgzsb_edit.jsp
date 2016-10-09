@@ -424,7 +424,7 @@ text-decoration:none;
 					四级：<input onchange="jsyzlc()" id="silc" name="silc" style="width: 50px;" type="text"/>
 					等外：<input onchange="jsyzlc()" id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
 					无路：<input onchange="jsyzlc()" id="wllc" name="wllc" style="width: 50px;" type="text"/>
-					现状总里程：<input name="lc" id="lc" type="text" style="width: 50px;"/>
+					总计：<input name="lc" id="lc" type="text" style="width: 50px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -438,7 +438,7 @@ text-decoration:none;
 					四级：<input onchange="jsjszlc()" id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
 					等外：<input onchange="jsjszlc()" id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
 					无路：<input onchange="jsjszlc()" id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-					建设总里程：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+					总计：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

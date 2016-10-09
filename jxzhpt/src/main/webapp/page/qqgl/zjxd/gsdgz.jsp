@@ -206,7 +206,7 @@
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'lc',title:'里程',width:60,align:'center'},
+				{field:'zlc',title:'里程',width:60,align:'center'},
 				{field:'jsjsdj',title:'建设技术等级',width:74,align:'center'},
 				{field:'xjsdj',title:'现设技术等级',width:74,align:'center'},
 				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},

@@ -182,15 +182,7 @@
 			        	}
 			        },
 				    {field : 'xmbm',title : '项目编码',width : 100,align : 'center'},
-				    {field : 'JSZLC',title : '里程',width : 60,align : 'center',
-			        	formatter: function(value,row,index){
-			        		if(row.xmbm.substr(10,1)=='1'){
-			        			return row.jszlc;
-			        		}else{
-			        			return row.lc;
-			        		}
-			        	}
-				    },
+				    {field : 'jszlc',title : '里程',width : 60,align : 'center'},
 				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 				    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
 				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},

@@ -395,8 +395,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			List<Xmsq> list=null;
 			int total=0;
-			String sss = xmsq.getJsxz();
-			String aaa = xmsq.getWnxmk();
+			//String sss = xmsq.getJsxz();
+			//String aaa = xmsq.getWnxmk();
 			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setJsxz(xmsq.getJsxz());
@@ -440,7 +440,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					}
 					xmsq.setTsdq(tsdq);
 				}
-				System.out.println(xmsq.getJsxz());
+				//System.out.println(xmsq.getJsxz());
 				list = xmsqServer.queryYhdzxXmsq(xmsq,page,rows);
 				total =xmsqServer.queryYhdzxCount(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -520,7 +520,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		jsdjHandle();
 	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
-		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 		xmsq.setJsxz(xmsq.getJsxz());
 		xmsq.setWnxmk(xmsq.getWnxmk());
 		Map<String, String> result = null;

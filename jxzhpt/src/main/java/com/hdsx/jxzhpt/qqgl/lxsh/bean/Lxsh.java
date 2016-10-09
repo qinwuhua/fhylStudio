@@ -219,7 +219,7 @@ public class Lxsh implements Serializable {
 	private String bz;//备注
 	private String yhdk;//银行贷款
 	private String bzcs;//补助测算
-	private String jszlc;//建设总里程
+	private String jszlc;//总计
 
 	private String jsfa;//建设方案
 	//历史数据字段
