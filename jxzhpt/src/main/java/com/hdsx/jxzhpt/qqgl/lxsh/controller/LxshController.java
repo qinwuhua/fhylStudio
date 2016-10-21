@@ -3169,5 +3169,12 @@ public class LxshController extends BaseActionSupport{
 			bl=lxshServer.qxxmzh1(lxsh);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
+	
+	public void thwshlxsh(){
+		boolean bl=lxshServer.thwshlxsh(lxsh);
+		ResponseUtils.write(getresponse(), bl+"");
+		
+	}
+	
 }
 

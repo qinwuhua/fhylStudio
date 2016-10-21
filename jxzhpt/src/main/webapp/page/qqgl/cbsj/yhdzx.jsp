@@ -108,6 +108,7 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
+			//gridBindyh(grid);
 		}
 		/*function deleteLmgz(){
 			if(selArray.length!=0){

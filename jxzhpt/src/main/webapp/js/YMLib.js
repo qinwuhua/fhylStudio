@@ -3349,7 +3349,7 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 		dataType:'json',
 		url:'/jxzhpt/qqgl/getghlxinfo.do',
 		success:function(msg){
-			var ghlxbm='';var ghqdzh='';var ghzdzh='';var xlxmc;
+			var ghlxbm='';var ghqdzh='';var ghzdzh='';var xlxmc='';
 			var qd='';var zd='';var qcqd='';var qczd=''; var cfld='';
 			if(msg.length!=0){
 				ghlxbm=msg[0].xlxbm;ghqdzh=msg[0].qd;ghzdzh=msg[0].zd;xlxmc=msg[0].xlxmc;
@@ -3575,7 +3575,7 @@ function getylxlminfo(lxbm,qdzh,zdzh){
 		success:function(msg){
 			$("#lmkd").val(msg.lmkd);	
 			$("#ylmlx").val(msg.ylmlx);	
-			//alert(msg.lxmc);
+			//alert(msg.lmkd);
 			//$("#lxmc").val(msg.lxmc);	
 			queryJsdjAndLc1(lxbm.substr(0,4),qdzh,zdzh);
 			//queryylmlx1(lxbm.substr(0,4),qdzh,zdzh);

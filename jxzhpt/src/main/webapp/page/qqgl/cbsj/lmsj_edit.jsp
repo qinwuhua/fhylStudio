@@ -57,7 +57,7 @@
 				'multi' : false,
 				'buttonImg': '../../../js/uploader/bdll.png',
 				'simUploadLimit' : 3,
-				'sizeLimit' : 20000000,
+				'sizeLimit' : 100000000,
 				'queueSizeLimit' : 5,
 				'fileDesc' : '支持格式:xls',
 				'fileExt' : '',
@@ -139,6 +139,44 @@
 				$('#uploadSjpf').uploadifyUpload();
 			}
 		}
+		
+		function jsyzlc(){
+			var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+			if($('#yilc').val()!='')
+				yilc=parseFloat($('#yilc').val());
+			if($('#erlc').val()!='')
+				erlc=parseFloat($('#erlc').val());
+			if($('#sanlc').val()!='')
+				sanlc=parseFloat($('#sanlc').val());
+			if($('#silc').val()!='')
+				silc=parseFloat($('#silc').val());
+			if($('#wllc').val()!='')
+				wulc=parseFloat($('#wllc').val());
+			if($('#dwlc').val()!='')
+				dwlc=parseFloat($('#dwlc').val());
+			var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+			var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+			$('#lc').val(hj5);
+		}
+		function jsjszlc(){
+			var yilc=0;var erlc=0;var sanlc=0;var silc=0;var wulc=0;var dwlc=0;
+			if($('#jhyilc').val()!='')
+				yilc=parseFloat($('#jhyilc').val());
+			if($('#jherlc').val()!='')
+				erlc=parseFloat($('#jherlc').val());
+			if($('#jhsanlc').val()!='')
+				sanlc=parseFloat($('#jhsanlc').val());
+			if($('#jhsilc').val()!='')
+				silc=parseFloat($('#jhsilc').val());
+			if($('#jhwllc').val()!='')
+				wulc=parseFloat($('#jhwllc').val());
+			if($('#jhdwlc').val()!='')
+				dwlc=parseFloat($('#jhdwlc').val());
+			var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
+			var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
+			$('#jszlc').val(hj5);
+		}
+
 	</script>
 </head>
 <body style="font-size: 12px;">
@@ -242,12 +280,12 @@
 						现技术等<br/>级及里程
 					</td>
 					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						一级：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-						二级：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-						三级：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-						四级：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-						等外：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+						一级：<input id="yilc" onchange="jsyzlc()" name="yilc" style="width: 50px;" type="text"/>
+						二级：<input id="erlc" onchange="jsyzlc()" name="erlc" style="width: 50px;" type="text"/>
+						三级：<input id="sanlc" onchange="jsyzlc()" name="sanlc" style="width: 50px;" type="text"/>
+						四级：<input id="silc" onchange="jsyzlc()" name="silc" style="width: 50px;" type="text"/>
+						等外：<input id="dwlc" onchange="jsyzlc()" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" onchange="jsyzlc()" name="wllc" style="width: 50px;" type="text"/>
 						总计：<input id="lc" name="lc" type="text" style="width: 50px;"/>
 					</td>
 				</tr>
@@ -256,13 +294,13 @@
 						建设技术<br/>等级及里程
 					</td>
 					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						一级：<input id="jhyilc" name="jhyilc" style="width: 50px;" value="0" type="text"/>
-						二级：<input id="jherlc" name="jherlc" style="width: 50px;" value="0" type="text"/>
-						三级：<input id="jhsanlc" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
-						四级：<input id="jhsilc" name="jhsilc" style="width: 50px;" value="0" type="text"/>
-						等外：<input id="jhdwlc" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
-						无路：<input id="jhwllc" name="jhwllc" style="width: 50px;" type="text" value="0"/>
-						总计：<input id="jszlc" name="jszlc" style="width: 50px;" type="text" value="0"/>
+						一级：<input id="jhyilc" onchange="jsjszlc()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级：<input id="jherlc" onchange="jsjszlc()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级：<input id="jhsanlc" onchange="jsjszlc()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级：<input id="jhsilc" onchange="jsjszlc()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外：<input id="jhdwlc" onchange="jsjszlc()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" onchange="jsjszlc()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+						总计：<input id="jszlc" onchange="jsjszlc()" name="jszlc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">

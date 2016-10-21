@@ -408,7 +408,7 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			System.out.println(gldj);
+			//System.out.println(gldj);
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
 				String tsdq="and(";
@@ -696,7 +696,9 @@ public class KxxyjController extends BaseActionSupport{
 			}
 		}
 		
-		
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -853,7 +855,9 @@ public class KxxyjController extends BaseActionSupport{
 			}
 		}
 		
-		
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -1557,7 +1561,7 @@ public class KxxyjController extends BaseActionSupport{
 			}else{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
-			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
+			lxsh.setXzqh(xzqhBm(ss, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			String xmnf1 = lxsh.getXmnf();
 			if(xmnf1.indexOf(",")>-1){
@@ -1746,7 +1750,7 @@ public class KxxyjController extends BaseActionSupport{
 			}else{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
-			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
+			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
 			jsdjtj(lxsh.getJsdj());
 			xzdjtj();
 			tsdqtj();
@@ -1772,7 +1776,7 @@ public class KxxyjController extends BaseActionSupport{
 			}else{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
-			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
+			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
 			jsdjtj(lxsh.getJsdj());
 			xzdjtj();
 			tsdqtj();
@@ -1784,10 +1788,16 @@ public class KxxyjController extends BaseActionSupport{
 		}
 	}
 	
+	
+	
 	public void sbgcxmkxx(){
 		ResponseUtils.write(getresponse(), ""+kxxyjServer.sbgcxmkxx(lxsh));
 		
 	}
+	public void thkxxyjsb(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.thkxxyjsbzt(lxsh));
+	}
+	
 	
 }
 

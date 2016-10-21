@@ -251,6 +251,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean updateLx(Lx lx,Xmsq xmsq) {
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
+		System.out.println(xmsq.getSnhntmchbmj());
 		return update("updateyhdzxLx",params)>0;
 	}
 	@Override
@@ -271,6 +272,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean insertLxJdbs(Lx lx) {
+		
 		return insert("insertLxJdbs",lx)>0;
 	}
 	@Override

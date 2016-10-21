@@ -394,7 +394,7 @@ function saveAbgc(){
 		'multi' : true,
 		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
+		'sizeLimit' : 100000000,
 		'queueSizeLimit' : 5,
 		'fileDesc' : '支持格式:xls',
 		'fileExt' : '',

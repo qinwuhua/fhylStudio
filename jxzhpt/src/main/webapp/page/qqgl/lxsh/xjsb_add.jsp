@@ -168,7 +168,7 @@ text-decoration:none;
 				function(e, item) {
 					if(item==undefined) return ;
 					//$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
-					xmbm('xmbm',$.cookie("dist"),item.xmnf,'sjgz');
+					xmbm('xmbm',$.cookie("dist"),item.xmnf,'xj');
 					wnobj=item;
 					$("#lxmc").val(item.lxmc);$("#lxbm").val(item.ghlxbh);
 					$("#xjsdj").val(item.xjsdj);$("#jsjsdj").val(item.jsjsdj);
@@ -186,7 +186,7 @@ text-decoration:none;
 					$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
 					$("#xjlc").html(item.xjlc);
 					//alert(item.jszlc);
-					$("#lc").html(item.jszlc);
+					$("#lc").html(item.lc);
 					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
@@ -254,7 +254,7 @@ text-decoration:none;
 		
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
-		alert();
+		//alert();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -478,7 +478,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type='text' id='bzcs' onblur="checkdfzc1(this)" style="width: 120px;"/>
+					<input type='text' id='bzcs' readonly="readonly" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

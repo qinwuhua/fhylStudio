@@ -183,7 +183,8 @@
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
-			gridBind(grid);
+			//gridBind(grid);
+			gridBindyh(grid);
 		}
 		function loadLj(params){
 			$.ajax({

@@ -12,7 +12,14 @@ public class Kxxyj implements Serializable {
 	private String gxqdzh;//规划路线编号
 	private String gxzdzh;//规划路线编号
 	private String jszlc1;
+	private String thyy;
 	
+	public String getThyy() {
+		return thyy;
+	}
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
 	public String getJszlc1() {
 		return jszlc1;
 	}

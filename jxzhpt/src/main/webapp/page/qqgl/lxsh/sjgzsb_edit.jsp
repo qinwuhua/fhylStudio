@@ -202,10 +202,10 @@ text-decoration:none;
 				return false;
 			}
 			var zlc=$("#jszlc").val();
-			if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
+			/* if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
 				alert("对不起，建设技术等级里程不能大于现状里程的120%");
 				return false;
-			} 
+			}  */
 			saveLxsh();
 		});
 		autoCompleteLXBM();
@@ -341,8 +341,9 @@ text-decoration:none;
 			$("#zdzh").val(zdStr);
 		} */
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//$("#lc").val(zlc);
-		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		//queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		//getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		if($("#qdzh").val()!='')
@@ -538,7 +539,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="bzcs"  onblur="checkdfzc(this)" style="width: 120px;"/>
+					<input type="text" id="bzcs" readonly="readonly"  onblur="checkdfzc(this)" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：

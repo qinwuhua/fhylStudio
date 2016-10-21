@@ -281,7 +281,8 @@ text-decoration:none;
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").html(zlc);
 		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
-		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		//queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//cesuan2();
 		//getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 		if($("#qdzh").val()!='')
@@ -456,7 +457,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="bzcs"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
+					<input type="text" id="bzcs" readonly="readonly"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

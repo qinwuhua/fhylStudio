@@ -468,10 +468,13 @@ function querymc(id){
 		cxqdmc($('#ylxbh').val(),$('#qdzh').val());
 		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 	}
-	
+	//alert();
 	getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-	queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+	getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	else
+	getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
 	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }
 /**
@@ -1236,7 +1239,7 @@ function getxzqhdm(id){
 function updateLxWin(index,xmbm,id){
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
-	YMLib.Var.id=id;
+	YMLib.Var.id='lxxx';
 	if(xmbm.substring(10,11)=="1"){
 		YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_edit.jsp','lxxx',900,350);
 	}else if(xmbm.substring(10,11)=="2"){
@@ -1246,7 +1249,7 @@ function updateLxWin(index,xmbm,id){
 		YMLib.UI.createWindow('lxxx','编辑路线信息','lx_update.jsp','lxxx',900,350);
 	}
 	else if(xmbm.substring(10,11)=="5")
-		YMLib.UI.createWindow(id,'编辑路线信息','lx_update1.jsp',id,900,350);
+		YMLib.UI.createWindow('lxxx','编辑路线信息','lx_update1.jsp','lxxx',900,350);
 }
 function loadLxWin(index,xmbm,id){
 	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
@@ -1372,8 +1375,8 @@ var Qwh={
 					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},
 					{field:'zdmc',title:'止点名称',width:100,align:'center'},
-					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+//					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'技术等级',width:80,align:'center'},
 					{field:'lc',title:'里程',width:60,align:'center'},
 					{field:'jsfa',title:'建设方案',width:80,align:'center'}
     			]],
@@ -1871,3 +1874,53 @@ function jsbzzj(flag){
 	$("#sbzj").val(zbz.toFixed(0));
 	
 }
+
+
+function thwshlxsh(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(Number(rows[i].sqzt)!=Number($.cookie('unit2').length)){
+			alert('请您勿勾选未审核的项目');
+			return;
+		}
+	}
+	
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	
+	sbthcd=$.cookie("unit2").length+2;
+	if(confirm('您确定退回吗？')){
+		var data = "lxsh.xmbm="+xmbm+"&lxsh.sbthcd="+sbthcd+"&lxsh.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/thwshlxsh.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 $("#grid").datagrid('reload');
+				 }else{
+					 alert('退回失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	
+	}
+}
+
+
+
+

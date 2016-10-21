@@ -206,9 +206,13 @@
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
 					}else{
-						$('#spanntz').html('0');
-						$('#spanlc').html('0');
 						$("#xmsl").html('0');
+						 $("#tz").html('0');
+						 $("#cgs").html('0');
+						 $("#sbz").html('0');
+						 $("#sjl").html('0');
+						 $("#lc").html('0');
+						 $("#dftz").html('0');
 					}
 				}
 			});
@@ -300,7 +304,7 @@
 			var obj=$("#grid").datagrid('getRows')[index];
 			
 			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
-			alert(datas);
+			//alert(datas);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -319,7 +323,7 @@
 								if(msg.result=="true"){
 									selArray.splice(0,selArray.length);
 									alert("审核成功!");
-									queryYhdzx();
+									queryShxm();
 								}
 							}
 						}); 
@@ -600,6 +604,9 @@
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
+					                
+					                
+					                <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Sh')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

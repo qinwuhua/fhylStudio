@@ -171,8 +171,8 @@
 	
 	</insert>
 	<insert id="insertLx1" parameterType="lxsh">
-		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
+		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
 		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
 	</insert>
@@ -180,7 +180,7 @@
 		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,t.wnid,t.sfbflx,
+		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt),t.wnid,t.sfbflx,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmidz
@@ -191,7 +191,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -224,7 +224,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -329,7 +329,7 @@
 		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,
+		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
@@ -343,7 +343,7 @@
 	            from lxsh_lx where jdbs='0' and sffirst='1' ) lxs 
 		        on t.xmbm=lxs.xmid
 		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
-		where 1=1 
+		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -380,13 +380,13 @@
 		from lxsh_lx where jdbs='0' and sffirst='1'
 		
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
-			<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid where 1=1 
+			<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -412,7 +412,7 @@
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
@@ -426,13 +426,13 @@
 		        on t.xmbm=lxs.xmid
 		
 		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
-		where 1=1 
+		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -462,13 +462,13 @@
 		select count(t.xmbm) from LXSH_LMGZ t left join (select xmid,lxbm,lc,xjsdj,jsjsdj
 		from lxsh_lx where jdbs='0' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
-		<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid where 1=1 
+		<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -495,19 +495,20 @@
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid
-		where 1=1 
+		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
+		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -537,13 +538,13 @@
 		from lxsh_lx where jdbs='0' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx on t.xmbm=lx.xmid 
-		where 1=1 
+		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -606,20 +607,20 @@
 		select * from LXSH_XJ where ${value}
 	</select>
 	<insert id="insertsjgzkxx" parameterType="lxsh">
-		insert into kxxyj_sjgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if><if test="jszlc != null ">,jszlc</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if><if test="jszlc != null ">,#{jszlc}</if>)
+		insert into kxxyj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc,jszlc)
+		select sys_guid(),xmmc,xmbm,xzqh,xzqhdm2,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc,jszlc from lxsh_sjgz where xmbm=#{xmbm}
 	</insert>
 	<insert id="insertlmgzkxx" parameterType="lxsh">
-		insert into kxxyj_lmgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if>)
+		insert into kxxyj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
+		select sys_guid(),xmmc,xmbm,xzqh,xzqhdm2,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc from lxsh_lmgz where xmbm=#{xmbm}
 	</insert>
 	<insert id="insertxjkxx" parameterType="lxsh">
-		insert into kxxyj_xj(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="xzqhdm != null ">,xzqhdm</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="yhdk != null ">,yhdk</if><if test="dfzc != null ">,dfzc</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="xzqhdm != null ">,#{xzqhdm}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="yhdk != null ">,#{yhdk}</if><if test="dfzc != null ">,#{dfzc}</if>)
+		insert into kxxyj_xj(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
+		select sys_guid(),xmmc,xmbm,xzqh,xzqhdm2,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc from lxsh_xj where xmbm=#{xmbm}
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid 
@@ -630,7 +631,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -663,7 +664,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -689,7 +690,7 @@
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid
@@ -700,7 +701,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -733,7 +734,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -817,7 +818,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -856,7 +857,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -895,7 +896,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1163,7 +1164,7 @@
 		
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1187,7 +1188,7 @@
 			from lxsh_lx where jdbs='0' 
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 			<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>) lx 
-			on t.xmbm=lx.xmid where 1=1 
+			on t.xmbm=lx.xmid where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -1229,7 +1230,7 @@
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1262,13 +1263,13 @@
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 			<if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if>
 			group by xmid) lx 
-			on t.xmbm=lx.xmid where 1=1 
+			on t.xmbm=lx.xmid where 1=1  <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1304,7 +1305,7 @@
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1336,13 +1337,13 @@
 			from lxsh_lx where jdbs = '0' 
 			<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		    <if test="ghlxbm!='' and ghlxbm!= null ">and ghlxbm=#{ghlxbm}</if> group by xmid ) lx 
-			on t.xmbm=lx.xmid where 1=1 
+			on t.xmbm=lx.xmid where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
 			<if test="gydw!='' and gydw!= null ">${gydw}</if>
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1475,7 +1476,7 @@
 	</delete>
 	
 	<select id="selectgsdgzList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.id,t.xmbm,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,t.shzt,t.jhkgn,t.jhwgn,
+		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt) sbzt1,t.xmnf,t.xzqhdm,t.xmmc,t.shzt,t.jhkgn,t.jhwgn,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc  from lxgsdgz t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1' 
@@ -1487,7 +1488,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1526,7 +1527,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1570,7 +1571,7 @@
 			
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 			<if test="sbzt1!='' and sbzt1!= null ">
-				and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+				and to_char(sbzt) like '%'||#{sbzt1}||'%'
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1613,7 +1614,7 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and to_char(sbzt) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1688,5 +1689,18 @@
 	<select id="selectWqjlbz" resultType="wqbzbz">
 		select * from xtgl_wqjlbz 
 	</select>
+	
+	<update id="thwshlxsh45" parameterType="lxsh">
+		update ${bz} set sqzt=#{sbthcd} where xmbm in (${xmbm})
+	</update>
+	<update id="thwshlxsh" parameterType="lxsh">
+		update ${bz} set shzt='0' where xmbm in (${xmbm})
+	</update>
+	<delete id="thwshlxshkxx" parameterType="lxsh">
+		delete from ${bzcs} where xmbm in (${xmbm}) 
+	</delete>
+	<delete id="thwshlxshkxxlx" parameterType="lxsh">
+		delete from lxsh_lx where xmid in (${xmbm}) and jdbs=#{jdbs}
+	</delete>
 </mapper>
 

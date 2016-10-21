@@ -25,6 +25,7 @@
 		var qdStr;
 		var zdStr;
 		$(function(){
+			//alert(parent.YMLib.Var.id);
 			$('#lx').form("load",parent.YMLib.Var.Obj);
 			loadUnitedit("gydw",$.cookie("unit"),parent.YMLib.Var.Obj.gydwdm);
 			$("#gydw").combotree('setValues',parent.YMLib.Var.Obj.gydwdm.split(","));
@@ -80,6 +81,11 @@
 			var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 			$("#lc").val(zlc);
+			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+				getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+				else
+				getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+
 			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 			if($("#qdzh").val()!='')
 				cxqdmc($("#ylxbh").val(),$("#qdzh").val());

@@ -777,7 +777,7 @@
 	</insert>
 	<insert id="insertCbsjSh" parameterType="xmsq">
 		insert into kxxyj_sh(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsdj,jsxz,shzt)
-		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0 
+		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm2,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0 
 		from xmsq_sh x where x.xmbm in (${xmbm}))
 	<!-- 
 		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
@@ -933,9 +933,9 @@
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||#{value}||'%' order by to_number(id)
 	</select>
 	<select id="queryLjYhdzx" parameterType="xmsq" resultType="java.util.Map">
-		select count(*) sl,nvl(sum(ntz),0) tz,nvl(sum(lc),0) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from (
-			select xmbm,ntz,l.lc from xmsq_yhdzx x left join 
-			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
+		select count(*) sl,nvl(sum(ntz),0) tz,nvl(sum(lc),0) lc,nvl(sum(sbzj),0) sbz,'0' sjl,'0' bzcs,'0' dftz from (
+			select xmbm,ntz,l.lc,l.sbzj from xmsq_yhdzx x left join 
+			(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc,to_char(nvl(sum(sbzj),0)) sbzj from lxsh_lx where jdbs=#{jdbs} and xmid like '%4___' group by xmid) l on x.xmbm=l.xmid where 1=1
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -1763,7 +1763,7 @@
      end ) zdzh
      from ghlx g where g.ylxbm like #{ylxbm}||'%'||#{xzqh}||'%' and ((to_number(g.yqdzh)&lt;to_number(#{zdzh}) and to_number(g.yzdzh)>to_number(#{qdzh})) or (to_number(g.yqdzh)>to_number(#{zdzh}) and to_number(g.yzdzh)&lt;to_number(#{qdzh}) ))
 <!--   	and (ylxbm!=xlxbm and yqdzh!=xqdzh and yzdzh!=xzdzh) -->
-    )t order by lc desc
+    )t order by decode(lc,null,0,lc) desc
 		
 		
 	</select>
@@ -1774,8 +1774,8 @@
 	<select id="getylxlminfo" parameterType="xmsq" resultType="lx">
 	
 		<![CDATA[
-		select max(f116) ylmlx,round(avg(to_number(f018)),2) lmkd,min(lxmc) lxmc
-		from (select substr(f114,1,2) f114,f014,max(f116) f116,avg(to_number(f018)) f018,min(roadname) lxmc
+		select max(f116) ylmlx,round(min(to_number(f018)),2) lmkd,min(lxmc) lxmc
+		from (select substr(f114,1,2) f114,f014,max(f116) f116,min(to_number(f018)) f018,min(roadname) lxmc
 		from (select g.roadcode,to_char(decode(g.f114,null,'无路',g.f114)) f114,f014,f116,f018,roadname,
 		case when g.roadstart < ${qdzh} then ${qdzh} when g.roadstart > ${qdzh} then g.roadstart when g.roadstart = ${qdzh} then g.roadstart end roadstart,
 		case when g.roadends < ${zdzh} then g.roadends when g.roadends > ${zdzh} then ${zdzh} when g.roadends = ${zdzh} then g.roadends end roadends from gpsroad g

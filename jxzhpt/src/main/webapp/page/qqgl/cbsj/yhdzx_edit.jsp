@@ -32,6 +32,14 @@
 					var zdStr=(parseFloat(data.gpszdzh)+lc*0.3).toFixed(3);
 					if(qdStr<0)
 						qdStr=0; */
+						
+						if(parseFloat(data.gpsqdzh)>parseFloat(data.gpszdzh)){
+							$("#qdtext").html("起点桩号不能大于");
+							$("#zdtext").html("止点桩号不能小于");
+						}else{
+							$("#qdtext").html("起点桩号不能小于");
+							$("#zdtext").html("止点桩号不能大于");
+						}
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
 					$('#ylxbh').val(data.ghlxbh);
@@ -54,7 +62,7 @@
 				'multi' : false,
 				'buttonImg': '../../../js/uploader/bdll.png',
 				'simUploadLimit' : 3,
-				'sizeLimit' : 20000000,
+				'sizeLimit' : 100000000,
 				'queueSizeLimit' : 5,
 				'fileDesc' : '支持格式:xls',
 				'fileExt' : '',
@@ -100,18 +108,39 @@
 			}
 		}
 		function zhuanghao(){
-			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
-				alert("起点桩号不能小于"+$('#span_qdzh').html());
-				return false;
-			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
-				alert("止点桩号不能大于"+$('#span_zdzh').html());
-				return false;
-			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
-				alert("止点桩号不能小于起点桩号");
-				return false;
+			if($('#span_qdzh').html()!=null&&$('#span_qdzh').html()!=''&&(Number($('#span_qdzh').html())<Number($('#span_zdzh').html()))){
+				if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
+					alert("起点桩号不能小于"+$('#span_qdzh').html());
+					return false;
+				}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
+					alert("止点桩号不能大于"+$('#span_zdzh').html());
+					return false;
+				}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
+					alert("止点桩号不能小于起点桩号");
+					return false;
+				}else{
+					return true;
+				}
+				
+			}
+			if($('#span_qdzh').html()!=null&&$('#span_qdzh').html()!=''&&(Number($('#span_qdzh').html())>Number($('#span_zdzh').html()))){
+				if(Number($('#qdzh').val())>Number($('#span_qdzh').html())){
+					alert("起点桩号不能大于"+$('#span_qdzh').html());
+					return false;
+				}else if(Number($('#zdzh').val())<Number($('#span_zdzh').html())){
+					alert("止点桩号不能小于"+$('#span_zdzh').html());
+					return false;
+				}else if(Number($("#zdzh"))>Number($('#qdzh').val())){
+					alert("止点桩号不能大于起点桩号");
+					return false;
+				}else{
+					return true;
+				}
+				
 			}else{
 				return true;
 			}
+			
 		}
 		function upload(){
 			if($('#sjpfwh').val()==""){
@@ -184,14 +213,14 @@
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
-						<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
+						<br/><span style="font-size: small;color: red;" id='qdtext'>起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
-						<br/><span style="font-size:small; color: red;">止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
+						<br/><span style="font-size:small; color: red;" id='zdtext'>止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						里程

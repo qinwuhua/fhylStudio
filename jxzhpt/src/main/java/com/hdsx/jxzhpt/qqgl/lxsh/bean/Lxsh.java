@@ -14,7 +14,21 @@ public class Lxsh implements Serializable {
 	private String xmklx;//项目库类型
 	private String qqkzzt;//前期开展状态
 	private String sfbflx;
+	private String sbzt;
+	private String thyy;
 	
+	public String getThyy() {
+		return thyy;
+	}
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
 	public String getSfbflx() {
 		return sfbflx;
 	}

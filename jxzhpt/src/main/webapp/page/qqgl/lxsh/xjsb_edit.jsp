@@ -52,6 +52,7 @@ text-decoration:none;
 				$("#jsjsdj").val(msg.jsjsdj);
 				$("#tsdq").val(msg.tsdq);
 				$("#xjsdj").html(msg.xjsdj);
+				$("#xjlc").html(msg.xjlc);
 				$("#xmbm").html(msg.xmbm);
 				$("#xmnf").combobox("setValue",msg.xmnf);
 				$("#jhkgn").combobox("setValue",msg.jhkgn);
@@ -191,7 +192,7 @@ text-decoration:none;
 			sbthcd=7;
 		}
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
+		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").val()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="
@@ -199,7 +200,7 @@ text-decoration:none;
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
 		data+="&lx.xjlxbm="+$('#xjlxbm').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()
-		+"&lx.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').html();
+		+"&lx.xjlc="+$('#xjlc').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+
 		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
 		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
@@ -444,7 +445,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type='text' id='bzcs' name="bzcs" onblur="checkdfzc1(this)" style="width: 120px;"/>
+					<input type='text' readonly="readonly" id='bzcs' name="bzcs" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

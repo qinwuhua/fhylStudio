@@ -1162,10 +1162,18 @@
 		where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	
+	<select id="queryShKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
+		select * from kxxyj_sh k left join lxsh_lx l on k.xmbm=l.xmid
+		left join(select max(gpszdzh) gpszdzh1,min(gpsqdzh) gpsqdzh1,xmid from LXSH_LX group by xmid) lxx on k.xmbm=lxx.xmid
+	    where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
+	</select>
+	
+	
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">
 		update lxsh_lx l set 
 		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
+		<if test="jsfa!=null">l.jsfa=#{jsfa},</if>
 		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
 		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
 		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
@@ -1314,9 +1322,8 @@
 		<if test="snhntmchbmj != null">
         snhntmchbmj = #{snhntmchbmj},
       </if>
-		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
-		
-<!-- 		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if> -->
+		<if test="lc!=null and lc!=''">l.lc=#{lc},</if>
+		l.xmid=#{xmid} 
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst=1</if>
@@ -1367,9 +1374,7 @@
 		<if test="xmsq.lqhntmchd != null">
         LQHNTMCHD = #{xmsq.lqhntmchd},
       </if>
-      <if test="xmsq.snhntmchbmj != null">
-        snhntmchbmj = #{xmsq.snhntmchbmj},
-      </if>
+      
       <if test="xmsq.lqhntmc != null">
         LQHNTMC = #{xmsq.lqhntmc},
       </if>
@@ -1470,16 +1475,15 @@
         SNHNTMCSSH = #{xmsq.snhntmcssh},
       </if>
       <if test="xmsq.snhntmchbmj != null">
-        SNHNTMCHBMJ = #{xmsq.SNHNTMCHBMJ},
+        SNHNTMCHBMJ = #{xmsq.snhntmchbmj},
       </if>
 		<if test="xmsq.sbzj != null">
         sbzj = #{xmsq.sbzj},
       </if>
 		
-		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc}</if>
+		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
-<!-- 		<if test="lx.lc==null or lx.lc==''">l.lc=to_number(#{lx.zdzh})-to_number(#{lx.qdzh})</if> -->
-		
+		l.xmid=#{lx.xmid} 
 		where l.xmid=#{lx.xmid} 
 		<if test="lx.jdbs!=null and lx.jdbs!=''">and jdbs=#{lx.jdbs}</if>
 		<if test="lx.sffirst==1">and sffirst=1</if>
@@ -1810,9 +1814,16 @@
 		<if test="sffirst==1">and sffirst!='1'</if>
 	</select>
 	<insert id="insertLxJdbs" parameterType="lx">
-		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
+		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc,
+		jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
 	</insert>
+	
+	
+	
+	    
+	
+	
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="lx">
 		select distinct xmid,xmmc from LXSH_LX l,(

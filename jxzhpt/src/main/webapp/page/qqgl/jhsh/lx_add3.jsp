@@ -149,6 +149,12 @@
 			} */
 			var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
+			
+			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+			getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+			else
+			getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+
 			$("#lc").val(zlc);
 			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 			if($("#qdzh").val()!='')

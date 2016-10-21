@@ -55,78 +55,77 @@
 			autoCompleteGHLXBM();
 		});
 		function autoCompleteLXBM(){
-			var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
+			var url = "/jxzhpt/qqgl/queryAutoList.do";
 			$("#ylxbh").autocomplete(url, {
-				multiple : false,
-				minChars :4,
-				multipleSeparator : ' ',
-				mustMatch: true,
-		  		cacheLength : 0,
-		  		delay : 200,
-		  		max : 50,
+				multiple : false,minChars :4,multipleSeparator : ' ',
+				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
 		  		extraParams : {
-		  			lxbm:function() {
+		  			'ylxbh':function() {
 		  				var d = $("#ylxbh").val();
 		  				return d;
 		  			},
-		  			xzqh:function() {
+		  			'xzqhdm':function() {
 		  				var d = $.cookie("dist2");
 		  				return d;
 		  			}
 		  		},
-		  		dataType : 'json',// 返回类型
+		  		dataType:'json',// 返回类型
 		  		// 对返回的json对象进行解析函数，函数返回一个数组
 		  		parse : function(data) {
 		  			var aa = [];
 		  			aa = $.map(eval(data), function(row) {
 		  					return {
-		  						data : row,
-		  						value : row.ghlxbh.replace(/(\s*$)/g,""),
-		  						result : row.ghlxbh.replace(/(\s*$)/g,"")
-		  					};
-		  				});
+		  					data : row,
+		  					value : row.lxbm.replace(/(\s*$)/g,""),
+		  					result : row.lxbm.replace(/(\s*$)/g,"")
+		  				};
+		  			});
 		  			return aa;
 		  		},
 		  		formatItem : function(row, i, max) {
-		  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+		  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
 		  		}
 		  	}).result(
-					function(e, item) {
-						if(item==undefined) return ;
-						$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
-						xzqh=item.xzqh;
-						$("#lxmc").val(item.lxmc);
-						$("#qdzh").val(parseFloat(item.qdzh));
-						$("#zdzh").val(parseFloat(item.zdzh));
-						selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
-						$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-						//$("#jsjsdj").val(item.xjsdj);
-						//$("#xjsdj").val(item.xjsdj);
-						//$("#qdmc").val(item.qdmc);
-						//$("#zdmc").val(item.zdmc);
-						qdStr=parseFloat(item.qdzh);
-						zdStr=parseFloat(item.zdzh);
-						$("#gpsqdzh").val(qdStr);
-						$("#gpszdzh").val(zdStr);
-						getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-						if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-							$('#span_qdzh').html(">="+item.qdzh);
-							$('#span_zdzh').html("<="+item.zdzh);
-						}else{
-							$('#span_qdzh').html("<="+item.qdzh);
-							$('#span_zdzh').html(">="+item.zdzh);
+				function(e, item) {
+					//$('#ylxbh').val(item.lxbm);
+					//$('#ghlxbh').val(item.lxbm);
+					
+					$('#lxmc').val(item.lxmc);
+					//$('#qdmc').val(item.qdmc);
+					//$('#zdmc').val(item.zdmc);
+					$('#qdzh').val(item.qdzh);
+					$('#gpsqdzh').val(item.qdzh);
+					
+					$('#zdzh').val(item.zdzh);
+					$('#gpszdzh').val(item.zdzh);
+					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						$('#span_qdzh').html(">="+item.qdzh);
+						$('#span_zdzh').html("<="+item.zdzh);
+					}else{
+						$('#span_qdzh').html("<="+item.qdzh);
+						$('#span_zdzh').html(">="+item.zdzh);
+					}
+					$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+					getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					else
+					getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+					$.ajax({
+						type:'post',
+						url:'../../../qqgl/queryTsdq.do',
+						data:'ylxbh='+$('#ylxbh').val()+'&qdzh='+$('#qdzh').val()+'&zdzh='+$('#zdzh').val(),
+						dataType:'json',
+						success:function(msg){
+							$('#tsdq1').html(msg.tsdq);
+							$('#tsdq').val(msg.tsdq);
 						}
-						
-						//querymc('qdzh');
-						//querymc('zdzh');
-						//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
-						//getylxlminfo(item.ghlxbh,item.qdzh,item.zdzh);
-//	 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
-//	 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
-						cxqdmc($('#ylxbh').val(),$('#qdzh').val());
-						cxzdmc($('#ylxbh').val(),$('#zdzh').val());
-						//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 					});
+			});
 		}
 		
 		function updateLx(){
@@ -186,6 +185,11 @@
 			queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
 			$("#lc").val(zlc);
 			//selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+			getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+			else
+			getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+	
 			if($("#qdzh").val()!='')
 				cxqdmc($("#lxbm").val(),$("#qdzh").val());
 			if($("#zdzh").val()!='')
@@ -236,7 +240,7 @@
 					<font color='red' size='2'>*&nbsp;</font>路面宽度：
 				</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
-					<input id="lmkd" name="lmkd" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
+					<input id="lmkd" name="lmkd" readonly="readonly" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -243,7 +243,12 @@
 		select * from (
 			select rownum num,t.* from (
 				select c.id, c.xmbm, c.xmmc, jsdw, c.xzqh, c.jsxz, kgsj, wgsj, c.gq, sjdw, sjpfwh, pfsj, shzt, sbzt, c.jsfa, sfbj, mc, jc, dc, mc_lc, jc_lc, dc_lc,l.gydw,l.tsdq,l.ntz,
-				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh,sl.zlc from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+				l.ghlxbh,l.ylxbh,l.lsjl, lx.qdzh, lx.zdzh,lx.jsjsdj,lx.xjsdj,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh,sl.zlc from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid 
+				left join (select xmid, WMSYS.WM_CONCAT(distinct to_char(l.xzqhdm2))||';'||WMSYS.WM_CONCAT(distinct to_char(x.xzqhdm2)) xzqhdm2
+               from lxsh_lx l,xmsq_yhdzx x
+               where l.xmid=x.xmbm
+              group by xmid) myxz
+				on c.xmbm=myxz.xmid
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
@@ -618,7 +623,10 @@
 	<select id="queryCbsjYhdzxCount" parameterType="java.util.Map" resultType="int">
 		select count(c.xmbm) from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm 
 		left join lxsh_lx lx
-		     on c.xmbm = lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+		     on c.xmbm = lx.xmid left join (select xmid, WMSYS.WM_CONCAT(distinct to_char(l.xzqhdm2))||';'||WMSYS.WM_CONCAT(distinct to_char(x.xzqhdm2)) xzqhdm2
+               from lxsh_lx l,xmsq_yhdzx x
+               where l.xmid=x.xmbm
+              group by xmid) myxz on c.xmbm=myxz.xmid
 		left join (select xmid, count(xmid) xmsl
 		                              from lxsh_lx
 		                             where jdbs = '2'
@@ -766,7 +774,7 @@
 		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
 		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
@@ -1047,7 +1055,10 @@
 				c.kgsj,c.wgsj,c.gq,decode(lx.sffirst,'1',c.sjdw,'') sjdw,decode(lx.sffirst,'1',c.sjpfwh,'') sjpfwh,decode(lx.sffirst,'1',c.pfsj,'') pfsj,decode(lx.sffirst,'1',c.jsfa,'') jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm right join 
 				(select xmid,lxbm ylxbh,lxmc lxmc,qdzh qdzh,zdzh zdzh,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lc lc,yilc,erlc,sanlc,silc,dwlc,wllc,sffirst from lxsh_lx where jdbs='2' ) lx 
 				on c.xmbm=lx.xmid 
-				left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+				left join (select xmid, WMSYS.WM_CONCAT(distinct to_char(l.xzqhdm2))||';'||WMSYS.WM_CONCAT(distinct to_char(x.xzqhdm2)) xzqhdm2
+               from lxsh_lx l,xmsq_yhdzx x
+               where l.xmid=x.xmbm
+              group by xmid) myxz on c.xmbm=myxz.xmid
 				where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
@@ -1190,10 +1201,17 @@
 		select sh.xmbm,sh.xdwh from jhsh_sh sh) where filewh like '%'||#{jhwh}||'%'
 	</select>
 	<select id="queryCbsjLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
-		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_yhdzx c left join 
-		xmsq_yhdzx l on c.xmbm=l.xmbm left join 
-		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc 
-		from lxsh_lx where xmid like '%4___' and jdbs='2'
+		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,sum(l1.sbzj) sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_yhdzx c left join 
+		xmsq_yhdzx l on c.xmbm=l.xmbm 
+		left join (select xmid, WMSYS.WM_CONCAT(distinct to_char(l.xzqhdm2))||';'||WMSYS.WM_CONCAT(distinct to_char(x.xzqhdm2)) xzqhdm2
+               from lxsh_lx l,xmsq_yhdzx x
+               where l.xmid=x.xmbm
+               group by xmid) myxz on c.xmbm=myxz.xmid
+               left join lxsh_lx lx
+     		   on c.xmbm = lx.xmid
+		left join 
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc,to_char(nvl(sum(sbzj),0)) sbzj 
+		from lxsh_lx where substr(xmid,11,1)=4 and jdbs='2'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
 					and lx.ghlxmc=#{ghlxmc}
 		</if>
@@ -1204,6 +1222,8 @@
 			and lx.lxmc=#{lxmc}
 		</if> group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
+		and lx.jdbs = '2'
+   		and lx.sffirst = '1'
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
@@ -1253,8 +1273,12 @@
 	
 	<select id="queryCbsjLjSh" parameterType="cbsj" resultType="java.util.Map">
 		select count(*) sl,sum(l.ntz) tz,sum(l1.lc) lc,'0' sbz,'0' sjl,'0' bzcs,'0' dftz from cbsj_sh c left join 
-		xmsq_sh l on c.xmbm=l.xmbm left join 
-		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where xmid like '%5___' and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
+		xmsq_sh l on c.xmbm=l.xmbm 
+		left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2))  xzqhdm2 from lxsh_lx 
+<!-- 		where jdbs = '2'  -->
+		group by xmid) myxz on c.xmbm=myxz.xmid
+		left join 
+		(select xmid,(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0))) lc from lxsh_lx where substr(xmid,11,1)=5 and jdbs='2' group by xmid) l1 on c.xmbm=l1.xmid
 		where 1=1
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">

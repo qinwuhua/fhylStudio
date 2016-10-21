@@ -15,13 +15,13 @@
 	</update>
 	
 	<select id="selectPwd" parameterType="String" resultType="master">
-	select * from xtgl_master M WHERE M.truename=#{value}
+	select PASSWORD from xtgl_master M WHERE M.truename=#{value}
 	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
-	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
-	select * from xtgl_master M WHERE M.truename=#{truename}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
 	    select distinct x.id ,x.name text,'closed' state from xtgl_xzqh x where  x.id = #{yhdw} order by id
@@ -349,7 +349,7 @@
 		select * from xtgl_master where roleid in ${roleid}
 	</select>
 	<select id="userlogin" parameterType="string" resultType="master">
-		select * from xtgl_master where 1=1
+		select truename from xtgl_master where 1=1
 		<if test="value != null and  value != ''">
 		and truename like '%'||trim(#{value})||'%'
 		</if>

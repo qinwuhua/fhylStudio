@@ -56,47 +56,6 @@
 			setTimeout("showAllsjsh()",'1700');
 		});
 		
-		function shangB(){
-			var rows=$('#datagrid').datagrid('getSelections');
-			if(rows.length==0) {
-				alert("请选择要审核项目！");
-				return;
-			}
-			for(var i=0;i<rows.length;i++){
-				if(rows[i].sbzt1=='1'){
-					alert("对不起，项目已审核！");
-					return;
-				}
-			}
-			if($.cookie("unit2").length!=7) {
-				alert("您无审核项目权限！");
-				return;
-			}
-			var id=rows[0].id;
-			for(var i=1;i<rows.length;i++){
-				id+=","+rows[i].id ;
-			}
-			if(confirm('您确定审核该项目？')){
-				var data = "lxsh.id="+id;
-				$.ajax({
-					 type : "POST",
-					 url : "/jxzhpt/qqgl/shsjgzkxx.do",
-					 dataType : 'json',
-					 data : data,
-					 success : function(msg){
-						 if(msg){
-							 alert('审核成功！');
-							 $("#datagrid").datagrid('reload');
-						 }else{
-							 alert('审核失败,请选择要上报项目！');
-						 }
-					 },
-					 error : function(){
-						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-					 }
-				});
-			}
-		} 
 		
 		function tuiHui(){
 			var rows=$('#datagrid').datagrid('getSelections');
@@ -108,84 +67,19 @@
 				alert("您不是省级用户");
 				return;
 			}
-			var id=rows[0].id;
-			var xmbm=rows[0].xmbm;
 			for(var i=1;i<rows.length;i++){
 				xmbm+=","+rows[i].xmbm;
 			}
-			for(var i=0;i<rows.length;i++){
-			if(rows[i].sbzt1=='1'){
-				//
-				var data = "lxsh.xmbm="+xmbm;
-				$.ajax({
-					 type : "POST",
-					 url : "/jxzhpt/qqgl/sjgzsfcb.do",
-					 dataType : 'json',
-					 data : data,
-					 success : function(msg){
-						 if(msg){
-							 if(confirm('您确定将该项目退回未审核状态？')){
-										$.ajax({
-											 type : "POST",
-											 url : "/jxzhpt/qqgl/thSjgzkxx1.do",
-											 dataType : 'json',
-											 data : data,
-											 success : function(msg){
-												 if(msg){
-													 alert('退回成功！');
-													 $("#datagrid").datagrid('reload');
-												 }else{
-													 alert('退回失败！');
-												 }
-											 },
-											 error : function(){
-												 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-											 }
-										});
-								}
-							 
-						 }else{
-							 alert('项目已经进行初步设计上报，无法退回！');
-						 }
-					 },
-					 error : function(){
-						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-					 }
-				});
-				
-				//
-				return;
+			
+			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
+			/* for(var i=0;i<rows.length;i++){
+				if(rows[i].)
+				xmbm+=","+rows[i].xmbm;
 			}
-			if(rows[i].tbbmbm==$.cookie("unit")){
-				alert("对不起，由您添加的项目无法退回！");
-				return;
-			}
-			}	
-			for(var i=1;i<rows.length;i++){
-				id+=","+rows[i].id ;
-			}
-			var sbthcd=0;
-			sbthcd=$.cookie("unit2").length+2;
-			var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
-			if(confirm('您确定退回该项目？')){
-					$.ajax({
-						 type : "POST",
-						 url : "/jxzhpt/qqgl/thSjgzkxx.do",
-						 dataType : 'json',
-						 data : data,
-						 success : function(msg){
-							 if(msg){
-								 alert('退回成功！');
-								 $("#datagrid").datagrid('reload');
-							 }else{
-								 alert('退回失败！');
-							 }
-						 },
-						 error : function(){
-							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-						 }
-					});
-			}
+			 */
+			
+			
 		}
 	</script>
 	<style type="text/css">
@@ -279,14 +173,14 @@ text-decoration:none;
 								<td><span id='sqzttext'>审核状态：</span>   </td>
         						<td>
         						<span id='sqzt1'>
-        						<select id="sbzt"  style="width:80px;" class="easyui-combobox">
+        						<select id="shzt"  style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option> 
 								</select>
         						</span>
         						<span id='sqzt2' >
-        						<select id="shzt"  style="width:80px;" class="easyui-combobox">
+        						<select id="sbzt"  style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option> 
@@ -318,11 +212,11 @@ text-decoration:none;
 <!-- 	        						<img onclick="dckxxModule('sjgz');"  id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
 									<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dckxxModule('sjgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 									<img onclick="importsjgzkxx('sjgzsh')" id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="border-width:0px;vertical-align:middle;" />
-									<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbao();" style="border-width:0px;vertical-align:middle;" />
+									<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaokxx();" style="border-width:0px;vertical-align:middle;" />
 	<%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 	<%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
 									<img onclick="shangB();"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
-	<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" /> -->
+									<img id="tuihui" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />
 	<%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
 	<%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 					             </td>

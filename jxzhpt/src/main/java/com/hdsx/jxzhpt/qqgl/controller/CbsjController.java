@@ -408,7 +408,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		cbsj.setGhlxbm(cbsj.getGhlxbm());
 		cbsj.setGhlxmc(cbsj.getGhlxmc());
 		cbsj.setLxmc(cbsj.getLxmc());
-		cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(), "xzqhdm"));
+		cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 		if(cbsj.getTsdq().length()>0){
 			String[] tsdqs=cbsj.getTsdq().split(",");
 			String tsdq="and(";

@@ -165,6 +165,14 @@
 			var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 			$("#lc").val(zlc);
+			
+			
+			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+			getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+			else
+			getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+
+			
 			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 			if($("#qdzh").val()!='')
 				cxqdmc($("#ylxbh").val(),$("#qdzh").val());
@@ -217,7 +225,7 @@
 					<font color='red' size='2'>*&nbsp;</font>路面宽度：
 				</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
-					<input id="lmkd" name="lmkd" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
+					<input id="lmkd" name="lmkd" readonly="readonly" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
 				</td>
 				
 			</tr>

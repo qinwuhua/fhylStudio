@@ -663,7 +663,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	 * @throws Exception
 	 */
 	public void updateXmsqSp() throws Exception{
-		System.out.println(xmsq.getWnxmk()+"   "+xmsq.getLsjl());
+		
 		try{
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
@@ -677,6 +677,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 						if(xmbm.indexOf(xm.getXmbm())>-1)
 							xmbm=xmbm.replaceAll(xm.getXmbm(), "");
 					}
+					if(xmbm!=null||!"".equals(xmbm))
 					xmsq.setXmbm(xmbm);
 					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
@@ -693,7 +694,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				if(b){
 					Lx lx=new Lx();
 					lx.setXmid(xmsq.getXmbm());
-					lx.setJdbs("1");
+					lx.setJdbs("0");
 					jhshServer.insertLxJdbs(lx);
 				}
 			}else{

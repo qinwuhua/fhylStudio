@@ -293,7 +293,7 @@ function shangb2(index){
 function shenh(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
-	alert(datas);
+	//alert(datas);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -419,7 +419,7 @@ function shenh1(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	
 	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
-	alert(datas);
+	//alert(datas);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -545,7 +545,7 @@ function shenh2(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	
 	var datas='xmsq.ylxbh='+data1.ghlxbh+'&xmsq.qdzh='+data1.qdzh+'&xmsq.zdzh='+data1.zdzh+'&xmsq.xmbm='+data1.xmbm;
-	alert(datas);
+	//alert(datas);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/sfinsert1.do',
@@ -1367,6 +1367,7 @@ function showAllsjsh(){
 			xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.sbzt':'1',
 			ghlxbh:$("#lxbm").val(),
 			lxmc:$("#lxmc").val(),
 			//tsdq:tsdq,
@@ -1403,6 +1404,7 @@ function showAllsjsh(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.sbzt':'1',
 			//tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
@@ -2107,6 +2109,7 @@ function showAlllmsh(){
 			sbzt:sbzt,
 			ghlxbh:$("#lxbm").val(),
 			lxmc:$("#lxmc").val(),
+			'lxsh.sbzt':'1',
 			//tsdq:tsdq,
 			jsdj:jsdj,
 			ghlxbm:$("#ghlxbm").val(),
@@ -2141,6 +2144,7 @@ function showAlllmsh(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.sbzt':'1',
 			//tsdq:tsdq,
 			jsdj:jsdj,
 			ghlxbm:$("#ghlxbm").val(),
@@ -2641,6 +2645,7 @@ function showAllxj123(){
 			sbzt:sbzt,
 			ghlxbh:$("#lxbm").val(),
 			lxmc:$("#lxmc").val(),
+			'lxsh.sbzt':'1',
 			//tsdq:tsdq,
 			jsdj:jsdj,
 			ghlxbm:$("#ghlxbm").val(),
@@ -2674,6 +2679,7 @@ function showAllxj123(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.sbzt':'1',
 			//tsdq:tsdq,
 			jsdj:jsdj,
 			ghlxbm:$("#ghlxbm").val(),

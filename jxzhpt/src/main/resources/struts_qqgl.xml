@@ -8,6 +8,8 @@
 			<action name="qxxmth" class="lxshController" method="qxxmth"/>
 			
 		  <action name="thxmsqsh" class="lxshController" method="thxmsqsh"/>
+  		  <action name="thwshlxsh" class="lxshController" method="thwshlxsh"/>
+		  
 		  
 		  
 		  <action name="loadjsdjcd" class="lxshController" method="loadjsdjcd"/>
@@ -66,6 +68,9 @@
 		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
 		  <action name="querygkxmXX" class="kxxyjController" method="querygkxmXX"/>
 		  
+		  
+		  
+		  <action name="thkxxyjsb" class="kxxyjController" method="thkxxyjsb"/>
 		  <action name="showkxxShxx" class="kxxyjController" method="showkxxShxx"/>
 		  <action name="shshkxx" class="kxxyjController" method="shshkxx"/>
 		  <action name="updateShkxx" class="kxxyjController" method="updateShkxx"/>

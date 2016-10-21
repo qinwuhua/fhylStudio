@@ -108,7 +108,7 @@ var xzqhstr;
 			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-			        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+			        {field:'xmnf',title:'入库时间',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -236,7 +236,7 @@ var xzqhstr;
 			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-			        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+			        {field:'xmnf',title:'入库时间',width:140,align:'center'}
 		    ]]    
 		});  
 		var sbthcd;
@@ -845,7 +845,7 @@ function jckshWqgz(){
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 		        {field:'pddj',title:'评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+		        {field:'xmnf',title:'入库时间',width:140,align:'center'}
 	    ]]    
 	});  
 	var sbthcd;

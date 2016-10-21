@@ -27,8 +27,21 @@
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx("tsdq");
-			if($.cookie("unit2").length!=7)
-			$("img[name='bxs']").attr('style','display:none');
+			if($.cookie("unit2").length!=7){
+				//alert($.cookie("unit2").length);
+				title='上报状态';
+				$("#shenPi").attr('style','display:none');
+				$('#sqzttext').html('上报状态');
+				$("#sqzt1").attr('style','display:none');
+				$("#sqzt2").attr('style','');
+			}else{
+				title='审核状态';
+				$('#sqzttext').html('审核状态');
+				$("img[name='bxs']").attr('style','');
+				$("#shangbao").attr('style','display:none');
+				$("#sqzt1").attr('style','');
+				$("#sqzt2").attr('style','display:none');
+			}
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
@@ -209,12 +222,15 @@
 			        		}
 			        	}
 			        },
-			        {field : 'lc',title : '里程',width : 60,align : 'center'},
+			        {field : 'jszlc1',title : '里程',width : 60,align : 'center'},
 				    {field:'jsdj',title:'技术等级',width:100,align:'center'},
 				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
-				    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
-				    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
-				    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+					{field:'lxbh',title:'原路线编码',width:60,align:'center'},
+					{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+					{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 				    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 				    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
@@ -473,12 +489,24 @@ text-decoration:none;
         					<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:99px;" >
 								</select></td>
-								<td>审核状态：</td>
-        						<td><select id="shzt" style="width:99px;" class="easyui-combobox">
+								<td><span id='sqzttext'>审核状态：</span>   </td>
+        						<td>
+        						<span id='sqzt1'>
+        						<select id="shzt"  style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option> 
-								</select></td>
+								</select>
+        						</span>
+        						<span id='sqzt2' >
+        						<select id="sbzt"  style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option> 
+								</select>
+        						</span>
+								
+								</td>
         					
         					<!--
         						<td>规划路线编码：</td>
@@ -502,14 +530,11 @@ text-decoration:none;
         					
                               <td colspan="10">
         						<img onclick="showShgk()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-        						<img onclick="dckxxModule('sh');" name="bxs" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
-								<img onclick="importsjgzkxx('sh')" name="bxs"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="border-width:0px;vertical-align:middle;" />
-<%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
-<%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
-								<img onclick="shangB();" name="bxs" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;"" />
-<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" /> -->
-<%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
-<%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
+        						<img onclick="dckxxModule('sh');"  id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img onclick="importsjgzkxx('sh')" id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="border-width:0px;vertical-align:middle;" />
+								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbao();" style="border-width:0px;vertical-align:middle;" />
+								<img onclick="shangB();"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
+								<img id="tuihui" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />				             </td>
 				             </td>
                             </tr></table>
         				</div>

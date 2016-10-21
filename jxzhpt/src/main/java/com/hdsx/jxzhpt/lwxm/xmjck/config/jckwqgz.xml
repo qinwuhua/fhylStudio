@@ -199,7 +199,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
  		F013 qmjk,F020 qxjk,F015 zqks
-		from DATA50  where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		from DATA50  where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
 		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
@@ -231,7 +231,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
  		F013 qmjk,F020 qxjk,F015 zqks,q.xqlbh,q.xqlmc,q.xzxzh
-		from DATA50 d left join qlxlgl q on d.roadbm=q.yqlbh where substr(roadcode,1,1) in('G','S','X','Y','C') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		from DATA50 d left join qlxlgl q on d.roadbm=q.yqlbh where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 <!-- 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类')) -->
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
 		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥','小桥'))
@@ -265,7 +265,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
  		F013 qmjk,F020 qxjk,F015 zqks,q.xqlbh,q.xqlmc,q.xzxzh
-		from DATA50 d left join qlxlgl q on d.roadbm=q.yqlbh where substr(roadcode,1,1) in('G','S','X','Y','C') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		from DATA50 d left join qlxlgl q on d.roadbm=q.yqlbh where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 <!-- 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类')) -->
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
 		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥','小桥'))
@@ -515,7 +515,7 @@
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
  		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz 
-		from DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		from DATA50 where substr(roadcode,1,1) in('G','S','X','Y','C','Z') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
 		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))

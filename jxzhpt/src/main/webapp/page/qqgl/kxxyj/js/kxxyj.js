@@ -144,10 +144,16 @@ function showkxxTjxx(xmlx){
 			xmlx1=xmlx1.substr(1,xmlx1.length);
 	}
 	var sbzt=$("#sbzt").combobox('getValue');
-var  data='lxsh.lsjl='+lsjl+
+	
+	var shzt=$("#shzt").combobox('getValue');
+	if($.cookie('unit2').length==7){
+		sbzt='1';
+	}
+	var  data='lxsh.lsjl='+lsjl+
 	'&lxsh.xmlx1='+xmlx1+
 	'&lxsh.xzqh='+xzqhstr+
 	//'&lxsh.gydw='+gydwstr+
+	'&lxsh.sbzt1='+sbzt+
 	'&lxsh.xmmc='+xmmc+
 	'&lxsh.xmnf='+xmnf+
 	'&lxsh.tsdq='+tsdq+
@@ -156,7 +162,7 @@ var  data='lxsh.lsjl='+lsjl+
 	'&lxsh.ghlxbm='+$("#ghlxbm").val()+
 	'&lxsh.ghlxmc='+$("#ghlxmc").val()+
 	'&lxsh.gldj='+gldj+
-	'&lxsh.shzt='+sbzt+
+	'&lxsh.shzt='+shzt+
 	'&lxsh.ghlxbh='+$("#lxbm").val()+
 	'&lxsh.lxmc='+$("#lxmc").val()+
 	'&lxsh.xmlx='+xmlx;
@@ -260,7 +266,7 @@ function jsyzlc(){
 	if($('#silc').val()!='')
 		silc=parseFloat($('#silc').val());
 	if($('#wllc').val()!='')
-		wllc=parseFloat($('#wllc').val());
+		wulc=parseFloat($('#wllc').val());
 	if($('#dwlc').val()!='')
 		dwlc=parseFloat($('#dwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
@@ -278,7 +284,7 @@ function jsjszlc(){
 	if($('#jhsilc').val()!='')
 		silc=parseFloat($('#jhsilc').val());
 	if($('#jhwllc').val()!='')
-		wllc=parseFloat($('#jhwllc').val());
+		wulc=parseFloat($('#jhwllc').val());
 	if($('#jhdwlc').val()!='')
 		dwlc=parseFloat($('#jhdwlc').val());
 	var hj1=accAdd(yilc,erlc);var hj2=accAdd(sanlc,silc);var hj3=accAdd(wulc,dwlc);
@@ -927,6 +933,10 @@ function showAllsjsh(){
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var lsjl=$("#lsjl").combobox('getValue');
 	var sbzt=$("#sbzt").combobox('getValue');
+	var shzt=$("#shzt").combobox('getValue');
+	if($.cookie('unit2').length==7){
+		sbzt='1';
+	}
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectSjgzkxList.do',
 	    striped:true,
@@ -944,6 +954,7 @@ function showAllsjsh(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			jsjsdj:jsjsdj,
@@ -972,7 +983,7 @@ function showAllsjsh(){
 	        		if(row.sbzts=='1'){
 	        			return '已上报';
         			}else{
-	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbao('+index+')">未上报</a>';
+	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
         			}
 	        	}else{
@@ -1247,6 +1258,10 @@ function showAlllmsh(){
 	var lsjl=$("#lsjl").combobox('getValue');
 	var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
+	var shzt=$("#shzt").combobox('getValue');
+	if($.cookie('unit2').length==7){
+		sbzt='1';
+	}
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
 	    striped:true,
@@ -1264,6 +1279,7 @@ function showAlllmsh(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			jsjsdj:jsjsdj,
@@ -1288,15 +1304,21 @@ function showAlllmsh(){
 	        
 	        }},
 	        
-	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.shzt=='0'){
-	        		if($.cookie("unit2").length!=7)
-	        			return '未审核';
-	            		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
+	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.sbzts=='1'){
+	        			return '已上报';
+        			}else{
+	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
-	        	}
-	        	else if(row.shzt=='1')
-	        		return '已审核';
+        			}
+	        	}else{
+	        		if(row.sbzt1=='0'){
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
+	        		}else if(row.sbzt1=='1')
+		        		return '已审核';
+        		}
+	        	
 	        }},
 	        
 	        {field:'lsjl',title:'历史记录',width:60,align:'center',
@@ -1565,6 +1587,10 @@ function showAllxjsh(){
 	var jsdj=$("#jsdj").combobox('getValues').join(",");
 	var gldj=$("#gldj").combobox('getValues').join(",");
 	var sbzt=$("#sbzt").combobox('getValue');
+	var shzt=$("#shzt").combobox('getValue');
+	if($.cookie('unit2').length==7){
+		sbzt='1';
+	}
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjkxList.do',
 	    striped:true,
@@ -1581,6 +1607,7 @@ function showAllxjsh(){
 	    	xmmc:xmmc,
 			xmnf:xmnf,
 			sbzt:sbzt,
+			'lxsh.shzt':shzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			ghlxbm:$("#ghlxbm").val(),
@@ -1603,15 +1630,21 @@ function showAllxjsh(){
 
 	        }},
 	        
-	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'){
-	        		if($.cookie("unit2").length!=7)
-	        			return '未审核';
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
+	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        	if($.cookie("unit2").length!=7){
+	        		if(row.sbzts=='1'){
+	        			return '已上报';
+        			}else{
+	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
-	        	}
-	        	else if(row.sbzt1=='1')
-	        		return '已审核';
+        			}
+	        	}else{
+	        		if(row.sbzt1=='0'){
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
+	        		}else if(row.sbzt1=='1')
+		        		return '已审核';
+        		}
+	        	
 	        }},
 	        {field:'lsjl',title:'历史记录',width:60,align:'center',
 				formatter: function(value,row,index){
@@ -2495,7 +2528,23 @@ function showAllxjsh__ck(){
 }
 
 
-function shangbao(index){
+
+function rollback(){
+	var rows=$('#datagrid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt1=='1'){
+			alert('请您勿勾选已审核的项目');
+			return;
+		}
+	}
+	YMLib.UI.createWindow('lxxx','退回项目','kxxyj_th.jsp','lxxx',400,200);	
+}
+
+function shangbaokxx(index){
 	//alert(index);
 	var xmlx="";
 	var xmbm='';

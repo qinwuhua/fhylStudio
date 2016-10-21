@@ -52,7 +52,7 @@
 			//按钮上的文字 
 			'simUploadLimit' : 1,
 			//一次同步上传的文件数目 
-			'sizeLimit' : 20000000,
+			'sizeLimit' : 100000000,
 			//设置单个文件大小限制 
 			'queueSizeLimit' : 1,
 			//队列中同时存在的文件个数限制 

@@ -141,4 +141,6 @@ public interface KxxyjServer {
 
 	boolean sbgcxmkxx(Lxsh lxsh);
 
+	boolean thkxxyjsbzt(Lxsh lxsh);
+
 }
