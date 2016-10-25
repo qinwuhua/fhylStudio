@@ -89,7 +89,7 @@
 			var url = "/jxzhpt/qqgl/queryAutoList.do";
 			$("#ylxbh").autocomplete(url, {
 				multiple : false,minChars :4,multipleSeparator : ' ',
-				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+				mustMatch: true,cacheLength : 0,delay : 200,max : 150,
 		  		extraParams : {
 		  			'ylxbh':function() {
 		  				var d = $("#ylxbh").val();

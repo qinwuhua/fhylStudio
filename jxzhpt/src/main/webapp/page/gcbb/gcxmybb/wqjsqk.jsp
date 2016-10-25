@@ -166,7 +166,7 @@
 			gydwstr= gydw.join(',');
 		}
 		
-	var xzqhdm=$("#xzqh").combotree("getValues");
+		var xzqhdm=$("#xzqh").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
 		}else if(xzqhdm.length==1){
@@ -182,6 +182,19 @@
 		var gldj=$("#xzdj").combobox("getValues").join(",");
 		if(gldj.substr(0,1)==',')
 			gldj=gldj.substr(1,gldj.length);
+		
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
+		
+		var jsxz=$("#jsxz").combobox("getValue");
+		var akjfl=$("#kjfl").combobox("getValues").join(",");
+		if(akjfl.substr(0,1)==',')
+			akjfl=akjfl.substr(1,akjfl.length);
+		var jzjznf=$("#jzjznf").combobox("getValues").join(",");
+		if(jzjznf.substr(0,1)==',')
+			jzjznf=jzjznf.substr(1,jzjznf.length);
+		
 		 var jhpc=$("#jhpc").combobox("getText");
 			if(jhpc.substr(0,2)=='全部')
 				jhpc=jhpc.substr(3,jhpc.length);

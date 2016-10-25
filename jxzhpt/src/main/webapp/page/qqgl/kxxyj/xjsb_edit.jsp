@@ -36,7 +36,7 @@ text-decoration:none;
 	var zdStr;
 	function load(){
 		var data=parent.obj;
-		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
+// 		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
 		
 		$("#xmmc").val(data.xmmc);
 		$("#lxbh").val(data.lxbh);

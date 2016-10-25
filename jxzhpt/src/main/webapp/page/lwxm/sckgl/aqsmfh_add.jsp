@@ -60,6 +60,9 @@ text-decoration:none;
 		        {field:'gpszd',title:'止点桩号',width:140,align:'center'},
 		        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
+		       /*  {field:'throadcode',title:'调后路线编码',width:140,align:'center'},
+		        {field:'throadstart',title:'调后起点桩号',width:140,align:'center'},
+		        {field:'throadend',title:'调后止点桩号',width:140,align:'center'}, */
 		        {field:'tzgs',title:'处置投资估算',width:140,align:'center'}
 		    ]]
 		});
@@ -322,6 +325,7 @@ function saveAbgc(){
 				if(row!=null){
 					var years=[];
 					 for(var i=0;i<row.length;i++){
+ 					//var text=row[i].throadcode.replace(/(\s*$)/g,"")+"("+row[i].throadstart+","+row[i].throadend+")"+row[i].roadname.replace(/(\s*$)/g,"");
  					var text=row[i].roadcode.replace(/(\s*$)/g,"")+"("+row[i].roadstart+","+row[i].roadend+")"+row[i].roadname.replace(/(\s*$)/g,"");
 						years.push({text:(text),value:(row[i].id)});
 					} 

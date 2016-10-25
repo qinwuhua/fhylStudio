@@ -38,7 +38,7 @@ function autoCompletelogin(){
 		mustMatch: true,
   		cacheLength : 0,
   		delay : 0,
-  		max : 50,
+  		max : 150,
   		extraParams : {
 				name:function() {
   				var d = $("#name").val();

@@ -80,7 +80,7 @@ text-decoration:none;
 			mustMatch: true,
 	  		cacheLength : 0,
 	  		delay : 200,
-	  		max : 50,
+	  		max : 150,
 	  		extraParams : {
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();

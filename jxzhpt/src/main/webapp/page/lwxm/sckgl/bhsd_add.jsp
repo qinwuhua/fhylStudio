@@ -88,7 +88,7 @@ function autoCompleteQLBH(){
 		mustMatch: true,
   		cacheLength : 0,
   		delay : 200,
-  		max : 50,
+  		max : 150,
   		extraParams : {
   			sddm:function() {
   				var d = $("#sddm").val();

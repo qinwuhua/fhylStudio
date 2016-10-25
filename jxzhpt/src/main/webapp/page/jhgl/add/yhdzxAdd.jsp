@@ -46,7 +46,7 @@
 			var url = "/jxzhpt/jhgl/yhdzxAutoCompleteLxbm.do";
 			$("#txtLXBM").autocomplete(url, {
 				multiple : false,minChars :4,multipleSeparator : ' ',
-				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+				mustMatch: true,cacheLength : 0,delay : 200,max : 150,
 		  		extraParams : {
 		  			'lx.lxbm':function() {
 		  				var d = $("#txtLXBM").val();
