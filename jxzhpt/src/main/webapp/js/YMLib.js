@@ -3660,3 +3660,19 @@ function queryylmlx1(lxbm,qdzh,zdzh){
 		}
 	});
 }
+
+//退回立项审核下级用户
+function tuihxjlxsh(id){
+	var rows=$('#'+id).datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt=='1'){
+			alert('请您勿勾选已审核的项目');
+			return;
+		}
+	}
+	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_th.jsp','lxxx',400,200);	
+}
