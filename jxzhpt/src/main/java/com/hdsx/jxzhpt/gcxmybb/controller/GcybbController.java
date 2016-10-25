@@ -2980,6 +2980,8 @@ public class GcybbController extends BaseActionSupport{
 				gcglwqgz.setXzqhdm(tiaojian2);
 				gcglwqgz.setXmnf(xmnf);
 				gcglwqgz.setSfylrbwqk(sfylrbwqk);
+				gcglwqgz.setJhpc(getTiaoJian(gcglwqgz.getJhpc(),"jhpc"));
+				System.out.println(sfylrbwqk);
 				if(gcglwqgz.getGldj().length()>0){
 					String[] tsdqs=gcglwqgz.getGldj().split(",");
 					String tsdq="and substr(sc.sck_lxbm,0,1) in (";
@@ -3398,4 +3400,33 @@ public class GcybbController extends BaseActionSupport{
 			}
 			return tj;
 		}
+		
+		
+		
+		public String getTiaoJian(String bh,String name){
+			String result="";
+			if(bh!=null&&!"".equals(bh)){
+				if(bh.indexOf(",")==-1){
+					int i=0;
+					if(bh.matches("^[0-9]*[1-9]00$")){
+						i=2;
+					}else if(bh.matches("^[0-9]*[1-9]0000$")){
+						i=4;
+					}
+					bh=bh.substring(0,bh.length()-i);
+				}
+				String[] s = bh.split(",");
+				for (int i = 0; i < s.length; i++) {
+					if(i==0)
+						result+=" and ("+name+" like '%"+s[i]+"%'";
+					else
+						result+=" or "+name+" like '%"+s[i]+"%'";
+				}
+				result+=")";
+				//System.out.println(result);
+				//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+			}
+			return result;
+		}
+		
 }

@@ -29,7 +29,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			ybnf('jzjznf');
-			
+			jhpcdx('jhpc','wqgz');
 			showAll();
 		});
 		function ybnf(id){
@@ -99,8 +99,12 @@
 			if(jzjznf.substr(0,1)==',')
 				jzjznf=jzjznf.substr(1,jzjznf.length);
 			
+			 var jhpc=$("#jhpc").combobox("getText");
+				if(jhpc.substr(0,2)=='全部')
+					jhpc=jhpc.substr(3,jhpc.length);
+			
 			var data="flag=''+&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+gldj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')
-			+"&gcglwqgz.tsdq="+tsdq+"&gcglwqgz.jsxz="+jsxz+"&gcglwqgz.akjfl="+akjfl+"&gcglwqgz.jzjznf="+jzjznf;
+			+"&gcglwqgz.tsdq="+tsdq+"&gcglwqgz.jsxz="+jsxz+"&gcglwqgz.akjfl="+akjfl+"&gcglwqgz.jzjznf="+jzjznf+"&gcglwqgz.jhpc="+jhpc;
 			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
@@ -178,7 +182,10 @@
 		var gldj=$("#xzdj").combobox("getValues").join(",");
 		if(gldj.substr(0,1)==',')
 			gldj=gldj.substr(1,gldj.length);
-		var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+gldj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+		 var jhpc=$("#jhpc").combobox("getText");
+			if(jhpc.substr(0,2)=='全部')
+				jhpc=jhpc.substr(3,jhpc.length);
+		var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+gldj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.tsdq="+tsdq+"&gcglwqgz.jsxz="+jsxz+"&gcglwqgz.akjfl="+akjfl+"&gcglwqgz.jzjznf="+jzjznf+"&gcglwqgz.jhpc="+jhpc;
 
 		//var data="flag=flag&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&gcglwqgz.wgnf="+$("#wgnf").combobox("getValue").replace('不选择','');
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
@@ -250,7 +257,11 @@ a:active {
 								<option value="否">否</option>
 								<option value="是">是</option>
 								</select>
+								
 								</p>
+								
+								
+                          
 							<p style="margin: 8px 0px 8px 20px;">
 									<span>特殊地区：</span>
        									<input type="text" id='tsdq'>
@@ -283,6 +294,11 @@ a:active {
      									<input type="text" id='kjfl'>
    									<span>截止进展年份：</span>
      									<input type="text" id='jzjznf' style="width:100px;"> -->
+       								
+       								<span>计划批次：</span>
+        							<select id="jhpc" class="easyui-combobox"  style="width: 80px">
+                             		 </select>
+       								
        								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()" />
 								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"

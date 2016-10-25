@@ -2538,7 +2538,7 @@ function showAllxj(){
 			},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
 				formatter: function(value,row,index){
-	        		if(Number(row.xmsl)>1){
+	        		if(Number(row.sl)>1){
 	        			return '<label style="color:red;">'+value+'</label>';
 	        		}else{
 	        			return value;
@@ -2903,7 +2903,7 @@ function showAllxjsh(){
 		    {field : 'xzqh',title : '行政区划',width : 80,align : 'center'},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center',
 	        	formatter: function(value,row,index){
-	        		if(Number(row.xmsl)>1){
+	        		if(Number(row.sl)>1){
 	        			return '<label style="color:red;">'+value+'</label>';
 	        		}else{
 	        			return value;

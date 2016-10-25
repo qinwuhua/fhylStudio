@@ -37,6 +37,7 @@ text-decoration:none;
 	function load(){
 		var data=parent.obj;
 		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
+		
 		$("#xmmc").val(data.xmmc);
 		$("#lxbh").val(data.lxbh);
 		$("#lxmc").val(data.lxmc);
@@ -74,6 +75,35 @@ text-decoration:none;
 		$("#wgny").datebox('setValue',data.wgny);
 		$("#pfsj").datebox('setValue',data.pfsj);
 		fileShow(parent.obj.xmbm,"工可批复文件");
+		
+		
+		$.ajax({
+			type:'post',
+			url:'../../../qqgl/queryKxxyjByXmbm.do',
+			data:'xmlx='+3+'&xmbm='+data.xmbm,
+			dataType:'json',
+			success:function(msg){
+				$('#kxxyj').form("load",msg);
+				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm1);
+				$("#gydw").combotree('setValues',msg.gydwdm1.split(","));
+				//alert(msg.xzqhdm);
+				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm);
+				$("#xzqh").combotree('setValues',msg.xzqhdm.split(","));
+				
+				var lc=parseFloat(msg.gpszdzh)-parseFloat(msg.gpsqdzh);
+				qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+				zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
+				if(qdStr<0)
+					qdStr=0;
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+				
+				$('#ylxbh').val(msg.lxbm);
+				$("#xmbm").html(msg.xmbm);
+				$("#jsjsdj").html(msg.jsjsdj);
+			}
+		});
+		
 // 		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
 // 		$.ajax({
 // 			type:'post',
@@ -135,7 +165,7 @@ text-decoration:none;
 		}
 		var data="kxxyj.xmbm="+parent.obj.xmbm+"&kxxyj.xmmc="+$('#xmmc').val()+"&kxxyj.sbthcd="+sbthcd+"&kxxyj.tbbmbm="+$.cookie("unit")
 		+"&kxxyj.qdzh="+$('#qdzh').val()+"&kxxyj.zdzh="+$('#zdzh').val()+"&kxxyj.jsxz="+$('#jsxz').val()
-		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combobox('getValue')
+		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combo("getValues").join(",")+"&kxxyj.gydw="+$("#gydw").combobox("getText")+"&kxxyj.gydwdm="+$("#gydw").combobox("getValues").join(',')
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')
@@ -324,9 +354,9 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="sd" onblur="checkSZ(this)" style="width: 120px;"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-<!-- 					<input type="text" id="jsdw" style="width: 120px;"/> -->
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="gydw" name="gydw" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

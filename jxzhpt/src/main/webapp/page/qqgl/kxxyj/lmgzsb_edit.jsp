@@ -50,8 +50,12 @@ text-decoration:none;
 					qdStr=0;
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
 				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
-
-				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm1);
+				$("#gydw").combotree('setValues',msg.gydwdm1.split(","));
+				//loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm);
+				$("#xzqh").combotree('setValues',msg.xzqhdm.split(","));
+				
 				$('#ylxbh').val(msg.lxbm);
 				$("#xmbm").html(msg.xmbm);
 				$("#jsjsdj").html(msg.jsjsdj);
@@ -194,13 +198,15 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
+		//alert();
 		var data="kxxyj.xmbm="+parent.obj.xmbm+"&kxxyj.xmmc="+$('#xmmc').val()+"&kxxyj.sbthcd="+sbthcd+"&kxxyj.tbbmbm="+$.cookie("unit")
 		+"&kxxyj.qdzh="+$('#qdzh').val()+"&kxxyj.zdzh="+$('#zdzh').val()+"&kxxyj.jsxz="+$('#jsxz').val()
-		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combobox('getValue')
+		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combo("getValues").join(",")+"&kxxyj.gydw="+$("#gydw").combobox("getText")+"&kxxyj.gydwdm="+$("#gydw").combobox("getValues").join(',')
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')+
 		"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.lxbh="+$('#ylxbh').val();
+		
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()
 		+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()
 		+"&kxxyj.ghlxmc="+$('#ghlxmc').val()+"&kxxyj.ghlxbm="+$('#ghlxbm').val()+"&kxxyj.ghqdzh="+$('#ghqdzh').val()+"&kxxyj.ghzdzh="+$('#ghzdzh').val()
@@ -399,9 +405,9 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="sd" name="sd" onblur="checkSZ(this)"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><!-- 建设单位： --></td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-<!-- 					<input type="text" id="jsdw" name="jsdw"/> -->
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="gydw" name="gydw" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

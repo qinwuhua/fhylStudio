@@ -852,7 +852,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	@Override
 	public boolean shshkxx(Lxsh lxsh) {
 		if(update("shshkxx", lxsh)==lxsh.getXmbm().split(",").length)
+			lxsh.setJdbs("2");
 		insert("insertshcb", lxsh);
+		insert("insertLx1", lxsh);
 		return true;
 	}
 	@Override

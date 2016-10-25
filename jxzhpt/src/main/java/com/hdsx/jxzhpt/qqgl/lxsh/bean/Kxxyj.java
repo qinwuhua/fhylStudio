@@ -13,7 +13,30 @@ public class Kxxyj implements Serializable {
 	private String gxzdzh;//规划路线编号
 	private String jszlc1;
 	private String thyy;
+	private String gcfl;
+	private String gydw1;
+	private String gydwdm1;
 	
+	
+	
+	public String getGydw1() {
+		return gydw1;
+	}
+	public void setGydw1(String gydw1) {
+		this.gydw1 = gydw1;
+	}
+	public String getGydwdm1() {
+		return gydwdm1;
+	}
+	public void setGydwdm1(String gydwdm1) {
+		this.gydwdm1 = gydwdm1;
+	}
+	public String getGcfl() {
+		return gcfl;
+	}
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
+	}
 	public String getThyy() {
 		return thyy;
 	}

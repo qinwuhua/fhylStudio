@@ -426,28 +426,32 @@
 		update kxxyj_sjgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
-		dfzc=#{dfzc},yhdk=#{yhdk},jszlc=#{jszlc}
+		dfzc=#{dfzc},yhdk=#{yhdk},jszlc=#{jszlc}<if test="gydw != null">,gydw1=#{gydw}</if>
+		<if test="gydwdm != null">,gydwdm1=#{gydwdm}</if>
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateLmgzkxx" parameterType="kxxyj">
 		update kxxyj_lmgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
-		dfzc=#{dfzc},yhdk=#{yhdk}
+		dfzc=#{dfzc},yhdk=#{yhdk}<if test="gydw != null">,gydw1=#{gydw}</if>
+		<if test="gydwdm != null">,gydwdm1=#{gydwdm}</if>
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateShkxx" parameterType="kxxyj">
 		update kxxyj_sh set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
-		dfzc=#{dfzc},yhdk=#{yhdk}
+		dfzc=#{dfzc},yhdk=#{yhdk}<if test="gydw != null">,gydw1=#{gydw}</if>
+		<if test="gydwdm != null">,gydwdm1=#{gydwdm}</if>
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateXjkxx" parameterType="kxxyj">
 		update kxxyj_xj set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
 		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm},
-		dfzc=#{dfzc},yhdk=#{yhdk}
+		dfzc=#{dfzc},yhdk=#{yhdk}<if test="gydw != null">,gydw1=#{gydw}</if>
+		<if test="gydwdm != null">,gydwdm1=#{gydwdm}</if>
 		where xmbm=#{xmbm}
 	</update>
 	
@@ -815,7 +819,7 @@
 	</select>
 	<insert id="insertLx1" parameterType="lxsh">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),qdzh,zdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid in(${xmbm}) and jdbs=to_char(to_number(#{jdbs})-1)
 		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
 	</insert>
@@ -1528,7 +1532,7 @@
 		select * from (
 		select rownum num ,
 		t.id,t.xmmc,t.xmbm,t.jsdw,t.xzqh,t.qdzh,t.zdzh,t.dq,t.sd,t.kgny,t.wgny,t.jsdj,t.jsxz,t.gkpfwh,t.pfsj,t.tzgs,t.bzdw,t.xzqhdm,t.shzt,t.sbzt,t.dq_m,t.sd_m,t.tbbmbm,t.dfzc,t.yhdk,t.jszlc,t.tzxz,t.tzsj,
-		t1.lsjl,lx.lxbm lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SH t Left join 
+		t1.lsjl,lx.lxbm lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SH t Left join 
 		xmsq_sh t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,lxbm,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(*) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
@@ -1554,8 +1558,11 @@
 			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
-		<if test="shzt !='' and shzt != null ">
-			and t.shzt=#{shzt}
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="ghlxbm!=null and ghlxbm!=''">
 			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')
@@ -1595,8 +1602,11 @@
 			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
-		<if test="shzt !='' and shzt != null ">
-			and t.shzt=#{shzt}
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="ghlxbm!=null and ghlxbm!=''">
 			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')
@@ -1635,8 +1645,11 @@
 			and sl.ghlxmc like '%'||#{ghlxmc}||'%'
 		</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
-		<if test="shzt !='' and shzt != null ">
-			and t.shzt=#{shzt}
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="ghlxbm!=null and ghlxbm!=''">
 			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')
@@ -1658,7 +1671,7 @@
 	</update>
 	<insert id="insertshcb" parameterType="lxsh">
 	insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
-    select k.xmmc,x.xmbm,null,k.xzqh,k.qdzh,k.zdzh,k.jsdj,x.gcfl,k.kgny,k.wgny,x.gq,x.lc,x.jsfa 
+    select k.xmmc,x.xmbm,null,k.xzqh,k.qdzh,k.zdzh,k.jsdj,k.gcfl,k.kgny,k.wgny,x.gq,x.lc,k.jsxz 
     from xmsq_sh x left join kxxyj_sh k on x.xmbm=k.xmbm where x.xmbm in (${xmbm})
 	</insert>
 	

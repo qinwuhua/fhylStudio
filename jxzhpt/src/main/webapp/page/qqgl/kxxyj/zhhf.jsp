@@ -23,6 +23,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/js/loadTJ.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
+	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	
 <%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
 	<script type="text/javascript">
 		$(function(){
@@ -47,7 +49,7 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			urlxmnf("xmnf",getUrlParame('id'));
-			setTimeout("showShgk()",'1700');
+			setTimeout("queryShxm()",'1700');
 		});
 		function showxx(index){
 			var data=$("#datagrid").datagrid('getRows')[index];
@@ -109,9 +111,13 @@
 			var ghlxbm=$("#ghlxbm").val();
 			var ghlxmc=$("#ghlxmc").val();
 			var lsjl=$("#lsjl").combobox('getValue');
+			var sbzt=$("#sbzt").combobox('getValue');
 			var shzt=$("#shzt").combobox('getValue');
+			if($.cookie('unit2').length==7){
+				sbzt='1';
+			}
 			var params={'lxsh.xzqh':xzqhstr,'lxsh.xmmc':xmmc,'lxsh.xmnf':xmnf,'lxsh.jsdj':jsdj,'lxsh.gldj':gldj,'lxsh.tsdq':tsdq,
-					'lxsh.lxbm':lxbm,'lxsh.lxmc':lxmc,'lxsh.ghlxbm':ghlxbm,'lxsh.ghlxmc':ghlxmc,'lxsh.lsjl':lsjl,'lxsh.shzt':shzt};
+					'lxsh.lxbm':lxbm,'lxsh.lxmc':lxmc,'lxsh.ghlxbm':ghlxbm,'lxsh.ghlxmc':ghlxmc,'lxsh.lsjl':lsjl,'lxsh.shzt':shzt,'lxsh.sbzt':sbzt};
 			
 			$.ajax({
 				type:'post',
@@ -143,7 +149,7 @@
 		
 		
 		
-		function showShgk(){//查询水毁初步设计即灾毁恢复
+		function queryShxm(){//查询水毁初步设计即灾毁恢复
 			showkxxShxx();
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
@@ -170,9 +176,13 @@
 			var ghlxbm=$("#ghlxbm").val();
 			var ghlxmc=$("#ghlxmc").val();
 			var lsjl=$("#lsjl").combobox('getValue');
+			var sbzt=$("#sbzt").combobox('getValue');
 			var shzt=$("#shzt").combobox('getValue');
+			if($.cookie('unit2').length==7){
+				sbzt='1';
+			}
 			var params={'lxsh.xzqh':xzqhstr,'lxsh.xmmc':xmmc,'lxsh.xmnf':xmnf,'lxsh.jsdj':jsdj,'lxsh.gldj':gldj,'lxsh.tsdq':tsdq,
-					'lxsh.lxbm':lxbm,'lxsh.lxmc':lxmc,'lxsh.ghlxbm':ghlxbm,'lxsh.ghlxmc':ghlxmc,'lxsh.lsjl':lsjl,'lxsh.shzt':shzt};
+					'lxsh.lxbm':lxbm,'lxsh.lxmc':lxmc,'lxsh.ghlxbm':ghlxbm,'lxsh.ghlxmc':ghlxmc,'lxsh.lsjl':lsjl,'lxsh.shzt':shzt,'lxsh.sbzt':sbzt};
 			
 			$('#datagrid').datagrid({    
 			    url:'/jxzhpt/qqgl/selectShkxList.do',
@@ -187,20 +197,27 @@
 			    queryParams: params,
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-			        	if($.cookie("unit2").length!=7)
+			        {field:'c',title:'操作',width:190,align:'center',formatter:function(value,row,index){
+			        	/* if($.cookie("unit2").length!=7)
 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="showxx('+index+')">详细</a>    '+'编辑 ';
-
-			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="showxx('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsh('+index+')">编辑</a>  ';
+ */
+			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="showxx('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="editsh('+index+')">编辑</a>  '+'<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+1+"'"+')" style="color:#3399CC;">添加路线</a>';
 			        }},
 			        
-			        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-			        	if(row.shzt=='0'){
-			        		if($.cookie("unit2").length!=7)
-			        			return '未审核';
-			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenhsh('+index+')">未审核</a>';
-			        	}else if(row.shzt=='1')
-			        		return '已审核';
+			        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+			        	if($.cookie("unit2").length!=7){
+			        		if(row.sbzts=='1'){
+			        			return '已上报';
+		        			}else{
+			        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
+
+		        			}
+			        	}else{
+			        		if(row.sbzt1=='0'){
+				        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenhsh('+index+')">未审核</a>';
+			        		}else if(row.sbzt1=='1')
+				        		return '已审核';
+		        		}
 			        }},
 			        {field:'lsjl',title:'历史记录',width:60,align:'center',
 						formatter: function(value,row,index){
@@ -529,10 +546,13 @@ text-decoration:none;
         					<tr height="32">
         					
                               <td colspan="10">
-        						<img onclick="showShgk()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="queryShxm()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         						<img onclick="dckxxModule('sh');"  id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 								<img onclick="importsjgzkxx('sh')" id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="border-width:0px;vertical-align:middle;" />
-								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbao();" style="border-width:0px;vertical-align:middle;" />
+								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaokxx();" style="border-width:0px;vertical-align:middle;" />
+								
+								
+								
 								<img onclick="shangB();"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
 								<img id="tuihui" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />				             </td>
 				             </td>

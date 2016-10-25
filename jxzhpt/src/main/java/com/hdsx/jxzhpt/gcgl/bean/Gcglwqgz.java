@@ -103,6 +103,7 @@ public class Gcglwqgz implements Serializable {
 	private String nsqsjl;
 	private String xqlmc;
 	
+	private String jhpc;
 	
 	
 	
@@ -122,7 +123,12 @@ public class Gcglwqgz implements Serializable {
 	
 	
 	
-	
+	public String getJhpc() {
+		return jhpc;
+	}
+	public void setJhpc(String jhpc) {
+		this.jhpc = jhpc;
+	}
 	//private String pfztz;
 	//private String stz;
 	private String sck_qlzhxh;

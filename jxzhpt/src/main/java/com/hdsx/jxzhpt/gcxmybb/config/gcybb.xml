@@ -3292,6 +3292,9 @@
 			<if test="jsxz != null and jsxz !=''">
 				 ${jsxz}
 			</if>
+			<if test="jhpc != null and jhpc !=''">
+				 ${jhpc}
+			</if>
 			order by xzqhdm
 		) t1
 		
@@ -3339,6 +3342,9 @@
 			</if>
 			<if test="jsxz != null and jsxz !=''">
 				 ${jsxz}
+			</if>
+			<if test="jhpc != null and jhpc !=''">
+				 ${jhpc}
 			</if>
 			order by xzqhdm
 		) t1

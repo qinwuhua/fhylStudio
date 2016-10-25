@@ -27,8 +27,9 @@
 		$(function(){
 			loadDistadd("xzqh",$.cookie("dist"));
 			loadUnitadd("gydw",$.cookie("unit"));
-			$('#xmbm').html(parent.YMLib.Var.xmbm);
-			$('#jdbs').val(parent.YMLib.Var.jdbs);
+			//alert(parent.obj.xmbm);
+			$('#xmbm').html(parent.obj.xmbm);
+			$('#jdbs').val(parent.obj.jdbs);
 			autoCompleteLXBM();
 			autoCompleteGHLXBM();
 		});
@@ -129,7 +130,7 @@
 						}else if(parent.YMLib.Var.xmbm.substring(10,11)=="5"){
 							parent.queryShxm();
 						}
-						closeWindow(parent.YMLib.Var.id);
+						closeWindow(parent.obj.id);
 					}else if(msg.result=="have"){
 						alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 					}else{
@@ -163,7 +164,7 @@
 				cxzdmc($("#ylxbh").val(),$("#zdzh").val());
 		}
 		function removes(){
-			closeWindow(parent.YMLib.Var.id);
+			closeWindow(parent.obj.id);
 		}
 	</script>
 </head>

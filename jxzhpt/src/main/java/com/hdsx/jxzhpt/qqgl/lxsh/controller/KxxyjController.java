@@ -1751,6 +1751,9 @@ public class KxxyjController extends BaseActionSupport{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
 			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
+			if(!"".equals(lxsh.getSbzt())){
+				lxsh.setSbzt1(sbzt);
+			}
 			jsdjtj(lxsh.getJsdj());
 			xzdjtj();
 			tsdqtj();
@@ -1775,6 +1778,9 @@ public class KxxyjController extends BaseActionSupport{
 				tiaojian2="and t.xzqhdm like '%"+lxsh.getXzqh()+"%'";
 			}else{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
+			}
+			if(!"".equals(lxsh.getSbzt())){
+				lxsh.setSbzt1(sbzt);
 			}
 			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
 			jsdjtj(lxsh.getJsdj());
