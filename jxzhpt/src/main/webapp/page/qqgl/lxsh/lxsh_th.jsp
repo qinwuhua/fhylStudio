@@ -38,7 +38,7 @@ text-decoration:none;
 			alert("请填入退回原因");
 			return;
 		}
-		var rows=parent.$('#datagrid').datagrid('getSelections');
+		var rows=parent.$('#'+getUrlParame("id")).datagrid('getSelections');
 		
 		var xmbm=rows[0].xmbm;
 		var xmlx=xmbm.substr(10,1);

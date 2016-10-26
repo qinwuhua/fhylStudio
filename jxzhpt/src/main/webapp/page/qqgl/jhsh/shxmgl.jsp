@@ -99,6 +99,7 @@
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
+			if($.cookie('unit2').length==7)
 			grid.columns=[[
 				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:180,align:'center',
@@ -188,6 +189,100 @@
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 				{field:'ntz',title:'总投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:120,align:'center'}]];
+			else{
+				grid.columns=[[
+								{field:'ck',checkbox:true},
+								{field:'cz',title:'操作',width:180,align:'center',
+									formatter: function(value,row,index){
+										var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','1'"+')">定位</a>';
+										result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'灾毁重建项目'"+','+
+												"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+										//if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
+											result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'灾毁重建项目'"+','+
+											"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
+										//}else{
+										//	result+='&nbsp;<a style="color:black;">编辑</a>';
+										//}
+										
+											if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
+												return result+'&nbsp;<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+											}else{
+												return result+'&nbsp;添加路线';
+											}
+										
+										//return result;
+									}
+								},
+								{field:'sqzt',title:title,width:60,align:'center',
+									formatter:function(value,row,index){
+										var result="";
+										if(userPanduan($.cookie('unit2'))!="省"){
+											if(Number(value)==Number($.cookie('unit2').length)){
+												result="已上报";
+											}else if(Number(value)>0 && Number(value)<Number($.cookie('unit2').length)){
+												result="已审核";
+											}else if(Number(value)==0 || Number(value)>Number($.cookie('unit2').length)){
+												result='<a href="javascript:sb('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未上报</a>';
+											}
+										}else if(userPanduan($.cookie('unit2'))=="省"){
+											if(Number(value)==Number($.cookie('unit2').length)){
+												result="已审核";
+											}else if(Number(value)==9){
+												result='<a href="javascript:sp('+index+')" style="color:#3399CC;">未审核</a>';
+											}else{
+												result="未上报";
+											}
+										}
+										return result;
+									}
+								},
+								{field:'lsjl',title:'历史记录',width:60,align:'center',
+									formatter: function(value,row,index){
+										if(value=="是"){
+											return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+										}else{
+											return value;
+										}
+									}
+								},
+								{field:'wnxmk',title:'五年项目库',width:70,align:'center',
+									formatter: function(value,row,index){
+										if(value=="是"){
+											return '<a href="javascript:openwnxmk('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+										}else{
+											return value;
+										}
+									}
+								},
+								{field:'gydw',title:'管养单位',width:100,align:'center'},
+								{field:'xzqh',title:'行政区划',width:60,align:'center'},
+								{field:'xmmc',title:'项目名称',width:250,align:'center',
+									formatter: function(value,row,index){
+						        		if(Number(row.xmsl)>1){
+						        			return '<label style="color:red;">'+value+'</label>';
+						        		}else{
+						        			return value;
+						        		}
+						        	}
+								},
+								{field:'xmbm',title:'项目编码',width:100,align:'center'},
+								{field:'zlc',title:'里程',width:60,align:'center'},
+								{field:'jsdj',title:'技术等级',width:100,align:'center'},
+								{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+							    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+							    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+								{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
+								{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+								{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
+								{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
+								{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
+								//{field:'gq',title:'工期（月）',width:60,align:'center'},
+								{field:'ntz',title:'总投资',width:60,align:'center'},
+								{field:'tsdq',title:'特殊地区',width:120,align:'center'},
+								{field:'thyy',title:'退回原因',width:120,align:'center'}]];
+				
+			}
+				
 			gridBind(grid);
 		}
 		function loadLj(params){
@@ -603,8 +698,9 @@
 									<img id="tj" name="dishi" alt="添加" onclick="openSh()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
-					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
-					                
+<!-- 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/> -->
+					                <img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('grid');" style="border-width:0px;vertical-align:middle;" />
+								
 					                
 					                <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

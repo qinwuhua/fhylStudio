@@ -1708,7 +1708,7 @@
 	</update>
 	
 	<update id="thlxshsbyhsh" parameterType="lxsh">
-		update ${bz} set sqzt=#{sbthcd},thyy=#{thyy} where xmbm in (${xmbm})
+		update ${bz} set sqzt='0',thyy=#{thyy} where xmbm in (${xmbm})
 	</update>
 	
 </mapper>

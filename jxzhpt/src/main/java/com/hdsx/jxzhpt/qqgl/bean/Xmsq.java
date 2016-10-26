@@ -9,6 +9,14 @@ public class Xmsq {
 	public void setYlxmc(String ylxmc) {
 		this.ylxmc = ylxmc;
 	}
+	private String thyy;//退回原因
+	
+	public String getThyy() {
+		return thyy;
+	}
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
 	private String qd;
 	private String zd;
 	private String ylxbm;

@@ -3668,11 +3668,24 @@ function tuihxjlxsh(id){
 		alert("请选择要退回的项目！");
 		return;
 	}
+	var xmbm=rows[0].xmbm;
+	var xmlx=xmbm.substr(10,1);
+	
+	
 	for(var i=0;i<rows.length;i++){
-		if(rows[i].shzt=='1'){
-			alert('请您勿勾选已审核的项目');
-			return;
+		if(xmlx=='4'||xmlx=='5'){
+			if(rows[i].sqzt=='7'){
+				alert('请您勿勾选已审核的项目');
+				return;
+			}
+		}else{
+			if(rows[i].shzt=='1'){
+				alert('请您勿勾选已审核的项目');
+				return;
+			}
 		}
+		
+		
 	}
-	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_th.jsp','lxxx',400,200);	
+	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_th.jsp?id='+id,'lxxx',400,200);	
 }

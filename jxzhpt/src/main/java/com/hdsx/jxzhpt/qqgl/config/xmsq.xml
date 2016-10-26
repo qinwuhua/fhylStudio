@@ -514,7 +514,7 @@
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
+				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
@@ -562,7 +562,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq, 
+				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
@@ -750,13 +750,13 @@
 	</delete>
 	
 	<update id="updateYhdzxSqzt" parameterType="xmsq">
-		update xmsq_yhdzx set sqzt=${sqzt}
+		update xmsq_yhdzx set sqzt=${sqzt},thyy='',
 		<if test="lsjl!='' and lsjl!=null">,lsjl=#{lsjl}</if>
 		<if test="wnxmk!='' and wnxmk!=null">,wnxmk=#{wnxmk}</if>
 		 where xmbm=#{xmbm}
 	</update>
 	<update id="updateShSqzt" parameterType="xmsq">
-		update xmsq_sh set sqzt=${sqzt} where xmbm=#{xmbm}
+		update xmsq_sh set sqzt=${sqzt},thyy='' where xmbm=#{xmbm}
 	</update>
 	
 	<insert id="insertJhshYhdzx" parameterType="xmsq">
