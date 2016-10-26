@@ -940,7 +940,8 @@ function showAll(){
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
 		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
 		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'thyy',title : '退回原因',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1835,7 +1836,8 @@ function showAlllmgz(){
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
 		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
 		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'thyy',title : '退回原因',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -2559,7 +2561,8 @@ function showAllxj(){
 		    {field : 'tz',title : '投资',width : 100,align : 'center'},
 		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
 		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'thyy',title : '退回原因',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   

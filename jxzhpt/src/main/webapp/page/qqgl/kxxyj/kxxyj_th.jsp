@@ -67,7 +67,7 @@ text-decoration:none;
 					 parent.showkxxTjxx(xmlx1);
 					 parent.$('#lxxx').window('destroy');
 				 }else{
-					 YMLib.Tools.Show('审核失败！',3000);
+					 YMLib.Tools.Show('退回失败！',3000);
 				 }
 			 },
 			 error : function(){

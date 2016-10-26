@@ -1596,7 +1596,7 @@
  			select T.* from XMK_AQSMFH T where 1=1 ${xmkid} order by xuh
  		</select>
  		<select id="selectSckaqsmfhld1" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
- 			select s.*, THROADCODE, THROADSTART, THROADEND from SCK_AQSMFH_LD s left join xmk_aqsmfh x on s.xmkid=x.id where 1=1 and xmbm=#{xmbm} order by xuh
+ 			select s.*, x.THROADCODE, x.THROADSTART, x.THROADEND from SCK_AQSMFH_LD s left join xmk_aqsmfh x on s.xmkid=x.id where 1=1 and s.xmbm=#{xmbm} order by s.xuh
  		</select>
  		<insert id="insertAqsmfhsckld" parameterType="hashmap">
  			 insert into SCK_AQSMFH_LD select sys_guid(),xm.province,xm.town,xm.county,xm.unit,xm.unitcode,xm.roadcode,xm.jsdj,xm.gpsqd,xm.gpszd,xm.roadname,xm.xjgjnd,xm.yhlc,xm.tzgs,xm.id,xm.distcode,xm.dist,xm.xuh,#{xmbm} xmbm,decode(xm.bzbxcz,'1','1','0'),decode(xm.jckcz,'1','1','0'),decode(xm.jzhl,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.tjgc,'1','1','0'),decode(xm.hjzz,'1','1','0'),decode(xm.hjzz,'1','1','0'),'0' from xmk_aqsmfh xm where xm.id=#{xmkid}

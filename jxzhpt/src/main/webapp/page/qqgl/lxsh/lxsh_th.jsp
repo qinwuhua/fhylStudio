@@ -49,6 +49,8 @@ text-decoration:none;
 			xmlx1='lmgz';
 		if(xmlx==3)
 			xmlx1='xj';
+		if(xmlx==4)
+			xmlx1='yhdzx';
 		if(xmlx==5)
 			xmlx1='sh';
 		for(var i=1;i<rows.length;i++){
@@ -57,17 +59,28 @@ text-decoration:none;
 	  	
 		$.ajax({
 			 type : "POST",
-			 url : "/jxzhpt/qqgl/thkxxyjsb.do",
+			 url : "/jxzhpt/qqgl/thlxshsb.do",
 			 dataType : 'json',
 			 data : 'lxsh.xmbm=' +xmbm+"&lxsh.thyy="+$("#shyj2").val()+"&lxsh.xmlx="+xmlx+"&lxsh.sbzt=0"+"&lxsh.sbthcd=9",
 			 success : function(msg){
 				 if(msg){
 					 alert('退回成功！');
-					 parent.$("#datagrid").datagrid('reload');
-					 parent.showkxxTjxx(xmlx1);
+					 //parent.$("#datagrid").datagrid('reload');
+					 //parent.showkxxTjxx(xmlx1);
+					 if(xmlx==1)
+						 parent.showAllsjsh();
+					 if(xmlx==2)
+						 parent.showAlllmsh();
+					 if(xmlx==3)
+						 parent.showAllxjsh();
+					 if(xmlx==4)
+						 parent.queryYhdzx();
+					 if(xmlx==5)
+						 parent.queryShxm();
+					 
 					 parent.$('#lxxx').window('destroy');
 				 }else{
-					 YMLib.Tools.Show('审核失败！',3000);
+					 YMLib.Tools.Show('退回失败！',3000);
 				 }
 			 },
 			 error : function(){

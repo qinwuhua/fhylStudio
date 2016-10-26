@@ -9,7 +9,7 @@
 			
 		  <action name="thxmsqsh" class="lxshController" method="thxmsqsh"/>
   		  <action name="thwshlxsh" class="lxshController" method="thwshlxsh"/>
-		  
+		  <action name="thlxshsb" class="lxshController" method="thlxshsb"/>
 		  
 		  
 		  <action name="loadjsdjcd" class="lxshController" method="loadjsdjcd"/>

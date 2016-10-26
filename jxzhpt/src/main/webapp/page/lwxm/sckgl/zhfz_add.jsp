@@ -204,7 +204,7 @@ var bzls;
 	}
 	
 	function changeZlc(){
-		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
+		var zlc=Math.abs((parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000);
 		$("#sczlc").html(zlc.toFixed(3));
 	}
 </script>

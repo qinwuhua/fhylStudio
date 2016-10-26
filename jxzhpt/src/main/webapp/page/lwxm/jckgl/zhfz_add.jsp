@@ -143,7 +143,7 @@ text-decoration:none;
 					$("#xzqhmc").html(item.xzqhmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
-					$("#zlc").html(((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000).toFixed(3));
+					$("#zlc").html(Math.abs(((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000).toFixed(3)));
 					$("#xjnd").html(item.gjxjnd);
 					$("#lxjsdj").html(item.lxjsdj);
 					$("#gydw").html(item.gydw);
@@ -183,7 +183,7 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
+		var zlc=Math.abs((parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000);
 		$("#zlc").html(zlc.toFixed(3));
 	}
 	function selectTSDQ(str){

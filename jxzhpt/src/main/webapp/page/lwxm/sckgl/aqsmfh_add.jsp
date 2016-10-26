@@ -183,7 +183,7 @@ text-decoration:none;
 					$("#qdzh").val(parseFloat(item.qdzh).toFixed(3));$("#zdzh").val(parseFloat(item.zdzh).toFixed(3));$("#scjsdj").val(item.jsdj);
 					$("#scxjgjnd").val(item.xjgjnd);
 					if(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)) < parseFloat(item.yhlc))
-						$("#scyhlc").val(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)).toFixed(3));
+						$("#scyhlc").val(Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)).toFixed(3)));
 					else $("#scyhlc").val(parseFloat(item.yhlc).toFixed(3));
 					$("#cztzgs").val(Math.round(item.cztzgs));
 					//$("#scjhnf").combobox('setValue',item.jhnf);

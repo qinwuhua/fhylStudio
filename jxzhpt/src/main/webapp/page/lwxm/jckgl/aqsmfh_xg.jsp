@@ -209,7 +209,7 @@ text-decoration:none;
 		var qdzh=str1.substr(1,str1.length-1).replace('+','.');
 		var zdzh=str2.substr(1,str2.length-1).replace('+','.');
 		var zlc=0;
-		zlc=accSub(parseFloat(zdzh),parseFloat(qdzh));
+		zlc=Math.abs(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 		return zlc;
 	}
 	function saveAbgc(){

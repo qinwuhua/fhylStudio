@@ -998,4 +998,34 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 		}
 	}
+
+	@Override
+	public boolean thlxshsb(Lxsh lxsh) {
+		String bz="";
+		if("1".equals(lxsh.getXmlx())){
+			bz="lxsh_sjgz";
+		}
+		if("2".equals(lxsh.getXmlx())){
+			bz="lxsh_lmgz";
+		}
+		if("3".equals(lxsh.getXmlx())){
+			bz="lxsh_xj";
+		}
+		if("4".equals(lxsh.getXmlx())){
+			bz="xmsq_yhdzx";
+		}
+		if("5".equals(lxsh.getXmlx())){
+			bz="xmsq_sh";
+		}
+		if("".equals(bz))
+		return false;
+		else{
+			lxsh.setBz(bz);
+			if("1".equals(lxsh.getXmlx())||"2".equals(lxsh.getXmlx())||"3".equals(lxsh.getXmlx()))
+			return update("thlxshsbgsd", lxsh)>0;
+			else
+			return update("thlxshsbyhsh", lxsh)>0;
+		}
+			
+	}
 }

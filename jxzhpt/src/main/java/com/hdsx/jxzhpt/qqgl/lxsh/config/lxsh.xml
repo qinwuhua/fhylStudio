@@ -268,13 +268,13 @@
 		</if>
 	</select>
 	<update id="sbsjgzSbzt" parameterType="hashmap">
-		update LXSH_SJGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+		update LXSH_SJGZ set sbzt=1,sbthcd=#{sbthcd},thyy='' where id=#{id}
 	</update>
 	<update id="sblmgzSbzt" parameterType="hashmap">
-		update LXSH_LMGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+		update LXSH_LMGZ set sbzt=1,sbthcd=#{sbthcd},thyy='' where id=#{id}
 	</update>
 	<update id="sbxjSbzt" parameterType="hashmap">
-		update LXSH_XJ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+		update LXSH_XJ set sbzt=1,sbthcd=#{sbthcd},thyy='' where id=#{id}
 	</update>
 	<update id="thSjgzSbzt" parameterType="hashmap">
 		update LXSH_SJGZ set sbthcd=#{sbthcd} where id=#{id}
@@ -329,7 +329,7 @@
 		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,
+		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
@@ -412,7 +412,7 @@
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,t.thyy,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
@@ -495,7 +495,7 @@
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,
+		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,t.thyy,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
@@ -1702,5 +1702,14 @@
 	<delete id="thwshlxshkxxlx" parameterType="lxsh">
 		delete from lxsh_lx where xmid in (${xmbm}) and jdbs=#{jdbs}
 	</delete>
+	
+	<update id="thlxshsbgsd" parameterType="lxsh">
+		update ${bz} set sbzt='0',sbthcd=#{sbthcd},thyy=#{thyy} where xmbm in (${xmbm})
+	</update>
+	
+	<update id="thlxshsbyhsh" parameterType="lxsh">
+		update ${bz} set sqzt=#{sbthcd},thyy=#{thyy} where xmbm in (${xmbm})
+	</update>
+	
 </mapper>
 

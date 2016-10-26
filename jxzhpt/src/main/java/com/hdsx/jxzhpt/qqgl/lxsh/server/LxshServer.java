@@ -228,4 +228,6 @@ public interface LxshServer {
 	List<Wqbzbz> selectWqjlbz();
 
 	boolean thwshlxsh(Lxsh lxsh);
+
+	boolean thlxshsb(Lxsh lxsh);
 }

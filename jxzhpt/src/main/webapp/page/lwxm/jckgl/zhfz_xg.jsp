@@ -117,7 +117,7 @@ var zdStr;
 		});
 	}
 	function changeZlc(){
-		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
+		var zlc=Math.abs(((parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000);
 		$("#qzlc").html(zlc.toFixed(3));
 	}
 </script>
