@@ -70,6 +70,7 @@
 		  
 		  
 		  
+		  <action name="thwshkxxyj" class="kxxyjController" method="thwshkxxyj"/>
 		  <action name="thkxxyjsb" class="kxxyjController" method="thkxxyjsb"/>
 		  <action name="showkxxShxx" class="kxxyjController" method="showkxxShxx"/>
 		  <action name="shshkxx" class="kxxyjController" method="shshkxx"/>

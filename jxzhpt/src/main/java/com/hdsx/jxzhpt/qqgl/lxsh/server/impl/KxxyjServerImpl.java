@@ -893,5 +893,46 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		
 		return update("thkxxyjsbzt", lxsh)>0;
 	}
+
+	@Override
+	public boolean thwshkxxyj(Lxsh lxsh) {
+		String bz="";String kxx="";String sfkth="";
+		if("1".equals(lxsh.getXmlx())){
+			sfkth="jhsh_sjgz";
+			bz="kxxyj_sjgz";
+			kxx="cbsj_sjgz";
+			lxsh.setJdbs("2");
+		}
+		if("2".equals(lxsh.getXmlx())){
+			sfkth="jhsh_lmgz";
+			bz="kxxyj_lmgz";
+			kxx="cbsj_lmgz";
+			lxsh.setJdbs("2");
+		}
+		if("3".equals(lxsh.getXmlx())){
+			sfkth="jhsh_xj";
+			bz="kxxyj_xj";
+			kxx="cbsj_xj";
+			lxsh.setJdbs("2");
+		}
+		
+		if("5".equals(lxsh.getXmlx())){
+			sfkth="jhsh_sh";
+			bz="kxxyj_sh";
+			kxx="cbsj_sh";
+			lxsh.setJdbs("2");
+		}
+		lxsh.setBzcs(sfkth);
+		List<Lxsh> l = queryList("sfkythkxxwsh",lxsh);
+		if(l.size()>0)
+			return false;
+		else{
+			lxsh.setBz(bz);
+			lxsh.setBzcs(kxx);
+			return update("thwshkxx", lxsh)>0&&delete("thwshkxxcbsj", lxsh)>0&&delete("thwshkxxcbsjlx", lxsh)>0;
+
+		}
+		
+	}
 	
 }

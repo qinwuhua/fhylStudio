@@ -1913,7 +1913,7 @@ function thwshlxsh(){
 					 alert('退回成功！');
 					 $("#grid").datagrid('reload');
 				 }else{
-					 alert('退回失败,请选择要上报项目！');
+					 alert('退回失败,请检查项目阶段！');
 				 }
 			 },
 			 error : function(){

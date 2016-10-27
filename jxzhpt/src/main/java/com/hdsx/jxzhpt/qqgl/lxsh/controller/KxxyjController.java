@@ -1752,7 +1752,7 @@ public class KxxyjController extends BaseActionSupport{
 			}
 			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
 			if(!"".equals(lxsh.getSbzt())){
-				lxsh.setSbzt1(sbzt);
+				lxsh.setSbzt1(lxsh.getSbzt());
 			}
 			jsdjtj(lxsh.getJsdj());
 			xzdjtj();
@@ -1780,7 +1780,7 @@ public class KxxyjController extends BaseActionSupport{
 				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
 			}
 			if(!"".equals(lxsh.getSbzt())){
-				lxsh.setSbzt1(sbzt);
+				lxsh.setSbzt1(lxsh.getSbzt());
 			}
 			lxsh.setXzqh(xzqhBm(lxsh.getXzqh(), "xzqhdm2"));
 			jsdjtj(lxsh.getJsdj());
@@ -1804,6 +1804,9 @@ public class KxxyjController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), ""+kxxyjServer.thkxxyjsbzt(lxsh));
 	}
 	
+	public void thwshkxxyj(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.thwshkxxyj(lxsh));
+	}
 	
 }
 

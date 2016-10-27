@@ -4370,3 +4370,49 @@ function jslc(){
 	var hj4=accAdd(hj1,hj2);var hj5=accAdd(hj3,hj4);
 	$('#lc').html(hj5);
 }
+
+
+function thwshlxshgsd(){
+	var rows=$('#datagrid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt!='1'){
+			alert('请您勿勾选未审核的项目');
+			return;
+		}
+	}
+	
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	//alert(xmlx);
+	sbthcd=$.cookie("unit2").length+2;
+	if(confirm('您确定退回吗？')){
+		var data = "lxsh.xmbm="+xmbm+"&lxsh.sbthcd="+sbthcd+"&lxsh.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/thwshlxsh.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('退回失败,请检查项目阶段！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	
+	}
+}

@@ -100,46 +100,30 @@
 			if(rows[i].shzt=='1'){
 				//
 				var data = "lxsh.xmbm="+xmbm;
-				$.ajax({
-					 type : "POST",
-					 url : "/jxzhpt/qqgl/sjgzsfkxx.do",
-					 dataType : 'json',
-					 data : data,
-					 success : function(msg){
-						 if(msg){
-							 if(confirm('您确定将该项目退回未审核状态？')){
-										$.ajax({
-											 type : "POST",
-											 url : "/jxzhpt/qqgl/thSjgzSbzt1.do",
-											 dataType : 'json',
-											 data : data,
-											 success : function(msg){
-												 if(msg){
-													 alert('退回成功！');
-													 $("#datagrid").datagrid('reload');
-												 }else{
-													 alert('退回失败,请选择要退回项目！');
-												 }
-											 },
-											 error : function(){
-												 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-											 }
-										});
-								}
-							 
-						 }else{
-							 alert('项目已经进行可行性研究上报，无法退回！');
-						 }
-					 },
-					 error : function(){
-						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-					 }
-				});
+				 if(confirm('您确定将该项目退回未审核状态？')){
+						$.ajax({
+							 type : "POST",
+							 url : "/jxzhpt/qqgl/thSjgzSbzt1.do",
+							 dataType : 'json',
+							 data : data,
+							 success : function(msg){
+								 if(msg){
+									 alert('退回成功！');
+									 $("#datagrid").datagrid('reload');
+								 }else{
+									 alert('退回失败,请选择要退回项目！');
+								 }
+							 },
+							 error : function(){
+								 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+							 }
+						});
+				}
 				
-				//
-				return;
+				
 			}
-			if(rows[i].tbbmbm==$.cookie("unit")){
+			}
+			/* if(rows[i].tbbmbm==$.cookie("unit")){
 				alert("对不起，由您添加的项目无法退回！");
 				return;
 			}
@@ -168,7 +152,7 @@
 							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 						 }
 					});
-			}
+			} */
 		}
 	</script>
 		<style type="text/css">
@@ -187,8 +171,8 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 120px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 120px; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -285,7 +269,7 @@ text-decoration:none;
 								
 								<img name="thxj" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('datagrid');" style="border-width:0px;vertical-align:middle;" />
 								
-								<img name="tuiH" id="tuiH" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" />
+								<img name="tuiH" id="tuiH" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshlxshgsd();" style="border-width:0px;vertical-align:middle;" />
 								
 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('sjgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 <%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>

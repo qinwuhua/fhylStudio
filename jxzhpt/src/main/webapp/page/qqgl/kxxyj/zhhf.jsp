@@ -32,7 +32,7 @@
 			if($.cookie("unit2").length!=7){
 				//alert($.cookie("unit2").length);
 				title='上报状态';
-				$("#shenPi").attr('style','display:none');
+				$("#shenPi,#thxj,#thwsh").attr('style','display:none');
 				$('#sqzttext').html('上报状态');
 				$("#sqzt1").attr('style','display:none');
 				$("#sqzt2").attr('style','');
@@ -209,6 +209,9 @@
 			        		if(row.sbzts=='1'){
 			        			return '已上报';
 		        			}else{
+		        				if(row.thyy!=''&&row.thyy!=null)
+		        					return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+		        				else
 			        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
 		        			}
@@ -551,11 +554,10 @@ text-decoration:none;
 								<img onclick="importsjgzkxx('sh')" id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="border-width:0px;vertical-align:middle;" />
 								<img  id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaokxx();" style="border-width:0px;vertical-align:middle;" />
 								
-								
-								
 								<img onclick="shangB();"  id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" style="border-width:0px;vertical-align:middle;" />
-								<img id="tuihui" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />				             </td>
-				             </td>
+								<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="rollback();" style="border-width:0px;vertical-align:middle;" />
+								<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshkxx();" style="border-width:0px;vertical-align:middle;" />
+								</td>
                             </tr></table>
         				</div>
         			</fieldset>

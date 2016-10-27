@@ -64,7 +64,10 @@ text-decoration:none;
 				 if(msg){
 					 alert('退回成功！');
 					 parent.$("#datagrid").datagrid('reload');
-					 parent.showkxxTjxx(xmlx1);
+					 if(xmlx==5)
+						 parent.queryShxm();
+					 else
+					 	parent.showkxxTjxx(xmlx1);
 					 parent.$('#lxxx').window('destroy');
 				 }else{
 					 YMLib.Tools.Show('退回失败！',3000);

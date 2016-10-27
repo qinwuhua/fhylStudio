@@ -978,11 +978,14 @@ function showAllsjsh(){
 	        
 	        }},
 		   
-	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
+	        {field:'c1',title:title,width:100,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
 	        			return '已上报';
         			}else{
+        				if(row.thyy!=''&&row.thyy!=null)
+        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+        				else
 	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
         			}
@@ -1026,7 +1029,7 @@ function showAllsjsh(){
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
-		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
 		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
@@ -1309,7 +1312,10 @@ function showAlllmsh(){
 	        		if(row.sbzts=='1'){
 	        			return '已上报';
         			}else{
-	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
+        				if(row.thyy!=''&&row.thyy!=null)
+            				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+            				else
+    	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
         			}
 	        	}else{
@@ -1353,7 +1359,7 @@ function showAlllmsh(){
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
-		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
 		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
@@ -1635,7 +1641,10 @@ function showAllxjsh(){
 	        		if(row.sbzts=='1'){
 	        			return '已上报';
         			}else{
-	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
+        				if(row.thyy!=''&&row.thyy!=null)
+            				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>'+'    <a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+            				else
+    	        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaokxx('+index+')">未上报</a>';
 
         			}
 	        	}else{
@@ -1675,7 +1684,7 @@ function showAllxjsh(){
 		    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
-		    {field : 'tz',title : '投资',width : 80,align : 'center'},
+		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
 		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
@@ -2610,4 +2619,58 @@ function shangbaokxx(index){
 	
 	
 	//alert(data.xmbm.substr(10,1)+"     "+xmbm.substr(10,1));
+}
+
+
+
+
+
+function thwshkxx(){
+	var rows=$('#datagrid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt!='1'){
+			alert('请您勿勾选未审核的项目');
+			return;
+		}
+	}
+	
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	//alert(xmlx);
+	sbthcd=$.cookie("unit2").length+2;
+	if(confirm('您确定退回吗？')){
+		var data = "lxsh.xmbm="+xmbm+"&lxsh.sbthcd="+sbthcd+"&lxsh.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/thwshkxxyj.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('退回失败,请检查项目阶段！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	
+	}
+}
+
+
+function ckthyy(index){
+	alert($("#datagrid").datagrid('getRows')[index].thyy);
 }

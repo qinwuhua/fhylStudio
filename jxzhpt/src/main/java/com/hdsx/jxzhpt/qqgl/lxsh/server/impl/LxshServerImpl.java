@@ -961,39 +961,49 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean thwshlxsh(Lxsh lxsh) {
-		String bz="";String kxx="";
+		String bz="";String kxx="";String sfkth="";
 		if("1".equals(lxsh.getXmlx())){
+			sfkth="cbsj_sjgz";
 			bz="lxsh_sjgz";
 			kxx="kxxyj_sjgz";
 			lxsh.setJdbs("1");
 		}
 		if("2".equals(lxsh.getXmlx())){
+			sfkth="cbsj_lmgz";
 			bz="lxsh_lmgz";
 			kxx="kxxyj_lmgz";
 			lxsh.setJdbs("1");
 		}
 		if("3".equals(lxsh.getXmlx())){
+			sfkth="cbsj_xj";
 			bz="lxsh_xj";
 			kxx="kxxyj_xj";
 			lxsh.setJdbs("1");
 		}
 		if("4".equals(lxsh.getXmlx())){
+			sfkth="jhsh_sjgz";
 			bz="xmsq_yhdzx";
 			kxx="cbsj_yhdzx";
 			lxsh.setJdbs("2");
 		}
 		if("5".equals(lxsh.getXmlx())){
+			sfkth="cbsj_sh";
 			bz="xmsq_sh";
 			kxx="kxxyj_sh";
 			lxsh.setJdbs("1");
 		}
+		lxsh.setBzcs(sfkth);
+		List<Lxsh> l = queryList("sfkythlxwsh",lxsh);
+		if(l.size()>0)
+			return false;
 		
 		if("5".equals(lxsh.getXmlx())||"4".equals(lxsh.getXmlx())){
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
 			return update("thwshlxsh45", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
 		}else{
-			
+			lxsh.setBz(bz);
+			lxsh.setBzcs(kxx);
 			return update("thwshlxsh", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
 
 		}
