@@ -793,6 +793,13 @@
 		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{hzdj},#{scsjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},#{sfylrbwqk},
 		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg},#{zdezj},#{scakjfl}<if test="nsqsbz !=null">,#{nsqsbz}</if><if test="nsqsjl !=null">,#{nsqsjl}</if>)
 	</insert>
+	<select id="querySckWqgz" parameterType="string" resultType="string">
+		select t.xmkid from sck_wqgz t where
+		sckid =#{String}
+	</select>
+	<update id="updateXmkWqgz" parameterType="java.util.List">
+		update xmk_wqgz set sfsc=null where id =#{String}
+	</update>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
 	 	delete from sck_wqgz where sckid =#{String}
 	</delete>

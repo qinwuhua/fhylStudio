@@ -46,7 +46,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		for (int i = 0; i < strs.length; i++) {
 			list.add(strs[i]);
 		}
-		if(deleteBatch("deleteSckWqgz", list)>0)return true;
+		if(deleteBatch("deleteSckWqgz", list)>0)return true;		
 		else return false;
 	}
 
