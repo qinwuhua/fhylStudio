@@ -159,7 +159,7 @@ public class XmkaqsmfhController extends BaseActionSupport{
 				xmkaqsmfh.setJsdj(tsdq);
 			}
 			
-			
+			String sss = xmkaqsmfh.getThroadname();
 			List<Xmkaqsmfh> wqgzList = xmkaqsmfhServer.selectXmkaqsmfhXMK(xmkaqsmfh);
 			int count = xmkaqsmfhServer.selectXmkaqsmfhXMKCount(xmkaqsmfh);
 			EasyUIPage<Xmkaqsmfh> eui = new EasyUIPage<Xmkaqsmfh>();
