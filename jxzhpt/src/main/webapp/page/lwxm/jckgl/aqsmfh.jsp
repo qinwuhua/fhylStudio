@@ -92,11 +92,13 @@ function showAll(){
 			 	},
 			 	'xmkaqsmfh.unitcode': gydwstr,
 			 	'xmkaqsmfh.distcode':xzqhstr,
-			 	'xmkaqsmfh.roadname' : $('#roadname').val(),
+			 	'xmkaqsmfh.roadname':$('#roadname').val(),
 			 	'xmkaqsmfh.jhnf':'',
 			 	'xmkaqsmfh.sbzt':$("#sbzt").combobox("getValue"),
 			 	'xmkaqsmfh.jsdj':jsdj,
 			 	'xmkaqsmfh.roadcode':$("#roadcode").val(),
+			 	'xmkaqsmfh.throadcode':$("#throadcode").val(),
+			 	'xmkaqsmfh.throadname':$('#throadname').val(),
 			 	'xmkaqsmfh.gldj':gldj,
 			 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 			 	'xmkaqsmfh.tsdq':tsdq
@@ -230,7 +232,7 @@ function showAll(){
 	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
-	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.jhnf='+
+	 	var data='xmkaqsmfh.sbthcd='+sbthcd+'&xmkaqsmfh.unitcode='+ gydwstr+'&xmkaqsmfh.distcode='+xzqhstr+'&xmkaqsmfh.roadname=' + $('#roadname').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+'&xmkaqsmfh.jhnf='+
 	 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+'&xmkaqsmfh.sbzt='+$("#sbzt").combobox("getValue")+'&xmkaqsmfh.jsdj='+jsdj+'&xmkaqsmfh.roadcode='+$("#roadcode").val()+'&xmkaqsmfh.gldj='+gldj+'&xmkaqsmfh.tsdq='+tsdq;
 
 		$.ajax({
@@ -494,16 +496,21 @@ text-decoration:none;
 							  <td><input type="text" id="roadname"  style="width:100px;" /></td>
 							</tr>
 							<tr   height="32">
-							<td>补助历史：</td>
+								<td>补助历史：</td>
                               	<td><select id="bzls" style="width:74px"class="easyui-combobox">
                               	</select></td>
-							  <td colspan="10">
+                              	<td>调后路线名称：</td>
+							  <td><input type="text" id="throadname"  style="width:100px;" /></td>
+							 	<td>调后路线编码：</td>
+							  <td><input type="text" id="throadcode"  style="width:100px;" /></td>
+							  <td colspan="8">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
 <!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('aqsmfh_add.jsp','900','450');" style="border-width:0px;" /> -->
                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
                                  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" onclick="doExcel()"/>
 							  </td>
+							  
 							 </tr>
 							</table>
 						</div>

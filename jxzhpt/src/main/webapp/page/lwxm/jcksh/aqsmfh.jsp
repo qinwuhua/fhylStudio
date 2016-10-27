@@ -131,6 +131,8 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.sbzt':$('#sbzt').combobox("getValue"),
 		 	'xmkaqsmfh.jsdj':jsdj,
 		 	'xmkaqsmfh.lxbm':$("#lxbm").val(),
+		 	'xmkaqsmfh.throadcode':$("#throadcode").val(),
+		 	'xmkaqsmfh.throadname':$('#throadname').val(),
 		 	'xmkaqsmfh.gldj':gldj,
 		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
 		 	'xmkaqsmfh.tsdq':tsdq
@@ -217,7 +219,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	if($.cookie("unit2")=='______36'){
 		sbthcd=7;
 		}else  sbthcd=$.cookie("unit2").length;
-	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
+	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+
 	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.tsdq="+tsdq+
 	"&xmkaqsmfh.gldj="+gldj;
@@ -377,10 +379,14 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:100px;" /></td>
                              </tr>
                             <tr height="32">
-                            <td>补助历史：</td>
+                            	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:74px"class="easyui-combobox">
                               	</select></td>
-                              <td colspan="10">
+                              	<td>调后路线名称：</td>
+							  <td><input type="text" id="throadname"  style="width:100px;" /></td>
+							 	<td>调后路线编码：</td>
+							  <td><input type="text" id="throadcode"  style="width:100px;" /></td>
+                              <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;" />
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								 -->

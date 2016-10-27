@@ -205,7 +205,28 @@ public class Xmkaqsmfh {
 
 	    private String str7;
 	    
-	    public String getStr1() {
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    /*shm*/
+	    private String throadname;
+	    
+	    
+	    
+	    public String getThroadname() {
+			return throadname;
+		}
+
+		public void setThroadname(String throadname) {
+			this.throadname = throadname;
+		}
+
+		public String getStr1() {
 			return str1;
 		}
 
