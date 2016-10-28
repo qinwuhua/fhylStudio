@@ -19,7 +19,7 @@
 		  <action name="sfylx" class="lxshController" method="sfylx"/>
 		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
 		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
-		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
+		  <action name="deleteLxss" class="lxshController" method="deleteLxss"/>
 		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
 		  <action name="insertLx1" class="lxshController" method="insertLx1"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>

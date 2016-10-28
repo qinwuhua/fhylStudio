@@ -2018,7 +2018,7 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	public void deleteLx(){
+	public void deleteLxss(){
 		boolean bl=lxshServer.deleteLx(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

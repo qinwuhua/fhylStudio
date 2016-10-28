@@ -426,37 +426,56 @@
 					}else if(msg.result=="have"){
 						var xsxx='';
 						
-						//alert();
 						for(var i=0;i<msg.lx.length;i++){
 							var xmlx='';
-							if(msg.lx[i].xmid.substr(10,1)==1){
-								xmlx='改建';
+							if(msg.lx[i].jsxz!='改建' && msg.lx[i].jsxz!='新建' && msg.lx[i].jsxz!='路面改造' && msg.lx[i].jsxz!='恢复重建' && msg.lx[i].jsxz!='大修' && msg.lx[i].jsxz!='中修'){
+								if(msg.lx[i].xmid.substr(10,1)==4)
+								xmlx='预防性养护';
+								else
+									xmlx=msg.lx[i].jsxz;
+							}else{
+								xmlx=msg.lx[i].jsxz;
 							}
-							if(msg.lx[i].xmid.substr(10,1)==2){
-								xmlx='路面改造';
-							}
-							if(msg.lx[i].xmid.substr(10,1)==3){
-								xmlx='新建';
-							}
-							if(msg.lx[i].xmid.substr(10,1)==4){
-								xmlx=msg.lx[i].xjsdj;
-							}
-							if(msg.lx[i].xmid.substr(10,1)==5){
-								xmlx='灾毁重建';
-							}
+							
 							var lc=0;
 							
-							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh))
-							lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
-							
+							if(parseFloat(msg.lx[i].jsqdzh)!=parseFloat(msg.lx[i].xmzd)&&parseFloat(msg.lx[i].jszdzh)!=parseFloat(msg.lx[i].xmqd)){
+								var qd;var zd;
+								// alert(msg.lx[i].yqdzh+"    "+msg.lx[i].xmqd+"     "+msg.lx[i].yzdzh+"     "+msg.lx[i].xmzd)
+								/*var zjbl=0;//中间变量
+								if(msg.lx[i].yqdzh>msg.lx[i].yzdzh){
+									zjbl=msg.lx[i].yqdzh;msg.lx[i].yqdzh=msg.lx[i].yzdzh;msg.lx[i].yzdzh=zjbl;
+									zjbl=0;
+								}
+								alert(msg.lx[i].yqdzh+"    "+msg.lx[i].xmqd+"     "+msg.lx[i].yzdzh+"     "+msg.lx[i].xmzd) */
+								/* if(msg.lx[i].yqdzh>msg.lx[i].yzdzh){
+									zjbl=msg.lx[i].yqdzh;msg.lx[i].yqdzh=msg.lx[i].yzdzh;msg.lx[i].yzdzh=zjbl;
+									zjbl=0;
+								} */	
+								if(parseFloat(msg.lx[i].jsqdzh)<parseFloat(msg.lx[i].xmqd)){
+									qd=parseFloat(msg.lx[i].xmqd);
+								}else{
+									qd=parseFloat(msg.lx[i].jsqdzh);
+								}
+								if(parseFloat(msg.lx[i].jszdzh)>parseFloat(msg.lx[i].xmzd)){
+									zd=parseFloat(msg.lx[i].xmzd);
+								}else{
+									zd=parseFloat(msg.lx[i].jszdzh);
+								}
+								//alert(zd+"    "+qd);
+								lc=accSub(zd,qd);
+								
+							}
+							//lc= (parseFloat(msg.lx[i].qdzh)*1000-parseFloat(obj.qdzh)*1000)+(parseFloat(msg.lx[i].zdzh)*1000-parseFloat(obj.zdzh)*1000);
+
 							//Math.abs(lc/1000);
-							xsxx+="   项目年份："+msg.lx[i].xmid.substr(0,4)+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+Math.abs(lc/1000)+"\r";
+							xsxx+="   项目年份："+msg.lx[i].xmnf+"   项目名称："+msg.lx[i].xmmc+"   建设类型："+xmlx+"     重复里程："+lc+"\r";
 							
 						}
 						if(msg.lx.length>0){
 							$("#lsjl").val("是");
-							alert("存在补助历史\r"+xsxx);
-							if(confirm('是否保存？')){
+							alert("重复项目\r"+xsxx);
+							if(confirm('是否审核？')){
 								//insert();
 								$.ajax({
 									type:'post',
@@ -697,7 +716,7 @@
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>
 									<img id="tj" name="dishi" alt="添加" onclick="openSh()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
-									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
+<!-- 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/> -->
 <!-- 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/> -->
 					                <img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('grid');" style="border-width:0px;vertical-align:middle;" />
 								

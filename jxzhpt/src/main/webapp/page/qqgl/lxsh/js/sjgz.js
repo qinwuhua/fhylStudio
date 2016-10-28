@@ -968,7 +968,7 @@ function showAll(){
 		          {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
 		        	   var result ='<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 		        	   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
+		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 		        		   result+= '&nbsp;删除';
 		        	   return result;
@@ -1159,14 +1159,14 @@ function showAll123(){
 		        		   result+= '&nbsp;删除';
 		        	   return result;
 		           }},*/
-		          {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+		        /*  {field:'c3',title:'操作',width:70,align:'center',formatter:function(value,row,index){
 		        	   var result ='<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
-		        	   /*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+		        	   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 		        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
 		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
-		        		   result+= '&nbsp;删除';*/
+		        		   result+= '&nbsp;删除';
 		        	   return result;
-		           }},
+		           }},*/
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -1472,6 +1472,7 @@ function showAllsjsh(){
 	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	//var parentindex=index;
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		queryParams: {
@@ -1482,7 +1483,7 @@ function showAllsjsh(){
     			columns:[[
     			    {field:'cz',title:'操作',width:150,align:'center',
     			    	formatter: function(value,row,index){
-    			    		return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+    			    		return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
     			    	}
     			    },
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -1856,7 +1857,7 @@ function showAlllmgz(){
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							result+='&nbsp;删除';
@@ -2021,7 +2022,7 @@ function showAlllmgz123(){
 	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
-	    	var parentindex=index;
+	    	//var parentindex=index;
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
@@ -2221,7 +2222,7 @@ function showAlllmsh(){
     			columns:[[
 					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
-							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						}
 					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
@@ -2586,7 +2587,7 @@ function showAllxj(){
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
 						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
-							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
+							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						}
 						if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
 							result+='&nbsp;删除';
@@ -2943,7 +2944,7 @@ function showAllxjsh(){
 	    			},
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
-						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						var result ='<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>'+'&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')">删除</a>   ';
 						/*if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 							result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 						}
@@ -3191,13 +3192,14 @@ function tjxjlx(index){
 	YMLib.Var.sq='sq';
 	YMLib.UI.createWindow('lxxx','添加路线信息','xjlx_add.jsp','lxxx',900,400);
 }
-function delsjlx(index1,index){
-	var data=$("#table_lx"+index1).datagrid('getRows')[index];
-	//alert(data.xmbm+"--"+data.id);
+function delsjlx(xmid,index){
+	if(confirm('您确定删除吗？')){
+	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
+	//alert();
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0",
+		url:'/jxzhpt/qqgl/deleteLxss.do',
+        data:'lxsh.xmbm='+data.xmid+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
@@ -3209,6 +3211,7 @@ function delsjlx(index1,index){
 			}
 		}
 	});
+	}
 }
 
 function dellmlx(index1,index){
