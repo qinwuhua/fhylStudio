@@ -515,5 +515,82 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public List<Plan_upload> getWjbyxmbm(Plan_upload file) {
 		return queryList("getWjbyxmbm",file);
 	}
+	@Override
+	public boolean shangbaoCbsj(Cbsj cbsj) {
+		if("1".equals(""+cbsj.getXmlx())){
+			cbsj.setBz("cbsj_sjgz");
+		}
+		if("2".equals(""+cbsj.getXmlx())){
+			cbsj.setBz("cbsj_lmgz");
+		}
+		if("3".equals(""+cbsj.getXmlx())){
+			cbsj.setBz("cbsj_xj");
+		}
+		if("4".equals(""+cbsj.getXmlx())){
+			cbsj.setBz("cbsj_yhdzx");
+		}
+		if("5".equals(""+cbsj.getXmlx())){
+			cbsj.setBz("cbsj_sh");
+		}
+		return update("shangbaoCbsj", cbsj)>0;
+
+	}
+	/**/
+	@Override
+	public boolean thCbsjByXmbm(Cbsj cbsj) {
+		String table="";
+		if("1".equals(""+cbsj.getXmlx()))
+			table="cbsj_sjgz";
+		if("2".equals(""+cbsj.getXmlx()))
+			table="cbsj_lmgz";
+		if("3".equals(""+cbsj.getXmlx()))
+			table="cbsj_xj";
+		if("4".equals(""+cbsj.getXmlx()))
+			table="cbsj_yhdzx";
+		if("5".equals(""+cbsj.getXmlx()))
+			table="cbsj_sh";
+		cbsj.setBz(table);
+		
+		return update("thCbsjByXmbm", cbsj)>0;
+	}
+	@Override
+	public boolean thwshcbsj(Cbsj cbsj) {
+		String bz="";String sfkth="";
+		if("1".equals(""+cbsj.getXmlx())){
+			sfkth="jhsh_sjgz";
+			bz="cbsj_sjgz";
+			cbsj.setJdbs("2");
+		}
+		if("2".equals(""+cbsj.getXmlx())){
+			sfkth="jhsh_lmgz";
+			bz="cbsj_lmgz";
+			cbsj.setJdbs("2");
+		}
+		if("3".equals(""+cbsj.getXmlx())){
+			sfkth="jhsh_xj";
+			bz="cbsj_xj";
+			cbsj.setJdbs("2");
+		}
+		if("4".equals(""+cbsj.getXmlx())){
+			sfkth="jhsh_yhdzx";
+			bz="cbsj_yhdzx";
+			cbsj.setJdbs("2");
+		}
+		if("5".equals(""+cbsj.getXmlx())){
+			sfkth="jhsh_sh";
+			bz="cbsj_sh";
+			cbsj.setJdbs("2");
+		}
+		cbsj.setBzcs(sfkth);
+		List<Lxsh> l = queryList("sfkythcbsjwsh",cbsj);
+		if(l.size()>0)
+			return false;
+		else{
+			cbsj.setBz(bz);
+			return update("thwshcbsj", cbsj)>0&&delete("thwshkxxcbsj", cbsj)>0;
+
+		}
+		
+	}
 
 }

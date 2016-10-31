@@ -1924,6 +1924,121 @@ function thwshlxsh(){
 	}
 }
 
+/* cbjs上报shm */
+function shangbaoCbsj(index){
+	//alert(index);
+	var xmlx="";
+	var xmbm='';
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+		var xmbm1=rows[0].xmbm;
+		xmlx=xmbm1.substr(10,1);
+		for ( var i = 1; i < rows.length; i++) {
+			xmbm1+=","+rows[i].xmbm;
+		}
+		xmbm=xmbm1;
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+		xmlx=da.xmbm.substr(10,1);
+		xmbm=da.xmbm;
+	}
+	//alert(xmlx+"   "+xmbm);
+	sbthcd=$.cookie("unit2").length-2;
+	if(confirm('您确定上报吗？')){
+		var data = "cbsj.xmbm="+xmbm+"&cbsj.sbthcd="+sbthcd+"&cbsj.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shangbaoCbsj.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#grid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 
+/* cbsj退回未审核shm */
+function thwshcbsj(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt!='1'){
+			alert('请您勿勾选未审核的项目');
+			return;
+		}
+	}
+	
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	//alert(xmlx);
+	sbthcd=$.cookie("unit2").length+2;
+	if(confirm('您确定退回吗？')){
+		var data = "cbsj.xmbm="+xmbm+"&cbsj.sbthcd="+sbthcd+"&cbsj.xmlx="+xmlx;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/thwshcbsj.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('退回成功！');
+					 $("#grid").datagrid('reload');
+				 }else{
+					 alert('退回失败,请检查项目阶段！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	
+	}
+}
 
+/*初步设计 退回shm*/
+function cbjsrollback(){
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt=='1'){
+			alert('请您勿勾选已审核的项目');
+			return;
+		}
+	}
+	YMLib.UI.createWindow('lxxx','退回项目','cbsj_th.jsp','lxxx',400,200);	
+}
 

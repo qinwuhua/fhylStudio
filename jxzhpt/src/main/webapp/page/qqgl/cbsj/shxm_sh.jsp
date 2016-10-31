@@ -24,14 +24,22 @@
 	<script type="text/javascript">
 	var xmbm;
 	var xmlx;
+	var sbzt;
 	function tz(id,lx){
 		xmbm=id;
 		xmlx=lx;
 		YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
 	}
 		$(function(){
-			if($.cookie("unit2").length!=7)
+			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
+				title='上报状态';
+				$("#thxj,#thwsh").attr('style','display:none');
+			}else{
+				title='审核状态';
+				sbzt='1';
+				$("#shangbao").attr('style','display:none');
+			}
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
 			loadBmbm3('yjsdj','技术等级');
@@ -60,7 +68,7 @@
 					"cbsj.jdbs":2,
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
 					//'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
-					'cbsj.sbzt':-1,
+					'cbsj.sbzt':sbzt,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
 					'tsdq':tsdq,
@@ -95,7 +103,30 @@
 						return result;
 					}
 				},
-				{field:'shzt',title:'审核状态',width:60,align:'center',
+				{field:'c1',title:title,width:100,align:'center',
+					formatter:function(value,row,index){
+		        	if($.cookie("unit2").length!=7){
+		        		if(row.sbzt=='1'){
+		        			if(row.shzt=='1'){
+		        				return '已审核';
+		        			}else{
+		        				return '已上报';
+		        			}
+	        			}else{
+	        				if(row.thyy!=''&&row.thyy!=null)
+	        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>'+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
+	        				else
+		        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>';
+	        			}
+		        	}else{
+		        		if(row.shzt=='0'){
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSh('+index+')">未审核</a>';
+		        		}else if(row.shzt=='1'){
+			        		return '已审核';
+		        		}
+	        		}
+		        }},
+				/* {field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						if(row.shzt==0){
@@ -108,7 +139,7 @@
 						}
 						return result;
 					}
-				},
+				}, */
 				{field:'lsjl',title:'历史记录',width:60,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -356,15 +387,21 @@ text-decoration:none;
 										<option value="0">未审核</option>
 										<option value="1">已审核</option>
 									</select></td>
-									<td colspan="10">
-										<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+	                        	</tr>
+	                        	
+								<tr height="32">
+		                            <td colspan="8">
+	        							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 										<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
 										<img name="bxs" onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+										<img id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoCbsj()" style="border-width:0px;vertical-align:middle;" />
+										<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="cbjsrollback();" style="border-width:0px;vertical-align:middle;" />
+										<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshcbsj();" style="border-width:0px;vertical-align:middle;" />
 										<!-- <img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
 										<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 										<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 	        						</td>
-	                        	</tr>
+        						</tr>
                        		 </table>
         				</div>
         			</fieldset>
