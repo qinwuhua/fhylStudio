@@ -56,6 +56,7 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	}
 	@Override
 	public boolean updateCbsjLmgz(Cbsj cbsj) {
+		//System.out.println(update("updateCbsjLmgz",cbsj));
 		return update("updateCbsjLmgz",cbsj)>0;
 	}
 	@Override

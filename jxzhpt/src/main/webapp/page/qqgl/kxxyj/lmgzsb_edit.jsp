@@ -201,8 +201,8 @@ text-decoration:none;
 		//alert();
 		var data="kxxyj.xmbm="+parent.obj.xmbm+"&kxxyj.xmmc="+$('#xmmc').val()+"&kxxyj.sbthcd="+sbthcd+"&kxxyj.tbbmbm="+$.cookie("unit")
 		+"&kxxyj.qdzh="+$('#qdzh').val()+"&kxxyj.zdzh="+$('#zdzh').val()+"&kxxyj.jsxz="+$('#jsxz').val()
-		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combo("getValues").join(",")+"&kxxyj.gydw="+$("#gydw").combobox("getText")+"&kxxyj.gydwdm="+$("#gydw").combobox("getValues").join(',')
-		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="
+		+"&kxxyj.dq="+"&kxxyj.dq_m="+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combo("getValues").join(",")+"&kxxyj.gydw="+$("#gydw").combobox("getText")+"&kxxyj.gydwdm="+$("#gydw").combobox("getValues").join(',')
+		+"&kxxyj.sd="+"&kxxyj.sd_m="+"&kxxyj.jsdw="
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')+
 		"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val()+"&kxxyj.lxbh="+$('#ylxbh').val();
@@ -387,29 +387,21 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（米）：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq_m" name="dq_m" onblur="checkSZ(this)"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（座）：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq" name="dq" onblur="checkSZ(this)"/></td>
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="jsjsdj" name="jsjsdj" style="width: 120px;"/>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd_m" name="sd_m" onblur="checkSZ(this)"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd" name="sd" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
-				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
+				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="gydw" name="gydw" style="width: 120px;"/>
 				</td>
+				
 			</tr>
+			<!-- <tr style="height: 35px;">
+				
+				
+			</tr> -->
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">

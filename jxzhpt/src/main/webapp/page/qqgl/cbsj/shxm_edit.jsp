@@ -28,6 +28,12 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
+					$("#xmbm1").val(data.xmbm);
+					loadUnitedit("gydw1",$.cookie("unit"),data.gydwdm);
+					$("#gydw1").combotree('setValues',data.gydwdm.split(","));
+					//loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+					loadDistedit("xzqh1",$.cookie("dist"),data.xzqhdm);
+					$("#xzqh1").combotree('setValues',data.xzqhdm.split(","));
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
 					$('#ylxbh').val(data.ghlxbh);
@@ -37,7 +43,83 @@
 				}
 			});
 			loadFileUpload();
+			autoCompleteLXBM();
+			autoCompleteGHLXBM();
 		});
+		function autoCompleteLXBM(){
+			var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
+			$("#ylxbh").autocomplete(url, {
+				multiple : false,
+				minChars :4,
+				multipleSeparator : ' ',
+				mustMatch: true,
+		  		cacheLength : 0,
+		  		delay : 200,
+		  		max : 150,
+		  		extraParams : {
+		  			lxbm:function() {
+		  				var d = $("#ylxbh").val();
+		  				return d;
+		  			},
+		  			xzqh:function() {
+		  				var d = $.cookie("dist2");
+		  				return d;
+		  			}
+		  		},
+		  		dataType : 'json',// 返回类型
+		  		// 对返回的json对象进行解析函数，函数返回一个数组
+		  		parse : function(data) {
+		  			var aa = [];
+		  			aa = $.map(eval(data), function(row) {
+		  					return {
+		  						data : row,
+		  						value : row.ghlxbh.replace(/(\s*$)/g,""),
+		  						result : row.ghlxbh.replace(/(\s*$)/g,"")
+		  					};
+		  				});
+		  			return aa;
+		  		},
+		  		formatItem : function(row, i, max) {
+		  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+		  		}
+		  	}).result(
+					function(e, item) {
+						if(item==undefined) return ;
+						$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
+						xzqh=item.xzqh;
+						$("#lxmc").val(item.lxmc);
+						$("#qdzh").val(parseFloat(item.qdzh));
+						$("#zdzh").val(parseFloat(item.zdzh));
+						selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+						$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+						//$("#jsjsdj").val(item.xjsdj);
+						//$("#xjsdj").val(item.xjsdj);
+						//$("#qdmc").val(item.qdmc);
+						//$("#zdmc").val(item.zdmc);
+						qdStr=parseFloat(item.qdzh);
+						zdStr=parseFloat(item.zdzh);
+						$("#gpsqdzh").val(qdStr);
+						$("#gpszdzh").val(zdStr);
+						getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
+						if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+							$('#span_qdzh').html(">="+item.qdzh);
+							$('#span_zdzh').html("<="+item.zdzh);
+						}else{
+							$('#span_qdzh').html("<="+item.qdzh);
+							$('#span_zdzh').html(">="+item.zdzh);
+						}
+						
+						//querymc('qdzh');
+						//querymc('zdzh');
+						//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
+						//getylxlminfo(item.ghlxbh,item.qdzh,item.zdzh);
+//	 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
+//	 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
+						cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+						cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+						//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
+					});
+		}
 		function loadFileUpload(){
 			$("#uploadSjpf").uploadify({
 				/*注意前面需要书写path的代码*/
@@ -77,6 +159,12 @@
 			var submit=true;
 			submit = validateText('qdzh','number',submit);
 			submit = validateText('zdzh','number',submit);
+			$("#gydw").val($("#gydw1").combobox('getText'));
+			
+			$("#gydwdm").val($("#gydw1").combobox('getValues').join(','));
+			
+			$("#xzqh").val($("#xzqh1").combobox('getText'));
+			$("#xzqhdm").val($("#xzqh1").combobox('getValues').join(','));
 			if(!submit){
 				return;
 			}
@@ -130,6 +218,41 @@
 					</td>
 				</tr>
 				<tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划路线编号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划起点桩号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					规划止点桩号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+				</td>
+            </tr>		
+            <tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线路线编号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;" readonly="readonly" />&nbsp;
+					
+				</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线起点桩号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;" readonly="readonly"/>&nbsp;<br/>
+				</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					共线止点桩号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="gxzdzh" name="gxzdzh" type="text" style="width: 120px;" readonly="readonly"/>&nbsp;<br/>
+				</td>
+            </tr>
+				<tr style="height: 30px;">
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						项目编码
 					</td>
@@ -154,36 +277,44 @@
 						<input id="jsdw" name="jsdw" style="width: 120px;" type="text"/>
 					</td>
 				</tr>
+				
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						行政区划
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xzqh" name="xzqh" style="width:120px;" type="text"/>
+						<input id="xzqh1" name="xzqh1" style="width:120px;" type="text"/>
+						<input type="hidden" id='xzqh' name='xzqh'>
+						<input type="hidden" id='xzqhdm' name="xzqhdm">
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						建设技术等级
+						管养单位
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jsjsdj" name="jsjsdj" style="width: 120px;" type="text"/>
+						<input id="gydw1" name="gydw1" style="width: 120px;" type="text"/>
+						<input type="hidden" id='gydw' name='gydw'>
+						<input type="hidden" id='gydwdm' name="gydwdm">
 					</td>
+					
+					
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						路线编码
+						原路线编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="ylxbh" name="ylxbh" type="text" style="width:120px;"/>
+						<input id="ylxbh" name="ylxbh" style="width: 120px;" type="text"/>
 					</td>
+					
 				</tr>
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						起点桩号
+						原起点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
 						<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						讫点桩号
+						原讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
@@ -213,7 +344,29 @@
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;"></td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
 				</tr>
-				
+				<tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设性质
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="jsxz" name="jsxz" style="width: 120px;" type="text"/>
+					</td>
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+<!-- 						建设技术等级 -->
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+<!-- 						<input id="jsjsdj" name="jsjsdj" style="width: 120px;" type="text"/> -->
+					</td>
+					
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						
+					</td>
+					
+					
+				</tr>
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						技术等级及里程

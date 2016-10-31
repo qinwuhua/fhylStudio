@@ -1227,7 +1227,7 @@
  		<select id="aqsmfhJckGpsRoad" parameterType="hashmap" resultType="xmkaqsmfh">
  			select * from xmk_aqsmfh  where 1=1
  			<if test="unitcode!='' and unitcode!= null ">
-				and unitcode like '%'||#{unitcode}||'%'
+				and unitcode like '%' || substr(#{unitcode}, 0, 4) || '_' || substr(#{unitcode}, 6) || '%'
 			</if>
  			<if test="distcode!='' and distcode!= null ">
 				and distcode like '%'||#{distcode}||'%'

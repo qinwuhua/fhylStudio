@@ -353,6 +353,8 @@ var xzqhstr;
 						else return '<span style="color:grey;">未审核</span>';
 						}else{ */
 						return '<span style="color:grey;">已上报</span>';
+					}else{
+						return row.sbzt2;
 					}
 				}},
 					//{field:'shzt',title:'审核状态',width:80,align:'center'},

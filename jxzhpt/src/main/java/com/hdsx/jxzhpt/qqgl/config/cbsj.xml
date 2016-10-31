@@ -764,20 +764,20 @@
 	</select>
 	
 	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_lmgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_lmgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
+		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh
 		from cbsj_sjgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	
 	
@@ -799,7 +799,7 @@
 	</select>
 	<update id="updateCbsjLmgz" parameterType="cbsj">
 		update cbsj_lmgz c set c.xmmc=#{xmmc},
-		c.xzqh=#{xzqh},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		c.qdzh=#{qdzh},
 		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
 		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
 		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
@@ -831,11 +831,15 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="gydw !=null">c.gydw=#{gydw},</if>
+		<if test="xzqh !=null">c.xzqh=#{xzqh},</if>
+		<if test="gydwdm !=null">c.gydwdm=#{gydwdm},</if>
+		<if test="xzqhdm !=null">c.xzqhdm=#{xzqhdm},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjLmsj" parameterType="cbsj">
-		update cbsj_sjgz c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
+		update cbsj_sjgz c set c.xmmc=#{xmmc},
 		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
 		<if test="dfzc!=null">c.dfzc=#{dfzc},</if>
 		<if test="yhdk!=null">c.yhdk=#{yhdk},</if>
@@ -868,11 +872,15 @@
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
 		<if test="jszlc!=null">c.jszlc=#{jszlc},</if>
+		<if test="gydw !=null">c.gydw=#{gydw},</if>
+		<if test="xzqh !=null">c.xzqh=#{xzqh},</if>
+		<if test="gydwdm !=null">c.gydwdm=#{gydwdm},</if>
+		<if test="xzqhdm !=null">c.xzqhdm=#{xzqhdm},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjXj" parameterType="cbsj">
-		update cbsj_xj c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
+		update cbsj_xj c set c.xmmc=#{xmmc},
 		c.qdzh=#{qdzh},c.zdzh=#{zdzh},
 		<if test="dfzc!=null">c.dfzc=#{dfzc},</if>
 		<if test="yhdk!=null">c.yhdk=#{yhdk},</if>
@@ -905,6 +913,10 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="gydw !=null">c.gydw=#{gydw},</if>
+		<if test="xzqh !=null">c.xzqh=#{xzqh},</if>
+		<if test="gydwdm !=null">c.gydwdm=#{gydwdm},</if>
+		<if test="xzqhdm !=null">c.xzqhdm=#{xzqhdm},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
@@ -912,7 +924,6 @@
 		update cbsj_yhdzx c set 
 		<if test="xmmc!=null">c.xmmc=#{xmmc},</if>
 		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
-		<if test="xzqh!=null">c.xzqh=#{xzqh},</if>
 		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
 		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
 		<if test="qdzh!=null">c.qdzh=#{qdzh},</if>
@@ -931,6 +942,10 @@
 		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="lc!=null">c.lc=#{lc},</if>
+		<if test="gydw !=null">c.gydw=#{gydw},</if>
+		<if test="xzqh !=null">c.xzqh=#{xzqh},</if>
+		<if test="gydwdm !=null">c.gydwdm=#{gydwdm},</if>
+		<if test="xzqhdm !=null">c.xzqhdm=#{xzqhdm},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
@@ -938,7 +953,7 @@
 		update cbsj_sh c set 
 		<if test="xmmc!=null">c.xmmc=#{xmmc},</if>
 		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
-		<if test="xzqh!=null">c.xzqh=#{xzqh},</if>
+		
 		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
 		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
 		<if test="qdzh!=null">c.qdzh=#{qdzh},</if>
@@ -957,6 +972,10 @@
 		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="lc!=null">c.lc=#{lc},</if>
+		<if test="gydw !=null">c.gydw=#{gydw},</if>
+		<if test="xzqh !=null">c.xzqh=#{xzqh},</if>
+		<if test="gydwdm !=null">c.gydwdm=#{gydwdm},</if>
+		<if test="xzqhdm !=null">c.xzqhdm=#{xzqhdm},</if>
 		sfbj='1'
 		where c.xmbm=#{xmbm}
 	</update>

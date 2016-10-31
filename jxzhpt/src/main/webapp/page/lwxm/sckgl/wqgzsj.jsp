@@ -353,7 +353,8 @@ function sckglWqgz(){
 					else return '<span style="color:grey;">未审核</span>';
 					}else{ */
 					return '<span style="color:grey;">已上报</span>';
-				}
+				}else
+					return row.sck_sbzt2;
 				
 				
 			}},

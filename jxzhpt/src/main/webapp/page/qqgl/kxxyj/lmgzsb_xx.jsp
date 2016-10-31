@@ -75,7 +75,7 @@ text-decoration:none;
 		$("#gxlxbm").val(data.gxlxbm);
 		$("#gxqdzh").val(data.gxqdzh);
 		$("#gxzdzh").val(data.gxzdzh);
-		
+		$("#gydw").html(data.gydw1);
 		fileShow1(parent.obj.xmbm,"工可批复文件");		
 	}
 	
@@ -272,33 +272,21 @@ text-decoration:none;
 					无路：<span id="wllc"></span>
 				</td>
 			</tr>
+			
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（米）：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="dq_m"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特大桥（座）：</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="dq"></span>
-				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id='jsjsdj'></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="sd_m"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="sd"></span>
+					<span id="gydw"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-<!-- 					<span id="jsdw"/> -->
+<!-- 					<span id="sd"></span> -->
 				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>

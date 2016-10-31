@@ -223,6 +223,14 @@ public class Cbsj{
 	private String yhdk;//银行贷款
 	private String jszlc;//总计
 	private String xmsl;//路线数量
+	private String gydwdm;
+	
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
 	public String getXmsl() {
 		return xmsl;
 	}

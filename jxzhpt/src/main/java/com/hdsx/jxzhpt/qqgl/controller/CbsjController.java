@@ -641,6 +641,16 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setLc(cbsj.getLc());
 			lx.setSffirst("1");
 			lx.setJdbs(cbsj.getJdbs());
+			lx.setGydw(cbsj.getGydw());
+			lx.setGydwdm(cbsj.getGydwdm());
+			lx.setXzqh(cbsj.getXzqh());
+			lx.setXzqhdm(cbsj.getXzqhdm());
+			lx.setGhlxbm(cbsj.getGhlxbm());
+			lx.setGhqdzh(cbsj.getGhqdzh());
+			lx.setGhzdzh(cbsj.getGhzdzh());
+			lx.setGxlxbm(cbsj.getGxlxbm());
+			lx.setGxqdzh(cbsj.getGxqdzh());
+			lx.setGxzdzh(cbsj.getGxzdzh());
 			if(cbsj.getXmlx()==1){
 				lx.setJhyilc(cbsj.getJhyilc());
 				lx.setJherlc(cbsj.getJherlc());

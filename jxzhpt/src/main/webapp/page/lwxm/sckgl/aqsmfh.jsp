@@ -191,7 +191,8 @@ $("#grid").datagrid({
 						return '<span style="color:grey;">  未审核  </span>';	 */
 				return '<span style="color:grey;">  已上报  </span>';	
 				
-			}
+			}else
+				return row.sbzt2;
 			
 			
 		}},

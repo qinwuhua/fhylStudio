@@ -32,6 +32,13 @@
 					$('#sd_sfcd').val("0");
 					$('#jaf').val("0");
 					$('#cbsj').form("load",data);
+					
+					$("#xmbm1").val(data.xmbm);
+					loadUnitedit("gydw1",$.cookie("unit"),data.gydwdm);
+					$("#gydw1").combotree('setValues',data.gydwdm.split(","));
+					//loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+					loadDistedit("xzqh1",$.cookie("dist"),data.xzqhdm);
+					$("#xzqh1").combotree('setValues',data.xzqhdm.split(","));
 					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
@@ -85,6 +92,13 @@
 			submit=validateText('dq_dk','number',submit);
 			submit=validateText('sd_sfcd','number',submit);
 			submit=validateText('jaf','number',submit);
+			$("#gydw").val($("#gydw1").combobox('getText'));
+			
+			$("#gydwdm").val($("#gydw1").combobox('getValues').join(','));
+			
+			$("#xzqh").val($("#xzqh1").combobox('getText'));
+			$("#xzqhdm").val($("#xzqh1").combobox('getValues').join(','));
+			
 			if(!submit){
 				return;
 			}
@@ -127,7 +141,7 @@
 						项目编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
+						<input id="xmbm1" name="xmbm1" style="width: 120px;" disabled="disabled" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="1" type="hidden"/>
@@ -149,25 +163,33 @@
 						<input id="jsdw" name="jsdw" style="width: 120px;" type="text"/>
 					</td>
 				</tr>
+				
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						行政区划
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xzqh" name="xzqh" style="width:120px;" type="text"/>
+						<input id="xzqh1" name="xzqh1" style="width:120px;" type="text"/>
+						<input type="hidden" id='xzqh' name='xzqh'>
+						<input type="hidden" id='xzqhdm' name="xzqhdm">
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						建设技术等级
+						管养单位
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jsjsdj" name="jsjsdj" style="width: 120px;" type="text"/>
+						<input id="gydw1" name="gydw1" style="width: 120px;" type="text"/>
+						<input type="hidden" id='gydw' name='gydw'>
+						<input type="hidden" id='gydwdm' name="gydwdm">
 					</td>
+					
+					
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						建设性质
+						路线编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jsxz" name="jsxz" style="width: 120px;" type="text"/>
+						<input id="ylxbh" name="ylxbh" style="width: 120px;" type="text"/>
 					</td>
+					
 				</tr>
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -225,6 +247,29 @@
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="xjzdzh" name="xjzdzh" type="text" style="width: 120px;"/><br/>
 					</td>
+				</tr>
+				<tr style="height: 30px;">
+					
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+						建设技术等级
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="jsjsdj" name="jsjsdj" style="width: 120px;" type="text"/>
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设性质
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="jsxz" name="jsxz" style="width: 120px;" type="text"/>
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						
+					</td>
+					
+					
 				</tr>
 				<tr style="height: 35px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
