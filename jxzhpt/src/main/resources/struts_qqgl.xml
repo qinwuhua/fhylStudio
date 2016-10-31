@@ -194,6 +194,9 @@
 		<action name="queryCbsjbgLj" class="cbsjController" method="queryCbsjbgLj"></action>
 		<action name="queryFile" class="cbsjController" method="queryFile"></action>
 		<action name="down" class="cbsjController" method="down"></action>
+		<action name="shangbaoCbsj" class="cbsjController" method="shangbaoCbsj"></action>
+		<action name="thCbsjByXmbm" class="cbsjController" method="thCbsjByXmbm"></action>
+		<action name="thwshcbsj" class="cbsjController" method="thwshcbsj"></action>
 		
 		<action name="exportZjxdgsd" class="jhshController" method="exportZjxdgsd"></action>
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>

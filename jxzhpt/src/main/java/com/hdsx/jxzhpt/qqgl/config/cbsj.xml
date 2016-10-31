@@ -30,6 +30,7 @@
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<!-- <if test="cbsj.sbzt>=0">
 					and c.sbzt=${cbsj.sbzt}
@@ -111,6 +112,7 @@
 					${cbsj.tsdq}
 				</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -190,6 +192,7 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and l.xjsdj = #{cbsj.xjsdj}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and c.jsjsdj=#{cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -274,6 +277,7 @@
 				</if>
 				<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -353,6 +357,7 @@
 				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+				<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
 				<!-- <if test="cbsj.sbzt>=0">
@@ -430,6 +435,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -503,6 +509,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -576,6 +583,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -653,6 +661,7 @@
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.gcfl!=null and cbsj.gcfl!=''">and ${cbsj.gcfl}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -723,6 +732,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">${cbsj.tsdq}</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
@@ -1253,6 +1263,7 @@
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 		<if test="xmlx1!=null and xmlx1!=''">${xmlx1}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
@@ -1308,6 +1319,7 @@
 		</if>
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
@@ -1358,6 +1370,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -1406,6 +1419,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -1466,6 +1480,7 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
 		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
@@ -1867,6 +1882,21 @@
 				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>
+	<update id="shangbaoCbsj" parameterType="cbsj">
+	update ${bz} set sbzt='1',sbthcd=#{sbthcd} where xmbm in (${xmbm})
+	</update>
+	<update id="thCbsjByXmbm" parameterType="lxsh">
+	update ${bz} set thyy=#{thyy},sbzt=#{sbzt},sbthcd=#{sbthcd} where xmbm in (${xmbm})
+	</update>
 	
+	<select id="sfkythcbsjwsh" parameterType="lxsh" resultType="lxsh">
+		select * from ${bzcs} where xmbm in (${xmbm}) and xdzt = 1
+	</select>
+	<update id="thwshcbsj" parameterType="lxsh">
+		update ${bz} set shzt='0' where xmbm in (${xmbm})
+	</update>
+	<delete id="thwshkxxcbsj" parameterType="lxsh">
+		delete from ${bzcs} where xmbm in (${xmbm}) 
+	</delete>
 	
 </mapper>

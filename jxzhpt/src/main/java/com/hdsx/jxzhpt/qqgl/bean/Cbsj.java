@@ -15,7 +15,29 @@ public class Cbsj{
 	private String gxzdzh;
 	private String gxqdzh;
 	private String zlc;
+	private String thyy;//退回原因
+	private String bz;//备注
+	private String bzcs;
 	
+	
+	public String getBzcs() {
+		return bzcs;
+	}
+	public void setBzcs(String bzcs) {
+		this.bzcs = bzcs;
+	}
+	public String getThyy() {
+		return thyy;
+	}
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
 	public String getZlc() {
 		return zlc;
 	}
@@ -223,6 +245,7 @@ public class Cbsj{
 	private String yhdk;//银行贷款
 	private String jszlc;//总计
 	private String xmsl;//路线数量
+
 	private String gydwdm;
 	
 	public String getGydwdm() {
@@ -230,6 +253,14 @@ public class Cbsj{
 	}
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+	private int sbthcd;//上报退回长度
+	
+	public int getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(int sbthcd) {
+		this.sbthcd = sbthcd;
 	}
 	public String getXmsl() {
 		return xmsl;

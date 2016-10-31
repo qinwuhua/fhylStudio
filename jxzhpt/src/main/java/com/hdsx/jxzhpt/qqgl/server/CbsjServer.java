@@ -367,5 +367,11 @@ public interface CbsjServer {
 	public List<Plan_upload> queryxdFileByWh(Plan_upload file);
 
 	public List<Plan_upload> getWjbyxmbm(Plan_upload file);
+
+	public boolean shangbaoCbsj(Cbsj cbsj);
+
+	public boolean thCbsjByXmbm(Cbsj cbsj);
+
+	public boolean thwshcbsj(Cbsj cbsj);
 	
 }

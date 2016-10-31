@@ -214,6 +214,13 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
+	
+	public void shangbaoCbsj(){
+		ResponseUtils.write(getresponse(), ""+cbsjServer.shangbaoCbsj(cbsj));
+		
+	}
+	
+	
 	public void queryCbsjbg() throws Exception{
 		try {
 			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
@@ -704,6 +711,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
+	
+	public void thCbsjByXmbm(){
+		ResponseUtils.write(getresponse(), ""+cbsjServer.thCbsjByXmbm(cbsj));
+	}
+	
+	public void thwshcbsj(){
+		ResponseUtils.write(getresponse(), ""+cbsjServer.thwshcbsj(cbsj));
+	}
+	
 	/**
 	 * 审核流程，修改上报、审核状态
 	 * @throws Exception 
