@@ -94,6 +94,25 @@ a{text-decoration:none;}
 				$("#qdzh").focus();
 				return false;
 			} */
+			if(qdStr < zdStr){
+				if($("#qdzh").val() < qdStr){
+					alert("原起点桩号不能小于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() > zdStr){
+					alert("原止点桩号不能大于"+zdStr);
+					return false;
+				}
+			}else{
+				if($("#qdzh").val() > qdStr){
+					alert("原起点桩号不能大于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() < zdStr){
+					alert("原止点桩号不能小于"+zdStr);
+					return false;
+				}
+			}
 			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
@@ -186,11 +205,11 @@ a{text-decoration:none;}
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					$("#lc").html(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
-					qdStr=(parseFloat(item.qdzh)-5);
-					zdStr=(parseFloat(item.zdzh)+5);
+					/* qdStr=(parseFloat(item.qdzh)-5);
+					zdStr=(parseFloat(item.zdzh)+5); */
 					$("#ghlxmc").val(item.ghlxmc);
 					$("#ghlxbm").val(item.ghlxbm);
 					$("#ghqdzh").val(item.ghqdzh);
@@ -198,10 +217,30 @@ a{text-decoration:none;}
 					$("#gxlxbm").val(item.gxlxbm);
 					$("#gxqdzh").val(item.gxqdzh);
 					$("#gxzdzh").val(item.gxzdzh);
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+					/* $("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr); */
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
 					//cesuan2(); 
+					if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+						qdStr=accSub(parseFloat(item.qdzh),5);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=accAdd(parseFloat(item.zdzh),5);
+					}else{
+						qdStr=accAdd(parseFloat(item.qdzh),5);
+						zdStr=accSub(parseFloat(item.zdzh),5);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(qdStr > zdStr){
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					}
 					loadjsdjcd();
 				});
 	}

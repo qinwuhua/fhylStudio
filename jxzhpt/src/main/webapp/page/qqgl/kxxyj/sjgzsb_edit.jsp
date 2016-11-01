@@ -48,15 +48,34 @@ text-decoration:none;
 				$('#kxxyj').form("load",msg);
 				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm1);
 				$("#gydw").combotree('setValues',msg.gydwdm1.split(","));
-				
-				var lc=parseFloat(msg.gpszdzh)-parseFloat(msg.gpsqdzh);
-				qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+				var lc=Math.abs(accSub(parseFloat(msg.gpszdzh),parseFloat(msg.gpsqdzh)));
+				/* qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
 				zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
 				if(qdStr<0)
 					qdStr=0;
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
 				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
-
+ */
+				if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
+					qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+					if(qdStr<0){
+						qdStr=0;
+					}
+					zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
+				}else{
+					qdStr=(parseFloat(msg.gpsqdzh)+lc*0.3).toFixed(3);
+					zdStr=(parseFloat(msg.gpszdzh)-lc*0.3).toFixed(3);
+					if(zdStr<0){
+						zdStr=0;
+					}
+				}
+				if(qdStr > zdStr){
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+				}else{
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+				}
 				$('#lxbh').val(msg.lxbm);
 				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm);
 				$("#xzqh").combotree('setValues',msg.xzqhdm.split(","));
@@ -179,17 +198,38 @@ text-decoration:none;
 					//$("#xjsdj").val(item.xjsdj);
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
+					/* qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh); */
 					$("#gpsqdzh").val(qdStr);
 					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-						$('#span_qdzh').html(">="+item.qdzh);
-						$('#span_zdzh').html("<="+item.zdzh);
+					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}else{
-						$('#span_qdzh').html("<="+item.qdzh);
-						$('#span_zdzh').html(">="+item.zdzh);
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					} 
+					 */
+					if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+						qdStr=(parseFloat(item.qdzh)-lc*0.3).toFixed(3);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=(parseFloat(item.zdzh)+lc*0.3).toFixed(3);
+					}else{
+						qdStr=(parseFloat(item.qdzh)+lc*0.3).toFixed(3);
+						zdStr=(parseFloat(item.zdzh)-lc*0.3).toFixed(3);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(qdStr > zdStr){
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
 					
 					//querymc('qdzh');
@@ -243,13 +283,33 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
+		} */
+		if(qdStr < zdStr){
+			if($("#qdzh").val() < qdStr){
+				alert("原起点桩号不能小于"+qdStr);
+				return false;
+			}
+			var ss = $("#zdzh").val();
+			if(ss > zdStr){
+				alert("原止点桩号不能大于"+zdStr);
+				return false;
+			}
+		}else{
+			if($("#qdzh").val() > qdStr){
+				alert("原起点桩号不能大于"+qdStr);
+				return false;
+			}
+			if($("#zdzh").val() < zdStr){
+				alert("原止点桩号不能小于"+zdStr);
+				return false;
+			}
 		}
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//queryJsdjAndLc($("#lxbh").val(),$("#qdzh").val(),$("#zdzh").val());
@@ -369,7 +429,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input name="zdzh"id="zdzh" type="text" style="width: 120px;" onblur="changeZlc()"/><br/>
+					<input name="zdzh" id="zdzh" type="text" style="width: 120px;" onblur="changeZlc()"/><br/>
 					<span id="zd"></span>
 				</td>
 			</tr>

@@ -67,10 +67,32 @@ text-decoration:none;
 			data:data1,
 			dataType:'json',
 			success:function(item){
-				qdStr=(parseFloat(item.qdzh)-5);
+				/* qdStr=(parseFloat(item.qdzh)-5);
 				zdStr=(parseFloat(item.zdzh)+5);
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr); */
+				
+				if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+					qdStr=accSub(parseFloat(item.qdzh),5);
+					if(qdStr<0){
+						qdStr=0;
+					}
+					zdStr=accAdd(parseFloat(item.zdzh),5);
+				}else{
+					qdStr=accAdd(parseFloat(item.qdzh),5);
+					zdStr=accSub(parseFloat(item.zdzh),5);
+					if(zdStr<0){
+						zdStr=0;
+					}
+				}
+				if(qdStr > zdStr){
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+				}else{
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+				}
+				
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -140,6 +162,26 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			} */
+			//alert(qdStr+" "+zdStr);
+			if(qdStr < zdStr){
+				if($("#qdzh").val() < qdStr){
+					alert("原起点桩号不能小于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() > zdStr){
+					alert("原止点桩号不能大于"+zdStr);
+					return false;
+				}
+			}else{
+				if($("#qdzh").val() > qdStr){
+					alert("原起点桩号不能大于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() < zdStr){
+					alert("原止点桩号不能小于"+zdStr);
+					return false;
+				}
+			}
 			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
@@ -202,23 +244,43 @@ text-decoration:none;
 					//$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
+					/* qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh); */
 					$("#gpsqdzh").val(qdStr);
 					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
 					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
 					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$('#span_qdzh').html(">="+item.qdzh);
 						$('#span_zdzh').html("<="+item.zdzh);
 					}else{
 						$('#span_qdzh').html("<="+item.qdzh);
 						$('#span_zdzh').html(">="+item.zdzh);
-					}
+					} */
 // 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
 // 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
+					if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+						qdStr=accSub(parseFloat(item.qdzh),5);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=accAdd(parseFloat(item.zdzh),5);
+					}else{
+						qdStr=accAdd(parseFloat(item.qdzh),5);
+						zdStr=accSub(parseFloat(item.zdzh),5);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(qdStr > zdStr){
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					}
 					cesuan2();
 				});
 	}

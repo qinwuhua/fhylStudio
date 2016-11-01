@@ -20,6 +20,8 @@
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
+	var qdStr;
+	var zdStr;
 		$(function(){
 			$.ajax({
 				type:'post',
@@ -33,8 +35,28 @@
 					$("#gydw1").combotree('setValues',msg.gydwdm.split(","));
 					//loadUnit("gydw1",msg.gydwdm);
 					$('#submit').form("load",msg);
-					$('#span_qdzh').html(msg.gpsqdzh);
-					$('#span_zdzh').html(msg.gpszdzh);
+					/* $('#span_qdzh').html(msg.gpsqdzh);
+					$('#span_zdzh').html(msg.gpszdzh); */
+					if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
+						qdStr=accSub(parseFloat(msg.gpsqdzh),5);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=accAdd(parseFloat(msg.gpszdzh),5);
+					}else{
+						qdStr=accAdd(parseFloat(msg.gpsqdzh),5);
+						zdStr=accSub(parseFloat(msg.gpszdzh),5);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(qdStr > zdStr){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					}
 					$('#xmbm1').val(msg.xmbm);
 					$('#xmbm1').attr("disabled","disabled");
 					$('#xmlx').val(5);
@@ -76,6 +98,25 @@
 			}
 		}
 		function zhuanghao(){
+			if(qdStr < zdStr){
+				if($("#qdzh").val() < qdStr){
+					alert("原起点桩号不能小于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() > zdStr){
+					alert("原止点桩号不能大于"+zdStr);
+					return false;
+				}
+			}else{
+				if($("#qdzh").val() > qdStr){
+					alert("原起点桩号不能大于"+qdStr);
+					return false;
+				}
+				if($("#zdzh").val() < zdStr){
+					alert("原止点桩号不能小于"+zdStr);
+					return false;
+				}
+			}
 			return true;
 			/* if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
 				alert("起点桩号不能小于"+$('#span_qdzh').html());
@@ -106,13 +147,13 @@
 					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					起点桩号</td>
+					原起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					止点桩号</td>
+					原止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 					<span id="span_zdzh" style="font-size: small;color: red;"></span>
