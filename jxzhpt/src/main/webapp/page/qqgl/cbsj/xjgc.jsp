@@ -97,6 +97,7 @@
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
+				{field:'tz',title:'设计概算',width:150,align:'center'},
 				{field:'lj',title:'路基（m3）',width:100,align:'center'},
 				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
 				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},

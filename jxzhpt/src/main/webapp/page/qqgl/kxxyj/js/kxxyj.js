@@ -981,6 +981,9 @@ function showAllsjsh(){
 	        {field:'c1',title:title,width:100,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
+	        			if(row.sbzt1=='1')
+	        				return '已审核';
+	        			else
 	        			return '已上报';
         			}else{
         				if(row.thyy!=''&&row.thyy!=null)
@@ -1310,6 +1313,9 @@ function showAlllmsh(){
 	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
+	        			if(row.sbzt1=='1')
+	        				return '已审核';
+	        			else
 	        			return '已上报';
         			}else{
         				if(row.thyy!=''&&row.thyy!=null)
@@ -1639,6 +1645,9 @@ function showAllxjsh(){
 	        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 	        	if($.cookie("unit2").length!=7){
 	        		if(row.sbzts=='1'){
+	        			if(row.sbzt1=='1')
+	        				return '已审核';
+	        			else
 	        			return '已上报';
         			}else{
         				if(row.thyy!=''&&row.thyy!=null)

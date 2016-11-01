@@ -771,13 +771,13 @@
 	</insert>
 	
 	<insert id="insertCbsjYhdzx" parameterType="xmsq">
-		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
-		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa 
+		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa,tz)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.xzqhdm2,x.gydw,x.gydwdm,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj,x.gq,x.lc,x.jsfa,x.ntz 
 		from xmsq_yhdzx x where x.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertCbsjSh" parameterType="xmsq">
-		insert into kxxyj_sh(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsdj,jsxz,shzt,gcfl,gydw1,gydwdm1)
-		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm2,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0,x.gcfl,gydw,gydwdm 
+		insert into kxxyj_sh(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsdj,jsxz,shzt,gcfl,gydw1,gydwdm1,tzgs)
+		(select sys_guid(),x.xmmc,x.xmbm,x.xzqh,x.xzqhdm2,x.qdzh,x.zdzh,x.jsdj,x.jsfa,0,x.gcfl,gydw,gydwdm,ntz 
 		from xmsq_sh x where x.xmbm in (${xmbm}))
 	<!-- 
 		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)

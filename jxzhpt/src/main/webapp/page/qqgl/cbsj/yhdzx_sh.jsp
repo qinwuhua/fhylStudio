@@ -205,7 +205,7 @@
 				{field:'kgsj',title:'开工时间',width:70,align:'center'},
 				{field:'wgsj',title:'完工时间',width:70,align:'center'},
 				{field:'gq',title:'工期（月）',width:60,align:'center'},
-				{field:'ntz',title:'总投资',width:60,align:'center'},
+				{field:'tz',title:'施工图预算',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:120,align:'center'},
 				{field:'jsxz',title:'建设性质',width:60,align:'center'},
 				/* {field:'kgsj',title:'开工时间',width:100,align:'center'},

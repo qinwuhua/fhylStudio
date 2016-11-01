@@ -698,10 +698,10 @@
 						<input id="gq" name="gq" style="width:120px;" type="text"/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-<!-- 						开工时间 -->
+						设计概算(万元)
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-<!-- 						<input id="kgsj" name="kgsj" style="width:120px;" type="text"/> -->
+						<input id="tz" name="tz" style="width:120px;" type="text"/>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 <!-- 						完工时间 -->

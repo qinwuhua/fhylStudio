@@ -431,6 +431,7 @@ function getSbz(){
 				trzjdx=data.shengbz;
 				zdezj=data.shengbz;
 				$("#trzjdx").html("小于等于"+trzjdx);
+				$("#nsqbbz").val(trzjdx);
 			}
 		}); 
 }
@@ -536,10 +537,16 @@ function setnsqbbz(){
 		trzjdx=Math.round(parseFloat(nsqbbz));
 	}
 
-	if($("#sfylrbwqk").combobox('getValue')=='是')
-	$("#trzjdx").html("小于等于"+trzjdx);
-	else
-		$("#trzjdx").html("小于等于或大于"+nsqbbz);
+	if($("#sfylrbwqk").combobox('getValue')=='是'){
+		$("#trzjdx").html("小于等于"+trzjdx);
+		$("#nsqbbz").val(trzjdx);
+	}
+	
+	else{
+		$("#trzjdx").html("部库补助参考值"+nsqbbz);
+		$("#nsqbbz").val(nsqbbz);
+	}
+		
 }
 function checksfzq(){
 	var nsqbbz1=$("#nsqbbz").val();
@@ -892,7 +899,7 @@ text-decoration:none;
 					<input type="text" id="ztz" name='bitian' style="width: 115px" onchange="setnsqbbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）级补助资金（万元）：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="nsqbbz" name='bitian' style="width: 100px" onblur="checksfzq()"/><br><span style="color: red" id='trzjdx'></span></td>
+					<input readonly="readonly" type="text" id="nsqbbz" name='bitian' style="width: 100px" onchange="checksfzq()" /><br><span style="color: red" id='trzjdx'></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" style="width: 100px" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>

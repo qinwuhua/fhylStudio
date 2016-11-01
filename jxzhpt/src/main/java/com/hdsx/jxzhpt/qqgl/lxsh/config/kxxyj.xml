@@ -774,16 +774,22 @@
 		select * from KXXYJ_XJ where ${value}
 	</select>
 	<insert id="insertsjgzcb" parameterType="kxxyj">
-		insert into cbsj_sjgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="jszlc != null ">,jszlc</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="jszlc != null ">,#{jszlc}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>)
+		insert into cbsj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,jszlc,kgsj,wgsj,tz)
+		select sys_guid(),xmmc,xmbm,xzqh,xzqhdm,gydw1,gydwdm1,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,jszlc,kgny,wgny,tzgs from kxxyj_sjgz where xmbm=#{xmbm}
+		<!-- insert into cbsj_sjgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="jszlc != null ">,jszlc</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="jszlc != null ">,#{jszlc}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>) -->
 	</insert>
 	<insert id="insertlmgzcb" parameterType="kxxyj">
-		insert into cbsj_lmgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>)
+		 insert into cbsj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,kgsj,wgsj,tz)
+    	select sys_guid(),xmmc,xmbm,xzqh,xzqhdm,gydw1,gydwdm1,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,kgny,wgny,tzgs from kxxyj_lmgz where xmbm=#{xmbm}
+		<!-- insert into cbsj_lmgz(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>) -->
 	</insert>
 	<insert id="insertxjcb" parameterType="kxxyj">
-		insert into cbsj_xj(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
-		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>)
+		insert into cbsj_xj(id,xmmc,xmbm,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,jsxz,jsdw,dfzc,yhdk,kgsj,wgsj,tz)
+		select sys_guid(),k.xmmc,k.xmbm,k.xzqh,k.xzqhdm,k.gydw1,k.gydwdm1,k.qdzh,k.zdzh,k.jsjsdj,k.jsxz,k.jsdw,k.dfzc,k.yhdk,k.kgny,k.wgny,k.tzgs from kxxyj_xj k where xmbm=#{xmbm}
+		<!-- insert into cbsj_xj(id<if test="xmmc != null ">,xmmc</if><if test="xmbm != null ">,xmbm</if><if test="xzqh != null ">,xzqh</if><if test="qdzh != null ">,qdzh</if><if test="zdzh != null ">,zdzh</if><if test="jsjsdj != null ">,jsjsdj</if><if test="jsxz != null ">,jsxz</if><if test="jsdw != null ">,jsdw</if><if test="dfzc != null ">,dfzc</if><if test="yhdk != null ">,yhdk</if><if test="kgny != null ">,kgsj</if><if test="wgny != null ">,wgsj</if>)
+		values(sys_guid()<if test="xmmc != null ">,#{xmmc}</if><if test="xmbm != null ">,#{xmbm}</if><if test="xzqh != null ">,#{xzqh}</if><if test="qdzh != null ">,#{qdzh}</if><if test="zdzh != null ">,#{zdzh}</if><if test="jsjsdj != null ">,#{jsjsdj}</if><if test="jsxz != null ">,#{jsxz}</if><if test="jsdw != null ">,#{jsdw}</if><if test="dfzc != null ">,#{dfzc}</if><if test="yhdk != null ">,#{yhdk}</if><if test="kgny != null ">,#{kgny}</if><if test="wgny != null ">,#{wgny}</if>) -->
 	</insert>
 	
 	<select id="sjgzsfcb" parameterType="string" resultType="kxxyj">
@@ -1620,7 +1626,7 @@
 		</if>
 	</select>
 	<select id="showkxxShxx" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,nvl(sum(t1.ntz),0) tz,nvl(sum(lx.lc),0) lc,'0' bzcs,'0' sbz,'0' sjl,'0' dftz from KXXYJ_SH t Left join xmsq_sh t1 on t.xmbm=t1.xmbm
+		select count(*) sl,nvl(sum(t.tzgs),0) tz,nvl(sum(lx.lc),0) lc,'0' bzcs,'0' sbz,'0' sjl,'0' dftz from KXXYJ_SH t Left join xmsq_sh t1 on t.xmbm=t1.xmbm
 		left join (select xmid,count(*) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
 		replace(WMSYS.WM_CONCAT(ghlxbm),',',',') ghlxbm,replace(WMSYS.WM_CONCAT(ghlxmc),',',',') ghlxmc,replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsdjtj
   		from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
@@ -1670,8 +1676,8 @@
 		update kxxyj_sh set shzt=1 where xmbm in (${xmbm})
 	</update>
 	<insert id="insertshcb" parameterType="lxsh">
-	insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa)
-    select k.xmmc,x.xmbm,null,k.xzqh,k.qdzh,k.zdzh,k.jsdj,k.gcfl,k.kgny,k.wgny,x.gq,x.lc,k.jsxz 
+	insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj,gq,lc,jsfa,tz)
+    select k.xmmc,x.xmbm,null,k.xzqh,k.xzqhdm,k.gydw1,k.gydwdm1,k.qdzh,k.zdzh,k.jsdj,k.gcfl,k.kgny,k.wgny,x.gq,x.lc,k.jsxz,tzgs 
     from xmsq_sh x left join kxxyj_sh k on x.xmbm=k.xmbm where x.xmbm in (${xmbm})
 	</insert>
 	

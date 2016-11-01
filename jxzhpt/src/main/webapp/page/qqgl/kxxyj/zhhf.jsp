@@ -207,6 +207,9 @@
 			        {field:'c1',title:title,width:60,align:'center',formatter:function(value,row,index){
 			        	if($.cookie("unit2").length!=7){
 			        		if(row.sbzts=='1'){
+			        			if(row.sbzt1=='1')
+			        				return '已审核';
+			        			else
 			        			return '已上报';
 		        			}else{
 		        				if(row.thyy!=''&&row.thyy!=null)
@@ -254,7 +257,7 @@
 				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},
 				    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 				    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
-				    {field : 'tz',title : '投资',width : 80,align : 'center'},
+				    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
 				    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
 				   /*  {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
