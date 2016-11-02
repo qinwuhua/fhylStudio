@@ -1638,7 +1638,6 @@ function jsbzzj(flag){
 	var zj16=0;
 	var zj17=0;
 	
-	
 	if(flag=='lqhntmc'){
 		if($("#lmkd").val()!=null && $("#lmkd").val()!='' && $("#lqhntmchd").numberbox('getValue')!=null && $("#lqhntmchd").numberbox('getValue')!=''){
 			var mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);

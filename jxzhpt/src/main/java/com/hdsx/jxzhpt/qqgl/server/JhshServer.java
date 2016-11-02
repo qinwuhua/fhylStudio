@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
@@ -464,6 +465,7 @@ public interface JhshServer {
 	public List<Lx> querywnxx(Jhsh jhsh);
 	public String queryylmlx(Lx lx);
 	public boolean updateLx(Lx lx, Xmsq xmsq);
+	public boolean updateLx(Lx lx, Cbsj cbsj);
 	public List<Excel_list> queryGsdgz_dc(Jhsh jhsh);
 	public List<Excel_list> queryZhhf_dc(Jhsh jhsh);
 	public List<Excel_list> queryYhdzx_dc(Jhsh jhsh);

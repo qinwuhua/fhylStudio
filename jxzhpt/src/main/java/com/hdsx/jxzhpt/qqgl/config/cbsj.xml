@@ -784,7 +784,15 @@
 		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,
+		decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,
+		l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,
+		l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh,l.lxlmkd,decode(l.lxlmkd,null,x.lmkd,l.lxlmkd) lmkd,
+		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
+		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
+		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj
+		from cbsj_yhdzx c left join xmsq_yhdzx x on c.xmbm = x.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
 		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
