@@ -255,6 +255,13 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return update("updateyhdzxLx",params)>0;
 	}
 	@Override
+	public boolean updateLx(Lx lx,Cbsj cbsj) {
+		params.put("lx", lx);
+		params.put("cbsj", cbsj);
+		System.out.println(cbsj.getSnhntmchbmj());
+		return update("updateyhdzxcbsjLx",params)>0;
+	}
+	@Override
 	public boolean insertLx(Lx lx) {
 		return insert("insertLx",lx)>0;
 	}

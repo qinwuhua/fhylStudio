@@ -1493,6 +1493,165 @@
 		<if test="lx.sffirst==1">and sffirst=1</if>
 		<if test="lx.id!=null and lx.id!=''">and id=#{lx.id}</if>
 	</update>
+	 <update id="updateyhdzxcbsjLx" parameterType="hashmap">
+		update lxsh_lx l set 
+		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
+		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
+		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
+		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>
+		<if test="lx.yilc!=null and lx.yilc!=''">l.yilc=#{lx.yilc},</if>
+		<if test="lx.erlc!=null and lx.erlc!=''">l.erlc=#{lx.erlc},</if>
+		<if test="lx.sanlc!=null and lx.sanlc!=''">l.sanlc=#{lx.sanlc},</if>
+		<if test="lx.silc!=null and lx.silc!=''">l.silc=#{lx.silc},</if>
+		<if test="lx.dwlc!=null and lx.dwlc!=''">l.dwlc=#{lx.dwlc},</if>
+		<if test="lx.wllc!=null and lx.wllc!=''">l.wllc=#{lx.wllc},</if>
+		<if test="lx.jhyilc!=null and lx.jhyilc!=''">l.jhyilc=#{lx.jhyilc},</if>
+		<if test="lx.jherlc!=null and lx.jherlc!=''">l.jherlc=#{lx.jherlc},</if>
+		<if test="lx.jhsanlc!=null and lx.jhsanlc!=''">l.jhsanlc=#{lx.jhsanlc},</if>
+		<if test="lx.jhsilc!=null and lx.jhsilc!=''">l.jhsilc=#{lx.jhsilc},</if>
+		<if test="lx.jhdwlc!=null and lx.jhdwlc!=''">l.jhdwlc=#{lx.jhdwlc},</if>
+		<if test="lx.jhwllc!=null and lx.jhwllc!=''">l.jhwllc=#{lx.jhwllc},</if>
+		<if test="lx.xjlxbm!=null and lx.xjlxbm!=''">l.xjlxbm=#{lx.xjlxbm},</if>
+		<if test="lx.xjqdzh!=null">l.xjqdzh=#{lx.xjqdzh},</if>
+		<if test="lx.xjzdzh!=null">l.xjzdzh=#{lx.xjzdzh},</if>
+		<if test="lx.xjlc!=null and lx.xjlc!=''">l.xjlc=#{lx.xjlc},</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">l.lxbm=#{lx.lxbm},</if>
+		<if test="lx.qdzh!=null and lx.qdzh!=''">l.qdzh=#{lx.qdzh},</if>
+		<if test="lx.zdzh!=null and lx.zdzh!=''">l.zdzh=#{lx.zdzh},</if>
+		<if test="lx.gydw!=null and lx.gydw!=''">l.gydw=#{lx.gydw},</if>
+		<if test="lx.gydwdm!=null and lx.gydwdm!=''">l.gydwdm=#{lx.gydwdm},</if>
+		<if test="lx.xzqh!=null and lx.xzqh!=''">l.xzqh=#{lx.xzqh},</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">l.xzqhdm=#{lx.xzqhdm},</if>
+		<if test="lx.jsjsdj!=null and lx.jsjsdj!=''">l.jsjsdj=#{lx.jsjsdj},</if>
+		<if test="lx.xjsdj!=null and lx.xjsdj!=''">l.xjsdj=#{lx.xjsdj},</if>
+		<if test="lx.bzcs!=null and lx.bzcs!=''">l.bzcs=#{lx.bzcs},</if>
+		<if test="lx.jszlc!=null and lx.jszlc!=''">l.jhlc=#{lx.jszlc},</if>
+		<if test="cbsj.ghlxbm != null">l.ghlxbm=#{cbsj.ghlxbm},</if>
+		<if test="cbsj.ghlxmc != null">l.ghlxmc=#{cbsj.ghlxmc},</if>
+		<if test="cbsj.ghqdzh != null">l.ghqdzh=#{cbsj.ghqdzh},</if>
+		<if test="cbsj.ghzdzh != null">l.ghzdzh=#{cbsj.ghzdzh},</if>
+		<if test="cbsj.gxlxbm != null">l.gxlxbm=#{cbsj.gxlxbm},</if>
+		<if test="cbsj.gxqdzh != null">l.gxqdzh=#{cbsj.gxqdzh},</if>
+		<if test="cbsj.gxzdzh != null">l.gxzdzh=#{cbsj.gxzdzh},</if>
+		
+		<if test="cbsj.lqhntmchd != null">
+        LQHNTMCHD = #{cbsj.lqhntmchd},
+      </if>
+      
+      <if test="cbsj.lqhntmc != null">
+        LQHNTMC = #{cbsj.lqhntmc},
+      </if>
+      <if test="cbsj.gxlqhntmchd != null">
+        GXLQHNTMCHD = #{cbsj.gxlqhntmchd},
+      </if>
+      <if test="cbsj.gxlqhntmc != null">
+        GXLQHNTMC = #{cbsj.gxlqhntmc},
+      </if>
+      <if test="cbsj.snhntmchd != null">
+        SNHNTMCHD = #{cbsj.snhntmchd},
+      </if>
+      <if test="cbsj.snhntmc != null">
+        SNHNTMC = #{cbsj.snhntmc},
+      </if>
+      <if test="cbsj.lqlmjdrzshd != null">
+        LQLMJDRZSHD = #{cbsj.lqlmjdrzshd},
+      </if>
+      <if test="cbsj.lqlmjdrzs != null">
+        LQLMJDRZS = #{cbsj.lqlmjdrzs},
+      </if>
+      <if test="cbsj.lqlmcbrzshd != null">
+        LQLMCBRZSHD = #{cbsj.lqlmcbrzshd},
+      </if>
+      <if test="cbsj.lqlmcbrzs != null">
+        LQLMCBRZS = #{cbsj.lqlmcbrzs},
+      </if>
+      <if test="cbsj.swjchd != null">
+        SWJCHD = #{cbsj.swjchd},
+      </if>
+      <if test="cbsj.swjc != null">
+        SWJC = #{cbsj.swjc},
+      </if>
+      <if test="cbsj.lqlmpmlqjdlzshd != null">
+        LQLMPMLQJDLZSHD = #{cbsj.lqlmpmlqjdlzshd},
+      </if>
+      <if test="cbsj.lqlmpmlqjdlzs != null">
+        LQLMPMLQJDLZS = #{cbsj.lqlmpmlqjdlzs},
+      </if>
+      <if test="cbsj.lqlmrhlqjdlzshd != null">
+        LQLMRHLQJDLZSHD = #{cbsj.lqlmrhlqjdlzshd},
+      </if>
+      <if test="cbsj.lqlmrhlqjdlzs != null">
+        LQLMRHLQJDLZS = #{cbsj.lqlmrhlqjdlzs},
+      </if>
+      <if test="cbsj.lqlmcblzshd != null">
+        LQLMCBLZSHD = #{cbsj.lqlmcblzshd},
+      </if>
+      <if test="cbsj.lqlmcblzs != null">
+        LQLMCBLZS = #{cbsj.lqlmcblzs},
+      </if>
+      <if test="cbsj.xzrxjchd != null">
+        XZRXJCHD = #{cbsj.xzrxjchd},
+      </if>
+      <if test="cbsj.xzrxjc != null">
+        XZRXJC = #{cbsj.xzrxjc},
+      </if>
+      <if test="cbsj.swjclzshd != null">
+        SWJCLZSHD = #{cbsj.swjclzshd},
+      </if>
+      <if test="cbsj.swjclzs != null">
+        SWJCLZS = #{cbsj.swjclzs},
+      </if>
+      <if test="cbsj.xfchd != null">
+        XFCHD = #{cbsj.xfchd},
+      </if>
+      <if test="cbsj.xfc != null">
+        XFC = #{cbsj.xfc},
+      </if>
+      <if test="cbsj.wcsnmbhd != null">
+        WCSNMBHD = #{cbsj.wcsnmbhd},
+      </if>
+      <if test="cbsj.wcsnmb != null">
+        WCSNMB = #{cbsj.wcsnmb},
+      </if>
+      <if test="cbsj.wcswjchd != null">
+        WCSWJCHD = #{cbsj.wcswjchd},
+      </if>
+      <if test="cbsj.wcswjc != null">
+        WCSWJC = #{cbsj.wcswjc},
+      </if>
+      <if test="cbsj.snhntmchbhd != null">
+        SNHNTMCHBHD = #{cbsj.snhntmchbhd},
+      </if>
+      <if test="cbsj.snhntmchb != null">
+        SNHNTMCHB = #{cbsj.snhntmchb},
+      </if>
+      <if test="cbsj.bxhd != null">
+        BXHD = #{cbsj.bxhd},
+      </if>
+      <if test="cbsj.bx != null">
+        BX = #{cbsj.bx},
+      </if>
+      <if test="cbsj.snhntmcsshhd != null">
+        SNHNTMCSSHHD = #{cbsj.snhntmcsshhd},
+      </if>
+      <if test="cbsj.snhntmcssh != null">
+        SNHNTMCSSH = #{cbsj.snhntmcssh},
+      </if>
+      <if test="cbsj.snhntmchbmj != null">
+        SNHNTMCHBMJ = #{cbsj.snhntmchbmj},
+      </if>
+		<if test="cbsj.sbzj != null">
+        sbzj = #{cbsj.sbzj},
+      </if>
+		
+		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
+		
+		l.xmid=#{lx.xmid} 
+		where l.xmid=#{lx.xmid} 
+		<if test="lx.jdbs!=null and lx.jdbs!=''">and jdbs=#{lx.jdbs}</if>
+		<if test="lx.sffirst==1">and sffirst=1</if>
+		<if test="lx.id!=null and lx.id!=''">and id=#{lx.id}</if>
+	</update>
 	
 	
 	
