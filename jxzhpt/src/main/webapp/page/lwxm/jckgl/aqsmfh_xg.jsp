@@ -213,14 +213,11 @@ text-decoration:none;
 		return zlc;
 	}
 	function saveAbgc(){
+		var sbthcd=parent.obj.sbthcd;
 		
-		var sbthcd=$.cookie("unit2").length;
-		if($.cookie("unit2")=="______36"){
-			sbthcd=7;
-		}
 		var zlc=jszlc($("#roadstart").val(),$("#roadend").val());
 		var qd=$("#roadstart").val().substr(1,$("#roadstart").val().length-1).replace('+','.');
-		var zd=$("#throadend").val().substr(1,$("#throadend").val().length-1).replace('+','.');
+		var zd=$("#roadend").val().substr(1,$("#roadend").val().length-1).replace('+','.');
 		
 		var data ="xmkaqsmfh.roadcode="+$("#roadcode").val()+"&xmkaqsmfh.roadname="+$("#roadname").val()+"&xmkaqsmfh.unit="+$("#unit").val()+"&xmkaqsmfh.unitcode="+$("#unitcode").val()+"&xmkaqsmfh.roadstart="+$("#roadstart").val().replace(/\+/g,"%2B")
 		+"&xmkaqsmfh.roadend="+$("#roadend").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.zlc="+zlc+"&xmkaqsmfh.dist="+$("#dist").val()+"&xmkaqsmfh.distcode="+$("#distcode").val()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").val()+"&xmkaqsmfh.xuh="+$("#xuh").val()+

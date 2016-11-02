@@ -1364,7 +1364,7 @@
 	</select>
 	
 	<select id="loadsjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
+		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
 		
@@ -1414,7 +1414,7 @@
 	</select>
 	
 	<select id="loadlmcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(lc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
@@ -1473,7 +1473,7 @@
 	</select>
 	
 	<select id="loadxjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz 
+		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz 
 		from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		left join (select xmid, min(xjlc) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs 
 		from lxsh_lx where jdbs = '1' group by xmid ) lx on c.xmbm=lx.xmid
@@ -1805,7 +1805,7 @@
 				</if>
 	</select>
 	<select id="loadgsdcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(xzqhdm2)) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from (select  xmid,jsxz,xjsdj,jsjsdj,lxbm,bzcs,
 		(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
 		when jsxz like '%新建%' then to_number(xjlc)

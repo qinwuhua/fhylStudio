@@ -750,13 +750,14 @@
 	</delete>
 	
 	<update id="updateYhdzxSqzt" parameterType="xmsq">
-		update xmsq_yhdzx set sqzt=${sqzt},thyy='',
+		update xmsq_yhdzx set 
+		sqzt=${sqzt},thyy=''
 		<if test="lsjl!='' and lsjl!=null">,lsjl=#{lsjl}</if>
 		<if test="wnxmk!='' and wnxmk!=null">,wnxmk=#{wnxmk}</if>
-		 where xmbm=#{xmbm}
+		 where xmbm in (${xmbm})
 	</update>
 	<update id="updateShSqzt" parameterType="xmsq">
-		update xmsq_sh set sqzt=${sqzt},thyy='' where xmbm=#{xmbm}
+		update xmsq_sh set sqzt=${sqzt},thyy='' where xmbm in (${xmbm})
 	</update>
 	
 	<insert id="insertJhshYhdzx" parameterType="xmsq">
@@ -786,7 +787,7 @@
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
-		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,
+		select x.*,decode(l.gpsqdzh,null,l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,l.gpszdzh) gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,
 		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
 		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
 		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
@@ -794,7 +795,7 @@
 		from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
-		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
+		select x.*,decode(l.gpsqdzh,null,l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,l.gpszdzh) gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='0'
 	</select>
 	

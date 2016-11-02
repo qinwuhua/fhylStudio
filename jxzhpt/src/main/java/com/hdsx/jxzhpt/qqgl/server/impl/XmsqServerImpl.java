@@ -123,30 +123,14 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public boolean updateYhdzxSqzt(Xmsq xmsq) {
-		String[] split = xmsq.getXmbm().split(",");
-		List<Xmsq> list=new ArrayList<Xmsq>();
-		for (String x : split) {
-			Xmsq item =new Xmsq();
-			item.setXmbm(x);
-			item.setSqzt(xmsq.getSqzt());
-			item.setLsjl(xmsq.getLsjl());
-			item.setWnxmk(xmsq.getWnxmk());
-			list.add(item);
-		}
-		return updateBatch("updateYhdzxSqzt", list)==list.size();
+
+		return update("updateYhdzxSqzt", xmsq)>0;
 	}
 	
 	@Override
 	public boolean updateShSqzt(Xmsq xmsq) {
-		String[] split = xmsq.getXmbm().split(",");
-		List<Xmsq> list=new ArrayList<Xmsq>();
-		for (String x : split) {
-			Xmsq item =new Xmsq();
-			item.setXmbm(x);
-			item.setSqzt(xmsq.getSqzt());
-			list.add(item);
-		}
-		return updateBatch("updateShSqzt", list)==list.size();
+		
+		return update("updateShSqzt", xmsq)>0;
 	}
 	@Override
 	public boolean insertJhshYhdzx(Xmsq xmsq) {
