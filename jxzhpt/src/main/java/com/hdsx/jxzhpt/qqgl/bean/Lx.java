@@ -15,7 +15,14 @@ public class Lx {
 	private String jszlc;
 	private String xmlx;
 	private String snhntmchbmj;
+	private String xmbm1;
 	
+	public String getXmbm1() {
+		return xmbm1;
+	}
+	public void setXmbm1(String xmbm1) {
+		this.xmbm1 = xmbm1;
+	}
 	public String getSnhntmchbmj() {
 		return snhntmchbmj;
 	}

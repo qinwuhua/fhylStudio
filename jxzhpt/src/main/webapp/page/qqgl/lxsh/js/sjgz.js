@@ -778,16 +778,15 @@ function dingwei(index){
 	
 }
 function xmbm(id,xzqh,nf,xmlx){
-	
-	var data="xmtype="+xmlx+"&xzqh="+xzqh+"&nf="+nf;
+	var data='xmsq.xmlx='+xmlx+'&xmsq.xzqhdm='+$.cookie('dist')+'&xmsq.xmnf='+nf;
 	$("#"+id).html('');
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/qqgl/selectxmbm.do',
+		url:'/jxzhpt/qqgl/queryNextXmbm.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
-			$("#xmbm").html(msg.xmbm);
+			$("#xmbm").html(nf+$.cookie('dist')+msg.xmbm);
 		},
 		error : function(){
 		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
@@ -1194,7 +1193,7 @@ function showAll123(){
 function xmnf1(id,xmlx){
 	var myDate = new Date();
 	var years=[];
-	var first;
+	var first='';
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
@@ -1205,7 +1204,7 @@ function xmnf1(id,xmlx){
 	    valueField:'value',
 	    textField:'text',
 	    onSelect:function(rec){
-	    	xmbm(id,$.cookie("dist"),rec.value,xmlx);
+	    	xmbm('xmbm',$.cookie("dist"),rec.value,xmlx);
 	    }
 	});
 	$('#'+id).combobox("setValue",first);

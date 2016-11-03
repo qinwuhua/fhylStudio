@@ -101,7 +101,7 @@ text-decoration:none;
 	}
 	
 	$(function(){
-		xmnf2("xmnf");
+		xmnf1("xmnf",'2');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		load();
@@ -190,7 +190,7 @@ text-decoration:none;
 			saveLxsh();
 			
 		});
-		
+			
 			autoCompleteLXBM();
 			autoCompleteGHLXBM();
 	});
@@ -314,7 +314,7 @@ text-decoration:none;
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val()
 			+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
 			+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
-			+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
+			+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid+'&lxsh.xmbm1='+parent.obj.xmbm;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateLmgz.do',

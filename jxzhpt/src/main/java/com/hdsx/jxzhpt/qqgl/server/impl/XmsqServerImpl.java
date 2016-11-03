@@ -38,6 +38,19 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryOne("queryShNextXmbm", xmsq);
 	}
 	@Override
+	public String querySjgzNextXmbm(Xmsq xmsq) {
+		return queryOne("querySjgzNextXmbm", xmsq);
+	}
+	@Override
+	public String queryLmgzNextXmbm(Xmsq xmsq) {
+		return queryOne("queryLmgzNextXmbm", xmsq);
+	}
+	@Override
+	public String queryXjNextXmbm(Xmsq xmsq) {
+		return queryOne("queryXjNextXmbm", xmsq);
+	}
+	
+	@Override
 	public List<Lx> queryAutoList(Xmsq xmsq) {
 		return queryList("queryAutoList",xmsq);
 	}

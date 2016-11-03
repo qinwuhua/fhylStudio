@@ -287,4 +287,7 @@ public interface XmsqServer {
 	public Xmsq getylxinfo(Xmsq xmsq);
 	public Lx getylxlminfo(Xmsq xmsq);
 	public List<Xmsq> getgxlxinfo(Xmsq xmsq);
+	public String querySjgzNextXmbm(Xmsq xmsq);
+	public String queryLmgzNextXmbm(Xmsq xmsq);
+	public String queryXjNextXmbm(Xmsq xmsq);
 }

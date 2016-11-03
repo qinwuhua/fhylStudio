@@ -201,21 +201,21 @@
 		}
 		
 		function sfinsert(){
-			if(qdStr < zdStr){
-				if($("#qdzh").val() < qdStr){
+			if(parseFloat(qdStr) < parseFloat(zdStr)){
+				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
 					alert("原起点桩号不能小于"+qdStr);
 					return false;
 				}
-				if($("#zdzh").val() > zdStr){
+				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
 					alert("原止点桩号不能大于"+zdStr);
 					return false;
 				}
 			}else{
-				if($("#qdzh").val() > qdStr){
+				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
 					alert("原起点桩号不能大于"+qdStr);
 					return false;
 				}
-				if($("#zdzh").val() < zdStr){
+				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
 					alert("原止点桩号不能小于"+zdStr);
 					return false;
 				}

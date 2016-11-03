@@ -16,7 +16,14 @@ public class Lxsh implements Serializable {
 	private String sfbflx;
 	private String sbzt;
 	private String thyy;
+	private String xmbm1;
 	
+	public String getXmbm1() {
+		return xmbm1;
+	}
+	public void setXmbm1(String xmbm1) {
+		this.xmbm1 = xmbm1;
+	}
 	public String getThyy() {
 		return thyy;
 	}

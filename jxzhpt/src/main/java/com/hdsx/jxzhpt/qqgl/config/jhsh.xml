@@ -1334,6 +1334,173 @@
 		<if test="id!=null and id!=''">and id=#{id}</if>
 	</update>
 	
+	<update id="updateLxqwh" parameterType="lx">
+		update lxsh_lx l set 
+		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
+		<if test="jsfa!=null">l.jsfa=#{jsfa},</if>
+		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
+		<if test="qdmc!=null">l.qdmc=#{qdmc},</if>
+		<if test="zdmc!=null">l.zdmc=#{zdmc},</if>
+		<if test="yilc!=null and yilc!=''">l.yilc=#{yilc},</if>
+		<if test="erlc!=null and erlc!=''">l.erlc=#{erlc},</if>
+		<if test="sanlc!=null and sanlc!=''">l.sanlc=#{sanlc},</if>
+		<if test="silc!=null and silc!=''">l.silc=#{silc},</if>
+		<if test="dwlc!=null and dwlc!=''">l.dwlc=#{dwlc},</if>
+		<if test="wllc!=null and wllc!=''">l.wllc=#{wllc},</if>
+		<if test="jhyilc!=null and jhyilc!=''">l.jhyilc=#{jhyilc},</if>
+		<if test="jherlc!=null and jherlc!=''">l.jherlc=#{jherlc},</if>
+		<if test="jhsanlc!=null and jhsanlc!=''">l.jhsanlc=#{jhsanlc},</if>
+		<if test="jhsilc!=null and jhsilc!=''">l.jhsilc=#{jhsilc},</if>
+		<if test="jhdwlc!=null and jhdwlc!=''">l.jhdwlc=#{jhdwlc},</if>
+		<if test="jhwllc!=null and jhwllc!=''">l.jhwllc=#{jhwllc},</if>
+		<if test="xjlxbm!=null and xjlxbm!=''">l.xjlxbm=#{xjlxbm},</if>
+		<if test="xjqdzh!=null">l.xjqdzh=#{xjqdzh},</if>
+		<if test="xjzdzh!=null">l.xjzdzh=#{xjzdzh},</if>
+		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
+		<if test="lxbm!=null and lxbm!=''">l.lxbm=#{lxbm},</if>
+		<if test="qdzh!=null and qdzh!=''">l.qdzh=#{qdzh},</if>
+		<if test="zdzh!=null and zdzh!=''">l.zdzh=#{zdzh},</if>
+		<if test="gydw!=null and gydw!=''">l.gydw=#{gydw},</if>
+		<if test="gydwdm!=null and gydwdm!=''">l.gydwdm=#{gydwdm},</if>
+		<if test="xzqh!=null and xzqh!=''">l.xzqh=#{xzqh},</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">l.xzqhdm=#{xzqhdm},</if>
+		<if test="jsjsdj!=null and jsjsdj!=''">l.jsjsdj=#{jsjsdj},</if>
+		<if test="xjsdj!=null and xjsdj!=''">l.xjsdj=#{xjsdj},</if>
+<!-- 		<if test="bzcs!=null and bzcs!=''">l.bzcs=#{bzcs},</if> -->
+		<if test="jszlc!=null and jszlc!=''">l.jhlc=#{jszlc},</if>
+		<if test="ghlxbm != null">l.ghlxbm=#{ghlxbm},</if>
+		<if test="ghlxmc != null">l.ghlxmc=#{ghlxmc},</if>
+		<if test="ghqdzh != null">l.ghqdzh=#{ghqdzh},</if>
+		<if test="ghzdzh != null">l.ghzdzh=#{ghzdzh},</if>
+		<if test="gxlxbm != null">l.gxlxbm=#{gxlxbm},</if>
+		<if test="gxqdzh != null">l.gxqdzh=#{gxqdzh},</if>
+		<if test="gxzdzh != null">l.gxzdzh=#{gxzdzh},</if>
+		<if test="lqhntmchd != null">
+        LQHNTMCHD = #{lqhntmchd},
+      </if>
+      <if test="lqhntmc != null">
+        LQHNTMC = #{lqhntmc},
+      </if>
+      <if test="gxlqhntmchd != null">
+        GXLQHNTMCHD = #{gxlqhntmchd},
+      </if>
+      <if test="gxlqhntmc != null">
+        GXLQHNTMC = #{gxlqhntmc},
+      </if>
+      <if test="snhntmchd != null">
+        SNHNTMCHD = #{snhntmchd},
+      </if>
+      <if test="snhntmc != null">
+        SNHNTMC = #{snhntmc},
+      </if>
+      <if test="lqlmjdrzshd != null">
+        LQLMJDRZSHD = #{lqlmjdrzshd},
+      </if>
+      <if test="lqlmjdrzs != null">
+        LQLMJDRZS = #{lqlmjdrzs},
+      </if>
+      <if test="lqlmcbrzshd != null">
+        LQLMCBRZSHD = #{lqlmcbrzshd},
+      </if>
+      <if test="lqlmcbrzs != null">
+        LQLMCBRZS = #{lqlmcbrzs},
+      </if>
+      <if test="swjchd != null">
+        SWJCHD = #{swjchd},
+      </if>
+      <if test="swjc != null">
+        SWJC = #{swjc},
+      </if>
+      <if test="lqlmpmlqjdlzshd != null">
+        LQLMPMLQJDLZSHD = #{lqlmpmlqjdlzshd},
+      </if>
+      <if test="lqlmpmlqjdlzs != null">
+        LQLMPMLQJDLZS = #{lqlmpmlqjdlzs},
+      </if>
+      <if test="lqlmrhlqjdlzshd != null">
+        LQLMRHLQJDLZSHD = #{lqlmrhlqjdlzshd},
+      </if>
+      <if test="lqlmrhlqjdlzs != null">
+        LQLMRHLQJDLZS = #{lqlmrhlqjdlzs},
+      </if>
+      <if test="lqlmcblzshd != null">
+        LQLMCBLZSHD = #{lqlmcblzshd},
+      </if>
+      <if test="lqlmcblzs != null">
+        LQLMCBLZS = #{lqlmcblzs},
+      </if>
+      <if test="xzrxjchd != null">
+        XZRXJCHD = #{xzrxjchd},
+      </if>
+      <if test="xzrxjc != null">
+        XZRXJC = #{xzrxjc},
+      </if>
+      <if test="swjclzshd != null">
+        SWJCLZSHD = #{swjclzshd},
+      </if>
+      <if test="swjclzs != null">
+        SWJCLZS = #{swjclzs},
+      </if>
+      <if test="xfchd != null">
+        XFCHD = #{xfchd},
+      </if>
+      <if test="xfc != null">
+        XFC = #{xfc},
+      </if>
+      <if test="wcsnmbhd != null">
+        WCSNMBHD = #{wcsnmbhd},
+      </if>
+      <if test="wcsnmb != null">
+        WCSNMB = #{wcsnmb},
+      </if>
+      <if test="wcswjchd != null">
+        WCSWJCHD = #{wcswjchd},
+      </if>
+      <if test="wcswjc != null">
+        WCSWJC = #{wcswjc},
+      </if>
+      <if test="snhntmchbhd != null">
+        SNHNTMCHBHD = #{snhntmchbhd},
+      </if>
+      <if test="snhntmchb != null">
+        SNHNTMCHB = #{snhntmchb},
+      </if>
+      <if test="bxhd != null">
+        BXHD = #{bxhd},
+      </if>
+      <if test="bx != null">
+        BX = #{bx},
+      </if>
+      <if test="snhntmcsshhd != null">
+        SNHNTMCSSHHD = #{snhntmcsshhd},
+      </if>
+      <if test="snhntmcssh != null">
+        SNHNTMCSSH = #{snhntmcssh},
+      </if>
+		<if test="lmkd != null">
+        lxlmkd = #{lmkd},
+      </if>
+		<if test="sbzj != null">
+        sbzj = #{sbzj},
+      </if>
+		<if test="snhntmchbmj != null">
+        snhntmchbmj = #{snhntmchbmj},
+      </if>
+		<if test="lc!=null and lc!=''">l.lc=#{lc},</if>
+		l.xmid=#{xmid} 
+		where l.xmid=#{xmbm1} 
+		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
+		<if test="sffirst==1">and sffirst=1</if>
+		<if test="id!=null and id!=''">and id=#{id}</if>
+	</update>
+	<update id="updateLxqwhxmbm" parameterType="lx">
+	update lxsh_lx set xmid=#{xmid} where xmid=#{xmbm1} 
+	</update>
+	
+	
+	
+	
+	
 	<update id="updateyhdzxLx" parameterType="hashmap">
 		update lxsh_lx l set 
 		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>

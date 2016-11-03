@@ -1320,8 +1320,10 @@ public class LxshController extends BaseActionSupport{
 		lx.setGxqdzh(lxsh.getGxqdzh());
 		lx.setGxzdzh(lxsh.getGxzdzh());
 		lx.setGhlxmc(lxsh.getGhlxmc());
+		lx.setXmbm1(lxsh.getXmbm1());
 		if(bl){
-			jhshServer.updateLx(lx);
+			//jhshServer.updateLx(lx);
+			jhshServer.updateLxqwh(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -1348,7 +1350,8 @@ public class LxshController extends BaseActionSupport{
 			lx.setGxqdzh(lxsh.getGxqdzh());
 			lx.setGxzdzh(lxsh.getGxzdzh());
 			lx.setGhlxmc(lxsh.getGhlxmc());
-			jhshServer.updateLx(lx);
+			lx.setXmbm1(lxsh.getXmbm1());
+			jhshServer.updateLxqwh(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -1366,7 +1369,8 @@ public class LxshController extends BaseActionSupport{
 			lx.setZdmc(lxsh.getZdmc());
 			lx.setSffirst("1");
 			lx.setJdbs("0");
-			jhshServer.updateLx(lx);
+			lx.setXmbm1(lxsh.getXmbm1());
+			jhshServer.updateLxqwh(lx);
 			if(bl){
 				ResponseUtils.write(getresponse(), "true");
 			}else{

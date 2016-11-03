@@ -35,10 +35,10 @@ text-decoration:none;
 	$(function(){
 		loadUnitadd("gydw",$.cookie("unit"));
 		loadDistadd("xzqh",$.cookie("dist"));
-		xmnf1("xmnf",'sjgz');
+		xmnf1("xmnf",'1');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
-		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'sjgz');
+		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'1');
 		/*$('#jsjsdj').combobox({
 		    onSelect:function(rec){
 		    	getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
@@ -199,7 +199,7 @@ text-decoration:none;
 				function(e, item) {
 					if(item==undefined) return ;
 					//$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
-					xmbm('xmbm',$.cookie("dist"),item.xmnf,'sjgz');
+					xmbm('xmbm',$.cookie("dist"),item.xmnf,'1');
 					wnobj=item;
 					$("#lxmc").html(item.lxmc);$("#lxbm").val(item.ghlxbh);
 					$("#xjsdj").val(item.xjsdj);$("#jsjsdj").val(item.jsjsdj);

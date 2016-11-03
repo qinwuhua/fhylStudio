@@ -35,10 +35,10 @@ text-decoration:none;
 	$(function(){
 		loadUnitadd("gydw",$.cookie("unit"));
 		loadDistadd("xzqh",$.cookie("dist"));
-		xmnf1("xmnf",'xj');
+		xmnf1("xmnf",'3');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
-		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'xj');
+		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'3');
 		//Stsdq1('tsdq','');
 		$("#save_button").click(function(){
 			/* if($("#lxbm").val()=="" || $("#lxbm").val()==null){
@@ -168,7 +168,7 @@ text-decoration:none;
 				function(e, item) {
 					if(item==undefined) return ;
 					//$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
-					xmbm('xmbm',$.cookie("dist"),item.xmnf,'xj');
+					xmbm('xmbm',$.cookie("dist"),item.xmnf,'3');
 					wnobj=item;
 					$("#lxmc").val(item.lxmc);$("#lxbm").val(item.ghlxbh);
 					$("#xjsdj").val(item.xjsdj);$("#jsjsdj").val(item.jsjsdj);

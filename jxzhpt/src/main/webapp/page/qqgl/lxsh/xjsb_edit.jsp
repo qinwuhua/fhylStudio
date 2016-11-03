@@ -111,7 +111,7 @@ text-decoration:none;
 	}
 	
 	$(function(){
-		xmnf2("xmnf");
+		xmnf1("xmnf",'3');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		load();
@@ -203,7 +203,7 @@ text-decoration:none;
 		+"&lx.xjlc="+$('#xjlc').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+
 		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid;
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid+'&lxsh.xmbm1='+parent.obj.xmbm;
 		//alert(data);
 		$.ajax({
 			type:'post',

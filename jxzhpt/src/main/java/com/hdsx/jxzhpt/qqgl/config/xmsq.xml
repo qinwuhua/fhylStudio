@@ -5,6 +5,16 @@
 		select distinct ylxbm,yqdzh,yzdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,cfld,ylxmc lxmc from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
 		order by to_number(xqdzh)
 	</select>
+	<select id="querySjgzNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),1000)+1 from lxsh_sjgz c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
+	</select>
+	<select id="queryLmgzNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),2000)+1 from lxsh_lmgz c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
+	</select>
+	<select id="queryXjNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),3000)+1 from lxsh_xj c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
+	</select>
+	
 	<select id="queryYhdzxNextXmbm" resultType="string">
 		select NVL(max(substr(c.xmbm,11)),4000)+1 from xmsq_yhdzx c where c.xmbm like #{xmnf}||#{xzqhdm}||'%'
 	</select>

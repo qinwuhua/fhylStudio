@@ -288,6 +288,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		lxsh.setBzys(bzcs+"");
 		if(update("updateSjgz", lxsh)>0){
 			update("updateqqglsj", lxsh);
+			//update("", parameter)
 			return true;
 		}
 		else
@@ -296,7 +297,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public boolean updateLmgz(Lxsh lxsh) {
-		System.out.println("备注："+lxsh.getBz());
+		//System.out.println("备注："+lxsh.getBz());
 		update("updateSjgzlx", lxsh);
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
 		Double lc=queryOne("queryMaxlc",lxsh);

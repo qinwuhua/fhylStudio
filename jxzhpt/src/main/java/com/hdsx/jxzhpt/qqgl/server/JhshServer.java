@@ -196,6 +196,7 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateLx(Lx lx);
+	public boolean updateLxqwh(Lx lx);
 	/**
 	 * 修改路线信息
 	 * @param lx 修改路线信息

@@ -69,7 +69,15 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			String xmbm=null;
 			if(xmsq.getXmlx()==4){
 				xmbm = xmsqServer.queryYhdzxNextXmbm(xmsq);
-			}else if(xmsq.getXmlx()==5){
+			}else if(xmsq.getXmlx()==1){
+				xmbm = xmsqServer.querySjgzNextXmbm(xmsq);
+			}
+			else if(xmsq.getXmlx()==2){
+				xmbm = xmsqServer.queryLmgzNextXmbm(xmsq);
+			}else if(xmsq.getXmlx()==3){
+				xmbm = xmsqServer.queryXjNextXmbm(xmsq);
+			}
+			else if(xmsq.getXmlx()==5){
 				xmbm = xmsqServer.queryShNextXmbm(xmsq);
 			}
 			else if(xmsq.getXmlx()==6){
