@@ -43,13 +43,34 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				$('#kxxyj').form("load",msg);
-				var lc=parseFloat(msg.gpszdzh)-parseFloat(msg.gpsqdzh);
-				qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+				//var lc=parseFloat(msg.gpszdzh)-parseFloat(msg.gpsqdzh);
+				var lc=Math.abs(accSub(parseFloat(msg.gpszdzh),parseFloat(msg.gpsqdzh)));
+				/* qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
 				zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
 				if(qdStr<0)
 					qdStr=0;
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr); */
+				if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
+					qdStr=(parseFloat(msg.gpsqdzh)-lc*0.3).toFixed(3);
+					if(qdStr<0){
+						qdStr=0;
+					}
+					zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
+				}else{
+					qdStr=(parseFloat(msg.gpsqdzh)+lc*0.3).toFixed(3);
+					zdStr=(parseFloat(msg.gpszdzh)-lc*0.3).toFixed(3);
+					if(zdStr<0){
+						zdStr=0;
+					}
+				}
+				if(parseFloat(qdStr) > parseFloat(zdStr)){
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+				}else{
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+				}
 				loadUnitedit("gydw",$.cookie("unit"),msg.gydwdm1);
 				$("#gydw").combotree('setValues',msg.gydwdm1.split(","));
 				//loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
@@ -98,7 +119,7 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#qdzh").val())*1000<parseFloat(qdStr)*1000){
+			/* if(parseFloat($("#qdzh").val())*1000<parseFloat(qdStr)*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
 				$("#qdzh").focus();
 				return false;
@@ -112,7 +133,7 @@ text-decoration:none;
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
-			}
+			} */
 			
 			saveLxsh();
 		});
@@ -158,30 +179,51 @@ text-decoration:none;
 	  	}).result(
 				function(e, item) {
 					if(item==undefined) return ;
-					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
+					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#span_qdzh,#span_zdzh").attr("value",'');
 					xzqh=item.xzqh;
 					$("#lxmc").val(item.lxmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					var lc=Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)));
 					//$("#jsjsdj").val(item.xjsdj);
 					//$("#xjsdj").val(item.xjsdj);
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
-					$("#gpsqdzh").val(qdStr);
-					$("#gpszdzh").val(zdStr);
+					/* qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh); */
+					
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$('#span_qdzh').html(">="+item.qdzh);
 						$('#span_zdzh').html("<="+item.zdzh);
 					}else{
 						$('#span_qdzh').html("<="+item.qdzh);
 						$('#span_zdzh').html(">="+item.zdzh);
+					} */
+					if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+						qdStr=(parseFloat(item.qdzh)-lc*0.3).toFixed(3);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=(parseFloat(item.zdzh)+lc*0.3).toFixed(3);
+					}else{
+						qdStr=(parseFloat(item.qdzh)+lc*0.3).toFixed(3);
+						zdStr=(parseFloat(item.zdzh)-lc*0.3).toFixed(3);
+						if(zdStr<0){
+							zdStr=0;
+						}
 					}
-					
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					}
+					$("#gpsqdzh").val(qdStr);
+					$("#gpszdzh").val(zdStr);
 					//querymc('qdzh');
 					//querymc('zdzh');
 					//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
@@ -230,13 +272,32 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
+		} */
+		if(parseFloat(qdStr) < parseFloat(zdStr)){
+			if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+				alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
+				return false;
+			}
+			if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+				alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
+				return false;
+			}
+		}else{
+			if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+				alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
+				return false;
+			}
+			if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+				alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
+				return false;
+			}
 		}
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//queryJsdjAndLc($("#lxbh").val(),$("#qdzh").val(),$("#zdzh").val());
@@ -348,12 +409,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh"  onblur="changeZlc()" style="width: 120px;"/><br/>
-					<span id="qd"></span>
+					<span id="span_qdzh"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="zdzh" id="zdzh" onblur="changeZlc()" style="width: 120px;"/><br/>
-					<span id="zd"></span>
+					<span id="span_zdzh"></span>
 				</td>
 			</tr>
 			

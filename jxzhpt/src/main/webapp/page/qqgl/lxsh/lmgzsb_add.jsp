@@ -94,22 +94,22 @@ a{text-decoration:none;}
 				$("#qdzh").focus();
 				return false;
 			} */
-			if(qdStr < zdStr){
-				if($("#qdzh").val() < qdStr){
-					alert("原起点桩号不能小于"+qdStr);
+			if(parseFloat(qdStr) < parseFloat(zdStr)){
+				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+					alert("原起点桩号不能小于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() > zdStr){
-					alert("原止点桩号不能大于"+zdStr);
+				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+					alert("原止点桩号不能大于"+$("#span_zdzh").text());
 					return false;
 				}
 			}else{
-				if($("#qdzh").val() > qdStr){
-					alert("原起点桩号不能大于"+qdStr);
+				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+					alert("原起点桩号不能大于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() < zdStr){
-					alert("原止点桩号不能小于"+zdStr);
+				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+					alert("原止点桩号不能小于"+$("#span_zdzh").text());
 					return false;
 				}
 			}
@@ -234,12 +234,12 @@ a{text-decoration:none;}
 							zdStr=0;
 						}
 					}
-					if(qdStr > zdStr){
-						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
-						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
 					}else{
-						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
-						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
 					loadjsdjcd();
 				});
@@ -352,7 +352,7 @@ a{text-decoration:none;}
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onchange="changeZlc()" /><br/>
-					<span id="qd"></span>
+					<span id="span_qdzh"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -360,7 +360,7 @@ a{text-decoration:none;}
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onchange="changeZlc()"/><br/>
-					<span id="zd"></span>
+					<span id="span_zdzh"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>里程：</td>

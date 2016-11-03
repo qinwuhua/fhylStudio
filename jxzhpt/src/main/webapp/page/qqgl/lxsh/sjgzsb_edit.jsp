@@ -130,12 +130,12 @@ text-decoration:none;
 						zdStr=0;
 					}
 				}
-				if(qdStr > zdStr){
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+				if(parseFloat(qdStr) > parseFloat(zdStr)){
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
 				}else{
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 				}
 				
 			},
@@ -213,22 +213,22 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			} */
-			if(qdStr < zdStr){
-				if($("#qdzh").val() < qdStr){
-					alert("原起点桩号不能小于"+qdStr);
+			if(parseFloat(qdStr) < parseFloat(zdStr)){
+				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+					alert("原起点桩号不能小于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() > zdStr){
-					alert("原止点桩号不能大于"+zdStr);
+				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+					alert("原止点桩号不能大于"+$("#span_zdzh").text());
 					return false;
 				}
 			}else{
-				if($("#qdzh").val() > qdStr){
-					alert("原起点桩号不能大于"+qdStr);
+				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+					alert("原起点桩号不能大于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() < zdStr){
-					alert("原止点桩号不能小于"+zdStr);
+				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+					alert("原止点桩号不能小于"+$("#span_zdzh").text());
 					return false;
 				}
 			}
@@ -285,7 +285,7 @@ text-decoration:none;
 	  	}).result(
 				function(e, item) {
 					if(item==undefined) return ;
-					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
+					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#span_qdzh,#span_zdzh").attr("value",'');
 					xzqh=item.xzqh;
 					$("#lxmc").val(item.lxmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
@@ -296,17 +296,38 @@ text-decoration:none;
 					//$("#xjsdj").val(item.xjsdj);
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
+					/* qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh); */
 					$("#gpsqdzh").val(qdStr);
 					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-						$('#span_qdzh').html(">="+item.qdzh);
-						$('#span_zdzh').html("<="+item.zdzh);
+					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						$('#qd').html(">="+item.qdzh);
+						$('#zd').html("<="+item.zdzh);
 					}else{
-						$('#span_qdzh').html("<="+item.qdzh);
-						$('#span_zdzh').html(">="+item.zdzh);
+						$('#qd').html("<="+item.qdzh);
+						$('#zd').html(">="+item.zdzh);
+					} */
+					
+					if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+						qdStr=accSub(parseFloat(item.qdzh),5);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=accAdd(parseFloat(item.zdzh),5);
+					}else{
+						qdStr=accAdd(parseFloat(item.qdzh),5);
+						zdStr=accSub(parseFloat(item.zdzh),5);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
 					
 					//querymc('qdzh');
@@ -438,7 +459,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
-					<span id="qd"></span>
+					<span id="span_qdzh"></span>
 				</td>
 			</tr>
 			
@@ -448,7 +469,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
-					<span id="zd"></span>
+					<span id="span_zdzh"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>

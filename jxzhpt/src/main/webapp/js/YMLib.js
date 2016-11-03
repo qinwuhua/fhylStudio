@@ -3477,13 +3477,22 @@ function getylxinfo(lxbm,qdzh,zdzh){
 				$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				
-				if(parseFloat(qd)<parseFloat(zd)){
+				/*if(parseFloat(qd)<parseFloat(zd)){
 					$('#span_qdzh').html(">="+qd);
 					$('#span_zdzh').html("<="+zd);
 				}else{
 					$('#span_qdzh').html("<="+qd);
 					$('#span_zdzh').html(">="+zd);
+				}*/
+				
+				if(parseFloat(qd) > parseFloat(zd)){
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qd);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zd);
+				}else{
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qd);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zd);
 				}
+				
 				getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
 			}
 			

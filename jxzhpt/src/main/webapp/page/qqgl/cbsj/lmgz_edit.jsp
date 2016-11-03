@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/other.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			loadBmbm2('jsjsdj','技术等级');
@@ -39,13 +40,34 @@
 					loadDistedit("xzqh1",$.cookie("dist"),data.xzqhdm);
 					$("#xzqh1").combotree('setValues',data.xzqhdm.split(","));
 					
-					var lc=parseFloat(data.gpszdzh)-parseFloat(data.gpsqdzh);
+					/* var lc=parseFloat(data.gpszdzh)-parseFloat(data.gpsqdzh);
 					var qdStr=(parseFloat(data.gpsqdzh)-lc*0.3).toFixed(3);
 					var zdStr=(parseFloat(data.gpszdzh)+lc*0.3).toFixed(3);
 					if(qdStr<0)
 						qdStr=0;
 					$('#span_qdzh').html(qdStr);
-					$('#span_zdzh').html(zdStr);
+					$('#span_zdzh').html(zdStr); */
+					var lc=Math.abs(accSub(parseFloat(data.gpszdzh),parseFloat(data.gpsqdzh)));
+					if(parseFloat(data.gpsqdzh) < parseFloat(data.gpszdzh)){
+						qdStr=(parseFloat(data.gpsqdzh)-lc*0.3).toFixed(3);
+						if(qdStr<0){
+							qdStr=0;
+						}
+						zdStr=(parseFloat(data.gpszdzh)+lc*0.3).toFixed(3);
+					}else{
+						qdStr=(parseFloat(data.gpsqdzh)+lc*0.3).toFixed(3);
+						zdStr=(parseFloat(data.gpszdzh)-lc*0.3).toFixed(3);
+						if(zdStr<0){
+							zdStr=0;
+						}
+					}
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					}else{
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					}
 					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
@@ -57,7 +79,7 @@
 		});
 		function autoCompleteLXBM(){
 			var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
-			$("#ylxbh").autocomplete(url, {
+			$("#ylxbh1").autocomplete(url, {
 				multiple : false,
 				minChars :4,
 				multipleSeparator : ' ',
@@ -94,29 +116,50 @@
 		  	}).result(
 					function(e, item) {
 						if(item==undefined) return ;
-						$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
+						$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#span_qdzh,#span_zdzh").attr("value",'');
 						xzqh=item.xzqh;
 						$("#lxmc").val(item.lxmc);
 						$("#qdzh").val(parseFloat(item.qdzh));
 						$("#zdzh").val(parseFloat(item.zdzh));
 						selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
-						$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+						$("#lc").val(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
+						var lc=Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)));
 						//$("#jsjsdj").val(item.xjsdj);
 						//$("#xjsdj").val(item.xjsdj);
 						//$("#qdmc").val(item.qdmc);
 						//$("#zdmc").val(item.zdmc);
-						qdStr=parseFloat(item.qdzh);
-						zdStr=parseFloat(item.zdzh);
+						/* qdStr=parseFloat(item.qdzh);
+						zdStr=parseFloat(item.zdzh); */
+						if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+							qdStr=(parseFloat(item.qdzh)-lc*0.3).toFixed(3);
+							if(qdStr<0){
+								qdStr=0;
+							}
+							zdStr=(parseFloat(item.zdzh)+lc*0.3).toFixed(3);
+						}else{
+							qdStr=(parseFloat(item.qdzh)+lc*0.3).toFixed(3);
+							zdStr=(parseFloat(item.zdzh)-lc*0.3).toFixed(3);
+							if(zdStr<0){
+								zdStr=0;
+							}
+						}
+						if(parseFloat(qdStr) > parseFloat(zdStr)){
+							$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+							$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+						}else{
+							$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+							$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+						}
 						$("#gpsqdzh").val(qdStr);
 						$("#gpszdzh").val(zdStr);
 						getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-						if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
+						/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 							$('#span_qdzh').html(">="+item.qdzh);
 							$('#span_zdzh').html("<="+item.zdzh);
 						}else{
 							$('#span_qdzh').html("<="+item.qdzh);
 							$('#span_zdzh').html(">="+item.zdzh);
-						}
+						} */
 						
 						//querymc('qdzh');
 						//querymc('zdzh');
@@ -218,7 +261,25 @@
 			}else{
 				return true;
 			} */
-			
+			if(parseFloat(qdStr) < parseFloat(zdStr)){
+				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+					alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
+					return false;
+				}
+				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+					alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
+					return false;
+				}
+			}else{
+				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+					alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
+					return false;
+				}
+				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+					alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
+					return false;
+				}
+			}
 			return true;
 		}
 		function upload(){
@@ -326,7 +387,7 @@
 						原路线编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="ylxbh" name="ylxbh" style="width: 120px;" type="text"/>
+						<input id="ylxbh1" name="ylxbh" style="width: 120px;" type="text"/>
 					</td>
 					
 				</tr>
@@ -336,14 +397,14 @@
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
-						<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
+						<br/><span id="span_qdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						原讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
-						<br/><span style="font-size:small; color: red;">止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
+						<br/><span id="span_zdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						路基(m3)

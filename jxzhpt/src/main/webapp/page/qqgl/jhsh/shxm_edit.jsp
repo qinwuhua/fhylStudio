@@ -50,7 +50,7 @@
 							zdStr=0;
 						}
 					}
-					if(qdStr > zdStr){
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
 						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
 						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
 					}else{
@@ -98,22 +98,22 @@
 			}
 		}
 		function zhuanghao(){
-			if(qdStr < zdStr){
-				if($("#qdzh").val() < qdStr){
-					alert("原起点桩号不能小于"+qdStr);
+			if(parseFloat(qdStr) < parseFloat(zdStr)){
+				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+					alert("原起点桩号不能小于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() > zdStr){
-					alert("原止点桩号不能大于"+zdStr);
+				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+					alert("原止点桩号不能大于"+$("#span_zdzh").text());
 					return false;
 				}
 			}else{
-				if($("#qdzh").val() > qdStr){
-					alert("原起点桩号不能大于"+qdStr);
+				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+					alert("原起点桩号不能大于"+$("#span_qdzh").text());
 					return false;
 				}
-				if($("#zdzh").val() < zdStr){
-					alert("原止点桩号不能小于"+zdStr);
+				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+					alert("原止点桩号不能小于"+$("#span_zdzh").text());
 					return false;
 				}
 			}

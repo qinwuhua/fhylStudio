@@ -818,6 +818,7 @@
 	<update id="updateCbsjLmgz" parameterType="cbsj">
 		update cbsj_lmgz c set c.xmmc=#{xmmc},
 		c.qdzh=#{qdzh},
+		c.zdzh=#{zdzh},
 		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
 		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
 		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>

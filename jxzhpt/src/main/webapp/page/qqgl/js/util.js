@@ -502,7 +502,7 @@ function querymc(id){
 	getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	else
 	getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
-	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
+	$('#lc').val(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 }
 /**
  * 查询桩号地方名称

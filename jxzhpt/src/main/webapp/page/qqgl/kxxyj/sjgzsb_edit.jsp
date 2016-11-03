@@ -69,12 +69,12 @@ text-decoration:none;
 						zdStr=0;
 					}
 				}
-				if(qdStr > zdStr){
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+				if(parseFloat(qdStr) > parseFloat(zdStr)){
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
 				}else{
-					$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
-					$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 				}
 				$('#lxbh').val(msg.lxbm);
 				loadDistedit("xzqh",$.cookie("dist"),msg.xzqhdm);
@@ -194,14 +194,13 @@ text-decoration:none;
 					$("#zdzh").val(parseFloat(item.zdzh));
 					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					var lc=Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)));
 					//$("#jsjsdj").val(item.xjsdj);
 					//$("#xjsdj").val(item.xjsdj);
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
 					/* qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh); */
-					$("#gpsqdzh").val(qdStr);
-					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
 					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
@@ -224,14 +223,15 @@ text-decoration:none;
 							zdStr=0;
 						}
 					}
-					if(qdStr > zdStr){
-						$("#qd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
-						$("#zd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
+					if(parseFloat(qdStr) > parseFloat(zdStr)){
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
 					}else{
-						$("#qd").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
-						$("#zd").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
+						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
+						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
-					
+					$("#gpsqdzh").val(qdStr);
+					$("#gpszdzh").val(zdStr);
 					//querymc('qdzh');
 					//querymc('zdzh');
 					//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
@@ -291,23 +291,22 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		if(qdStr < zdStr){
-			if($("#qdzh").val() < qdStr){
-				alert("原起点桩号不能小于"+qdStr);
+		if(parseFloat(qdStr) < parseFloat(zdStr)){
+			if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
+				alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
 				return false;
 			}
-			var ss = $("#zdzh").val();
-			if(ss > zdStr){
-				alert("原止点桩号不能大于"+zdStr);
+			if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
+				alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
 				return false;
 			}
 		}else{
-			if($("#qdzh").val() > qdStr){
-				alert("原起点桩号不能大于"+qdStr);
+			if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
+				alert("原起点桩号"+$("#span_qdzh").text().split('*')[1]);
 				return false;
 			}
-			if($("#zdzh").val() < zdStr){
-				alert("原止点桩号不能小于"+zdStr);
+			if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
+				alert("原止点桩号"+$("#span_zdzh").text().split('*')[1]);
 				return false;
 			}
 		}
@@ -425,12 +424,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input name="qdzh" id="qdzh" type="text" style="width: 120px;" onblur="changeZlc()"/><br/>
-					<span id="qd"></span>
+					<span id="span_qdzh"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input name="zdzh" id="zdzh" type="text" style="width: 120px;" onblur="changeZlc()"/><br/>
-					<span id="zd"></span>
+					<span id="span_zdzh"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
