@@ -1,7 +1,8 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.bean;
 
 public class Xmkaqsmfh {
-	
+	private String qdzh1;
+	private String zdzh1;
 	private String id;
 
     private String province;
@@ -1052,6 +1053,22 @@ public class Xmkaqsmfh {
 
 	public void setNsqbbz(String nsqbbz) {
 		this.nsqbbz = nsqbbz;
+	}
+
+	public String getQdzh1() {
+		return qdzh1;
+	}
+
+	public void setQdzh1(String qdzh1) {
+		this.qdzh1 = qdzh1;
+	}
+
+	public String getZdzh1() {
+		return zdzh1;
+	}
+
+	public void setZdzh1(String zdzh1) {
+		this.zdzh1 = zdzh1;
 	}
 	
 }

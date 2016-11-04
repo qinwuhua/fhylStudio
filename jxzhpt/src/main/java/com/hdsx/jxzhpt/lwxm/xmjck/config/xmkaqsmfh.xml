@@ -1676,6 +1676,7 @@
  		<select id="loadscktjld" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
  			select max(t.province) province,max(t.town) town,max(t.county) county,max(t.unit) gydw,max(t.unitcode) gydwdm,max(t.dist) xzqh,max(t.jsdj) jsdj,max(t.xjgjnd) xjgjnd,
 			max(t.distcode) xzqhdm,max(t.roadcode) lxbm,max(t.roadname) lxmc,to_char(round(min(to_number(t.gpsqd)),3)) qdzh,to_char(round(max(to_number(t.gpszd)),3)) zdzh,
+			 to_char(round(max(to_number(t.gpsqd)),3)) qdzh1,to_char(round(min(to_number(t.gpszd)),3)) zdzh1,
 			sum(yhlc) yhlc,sum(t.tzgs) cztzgs
 			from XMK_AQSMFH t 
 			where 1=1 ${xmkid} 
