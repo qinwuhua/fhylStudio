@@ -213,29 +213,28 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			} */
+			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
+			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
+			//alert(redqdzh+"  "+redzdzh);
 			if(parseFloat(qdStr) < parseFloat(zdStr)){
-				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
-					alert("原起点桩号不能小于"+$("#span_qdzh").text());
+				if(parseFloat($("#qdzh").val()) < parseFloat(redqdzh)){
+					alert("原起点桩号不能小于"+redqdzh);
 					return false;
 				}
-				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
-					alert("原止点桩号不能大于"+$("#span_zdzh").text());
+				if(parseFloat($("#zdzh").val()) > parseFloat(redzdzh)){
+					alert("原止点桩号不能大于"+redzdzh);
 					return false;
 				}
 			}else{
 				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
-					alert("原起点桩号不能大于"+$("#span_qdzh").text());
+					alert("原起点桩号不能大于"+redqdzh);
 					return false;
 				}
 				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
-					alert("原止点桩号不能小于"+$("#span_zdzh").text());
+					alert("原止点桩号不能小于"+redzdzh);
 					return false;
 				}
-			}
-			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
-				alert("对不起，开工年不能大于完工年！");
-				return false;
-			}
+			} 
 			var zlc=$("#jszlc").val();
 			/* if(parseFloat(zlc)>(parseFloat($('#lc').val())*1.2)){
 				alert("对不起，建设技术等级里程不能大于现状里程的120%");
@@ -369,7 +368,7 @@ text-decoration:none;
 		"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+
 		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()
 		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
-		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()+"&lxsh.xmnf="+$('#xmnf').combobox("getValues")
 		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid+'&lxsh.xmbm1='+parent.obj.xmbm;
 		$.ajax({
 			type:'post',
@@ -570,7 +569,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>项目年份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
+					<select id="xmnf" style="width:124px" class="easyui-combobox" data-options="panelHeight:'100'"></select>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>计划开工年：

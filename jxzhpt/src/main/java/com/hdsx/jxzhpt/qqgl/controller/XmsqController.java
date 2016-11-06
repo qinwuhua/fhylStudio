@@ -811,6 +811,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setGxqdzh(xmsq.getGxqdzh());
 			lx.setGxzdzh(xmsq.getGxzdzh());
 			lx.setGhlxmc(xmsq.getGhlxmc());
+			lx.setXmbm1(xmsq.getXmbm1());
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -819,10 +820,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(b){
 				if(xmsq.getXmlx()==5){
 					lx.setJdbs("0");
-					jhshServer.updateLx(lx);
+					jhshServer.updateLxqwh(lx);
 				}else{
 					lx.setJdbs("1");
-					jhshServer.updateLx(lx,xmsq);
+					//jhshServer.updateLx(lx,xmsq);
+					jhshServer.updateLxshm(lx,xmsq);
 				}
 			}
 			result.put("result", new Boolean(b).toString());

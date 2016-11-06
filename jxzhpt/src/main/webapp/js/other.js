@@ -19,3 +19,40 @@ function selectTSDQ(lxbm,qdzh,zdzh){
 		}
 	});	
 }
+function xmnf0(id,xmlx){
+	var myDate = new Date();
+	var years=[];
+	var first='';
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    onSelect:function(rec){
+	    	xmbm('xmbm',$.cookie("dist"),rec.value,xmlx);
+	    }
+	});
+	$('#'+id).combobox("setValue",first);
+}
+function xmbm(id,xzqh,nf,xmlx){
+	var data='xmsq.xmlx='+xmlx+'&xmsq.xzqhdm='+$.cookie('dist')+'&xmsq.xmnf='+nf;
+	$("#"+id).val('');
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryNextXmbm.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			$("#xmbm").val(nf+$.cookie('dist')+msg.xmbm);
+		},
+		error : function(){
+		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
+	 }
+	});	
+}
+
+ 

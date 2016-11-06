@@ -29,6 +29,7 @@ public class Xmsq {
 	private String xlxmc;
 	private String id;
 	private String xmbm;//项目编码
+	private String xmbm1;//选择年份后生成的新项目编码
 	private String xmmc;//项目名称
 	private String gcfl;//工程分类
 	private String ghlxbh;//路线编号
@@ -155,6 +156,12 @@ public class Xmsq {
 	private String zlc;
 	private String snhntmchbmj;
 	
+	public String getXmbm1() {
+		return xmbm1;
+	}
+	public void setXmbm1(String xmbm1) {
+		this.xmbm1 = xmbm1;
+	}
 	public String getSnhntmchbmj() {
 		return snhntmchbmj;
 	}

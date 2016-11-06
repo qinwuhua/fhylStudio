@@ -304,18 +304,22 @@
 		update LXSH_XJ set shzt=0 where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgz" parameterType="lxsh">
-		update LXSH_SJGZ set xmmc=#{xmmc},xmbm=#{xmbm},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz}<!-- ,bzys=#{bzys} -->,dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},jszlc=#{jszlc}<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>
+		update LXSH_SJGZ set xmmc=#{xmmc},xmbm=#{xmbm},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},jszlc=#{jszlc}
+		<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>   
+		<if test="xmnf != null">,xmnf=#{xmnf}</if> 
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
 		update LXSH_LMGZ set xmmc=#{xmmc},xmbm=#{xmbm},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz}<!-- ,bzys=#{bzys} -->,dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz}<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>  
+		<if test="xmnf != null">,xmnf=#{xmnf}</if>   
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
 		update LXSH_XJ set ghlxbh=#{ghlxbh},xmbm=#{xmbm},lxmc=#{lxmc},xjsdj=#{xjsdj},xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz}<!-- ,bzys=#{bzys} -->,dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk}<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>  
+		<if test="xmnf != null">,xmnf=#{xmnf}</if>   
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">

@@ -163,25 +163,28 @@ text-decoration:none;
 				return false;
 			} */
 			//alert(qdStr+" "+zdStr);
+			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
+			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
+			//alert(redqdzh+"  "+redzdzh);
 			if(parseFloat(qdStr) < parseFloat(zdStr)){
-				if(parseFloat($("#qdzh").val()) < parseFloat(qdStr)){
-					alert("原起点桩号不能小于"+$("#span_qdzh").text());
+				if(parseFloat($("#qdzh").val()) < parseFloat(redqdzh)){
+					alert("原起点桩号不能小于"+redqdzh);
 					return false;
 				}
-				if(parseFloat($("#zdzh").val()) > parseFloat(zdStr)){
-					alert("原止点桩号不能大于"+$("#span_zdzh").text());
+				if(parseFloat($("#zdzh").val()) > parseFloat(redzdzh)){
+					alert("原止点桩号不能大于"+redzdzh);
 					return false;
 				}
 			}else{
 				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
-					alert("原起点桩号不能大于"+$("#span_qdzh").text());
+					alert("原起点桩号不能大于"+redqdzh);
 					return false;
 				}
 				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
-					alert("原止点桩号不能小于"+$("#span_zdzh").text());
+					alert("原止点桩号不能小于"+redzdzh);
 					return false;
 				}
-			}
+			} 
 			
 			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
 				alert("对不起，开工年不能大于完工年！");
@@ -313,7 +316,7 @@ text-decoration:none;
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.yhdk="+$('#yhdk').val()
 			+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
-			+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
+			+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()+"&lxsh.xmnf="+$('#xmnf').combobox("getValues")
 			+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+'&lxsh.wnid='+parent.obj.wnid+'&lxsh.xmbm1='+parent.obj.xmbm;
 		$.ajax({
 			type:'post',

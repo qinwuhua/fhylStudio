@@ -261,7 +261,7 @@
 					alert("原止点桩号不能小于"+redzdzh);
 					return false;
 				}
-			}
+			} 
 			return true;
 		}
 		function upload(){

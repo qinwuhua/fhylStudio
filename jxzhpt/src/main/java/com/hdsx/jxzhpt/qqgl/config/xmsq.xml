@@ -837,7 +837,7 @@
 		<if test="bz!=null">,bz=#{bz}</if>
 		<if test="ylmlx!=null">,ylmlx=#{ylmlx}</if>
 		<if test="ylmjg!=null">,ylmjg=#{ylmjg}</if>
-		where xmbm=#{xmbm}
+		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateSh" parameterType="xmsq">
 		update xmsq_sh set 
@@ -864,7 +864,7 @@
 		<if test="gydw!=null">,gydw=#{gydw}</if>
 		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
-		where xmbm=#{xmbm}
+		where xmbm=#{xmbm1}
 	</update>
 	
 	<select id="queryYhdzxExport" parameterType="xmsq" resultType="xmsq">
