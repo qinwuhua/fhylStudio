@@ -178,17 +178,18 @@ text-decoration:none;
 			success:function(item){
 				if(item!=null){
 					tjldobj=item;
+					var arr=new Array(item.qdzh1,item.qdzh,item.zdzh1,item.zdzh);
+					arr.sort();
+					$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
+					$("#qdzh").val(parseFloat(arr[0]).toFixed(3));$("#zdzh").val(parseFloat(arr[3]).toFixed(3));$("#scjsdj").val(item.jsdj);
+					$("#scxjgjnd").val(item.xjgjnd);
+					
+					if(accSub(parseFloat(arr[0]),parseFloat(arr[3])) < parseFloat(item.yhlc))
+						$("#scyhlc").val(Math.abs(accSub(parseFloat(arr[0]),parseFloat(arr[3]))).toFixed(3));
+					else $("#scyhlc").val(parseFloat(item.yhlc).toFixed(3));
+					$("#cztzgs").val(Math.round(item.cztzgs));
 					//审查
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-						$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
-						$("#qdzh").val(parseFloat(item.qdzh).toFixed(3));$("#zdzh").val(parseFloat(item.zdzh).toFixed(3));$("#scjsdj").val(item.jsdj);
-						$("#scxjgjnd").val(item.xjgjnd);
-						
-						if(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)) < parseFloat(item.yhlc))
-							$("#scyhlc").val(Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh))).toFixed(3));
-						else $("#scyhlc").val(parseFloat(item.yhlc).toFixed(3));
-						$("#cztzgs").val(Math.round(item.cztzgs));
-					}else{
+					/* if(parseFloat(item.qdzh1)>parseFloat(item.zdzh1)&parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
 						$("#qdzh").val(parseFloat(item.qdzh1).toFixed(3));$("#zdzh").val(parseFloat(item.zdzh1).toFixed(3));$("#scjsdj").val(item.jsdj);
 						$("#scxjgjnd").val(item.xjgjnd);
@@ -197,7 +198,18 @@ text-decoration:none;
 							$("#scyhlc").val(Math.abs(accSub(parseFloat(item.zdzh1),parseFloat(item.qdzh1))).toFixed(3));
 						else $("#scyhlc").val(parseFloat(item.yhlc).toFixed(3));
 						$("#cztzgs").val(Math.round(item.cztzgs));
-					}
+						
+						
+					}else{
+						$("#lxmc").val(item.lxmc);$("#scjsdj").val(item.jsdj);
+						$("#qdzh").val(parseFloat(item.qdzh).toFixed(3));$("#zdzh").val(parseFloat(item.zdzh).toFixed(3));$("#scjsdj").val(item.jsdj);
+						$("#scxjgjnd").val(item.xjgjnd);
+						
+						if(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)) < parseFloat(item.yhlc))
+							$("#scyhlc").val(Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh))).toFixed(3));
+						else $("#scyhlc").val(parseFloat(item.yhlc).toFixed(3));
+						$("#cztzgs").val(Math.round(item.cztzgs));
+					} */
 					
 					//$("#scjhnf").combobox('setValue',item.jhnf);
 					loadUnit5("gydw",item.gydwdm,$.cookie("unit"));
