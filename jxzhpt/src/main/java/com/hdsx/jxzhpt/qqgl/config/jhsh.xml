@@ -2320,12 +2320,15 @@
 		union all select xmbm,xmmc from lxsh_xj
 		union all select xmbm,xmmc from xmsq_sh
 		union all select xmbm,xmmc from xmsq_yhdzx) x 
-		where l.xmid=x.xmbm and l.lxbm like '%'||#{lxbm}||'%' and 
-		(((to_number(nvl(l.zdzh,0)) >= ${qdzh} and ${qdzh} >= to_number(nvl(l.qdzh,0))) or 
-		(to_number(nvl(l.zdzh,0)) >= ${zdzh} and ${zdzh} >= to_number(nvl(l.qdzh,0)))) or
-		(to_number(nvl(l.qdzh,0)) = ${qdzh} or to_number(nvl(l.zdzh,0)) = ${zdzh})) 
-		and (to_number(nvl(l.qdzh,0)) != ${zdzh} and to_number(nvl(l.zdzh,0)) != ${qdzh})
-		<!-- and (to_number(qdzh) != ${zdzh} and to_number(zdzh) != ${zdzh}) -->
+		where l.xmid=x.xmbm and l.lxbm like '%'||#{lxbm}||'%' 
+		<!-- and (((to_number(nvl(l.zdzh,0)) >= ${qdzh} and ${qdzh} >= to_number(nvl(l.qdzh,0))) or 
+		(to_number(nvl(l.zdzh,0)) >= ${zdzh} and ${zdzh} >= to_number(nvl(l.qdzh,0))))) 
+		and (to_number(nvl(l.qdzh,0)) != ${zdzh} and to_number(nvl(l.zdzh,0)) != ${qdzh}) -->
+		and (case when to_number(l.zdzh)>to_number(l.qdzh) then l.zdzh else l.qdzh end)>=(case when to_number(#{zdzh})>to_number(#{qdzh}) then ${qdzh} else ${zdzh} end)
+  		and (case when to_number(#{zdzh})>to_number(#{qdzh}) then ${zdzh} else ${qdzh} end)>=(case when to_number(l.zdzh)>to_number(l.qdzh) then l.qdzh else l.zdzh end)
+   		and (case when to_number(l.zdzh)>to_number(l.qdzh) then l.qdzh else l.zdzh end)!=(case when to_number(#{zdzh})>to_number(#{qdzh}) then ${zdzh} else ${qdzh} end)
+   		and (case when to_number(l.zdzh)>to_number(l.qdzh) then l.zdzh else l.qdzh end)!=(case when to_number(#{zdzh})>to_number(#{qdzh}) then ${qdzh} else ${zdzh} end)
+		
 		and l.xmid like substr(#{xmid},0,4)||'%'
 	</select>
 	<select id="queryLxMaxJdbs" parameterType="lx" resultType="lx">

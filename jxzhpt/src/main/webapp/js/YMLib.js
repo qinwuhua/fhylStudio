@@ -3360,7 +3360,9 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 				if(msg.length>1){
 						xlxmc=msg[0].xlxmc;
 						cfld=msg[1].xlxbm;
-						if(msg[0].qdzh>msg[1].qdzh)
+						qcqd=msg[1].qd;
+						qczd=msg[1].zd;
+						/*if(msg[0].qdzh>msg[1].qdzh)
 							qd=msg[0].qdzh;
 						else
 							qd=msg[1].qdzh;
@@ -3369,13 +3371,15 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 						else
 							zd=msg[0].zdzh;
 						if(msg[1].qd<msg[1].zd){
+							
 							qcqd=accAdd(accSub(parseFloat(msg[1].qd),parseFloat(msg[1].qdzh)),parseFloat(qd)); // parseFloat(msg[1].qd)-parseFloat(msg[1].yqdzh)+parseFloat(qd);
 							qczd=accSub(accAdd(parseFloat(qcqd),parseFloat(zd)),parseFloat(qd));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
 						}else{
-							qcqd=accSub(accAdd(parseFloat(msg[1].qd),parseFloat(zd)),parseFloat(msg[1].zdzh));   //parseFloat(msg[1].qd)+parseFloat(zd)-parseFloat(msg[1].yzdzh);
-							qczd=accSub(accAdd(parseFloat(qcqd),parseFloat(qd)),parseFloat(zd));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
+							//alert();
+							qcqd=accAdd(accSub(parseFloat(msg[1].qd),parseFloat(qd)),parseFloat(msg[1].qdzh));   //parseFloat(msg[1].qd)+parseFloat(zd)-parseFloat(msg[1].yzdzh);
+							qczd=accSub(parseFloat(msg[1].zdzh),accSub(parseFloat(zd),parseFloat(msg[1].zd)));//parseFloat(qcqd)+parseFloat(qd)-parseFloat(zd);
 						}
-							
+							*/
 				}
 			}
 			
@@ -3459,8 +3463,8 @@ function getylxinfo(lxbm,qdzh,zdzh){
 				getylxlminfo(msg.ylxbm,qd,zd);
 			}else{
 				//qd=msg.yqdzh;zd=msg.yzdzh;
-				qd=accSub(accAdd(parseFloat(msg.yqdzh),parseFloat(zdzh)),parseFloat(msg.xzdzh)); 
-				zd=accSub(accAdd(parseFloat(qd),parseFloat(qdzh)),parseFloat(zdzh));
+				qd=accSub(parseFloat(msg.xqdzh),accSub(parseFloat(qdzh),parseFloat(msg.yqdzh))); 
+				zd=accAdd(accSub(parseFloat(msg.yzdzh),parseFloat(zdzh)),parseFloat(msg.xzdzh));
 				
 				getylxlminfo(msg.ylxbm,zd,qd);
 			}

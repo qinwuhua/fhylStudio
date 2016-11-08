@@ -161,6 +161,7 @@ public interface XmsqServer {
 	 * @return
 	 */
 	public boolean insertCbsjSh(Xmsq xmsq);
+	public boolean insertCbsjShls(Xmsq xmsq);
 	/**
 	 * 导出养护大中修项目
 	 * @param xmsq 搜索条件

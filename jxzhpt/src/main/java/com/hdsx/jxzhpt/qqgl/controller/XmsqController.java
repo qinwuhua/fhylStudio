@@ -692,7 +692,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateShSqzt(xmsq);
 				if(b){
-					boolean s = xmsqServer.insertCbsjSh(xmsq);
+					//boolean s = xmsqServer.insertCbsjSh(xmsq);
+					//修改灾毁流程，如果修改回去则用上边的那个
+					boolean s1 = xmsqServer.insertCbsjShls(xmsq);
+					
 				}
 			}else if(xmsq.getXmlx()==6){
 				b = xmsqServer.updateYhzxSqzt(xmsq);
@@ -1367,7 +1370,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				//System.out.println("删除");
 				l1.add(xm);
 			}
-			System.out.println(xmsq.getXlxbm()+"      ------------------------------------------------------------");
+			//System.out.println(xmsq.getXlxbm()+"      ------------------------------------------------------------");
 		}
 		l.removeAll(l1);
 		try {

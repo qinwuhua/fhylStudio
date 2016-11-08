@@ -982,16 +982,23 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setJdbs("1");
 		}
 		if("4".equals(lxsh.getXmlx())){
-			sfkth="jhsh_sjgz";
+			sfkth="jhsh_yhdzx";
 			bz="xmsq_yhdzx";
 			kxx="cbsj_yhdzx";
 			lxsh.setJdbs("2");
 		}
 		if("5".equals(lxsh.getXmlx())){
-			sfkth="cbsj_sh";
+			/*sfkth="cbsj_sh";
 			bz="xmsq_sh";
 			kxx="kxxyj_sh";
 			lxsh.setJdbs("1");
+			以上内容为三个流程的，立项工可初步，删掉后下边为两个流程，到时候可能用注释掉的这个。
+			*/
+			
+			sfkth="jhsh_sh";
+			bz="xmsq_sh";
+			kxx="cbsj_sh";
+			lxsh.setJdbs("2");
 		}
 		lxsh.setBzcs(sfkth);
 		List<Lxsh> l = queryList("sfkythlxwsh",lxsh);
