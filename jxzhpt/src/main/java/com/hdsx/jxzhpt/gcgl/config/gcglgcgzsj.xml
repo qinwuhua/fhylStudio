@@ -48,8 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzsjYb" parameterType="gcglgcgzsj">
-		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc<if test="gz != null">,gz</if><if test="sz != null">,sz</if><if test="yiji != null">,yiji</if><if test="erji != null">,erji</if><if test="sanji != null">,sanji</if><if test="siji != null">,siji</if>)
-		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc}<if test="gz != null">,#{gz}</if><if test="sz != null">,#{sz}</if><if test="yiji != null">,#{yiji}</if><if test="erji != null">,#{erji}</if><if test="sanji != null">,#{sanji}</if><if test="siji != null">,#{siji}</if>)
+		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc<if test="gz != null">,gz</if>
+		<if test="sz != null">,sz</if>
+		<if test="yiji != null">,yiji</if>
+		<if test="erji != null">,erji</if>
+		<if test="sanji != null">,sanji</if>
+		<if test="siji != null">,siji</if>
+		<if test="tbman != null">,tbman</if>)
+		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc}<if test="gz != null">,#{gz}</if><if test="sz != null">,#{sz}</if><if test="yiji != null">,#{yiji}</if><if test="erji != null">,#{erji}</if><if test="sanji != null">,#{sanji}</if><if test="siji != null">,#{siji}</if>
+		,#{tbman})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_GCGZSJ where sbyf=#{sbyf} and jhid=#{jhid}
@@ -59,7 +66,9 @@
 		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wcqk=#{wcqk},wkglc=#{wkglc} 
 		<if test="gz != null">,gz=#{gz}</if><if test="sz != null">,sz=#{sz}</if>
 		<if test="yiji != null">,yiji=#{yiji}</if><if test="sanji != null">,sanji=#{sanji}</if>
-		<if test="erji != null">,erji=#{erji}</if><if test="siji != null">,siji=#{siji}</if>
+		<if test="erji != null">,erji=#{erji}</if>
+		<if test="siji != null">,siji=#{siji}</if>
+		<if test="tbman != null">,tbman=#{tbman}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -73,7 +82,8 @@
 	</delete>
 	<!-- 审核月报 -->
 	<update id="shgcgzsjyb" parameterType="gcglgcgzsj">
-		update GCGL_GCGZSJ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+		update GCGL_GCGZSJ set shuser=#{shuser},shtime=#{shtime}
+		<if test="zjje != null and  zjje != ''">,zjje=#{zjje}</if>,xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	

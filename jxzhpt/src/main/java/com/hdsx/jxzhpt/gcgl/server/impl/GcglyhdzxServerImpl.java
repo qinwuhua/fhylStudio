@@ -35,21 +35,21 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 				gcglyhdzx.setSjzt("未上报");
 				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
 				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglyhdzx);
+				//update("updatezdyf", gcglyhdzx);
 				update("updateSjZT", gcglyhdzx);
 			}
 			if(gcglyhdzx.getSfsj()==11){
 				gcglyhdzx.setXjzt("未上报");
 				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
 				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglyhdzx);
+				//update("updatezdyf", gcglyhdzx);
 				update("updateXjZT", gcglyhdzx);
 			}
 			if(gcglyhdzx.getSfsj()==7){
 				gcglyhdzx.setSjsh("未审核");
 				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
 				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglyhdzx);
+				//update("updatezdyf", gcglyhdzx);
 				update("updateSJSH", gcglyhdzx);
 			}
 			return true;

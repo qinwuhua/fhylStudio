@@ -104,6 +104,7 @@ public class Gcglwqgz implements Serializable {
 	private String xqlmc;
 	
 	private String jhpc;
+	private String tbman;
 	
 	
 	
@@ -123,6 +124,12 @@ public class Gcglwqgz implements Serializable {
 	
 	
 	
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
+	}
 	public String getJhpc() {
 		return jhpc;
 	}

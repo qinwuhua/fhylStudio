@@ -350,8 +350,8 @@ function tjshyb(){
 	+"&gcglsh.yhdk="+$("#wc_yhdk").val()+"&gcglsh.gz="+$("#wc_gz").val()+"&gcglsh.sz="+$("#wc_sz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()
 	+"&gcglsh.qksm="+$("#tj_qksm").val()+"&gcglsh.wcqk="+$("#tj_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
-	+"&gcglgcgzgj.yiji="+$("#yiji").val()+"&gcglgcgzgj.erji="+$("#erji").val()+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()
-	+"&gcglgcgzgj.snlmwcqk="+$("#snlmwcqk").val()+"&gcglgcgzgj.lqlmwcqk="+$("#lqlmwcqk").val()
+	+"&gcglsh.yiji="+$("#yiji").val()+"&gcglsh.erji="+$("#erji").val()+"&gcglsh.sanji="+$("#sanji").val()+"&gcglsh.siji="+$("#siji").val()
+	+"&gcglsh.snlmwcqk="+$("#snlmwcqk").val()+"&gcglsh.lqlmwcqk="+$("#lqlmwcqk").val()+"&gcglsh.tbman="+$("#tbman").val()
 	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglsh.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
@@ -429,7 +429,7 @@ function xgshyb(){
 	+"&gcglsh.bywcdc="+$("#xg_bywcdc").val()+"&gcglsh.bywcjc="+$("#xg_bywcjc").val()+"&gcglsh.bywcmc="+$("#xg_bywcmc").val()+"&gcglsh.kgdl="+$("#xg_kgdl").val()
 	+"&gcglsh.qksm="+$("#xg_qksm").val()+"&gcglsh.wcqk="+$("#xg_wcqk").text()+"&gcglsh.ssdctc="+$("#ssdctc").val()+"&gcglsh.bndsslc="+$("#bndsslc").val()+"&gcglsh.wkglc="+$("#wkglc").val()
 	+"&gcglgcgzgj.yiji="+$("#yiji").val()+"&gcglgcgzgj.erji="+$("#erji").val()+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()
-	+"&gcglgcgzgj.snlmwcqk="+$("#snlmwcqk").val()+"&gcglgcgzgj.lqlmwcqk="+$("#lqlmwcqk").val()
+	+"&gcglgcgzgj.snlmwcqk="+$("#snlmwcqk").val()+"&gcglgcgzgj.lqlmwcqk="+$("#lqlmwcqk").val()+"&gcglgcgzgj.tbman="+$("#tbman").val()
 	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.sbyf="+$("#xg_sbyf").datebox('getValue');
 	//alert(data);
 	$.ajax({

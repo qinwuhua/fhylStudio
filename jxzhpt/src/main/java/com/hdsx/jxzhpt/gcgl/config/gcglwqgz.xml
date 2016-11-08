@@ -48,8 +48,8 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertWqgzYb" parameterType="gcglwqgz">
-		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcmc},#{kgdl},#{qksm},#{wcqk},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
+		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt,sfsj,sfth,tbman)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcmc},#{kgdl},#{qksm},#{wcqk},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{tbman})
 	</insert>
 	<insert id="insertWqgzYb1" parameterType="gcglwqgz">
 		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt,sfsj,sfth,zjc,xbgz,sbjg)
@@ -64,6 +64,7 @@
 		<if test="zjc !=null  and zjc !=''">,zjc=#{zjc}</if>
 	    <if test="xbgz !=null  and xbgz !=''">,xbgz=#{xbgz}</if>
 	    <if test="sbjg !=null  and sbjg !=''">,sbjg=#{sbjg}</if>
+	    <if test="tbman != null">,tbman=#{tbman}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -76,7 +77,7 @@
 		where id=#{id}
 	</update>
 	<update id="ybyshbwsh" parameterType="gcglwqgz">
-		update ${xmlx} set shzt='未审核' where 1=1 and jhid=#{jhid} and id=#{id} 
+		update ${xmlx} set shzt='未审核',shuser='',shtime='',xgcsyj='' where 1=1 and jhid=#{jhid} and id=#{id} 
 	</update>
 	
 	<!-- 删除月报 -->
@@ -85,7 +86,8 @@
 	</delete>
 	<!-- 审核月报 -->
 	<update id="shwqgzyb" parameterType="gcglwqgz">
-		update GCGL_WQGZ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+		update GCGL_WQGZ set shuser=#{shuser},shtime=#{shtime}
+		<if test="zjje != null and  zjje != ''">,zjje=#{zjje}</if>,xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	

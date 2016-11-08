@@ -99,6 +99,7 @@ private String xmlxs;
 	private String bhnr;
 	private String lxbz;
 	private String xmnf;
+	private String tbman;
 	//审查
 	private String fapgdw;
 	private String fascdw;
@@ -1020,5 +1021,11 @@ private String xmlxs;
 	public void setYjwgsj(String yjwgsj) {
 		this.yjwgsj = yjwgsj;
 	}
-
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
+	}
+	
 }

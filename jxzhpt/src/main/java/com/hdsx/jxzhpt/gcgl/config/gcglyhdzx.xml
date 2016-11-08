@@ -48,8 +48,8 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertYhdzxYb" parameterType="gcglyhdzx">
-		insert into GCGL_YHDZX(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否')
+		insert into GCGL_YHDZX(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth,tbman)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否',#{tbman})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
 		select * from GCGL_YHDZX where sbyf=#{sbyf} and jhid=#{jhid}
@@ -57,6 +57,7 @@
 	<!-- 修改月报 -->
 	<update id="updateYhdzxYb" parameterType="gcglyhdzx">
 		update GCGL_YHDZX set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf} 
+		<if test="tbman != null">,tbman=#{tbman}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -70,7 +71,8 @@
 	</delete>
 	<!-- 审核月报 -->
 	<update id="shYhdzxYb" parameterType="gcglyhdzx">
-		update GCGL_YHDZX set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+		update GCGL_YHDZX set shuser=#{shuser},shtime=#{shtime}
+		<if test="zjje != null and  zjje != ''">,zjje=#{zjje}</if>,xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 		<!-- 添加车购税 -->

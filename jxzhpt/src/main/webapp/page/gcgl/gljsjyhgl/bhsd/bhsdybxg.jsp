@@ -88,6 +88,7 @@
 			$("#xg_dwzj_cz").val(data.dwzj_cz);
 			$("#xg_dwzj_gmsptzj").val(data.dwzj_gmsptzj);
 // 			getYuefen();
+			$("#tbman").val(data.tbman);
 		});
 		function check(str){
 			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -247,7 +248,16 @@ a:active {
                                <span  id="xg_wcqk" ></span>
                             </td>
                         </tr>
-                        
+                        <tr style="height: 35px;">
+                      		<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">填报人：
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                <input type="text" id="tbman" />
+                            </td>
+                        </tr>
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

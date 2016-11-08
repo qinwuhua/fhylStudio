@@ -236,7 +236,7 @@ function tjwqgzyb(){
 		yhtype='省级';
 	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
-	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()+"&gcglwqgz.tbman="+$("#tbman").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
 	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 //	alert(data +"----");
@@ -415,7 +415,9 @@ function xgwqgzyb(){
 	}
 	
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
-	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()
+	+"&gcglwqgz.tbman="+$("#tbman").val()
+	+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
 	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").datebox('getValue');
 //	alert(data);

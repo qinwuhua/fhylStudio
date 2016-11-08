@@ -137,7 +137,7 @@ function tjwqgzyb(){
 	}
 	var data = "gcglbhsd.wc_btz="+$("#tj_wc_btz").val()+"&gcglbhsd.wc_stz="+$("#tj_wc_stz").val()+"&gcglbhsd.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglbhsd.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglbhsd.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglbhsd.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglbhsd.qksm="+$("#tj_qksm").val()+"&gcglbhsd.wcqk="+$("#tj_wcqk").text()
+	+"&gcglbhsd.qksm="+$("#tj_qksm").val()+"&gcglbhsd.wcqk="+$("#tj_wcqk").text()+"&gcglbhsd.tbman="+$("#tbman").val()
 	+"&gcglbhsd.sbsj="+sbsj+"&gcglbhsd.sbyf="+$("#tj_sbyf").val()+"&gcglbhsd.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 //	+"&gcglbhsd.dwzj_cgs="+$("#dwzj_cgs").val()+"&gcglbhsd.dwzj_rys="+$("#dwzj_rys").val()+"&gcglbhsd.dwzj_cz="+$("#dwzj_cz").val()+"&gcglbhsd.dwzj_gmsptzj="+$("#dwzj_gmsptzj").val()
 //	+"&gcglbhsd.wczj_cgs="+$("#wczj_cgs").val()+"&gcglbhsd.wczj_rys="+$("#wczj_rys").val()+"&gcglbhsd.wczj_cz="+$("#wczj_cz").val()+"&gcglbhsd.wczj_gmsptzj="+$("#wczj_gmsptzj").val();
@@ -182,7 +182,7 @@ function xgwqgzyb(){
 	}
 	var data = "gcglbhsd.wc_btz="+$("#xg_wc_btz").val()+"&gcglbhsd.wc_stz="+$("#xg_wc_stz").val()+"&gcglbhsd.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglbhsd.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglbhsd.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglbhsd.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglbhsd.qksm="+$("#xg_qksm").val()+"&gcglbhsd.wcqk="+$("#xg_wcqk").text()
+	+"&gcglbhsd.qksm="+$("#xg_qksm").val()+"&gcglbhsd.wcqk="+$("#xg_wcqk").text()+"&gcglbhsd.tbman="+$("#tbman").val()
 	+"&gcglbhsd.jhid="+parent.obj.jhid+"&gcglbhsd.id="+parent.obj.id+"&gcglbhsd.sbyf="+$("#xg_sbyf").val()+"&gcglbhsd.sbsj="+sbsj;
 //	+"&gcglbhsd.dwzj_cgs="+$("#xg_dwzj_cgs").val()+"&gcglbhsd.dwzj_rys="+$("#xg_dwzj_rys").val()+"&gcglbhsd.dwzj_cz="+$("#xg_dwzj_cz").val()+"&gcglbhsd.dwzj_gmsptzj="+$("#xg_dwzj_gmsptzj").val()
 //	+"&gcglbhsd.wczj_cgs="+$("#xg_wczj_cgs").val()+"&gcglbhsd.wczj_rys="+$("#xg_wczj_rys").val()+"&gcglbhsd.wczj_cz="+$("#xg_wczj_cz").val()+"&gcglbhsd.wczj_gmsptzj="+$("#xg_wczj_gmsptzj").val();

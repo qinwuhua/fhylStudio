@@ -53,6 +53,7 @@ public String getBfzj() {
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
+	private String tbman;//填报人
 	
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;
@@ -912,6 +913,15 @@ public String getBfzj() {
 	}
 	public void setYjwgsj(String yjwgsj) {
 		this.yjwgsj = yjwgsj;
+	}
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
+	}
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
 	}
 	
 }

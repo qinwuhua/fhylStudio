@@ -33,6 +33,12 @@
 		sbsj = y+"-"+m+"-"+d;
 		$("#xg_sbsj").text(sbsj);
 		var data=parent.obj;
+		$("#yiji").val(data.yiji);
+		$("#erji").val(data.erji);
+		$("#sanji").val(data.sanji);
+		$("#siji").val(data.siji);
+		$("#lqlmwcqk").val(data.lqlmwcqk);
+		$("#snlmwcqk").val(data.snlmwcqk);
 		$("#xg_wc_btz").val(data.wc_btz);
 		$("#xg_wc_qttz").val(data.wc_qttz);
 		$("#xg_zjdw_btz").val(data.zjdw_btz);
@@ -61,6 +67,8 @@
 		$("#tjyhdk").text(data.dwyhdk);
 		$("#tjgz").text(data.dwgz);
 		$("#tjsz").text(data.dwsz);
+		$("#tbman").val(data.tbman);
+
 		//getYuefen();
 		
 		pfztz=parent.parent.obj1.PFZTZ;
@@ -344,7 +352,16 @@ text-decoration: none;
                                 <input name="QKSM" type="text" id="xg_qksm" style="width: 350px;" />
                             </td>
                         </tr>
-                      
+                      <tr style="height: 35px;">
+                      		<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">填报人：
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                <input type="text" id="tbman" />
+                            </td>
+                        </tr>
                         <tr style="height: 35px;">
                            
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;

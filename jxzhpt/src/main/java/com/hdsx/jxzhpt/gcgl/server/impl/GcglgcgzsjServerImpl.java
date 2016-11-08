@@ -10,6 +10,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglgcgzsjServer;
@@ -38,21 +39,21 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 				gcglgcgzsj.setSjzt("未上报");
 				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
 				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzsj);
+				//update("updatezdyf", gcglgcgzsj);
 				update("updateSjZT", gcglgcgzsj);
 			}
 			if(gcglgcgzsj.getSfsj()==11){
 				gcglgcgzsj.setXjzt("未上报");
 				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
 				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzsj);
+				//update("updatezdyf", gcglgcgzsj);
 				update("updateXjZT", gcglgcgzsj);
 			}
 			if(gcglgcgzsj.getSfsj()==7){
 				gcglgcgzsj.setSjsh("未审核");
 				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
 				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzsj);
+				//update("updatezdyf", gcglgcgzsj);
 				update("updateSJSH", gcglgcgzsj);
 			}
 			return true;
@@ -345,4 +346,5 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 		// TODO Auto-generated method stub
 		return queryOne("selectgsdgzListbfcount", gcglgcgzsj);
 	}
+
 }

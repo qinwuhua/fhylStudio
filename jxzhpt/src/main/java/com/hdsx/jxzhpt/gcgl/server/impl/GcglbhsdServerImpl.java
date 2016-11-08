@@ -28,21 +28,21 @@ public class GcglbhsdServerImpl extends BaseOperate implements GcglbhsdServer {
 				gcglbhsd.setSjzt("未上报");
 				Gcglbhsd gcglbhsd3 =queryOne("querymaxybyf", gcglbhsd);//查最大月份
 				gcglbhsd.setSbyf(gcglbhsd3.getSbyf());
-				update("updatezdyf", gcglbhsd);
+				//update("updatezdyf", gcglbhsd);
 				update("updateSjZT", gcglbhsd);
 			}
 			if(gcglbhsd.getSfsj()==11){
 				gcglbhsd.setXjzt("未上报");
 				Gcglbhsd gcglbhsd3 =queryOne("querymaxybyf", gcglbhsd);//查最大月份
 				gcglbhsd.setSbyf(gcglbhsd3.getSbyf());
-				update("updatezdyf", gcglbhsd);
+				//update("updatezdyf", gcglbhsd);
 				update("updateXjZT", gcglbhsd);
 			}
 			if(gcglbhsd.getSfsj()==7){
 				gcglbhsd.setSjsh("未审核");
 				Gcglbhsd gcglbhsd3 =queryOne("querymaxybyf", gcglbhsd);//查最大月份
 				gcglbhsd.setSbyf(gcglbhsd3.getSbyf());
-				update("updatezdyf", gcglbhsd);
+				//update("updatezdyf", gcglbhsd);
 				update("updateSJSH", gcglbhsd);
 			}
 			return true;

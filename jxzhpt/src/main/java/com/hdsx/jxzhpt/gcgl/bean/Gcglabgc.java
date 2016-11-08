@@ -39,7 +39,15 @@ public class Gcglabgc implements Serializable {
 	private String bnwctz;
 	private String bnwcgl;
 	private String wgnf;
+	private String tbman;
 	
+	
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
+	}
 	public String getWgnf() {
 		return wgnf;
 	}

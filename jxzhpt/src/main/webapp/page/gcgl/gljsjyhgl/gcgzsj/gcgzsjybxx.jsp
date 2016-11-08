@@ -16,6 +16,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var datayb=parent.obj;
+			//alert(datayb.tbman);
+			$("#tbman").text(datayb.tbman);
 			$("#cgsdwzj").text(datayb.cgsdwzj);
 			$("#yiji").text(datayb.yiji);$("#sanji").text(datayb.sanji);
 			$("#erji").text(datayb.erji);$("#siji").text(datayb.siji);
@@ -331,6 +333,17 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
                                 <label id="qksm"></label>
+                            </td>
+                        </tr>
+                        <tr style="height: 35px;">
+                        	<td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人</font></b>
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
+                                border-top: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                <label id="tbman"></label>
+                                &nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">

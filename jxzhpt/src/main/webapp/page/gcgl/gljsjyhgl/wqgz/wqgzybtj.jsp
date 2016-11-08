@@ -41,6 +41,7 @@
 			$("#pfbtz").text(pfbtz);
 			$("#zwczj").text(parent.$("#zwczj").html());
 			$("#zwcbtz").text(parent.$("#zwcbtz").html());
+			$("#tbman").val($.cookie("truename"));
 		});
 	function check(str){
 		var g = /(^-?\d+$)|(^(-?\d+)(\.\d+)?$)/;
@@ -210,6 +211,16 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
                                 <input name="QKSM" type="text" id="tj_qksm" style="width: 350px;" />
+                            </td>
+                        </tr>
+                        <tr style="height: 35px;">
+                      		<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">填报人：
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                <input type="text" id="tbman" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">

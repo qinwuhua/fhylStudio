@@ -48,8 +48,8 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertZhfzYb" parameterType="gcglzhfz">
-		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcgl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{wcqk})
+		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk,tbman)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcgl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{wcqk},#{tbman})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglzhfz" resultType="gcglzhfz">
 		select * from GCGL_ZHFZ where sbyf=#{sbyf} and jhid=#{jhid}
@@ -57,6 +57,7 @@
 	<!-- 修改月报 -->
 	<update id="updateZhfzYb" parameterType="gcglzhfz">
 		update GCGL_ZHFZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcgl=#{bywcgl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},wcqk=#{wcqk} 
+		<if test="tbman != null">,tbman=#{tbman}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -73,7 +74,8 @@
 	</delete>
 	<!-- 审核月报 -->
 	<update id="shZhfzYb" parameterType="gcglzhfz">
-		update GCGL_ZHFZ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+		update GCGL_ZHFZ set shuser=#{shuser},shtime=#{shtime}
+		<if test="zjje != null and  zjje != ''">,zjje=#{zjje}</if>,xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	

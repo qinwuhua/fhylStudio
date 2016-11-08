@@ -124,6 +124,7 @@ public class Gcglgcgzgj implements Serializable {
 	private String ylmlx;//原路面类型
 	private String yjsdj;
 	private String lxbz;
+	private String tbman;
 	//审查
 	private String fapgdw;//方案评估
 	private String fascdw;//方案审查单位
@@ -966,6 +967,12 @@ public class Gcglgcgzgj implements Serializable {
 	}
 	public void setYjwgsj(String yjwgsj) {
 		this.yjwgsj = yjwgsj;
+	}
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
 	}
 
 	

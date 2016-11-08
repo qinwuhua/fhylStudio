@@ -39,21 +39,21 @@ public class XjgcServerImpl extends BaseOperate implements XjgcServer {
 				gcglgcgzgj.setSjzt("未上报");
 				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
 				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzgj);
+				//update("updatezdyf", gcglgcgzgj);
 				update("updateSjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==11){
 				gcglgcgzgj.setXjzt("未上报");
 				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
 				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzgj);
+				//update("updatezdyf", gcglgcgzgj);
 				update("updateXjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==7){
 				gcglgcgzgj.setSjsh("未审核");
 				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
 				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglgcgzgj);
+				//update("updatezdyf", gcglgcgzgj);
 				update("updateSJSH", gcglgcgzgj);
 			}
 			return true;

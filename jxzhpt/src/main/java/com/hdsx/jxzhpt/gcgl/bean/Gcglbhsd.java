@@ -57,6 +57,7 @@ public class Gcglbhsd implements Serializable {
 	private String xmtype;
 	private String bhnr;
 	private String bz;
+	private String tbman;
 	
 	//审查库
 	private String tzgs;
@@ -751,6 +752,12 @@ public class Gcglbhsd implements Serializable {
 	}
 	public void setLjbfzt(String ljbfzt) {
 		this.ljbfzt = ljbfzt;
+	}
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
 	}
 	
 	

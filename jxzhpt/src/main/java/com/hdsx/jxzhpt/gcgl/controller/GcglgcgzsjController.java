@@ -709,4 +709,5 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		}
 		return result;
 	}
+	
 }

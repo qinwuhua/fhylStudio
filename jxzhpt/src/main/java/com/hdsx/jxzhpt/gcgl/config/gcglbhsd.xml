@@ -55,10 +55,10 @@
 	<!-- 添加月报 -->
 	<insert id="insertBhsdYb" parameterType="gcglbhsd">
 		insert into gcgl_bhsd(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,qksm,wcqk,
-		sbsj,sbyf,shzt,sfsj,sfth)
+		sbsj,sbyf,shzt,sfsj,sfth,tbman)
 		values(sys_guid(),#{jhid},#{wc_btz,jdbcType=VARCHAR},#{wc_stz,jdbcType=VARCHAR},#{wc_qttz,jdbcType=VARCHAR},
 		#{zjdw_btz,jdbcType=VARCHAR},#{zjdw_stz,jdbcType=VARCHAR},#{zjdw_qttz,jdbcType=VARCHAR},
-		#{qksm,jdbcType=VARCHAR},#{wcqk,jdbcType=VARCHAR},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
+		#{qksm,jdbcType=VARCHAR},#{wcqk,jdbcType=VARCHAR},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',tbman)
 	</insert>
 	
 	<select id="queryYbByYf" parameterType="gcglbhsd" resultType="gcglbhsd">
@@ -70,7 +70,7 @@
 		update gcgl_bhsd set wc_btz=#{wc_btz,jdbcType=VARCHAR},wc_stz=#{wc_stz,jdbcType=VARCHAR},wc_qttz=#{wc_qttz,jdbcType=VARCHAR},
 		zjdw_btz=#{zjdw_btz,jdbcType=VARCHAR},
 		zjdw_stz=#{zjdw_stz,jdbcType=VARCHAR},zjdw_qttz=#{zjdw_qttz,jdbcType=VARCHAR},
-		qksm=#{qksm,jdbcType=VARCHAR},wcqk=#{wcqk,jdbcType=VARCHAR},sbyf=#{sbyf},sbsj=#{sbsj}
+		qksm=#{qksm,jdbcType=VARCHAR},wcqk=#{wcqk,jdbcType=VARCHAR},sbyf=#{sbyf},sbsj=#{sbsj},tbman=#{tbman}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	

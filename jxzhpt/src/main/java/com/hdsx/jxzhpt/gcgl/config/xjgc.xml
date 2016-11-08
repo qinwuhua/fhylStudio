@@ -55,6 +55,7 @@
 		<if test="siji != null">,siji</if>
 		<if test="lqlmwcqk != null">,lqlmwcqk</if>
 		<if test="snlmwcqk != null">,snlmwcqk</if>
+		<if test="tbman != null">,tbman</if>
 		)
 		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wkglc}<if test="dwyhdk != null">,#{dwyhdk}</if><if test="dwsz != null">,#{dwsz}</if><if test="dwgz != null">,#{dwgz}</if><if test="yhdk != null">,#{yhdk}</if><if test="gz != null">,#{gz}</if><if test="sz != null">,#{sz}</if>
 		<if test="yiji != null">,#{yiji}</if>
@@ -63,6 +64,7 @@
 		<if test="siji != null">,#{siji}</if>
 		<if test="lqlmwcqk != null">,#{lqlmwcqk}</if>
 		<if test="snlmwcqk != null">,#{snlmwcqk}</if>
+		<if test="tbman != null">,#{tbman}</if>
 		)
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
@@ -78,6 +80,7 @@
 		<if test="siji != null">,siji=#{siji}</if>
 		<if test="lqlmwcqk != null">,lqlmwcqk=#{lqlmwcqk}</if>
 		<if test="snlmwcqk != null">,snlmwcqk=#{snlmwcqk}</if>
+		<if test="tbman != null">,tbman=#{tbman}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -91,7 +94,8 @@
 	</delete>
 	<!-- 审核月报 -->
 	<update id="shgcgzgjYb" parameterType="gcglgcgzgj">
-		update GCGL_XJ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},shzt='已审核'
+		update GCGL_XJ set shuser=#{shuser},shtime=#{shtime}
+		<if test="zjje != null and  zjje != ''">,zjje=#{zjje}</if>,xgcsyj=#{xgcsyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	

@@ -219,7 +219,7 @@ function tjgcgzgjyb(){
 	+"&gcglgcgzgj.qksm="+$("#tj_qksm").val()+"&gcglgcgzgj.wcqk="+$("#tj_wcqk").text()+"&gcglgcgzgj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzgj.bndsslc="+$("#bndsslc").val()+"&gcglgcgzgj.wkglc="+$("#wkglc").val()
 	+"&gcglgcgzgj.snlmwcqk="+$("#snlmwcqk").val()+"&gcglgcgzgj.lqlmwcqk="+$("#lqlmwcqk").val()
 	+"&gcglgcgzgj.yiji="+$("#yiji").val()+"&gcglgcgzgj.erji="+$("#erji").val()
-	+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()
+	+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()+"&gcglgcgzgj.tbman="+$("#tbman").val()
 	+"&gcglgcgzgj.sbsj="+sbsj+"&gcglgcgzgj.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglgcgzgj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
@@ -303,7 +303,7 @@ function xggcgzgjyb(){
 	+"&gcglgcgzgj.qksm="+$("#xg_qksm").val()+"&gcglgcgzgj.wcqk="+$("#xg_wcqk").text()+"&gcglgcgzgj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzgj.bndsslc="+$("#bndsslc").val()+"&gcglgcgzgj.wkglc="+$("#wkglc").val()
 	+"&gcglgcgzgj.snlmwcqk="+$("#snlmwcqk").val()+"&gcglgcgzgj.lqlmwcqk="+$("#lqlmwcqk").val()
 	+"&gcglgcgzgj.yiji="+$("#yiji").val()+"&gcglgcgzgj.erji="+$("#erji").val()
-	+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()
+	+"&gcglgcgzgj.sanji="+$("#sanji").val()+"&gcglgcgzgj.siji="+$("#siji").val()+"&gcglgcgzgj.tbman="+$("#tbman").val()
 	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.sbyf="+$("#xg_sbyf").datebox('getValue');
 	//alert(data);
 	$.ajax({

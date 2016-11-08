@@ -36,21 +36,21 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 				gcglsh.setSjzt("未上报");
 				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
 				gcglsh.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglsh);
+				//update("updatezdyf", gcglsh);
 				update("updateSjZT", gcglsh);
 			}
 			if(gcglsh.getSfsj()==11){
 				gcglsh.setXjzt("未上报");
 				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
 				gcglsh.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglsh);
+				//update("updatezdyf", gcglsh);
 				update("updateXjZT", gcglsh);
 			}
 			if(gcglsh.getSfsj()==7){
 				gcglsh.setSjsh("未审核");
 				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
 				gcglsh.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglsh);
+				//update("updatezdyf", gcglsh);
 				update("updateSJSH", gcglsh);
 			}
 			return true;

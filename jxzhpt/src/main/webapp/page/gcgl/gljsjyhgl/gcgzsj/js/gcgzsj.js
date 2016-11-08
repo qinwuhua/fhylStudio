@@ -212,7 +212,7 @@ function tjgcgzsjyb(){
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#tj_kgdl").val()+"&gcglgcgzsj.qksm="+$("#tj_qksm").val()+"&gcglgcgzsj.bywctze="+$("#tj_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#tj_bywcgzl").val()+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
 	+"&gcglgcgzsj.yiji="+$("#yiji").val()+"&gcglgcgzsj.erji="+$("#erji").val()+"&gcglgcgzsj.sanji="+$("#sanji").val()+"&gcglgcgzsj.siji="+$("#siji").val()
-	+"&gcglgcgzsj.wkglc="+$("#wkglc").val()+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.sz="+$("#sz").val()
+	+"&gcglgcgzsj.wkglc="+$("#wkglc").val()+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.sz="+$("#sz").val()+"&gcglgcgzsj.tbman="+$("#tbman").val()
 	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+$("#tj_sbyf").datebox('getValue')+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
@@ -259,7 +259,7 @@ function xggcgzsjyb(){
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#xg_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#xg_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#xg_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#xg_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#xg_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#xg_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#xg_kgdl").val()+"&gcglgcgzsj.qksm="+$("#xg_qksm").val()+"&gcglgcgzsj.bywctze="+$("#xg_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#xg_bywcgzl").val()+"&gcglgcgzsj.gz="+$("#gz").val()+"&gcglgcgzsj.sz="+$("#sz").val()
-	+"&gcglgcgzsj.yiji="+$("#yiji").val()+"&gcglgcgzsj.erji="+$("#erji").val()+"&gcglgcgzsj.sanji="+$("#sanji").val()+"&gcglgcgzsj.siji="+$("#siji").val()
+	+"&gcglgcgzsj.yiji="+$("#yiji").val()+"&gcglgcgzsj.erji="+$("#erji").val()+"&gcglgcgzsj.sanji="+$("#sanji").val()+"&gcglgcgzsj.siji="+$("#siji").val()+"&gcglgcgzsj.tbman="+$("#tbman").val()
 	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.sbyf="+$("#xg_sbyf").datebox('getValue')+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
 	+"&gcglgcgzsj.wkglc="+$("#wkglc").val();
 	//alert(data);

@@ -29,21 +29,21 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 				gcglwqgz.setSjzt("未上报");
 				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
 				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglwqgz);
+				//update("updatezdyf", gcglwqgz);
 				update("updateSjZT", gcglwqgz);
 			}
 			if(gcglwqgz.getSfsj()==11){
 				gcglwqgz.setXjzt("未上报");
 				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
 				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglwqgz);
+				//update("updatezdyf", gcglwqgz);
 				update("updateXjZT", gcglwqgz);
 			}
 			if(gcglwqgz.getSfsj()==7){
 				gcglwqgz.setSjsh("未审核");
 				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
 				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
-				update("updatezdyf", gcglwqgz);
+				//update("updatezdyf", gcglwqgz);
 				update("updateSJSH", gcglwqgz);
 			}
 			return true;

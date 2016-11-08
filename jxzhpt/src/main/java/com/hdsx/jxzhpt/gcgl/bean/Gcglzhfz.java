@@ -137,7 +137,16 @@ public String getBfzj() {
 	private String jsdj;
 	private String ljbfzt;
 	private String xzqh;
+	private String tbman;
 	
+	
+	
+	public String getTbman() {
+		return tbman;
+	}
+	public void setTbman(String tbman) {
+		this.tbman = tbman;
+	}
 	public String getGldj() {
 		return gldj;
 	}

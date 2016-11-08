@@ -81,5 +81,6 @@ public interface GcglgcgzsjServer {
 	List<Map<String, Object>> selectgsdgzListbf(Gcglgcgzsj gcglgcgzsj);
 
 	int selectgsdgzListbfcount(Gcglgcgzsj gcglgcgzsj);
+
 	
 }
