@@ -1621,6 +1621,54 @@ function gridBindyh(grid){
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
 
+//计算里程宽度改变补助资金
+function jslckdgbbzzj(){
+	//alert();
+	var flag='';
+	flag='lqhntmc';
+	jsbzzj(flag);
+	flag='gxlqhntmc';
+	jsbzzj(flag);
+	flag='snhntmc';
+	jsbzzj(flag);
+	flag='lqlmjdrzs';
+	jsbzzj(flag);
+	flag='lqlmcbrzs';
+	jsbzzj(flag);
+	flag='swjc';
+	jsbzzj(flag);
+	flag='lqlmpmlqjdlzs';
+	jsbzzj(flag);
+	flag='lqlmrhlqjdlzs';
+	jsbzzj(flag);
+	flag='lqlmcblzs';
+	jsbzzj(flag);
+	flag='xzrxjc';
+	jsbzzj(flag);
+	flag='swjclzs';
+	jsbzzj(flag);
+	if($("#xfcse").attr("checked")=="checked"){
+		flag='xfc';
+		jsbzzj(flag);
+	}
+	flag='wcsnmb';
+	jsbzzj(flag);
+	flag='wcswjc';
+	jsbzzj(flag);
+	if($("#snhntmchbse").attr("checked")=="checked"||($("#snhntmchbmj").val()!=null && $("#snhntmchbmj").val()!='')){
+		flag='snhntmchb';
+		jsbzzj(flag);
+	}
+	if($("#bxse").attr("checked")=="checked"){
+		flag='bx';
+		jsbzzj(flag);
+	}
+	if($("#snhntmcsshse").attr("checked")=="checked"){
+		flag='snhntmcssh';
+		jsbzzj(flag);
+	}
+}
+
 
 
 //计算yhdzx费用

@@ -214,7 +214,7 @@
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="ylxbh" id="ylxbh" style="width: 120px" />
+					<input type="text" name="ylxbh" id="ylxbh" onblur="jslckdgbbzzj()" style="width: 120px" />
 					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
 					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
@@ -250,14 +250,14 @@
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
+					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/>
 					<span id="qd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/><br/>
 					<span id="zd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -292,18 +292,18 @@
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划路线编号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input id="ghlxbm" name="ghlxbm" onblur="jslckdgbbzzj()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 					
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<input id="ghqdzh" name="ghqdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<input id="ghzdzh" name="ghzdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 				</td>
             </tr>
             <tr style="height: 30px;">

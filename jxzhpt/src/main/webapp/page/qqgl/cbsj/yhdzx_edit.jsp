@@ -333,17 +333,17 @@
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划路线编号</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;
+					<input id="ghlxbm" name="ghlxbm" onblur="jslckdgbbzzj()" type="text" style="width: 120px;"/>&nbsp;
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划起点桩号</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+						<input id="ghqdzh" name="ghqdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划止点桩号</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
+					<input id="ghzdzh" name="ghzdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
 				</td>
             </tr>		
             <tr style="height: 30px;">
@@ -413,7 +413,7 @@
 						原路线编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="ylxbh" name="ylxbh" style="width: 120px;" type="text"/>
+						<input id="ylxbh" name="ylxbh" onblur="jslckdgbbzzj()" style="width: 120px;" type="text"/>
 					</td>
 					
 				</tr>
@@ -422,14 +422,14 @@
 						原起点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
+						<input id="qdzh" name="qdzh" onblur="jslckdgbbzzj()" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
 						<br/><span id="span_qdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						原讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
+						<input id="zdzh" name="zdzh" onblur="jslckdgbbzzj()" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
 						<br/><span id="span_zdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
