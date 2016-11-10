@@ -298,7 +298,7 @@ function sjtdeleteFile(id){
 }
 var nsqbbz;
 var zdezj;
-function getBbz(){
+/* function getSbz(){
 	 $.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/lwBzbz.do',
@@ -315,7 +315,7 @@ function getBbz(){
 				setnsqbbz();
 			}
 		}); 
-}
+} */
 function getSbz(){
 	 $.ajax({
 			type:'post',
@@ -337,7 +337,7 @@ function setbz(){
 	var sfbk='';
 		sfbk=$("#sfylrbwqk").combobox('getValue');
 	if(sfbk=='是'){
-		getBbz();
+		getSbz();
 	}else{
 		getSbz();
 	}
@@ -346,8 +346,8 @@ function setbz(){
 }
 //查询省奖励资金
 function setshengjl(){
-var dkkj=parseInt($("#kjzh1").val())*parseInt($("#kjzh2").val());
-	
+	var dkkj=parseInt($("#scqlqc").val());
+
 	var kjfl="";
 	var kj1=0;var kj2=0;
 	if(parseInt($("#kjzh2").val())>150)

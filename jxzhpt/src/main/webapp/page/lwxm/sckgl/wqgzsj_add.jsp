@@ -400,7 +400,7 @@ function deleteFile(id){
 	}
 }
 var nsqbbz;
-function getBbz(){
+/* function getSbz(){
 	 $.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/lwBzbz.do',
@@ -417,7 +417,7 @@ function getBbz(){
 				setnsqbbz();
 			}
 		}); 
-}
+} */
 function getSbz(){
 	 $.ajax({
 			type:'post',
@@ -438,7 +438,7 @@ function getSbz(){
 function setbz(){
 	var sfbk=$("#sfylrbwqk").combobox('getValue');
 	if(sfbk=='是'){
-		getBbz();
+		getSbz();
 	}else{
 		getSbz();
 	}
@@ -446,7 +446,7 @@ function setbz(){
 }
 //查询省奖励资金
 function setshengjl(){
-	var dkkj=parseInt($("#kjzh1").val())*parseInt($("#kjzh2").val());
+	var dkkj=parseInt($("#scqlqc").val());
 	
 	var kjfl="";
 	var kj1=0;var kj2=0;
@@ -827,7 +827,7 @@ text-decoration:none;
 					<input type="text" name='bitian' id="scsjhspl" style="width: 120px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径组合：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bitian' id="kjzh1" style="width: 50px" />*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
+					<input type="text" name='bitian' id="kjzh1" style="width: 50px" onchange="setshengjl()"/>*<input type="text" name='bitian' id="kjzh2" style="width: 50px" onchange="setshengjl()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name='bitian' id="sck_sbjgxs" style="width: 120px" />
