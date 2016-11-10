@@ -1,5 +1,6 @@
 
 function cxqdmc(lxbm,qdzh){
+	//alert();
 	$('#qdmc').val('');
 	$.ajax({
 		type:'post',

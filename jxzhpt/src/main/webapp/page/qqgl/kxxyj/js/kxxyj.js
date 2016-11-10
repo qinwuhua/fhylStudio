@@ -1221,6 +1221,7 @@ function tz(id,lx){
 }
 
 function editSjlx(xmid,index){
+	//alert(xmid);
 	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
 	YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_add.jsp','lxxx',900,350);
@@ -2076,26 +2077,26 @@ function delxjlx(index1,index){
 }
 
 function cxqdmc(lxbm,qdzh){
-	$('#qdmc').html('');
+	$('#qdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxqdmc.do',
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#qdmc').html(msg.qdmc);
+			$('#qdmc').val(msg.qdmc);
 		}
 	});
 }
 function cxzdmc(lxbm,qdzh){
-	$('#zdmc').html('');
+	$('#zdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxzdmc.do',
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#zdmc').html(msg.zdmc);
+			$('#zdmc').val(msg.zdmc);
 		}
 	});
 }

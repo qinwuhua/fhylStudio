@@ -2305,10 +2305,10 @@
 	<insert id="insertLxJdbs" parameterType="lx">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc,
 		jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst,decode(substr(xmid,11,1),'5',to_char(to_number(#{jdbs})+2),to_char(to_number(#{jdbs})+1)),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,lqhntmchd,lqhntmc,gxlqhntmchd,gxlqhntmc,snhntmchd,snhntmc,lqlmjdrzshd,lqlmjdrzs,lqlmcbrzshd,lqlmcbrzs,swjchd,swjc,lqlmpmlqjdlzshd,lqlmpmlqjdlzs,lqlmrhlqjdlzshd,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs,xzrxjchd,xzrxjc,swjclzshd,swjclzs,xfchd,xfc,wcsnmbhd,wcsnmb,wcswjchd,wcswjc,snhntmchbhd,snhntmchb,bxhd,bx,snhntmcsshhd,snhntmcssh,sbzj,lxlmkd,xzqhdm2,xzqhmc2,gxlxbm,gxqdzh,gxzdzh,ghqdzh,ghzdzh,snhntmchbmj from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
 	</insert>
 	
-	
+	<!-- 以上方法，to_char(to_number(#{jdbs})+2),to_char(to_number(#{jdbs})+1))  这个如果是三流程，就替换成 to_char(to_number(#{jdbs})+1)-->
 	
 	    
 	

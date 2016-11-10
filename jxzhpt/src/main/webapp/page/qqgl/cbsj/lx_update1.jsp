@@ -25,6 +25,7 @@
 		var qdStr;
 		var zdStr;
 		$(function(){
+			//alert(parent.YMLib.Var.id);
 			$('#lx').form("load",parent.YMLib.Var.Obj);
 			loadUnitedit("gydw",$.cookie("unit"),parent.YMLib.Var.Obj.gydwdm);
 			$("#gydw").combotree('setValues',parent.YMLib.Var.Obj.gydwdm.split(","));
@@ -33,6 +34,8 @@
 			$("#ylxbh").val(parent.YMLib.Var.Obj.lxbm);
 			$("#jsdj").val(parent.YMLib.Var.Obj.xjsdj);
 			$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
+			$("#lmkd").val(parent.YMLib.Var.Obj.lxlmkd);
+			$("#jsfa").val(parent.YMLib.Var.Obj.jsfa);
 		});
 		function updateLx(){
 			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').html(),'lx.id':$('#id').val(),'lx.lxmc':$('#lxmc').val(),
@@ -44,7 +47,7 @@
 					'lx.silc':$('#silc').val(),'lx.dwlc':$('#dwlc').val(),'lx.wllc':$('#wllc').val(),
 					'lx.jsjsdj':$('#jsjsdj').val(),'lx.xjsdj':$('#jsdj').val(),'lx.jsfa':$('#jsfa').val()
 					,"lx.ghlxmc":$('#ghlxmc').val(),"lx.ghlxbm":$('#ghlxbm').val(),"lx.ghqdzh":$('#ghqdzh').val(),"lx.ghzdzh":$('#ghzdzh').val()
-					,"lx.gxlxbm":$('#gxlxbm').val(),"lx.gxqdzh":$('#gxqdzh').val(),"lx.gxzdzh":$('#gxzdzh').val()
+					,"lx.gxlxbm":$('#gxlxbm').val(),"lx.gxqdzh":$('#gxqdzh').val(),"lx.gxzdzh":$('#gxzdzh').val(),'lx.lmkd':$('#lmkd').val()
 					};
 			$.ajax({
 				type:'post',
@@ -75,14 +78,21 @@
 				alert("止点桩号不能小于起点桩号");
 				$("#zdzh").val(zdStr);
 			} */
-			var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+			var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 			$("#lc").val(zlc);
+			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
+				getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+				else
+				getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+			getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 			if($("#qdzh").val()!='')
 				cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 			if($("#zdzh").val()!='')
 				cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+			
+			
 		}
 		function removes(){
 			closeWindow(parent.YMLib.Var.id);
@@ -121,9 +131,15 @@
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>行政区划：
 				</td>
-				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
+				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<input type='text' id='xzqh' name="xzqh" style="width: 124px;">
 					<input id='xzqhdm' name="xzqhdm" style="width: 124px;" type="hidden">
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>路面宽度：
+				</td>
+				<td style="background-color: #ffffff; height: 25px;" align="left" colspan="3">
+					<input id="lmkd" name="lmkd" type="text" style="width: 80px;" disabled="disabled"/>&nbsp;米&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -248,6 +264,13 @@
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
+			<tr style="height: 70px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					建设方案</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id="jsfa" name="jsfa" rows="" cols="" style="width: 650px;height: 60px;"></textarea>
+				</td>
+            </tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:updateLx()" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>

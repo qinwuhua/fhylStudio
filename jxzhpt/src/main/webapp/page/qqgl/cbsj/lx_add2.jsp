@@ -171,7 +171,7 @@ var xzqh;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
@@ -180,6 +180,8 @@ var xzqh;
 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+		getghlxinfo($('#lxbm').val(),$('#qdzh').val(),$('#zdzh').val());
+
 		cesuan();
 	}
 	function cesuan(){

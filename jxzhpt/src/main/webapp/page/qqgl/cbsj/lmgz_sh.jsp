@@ -59,6 +59,9 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':2,
@@ -69,7 +72,7 @@
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':sbzt,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
-					'cbsj.xmbm':$('#xmnf').combobox("getValues").join(','),
+					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").val(),
 					'ghlxmc':$("#ghlxmc").val(),

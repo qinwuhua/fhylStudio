@@ -503,6 +503,7 @@ function querymc(id){
 	else
 	getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
 	$('#lc').val(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
+	$('#lc').html(Math.abs(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val()))));
 }
 /**
  * 查询桩号地方名称
