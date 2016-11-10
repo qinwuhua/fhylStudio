@@ -1037,11 +1037,11 @@ function showAllsjsh(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
 	    	var parentindex=index;
-	    	$('#table_lx'+row.xmbm).datagrid({
+	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
 	    			 'lx.jdbs':1,
@@ -2042,12 +2042,12 @@ function dellmlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=lmgz"+"&lxsh.jdbs=1",
+        data:'lx.xmbm='+data.xmid+'&lx.id='+data.id+"&lx.xmlx=lmgz"+"&lx.jdbs=1",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
 				alert("删除成功！");
-				showlmgzAll();
+				showAllsjsh();
 				removes('lxxx');
 			}else{
 				alert('删除失败！');
