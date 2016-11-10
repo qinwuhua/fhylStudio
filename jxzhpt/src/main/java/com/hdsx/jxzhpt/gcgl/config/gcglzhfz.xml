@@ -46,6 +46,28 @@
 			and jhid =#{jhid}
 		</if>
 	</select>
+	<select id="selZhfzZgYbByJhid" parameterType="gcglzhfz" resultType="gcglzhfz">
+		select * from (
+		select m.*,rownum rn from (
+			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj,t2.cscyj,t2.stz from GCGL_ZHFZ t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
+			where 1=1 and sfsj=7 and shzt='已审核'
+		<if test="jhid != null and  jhid != ''">
+			and t1.jhid =#{jhid}
+		</if>
+		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selZhfzZgYbByJhidCount" parameterType="gcglzhfz" resultType="int">
+		select count(*) from GCGL_ZHFZ 
+		where 1=1 and sfsj=7 and shzt='已审核'
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+	</select>
 	<!-- 添加月报 -->
 	<insert id="insertZhfzYb" parameterType="gcglzhfz">
 		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk,tbman)

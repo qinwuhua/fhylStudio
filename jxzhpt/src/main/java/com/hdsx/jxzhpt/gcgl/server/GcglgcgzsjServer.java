@@ -82,5 +82,11 @@ public interface GcglgcgzsjServer {
 
 	int selectgsdgzListbfcount(Gcglgcgzsj gcglgcgzsj);
 
+	int selgcgzsjZgYbByJhidCount(Gcglgcgzsj gcglgcgzsj);
+
+	List<Gcglgcgzsj> selgcgzsjZgYbByJhid(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean zgshgcgzsjyb(Gcglgcgzsj gcglgcgzsj);
+
 	
 }

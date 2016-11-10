@@ -36,30 +36,32 @@ function ybsh(index){
 	obj=data;
 	YMLib.UI.createWindow('wqxx','危桥改造月报审核','wqgzybsh.jsp','wqxx',450,200);
 }
-function shwqgzyb(index){
-	var obj=$("#ybgrid").datagrid('getRows')[index];
+function zgshbhsdyb(index){
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
-	var data = "&gcglbhsd.shtime="+sbsj+"&gcglbhsd.shuser="+$("#shuser").val()+"&gcglbhsd.jhid="+obj.jhid+"&gcglbhsd.id="+obj.id;
-	if(confirm("确认审核吗？")){
+	var data = "gcglgcgzgj.zgshyj="+$("#zgshyj").val()
+	+"&gcglgcgzgj.zgshtime="+sbsj+"&gcglgcgzgj.zgshuser="+$("#shuser").val()
+	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id
+	+"&gcglgcgzgj.table=gcgl_bhsd";
+	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/shBhsdYb.do',
+		url:'../../../../gcgl/zgshYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
-				alert('审核成功！');
-				$("#ybgrid").datagrid('reload');
+				alert('保存成功！');
+				parent.$("#ybgrid").datagrid('reload');
+				closes('wqxx');
 			}else{
-				alert('审核失败！');
+				alert('保存失败！');
 			}
 		}
 	});	
-	}
 }
 
 function xgwqgzyb(){
@@ -157,10 +159,25 @@ function showAll(){
 	    ]]    
 	}); 
 }
+function ybysh(index){
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data="gcglwqgz.jhid="+data1.jhid+"&gcglwqgz.xmlx=gcgl_bhsd"+"&gcglwqgz.id="+data1.id;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcgl/zgybyshbwsh.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				$("#ybgrid").datagrid('reload');
+			}
+		}
+	});	
+}
 function showYBlist(){
 	
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectBhsdYbByJhid1.do?jhid='+parent.obj1.jhid,
+	    url:'../../../../gcgl/selBhsdZgYbByJhid.do?jhid='+parent.obj1.jhid,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -170,10 +187,10 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核'&& row.sfsj==7 && $.cookie("unit2").length==7)
-			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="shwqgzyb('+index+')">未审核</a>   '+'<a href="#" onclick="th_ybsh('+index+')">退回</a>';
-	              		else if(row.shzt=='已审核')
-	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核   '+'退回   ';
+	              		if(row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt==''&& $.cookie("unit2").length==7 || row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt=='未审核'&& $.cookie("unit2").length==7)
+			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
+	              		else if(row.zgshzt=='已审核')
+	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybysh('+index+')">已审核</a>'+'退回   ';
 	              		else{
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+
 	              			'<a style="text-decoration:none;color:black;" >未审核</a>   '+
@@ -205,11 +222,13 @@ function th_ybsh(index){
 
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglbhsd.id="+data1.id+"&gcglbhsd.sfsj=4"+"&gcglbhsd.yhtype=2"+"&gcglbhsd.jhid="+data1.jhid;
+	var data="gcglgcgzgj.id="+data1.id+"&gcglgcgzgj.sfsj=4"
+	+"&gcglgcgzgj.table=gcgl_bhsd"
+	+"&gcglgcgzgj.yhtype=2"+"&gcglgcgzgj.jhid="+data1.jhid;
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbWqgzYb.do',
+			url:'../../../../gcgl/zgthYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -222,6 +241,7 @@ function thsjyb(index){
 			}
 		});	
 	}	
+	
 }
 
 

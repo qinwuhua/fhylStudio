@@ -235,6 +235,22 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//查询月报
+	public void selgcgzgjZgYbByJhid(){
+		gcglgcgzgj.setPage(page);
+		gcglgcgzgj.setRows(rows);
+		gcglgcgzgj.setJhid(jhid);
+		int count=gcglgcgzgjServer.selgcgzgjZgYbByJhidCount(gcglgcgzgj);
+		List<Gcglgcgzgj> list=gcglgcgzgjServer.selgcgzgjZgYbByJhid(gcglgcgzgj);
+		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	//修改月报
 	public void updategcgzgjYb(){
 		Boolean bl=gcglgcgzgjServer.updategcgzgjYb(gcglgcgzgj);
@@ -256,6 +272,15 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	//审核月报
 	public void shgcgzgjYb(){
 		Boolean bl=gcglgcgzgjServer.shgcgzgjYb(gcglgcgzgj);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	//综规审核月报
+	public void zgshYb(){
+		Boolean bl=gcglgcgzgjServer.zgshYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -480,6 +505,16 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	public void sbGcgzgjYb(){
 		System.out.println(gcglgcgzgj);
 		Boolean bl=gcglgcgzgjServer.sbWqgzYb(gcglgcgzgj);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	//综规退回月报
+	public void zgthYb(){
+		System.out.println(gcglgcgzgj);
+		Boolean bl=gcglgcgzgjServer.zgthYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{

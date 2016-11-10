@@ -84,5 +84,9 @@ public interface XjgcServer {
 
 	boolean updatahslySFQX(Gcglgcgzgj gcglgcgzgj);
 
+	int selxjgcZgYbByJhidCount(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selxjgcZgYbByJhid(Gcglgcgzgj gcglgcgzgj);
+
 
 }

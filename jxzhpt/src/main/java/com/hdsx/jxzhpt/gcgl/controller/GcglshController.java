@@ -227,6 +227,22 @@ public class GcglshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//综规查询月报
+	public void selshZgYbByJhid(){
+		gcglsh.setPage(page);
+		gcglsh.setRows(rows);
+		gcglsh.setJhid(jhid);
+		int count=gcglshServer.selshZgYbByJhidCount(gcglsh);
+		List<Gcglsh> list=gcglshServer.selshZgYbByJhid(gcglsh);
+		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	//修改月报
 	public void updateshYb(){
 		Boolean bl=gcglshServer.updateshYb(gcglsh);

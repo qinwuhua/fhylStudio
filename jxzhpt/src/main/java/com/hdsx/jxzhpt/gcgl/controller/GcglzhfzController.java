@@ -222,6 +222,23 @@ public class GcglzhfzController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//综规查询月报
+	public void selZhfzZgYbByJhid(){
+		Gcglzhfz gcglzhfz=new Gcglzhfz();
+		gcglzhfz.setPage(page);
+		gcglzhfz.setRows(rows);
+		gcglzhfz.setJhid(jhid);
+		int count=gcglzhfzServer.selZhfzZgYbByJhidCount(gcglzhfz);
+		List<Gcglzhfz> list=gcglzhfzServer.selZhfzZgYbByJhid(gcglzhfz);
+		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 		//修改月报
 		public void updateZhfzYb(){
 			Boolean bl=gcglzhfzServer.updateZhfzYb(gcglzhfz);

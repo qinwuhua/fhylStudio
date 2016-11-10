@@ -48,6 +48,13 @@
 		$("#zjje").text(ybdata.zjje);
 		$("#xgcsyj").text(ybdata.xgcsyj);
 		$("#cscyj").text(ybdata.cscyj);
+		
+		$("#zgshzt").text(ybdata.zgshzt);
+		$("#zgshuser").text(ybdata.zgshuser);
+		if(ybdata.zgshtime!=null)
+		$("#zgshtime").text(ybdata.zgshtime);
+		else $("#zgshtime").text('');
+		$("#zgshyj").text(ybdata.zgshyj);
 	});
 	
 	function closes(str){
@@ -327,6 +334,51 @@ text-decoration: none;
                         <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                             text-align: left; padding-left: 10px;" class="style3">
                             <label id="shtime"></label>
+                            &nbsp;
+                        </td>
+                    </tr>
+                     <tr style="height: 35px;">
+                        <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            padding-right: 5px; color: #007DB3; font-weight: bold; font-size: small; text-align: right;
+                            background-color: #F1F8FF;">
+                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">综规处审核状态</font></b>
+                        </td>
+                        <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+                            <label id="zgshzt"></label>
+                            &nbsp;
+                        </td>
+                        <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            padding-right: 5px; color: #007DB3; font-weight: bold; font-size: small; text-align: right;
+                            background-color: #F1F8FF;">
+                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">综规处审核人</font></b>
+                        </td>
+                        <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+                            <label id="zgshuser"></label>
+                            &nbsp;
+                        </td>
+                        <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            padding-right: 5px; color: #007DB3; font-weight: bold; font-size: small; text-align: right;
+                            background-color: #F1F8FF;">
+                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">综规处审核时间</font></b>
+                        </td>
+                        <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
+                            text-align: left; padding-left: 10px;" class="style3">
+                            <label id="zgshtime"></label>
+                            &nbsp;
+                        </td>
+                    </tr>
+                   
+                    <tr style="height: 35px;">
+                        <td style="font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                            padding-right: 5px; border-bottom: 1px solid #C0C0C0;" class="style2">
+                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">综规处审核意见</font></b>
+                        </td>
+                        <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
+                            border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left;
+                            padding-left: 10px;" class="style3">
+                            <label id="zgshyj"></label>
                             &nbsp;
                         </td>
                     </tr>

@@ -304,4 +304,14 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 	public Gcglwqgz selectZhfzTj(Gcglzhfz gcglzhfz) {
 		return queryOne("selectZhfzTj",gcglzhfz);
 	}
+
+	@Override
+	public int selZhfzZgYbByJhidCount(Gcglzhfz gcglzhfz) {
+		return queryOne("selZhfzZgYbByJhidCount",gcglzhfz);
+	}
+
+	@Override
+	public List<Gcglzhfz> selZhfzZgYbByJhid(Gcglzhfz gcglzhfz) {
+		return queryList("selZhfzZgYbByJhid",gcglzhfz);
+	}
 }

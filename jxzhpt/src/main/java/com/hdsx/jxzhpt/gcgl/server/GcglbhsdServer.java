@@ -70,5 +70,9 @@ public interface GcglbhsdServer {
 
 	Gcglbhsd selectcgsyf(Gcglbhsd Gcglbhsd);
 
+	int selBhsdZgYbByJhidCount(Gcglbhsd gcglbhsd);
+
+	List<com.hdsx.jxzhpt.gcgl.bean.Gcglbhsd> selBhsdZgYbByJhid(Gcglbhsd gcglbhsd);
+
 
 }
