@@ -322,4 +322,14 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhListcount1", gcglsh);
 	}
+
+	@Override
+	public int selshZgYbByJhidCount(Gcglsh gcglsh) {
+		return queryOne("selshZgYbByJhidCount",gcglsh);
+	}
+
+	@Override
+	public List<Gcglsh> selshZgYbByJhid(Gcglsh gcglsh) {
+		return queryList("selshZgYbByJhid",gcglsh);
+	}
 }

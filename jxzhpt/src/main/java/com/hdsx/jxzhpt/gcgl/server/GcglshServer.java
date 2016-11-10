@@ -72,4 +72,8 @@ public interface GcglshServer {
 
 	int selectWqgzjhListcount1(Gcglsh gcglsh);
 
+	int selshZgYbByJhidCount(Gcglsh gcglsh);
+
+	List<Gcglsh> selshZgYbByJhid(Gcglsh gcglsh);
+
 }

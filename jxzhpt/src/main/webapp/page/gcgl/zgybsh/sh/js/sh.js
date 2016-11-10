@@ -18,7 +18,8 @@ function urlxmnf(id,flag){
 	   flag=='01011403010102'||flag=='010114030102'||flag=='010114030105'||
 	   flag=='010114040101'||flag=='010114040102'||flag=='010114040103'||flag=='010114040104'||
 	   flag=='010114040105'||flag=='010114040106'||flag=='010114040107'||
-	   flag=='01011501010101'||flag=='01011501010102'||flag=='010115010102'||flag=='010115010105'
+	   flag=='01011501010101'||flag=='01011501010102'||flag=='010115010102'||flag=='010115010105'||
+	   flag=='01011402030102'
 	){
 		if(flag=='01011302010101'||flag=='01011302010102'||flag=='010113020102'||flag=='010113020105'){
 			$("#astext").html('计划上报');
@@ -58,7 +59,8 @@ function urlxmnf(id,flag){
 		flag=='01011403020102'||flag=='010114030202'||flag=='010114030206'||
 		flag=='010114040201'||flag=='010114040202'||flag=='010114040203'||flag=='010114040204'||
 		flag=='010114040205'||flag=='010114040206'||flag=='010114040207'||flag=='01011501020101'||
-		flag=='01011501020102'||flag=='010115010202'||flag=='010115010206'
+		flag=='01011501020102'||flag=='010115010202'||flag=='010115010206'||
+		flag=='01011402040102'
 	){
 		if(flag=='01011302020101'||flag=='01011302020102'||flag=='010113020202'||flag=='010113020206'){
 			$("#astext").html('计划上报');
@@ -238,18 +240,20 @@ function ybsh(index){
 	obj=data;
 	YMLib.UI.createWindow('wqxx','灾毁重建月报审核','shybsh.jsp','wqxx',450,200);
 }
-function shShyb(){
+function zgshShyb(){
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
-	var data = /*"gcglsh.zjje="+$("#tj_zjje").val()+*/"gcglsh.xgcsyj="+$("#tj_xgcsyj").val()/*+"&gcglsh.cscyj="+$("#tj_cscyj").val()*/
-	+"&gcglsh.shtime="+sbsj+"&gcglsh.shuser="+$("#shuser").val()+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id;
+	var data = "gcglgcgzgj.zgshyj="+$("#zgshyj").val()
+	+"&gcglgcgzgj.zgshtime="+sbsj+"&gcglgcgzgj.zgshuser="+$("#shuser").val()
+	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id
+	+"&gcglgcgzgj.table=gcgl_sh";
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/shShYb.do',
+		url:'../../../../gcgl/zgshYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -484,7 +488,7 @@ function ybysh(index){
 	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.xmlx=gcgl_sh"+"&gcglwqgz.id="+data1.id;
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcgl/ybyshbwsh.do',
+		url:'/jxzhpt/gcgl/zgybyshbwsh.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -496,7 +500,7 @@ function ybysh(index){
 }
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectshYbByJhid1.do?jhid='+parent.obj1.XMBM,
+	    url:'../../../../gcgl/selshZgYbByJhid.do?jhid='+parent.obj1.XMBM,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -506,9 +510,9 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核'&&row.sfsj==7)
+	              		if(row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt=='' || row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt=='未审核')
 				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
-		              		if(row.shzt=='已审核')
+		              		if(row.zgshzt=='已审核')
 		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybysh('+index+')">已审核</a>'+'退回   ';
 			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
@@ -579,11 +583,13 @@ function showYBlist__ck(){
 
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglsh.id="+data1.id+"&gcglsh.sfsj=9"+"&gcglsh.yhtype=7"+"&gcglsh.jhid="+data1.jhid;
+	var data="gcglgcgzgj.id="+data1.id+"&gcglgcgzgj.sfsj=7"
+	+"&gcglgcgzgj.table=gcgl_sh"
+	+"&gcglgcgzgj.yhtype=7"+"&gcglgcgzgj.jhid="+data1.jhid;
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbShYb.do',
+			url:'../../../../gcgl/zgthYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

@@ -86,6 +86,14 @@ public interface GcglgcgzgjServer {
 
 	boolean updataxjSFQX(Gcglgcgzgj gcglgcgzgj);
 
+	int selgcgzgjZgYbByJhidCount(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selgcgzgjZgYbByJhid(Gcglgcgzgj gcglgcgzgj);
+
+	Boolean zgshYb(Gcglgcgzgj gcglgcgzgj);
+
+	Boolean zgthYb(Gcglgcgzgj gcglgcgzgj);
+
 
 
 }

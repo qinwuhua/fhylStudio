@@ -235,6 +235,22 @@ public class XjgcController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//综规查询月报
+	public void selxjgcZgYbByJhid(){
+		gcglgcgzgj.setPage(page);
+		gcglgcgzgj.setRows(rows);
+		gcglgcgzgj.setJhid(jhid);
+		int count=xjgcServer.selxjgcZgYbByJhidCount(gcglgcgzgj);
+		List<Gcglgcgzgj> list=xjgcServer.selxjgcZgYbByJhid(gcglgcgzgj);
+		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	//修改月报
 	public void updatexjgcYb(){
 		Boolean bl=xjgcServer.updategcgzgjYb(gcglgcgzgj);

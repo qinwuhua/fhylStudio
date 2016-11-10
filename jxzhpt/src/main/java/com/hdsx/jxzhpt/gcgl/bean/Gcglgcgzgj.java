@@ -19,6 +19,7 @@ public class Gcglgcgzgj implements Serializable {
 	private String erji;//二级
 	private String sanji;//三级
 	private String siji;//四级
+	private String table;//四级
 	
 	
 	public String getLqlmwcqk() {
@@ -209,6 +210,50 @@ public class Gcglgcgzgj implements Serializable {
 	private String dwyhdk;
 	private String dwgz;
 	private String dwsz;
+	
+	private String zgshzt;
+	private String zgshuser;
+	private String zgshyj;
+	private String thyy;
+	private String zgthyy;
+	private Date zgshtime;
+	
+	public String getZgshzt() {
+		return zgshzt;
+	}
+	public void setZgshzt(String zgshzt) {
+		this.zgshzt = zgshzt;
+	}
+	public String getZgshuser() {
+		return zgshuser;
+	}
+	public void setZgshuser(String zgshuser) {
+		this.zgshuser = zgshuser;
+	}
+	public String getZgshyj() {
+		return zgshyj;
+	}
+	public void setZgshyj(String zgshyj) {
+		this.zgshyj = zgshyj;
+	}
+	public String getThyy() {
+		return thyy;
+	}
+	public void setThyy(String thyy) {
+		this.thyy = thyy;
+	}
+	public String getZgthyy() {
+		return zgthyy;
+	}
+	public void setZgthyy(String zgthyy) {
+		this.zgthyy = zgthyy;
+	}
+	public Date getZgshtime() {
+		return zgshtime;
+	}
+	public void setZgshtime(Date zgshtime) {
+		this.zgshtime = zgshtime;
+	}
 	
 	public String getDwyhdk() {
 		return dwyhdk;
@@ -973,6 +1018,12 @@ public class Gcglgcgzgj implements Serializable {
 	}
 	public void setTbman(String tbman) {
 		this.tbman = tbman;
+	}
+	public String getTable() {
+		return table;
+	}
+	public void setTable(String table) {
+		this.table = table;
 	}
 
 	

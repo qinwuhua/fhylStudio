@@ -64,4 +64,8 @@ public interface GcglzhfzServer {
 
 	Gcglwqgz selectZhfzTj(Gcglzhfz gcglzhfz);
 
+	int selZhfzZgYbByJhidCount(Gcglzhfz gcglzhfz);
+
+	List<Gcglzhfz> selZhfzZgYbByJhid(Gcglzhfz gcglzhfz);
+
 }

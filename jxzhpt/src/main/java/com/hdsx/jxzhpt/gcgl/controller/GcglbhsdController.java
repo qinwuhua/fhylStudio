@@ -251,6 +251,24 @@ public class GcglbhsdController extends BaseActionSupport{
 		}
 	}
 	
+	//综规查询月报1
+	public void selBhsdZgYbByJhid(){
+		Gcglbhsd Gcglbhsd=new Gcglbhsd();
+		Gcglbhsd.setPage(page);
+		Gcglbhsd.setRows(rows);
+		Gcglbhsd.setJhid(jhid);
+		int count=gcglbhsdServer.selBhsdZgYbByJhidCount(Gcglbhsd);
+		List<Gcglbhsd> list=gcglbhsdServer.selBhsdZgYbByJhid(Gcglbhsd);
+		EasyUIPage<Gcglbhsd> e=new EasyUIPage<Gcglbhsd>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 		//修改月报
 		public void updateBhsdYb(){
 			System.out.println(gcglbhsd);

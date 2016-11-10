@@ -278,6 +278,23 @@ public class GcglabgcController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+//查询月报1
+	public void selAbgcZgYbByJhid(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setPage(page);
+		gcglabgc.setRows(rows);
+		gcglabgc.setJhid(jhid);
+		int count=gcglabgcServer.selAbgcZgYbByJhidCount(gcglabgc);
+		List<Gcglabgc> list=gcglabgcServer.selAbgcZgYbByJhid(gcglabgc);
+		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 		//修改月报
 		public void updateAbgcYb(){
 			System.out.println(gcglabgc);

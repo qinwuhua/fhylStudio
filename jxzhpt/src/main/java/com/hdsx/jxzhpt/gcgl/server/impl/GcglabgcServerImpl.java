@@ -453,5 +453,15 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public Gcglabgc queryAbxmYb(String jhid) {
 		return queryOne("queryAbxmYb", jhid);
 	}
+
+	@Override
+	public int selAbgcZgYbByJhidCount(Gcglabgc gcglabgc) {
+		return queryOne("selAbgcZgYbByJhidCount", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglabgc> selAbgcZgYbByJhid(Gcglabgc gcglabgc) {
+		return queryList("selAbgcZgYbByJhid", gcglabgc);
+	}
 	
 }

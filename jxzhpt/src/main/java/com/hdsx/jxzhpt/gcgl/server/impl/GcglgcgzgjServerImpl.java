@@ -376,5 +376,32 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		}
 	}
 
-	
+	@Override
+	public int selgcgzgjZgYbByJhidCount(Gcglgcgzgj gcglgcgzgj) {
+		return queryOne("selgcgzgjZgYbByJhidCount", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selgcgzgjZgYbByJhid(Gcglgcgzgj gcglgcgzgj) {
+		return queryList("selgcgzgjZgYbByJhid",gcglgcgzgj);
+	}
+
+	@Override
+	public Boolean zgshYb(Gcglgcgzgj gcglgcgzgj) {
+		if(update("zgshYb", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean zgthYb(Gcglgcgzgj gcglgcgzgj) {
+		if(update("zgthYb", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

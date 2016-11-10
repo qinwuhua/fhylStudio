@@ -365,4 +365,14 @@ public class GcglbhsdServerImpl extends BaseOperate implements GcglbhsdServer {
 		}
 	}
 
+	@Override
+	public int selBhsdZgYbByJhidCount(Gcglbhsd gcglbhsd) {
+		return queryOne("selBhsdZgYbByJhidCount", gcglbhsd);
+	}
+
+	@Override
+	public List<Gcglbhsd> selBhsdZgYbByJhid(Gcglbhsd gcglbhsd) {
+		return queryList("selBhsdZgYbByJhid", gcglbhsd);
+	}
+
 }

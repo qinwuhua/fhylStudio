@@ -272,6 +272,22 @@ public class GcglwqgzController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//综规查询月报
+	public void selWqgzZgYbByJhid(){
+		gcglwqgz.setPage(page);
+		gcglwqgz.setRows(rows);
+		gcglwqgz.setJhid(jhid);
+		int count=gcglwqgzServer.selWqgzZgYbByJhidCount(gcglwqgz);
+		List<Gcglwqgz> list=gcglwqgzServer.selWqgzZgYbByJhid(gcglwqgz);
+		EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 		//修改月报
 		public void updateWqgzYb(){
@@ -819,7 +835,20 @@ public class GcglwqgzController extends BaseActionSupport{
 		boolean bl=gcglwqgzServer.ybyshbwsh(gcglwqgz);
 		ResponseUtils.write(getresponse(), bl+"");
 	}
-	
+	//综规审核：已审核变未审核
+	public void zgybyshbwsh(){
+		boolean bl=gcglwqgzServer.zgybyshbwsh(gcglwqgz);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	//查询综规审核状态
+	public void selectZgshzt(){
+		try {
+			Gcglwqgz bl = gcglwqgzServer.selectZgshzt(gcglwqgz);
+			JsonUtils.write(bl, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selectsfkwg(){
 		try {
 			Gcglwqgz bl = gcglwqgzServer.selectsfkwg(gcglwqgz);

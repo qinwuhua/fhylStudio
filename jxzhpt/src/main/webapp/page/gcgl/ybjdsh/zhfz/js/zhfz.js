@@ -287,8 +287,14 @@ function showYBlist(){
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		if(row.shzt=='未审核'&&row.sfsj==7)
 				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
-		              		if(row.shzt=='已审核')
-		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybysh('+index+')">已审核</a>   '+'退回   ';
+	              		if(row.shzt=='已审核'){
+	              			if(row.zgshzt=='已审核'){
+	              				//可编辑return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'已审核'+'退回   ';
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'已审核'+'退回   ';
+	              			}else{
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybysh('+index+')">已审核</a>'+'退回   ';
+	              			}
+	              		}
 			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
@@ -450,14 +456,29 @@ function jiazai(ooo){
 function ybysh(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
 	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.xmlx=gcgl_zhfz"+"&gcglwqgz.id="+data1.id;
+	//验证综规是否已审核  
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcgl/ybyshbwsh.do',
+		url:'/jxzhpt/gcgl/selectZgshzt.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
-			if(Boolean(msg)){
-				$("#ybgrid").datagrid('reload');
+			//alert(msg.zgshzt);
+			if(msg.zgshzt=='已审核'){
+				alert("综规处已审核，请重新查询数据；");
+				return false;
+			}else{
+				$.ajax({
+					type:'post',
+					url:'/jxzhpt/gcgl/ybyshbwsh.do',
+					data:data,
+					dataType:'json',
+					success:function(msg){
+						if(Boolean(msg)){
+							$("#ybgrid").datagrid('reload');
+						}
+					}
+				});
 			}
 		}
 	});	

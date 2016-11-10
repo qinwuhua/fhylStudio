@@ -368,5 +368,15 @@ public class XjgcServerImpl extends BaseOperate implements XjgcServer {
 		}
 	}
 
+	@Override
+	public int selxjgcZgYbByJhidCount(Gcglgcgzgj gcglgcgzgj) {
+		return queryOne("selxjgcZgYbByJhidCount",gcglgcgzgj);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selxjgcZgYbByJhid(Gcglgcgzgj gcglgcgzgj) {
+		return queryList("selxjgcZgYbByJhid",gcglgcgzgj);
+	}
+
 	
 }

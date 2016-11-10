@@ -110,18 +110,20 @@ function ybsh(index){
 	obj=data;
 	YMLib.UI.createWindow('wqxx','改建月报审核','gcgzsjybsh.jsp','wqxx',450,200);
 }
-function shgcgzsjyb(){
+function zgshgcgzsjyb(){
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
-	var data = /*"gcglgcgzsj.zjje="+$("#tj_zjje").val()+*/"gcglgcgzsj.xgcsyj="+$("#tj_xgcsyj").val()/*+"&gcglgcgzsj.cscyj="+$("#tj_cscyj").val()*/
-	+"&gcglgcgzsj.shtime="+sbsj+"&gcglgcgzsj.shuser="+$("#shuser").val()+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id;
+	var data = "gcglgcgzgj.zgshyj="+$("#zgshyj").val()
+	+"&gcglgcgzgj.zgshtime="+sbsj+"&gcglgcgzgj.zgshuser="+$("#shuser").val()
+	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id
+	+"&gcglgcgzgj.table=GCGL_GCGZSJ";
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/shgcgzsjyb.do',
+		url:'../../../../gcgl/zgshYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -352,7 +354,7 @@ function ybysh(index){
 	var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.xmlx=gcgl_gcgzsj"+"&gcglwqgz.id="+data1.id;
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcgl/ybyshbwsh.do',
+		url:'/jxzhpt/gcgl/zgybyshbwsh.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -364,7 +366,7 @@ function ybysh(index){
 }
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectgcgzsjYbByJhid1.do?jhid='+parent.obj1.XMBM,
+	    url:'../../../../gcgl/selgcgzsjZgYbByJhid.do?jhid='+parent.obj1.XMBM,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -374,9 +376,9 @@ function showYBlist(){
 	    columns:[
 	             [
 					{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-						if(row.shzt=='未审核'&&row.sfsj==7)
+						if(row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt=='' || row.shzt=='已审核'&&row.sfsj==7&&row.zgshzt=='未审核')
 				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
-		              		if(row.shzt=='已审核')
+		              		if(row.zgshzt=='已审核')
 		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb1('+index+')">编辑</a>   '+'<a href="#" onclick="ybysh('+index+')">已审核</a>'+'退回   ';
 					}},
 					{field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
@@ -384,7 +386,7 @@ function showYBlist(){
 					{field:'dcwcqk',title:'本月完成垫层（公里）',width:130,align:'center',rowspan:2},
 					{field:'jcwcqk',title:'本月完成基层（公里）',width:130,align:'center',rowspan:2},
 					{field:'bywcmc',title:'本月完成面层（公里）',width:130,align:'center',rowspan:2},
-					{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
+					/*{field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},*/
 					 {title:'本月到位资金（万元）',colspan:7},
 				        {field:'bywctze',title:'本月完成投资（万元）',width:120,align:'center',rowspan:2},
 				        {field:'qksm',title:'情况说明',width:120,align:'center',rowspan:2}
@@ -441,11 +443,13 @@ function showYBlist__ck(){
 
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglgcgzsj.id="+data1.id+"&gcglgcgzsj.sfsj=9"+"&gcglgcgzsj.yhtype=7"+"&gcglgcgzsj.jhid="+data1.jhid;
+	var data="gcglgcgzgj.id="+data1.id+"&gcglgcgzgj.sfsj=7"
+	+"&gcglgcgzgj.table=GCGL_GCGZSJ"
+	+"&gcglgcgzgj.yhtype=7"+"&gcglgcgzgj.jhid="+data1.jhid;
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbGcgzsjYb.do',
+			url:'../../../../gcgl/zgthYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

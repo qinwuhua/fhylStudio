@@ -83,5 +83,13 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz queryGcglwqtjInYb(String jhid);
 
+	boolean zgybyshbwsh(Gcglwqgz gcglwqgz);
+
+	int selWqgzZgYbByJhidCount(Gcglwqgz gcglwqgz);
+
+	List<Gcglwqgz> selWqgzZgYbByJhid(Gcglwqgz gcglwqgz);
+
+	Gcglwqgz selectZgshzt(Gcglwqgz gcglwqgz);
+
 
 }

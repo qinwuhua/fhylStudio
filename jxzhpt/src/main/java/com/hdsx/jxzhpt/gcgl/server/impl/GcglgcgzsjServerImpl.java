@@ -347,4 +347,23 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 		return queryOne("selectgsdgzListbfcount", gcglgcgzsj);
 	}
 
+	@Override
+	public int selgcgzsjZgYbByJhidCount(Gcglgcgzsj gcglgcgzsj) {
+		return queryOne("selgcgzsjZgYbByJhidCount", gcglgcgzsj);
+	}
+
+	@Override
+	public List<Gcglgcgzsj> selgcgzsjZgYbByJhid(Gcglgcgzsj gcglgcgzsj) {
+		return queryList("selgcgzsjZgYbByJhid",gcglgcgzsj);
+	}
+
+	@Override
+	public Boolean zgshgcgzsjyb(Gcglgcgzsj gcglgcgzsj) {
+		if(update("zgshgcgzsjyb", gcglgcgzsj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
