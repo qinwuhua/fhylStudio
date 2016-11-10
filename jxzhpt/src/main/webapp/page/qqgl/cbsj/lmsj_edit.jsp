@@ -122,7 +122,7 @@
 						$("#qdzh").val(parseFloat(item.qdzh));
 						$("#zdzh").val(parseFloat(item.zdzh));
 						selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
-						$("#lc").html(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
+						var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));$("#lc").html(Math.abs(zlcs));
 						var lc=Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)));
 						//$("#jsjsdj").val(item.xjsdj);
 						//$("#xjsdj").val(item.xjsdj);

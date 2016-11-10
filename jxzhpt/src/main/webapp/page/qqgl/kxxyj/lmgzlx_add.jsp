@@ -79,7 +79,7 @@ a{text-decoration:none;}
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 		$("#lc").val(zlc);
 		cesuan();
@@ -88,6 +88,7 @@ a{text-decoration:none;}
 			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
 			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	}
 	function cesuan(){
 		var yi=0;

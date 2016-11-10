@@ -395,7 +395,7 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//$("#lc").val(zlc);
 		//queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());

@@ -208,7 +208,7 @@ a{text-decoration:none;}
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					$("#lc").html(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
+					var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));$("#lc").html(Math.abs(zlcs));
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
 					/* qdStr=(parseFloat(item.qdzh)-5);
@@ -322,7 +322,7 @@ a{text-decoration:none;}
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").html(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 		//queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());

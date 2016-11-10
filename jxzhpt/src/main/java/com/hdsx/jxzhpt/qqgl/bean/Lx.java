@@ -16,7 +16,21 @@ public class Lx {
 	private String xmlx;
 	private String snhntmchbmj;
 	private String xmbm1;
+	private String xzqhdm2;
+	private String xzqhmc2;
 	
+	public String getXzqhdm2() {
+		return xzqhdm2;
+	}
+	public void setXzqhdm2(String xzqhdm2) {
+		this.xzqhdm2 = xzqhdm2;
+	}
+	public String getXzqhmc2() {
+		return xzqhmc2;
+	}
+	public void setXzqhmc2(String xzqhmc2) {
+		this.xzqhmc2 = xzqhmc2;
+	}
 	public String getXmbm1() {
 		return xmbm1;
 	}

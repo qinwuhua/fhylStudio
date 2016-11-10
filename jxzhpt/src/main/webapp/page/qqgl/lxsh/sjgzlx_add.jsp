@@ -114,6 +114,7 @@
 // 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
 					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
 					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 				});
 	}
@@ -157,7 +158,7 @@
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
 		//getbzcs($("#ylxbh").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());

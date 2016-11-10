@@ -171,36 +171,37 @@ var xzqh;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		} */
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
-		queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		cesuan();
 	}
 	function cesuan(){
 		var yi=0;
 		if($('#jhyilc').val()!="" && $('#jhyilc').val()!="0")
-			yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
+			yi = getbzcs($("#ylxbh").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
 		var er=0;
 		if($('#jherlc').val()!="" && $('#jherlc').val()!="0")
-			er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#jherlc').val(),'升级改造工程项目');
+			er = getbzcs($("#ylxbh").val().substr(0,1),"二级",$('#jherlc').val(),'升级改造工程项目');
 		var san=0;
 		if($('#jhsanlc').val()!="" && $('#jhsanlc').val()!="0")
-			san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#jhsanlc').val(),'升级改造工程项目');
+			san = getbzcs($("#ylxbh").val().substr(0,1),"三级",$('#jhsanlc').val(),'升级改造工程项目');
 		var si=0;
 		if($('#jhsilc').val()!="" && $('#jhsilc').val()!="0")
-			si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#jhsilc').val(),'升级改造工程项目');
+			si = getbzcs($("#ylxbh").val().substr(0,1),"四级",$('#jhsilc').val(),'升级改造工程项目');
 		var dw=0;
 		if($('#jhdwlc').val()!="" && $('#jhdwlc').val()!="0")
-			dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#jhdwlc').val(),'升级改造工程项目');
+			dw = getbzcs($("#ylxbh").val().substr(0,1),"等外",$('#jhdwlc').val(),'升级改造工程项目');
 		var wl=0;
 		if($('#jhwllc').val()!="" && $('#jhwllc').val()!="0")
-			wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
+			wl = getbzcs($("#ylxbh").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
 		var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
 		$('#bzcs').val(zcs);
 	}

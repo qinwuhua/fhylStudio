@@ -219,7 +219,7 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-// 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+// 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 // 		$("#lc").val(zlc);
 		queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		jslc();
@@ -229,6 +229,7 @@ text-decoration:none;
 			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
 			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	}
 </script>
 <form action="" id="lxsh">

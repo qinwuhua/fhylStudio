@@ -78,19 +78,21 @@
 				alert("止点桩号不能小于起点桩号");
 				$("#zdzh").val(zdStr);
 			} */
-			var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+			var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 			$("#lc").val(zlc);
 			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
 				getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 				else
 				getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
-
+			getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 			if($("#qdzh").val()!='')
 				cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 			if($("#zdzh").val()!='')
 				cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+			
+			
 		}
 		function removes(){
 			closeWindow(parent.YMLib.Var.id);

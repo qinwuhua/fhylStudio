@@ -1778,15 +1778,15 @@
      from ghlx g where g.ylxbm like #{ylxbm}||'%'||#{xzqh}||'%' and ((to_number(g.yqdzh)&lt;to_number(#{zdzh}) and to_number(g.yzdzh)>to_number(#{qdzh})) or (to_number(g.yqdzh)>to_number(#{zdzh}) and to_number(g.yzdzh)&lt;to_number(#{qdzh}) ))
     )t order by decode(lc,null,0,lc) desc -->
 		
-	select t.*,abs(to_number(qd)-to_number(zd)) lc from(
+	select t.*,abs(to_number(qdzh)-to_number(zdzh)) lc,
+	(case when to_number(yqdzh)&lt;to_number(yzdzh) then to_number(xqdzh)+to_number(qdzh)-to_number(yqdzh)
+          else to_number(yqdzh)-to_number(qdzh)+to_number(xqdzh)
+     end ) qd,
+     (case when to_number( yqdzh)&lt;to_number(yzdzh) then to_number(xzdzh)-(to_number(yzdzh)-to_number(zdzh))
+          else to_number(xzdzh)-(to_number(zdzh)-to_number(yzdzh))
+     end ) zd from(
     select 
     ylxbm,yqdzh,yzdzh,xlxbm,xqdzh,xzdzh,xlxmc,cfld,
-    (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{qdzh}) then to_number(xqdzh)+to_number(#{qdzh})-to_number(yqdzh)
-          else to_number(yqdzh)-to_number(#{qdzh})+to_number(xqdzh)
-     end ) qd,
-     (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{qdzh}) then to_number(xzdzh)-(to_number(yzdzh)-to_number(#{zdzh}))
-          else to_number(xzdzh)-(to_number(#{zdzh})-to_number(yzdzh))
-     end ) zd,
     (case when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{qdzh}) then to_number(#{qdzh})
           when to_number( yqdzh)&lt;to_number(yzdzh) and to_number(yqdzh)>to_number(#{qdzh}) then to_number(yqdzh)
           when to_number( yqdzh)>to_number(yzdzh) and to_number(yzdzh)>to_number(#{qdzh}) then to_number(yzdzh)
@@ -1797,7 +1797,10 @@
           when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)>to_number(#{zdzh}) then to_number(#{zdzh})
           when to_number( yqdzh)>to_number(yzdzh) and to_number(yqdzh)&lt;=to_number(#{zdzh}) then to_number(yqdzh)
      end ) zdzh
-     from ghlx g where g.ylxbm like #{ylxbm}||'%'||#{xzqh}||'%' and ((to_number(g.yqdzh)&lt;to_number(#{zdzh}) and to_number(g.yzdzh)>to_number(#{qdzh})) or (to_number(g.yqdzh)>to_number(#{zdzh}) and to_number(g.yzdzh)&lt;to_number(#{qdzh}) ))
+     from ghlx g where g.ylxbm like #{ylxbm}||'%'||#{xzqh}||'%' 
+    and (case when to_number(g.yqdzh)&lt;to_number(g.yzdzh) then to_number(g.yqdzh) else to_number(g.yzdzh) end)&lt;(case when to_number(#{qdzh})&lt;to_number(#{zdzh}) then to_number(#{zdzh}) else to_number(#{qdzh}) end) 
+ 	and (case when to_number(g.yqdzh)&lt;to_number(g.yzdzh) then to_number(g.yzdzh) else to_number(g.yqdzh) end)>(case when to_number(#{qdzh})&lt;to_number(#{zdzh}) then to_number(#{qdzh}) else to_number(#{zdzh}) end) 
+ 
     )t order by decode(lc,null,0,lc) desc
 	</select>
 	<select id="getylxinfo" parameterType="xmsq" resultType="xmsq">

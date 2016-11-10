@@ -3358,10 +3358,15 @@ function getghlxinfo(lxbm,qdzh,zdzh){
 				}*/
 				//alert(msg.length>0);
 				if(msg.length>1){
-						xlxmc=msg[0].xlxmc;
-						cfld=msg[1].xlxbm;
-						qcqd=msg[1].qd;
-						qczd=msg[1].zd;
+						for(var i=1;i<msg.length;i++){
+							if(msg[i].xlxbm!=msg[0].xlxbm){
+								xlxmc=msg[0].xlxmc;
+								cfld=msg[i].xlxbm;
+								qcqd=msg[i].qd;
+								qczd=msg[i].zd;
+							}
+						}
+						
 						/*if(msg[0].qdzh>msg[1].qdzh)
 							qd=msg[0].qdzh;
 						else
@@ -3463,8 +3468,8 @@ function getylxinfo(lxbm,qdzh,zdzh){
 				getylxlminfo(msg.ylxbm,qd,zd);
 			}else{
 				//qd=msg.yqdzh;zd=msg.yzdzh;
-				qd=accSub(parseFloat(msg.xqdzh),accSub(parseFloat(qdzh),parseFloat(msg.yqdzh))); 
-				zd=accAdd(accSub(parseFloat(msg.yzdzh),parseFloat(zdzh)),parseFloat(msg.xzdzh));
+				qd=accSub(parseFloat(msg.yqdzh),accSub(parseFloat(qdzh),parseFloat(msg.xqdzh))); 
+				zd=accAdd(accSub(parseFloat(msg.xzdzh),parseFloat(zdzh)),parseFloat(msg.yzdzh));
 				
 				getylxlminfo(msg.ylxbm,zd,qd);
 			}
@@ -3490,11 +3495,11 @@ function getylxinfo(lxbm,qdzh,zdzh){
 				}*/
 				
 				if(parseFloat(qd) > parseFloat(zd)){
-					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qd);
-					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zd);
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.yqdzh);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.yzdzh);
 				}else{
-					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qd);
-					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zd);
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.yqdzh);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.yzdzh);
 				}
 				
 				getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
