@@ -167,6 +167,7 @@
 			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
 			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		cesuan();
 	}
 	function cesuan(){

@@ -192,12 +192,12 @@ var xzqh;
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
-		queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		cesuan();
 	}
