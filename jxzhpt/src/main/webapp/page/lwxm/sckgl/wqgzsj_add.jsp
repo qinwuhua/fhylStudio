@@ -559,6 +559,10 @@ function checksfzq(){
 	
 }
 function upload(id){
+	if($('#scxmnf').val() == null || $('#scxmnf').val() == ''){
+		alert("请填写项目年份");
+		return false;
+	}
 	$("#"+id).uploadifySettings('scriptData',{'jh.sbnf':$('#scxmnf').val(),'uploads.parentid':xxId});
 	$('#'+id).uploadifyUpload();
 }
