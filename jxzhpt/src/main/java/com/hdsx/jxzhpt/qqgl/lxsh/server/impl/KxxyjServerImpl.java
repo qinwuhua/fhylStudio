@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -224,6 +225,10 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 				insert("insertsjgzcb", lxsh2);
 			}
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("1");
+			lxsh.setXmjd("工程初步设计");
+			w.updateWnxmjd(lxsh);
 			return true;
 		}
 		else
@@ -260,6 +265,10 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 				insert("insertlmgzcb", lxsh2);
 			}
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("2");
+			lxsh.setXmjd("工程初步设计");
+			w.updateWnxmjd(lxsh);
 			return true;
 		}
 		else
@@ -296,6 +305,10 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 				}
 				insert("insertxjcb", lxsh2);
 			}
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("3");
+			lxsh.setXmjd("工程初步设计");
+			w.updateWnxmjd(lxsh);
 			return true;
 		}
 		else
@@ -927,6 +940,11 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(l.size()>0)
 			return false;
 		else{
+			if(!"5".equals(lxsh.getXmlx())){
+				WnjhServer w=new WnjhServerImpl();
+				lxsh.setXmjd("工程可行性研究报告");
+				w.updateWnxmjd(lxsh);
+			}
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
 			return update("thwshkxx", lxsh)>0&&delete("thwshkxxcbsj", lxsh)>0&&delete("thwshkxxcbsjlx", lxsh)>0;

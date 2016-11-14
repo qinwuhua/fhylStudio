@@ -297,6 +297,26 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public Lxsh getWnxjinfobyid(String xmbm) {
 		return queryOne("getWnxjinfobyid", xmbm);
 	}
+	@Override
+	public boolean updateWnxmjd(Lxsh lxsh) {
+		String tbname="";
+		String tbname1="";
+		if("1".equals(lxsh.getXmlx())){
+			tbname="wnjh_sjgz";
+			tbname1="lxsh_sjgz";
+		}
+		if("2".equals(lxsh.getXmlx())){
+			tbname="wnjh_lmgz";
+			tbname1="lxsh_lmgz";
+		}
+		if("3".equals(lxsh.getXmlx())){
+			tbname="wnjh_xj";
+			tbname1="lxsh_xj";
+		}
+		lxsh.setBz(tbname);
+		lxsh.setBzcs(tbname1);
+		return update("updateWnxmjd", lxsh)>0;
+	}
 	
 
 }

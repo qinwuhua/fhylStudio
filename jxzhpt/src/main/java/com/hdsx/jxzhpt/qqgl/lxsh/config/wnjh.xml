@@ -1649,5 +1649,8 @@
 	<select id="getWnxjinfobyid" parameterType="String" resultType="lxsh">
 		select * from wnjh_xj where id=#{value}
 	</select>
+	<update id="updateWnxmjd" parameterType="lxsh">
+		update ${bz} set xmjd=#{xmjd} where id in (select wnid from ${bzcs} where xmbm in(${xmbm}))
+	</update>
 </mapper>
 

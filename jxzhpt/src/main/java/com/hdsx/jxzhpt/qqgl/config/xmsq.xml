@@ -1801,7 +1801,7 @@
     and (case when to_number(g.yqdzh)&lt;to_number(g.yzdzh) then to_number(g.yqdzh) else to_number(g.yzdzh) end)&lt;(case when to_number(#{qdzh})&lt;to_number(#{zdzh}) then to_number(#{zdzh}) else to_number(#{qdzh}) end) 
  	and (case when to_number(g.yqdzh)&lt;to_number(g.yzdzh) then to_number(g.yzdzh) else to_number(g.yqdzh) end)>(case when to_number(#{qdzh})&lt;to_number(#{zdzh}) then to_number(#{qdzh}) else to_number(#{zdzh}) end) 
  
-    )t order by decode(lc,null,0,lc) desc
+    )t order by (case when to_number(yzdzh)>to_number(yqdzh) AND to_number(zdzh)>to_number(qdzh) then '1' when to_number(yqdzh)>to_number(yzdzh) AND to_number(qdzh)>to_number(zdzh) then '2' else '3' end),decode(lc,null,0,lc) desc
 	</select>
 	<select id="getylxinfo" parameterType="xmsq" resultType="xmsq">
 		select * from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)

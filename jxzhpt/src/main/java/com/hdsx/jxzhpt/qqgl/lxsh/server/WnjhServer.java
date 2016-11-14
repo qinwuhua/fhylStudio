@@ -60,5 +60,5 @@ public interface WnjhServer {
 	Lxsh getWngjinfobyid(String xmbm);
 	Lxsh getWnlminfobyid(String xmbm);
 	Lxsh getWnxjinfobyid(String xmbm);
-
+	boolean updateWnxmjd(Lxsh lxsh);
 }

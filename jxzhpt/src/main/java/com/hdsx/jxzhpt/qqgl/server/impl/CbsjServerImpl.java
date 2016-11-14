@@ -12,6 +12,8 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 @Service
 public class CbsjServerImpl extends BaseOperate implements CbsjServer {
@@ -588,6 +590,14 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 			return false;
 		else{
 			cbsj.setBz(bz);
+			if("1".equals(""+cbsj.getXmlx())||"2".equals(""+cbsj.getXmlx())||"3".equals(""+cbsj.getXmlx())){
+				Lxsh lxsh=new Lxsh();
+				lxsh.setXmbm(cbsj.getXmbm());
+				WnjhServer w=new WnjhServerImpl();
+				lxsh.setXmlx(""+cbsj.getXmlx());
+				lxsh.setXmjd("工程初步设计");
+				w.updateWnxmjd(lxsh);
+			}
 			return update("thwshcbsj", cbsj)>0&&delete("thwshkxxcbsj", cbsj)>0;
 
 		}

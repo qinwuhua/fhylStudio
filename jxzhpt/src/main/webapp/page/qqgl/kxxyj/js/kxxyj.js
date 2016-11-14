@@ -1051,7 +1051,7 @@ function showAllsjsh(){
     			columns:[[
 					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
-							var result = '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							var result = '<a href="#" onclick="editSjlx('+"'"+parentindex+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 								result+= '&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
 							}
@@ -1221,7 +1221,7 @@ function tz(id,lx){
 }
 
 function editSjlx(xmid,index){
-	//alert(xmid);
+	//alert(xmid+""+index);
 	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
 	YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_add.jsp','lxxx',900,350);
@@ -1375,11 +1375,11 @@ function showAlllmsh(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
 	    	parentindex=index;
-	    	$('#table_lx'+row.xmbm).datagrid({
+	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
 	    			 'lx.jdbs':1,
@@ -1389,7 +1389,7 @@ function showAlllmsh(){
     			columns:[[
 					{field:'cz',title:'操作',width:150,align:'center',
 						formatter: function(value,row,index){
-							var result= '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+							var result= '<a href="javascript:editGzlx('+"'"+parentindex+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
 						
 							if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
 				        		   result+='&nbsp;<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dellmlx('+parentindex+','+index+')">删除</a>   ';
@@ -1559,6 +1559,7 @@ function showAlllmsh123(){
 
 
 function editGzlx(xmid,index){
+	//alert();
 	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
 	YMLib.Var.Obj=data;
 	YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_add.jsp','lxxx',900,350);

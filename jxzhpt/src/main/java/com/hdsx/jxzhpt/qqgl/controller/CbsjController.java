@@ -27,6 +27,8 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -736,16 +738,34 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b=cbsjServer.shCbsjLmsjByXmbm(cbsj,sbzt1,shzt1);
 				if(b && (shzt1!=null && !shzt1.equals(""))){
 					jhshServer.insertJhshLmsjFromCbsj(cbsj.getXmbm());
+					Lxsh lxsh=new Lxsh();
+					lxsh.setXmbm(cbsj.getXmbm());
+					WnjhServer w=new WnjhServerImpl();
+					lxsh.setXmlx(""+cbsj.getXmlx());
+					lxsh.setXmjd("计划");
+					w.updateWnxmjd(lxsh);
 				}
 			}else if(cbsj.getXmlx()==2){
 				b = cbsjServer.shCbsjLmgzByXmbm(cbsj,sbzt1,shzt1);
 				if(b && (shzt1!=null && !shzt1.equals(""))){
 					jhshServer.insertJhshLmgzFromCbsj(cbsj.getXmbm());
+					Lxsh lxsh=new Lxsh();
+					lxsh.setXmbm(cbsj.getXmbm());
+					WnjhServer w=new WnjhServerImpl();
+					lxsh.setXmlx(""+cbsj.getXmlx());
+					lxsh.setXmjd("计划");
+					w.updateWnxmjd(lxsh);
 				}
 			}else if(cbsj.getXmlx()==3){
 				b = cbsjServer.shCbsjXjByXmbm(cbsj,sbzt1,shzt1);
 				if(b && (shzt1!=null && !shzt1.equals(""))){
 					jhshServer.insertJhshXjFromCbsj(cbsj.getXmbm());
+					Lxsh lxsh=new Lxsh();
+					lxsh.setXmbm(cbsj.getXmbm());
+					WnjhServer w=new WnjhServerImpl();
+					lxsh.setXmlx(""+cbsj.getXmlx());
+					lxsh.setXmjd("计划");
+					w.updateWnxmjd(lxsh);
 				}
 			}else if(cbsj.getXmlx()==4){
 				b = cbsjServer.shCbsjYhdzxByXmbm(cbsj,shzt1);

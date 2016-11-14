@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -85,6 +86,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			update("updateqqgllx", lxsh);
 			
 			update("updateqqglsj", lxsh);
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmjd("项目立项");
+			lxsh.setXmlx("1");
+			w.updateWnxmjd(lxsh);
 			return true;
 		} else
 			return false;
@@ -96,6 +101,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
 			update("updateqqgllm", lxsh);
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("2");
+			lxsh.setXmjd("项目立项");
+			w.updateWnxmjd(lxsh);
+			
 			return true;
 		} else
 			return false;
@@ -106,6 +116,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
 			update("updateqqglxj", lxsh);
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("3");
+			lxsh.setXmjd("项目立项");
+			w.updateWnxmjd(lxsh);
 			return true;
 		} else
 			return false;
@@ -350,7 +364,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lm.add(hm);
 		}
 		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
-			
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("1");
+			lxsh.setXmjd("五年项目库");
+			w.updateWnxmjd(lxsh);
 			return true;}
 		else return false;
 	}
@@ -366,7 +383,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(deleteBatch("delLmgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
 			//updateBatch("delwnlm", lm);
-			
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("1");
+			lxsh.setXmjd("五年项目库");
+			w.updateWnxmjd(lxsh);
 			return true;}
 		else return false;
 	}
@@ -382,7 +402,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(deleteBatch("delXj", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
 			//updateBatch("delwnxj", lm);
-			
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("1");
+			lxsh.setXmjd("五年项目库");
+			w.updateWnxmjd(lxsh);
 			return true;}
 		else return false;
 	}
@@ -414,6 +437,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 				insert("insertsjgzkxx", lxsh2);
 			}
+			
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("1");
+			lxsh.setXmjd("工程可行性研究报告");
+			w.updateWnxmjd(lxsh);
+			
 			return true;
 		}
 		else
@@ -447,6 +476,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 				insert("insertlmgzkxx", lxsh2);
 			}
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("2");
+			lxsh.setXmjd("工程可行性研究报告");
+			w.updateWnxmjd(lxsh);
 			return true;
 		}
 		else
@@ -480,6 +513,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				}
 				insert("insertxjkxx", lxsh2);
 			}
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmlx("3");
+			lxsh.setXmjd("工程可行性研究报告");
+			w.updateWnxmjd(lxsh);
 			return true;
 		}
 		else
@@ -1001,6 +1038,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setJdbs("2");
 		}
 		lxsh.setBzcs(sfkth);
+		
 		List<Lxsh> l = queryList("sfkythlxwsh",lxsh);
 		if(l.size()>0)
 			return false;
@@ -1010,6 +1048,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setBzcs(kxx);
 			return update("thwshlxsh45", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
 		}else{
+			WnjhServer w=new WnjhServerImpl();
+			lxsh.setXmjd("项目立项");
+			w.updateWnxmjd(lxsh);
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
 			return update("thwshlxsh", lxsh)>0&&delete("thwshlxshkxx", lxsh)>0&&delete("thwshlxshkxxlx", lxsh)>0;
