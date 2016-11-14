@@ -30,6 +30,7 @@ function loadxx(){
 	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
 	$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#scakjfl").combobox({onChange:function (n,o) {setbz();}});
+	$('#scakjfl').combobox('disable'); 
 	$("#qlbh").html(item.qlbh);
 	$("#qlmc").html(item.qlmc);
 	$("#qlzxzh").html(item.qlzxzh);

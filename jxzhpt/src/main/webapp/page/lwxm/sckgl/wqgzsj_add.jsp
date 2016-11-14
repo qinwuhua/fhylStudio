@@ -30,6 +30,7 @@ $(function(){
 	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
 	$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#scakjfl").combobox({onChange:function (n,o) {setbz();}});
+	$('#scakjfl').combobox('disable'); 
 	xxId=newGuid();
 // 	xmnf1("scxmnf");
 	autoCompleteQLBH();
