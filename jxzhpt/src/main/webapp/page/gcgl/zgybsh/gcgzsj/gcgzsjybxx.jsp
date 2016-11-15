@@ -42,12 +42,12 @@
 			$("#xgcsyj").text(datayb.xgcsyj);
 			$("#cscyj").text(datayb.cscyj);
 			
-			$("#zgshzt").text(ybdata.zgshzt);
-			$("#zgshuser").text(ybdata.zgshuser);
-			if(ybdata.zgshtime!=null)
-			$("#zgshtime").text(ybdata.zgshtime);
+			$("#zgshzt").text(datayb.zgshzt);
+			$("#zgshuser").text(datayb.zgshuser);
+			if(datayb.zgshtime!=null)
+			$("#zgshtime").text(datayb.zgshtime);
 			else $("#zgshtime").text('');
-			$("#zgshyj").text(ybdata.zgshyj);
+			$("#zgshyj").text(datayb.zgshyj);
 		});
 	</script>
 	<style type="text/css">
