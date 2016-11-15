@@ -336,7 +336,7 @@ function shenh(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var id=data1.id;
 	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
+		var data = "lxsh.id="+id+"&lxsh.xmbm="+data1.xmbm;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/qqgl/shsjgzkxx.do",
@@ -360,7 +360,7 @@ function shenh1(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var id=data1.id;
 	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
+		var data = "lxsh.id="+id+"&lxsh.xmbm="+data1.xmbm;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/qqgl/shlmgzkxx.do",
@@ -384,7 +384,7 @@ function shenh2(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var id=data1.id;
 	if(confirm('您确定审核该项目？')){
-		var data = "lxsh.id="+id;
+		var data = "lxsh.id="+id+"&lxsh.xmbm="+data1.xmbm;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/qqgl/shxjkxx.do",

@@ -57,6 +57,51 @@
 		});
 		
 		
+		function shangB(){
+			var rows=$('#datagrid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要审核项目！");
+				return;
+			}
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].sbzt1=='1'){
+					alert("对不起，项目已审核！");
+					return;
+				}
+			}
+			if($.cookie("unit2").length!=7) {
+				alert("您无审核项目权限！");
+				return;
+			}
+			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+				xmbm+=","+rows[i].xmbm ;
+			}
+			if(confirm('您确定审核该项目？')){
+				var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/qqgl/shsjgzkxx.do",
+					 dataType : 'json',
+					 data : data,
+					 success : function(msg){
+						 if(msg){
+							 alert('审核成功！');
+							 $("#datagrid").datagrid('reload');
+						 }else{
+							 alert('审核失败,请选择要上报项目！');
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+			}
+		} 
+		
+		
 		function tuiHui(){
 			var rows=$('#datagrid').datagrid('getSelections');
 			if(rows.length==0) {
