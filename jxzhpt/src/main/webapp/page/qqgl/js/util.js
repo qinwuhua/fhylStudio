@@ -246,7 +246,7 @@ function loadGldj(id) {
 function xmnf(id){
 	var myDate = new Date();
 	var years=[];
-	var first;
+	//var first;
 	years.push({text:'全部',value:''});
 	for(var i=0;i<=10;i++){
 		if(i==0)
@@ -1620,9 +1620,17 @@ function gridBindyh(grid){
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.98});
 }
-
-//计算里程宽度改变补助资金
 function jslckdgbbzzj(){
+	$.messager.show({  
+        title: "提示",  
+        msg: "正在计算补助资金，请等待。。。！",  
+        showType: 'slide',  
+        timeout: 5000  
+    });  
+	setTimeout('jslckdgbbzzj1()',5000);
+}
+//计算里程宽度改变补助资金
+function jslckdgbbzzj1(){
 	//alert();
 	var flag='';
 	flag='lqhntmc';
