@@ -228,13 +228,17 @@ function newGuid()
     return guid;    
 }
 function queryJsdjAndLc(lxbm,qdzh,zdzh){
-	if(lxbm.substr(0,1)=='Y' || lxbm.substr(0,1)=='C')
-		lxbm=lxbm+xzqh;
+	var xzqh="";
+	if($("#xzqh1").val()==null){
+		xzqh=$("#xzqh").combobox('getValues').join(',').substr(0,4);
+	}else{
+		xzqh=$("#xzqh1").combobox('getValues').join(',').substr(0,4);
+	}
 	$.ajax({
 		type:'post',
 		async:false,
 		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
-        data:'lx.lxbm='+lxbm+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
+        data:'lx.lxbm='+lxbm+xzqh+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
 		dataType:'json',
 		success:function(msg){
 			$('#yilc').val(msg.yilc);

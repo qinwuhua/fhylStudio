@@ -95,8 +95,8 @@ text-decoration:none;
 				zdStr=(parseFloat(msg.gpszdzh)+lc*0.3).toFixed(3);
 				if(qdStr<0)
 					qdStr=0;
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
+				//$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
+				//$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr);
 				
 				$('#ylxbh').val(msg.lxbm);
 				$("#xmbm").html(msg.xmbm);
@@ -141,7 +141,7 @@ text-decoration:none;
 				$("#jsxz").focus();
 				return false;
 			}
-			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
+			/* if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
 				alert("请填写正确的止点桩号！");
 				$("#zdzh").focus();
 				return false;
@@ -151,7 +151,7 @@ text-decoration:none;
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
 				return false;
-			}
+			} */
 			
 			saveLxsh();
 		});
@@ -192,14 +192,14 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
-		}
+		} */
 		//selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
 	}
 	

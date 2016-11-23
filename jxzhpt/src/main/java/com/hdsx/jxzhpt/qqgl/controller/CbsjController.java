@@ -630,6 +630,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			boolean b = false;
 			//准备路线桩号信息
 			Lx lx=new Lx();
+			lx.setLxbm(cbsj.getYlxbh());
 			lx.setQdzh(cbsj.getQdzh());
 			lx.setZdzh(cbsj.getZdzh());
 			lx.setXmid(cbsj.getXmbm());
@@ -788,12 +789,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void uploadSjpf() throws Exception{
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
-			String fileurl="D:\\江西综合平台上传文件\\sjpfwj\\"+cbsj.getXmbm().substring(0,4)+"\\";
+			String fileurl="E:\\江西综合平台上传文件\\sjpfwj\\"+cbsj.getXmbm().substring(0,4)+"\\";
 			File file =new File(fileurl);
 			if(uploadSjpf!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadSjpfFileName, "设计批复文件", cbsj.getXmbm(), 
-						"D:/江西综合平台上传文件/sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/"+uploadSjpfFileName, cbsj.getSjpfwh());
+						"E:\\江西综合平台上传文件/sjpfwj/"+cbsj.getXmbm().substring(0,4)+"/"+uploadSjpfFileName, cbsj.getSjpfwh());
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
 				if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){
@@ -1402,7 +1403,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 					for (Plan_upload itemGk : queryGkXm) {
 						String fid=UUID.randomUUID().toString();
 						Plan_upload uploads =new Plan_upload(fid,item.getName(), "工可批复文件", itemGk.getParentid(), 
-								"D:/江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+								"E:\\江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
 						uploads.setFid(fid);
 						Plan_upload result = cbsjServer.queryFileByWh(uploads);
 						if(result==null){
@@ -1416,7 +1417,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				}else{
 					String fid=UUID.randomUUID().toString();
 					Plan_upload uploads =new Plan_upload(fid,item.getName(), "工可批复文件", null, 
-							"D:/江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+							"E:\\江西综合平台上传文件/gkpfwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
 					uploads.setFid(fid);
 					cbsjServer.insertFile(uploads);
 				}
@@ -1434,7 +1435,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 					for (Plan_upload itemp : queryJhXm) {
 						String fid=UUID.randomUUID().toString();
 						Plan_upload uploads =new Plan_upload(fid,item.getName(), "计划下达文件", itemp.getParentid(), 
-								"D:/江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+								"E:\\江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
 						uploads.setFid(fid);
 						Plan_upload result = cbsjServer.queryFileByWh(uploads);
 						if(result==null){
@@ -1448,7 +1449,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				}else{
 					String fid=UUID.randomUUID().toString();
 					Plan_upload uploads =new Plan_upload(fid,item.getName(), "计划下达文件", null, 
-							"D:/江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
+							"E:\\江西综合平台上传文件/jhxdwj/"+item.getName(), item.getName().substring(0, item.getName().indexOf(".")));
 					uploads.setFid(fid);
 					cbsjServer.insertFile(uploads);
 				}

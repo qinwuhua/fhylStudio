@@ -275,14 +275,14 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
+		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#qdzh").val(qdStr);
 		}
 		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
-		}
+		} */
 		var qd=0;
 		var zd=0;
 		if($("#zdzh").val()==''){
@@ -306,14 +306,14 @@ text-decoration:none;
 // 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 	function changeZlc2(){
-		 if(parseFloat($("#xjqdzh").val())>parseFloat(zdStr)){
+		 /* if(parseFloat($("#xjqdzh").val())>parseFloat(zdStr)){
 			alert("起点桩号不能大于止点桩号");
 			$("#xjqdzh").val(qdStr);
 		}
 		if(parseFloat($("#xjzdzh").val())<parseFloat(qdStr)){
 			alert("止点桩号不能小于起点桩号");
 			$("#xjzdzh").val(zdStr);
-		} 
+		}  */
 		var qd=0;
 		var zd=0;
 		if($("#xjzdzh").val()==''){

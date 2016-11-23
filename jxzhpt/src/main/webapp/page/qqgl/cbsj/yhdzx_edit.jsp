@@ -436,7 +436,7 @@
 						里程
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="lc" name="lc" onchange="querymc('zdzh')" style="width: 100px;" type="text"/>&nbsp; Km
+						<input id="lc" name="lc" style="width: 100px;" type="text"/>&nbsp; Km
 					</td>
 				</tr>
 				<tr style="height: 30px;">

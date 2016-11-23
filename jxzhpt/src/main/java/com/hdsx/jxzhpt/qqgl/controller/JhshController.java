@@ -678,12 +678,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void uploadJhsh(){
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try {
-			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\";
+			String fileurl="E:\\江西综合平台上传文件\\jhxdwj\\";
 			File file =new File(fileurl);
 			if(uploadJhxd!=null){
 				String fid=UUID.randomUUID().toString();
 				Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", jhsh.getXmbm(), 
-						"D:/江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
+						"E:\\江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
 				CbsjServer cbsjServer =new CbsjServerImpl();
 				uploads.setFid(fid);
 				Plan_upload result = cbsjServer.queryFileByWh(uploads);
@@ -730,7 +730,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		HttpServletResponse response = ServletActionContext.getResponse();
 		boolean b = false;
 		try {
-			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\";
+			String fileurl="E:\\江西综合平台上传文件\\jhxdwj\\";
 			File file =new File(fileurl);
 			if(uploadJhxd!=null){
 				CbsjServer cbsjServer = new CbsjServerImpl();
@@ -739,7 +739,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					//for (Plan_upload itemp : queryJhXm){
 						String fid=UUID.randomUUID().toString();
 						Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", "计划下达文件", 
-								"D:/江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
+								"E:\\江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
 						uploads.setFid(fid);
 						Plan_upload result = cbsjServer.queryFileByWh(uploads);
 						if(result==null && cbsjServer.insertFile(uploads)){
@@ -774,7 +774,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		HttpServletResponse response = ServletActionContext.getResponse();
 		boolean b = false;
 		try {
-			String fileurl="D:\\江西综合平台上传文件\\jhxdwj\\";
+			String fileurl="E:\\江西综合平台上传文件\\jhxdwj\\";
 			File file =new File(fileurl);
 			if(uploadJhxd!=null){
 				CbsjServer cbsjServer = new CbsjServerImpl();
@@ -783,7 +783,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					for (Plan_upload itemp : queryJhXm){
 						String fid=UUID.randomUUID().toString();
 						Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划下达文件", itemp.getParentid(), 
-								"D:/江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
+								"E:\\江西综合平台上传文件/jhxdwj/"+uploadJhxdFileName, jhsh.getXdwh());
 						uploads.setFid(fid);
 						Plan_upload result = cbsjServer.queryFileByWh(uploads);
 						if(result==null && cbsjServer.insertFile(uploads) && cbsjServer.insertFileJl(uploads)){

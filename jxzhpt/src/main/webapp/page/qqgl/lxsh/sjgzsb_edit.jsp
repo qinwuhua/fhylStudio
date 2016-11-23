@@ -300,6 +300,7 @@ text-decoration:none;
 					$("#gpsqdzh").val(qdStr);
 					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
+					getylxlminfo(item.ghlxbh,item.qdzh,item.zdzh);
 					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$('#qd').html(">="+item.qdzh);
 						$('#zd').html("<="+item.zdzh);
@@ -329,6 +330,7 @@ text-decoration:none;
 						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
 					
+					//getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//querymc('qdzh');
 					//querymc('zdzh');
 					//queryJsdjAndLc(item.ghlxbh,item.qdzh,item.zdzh);
@@ -397,6 +399,7 @@ text-decoration:none;
 		} */
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+		getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//$("#lc").val(zlc);
 		//queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());

@@ -487,6 +487,7 @@ function openwnxmk(xmbm){
  * @param id 桩号元素ID
  */
 function querymc(id){
+	
 	if(id=="qdzh"){
 		cxqdmc($('#ylxbh').val(),$('#qdzh').val());
 	}else if(id=="zdzh"){
@@ -559,10 +560,16 @@ function cxzdmc(lxbm,zdzh){
  * @returns
  */
 function queryJsdjAndLc(lxbm,qdzh,zdzh){
+	var xzqh="";
+	if($("#xzqh1").val()==null){
+		xzqh=$("#xzqh").combobox('getValues').join(',').substr(0,4);
+	}else{
+		xzqh=$("#xzqh1").combobox('getValues').join(',').substr(0,4);
+	}
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
-        data:'lx.lxbm='+lxbm+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
+        data:'lx.lxbm='+lxbm+xzqh+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
 		dataType:'json',
 		success:function(msg){
 			$('#yilc').val(msg.yilc);
@@ -1625,9 +1632,9 @@ function jslckdgbbzzj(){
         title: "提示",  
         msg: "正在计算补助资金，请等待。。。！",  
         showType: 'slide',  
-        timeout: 5000  
+        timeout: 7000  
     });  
-	setTimeout('jslckdgbbzzj1()',5000);
+	setTimeout('jslckdgbbzzj1()',7000);
 }
 //计算里程宽度改变补助资金
 function jslckdgbbzzj1(){
