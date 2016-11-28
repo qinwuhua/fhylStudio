@@ -251,6 +251,8 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		//System.out.println(gcglwqgz.getJcqc()+"********");
 		gcglwqgz.setJgzt("1");
 		if(update("insertWqgzwg", gcglwqgz)>0){
+			gcglwqgz.setSfwg("是");
+			update("wqsfwg", gcglwqgz);
 			return true;
 		}else{
 			return false;

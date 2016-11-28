@@ -26,7 +26,6 @@ var sfylrbwqk='是';
 var sfkxg; 
 $(function(){
 	getBmbm('上部结构形式,通航等级,荷载等级,行政等级','sck_sbjgxs,scthdj,hzdj,ydgldj');
-	
 	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
 	//$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#scakjfl").combobox({onChange:function (n,o) {setbz();}});
@@ -72,19 +71,16 @@ $(function(){
 	$("#qx_window").click(function(){
 		$.ajax({
 			type:'post',
-//			url:'/jxzhpt/qqgl/queryFileByXmbm.do',
-//			data:'file.parentid='+xmbm+'&file.filetype='+type,
-//			dataType:'json',
 			url:'/jxzhpt/wqgzsj/deleteqlzpbyxmbm.do',
 			dataType:'json',
 			data:'jckjckwqgzsj.id='+xxId,
 			success:function(data){
 				parent.$('#sck_add').window('destroy');
 			}
-		});
-	});	
-});
-function autoCompleteQLBH(){
+			});
+		});	
+	});
+	function autoCompleteQLBH(){
 	var url = "/jxzhpt/wqgzsj/JckWqgzRoad.do";
 	$("#qlbh").autocomplete(url, {
 		multiple : false,
@@ -197,7 +193,7 @@ function autoCompleteQLBH(){
 				
 				$("#scakjfl").combobox('setValue',item.akjfl);
 			});
-}
+	}
 var scakjfl;
 function saveWqgz(){
 	var flag=true;

@@ -414,6 +414,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		xjsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
+		//System.out.println(cbsj.getLxmc());
+		cbsj.setLxmc(cbsj.getLxmc());
 		cbsj.setGhlxbm(cbsj.getGhlxbm());
 		cbsj.setGhlxmc(cbsj.getGhlxmc());
 		cbsj.setLxmc(cbsj.getLxmc());

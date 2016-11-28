@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Gcglwqgz implements Serializable {
+	private String sfwg;
 	private String qqgzsj;
 	private String jzjznf;
 	private String gydwbm;
@@ -124,6 +125,12 @@ public class Gcglwqgz implements Serializable {
 	
 	
 	
+	public String getSfwg() {
+		return sfwg;
+	}
+	public void setSfwg(String sfwg) {
+		this.sfwg = sfwg;
+	}
 	public String getTbman() {
 		return tbman;
 	}

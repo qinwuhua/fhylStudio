@@ -589,6 +589,8 @@ public class GcglhslyController extends BaseActionSupport{
 			}
 			if("wqgz".equals(xmlx)){
 				sql="update plan_wqgz set jgzt='0' where id='"+id+"'";
+				String sql2="update xmk_wqgz set sfwg='否' where id in(select xmkid from sck_wqgz where sckid in(select sckid from plan_wqgz where id='"+id+"'))";
+				gcglhslyServer.thxmwgtj(sql2);
 			}
 			if("zhfz".equals(xmlx)){
 				sql="update plan_zhfz set jgzt='0' where id='"+id+"'";

@@ -179,7 +179,9 @@
 		update PLAN_WQGZ set WJGYY=#{wjgyy} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglwqgz">
-		update PLAN_WQGZ set SJWGSJ=#{sjwgsj},SJJCQC=#{jcqc},JGZT=#{jgzt} where ID=#{jhid}
+		update PLAN_WQGZ set SJWGSJ=#{sjwgsj}
+		<if test="jcqc !=null">,SJJCQC=#{jcqc}</if>
+		,JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglwqgz">
 		update PLAN_WQGZ set sgxk=#{sgxk},xdsj=#{xdsj},jhxdwh=#{xdwh},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjjgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},zljdwj=#{zljdwj} where ID=#{jhid}
@@ -789,5 +791,7 @@
 		) bn on p.id=bn.jhid
 		where p.id=#{value}
 	 </select>
-	 
+	 <update id="wqsfwg" parameterType="gcglwqgz">
+	 	update xmk_wqgz set sfwg=#{sfwg} where id in(select xmkid from sck_wqgz where sckid in(select sckid from plan_wqgz where id=#{jhid}))
+	 </update>
 </mapper>

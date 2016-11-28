@@ -319,8 +319,9 @@
 					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					</td>
+					技术等级</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="jsdj" name="jsdj" type="text" style="width: 124px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					</td>
@@ -342,6 +343,7 @@
 			</tr>
 			
 			<tr style="height: 35px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设方案</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea id="jsfa" name="jsfa" rows="" cols="" style="width: 650px;height: 60px;"></textarea>

@@ -13,7 +13,7 @@
  <select id="selectJckwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1 and SFYLRBWQK='是'
- 			and  sbthcd &lt;=#{sbthcd}
+ 			and  sbthcd &lt;=#{sbthcd} and sfwg!='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -56,12 +56,14 @@
  		<if test="tsdq!='' and tsdq!= null and tsdq !='全部'">
  			${tsdq}
  		</if>
- 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
+ 		
+ 		
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
   <select id="selectWqgzCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1 and SFYLRBWQK='是'
- 			and  sbthcd &lt;=#{sbthcd}
+ 			and  sbthcd &lt;=#{sbthcd}  and sfwg!='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -104,6 +106,7 @@
  		<if test="tsdq!='' and tsdq!= null and tsdq !='全部'">
  			${tsdq}
  		</if>
+ 		
  </select>
  <select id="selectWqgzCount1" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t 
@@ -148,10 +151,10 @@
  			${tsdq}
  		</if>
  		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 		</if>
-	 		<if test="bzls!='' and bzls!= null ">
- 			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
+ 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+			and decode(t1.jhsl,null,'无','有') like #{bzls}||'%'
  		</if>
  		<if test="gldj != '' and gldj != null ">
  			${gldj}
@@ -280,18 +283,18 @@
  </select>
  
   <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
- 	select * from xmk_wqgz where shzt='已审核' and qlbh like #{qlbh}||'%' and SFYLRBWQK='是'
+ 	select * from xmk_wqgz where shzt='已审核' and qlbh like #{qlbh}||'%' and SFYLRBWQK='是' and sfwg != '是'
  	<if test="gydwbm!='' and gydwbm!= null ">
-			and tbbmbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
-		</if>
+		and tbbmbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
+	</if>
  	order by qlbh
  </select>
  
  <select id="JckWqgzRoad1" parameterType="hashmap" resultType="jckwqgz">
  	select * from xmk_wqgz where shzt='已审核' and qlbh like #{qlbh}||'%' and xxcsj='是' 
  	<if test="gydwbm!='' and gydwbm!= null ">
-			and tbbmbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
-		</if>
+		and tbbmbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
+	</if>
  	order by qlbh
  </select>
  
@@ -299,7 +302,7 @@
   <select id="selectJckShwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是'
-			and sbthcd>=#{sbthcd}
+		and sbthcd>=#{sbthcd} and sfwg!='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -343,8 +346,7 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是'
-			and sbthcd>=#{sbthcd}
+ 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and sfwg!='是'
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -400,13 +402,13 @@
  </select>
  
  <sql id="wqgz_commonsql">
- 	and  sbthcd &lt;=#{sbthcd} and sfylrbwqk='是'
+ 	and  sbthcd &lt;=#{sbthcd} and sfylrbwqk='是' and sfwg!='是'
  	<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqhdm!='' and xzqhdm!= null ">
-			${xzqhdm}
-		</if>
+		${gydw}
+	</if>
+	<if test="xzqhdm!='' and xzqhdm!= null ">
+		${xzqhdm}
+	</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'
 	</if>
@@ -445,13 +447,13 @@
  	select
 	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
  	from xmk_wqgz where 1=1
- 	and  sbthcd &lt;=#{sbthcd}
+ 	and sbthcd &lt;=#{sbthcd}
  	<if test="gydw!='' and gydw!= null ">
-			${gydw}
-		</if>
-		<if test="xzqhdm!='' and xzqhdm!= null ">
-			${xzqhdm}
-		</if>
+		${gydw}
+	</if>
+	<if test="xzqhdm!='' and xzqhdm!= null ">
+		${xzqhdm}
+	</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'
 	</if>
@@ -474,14 +476,14 @@
 		and akjfl like '%'||(#{akjfl})||'%'
 	</if>
 	<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like '%'||(#{lxbm})||'%'
- 		</if>
- 		<if test="qlbh!='' and qlbh!= null ">
- 			and qlbh like '%'||(#{qlbh})||'%'
- 		</if>
- 		<if test="tsdq!='' and tsdq!= null ">
- 			and tsdq like '%'||(#{tsdq})||'%'
- 		</if>
+		and lxbm like '%'||(#{lxbm})||'%'
+	</if>
+	<if test="qlbh!='' and qlbh!= null ">
+		and qlbh like '%'||(#{qlbh})||'%'
+	</if>
+	<if test="tsdq!='' and tsdq!= null ">
+		and tsdq like '%'||(#{tsdq})||'%'
+	</if>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
