@@ -1803,6 +1803,9 @@ public class KxxyjController extends BaseActionSupport{
 	public void thkxxyjsb(){
 		ResponseUtils.write(getresponse(), ""+kxxyjServer.thkxxyjsbzt(lxsh));
 	}
+	public void thjhshsb(){
+		ResponseUtils.write(getresponse(), ""+kxxyjServer.thjhshsb(lxsh));
+	}
 	
 	public void thwshkxxyj(){
 		ResponseUtils.write(getresponse(), ""+kxxyjServer.thwshkxxyj(lxsh));

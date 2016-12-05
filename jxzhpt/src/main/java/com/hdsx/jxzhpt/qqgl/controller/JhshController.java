@@ -2309,7 +2309,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		ResponseUtils.write(getresponse(), bl+"");
 	}
-	
+	public void thwshjh(){
+		boolean bl=false;
+		bl=jhshServer.thwshjh(jhsh);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 	public void plansh(){
 		boolean bl=false;
 		if(jhsh.getXmlx()==1){

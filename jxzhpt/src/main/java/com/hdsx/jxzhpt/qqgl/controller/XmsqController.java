@@ -359,6 +359,133 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	public void queryXmsqbyyhc(){
+		try {
+			String xmbm = xmsq.getXmbm();
+			
+			if(!xmbm.equals("")){
+				if(xmbm.indexOf(",")>-1){
+					/*if(xmbm.indexOf(",") == 0){
+						xmbm = xmbm.substring(0);
+					}*/
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 1; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==1){
+							xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "x.xmbm like '" + xmbm + "%' ";
+				}
+				
+				//xmsq.setXmbm(xmbm);
+				xmsq.setXmbm("substr(x.xmbm,0,4) in ("+xmsq.getXmbm()+")");
+				
+			}
+			xmsq.setGhlxbm(xmsq.getGhlxbm());
+			xmsq.setGhlxmc(xmsq.getGhlxmc());
+			jsdjHandle();
+			String ylxbh = xmsq.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
+			List<Xmsq> list=null;
+			int total=0;
+			//String sss = xmsq.getJsxz();
+			//String aaa = xmsq.getWnxmk();
+			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+			xmsq.setJsxz(xmsq.getJsxz());
+			xmsq.setWnxmk(xmsq.getWnxmk());
+			if(xmsq.getXmlx()==4){
+				String gcfl = xmsq.getJsxz();
+				if(gcfl!=null && !gcfl.equals("")){
+					if(gcfl.indexOf(",")>-1){
+						String[] gcflArray = gcfl.split(",");
+						for (int i = 0; i < gcflArray.length; i++) {
+							if(i==0){
+								gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+							}else if(i==gcflArray.length-1){
+								gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+							}else{
+								gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+							}
+						}
+					}else{
+						gcfl = "x.gcfl like '%" + gcfl + "%'";
+					}
+					xmsq.setGcfl(gcfl);
+				}
+				if(xmsq.getTsdq().length()>0){
+					String[] tsdqs=xmsq.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					xmsq.setTsdq(tsdq);
+				}
+				//System.out.println(xmsq.getJsxz());
+				list = xmsqServer.queryYhdzxXmsqbyyhc(xmsq,page,rows);
+				total =xmsqServer.queryYhdzxCountbyyhc(xmsq);
+			}else if(xmsq.getXmlx()==5){
+				if(xmsq.getTsdq().length()>0){
+					String[] tsdqs=xmsq.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					xmsq.setTsdq(tsdq);
+				}
+				list = xmsqServer.queryShXmsqbyyhc(xmsq,page,rows);
+				total =xmsqServer.queryShCountbyyhc(xmsq);
+			}
+			
+			result.put("rows", list);
+			result.put("total", total);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 	public void queryXmsq(){
 		try {
@@ -619,6 +746,118 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void queryLjbyyhc(){
+		try {
+		String xmbm = xmsq.getXmbm();
+		if(xmbm.indexOf(",")>-1){
+			String[] xmnfArray = xmbm.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmbm = "x.xmbm like '" + xmbm + "%' ";
+		}
+		xmsq.setXmbm(xmbm);
+		xmsq.setGhlxbm(xmsq.getGhlxbm());
+		xmsq.setGhlxmc(xmsq.getGhlxmc());
+		jsdjHandle();
+	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+		xmsq.setJsxz(xmsq.getJsxz());
+		xmsq.setWnxmk(xmsq.getWnxmk());
+		Map<String, String> result = null;
+		if(xmsq.getXmlx()==4){
+			String gcfl = xmsq.getJsxz();
+			if(gcfl==null || gcfl.equals("")){
+				gcfl=null;
+			}else if(gcfl.indexOf(",")>-1){
+				String[] gcflArray = gcfl.split(",");
+				for (int i = 0; i < gcflArray.length; i++) {
+					if(i==0){
+						gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+					}else if(i==gcflArray.length-1){
+						gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+					}else{
+						gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+					}
+				}
+			}else{
+				gcfl = "x.gcfl like '%" + gcfl + "%'";
+			}
+			xmsq.setGcfl(gcfl);
+			String ylxbh = xmsq.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
+			if(xmsq.getTsdq().length()>0){
+				String[] tsdqs=xmsq.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmsq.setTsdq(tsdq);
+			}
+			result = xmsqServer.queryLjYhdzxbyyhc(xmsq);
+		}else if(xmsq.getXmlx()==5){
+			if(xmsq.getTsdq().length()>0){
+				String[] tsdqs=xmsq.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				xmsq.setTsdq(tsdq);
+			}
+			result = xmsqServer.queryLjShbyyhc(xmsq);
+		}
+		
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 删除申请项目信息
 	 * @throws Exception
@@ -677,7 +916,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
 			if(xmsq.getXmlx()==4){
-				b = xmsqServer.updateYhdzxSqzt(xmsq);
+				b = xmsqServer.updateYhdzxSqztyhc(xmsq);
 				if(b){
 					List<Xmsq> x=xmsqServer.queryyhdzxcb(xmsq);
 					String xmbm=xmsq.getXmbm();
@@ -691,7 +930,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
 			}else if(xmsq.getXmlx()==5){
-				b = xmsqServer.updateShSqzt(xmsq);
+				b = xmsqServer.updateShSqztyhc(xmsq);
 				if(b){
 					//boolean s = xmsqServer.insertCbsjSh(xmsq);
 					//修改灾毁流程，如果修改回去则用上边的那个
@@ -725,6 +964,67 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			throw e;
 		}
 	}
+	
+	
+	//
+	/**
+	 * 通过申请，并在计划审核中加入数据
+	 * @throws Exception
+	 */
+	public void updateXmsqSpzgc() throws Exception{
+		
+		try{
+			boolean b=true;
+			xmsq.setSqzt(xmsq.getXzqhdm().length());
+			if(xmsq.getXmlx()==4){
+				b = xmsqServer.updateYhdzxSqzt(xmsq);
+				/*if(b){
+					List<Xmsq> x=xmsqServer.queryyhdzxcb(xmsq);
+					String xmbm=xmsq.getXmbm();
+					if(x.size()>0)
+					for (Xmsq xm : x) {
+						if(xmbm.indexOf(xm.getXmbm())>-1)
+							xmbm=xmbm.replaceAll(xm.getXmbm(), "");
+					}
+					if(xmbm!=null||!"".equals(xmbm))
+					xmsq.setXmbm(xmbm);
+					xmsqServer.insertCbsjYhdzx(xmsq);
+				}*/
+			}else if(xmsq.getXmlx()==5){
+				b = xmsqServer.updateShSqzt(xmsq);
+				/*if(b){
+					//boolean s = xmsqServer.insertCbsjSh(xmsq);
+					//修改灾毁流程，如果修改回去则用上边的那个
+					boolean s1 = xmsqServer.insertCbsjShls(xmsq);
+					
+				}*/
+			}
+			//路线阶段添加
+			/*if(xmsq.getXmlx()==5){
+				if(b){
+					Lx lx=new Lx();
+					lx.setXmid(xmsq.getXmbm());
+					lx.setJdbs("0");
+					jhshServer.insertLxJdbs(lx);
+				}
+			}else{
+				if(b){
+					Lx lx=new Lx();
+					lx.setXmid(xmsq.getXmbm());
+					lx.setJdbs(xmsq.getJdbs());
+					jhshServer.insertLxJdbs(lx);
+				}
+			}*/
+			
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	
 	
 	
 	public void updateXmsqthSp() throws Exception{

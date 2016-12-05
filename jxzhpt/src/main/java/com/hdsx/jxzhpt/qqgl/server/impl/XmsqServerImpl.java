@@ -95,20 +95,41 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryList("queryYhdzxXmsq",params);
 	}
 	@Override
+	public List<Xmsq> queryYhdzxXmsqbyyhc(Xmsq xmsq,int page,int rows) {
+		params.put("xmsq", xmsq);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryYhdzxXmsqbyyhc",params);
+	}
+	@Override
 	public List<Xmsq> queryShXmsq(Xmsq xmsq,int page,int rows) {
 		params.put("xmsq", xmsq);
 		params.put("page", page);
 		params.put("rows", rows);
 		return queryList("queryShXmsq",params);
 	}
-	
+	@Override
+	public List<Xmsq> queryShXmsqbyyhc(Xmsq xmsq,int page,int rows) {
+		params.put("xmsq", xmsq);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryShXmsqbyyhc",params);
+	}
 	@Override
 	public int queryYhdzxCount(Xmsq xmsq) {
 		return queryOne("queryYhdzxCount", xmsq);
 	}
 	@Override
+	public int queryYhdzxCountbyyhc(Xmsq xmsq) {
+		return queryOne("queryYhdzxCountbyyhc", xmsq);
+	}
+	@Override
 	public int queryShCount(Xmsq xmsq) {
 		return queryOne("queryShCount", xmsq);
+	}
+	@Override
+	public int queryShCountbyyhc(Xmsq xmsq) {
+		return queryOne("queryShCountbyyhc", xmsq);
 	}
 	@Override
 	public boolean deleteYhdzxByXmbm(String xmbm) {
@@ -139,11 +160,20 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 
 		return update("updateYhdzxSqzt", xmsq)>0;
 	}
-	
+	@Override
+	public boolean updateYhdzxSqztyhc(Xmsq xmsq) {
+
+		return update("updateYhdzxSqztyhc", xmsq)>0;
+	}
 	@Override
 	public boolean updateShSqzt(Xmsq xmsq) {
 		
 		return update("updateShSqzt", xmsq)>0;
+	}
+	@Override
+	public boolean updateShSqztyhc(Xmsq xmsq) {
+		
+		return update("updateShSqztyhc", xmsq)>0;
 	}
 	@Override
 	public boolean insertJhshYhdzx(Xmsq xmsq) {
@@ -212,8 +242,16 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryOne("queryLjYhdzx", xmsq);
 	}
 	@Override
+	public Map<String, String> queryLjYhdzxbyyhc(Xmsq xmsq) {
+		return queryOne("queryLjYhdzxbyyhc", xmsq);
+	}
+	@Override
 	public Map<String, String> queryLjSh(Xmsq xmsq) {
 		return queryOne("queryLjSh", xmsq);
+	}
+	@Override
+	public Map<String, String> queryLjShbyyhc(Xmsq xmsq) {
+		return queryOne("queryLjShbyyhc", xmsq);
 	}
 	@Override
 	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm) {

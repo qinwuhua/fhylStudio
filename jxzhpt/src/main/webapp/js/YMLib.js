@@ -3724,3 +3724,31 @@ function tuihxjlxsh(id){
 	}
 	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_th.jsp?id='+id,'lxxx',400,200);	
 }
+//退回立项审核下级用户
+function tuihxjlxshyhc(id){
+	var rows=$('#'+id).datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	var xmbm=rows[0].xmbm;
+	var xmlx=xmbm.substr(10,1);
+	
+	
+	for(var i=0;i<rows.length;i++){
+		if(xmlx=='4'||xmlx=='5'){
+			if(rows[i].yhcsh=='1'){
+				alert('请您勿勾选已审核的项目');
+				return;
+			}
+		}else{
+			if(rows[i].shzt=='1'){
+				alert('请您勿勾选已审核的项目');
+				return;
+			}
+		}
+		
+		
+	}
+	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_thyhc.jsp?id='+id,'lxxx',400,200);	
+}

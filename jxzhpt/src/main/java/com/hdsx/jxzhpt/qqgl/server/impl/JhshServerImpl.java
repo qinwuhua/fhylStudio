@@ -831,23 +831,43 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean planshgj(Jhsh jhsh) {
-		return update("planshgj", jhsh)==1;
+		return update("planshgj", jhsh)>0;
+	}
+	public boolean thwshjh(Jhsh jhsh) {
+		String table="";
+		if(jhsh.getXmlx()==1){
+			table="jhsh_sjgz";
+		}
+		if(jhsh.getXmlx()==2){
+			table="jhsh_lmgz";
+		}
+		if(jhsh.getXmlx()==3){
+			table="jhsh_xj";
+		}
+		if(jhsh.getXmlx()==4){
+			table="jhsh_sh";
+		}
+		if(jhsh.getXmlx()==5){
+			table="jhsh_yhdzx";
+		}
+		jhsh.setZq(table);
+		return update("thwshjh", jhsh)>0;
 	}
 	@Override
 	public boolean planshlm(Jhsh jhsh) {
-		return update("planshlm", jhsh)==1;
+		return update("planshlm", jhsh)>0;
 	}
 	@Override
 	public boolean planshxj(Jhsh jhsh) {
-		return update("planshxj", jhsh)==1;
+		return update("planshxj", jhsh)>0;
 	}
 	@Override
 	public boolean planshyh(Jhsh jhsh) {
-		return update("planshyh", jhsh)==1;
+		return update("planshyh", jhsh)>0;
 	}
 	@Override
 	public boolean planshsh(Jhsh jhsh) {
-		return update("planshsh", jhsh)==1;
+		return update("planshsh", jhsh)>0;
 	}
 	@Override
 	public Collection<? extends Object> queryGsdgz_dc(Jhsh jhsh, int page, int rows) {

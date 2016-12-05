@@ -60,34 +60,30 @@
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'ck',checkbox:true},
-				{field:'cz',title:'操作',width:100,align:'center',
+				{field:'cz',title:'操作',width:130,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
 // 						+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
 						;
+						xmlx=4;
+						result+='&nbsp;<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:#3399CC;">编辑</a>';
 						return result;
 					}
 				},
-				{field:'sbzt',title:'上报',width:60,align:'center',
+				{field:'sbzt',title:'上报状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						xmlx=1;
-						if(row.sbzt=='0')
-						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">上报</a>';
-						else
-							result='上报';
-						return result;
-					}
-				},
-				{field:'xdzt',title:'编辑',width:60,align:'center',
-					formatter:function(value,row,index){
 						xmlx=4;
-						var result='<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:#3399CC;">编辑</a>';
+						if(row.sbzt=='0')
+						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">未上报</a>';
+						else
+							result='已上报';
 						return result;
 					}
 				},
+				
 				{field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -134,12 +130,7 @@
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},
 				{field:'dk',title:'贷款',width:100,align:'center'},
-				/* {field:'ztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
-					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100+parseFloat(row.yqdbcgs)*100)/100;
-				}},
-				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center',formatter:function(value,row,index){
-					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
-				}}, */
+				
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 // 				{field:'tz',title:'总投资',width:60,align:'center'},
@@ -407,7 +398,7 @@ text-decoration:none;
        					
        						<td colspan="8">
        							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-<!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
+								<img id="sb" name="dishi" alt="上报" onclick="plansb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
        						</td>

@@ -297,7 +297,7 @@
 	</select>
 	<select id="selectLmwnjh" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc,t.qqkzzt  from wnjh_lmgz t left join 
+		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc,t.qqkzzt,t.xmjd  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,WMSYS.WM_CONCAT(to_char(ghlxbm)) ghlxbm,WMSYS.WM_CONCAT(to_char(ghqdzh)) ghqdzh
 		,WMSYS.WM_CONCAT(to_char(ghzdzh)) ghzdzh,WMSYS.WM_CONCAT(to_char(ghlxmc)) ghlxmc

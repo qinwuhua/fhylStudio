@@ -224,6 +224,12 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 					lxsh2.setJsdw("");
 				}
 				insert("insertsjgzcb", lxsh2);
+				
+				//下面这三行代码是为了直接可以进行计划申报。
+				lxsh.setBz("kxxyj_sjgz");
+				lxsh.setBzcs("jhsh_sjgz");
+				insert("insertjhshsb", lxsh);
+				//
 			}
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("1");
@@ -264,6 +270,10 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 					lxsh2.setJsdw("");
 				}
 				insert("insertlmgzcb", lxsh2);
+				//下面这三行代码是为了直接可以进行计划申报。
+				lxsh.setBz("kxxyj_lmgz");
+				lxsh.setBzcs("jhsh_lmgz");
+				insert("insertjhshsb", lxsh);
 			}
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("2");
@@ -304,6 +314,10 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 					lxsh2.setJsdw("");
 				}
 				insert("insertxjcb", lxsh2);
+				//下面这三行代码是为了直接可以进行计划申报。
+				lxsh.setBz("kxxyj_xj");
+				lxsh.setBzcs("jhsh_xj");
+				insert("insertjhshsb", lxsh);
 			}
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("3");
@@ -908,6 +922,25 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	}
 
 	@Override
+	public boolean thjhshsb(Lxsh lxsh) {
+		String table="";
+		if("1".equals(lxsh.getXmlx()))
+			table="jhsh_sjgz";
+		if("2".equals(lxsh.getXmlx()))
+			table="jhsh_lmgz";
+		if("3".equals(lxsh.getXmlx()))
+			table="jhsh_xj";
+		if("4".equals(lxsh.getXmlx()))
+			table="jhsh_yhdzx";
+		if("5".equals(lxsh.getXmlx()))
+			table="jhsh_sh";
+		lxsh.setBz(table);
+		
+		
+		return update("thjhshsb", lxsh)>0;
+	}
+	
+	@Override
 	public boolean thwshkxxyj(Lxsh lxsh) {
 		String bz="";String kxx="";String sfkth="";
 		if("1".equals(lxsh.getXmlx())){
@@ -935,7 +968,7 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 			kxx="cbsj_sh";
 			lxsh.setJdbs("2");
 		}
-		lxsh.setBzcs(sfkth);
+		lxsh.setBzcs(kxx);
 		List<Lxsh> l = queryList("sfkythkxxwsh",lxsh);
 		if(l.size()>0)
 			return false;
@@ -947,7 +980,8 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 			}
 			lxsh.setBz(bz);
 			lxsh.setBzcs(kxx);
-			return update("thwshkxx", lxsh)>0&&delete("thwshkxxcbsj", lxsh)>0&&delete("thwshkxxcbsjlx", lxsh)>0;
+			lxsh.setBzys(sfkth);
+			return update("thwshkxx", lxsh)>0&&delete("thwshkxxcbsj", lxsh)>0&&delete("thwshkxxcbsjlx", lxsh)>0&&delete("thwshkxxjhsb", lxsh)>0;
 
 		}
 		

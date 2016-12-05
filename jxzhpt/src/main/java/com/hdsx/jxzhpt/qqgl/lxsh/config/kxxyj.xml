@@ -1688,10 +1688,12 @@
 	<update id="thkxxyjsbzt" parameterType="lxsh">
 	update ${bz} set thyy=#{thyy},sbzt=#{sbzt},sbthcd=#{sbthcd} where xmbm in (${xmbm})
 	</update>
-	
+	<update id="thjhshsb" parameterType="lxsh">
+	update ${bz} set thyy=#{thyy},sbzt=#{sbzt} where xmbm in (${xmbm})
+	</update>
 	
 	<select id="sfkythkxxwsh" parameterType="lxsh" resultType="lxsh">
-		select * from ${bzcs} where xmbm in (${xmbm}) 
+		select * from ${bzcs} where xmbm in (${xmbm}) and shzt='1'
 	</select>
 	
 	<update id="thwshkxx" parameterType="lxsh">
@@ -1703,5 +1705,14 @@
 	<delete id="thwshkxxcbsjlx" parameterType="lxsh">
 		delete from lxsh_lx where xmid in (${xmbm}) and jdbs=#{jdbs}
 	</delete>
+	<delete id="thwshkxxjhsb" parameterType="lxsh">
+		delete from ${bzys} where xmbm in (${xmbm}) 
+	</delete>
+	
+	<insert id="insertjhshsb" parameterType="lxsh">
+		insert into ${bzcs} (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gkpfwh)
+		select sys_guid(),xmbm,xmmc,xzqh,qdzh,zdzh,kgny,wgny,gkpfwh from ${bz} 
+		where xmbm in(${xmbm})
+	</insert>
 	
 </mapper>

@@ -2,19 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jhsh">
 	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
-		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
+		<!-- insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh,jszlc)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh,c.jszlc
-		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
+		update jhsh_sjgz j set xmmc=(select xmmc from cbsj_sjgz c where c.xmbm=#{xmbm}), 
+	     xzqh=(select xzqh from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     qdzh=(select qdzh from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     zdzh=(select zdzh from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     kgsj=(select kgsj from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     wgsj=(select wgsj from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     gq=(select gq from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     sjpfwh=(select sjpfwh from cbsj_sjgz c where c.xmbm=#{xmbm}),
+	     jszlc=(select jszlc from cbsj_sjgz c where c.xmbm=#{xmbm})
+	    where j.xmbm=#{xmbm}
+		
 	</insert>
 	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
-		insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		<!-- insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
-		from cbsj_lmgz c left join kxxyj_lmgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+		from cbsj_lmgz c left join kxxyj_lmgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
+		update jhsh_lmgz j set xmmc=(select xmmc from cbsj_lmgz c where c.xmbm=#{xmbm}), 
+	     xzqh=(select xzqh from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     qdzh=(select qdzh from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     zdzh=(select zdzh from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     kgsj=(select kgsj from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     wgsj=(select wgsj from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     gq=(select gq from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	     sjpfwh=(select sjpfwh from cbsj_lmgz c where c.xmbm=#{xmbm}),
+	    where j.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshXjFromCbsj" parameterType="java.util.List">
-		insert into jhsh_xj (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		<!-- insert into jhsh_xj (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
-		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm} -->
+		update jhsh_xj j set xmmc=(select xmmc from cbsj_xj c where c.xmbm=#{xmbm}), 
+	     xzqh=(select xzqh from cbsj_xj c where c.xmbm=#{xmbm}),
+	     qdzh=(select qdzh from cbsj_xj c where c.xmbm=#{xmbm}),
+	     zdzh=(select zdzh from cbsj_xj c where c.xmbm=#{xmbm}),
+	     kgsj=(select kgsj from cbsj_xj c where c.xmbm=#{xmbm}),
+	     wgsj=(select wgsj from cbsj_xj c where c.xmbm=#{xmbm}),
+	     gq=(select gq from cbsj_xj c where c.xmbm=#{xmbm}),
+	     sjpfwh=(select sjpfwh from cbsj_xj c where c.xmbm=#{xmbm}),
+	    where j.xmbm=#{xmbm}
 	</insert>
 	<insert id="insertJhshYhdzxFromCbsj" parameterType="cbsj">
 		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
@@ -3783,6 +3812,9 @@
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
 				</if>
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				</if>
 				order <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>by j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -3863,6 +3895,9 @@
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
+				</if>
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
 				</if>
 				order <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>by j.xdzt,j.xmbm desc
 			) t 
@@ -3951,6 +3986,9 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
+				</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4028,6 +4066,9 @@
 				</if> -->
 				<if test="gyfl !=null and gyfl !=''">
 					
+				</if>
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
 				</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
@@ -4122,7 +4163,9 @@
 				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
 					${jhsh.xdzttj}
 				</if>
-				
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -4197,7 +4240,9 @@
 				<if test="jhsh.xdzttj !=null and jhsh.xdzttj !=''">
 					${xdzttj}
 				</if>
-				
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4276,7 +4321,9 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
-				
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4347,7 +4394,9 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
-				
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	          
@@ -4429,6 +4478,9 @@
 				</if>
 				<if test="jhsh.sfsycgs !=null and jhsh.sfsycgs !=''">
 					and sfsycgs = #{jhsh.sfsycgs}
+				</if>
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
 				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
@@ -4513,7 +4565,9 @@
 				<if test="jhsh.sfsycgs !=null and jhsh.sfsycgs !=''">
 					and sfsycgs = #{jhsh.sfsycgs}
 				</if>
-				
+				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4602,6 +4656,9 @@
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
 				</if>
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4681,6 +4738,9 @@
 				<if test="sfsycgs !=null and sfsycgs !=''">
 					and sfsycgs = #{sfsycgs}
 				</if>
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
+				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -4754,35 +4814,37 @@
 	
 	
 	<update id="plansbgj" parameterType="jhsh">
-		update jhsh_sjgz set sbzt='1' where xmbm=#{xmbm}
+		update jhsh_sjgz set sbzt='1' where xmbm in (${xmbm})
 	</update>
 	<update id="plansblm" parameterType="jhsh">
-		update jhsh_lmgz set sbzt='1' where xmbm=#{xmbm}
+		update jhsh_lmgz set sbzt='1'  where xmbm in (${xmbm})
 	</update>
 	<update id="plansbxj" parameterType="jhsh">
-		update jhsh_xj set sbzt='1' where xmbm=#{xmbm}
+		update jhsh_xj set sbzt='1'  where xmbm in (${xmbm})
 	</update>
 	<update id="plansbyh" parameterType="jhsh">
-		update jhsh_yhdzx set sbzt='1' where xmbm=#{xmbm}
+		update jhsh_yhdzx set sbzt='1'  where xmbm in (${xmbm})
 	</update>
 	<update id="plansbsh" parameterType="jhsh">
-		update jhsh_sh set sbzt='1' where xmbm=#{xmbm}
+		update jhsh_sh set sbzt='1'  where xmbm in (${xmbm})
 	</update>
-	
+	<update id="thwshjh" parameterType="jhsh">
+		update ${zq} set sbzt='1',xdzt='0',xdsj=''  where xmbm in (${xmbm})
+	</update>
 	<update id="planshgj" parameterType="jhsh">
-		update jhsh_sjgz set xdzt='1' where xmbm=#{xmbm}
+		update jhsh_sjgz set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
 	</update>
 	<update id="planshlm" parameterType="jhsh">
-		update jhsh_lmgz set xdzt='1' where xmbm=#{xmbm}
+		update jhsh_lmgz set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
 	</update>
 	<update id="planshxj" parameterType="jhsh">
-		update jhsh_xj set xdzt='1' where xmbm=#{xmbm}
+		update jhsh_xj set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
 	</update>
 	<update id="planshyh" parameterType="jhsh">
-		update jhsh_yhdzx set xdzt='1' where xmbm=#{xmbm}
+		update jhsh_yhdzx set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
 	</update>
 	<update id="planshsh" parameterType="jhsh">
-		update jhsh_sh set xdzt='1' where xmbm=#{xmbm}
+		update jhsh_sh set xdzt='1',xdsj=to_char(sysdate,'yyyy-mm-dd') where xmbm in (${xmbm})
 	</update>
 	
 	<select id="queryLsjlListwnxmk" parameterType="java.util.Map" resultType="lx">

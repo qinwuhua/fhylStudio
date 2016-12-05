@@ -1695,7 +1695,7 @@
 	</select>
 	
 	<update id="thwshlxsh45" parameterType="lxsh">
-		update ${bz} set sqzt=#{sbthcd} where xmbm in (${xmbm})
+		update ${bz} set yhcsh='0' where xmbm in (${xmbm})
 	</update>
 	<update id="thwshlxsh" parameterType="lxsh">
 		update ${bz} set shzt='0' where xmbm in (${xmbm})
@@ -1713,6 +1713,9 @@
 	
 	<update id="thlxshsbyhsh" parameterType="lxsh">
 		update ${bz} set sqzt='0',thyy=#{thyy} where xmbm in (${xmbm})
+	</update>
+	<update id="thlxshsbyhshyhc" parameterType="lxsh">
+		update ${bz} set sqzt='9',thyyyhc=#{thyyyhc} where xmbm in (${xmbm})
 	</update>
 	<select id="sfkythlxwsh" parameterType="lxsh" resultType="lxsh">
 		select * from ${bzcs} where xmbm in (${xmbm}) 

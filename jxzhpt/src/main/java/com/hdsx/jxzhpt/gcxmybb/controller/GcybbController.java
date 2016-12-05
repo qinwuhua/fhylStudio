@@ -1888,7 +1888,8 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("批复文号",1,1,18,18));
 				et.add(new Excel_tilte("本年完成情况(总投资)",1,1,19,19));
 				et.add(new Excel_tilte("本年完成情况(省投资)",1,1,20,20));
-				et.add(new Excel_tilte("备注",1,1,21,21));
+				et.add(new Excel_tilte("预计完工时间",1,1,21,21));
+				et.add(new Excel_tilte("备注",1,1,22,22));
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				try {

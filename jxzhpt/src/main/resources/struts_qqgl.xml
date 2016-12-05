@@ -10,7 +10,7 @@
 		  <action name="thxmsqsh" class="lxshController" method="thxmsqsh"/>
   		  <action name="thwshlxsh" class="lxshController" method="thwshlxsh"/>
 		  <action name="thlxshsb" class="lxshController" method="thlxshsb"/>
-		  
+		  <action name="thlxshsbyhc" class="lxshController" method="thlxshsbyhc"/>
 		  
 		  <action name="loadjsdjcd" class="lxshController" method="loadjsdjcd"/>
 		  <action name="selectlxbyxmid" class="lxshController" method="selectlxbyxmid"/>
@@ -72,6 +72,7 @@
 		  
 		  <action name="thwshkxxyj" class="kxxyjController" method="thwshkxxyj"/>
 		  <action name="thkxxyjsb" class="kxxyjController" method="thkxxyjsb"/>
+		  <action name="thjhshsb" class="kxxyjController" method="thjhshsb"/>
 		  <action name="showkxxShxx" class="kxxyjController" method="showkxxShxx"/>
 		  <action name="shshkxx" class="kxxyjController" method="shshkxx"/>
 		  <action name="updateShkxx" class="kxxyjController" method="updateShkxx"/>
@@ -203,6 +204,7 @@
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 		
 		<action name="plansh" class="jhshController" method="plansh"></action>
+		<action name="thwshjh" class="jhshController" method="thwshjh"></action>
 		<action name="plansb" class="jhshController" method="plansb"></action>
 		<action name="getbzhzb" class="jhshController" method="getbzhzb"></action>
 		<action name="planxdhzadd" class="jhshController" method="planxdhzadd"></action>
@@ -239,9 +241,12 @@
 		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
 		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>
 		<action name="queryXmsq" class="xmsqController" method="queryXmsq"></action>
+		<action name="queryXmsqbyyhc" class="xmsqController" method="queryXmsqbyyhc"></action>
+		
 		<action name="deleteXmsq" class="xmsqController" method="deleteXmsq"></action>
 		<action name="updateXmsqSbzt" class="xmsqController" method="updateXmsqSbzt"></action>
 		<action name="updateXmsqSp" class="xmsqController" method="updateXmsqSp"></action>
+		<action name="updateXmsqSpzgc" class="xmsqController" method="updateXmsqSpzgc"></action>
 		<action name="updateXmsqthSp" class="xmsqController" method="updateXmsqthSp"></action>
 		
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
@@ -254,6 +259,7 @@
 		<action name="getylxinfo" class="xmsqController" method="getylxinfo"></action>
 		<action name="getylxlminfo" class="xmsqController" method="getylxlminfo"></action>
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
+		<action name="queryLjbyyhc" class="xmsqController" method="queryLjbyyhc"></action>
 		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>

@@ -81,7 +81,7 @@
 							return result;
 					}
 				},
-				{field:'sbzt',title:'审核',width:60,align:'center',
+				/* {field:'sbzt',title:'审核',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
@@ -91,13 +91,13 @@
 							result='审核';
 						return result;
 					}
-				},
+				}, */
 				{field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
 						if(row.xdzt=='0')
-							result='未审核';
+							result='<a href="javascript:plansh('+index+')" style="color:#3399CC;">未审核</a>';
 						if(row.xdzt=='1')
 							result='已审核';	
 // 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划审核'"+','+
@@ -379,7 +379,10 @@ text-decoration:none;
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td> -->
                             	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-<!-- 									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
+									<img id="shenpi" alt="审批" onclick="plansh()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
+									<img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjjh('grid');" style="border-width:0px;vertical-align:middle;" />
+									<img id="thwsh" alt="退回未审核" onclick="thwshjh()" style="vertical-align:middle;" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
+					                <!-- <img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
 									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 									<!-- <img onclick="importJhsh()" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
                             	</td>

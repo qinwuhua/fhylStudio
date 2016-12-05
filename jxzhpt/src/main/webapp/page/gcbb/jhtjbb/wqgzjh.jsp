@@ -134,7 +134,7 @@
 											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>");
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"+msg[i].v_22+"</td></tr>");
 								}else{
 									tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
 											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
@@ -146,7 +146,7 @@
 											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>");
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"+msg[i].v_22+"</td></tr>");
 								}
 							}
 						}
@@ -307,6 +307,7 @@ a:active {
 										<td style="width: 125px">批复文号</td>
 										<td style="width: 125px">本年完成情况(总投资)</td>
 										<td style="width: 125px">本年完成情况(省投资)</td>
+										<td style="width: 125px">预计完工时间</td>	
 										<td style="width: 125px">备注</td>										
 									</tr>	
 									

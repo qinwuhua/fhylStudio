@@ -16,7 +16,7 @@ $(function() {
     	if(qx[i]=='01011302'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
-				title: '计划审核',
+				title: '计划预安排',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});

@@ -65,24 +65,29 @@ public interface XmsqServer {
 	 * @return 列表集合
 	 */
 	public List<Xmsq> queryYhdzxXmsq(Xmsq xmsq,int page,int rows);
+	public List<Xmsq> queryYhdzxXmsqbyyhc(Xmsq xmsq,int page,int rows);
 	/**
 	 * 查询水毁列表信息
 	 * @param xmsq 查询条件
 	 * @return 列表集合
 	 */
 	public List<Xmsq> queryShXmsq(Xmsq xmsq,int page,int rows);
+	public List<Xmsq> queryShXmsqbyyhc(Xmsq xmsq,int page,int rows);
+
 	/**
 	 * 查询养护大中修数量
 	 * @param xmsq 查询条件
 	 * @return 数量
 	 */
 	public int queryYhdzxCount(Xmsq xmsq);
+	public int queryYhdzxCountbyyhc(Xmsq xmsq);
 	/**
 	 * 查询水毁数量
 	 * @param xmsq 查询条件
 	 * @return 数量
 	 */
 	public int queryShCount(Xmsq xmsq);
+	public int queryShCountbyyhc(Xmsq xmsq);
 	/**
 	 * 删除项目
 	 * @param xmbm 项目编码
@@ -291,4 +296,8 @@ public interface XmsqServer {
 	public String querySjgzNextXmbm(Xmsq xmsq);
 	public String queryLmgzNextXmbm(Xmsq xmsq);
 	public String queryXjNextXmbm(Xmsq xmsq);
+	public Map<String, String> queryLjYhdzxbyyhc(Xmsq xmsq);
+	public Map<String, String> queryLjShbyyhc(Xmsq xmsq);
+	public boolean updateYhdzxSqztyhc(Xmsq xmsq);
+	public boolean updateShSqztyhc(Xmsq xmsq);
 }

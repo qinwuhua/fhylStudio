@@ -17,6 +17,15 @@ public class Xmsq {
 	public void setThyy(String thyy) {
 		this.thyy = thyy;
 	}
+	
+	public String getYhcsh() {
+		return yhcsh;
+	}
+	public void setYhcsh(String yhcsh) {
+		this.yhcsh = yhcsh;
+	}
+	private String yhcsh;//养护处审核
+	
 	private String qd;
 	private String zd;
 	private String ylxbm;

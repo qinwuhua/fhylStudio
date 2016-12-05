@@ -598,7 +598,8 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 				lxsh.setXmjd("工程初步设计");
 				w.updateWnxmjd(lxsh);
 			}
-			return update("thwshcbsj", cbsj)>0&&delete("thwshkxxcbsj", cbsj)>0;
+			//return update("thwshcbsj", cbsj)>0&&delete("thwshkxxcbsj", cbsj)>0;
+			return update("thwshcbsj", cbsj)>0;
 
 		}
 		

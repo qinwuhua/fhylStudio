@@ -64,7 +64,7 @@
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'ck',checkbox:true},
-				{field:'cz',title:'操作',width:100,align:'center',
+				{field:'cz',title:'操作',width:130,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
 						if(row.xmbm.substr(10,1)=='1')
@@ -82,28 +82,31 @@
 									"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
 									//+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
 									;
+							result+='&nbsp;<a href="javascript:openWindow('+"'jhxd'"+','+"'编辑'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">编辑</a>';
+						
 							return result;
 					}
 				},
-				{field:'sbzt',title:'上报',width:60,align:'center',
+				{field:'sbzt',title:'上报状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
 						if(row.sbzt=='0')
-						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">上报</a>';
+						result='<a href="javascript:plansb('+index+')" style="color:#3399CC;">未上报</a>';
 						else
-							result='上报';
+							result='已上报';
 						return result;
 					}
 				},
-				{field:'bj',title:'编辑',width:60,align:'center',
+				/* {field:'bj',title:'编辑',width:60,align:'center',
 					formatter: function(value,row,index){
 						xmlx=1;
 						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'编辑'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/jhxd3.jsp'"+',900,400)" style="color:#3399CC;">编辑</a>';
 						return result;
 					}
-				},
+				}, */
 				{field:'shzt',title:'审核状态',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -379,6 +382,7 @@ text-decoration:none;
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td> -->
                             	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+									<img id="sb" name="dishi" alt="上报" onclick="plansb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>
 <!-- 									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
 									<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 <!-- 									<img onclick="importJhsh()" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->

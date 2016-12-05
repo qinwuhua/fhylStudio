@@ -925,6 +925,7 @@ function showAll1(){
 	        {field:'xdzj',title:'已下达计划(万元)',width:120,align:'center'},
 	        {field:'bfzj',title:'已拨付资金(万元)',width:120,align:'center'},
 	        {field:'sjkgsj',title:'项目开工时间',width:100,align:'center'},
+	        {field:'yjjgsj',title:'预计完工时间',width:100,align:'center'},
 	        {field:'sgxk',title:'施工许可',width:100,align:'center'}
 	    ]]    
 	}); 

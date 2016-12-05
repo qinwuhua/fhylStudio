@@ -142,8 +142,8 @@
 							}
 						}else if(userPanduan($.cookie('unit2'))=="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
-								result='<a href="javascript:thsp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">已审核</a>';
-
+								//result='<a href="javascript:thsp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">已审核</a>';
+								result='已审核';
 							}else if(Number(value)==9){
 								result='<a href="javascript:sp('+index+')" style="color:#3399CC;">未审核</a>';
 							}else{
@@ -235,7 +235,8 @@
 											}
 										}else if(userPanduan($.cookie('unit2'))=="省"){
 											if(Number(value)==Number($.cookie('unit2').length)){
-												result='<a href="javascript:thsp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">已审核</a>';
+												//result='<a href="javascript:thsp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">已审核</a>';
+												result='已审核';
 
 											}else if(Number(value)==9){
 												result='<a href="javascript:sp('+index+')" style="color:#3399CC;">未审核</a>';
@@ -436,7 +437,7 @@
 						//insert();
 						$.ajax({
 							type:'post',
-							url:'../../../qqgl/updateXmsqSp.do',
+							url:'../../../qqgl/updateXmsqSpzgc.do',
 							data:'xmlx='+4+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs+"&wnxmk="+wn+"&lsjl="+ls,
 							dataType:'json',
 							success:function(msg){
@@ -506,7 +507,7 @@
 								//insert();
 								$.ajax({
 									type:'post',
-									url:'../../../qqgl/updateXmsqSp.do',
+									url:'../../../qqgl/updateXmsqSpzgc.do',
 									data:'xmlx='+4+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
 									dataType:'json',
 									success:function(msg){
@@ -524,7 +525,7 @@
 							//insert();
 							$.ajax({
 								type:'post',
-								url:'../../../qqgl/updateXmsqSp.do',
+								url:'../../../qqgl/updateXmsqSpzgc.do',
 								data:'xmlx='+4+'&xmbm='+obj.xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
 								dataType:'json',
 								success:function(msg){
@@ -582,7 +583,7 @@
 				var xmbm = selArray.join(",");
 				$.ajax({
 					type:'post',
-					url:'../../../qqgl/updateXmsqSp.do',
+					url:'../../../qqgl/updateXmsqSpzgc.do',
 					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
@@ -825,7 +826,7 @@
 <!-- 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/> -->
 					                <img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('grid');" style="border-width:0px;vertical-align:middle;" />
 								
-					                 <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/>
+<!-- 					                 <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/> -->
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Yhdzx')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

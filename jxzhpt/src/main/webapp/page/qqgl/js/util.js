@@ -63,11 +63,44 @@ function queryylmlx(lxbm,qdzh,zdzh){
 }
 
 function plansb(index){
-	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	var xmlx="";
+	var xmbm='';
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要上报的项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sbzt=='1'){
+				alert("有项目已上报，请检查后操作！");
+				return ;
+			}
+		}
+		var xmbm1=rows[0].xmbm;
+		xmlx=xmbm1.substr(10,1);
+		for ( var i = 1; i < rows.length; i++) {
+			xmbm1+=","+rows[i].xmbm;
+		}
+		xmbm=xmbm1;
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.sbzt=='1'){
+			alert("有项目已上报，请检查后操作！");
+			return ;
+		}
+		xmlx=da.xmbm.substr(10,1);
+		xmbm=da.xmbm;
+	}
+	
+	//var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+
+	if(confirm('您确定上报吗？'))
+	//var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/plansb.do',
-		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmlx,
 		dataType:'json',
 		success:function(msg){
 			if(msg){
@@ -80,11 +113,43 @@ function plansb(index){
 	
 }
 function plansh(index){
-	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+	var xmlx="";
+	var xmbm='';
+	if(index==null){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要审核项目！");
+			return;
+		}
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].xdzt=='1'){
+				alert("有项目已审核，请检查后操作！");
+				return ;
+			}
+		}
+		var xmbm1=rows[0].xmbm;
+		xmlx=xmbm1.substr(10,1);
+		for ( var i = 1; i < rows.length; i++) {
+			xmbm1+=","+rows[i].xmbm;
+		}
+		xmbm=xmbm1;
+	}else{
+		var da=$("#grid").datagrid('getRows')[index];
+		if(da.xdzt=='1'){
+			alert("有项目已审核，请检查后操作！");
+			return ;
+		}
+		xmlx=da.xmbm.substr(10,1);
+		xmbm=da.xmbm;
+	}
+	
+	//var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
+
+	if(confirm('您确定审核吗？'))
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/plansh.do',
-		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmbm.substr(10,1),
+		data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmlx,
 		dataType:'json',
 		success:function(msg){
 			if(msg){
@@ -95,6 +160,80 @@ function plansh(index){
 		}
 	});
 	
+}
+
+function tuihxjjh(){
+	var xmlx="";
+	var xmbm='';
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].xdzt=='1'){
+			alert("有项目已审核，请检查后操作！");
+			return ;
+		}
+	}
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	YMLib.UI.createWindow('lxxx','退回项目','jhsh_th.jsp','lxxx',400,200);
+	/*if(confirm('您确定退回吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/tuihxjjh.do',
+			data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmlx,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核成功");
+					$("#grid").datagrid('reload');
+				}
+					
+			}
+		});*/
+	
+}
+
+function thwshjh(){
+	var xmlx="";
+	var xmbm='';
+	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请选择要退回的项目！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].xdzt=='0'){
+			alert("有项目未审核，请检查后操作！");
+			return ;
+		}
+	}
+	var xmbm1=rows[0].xmbm;
+	xmlx=xmbm1.substr(10,1);
+	for ( var i = 1; i < rows.length; i++) {
+		xmbm1+=","+rows[i].xmbm;
+	}
+	xmbm=xmbm1;
+	if(confirm('您确定退回吗？'))
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/thwshjh.do',
+			data:"jhsh.xmbm="+xmbm+"&jhsh.xmlx="+xmlx,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("退回成功");
+					$("#grid").datagrid('reload');
+				}
+					
+			}
+		});
 }
 
 

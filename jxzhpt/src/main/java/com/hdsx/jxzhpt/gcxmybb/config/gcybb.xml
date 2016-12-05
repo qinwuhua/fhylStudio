@@ -1224,7 +1224,7 @@
 	select 
 	  sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
 	  decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,substr(pl.sjkgsj,0,4) v_13,
-	  substr(pl.sjwgsj,0,4) v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,nvl(wc.bnztz,0) v_19,nvl(wc.bnstz,0) v_20,pl.bz v_21,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_31,
+	  substr(pl.sjwgsj,0,4) v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,nvl(wc.bnztz,0) v_19,nvl(wc.bnstz,0) v_20,pl.yjjgsj v_21,pl.bz v_22,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_31,
 	  decode(pl.sjwgsj,null,' ',substr(pl.sjwgsj,0,4)) wgnf
 	  from plan_wqgz pl,
 	  sck_wqgz sc,
@@ -1290,7 +1290,7 @@
 	select 
 	  sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,xm.qlbh v_4,xm.qlmc v_5,pl.jhqlqc v_6,pl.jhqlqk v_7,sc.jsxz v_8,sc.jsnr v_9,pl.pfztz v_10,decode(pl.sfylrbwqk,'是',pl.jhsybzje,pl.shengbz) v_11,
 	  decode(pl.sfylrbwqk,'是',to_char(to_number(pl.pfztz)-to_number(pl.jhsybzje)),to_char(to_number(pl.pfztz)-to_number(pl.shengbz))) v_12,substr(pl.sjkgsj,0,4) v_13,
-	  substr(pl.sjwgsj,0,4) v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,nvl(wc.bnztz,0) v_19,nvl(wc.bnstz,0) v_20,pl.bz v_21,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_31,
+	  substr(pl.sjwgsj,0,4) v_14,xm.lxbm v_15,xm.lxmc v_16,sc.sck_qlzxzh v_17,pl.pfwh v_18,nvl(wc.bnztz,0) v_19,nvl(wc.bnstz,0) v_20,pl.yjjgsj v_21,pl.bz v_22,substr(xm.xzqhdm,0,4)||'00' v_30,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') v_31,
 	  decode(pl.sjwgsj,null,' ',substr(pl.sjwgsj,0,4)) wgnf
 	  from plan_wqgz pl,
 	  sck_wqgz sc,
