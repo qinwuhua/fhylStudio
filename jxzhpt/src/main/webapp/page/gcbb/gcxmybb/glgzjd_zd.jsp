@@ -51,11 +51,16 @@ text-decoration:none;
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-
+		var xzdj=parent.$('#xzdj').combobox("getValues").join(",");
+		if(xzdj.substr(0,1)==',')
+			xzdj=xzdj.substr(1,xzdj.length);
+		var ddlYear1=parent.$('#ddlYear1').combobox("getValues").join(",");
+		if(ddlYear1.substr(0,1)==',')
+			ddlYear1=ddlYear1.substr(1,ddlYear1.length);
 		var flag=parent.YMLib.Var.flag;
 		var ybny=parent.$('#ddlYear').val()+"-"+parent.$('#ddlMonth').val();
-		var sbnf=parent.$('#ddlYear1').val();
-		var tiaojian=parent.$('#xzdj').combotree('getValue');
+		var sbnf=ddlYear1;
+		var tiaojian=xzdj;
 		var xzqh=xzqhstr;
 		var gydw=gydwstr;
 		var xmmc=parent.$('#xmmc').val();

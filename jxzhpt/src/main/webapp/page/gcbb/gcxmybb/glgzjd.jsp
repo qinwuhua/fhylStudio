@@ -36,12 +36,14 @@
 			var myDate = new Date();
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('xzdj','行政等级');
+			//loadBmbm2('xzdj','行政等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
+			xmnfdx('ddlYear1');
+			xzdjdx('xzdj');
 			for(var x=y;x>=y-10;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
+				//$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$('#ddlMonth').val(m);
 			//search();
@@ -73,6 +75,8 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 
+			
+			
 			var xmbb = 'flag=""&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
 			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xzqh="+xzqhstr+"&xmbb.gydw="+gydwstr+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
 			$.ajax({

@@ -198,8 +198,11 @@
 	      replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as xmlc,
 	      replace(WMSYS.WM_CONCAT(to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_sjgz cbsj on sj.xmbm=cbsj.xmbm
      	<if test="tiaojian!=null and tiaojian!=''">
-			and lx.lxbm like #{tiaojian}||'%'
-		</if>
+     	 and ${tiaojian}
+	    </if>
+	    <if test="sbnf!=null and sbnf!=''">
+	      and ${sbnf}
+	    </if>
      	<if test="xmmc!=null and xmmc!=''">sj.xmmc like '%'||#{xmmc}||'%'</if>
      	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
      	union all
@@ -235,11 +238,14 @@
       from jhsh_xj sj inner join (select l.xmid jhid, replace(WMSYS.WM_CONCAT(to_char(l.xjlxbm)),',','、') as lxbm,
         replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as xmlc,
         replace(WMSYS.WM_CONCAT(to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_xj cbsj on sj.xmbm=cbsj.xmbm
-      <if test="tiaojian!=null and tiaojian!=''">
-      and lx.lxbm like #{tiaojian}||'%'
-    </if>
-      <if test="xmmc!=null and xmmc!=''">sj.xmmc like '%'||#{xmmc}||'%'</if>
-      <if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
+      	<if test="tiaojian!=null and tiaojian!=''">
+     	 and ${tiaojian}
+	    </if>
+	    <if test="sbnf!=null and sbnf!=''">
+	      and ${sbnf}
+	    </if>
+      	<if test="xmmc!=null and xmmc!=''">sj.xmmc like '%'||#{xmmc}||'%'</if>
+      	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
 		)tab
 			
 		)
@@ -322,7 +328,9 @@
 	      NVL(replace(WMSYS.WM_CONCAT(to_char(l.xjsdj)),',','、'),' ') as yjsdj,
 	      ' ' as ylmlx from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} 
 	      group by l.xmid) lx on gj.xmbm=lx.jhid 
-	      where 1=1 and gj.xmbm like #{sbnf}||'%'
+	      where 1=1 
+	      
+	      and gj.xmbm like #{sbnf}||'%'
     	<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like '%'||#{tiaojian}||'%'
 		</if>

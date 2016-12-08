@@ -45,7 +45,20 @@ public class GcbbController extends BaseActionSupport{
 	private Xmbb xmbb;
 	private String nameValue;
 	private String colValue;
-	
+	public String getcxtj(String id,String param){
+		String tj="";
+		if(param!=null&&!"".equals(param)){
+			String[] s=param.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+				tj+=" ("+id+" like '%"+s[i]+"%'";
+				else
+				tj+=" or "+id+" like '%"+s[i]+"%'";
+			}
+			tj+=")";
+		}
+		return tj;
+	}
 	public String getNameValue() {
 		return nameValue;
 	}
@@ -462,6 +475,9 @@ public class GcbbController extends BaseActionSupport{
 			xmbb.setSql(sql.substring(0, sql.length()-1));
 			xmbb.setNameValue(nameValue);
 			xmbb.setColValue(colValue);
+			xmbb.setTiaojian(getcxtj("substr(lx.lxbm,0,1)",xmbb.getTiaojian()));
+			xmbb.setSbnf(getcxtj("substr(sj.xmbm,0,4)",xmbb.getSbnf()));
+			
 			List<Excel_list> gcsj=gcbbServer.selGcsjJdbb(xmbb);
 			
 			//JsonUtils.write(gcsj, getresponse().getWriter());
