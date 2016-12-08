@@ -44,7 +44,7 @@
 				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$('#ddlMonth').val(m);
-			search();
+			//search();
 		});
 		
 		function search(){
@@ -142,35 +142,13 @@
 			});
 		}
 		function exportExcel(){
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
-			}
-		var xzqhdm=$("#xzqh").combotree("getValues");
-			if(xzqhdm.length==0){
-				xzqhstr= $.cookie("dist2");
-				
-			}else if(xzqhdm.length==1){
-				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-	 		xzqhstr=xzqhdm[0] ;
-			}else{
-				xzqhstr= xzqhdm.join(',');
-			}
-
-			var data = 'flag=flag&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
-			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
-			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-				window.location.href='/jxzhpt/gcbb/selGcsjJdbb.do?'+data;
-			 });
+			YMLib.Var.flag='flag';
+			YMLib.UI.createWindow('zdybb','改建、新建工程项目进度报表字段选择','glgzjd_zd.jsp','zdybb','900','380');
+		}
+		
+		function zdybb(){
+			YMLib.Var.flag='';
+			YMLib.UI.createWindow('zdybb','改建、新建工程项目进度报表字段选择','glgzjd_zd.jsp','zdybb','900','380');
 		}
 	</script>
 </head>
@@ -179,7 +157,7 @@
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;升级改造进度报表</div>
+						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;改建、新建工程项目进度报表</div>
 					</div>
         	</tr>
         	<tr>
@@ -212,8 +190,8 @@
 								</select>
 		        				<span>项目名称：</span>
 		        				<input id="xmmc" type="text"  style="width: 100px">
-		        				<img onclick="search()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
+		        				<img onclick="zdybb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
@@ -226,7 +204,7 @@
         						<span>路线名称：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: middle;" />
         					</p>
         				</div>
         			</fieldset>
@@ -243,8 +221,8 @@
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="4500px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通国省干线公路建设项目工程进度完成情况汇总表</caption>
-								<thead>
-									<tr>
+								<thead id='biaotou'>
+									<!-- <tr>
 										<td rowspan="3" width="125px;">序号</td>
 										<td rowspan="3" width="125px;">路线编码</td>
 										<td rowspan="3" width="125px;">项目名称</td>
@@ -311,7 +289,7 @@
 										<td width="125px;">水泥路面</td>
 										<td width="125px;">沥青路面</td>
 										<td width="125px;">水泥路面</td>
-									</tr>
+									</tr> -->
 								</thead>
 								<tbody id="tbody_gcgj">
 								

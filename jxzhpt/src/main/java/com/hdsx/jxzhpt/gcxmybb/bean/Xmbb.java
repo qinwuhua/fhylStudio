@@ -28,7 +28,93 @@ public class Xmbb implements Serializable {
 	private String sbnf;//上报年份
 	private String flag;
 	private String lxmc;
+	private boolean jhgc=false;private int jhgczb=0;
+	private boolean bywcgcl=false;private int  bywcgclzb=0;
+	private boolean kglj=false;private int  kgljzb=0;
+	private boolean yykglj=false;private int  yykgljzb=0;
+	private boolean bz=false;private int  bzzb=0;
+	private String sql;
+	private String nameValue;
+	private String colValue;
 	
+	public String getNameValue() {
+		return nameValue;
+	}
+	public void setNameValue(String nameValue) {
+		this.nameValue = nameValue;
+	}
+	public String getColValue() {
+		return colValue;
+	}
+	public void setColValue(String colValue) {
+		this.colValue = colValue;
+	}
+	public String getSql() {
+		return sql;
+	}
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+	public boolean isJhgc() {
+		return jhgc;
+	}
+	public void setJhgc(boolean jhgc) {
+		this.jhgc = jhgc;
+	}
+	public int getJhgczb() {
+		return jhgczb;
+	}
+	public void setJhgczb(int jhgczb) {
+		this.jhgczb = jhgczb;
+	}
+	public boolean isBywcgcl() {
+		return bywcgcl;
+	}
+	public void setBywcgcl(boolean bywcgcl) {
+		this.bywcgcl = bywcgcl;
+	}
+	public int getBywcgclzb() {
+		return bywcgclzb;
+	}
+	public void setBywcgclzb(int bywcgclzb) {
+		this.bywcgclzb = bywcgclzb;
+	}
+	public boolean isKglj() {
+		return kglj;
+	}
+	public void setKglj(boolean kglj) {
+		this.kglj = kglj;
+	}
+	public int getKgljzb() {
+		return kgljzb;
+	}
+	public void setKgljzb(int kgljzb) {
+		this.kgljzb = kgljzb;
+	}
+	public boolean isYykglj() {
+		return yykglj;
+	}
+	public void setYykglj(boolean yykglj) {
+		this.yykglj = yykglj;
+	}
+	public int getYykgljzb() {
+		return yykgljzb;
+	}
+	public void setYykgljzb(int yykgljzb) {
+		this.yykgljzb = yykgljzb;
+	}
+	public boolean isBz() {
+		return bz;
+	}
+	public void setBz(boolean bz) {
+		this.bz = bz;
+	}
+	public int getBzzb() {
+		return bzzb;
+	}
+	public void setBzzb(int bzzb) {
+		this.bzzb = bzzb;
+	}
 	public String getLxmc() {
 		return lxmc;
 	}
@@ -150,7 +236,13 @@ public class Xmbb implements Serializable {
 				+ ", xzqhmc=" + xzqhmc + ", jhxdnf=" + jhxdnf + ", jszt="
 				+ jszt + ", qxkg=" + qxkg + ", ljbf=" + ljbf + ", wbf=" + wbf
 				+ ", xmmc=" + xmmc + ", tsdq=" + tsdq + ", tiaojian="
-				+ tiaojian + ", ybny=" + ybny + ", sbnf=" + sbnf + "]";
+				+ tiaojian + ", ybny=" + ybny + ", sbnf=" + sbnf + ", flag="
+				+ flag + ", lxmc=" + lxmc + ", jhgc=" + jhgc + ", jhgczb="
+				+ jhgczb + ", bywcgcl=" + bywcgcl + ", bywcgclzb=" + bywcgclzb
+				+ ", kglj=" + kglj + ", kgljzb=" + kgljzb + ", yykglj="
+				+ yykglj + ", yykgljzb=" + yykgljzb + ", bz=" + bz + ", bzzb="
+				+ bzzb + ", sql=" + sql + "]";
 	}
+	
 	
 }

@@ -6807,6 +6807,14 @@ public class Excel_export {
 	            	}
 				}
 	        }  
+			/*
+			  for (Excel_tilte excel_tilte : et){
+				int x1=excel_tilte.getX1();
+				if(excel_tilte.isSfyc()){
+					sheet.setColumnHidden(x1, true);
+				}
+			}
+			*/
 			wb.write(out);
 	 		out.close();
 			}catch(Exception e){

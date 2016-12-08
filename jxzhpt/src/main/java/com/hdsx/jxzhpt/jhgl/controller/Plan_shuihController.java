@@ -263,7 +263,7 @@ public class Plan_shuihController extends BaseActionSupport {
 			excelTitle.add("止点桩号");
 			excelTitle.add("起止里程");
 			excelTitle.add("项目里程");
-			String tableName="水毁项目";
+			String tableName="灾毁恢复重建项目";
 			HttpServletResponse response= getresponse();
 			ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 		}catch(Exception e){
@@ -345,7 +345,7 @@ public class Plan_shuihController extends BaseActionSupport {
 						shuih.setYjsdj(queryGPSBylxbm.getYjsdj());
 						//设置非路网项目的查询条件，注释：因为没有统一的补助标准
 //						Plan_flwbzbz flw=new Plan_flwbzbz();
-//						flw.setXmlx("水毁项目");//建设项目类型
+//						flw.setXmlx("灾毁恢复重建项目");//建设项目类型
 //						flw.setGldj(shuih.getLxbm().substring(0, 1));//行政等级
 //						flw.setJsdj(shuih.getYjsdj());//技术等级
 //						flw.setTsdq(shuih.getTsdqbm());
@@ -445,8 +445,8 @@ public class Plan_shuihController extends BaseActionSupport {
 			zjxd.setTbdw(gydwmc);
 			excelData.add(zjxd);
 		}
-		ExcelEntity excel=new ExcelEntity("水毁项目",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "水毁项目-资金下达", getresponse());
+		ExcelEntity excel=new ExcelEntity("灾毁恢复重建项目",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "灾毁恢复重建项目-资金下达", getresponse());
 	}
 	/**
 	 * 单次添加水毁计划

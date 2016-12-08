@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 	public GcbbServerImpl() {
@@ -33,7 +34,7 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 	}
 
 	@Override
-	public List<GcsjJd> selGcsjJdbb(Xmbb xmbb) {
+	public List<Excel_list> selGcsjJdbb(Xmbb xmbb) {
 		return queryList("selGcsjJdbb",xmbb);
 	}
 

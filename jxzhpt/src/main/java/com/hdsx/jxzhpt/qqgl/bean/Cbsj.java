@@ -600,7 +600,7 @@ public class Cbsj{
 	private String sjdw;//设计单位
 	private String sjpfwh;//设计批复文号
 	private String pfsj;//批复时间
-	private String jaf;//建安费
+	private String jaf;//建安费（万元）
 	private int sbzt;//上报状态
 	private int shzt;//审核状态
 	private String sfbj;//是否编辑

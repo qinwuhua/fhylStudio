@@ -6,6 +6,7 @@ import com.hdsx.jxzhpt.gcbb.bean.Gcbb5;
 import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
 import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface GcbbServer {
 	/**
@@ -25,7 +26,7 @@ public interface GcbbServer {
 	 * @param xmbb
 	 * @return
 	 */
-	List<GcsjJd> selGcsjJdbb(Xmbb xmbb);
+	List<Excel_list> selGcsjJdbb(Xmbb xmbb);
 	/**
 	 * 养护大中修报表
 	 * @param xmbb

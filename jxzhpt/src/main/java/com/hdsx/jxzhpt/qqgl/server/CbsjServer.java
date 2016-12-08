@@ -212,9 +212,9 @@ public interface CbsjServer {
 	 */
 	public int queryCbsjShCount(Cbsj cbsj);
 	/**
-	 * 根据项目编码查询水毁项目信息
+	 * 根据项目编码查询灾毁恢复重建项目信息
 	 * @param xmbm 项目编码
-	 * @return 水毁项目信息
+	 * @return 灾毁恢复重建项目信息
 	 */
 	public Cbsj queryCbsjShByXmbm(String xmbm);
 	/**

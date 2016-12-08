@@ -106,6 +106,8 @@ public class Gcglwqgz implements Serializable {
 	
 	private String jhpc;
 	private String tbman;
+	private String colValue;
+	private String nameValue;
 	
 	
 	
@@ -125,6 +127,18 @@ public class Gcglwqgz implements Serializable {
 	
 	
 	
+	public String getColValue() {
+		return colValue;
+	}
+	public void setColValue(String colValue) {
+		this.colValue = colValue;
+	}
+	public String getNameValue() {
+		return nameValue;
+	}
+	public void setNameValue(String nameValue) {
+		this.nameValue = nameValue;
+	}
 	public String getSfwg() {
 		return sfwg;
 	}

@@ -8,6 +8,7 @@ package com.hdsx.jxzhpt.wjxt.controller;
  */
 public class Excel_tilte {
 	private String name;
+	private boolean sfyc;
 	private int x1;
 	private int x2;
 	private int y1;
@@ -36,9 +37,27 @@ public class Excel_tilte {
 	public void setY2(int y2) {
 		this.y2 = y2;
 	}
+	
+	
+	public boolean isSfyc() {
+		return sfyc;
+	}
+	public void setSfyc(boolean sfyc) {
+		this.sfyc = sfyc;
+	}
 	public Excel_tilte(String name, int x1, int x2, int y1, int y2) {
 		super();
 		this.name = name;
+		this.x1 = x1;
+		this.x2 = x2;
+		this.y1 = y1;
+		this.y2 = y2;
+	}
+	
+	public Excel_tilte(String name, boolean sfyc, int x1, int x2, int y1, int y2) {
+		super();
+		this.name = name;
+		this.sfyc = sfyc;
 		this.x1 = x1;
 		this.x2 = x2;
 		this.y1 = y1;

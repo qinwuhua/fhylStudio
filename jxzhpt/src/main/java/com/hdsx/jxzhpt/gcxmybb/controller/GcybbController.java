@@ -1350,7 +1350,7 @@ public class GcybbController extends BaseActionSupport{
 					viewsql="CREATE OR REPLACE VIEW YB_SH AS "
 					+" select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(*) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(lc) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) union all select '36' xzqh,'全省汇总' xzqhmc,jhnf,sum(xmsl) xmsl,sum(xmlc) xmlc,sum(xmzj) xmzj,sum(wclc) wclc,sum(wcxmzj) wcxmzj,sum(bbzorsbz) bbzorsbz,sum(bbz),sum(pfztz) from (select t1.xzqh,t1.xzqhmc,t1.jhnf,t1.xmsl,t1.xmlc,t2.xmzj,t3.wclc,t4.wcxmzj,t1.bbzorsbz,t2.bbz,t1.pfztz from (select to_char(t.xzqh) xzqh,to_char((select name from xtgl_xzqh where id=t.xzqh||'00')) xzqhmc,t.jhnf,count(*) xmsl,sum(xmlc) xmlc,sum(bbzorsbz) bbzorsbz,sum(pfztz) pfztz from (select xm.xmbm,xm.jhnf,lx.xmlc,lx.xzqh,xm.bbzorsbz,xm.pfztz from (SELECT xmbm,'水毁' lx,substr(xmbm,0,4) jhnf,bbzzj+sbzzj bbzorsbz,pfztz from jhsh_sh) xm, (SELECT xmid,'水毁' lx,sum(lc) xmlc,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx where xm.xmbm=lx.xmid(+)) t group by t.xzqh,t.jhnf)t1, (select t.xzqh,t.xdnf,sum(xmzj) xmzj,sum(bbz) bbz from (select xm.xmbm,lx.xzqh,xdzj.xdnf,xmzj,bbz from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT xmID,xdnf,sum(btzzj+stz) xmzj,sum(btzzj) bbz from plan_zjxd group by xmid,xdnf)xdzj where xm.xmbm=lx.xmid(+) and xm.xmbm=xdzj.xmID(+)) t group by t.xzqh,t.xdnf)t2, (select t.xzqh,t.wclcnf,sum(wclc) wclc from (select xm.xmbm,lx.xzqh,wclc.wclcnf,wclc from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,'水毁' lx,sum(bywcmc) wclc,substr(sbyf,1,4) wclcnf from gcgl_sh tb where to_date(tb.sbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(sbyf,1,4))wclc where xm.xmbm=lx.xmid(+) and xm.xmbm=wclc.jhid(+)) t group by t.xzqh,t.wclcnf)t3, (select t.xzqh,t.wczjnf,sum(wcxmzj) wcxmzj from (select xm.xmbm,lx.xzqh,wczj.wczjnf,wcxmzj from (SELECT xmbm,'水毁' lx from jhsh_sh) xm, (SELECT xmid,'水毁' lx,substr(xzqhdm,1,4) xzqh from lxsh_lx where jdbs='2' group by xmid,substr(xzqhdm,1,4))lx, (SELECT jhid,substr(tbyf,1,4) wczjnf,sum(cgsdwzj+stz) wcxmzj from gcgl_cgs tg where to_date(tg.tbyf,'yyyy-mm')<=to_date('"+gcglwqgz.getYbnf()+"-"+gcglwqgz.getYbyf()+"','yyyy-mm') group by jhid,substr(tbyf,1,4)) wczj where xm.xmbm=lx.xmid(+) and xm.xmbm=wczj.jhid(+)) t group by t.xzqh,t.wczjnf)t4 where t1.xzqh=t2.xzqh(+) and t1.xzqh=t3.xzqh(+) and t1.xzqh=t4.xzqh(+) and t1.jhnf=t2.xdnf(+) and t1.jhnf=t3.wclcnf(+) and t1.jhnf=t4.wczjnf(+) )  group by substr(xzqh,1,2),jhnf order by xzqh,jhnf";
 				}
-					gcybbServer.createybView(viewsql);
+				gcybbServer.createybView(viewsql);
 				String[] arr=gcglwqgz.getXmnf().split(",");
 				String sql="select xzqhmc";
 				String in="";
@@ -1489,16 +1489,27 @@ public class GcybbController extends BaseActionSupport{
 					eldata.setFileName("公路改造工程新上、续建工程项目完成情况汇总表");//设置文件名
 					eldata.setEl(elist);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					if("序号".indexOf(gcglwqgz.getNameValue())!=-1)
 					et.add(new Excel_tilte("序号",1,3,0,0));
+					else et.add(new Excel_tilte("序号",true,1,3,0,0));
+					if("设区市".indexOf(gcglwqgz.getNameValue())!=-1)
 					et.add(new Excel_tilte("设区市",1,3,1,1));
+					else et.add(new Excel_tilte("设区市",true,1,3,1,1));
+					if("项目类型".indexOf(gcglwqgz.getNameValue())!=-1)
 					et.add(new Excel_tilte("项目类型",1,3,2,2));
+					else et.add(new Excel_tilte("项目类型",true,1,3,2,2));
+					if("计划下达及完成情况".indexOf(gcglwqgz.getNameValue())!=-1)
 					et.add(new Excel_tilte("计划下达及完成情况",1,1,3,12));
+					else et.add(new Excel_tilte("计划下达及完成情况",true,1,1,3,12));
 					int sj1=13;
 					for (int i = 0; i < nf.length; i++) {
 						et.add(new Excel_tilte("计划下达及完成情况",1,1,sj1,sj1+9));
 						sj1=sj1+10;
 					}
+					if("备注".indexOf(gcglwqgz.getNameValue())!=-1)
 					et.add(new Excel_tilte("备注",1,3,sj1,sj1));
+					else et.add(new Excel_tilte("备注",true,1,3,sj1,sj1));
+					//et.add(new Excel_tilte("备注",1,3,sj1,sj1));
 					et.add(new Excel_tilte(nf[0]+"-"+nf[nf.length-1]+"年度",2,2,3,6));
 					et.add(new Excel_tilte("本年完成里程(公里)",2,3,7,7));
 					et.add(new Excel_tilte("累计完成里程(公里)",2,3,8,8));

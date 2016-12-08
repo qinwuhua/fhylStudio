@@ -154,7 +154,7 @@ function panduanxmlx(xmbm){
 	}else if(xmlx=="4"){
 		result="养护大中修项目";
 	}else if(xmlx=="5"){
-		result="水毁项目";
+		result="灾毁恢复重建项目";
 	}
 	return result;
 }

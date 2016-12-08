@@ -526,7 +526,7 @@
 			and gjlx.qdzh<${item.yzdzh} and gjlx.zdzh>${item.yqdzh}]]>
 		</foreach>
 		union all
-		select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
+		select '灾毁恢复重建项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
 		shlx.lxbm as lxbm,shlx.lxmc as lxmc,to_number(shlx.qdzh) as xqdzh,to_number(shlx.zdzh) as xzdzh,
 		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
 		shlx.yjsdj as yjsdj,'' as gjjsdj
@@ -538,7 +538,7 @@
 		</if>
 		<foreach collection="ls" item="item">
 			union all
-			<![CDATA[select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
+			<![CDATA[select '灾毁恢复重建项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
 			#{item.lxbm} as lxbm,shlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			shlx.lxbm as ylxbm,
 			case when to_number(shlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(shlx.qdzh) end yqdzh,

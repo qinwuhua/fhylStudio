@@ -99,7 +99,7 @@
 				          <point name="${l.year}" y="${l.xj}"/>        
                       </#list>
 				</series>
-				<series name="水毁项目" style="style4">
+				<series name="灾毁恢复重建项目" style="style4">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.shuih}"/>        
                       </#list>

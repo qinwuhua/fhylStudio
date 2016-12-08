@@ -16,7 +16,7 @@ public interface XmsqServer {
 	 */
 	public boolean insertXmsqYhdzx(List<Xmsq> list);
 	/**
-	 * 添加水毁项目
+	 * 添加灾毁恢复重建项目
 	 * @param list 项目申请信息集合
 	 * @return 执行结果
 	 */
@@ -120,7 +120,7 @@ public interface XmsqServer {
 	public boolean insertJhshYhdzx(Xmsq xmsq);
 	/**
 	 * 通过申请后，想计划审核中加入信息
-	 * @param xmsq 水毁项目信息
+	 * @param xmsq 灾毁恢复重建项目信息
 	 * @return 执行结果
 	 */
 	public boolean insertJhshSh(Xmsq xmsq);
@@ -149,7 +149,7 @@ public interface XmsqServer {
 	 */
 	public boolean updateYhdzx(List<Xmsq> xmsq);
 	/**
-	 * 修改水毁项目信息
+	 * 修改灾毁恢复重建项目信息
 	 * @param xmsq 项目申请信息
 	 * @return 执行结果
 	 */
@@ -161,7 +161,7 @@ public interface XmsqServer {
 	 */
 	public boolean insertCbsjYhdzx(Xmsq xmsq);
 	/**
-	 * 添加水毁项目到初步设计
+	 * 添加灾毁恢复重建项目到初步设计
 	 * @param xmsq
 	 * @return
 	 */
@@ -174,7 +174,7 @@ public interface XmsqServer {
 	 */
 	public List<Object> queryYhdzxExport(Xmsq xmsq);
 	/**
-	 * 导出水毁项目
+	 * 导出灾毁恢复重建项目
 	 * @param xmsq 搜索条件
 	 * @return 返回集合
 	 */

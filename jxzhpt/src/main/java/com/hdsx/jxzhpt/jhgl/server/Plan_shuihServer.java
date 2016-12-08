@@ -61,7 +61,7 @@ public interface Plan_shuihServer {
 	 */
 	Plan_shuih queryShuihById(String id);
 	/**
-	 * 查询水毁项目数量
+	 * 查询灾毁恢复重建项目数量
 	 * @param jh
 	 * @param lx
 	 * @return

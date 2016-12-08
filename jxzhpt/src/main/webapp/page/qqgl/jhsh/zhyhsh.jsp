@@ -416,7 +416,7 @@
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;
 			$.each(selRow,function(index,item){
-				if(item.sqzt==7 || item.sqzt==0){
+				if(item.yhcsh==1){
 					y=false;
 					return;
 				}
@@ -427,6 +427,7 @@
 			}
 			if(selArray.length!=0){
 				var xmbm = selArray.join(",");
+				if(confirm('是否审核？'))
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/updateXmsqSp.do',

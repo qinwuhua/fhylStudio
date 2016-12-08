@@ -43,7 +43,25 @@ public class GcbbController extends BaseActionSupport{
 	private GcbbServer gcbbServer;
 	private Jckwqgz jckwqgz=new Jckwqgz();
 	private Xmbb xmbb;
+	private String nameValue;
+	private String colValue;
 	
+	public String getNameValue() {
+		return nameValue;
+	}
+
+	public void setNameValue(String nameValue) {
+		this.nameValue = nameValue;
+	}
+
+	public String getColValue() {
+		return colValue;
+	}
+
+	public void setColValue(String colValue) {
+		this.colValue = colValue;
+	}
+
 	/**
 	 * 管养单位或行政区划代码处理
 	 * @param bh
@@ -401,171 +419,195 @@ public class GcbbController extends BaseActionSupport{
 			JsonUtils.write(selShuihJdbb, getresponse().getWriter());	
 		}
 	}
-	public void selGcsjJdbb() throws IOException, Exception{
-		String tiaojian1="";
-		String tiaojian2="";
-		String gydwdm = "";
-		String xzqhdm = "";
-		if("flag".equals(flag)){
-			HttpServletRequest request = ServletActionContext.getRequest();
-			HttpSession session = request.getSession();
-			gydwdm=(String) session.getAttribute("gydwbb");	
-			xzqhdm=(String) session.getAttribute("xzqhbb");	
-		}else{
-		gydwdm = xmbb.getGydw();
-		xzqhdm	= xmbb.getXzqh();
-		}
-		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and l.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
-		}else{
-			tiaojian1="and l.gydwdm in ("+gydwdm+")";
-		}
-		if(xzqhdm.indexOf(",")==-1){
-			tiaojian2="and l.xzqhdm like '%"+xzqhdm+"%'";
-		}else{
-			tiaojian2="and l.xzqhdm in ("+xzqhdm+")";
-		}
-		xmbb.setGydw(tiaojian1);
-		xmbb.setXzqh(tiaojian2);
-		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
-		int i=1;
-		if("flag".equals(flag)){
-			List<Excel_list> elist=new ArrayList<Excel_list>();
-			for (GcsjJd gj : gcsj) {
-				Excel_list l=new Excel_list();
-				l.setV_0(i+"");
-				i++;
-				l.setV_1(gj.getLxbm());
-				l.setV_2(gj.getXmmc());
-				l.setV_3(gj.getJhnf());
-				l.setV_4(gj.getXmlc());
-				l.setV_5(gj.getYjsdj());
-				l.setV_6(gj.getJsjsbz());
-				l.setV_7(gj.getSjkgsj());
-				l.setV_8(gj.getPftz());
-				l.setV_9(gj.getLjtsf());
-				l.setV_10(gj.getQl_m());
-				l.setV_11(gj.getQl());
-				l.setV_12(gj.getHd());
-				l.setV_13(gj.getSd_m());
-				l.setV_14(gj.getSd());
-				l.setV_15(gj.getDc());
-				l.setV_16(gj.getJc());
-				l.setV_17(gj.getLqlm());
-				l.setV_18(gj.getSnlm());
-				l.setV_19(gj.getBywcje());
-				if("0".equals(gj.getPftz())||" ".equals(gj.getPftz()))
-					l.setV_20("0");
-					else
-						l.setV_20(String.format("%.2f", Double.parseDouble(gj.getBywcje())/Double.parseDouble(gj.getPftz())*100)+"");
-				l.setV_21(gj.getBywcljtsf());
-				l.setV_22(gj.getByqlwcqk_ym());
-				l.setV_23(gj.getByqlwcqk_z());
-				l.setV_24(gj.getByhdwcqk_m());
-				l.setV_25(gj.getBysdwcqk_ym());
-				l.setV_26(gj.getBysdwcqk_z());
-				l.setV_27(gj.getBydcwcqk());
-				l.setV_28(gj.getByjcwcqk());
-				l.setV_29(gj.getBylqlmwcqk());
-				l.setV_30(gj.getBysnlmwcqk());
-				l.setV_31(gj.getZjwcje());
-				if("0".equals(gj.getPftz()))
-					l.setV_31("0");
-					else
-						l.setV_31(String.format("%.2f", Double.parseDouble(gj.getZjwcje())/Double.parseDouble(gj.getPftz())*100)+"");
-				l.setV_32(gj.getZjwcljtsf());
-				l.setV_33(gj.getZjqlwcqk_ym());
-				l.setV_34(gj.getZjqlwcqk_z());
-				l.setV_35(gj.getZjhdwcqk_m());
-				l.setV_36(gj.getZjsdwcqk_ym());
-				l.setV_37(gj.getZjsdwcqk_z());
-				l.setV_38(gj.getZjdcwcqk());
-				l.setV_39(gj.getZjjcwcqk());
-				l.setV_40(gj.getZjlqlmwcqk());
-				l.setV_41(gj.getZjsnlmwcqk());
-				l.setV_42(gj.getBnwcje());
-				if("0".equals(gj.getPftz()))
-					l.setV_43("0");
-					else
-						l.setV_43(String.format("%.2f", Double.parseDouble(gj.getBnwcje())/Double.parseDouble(gj.getPftz())*100)+"");
-				l.setV_43(gj.getBnlqlmwcqk());
-				l.setV_44(gj.getBnsnlmwcqk());
-				l.setV_45(gj.getBz());
-				elist.add(l);
+	public void selGcsjJdbb(){
+		try {
+			
+			String tiaojian1="";
+			String tiaojian2="";
+			String gydwdm = "";
+			String xzqhdm = "";
+			String sql = "";
+			String nameValue="";
+			String colValue="";
+			if("flag".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+				sql=(String) session.getAttribute("sql");
+				nameValue=(String) session.getAttribute("nameValue");
+				colValue=(String) session.getAttribute("colValue");
+			}else{
+			gydwdm = xmbb.getGydw();
+			xzqhdm	= xmbb.getXzqh();
+			sql = xmbb.getSql();
+			nameValue=xmbb.getNameValue();
+			colValue=xmbb.getColValue();
 			}
-			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("升级改造进度报表");//设置第一行
-			eldata.setSheetName("升级改造进度报表");//设置sheeet名
-			eldata.setFileName("升级改造进度报表");//设置文件名
-			eldata.setEl(elist);//将实体list放入类中
-			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-			et.add(new Excel_tilte("序号",1,3,0,0));
-			et.add(new Excel_tilte("路线编码",1,3,1,1));
-			et.add(new Excel_tilte("项目名称",1,3,2,2));
-			et.add(new Excel_tilte("计划年度",1,3,3,3));
-			et.add(new Excel_tilte("改造公里（公里）",1,3,4,4));
-			et.add(new Excel_tilte("原技术等级",1,3,5,5));
-			et.add(new Excel_tilte("建设技术标准",1,3,6,6));
-			et.add(new Excel_tilte("开工时间",1,3,7,7));
-			et.add(new Excel_tilte("计划工程",1,1,8,18));
-			et.add(new Excel_tilte("本月完成工程量",1,1,19,30));
-			et.add(new Excel_tilte("自开工累计完成工程量",1,1,31,42));
-			et.add(new Excel_tilte("本年元月至本月累计完成工程量",1,1,43,46));
-			et.add(new Excel_tilte("投资额（万元）",2,3,8,8));
-			et.add(new Excel_tilte("路基土石方（m³）",2,3,9,9));
-			et.add(new Excel_tilte("桥梁",2,2,10,11));
-			et.add(new Excel_tilte("涵洞（米）",2,3,12,12));
-			et.add(new Excel_tilte("隧道",2,2,13,14));
-			et.add(new Excel_tilte("路面工程（公里）",2,2,15,18));
-			et.add(new Excel_tilte("投资额（万元）",2,3,19,19));
-			et.add(new Excel_tilte("占投资比例（%）",2,3,20,20));
-			et.add(new Excel_tilte("路基土石方 （m³）",2,3,21,21));
-			et.add(new Excel_tilte("桥梁",2,2,22,23));
-			et.add(new Excel_tilte("涵洞（米）",2,3,24,24));
-			et.add(new Excel_tilte("隧道",2,2,25,26));
-			et.add(new Excel_tilte("路面工程（公里）",2,2,27,30));
-			et.add(new Excel_tilte("投资额（万元）",2,3,31,31));
-			et.add(new Excel_tilte("占投资比例（%）",2,3,32,32));
-			et.add(new Excel_tilte("路基土石方 （m³）",2,3,33,33));
-			et.add(new Excel_tilte("桥梁",2,2,34,35));
-			et.add(new Excel_tilte("涵洞（米）",2,3,36,36));
-			et.add(new Excel_tilte("隧道",2,2,37,38));
-			et.add(new Excel_tilte("路面工程（公里）",2,2,39,42));
-			et.add(new Excel_tilte("投资额（万元）",2,3,43,43));
-			et.add(new Excel_tilte("占投资比例（%）",2,3,44,44));
-			et.add(new Excel_tilte("路面工程（公里）",2,3,45,46));
-			et.add(new Excel_tilte("米",3,3,10,10));
-			et.add(new Excel_tilte("座",3,3,11,11));
-			et.add(new Excel_tilte("米",3,3,13,13));
-			et.add(new Excel_tilte("座",3,3,14,14));
-			et.add(new Excel_tilte("垫层",3,3,15,15));
-			et.add(new Excel_tilte("基层",3,3,16,16));
-			et.add(new Excel_tilte("沥青路面",3,3,17,17));
-			et.add(new Excel_tilte("水泥路面",3,3,18,18));
-			et.add(new Excel_tilte("米",3,3,22,22));
-			et.add(new Excel_tilte("座",3,3,23,23));
-			et.add(new Excel_tilte("米",3,3,25,25));
-			et.add(new Excel_tilte("座",3,3,26,26));
-			et.add(new Excel_tilte("垫层",3,3,27,27));
-			et.add(new Excel_tilte("基层",3,3,28,28));
-			et.add(new Excel_tilte("沥青路面",3,3,29,29));
-			et.add(new Excel_tilte("水泥路面",3,3,30,30));
-			et.add(new Excel_tilte("米",3,3,34,34));
-			et.add(new Excel_tilte("座",3,3,35,35));
-			et.add(new Excel_tilte("米",3,3,37,37));
-			et.add(new Excel_tilte("座",3,3,38,38));
-			et.add(new Excel_tilte("垫层",3,3,39,39));
-			et.add(new Excel_tilte("基层",3,3,40,40));
-			et.add(new Excel_tilte("沥青路面",3,3,41,41));
-			et.add(new Excel_tilte("水泥路面",3,3,42,42));
-			et.add(new Excel_tilte("沥青路面",3,3,45,45));
-			et.add(new Excel_tilte("水泥路面",3,3,46,46));
-			eldata.setEt(et);//将表头内容设置到类里面
-			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-			Excel_export.excel_export(eldata,response);
-		}else{
-			JsonUtils.write(gcsj, getresponse().getWriter());
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and l.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and l.gydwdm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and l.xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and l.xzqhdm in ("+xzqhdm+")";
+			}
+			
+			
+			
+			xmbb.setGydw(tiaojian1);
+			xmbb.setXzqh(tiaojian2);
+			xmbb.setSql(sql.substring(0, sql.length()-1));
+			xmbb.setNameValue(nameValue);
+			xmbb.setColValue(colValue);
+			List<Excel_list> gcsj=gcbbServer.selGcsjJdbb(xmbb);
+			
+			//JsonUtils.write(gcsj, getresponse().getWriter());
+			
+			int i=1;
+			if("flag".equals(flag)){
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("改建、新建工程项目进度报表");//设置第一行
+				eldata.setSheetName("改建、新建工程项目进度报表");//设置sheeet名
+				eldata.setFileName("改建、新建工程项目进度报表");//设置文件名
+				eldata.setEl(gcsj);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				
+				
+				String[] s=xmbb.getNameValue().split(",");
+				int k=0;int k1=0;int k2=0;int k3=0;int k4=0;
+				if(xmbb.isJhgc()){
+					for(int j=0;j<xmbb.getJhgczb();j++){
+						et.add(new Excel_tilte(s[j],1,3,k,k));
+						k++;
+					}
+				}
+				if(!xmbb.isJhgc()&&xmbb.isBywcgcl()){
+					for(int j=0;j<xmbb.getBywcgclzb();j++){
+						et.add(new Excel_tilte(s[j],1,3,k,k));
+						k++;
+					}
+				}
+				if(!xmbb.isJhgc()&&!xmbb.isBywcgcl()&&xmbb.isKglj()){
+					for(int j=0;j<xmbb.getKgljzb();j++){
+						et.add(new Excel_tilte(s[j],1,3,k,k));
+						k++;
+					}
+				}
+				if(!xmbb.isJhgc()&&!xmbb.isBywcgcl()&&!xmbb.isKglj()&&xmbb.isYykglj()){
+					for(int j=0;j<xmbb.getYykgljzb();j++){
+						et.add(new Excel_tilte(s[j],1,3,k,k));
+						k++;
+					}
+				}
+				if(!xmbb.isJhgc()&&!xmbb.isBywcgcl()&&!xmbb.isKglj()&&!xmbb.isYykglj()){
+					for(int j=0;j<s.length;j++){
+						et.add(new Excel_tilte(s[j],1,3,k,k));
+						k++;
+					}
+				}
+				if(xmbb.isJhgc()){
+					et.add(new Excel_tilte("计划工程",1,1,k,k+10));
+					k1=k;
+					k=k+11;
+				}
+				if(xmbb.isBywcgcl()){
+					et.add(new Excel_tilte("本月完成工程量",1,1,k,k+11));
+					k2=k;
+					k=k+12;
+				}
+				if(xmbb.isKglj()){
+					et.add(new Excel_tilte("自开工累计完成工程量",1,1,k,k+11));
+					k3=k;
+					k=k+12;
+				}
+				if(xmbb.isYykglj()){
+					et.add(new Excel_tilte("自开工累计完成工程量",1,1,k,k+3));
+					k4=k;
+					k=k+4;
+				}
+				if(xmbb.isBz()&&(xmbb.isJhgc()||xmbb.isBywcgcl()||xmbb.isKglj()||xmbb.isYykglj())){
+					et.add(new Excel_tilte("备注",1,3,k,k));
+				}
+				if(xmbb.isJhgc()){
+					et.add(new Excel_tilte("投资额（万元）",2,3,k1,k1));
+					et.add(new Excel_tilte("路基土石方（m³）",2,3,k1+1,k1+1));
+					et.add(new Excel_tilte("桥梁",2,2,k1+2,k1+3));
+					et.add(new Excel_tilte("涵洞（米）",2,3,k1+4,k1+4));
+					et.add(new Excel_tilte("隧道",2,2,k1+5,k1+6));
+					et.add(new Excel_tilte("路面工程（公里）",2,2,k1+7,k1+10));
+				}
+				if(xmbb.isBywcgcl()){
+					et.add(new Excel_tilte("投资额（万元）",2,3,k2,k2));
+					et.add(new Excel_tilte("占投资比例（%）",2,3,k2+1,k2+1));
+					et.add(new Excel_tilte("路基土石方（m³）",2,3,k2+2,k2+2));
+					et.add(new Excel_tilte("桥梁",2,2,k2+3,k2+4));
+					et.add(new Excel_tilte("涵洞（米）",2,3,k2+5,k2+5));
+					et.add(new Excel_tilte("隧道",2,2,k2+6,k2+7));
+					et.add(new Excel_tilte("路面工程（公里）",2,2,k2+8,k2+11));
+				}
+				if(xmbb.isKglj()){
+					et.add(new Excel_tilte("投资额（万元）",2,3,k3,k3));
+					et.add(new Excel_tilte("占投资比例（%）",2,3,k3+1,k3+1));
+					et.add(new Excel_tilte("路基土石方（m³）",2,3,k3+2,k3+2));
+					et.add(new Excel_tilte("桥梁",2,2,k3+3,k3+4));
+					et.add(new Excel_tilte("涵洞（米）",2,3,k3+5,k3+5));
+					et.add(new Excel_tilte("隧道",2,2,k3+6,k3+7));
+					et.add(new Excel_tilte("路面工程（公里）",2,2,k3+8,k3+11));
+				}
+				if(xmbb.isYykglj()){
+					et.add(new Excel_tilte("投资额（万元）",2,3,k4,k4));
+					et.add(new Excel_tilte("占投资比例（%）",2,3,k4+1,k4+1));
+					et.add(new Excel_tilte("路面工程（公里）",2,3,k4+2,k4+3));
+				}
+				if(xmbb.isJhgc()){
+					et.add(new Excel_tilte("米",3,3,k1+2,k1+2));
+					et.add(new Excel_tilte("座",3,3,k1+3,k1+3));
+					et.add(new Excel_tilte("米",3,3,k1+5,k1+5));
+					et.add(new Excel_tilte("座",3,3,k1+6,k1+6));
+					et.add(new Excel_tilte("垫层",3,3,k1+7,k1+7));
+					et.add(new Excel_tilte("基层",3,3,k1+8,k1+8));
+					et.add(new Excel_tilte("沥青路面",3,3,k1+9,k1+9));
+					et.add(new Excel_tilte("水泥路面",3,3,k1+10,k1+10));
+				}
+				if(xmbb.isBywcgcl()){
+					et.add(new Excel_tilte("米",3,3,k2+3,k2+3));
+					et.add(new Excel_tilte("座",3,3,k2+4,k2+4));
+					et.add(new Excel_tilte("米",3,3,k2+6,k2+6));
+					et.add(new Excel_tilte("座",3,3,k2+7,k2+7));
+					et.add(new Excel_tilte("垫层",3,3,k2+8,k2+8));
+					et.add(new Excel_tilte("基层",3,3,k2+9,k2+9));
+					et.add(new Excel_tilte("沥青路面",3,3,k2+10,k2+10));
+					et.add(new Excel_tilte("水泥路面",3,3,k2+11,k2+11));
+				}
+				if(xmbb.isKglj()){
+					et.add(new Excel_tilte("米",3,3,k3+3,k3+3));
+					et.add(new Excel_tilte("座",3,3,k3+4,k3+4));
+					et.add(new Excel_tilte("米",3,3,k3+6,k3+6));
+					et.add(new Excel_tilte("座",3,3,k3+7,k3+7));
+					et.add(new Excel_tilte("垫层",3,3,k3+8,k3+8));
+					et.add(new Excel_tilte("基层",3,3,k3+9,k3+9));
+					et.add(new Excel_tilte("沥青路面",3,3,k3+10,k3+10));
+					et.add(new Excel_tilte("水泥路面",3,3,k3+11,k3+11));
+				}
+				if(xmbb.isYykglj()){
+					et.add(new Excel_tilte("沥青路面",3,3,k4+2,k4+2));
+					et.add(new Excel_tilte("水泥路面",3,3,k4+3,k4+3));
+				}
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			}else{
+				JsonUtils.write(gcsj, getresponse().getWriter());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 	public void selYhdzxJdbb() {
 		try{
@@ -970,12 +1012,27 @@ public class GcbbController extends BaseActionSupport{
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-	public void exportbbsj_set(){
+	private String sql;
+	
+	public String getSql() {
+		return sql;
+	}
+
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+
+	public void exportbbsj_set() throws Exception{
 //		System.out.println("*"+gydw);
 //		System.out.println("*"+xzqh);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		session.setAttribute("gydwbb", gydw);
 		session.setAttribute("xzqhbb", xzqh);
+		session.setAttribute("sql", sql);
+		session.setAttribute("nameValue", nameValue);
+		session.setAttribute("colValue", colValue);
+		
+		JsonUtils.write(session, getresponse().getWriter());
 	}
 }

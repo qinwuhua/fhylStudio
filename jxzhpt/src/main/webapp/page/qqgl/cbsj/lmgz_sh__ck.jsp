@@ -132,7 +132,7 @@
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				
 				{field:'pfsj',title:'批复时间',width:100,align:'center'},
-				{field:'jaf',title:'建安费',width:100,align:'center'}]];
+				{field:'jaf',title:'建安费（万元）',width:100,align:'center'}]];
 			gridBind1(grid);
 		}
 		function batchTh(){

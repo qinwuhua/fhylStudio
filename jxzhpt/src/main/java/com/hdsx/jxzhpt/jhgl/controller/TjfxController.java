@@ -403,7 +403,7 @@ public class TjfxController extends BaseActionSupport{
 			String chartType = ftlName;
 			list.add(getMap(gcgjServer.queryGcktj2(xzqhdm,nf), "路面改建"));
 			list.add(getMap(gcsjServer.queryGcktj2(xzqhdm,nf), "路面升级"));
-			list.add(getMap(shuihServer.queryGcktj2(xzqhdm,nf), "水毁项目"));
+			list.add(getMap(shuihServer.queryGcktj2(xzqhdm,nf), "灾毁恢复重建项目"));
 			list.add(getMap(yhdzxServer.queryGcktj2(xzqhdm,nf), "养护大中修"));
 			list.add(getMap(abgcServer.queryGcktj2(xzqhdm,nf), "安保工程"));
 			list.add(getMap(wqgzServer.queryGcktj2(xzqhdm,nf), "危桥改造"));

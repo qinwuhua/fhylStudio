@@ -82,7 +82,7 @@
 						}
 						else{
 							result+='&nbsp;<a href="javascript:ckxx('+"'"+row.xmbm+"','fqx'"+')" style="color:#3399CC;">详细</a>';
-							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
+							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'灾毁恢复重建项目'"+','+
 							"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:thtz1('+"'"+row.xmbm+"','sh','2'"+')" style="text-decoration:none;color:#3399CC; ">退回</a>';
 
 						}

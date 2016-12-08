@@ -338,7 +338,7 @@ a:active {
 							<table id="kdtb" width="6000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路改造工程新上、续建工程项目完成情况明细表</caption>
 								<thead id="biaotou">
-									<tr>
+									<!-- <tr>
 										<td rowspan="3" style="width: 100px;">序号</td>
 										<td rowspan="3" style="width: 125px;">设区市</td>
 										<td rowspan="3" style="width: 125px;">项目类型</td>
@@ -387,7 +387,7 @@ a:active {
 										<td>项目数量</td>
 										<td>建设里程（公里）</td>
 										<td>中央或省统筹资金（万元）含续建</td>
-									</tr>
+									</tr> -->
 								</thead>
 								<tbody id="wqgzlist">
 									</tbody>	

@@ -106,7 +106,7 @@
 				}else if(xmid.substring(10,11)=="4"){
 					YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
 				}else if(xmid.substring(10,11)=="5"){
-					YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+					YMLib.UI.createWindow('shxmxx','灾毁恢复重建项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
 				}
 			}
 			

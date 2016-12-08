@@ -517,7 +517,7 @@
 		select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_gcsj sjl group by sjl.jhid) sjlx where sj.id=sjlx.jhid
 		union all
-		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'水毁项目' from plan_shuih jh,(
+		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'灾毁恢复重建项目' from plan_shuih jh,(
 		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_shuih l group by l.jhid ) lx where jh.id=lx.jhid
 		union all
@@ -547,7 +547,7 @@
 		select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_gcsj sjl group by sjl.jhid) sjlx where sj.id=sjlx.jhid
 		union all
-		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'水毁项目' from plan_shuih jh,(
+		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'灾毁恢复重建项目' from plan_shuih jh,(
 		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_shuih l group by l.jhid ) lx where jh.id=lx.jhid
 		union all
@@ -582,7 +582,7 @@
 		select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_gcsj sjl group by sjl.jhid) sjlx where sj.id=sjlx.jhid
 		union all
-		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'水毁项目' from plan_shuih jh,(
+		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'灾毁恢复重建项目' from plan_shuih jh,(
 		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
 		from plan_lx_shuih l group by l.jhid ) lx where jh.id=lx.jhid
 		union all
