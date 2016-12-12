@@ -57,7 +57,8 @@ text-decoration:none;
 				$("#xmnf").combobox("setValue",msg.xmnf);
 				$("#jhkgn").combobox("setValue",msg.jhkgn);
 				$("#jhwgn").combobox("setValue",msg.jhwgn);
-				
+				$("#sfbflx").val(data.sfbflx);
+				$("#xmklx").val(data.xmklx);
 				var inputArray= $('input');
 				$.each(inputArray,function(index,item){
 					$(item).attr("disabled","disabled");
@@ -222,12 +223,14 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
-						<option value="否" selected="selected">否</option>
-						<option value="是">是</option>
-					</select>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="sfbflx" name="sfbflx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

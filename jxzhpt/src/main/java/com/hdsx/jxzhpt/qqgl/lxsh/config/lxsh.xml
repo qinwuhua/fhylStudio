@@ -71,16 +71,16 @@
 		select * from LXSH_XJ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
-		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,jszlc<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if>)
-		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{jszlc}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if>)
+		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,jszlc<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{jszlc}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if><if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 	<insert id="insertLmgz" parameterType="lxsh">
-		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if>)
-		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if>)
+		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if><if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 	<insert id="insertXj" parameterType="lxsh">
-		insert into LXSH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if>)
-		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if>)
+		insert into LXSH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if><if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh
@@ -333,7 +333,7 @@
 		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
-		select * from (select rownum num ,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
+		select * from (select rownum num ,xmklx,t.id,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.xmmc,t.thyy,
 		t.gydwdm,t.sbthcd,t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,sl.xmsl,sl.zlc jszlc,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx  from LXSH_SJGZ t left join
 		(select xmid,lxbm,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from lxsh_lx where jdbs='0' and sffirst='1'
@@ -416,7 +416,7 @@
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,t.thyy,
+		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,t.thyy,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,lxs.lc,sl.xmsl,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx,sl.zlc jszlc from LXSH_LMGZ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
@@ -499,7 +499,7 @@
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,t.thyy,
+		select rownum num ,xmklx,t.id,t.xmmc,t.xmbm,to_char(sbzt) sbzt1,t.shzt,t.xmnf,t.xzqhdm,t.gydwdm,t.sbthcd,sl.xmsl sl,sl.zlc jszlc,(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) xjlc,t.thyy,
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'

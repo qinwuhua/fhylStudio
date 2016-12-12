@@ -194,9 +194,9 @@
 	    NVL((select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.xmbm and to_date(gcsj.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and to_date(substr(sj.sjkgsj,0,instr(sj.sjkgsj,'-',-1)-1),'yyyy-mm')>=to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) as bnlqlmwcqk,
 	    NVL((select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.xmbm and to_date(gcsj.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and to_date(substr(sj.sjkgsj,0,instr(sj.sjkgsj,'-',-1)-1),'yyyy-mm')>=to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) as bnsnlmwcqk,
 	    ' ' as bz,sj.xmmc as xmmc,lx.*
-	    from jhsh_sjgz sj inner join (select l.xmid jhid, replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
-	      replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as xmlc,
-	      replace(WMSYS.WM_CONCAT(to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_sjgz cbsj on sj.xmbm=cbsj.xmbm
+	    from jhsh_sjgz sj inner join (select l.xmid jhid, replace(WMSYS.WM_CONCAT(distinct to_char(l.lxbm)),',','、') as lxbm,
+	      (sum(NVL(jhyilc,0))+sum(NVL(jherlc,0))+sum(NVL(jhsanlc,0))+sum(NVL(jhsilc,0))+sum(NVL(jhdwlc,0))+sum(NVL(jhwllc,0))) as xmlc,
+	      replace(WMSYS.WM_CONCAT(distinct to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(distinct to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_sjgz cbsj on sj.xmbm=cbsj.xmbm
      	<if test="tiaojian!=null and tiaojian!=''">
      	 and ${tiaojian}
 	    </if>
@@ -235,9 +235,9 @@
       NVL((select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.xmbm and to_date(gcsj.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and to_date(substr(sj.sjkgsj,0,instr(sj.sjkgsj,'-',-1)-1),'yyyy-mm')>=to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) as bnlqlmwcqk,
       NVL((select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.xmbm and to_date(gcsj.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and to_date(substr(sj.sjkgsj,0,instr(sj.sjkgsj,'-',-1)-1),'yyyy-mm')>=to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')),0) as bnsnlmwcqk,
       ' ' as bz,sj.xmmc as xmmc,lx.*
-      from jhsh_xj sj inner join (select l.xmid jhid, replace(WMSYS.WM_CONCAT(to_char(l.xjlxbm)),',','、') as lxbm,
-        replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as xmlc,
-        replace(WMSYS.WM_CONCAT(to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_xj cbsj on sj.xmbm=cbsj.xmbm
+      from jhsh_xj sj inner join (select l.xmid jhid, replace(WMSYS.WM_CONCAT(distinct to_char(l.xjlxbm)),',','、') as lxbm,
+        (sum(NVL(yilc,0))+sum(NVL(erlc,0))+sum(NVL(sanlc,0))+sum(NVL(silc,0))+sum(NVL(dwlc,0))+sum(NVL(wllc,0))) as xmlc,
+        replace(WMSYS.WM_CONCAT(distinct to_char(l.xjsdj)),',','、') as yjsdj,replace(WMSYS.WM_CONCAT(distinct to_char(l.jsjsdj)),',','、') as jsjsbz from lxsh_lx l where 1=1 and jdbs='2' ${gydw} ${xzqh} group by l.xmid) lx on sj.xmbm=lx.jhid left join cbsj_xj cbsj on sj.xmbm=cbsj.xmbm
       	<if test="tiaojian!=null and tiaojian!=''">
      	 and ${tiaojian}
 	    </if>

@@ -202,7 +202,7 @@ a{text-decoration:none;}
 					$("#gydw").combotree('setValues',item.gydwdm.split(","));
 					loadDistedit("xzqh",'36',item.xzqhdm2);
 					$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
-					
+					$("#xmklx").val(item.xmklx);
 					//$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
 					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
@@ -293,7 +293,7 @@ a{text-decoration:none;}
 		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl
 		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
 		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
-		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
+		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+"&lxsh.xmklx="+$('#xmklx').val();
 
 		$.ajax({
 			type:'post',
@@ -431,11 +431,15 @@ a{text-decoration:none;}
             </tr>
             <tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
 						<option value="否" selected="selected">否</option>
 						<option value="是">是</option>
 					</select>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

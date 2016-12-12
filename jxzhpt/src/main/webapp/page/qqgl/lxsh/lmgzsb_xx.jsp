@@ -68,6 +68,8 @@ text-decoration:none;
 		$('#dwlc').html(data.dwlc);
 		$('#wllc').html(data.wllc);
 		$("#yhdk").html(data.yhdk);
+		$("#sfbflx").val(data.sfbflx);
+		$("#xmklx").val(data.xmklx);
 		sfylx();
 		getghxx(data.xmbm);
 		getghxxone(parent.obj.xmbm,parent.obj.qdzh,parent.obj.zdzh);
@@ -240,15 +242,13 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
 					<span id="ghlxmc"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
-					</td>
-				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
-					
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="sfbflx" name="sfbflx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
-					</td>
-				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
-					
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
 				
 				

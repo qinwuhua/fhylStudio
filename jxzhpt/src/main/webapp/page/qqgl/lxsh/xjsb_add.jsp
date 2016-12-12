@@ -191,7 +191,7 @@ text-decoration:none;
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
 					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					
+					$("#xmklx").val(item.xmklx);
 					
 					$("#qdmc").val(item.qdmc);
 					$("#zdmc").val(item.zdmc);
@@ -250,7 +250,7 @@ text-decoration:none;
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
 		
 		data+="&lxsh.xjlxbm="+$('#xjlxbm').val()+"&lxsh.xjqdzh="+$('#xjqdzh').val()+"&lxsh.xjzdzh="+$('#xjzdzh').val()+
-		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').val();
+		"&lxsh.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').val()+"&lxsh.xmklx="+$('#xmklx').val();
 		
 		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val()+"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue');
@@ -397,11 +397,15 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否部分立项</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id='sfbflx' class="easyui-combobox" style="width: 120px;">
 						<option value="否" selected="selected">否</option>
 						<option value="是">是</option>
 					</select>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

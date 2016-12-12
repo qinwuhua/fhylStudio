@@ -16,9 +16,15 @@ public class Kxxyj implements Serializable {
 	private String gcfl;
 	private String gydw1;
 	private String gydwdm1;
+	private String xmklx;//项目库类型
 	
 	
-	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getGydw1() {
 		return gydw1;
 	}

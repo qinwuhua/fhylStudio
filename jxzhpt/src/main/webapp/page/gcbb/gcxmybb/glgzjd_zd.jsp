@@ -133,17 +133,17 @@ text-decoration:none;
 			}
 			if(bywcgcl){
 				biaotstr+='<td colspan="12">本月完成工程量</td>';
-				sql+='bywcje v_'+k+',decode(pftz,0,0,round((bywcje/pftz)*100,2)) v_'+(k+1)+',bywcljtsf v_'+(k+2)+',byqlwcqk_ym v_'+(k+3)+',byqlwcqk_z v_'+(k+4)+',byhdwcqk_m v_'+(k+5)+',bysdwcqk_ym v_'+(k+6)+',bysdwcqk_z v_'+(k+7)+',bydcwcqk v_'+(k+8)+',byjcwcqk v_'+(k+9)+',bylqlmwcqk v_'+(k+10)+',bysnlmwcqk v_'+(k+11)+',';
+				sql+='bywcje v_'+k+',decode(pftz,0,0,round((bywcje/pftz)*100,2))||'%' v_'+(k+1)+',bywcljtsf v_'+(k+2)+',byqlwcqk_ym v_'+(k+3)+',byqlwcqk_z v_'+(k+4)+',byhdwcqk_m v_'+(k+5)+',bysdwcqk_ym v_'+(k+6)+',bysdwcqk_z v_'+(k+7)+',bydcwcqk v_'+(k+8)+',byjcwcqk v_'+(k+9)+',bylqlmwcqk v_'+(k+10)+',bysnlmwcqk v_'+(k+11)+',';
 				k=k+12;
 			}
 			if(kglj){
 				biaotstr+='<td colspan="12">自开工累计完成工程量</td>';
-				sql+='zjwcje v_'+k+',decode(pftz,0,0,round((zjwcje/pftz)*100,2)) v_'+(k+1)+',zjwcljtsf v_'+(k+2)+',zjqlwcqk_ym v_'+(k+3)+',zjqlwcqk_z v_'+(k+4)+',zjhdwcqk_m v_'+(k+5)+',zjsdwcqk_ym v_'+(k+6)+',zjsdwcqk_z v_'+(k+7)+',zjdcwcqk v_'+(k+8)+',zjjcwcqk v_'+(k+9)+',zjlqlmwcqk v_'+(k+10)+',zjsnlmwcqk v_'+(k+11)+',';
+				sql+='zjwcje v_'+k+',decode(pftz,0,0,round((zjwcje/pftz)*100,2))||'%' v_'+(k+1)+',zjwcljtsf v_'+(k+2)+',zjqlwcqk_ym v_'+(k+3)+',zjqlwcqk_z v_'+(k+4)+',zjhdwcqk_m v_'+(k+5)+',zjsdwcqk_ym v_'+(k+6)+',zjsdwcqk_z v_'+(k+7)+',zjdcwcqk v_'+(k+8)+',zjjcwcqk v_'+(k+9)+',zjlqlmwcqk v_'+(k+10)+',zjsnlmwcqk v_'+(k+11)+',';
 				k=k+12;
 			}
 			if(yykglj){
 				biaotstr+='<td colspan="4">本年元月至本月累计完成工程量</td>';
-				sql+='bnwcje v_'+k+',decode(pftz,0,0,round((bnwcje/pftz)*100,2)) v_'+(k+1)+',bnlqlmwcqk v_'+(k+2)+',bnsnlmwcqk v_'+(k+3)+',';
+				sql+='bnwcje v_'+k+',decode(pftz,0,0,round((bnwcje/pftz)*100,2))||'%' v_'+(k+1)+',bnlqlmwcqk v_'+(k+2)+',bnsnlmwcqk v_'+(k+3)+',';
 				k=k+4;
 			}
 			if(bz&&(jhgc||bywcgcl||kglj||yykglj)){

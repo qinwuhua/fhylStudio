@@ -157,7 +157,14 @@ public class Jhsh {
 	private String gxqdzh;
 	private String gxzdzh;
 	private String zlc;
+	private String xmklx;//项目库类型
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getZlc() {
 		return zlc;
 	}

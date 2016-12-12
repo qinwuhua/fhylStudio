@@ -80,6 +80,7 @@ text-decoration:none;
 				$('#ylxbh').val(msg.lxbm);
 				$("#xmbm").html(msg.xmbm);
 				$("#jsjsdj").html(msg.jsjsdj);
+				$('#xmklx').val(msg.xmklx);
 			}
 		});
 		fileShow(parent.obj.xmbm,"工可批复文件");
@@ -436,7 +437,14 @@ text-decoration:none;
 					<input id="ghlxmc" name="ghlxmc" style="width: 120px;" />
 				</td>
 			</tr>
-			
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					项目库类型
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
+				</td>
+			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程

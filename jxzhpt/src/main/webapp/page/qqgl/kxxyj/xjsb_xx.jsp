@@ -73,7 +73,8 @@ text-decoration:none;
 		$('#dwlc').html(data.dwlc);
 		$('#wllc').html(data.wllc);
 		$("#lxbh").html(data.lxbh);
-		fileShow1(parent.obj.xmbm,"工可批复文件");		
+		fileShow1(parent.obj.xmbm,"工可批复文件");	
+		$('#xmklx').val(data.xmklx);
 	}
 	
 	$(function(){
@@ -245,9 +246,9 @@ text-decoration:none;
 					<span id="ghlxmc"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
-					</td>
+					项目库类型</td>
 				<td style="background-color: #ffffff; height: 20px;width:200px;" align="left">
-					
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">
 					</td>
