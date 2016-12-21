@@ -66,7 +66,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -382,7 +382,14 @@ text-decoration:none;
         						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         						<td>下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:55px;" /></td>
-        					
+        					<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
                             	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <!-- 									<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->

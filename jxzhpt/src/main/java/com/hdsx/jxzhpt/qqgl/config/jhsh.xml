@@ -1040,6 +1040,7 @@
 		<if test="dfzc != null">c.dfzc=to_number(#{dfzc}),</if>
 		<if test="zyjsnr != null">c.zyjsnr=#{zyjsnr},</if>
 		<if test="xzscnl != null">c.xzscnl=#{xzscnl},</if>
+		c.xmbm=#{xmbm}
 <!-- 		c.xdzt='0' -->
 		where c.xmbm=#{xmbm}
 	</update>
@@ -1062,6 +1063,7 @@
 		<if test="dfzc != null">c.dfzc=to_number(#{dfzc}),</if>
 		<if test="zyjsnr != null">c.zyjsnr=#{zyjsnr},</if>
 		<if test="xzscnl != null">c.xzscnl=#{xzscnl},</if>
+		c.xmbm=#{xmbm}
 <!-- 		c.xdzt='0' -->
 		where c.xmbm=#{xmbm}
 	</update>
@@ -1084,6 +1086,7 @@
 		<if test="dfzc != null">c.dfzc=to_number(#{dfzc}),</if>
 		<if test="zyjsnr != null">c.zyjsnr=#{zyjsnr},</if>
 		<if test="xzscnl != null">c.xzscnl=#{xzscnl},</if>
+		c.xmbm=#{xmbm}
 <!-- 		c.xdzt='0'  -->
 		where c.xmbm=#{xmbm}
 	</update>
@@ -3449,6 +3452,9 @@
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
 				</if>
+				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
+					and xmklx like '%'||#{jhsh.xmklx}||'%'
+				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -3523,6 +3529,9 @@
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
+				</if>
+				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
+					and xmklx like '%'||#{jhsh.xmklx}||'%'
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc,l_.sffirst desc
 			 
@@ -3621,6 +3630,9 @@
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
+				</if>
+				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
+					and xmklx like '%'||#{jhsh.xmklx}||'%'
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
@@ -3733,6 +3745,9 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
+				<if test="xmklx !=null and xmklx !=''">
+					and xmklx like '%'||#{xmklx}||'%'
+				</if>
 				order <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -3811,6 +3826,9 @@
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
+				</if>
+				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
+					and xmklx like '%'||#{jhsh.xmklx}||'%'
 				</if>
 				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
 					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
@@ -3895,6 +3913,9 @@
 				</if>
 				<if test="jhsh.gyfl !=null and jhsh.gyfl !=''">
 					
+				</if>
+				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
+					and xmklx like '%'||#{jhsh.xmklx}||'%'
 				</if>
 				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
 					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
@@ -3986,6 +4007,9 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
+				<if test="xmklx !=null and xmklx !=''">
+					and xmklx like '%'||#{xmklx}||'%'
+				</if>
 				<if test="xdsj !=null and xdsj !=''">
 					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
 				</if>
@@ -4067,6 +4091,9 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if>
+				<if test="xmklx !=null and xmklx !=''">
+					and xmklx like '%'||#{xmklx}||'%'
+				</if>
 				<if test="xdsj !=null and xdsj !=''">
 					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
 				</if>
@@ -4078,10 +4105,9 @@
 	<insert id="planxdAll" parameterType="java.util.List">
 		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if><if test="bzrys != null">,rys</if><if test="bzyhdk != null">,yhdk</if><if test="bzdfzc != null">,dfzc</if><if test="zyjsnr != null">,zyjsnr</if><if test="xzscnl != null">,xzscnl</if>)
 		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
-		
 	</insert>
 	<insert id="planxdAllmc" parameterType="java.util.List">
-		update <if test="xmlx == 1">jhsh_sjgz</if>
+		update 	<if test="xmlx == 1">jhsh_sjgz</if>
 				<if test="xmlx == 2">jhsh_lmgz</if>
 				<if test="xmlx == 3">jhsh_xj</if>
 				<if test="xmlx == 4">jhsh_yhdzx</if>
@@ -4132,7 +4158,7 @@
 <!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
 <!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
 <!-- 				</if> -->
-<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+				<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
 				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
 				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
 				)
@@ -4354,25 +4380,19 @@
 				<if test="ghlxbh!=null and ghlxbh!=''">
 					and ghlxbmtj like '%'||#{ghlxbh}||'%'
 				</if>
-<!-- 				<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
-<!-- 					and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
-<!-- 				</if> -->
 				<if test="lxmc !=null and lxmc !=''">
 					and ghlxmctj like '%'||#{lxmc}||'%'
 				</if>
-<!-- 				<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
-<!-- 					and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
-<!-- 				</if> -->
-<if test="ghxlxbm != null and ghxlxbm != ''">
+				<if test="ghxlxbm != null and ghxlxbm != ''">
 				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
 				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
 				)
-			</if>
-			<if test="ghxlxmc != '' and ghxlxmc != null ">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
-				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
-				)
-			</if>
+				</if>
+				<if test="ghxlxmc != '' and ghxlxmc != null ">
+					and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+					or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+					)
+				</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4430,16 +4450,12 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and ghlxbmtj like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-<!-- 				<if test="jhsh.ghxlxbm!=null and jhsh.ghxlxbm!=''"> -->
-<!-- 					and ghxlxbmtj like '%'||#{jhsh.ghxlxbm}||'%' -->
-<!-- 				</if> -->
+
 				<if test="jhsh.lxmc !=null and jhsh.lxmc !=''">
 					and ghlxmctj like '%'||#{jhsh.lxmc}||'%'
 				</if>
-<!-- 				<if test="jhsh.ghxlxmc !=null and jhsh.ghxlxmc !=''"> -->
-<!-- 					and ghxlxmctj like '%'||#{jhsh.ghxlxmc}||'%' -->
-<!-- 				</if> -->
-<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
+
+				<if test="jhsh.ghxlxbm != null and jhsh.ghxlxbm != ''">
 				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
 				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{jhsh.ghxlxbm}||'%')
 				)

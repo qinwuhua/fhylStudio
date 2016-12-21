@@ -72,6 +72,7 @@
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':sbzt,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
+					'cbsj.xmklx':$('#xmklx').combo("getValue"),
 					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").val(),
@@ -184,10 +185,10 @@
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
 				{field:'lj',title:'路基（m3）',width:100,align:'center'},
 				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
-				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},
-				{field:'mc',title:'面层（类型/公里）',width:100,align:'center'},
-				{field:'jc',title:'基基（公里）',width:100,align:'center'},
-				{field:'dc',title:'垫基（公里）',width:100,align:'center'},
+				{field:'hd',title:'涵洞(米/座)',width:100,align:'center'},
+				{field:'mc_lc',title:'面层（类型/公里）',width:100,align:'center'},
+				{field:'jc_lc',title:'基基（公里）',width:100,align:'center'},
+				{field:'dc_lc',title:'垫基（公里）',width:100,align:'center'},
 				{field:'sd',title:'隧道（延米/座）',width:100,align:'center'},
 				{field:'dq',title:'大桥(名称/长度/单跨)',width:150,align:'center'},
 				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
@@ -435,6 +436,14 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
+								<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
                             </tr>
                             <tr height="32">
                             	<td colspan="10">

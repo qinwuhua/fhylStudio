@@ -43,18 +43,7 @@
 		function showAllgsd(){
 			
 			showkxxTjxx('gsdgz');
-			/* var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
-			}else{
-				gydwstr= gydw.join(',');
-			} */
+			
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
@@ -66,7 +55,7 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			
+
 			var xmmc=$("#xmmc").val();
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
 			if(xmnf=='')
@@ -111,7 +100,8 @@
 					ghlxmc:$("#ghlxmc").val(),
 					'lxsh.ghlxbh':$("#lxbm").val(),
 					'lxsh.xmlx1':xmlx,
-					'lxsh.lxmc':$("#lxmc").val()
+					'lxsh.lxmc':$("#lxmc").val(),
+					'lxsh.xmklx':$("#xmklx").combobox('getValue')
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -325,6 +315,14 @@ text-decoration:none;
 <!-- 	        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
 	                            </tr>
 	                            <tr height="32">
+	                            <td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
 	                            	<td colspan="10">
 	        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 	        						<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dckxxModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

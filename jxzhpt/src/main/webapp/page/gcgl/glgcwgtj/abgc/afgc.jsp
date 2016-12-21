@@ -24,12 +24,13 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
+			
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
-			//gcglxmnf("ddlYear");
+			gcglwgnf("wgYear");//给标签赋值
 			var urlid=getUrlParame('id');
 			if(urlid==null){
 				xmnfdx("ddlYear"); 
@@ -145,15 +146,19 @@ a:active {
 								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
 								<span>路线名称：</span>
         							<input type="text" id="lxmc" style="width: 100px;">
-								
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
 								<span>是否交工验收：</span>
 								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
 									<option value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select>
+								</p>
+								<p style="margin: 1% 0% 1% 2%;">
+								
+								<span>完工年份：</span> 
+        						<select name="wgYear" id="wgYear" style="width: 70px;">
+        							<option value="">全部</option>
+        						</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showafAll()"/>
                                  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>

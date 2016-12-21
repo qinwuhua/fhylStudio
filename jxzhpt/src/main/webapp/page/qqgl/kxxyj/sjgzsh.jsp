@@ -233,7 +233,14 @@ text-decoration:none;
         						</span>
 								
 								</td>
-								
+								<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
 								
 	        					 <!-- <td>行政等级：</td>
 									<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>

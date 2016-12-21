@@ -138,17 +138,22 @@ function showkxxTjxx(xmlx){
 	var lsjl=$("#lsjl").combobox('getValue');
 	else lsjl='';
 	var xmlx1='';
+	var sbzt='';var shzt='';
 	if(xmlx=='gsdgz'){
 		xmlx1=$("#xmlx").combobox("getValues").join(",");
 		if(xmlx1.substr(0,1)==',')
 			xmlx1=xmlx1.substr(1,xmlx1.length);
+		sbzt='1';
+		shzt=$("#sbzt").combobox('getValue');
+	}else{
+		sbzt=$("#sbzt").combobox('getValue');
+		shzt=$("#shzt").combobox('getValue');
 	}
-	var sbzt=$("#sbzt").combobox('getValue');
-	
-	var shzt=$("#shzt").combobox('getValue');
+
 	if($.cookie('unit2').length==7){
 		sbzt='1';
 	}
+	
 	var  data='lxsh.lsjl='+lsjl+
 	'&lxsh.xmlx1='+xmlx1+
 	'&lxsh.xzqh='+xzqhstr+
@@ -165,7 +170,8 @@ function showkxxTjxx(xmlx){
 	'&lxsh.shzt='+shzt+
 	'&lxsh.ghlxbh='+$("#lxbm").val()+
 	'&lxsh.lxmc='+$("#lxmc").val()+
-	'&lxsh.xmlx='+xmlx;
+	'&lxsh.xmlx='+xmlx+
+	'&lxsh.xmklx='+$("#xmklx").combobox('getValue');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/showkxxTjxx.do',
@@ -962,7 +968,8 @@ function showAllsjsh(){
 			ghlxmc:$("#ghlxmc").val(),
 			gldj:gldj,
 			'lxsh.ghlxbh':$("#lxbm").val(),
-			'lxsh.lxmc':$("#lxmc").val()
+			'lxsh.lxmc':$("#lxmc").val(),
+			'lxsh.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1294,7 +1301,8 @@ function showAlllmsh(){
 			ghlxmc:$("#ghlxmc").val(),
 			gldj:gldj,
 			'lxsh.ghlxbh':$("#lxbm").val(),
-			'lxsh.lxmc':$("#lxmc").val()
+			'lxsh.lxmc':$("#lxmc").val(),
+			'lxsh.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1629,7 +1637,8 @@ function showAllxjsh(){
 			jsjsdj:$("#jsjsdj").combobox('getValues').join(","),
 			gldj:gldj,
 			'lxsh.ghlxbh':$("#lxbm").val(),
-			'lxsh.lxmc':$("#lxmc").val()
+			'lxsh.lxmc':$("#lxmc").val(),
+			'lxsh.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},

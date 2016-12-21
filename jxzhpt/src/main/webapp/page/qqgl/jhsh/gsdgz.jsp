@@ -56,7 +56,7 @@
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly
+					'jhsh.shzt':$('#shzt').combobox("getValue"),'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -373,6 +373,14 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
+								<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
                            		<!-- <td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
                             	<td>资金来源：</td>

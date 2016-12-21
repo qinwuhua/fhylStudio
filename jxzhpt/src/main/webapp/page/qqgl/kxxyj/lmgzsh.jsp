@@ -295,22 +295,15 @@ text-decoration:none;
         						</span>
 								
 								</td>
-        					
-        					
-        					
-        						<!-- <td>项目年份：</td>
-        						<td><select id="xmnf" style="width:70px;">
-								</select></td>
-        						<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:90px;" class="easyui-combobox"></select></td>
-        						<td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-                               -->  
-<!-- 								<td>管养单位：</td> -->
-<!--         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>  -->
-                            </tr>
+        						<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
+                             </tr>
 							<tr height="32">
 								<td colspan="10">
         						<img onclick="showAlllmsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

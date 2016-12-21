@@ -47,6 +47,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -83,6 +84,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="selectSjgzkxbgList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
@@ -189,6 +191,7 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -225,6 +228,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	<select id="selectLmgzkxbgList" parameterType="lxsh" resultType="kxxyj">
@@ -329,6 +333,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -364,6 +369,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	<select id="selectXjkxbgList" parameterType="lxsh" resultType="kxxyj">
@@ -477,7 +483,7 @@
 	
 	<select id="selectSjgzkxshList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc
+		select rownum num ,t.*,xmklx,t1.ghlxbh lxbh,t1.gydwdm,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc
 		from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join lxsh_lx l on t1.xmbm=l.xmid where 1=1  and l.sffirst='1' and l.jdbs='1'
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -520,6 +526,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
 	</select>
@@ -566,13 +573,14 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	
 	
 	<select id="selectLmgzkxshList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,l.qdmc,l.zdmc  from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join lxsh_lx l on t.xmbm=l.xmid 
+		select rownum num ,t.*,xmklx,t1.ghlxbh lxbh,t1.gydwdm,l.qdmc,l.zdmc  from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join lxsh_lx l on t.xmbm=l.xmid 
 		where l.jdbs='1' and l.sffirst='1' 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -614,6 +622,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
 	</select>
@@ -660,10 +669,11 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="selectXjkxshList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm  from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
+		select rownum num ,t.*,xmklx,t1.ghlxbh lxbh,t1.gydwdm  from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
 			
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -705,6 +715,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
 	</select>
@@ -751,6 +762,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	<update id="shsjgzkxx" parameterType="hashmap">
@@ -933,6 +945,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="showlmkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t.tzgs),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz from KXXYJ_LMGZ t Left join lxsh_LMgz t1 on t.xmbm=t1.xmbm
@@ -992,6 +1005,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="showxjkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t.tzgs),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm
@@ -1051,6 +1065,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	<select id="showsjkxxbgTjxx" parameterType="lxsh" resultType="lxsh">
@@ -1383,7 +1398,7 @@
 	 
 	 <select id="selectgsdkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
+		select rownum num ,t.*,xmklx,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
 		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -1426,6 +1441,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -1460,6 +1476,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	<select id="showgsdkxxTjxx" parameterType="lxsh" resultType="lxsh">
 		select count(*) sl,nvl(sum(t1.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(t1.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(tz)-sum(bzys)),0) dftz 
@@ -1529,6 +1546,7 @@
 			or t.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghlxmc}||'%')
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
 	</select>
 	
 	

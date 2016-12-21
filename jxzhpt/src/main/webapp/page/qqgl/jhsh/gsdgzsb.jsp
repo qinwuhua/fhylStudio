@@ -54,7 +54,7 @@
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.sbzt':$('#sbzt').combobox("getValue")
+					'jhsh.sbzt':$('#sbzt').combobox("getValue"),'jhsh.xmklx':$('#xmklx').combobox('getValue')
 					};
 			grid.queryParams=params;
  			loadLj(params);
@@ -374,6 +374,14 @@ text-decoration:none;
 								</select></td>
                             </tr>
                             <tr height="32">
+                            <td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
                             	<!-- <td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
                             	<td>建设性质：</td>

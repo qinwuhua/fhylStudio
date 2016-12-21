@@ -217,7 +217,9 @@ function showAll(){
 	}); 
 }
 function showafAll(){
+
 	showtj('af');
+	
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
@@ -247,6 +249,7 @@ function showafAll(){
 	var jgzt='1';
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
+	
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectAbgcjhList.do',
 	    striped:true,

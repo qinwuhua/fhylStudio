@@ -169,8 +169,8 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 120px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 120px;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -223,13 +223,13 @@ text-decoration:none;
 								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="lxbm" style="width:75px;" /></td>
 								<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
 								<td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:75px;" /></td>
 								<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
         						<td>审核状态：</td>
         						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -238,6 +238,14 @@ text-decoration:none;
 								</select></td>
         					</tr>
         					<tr height="32">
+        					<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>
 								<!-- <td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                 <td>规划路线编码：</td>

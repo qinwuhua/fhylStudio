@@ -71,6 +71,7 @@
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'cbsj.sbzt':1,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
+					'cbsj.xmklx':$('#xmklx').combo("getValue"),
 					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").val(),
@@ -409,7 +410,15 @@ text-decoration:none;
 										<option selected="selected" value="-1">全部</option>
 										<option value="0">未审核</option>
 										<option value="1">已审核</option>
-									</select></td> 
+									</select></td>
+									<td>项目库类型：</td>
+								<td>
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td> 
 <!-- 									<td>建设性质：</td> -->
 <!-- 									<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td> -->
 								</tr>

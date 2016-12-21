@@ -110,7 +110,8 @@
 					ghlxbm:$("#ghlxbm").val(),
 					ghlxmc:$("#ghlxmc").val(),
 					jsjsdj:jsjsdj,
-					'lxsh.xmlx1':xmlx},
+					'lxsh.xmlx1':xmlx,
+					'lxsh.xmklx':$("#xmklx").combobox('getValue')},
 				dataType:'json',
 				success:function(msg){
 					 $("#xmsl").html(msg.XMSL);
@@ -148,7 +149,8 @@
 					ghlxbm:$("#ghlxbm").val(),
 					ghlxmc:$("#ghlxmc").val(),
 					jsjsdj:$("#jsjsdj").val(),
-					lxmc:$("#lxmc").val()
+					lxmc:$("#lxmc").val(),
+					'lxsh.xmklx':$("#xmklx").combobox('getValue')
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -281,13 +283,13 @@ text-decoration:none;
 								<td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="lxbm" style="width:75px;" /></td>
         						<td>原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:95px;" /></td>
         						<td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:75px;" /></td>
         						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
+        						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
         			</tr>
         			<tr>
                                 <td>是否有补助历史：</td>
@@ -305,55 +307,14 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-        						<!-- <td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
-        						<!-- <td>行政区划：</td>
-        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
-        						<td>项目名称：</td>
-        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-        						<td>原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:95px;" /></td>
-        						<td>项目年份：</td>
-        						<td><select id="xmnf" style="width:70px;">
-								</select></td>
-        					</tr>
-        					<tr height="32">
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:88px;" >
-								</select></td>
-								<td>技术等级：</td>
-								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>建设技术等级：</td>
+        						<td>项目库类型：</td>
 								<td>
-								<select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select>
-								</td>
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-        						<td>原路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
-        						<td>是否有历史记录：</td>
-        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-								</select></td>
-        					</tr>
-        					<tr height="32">
-        						<td>建设性质：</td>
-								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
-        						<td>上报状态：</td>
-        						<td id='zt'><select id="sbzt" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
-								</select></td>
-								<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
-                                <td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td> -->
-<!--         						<td>管养单位：</td> -->
-<!--         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
-                              <td colspan="10">
+									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+										<option value="">请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+									</select>
+								</td>                              <td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>

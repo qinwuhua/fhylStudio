@@ -19,7 +19,7 @@ public class Cbsj{
 	private String bz;//备注
 	private String bzcs;
 	private String lmkd;
-	
+	private String xmklx;//项目库类型
 	//补助
 		private String lqhntmc;
 		private String gxlqhntmc;  
@@ -79,6 +79,12 @@ public class Cbsj{
 		private String snhntmcsshdj;
 		private String sbzj;//省补资金
 		
+		public String getXmklx() {
+			return xmklx;
+		}
+		public void setXmklx(String xmklx) {
+			this.xmklx = xmklx;
+		}
 		public String getSnhntmchbmj() {
 			return snhntmchbmj;
 		}
