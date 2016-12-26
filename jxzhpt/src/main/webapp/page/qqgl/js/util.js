@@ -1144,7 +1144,12 @@ function queryZjxdyhdzx(xmbm){
 	grid.pageSize=5;
 	grid.pageNumber=1;
 	grid.columns=[[
-		
+		{field:'cz',title:'删除',width:60,align:'center',
+			formatter: function(value,row,index){
+				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
 		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
@@ -1154,6 +1159,25 @@ function queryZjxdyhdzx(xmbm){
 		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+function delzjxd(id,xmbm){
+	//alert(xmbm);
+	if(confirm('您确定删除吗？')){
+		deleteZjxdById(id);
+		
+		/*if(xmbm.substring(10,11)=="4"){
+			queryZjxdyhdzx(xmbm);
+		}
+		else if(xmbm.substring(10,11)=="5"){
+			queryZjxdgsdzh(xmbm);
+		}
+		else{
+			queryZjxdgsd(xmbm);
+		}*/
+	}
+		
+		//alert(id);
+}
+
 //国省道
 function queryZjxdgsd(xmbm){
 	grid.id="zjxdList";
@@ -1170,6 +1194,12 @@ function queryZjxdgsd(xmbm){
 				return row.sfzj == "0" ? "否" : "是";
 			}
 		},*/
+		{field:'cz',title:'删除',width:60,align:'center',
+			formatter: function(value,row,index){
+				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
 		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
@@ -1206,6 +1236,12 @@ function queryZjxdgsdzh(xmbm){
 				return row.sfzj == "0" ? "否" : "是";
 			}
 		},*/
+		{field:'cz',title:'删除',width:60,align:'center',
+			formatter: function(value,row,index){
+				var result='<a href="javascript:delzjxd('+"'"+row.id+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
 		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 

@@ -71,10 +71,15 @@
 			
 			var lsjl=$("#lsjl").combobox('getValue');
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
-			var sbzt=$("#sbzt").combobox('getValue');
+			//var sbzt=$("#sbzt").combobox('getValue');
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
-			
+			var shzt=$("#sbzt").combobox('getValue');
+			//var shzt=$("#shzt").combobox('getValue');
+			var sbzt='';
+			if($.cookie('unit2').length==7){
+				sbzt='1';
+			}
 			$('#datagrid').datagrid({    
 			    url:'/jxzhpt/qqgl/selectgsdkxList.do',
 			    striped:true,
@@ -92,6 +97,7 @@
 			    	xmmc:xmmc,
 					xmnf:xmnf,
 					sbzt:sbzt,
+					'lxsh.shzt':shzt,
 					tsdq:tsdq,
 					jsdj:jsdj,
 					jsjsdj:jsjsdj,
@@ -142,7 +148,7 @@
 			        		}
 			        	}
 			        },
-			        {field : 'JSZLC',title : '里程',width : 60,align : 'center',
+			        /* {field : 'JSZLC',title : '里程',width : 60,align : 'center',
 			        	formatter: function(value,row,index){
 			        		if(row.xmbm.substr(10,1)=='1'){
 			        			return row.jszlc;
@@ -150,7 +156,8 @@
 			        			return row.lc;
 			        		}
 			        	}
-				    },
+				    }, */
+				    {field : 'jszlc1',title : '里程',width : 60,align : 'center'},
 				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},

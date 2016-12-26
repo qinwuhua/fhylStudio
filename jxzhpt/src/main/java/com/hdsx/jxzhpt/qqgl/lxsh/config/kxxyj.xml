@@ -1418,8 +1418,12 @@
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		
-		<if test="sbzt1!='' and sbzt1!= null ">and t.shzt = #{sbzt1}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -1453,7 +1457,12 @@
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">and t.shzt = #{sbzt1}</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
@@ -1513,7 +1522,10 @@
 			and ${xmnf}
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and t.shzt like '%'||#{sbzt1}||'%'
+			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
