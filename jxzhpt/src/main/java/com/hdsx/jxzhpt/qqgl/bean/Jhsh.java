@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Jhsh {
+	private String jhxdsj;//计划下达时间
 	private String yjsdj;
 	private String jsjsdj;
 	private String xjsdj;
@@ -159,6 +160,12 @@ public class Jhsh {
 	private String zlc;
 	private String xmklx;//项目库类型
 	
+	public String getJhxdsj() {
+		return jhxdsj;
+	}
+	public void setJhxdsj(String jhxdsj) {
+		this.jhxdsj = jhxdsj;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

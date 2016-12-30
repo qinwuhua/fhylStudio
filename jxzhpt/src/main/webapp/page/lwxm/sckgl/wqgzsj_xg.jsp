@@ -88,7 +88,8 @@ function loadxx(){
 	$("#zgq").val(item.zgq);
 	$("#jsnr").val(item.jsnr);
 	$("#scbz").val(item.scbz);
-	$("#nsqbbz").val(item.nsqbbz);$("#rksj").html(item.rksj);
+	var nsqbbztr=Math.round(parseFloat(item.nsqbbz));
+	$("#nsqbbz").val(nsqbbztr);$("#rksj").html(item.rksj);
 	$("#cjqz1").combobox('setValue',item.cjqz.substring(0,5));
 	$("#cjqz").val(item.cjqz.substring(5,item.cjqz.length));
 	$("#scthdj").val(item.scthdj);$("#qljc").val(item.qljc);$("#ydgldj").combobox('setValue',item.ydgldj);
@@ -329,6 +330,7 @@ function getSbz(){
 				nsqbbz=data.shengbz;
 				trzjdx=data.shengbz;
 				zdezj=data.shengbz;
+				trzjdx=Math.round(parseFloat(trzjdx));
 				$("#trzjdx").html("小于等于"+trzjdx);
 				$("#nsqbbz").val(trzjdx);
 			}
@@ -405,7 +407,8 @@ function setshengjl(){
 		 dataType : 'json',
 		 data : 'planwqgzsj.id='+xmkid+"&planwqgzsj.akjfl="+kjfl+"&planwqgzsj.scqlqc="+$("#scqlqc").val()+"&planwqgzsj.scqlqk="+$("#scqlqk").val(),
 		 success : function(item){
-			 $("#nsqsjl").val(item.nsqsjl);
+			 var sjl=Math.round(parseFloat(item.nsqsjl));
+			 $("#nsqsjl").val(sjl);
 		 }
 	 });
 }
@@ -428,8 +431,8 @@ function setnsqbbz(){
 	}
 	
 	else{
-		$("#trzjdx").html("部库补助参考值"+nsqbbz);
-		$("#nsqbbz").val(nsqbbz);
+		$("#trzjdx").html("部库补助参考值"+trzjdx);
+		$("#nsqbbz").val(trzjdx);
 	}
 }
 function checksfzq(){

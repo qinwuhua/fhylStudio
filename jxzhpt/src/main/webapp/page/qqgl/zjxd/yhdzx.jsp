@@ -24,6 +24,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/json2.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/datagrid-cellediting.js"></script>
 	<script type="text/javascript">
+	function searchlist(){
+		queryYhdzx();
+		showMxbAll();
+	}
 		$(function(){
 			$('#bztbsj').datebox('setValue', formatDate(new Date()));
 			loadDist1("xzqh",$.cookie("dist"));
@@ -211,12 +215,12 @@
 				{field:'rys',title:'燃油税',width:60,align:'center'},
 				{field:'dk',title:'贷款',width:60,align:'center'},
 				{field:'qt',title:'其他',width:60,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+				{field:'jhxdwh',title:'计划下达文号',width:100,align:'center',
 					formatter: function(value,row,index){
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
 					}
 				},
-				{field:'xdsj',title:'下达时间',width:70,align:'center'},
+				{field:'jhxdsj',title:'下达时间',width:70,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'sjpfwh',title:'施工图设计批复文号',width:100,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:80,align:'center'},
@@ -758,7 +762,7 @@
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
         					
        						<td colspan="4">
-       							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+       							<img onclick="searchlist()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="exportJhshxx()" onmouseover="this.src='../../../images/Button/dchz2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dchz1.gif'" src="../../../images/Button/dchz1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="exportJhshxx1()" onmouseover="this.src='../../../images/Button/dcmx2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcmx1.gif'" src="../../../images/Button/dcmx1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="importJhshZjzj(7)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->

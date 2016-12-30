@@ -25,7 +25,7 @@
 	var qdStr;
 	var zdStr;
 		$(function(){
-			xmnf0("xmnf",'5');
+			xmnf0("xmnf",'4');
 			queryyhdzxsfdj();
 			loadBmbm2("gcfl1",'工程分类');
 			$.ajax({

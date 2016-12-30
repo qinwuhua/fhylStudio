@@ -813,7 +813,7 @@
        							</td>
        							<td>&nbsp;特殊地区：</td>
        							<td><select name="tsdq" id="tsdq" style="width:100px;" class="easyui-combobox"></select></td>
-       							<td><span id="ztspan">上报状态</span>：</td>
+       							<td><span id="ztspan">&nbsp;上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
        							</tr>
        							<tr height="32">

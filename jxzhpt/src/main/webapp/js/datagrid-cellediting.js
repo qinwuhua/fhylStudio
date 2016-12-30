@@ -78,13 +78,13 @@ function urlxmnf(id,flag){
 			$("#astext").html('计划下达');
 		}*/
 		$("#bstext").html('十三五');
-		for(var i=0;i<5;i++){
+		for(var i=0;i<=5;i++){
 			if(i==0){
 				first=myDate.getFullYear()-i;
 				if(first>2020)
 					first=2020;
-				if(first<2016)
-					first=2016;
+				if(first<2015)
+					first=2015;
 			}
 			years.push({text:(2015+5-i),value:(2015+5-i)});
 		}

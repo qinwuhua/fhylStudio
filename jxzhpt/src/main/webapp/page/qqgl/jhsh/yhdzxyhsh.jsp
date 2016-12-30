@@ -491,6 +491,7 @@
 				alert("请选择要上报的信息！");
 			}
 		}
+		}
 		/* function exportXmsq(){
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -595,7 +596,7 @@
 				return;
 			}
 		}
-		}
+	}
 	</script>
 </head>
 <body>
