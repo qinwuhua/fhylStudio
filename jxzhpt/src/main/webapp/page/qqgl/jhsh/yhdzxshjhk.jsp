@@ -31,7 +31,7 @@
 			loadGldj('gldj');
 			jhxdwhdx("jhxdwh",'yh');
 			//xmnf("xmnf");
-			urlxmnf("xmnf",getUrlParame('id'));
+			urlxmnf2("xmnf",getUrlParame('id'));
 			yhxmlx('xmlx');
 			YMLib.Var.jdbs=2;
 			queryYhdzx();
@@ -137,10 +137,12 @@
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
 				}}, */
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+				{field:'xdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
-						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
-					}
+						if($.cookie('unit2').length==7)
+							return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
+							else return value; 
+						}
 				},
 				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},

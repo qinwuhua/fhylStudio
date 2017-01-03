@@ -30,7 +30,7 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			//xmnf("xmnf");
-			urlxmnf("xmnf",getUrlParame('id'));
+			urlxmnf2("xmnf",getUrlParame('id'));
 			YMLib.Var.jdbs=2;
 			queryShxm();
 			loadFileUpload();
@@ -124,10 +124,11 @@
 				{field:'bcztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bccgs',title:'部补助资金',width:100,align:'center'},
 				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+				{field:'xdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
+						if($.cookie('unit2').length==7)
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
-					}
+						else return value; 					}
 				},
 				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},

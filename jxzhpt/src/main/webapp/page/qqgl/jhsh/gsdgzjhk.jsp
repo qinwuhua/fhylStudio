@@ -30,7 +30,7 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
-			urlxmnf("xmnf",getUrlParame('id'));
+			urlxmnf2("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
 			xdzt('xdzt');
 			YMLib.Var.jdbs=2;
@@ -153,9 +153,11 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'bcxd',title:'本次下达',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:100,align:'center',
+				{field:'xdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
+						if($.cookie('unit2').length==7)
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
+						else return value; 
 					}
 				},
 				{field:'xdsj',title:'下达时间',width:100,align:'center'},
