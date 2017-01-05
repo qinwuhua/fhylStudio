@@ -118,19 +118,19 @@
 				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-				{field:'ghlxbh',title:'原路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'原起点桩号',width:70,align:'center'},
-				{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
+			    {field:'lxbm',title:'原路线编码',width:100,align:'center'},
+				{field:'qdzh1',title:'原起点桩号',width:100,align:'center'},
+				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'bcztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bccgs',title:'部补助资金',width:100,align:'center'},
 				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:120,align:'center',
+				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
 						if($.cookie('unit2').length==7)
 						return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
 						else return value; 					}
 				},
-				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'jhxdsj',title:'计划下达时间',width:100,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				//{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},

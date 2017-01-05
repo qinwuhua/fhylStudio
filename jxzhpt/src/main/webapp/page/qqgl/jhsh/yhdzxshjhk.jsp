@@ -124,9 +124,9 @@
 				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-				{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'原起点桩号',width:70,align:'center'},
-				{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
+			    {field:'lxbm',title:'原路线编码',width:100,align:'center'},
+				{field:'qdzh1',title:'原起点桩号',width:100,align:'center'},
+				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},
 				{field:'dk',title:'贷款',width:100,align:'center'},
@@ -137,14 +137,14 @@
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100)/100;
 				}}, */
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
-				{field:'xdwh',title:'计划下达文号',width:120,align:'center',
+				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
 						if($.cookie('unit2').length==7)
 							return '<a href="#" style="text-decoration:none;color:#3399CC;" onclick=getWj('+index+',"计划下达文件")>'+value+'</a>';
 							else return value; 
 						}
 				},
-				{field:'bcxdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'jhxdsj',title:'计划下达时间',width:100,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 // 				{field:'tz',title:'总投资',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},

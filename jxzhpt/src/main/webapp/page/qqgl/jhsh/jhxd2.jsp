@@ -77,8 +77,7 @@
 			result = validateText('pfztz','number',result);
 // 			result = validateText('bbzzj','number',result);
 // 			result = validateText('sbzzj','number',result);
-			result = validateText('qdzh','number',result);
-			result = validateText('zdzh','number',result);
+			
 			if(!result){
 				return;
 			}
@@ -87,29 +86,18 @@
 					dataType:'json',
 					success:function(msg){
 						if(msg.result){
-							alert("编辑成功！");
+							alert("保存成功！");
 							closeWindow("jhxd");
 						}
 					},
 					error:function(msg){
-						alert("计划下达失败！");
+						alert("保存失败！");
 					}
 				});
 			}
 		}
 		function zhuanghao(){
-			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
-				alert("起点桩号不能小于"+$('#span_qdzh').html());
-				return false;
-			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
-				alert("止点桩号不能大于"+$('#span_zdzh').html());
-				return false;
-			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
-				alert("止点桩号不能小于起点桩号");
-				return false;
-			}else{
-				return true;
-			}
+			return true;
 		}
 		function upload(){
 			if($('#xdwh').val()==""){
@@ -147,21 +135,22 @@
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="bbzzj" name="bbzzj" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
+						</tr>
+						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">国债：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="gz" name="gz" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
-							
-						</tr>
-						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">省债：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<input id="sz" name="sz" type="text" class="easyui-numberbox" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
+						</tr>
+						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">债券：</font></b>
 								
@@ -191,86 +180,17 @@
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="qt" name="qt" class="easyui-numberbox" type="text" value="0" style="width: 100px;height: 20px;" />万元
 							</td>
-							
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								原路线编号
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="ylxbh" name="ylxbh" type="text" style="width:120px;"/>
-							</td>
-							
 						</tr>
-						<tr style="height: 30px;font-size: 10px;">
-							
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								起点桩号
+						<tr style="height: 30px;font-size: 10px;">	
+						<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+							<font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
 							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text"  style="width: 100px;height: 20px;" />
-								<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								止点桩号
-							</td>
-							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 100px;height: 20px;" />
-								<br/><span style="font-size:small; color: red;">止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								里程
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="lc" name="lc" type="text"  style="width: 80px;height: 20px;" />&nbsp;km
-							</td>
-							
-						</tr>
-						
-						
-						
-						<tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								技术等级及里程
-							</td>
-							<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
-								二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
-								三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
-								四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
-								等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-								高速公路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
-							</td>
-						</tr>
-						<tr style="height: 30px;font-size: 10px;">
-							
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">重要度排序：</font></b>
-							</td>
-							<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+							<td colspan="3"  style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="zydpx" name="zydpx" type="text" class="easyui-numberbox"   style="width: 100px;height: 20px;" />
 							</td>
 							
 						</tr>
-						<!-- <tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文件：</font></b>
-							</td>
-							<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-									<tbody id="sjpfTable"></tbody>
-								</table>
-								<table>
-									<tr>
-										<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadJhxd" id="uploadJhxd" /></td>
-										<td><div id="fileQueue" ></div></td>
-									</tr>
-									<tr>
-										<td rowspan="2">
-											<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr> -->
+							
 					</table>
 					<table width="98%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

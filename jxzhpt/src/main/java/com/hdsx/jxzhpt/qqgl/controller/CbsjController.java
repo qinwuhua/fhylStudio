@@ -481,6 +481,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 						tsdq+=")";
 					}
 					cbsj.setXmlx1(tsdq);
+					
+					//System.out.println(cbsj.getXmlx1()+"--------------------------");
 				}
 			
 			cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));

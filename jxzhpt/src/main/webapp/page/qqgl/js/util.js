@@ -1348,6 +1348,7 @@ function openxZjxd1(){
  * @param height 窗口的高度
  */
 function openWindow(id,title,url,width,height){
+	if(YMLib.Var.xmbm==null||YMLib.Var.xmbm=='')
 	YMLib.Var.xmbm=xmbm;
 	if(id=="jhxd" || id=="zjzj"){
 		//alert(xmbm.substr(10,1)+"    "+xmlx);

@@ -159,7 +159,22 @@ public class Jhsh {
 	private String gxzdzh;
 	private String zlc;
 	private String xmklx;//项目库类型
+	private String qdzh1;
+	private String zdzh1;
+
 	
+	public String getQdzh1() {
+		return qdzh1;
+	}
+	public void setQdzh1(String qdzh1) {
+		this.qdzh1 = qdzh1;
+	}
+	public String getZdzh1() {
+		return zdzh1;
+	}
+	public void setZdzh1(String zdzh1) {
+		this.zdzh1 = zdzh1;
+	}
 	public String getJhxdsj() {
 		return jhxdsj;
 	}

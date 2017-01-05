@@ -251,11 +251,11 @@
 	<select id="queryJhshYhdzx" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
 	            left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -264,10 +264,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -389,11 +389,11 @@
 	<select id="queryJhshSh" parameterType="jhsh" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh,lxg.tsdq,lxg.lxmc<if test="jhxdwh !=null and jhxdwh !=''">,wh.bcxdwh bcxdwh,wh.bcxdsj bcxdsj,wh.bcztz,wh.bccgs,wh.bcstz</if> from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
 	            left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -402,10 +402,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -481,13 +481,13 @@
 					left join (select xmbm,sjpfwh,gq from cbsj_sh) cb on j.xmbm=cb.xmbm 
 					left join xmsq_sh lxg on j.xmbm=lxg.xmbm 
 					left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
-					left join (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
-					when jsxz like '%新建%' then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc from lxsh_lx where jdbs='2' 
+					left join (select xmid,jsxz, (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) 
+					when substr(xmid,11,1)=3 then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc from lxsh_lx where jdbs='2' 
 					and sffirst='1' ) lx on j.xmbm=lx.xmid left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid 
 					left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj, 
 					replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
-					replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)
-					+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when jsxz like '%新建%' then xjlc else lc end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end)
+					replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxsubstr(xmid,11,1)=1en to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)
+					+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when substr(xmid,11,1)=3 then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm else '' end)
 					 ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid 
 					 right  join (select * from lxsh_lx lx where lx.jdbs='2') l_ on j.xmbm=l_.xmid 
 	              where 1=1
@@ -538,13 +538,13 @@
 				 from jhxdyh j 
 				 left join (select xmbm,sjpfwh,gq from cbsj_yhdzx) cb on j.xmbm=cb.xmbm left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm 
 				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
-				 left join (select xmid,jsxz, (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) 
-				 when jsxz like '%新建%' then to_number(xjlc) else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) end) lc from lxsh_lx where jdbs='2' 
+				 left join (select xmid,jsxz, (case when substr(xmid,11,1)=1 then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) 
+				 when substr(xmid,11,1)=3 then to_number(xjlc) else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) end) lc from lxsh_lx where jdbs='2' 
 			   	 and sffirst='1' ) lx on j.xmbm=lx.xmid left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid 
 			     left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
 			     replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
-			     replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+
-			     nvl(jhdwlc,0)+nvl(jhwllc,0) when jsxz like '%新建%' then to_number(xjlc) else to_number(lc) end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end) 
+			     replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when substr(xmid,11,1)=1 then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+
+			     nvl(jhdwlc,0)+nvl(jhwllc,0) when substr(xmid,11,1)=3 then to_number(xjlc) else to_number(lc) end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm else '' end) 
 			     ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid 
 			     right join (select * from lxsh_lx lx where jdbs='2') l_ on j.xmbm=l_.xmid
 	              where 1=1 
@@ -670,8 +670,8 @@
 		select count(t.xmbm) from (
 				select j.*,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -681,10 +681,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -778,8 +778,8 @@
 		select count(*) from (
 				select j.*,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -789,10 +789,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3017,8 +3017,8 @@
 				</if>
 				 from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx  
 	            on j.xmbm=lx.xmid
@@ -3028,10 +3028,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3140,8 +3140,8 @@
 				</if>
 				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx  
 	            on j.xmbm=lx.xmid
@@ -3151,10 +3151,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3361,11 +3361,11 @@
 	<select id="queryGsdgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,to_char(lx.lc,'fm9999999990.000') lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lxg.lxmc<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bccgs bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,to_char(lx.lc,'fm9999999990.000') lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lxg.lxmc<if test="jhsh.jhxdwh !=null and jhsh.jhxdwh !=''">,wh.bccgs bcxd</if> from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -3374,10 +3374,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3470,13 +3470,13 @@
 				 from gsdgz j 
 				 left join lxgsdgz lxg on j.xmbm=lxg.xmbm 
 				 left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
-				 left join (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when jsxz like '%新建%'
+				 left join (select xmid,jsxz, (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) when substr(xmid,11,1)=3
 				 then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc from lxsh_lx where jdbs='2' and sffirst='1' ) lx on j.xmbm=lx.xmid 
 				 left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') 
 				 
 				 ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj, replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj, replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj, replace(WMSYS.WM_CONCAT(lxmc),',',',') 
-				 ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+
-				 nvl(jhwllc,0)) when jsxz like '%新建%' then xjlc else lc end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 
+				 ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj from (select xmid,jsxz, (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+
+				 nvl(jhwllc,0)) when substr(xmid,11,1)=3 then xjlc else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm else '' end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj from LXSH_LX where jdbs='2' ) group by xmid) lx2 
 				 on j.xmbm=lx2.xmid 
 				 right join (select * from LXSH_LX where jdbs='2' ) l_ on j.xmbm=l_.xmid 
 	             where 1=1
@@ -3544,8 +3544,8 @@
 		select count(*) from (
 				select j.*,lx.lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
@@ -3555,10 +3555,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3655,8 +3655,8 @@
 				</if>
 				from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
@@ -3666,10 +3666,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3755,11 +3755,11 @@
 	<select id="queryGsdgzxd" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,lx.lc lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lx.lc lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
 		        left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -3768,10 +3768,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3844,8 +3844,8 @@
 		select count(*) from (
 				select j.*,lx.lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
@@ -3855,10 +3855,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -3930,8 +3930,8 @@
 		from (
 				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.yhdk zyhdk,zxd.dfzc zdfzc,zxd.qt zqt,lx.lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj,lx2.zjhlc from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
@@ -3941,10 +3941,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4020,8 +4020,8 @@
 		select * from (	
 				select j.*,lx.lc lc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj from gsdgz j  left join lxgsdgz lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 		        left join (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 		        on j.xmbm=lx.xmid
@@ -4031,10 +4031,10 @@
 		        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 		        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 		        from (select  xmid,jsxz,
-		        (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-		        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+		        (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+		        end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 		        else ''
 		        end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 		        from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4124,11 +4124,11 @@
 	<select id="queryshxd" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.tsdq,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.tsdq,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
 	            left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -4137,10 +4137,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4203,8 +4203,8 @@
 		select count(*) from (
 				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.jsdj from jhxdsh j  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4214,10 +4214,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4277,8 +4277,8 @@
 				select j.*,zxd.ztz zztz,zxd.cgs zcgs,zxd.gz zgz,zxd.sz zsz,zxd.zq zzq,zxd.dk zdk,zxd.jl zjl,zxd.rys zrys,zxd.qt zqt,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh
 				from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4288,10 +4288,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4347,8 +4347,8 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
-				<if test="jhsh.xdsj !=null and jhsh.xdsj !=''">
-					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{jhsh.xdsj},'yyyy-mm-dd')
+				<if test="xdsj !=null and xdsj !=''">
+					and to_date(j.xdsj,'yyyy-mm-dd')&lt;=to_date(#{xdsj},'yyyy-mm-dd')
 				</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
@@ -4357,8 +4357,8 @@
 		select rownum num,t.* from (
 				select j.*,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.jsdj,lxg.xzqh xzqhmc,cb.sjpfwh from jhxdsh j left join (select xmbm,sjpfwh from cbsj_sh) cb on j.xmbm=cb.xmbm  left join xmsq_sh lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx where jdbs='2' group by lx.xmid) l on j.xmbm=l.xmbm 
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4368,10 +4368,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4425,11 +4425,11 @@
 	<select id="queryjhxdyh" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,ghlxbm,ghlxmc,ghqdzh,ghzdzh,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,lxg.tsdq,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
+				select j.*,lxbm,qdzh1,zdzh1,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lx.lc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,lxg.tsdq,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,lxbm,lxmc,qdzh qdzh1,zdzh zdzh1
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
 	            left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on j.xmbm=sl.xmid
@@ -4438,10 +4438,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4509,8 +4509,8 @@
 		select count(*) from (
 				select j.*,lx.lc jhlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4520,10 +4520,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4593,8 +4593,8 @@
 				
 				from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4604,10 +4604,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
@@ -4682,8 +4682,8 @@
 		select rownum num,t.* from (
 				select j.*,lx.lc jhlc,sl.xmsl xmsl,sl.zlc,lxg.ntz tz,lxg.jsdj,cb.sjpfwh from jhxdyh j  left join (select xmbm,sjpfwh from cbsj_yhdzx) cb on j.xmbm=cb.xmbm  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm left join (select xmid xmbm,min(lx.xzqhdm) xzqhdm,min(lx.gydw) gydw from lxsh_lx lx group by lx.xmid) l on j.xmbm=l.xmbm
 	            left join (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
 	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)) end) lc
 	            from lxsh_lx where jdbs='2' and sffirst='1' ) lx 
 	            on j.xmbm=lx.xmid
@@ -4693,10 +4693,10 @@
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
 	            replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
 	            from (select  xmid,jsxz,
-	            (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
-	            when jsxz like '%新建%' then xjlc
-	            else lc
-	            end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+	            (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
+	            when substr(xmid,11,1)=3 then xjlc
+	            else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
+	            end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
 	            else ''
 	            end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
 	            from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid

@@ -82,12 +82,12 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("审核成功！");
+						alert("保存成功！");
 						closeWindow("jhxd");
 					}
 				},
 				error:function(msg){
-					alert("修改失败！");
+					alert("保存失败！");
 				}
 			});
 		}

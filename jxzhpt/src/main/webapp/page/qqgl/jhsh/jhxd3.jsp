@@ -99,12 +99,12 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("编辑成功！");
+						alert("保存成功！");
 						closeWindow("jhxd");
 					}
 				},
 				error:function(msg){
-					alert("编辑失败！");
+					alert("保存失败！");
 				}
 			});
 		}

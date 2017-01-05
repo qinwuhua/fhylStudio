@@ -1302,7 +1302,7 @@
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
-
+		<if test="xmlx1!=null and xmlx1!=''">${xmlx1}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="ghlxbm!=null and ghlxbm!=''">
 			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')

@@ -58,11 +58,11 @@ function showAll(){
 		}else if(gydw.length==1){
 			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
  		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-			gydwstr=gydw[0] ;
+			gydwstr=gydw[0];
 		}else{
 			gydwstr= gydw.join(',');
 		}
-	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		var xzqhdm=$("#xzqhmc").combotree("getValues");
 		if(xzqhdm.length==0){
 			xzqhstr= $.cookie("dist2");
 			
@@ -267,7 +267,7 @@ function showAll(){
 			 type : "POST",
 			 url : "/jxzhpt/aqsmfh/xgXmkAFSbzt.do",
 			 dataType : 'json',
-			 data : data,
+			 data : data,                                                                                              
 			 success : function(msg){
 				 if(msg){
 					 alert('上报成功！'); 

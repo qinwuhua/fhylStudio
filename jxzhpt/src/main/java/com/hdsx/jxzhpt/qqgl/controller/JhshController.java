@@ -644,7 +644,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				b = jhshServer.updateJhshxxSh(jhsh);
 			}
 			if(b){
-				jhshServer.updateLx(lx);
+				//jhshServer.updateLx(lx);
 			}
 			
 			result.put("result", new Boolean(b).toString());
