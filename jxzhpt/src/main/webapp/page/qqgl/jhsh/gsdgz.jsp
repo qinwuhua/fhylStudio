@@ -70,14 +70,14 @@
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
 						if(row.xmbm.substr(10,1)=='1')
-							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-									"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+							result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjxx'"+','+"'国省道改造'"+','+
+									"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+",980,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
 							if(row.xmbm.substr(10,1)=='2')
-								result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-									"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+								result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjxx'"+','+"'国省道改造'"+','+
+									"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+",980,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
 							if(row.xmbm.substr(10,1)=='3')
-								result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-									"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
+								result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjxx'"+','+"'国省道改造'"+','+
+									"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+",980,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>'+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>';
 							return result;
 					}
 				},

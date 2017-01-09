@@ -300,6 +300,7 @@
 		 
 	
 		function createAll(){
+
 			endEditing();
 			var rows=$('#jhbz').datagrid('getSelections');
 			if(rows.length==0){

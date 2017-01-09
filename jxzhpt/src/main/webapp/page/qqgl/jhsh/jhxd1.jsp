@@ -93,6 +93,7 @@
 					success:function(msg){
 						if(msg.result){
 							alert("保存成功！");
+							parent.$("#grid").datagrid('reload');
 							closeWindow("jhxd");
 						}
 					},

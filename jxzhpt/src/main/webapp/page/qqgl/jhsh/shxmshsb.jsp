@@ -43,7 +43,17 @@
 			
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
-			var params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
+			var params;
+			if($.cookie('unit2').length==7)
+			params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
+					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
+					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
+					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
+					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1
+					};
+			else
+			params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
 					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
@@ -61,12 +71,15 @@
 				{field:'cz',title:'操作',width:130,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'灾毁重建项目'"+','+
-						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>'
+						result+='&nbsp;<a href="javascript:openWindow1('+"'shxmxx'"+','+"'灾毁重建项目'"+','+
+						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+",980,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>'
 						//+'&nbsp;<a href="javascript:qxxm('+row.xmbm+')" style="color:#3399CC;">取消</a>'
 						;
 						xmlx=5;
-						result+='&nbsp;<a href="javascript:openJhxd1('+"'jhxd2.jsp',"+index+')" style="color:#3399CC;">编辑</a>';
+						//result+='&nbsp;<a href="javascript:openJhxd1('+"'jhxd2.jsp',"+index+')" style="color:#3399CC;">编辑</a>';
+						result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
+						"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+						
 						return result;
 					}
 				},

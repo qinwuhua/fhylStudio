@@ -1305,21 +1305,25 @@ function deleteZjxdById(id){
  * 用于养护大中修合水毁的计划下达
  */
 function openJhxd1(url,index){
+	YMLib.Var.xmbm=$('#grid').datagrid("getRows")[index].xmbm;
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
 	openWindow('jhxd','编辑','/jxzhpt/page/qqgl/jhsh/'+url,920,370);
 }
 function openZjzj(index,xmlx){
+	YMLib.Var.xmbm=$('#grid').datagrid("getRows")[index].xmbm;
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
 	openWindow('zjzj','资金追加','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
 }
 function updateZjxdById(index,url){
+	YMLib.Var.xmbm=$('#grid').datagrid("getRows")[index].xmbm;
 	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/'+url,800,300);
 }
 function openZjxd(){
+	YMLib.Var.xmbm=$('#grid').datagrid("getRows")[index].xmbm;
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下达','/jxzhpt/page/qqgl/zjxd/zjxd.jsp',800,300);
 }
@@ -1347,9 +1351,16 @@ function openxZjxd1(){
  * @param width 窗口的宽度
  * @param height 窗口的高度
  */
+function openWindow1(id,title,url,width,height,xmbm){
+	//alert(xmbm);
+	YMLib.Var.xmbm=xmbm;
+	YMLib.UI.createWindow1(id,title,url,id,width,height);
+}
 function openWindow(id,title,url,width,height){
+	//alert(xmbm);
 	if(YMLib.Var.xmbm==null||YMLib.Var.xmbm=='')
 	YMLib.Var.xmbm=xmbm;
+	
 	if(id=="jhxd" || id=="zjzj"){
 		//alert(xmbm.substr(10,1)+"    "+xmlx);
 		//if(xmlx==null)
