@@ -219,7 +219,25 @@ text-decoration:none;
 // 		if($("#zdzh").val()!='')
 // 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
-	
+function changeZlc2(){
+		
+		var qd=0;
+		var zd=0;
+		if($("#xjzdzh").val()==''){
+			zd=0;
+		}else{
+			zd=parseFloat($("#xjzdzh").val());
+		}
+		if($("#xjqdzh").val()==''){
+			qd=0;
+		}else{
+			qd=parseFloat($("#xjqdzh").val());
+		}
+		var zlc=accSub(zd,qd);
+		zlc=Math.abs(zlc);
+		$("#xjlc").html(zlc);
+
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">

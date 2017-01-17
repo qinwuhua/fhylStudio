@@ -346,47 +346,92 @@
 				alert("请勾选要下达的计划");
 				return;
 			}
-		      
+			if($("#zjgl").is(':checked')){
+				for(var i=0;i<rows.length;i++){
+					if(rows[i].bzcgs!='0'){
+						//alert(rows[i].bzcgs);
+						alert("所选项目中车购税未下达完,不能使用资金归0下达");
+						return;
+					}
+				}
+			}   
 			$('#jhxd').dialog("open");
 
 		}
 		function planxdAll(){
-			$('#jhxd').dialog("close");
-			//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
-			var jhxdwh=$('#bzxdwh').val();
-			var bztbsj=$('#bztbsj').datebox('getValue');
-			if(jhxdwh==''||bztbsj==''){
-				alert("请填写计划下达文号或计划下达时间。");
-				return;
-			}
-			$('#bztbsj').datebox('setValue', formatDate(new Date()));
-			$('#bzxdwh').val("");
-			var rows=$('#jhbz').datagrid('getSelections');
-			if(rows.length==0){
-				alert("请勾选要下达的计划");
-				return;
-			}
-			for(var i=0;i<rows.length;i++){
-				rows[i].jhxdwh=jhxdwh;
-				rows[i].bztbsj=bztbsj;
-				rows[i].xmlx=rows[i].xmbm.substr(10,1);
-			}
-			var json_data = JSON.stringify(rows); 
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/qqgl/planxdAll.do',
-				data:"json_data="+json_data+"&jhxdwh="+jhxdwh+"&bztbsj="+bztbsj,
-				dataType:'json',
-				success:function(msg){
-					if(msg){
-						alert("下达成功");
-						queryYhdzx();
-						showMxbAll();
-					}
-						
+			if($("#zjgl").is(':checked')){//资金归0下达，即是不需要文件和文号下达
+				$('#jhxd').dialog("close");
+				//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
+				var jhxdwh=$('#bzxdwh').val();
+				var bztbsj=$('#bztbsj').datebox('getValue');
+				if(bztbsj==''){
+					alert("请填写计划下达时间。");
+					return;
 				}
-			});
-			
+				$('#bztbsj').datebox('setValue', formatDate(new Date()));
+				$('#bzxdwh').val("");
+				var rows=$('#jhbz').datagrid('getSelections');
+				if(rows.length==0){
+					alert("请勾选要下达的计划");
+					return;
+				}
+				for(var i=0;i<rows.length;i++){
+					rows[i].jhxdwh=jhxdwh;
+					rows[i].bztbsj=bztbsj;
+					rows[i].xmlx=rows[i].xmbm.substr(10,1);
+				}
+				var json_data = JSON.stringify(rows); 
+				$.ajax({
+					type:'post',
+					url:'/jxzhpt/qqgl/planxdAll.do',
+					data:"json_data="+json_data+"&jhxdwh="+jhxdwh+"&bztbsj="+bztbsj,
+					dataType:'json',
+					success:function(msg){
+						if(msg){
+							alert("下达成功");
+							queryYhdzx();
+							showMxbAll();
+						}
+							
+					}
+				});
+			}else{
+				$('#jhxd').dialog("close");
+				//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
+				var jhxdwh=$('#bzxdwh').val();
+				var bztbsj=$('#bztbsj').datebox('getValue');
+				if(jhxdwh==''||bztbsj==''){
+					alert("请填写计划下达文号或计划下达时间。");
+					return;
+				}
+				$('#bztbsj').datebox('setValue', formatDate(new Date()));
+				$('#bzxdwh').val("");
+				var rows=$('#jhbz').datagrid('getSelections');
+				if(rows.length==0){
+					alert("请勾选要下达的计划");
+					return;
+				}
+				for(var i=0;i<rows.length;i++){
+					rows[i].jhxdwh=jhxdwh;
+					rows[i].bztbsj=bztbsj;
+					rows[i].xmlx=rows[i].xmbm.substr(10,1);
+				}
+				var json_data = JSON.stringify(rows); 
+				$.ajax({
+					type:'post',
+					url:'/jxzhpt/qqgl/planxdAll.do',
+					data:"json_data="+json_data+"&jhxdwh="+jhxdwh+"&bztbsj="+bztbsj,
+					dataType:'json',
+					success:function(msg){
+						if(msg){
+							alert("下达成功");
+							queryYhdzx();
+							showMxbAll();
+						}
+							
+					}
+				});
+			}
 			
 		}
 		
@@ -795,7 +840,7 @@
 					    <div title="计划编制" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 					    	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:createAll()" class="button button-tiny button-border button-rounded button-primary">生成汇总</a>
 							<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" class="button button-tiny button-border button-rounded button-primary">计划下达</a>
-							
+							<input id='zjgl' type="checkbox">资金归0
 <!-- 					    	<input type="button" value="生成汇总" onclick="createAll()"><input type="button" value="计划下达"> -->
 					    	<table id="jhbz">
 					    	

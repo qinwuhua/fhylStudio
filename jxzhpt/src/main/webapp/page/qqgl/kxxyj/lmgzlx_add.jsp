@@ -81,7 +81,7 @@ a{text-decoration:none;}
 		} */
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
-		$("#lc").val(zlc);
+		$("#lc").val(zlc);$("#lc").html(zlc);
 		cesuan();
 		//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')

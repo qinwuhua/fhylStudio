@@ -191,6 +191,7 @@ var xzqh;
 		} */
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
+		$("#lc").html(zlc);
 		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
