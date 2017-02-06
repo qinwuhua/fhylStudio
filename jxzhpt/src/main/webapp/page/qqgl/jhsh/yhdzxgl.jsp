@@ -196,6 +196,7 @@
 				{field:'jhwgsj',title:'计划完工时间',width:80,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 				{field:'ntz',title:'总投资',width:60,align:'center'},
+				{field:'sbzj',title:'省补资金',width:60,align:'center'},
 				{field:'tsdq',title:'特殊地区',width:120,align:'center'}]];
 			
 			else{

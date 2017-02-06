@@ -54,6 +54,50 @@ $(function(){
 			$("#scqlqk").focus();
 			return false;
 		}
+		if(parseFloat($("#scqlqc").val())<parseFloat($("#kjzh1").val())*parseFloat($('#kjzh2').val())){
+			alert("桥梁全长不能小于跨径组合");
+			//$("#scqlqk").focus();
+			return false;
+		}
+		//alert(parseFloat($("#scqlqc").val())<parseFloat($("#kjzh1").val())*parseFloat($('#kjzh2').val()));
+		if($('#qlbh').html().substr(0,1)=='X'){
+			if(parseFloat($("#scqlqk").val())<7.5){
+				alert("县道桥梁全宽不能小于7.5米");
+				$("#scqlqk").focus();
+				return false;
+			}
+		}
+		if($('#qlbh').html().substr(0,1)=='Y'){
+			if($('#scakjfl').combobox('getValue')=='大桥'){
+				if(parseFloat($("#scqlqk").val())<7.5){
+					alert("乡道大桥全宽不能小于7.5米");
+					$("#scqlqk").focus();
+					return false;
+				}
+			}else{
+				if(parseFloat($("#scqlqk").val())<6.5){
+					alert("乡道中小桥全宽不能小于6.5米");
+					$("#scqlqk").focus();
+					return false;
+				}
+			}
+		}
+		if($('#qlbh').html().substr(0,1)=='C'){
+			if($('#scakjfl').combobox('getValue')=='大桥'){
+				if(parseFloat($("#scqlqk").val())<6.5){
+					alert("村道大桥全宽不能小于6.5米");
+					$("#scqlqk").focus();
+					return false;
+				}
+			}else{
+				if(parseFloat($("#scqlqk").val())<5.0){
+					alert("村道中小桥全宽不能小于5.0米");
+					$("#scqlqk").focus();
+					return false;
+				}
+			}
+		}
+		//alert(parseFloat($("#scqlqc").val())<parseFloat($("#kjzh1").val())*parseFloat($('#kjzh2').val()));
 		var flag=true;
 		$("input[name='bitian']").each(function(){
 	        if ($(this).val() == ""||$(this).val() == null){
@@ -531,6 +575,7 @@ function setnsqbbz(){
 	var ztz=$("#ztz").val();
 	if(ztz!=null&&ztz!=''){
 		if(parseFloat(ztz)*0.6<parseFloat(nsqbbz)){
+			alert("补助资金大于总投资的60%，默认取总投资60%");
 			trzjdx=Math.round(parseFloat(ztz)*0.6);
 		}
 		else{
@@ -820,8 +865,8 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'" onchange="setbz()">
-						<option value="加固改造"selected>加固改造</option>
-						<option value="拆除重建">拆除重建</option>
+						<option value="加固改造">加固改造</option>
+						<option value="拆除重建" selected>拆除重建</option>
 					</select>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">荷载等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

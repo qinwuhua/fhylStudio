@@ -455,8 +455,8 @@
 	 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1  -->
 		 select 
-	      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,xqlbm v_5,lxbm v_6,lxmc v_7,qlmc v_8,sck_qlzxzh v_9,scqlqc v_10,scqlqk v_11,fapgdw v_12,fascdw v_13,faspsj v_14,
-	      spwh v_15,round(to_number(ztz),0) v_16,jsxz v_17,jsnr v_18,scxmnf v_19,round(to_number(nsqbbz),0) v_20,bz v_21
+	      scsqs v_1,scxsq v_2,scszxz v_3,qlbh v_4,xqlbm v_5,lxbm v_6,lxmc v_7,qlmc v_8,sck_qlzxzh v_9,scqlqc v_10,scqlqk v_11,scakjfl v_12,fapgdw v_13,fascdw v_14,faspsj v_15,
+	      spwh v_16,round(to_number(ztz),0) v_17,jsxz v_18,jsnr v_19,scxmnf v_20,round(to_number(nsqbbz),0) v_21,bz v_22
 		 	 from (
 		 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 			 (select * from sck_wqgz t join xmk_wqgz xm on t.xmkid=xm.id where 1=1  and sfjh is null
