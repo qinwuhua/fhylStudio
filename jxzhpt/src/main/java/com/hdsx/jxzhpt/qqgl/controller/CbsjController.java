@@ -632,6 +632,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void updateCbsj() throws Exception{
 		try{
 			boolean b = false;
+			System.out.println(cbsj.getYlxbh());
 			//准备路线桩号信息
 			Lx lx=new Lx();
 			lx.setLxbm(cbsj.getYlxbh());

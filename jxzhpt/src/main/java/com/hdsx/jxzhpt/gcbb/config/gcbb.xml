@@ -56,20 +56,21 @@
 		<result property="yhlc" column="yhlc"/>
 		<result property="ylmlx" column="ylmlx"/>
 	</resultMap>
-	<select id="selGcgjJdbb" parameterType="xmbb" resultType="gcgjjd">
+	<select id="selGcgjJdbb" parameterType="xmbb" resultType="elist">
+	select ${sql} from(
 		select gj.xmbm as jhid,
 	    gj.sfgk as sfgyhbm,' ' as yhlb,gj.sjkgsj as sjkgsj,gj.sjwgsj as sjwgsj,' ' as sjlmlx,
-	    ' ' as dc,
+	    NVL(dc_lc,0) as dc,
 	    NVL((select gjgc.bywcdc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.xmbm),0) bywcdc,
 	    NVL((select sum(gjgc.bywcdc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcdc ]]>,
 	    NVL((select sum(gjgc.bywcdc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm),0) as zjwcdc,
-	    ' ' as jc,
+	    NVL(jc_lc,0) as jc,
 	    NVL((select gjgc.bywcjc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.xmbm),0) bywcjc,
 	    NVL((select sum(gjgc.bywcjc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcjc ]]>,
 	    NVL((select sum(gjgc.bywcjc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm),0) as zjwcjc,
-	    ' ' as mc,
+	    NVL(mc_lc,0) as mc,
 	    NVL((select gjgc.bywcmc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.xmbm),0) bywcmc,
 	    NVL((select sum(gjgc.bywcmc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcmc ]]>,
@@ -80,31 +81,37 @@
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcje ]]>,
 	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.xmbm),0) as zjwcje,
 	    gj.kgzt as kgzt,gj.jgzt as jgzt,gj.xmmc as xmmc,' ' as bz,lx.*
-	    from jhsh_lmgz gj,(select l.xmid jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqh)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
-	    replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,
-	    replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as yhlc,' ' as ylmlx 
-	    from lxsh_lx l where 1=1 and jdbs='2' ${xzqh} ${gydw} group by l.xmid) lx
-	    where gj.xmbm=lx.jhid and gj.xmbm like #{sbnf}||'%'
-		<if test="tiaojian!=null and tiaojian!=''">
-			and lx.lxbm like #{tiaojian}||'%'
-		</if>
-		<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="lxmc!=null and lxmc!=''"> and lx.lxmc like '%'||#{lxmc}||'%'</if>
+	    from jhsh_lmgz gj,(select l.xmid jhid,replace(WMSYS.WM_CONCAT(distinct to_char(l.xzqh)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(distinct to_char(l.lxbm)),',','、') as lxbm,
+	    replace(WMSYS.WM_CONCAT(distinct to_char(l.qdzh||'-'||l.zdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,
+	    sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) as yhlc,' ' as ylmlx 
+	    from lxsh_lx l where 1=1 and jdbs='2' ${xzqh} ${gydw} group by l.xmid) lx,
+	    (select decode(dc_lc,'无','0',dc_lc) dc_lc,jc_lc,mc_lc,xmbm from cbsj_lmgz) cbsj
+	    where gj.xmbm=lx.jhid and gj.xmbm=cbsj.xmbm
+	    <if test="tiaojian!=null and tiaojian!=''">
+     	 and ${tiaojian}
+	    </if>
+	    <if test="sbnf!=null and sbnf!=''">
+	      and ${sbnf}
+	    </if>
+     	<if test="xmmc!=null and xmmc!=''">gj.xmmc like '%'||#{xmmc}||'%'</if>
+     	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
+		)
 	</select>
 	<select id="selShuihJdbb" parameterType="xmbb" resultType="gcgjjd">
+		select ${sql} from(
 		select sh.xmmc,sh.xmbm as jhid,sh.sfgk as sfgyhbm,sh.gcfl as yhlb,sh.sjkgsj as sjkgsj,
 	    sh.sjwgsj as sjwgsj,' ' sjlmlx,
-	    ' ' as dc,
+	    NVL(dc_lc,0) as dc,
 	    NVL((select gjgc.bywcdc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcdc,
 	    NVL((select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcdc ]]>,
 	    NVL((select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) as zjwcdc,
-	    ' ' as jc,
+	    NVL(jc_lc,0) as jc,
 	    NVL((select gjgc.bywcjc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcjc,
 	    NVL((select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcjc ]]>,
 	    NVL((select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm')),0) as zjwcjc,
-	    NVL(sh.lc,0) as mc,
+	    NVL(mc_lc,0) as mc,
 	    NVL((select gjgc.bywcmc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.xmbm),0) bywcmc,
 	    NVL((select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcmc ]]>,
@@ -114,16 +121,22 @@
 	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where gjgc.jhid=sh.xmbm and 
 	    to_date(gjgc.sbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')),0) as bnwcje ]]>,
 	    NVL((select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(decode(substr(substr(sjkgsj, 0, 7),-1),'-',substr(sjkgsj, 0, 6),substr(sjkgsj, 0, 7)),'yyyy-mm') and gjgc.jhid=sh.xmbm),0) as zjwcje,
-	    sh.kgzt as kgzt,sh.jgzt as jgzt,lx.*
-	    from jhsh_sh sh,(select l.xmid jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqh)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
-	    replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.lc)),',','、') as yhlc,
-	    ' ' as ylmlx from lxsh_lx l where 1=1 and l.jdbs='2' ${xzqh} ${gydw} group by l.xmid) lx,xmsq_sh xmsq
-	    where sh.xmbm=lx.jhid and sh.xmbm like #{sbnf}||'%' and sh.xmbm=xmsq.xmbm
-		<if test="tiaojian!=null and tiaojian!=''">
-			and lx.lxbm like #{tiaojian}||'%'
-		</if>
-		<if test="xmmc!=null and xmmc!=''">and sh.xmmc like '%'||#{xmmc}||'%'</if>
-		<if test="lxmc!=null and lxmc!=''"> and lx.lxmc like '%'||#{lxmc}||'%'</if>
+	    sh.kgzt as kgzt,sh.jgzt as jgzt,' ' bz,lx.*
+	    from jhsh_sh sh,(select l.xmid jhid,replace(WMSYS.WM_CONCAT(distinct to_char(l.xzqh)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(distinct to_char(l.lxbm)),',','、') as lxbm,
+	    replace(WMSYS.WM_CONCAT(distinct to_char(l.qdzh||'-'||l.zdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,
+	    sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) as yhlc,' ' as ylmlx 
+	    from lxsh_lx l where 1=1 and jdbs='2' ${xzqh} ${gydw} group by l.xmid) lx,
+	    (select decode(dc_lc,'无','0',dc_lc) dc_lc,jc_lc,mc_lc,xmbm from cbsj_sh where f_str_or_num(dc_lc)>0 and f_str_or_num(jc_lc)>0 and f_str_or_num(mc_lc)>0) cbsj,xmsq_sh xmsq
+	    where sh.xmbm=lx.jhid and sh.xmbm=xmsq.xmbm and sh.xmbm=cbsj.xmbm(+)
+	    <if test="tiaojian!=null and tiaojian!=''">
+     	 and ${tiaojian}
+	    </if>
+	    <if test="sbnf!=null and sbnf!=''">
+	      and ${sbnf}
+	    </if>
+     	<if test="xmmc!=null and xmmc!=''">sh.xmmc like '%'||#{xmmc}||'%'</if>
+     	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
+		)
 	</select>
 	<select id="selYhdzxJdbb" parameterType="xmbb" resultType="gcgjjd">
 		select lx.*,yh.xmmc as xmmc,yh.sfgk as sfgyhbm,yh.gcfl as yhlb,yh.sjkgsj as sjkgsj,yh.sjwgsj as sjwgsj,<!-- ,' ' sjlmlx,' ' ylmlx, -->

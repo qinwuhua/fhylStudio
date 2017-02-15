@@ -36,7 +36,61 @@ public class Xmbb implements Serializable {
 	private String sql;
 	private String nameValue;
 	private String colValue;
+	private int zb=0;
+	private String yhlb;
+	private String kjgr;private String ylmlx;
+	private String sjlmlx;private String zygc;
+	private String tze;private String xxjd;
 	
+	
+	public int getZb() {
+		return zb;
+	}
+	public void setZb(int zb) {
+		this.zb = zb;
+	}
+	public String getYhlb() {
+		return yhlb;
+	}
+	public void setYhlb(String yhlb) {
+		this.yhlb = yhlb;
+	}
+	public String getKjgr() {
+		return kjgr;
+	}
+	public void setKjgr(String kjgr) {
+		this.kjgr = kjgr;
+	}
+	public String getYlmlx() {
+		return ylmlx;
+	}
+	public void setYlmlx(String ylmlx) {
+		this.ylmlx = ylmlx;
+	}
+	public String getSjlmlx() {
+		return sjlmlx;
+	}
+	public void setSjlmlx(String sjlmlx) {
+		this.sjlmlx = sjlmlx;
+	}
+	public String getZygc() {
+		return zygc;
+	}
+	public void setZygc(String zygc) {
+		this.zygc = zygc;
+	}
+	public String getTze() {
+		return tze;
+	}
+	public void setTze(String tze) {
+		this.tze = tze;
+	}
+	public String getXxjd() {
+		return xxjd;
+	}
+	public void setXxjd(String xxjd) {
+		this.xxjd = xxjd;
+	}
 	public String getNameValue() {
 		return nameValue;
 	}

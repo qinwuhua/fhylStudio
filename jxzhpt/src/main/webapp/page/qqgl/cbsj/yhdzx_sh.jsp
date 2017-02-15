@@ -117,14 +117,14 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
-							"'/jxzhpt/page/qqgl/cbsj/yhdzx_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						result+='&nbsp;<a href="javascript:openWindow1('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+							"'/jxzhpt/page/qqgl/cbsj/yhdzx_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
 							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
 								else */
-							result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxedit'"+','+"'养护大中修项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/yhdzx_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAddyh('+"'yhdzx','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','yh'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+							result+='&nbsp;<a href="javascript:openWindow1('+"'yhdzxedit'"+','+"'养护大中修项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/yhdzx_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAddyh('+"'yhdzx','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','yh'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}

@@ -91,8 +91,8 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'国省道改造'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/lmsj_xxs.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjxx'"+','+"'国省道改造'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xxs.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 						
 						return result;
 					}

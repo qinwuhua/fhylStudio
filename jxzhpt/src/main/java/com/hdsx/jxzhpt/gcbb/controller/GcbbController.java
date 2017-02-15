@@ -96,34 +96,52 @@ public class GcbbController extends BaseActionSupport{
 	
 	public void selGcgjJdbb() {
 		try{
-		String tiaojian1="";
-		String tiaojian2="";
-		String gydwdm = "";
-		String xzqhdm = "";
+			String tiaojian1="";
+			String tiaojian2="";
+			String gydwdm = "";
+			String xzqhdm = "";
+			String sql = "";
+			String nameValue="";
+			String colValue="";
+			if("flag".equals(flag)){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+				gydwdm=(String) session.getAttribute("gydwbb");	
+				xzqhdm=(String) session.getAttribute("xzqhbb");	
+				sql=(String) session.getAttribute("sql");
+				nameValue=(String) session.getAttribute("nameValue");
+				colValue=(String) session.getAttribute("colValue");
+			}else{
+			gydwdm = xmbb.getGydw();
+			xzqhdm	= xmbb.getXzqh();
+			sql = xmbb.getSql();
+			nameValue=xmbb.getNameValue();
+			colValue=xmbb.getColValue();
+			}
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and l.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			}else{
+				tiaojian1="and l.gydwdm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and l.xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and l.xzqhdm in ("+xzqhdm+")";
+			}
+			xmbb.setGydw(tiaojian1);
+			xmbb.setXzqh(tiaojian2);
+			xmbb.setSql(sql.substring(0, sql.length()-1));
+			xmbb.setNameValue(nameValue);
+			xmbb.setColValue(colValue);
+			xmbb.setTiaojian(getcxtj("substr(lx.lxbm,0,1)",xmbb.getTiaojian()));
+			xmbb.setSbnf(getcxtj("substr(gj.xmbm,0,4)",xmbb.getSbnf()));
+			
+			List<Excel_list> gcgj=gcbbServer.selGcgjJdbb(xmbb);
+			
+		
+		//List<GcgjJd> selGcgjJdbb = gcbbServer.selGcgjJdbb(xmbb);
 		if("flag".equals(flag)){
-			HttpServletRequest request = ServletActionContext.getRequest();
-			HttpSession session = request.getSession();
-			gydwdm=(String) session.getAttribute("gydwbb");	
-			xzqhdm=(String) session.getAttribute("xzqhbb");	
-		}else{
-		gydwdm = xmbb.getGydw();
-		xzqhdm	= xmbb.getXzqh();
-		}
-		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
-		}else{
-			tiaojian1="and gydwdm in ("+gydwdm+")";
-		}
-		if(xzqhdm.indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
-		}else{
-			tiaojian2="and xzqhdm in ("+xzqhdm+")";
-		}
-		xmbb.setGydw(tiaojian1);
-		xmbb.setXzqh(tiaojian2);
-		List<GcgjJd> selGcgjJdbb = gcbbServer.selGcgjJdbb(xmbb);
-		if("flag".equals(flag)){
-			List<Excel_list> elist=new ArrayList<Excel_list>();
+			/*		List<Excel_list> elist=new ArrayList<Excel_list>();
 			for (GcgjJd gcgjJd : selGcgjJdbb) {
 				Excel_list l=new Excel_list();
 				l.setV_0(gcgjJd.getXmmc());
@@ -256,9 +274,9 @@ public class GcbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("完成比例(%)",4,4,26,26));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-			Excel_export.excel_export(eldata,response);
+			Excel_export.excel_export(eldata,response);*/
 		}else{
-			JsonUtils.write(selGcgjJdbb, getresponse().getWriter());
+			JsonUtils.write(gcgj, getresponse().getWriter());
 		}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -269,32 +287,47 @@ public class GcbbController extends BaseActionSupport{
 		String tiaojian2="";
 		String gydwdm = "";
 		String xzqhdm = "";
+		String sql = "";
+		String nameValue="";
+		String colValue="";
 		if("flag".equals(flag)){
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			gydwdm=(String) session.getAttribute("gydwbb");	
 			xzqhdm=(String) session.getAttribute("xzqhbb");	
+			sql=(String) session.getAttribute("sql");
+			nameValue=(String) session.getAttribute("nameValue");
+			colValue=(String) session.getAttribute("colValue");
 		}else{
 		gydwdm = xmbb.getGydw();
 		xzqhdm	= xmbb.getXzqh();
+		sql = xmbb.getSql();
+		nameValue=xmbb.getNameValue();
+		colValue=xmbb.getColValue();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+			tiaojian1="and l.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
-			tiaojian1="and gydwdm in ("+gydwdm+")";
+			tiaojian1="and l.gydwdm in ("+gydwdm+")";
 		}
 		if(xzqhdm.indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			tiaojian2="and l.xzqhdm like '%"+xzqhdm+"%'";
 		}else{
-			tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			tiaojian2="and l.xzqhdm in ("+xzqhdm+")";
 		}
 		xmbb.setGydw(tiaojian1);
 		xmbb.setXzqh(tiaojian2);
+		xmbb.setSql(sql.substring(0, sql.length()-1));
+		xmbb.setNameValue(nameValue);
+		xmbb.setColValue(colValue);
+		xmbb.setTiaojian(getcxtj("substr(lx.lxbm,0,1)",xmbb.getTiaojian()));
+		xmbb.setSbnf(getcxtj("substr(sh.xmbm,0,4)",xmbb.getSbnf()));
 		
-		List<GcgjJd> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
+		
+		List<Excel_list> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
 		
 		if("flag".equals(flag)){
-			List<Excel_list> elist=new ArrayList<Excel_list>();
+			/*List<Excel_list> elist=new ArrayList<Excel_list>();
 			for (GcgjJd gcgjJd : selShuihJdbb) {
 				Excel_list l=new Excel_list();
 				l.setV_0(gcgjJd.getXmmc());
@@ -427,7 +460,7 @@ public class GcbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("完成比例(%)",4,4,26,26));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-			Excel_export.excel_export(eldata,response);
+			Excel_export.excel_export(eldata,response);*/
 		}else{
 			JsonUtils.write(selShuihJdbb, getresponse().getWriter());	
 		}

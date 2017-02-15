@@ -93,14 +93,14 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'灾毁恢复重建项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						result+='&nbsp;<a href="javascript:openWindow1('+"'shxmxx'"+','+"'灾毁恢复重建项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
 							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
 								else */
-							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'灾毁恢复重建项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sh'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
+							result+='&nbsp;<a href="javascript:openWindow1('+"'shxmedit'"+','+"'灾毁恢复重建项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sh'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}
@@ -174,7 +174,7 @@
 				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-				{field:'ghlxbh',title:'原路线编码',width:60,align:'center'},
+				{field:'ylxbh',title:'原路线编码',width:60,align:'center'},
 				{field:'qdzh',title:'原起点桩号',width:70,align:'center'},
 				{field:'zdzh',title:'原止点桩号',width:70,align:'center'},
 				{field:'zlc',title:'里程',width:80,align:'center'},

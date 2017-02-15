@@ -199,7 +199,7 @@ text-decoration:none;
 					async: false,
 					data:da,
 					success:function(msg){
-						window.open('/jxzhpt/gcbb/selGcgjJdbb.do?'+data);
+						window.open('/jxzhpt/gcbb/selShuihJdbb.do?'+data);
 					}
 					});
 				
@@ -221,7 +221,7 @@ text-decoration:none;
 			
 				$.ajax({
 					type:'post',
-					url:'/jxzhpt/gcbb/selGcgjJdbb.do',
+					url:'/jxzhpt/gcbb/selShuihJdbb.do',
 					dataType:'JSON',
 					async: false,
 					data:xmbb,

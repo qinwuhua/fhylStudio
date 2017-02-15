@@ -14,13 +14,13 @@ public interface GcbbServer {
 	 * @param xmbb
 	 * @return
 	 */
-	List<GcgjJd> selGcgjJdbb(Xmbb xmbb);
+	List<Excel_list> selGcgjJdbb(Xmbb xmbb);
 	/**
 	 * 水毁进度报表查询
 	 * @param xmbb
 	 * @return
 	 */
-	List<GcgjJd> selShuihJdbb(Xmbb xmbb);
+	List<Excel_list> selShuihJdbb(Xmbb xmbb);
 	/**
 	 * 升级进度报表
 	 * @param xmbb

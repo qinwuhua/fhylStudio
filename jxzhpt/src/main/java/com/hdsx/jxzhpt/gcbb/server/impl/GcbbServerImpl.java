@@ -24,12 +24,12 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 	}
 
 	@Override
-	public List<GcgjJd> selGcgjJdbb(Xmbb xmbb) {
+	public List<Excel_list> selGcgjJdbb(Xmbb xmbb) {
 		return queryList("selGcgjJdbb",xmbb);
 	}
 
 	@Override
-	public List<GcgjJd> selShuihJdbb(Xmbb xmbb) {
+	public List<Excel_list> selShuihJdbb(Xmbb xmbb) {
 		return queryList("selShuihJdbb",xmbb);
 	}
 

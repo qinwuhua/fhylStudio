@@ -35,15 +35,16 @@
 			var myDate = new Date();
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('xzdj','行政等级');
+			//loadBmbm2('xzdj','行政等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
+			xmnfdx('ddlYear1');
+			xzdjdx('xzdj');
 			for(var x=y;x>=y-10;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
+				//$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$('#ddlMonth').val(m);
-			search();
 		});
 		function search(){
 			$('#tbody_gcgj').empty();
@@ -158,7 +159,7 @@
 				}
 			});
 		}
-		function exportExcel(){
+		function exportExcel1(){
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
@@ -188,6 +189,18 @@
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/gcbb/selShuihJdbb.do?'+data;
 			 });
+		}
+		
+		
+		
+		function exportExcel(){
+			YMLib.Var.flag='flag';
+			YMLib.UI.createWindow('zdybb','灾毁重建进度报表字段选择','sh_zd.jsp','zdybb','900','380');
+		}
+		
+		function zdybb(){
+			YMLib.Var.flag='';
+			YMLib.UI.createWindow('zdybb','灾毁重建进度报表字段选择','sh_zd.jsp','zdybb','900','380');
 		}
 	</script>
 </head>
@@ -229,7 +242,7 @@
 								</select>
 		        				<span>项目名称：</span>
 		        				<input id="xmmc" type="text"  style="width: 100px">
-		        				<img onclick="search()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+		        				<img onclick="zdybb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
@@ -260,7 +273,7 @@
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="5000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年灾毁重建进度报表 </caption>
-								<thead>
+								<thead id="biaotou">
 									<tr>
 										<td rowspan="4" style="width: 125px">项目名称</td>
 										<td rowspan="4" style="width: 125px">是否归口市局养护部门</td>

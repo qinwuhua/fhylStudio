@@ -196,12 +196,12 @@
 		
 		function exportExcel(){
 			YMLib.Var.flag='flag';
-			YMLib.UI.createWindow('zdybb','改建、新建工程项目进度报表字段选择','gcgzgj_zd.jsp','zdybb','900','380');
+			YMLib.UI.createWindow('zdybb','路面改造工程进度报表字段选择','gcgzgj_zd.jsp','zdybb','900','380');
 		}
 		
 		function zdybb(){
 			YMLib.Var.flag='';
-			YMLib.UI.createWindow('zdybb','改建、新建工程项目进度报表字段选择','gcgzgj_zd.jsp','zdybb','900','380');
+			YMLib.UI.createWindow('zdybb','路面改造工程进度报表字段选择','gcgzgj_zd.jsp','zdybb','900','380');
 		}
 	</script>
 </head>
@@ -273,8 +273,8 @@
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="5200px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">路面改造工程进度报表 </caption>
-								<thead>
-									<tr>
+								<thead id="biaotou">
+									<!-- <tr>
 										<td rowspan="4" width="125px;">项目名称</td>
 										<td rowspan="4" width="135px;">是否归口市局养护部门</td>
 										<td rowspan="4" width="125px;">建设地点</td>
@@ -326,7 +326,7 @@
 										<td width="125px;">年初至本月完成数量（M³）</td>
 										<td width="125px;">自开工累计完成数量（M³）</td>
 										<td width="125px;">完成比例(%)</td>
-									</tr>
+									</tr> -->
 								</thead>
 								<tbody id="tbody_gcgj">
 								

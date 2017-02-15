@@ -53,7 +53,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1};
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':$('#sbzt').combobox("getValue")};
 			else
 				params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.sfsycgs':$('#sfsycgs').combobox("getValue"),'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
