@@ -19,7 +19,42 @@ public class Lxsh implements Serializable {
 	private String xmbm1;
 	private String xmjd;//项目进度。
 	private String thyyyhc;
+	private String lsxmbm;
+	private String lsxmid;
+	private String wnxmid;
+	private String wnxmbm;
+	private String wnnfxz;
 	
+	public String getLsxmbm() {
+		return lsxmbm;
+	}
+	public void setLsxmbm(String lsxmbm) {
+		this.lsxmbm = lsxmbm;
+	}
+	public String getLsxmid() {
+		return lsxmid;
+	}
+	public void setLsxmid(String lsxmid) {
+		this.lsxmid = lsxmid;
+	}
+	public String getWnxmid() {
+		return wnxmid;
+	}
+	public void setWnxmid(String wnxmid) {
+		this.wnxmid = wnxmid;
+	}
+	public String getWnxmbm() {
+		return wnxmbm;
+	}
+	public void setWnxmbm(String wnxmbm) {
+		this.wnxmbm = wnxmbm;
+	}
+	public String getWnnfxz() {
+		return wnnfxz;
+	}
+	public void setWnnfxz(String wnnfxz) {
+		this.wnnfxz = wnnfxz;
+	}
 	public String getThyyyhc() {
 		return thyyyhc;
 	}

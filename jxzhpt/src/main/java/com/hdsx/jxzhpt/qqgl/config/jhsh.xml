@@ -5605,4 +5605,26 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	<select id="queryQTLx" parameterType="lx" resultType="lx">
 		select * from lxsh_lx where jdbs=(select max(jdbs) from lxsh_lx t where t.xmid=#{xmid}) and to_number(qdzh)!=to_number(#{qdzh}) and to_number(zdzh)!=to_number(#{zdzh}) and xmid=#{xmid}
 	</select>
+	<select id="querywnLsxxxmbm" parameterType="jhsh" resultType="string">
+		select lsxmid from wngsdgz where xmbm=#{xmbm}
+	</select>
+	<select id="querywnLsxx" parameterType="String" resultType="lx">
+		select * from jhsh_lsjl where id in(${value})
+	</select>
+	<select id="querylxLsxxxmbm" parameterType="jhsh" resultType="string">
+		select lsxmid from lx_xmxx where xmbm=#{xmbm}
+	</select>
+	<select id="querylxLsxx" parameterType="String" resultType="lx">
+		select * from jhsh_lsjl where id in(${value}) order by xmbm
+	</select>
+	<select id="querywnxmxxxmbm" parameterType="jhsh" resultType="string">
+		select wnxmid from lx_xmxx where xmbm=#{xmbm}
+	</select>
+	<select id="querywnxmxx" parameterType="String" resultType="lx">
+		select * from wn_xmxx where id in(${value}) order by xmnf
+	</select>
+	<select id="queryylxbxmbm" parameterType="jhsh" resultType="lx">
+		select distinct lxbm,qdzh,zdzh from lxsh_lx where xmid=#{xmbm}
+	</select>
+	
 </mapper>

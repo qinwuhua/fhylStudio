@@ -18,7 +18,63 @@ public class Lx {
 	private String xmbm1;
 	private String xzqhdm2;
 	private String xzqhmc2;
+	private String xmbm;
+	private String lsxmbm;
+	private String lsxmid;
+	private String wnxmid;
+	private String wnxmbm;
+	private String wnnfxz;
+	private String lsjl;
+	private String wnxmk;
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getWnxmk() {
+		return wnxmk;
+	}
+	public void setWnxmk(String wnxmk) {
+		this.wnxmk = wnxmk;
+	}
+	public String getLsxmbm() {
+		return lsxmbm;
+	}
+	public void setLsxmbm(String lsxmbm) {
+		this.lsxmbm = lsxmbm;
+	}
+	public String getLsxmid() {
+		return lsxmid;
+	}
+	public void setLsxmid(String lsxmid) {
+		this.lsxmid = lsxmid;
+	}
+	public String getWnxmid() {
+		return wnxmid;
+	}
+	public void setWnxmid(String wnxmid) {
+		this.wnxmid = wnxmid;
+	}
+	public String getWnxmbm() {
+		return wnxmbm;
+	}
+	public void setWnxmbm(String wnxmbm) {
+		this.wnxmbm = wnxmbm;
+	}
+	public String getWnnfxz() {
+		return wnnfxz;
+	}
+	public void setWnnfxz(String wnnfxz) {
+		this.wnnfxz = wnnfxz;
+	}
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
 	public String getXzqhdm2() {
 		return xzqhdm2;
 	}

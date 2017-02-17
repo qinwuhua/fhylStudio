@@ -2,7 +2,42 @@ package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Xmsq {
 	private String ylxmc;
+	private String lsxmbm;
+	private String lsxmid;
+	private String wnxmid;
+	private String wnxmbm;
+	private String wnnfxz;
 	
+	public String getLsxmbm() {
+		return lsxmbm;
+	}
+	public void setLsxmbm(String lsxmbm) {
+		this.lsxmbm = lsxmbm;
+	}
+	public String getLsxmid() {
+		return lsxmid;
+	}
+	public void setLsxmid(String lsxmid) {
+		this.lsxmid = lsxmid;
+	}
+	public String getWnxmid() {
+		return wnxmid;
+	}
+	public void setWnxmid(String wnxmid) {
+		this.wnxmid = wnxmid;
+	}
+	public String getWnxmbm() {
+		return wnxmbm;
+	}
+	public void setWnxmbm(String wnxmbm) {
+		this.wnxmbm = wnxmbm;
+	}
+	public String getWnnfxz() {
+		return wnnfxz;
+	}
+	public void setWnnfxz(String wnnfxz) {
+		this.wnnfxz = wnnfxz;
+	}
 	public String getYlxmc() {
 		return ylxmc;
 	}
@@ -940,6 +975,182 @@ public class Xmsq {
 	}
 	public void setZd(String zd) {
 		this.zd = zd;
+	}
+	public Xmsq(String ylxmc, String lsxmbm, String lsxmid, String wnxmid,
+			String wnxmbm, String wnnfxz, String thyy, String yhcsh, String qd,
+			String zd, String ylxbm, String yqdzh, String yzdzh, String cfld,
+			String xlxbm, String xqdzh, String xzdzh, String xlxmc, String id,
+			String xmbm, String xmbm1, String xmmc, String gcfl, String ghlxbh,
+			String ylxbh, String xzqh, String xzqhdm, String qdzh, String zdzh,
+			String lc, String lmkd, String jsdj, String ntz, String jhkgsj,
+			String jhwgsj, String gq, String tsdq, String gydw, String gydwdm,
+			String jsfa, String lsjl, int sqzt, int xmlx, String qdmc,
+			String zdmc, String jdbs, String bz, String lxmc, String gpsqdzh,
+			String gpszdzh, String xmsl, String yilc, String erlc,
+			String sanlc, String silc, String dwlc, String wllc, String xmnf,
+			String qsmc, String xjmc, String jb, String jsxz, String ydbmc,
+			String ztz, String zbzzj, String sbzzj, String zddzjl, String dfzc,
+			String lxzh, String ghqdzh, String ghzdzh, String ghlxbm,
+			String ghlxmc, String wnxmk, String ylmlx, String ylmjg,
+			String gxlxbm, String gxqdzh, String gxzdzh, String lqhntmc,
+			String gxlqhntmc, String snhntmc, String lqlmjdrzs,
+			String lqlmcbrzs, String swjc, String lqlmpmlqjdlzs,
+			String lqlmrhlqjdlzs, String lqlmcblzs, String xzrxjc,
+			String swjclzs, String xfc, String wcsnmb, String wcswjc,
+			String snhntmchb, String bx, String snhntmcssh, String lqhntmchd,
+			String gxlqhntmchd, String snhntmchd, String lqlmjdrzshd,
+			String lqlmcbrzshd, String swjchd, String lqlmpmlqjdlzshd,
+			String lqlmrhlqjdlzshd, String lqlmcblzshd, String xzrxjchd,
+			String swjclzshd, String xfchd, String wcsnmbhd, String wcswjchd,
+			String snhntmchbhd, String bxhd, String snhntmcsshhd,
+			String lqhntmcdj, String gxlqhntmcdj, String snhntmcdj,
+			String lqlmjdrzsdj, String lqlmcbrzsdj, String swjcdj,
+			String lqlmpmlqjdlzsdj, String lqlmrhlqjdlzsdj, String lqlmcblzsdj,
+			String xzrxjcdj, String swjclzsdj, String xfcdj, String wcsnmbdj,
+			String wcswjcdj, String snhntmchbdj, String bxdj, String bxerdj,
+			String bxyidj, String snhntmcsshdj, String sbzj, String xzqhdm2,
+			String lxbm, String zlc, String snhntmchbmj) {
+		super();
+		this.ylxmc = ylxmc;
+		this.lsxmbm = lsxmbm;
+		this.lsxmid = lsxmid;
+		this.wnxmid = wnxmid;
+		this.wnxmbm = wnxmbm;
+		this.wnnfxz = wnnfxz;
+		this.thyy = thyy;
+		this.yhcsh = yhcsh;
+		this.qd = qd;
+		this.zd = zd;
+		this.ylxbm = ylxbm;
+		this.yqdzh = yqdzh;
+		this.yzdzh = yzdzh;
+		this.cfld = cfld;
+		this.xlxbm = xlxbm;
+		this.xqdzh = xqdzh;
+		this.xzdzh = xzdzh;
+		this.xlxmc = xlxmc;
+		this.id = id;
+		this.xmbm = xmbm;
+		this.xmbm1 = xmbm1;
+		this.xmmc = xmmc;
+		this.gcfl = gcfl;
+		this.ghlxbh = ghlxbh;
+		this.ylxbh = ylxbh;
+		this.xzqh = xzqh;
+		this.xzqhdm = xzqhdm;
+		this.qdzh = qdzh;
+		this.zdzh = zdzh;
+		this.lc = lc;
+		this.lmkd = lmkd;
+		this.jsdj = jsdj;
+		this.ntz = ntz;
+		this.jhkgsj = jhkgsj;
+		this.jhwgsj = jhwgsj;
+		this.gq = gq;
+		this.tsdq = tsdq;
+		this.gydw = gydw;
+		this.gydwdm = gydwdm;
+		this.jsfa = jsfa;
+		this.lsjl = lsjl;
+		this.sqzt = sqzt;
+		this.xmlx = xmlx;
+		this.qdmc = qdmc;
+		this.zdmc = zdmc;
+		this.jdbs = jdbs;
+		this.bz = bz;
+		this.lxmc = lxmc;
+		this.gpsqdzh = gpsqdzh;
+		this.gpszdzh = gpszdzh;
+		this.xmsl = xmsl;
+		this.yilc = yilc;
+		this.erlc = erlc;
+		this.sanlc = sanlc;
+		this.silc = silc;
+		this.dwlc = dwlc;
+		this.wllc = wllc;
+		this.xmnf = xmnf;
+		this.qsmc = qsmc;
+		this.xjmc = xjmc;
+		this.jb = jb;
+		this.jsxz = jsxz;
+		this.ydbmc = ydbmc;
+		this.ztz = ztz;
+		this.zbzzj = zbzzj;
+		this.sbzzj = sbzzj;
+		this.zddzjl = zddzjl;
+		this.dfzc = dfzc;
+		this.lxzh = lxzh;
+		this.ghqdzh = ghqdzh;
+		this.ghzdzh = ghzdzh;
+		this.ghlxbm = ghlxbm;
+		this.ghlxmc = ghlxmc;
+		this.wnxmk = wnxmk;
+		this.ylmlx = ylmlx;
+		this.ylmjg = ylmjg;
+		this.gxlxbm = gxlxbm;
+		this.gxqdzh = gxqdzh;
+		this.gxzdzh = gxzdzh;
+		this.lqhntmc = lqhntmc;
+		this.gxlqhntmc = gxlqhntmc;
+		this.snhntmc = snhntmc;
+		this.lqlmjdrzs = lqlmjdrzs;
+		this.lqlmcbrzs = lqlmcbrzs;
+		this.swjc = swjc;
+		this.lqlmpmlqjdlzs = lqlmpmlqjdlzs;
+		this.lqlmrhlqjdlzs = lqlmrhlqjdlzs;
+		this.lqlmcblzs = lqlmcblzs;
+		this.xzrxjc = xzrxjc;
+		this.swjclzs = swjclzs;
+		this.xfc = xfc;
+		this.wcsnmb = wcsnmb;
+		this.wcswjc = wcswjc;
+		this.snhntmchb = snhntmchb;
+		this.bx = bx;
+		this.snhntmcssh = snhntmcssh;
+		this.lqhntmchd = lqhntmchd;
+		this.gxlqhntmchd = gxlqhntmchd;
+		this.snhntmchd = snhntmchd;
+		this.lqlmjdrzshd = lqlmjdrzshd;
+		this.lqlmcbrzshd = lqlmcbrzshd;
+		this.swjchd = swjchd;
+		this.lqlmpmlqjdlzshd = lqlmpmlqjdlzshd;
+		this.lqlmrhlqjdlzshd = lqlmrhlqjdlzshd;
+		this.lqlmcblzshd = lqlmcblzshd;
+		this.xzrxjchd = xzrxjchd;
+		this.swjclzshd = swjclzshd;
+		this.xfchd = xfchd;
+		this.wcsnmbhd = wcsnmbhd;
+		this.wcswjchd = wcswjchd;
+		this.snhntmchbhd = snhntmchbhd;
+		this.bxhd = bxhd;
+		this.snhntmcsshhd = snhntmcsshhd;
+		this.lqhntmcdj = lqhntmcdj;
+		this.gxlqhntmcdj = gxlqhntmcdj;
+		this.snhntmcdj = snhntmcdj;
+		this.lqlmjdrzsdj = lqlmjdrzsdj;
+		this.lqlmcbrzsdj = lqlmcbrzsdj;
+		this.swjcdj = swjcdj;
+		this.lqlmpmlqjdlzsdj = lqlmpmlqjdlzsdj;
+		this.lqlmrhlqjdlzsdj = lqlmrhlqjdlzsdj;
+		this.lqlmcblzsdj = lqlmcblzsdj;
+		this.xzrxjcdj = xzrxjcdj;
+		this.swjclzsdj = swjclzsdj;
+		this.xfcdj = xfcdj;
+		this.wcsnmbdj = wcsnmbdj;
+		this.wcswjcdj = wcswjcdj;
+		this.snhntmchbdj = snhntmchbdj;
+		this.bxdj = bxdj;
+		this.bxerdj = bxerdj;
+		this.bxyidj = bxyidj;
+		this.snhntmcsshdj = snhntmcsshdj;
+		this.sbzj = sbzj;
+		this.xzqhdm2 = xzqhdm2;
+		this.lxbm = lxbm;
+		this.zlc = zlc;
+		this.snhntmchbmj = snhntmchbmj;
+	}
+	public Xmsq() {
+		super();
 	}
 	
 }

@@ -86,6 +86,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			update("updateqqgllx", lxsh);
 			
 			update("updateqqglsj", lxsh);
+			lxsh.setBz("lxsh_sjgz");
+			lxsh.setBzcs("wnjh_sjgz");
+			update("updateqqglls", lxsh);
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmjd("项目立项");
 			lxsh.setXmlx("1");
@@ -101,6 +104,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
 			update("updateqqgllm", lxsh);
+			lxsh.setBz("lxsh_lmgz");
+			lxsh.setBzcs("wnjh_lmgz");
+			update("updateqqglls", lxsh);
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("2");
 			lxsh.setXmjd("项目立项");
@@ -116,6 +122,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
 			update("updateqqglxj", lxsh);
+			lxsh.setBz("lxsh_xj");
+			lxsh.setBzcs("wnjh_xj");
+			update("updateqqglls", lxsh);
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("3");
 			lxsh.setXmjd("项目立项");

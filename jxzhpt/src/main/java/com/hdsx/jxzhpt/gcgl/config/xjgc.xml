@@ -333,7 +333,7 @@
 		left join gcgl_jgys jg on t.xmbm=jg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
-		where 1=1
+		where 1=1  and xdzt='1'
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>
@@ -381,7 +381,7 @@
 		left join gcgl_jgys jg on t.xmbm=jg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
-		where 1=1
+		where 1=1  and xdzt='1'
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
 		</if>

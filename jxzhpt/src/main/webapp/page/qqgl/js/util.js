@@ -449,11 +449,11 @@ function panduanxmlx(xmbm){
 	var result="";
 	var xmlx = xmbm.substring(10,11);
 	if(xmlx=="1"){
-		result="升级改造工程项目";
+		result="改建项目";
 	}else if(xmlx=="2"){
-		result="路面改造工程项目";
+		result="路面改造项目";
 	}else if(xmlx=="3"){
-		result="新建工程项目";
+		result="新建项目";
 	}else if(xmlx=="4"){
 		result="养护大中修项目";
 	}else if(xmlx=="5"){

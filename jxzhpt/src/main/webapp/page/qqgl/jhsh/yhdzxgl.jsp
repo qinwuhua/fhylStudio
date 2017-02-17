@@ -413,7 +413,7 @@
 			
 			var obj=$("#grid").datagrid('getRows')[index];
 			
-			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm;
+			var datas='xmsq.ylxbh='+obj.ylxbh+'&xmsq.qdzh='+obj.qdzh+'&xmsq.zdzh='+obj.zdzh+'&xmsq.xmbm='+obj.xmbm+'&xmsq.gxlxbm='+obj.gxlxbm+'&xmsq.gxqdzh='+obj.gxqdzh+'&xmsq.gxzdzh='+obj.gxzdzh;
 			//alert(datas);
 			$.ajax({
 				type:'post',
@@ -456,18 +456,18 @@
 						//alert();
 						for(var i=0;i<msg.lx.length;i++){
 							var xmlx='';
-							if(msg.lx[i].jsxz!='改建' && msg.lx[i].jsxz!='新建' && msg.lx[i].jsxz!='路面改造' && msg.lx[i].jsxz!='恢复重建' && msg.lx[i].jsxz!='大修' && msg.lx[i].jsxz!='中修'){
+							if(msg.lx[i].xmlx!='改建' && msg.lx[i].xmlx!='新建' && msg.lx[i].xmlx!='路面改造' && msg.lx[i].xmlx!='灾毁恢复重建' && msg.lx[i].xmlx!='大修' && msg.lx[i].xmlx!='中修'){
 								if(msg.lx[i].xmid.substr(10,1)==4)
 								xmlx='预防性养护';
 								else
-									xmlx=msg.lx[i].jsxz;
+									xmlx=msg.lx[i].xmlx;
 							}else{
-								xmlx=msg.lx[i].jsxz;
+								xmlx=msg.lx[i].xmlx;
 							}
 							
 							var lc=0;
 							
-							if(parseFloat(msg.lx[i].jsqdzh)!=parseFloat(msg.lx[i].xmzd)&&parseFloat(msg.lx[i].jszdzh)!=parseFloat(msg.lx[i].xmqd)){
+							if(parseFloat(msg.lx[i].qdzh)!=parseFloat(obj.zdzh)&&parseFloat(msg.lx[i].zdzh)!=parseFloat(obj.qdzh)){
 								var qd;var zd;
 								// alert(msg.lx[i].yqdzh+"    "+msg.lx[i].xmqd+"     "+msg.lx[i].yzdzh+"     "+msg.lx[i].xmzd)
 								/*var zjbl=0;//中间变量
@@ -480,15 +480,30 @@
 									zjbl=msg.lx[i].yqdzh;msg.lx[i].yqdzh=msg.lx[i].yzdzh;msg.lx[i].yzdzh=zjbl;
 									zjbl=0;
 								} */	
-								if(parseFloat(msg.lx[i].jsqdzh)<parseFloat(msg.lx[i].xmqd)){
-									qd=parseFloat(msg.lx[i].xmqd);
-								}else{
-									qd=parseFloat(msg.lx[i].jsqdzh);
+								var qdzh1=msg.lx[i].qdzh;var zdzh1=msg.lx[i].zdzh;
+								var qdzh2;var zdzh2;var temp;
+								if(parseFloat(qdzh1)>parseFloat(zdzh1)){
+									temp=qdzh1;qdzh1=zdzh1;zdzh1=temp;
 								}
-								if(parseFloat(msg.lx[i].jszdzh)>parseFloat(msg.lx[i].xmzd)){
-									zd=parseFloat(msg.lx[i].xmzd);
+								for(var j=0;j<msg.ylx.length;j++){
+									qdzh2=msg.ylx[j].qdzh;zdzh2=msg.ylx[j].zdzh;
+									if(parseFloat(qdzh2)>parseFloat(zdzh2)){
+										temp=qdzh2;qdzh2=zdzh2;zdzh2=temp;
+									}
+									if(parseFloat(qdzh1)<parseFloat(zdzh2)&&parseFloat(zdzh1)>parseFloat(qdzh2)){
+										break;
+									}
+								}
+								
+								if(parseFloat(qdzh1)<parseFloat(qdzh2)){
+									qd=parseFloat(qdzh2);
 								}else{
-									zd=parseFloat(msg.lx[i].jszdzh);
+									qd=parseFloat(qdzh1);
+								}
+								if(parseFloat(zdzh1)>parseFloat(zdzh2)){
+									zd=parseFloat(zdzh2);
+								}else{
+									zd=parseFloat(zdzh1);
 								}
 								//alert(zd+"    "+qd);
 								lc=accSub(zd,qd);

@@ -9,6 +9,12 @@
 	<insert id="updateqqgllx" parameterType="lxsh">
 		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid=#{wnid}
 	</insert>
+	<insert id="updateqqglls" parameterType="lxsh">
+		update ${bz} l set lsjl=(select lsjl from ${bzcs} w where id=#{wnid} ),
+		lsxmbm=(select lsxmbm from ${bzcs} w where id=#{wnid} ),
+		lsxmid=(select lsxmid from ${bzcs} w where id=#{wnid} )
+		where xmbm=#{xmbm}
+	</insert>
 	<update id="updateqqglsj" parameterType="lxsh">
 		<if test="sfbflx eq '是'.toString()">
 		update wnjh_sjgz set qqkzzt='部分开展' where id=#{wnid}
@@ -310,18 +316,27 @@
 		<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>   
 		<if test="xmnf != null">,xmnf=#{xmnf}</if> 
+		<if test="lsjl != null">,lsjl=#{lsjl}</if> 
+		<if test="lsxmbm !=null">,lsxmbm=#{lsxmbm}</if>
+		<if test="lsxmid !=null">,lsxmid=#{lsxmid}</if> 
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
 		update LXSH_LMGZ set xmmc=#{xmmc},xmbm=#{xmbm},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz}<!-- ,bzys=#{bzys} -->,dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz}<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>  
-		<if test="xmnf != null">,xmnf=#{xmnf}</if>   
+		<if test="xmnf != null">,xmnf=#{xmnf}</if>  
+		<if test="lsjl != null">,lsjl=#{lsjl}</if> 
+		<if test="lsxmbm !=null">,lsxmbm=#{lsxmbm}</if>
+		<if test="lsxmid !=null">,lsxmid=#{lsxmid}</if> 
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
 		update LXSH_XJ set ghlxbh=#{ghlxbh},xmbm=#{xmbm},lxmc=#{lxmc},xjsdj=#{xjsdj},xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz}<!-- ,bzys=#{bzys} -->,dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},bz=#{bz},yhdk=#{yhdk}<if test="xzqhdm2 != null">,xzqhdm2=#{xzqhdm2}</if>  
 		<if test="sfbflx != null">,sfbflx=#{sfbflx}</if>  
-		<if test="xmnf != null">,xmnf=#{xmnf}</if>   
+		<if test="xmnf != null">,xmnf=#{xmnf}</if>  
+		<if test="lsjl != null">,lsjl=#{lsjl}</if> 
+		<if test="lsxmbm !=null">,lsxmbm=#{lsxmbm}</if>
+		<if test="lsxmid !=null">,lsxmid=#{lsxmid}</if> 
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">

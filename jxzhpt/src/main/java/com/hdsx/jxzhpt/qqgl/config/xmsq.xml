@@ -158,7 +158,13 @@
 		<if test="bz!=null">,bz</if>
 		<if test="wnxmk!=null">,wnxmk</if>
 		<if test="ylmlx != null">,ylmlx</if>
-		<if test="ylmjg != null">,ylmjg</if>) 
+		<if test="ylmjg != null">,ylmjg</if>
+		<if test="lsxmbm !=null">,lsxmbm</if>
+		<if test="lsxmid !=null">,lsxmid</if>
+		<if test="wnxmbm !=null">,wnxmbm</if>
+		<if test="wnxmid !=null">,wnxmid</if>
+		<if test="wnnfxz !=null">,wnnfxz</if>
+		) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -188,7 +194,13 @@
 		<if test="bz!=null">,#{bz}</if>
 		<if test="wnxmk!=null">,#{wnxmk}</if>
 		<if test="ylmlx != null">,#{ylmlx}</if>
-		<if test="ylmjg != null">,#{ylmjg}</if>)
+		<if test="ylmjg != null">,#{ylmjg}</if>
+		<if test="lsxmbm !=null">,#{lsxmbm}</if>
+		<if test="lsxmid !=null">,#{lsxmid}</if>
+		<if test="wnxmbm !=null">,#{wnxmbm}</if>
+		<if test="wnxmid !=null">,#{wnxmid}</if>
+		<if test="wnnfxz !=null">,#{wnnfxz}</if>
+		)
 	</insert>
 	<insert id="insertXmsqSh" parameterType="java.util.List">
 		insert into xmsq_sh (
@@ -217,7 +229,13 @@
 		<if test="qdmc!=null">,qdmc</if>
 		<if test="zdmc!=null">,zdmc</if>
 		<if test="lxmc!=null">,lxmc</if>
-		<if test="wnxmk!=null">,wnxmk</if>) 
+		<if test="wnxmk!=null">,wnxmk</if>
+		<if test="lsxmbm !=null">,lsxmbm</if>
+		<if test="lsxmid !=null">,lsxmid</if>
+		<if test="wnxmbm !=null">,wnxmbm</if>
+		<if test="wnxmid !=null">,wnxmid</if>
+		<if test="wnnfxz !=null">,wnnfxz</if>
+		) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -244,7 +262,13 @@
 		<if test="qdmc!=null">,#{qdmc}</if>
 		<if test="zdmc!=null">,#{zdmc}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
-		<if test="wnxmk!=null">,#{wnxmk}</if>)
+		<if test="wnxmk!=null">,#{wnxmk}</if>
+		<if test="lsxmbm !=null">,#{lsxmbm}</if>
+		<if test="lsxmid !=null">,#{lsxmid}</if>
+		<if test="wnxmbm !=null">,#{wnxmbm}</if>
+		<if test="wnxmid !=null">,#{wnxmid}</if>
+		<if test="wnnfxz !=null">,#{wnnfxz}</if>
+		)
 	</insert>
 	<insert id="insertLx" parameterType="lx">
 		insert into lxsh_lx (
@@ -1056,6 +1080,13 @@
 		<if test="bz!=null">,bz=#{bz}</if>
 		<if test="ylmlx!=null">,ylmlx=#{ylmlx}</if>
 		<if test="ylmjg!=null">,ylmjg=#{ylmjg}</if>
+		<if test="wnxmk !=null">,wnxmk=#{wnxmk}</if>
+		<if test="lsjl !=null">,lsjl=#{lsjl}</if>
+		<if test="lsxmbm !=null">,lsxmbm=#{lsxmbm}</if>
+		<if test="lsxmid !=null">,lsxmid=#{lsxmid}</if>
+		<if test="wnxmbm !=null">,wnxmbm=#{wnxmbm}</if>
+		<if test="wnxmid !=null">,wnxmid=#{wnxmid}</if>
+		<if test="wnnfxz !=null">,wnnfxz=#{wnnfxz}</if>
 		where xmbm=#{xmbm1}
 	</update>
 	<update id="updateSh" parameterType="xmsq">
@@ -1083,6 +1114,13 @@
 		<if test="gydw!=null">,gydw=#{gydw}</if>
 		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
 		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		<if test="wnxmk !=null">,wnxmk=#{wnxmk}</if>
+		<if test="lsjl !=null">,lsjl=#{lsjl}</if>
+		<if test="lsxmbm !=null">,lsxmbm=#{lsxmbm}</if>
+		<if test="lsxmid !=null">,lsxmid=#{lsxmid}</if>
+		<if test="wnxmbm !=null">,wnxmbm=#{wnxmbm}</if>
+		<if test="wnxmid !=null">,wnxmid=#{wnxmid}</if>
+		<if test="wnnfxz !=null">,wnnfxz=#{wnnfxz}</if>
 		where xmbm=#{xmbm1}
 	</update>
 	
@@ -2143,4 +2181,35 @@
 		) yzdzh,xlxbm,xqdzh,xzdzh from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)
 		
 	</select>
+	<select id="queryLsjlxxxmbm" parameterType="xmsq" resultType="xmsq">
+		select fun_bzls2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm,#{xmbm} xmbm from dual l where 1=1 and fun_bzls(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})))='是'
+	</select>
+	<select id="queryLsjlxx" parameterType="xmsq" resultType="lx">
+		select distinct xmlx,xmmc,xmbm from jhsh_lsjl where id in(${lsxmid})
+	</select>
+	<select id="querysfwnxmkxmbm" parameterType="xmsq" resultType="lx">
+		select fun_wnxm(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmk,
+		fun_wnxm1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnnfxz,
+		fun_wnxm2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmbm,
+		fun_wnxm3(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmid
+		from dual
+	</select>
+	<select id="querysflsjlxmbm" parameterType="xmsq" resultType="lx">
+		select fun_bzls(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
+		fun_bzls2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,
+		fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
+		
+		from dual 
+	</select>
+	<select id="queryLxbyxmsq" parameterType="xmsq" resultType="lx">
+		select * from ${bz} and xmid=#{xmbm}
+	</select>
+	<select id="querysfwnlsjlxmbm" parameterType="xmsq" resultType="lx">
+		select fun_wnls(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
+		fun_wnls2(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,
+		fun_wnls1(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
+		
+		from dual 
+	</select>
+	
 </mapper>

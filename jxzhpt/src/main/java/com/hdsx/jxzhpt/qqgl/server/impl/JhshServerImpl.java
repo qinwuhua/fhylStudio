@@ -385,6 +385,40 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		}
 		return result;
 	}
+	@Override
+	public List<Lx> querywnLsxx(Jhsh jhsh) {
+		
+		String lsxmbm=queryOne("querywnLsxxxmbm", jhsh);
+		
+		//返回结果
+		List<Lx> result =queryList("querywnLsxx",lsxmbm);
+		//查询此计划所有的路线信息
+		
+		return result;
+	}
+	
+	@Override
+	public List<Lx> querylxLsxx(Jhsh jhsh) {
+		
+		String lsxmbm=queryOne("querylxLsxxxmbm", jhsh);
+		
+		//返回结果
+		List<Lx> result =queryList("querylxLsxx",lsxmbm);
+		//查询此计划所有的路线信息
+		
+		return result;
+	}
+	
+	@Override
+	public List<Lx> querywnxmxx(Jhsh jhsh) {
+		
+		String lsxmbm=queryOne("querywnxmxxxmbm", jhsh);
+		//返回结果
+		List<Lx> result =queryList("querywnxmxx",lsxmbm);
+		//查询此计划所有的路线信息
+		
+		return result;
+	}
 	
 	@Override
 	public List<Lx> queryLsxx2(Lx lx) {
@@ -903,6 +937,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public List<Excel_list> queryYhdzxDetail_dc(Jhsh jhsh) {
 		return queryList("queryYhdzxDetail_dcexcel",jhsh);
+	}
+	@Override
+	public List<Lx> queryylxbxmbm(Jhsh jhsh) {
+		return queryList("queryylxbxmbm",jhsh);
 	}
 	
 }

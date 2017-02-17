@@ -1625,6 +1625,40 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 新查询五年项目库历史数据信息
+	 */
+	public void querywnLsxx(){
+		try{
+			JsonUtils.write(jhshServer.querywnLsxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 新查询立项项目库历史数据信息
+	 */
+	public void querylxLsxx(){
+		try{
+			JsonUtils.write(jhshServer.querylxLsxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 新查询立项项目库历史数据信息
+	 */
+	public void querywnxmxx(){
+		try{
+			JsonUtils.write(jhshServer.querywnxmxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 查询历史数据信息
 	 */

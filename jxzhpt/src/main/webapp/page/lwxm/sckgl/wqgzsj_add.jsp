@@ -492,28 +492,28 @@ function setbz(){
 }
 //查询省奖励资金
 function setshengjl(){
-	var dkkj=parseInt($("#scqlqc").val());
+	var dkkj=parseFloat($("#kjzh1").val())*parseFloat($("#kjzh2").val());
 	
 	var kjfl="";
 	var kj1=0;var kj2=0;
-	if(parseInt($("#kjzh2").val())>150)
+	if(parseFloat($("#kjzh2").val())>150)
 		kj1=5;
 	if(dkkj>1000)
 		kj2=5;
 	
-	if(parseInt($("#kjzh2").val())>=40 && parseInt($("#kjzh2").val())<=150)
+	if(parseFloat($("#kjzh2").val())>=40 && parseFloat($("#kjzh2").val())<=150)
 		kj1=4;
 	if(dkkj>=100 && dkkj<=1000)
 		kj2=4;
-	if(parseInt($("#kjzh2").val())>=20 && parseInt($("#kjzh2").val()) < 40)
+	if(parseFloat($("#kjzh2").val())>=20 && parseFloat($("#kjzh2").val()) < 40)
 		kj1=3;
 	if(dkkj>30 && dkkj<100)
 		kj2=3;
-	if(parseInt($("#kjzh2").val())>=5 && parseInt($("#kjzh2").val()) < 20)
+	if(parseFloat($("#kjzh2").val())>=5 && parseFloat($("#kjzh2").val()) < 20)
 		kj1=2;
 	if(dkkj>=8 && dkkj<=30)
 		kj2=2;
-	if((parseInt($("#kjzh2").val()) < 5)){
+	if((parseFloat($("#kjzh2").val()) < 5)){
 		kj1=1;
 		kj2=1;
 	}

@@ -14,11 +14,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.bcel.generic.NEW;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
@@ -1300,6 +1303,19 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void updateSjgz(){
+		Xmsq xmsq=new Xmsq();
+		XmsqServer xmsqServer=new XmsqServerImpl();
+		xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+0+"'");
+		xmsq.setYlxbh(lxsh.getGhlxbh());
+		xmsq.setXmbm(lxsh.getXmbm());
+		xmsq.setQdzh(lxsh.getQdzh());
+		xmsq.setZdzh(lxsh.getZdzh());
+		Lx x2 = xmsqServer.querysflsjldg(xmsq);
+		lxsh.setLsjl(x2.getLsjl());
+		if("是".equals(x2.getLsjl())){
+		lxsh.setLsxmbm(x2.getLsxmbm());
+		lxsh.setLsxmid(x2.getLsxmid());
+		}
 		boolean bl=lxshServer.updateSjgz(lxsh);
 		//准备路线桩号信息
 		lx.setXmid(lxsh.getXmbm());
@@ -1330,6 +1346,19 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void updateLmgz(){
+		Xmsq xmsq=new Xmsq();
+		xmsq.setYlxbh(lxsh.getGhlxbh());
+		xmsq.setXmbm(lxsh.getXmbm());
+		xmsq.setQdzh(lxsh.getQdzh());
+		xmsq.setZdzh(lxsh.getZdzh());
+		XmsqServer xmsqServer=new XmsqServerImpl();
+		xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+0+"'");
+		Lx x2 = xmsqServer.querysflsjldg(xmsq);
+		lxsh.setLsjl(x2.getLsjl());
+		if("是".equals(x2.getLsjl())){
+		lxsh.setLsxmbm(x2.getLsxmbm());
+		lxsh.setLsxmid(x2.getLsxmid());
+		}
 		boolean bl=lxshServer.updateLmgz(lxsh);
 		if(bl){
 			//准备路线桩号信息
@@ -1359,6 +1388,19 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void updateXj(){
 		try{
+			Xmsq xmsq=new Xmsq();
+			xmsq.setYlxbh(lxsh.getGhlxbh());
+			xmsq.setXmbm(lxsh.getXmbm());
+			xmsq.setQdzh(lxsh.getQdzh());
+			xmsq.setZdzh(lxsh.getZdzh());
+			XmsqServer xmsqServer=new XmsqServerImpl();
+			xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+0+"'");
+			Lx x2 = xmsqServer.querysflsjldg(xmsq);
+			lxsh.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+			lxsh.setLsxmbm(x2.getLsxmbm());
+			lxsh.setLsxmid(x2.getLsxmid());
+			}
 			boolean bl=lxshServer.updateXj(lxsh);
 			//准备路线桩号信息
 			lx.setXmid(lxsh.getXmbm());

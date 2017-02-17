@@ -18,11 +18,12 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#grid').datagrid({
-				url:'../../../qqgl/queryLsxx.do',
+				//url:'../../../qqgl/queryLsxx.do',
+				url:'../../../qqgl/querylxLsxx.do',
 				queryParams: {xmbm: parent.YMLib.Var.xmbm},
 				height:$(window).height()-1,
 				fitColumns:true,
-				columns:[[
+				/* columns:[[
 					{field:'id',title:'项目类型',width:100,align:'center',
 						formatter:function(value,row,index){
 							if(row.xmid.substring(10,11)=="1"){
@@ -60,7 +61,26 @@
 					}},
 					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
-				]]
+				]] */
+				columns:[[
+							{field:'xmlx',title:'项目类型',width:100,align:'center'},
+							{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
+								formatter:function(value,row,index){
+									var a='<a href="javascript:msgxx('+"'"+row.xmbm+"'"+')" style="color:#0066CB;font-size:12px;">';
+									a+=value+'</a>';
+									return a;
+								}
+							},
+							{field:'xmnf',title:'计划年份',width:100,align:'center'},
+							{field:'ghlxbm',title:'现路线编码',width:100,align:'center'},
+							{field:'jsjsdj',title:'现技术等级',width:100,align:'center'},
+							{field:'ghqdzh',title:'现起点桩号',width:100,align:'center'},
+							{field:'ghzdzh',title:'现止点桩号',width:150,fixed:true,align:'center'},
+							{field:'lxbm',title:'路线编码',width:100,align:'center'},
+							{field:'xjsdj',title:'原技术等级',width:100,align:'center'},
+							{field:'qdzh',title:'原起点桩号',width:100,align:'center'},
+							{field:'zdzh',title:'原止点桩号',width:100,align:'center'}
+						]]
 			});
 		});
 		function msgxx(xmid){

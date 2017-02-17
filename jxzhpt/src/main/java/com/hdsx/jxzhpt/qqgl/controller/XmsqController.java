@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import com.google.common.base.Strings;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -152,7 +153,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	 * @throws Exception
 	 */
 	public void sfinsert() throws IOException, Exception{
-		int flag = xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm());
+		/*int flag = xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm());
 		if(flag>0){
 			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
 			result.put("result", "have");
@@ -165,6 +166,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				result.put("result", new Boolean(true).toString());
 			}
+		}*/
+		List<Lx> l=xmsqServer.queryLsjlxx(xmsq);
+		if(l.size()>0){
+			result.put("result", "have");
+			result.put("lx", l);
+		}else{
+			result.put("result", new Boolean(true).toString());
 		}
 		JsonUtils.write(result, getresponse().getWriter());
 	}
@@ -173,13 +181,17 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		XtglServer x=new XtglServerImpl();
 		Param p = x.selectXmsx();
 		List<Lx> dlx=new ArrayList<Lx>();//用来删除
+		List<Lx> ylx=new ArrayList<Lx>();//用来删除
 		List<Lx> lxwn=new ArrayList<Lx>();
 		List<Lx> lxserw=new ArrayList<Lx>();
+		Jhsh jhsh=new Jhsh();
+		jhsh.setXmbm(xmsq.getXmbm());
+		ylx=jhshServer.queryylxbxmbm(jhsh);
 		if("是".equals(p.getSfwn())){
-			lxwn=xmsqServer.queryLslistwnxmk(xmsq);
+			lxwn=jhshServer.querywnxmxx(jhsh);
 		}
 		if("是".equals(p.getSfserw())){
-			lxserw=xmsqServer.queryLslistserw(xmsq);
+			lxserw=jhshServer.querylxLsxx(jhsh);
 		}
 		
 		lxwn.addAll(lxserw);
@@ -189,7 +201,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				dlx.add(lx);
 				continue;
 			}*/
-			if(lx.getXmid().equals(xmsq.getXmbm())){
+			if(lx.getXmbm().equals(xmsq.getXmbm())){
 				dlx.add(lx);
 				continue;
 			}
@@ -216,7 +228,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 			}
 			if("否".equals(p.getSfzh())){
-				if("恢复重建".equals(lx.getJsxz())){
+				if("灾毁恢复重建".equals(lx.getJsxz())){
 					dlx.add(lx);
 					continue;
 				}
@@ -234,7 +246,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				}
 			}
 			if("否".equals(p.getSfyfx())){
-				if(!"改建".equals(lx.getJsxz()) && !"路面改造".equals(lx.getJsxz()) && !"新建".equals(lx.getJsxz()) && !"恢复重建".equals(lx.getJsxz()) && !"大修".equals(lx.getJsxz()) && !"中修".equals(lx.getJsxz())){
+				if(!"改建".equals(lx.getJsxz()) && !"路面改造".equals(lx.getJsxz()) && !"新建".equals(lx.getJsxz()) && !"灾毁恢复重建".equals(lx.getJsxz()) && !"大修".equals(lx.getJsxz()) && !"中修".equals(lx.getJsxz())){
 					dlx.add(lx);
 					continue;
 				}
@@ -253,6 +265,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}else{
 			result.put("result", "have");
 			result.put("lx", lxwn);
+			result.put("ylx", ylx);
 		}
 		
 		JsonUtils.write(result, getresponse().getWriter());
@@ -278,13 +291,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			if(xmsq.getXmlx()==4||xmsq.getXmlx()==5){
 				//lxserw=xmsqServer.queryLslistserw(xmsq);
-				List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
-				if(l.size()>0){
-					xmsq.setWnxmk("是");
-				}else{
-					xmsq.setWnxmk("否");
-				}
-				
+				Lx x = xmsqServer.querysfwnxmk(xmsq);
+				//List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
+				xmsq.setWnxmk(x.getWnxmk());
+				if("是".equals(x.getWnxmk())){
+				xmsq.setWnnfxz(x.getWnnfxz());
+				xmsq.setWnxmbm(x.getWnxmbm());
+				xmsq.setWnxmid(x.getWnxmid());}
 			}
 			lx.setXzqhdm2(xmsq.getXzqhdm2());
 			lx.setXzqhmc2(xmsq.getXzqh());
@@ -300,27 +313,19 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setWllc(xmsq.getWllc());
 			lx.setLmkd(xmsq.getLmkd());
 			List<Xmsq> list=new ArrayList<Xmsq>();
-			xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
-			
-			
-			list.add(xmsq);
-			if(xmsq.getXmlx()==4){
-				
-				b = xmsqServer.insertXmsqYhdzx(list);
-			}else if(xmsq.getXmlx()==5){
-				b = xmsqServer.insertXmsqSh(list);
+			Lx x2 = xmsqServer.querysflsjl(xmsq);
+			xmsq.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+			xmsq.setLsxmbm(x2.getLsxmbm());
+			xmsq.setLsxmid(x2.getLsxmid());
 			}
-			if(b){
-				if(xmsq.getXmlx()==4)
-				xmsqServer.insertLx(lx,xmsq);
-				else
-				xmsqServer.insertLx(lx);	
-			}
-			result.put("result", new Boolean(b).toString());
-			/*Lx queryHaveLx = xmsq.getXmlx()==4 ? jhshServer.queryHaveLx(lx) : null;
-			if(queryHaveLx==null){
-				List<Xmsq> list=new ArrayList<Xmsq>();
-				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+			
+			//Lx queryHaveLx = xmsq.getXmlx()==4 ? jhshServer.queryHaveLx(lx) : null;
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
+			if(queryHaveLx!=null){
+				result.put("result", "have");
+				result.put("lx", queryHaveLx);
+			}else{
 				list.add(xmsq);
 				if(xmsq.getXmlx()==4){
 					b = xmsqServer.insertXmsqYhdzx(list);
@@ -328,13 +333,14 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					b = xmsqServer.insertXmsqSh(list);
 				}
 				if(b){
-					xmsqServer.insertLx(lx);
+					if(xmsq.getXmlx()==4)
+					xmsqServer.insertLx(lx,xmsq);
+					else
+					xmsqServer.insertLx(lx);	
 				}
+				
 				result.put("result", new Boolean(b).toString());
-			}else{
-				result.put("result", "have");
-				result.put("lx", queryHaveLx);
-			}*/
+			}
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -1116,6 +1122,21 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setGxzdzh(xmsq.getGxzdzh());
 			lx.setGhlxmc(xmsq.getGhlxmc());
 			lx.setXmbm1(xmsq.getXmbm1());
+			xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+xmsq.getJdbs()+"'");
+			Lx x = xmsqServer.querysfwnxmkdg(xmsq);
+			//List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
+			xmsq.setWnxmk(x.getWnxmk());
+			if("是".equals(x.getWnxmk())){
+			xmsq.setWnnfxz(x.getWnnfxz());
+			xmsq.setWnxmbm(x.getWnxmbm());
+			xmsq.setWnxmid(x.getWnxmid());}
+			Lx x2 = xmsqServer.querysflsjldg(xmsq);
+			xmsq.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+			xmsq.setLsxmbm(x2.getLsxmbm());
+			xmsq.setLsxmid(x2.getLsxmid());
+			}
+			
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
 			}else if(xmsq.getXmlx()==5){

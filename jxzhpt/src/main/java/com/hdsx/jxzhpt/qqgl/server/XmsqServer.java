@@ -300,4 +300,13 @@ public interface XmsqServer {
 	public Map<String, String> queryLjShbyyhc(Xmsq xmsq);
 	public boolean updateYhdzxSqztyhc(Xmsq xmsq);
 	public boolean updateShSqztyhc(Xmsq xmsq);
+	
+	public List<Lx> queryLsjlxx(Xmsq xmsq);
+	public Lx querysfwnxmk(Xmsq xmsq);
+	public Lx querysfwnxmkdg(Xmsq xmsq);
+	public Lx querysflsjl(Xmsq xmsq);
+	public Lx querysflsjldg(Xmsq xmsq);
+	public Lx querysfwnlsjl(Xmsq xmsq);
+	public Lx querysfwnlsjldg(Xmsq xmsq);
+	
 }

@@ -127,6 +127,10 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			
+			var scxdnf=$('#scxdnf').combobox("getValues").join(',');
+			if(scxdnf.substr(0,1)==',')
+				scxdnf=scxdnf.substr(1,xdzt.length);
 			var xmnf='';
 			if(getUrlParame('id').substr(0,10)=='0101130301')
 				xmnf='2011,2012,2013,2014,2015';
@@ -134,7 +138,7 @@
 				xmnf='2016,2017,2018,2019,2020';
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
 			loadLj(params);
 			$('#grid').datagrid({    
@@ -452,9 +456,9 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			/* var xmnf=$("#xmnf").combobox("getValues").join(",");
-			if(xmnf.substr(0,1)==',')
-				xmnf=xmnf.substr(1,xmnf.length); */
+			var scxdnf=$('#scxdnf').combobox("getValues").join(',');
+			if(scxdnf.substr(0,1)==',')
+				scxdnf=scxdnf.substr(1,xdzt.length);
 				var xmnf='';
 				if(getUrlParame('id').substr(0,10)=='0101130301')
 					xmnf='2011,2012,2013,2014,2015';
@@ -462,7 +466,7 @@
 					xmnf='2016,2017,2018,2019,2020';
 			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
 			
 			//loadLj(params);

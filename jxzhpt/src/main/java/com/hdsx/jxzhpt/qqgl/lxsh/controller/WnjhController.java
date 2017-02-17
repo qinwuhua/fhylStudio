@@ -20,6 +20,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -754,9 +756,13 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setXmbm(lxsh.getXmbm());
 			xmsq.setYlxbh(lxsh.getGhlxbh());
 			xmsq.setQdzh(lxsh.getQdzh());
-			lxsh.setZdzh(lxsh.getZdzh());
-			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
-			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");
+			xmsq.setZdzh(lxsh.getZdzh());
+			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
+			lxsh.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+				lxsh.setLsxmbm(x2.getLsxmbm());
+				lxsh.setLsxmid(x2.getLsxmid());
+			}
 			boolean bl=wnjhServer.insertGjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -770,9 +776,15 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setXmbm(lxsh.getXmbm());
 			xmsq.setYlxbh(lxsh.getGhlxbh());
 			xmsq.setQdzh(lxsh.getQdzh());
-			lxsh.setZdzh(lxsh.getZdzh());
-			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
-			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");
+			xmsq.setZdzh(lxsh.getZdzh());
+			
+			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
+			lxsh.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+				lxsh.setLsxmbm(x2.getLsxmbm());
+				lxsh.setLsxmid(x2.getLsxmid());
+			}
+			
 			boolean bl=wnjhServer.insertLmwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -786,9 +798,15 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setXmbm(lxsh.getXmbm());
 			xmsq.setYlxbh(lxsh.getXjlxbm());
 			xmsq.setQdzh(lxsh.getXjqdzh());
-			lxsh.setZdzh(lxsh.getXjzdzh());
-			List<Lx> lxs=xmsqServer.queryLslist(xmsq);
-			lxsh.setLsjl(lxs.size()>0 ? "是" : "否");	
+			xmsq.setZdzh(lxsh.getXjzdzh());
+			if(isNumeric(lxsh.getQdzh())&&isNumeric(lxsh.getZdzh())){
+				Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
+				lxsh.setLsjl(x2.getLsjl());
+				if("是".equals(x2.getLsjl())){
+					lxsh.setLsxmbm(x2.getLsxmbm());
+					lxsh.setLsxmid(x2.getLsxmid());
+				}
+			}
 			boolean bl=wnjhServer.insertXjwnjh(lxsh);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
@@ -839,24 +857,48 @@ public class WnjhController extends BaseActionSupport{
 	
 	
 	public void updatewnjhsj(){
-		JhshServer jhsh = new JhshServerImpl();
-		Jhsh j = new Jhsh();
-		j.setXmbm(lxsh.getXmbm());
-		List<Lx> ls = jhsh.queryLsxx1(j);
-		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
-		boolean bl=wnjhServer.updatewnjhsj(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
+		try {
+			XmsqServer xmsqServer = new XmsqServerImpl();
+			Xmsq xmsq = new Xmsq();
+			xmsq.setXmbm(lxsh.getXmbm());
+			xmsq.setYlxbh(lxsh.getGhlxbh());
+			xmsq.setQdzh(lxsh.getQdzh());
+			xmsq.setZdzh(lxsh.getZdzh());
+			xmsq.setXmnf(lxsh.getXmnf());
+			xmsq.setXzqhdm(lxsh.getXzqhdm());
+			xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
+			Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
+			lxsh.setLsjl(x2.getLsjl());
+			if ("是".equals(x2.getLsjl())) {
+				lxsh.setLsxmbm(x2.getLsxmbm());
+				lxsh.setLsxmid(x2.getLsxmid());
+			}
+			boolean bl = wnjhServer.updatewnjhsj(lxsh);
+			if (bl) {
+				ResponseUtils.write(getresponse(), "true");
+			} else {
+				ResponseUtils.write(getresponse(), "false");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void updatewnjhlm(){
-		JhshServer jhsh = new JhshServerImpl();
-		Jhsh j = new Jhsh();
-		j.setXmbm(lxsh.getXmbm());
-		List<Lx> ls = jhsh.queryLsxx1(j);
-		lxsh.setLsjl(ls.size()>0 ? "是" : "否");
+		XmsqServer xmsqServer=new XmsqServerImpl();
+		Xmsq xmsq=new Xmsq();
+		xmsq.setXmbm(lxsh.getXmbm());
+		xmsq.setYlxbh(lxsh.getGhlxbh());
+		xmsq.setQdzh(lxsh.getQdzh());
+		xmsq.setZdzh(lxsh.getZdzh());
+		xmsq.setXmnf(lxsh.getXmnf());
+		xmsq.setXzqhdm(lxsh.getXzqhdm());
+		xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
+		Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
+		lxsh.setLsjl(x2.getLsjl());
+		if("是".equals(x2.getLsjl())){
+			lxsh.setLsxmbm(x2.getLsxmbm());
+			lxsh.setLsxmid(x2.getLsxmid());
+		}
 		boolean bl=wnjhServer.updatewnjhlm(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -864,12 +906,33 @@ public class WnjhController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public boolean isNumeric(String str){ 
+		   Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+"); 
+		   Matcher isNum = pattern.matcher(str);
+		   if( !isNum.matches() ){
+		       return false; 
+		   } 
+		   return true; 
+		}
 	public void updatewnjhxj(){
-		JhshServer jhsh = new JhshServerImpl();
-		Jhsh j = new Jhsh();
-		j.setXmbm(lxsh.getXmbm());
-		//List<Lx> ls = jhsh.queryLsxx1(j);
-		//lxsh.setLsjl(ls.size()>0 ? "是" : "否");
+		XmsqServer xmsqServer=new XmsqServerImpl();
+		Xmsq xmsq=new Xmsq();
+		xmsq.setXmbm(lxsh.getXmbm());
+		xmsq.setYlxbh(lxsh.getGhlxbh());
+		xmsq.setQdzh(lxsh.getQdzh());
+		xmsq.setZdzh(lxsh.getZdzh());
+		xmsq.setXmnf(lxsh.getXmnf());
+		xmsq.setXzqhdm(lxsh.getXzqhdm());
+		xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
+		if(isNumeric(lxsh.getQdzh())&&isNumeric(lxsh.getZdzh())){
+			Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
+			lxsh.setLsjl(x2.getLsjl());
+			if("是".equals(x2.getLsjl())){
+				lxsh.setLsxmbm(x2.getLsxmbm());
+				lxsh.setLsxmid(x2.getLsxmid());
+			}
+		}
+		
 		boolean bl=wnjhServer.updatewnjhxj(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
