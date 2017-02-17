@@ -32,6 +32,9 @@ $(function(){
 		    <div id="left_menu3" title="工程库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
+		     <div id="left_menu4" title="路况评定决策分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
+		    
+		    </div>
 		</div>
     </div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden;">
