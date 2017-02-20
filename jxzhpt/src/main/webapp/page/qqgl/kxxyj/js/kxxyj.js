@@ -143,7 +143,9 @@ function showkxxTjxx(xmlx){
 		xmlx1=$("#xmlx").combobox("getValues").join(",");
 		if(xmlx1.substr(0,1)==',')
 			xmlx1=xmlx1.substr(1,xmlx1.length);
-		sbzt='1';
+		if($.cookie('unit2').length==7){
+			sbzt='1';
+		}
 		shzt=$("#sbzt").combobox('getValue');
 	}else{
 		sbzt=$("#sbzt").combobox('getValue');

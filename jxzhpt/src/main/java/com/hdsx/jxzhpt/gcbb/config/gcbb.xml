@@ -97,7 +97,7 @@
      	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
 		)
 	</select>
-	<select id="selShuihJdbb" parameterType="xmbb" resultType="gcgjjd">
+	<select id="selShuihJdbb" parameterType="xmbb" resultType="elist">
 		select ${sql} from(
 		select sh.xmmc,sh.xmbm as jhid,sh.sfgk as sfgyhbm,sh.gcfl as yhlb,sh.sjkgsj as sjkgsj,
 	    sh.sjwgsj as sjwgsj,' ' sjlmlx,

@@ -2325,7 +2325,11 @@
 		delete from lxsh_lx where id=#{id}
 	</delete>
 	<select id="selectlxList" parameterType="lx" resultType="lx">
-		select * from lxsh_lx where xmid=#{xmid} 
+		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj ,
+		decode(substr(xmid,11,1),1,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)),(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)))  lc,
+		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj
+		from lxsh_lx
+		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst!='1'</if>
 	</select>

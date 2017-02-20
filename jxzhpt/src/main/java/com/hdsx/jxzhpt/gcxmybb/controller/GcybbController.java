@@ -2099,12 +2099,14 @@ public class GcybbController extends BaseActionSupport{
 			if(gydwdm.indexOf(",")==-1){
 				tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
-				tiaojian1="and gydw in ("+gydwdm+")";
+				tiaojian1=getcxtj("gydw",gydwdm);
+				//tiaojian1="and gydw in ("+gydwdm+")";
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				tiaojian2="and xzqh like '%"+xzqhdm+"%'";
 			}else{
-				tiaojian2="and xzqh in ("+xzqhdm+")";
+				tiaojian2=getcxtj("xzqh",xzqhdm);
+				//tiaojian2="and xzqh in ("+xzqhdm+")";
 			}
 			gcglabgc.setGydw(tiaojian1);
 			gcglabgc.setLxmc(lxmc);

@@ -119,7 +119,16 @@
 
 			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 			        }},
-			        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
+			        {field:'c1',title:'项目状态',width:60,align:'center',formatter:function(value,row,index){
+			        	if(row.sbzts=='1'){
+		        			if(row.sbzt1=='1')
+		        				return '已审核';
+		        			else
+		        			return '已上报';
+		        		}else{
+		        			return '未上报';
+		        		}
+			        	
 			        	if(row.sbzt1=='0'){
 // 			        		if($.cookie("unit2").length!=7)
 			        			return '未审核';

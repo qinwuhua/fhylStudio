@@ -1398,7 +1398,7 @@
 	 
 	 <select id="selectgsdkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,xmklx,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
+		select rownum num ,t.*,xmklx,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
 		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
 		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		<if test="ghlxmc!='' and ghlxmc!= null ">
