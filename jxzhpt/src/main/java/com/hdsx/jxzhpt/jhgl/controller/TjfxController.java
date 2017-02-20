@@ -25,6 +25,7 @@ import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -55,6 +56,10 @@ public class TjfxController extends BaseActionSupport{
 	private String end;//结束年份
 	private String xzqhdm;//行政区划代码
 	private String ftlName;
+	private Lkmxb lkmxb;
+	private int page=1;
+	private int rows=10;
+	
 	/**
 	 * 基础库行政区划统计
 	 */
@@ -1029,6 +1034,23 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	
+	
+	/**
+	 * 路况评定明细
+	 */
+	public void queryLkpdmx(){
+		try{
+//			List<Lkmxb> result =new ArrayList<Lkmxb>();
+			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			jsonMap.put("total", tjfxServer.queryLkpdmxCount(lkmxb));
+			jsonMap.put("rows",tjfxServer.queryLkpdmx(page,rows,lkmxb));
+//			result =tjfxServer.queryLkpdmx(page,rows,lkmxb);
+			JsonUtils.write(jsonMap, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -1059,4 +1081,11 @@ public class TjfxController extends BaseActionSupport{
 	public void setFtlName(String ftlName) {
 		this.ftlName = ftlName;
 	}
+	public Lkmxb getLkmxb() {
+		return lkmxb;
+	}
+	public void setLkmxb(Lkmxb lkmxb) {
+		this.lkmxb = lkmxb;
+	}
+	
 }

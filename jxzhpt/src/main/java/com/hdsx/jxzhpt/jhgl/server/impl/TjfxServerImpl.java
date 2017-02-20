@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 @Service
 public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	public TjfxServerImpl() {
@@ -172,6 +173,20 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		params.put("nf", nf);
 		params.put("xzqhdm", xzqh);
 		return queryOne("queryJcktj", params);
+	}
+
+	@Override
+	public List<Lkmxb> queryLkpdmx(int page, int rows,Lkmxb lkmxb) {
+		params.put("page", page);
+		params.put("rows", rows);
+		params.put("lkmxb", lkmxb);
+		return queryList("queryLkpdmx",params);
+	}
+
+	@Override
+	public Integer queryLkpdmxCount(Lkmxb lkmxb) {
+		params.put("lkmxb", lkmxb);
+		return queryOne("queryLkpdmxCount", params);
 	}
 	
 }

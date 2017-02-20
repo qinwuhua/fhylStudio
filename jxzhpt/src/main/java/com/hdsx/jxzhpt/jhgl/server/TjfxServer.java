@@ -3,6 +3,8 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+
 
 public interface TjfxServer {
 
@@ -29,4 +31,7 @@ public interface TjfxServer {
 	Map<String, Object> queryGckJhgcltj(String nf, String xzqhdm);
 
 	Map<String, Object> queryJcktj(String nf, String xzqh);
+	
+	List<Lkmxb> queryLkpdmx(int page, int rows,Lkmxb lkmxb);
+	Integer queryLkpdmxCount(Lkmxb lkmxb);
 }

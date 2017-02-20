@@ -638,4 +638,43 @@
 		(select nvl(sum(z.yhlc),0) zhlczj,count(z.id) zhxmzj from xmk_zhfz z where z.xzqhdm like #{xzqhdm}||'%' and z.xmnf=#{nf}),
 		(select nvl(sum(w.qlqc),0) wqlczj,count(w.id) wqxmzj from xmk_wqgz w where w.xzqhdm like #{xzqhdm}||'%' and w.xmnf=#{nf})
 	</select>
+	
+	<select id="queryLkpdmx" resultType="lkmxb" parameterType="java.util.Map">
+	select * from 
+			(
+				select rownum as num,t.* from 
+				(
+		select t.*,'K'||qdzh||'-K'||zdzh zh,(zdzh-qdzh)*1000 cd 
+		from LKPD_MXB_DATA_2014  t
+		where 1=1 
+		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
+			and jsdj = #{lkmxb.jsdj}
+		</if>
+		<if test="lkmxb.lmlx != null and  lkmxb.lmlx != ''">
+			and lmlx = #{lkmxb.lmlx}
+		</if>
+		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+			and jcfx = #{lkmxb.jcfx}
+		</if>
+		order by lxbh
+		  ) t
+		)
+    	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	
+	<select id="queryLkpdmxCount" resultType="int" parameterType="lkmxb">
+		select count(*)
+		from LKPD_MXB_DATA_2014 
+		where 1=1 
+		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
+			and jsdj = #{lkmxb.jsdj}
+		</if>
+		<if test="lkmxb.lmlx != null and  lkmxb.lmlx != ''">
+			and lmlx = #{lkmxb.lmlx}
+		</if>
+		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+			and jcfx = #{lkmxb.jcfx}
+		</if>
+		order by lxbh
+	</select>
 </mapper>

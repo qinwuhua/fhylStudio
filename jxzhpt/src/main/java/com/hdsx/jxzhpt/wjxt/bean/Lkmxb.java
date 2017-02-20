@@ -55,6 +55,23 @@ public class Lkmxb implements Serializable {
 	private String pssi;
 	private String bz;
 	
+	//zyyadd
+	private String zh;//桩号
+	private String cd;//长度
+	
+	
+	public String getZh() {
+		return zh;
+	}
+	public void setZh(String zh) {
+		this.zh = zh;
+	}
+	public String getCd() {
+		return cd;
+	}
+	public void setCd(String cd) {
+		this.cd = cd;
+	}
 	public String getJcfx() {
 		return jcfx;
 	}
