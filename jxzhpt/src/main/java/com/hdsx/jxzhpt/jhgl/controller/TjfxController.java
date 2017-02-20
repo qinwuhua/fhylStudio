@@ -1040,17 +1040,42 @@ public class TjfxController extends BaseActionSupport{
 	 */
 	public void queryLkpdmx(){
 		try{
-//			List<Lkmxb> result =new ArrayList<Lkmxb>();
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			if(lkmxb.getLxbh()==null || lkmxb.getLxbh().equals("")){
+				lkmxb.setLxbh("");
+			}else if(lkmxb.getLxbh().indexOf(",")==-1){
+				lkmxb.setLxbh("and lxbh='"+lkmxb.getLxbh()+"'");
+			}else{
+				String[] str=lkmxb.getLxbh().split(",");
+				String str1="";
+				for (int i = 0; i < str.length; i++) {
+					if(i==0){
+						str1="'"+str[i]+"'";
+					}else{
+						str1+=",'"+str[i]+"'";					
+					}
+				}
+				lkmxb.setLxbh("and lxbh in ("+str1+")");
+			}
 			jsonMap.put("total", tjfxServer.queryLkpdmxCount(lkmxb));
 			jsonMap.put("rows",tjfxServer.queryLkpdmx(page,rows,lkmxb));
-//			result =tjfxServer.queryLkpdmx(page,rows,lkmxb);
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
+    public void getLxldCombo(){
+		List<Lkmxb> list = tjfxServer.getLxldCombo(lkmxb);
+		try {
+			JsonUtils.write(list, this.getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -1087,5 +1112,4 @@ public class TjfxController extends BaseActionSupport{
 	public void setLkmxb(Lkmxb lkmxb) {
 		this.lkmxb = lkmxb;
 	}
-	
 }

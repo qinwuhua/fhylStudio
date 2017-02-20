@@ -35,5 +35,6 @@
 		
 		<action name="queryXzqhCombo" class="tjfxController" method="queryXzqhCombo"></action>
 		<action name="queryLkpdmx" class="tjfxController" method="queryLkpdmx"></action>
+		<action name="getLxldCombo" class="tjfxController" method="getLxldCombo"></action>
 	</package>
 </struts>

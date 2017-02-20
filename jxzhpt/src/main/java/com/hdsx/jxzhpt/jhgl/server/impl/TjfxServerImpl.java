@@ -188,5 +188,10 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		params.put("lkmxb", lkmxb);
 		return queryOne("queryLkpdmxCount", params);
 	}
+
+	@Override
+	public List<Lkmxb> getLxldCombo(Lkmxb lkmxb) {
+		return queryList("getLxldCombo",lkmxb);
+	}
 	
 }

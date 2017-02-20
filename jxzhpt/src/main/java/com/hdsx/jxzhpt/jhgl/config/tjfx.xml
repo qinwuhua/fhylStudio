@@ -656,6 +656,9 @@
 		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 			and jcfx = #{lkmxb.jcfx}
 		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
 		order by lxbh
 		  ) t
 		)
@@ -675,6 +678,15 @@
 		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 			and jcfx = #{lkmxb.jcfx}
 		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
 		order by lxbh
+	</select>
+	
+	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
+	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text 
+	from ghlx t
+    order by substr(ylxbm,0,length(ylxbm)-6)
 	</select>
 </mapper>
