@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#roadcode').combotree({		
@@ -33,20 +34,22 @@ $(function(){
 });
 
 function loadGrid(){
-	$("#grid").datagrid({    
-		 url:'/jxzhpt/tjfx/queryLkpdmx.do',
-		 queryParams : {
-			 	'lkmxb.jsdj':$('#jsdj').combobox("getValue"),
-			 	'lkmxb.lmlx':$('#lmlx').combobox("getValue"),
-			 	'lkmxb.jcfx':$('#jcfx').combobox("getValue"),
-			 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(",")
-			},
+	$("#grid").datagrid({  
+		    border:true,
 			pagination:true,
 			rownumbers:true,
 		    pageNumber:1,
-		    pageSize:50,
+		    pageSize:10,
+		    fitColumns:true,
 		    height:$(window).height()-100,
 			width:$(window).width()-10,
+			url:'/jxzhpt/tjfx/queryLkpdmx.do',
+			queryParams : {
+				 	'lkmxb.jsdj':$('#jsdj').combobox("getValue"),
+				 	'lkmxb.lmlx':$('#lmlx').combobox("getValue"),
+				 	'lkmxb.jcfx':$('#jcfx').combobox("getValue"),
+				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(",")
+				},
 	    columns:[
 	      [
 			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},

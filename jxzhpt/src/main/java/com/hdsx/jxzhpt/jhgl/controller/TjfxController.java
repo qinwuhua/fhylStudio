@@ -57,7 +57,7 @@ public class TjfxController extends BaseActionSupport{
 	private String xzqhdm;//行政区划代码
 	private String ftlName;
 	private Lkmxb lkmxb;
-	private int page=1;
+	private int page =1;
 	private int rows=10;
 	
 	/**
@@ -1112,4 +1112,17 @@ public class TjfxController extends BaseActionSupport{
 	public void setLkmxb(Lkmxb lkmxb) {
 		this.lkmxb = lkmxb;
 	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	
 }
