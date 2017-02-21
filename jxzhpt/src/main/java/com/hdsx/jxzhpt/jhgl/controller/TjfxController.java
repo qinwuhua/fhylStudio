@@ -25,6 +25,7 @@ import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -1076,6 +1077,16 @@ public class TjfxController extends BaseActionSupport{
 		}		
 	}
 
+    public void queryLkpdfx(){
+    	List<SjbbMessage> list = tjfxServer.queryLkpdfx(lkmxb);
+		try {
+				JsonUtils.write(list, this.getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+    
+    
 	public String getXmlx() {
 		return xmlx;
 	}

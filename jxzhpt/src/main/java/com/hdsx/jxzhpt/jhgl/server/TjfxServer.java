@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 
 
@@ -36,4 +37,6 @@ public interface TjfxServer {
 	Integer queryLkpdmxCount(Lkmxb lkmxb);
 	
 	List<Lkmxb> getLxldCombo(Lkmxb lkmxb);
+	
+	List<SjbbMessage> queryLkpdfx(Lkmxb lkmxb);
 }

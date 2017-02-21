@@ -686,7 +686,83 @@
 	
 	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
 	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text 
-	from ghlx t
+	from ghlx t where ylxbm is not null and ylxmc is not null
     order by substr(ylxbm,0,length(ylxbm)-6)
+	</select>
+	
+	<select id="querylkpdfx" resultType="sjbb" parameterType="lkmxb">
+	select c.v_0,c.v_1,c.v_2,c.v_3,c.v_4,c.v_5,
+    c.v_6,round((c.v_2+c.v_3)/c.v_1,3)*100 v_7,c.v_8,fn_ReturnFllx(c.v_8) v_9 from (
+    select a v_0,sum(cd) v_1,sum(decode(pd,'优',cd,'0')) v_2,sum(decode(pd,'良',cd,'0')) v_3,sum(decode(pd,'中',cd,'0')) v_4,
+    sum(decode(pd,'次',cd,'0')) v_5,sum(decode(pd,'差',cd,'0')) v_6,round(avg(MQI1),2) v_8 from(
+      select 'MQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(mqi) pd,'1' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t        
+              where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(mqi)
+      union all
+      select 'PQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(pqi) pd,'2' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+              where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(pqi)
+      
+      union all
+      select 'SCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(sci) pd,'3' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(sci)
+      union all
+      select 'BCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(bci) pd,'4' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(bci)
+      union all
+      select 'TCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(tci) pd,'5' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(tci)
+      ) 
+      group by a,b
+      order by b
+      ) c
 	</select>
 </mapper>
