@@ -15,6 +15,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-plain.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-all.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -52,6 +55,7 @@
 							"<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td></tr>";
 						}
 						$("#grid").html(str);
+						queryBar(msg);
 					}else{
 						$("#grid").html("<tr align='center' height='30'><td colspan='10'>暂无数据</td></tr>");
 					}
@@ -59,23 +63,162 @@
 			});
 		}
 		
-		function queryBar(){
-			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
-		    barChart_1.width =980;
-		    barChart_1.height =300;
-		    barChart_1.padding =0;
-		    barChart_1.wMode="transparent";
-		    barChart_1.write("anychart_div");
-		    $.ajax({
-				type:"post",
-				url:"/jxzhpt/tjfx/queryJcktj1.do?xmlx="+$('#selxmlx').val(),
-				dataType:'text',
-				success:function(msg){
-					barChart_1.setData(msg);
-				}
-			});
+		function queryBar(msg){
+			var mqiArray  = [];//mqi各级别路数据
+			var rateArray = [];//优良路率数据
+			var pdjgArray= [];//评定结果数据
+			
+			var mqi_img=$("#roadcode").combobox("getValue")+"线MQI状况表";
+			var pdjg_img=$("#roadcode").combobox("getValue")+"线技术状况各项指标评定结果";
+			
+			$.each(msg,function(i,p){
+				 if(i==0){
+					 mqiArray.push(p.v_2);mqiArray.push(p.v_3);mqiArray.push(p.v_4);
+					 mqiArray.push(p.v_5);mqiArray.push(p.v_6);
+				 }
+				    rateArray.push(p.v_7);
+				    pdjgArray.push(p.v_8);
+	              });
+	            
+	         var myChart_mqi = echarts.init(document.getElementById("anychart_div_mqi")); 
+	         var myChart_pdjg = echarts.init(document.getElementById("anychart_div_pdjg"));
+	            
+	            option1 = {
+	        		    title : {
+	        		        text: mqi_img,
+	        		        x:'center',
+	        		        textStyle:{
+	    			            fontSize: 18
+	    			        } 
+	        		    },
+	        		    tooltip : {
+	        		        trigger: 'axis'
+	        		    },
+	        		    legend: {
+	        		    	show:false,
+	        		        data:['优等路','良等路','中等路','次等路','差等路'],
+	        		        x : 'rihgt',
+	        		        y : 'top',
+	        		        orient: 'horizontal'
+	        		    },
+	        		    toolbox: {
+	        		        show : true,
+	        		        feature : {
+	        		            mark : {show: true},
+	        		            dataZoom : {	//框选区域缩放
+									show : true,
+									title : {
+										dataZoom : '区域缩放',
+										dataZoomReset : '区域缩放后退'
+									}
+								},
+	        		            dataView : {show: true, readOnly: false},
+	        		            magicType : {show: true, type: ['line', 'bar']},
+	        		            restore : {show: true},
+	        		            saveAsImage : {show: true}
+	        		        }
+	        		    },
+	        		    calculable : true,
+	        		    xAxis : [
+	        		        {
+	        		            type : 'category',
+	        		            data : ["优等路","良等路","中等路","次等路","差等路"]
+	        		        }
+	        		    ],
+	        		    yAxis : [
+	        		        {
+	        		            type : 'value'
+	        		        }
+	        		    ],
+	        		    series : [
+	        		        {
+	        		            type:'bar',
+	        		            itemStyle: {
+	        	                    normal: {
+	        	　　　　　　　　　　　　　　//好，这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
+	        	                        color: function(params) {
+	        	                            // build a color map as your need.
+	        	                            var colorList = [
+	        	                              '#87CEFA','#2EC7C9','#F59311','#FA4343','#16AFCC'
+	        	                            ];
+	        	                            return colorList[params.dataIndex]
+	        	                        },
+	        	　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+	        	                        label: {
+	        	                            show: true,
+	        	                            position: 'top',
+	        	                            formatter: '{b}\n{c}'
+	        	                        }
+	        	                    }
+	        	                },
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:30,
+	        		           data:mqiArray
+	        		        }
+	        		    ]
+	        		};
+	            
+	            option2 = {
+	        		    title : {
+	        		        text: pdjg_img,
+	        		        x:'center',
+	        		        textStyle:{
+	    			            fontSize: 18
+	    			        } 
+	        		    },
+	        		    tooltip : {
+	        		        trigger: 'axis'
+	        		    },
+	        		    legend: {
+	        		    	show:true,
+	        		        data:["优良路率(%)","评定结果"],
+	        		        x : 'left',
+	        		        y : 'top',
+	        		        orient: 'horizontal'
+	        		    },
+	        		    toolbox: {
+	        		        show : true,
+	        		        feature : {
+	        		            mark : {show: true},
+	        		            dataView : {show: true, readOnly: false},
+	        		            magicType : {show: true, type: ['line', 'bar']},
+	        		            restore : {show: true},
+	        		            saveAsImage : {show: true}
+	        		        }
+	        		    },
+	        		    calculable : true,
+	        		    xAxis : [
+	        		        {
+	        		        	boundaryGap: true,	//类目起始和结束两端空白策略，默认为true留空，false则顶头
+	        		            type : 'category',
+	        		            data : ["MQI","PQI","SCI","BCI","TCI"]
+	        		        }
+	        		    ],
+	        		    yAxis : [
+	        		        {
+	        		            type : 'value'
+	        		        }
+	        		    ],
+	        		    series : [
+	        		        {
+	        		        	name:"优良路率(%)",
+	        		            type:'bar',
+	        		            data:rateArray,
+	        		            barWidth:30,
+	        		        },
+	        		        {
+	        		        	name:"评定结果",
+	        		            type:'bar',
+	        		            data:pdjgArray,
+	        		            barWidth:30,
+	        		        }
+	        		    ]
+	            };
+	            
+	            myChart_mqi.setOption(option1);
+	     		myChart_pdjg.setOption(option2);
 		}
-		
+
 	</script>
 </head>
 <body>
@@ -125,10 +268,26 @@
         		<td>
 	        		<div style="margin-left: 10px;margin-top: 10px;">
 	        			<div style="">
-	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">MQI状况表
+	        				<img id="mqi_img" alt="" src="${pageContext.request.contextPath}/images/jt.jpg">MQI状况表
 	        			</div>
-	        			<div style="height: 350px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<div id="anychart_div" style="width:900px;height:300px;margin:0px;"> 
+	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        				<div id="anychart_div_mqi" style="width:900px;height:300px;margin:10px;"> 
+								<div>
+									<param name="wmode" value="transparent" />
+								</div>
+							</div>
+	        			</div>
+	        		</div>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+	        		<div style="margin-left: 10px;margin-top: 10px;">
+	        			<div style="">
+	        				<img id="pdjg_img" alt="" src="${pageContext.request.contextPath}/images/jt.jpg">技术状况各项指标评定结果
+	        			</div>
+	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        				<div id="anychart_div_pdjg" style="width:900px;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />
 								</div>
