@@ -1086,6 +1086,14 @@ public class TjfxController extends BaseActionSupport{
 			}
 		}
     
+    public void queryLkbjfx(){
+    	List<SjbbMessage> list = tjfxServer.queryLkbjfx(lkmxb);
+		try {
+				JsonUtils.write(list, this.getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
     
 	public String getXmlx() {
 		return xmlx;

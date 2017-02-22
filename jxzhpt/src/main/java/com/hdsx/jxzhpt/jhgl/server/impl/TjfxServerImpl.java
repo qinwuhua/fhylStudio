@@ -201,4 +201,9 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		return queryList("querylkpdfx", params);
 	}
 	
+	@Override
+	public List<SjbbMessage> queryLkbjfx(Lkmxb lkmxb) {
+		params.put("lkmxb", lkmxb);
+		return queryList("querylkbjfx", params);
+	}
 }

@@ -97,14 +97,14 @@ $(function() {
 		title:'公路技术状况比较分析',
 		imgSrc:'../../images/jhgcl.png',
 		renderTo:'left_menu4',
-		href:'./lkpdjcfx/gcltj.jsp'
+		href:'./lkpdjcfx/jszkbjfx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070404',
 		title:'路况评定结果与养护大中修项目分析',
 		imgSrc:'../../images/wcbltj.png',
 		renderTo:'left_menu4',
-		href:'./lkpdjcfx/wcbl.jsp'
+		href:'./lkpdjcfx/pdjgfx.jsp'
 	});
 	menuQx();
 });

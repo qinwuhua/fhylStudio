@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>路况技术状况评定分析</title>
+	<title>公路技术状况比较分析</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -27,7 +27,7 @@
 				textField : "text",
 				panelHeight:170
 			});
-			loadBmbm2("jcfx","方向");
+			loadBmbm2("jsdj","技术等级");
 			
 			$("#query").click(function(){
 				if($("#roadcode").combobox("getValue")==""){
@@ -41,23 +41,26 @@
 		function Query(){
 			$.ajax({
 				type:'post',
-				url:"/jxzhpt/tjfx/queryLkpdfx.do",
+				url:"/jxzhpt/tjfx/queryLkbjfx.do",
 				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue"),
+				"&lkmxb.jsdj="+$('#jsdj').combobox("getValue")+"&lkmxb.tbnf="+$("#lkpdbb").val(),
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
 						$("#grid").html("");
 						var str="";
 						for(var i=0;i<msg.length;i++){
-							str+="<tr align='center' height='30'><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"+msg[i].v_2+"</td>"+
-							"<td>"+msg[i].v_3+"</td><td>"+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td>"+
-							"<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td></tr>";
+							str+="<tr align='center' height='30'><td>"+msg[i].v_0+"</td><td>"+
+							"<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td>"+"<td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"+
+							"<td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td>"+
+							"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td>"+"<td>"+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"+
+							"<td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td>"+"<td>"+msg[i].v_28+"</td>"+
+							"</tr>";
 						}
 						$("#grid").html(str);
 						queryBar(msg);
 					}else{
-						$("#grid").html("<tr align='center' height='30'><td colspan='10'>暂无数据</td></tr>");
+						$("#grid").html("<tr align='center' height='30'><td colspan='23'>暂无数据</td></tr>");
 					}
 				}
 			});
@@ -65,25 +68,32 @@
 		
 		function queryBar(msg){
 			$(".tjt").show();
-			var mqiArray  = [];//mqi各级别路数据
-			var rateArray = [];//优良路率数据
-			var pdjgArray= [];//评定结果数据
+			var mqiArray= [];var pqiArray = [];var pciArray= [];var rqiArray= [];
+			var sciArray= [];var bciArray= [];var tciArray= [];var blArray  = [];
 			
-			var mqi_img=$("#roadcode").combobox("getValue")+"线MQI状况表";
-			var pdjg_img=$("#roadcode").combobox("getValue")+"线技术状况各项指标评定结果";
-			
-			$.each(msg,function(i,p){
-				 if(i==0){
-					 mqiArray.push(p.v_2);mqiArray.push(p.v_3);mqiArray.push(p.v_4);
-					 mqiArray.push(p.v_5);mqiArray.push(p.v_6);
-				 }
-				    rateArray.push(p.v_7);
-				    pdjgArray.push(p.v_8);
+		   $.each(msg,function(i,p){
+			        blArray.push(p.v_0);
+					mqiArray.push(p.v_1);
+					pqiArray.push(p.v_2);
+					pciArray.push(p.v_3);
+					rqiArray.push(p.v_4);
+					sciArray.push(p.v_5);
+					bciArray.push(p.v_6);
+					tciArray.push(p.v_7);
 	              });
-	            
-	         var myChart_mqi = echarts.init(document.getElementById("anychart_div_mqi")); 
-	         var myChart_pdjg = echarts.init(document.getElementById("anychart_div_pdjg"));
-	            
+		   
+// 		    blArray.push('2015年路况评定');
+// 			mqiArray.push('55');
+// 			pqiArray.push('55');
+// 			pciArray.push('55');
+// 			rqiArray.push('55');
+// 			sciArray.push('55');
+// 			bciArray.push('55');
+// 			tciArray.push('55');
+			
+	         var myChart = echarts.init(document.getElementById("anychart_div")); 
+	         var mqi_img=$("#lkpdbb").val()+"年与"+(parseFloat($("#lkpdbb").val())+1)+"年比较分析表";  
+	         
 	            option1 = {
 	        		    title : {
 	        		        text: mqi_img,
@@ -96,11 +106,11 @@
 	        		        trigger: 'axis'
 	        		    },
 	        		    legend: {
-	        		    	show:false,
-	        		        data:['优等路','良等路','中等路','次等路','差等路'],
-	        		        x : 'rihgt',
-	        		        y : 'top',
-	        		        orient: 'horizontal'
+	        		    	show:true,
+	        		    	data:["MQI","PQI","PCI","RQI","SCI","BCI","TCI"],
+	        		        x : 'right',
+	        		        y : 'center',
+	        		        orient: 'vertical'
 	        		    },
 	        		    toolbox: {
 	        		        show : true,
@@ -123,7 +133,7 @@
 	        		    xAxis : [
 	        		        {
 	        		            type : 'category',
-	        		            data : ["优等路","良等路","中等路","次等路","差等路"]
+	        		            data : blArray
 	        		        }
 	        		    ],
 	        		    yAxis : [
@@ -133,98 +143,65 @@
 	        		    ],
 	        		    series : [
 	        		        {
-	        		            type:'bar',
-	        		            itemStyle: {
-	        	                    normal: {
-	        	　　　　　　　　　　　　　　//好，这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
-	        	                        color: function(params) {
-	        	                            // build a color map as your need.
-	        	                            var colorList = [
-	        	                              '#87CEFA','#2EC7C9','#F59311','#FA4343','#16AFCC'
-	        	                            ];
-	        	                            return colorList[params.dataIndex]
-	        	                        },
-	        	　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
-	        	                        label: {
-	        	                            show: true,
-	        	                            position: 'top',
-	        	                            formatter: '{b}\n{c}'
-	        	                        }
-	        	                    }
-	        	                },
+	        		           name:"MQI",
+	        		           type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
-	        	　　　　　　　　　　barWidth:30,
+	        	　　　　　　　　　　barWidth:20,
 	        		           data:mqiArray
+	        		        },
+	        		        {
+	        		        	name:"PQI",
+	        		           type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:pqiArray
+	        		        },
+	        		        {
+	        		        	name:"PCI",
+	        		            type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:pciArray
+	        		        },
+	        		        {
+	        		        	name:"RQI",
+	        		            type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:rqiArray
+	        		        },
+	        		        {
+	        		        	name:"SCI",
+	        		            type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:sciArray
+	        		        },
+	        		        {
+	        		        	name:"BCI",
+	        		            type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:bciArray
+	        		        },
+	        		        {
+	        		        	name:"TCI",
+	        		            type:'bar',
+	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+	        	　　　　　　　　　　barWidth:20,
+	        		           data:tciArray
 	        		        }
 	        		    ]
 	        		};
 	            
-	            option2 = {
-	        		    title : {
-	        		        text: pdjg_img,
-	        		        x:'center',
-	        		        textStyle:{
-	    			            fontSize: 18
-	    			        } 
-	        		    },
-	        		    tooltip : {
-	        		        trigger: 'axis'
-	        		    },
-	        		    legend: {
-	        		    	show:true,
-	        		        data:["优良路率(%)","评定结果"],
-	        		        x : 'left',
-	        		        y : 'top',
-	        		        orient: 'horizontal'
-	        		    },
-	        		    toolbox: {
-	        		        show : true,
-	        		        feature : {
-	        		            mark : {show: true},
-	        		            dataView : {show: true, readOnly: false},
-	        		            magicType : {show: true, type: ['line', 'bar']},
-	        		            restore : {show: true},
-	        		            saveAsImage : {show: true}
-	        		        }
-	        		    },
-	        		    calculable : true,
-	        		    xAxis : [
-	        		        {
-	        		        	boundaryGap: true,	//类目起始和结束两端空白策略，默认为true留空，false则顶头
-	        		            type : 'category',
-	        		            data : ["MQI","PQI","SCI","BCI","TCI"]
-	        		        }
-	        		    ],
-	        		    yAxis : [
-	        		        {
-	        		            type : 'value'
-	        		        }
-	        		    ],
-	        		    series : [
-	        		        {
-	        		        	name:"优良路率(%)",
-	        		            type:'bar',
-	        		            data:rateArray,
-	        		            barWidth:30,
-	        		        },
-	        		        {
-	        		        	name:"评定结果",
-	        		            type:'bar',
-	        		            data:pdjgArray,
-	        		            barWidth:30,
-	        		        }
-	        		    ]
-	            };
-	            
-	            myChart_mqi.setOption(option1);
-	     		myChart_pdjg.setOption(option2);
+	            myChart.setOption(option1);
 		}
 
 	</script>
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;路况技术状况评定分析</div>
+		<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;公路技术状况比较分析</div>
 	</div>
 		<table id="table_message" width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
@@ -235,15 +212,22 @@
         				</legend>
         				<div id="searchDiv">
         					<p style="margin:8px 0px 8px 20px;">
-        						<span>路况评定版本：：</span>
-        						<span><select id="lkpdbb" style="width:70px"></select></span>
+        						<span>路况评定版本：</span>
+        						<span>
+        						<select id="lkpdbb" style="width:70px">
+        						<option value="2014">2014年</option>
+        						<option value="2015">2015年</option>
+        						<option value="2016">2016年</option>
+        						<option value="2017">2017年</option>
+        						</select>
+        						</span>
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
         						<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
         						</span>
-        						<span>方向：</span>
-        						<span><select id="jcfx" style="width:70px"class="easyui-combobox"></select></span>
+        						<span>技术等级：</span>
+        						<span><select id="jsdj" style="width:70px"class="easyui-combobox"></select></span>
         						
         						<img alt="查询" id="query" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
@@ -256,10 +240,10 @@
             		<div>
             			<table style="width:800px; margin-top: 15px;margin-left: 10px; font-size: 12px;"class="sjhz_bg"
 			border="1" cellpadding="3" cellspacing="1">
-						<tr align="center" height="30"><td  rowspan="2">项目</td><td colspan="6">实际评定里程（公里）</td><td  rowspan="2">优良路率(%)</td><td colspan="2">评定结果</td></tr>
-						<tr align="center" height="30"><td>合计</td><td>优等路</td><td>良等路</td><td>中等路</td><td>次等路</td><td>差等路</td><td>分值</td><td>等级</td></tr>
+						<tr align="center" height="30"><td  colspan="2">指标</td><td colspan="3">MQI</td><td  colspan="3">PQI</td><td colspan="3">PCI</td><td colspan="3">RQI</td><td colspan="3">SCI</td><td colspan="3">BCI</td><td colspan="3">TCI</td></tr>
+						<tr align="center" height="30"><td colspan="2">段落</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td></tr>
 						<tbody id="grid">
-						<tr align="center"><td style="color: red;" colspan="11">请选择路段后查询</td></tr>
+						<tr align="center"><td style="color: red;" colspan="23">请选择路段后查询</td></tr>
 						</tbody>
 					</table>
             		</div>
@@ -269,26 +253,10 @@
         		<td>
 	        		<div style="margin-left: 10px;margin-top: 10px;display: none;" class="tjt">
 	        			<div style="">
-	        				<img id="mqi_img" alt="" src="${pageContext.request.contextPath}/images/jt.jpg">MQI状况表
+	        				<img id="mqi_img" alt="" src="${pageContext.request.contextPath}/images/jt.jpg">比较分析表
 	        			</div>
 	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<div id="anychart_div_mqi" style="width:900px;height:300px;margin:10px;"> 
-								<div>
-									<param name="wmode" value="transparent" />
-								</div>
-							</div>
-	        			</div>
-	        		</div>
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-	        		<div style="margin-left: 10px;margin-top: 10px;display: none;" class="tjt">
-	        			<div style="">
-	        				<img id="pdjg_img" alt="" src="${pageContext.request.contextPath}/images/jt.jpg">技术状况各项指标评定结果
-	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<div id="anychart_div_pdjg" style="width:900px;height:300px;margin:10px;"> 
+	        				<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />
 								</div>

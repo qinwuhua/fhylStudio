@@ -39,4 +39,5 @@ public interface TjfxServer {
 	List<Lkmxb> getLxldCombo(Lkmxb lkmxb);
 	
 	List<SjbbMessage> queryLkpdfx(Lkmxb lkmxb);
+	List<SjbbMessage> queryLkbjfx(Lkmxb lkmxb);
 }
