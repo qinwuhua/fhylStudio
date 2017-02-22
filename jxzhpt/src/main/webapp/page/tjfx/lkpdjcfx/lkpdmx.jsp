@@ -47,7 +47,8 @@ function loadGrid(){
 				 	'lkmxb.jsdj':$('#jsdj').combobox("getValue"),
 				 	'lkmxb.lmlx':$('#lmlx').combobox("getValue"),
 				 	'lkmxb.jcfx':$('#jcfx').combobox("getValue"),
-				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(",")
+				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
+				 	'lkmxb.tbnf':$('#lkpdbb').val(),
 				},
 	    columns:[
 	      [
@@ -104,7 +105,14 @@ text-decoration:none;
 							  <td>管辖路段：</td>
 							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 220px;"></select></td>
 							  <td>路况评定版本：</td>
-							 <td><select id="lkpdbb" style="width:70px"></select></td>
+							 <td>
+							 <select id="lkpdbb" style="width:70px">
+							    <option value="2014">2014年</option>
+        						<option value="2015">2015年</option>
+        						<option value="2016">2016年</option>
+        						<option value="2017">2017年</option>
+							 </select>
+							 </td>
 							  <td>技术等级：</td>
 							  <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>路面类型：</td>

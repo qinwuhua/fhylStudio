@@ -43,7 +43,7 @@
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkpdfx.do",
 				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue"),
+				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue")+"&lkmxb.tbnf="+$("#lkpdbb").val(),
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
@@ -57,6 +57,7 @@
 						$("#grid").html(str);
 						queryBar(msg);
 					}else{
+						$(".tjt").hide();
 						$("#grid").html("<tr align='center' height='30'><td colspan='10'>暂无数据</td></tr>");
 					}
 				}
@@ -236,7 +237,14 @@
         				<div id="searchDiv">
         					<p style="margin:8px 0px 8px 20px;">
         						<span>路况评定版本：：</span>
-        						<span><select id="lkpdbb" style="width:70px"></select></span>
+        						<span>
+        						<select id="lkpdbb" style="width:70px">
+        						<option value="2014">2014年</option>
+        						<option value="2015">2015年</option>
+        						<option value="2016">2016年</option>
+        						<option value="2017">2017年</option>
+        						</select>
+        						</span>
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
