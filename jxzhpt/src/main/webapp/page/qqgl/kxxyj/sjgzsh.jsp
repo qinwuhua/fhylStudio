@@ -51,6 +51,8 @@
 			loadGldj('gldj');
 			//tsdq("tsdq");
 			//xmnf("xmnf");
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			//showAllsjsh();
 			setTimeout("showAllsjsh()",'1700');
@@ -258,7 +260,17 @@ text-decoration:none;
         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
         					</tr> 
         					<tr height="32">
-        					
+        					<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
 	                            <td colspan="10">
 	        						<img  onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <!-- 	        						<img onclick="dckxxModule('sjgz');"  id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->

@@ -61,6 +61,8 @@
 			}else{
 				loadBmbm2('sqzt','申请状态省');
 			}
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			queryYhdzx();
 		});
 		function queryYhdzx(){
@@ -71,6 +73,16 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,
@@ -91,7 +103,9 @@
 					'jsxz':jsxz,
 					'xmbm':xmnf,
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
-					"ylxbh":$('#gldj').combobox("getValues").join(",")};
+					"ylxbh":$('#gldj').combobox("getValues").join(","),
+					'lsxmlx':lsxmlx,
+					'lsxmnf':lsxmnf};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -101,7 +115,7 @@
 			}
 			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-205;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -831,8 +845,20 @@
        							<td><select name="tsdq" id="tsdq" style="width:100px;" class="easyui-combobox"></select></td>
        							<td><span id="ztspan">&nbsp;上报状态</span>：</td>
        							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
+       							<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								
        							</tr>
        							<tr height="32">
+       							<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
        							<td colspan="8">
        								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>

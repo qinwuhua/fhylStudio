@@ -3752,3 +3752,129 @@ function tuihxjlxshyhc(id){
 	}
 	YMLib.UI.createWindow('lxxx','退回项目','/jxzhpt/page/qqgl/lxsh/lxsh_thyhc.jsp?id='+id,'lxxx',400,200);	
 }
+
+
+//历史项目类型
+function lsxmlx(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	
+	years.push({text:'大修',value:'大修'});
+	years.push({text:'中修',value:'中修'});
+	years.push({text:'预防性养护',value:'预防性'});
+	years.push({text:'新建',value:'新建'});
+	years.push({text:'改建',value:'改建'});
+	years.push({text:'路面改造',value:'路面改造'});
+	years.push({text:'灾毁恢复重建',value:'灾毁恢复重建'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#'+id+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	
+}
+
+//历史项目年份
+function lsxmnf(id){
+	var years=[];
+	years.push({text:'全部',value:''});
+	years.push({text:'2011',value:'2011'});
+	years.push({text:'2012',value:'2012'});
+	years.push({text:'2013',value:'2013'});
+	years.push({text:'2014',value:'2014'});
+	years.push({text:'2015',value:'2015'});
+	years.push({text:'2016',value:'2016'});
+	years.push({text:'2017',value:'2017'});
+	years.push({text:'2018',value:'2018'});
+	years.push({text:'2019',value:'2019'});
+	years.push({text:'2020',value:'2020'});
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    multiple:true,
+	    formatter:function(row){
+			var opts = $(this).combobox('options');
+			return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+		},
+		onSelect:function(record){
+			var opts = $(this).combobox('options');
+			if(record[opts.valueField]==""){
+				var values =new Array();
+				var datas = $('#' +id).combobox("getData");
+				$.each(datas,function(index,item){
+					values.push(item.value);
+					$('#id'+id+item.value).attr('checked', true);
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$('#'+id+record.value).attr('checked', true);
+			}
+		},
+		onUnselect:function(record){
+			var opts = $(this).combobox('options');
+			var datas = $('#' +id).combobox("getData");
+			var values = $('#' +id).combobox("getValues");
+			$('#' +id).combobox("clear");
+			if(record[opts.valueField]!=""){
+				if(jQuery.inArray("",values)>=0){
+					values.splice(jQuery.inArray("",values),1);
+				}
+				$.each(datas,function(index,item){
+					if(jQuery.inArray(""+item.value,values)<0){
+						$('#id'+id+item.value).attr('checked', false);
+					}
+				});
+				$('#' +id).combobox("setValues",values);
+			}else{
+				$.each(datas,function(index,item){
+					$('#'+id+item.value).attr('checked', false);
+				});
+			}
+		}
+	});
+	$('#'+id).combobox("setText",'全部');
+	
+}
+

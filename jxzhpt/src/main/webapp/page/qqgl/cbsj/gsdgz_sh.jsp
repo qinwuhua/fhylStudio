@@ -38,7 +38,8 @@
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
-			//xmnf("xmnf");
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -60,7 +61,16 @@
 				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
-// 			var lxmc = $("#txtlxmc").val();
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':11,
 					'cbsj.xmlx1':xmlx,
@@ -78,7 +88,9 @@
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'lsjl':$('#lsjl').combobox("getValue"),
-					'ylxbh':$('#gldj').combobox("getValues").join(',')};
+					'ylxbh':$('#gldj').combobox("getValues").join(','),
+					'lsxmnf':lsxmnf,
+					'lsxmlx':lsxmlx};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-$('#searchField').height()-55;
@@ -419,10 +431,20 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
 								</td> 
-<!-- 									<td>建设性质：</td> -->
-<!-- 									<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td> -->
 								</tr>
-								<tr height="32">
+	                             <tr height="32">
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								 
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
 									<td colspan="10">
 										<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 										<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

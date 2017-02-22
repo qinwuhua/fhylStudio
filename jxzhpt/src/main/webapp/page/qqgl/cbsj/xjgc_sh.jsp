@@ -52,6 +52,8 @@
 				$('#btnShangbao').hide();
 				//$('#drExcel').hide();
 			}
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			queryXj();
 		});
 		function queryXj(){
@@ -61,6 +63,17 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,
@@ -77,7 +90,9 @@
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
 					'cbsj.xmbm':xmnf,
-					'ylxbh':$('#gldj').combobox("getValues").join(',')};
+					'ylxbh':$('#gldj').combobox("getValues").join(','),
+					'lsxmnf':lsxmnf,
+					'lsxmlx':lsxmlx};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-165;
@@ -432,9 +447,21 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
+									<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
 								</td>
-	                            </tr>
+								</tr>
 									<tr height="32">
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								</td>
+	                            
 			                            <td colspan="8">
 											<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 											<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

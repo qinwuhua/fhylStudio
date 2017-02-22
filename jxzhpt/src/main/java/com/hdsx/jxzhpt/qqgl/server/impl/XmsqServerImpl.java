@@ -665,7 +665,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public Lx querysfwnxmkdg(Xmsq xmsq) {
 		List<Lx> l = queryList("queryLxbyxmsq",xmsq);
-		
+		System.out.println(xmsq.getJdbs());
 		Lx x1=null;
 		String xmid="";
 		String xmbm="";
@@ -680,6 +680,15 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			x.setQdzh(lx.getQdzh());
 			x.setZdzh(lx.getZdzh());
 			x.setXmbm(lx.getXmid());
+			if(lx.getGxlxbm()!=null)
+			x.setGxlxbm(lx.getGxlxbm());
+			else x.setGxlxbm("");
+			if(lx.getGxqdzh()!=null)
+			x.setGxqdzh(lx.getGxqdzh());
+			else x.setGxqdzh("");
+			if(lx.getGxzdzh()!=null)
+			x.setGxzdzh(lx.getGxzdzh());
+			else x.setGxzdzh("");
 			
 			xx=queryOne("querysfwnxmkxmbm", x);
 			if("是".equals(xx.getWnxmk())){
@@ -704,6 +713,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		x1.setWnxmid("'"+x1.getWnxmid().replaceAll(",", "','")+"'");
 		x1.setWnxmbm("'"+x1.getWnxmbm().replaceAll(",", "','")+"'");
 		}
+		System.out.println(x1.getWnxmk());
 		return x1;
 	}
 }

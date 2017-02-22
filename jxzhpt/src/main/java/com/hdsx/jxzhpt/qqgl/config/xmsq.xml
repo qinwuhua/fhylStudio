@@ -588,6 +588,12 @@
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
 					and X.lxmc like '%'||#{xmsq.lxmc}||'%'
 				</if>
+				<if test="xmsq.lsxmnf !='' and xmsq.lsxmnf != null ">
+					${xmsq.lsxmnf}
+				</if>
+				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
+					${xmsq.lsxmlx}
+				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
@@ -635,6 +641,12 @@
 				
 				<if test="xmsq.lxmc !='' and xmsq.lxmc != null ">
 					and X.lxmc like '%'||#{xmsq.lxmc}||'%'
+				</if>
+				<if test="xmsq.lsxmnf !='' and xmsq.lsxmnf != null ">
+					${xmsq.lsxmnf}
+				</if>
+				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
+					${xmsq.lsxmlx}
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
@@ -700,6 +712,12 @@
 					)
 				</if>
 				<if test="xmsq.wnxmk!=null and xmsq.wnxmk!=''">and x.wnxmk=#{xmsq.wnxmk}</if>
+				<if test="xmsq.lsxmnf !='' and xmsq.lsxmnf != null ">
+					${xmsq.lsxmnf}
+				</if>
+				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
+					${xmsq.lsxmlx}
+				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
@@ -764,6 +782,12 @@
 					)
 				</if>
 				<if test="xmsq.wnxmk!=null and xmsq.wnxmk!=''">and x.wnxmk=#{xmsq.wnxmk}</if>
+				<if test="xmsq.lsxmnf !='' and xmsq.lsxmnf != null ">
+					${xmsq.lsxmnf}
+				</if>
+				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
+					${xmsq.lsxmlx}
+				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
@@ -819,6 +843,8 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 	</select>
 	<select id="queryYhdzxCountbyyhc" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_yhdzx x where 1=1 and x.sqzt='7'
@@ -870,6 +896,8 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 	</select>
 	
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
@@ -924,7 +952,8 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
-		
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 	</select>
 	<select id="queryShCountbyyhc" parameterType="xmsq" resultType="int">
 		select count(x.xmbm) from xmsq_sh x 
@@ -978,7 +1007,8 @@
 		<if test="lxmc !='' and lxmc != null ">
 			and X.lxmc like '%'||#{lxmc}||'%'
 		</if>
-		
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 	</select>
 	
 	<delete id="deleteYhdzxByXmbm" parameterType="xmsq">
@@ -1234,6 +1264,8 @@
 			<if test="lxmc !='' and lxmc != null ">
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
+			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		)
 	</select>
 	<select id="queryLjYhdzxbyyhc" parameterType="xmsq" resultType="java.util.Map">
@@ -1271,6 +1303,8 @@
 			<if test="lxmc !='' and lxmc != null ">
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
+			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		)
 	</select>
 	
@@ -1309,6 +1343,8 @@
 			<if test="lxmc !='' and lxmc != null ">
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
+			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		)
 	</select>
 	<select id="queryLjShbyyhc" parameterType="xmsq" resultType="java.util.Map">
@@ -1346,6 +1382,8 @@
 			<if test="lxmc !='' and lxmc != null ">
 				and x.lxmc like '%'||#{lxmc}||'%'
 			</if>
+			<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		)
 	</select>
 	

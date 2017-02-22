@@ -32,6 +32,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -117,10 +118,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			xjsdjHandle();
 			jsjsdjHandle();
 			
+			cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
 			
-			String s1 = cbsj.getGhlxbm();
-			String s2 = cbsj.getGhlxmc();
-			String s3 = cbsj.getLxmc();
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
@@ -325,7 +325,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
-			
+			cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
@@ -414,6 +415,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		xjsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
+		cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
 		//System.out.println(cbsj.getLxmc());
 		cbsj.setLxmc(cbsj.getLxmc());
 		cbsj.setGhlxbm(cbsj.getGhlxbm());

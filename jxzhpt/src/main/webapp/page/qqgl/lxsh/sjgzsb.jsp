@@ -33,7 +33,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
-			
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			setTimeout("showAll()",'1700');
 			
@@ -270,9 +271,7 @@ text-decoration:none;
 								
         						 <td>规划路线编码：</td>
         						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-								
-        					</tr>
-        					<td>项目库类型：</td>
+								<td>项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
 										<option value="">请选择</option>
@@ -280,8 +279,21 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
 								</td>
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+        					</tr>
+        					<tr>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
                               <td colspan="10">
-                              
+                              <!-- 筛选历史条件 -->
+								
         						<img onclick="showAll()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>

@@ -34,6 +34,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			setTimeout("showgsd()",'1700');
 			
@@ -301,6 +303,20 @@ text-decoration:none;
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+									</select>
+								</td>
+								</tr>
+								<tr>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								 
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>
 								</td>
                              <td colspan="10">

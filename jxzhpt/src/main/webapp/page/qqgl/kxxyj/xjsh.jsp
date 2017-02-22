@@ -47,7 +47,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
-			
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			//xmnf("xmnf");
 			urlxmnf("xmnf",getUrlParame('id'));
 			//showAllxjsh();
@@ -310,8 +311,20 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
 								</td>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
 								</tr>
 								<tr height="32">
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								
 	        					<!-- <td>管养单位：</td>
         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
 	                            <td colspan="10">

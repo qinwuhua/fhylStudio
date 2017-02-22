@@ -20,6 +20,8 @@ public class Cbsj{
 	private String bzcs;
 	private String lmkd;
 	private String xmklx;//项目库类型
+	private String lsxmlx;
+	private String lsxmnf;
 	//补助
 		private String lqhntmc;
 		private String gxlqhntmc;  
@@ -1110,4 +1112,17 @@ public class Cbsj{
 	public void setGcfl(String gcfl) {
 		this.gcfl = gcfl;
 	}
+	public String getLsxmlx() {
+		return lsxmlx;
+	}
+	public void setLsxmlx(String lsxmlx) {
+		this.lsxmlx = lsxmlx;
+	}
+	public String getLsxmnf() {
+		return lsxmnf;
+	}
+	public void setLsxmnf(String lsxmnf) {
+		this.lsxmnf = lsxmnf;
+	}
+	
 }

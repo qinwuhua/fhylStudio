@@ -7,7 +7,21 @@ public class Xmsq {
 	private String wnxmid;
 	private String wnxmbm;
 	private String wnnfxz;
+	private String lsxmnf;
+	private String lsxmlx;
 	
+	public String getLsxmnf() {
+		return lsxmnf;
+	}
+	public void setLsxmnf(String lsxmnf) {
+		this.lsxmnf = lsxmnf;
+	}
+	public String getLsxmlx() {
+		return lsxmlx;
+	}
+	public void setLsxmlx(String lsxmlx) {
+		this.lsxmlx = lsxmlx;
+	}
 	public String getLsxmbm() {
 		return lsxmbm;
 	}

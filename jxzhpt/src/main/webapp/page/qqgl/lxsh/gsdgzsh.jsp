@@ -33,6 +33,9 @@
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
 			urlxmnf("xmnf",getUrlParame('id'));
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
+			
 			setTimeout("showgsd()",'1700');
 			
 		});
@@ -91,7 +94,16 @@
 			var xmlx=$("#xmlx").combobox("getValues").join(",");
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
-			
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/queryLxshLjgsd.do',
@@ -111,7 +123,9 @@
 					ghlxmc:$("#ghlxmc").val(),
 					jsjsdj:jsjsdj,
 					'lxsh.xmlx1':xmlx,
-					'lxsh.xmklx':$("#xmklx").combobox('getValue')},
+					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
+					'lxsh.lsxmnf':lsxmnf,
+					'lxsh.lsxmlx':lsxmlx},
 				dataType:'json',
 				success:function(msg){
 					 $("#xmsl").html(msg.XMSL);
@@ -131,7 +145,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-180,
+			    height:$(window).height()-207,
 			    width:$(window).width()-30,
 			    queryParams: {
 			    	lsjl:lsjl,
@@ -150,7 +164,9 @@
 					ghlxmc:$("#ghlxmc").val(),
 					jsjsdj:$("#jsjsdj").val(),
 					lxmc:$("#lxmc").val(),
-					'lxsh.xmklx':$("#xmklx").combobox('getValue')
+					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
+					'lxsh.lsxmnf':lsxmnf,
+					'lxsh.lsxmlx':lsxmlx
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -255,8 +271,8 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 125px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 125px; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -315,6 +331,19 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
 								</td>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								</tr>
+							<tr height="32">
 							<td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />

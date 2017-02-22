@@ -33,6 +33,7 @@ import com.hdsx.jxzhpt.qqgl.server.impl.XmsqServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
@@ -607,7 +608,8 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
 			//lxsh.setTsdq(tsdq);
@@ -799,7 +801,8 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
 		//	lxsh.setTsdq(tsdq);
@@ -952,7 +955,8 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}*/
-			System.out.println("--"+jsdj+"--");
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -1149,7 +1153,8 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setSbthcd(sbthcd);
 			//lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
@@ -1482,7 +1487,10 @@ public class LxshController extends BaseActionSupport{
 			}
 		}
 		
-		
+		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
+		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		//lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
@@ -1514,7 +1522,7 @@ public class LxshController extends BaseActionSupport{
 			}
 			lxsh.setTsdq(tsdq);
 		}*/
-		System.out.println(lxsh.getSbzt1());
+		
 		List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
 		int count=lxshServer.selectSjgzshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1584,7 +1592,9 @@ public class LxshController extends BaseActionSupport{
 			}
 		}
 		
-		
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
+
 		//lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
@@ -1686,7 +1696,9 @@ public class LxshController extends BaseActionSupport{
 				jsjsdj = "";
 			}
 		}
-		
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
+
 		//lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
@@ -1976,7 +1988,8 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setSbthcd(sbthcd);
 			//lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);

@@ -24,7 +24,21 @@ public class Lxsh implements Serializable {
 	private String wnxmid;
 	private String wnxmbm;
 	private String wnnfxz;
+	private String lsxmlx;
+	private String lsxmnf;
 	
+	public String getLsxmnf() {
+		return lsxmnf;
+	}
+	public void setLsxmnf(String lsxmnf) {
+		this.lsxmnf = lsxmnf;
+	}
+	public String getLsxmlx() {
+		return lsxmlx;
+	}
+	public void setLsxmlx(String lsxmlx) {
+		this.lsxmlx = lsxmlx;
+	}
 	public String getLsxmbm() {
 		return lsxmbm;
 	}

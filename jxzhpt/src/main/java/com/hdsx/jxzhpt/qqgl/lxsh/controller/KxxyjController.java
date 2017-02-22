@@ -33,6 +33,7 @@ import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -358,26 +359,6 @@ public class KxxyjController extends BaseActionSupport{
 				lxsh.setSbzt1(sbzt);
 			}
 			
-			/*if(jsdj.indexOf(",")>-1){
-				String[] split = jsdj.split(",");
-				for (int i = 0; i < split.length; i++) {
-					if(i==0){
-						jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
-					}else if(i==split.length-1){
-						jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
-					}else{
-						jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
-					}
-				}
-			}else{
-				if(!"".equals(jsdj)||jsdj==null)
-				jsdj = "lx.xjsdj like '%"+jsdj+"%'";
-				else{
-					jsdj = "";
-				}
-			}*/
-			//int ssss = jsjsdj.indexOf(",");
-			//技术等级
 			if(jsjsdj.indexOf(",")>-1){
 				String[] split = jsjsdj.split(",");
 				for (int i = 0; i < split.length; i++) {
@@ -396,7 +377,8 @@ public class KxxyjController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
@@ -491,7 +473,8 @@ public class KxxyjController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
@@ -619,6 +602,8 @@ public class KxxyjController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			List<Kxxyj> list=kxxyjServer.selectSjgzkxbgList(lxsh);
 			int count=kxxyjServer.selectSjgzkxbgListCount(lxsh);
 			EasyUIPage<Kxxyj> e=new EasyUIPage<Kxxyj>();
@@ -695,7 +680,8 @@ public class KxxyjController extends BaseActionSupport{
 				jsjsdj = "";
 			}
 		}
-		
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -767,6 +753,8 @@ public class KxxyjController extends BaseActionSupport{
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		lxsh.setSbthcd(sbthcd);
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -854,7 +842,8 @@ public class KxxyjController extends BaseActionSupport{
 				jsjsdj = "";
 			}
 		}
-		
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -868,7 +857,6 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setJsjsdj(jsjsdj);
 		lxsh.setGhlxbm(ghlxbm);
 		lxsh.setGhlxmc(ghlxmc);
-		System.out.println(gldj);
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
 			String tsdq="and(";
@@ -933,7 +921,8 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		System.out.println(gldj);
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
 			String tsdq="and(";
@@ -1570,7 +1559,8 @@ public class KxxyjController extends BaseActionSupport{
 				xmnf = "t1.xmnf = '"+xmnf1+"'";
 			}
 		lxsh.setXmnf(xmnf);
-			
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 			Lxsh l=null;
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");

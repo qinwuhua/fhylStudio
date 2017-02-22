@@ -58,6 +58,9 @@
 			}else{
 				loadBmbm2('sqzt','申请状态省');
 			}
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
+			
 			queryShxm();
 			
 		});
@@ -68,6 +71,17 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,
@@ -86,7 +100,11 @@
 					'ghlxbm':$("#ghlxbm").val(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'wnxmk':$('#wnxmk').combobox("getValue"),
-					"ylxbh":$('#gldj').combobox("getValues").join(",")};
+					"ylxbh":$('#gldj').combobox("getValues").join(","),
+					'lsxmlx':lsxmlx,
+					'lsxmnf':lsxmnf
+					
+			};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
@@ -95,7 +113,7 @@
 			}
 			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-210;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -706,24 +724,29 @@
 	       						
 	       					</tr>
 	       					<tr height="32">
-	       					<td>特殊地区：</td>
-	       						<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
-	       						<td><span id="ztspan">上报状态</span>：</td>
-	       						<td><select id="sqzt" class="easyui-combobox" name="jhzt" style="width: 70px;"></select></td>
-	       					<!-- <td>&nbsp;管养单位：</td>
-	       						<td><select id="gydw" style="width:170px;"></select></td> -->
-	       						<!-- <td>&nbsp;特殊地区：</td>
-	       						<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
-	       						<td>原路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:95px;" /></td> -->
-        						<td>五年项目库：</td>
-       							<td>
-       								<select id="wnxmk" class="easyui-combobox" style="width: 70px;">
-		       							<option value="" selected="selected">全部</option>
-		       							<option value="是">是</option>
-		       							<option value="否">否</option>
-	       							</select>
-       							</td>
+		       					<td>特殊地区：</td>
+		       						<td><select name="tsdq" id="tsdq" style="width:170px;" class="easyui-combobox"></select></td>
+		       						<td><span id="ztspan">上报状态</span>：</td>
+		       						<td><select id="sqzt" class="easyui-combobox" name="jhzt" style="width: 70px;"></select></td>
+		       					 <td>五年项目库：</td>
+	   							 <td>
+      								<select id="wnxmk" class="easyui-combobox" style="width: 70px;">
+	       							<option value="" selected="selected">全部</option>
+	       							<option value="是">是</option>
+	       							<option value="否">否</option>
+       								</select>
+      							</td>
+      							<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
        							</tr>
        							<tr height="32">
 	       						<td colspan="10">
@@ -732,11 +755,7 @@
 									<img id="tj" name="dishi" alt="添加" onclick="openSh()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
-<!-- 					                <img id="th" name="sheng" alt="退回" onclick="tuiHui()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/> -->
 					                <img name="sheng" id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="tuihxjlxsh('grid');" style="border-width:0px;vertical-align:middle;" />
-								
-					                
-<!-- 					                <img id="thwsh" name="sheng" alt="退回" onclick="thwshlxsh()" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'"/> -->
 					                <img id="dcExcel" name="sheng" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 					                <img id="drExcel" name="dishi" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 					                <img id="dcmoban" name="dishi" onclick="exportTemplet('Lxsh_Sh')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

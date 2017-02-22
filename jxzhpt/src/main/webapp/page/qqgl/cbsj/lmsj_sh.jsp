@@ -53,6 +53,8 @@
 				$('#btnShangbao').hide();
 				//$('#drExcel').hide();
 			}
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			queryLmsj();
 		});
 		function queryLmsj(){
@@ -62,6 +64,17 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':1,
@@ -79,7 +92,9 @@
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'lsjl':$('#lsjl').combobox("getValue"),
-					'ylxbh':$('#gldj').combobox("getValues").join(',')};
+					'ylxbh':$('#gldj').combobox("getValues").join(','),
+					'lsxmnf':lsxmnf,
+					'lsxmlx':lsxmlx};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-$('#searchField').height()-55;
@@ -444,8 +459,20 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
 								</td>
-                            </tr>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								</tr>
                             <tr height="32">
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+                            
                             	<td colspan="10">
 									<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoCbsj()" style="border-width:0px;vertical-align:middle;" />

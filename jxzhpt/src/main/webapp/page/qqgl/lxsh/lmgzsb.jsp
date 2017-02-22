@@ -33,7 +33,8 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadGldj('gldj');
-			
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			setTimeout("showAlllmgz()",'1700');
 		});
@@ -192,8 +193,8 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 125px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 125px;padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -273,7 +274,22 @@ text-decoration:none;
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
-								</td>                              <td colspan="10">
+								</td>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								 
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td> 
+								</tr>
+        					<tr height="32">                             
+        					<td colspan="10">
         						<img onclick="showAlllmgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>

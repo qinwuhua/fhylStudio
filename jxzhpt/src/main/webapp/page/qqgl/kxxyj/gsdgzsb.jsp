@@ -36,6 +36,8 @@
 			loadGldj('gldj');
 			//tsdq("tsdq");
 			//xmnf("xmnf");
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			urlxmnf("xmnf",getUrlParame('id'));
 			gsdxmlx('xmlx');
 			setTimeout("showAllgsd()",'1700');
@@ -80,6 +82,16 @@
 			if($.cookie('unit2').length==7){
 				sbzt='1';
 			}
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			$('#datagrid').datagrid({    
 			    url:'/jxzhpt/qqgl/selectgsdkxList.do',
 			    striped:true,
@@ -107,7 +119,9 @@
 					'lxsh.ghlxbh':$("#lxbm").val(),
 					'lxsh.xmlx1':xmlx,
 					'lxsh.lxmc':$("#lxmc").val(),
-					'lxsh.xmklx':$("#xmklx").combobox('getValue')
+					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
+					'lxsh.lsxmnf':lsxmnf,
+					'lxsh.lsxmlx':lsxmlx
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -337,6 +351,17 @@ text-decoration:none;
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
+									</select>
+								</td>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>
 								</td>
 	                            	<td colspan="10">

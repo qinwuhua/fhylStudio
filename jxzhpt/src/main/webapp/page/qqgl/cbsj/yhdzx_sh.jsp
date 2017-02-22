@@ -55,6 +55,8 @@
 				$('#btnShangbao').hide();
 				//$('#drExcel').hide();
 			}
+			lsxmlx('lsxmlx');
+			lsxmnf('lsxmnf');
 			queryYhdzx();
 		});
 		function loadGcfl(id,name){
@@ -85,6 +87,17 @@
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':4,
@@ -104,7 +117,9 @@
 					'ghlxbm':$("#ghlxbm").val(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
-					'ylxbh':$('#gldj').combobox("getValues").join(',')};
+					'ylxbh':$('#gldj').combobox("getValues").join(','),
+					'lsxmnf':lsxmnf,
+					'lsxmlx':lsxmlx};
 			loadLj(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-165;
@@ -422,6 +437,17 @@ text-decoration:none;
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
+								<!-- 筛选历史条件 -->
+								<td>历史项目类型：</td>
+								<td>
+									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
+								<td>历史项目年份：</td>
+								<td>
+									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									</select>
+								</td>
                         	</tr>
                         	<tr><tr height="32">
                         		<td colspan="8">
