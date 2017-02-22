@@ -656,6 +656,9 @@
 		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 			and jcfx = #{lkmxb.jcfx}
 		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
 		order by lxbh
 		  ) t
 		)
@@ -675,6 +678,146 @@
 		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 			and jcfx = #{lkmxb.jcfx}
 		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
 		order by lxbh
 	</select>
+	
+	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
+	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text 
+	from ghlx t where ylxbm is not null and ylxmc is not null
+    order by substr(ylxbm,0,length(ylxbm)-6)
+	</select>
+	
+	<select id="querylkpdfx" resultType="sjbb" parameterType="lkmxb">
+	select c.v_0,c.v_1,c.v_2,c.v_3,c.v_4,c.v_5,
+    c.v_6,round((c.v_2+c.v_3)/c.v_1,3)*100 v_7,c.v_8,fn_ReturnFllx(c.v_8) v_9 from (
+    select a v_0,sum(cd) v_1,sum(decode(pd,'优',cd,'0')) v_2,sum(decode(pd,'良',cd,'0')) v_3,sum(decode(pd,'中',cd,'0')) v_4,
+    sum(decode(pd,'次',cd,'0')) v_5,sum(decode(pd,'差',cd,'0')) v_6,round(avg(MQI1),2) v_8 from(
+      select 'MQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(mqi) pd,'1' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t        
+              where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(mqi)
+      union all
+      select 'PQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(pqi) pd,'2' b,SUM(pqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+              where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(pqi)
+      
+      union all
+      select 'SCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(sci) pd,'3' b,SUM(sci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(sci)
+      union all
+      select 'BCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(bci) pd,'4' b,SUM(bci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(bci)
+      union all
+      select 'TCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(tci) pd,'5' b,SUM(tci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+				and jcfx = #{lkmxb.jcfx}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+              group by fn_ReturnFllx(tci)
+      ) 
+      group by a,b
+      order by b
+      ) c
+	</select>
+	
+	<select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
+	select tbnf || '年路况评定' v_0,round(mqi,2) v_1,round(pqi,2) v_2,round(pci,2) v_3,round(rqi,2) v_4,round(sci,2) v_5,round(bci,2) v_6,round(tci,2) v_7,
+       round(mqi_sx/cd1_sx,2) v_8,round(mqi_up/cd1_up,2) v_9,round(mqi_down/cd1_down,2) v_10,
+       round(pqi_sx/cd2_sx,2) v_11,round(pqi_up/cd2_up,2) v_12,round(pqi_down/cd2_down,2) v_13,
+       round(pci_sx/cd3_sx,2) v_14,round(pci_up/cd3_up,2) v_15,round(pci_down/cd3_down,2) v_16,
+       round(rqi_sx/cd4_sx,2) v_17,round(rqi_up/cd4_up,2) v_18,round(rqi_down/cd4_down,2) v_19,
+       round(sci_sx/cd5_sx,2) v_20,round(sci_up/cd5_up,2) v_21,round(sci_down/cd5_down,2) v_22,
+       round(bci_sx/cd6_sx,2) v_23,round(bci_up/cd6_up,2) v_24,round(bci_down/cd6_down,2) v_25,
+       round(tci_sx/cd7_sx,2) v_26,round(tci_up/cd7_up,2) v_27,round(tci_down/cd7_down,2) v_28
+       from(
+       select tbnf,
+              sum(decode(jcfx,'双向',mqi*cd,0)) mqi_sx,sum(decode(jcfx,'双向',cd,0)) cd1_sx,
+              sum(decode(jcfx,'上行',mqi*cd,0)) mqi_up,sum(decode(jcfx,'上行',cd,0)) cd1_up,
+              sum(decode(jcfx,'下行',mqi*cd,0)) mqi_down,sum(decode(jcfx,'下行',cd,0)) cd1_down,
+              sum(decode(jcfx,'双向',pqi*cd,0)) pqi_sx,sum(decode(jcfx,'双向',cd,0)) cd2_sx,
+              sum(decode(jcfx,'上行',pqi*cd,0)) pqi_up,sum(decode(jcfx,'上行',cd,0)) cd2_up,
+              sum(decode(jcfx,'下行',pqi*cd,0)) pqi_down,sum(decode(jcfx,'下行',cd,0)) cd2_down,
+              sum(decode(jcfx,'双向',pci*cd,0)) pci_sx,sum(decode(jcfx,'双向',cd,0)) cd3_sx,
+              sum(decode(jcfx,'上行',pci*cd,0)) pci_up,sum(decode(jcfx,'上行',cd,0)) cd3_up,
+              sum(decode(jcfx,'下行',pci*cd,0)) pci_down,sum(decode(jcfx,'下行',cd,0)) cd3_down,
+              sum(decode(jcfx,'双向',rqi*cd,0)) rqi_sx,sum(decode(jcfx,'双向',cd,0)) cd4_sx,
+              sum(decode(jcfx,'上行',rqi*cd,0)) rqi_up,sum(decode(jcfx,'上行',cd,0)) cd4_up,
+              sum(decode(jcfx,'下行',rqi*cd,0)) rqi_down,sum(decode(jcfx,'下行',cd,0)) cd4_down,
+              sum(decode(jcfx,'双向',sci*cd,0)) sci_sx,sum(decode(jcfx,'双向',cd,0)) cd5_sx,
+              sum(decode(jcfx,'上行',sci*cd,0)) sci_up,sum(decode(jcfx,'上行',cd,0)) cd5_up,
+              sum(decode(jcfx,'下行',sci*cd,0)) sci_down,sum(decode(jcfx,'下行',cd,0)) cd5_down,
+              sum(decode(jcfx,'双向',bci*cd,0)) bci_sx,sum(decode(jcfx,'双向',cd,0)) cd6_sx,
+              sum(decode(jcfx,'上行',bci*cd,0)) bci_up,sum(decode(jcfx,'上行',cd,0)) cd6_up,
+              sum(decode(jcfx,'下行',bci*cd,0)) bci_down,sum(decode(jcfx,'下行',cd,0)) cd6_down,
+              sum(decode(jcfx,'双向',tci*cd,0)) tci_sx,sum(decode(jcfx,'双向',cd,0)) cd7_sx,
+              sum(decode(jcfx,'上行',tci*cd,0)) tci_up,sum(decode(jcfx,'上行',cd,0)) cd7_up,
+              sum(decode(jcfx,'下行',tci*cd,0)) tci_down,sum(decode(jcfx,'下行',cd,0)) cd7_down,
+              sum(mqi*cd)/sum(cd) mqi,sum(pqi*cd)/sum(cd) pqi,sum(pci*cd)/sum(cd) pci,
+              sum(rqi*cd)/sum(rqi) rqi,sum(sci*cd)/sum(cd) sci,sum(bci*cd)/sum(cd) bci,sum(tci*cd)/sum(cd) tci
+       from(
+        select abs(zdzh-qdzh) cd,m.tbnf,t.*  
+        from lkpd_mxb_data_2014 t left join lkpd_mxb2014 m on t.mxb_id=m.id        
+       where lxbh = #{lkmxb.lxbh}
+              <if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
+				and jsdj = #{lkmxb.jsdj}
+			  </if> 
+			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and zdzh >= #{lkmxb.qdzh}
+			  </if> 
+			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+				and qdzh &lt;= #{lkmxb.zdzh}
+			  </if> 
+			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and (m.tbnf=#{lkmxb.tbnf} or m.tbnf=#{lkmxb.tbnf}+1) 
+			  </if>
+           ) a
+        group by tbnf ) b 
+	</select>
+	
 </mapper>

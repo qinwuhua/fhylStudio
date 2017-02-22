@@ -58,8 +58,16 @@ public class Lkmxb implements Serializable {
 	//zyyadd
 	private String zh;//桩号
 	private String cd;//长度
+	private String text;//文本
 	
+
 	
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
 	public String getZh() {
 		return zh;
 	}
