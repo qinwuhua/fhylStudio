@@ -594,6 +594,16 @@
 				<if test="xmsq.lsxmlx !='' and xmsq.lsxmlx != null ">
 					${xmsq.lsxmlx}
 				</if>
+				<if test="xmsq.qdzh != null and  xmsq.qdzh != ''">
+				 and l.zdzh >= #{xmsq.qdzh}
+			    </if> 
+			    <if test="xmsq.zdzh != null and  xmsq.zdzh != ''">
+				 and l.qdzh &lt;= #{xmsq.zdzh}
+			    </if>
+			    <if test="xmsq.lxbm != null and  xmsq.lxbm != ''">
+			     and x.ylxbh=#{xmsq.lxbm}
+			    </if>
+			  
 				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
