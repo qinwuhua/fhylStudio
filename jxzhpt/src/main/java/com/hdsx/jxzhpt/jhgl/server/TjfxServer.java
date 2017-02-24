@@ -36,6 +36,8 @@ public interface TjfxServer {
 	List<Lkmxb> queryLkpdmx(int page, int rows,Lkmxb lkmxb);
 	Integer queryLkpdmxCount(Lkmxb lkmxb);
 	
+	List<Lkmxb> queryLkpdmxList(Lkmxb lkmxb);
+	
 	List<Lkmxb> getLxldCombo(Lkmxb lkmxb);
 	
 	List<SjbbMessage> queryLkpdfx(Lkmxb lkmxb);

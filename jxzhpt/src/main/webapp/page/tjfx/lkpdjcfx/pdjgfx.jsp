@@ -17,6 +17,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-plain.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-all.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../../../js/uploader/swfobject.js"></script>
 	<script type="text/javascript" src="../../../js/uploader/jquery.uploadify.v2.1.4.js"></script>
@@ -66,7 +69,7 @@ function queryYhdzx(){
 	}
 	
 	grid.queryParams=params;
-	grid.height=$(window).height()-100;
+	grid.height=$(window).height()-280;
 	grid.width=$(window).width()-10;
 	grid.pageSize=10;
 	grid.pageNumber=1;
@@ -214,6 +217,154 @@ function queryYhdzx(){
 	gridBindyh(grid);
 }
 
+function queryLkpd(){
+	var selRow = $('#grid').datagrid("getSelections");
+	if(selRow.length==0){alert("请选择一条项目数据！");return;}
+	else if(selRow.length!=1){
+		alert("只能选择一条数据！");return;
+	}else{
+// 		$("#lkpdDiv").show();
+		loadGrid(selRow[0].ylxbh,selRow[0].qdzh,selRow[0].zdzh);
+		queryBar(selRow[0].ylxbh,selRow[0].qdzh,selRow[0].zdzh);
+	}
+}
+
+function loadGrid(lxbh,qdzh,zdzh){
+	$("#grid_lkpd").datagrid({  
+		    border:true,
+			pagination:true,
+			rownumbers:true,
+		    pageNumber:1,
+		    pageSize:10,
+		    fitColumns:true,
+		    height:$(window).height()-250,
+			width:$(window).width()-10,
+			url:'/jxzhpt/tjfx/queryLkpdmx.do',
+			queryParams : {
+				 	'lkmxb.lxbh':lxbh,
+				 	'lkmxb.qdzh':qdzh,
+				 	'lkmxb.zdzh':zdzh,
+				},
+	    columns:[
+	      [
+			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
+	        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
+	        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
+	        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
+	        {field:'pqi',title:'路面PQI',width:120,align:'center',rowspan:2},
+	        {title:'路面分项指标',colspan:5},
+	        {field:'sci',title:'路基SCI',width:140,align:'center',rowspan:2},
+	        {field:'bci',title:'桥隧构造物BCI',width:140,align:'center',rowspan:2},
+	        {field:'tci',title:'沿线设施TCI',width:140,align:'center',rowspan:2}
+         ],
+		[	
+		    {field:'pci',title:'PCI',width:140,align:'center',rowspan:1},
+	        {field:'rqi',title:'RQI',width:140,align:'center',rowspan:1},
+	        {field:'rdi',title:'RDI',width:140,align:'center',rowspan:1},
+	        {field:'sri',title:'SRI',width:140,align:'center',rowspan:1},
+	        {field:'pssi',title:'PSSI',width:140,align:'center',rowspan:1}
+	    ]  
+	]		
+	});
+	
+}
+
+function queryBar(lxbh,qdzh,zdzh){
+	$.ajax({
+		type:'post',
+		url:"/jxzhpt/tjfx/queryLkpdmxList.do",
+		data:"lkmxb.lxbh="+lxbh+"&lkmxb.qdzh="+qdzh+"&lkmxb.zdzh="+zdzh,
+		dataType:'json',
+		success:function(msg){
+			if(msg.length>0){
+				
+				var mqiArray  = [];//mqi各级别路数据
+				var pqiArray = [];
+				var xArray = [];
+				
+				$.each(msg,function(i,p){
+						mqiArray.push(p.mqi);
+						pqiArray.push(p.pqi);
+						xArray.push(p.zh);
+			          });
+				
+			     var myChart = echarts.init(document.getElementById("anychart_div")); 
+			        
+			        option1 = {
+			    		    title : {
+			    		        text: "路况评定分段信息统计图",
+			    		        x:'center',
+			    		        textStyle:{
+						            fontSize: 18
+						        } 
+			    		    },
+			    		    tooltip : {
+			    		        trigger: 'axis'
+			    		    },
+			    		    legend: {
+			    		    	show: true,
+			    		        data:['MQI','PQI'],
+			    		        x : 'left',
+			    		        y : 'top',
+			    		        orient: 'horizontal'
+			    		    },
+			    		    toolbox: {
+			    		        show : true,
+			    		        feature : {
+			    		            mark : {show: true},
+			    		            dataZoom : {	//框选区域缩放
+										show : true,
+										title : {
+											dataZoom : '区域缩放',
+											dataZoomReset : '区域缩放后退'
+										}
+									},
+			    		            dataView : {show: true, readOnly: false},
+			    		            magicType : {show: true, type: ['line', 'bar']},
+			    		            restore : {show: true},
+			    		            saveAsImage : {show: true}
+			    		        }
+			    		    },
+			    		    calculable : true,
+			    		    xAxis : [
+			    		        {
+			    		        	boundaryGap: true,
+			    		            type : 'category',
+			    		            data : xArray,
+			    		            textStyle:{
+							            fontSize: 10
+							        } 
+			    		        }
+			    		    ],
+			    		    yAxis : [
+			    		        {
+			    		            type : 'value'
+			    		        }
+			    		    ],
+			    		    series : [
+			    		        {
+			    		        	name:'MQI',
+			    		            type:'bar',
+			    	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+			    	　　　　　　　　　　barWidth:20,
+			    		           data:mqiArray
+			    		        },
+			    		        {
+			    		        	name:'PQI',
+			    		            type:'bar',
+			    	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+			    	　　　　　　　　　　barWidth:20,
+			    		           data:pqiArray
+			    		        }
+			    		    ]
+			    		};
+			        
+			        myChart.setOption(option1);
+			}
+		}
+	});
+	
+}
 </script>
 <style type="text/css">
 TD {
@@ -230,10 +381,7 @@ text-decoration:none;
 		<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;路况评定结果与养护大中修项目分析</div>
 		</div>
 
-	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
-		<tr><td>
-		
-		</td></tr>
+	<table id="table_message" width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
@@ -253,15 +401,41 @@ text-decoration:none;
         					  <td><select id="xmnf" style="width:80px;"></select></td>
 							  <td colspan="10">
 							 	<img onclick="queryYhdzx()" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />
-							 	<img onclick="queryYhdzx()" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查看路况评定" onmouseout="this.src='../../../images/Button/Serch01.gif'"   style="border-width:0px;cursor: hand;" />
+							 	<img onclick="queryLkpd()" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch_02.gif'" alt="查看路况评定" onmouseout="this.src='../../../images/Button/Serch_01.gif'" src="../../../images/Button/Serch_01.gif"  style="border-width:0px;cursor: hand;" />
 							  </td>
 							</tr>
 							</table>
 						</div>
-					</fieldset>
-					</td>
-					</tr>
+			</fieldset>
+			 </td>
+		  </tr>
+		  <tr>
+		  <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+		  <div id="grid"></div>
+		  </td>
+		  </tr>
+		  <tr>
+		  <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+		   <div class="easyui-tabs"  id="lkpdDiv" width="99%">
+			<div title="路况评定分段信息列表">
+				<table id="grid_lkpd"></table>
+			</div>
+			<div title="路况评定分段信息统计图">
+			 <div style="margin-left: 10px;margin-top: 10px;" >
+	        	<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        		<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
+						<div>
+							<param name="wmode" value="transparent" />
+						</div>
+					</div>
+	        	</div>
+	         </div>
+		    </div>  
+	       </div>
+	       </td>
+		  </tr>
 		</table>
-		<div id="grid" width="100%" ></div>
+		
+	
 </body>
 </html>
