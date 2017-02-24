@@ -663,10 +663,10 @@
 		    and m.tbnf=#{lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-			and t.zdzh >= #{lkmxb.qdzh}
+			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
 		</if> 
 		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-			and t.qdzh &lt;= #{lkmxb.zdzh}
+			and to_number(t.qdzh) &lt;= to_number(#{lkmxb.zdzh})
 		</if>
 		order by lxbh,qdzh
 		  ) t
@@ -694,10 +694,10 @@
 			 and m.tbnf=#{lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-			and zdzh >= #{lkmxb.qdzh}
+			and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 		</if> 
 		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-			and qdzh &lt;= #{lkmxb.zdzh}
+			and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 		</if>
 		order by lxbh
 	</select>
@@ -722,10 +722,10 @@
 		    and m.tbnf=#{lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-			and t.zdzh >= #{lkmxb.qdzh}
+			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
 		</if> 
 		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-			and t.qdzh &lt;= #{lkmxb.zdzh}
+			and to_number(t.qdzh) &lt;= to_number(#{lkmxb.zdzh})
 		</if>
 		order by lxbh,qdzh
 	</select>
@@ -748,10 +748,10 @@
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
@@ -765,10 +765,10 @@
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
@@ -783,10 +783,10 @@
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
@@ -799,12 +799,12 @@
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
-			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+			 <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
-			  </if> 
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
+			  </if>  
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
 			  </if>
@@ -817,10 +817,10 @@
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
@@ -874,10 +874,10 @@
 				and jsdj = #{lkmxb.jsdj}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and (m.tbnf=#{lkmxb.tbnf} or m.tbnf=#{lkmxb.tbnf}+1) 

@@ -416,13 +416,13 @@ text-decoration:none;
 		  </tr>
 		  <tr>
 		  <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-		   <div class="easyui-tabs"  id="lkpdDiv" width="99%">
+		   <div class="easyui-tabs"  width="99%">
 			<div title="路况评定分段信息列表">
 				<table id="grid_lkpd"></table>
 			</div>
 			<div title="路况评定分段信息统计图">
 			 <div style="margin-left: 10px;margin-top: 10px;" >
-	        	<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        	<div style="height: 350px;border: 1px #C0C0C0 solid;text-align: center;">
 	        		<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
 						<div>
 							<param name="wmode" value="transparent" />
