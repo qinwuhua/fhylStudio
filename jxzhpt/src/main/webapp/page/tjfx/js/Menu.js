@@ -81,28 +81,28 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101070401',
 		title:'路况评定明细',
-		imgSrc:'../../images/xzqhtj.png',
+		imgSrc:'../../images/lkpdmx.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/lkpdmx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070402',
 		title:'路况技术状况评定分析',
-		imgSrc:'../../images/xmlxtj.png',
+		imgSrc:'../../images/jszkpdfx.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/jszkpdfx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070403',
 		title:'公路技术状况比较分析',
-		imgSrc:'../../images/jhgcl.png',
+		imgSrc:'../../images/jszkbjfx.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/jszkbjfx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070404',
 		title:'路况评定结果与养护大中修项目分析',
-		imgSrc:'../../images/wcbltj.png',
+		imgSrc:'../../images/pdjgfx.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/pdjgfx.jsp'
 	});
