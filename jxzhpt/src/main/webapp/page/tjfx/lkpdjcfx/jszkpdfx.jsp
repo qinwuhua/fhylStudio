@@ -39,11 +39,14 @@
 		});
 		
 		function Query(){
+			$("#pdfx_tr").show();
+		    $("#mx_tr").hide();
+		    
 			$.ajax({
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkpdfx.do",
 				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue"),
+				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue")+"&lkmxb.tbnf="+$("#lkpdbb").val(),
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
@@ -57,6 +60,7 @@
 						$("#grid").html(str);
 						queryBar(msg);
 					}else{
+						$(".tjt").hide();
 						$("#grid").html("<tr align='center' height='30'><td colspan='10'>暂无数据</td></tr>");
 					}
 				}
@@ -219,7 +223,50 @@
 	            myChart_mqi.setOption(option1);
 	     		myChart_pdjg.setOption(option2);
 		}
-
+	
+  function loadGrid(lxbh,qdzh,zdzh){
+	  $("#pdfx_tr").hide();
+	  $("#mx_tr").show();
+			$("#grid_mx").datagrid({  
+				    border:true,
+					pagination:true,
+					rownumbers:true,
+				    pageNumber:1,
+				    pageSize:10,
+				    fitColumns:true,
+				    height:$(window).height()-250,
+					width:$(window).width()-10,
+					url:'/jxzhpt/tjfx/queryLkpdmx.do',
+					queryParams : {
+						 	'lkmxb.lxbh':$("#roadcode").combobox("getValue"),
+						 	'lkmxb.qdzh':$("#qdzh").val(),
+						 	'lkmxb.zdzh':$("#zdzh").val(),
+						 	'kmxb.jcfx':$('#jcfx').combobox("getValue"),
+						 	'lkmxb.tbnf':$("#lkpdbb").val()
+						},
+			    columns:[
+			      [
+					{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
+			        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
+			        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
+			        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
+			        {field:'pqi',title:'路面PQI',width:120,align:'center',rowspan:2},
+			        {title:'路面分项指标',colspan:5},
+			        {field:'sci',title:'路基SCI',width:140,align:'center',rowspan:2},
+			        {field:'bci',title:'桥隧构造物BCI',width:140,align:'center',rowspan:2},
+			        {field:'tci',title:'沿线设施TCI',width:140,align:'center',rowspan:2}
+		         ],
+				[	
+				    {field:'pci',title:'PCI',width:140,align:'center',rowspan:1},
+			        {field:'rqi',title:'RQI',width:140,align:'center',rowspan:1},
+			        {field:'rdi',title:'RDI',width:140,align:'center',rowspan:1},
+			        {field:'sri',title:'SRI',width:140,align:'center',rowspan:1},
+			        {field:'pssi',title:'PSSI',width:140,align:'center',rowspan:1}
+			    ]  
+			]		
+			});
+			
+		}
 	</script>
 </head>
 <body>
@@ -236,7 +283,14 @@
         				<div id="searchDiv">
         					<p style="margin:8px 0px 8px 20px;">
         						<span>路况评定版本：：</span>
-        						<span><select id="lkpdbb" style="width:70px"></select></span>
+        						<span>
+        						<select id="lkpdbb" style="width:70px">
+        						<option value="2014">2014年</option>
+        						<option value="2015">2015年</option>
+        						<option value="2016">2016年</option>
+        						<option value="2017">2017年</option>
+        						</select>
+        						</span>
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
@@ -246,12 +300,13 @@
         						<span><select id="jcfx" style="width:70px"class="easyui-combobox"></select></span>
         						
         						<img alt="查询" id="query" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img alt="查看明细" onclick="loadGrid();" src="${pageContext.request.contextPath}/images/Button/Serch_01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch_02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch_01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
-        	<tr>
+        	<tr id="pdfx_tr">
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
             			<table style="width:800px; margin-top: 15px;margin-left: 10px; font-size: 12px;"class="sjhz_bg"
@@ -261,6 +316,14 @@
 						<tbody id="grid">
 						<tr align="center"><td style="color: red;" colspan="11">请选择路段后查询</td></tr>
 						</tbody>
+					</table>
+            		</div>
+            	</td>
+        	</tr>
+        	<tr id="mx_tr" style="display: none;">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            		<div>
+            			<table id="grid_mx"></table>
 					</table>
             		</div>
             	</td>

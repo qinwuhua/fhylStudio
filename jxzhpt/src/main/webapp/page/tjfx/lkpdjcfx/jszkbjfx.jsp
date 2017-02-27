@@ -60,6 +60,7 @@
 						$("#grid").html(str);
 						queryBar(msg);
 					}else{
+						$(".tjt").hide();
 						$("#grid").html("<tr align='center' height='30'><td colspan='23'>暂无数据</td></tr>");
 					}
 				}

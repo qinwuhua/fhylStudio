@@ -1066,6 +1066,35 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	
+	/**
+	 * 路况评定明细
+	 */
+	public void queryLkpdmxList(){
+		try{
+			
+			if(lkmxb.getLxbh()==null || lkmxb.getLxbh().equals("")){
+				lkmxb.setLxbh("");
+			}else if(lkmxb.getLxbh().indexOf(",")==-1){
+				lkmxb.setLxbh("and lxbh='"+lkmxb.getLxbh()+"'");
+			}else{
+				String[] str=lkmxb.getLxbh().split(",");
+				String str1="";
+				for (int i = 0; i < str.length; i++) {
+					if(i==0){
+						str1="'"+str[i]+"'";
+					}else{
+						str1+=",'"+str[i]+"'";					
+					}
+				}
+				lkmxb.setLxbh("and lxbh in ("+str1+")");
+			}
+			List<Lkmxb> list = tjfxServer.queryLkpdmxList(lkmxb);
+			JsonUtils.write(list, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
     public void getLxldCombo(){
 		List<Lkmxb> list = tjfxServer.getLxldCombo(lkmxb);
 		try {

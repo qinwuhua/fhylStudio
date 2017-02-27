@@ -645,7 +645,7 @@
 				select rownum as num,t.* from 
 				(
 		select t.*,'K'||qdzh||'-K'||zdzh zh,(zdzh-qdzh)*1000 cd 
-		from LKPD_MXB_DATA_2014  t
+		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
 			and jsdj = #{lkmxb.jsdj}
@@ -659,7 +659,16 @@
 		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
 			${lkmxb.lxbh}
 		</if>
-		order by lxbh
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+		    and m.tbnf=#{lkmxb.tbnf} 
+		</if>
+		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
+		</if> 
+		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+			and to_number(t.qdzh) &lt;= to_number(#{lkmxb.zdzh})
+		</if>
+		order by lxbh,qdzh
 		  ) t
 		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -667,7 +676,7 @@
 	
 	<select id="queryLkpdmxCount" resultType="int" parameterType="lkmxb">
 		select count(*)
-		from LKPD_MXB_DATA_2014 
+		from LKPD_MXB_DATA_2014  left join lkpd_mxb2014 m on mxb_id=m.id   
 		where 1=1 
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
 			and jsdj = #{lkmxb.jsdj}
@@ -681,7 +690,44 @@
 		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
 			${lkmxb.lxbh}
 		</if>
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+			 and m.tbnf=#{lkmxb.tbnf} 
+		</if>
+		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+			and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
+		</if> 
+		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+			and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
+		</if>
 		order by lxbh
+	</select>
+	
+	<select id="queryLkpdmxList" resultType="lkmxb" parameterType="java.util.Map">
+		select t.*,'K'||qdzh||'-K'||zdzh zh,(zdzh-qdzh)*1000 cd 
+		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
+		where 1=1 
+		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
+			and jsdj = #{lkmxb.jsdj}
+		</if>
+		<if test="lkmxb.lmlx != null and  lkmxb.lmlx != ''">
+			and lmlx = #{lkmxb.lmlx}
+		</if>
+		<if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
+			and jcfx = #{lkmxb.jcfx}
+		</if>
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			${lkmxb.lxbh}
+		</if>
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+		    and m.tbnf=#{lkmxb.tbnf} 
+		</if>
+		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
+		</if> 
+		<if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
+			and to_number(t.qdzh) &lt;= to_number(#{lkmxb.zdzh})
+		</if>
+		order by lxbh,qdzh
 	</select>
 	
 	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
@@ -696,69 +742,89 @@
     select a v_0,sum(cd) v_1,sum(decode(pd,'优',cd,'0')) v_2,sum(decode(pd,'良',cd,'0')) v_3,sum(decode(pd,'中',cd,'0')) v_4,
     sum(decode(pd,'次',cd,'0')) v_5,sum(decode(pd,'差',cd,'0')) v_6,round(avg(MQI1),2) v_8 from(
       select 'MQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(mqi) pd,'1' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t        
+              left join lkpd_mxb2014 m on t.mxb_id=m.id  
               where lxbh = #{lkmxb.lxbh}
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
+			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
               group by fn_ReturnFllx(mqi)
       union all
       select 'PQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(pqi) pd,'2' b,SUM(pqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               left join lkpd_mxb2014 m on t.mxb_id=m.id 
               where lxbh = #{lkmxb.lxbh}
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
+			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
               group by fn_ReturnFllx(pqi)
       
       union all
       select 'SCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(sci) pd,'3' b,SUM(sci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               left join lkpd_mxb2014 m on t.mxb_id=m.id 
                where lxbh = #{lkmxb.lxbh}
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
+			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
               group by fn_ReturnFllx(sci)
       union all
       select 'BCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(bci) pd,'4' b,SUM(bci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+               left join lkpd_mxb2014 m on t.mxb_id=m.id 
                where lxbh = #{lkmxb.lxbh}
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
-			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+			 <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
-			  </if> 
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
+			  </if>  
+			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
               group by fn_ReturnFllx(bci)
       union all
       select 'TCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(tci) pd,'5' b,SUM(tci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
+              left join lkpd_mxb2014 m on t.mxb_id=m.id 
                where lxbh = #{lkmxb.lxbh}
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
+			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
               group by fn_ReturnFllx(tci)
       ) 
       group by a,b
@@ -808,10 +874,10 @@
 				and jsdj = #{lkmxb.jsdj}
 			  </if> 
 			  <if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
-				and zdzh >= #{lkmxb.qdzh}
+				and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
 			  </if> 
 			  <if test="lkmxb.zdzh != null and  lkmxb.zdzh != ''">
-				and qdzh &lt;= #{lkmxb.zdzh}
+				and to_number(qdzh) &lt;= to_number(#{lkmxb.zdzh})
 			  </if> 
 			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and (m.tbnf=#{lkmxb.tbnf} or m.tbnf=#{lkmxb.tbnf}+1) 

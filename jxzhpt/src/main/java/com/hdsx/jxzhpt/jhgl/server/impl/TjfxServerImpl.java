@@ -191,6 +191,11 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	}
 
 	@Override
+	public List<Lkmxb> queryLkpdmxList(Lkmxb lkmxb) {
+		params.put("lkmxb", lkmxb);
+		return queryList("queryLkpdmxList",params);
+	}
+	@Override
 	public List<Lkmxb> getLxldCombo(Lkmxb lkmxb) {
 		return queryList("getLxldCombo",lkmxb);
 	}
