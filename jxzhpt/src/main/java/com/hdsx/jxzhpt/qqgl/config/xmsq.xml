@@ -49,7 +49,7 @@
 		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c1_x,
 		   	(select count(*) CON2 from 
 		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_sjgz sj where lx.xmid=sj.xmbm and jdbs='2') j,
-		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       (select ylxbm,yqdzh,yzdzh from ghlx 
 		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
 		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
 		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
@@ -64,7 +64,7 @@
 		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c2_x,
 		   	(select count(*) CON2 from 
 		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_lmgz sj where lx.xmid=sj.xmbm and jdbs='2') j,
-		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       (select ylxbm,yqdzh,yzdzh from ghlx 
 		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
 		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
 		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
@@ -79,7 +79,7 @@
 		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c3_x,
 		   	(select count(*) CON2 from 
 		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_xj sj where lx.xmid=sj.xmbm and jdbs='2') j,
-		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       (select ylxbm,yqdzh,yzdzh from ghlx 
 		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
 		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
 		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
@@ -94,7 +94,7 @@
 		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c4_x,
 		   	(select count(*) CON2 from 
 		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_yhdzx sj where lx.xmid=sj.xmbm and jdbs='2') j,
-		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       (select ylxbm,yqdzh,yzdzh from ghlx 
 		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
 		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
 		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
@@ -109,7 +109,7 @@
 		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c5_x,
 		   	(select count(*) CON2 from 
 		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_sh sj where lx.xmid=sj.xmbm and jdbs='2') j,
-		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       (select ylxbm,yqdzh,yzdzh from ghlx 
 		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
 		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
 		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
@@ -2221,6 +2221,8 @@
 	</select>
 	<select id="queryLsjlxxxmbm" parameterType="xmsq" resultType="xmsq">
 		select fun_bzls2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm,#{xmbm} xmbm from dual l where 1=1 and fun_bzls(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})))='是'
+		union all
+		select fun_bzls2(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,fun_bzls1(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm,#{xmbm} xmbm from dual l where 1=1 and fun_bzls(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh})))='是'
 	</select>
 	<select id="queryLsjlxx" parameterType="xmsq" resultType="lx">
 		select distinct xmlx,xmmc,xmbm from jhsh_lsjl where id in(${lsxmid})
@@ -2238,6 +2240,13 @@
 		fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
 		
 		from dual 
+		union all
+		select fun_bzls(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsjl,
+		fun_bzls2(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,
+		fun_bzls1(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm
+		
+		from dual 
+		
 	</select>
 	<select id="queryLxbyxmsq" parameterType="xmsq" resultType="lx">
 		select * from ${bz} and xmid=#{xmbm}
@@ -2246,6 +2255,12 @@
 		select fun_wnls(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
 		fun_wnls2(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,
 		fun_wnls1(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
+		
+		from dual 
+		union all
+		select fun_wnls(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsjl,
+		fun_wnls2(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,
+		fun_wnls1(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm
 		
 		from dual 
 	</select>

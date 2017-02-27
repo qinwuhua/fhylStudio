@@ -197,6 +197,10 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
+		if($('#xmklx').combobox('getValue')==''){
+			alert('请选择项目库类型');
+			return;
+		}
 		var zlc=jszlc($("#roadstart").val(),$("#roadend").val());
 		var data ="xmkaqsmfh.roadcode="+$("#roadcode").val()+"&xmkaqsmfh.roadname="+$("#roadname").val()+"&xmkaqsmfh.unit="+$("#unit").val()+"&xmkaqsmfh.unitcode="+$("#unitcode").val()+"&xmkaqsmfh.roadstart="+$("#roadstart").val().replace(/\+/g,"%2B")
 		+"&xmkaqsmfh.roadend="+$("#roadend").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.zlc="+zlc+"&xmkaqsmfh.dist="+$("#dist").val()+"&xmkaqsmfh.distcode="+$("#distcode").val()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").val()+"&xmkaqsmfh.xuh="+$("#xuh").val()
@@ -204,7 +208,7 @@ text-decoration:none;
 		+"&xmkaqsmfh.lxxp="+$("#lxxp").val()+"&xmkaqsmfh.doup="+$("#doup").val()+"&xmkaqsmfh.sjbl="+$("#sjbl").val()+"&xmkaqsmfh.lcxy="+$("#lcxy").val()+"&xmkaqsmfh.hjfz="+$("#hjfz").val()+"&xmkaqsmfh.xchbc="+$("#xchbc").val()
 		+"&xmkaqsmfh.csxsss="+$("#csxsss").val()+"&xmkaqsmfh.hul="+$("#hul").val()+"&xmkaqsmfh.bzbx="+$("#bzbx").val()+"&xmkaqsmfh.jshsxyd="+$("#jshsxyd").val()+"&xmkaqsmfh.aqssqt="+$("#aqssqt").val()+"&xmkaqsmfh.tjgc="+$("#tjgc").val()
 		+"&xmkaqsmfh.hjzz="+$("#hjzz").val()+"&xmkaqsmfh.bzbxcz="+$("#bzbxcz").val()+"&xmkaqsmfh.jckcz="+$("#jckcz").val()+"&xmkaqsmfh.jzhl="+$("#jzhl").val()+"&xmkaqsmfh.jshsxydcz="+$("#jshsxydcz").val()+"&xmkaqsmfh.aqssqtcz="+$("#aqssqtcz").val()
-		+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox('getValue')+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.gpsqd="+qdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.gpszd="+zdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.tbbmbm="+$.cookie("unit");
+		+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox('getValue')+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.gpsqd="+qdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.gpszd="+zdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.tbbmbm="+$.cookie("unit")+"&xmkaqsmfh.xmklx="+$('#xmklx').combobox('getValue');
 		if(jsdjmb==1){
 			data+="&xmkaqsmfh.jsdj="+$("#jsdj1").val()+"&xmkaqsmfh.fangx="+$("#fangx1").val()
 			+"&xmkaqsmfh.ldfl="+$("#ldfl1").val()+"&xmkaqsmfh.pcsj="+$("#pcsj1").val()+"&xmkaqsmfh.jtsgpcf="+$("#jtsgpcf").val()+"&xmkaqsmfh.jtsgfxdj="+$("#jtsgfxdj").val()+"&xmkaqsmfh.gltjpcf="+$("#gltjpcf").val()+"&xmkaqsmfh.glfxdj="+$("#glfxdj").val()+"&xmkaqsmfh.xbjyqx="+$("#xbjyqx").val()+"&xmkaqsmfh.jckbgf="+$("#jckbgf").val()+"&xmkaqsmfh.jtl="+$("#jtl").val()+"&xmkaqsmfh.gldj="+$("#gldj1").val();
@@ -518,8 +522,17 @@ text-decoration:none;
 					<input type="text"  id="xjgjnd" style="width: 156px" /></td>
 				</tr>
 				<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;width:20%" align="left">
+				<td colspan="3" style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<span id='tsdq'></span></td>
 				</tr>
 				<tr style="height: 35px;">

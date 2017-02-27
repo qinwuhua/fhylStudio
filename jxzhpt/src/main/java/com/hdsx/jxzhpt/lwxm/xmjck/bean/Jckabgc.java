@@ -10,7 +10,14 @@ import java.util.Date;
 public class Jckabgc implements Serializable{
 	private String gldj;
 	private String jsdj;
+	private String xmklx;
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getGldj() {
 		return gldj;
 	}

@@ -1315,6 +1315,9 @@ public class LxshController extends BaseActionSupport{
 		xmsq.setXmbm(lxsh.getXmbm());
 		xmsq.setQdzh(lxsh.getQdzh());
 		xmsq.setZdzh(lxsh.getZdzh());
+		xmsq.setGxlxbm(lxsh.getGxlxbm());
+		xmsq.setGxqdzh(lxsh.getGxqdzh());
+		xmsq.setGxzdzh(lxsh.getGxzdzh());
 		Lx x2 = xmsqServer.querysflsjldg(xmsq);
 		lxsh.setLsjl(x2.getLsjl());
 		if("是".equals(x2.getLsjl())){
@@ -1356,6 +1359,9 @@ public class LxshController extends BaseActionSupport{
 		xmsq.setXmbm(lxsh.getXmbm());
 		xmsq.setQdzh(lxsh.getQdzh());
 		xmsq.setZdzh(lxsh.getZdzh());
+		xmsq.setGxlxbm(lxsh.getGxlxbm());
+		xmsq.setGxqdzh(lxsh.getGxqdzh());
+		xmsq.setGxzdzh(lxsh.getGxzdzh());
 		XmsqServer xmsqServer=new XmsqServerImpl();
 		xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+0+"'");
 		Lx x2 = xmsqServer.querysflsjldg(xmsq);
@@ -1398,6 +1404,9 @@ public class LxshController extends BaseActionSupport{
 			xmsq.setXmbm(lxsh.getXmbm());
 			xmsq.setQdzh(lxsh.getQdzh());
 			xmsq.setZdzh(lxsh.getZdzh());
+			xmsq.setGxlxbm("");
+			xmsq.setGxqdzh("");
+			xmsq.setGxzdzh("");
 			XmsqServer xmsqServer=new XmsqServerImpl();
 			xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+0+"'");
 			Lx x2 = xmsqServer.querysflsjldg(xmsq);

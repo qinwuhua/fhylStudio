@@ -52,6 +52,7 @@ text-decoration:none;
 			$("#jsdj2").html(item.jsdj);$("#fangx2").html(item.fangx);
 			$("#ldfl2").html(item.ldfl);$("#pcsj2").html(item.pcsj);$("#sgpb").html(item.sgpb);$("#dgjw").html(item.dgjw);$("#lxjw").html(item.lxjw);$("#jtlpbzb").html(item.jtlpbzb);$("#gldj2").html(item.gldj);
 		}
+		$("#xmklx").html(item.xmklx);
 		$("#roadcode").html(item.roadcode);$("#roadname").html(item.roadname);$("#unit").html(item.unit);$("#unitcode").html(item.unitcode);$("#roadstart").html(item.roadstart);
 		$("#roadend").html(item.roadend);$("#dist").html(item.dist);$("#distcode").html(item.distcode);$("#xjgjnd").html(item.xjgjnd);
 		$("#province").html(item.province);$("#town").html(item.town);$("#county").html(item.county);$("#throadcode").html(item.throadcode);$("#throadstart").html(item.throadstart);$("#throadend").html(item.throadend);
@@ -292,6 +293,12 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修改建年度(年)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span  id="xjgjnd" ></span></td>
+				</tr>
+				<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td colspan="5" " style="background-color: #ffffff; height: 20px;" align="left">
+					<span id='xmklx'></span>
+				</td>
 				</tr>
 				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>

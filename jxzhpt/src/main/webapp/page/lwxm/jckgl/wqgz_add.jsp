@@ -180,6 +180,11 @@ function saveWqgz(){
 	if($.cookie("unit2")=="______36"){
 		sbthcd=7;
 	}
+	if($('#xmklx').combobox('getValue')==''){
+		alert('请选择项目库类型');
+		return;
+	}
+	//return;
 	var bhnr=$("#bhnr").val().replace(/%/g, "%25");
 	var data ="jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.qlmc="+$("#qlmc").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.gydwbm="+$("#gydwbm").val()+"&jckwqgzsj.gydw="+$("#gydw").html()
 	+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.xzqhmc="+$("#xzqhmc").html()+"&jckwqgzsj.lxmc="+$("#lxmc").html()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.kjzc="+$("#kjzc").html()+
@@ -190,7 +195,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()+"&jckwqgzsj.xmklx="+$('#xmklx').combobox('getValue')
 	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk=是";
 	//alert(data);
 	 $.ajax({
@@ -517,9 +522,19 @@ function newGuid()
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qlyhgcs" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qljggcs" />
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
+				
 			</tr>            	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>

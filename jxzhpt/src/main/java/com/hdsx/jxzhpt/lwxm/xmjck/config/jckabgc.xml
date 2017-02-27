@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq<if test="xmklx != null">,xmklx</if>)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq}<if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 
 	<select id="selectJckabgc" parameterType="jckabgc" resultType="jckabgc">
@@ -87,7 +87,11 @@
 		update xmk_abgc set
 		lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},qdzh=#{qdzh},zdzh=#{zdzh},qzlc=#{qzlc},xzqhdm=#{xzqhdm},
 		xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
-		yhnr=#{yhnr},bz=#{bz} where id=#{id}
+		yhnr=#{yhnr},bz=#{bz}
+		<if test="xmklx != null">
+			,xmklx=#{xmklx}
+		</if>
+		 where id=#{id}
 	</update>
 
 	<select id="selectGpsroad" parameterType="hashmap" resultType="jckabgc">

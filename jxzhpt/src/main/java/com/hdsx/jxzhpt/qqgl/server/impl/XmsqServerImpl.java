@@ -531,17 +531,37 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public List<Lx> queryLsjlxx(Xmsq xmsq) {
-		Xmsq x1=queryOne("queryLsjlxxxmbm", xmsq);
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
+		List<Xmsq> x1=queryList("queryLsjlxxxmbm", xmsq);
 		List<Lx> l=new ArrayList<Lx>();
-		if(x1!=null){
-			x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
-			l=queryList("queryLsjlxx",x1);
+		if(x1.size()>0){
+			String Lsxmid="";
+			for (Xmsq x : x1) {
+				Lsxmid+=x.getLsxmid()+",";
+			}
+			if(!"".equals(Lsxmid)){
+				Lsxmid=Lsxmid.substring(0, Lsxmid.length()-2);
+				xmsq.setLsxmid("'"+Lsxmid.replaceAll(",", "','")+"'");
+			}
+			//x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
+			l=queryList("queryLsjlxx",xmsq);
 		}
 		
 		return l;
 	}
 	@Override
 	public Lx querysfwnxmk(Xmsq xmsq) {
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
 		Lx x1=queryOne("querysfwnxmkxmbm", xmsq);
 		if("是".equals(x1.getWnxmk())){
 			//System.out.println(x1);
@@ -553,19 +573,45 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public Lx querysflsjl(Xmsq xmsq) {
-		
-		Lx x1=queryOne("querysflsjlxmbm", xmsq);
-		//System.out.println(x1);
-		if("是".equals(x1.getLsjl())){
-		x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
+		List<Lx> x1=queryList("querysflsjlxmbm", xmsq);
+		String lsxmid="";
+		String xmbm="";
+		if(x1.size()>0)
+		for (Lx lx : x1) {
+			if("是".equals(lx.getLsjl())){
+				lsxmid+=lx.getLsxmid()+",";
+				xmbm+=lx.getLsxmbm()+",";
+			}
 		}
-		return x1;
+		Lx lx=new Lx();
+		if(!"".equals(lsxmid)){
+			lx.setLsjl("是");
+			lsxmid=lsxmid.substring(0, lsxmid.length()-2);
+			xmbm=xmbm.substring(0, xmbm.length()-2);
+			lx.setLsxmid("'"+lsxmid.replaceAll(",", "','")+"'");
+		}else{
+			lx.setLsjl("否");
+		}
+		return lx;
 	}
 	@Override
 	public Lx querysflsjldg(Xmsq xmsq) {
 		List<Lx> l = queryList("queryLxbyxmsq",xmsq);
 		
-		Lx x1=null;
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
+		
+		Lx x1=new Lx();
 		String xmid="";
 		String xmbm="";
 		String lsjl="否";
@@ -574,98 +620,183 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			if(lx.getQdzh()==null||lx.getZdzh()==null)
 				continue;
 			Xmsq x=new Xmsq();
-			Lx xx=new Lx();
 			x.setYlxbh(lx.getLxbm());
 			x.setQdzh(lx.getQdzh());
 			x.setZdzh(lx.getZdzh());
 			x.setXmbm(lx.getXmid());
-			
-			xx=queryOne("querysflsjlxmbm", x);
-			if("是".equals(xx.getLsjl())){
-				xmid+=xx.getLsxmid()+",";
-				xmbm+=xx.getLsxmbm()+",";
-				lsjl="是";
+			if(lx.getGxlxbm()!=null)
+			x.setGxlxbm(lx.getGxlxbm());
+			else x.setGxlxbm("");
+			if(lx.getGxqdzh()!=null)
+			x.setGxqdzh(lx.getGxqdzh());
+			else x.setGxqdzh("");
+			if(lx.getGxzdzh()!=null)
+			x.setGxzdzh(lx.getGxzdzh());
+			else x.setGxzdzh("");
+
+			List<Lx> xx=queryList("querysflsjlxmbm", x);
+			if(xx.size()>0)
+			for (Lx lx2 : xx) {
+				if("是".equals(lx2.getLsjl())){
+					xmid+=lx2.getLsxmid()+",";
+					xmbm+=lx2.getLsxmbm()+",";
+					lsjl="是";
+				}
 			}
+			
 		}
-		x1=queryOne("querysflsjlxmbm", xmsq);
-		if("是".equals(lsjl)){
-			x1.setLsjl(lsjl);
-		}
+		
+		List<Lx> xx1=queryList("querysflsjlxmbm", xmsq);
+		if(xx1.size()>0)
+			for (Lx lx : xx1) {
+				if("是".equals(lx.getLsjl())){
+					xmid+=lx.getLsxmid()+",";
+					xmbm+=lx.getLsxmbm()+",";
+					lsjl="是";
+					x1.setLsjl(lsjl);
+				}
+			}
+		
 		if("是".equals(x1.getLsjl())){
 			String xmbm1=xmbm+x1.getLsxmbm();
 			String xmid1=xmid+x1.getLsxmid();
 			if(",".equals(xmbm1.substring(xmbm1.length()-2))){
+				lsjl="是";
 				xmbm1=xmbm1.substring(0, xmbm1.length()-2);
 				xmid1=xmid1.substring(0, xmid1.length()-2);
 			}
+			
 			x1.setLsxmbm(xmbm1);
 			x1.setLsxmid(xmid1);
 		x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
 		}
+		x1.setLsjl(lsjl);
 		return x1;
 		
 	}
 	
 	@Override
 	public Lx querysfwnlsjl(Xmsq xmsq) {
-		
-		Lx x1=queryOne("querysfwnlsjlxmbm", xmsq);
-		//System.out.println(x1);
-		if("是".equals(x1.getLsjl())){
-		x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
+		List<Lx> x1=queryList("querysfwnlsjlxmbm", xmsq);
+		String lsxmid="";
+		String xmbm="";
+		if(x1.size()>0)
+		for (Lx lx : x1) {
+			if("是".equals(lx.getLsjl())){
+				lsxmid+=lx.getLsxmid()+",";
+				xmbm+=lx.getLsxmbm()+",";
+			}
 		}
-		return x1;
+		Lx lx=new Lx();
+		if(!"".equals(lsxmid)){
+			lx.setLsjl("是");
+			lsxmid=lsxmid.substring(0, lsxmid.length()-2);
+			xmbm=xmbm.substring(0, xmbm.length()-2);
+			lx.setLsxmid("'"+lsxmid.replaceAll(",", "','")+"'");
+		}else{
+			lx.setLsjl("否");
+		}
+
+		//System.out.println(x1);
+		//if("是".equals(x1.getLsjl())){
+		//x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
+		//}
+		return lx;
 	}
 	@Override
 	public Lx querysfwnlsjldg(Xmsq xmsq) {
 		List<Lx> l = queryList("queryLxbyxmsq",xmsq);
-		
-		Lx x1=null;
+		if(xmsq.getGxlxbm()==null)
+			xmsq.setGxlxbm("");
+		if(xmsq.getGxqdzh()==null)
+			xmsq.setGxqdzh("");
+		if(xmsq.getGxzdzh()==null)
+			xmsq.setGxzdzh("");
+		Lx x1=new Lx();
 		String xmid="";
 		String xmbm="";
 		String lsjl="否";
 		if(l.size()>0)
+		
 		for (Lx lx : l) {
 			if(lx.getQdzh()==null||lx.getZdzh()==null)
 				continue;
 			Xmsq x=new Xmsq();
-			Lx xx=new Lx();
 			x.setYlxbh(lx.getLxbm());
-			
 			x.setQdzh(lx.getQdzh());
 			x.setZdzh(lx.getZdzh());
 			x.setXmbm(lx.getXmid());
 			x.setXmnf(xmsq.getXmnf());
-			x.setXzqhdm(xmsq.getXzqhdm());
-			xx=queryOne("querysfwnlsjlxmbm", x);
-			if("是".equals(xx.getLsjl())){
-				xmid+=xx.getLsxmid()+",";
-				xmbm+=xx.getLsxmbm()+",";
-				lsjl="是";
+			x.setXzqhdm(lx.getXzqhdm());
+			if(lx.getGxlxbm()!=null)
+			x.setGxlxbm(lx.getGxlxbm());
+			else x.setGxlxbm("");
+			if(lx.getGxqdzh()!=null)
+			x.setGxqdzh(lx.getGxqdzh());
+			else x.setGxqdzh("");
+			if(lx.getGxzdzh()!=null)
+			x.setGxzdzh(lx.getGxzdzh());
+			else x.setGxzdzh("");
+			List<Lx> xx=queryList("querysfwnlsjlxmbm", x);
+			if(xx.size()>0){
+			for (Lx lx2 : xx) {
+				
+				if("是".equals(lx2.getLsjl())){
+					xmid+=lx2.getLsxmid()+",";
+					xmbm+=lx2.getLsxmbm()+",";
+					lsjl="是";
+				}
+			  }
+			}
+			
+		}
+		
+		List<Lx> xx1=queryList("querysfwnlsjlxmbm", xmsq);
+		if(xx1.size()>0){
+			for (Lx lx : xx1) {
+				if("是".equals(lx.getLsjl())){
+					xmid+=lx.getLsxmid()+",";
+					xmbm+=lx.getLsxmbm()+",";
+					x1.setLsjl(lsjl);
+					lsjl="是";
+				}
 			}
 		}
-		x1=queryOne("querysfwnlsjlxmbm", xmsq);
-		if("是".equals(lsjl)){
-			x1.setLsjl(lsjl);
-		}
+		
 		if("是".equals(x1.getLsjl())){
 			String xmbm1=xmbm+x1.getLsxmbm();
 			String xmid1=xmid+x1.getLsxmid();
 			if(",".equals(xmbm1.substring(xmbm1.length()-2))){
 				xmbm1=xmbm1.substring(0, xmbm1.length()-2);
 				xmid1=xmid1.substring(0, xmid1.length()-2);
+				lsjl="是";
 			}
+			
 			x1.setLsxmbm(xmbm1);
 			x1.setLsxmid(xmid1);
 		x1.setLsxmid("'"+x1.getLsxmid().replaceAll(",", "','")+"'");
 		}
+		x1.setLsjl(lsjl);
 		return x1;
 		
 	}
 	@Override
 	public Lx querysfwnxmkdg(Xmsq xmsq) {
 		List<Lx> l = queryList("queryLxbyxmsq",xmsq);
-		System.out.println(xmsq.getJdbs());
+		//System.out.println(xmsq.getXmbm()+"-------------");
+			if(xmsq.getGxlxbm()==null)
+				xmsq.setGxlxbm("");
+			if(xmsq.getGxqdzh()==null)
+				xmsq.setGxqdzh("");
+			if(xmsq.getGxzdzh()==null)
+				xmsq.setGxzdzh("");
+		//System.out.println(xmsq.getJdbs());
 		Lx x1=null;
 		String xmid="";
 		String xmbm="";
@@ -691,15 +822,18 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			else x.setGxzdzh("");
 			
 			xx=queryOne("querysfwnxmkxmbm", x);
+			//System.out.println("---------");
 			if("是".equals(xx.getWnxmk())){
 				xmid+=xx.getWnxmid()+",";
 				xmbm+=xx.getWnxmbm()+",";
 				lsjl="是";
 			}
 		}
+		//System.out.println(xmsq.getXmbm()+"-------------");
 		x1=queryOne("querysfwnxmkxmbm", xmsq);
-		if("是".equals(lsjl)){
+		if("是".equals(x1.getWnxmk())){
 			x1.setWnxmk(lsjl);
+			lsjl="是";
 		}
 		if("是".equals(x1.getWnxmk())){
 			String xmbm1=xmbm+x1.getWnxmbm();
@@ -707,13 +841,15 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			if(",".equals(xmbm1.substring(xmbm1.length()-2))){
 				xmbm1=xmbm1.substring(0, xmbm1.length()-2);
 				xmid1=xmid1.substring(0, xmid1.length()-2);
+				lsjl="是";
 			}
 			x1.setWnxmbm(xmbm1);
 			x1.setWnxmid(xmid1);
 		x1.setWnxmid("'"+x1.getWnxmid().replaceAll(",", "','")+"'");
 		x1.setWnxmbm("'"+x1.getWnxmbm().replaceAll(",", "','")+"'");
 		}
-		System.out.println(x1.getWnxmk());
+		x1.setWnxmk(lsjl);
+		//System.out.println(x1.getWnxmk());
 		return x1;
 	}
 }

@@ -62,9 +62,13 @@ var zdStr;
 				$("#yhlc").focus();
 				return false;
 			}
+			if($('#xmklx').combobox('getValue')==''){
+				alert('请选择项目库类型');
+				return;
+			}
 			var data ="id="+parent.rowid+"&lxbm="+$("#lxbm").html()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&qdzh="+$("#qdzh").val()
 			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#qzlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
-			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
+			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()+"&xmklx="+$('#xmklx').combobox('getValue');
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmjck/updateAbgcById.do',
@@ -113,6 +117,7 @@ var zdStr;
 			$("#tsdq").html(msg.tsdq);
 			$("#yhnr").val(msg.yhnr);
 			$("#bz").val(msg.bz);
+			$("#xmklx").combobox("setValue",msg.xmklx);
 			qdStr=parseFloat(msg.qdzh);
 			zdStr=parseFloat(msg.zdzh);
 			$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
@@ -184,7 +189,15 @@ var zdStr;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 30px;width:15%" align="left">
 					<span id="xmtype"></span></td>
-				<td colspan="2" style="background-color: #ffffff; height: 30px;width:15%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患内容：</td>

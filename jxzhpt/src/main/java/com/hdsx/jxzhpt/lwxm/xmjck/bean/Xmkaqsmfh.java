@@ -217,9 +217,17 @@ public class Xmkaqsmfh {
 	    /*shm*/
 	    private String throadname;
 	    
+	    private String xmklx;//项目库类型
 	    
-	    
-	    public String getThroadname() {
+	    public String getXmklx() {
+			return xmklx;
+		}
+
+		public void setXmklx(String xmklx) {
+			this.xmklx = xmklx;
+		}
+
+		public String getThroadname() {
 			return throadname;
 		}
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq<if test="xmklx != null">,xmklx</if>)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq}<if test="xmklx != null">,#{xmklx}</if>)
 </insert>
  
  <select id="selectJckzhfz" parameterType="jckzhfz" resultType="jckzhfz">
@@ -84,7 +84,11 @@
  <update id="updateJckzhfz" parameterType="jckzhfz" >
  	update xmk_zhfz set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},qdzh=#{qdzh},zdzh=#{zdzh},
  	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
- 	yhnr=#{yhnr},bz=#{bz} where id=#{id}
+ 	yhnr=#{yhnr},bz=#{bz}
+ 	<if test="xmklx != null">
+		,xmklx=#{xmklx}
+	</if>
+		 where id=#{id}
  </update>
  
   <delete id="deleteJckzhfz" parameterType="java.util.List" >

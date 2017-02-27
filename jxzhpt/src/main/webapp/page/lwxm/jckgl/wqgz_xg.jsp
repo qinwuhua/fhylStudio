@@ -60,6 +60,7 @@ $(function(){
 function loadxx(){
 	var item=parent.obj;
 	selectTSDQ(item.xzqhdm);
+	
 	$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
 	$("#qlbh").html(item.qlbh);$("#qlmc").html(item.qlmc);$("#qlzxzh").html(parseFloat(item.qlzxzh));
 	$("#gydw").html(item.gydw);$("#xzqhdm").html(item.xzqhdm);$("#xzqhmc").html(item.xzqhmc);
@@ -77,6 +78,7 @@ function loadxx(){
 	$("#qtlx").val(item.qtlx);$("#pzlx").val(item.pzlx);
 	$("#sfylrbwqk").html(item.sfylrbwqk);
 	$("#xmnf").combobox('setValue',item.xmnf);
+	$("#xmklx").combobox("setValue",item.xmklx);
 	$("#xlxbm").val(item.xlxbm);$("#xlxmc").val(item.xlxmc);$("#xqlbm").val(item.xqlbm);$("#xzxzh").val(item.xzxzh);
 	$("#jd").val(item.ptx);$("#wd").val(item.pty);
 }
@@ -177,13 +179,17 @@ function loadUploadify(){
 }
 
 function saveWqgz(){
+	if($('#xmklx').combobox('getValue')==''){
+		alert('请选择项目库类型');
+		return;
+	}
 	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val().replace(/%/g, "%25")+"&jckwqgzsj.bz="+$("#bz").val().replace(/%/g, "%25")+
 	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val().replace(/%/g, "%25")+"&jckwqgzsj.id="+xmbm
 	+"&jckwqgzsj.sqs="+$("#sqs").val()+"&jckwqgzsj.xsq="+$("#xsq").val()+"&jckwqgzsj.szxz="+$("#szxz").val()
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()+"&jckwqgzsj.jsdj="+$("#jsdj").html()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()+"&jckwqgzsj.xmklx="+$('#xmklx').combobox('getValue')
 	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk=是";
 	//alert(data);
 	$.ajax({
@@ -403,8 +409,17 @@ function saveWqgz(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qlyhgcs" /></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁监管工程师：</td>
-				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="qljggcs" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

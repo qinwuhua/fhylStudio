@@ -50,6 +50,7 @@
 			$("#bhnr").html(msg.bhnr);
 			$("#bz").html(msg.bz);
 			$("#tsdq").html(msg.tsdq);
+			$("#xmklx").html(msg.xmklx);
 			}
 		});
 	}		
@@ -145,8 +146,10 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xmtype"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id='xmklx'></span>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>

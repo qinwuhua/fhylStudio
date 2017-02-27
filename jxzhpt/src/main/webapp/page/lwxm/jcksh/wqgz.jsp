@@ -190,6 +190,16 @@ text-decoration:none;
                          <tr height="32">
                               <td>桥梁名称：</td>
                               	<td><input type="text" id="qlmc"style="width:70px"/></td>
+                              
+                              <td>项目库类型：</td>
+								<td " style="background-color: #ffffff; height: 20px;" align="left">
+									<select class="easyui-combobox" id='xmklx'>
+										<option value="" selected>请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+										
+									</select>
+								</td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />

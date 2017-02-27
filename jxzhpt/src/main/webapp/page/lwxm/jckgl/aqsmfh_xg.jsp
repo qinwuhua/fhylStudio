@@ -49,6 +49,7 @@ text-decoration:none;
 			$("#ldfl2").val(item.ldfl);$("#pcsj2").val(item.pcsj);$("#sgpb").val(item.sgpb);$("#dgjw").val(item.dgjw);$("#lxjw").val(item.lxjw);$("#jtlpbzb").val(item.jtlpbzb);$("#gldj2").val(item.gldj);
 		}
 		$("#xuh").val(item.xuh);
+		$("#xmklx").combobox("setValue",item.xmklx);
 		$("#roadcode").val(item.roadcode);$("#roadname").val(item.roadname);$("#unit").val(item.unit);$("#unitcode").val(item.unitcode);$("#roadstart").val(item.roadstart);
 		$("#roadend").val(item.roadend);$("#dist").val(item.dist);$("#distcode").val(item.distcode);$("#xjgjnd").val(item.xjgjnd);
 		$("#province").val(item.province);$("#town").val(item.town);$("#county").val(item.county);$("#throadcode").val(item.throadcode);$("#throadstart").val(item.throadstart);$("#throadend").val(item.throadend);
@@ -218,14 +219,17 @@ text-decoration:none;
 		var zlc=jszlc($("#roadstart").val(),$("#roadend").val());
 		var qd=$("#roadstart").val().substr(1,$("#roadstart").val().length-1).replace('+','.');
 		var zd=$("#roadend").val().substr(1,$("#roadend").val().length-1).replace('+','.');
-		
+		if($('#xmklx').combobox('getValue')==''){
+			alert('请选择项目库类型');
+			return;
+		}
 		var data ="xmkaqsmfh.roadcode="+$("#roadcode").val()+"&xmkaqsmfh.roadname="+$("#roadname").val()+"&xmkaqsmfh.unit="+$("#unit").val()+"&xmkaqsmfh.unitcode="+$("#unitcode").val()+"&xmkaqsmfh.roadstart="+$("#roadstart").val().replace(/\+/g,"%2B")
 		+"&xmkaqsmfh.roadend="+$("#roadend").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.zlc="+zlc+"&xmkaqsmfh.dist="+$("#dist").val()+"&xmkaqsmfh.distcode="+$("#distcode").val()+"&xmkaqsmfh.xjgjnd="+$("#xjgjnd").val()+"&xmkaqsmfh.xuh="+$("#xuh").val()+
 		"&xmkaqsmfh.province="+$("#province").val()+"&xmkaqsmfh.town="+$("#town").val()+"&xmkaqsmfh.county="+$("#county").val()+"&xmkaqsmfh.throadcode="+$("#throadcode").val()+"&xmkaqsmfh.throadstart="+$("#throadstart").val().replace(/\+/g,"%2B")+"&xmkaqsmfh.throadend="+$("#throadend").val().replace(/\+/g,"%2B")
 		+"&xmkaqsmfh.lxxp="+$("#lxxp").val()+"&xmkaqsmfh.doup="+$("#doup").val()+"&xmkaqsmfh.sjbl="+$("#sjbl").val()+"&xmkaqsmfh.lcxy="+$("#lcxy").val()+"&xmkaqsmfh.hjfz="+$("#hjfz").val()+"&xmkaqsmfh.xchbc="+$("#xchbc").val()
 		+"&xmkaqsmfh.csxsss="+$("#csxsss").val()+"&xmkaqsmfh.hul="+$("#hul").val()+"&xmkaqsmfh.bzbx="+$("#bzbx").val()+"&xmkaqsmfh.jshsxyd="+$("#jshsxyd").val()+"&xmkaqsmfh.aqssqt="+$("#aqssqt").val()+"&xmkaqsmfh.tjgc="+$("#tjgc").val()
 		+"&xmkaqsmfh.hjzz="+$("#hjzz").val()+"&xmkaqsmfh.bzbxcz="+$("#bzbxcz").val()+"&xmkaqsmfh.jckcz="+$("#jckcz").val()+"&xmkaqsmfh.jzhl="+$("#jzhl").val()+"&xmkaqsmfh.jshsxydcz="+$("#jshsxydcz").val()+"&xmkaqsmfh.aqssqtcz="+$("#aqssqtcz").val()
-		+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox('getValue')+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.id="+parent.obj.id+"&xmkaqsmfh.gpsqd="+qd+"&xmkaqsmfh.gpszd="+zd;
+		+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox('getValue')+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.id="+parent.obj.id+"&xmkaqsmfh.gpsqd="+qd+"&xmkaqsmfh.gpszd="+zd+"&xmkaqsmfh.xmklx="+$('#xmklx').combobox('getValue');
 		if(jsdjmb==1){
 			data+="&xmkaqsmfh.jsdj="+$("#jsdj1").val()+"&xmkaqsmfh.fangx="+$("#fangx1").val()
 			+"&xmkaqsmfh.ldfl="+$("#ldfl1").val()+"&xmkaqsmfh.pcsj="+$("#pcsj1").val()+"&xmkaqsmfh.jtsgpcf="+$("#jtsgpcf").val()+"&xmkaqsmfh.jtsgfxdj="+$("#jtsgfxdj").val()+"&xmkaqsmfh.gltjpcf="+$("#gltjpcf").val()+"&xmkaqsmfh.glfxdj="+$("#glfxdj").val()+"&xmkaqsmfh.xbjyqx="+$("#xbjyqx").val()+"&xmkaqsmfh.jckbgf="+$("#jckbgf").val()+"&xmkaqsmfh.jtl="+$("#jtl").val()+"&xmkaqsmfh.gldj="+$("#gldj1").val();
@@ -537,6 +541,17 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修改建年度(年)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text"  id="xjgjnd" style="width: 156px" /></td>
+				</tr>
+				<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td colspan="5" " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
 				</tr>
 				<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>

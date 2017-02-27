@@ -224,7 +224,7 @@
 				}
 			} 
 			
-			var datas='xmsq.ylxbh='+$("#ylxbh").val()+'&xmsq.qdzh='+$("#qdzh").val()+'&xmsq.zdzh='+$("#zdzh").val()+'&xmsq.xmbm='+$("#xmbm").val();
+			var datas='xmsq.ylxbh='+$("#ylxbh").val()+'&xmsq.qdzh='+$("#qdzh").val()+'&xmsq.zdzh='+$("#zdzh").val()+'&xmsq.gxlxbm='+$("#gxlxbm").val()+'&xmsq.gxqdzh='+$("#gxqdzh").val()+'&xmsq.gxzdzh='+$("#gxzdzh").val()+'&xmsq.xmbm='+$("#xmbm").val();
 			//alert(datas);
 			$.ajax({
 				type:'post',

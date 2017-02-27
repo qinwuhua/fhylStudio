@@ -756,6 +756,9 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setXmbm(lxsh.getXmbm());
 			xmsq.setYlxbh(lxsh.getGhlxbh());
 			xmsq.setQdzh(lxsh.getQdzh());
+			xmsq.setGxlxbm(lxsh.getGxlxbm());
+			xmsq.setGxqdzh(lxsh.getGxqdzh());
+			xmsq.setGxzdzh(lxsh.getGxzdzh());
 			xmsq.setZdzh(lxsh.getZdzh());
 			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
@@ -777,7 +780,9 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setYlxbh(lxsh.getGhlxbh());
 			xmsq.setQdzh(lxsh.getQdzh());
 			xmsq.setZdzh(lxsh.getZdzh());
-			
+			xmsq.setGxlxbm(lxsh.getGxlxbm());
+			xmsq.setGxqdzh(lxsh.getGxqdzh());
+			xmsq.setGxzdzh(lxsh.getGxzdzh());
 			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
 			if("是".equals(x2.getLsjl())){
@@ -799,6 +804,9 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setYlxbh(lxsh.getXjlxbm());
 			xmsq.setQdzh(lxsh.getXjqdzh());
 			xmsq.setZdzh(lxsh.getXjzdzh());
+			xmsq.setGxlxbm(lxsh.getGxlxbm());
+			xmsq.setGxqdzh(lxsh.getGxqdzh());
+			xmsq.setGxzdzh(lxsh.getGxzdzh());
 			if(isNumeric(lxsh.getQdzh())&&isNumeric(lxsh.getZdzh())){
 				Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
 				lxsh.setLsjl(x2.getLsjl());
@@ -866,6 +874,9 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setZdzh(lxsh.getZdzh());
 			xmsq.setXmnf(lxsh.getXmnf());
 			xmsq.setXzqhdm(lxsh.getXzqhdm());
+			xmsq.setGxlxbm(lxsh.getGxlxbm());
+			xmsq.setGxqdzh(lxsh.getGxqdzh());
+			xmsq.setGxzdzh(lxsh.getGxzdzh());
 			xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
 			Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
@@ -891,6 +902,9 @@ public class WnjhController extends BaseActionSupport{
 		xmsq.setQdzh(lxsh.getQdzh());
 		xmsq.setZdzh(lxsh.getZdzh());
 		xmsq.setXmnf(lxsh.getXmnf());
+		xmsq.setGxlxbm(lxsh.getGxlxbm());
+		xmsq.setGxqdzh(lxsh.getGxqdzh());
+		xmsq.setGxzdzh(lxsh.getGxzdzh());
 		xmsq.setXzqhdm(lxsh.getXzqhdm());
 		xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
 		Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
@@ -923,6 +937,9 @@ public class WnjhController extends BaseActionSupport{
 		xmsq.setZdzh(lxsh.getZdzh());
 		xmsq.setXmnf(lxsh.getXmnf());
 		xmsq.setXzqhdm(lxsh.getXzqhdm());
+		xmsq.setGxlxbm("");
+		xmsq.setGxqdzh("");
+		xmsq.setGxzdzh("");
 		xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
 		if(isNumeric(lxsh.getQdzh())&&isNumeric(lxsh.getZdzh())){
 			Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);

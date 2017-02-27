@@ -813,7 +813,8 @@ function jckshWqgz(){
 			 	'akjfl':akjfl,
 			 	'lxbm':$("#lxbm").val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':tsdq
+			 	'tsdq':tsdq,
+			 	'xmklx':$('#xmklx').combobox('getValue')
 			},
 		    striped:true,
 		    pagination:true,
@@ -855,16 +856,16 @@ function jckshWqgz(){
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+"&shzt="+$('#shzt').combobox("getValue")+
  	"&tsdq="+tsdq+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+"&lxbm="+$("#lxbm").val()+
- 	"&qlbh="+$("#qlbh").val();
-$.ajax({
-	 type : "POST",
-	 url : "/jxzhpt/xmjck/selectWqgzShCount.do",
-	 dataType : 'json',
-	 data : data,
-	 success : function(msg){
-		 $("#wqgz1").html(msg);
-	 },
-});
+ 	"&qlbh="+$("#qlbh").val()+"&xmklx="+$("#xmklx").combobox('getValue');
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/xmjck/selectWqgzShCount.do",
+		 dataType : 'json',
+		 data : data,
+		 success : function(msg){
+			 $("#wqgz1").html(msg);
+		 },
+	});
 }
 
 function jckshWqgz123(){

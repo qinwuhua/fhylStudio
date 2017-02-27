@@ -58,9 +58,13 @@ var zdStr;
 				alert("对不起，隐患里程不能大于总里程！");
 				return false;
 			}
+			if($('#xmklx').combobox('getValue')==''){
+				alert('请选择项目库类型');
+				return;
+			}
 			var data ="id="+parent.rowid+"&lxbm="+$("#lxbm").html()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&qdzh="+$("#qdzh").val()
 			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#qzlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
-			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
+			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()+"&xmklx="+$('#xmklx').combobox('getValue');
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmjck/updateZhfzById.do',
@@ -106,6 +110,7 @@ var zdStr;
 			$("#tsdq").html(msg.tsdq);
 			$("#yhlc").val(msg.yhlc);
 			$("#xmnf").combobox("setValue",msg.xmnf);
+			$("#xmklx").combobox("setValue",msg.xmklx);
 			$("#xmtype").html(msg.xmtype);
 			$("#yhnr").val(msg.yhnr);
 			$("#bz").val(msg.bz);
@@ -117,7 +122,8 @@ var zdStr;
 		});
 	}
 	function changeZlc(){
-		var zlc=Math.abs(((parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000);
+		var zlc1=((parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000);
+		var zlc=Math.abs(zlc1);
 		$("#qzlc").html(zlc.toFixed(3));
 	}
 </script>
@@ -180,7 +186,15 @@ var zdStr;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 30px;width:15%" align="left">
 					<span id="xmtype"></span></td>
-				<td colspan="2" style="background-color: #ffffff; height: 30px;width:15%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患内容：</td>

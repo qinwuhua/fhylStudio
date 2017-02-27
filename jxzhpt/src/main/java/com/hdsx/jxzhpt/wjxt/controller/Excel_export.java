@@ -11,6 +11,7 @@ import javax.xml.ws.Response;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -619,8 +620,12 @@ public class Excel_export {
 		}
 		for (int i = 0; i <=maxy ; i++) {
 			sheet.setColumnWidth(i, 32 * 150);//设置固定宽度150
-			//sheet.autoSizeColumn((short)i); 自动适应宽度
+			//sheet.autoSizeColumn((short)i); //自动适应宽度
 		}
+		HSSFPrintSetup printSetup = sheet.getPrintSetup();
+		printSetup.setLandscape(true);
+		printSetup.setPaperSize(HSSFPrintSetup.A3_PAPERSIZE); // 纸张
+		
 		for (Excel_tilte excel_tilte : et){
 			int x1=excel_tilte.getX1();
 			int x2=excel_tilte.getX2();

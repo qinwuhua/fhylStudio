@@ -647,7 +647,33 @@
 		where id=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
-		update wnjh_LMGZ set lxmc=#{lxmc},ghlxbh=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq},yhdk=#{yhdk},bz=#{bz},xmmc=#{xmmc},xmnf=#{xmnf},gz=#{gz},sz=#{sz},lsjl=#{lsjl}
+		update wnjh_LMGZ set lxmc=#{lxmc}
+		,ghlxbh=#{ghlxbh}
+		,qdzh=#{qdzh}
+		,zdzh=#{zdzh}
+		,qdmc=#{qdmc}
+		,zdmc=#{zdmc}
+		,lc=#{lc}
+		,jsxz=#{jsxz}
+		,jsjsdj=#{jsjsdj}
+		,xjsdj=#{xjsdj}
+		,jhkgn=#{jhkgn}
+		,jhwgn=#{jhwgn}
+		,tz=#{tz}
+		,bzys=#{bzys}
+		,dfzc=#{dfzc}
+		,gydw=#{gydw}
+		,gydwdm=#{gydwdm}
+		,xzqhdm=#{xzqhdm}
+		,xzqh=#{xzqh}
+		,tsdq=#{tsdq}
+		,yhdk=#{yhdk}
+		,bz=#{bz}
+		,xmmc=#{xmmc}
+		,xmnf=#{xmnf}
+		,gz=#{gz}
+		,sz=#{sz}
+		<if test="lsjl !=null">,lsjl=#{lsjl}</if>
 		<if test="ghxlxbm !=null">,ghxlxbm=#{ghxlxbm}</if>
 		<if test="ghxlxmc !=null">,ghxlxmc=#{ghxlxmc}</if>
 		<if test="xmklx !=null">,xmklx=#{xmklx}</if>

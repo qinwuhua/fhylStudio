@@ -342,6 +342,9 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
  		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -385,6 +388,9 @@
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
+ 		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
  		</if>
  </select>
 

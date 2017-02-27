@@ -150,6 +150,14 @@ public class Jckwqgzsj implements Serializable{
 	private String gldj;
 	private String nsqsjl;
 	private String xqlmc;
+	private String xmklx;//项目库类型
+	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getNsqsjl() {
 		return nsqsjl;
 	}

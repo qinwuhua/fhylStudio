@@ -7,12 +7,12 @@
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
 		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,
-		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh,xxcsj<if test="xqlmc != null">,xqlmc</if>) 
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh,xxcsj<if test="xqlmc != null">,xqlmc</if><if test="xmklx != null">,xmklx</if>) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
 		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},
-		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh},'是'<if test="xqlmc != null">,#{xqlmc}</if>)
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh},'是'<if test="xqlmc != null">,#{xqlmc}</if><if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -444,6 +444,9 @@
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},jsdj=#{jsdj},
  			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk},xlxbm=#{xlxbm},xlxmc=#{xlxmc},xqlbm=#{xqlbm},xzxzh=#{xzxzh},ptx=#{ptx},pty=#{pty}
  			<if test="xqlmc != null">,xqlmc=#{xqlmc}</if>
+ 			<if test="xmklx != null">
+			,xmklx=#{xmklx}
+			</if>
  			where id=#{id}
  		</update>
  		

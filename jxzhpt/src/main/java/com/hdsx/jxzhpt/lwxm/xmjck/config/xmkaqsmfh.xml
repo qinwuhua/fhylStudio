@@ -532,6 +532,7 @@
 	      <if test="xuh != null" >
 	        xuh,
 	      </if>
+	      <if test="xmklx != null">xmklx,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 			sys_guid(),
@@ -727,6 +728,7 @@
 			<if test="xuh != null">
 				#{xuh},
 			</if>
+			<if test="xmklx != null">#{xmklx},</if>
 	    </trim>
 	  </insert>
 	  <update id="updateAqsmfhxmk" parameterType="xmkaqsmfh">
@@ -921,6 +923,9 @@
 		      <if test="xuh != null" >
 		        xuh = #{xuh},
 		      </if>
+		      <if test="xmklx != null">
+					xmklx=#{xmklx},
+				</if>
 		    </set>
 		    where id=#{id}
 	  </update>

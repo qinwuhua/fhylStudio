@@ -160,10 +160,14 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
+		if($('#xmklx').combobox('getValue')==''){
+			alert('请选择项目库类型');
+			return;
+		}
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+"&tsdq="+$("#tsdq").html()+
 		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmzt").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+sbthcd;
+		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+sbthcd+"&xmklx="+$('#xmklx').combobox('getValue');
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertZhfz.do',
@@ -266,7 +270,15 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmzt"></span>	</td>
-				<td colspan="2" style="background-color: #ffffff; height: 30px;width:15%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型：</td>
+				<td " style="background-color: #ffffff; height: 20px;" align="left">
+					<select class="easyui-combobox" id='xmklx'>
+						<option value="" selected>请选择</option>
+						<option value="部库">部库</option>
+						<option value="省库">省库</option>
+						
+					</select>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患内容：</td>
