@@ -223,7 +223,6 @@ function queryLkpd(){
 	else if(selRow.length!=1){
 		alert("只能选择一条数据！");return;
 	}else{
-// 		$("#lkpdDiv").show();
 		loadGrid(selRow[0].ylxbh,selRow[0].qdzh,selRow[0].zdzh);
 		queryBar(selRow[0].ylxbh,selRow[0].qdzh,selRow[0].zdzh);
 	}
@@ -250,19 +249,19 @@ function loadGrid(lxbh,qdzh,zdzh){
 			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
 	        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
 	        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
-	        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
-	        {field:'pqi',title:'路面PQI',width:120,align:'center',rowspan:2},
+	        {field:'mqi',title:'MQI',width:100,align:'center',rowspan:2},
+	        {field:'pqi',title:'路面PQI',width:100,align:'center',rowspan:2},
 	        {title:'路面分项指标',colspan:5},
 	        {field:'sci',title:'路基SCI',width:140,align:'center',rowspan:2},
 	        {field:'bci',title:'桥隧构造物BCI',width:140,align:'center',rowspan:2},
 	        {field:'tci',title:'沿线设施TCI',width:140,align:'center',rowspan:2}
          ],
 		[	
-		    {field:'pci',title:'PCI',width:140,align:'center',rowspan:1},
-	        {field:'rqi',title:'RQI',width:140,align:'center',rowspan:1},
-	        {field:'rdi',title:'RDI',width:140,align:'center',rowspan:1},
-	        {field:'sri',title:'SRI',width:140,align:'center',rowspan:1},
-	        {field:'pssi',title:'PSSI',width:140,align:'center',rowspan:1}
+		    {field:'pci',title:'PCI',width:80,align:'center',rowspan:1},
+	        {field:'rqi',title:'RQI',width:80,align:'center',rowspan:1},
+	        {field:'rdi',title:'RDI',width:80,align:'center',rowspan:1},
+	        {field:'sri',title:'SRI',width:80,align:'center',rowspan:1},
+	        {field:'pssi',title:'PSSI',width:80,align:'center',rowspan:1}
 	    ]  
 	]		
 	});
@@ -398,8 +397,8 @@ text-decoration:none;
 							  <td><span id="ztspan">&nbsp;审核状态</span>：</td>
        						  <td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
 							  <td>项目年份：</td>
-        					  <td><select id="xmnf" style="width:80px;"></select></td>
-							  <td colspan="10">
+        					  <td><select id="xmnf" style="width:100px;"></select></td>
+							  <td>
 							 	<img onclick="queryYhdzx()" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />
 							 	<img onclick="queryLkpd()" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch_02.gif'" alt="查看路况评定" onmouseout="this.src='../../../images/Button/Serch_01.gif'" src="../../../images/Button/Serch_01.gif"  style="border-width:0px;cursor: hand;" />
 							  </td>
@@ -416,7 +415,7 @@ text-decoration:none;
 		  </tr>
 		  <tr>
 		  <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-		   <div class="easyui-tabs"  width="99%">
+		   <div class="easyui-tabs" style="width:1200px;">
 			<div title="路况评定分段信息列表">
 				<table id="grid_lkpd"></table>
 			</div>
