@@ -26,13 +26,27 @@ $(function(){
         checkBox:true,        
     });
 	
-	loadBmbm2("jsdj","技术等级");
-	loadBmbm2("lmlx","路面类型");
-	loadBmbm2("jcfx","方向");
+	loadBmbm3("jsdj","技术等级");
+	loadBmbm3("lmlx","路面类型");
+	loadBmbm3("jcfx","方向");
+	loadBmbm3("mqi","MQI等级");
 	loadGrid();
 });
 
 function loadGrid(){
+	var jsdj=$('#jsdj').combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var lmlx=$('#lmlx').combobox("getValues").join(",");
+	if(lmlx.substr(0,1)==',')
+		lmlx=lmlx.substr(1,lmlx.length);
+	var jcfx=$('#jcfx').combobox("getValues").join(",");
+	if(jcfx.substr(0,1)==',')
+		jcfx=jcfx.substr(1,jcfx.length);
+	var mqi=$('#mqi').combobox("getValues").join(",");
+	if(mqi.substr(0,1)==',')
+		mqi=mqi.substr(1,mqi.length);
+	
 	$("#grid").datagrid({  
 		    border:true,
 			pagination:true,
@@ -44,10 +58,11 @@ function loadGrid(){
 			width:$(window).width()-10,
 			url:'/jxzhpt/tjfx/queryLkpdmx.do',
 			queryParams : {
-				 	'lkmxb.jsdj':$('#jsdj').combobox("getValue"),
-				 	'lkmxb.lmlx':$('#lmlx').combobox("getValue"),
-				 	'lkmxb.jcfx':$('#jcfx').combobox("getValue"),
+				 	'lkmxb.jsdj':jsdj,
+				 	'lkmxb.lmlx':lmlx,
+				 	'lkmxb.jcfx':jcfx,
 				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
+				 	'lkmxb.mqi':mqi,
 				 	'lkmxb.tbnf':$('#lkpdbb').val(),
 				},
 	    columns:[
@@ -55,6 +70,9 @@ function loadGrid(){
 			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
 	        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
 	        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
+	        {field:'jcfx',title:'检查方向',width:120,align:'center',rowspan:2},
+	        {field:'jsdj',title:'技术等级',width:120,align:'center',rowspan:2},
+	        {field:'lmlx',title:'路面类型',width:120,align:'center',rowspan:2},
 	        {field:'mqi',title:'MQI',width:120,align:'center',rowspan:2},
 	        {field:'pqi',title:'路面PQI',width:120,align:'center',rowspan:2},
 	        {title:'路面分项指标',colspan:5},
@@ -114,12 +132,13 @@ text-decoration:none;
 							 </select>
 							 </td>
 							  <td>技术等级：</td>
-							  <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
+							  <td><select id="jsdj" style="width:100px"class="easyui-combobox"></select></td>
 							  <td>路面类型：</td>
-							  <td><select id="lmlx" style="width:105px" class="easyui-combobox"></select></td>
+							  <td><select id="lmlx" style="width:100px" class="easyui-combobox"></select></td>
 							   <td>方向：</td>
 							  <td><select id="jcfx" style="width:70px"class="easyui-combobox"></select></td>
-							  
+							  <td>MQI等级：</td>
+							  <td><select id="mqi" style="width:100px"class="easyui-combobox"></select></td>
 							   <td colspan="10">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;" />
 							  </td>

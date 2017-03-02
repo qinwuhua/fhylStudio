@@ -19,6 +19,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-plain.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-all.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("#roadcode").combobox({
@@ -27,8 +28,8 @@
 				textField : "text",
 				panelHeight:170
 			});
-			loadBmbm2("jsdj","技术等级");
-			
+			loadBmbm3("jsdj","技术等级");
+			xmnf("lkpdbb");
 			$("#query").click(function(){
 				if($("#roadcode").combobox("getValue")==""){
 					alert("请先选择路段！");
@@ -39,11 +40,17 @@
 		});
 		
 		function Query(){
+			var jsdj=$('#jsdj').combobox("getValues").join(",");
+			if(jsdj.substr(0,1)==',')
+				jsdj=jsdj.substr(1,jsdj.length);
+			var lkpdbb=$('#lkpdbb').combobox("getValues").join(",");
+			if(lkpdbb.substr(0,1)==',')
+				lkpdbb=lkpdbb.substr(1,lkpdbb.length);
 			$.ajax({
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkbjfx.do",
 				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jsdj="+$('#jsdj').combobox("getValue")+"&lkmxb.tbnf="+$("#lkpdbb").val(),
+				"&lkmxb.jsdj="+jsdj+"&lkmxb.tbnf="+lkpdbb,
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
@@ -93,7 +100,7 @@
 // 			tciArray.push('55');
 			
 	         var myChart = echarts.init(document.getElementById("anychart_div")); 
-	         var mqi_img=$("#lkpdbb").val()+"年与"+(parseFloat($("#lkpdbb").val())+1)+"年比较分析表";  
+	         var mqi_img="技术状况比较分析表";  
 	         
 	            option1 = {
 	        		    title : {
@@ -214,21 +221,14 @@
         				<div id="searchDiv">
         					<p style="margin:8px 0px 8px 20px;">
         						<span>路况评定版本：</span>
-        						<span>
-        						<select id="lkpdbb" style="width:70px">
-        						<option value="2014">2014年</option>
-        						<option value="2015">2015年</option>
-        						<option value="2016">2016年</option>
-        						<option value="2017">2017年</option>
-        						</select>
-        						</span>
+        						<span><select id="lkpdbb" style="width:150px"class="easyui-combobox"></select></span>
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
         						<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
         						</span>
         						<span>技术等级：</span>
-        						<span><select id="jsdj" style="width:70px"class="easyui-combobox"></select></span>
+        						<span><select id="jsdj" style="width:150px"class="easyui-combobox"></select></span>
         						
         						<img alt="查询" id="query" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
