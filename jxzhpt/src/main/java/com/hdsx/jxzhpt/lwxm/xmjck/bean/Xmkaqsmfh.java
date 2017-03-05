@@ -137,76 +137,77 @@ public class Xmkaqsmfh {
     
 	private int rows;
     
-	    private String gydw;
+    private String gydw;
 
-	    private String gydwdm;
+    private String gydwdm;
 
-	    private String lxbm;
+    private String lxbm;
 
 
-	    private String qdzh;
+    private String qdzh;
 
-	    private String zdzh;
+    private String zdzh;
 
-	    private String lxmc;
+    private String lxmc;
 
-	    private String sbthbmcd;
+    private String sbthbmcd;
 
-	    private String fapgdw;
+    private String fapgdw;
 
-	    private String fascdw;
+    private String fascdw;
 
-	    private String faspsj;
+    private String faspsj;
 
-	    private String spwh;
+    private String spwh;
 
-	    private String czzlc;
+    private String czzlc;
 
-	    private String cztzgs;
+    private String cztzgs;
 
-	    private String jsxz;
+    private String jsxz;
 
-	    private String jsnr;
+    private String jsnr;
 
-	    private String bz;
+    private String bz;
 
-	    private String shzt;
+    private String shzt;
 
-	    private String tbdwdm;
+    private String tbdwdm;
 
-	    private String xmkid;
+    private String xmkid;
 
-	    private String sfsqablbz;
+    private String sfsqablbz;
 
-	    private String ablbzsqwh;
+    private String ablbzsqwh;
 
-	    private String xzqhdm;
+    private String xzqhdm;
 
-	    private String xzqh;
+    private String xzqh;
 
-	    private String shyj;
+    private String shyj;
 
-	    private String xuh;
+    private String xuh;
 
-	    private String xmbm;
+    private String xmbm;
+    
+    private String bzls;
+    
+    private String str1;
+
+    private String str2;
+
+    private String str3;
+
+    private String str4;
+
+    private String str5;
+
+    private String str6;
+
+    private String str7;
 	    
-	    private String bzls;
-	    
-	    private String str1;
-
-	    private String str2;
-
-	    private String str3;
-
-	    private String str4;
-
-	    private String str5;
-
-	    private String str6;
-
-	    private String str7;
-	    
-	    
+	private String lsjl;
+	private String lsxmxx;
 	    
 	    
 	    
@@ -219,7 +220,24 @@ public class Xmkaqsmfh {
 	    
 	    private String xmklx;//项目库类型
 	    
-	    public String getXmklx() {
+	    
+	    public String getLsjl() {
+			return lsjl;
+		}
+
+		public void setLsjl(String lsjl) {
+			this.lsjl = lsjl;
+		}
+
+		public String getLsxmxx() {
+			return lsxmxx;
+		}
+
+		public void setLsxmxx(String lsxmxx) {
+			this.lsxmxx = lsxmxx;
+		}
+
+		public String getXmklx() {
 			return xmklx;
 		}
 

@@ -12,8 +12,10 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Planwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
+import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer {
@@ -418,5 +420,39 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	@Override
 	public boolean lrqqgzsj(Jckwqgzsj jckwqgzsj) {
 		return update("lrqqgzsj", jckwqgzsj)==1;
+	}
+
+	@Override
+	public Zdycx queryLwLsxx(Zdycx z) {
+		List<Zdycx> l = new ArrayList<Zdycx>();//定义一个list来存放路线
+		Zdycx retern=new Zdycx();//定义返回变量
+		String lsjl="否";//默认没有历史
+		String lsxmxx="";//默认没有历史信息
+		//如果是安防审查库编辑，就可能有多段,那个就要查询对应的多段路线
+		if("是".equals(z.getSfafsc())){
+			l=queryList("queryAqsmfhLdByXmbm",z);
+		}
+		//否则就只有一段，将这一段也加入到查询的多段路线中
+		else{
+			l.add(z);
+		}
+		//for循环，查询是否有历史，有的话就拼上历史项目信息，并且将lsjl赋值为是
+		for (Zdycx zdycx : l) {
+			zdycx.setXmnf(z.getXmnf());
+			//查询是否有历史
+			Zdycx zd=queryOne("queryLwLsxx", zdycx);
+			if("是".equals(zd.getLsjl())){
+				lsjl="是";
+				lsxmxx+=zd.getLsxmxx()+",";		
+			}
+		}
+	    //循环完给返回参数赋值是否有历史、和历史信息；
+		retern.setLsjl(lsjl);
+		if(!"".equals(lsxmxx))
+			lsxmxx=lsxmxx.substring(0, lsxmxx.length()-1);
+		retern.setLsxmxx(lsxmxx);
+		//返回
+		
+		return retern;
 	}
 }

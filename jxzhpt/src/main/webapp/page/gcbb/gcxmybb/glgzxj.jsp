@@ -352,12 +352,15 @@
 		var tbody = $("#abgclist");
 				tbody.empty();
 		flagi=0;
+		
+		loadjzt();
 		$.ajax({
 			url:"/jxzhpt/gcybb/getGlgzxj.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				disLoadjzt();
 				flagi=1;
 				$("#nian").text($("#ddlYear").val());
 				if (msg != null) {
@@ -494,9 +497,11 @@
 		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
 		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
 		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
+		//loadjzt();
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
 		 });
+		//.success(function() {disLoadjzt();})
 	}	
 	</script>
 </head>

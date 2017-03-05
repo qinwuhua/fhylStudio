@@ -5,8 +5,10 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface JckwqgzsjServer {
@@ -88,4 +90,6 @@ public interface JckwqgzsjServer {
 	List<Jckwqgzsj> JckWqgzRoad1(Jckwqgzsj jckwqgzsj);
 
 	boolean lrqqgzsj(Jckwqgzsj jckwqgzsj);
+
+	Zdycx queryLwLsxx(Zdycx z);
 }

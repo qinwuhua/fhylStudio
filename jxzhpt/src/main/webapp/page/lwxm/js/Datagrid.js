@@ -2330,7 +2330,8 @@ function sckshWqgz(){
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':tsdq
+			 	'tsdq':tsdq,
+			 	'xmklx':$('#xmklx').combobox('getValue')
 			},
 		    striped:true,
 		    pagination:true,
@@ -2378,8 +2379,9 @@ function sckshWqgz(){
  		}else  sbthcd=$.cookie("unit2").length;
  	var data="sck_sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+xmnf+"&shzt="+$('#shzt').combobox("getValue")+
- 	"&tsdq="+tsdq+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+"&bzls="+
+ 	"&tsdq="+tsdq+"&gldj="+gldj+"&jsdj="+jsdj+"&akjfl="+akjfl+'&xmklx='+$('#xmklx').combobox('getValue')+"&bzls="+
  	$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+ 	//alert(data);
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selectWqgzShCount.do",

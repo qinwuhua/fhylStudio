@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.ibm.icu.math.BigDecimal;
 @Service
@@ -401,9 +402,11 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Lx> querylxLsxx(Jhsh jhsh) {
 		
 		String lsxmbm=queryOne("querylxLsxxxmbm", jhsh);
-		
+		jhsh.setLsxmbm(lsxmbm);
+		jhsh.setLsxmlx(MyUtil.getQueryTJ(jhsh.getLsxmlx(), "xmlx"));
+		jhsh.setLsxmnf(MyUtil.getQueryTJ(jhsh.getLsxmnf(), "xmnf"));
 		//返回结果
-		List<Lx> result =queryList("querylxLsxx",lsxmbm);
+		List<Lx> result =queryList("querylxLsxx",jhsh);
 		//查询此计划所有的路线信息
 		
 		return result;
@@ -499,7 +502,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 				item.setQdzh("0");
 			if("".equals(item.getZdzh().trim()))
 				item.setZdzh("90000");
-			ylx.add(item);
+			//ylx.add(item);
 		}
 		if(ylx.size()<=1){
 			if(ylx.size()==1){

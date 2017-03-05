@@ -75,7 +75,7 @@
 				tsdq=tsdq.substr(1,tsdq.length);
 			var jh={jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -115,7 +115,7 @@
 				tsdq=tsdq.substr(1,tsdq.length);
 			var jh={jhnf:xmnf,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$("#lxbm").val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -289,15 +289,25 @@
 										</select></td>	
 		        				</tr>
 								<tr height="32">
-		                              	<td colspan="10">
-										<span>是否有补助历史：</span>
-										<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+		                              	
+										<td>是否有补助历史：</td>
+										<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 											<option value="" selected="selected">全部</option>
 											<option value="无">否</option>
 											<option value="是">是</option>
 										</select>
-										<span>桥梁编码：</span>
-		        						<input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
+										</td>
+										<td>桥梁编码：</td>
+		        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" /></td>
+										 <td> 项目库类型：</td>
+										 <td>
+											<select class="easyui-combobox" id='xmklx'>
+												<option value="" selected>请选择</option>
+												<option value="部库">部库</option>
+												<option value="省库">省库</option>
+											</select>
+										</td>
+										<td colspan="10">
 										<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
 		        						<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
 		        						<img alt="导出Excel" onclick="dcExcel()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

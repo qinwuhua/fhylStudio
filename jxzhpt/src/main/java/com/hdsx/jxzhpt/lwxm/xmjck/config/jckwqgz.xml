@@ -13,7 +13,7 @@
  <select id="selectJckwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1 and SFYLRBWQK='是'
- 			and  sbthcd &lt;=#{sbthcd} and sfwg!='是'
+ 			and  sbthcd &lt;=#{sbthcd} and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -63,7 +63,7 @@
  </select>
   <select id="selectWqgzCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1 and SFYLRBWQK='是'
- 			and  sbthcd &lt;=#{sbthcd}  and sfwg!='是'
+ 			and  sbthcd &lt;=#{sbthcd}  and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -302,7 +302,7 @@
   <select id="selectJckShwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是'
-		and sbthcd>=#{sbthcd} and sfwg!='是'
+		and sbthcd>=#{sbthcd} and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -349,7 +349,7 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and sfwg!='是'
+ 		select count(*) from xmk_wqgz t where sbthcd=7 and SFYLRBWQK='是' and sbthcd>=#{sbthcd}  and (sfwg!='是' or sfwg is null)
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -408,7 +408,7 @@
  </select>
  
  <sql id="wqgz_commonsql">
- 	and  sbthcd &lt;=#{sbthcd} and sfylrbwqk='是' and sfwg!='是'
+ 	and  sbthcd &lt;=#{sbthcd} and sfylrbwqk='是' and (sfwg!='是' or sfwg is null)
  	<if test="gydw!='' and gydw!= null ">
 		${gydw}
 	</if>

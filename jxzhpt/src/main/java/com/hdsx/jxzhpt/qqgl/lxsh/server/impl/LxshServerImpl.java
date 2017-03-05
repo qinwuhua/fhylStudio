@@ -84,7 +84,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertSjgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
-			
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqglsj", lxsh);
 			lxsh.setBz("lxsh_sjgz");
 			lxsh.setBzcs("wnjh_sjgz");
@@ -103,6 +108,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertLmgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqgllm", lxsh);
 			lxsh.setBz("lxsh_lmgz");
 			lxsh.setBzcs("wnjh_lmgz");
@@ -121,6 +132,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertXj", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqglxj", lxsh);
 			lxsh.setBz("lxsh_xj");
 			lxsh.setBzcs("wnjh_xj");
@@ -310,6 +327,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateSjgz", lxsh)>0){
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqglsj", lxsh);
 			//update("", parameter)
 			return true;
@@ -329,6 +352,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateLmgz", lxsh)>0){
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqgllm", lxsh);
 			return true;
 		}
@@ -345,6 +374,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateXj", lxsh)>0){
+			if("是".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("部分开展");
+			}
+			if("否".equals(lxsh.getSfbflx())){
+				lxsh.setSfbflx("已开展");
+			}
 			update("updateqqglxj", lxsh);
 			return true;
 		}

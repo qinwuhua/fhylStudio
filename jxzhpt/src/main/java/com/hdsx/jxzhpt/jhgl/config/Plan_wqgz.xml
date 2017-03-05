@@ -99,6 +99,9 @@
 				 	<if test="lx.jsxz!=null and lx.jsxz!=''">
 	 					and sc.jsxz like '%'||#{lx.jsxz}||'%'
 	 				</if>
+	 				<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	 				order by jh.sbnf desc,jh.jh_sbthcd
 	 			) t order by t.sbnf desc,t.jh_sbthcd
  			)
@@ -316,6 +319,9 @@
 				 	<if test="lx.jsxz!=null and lx.jsxz!=''">
 	 					and sc.jsxz like '%'||#{lx.jsxz}||'%'
 	 				</if>
+	 				<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	</select>
 	<select id="querySumWqgz" parameterType="java.util.Map" resultType="plan_wqgz">
 		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,
@@ -381,7 +387,11 @@
 				 	</if>
 				 	<if test="lx.jsxz!=null and lx.jsxz!=''">
 	 					and sc.jsxz like '%'||#{lx.jsxz}||'%'
-	 				</if> group by jh.id)
+	 				</if>
+	 				<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				 group by jh.id)
 	</select>
 	<select id="queryWqgzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_wqgz t order by t.sbnf

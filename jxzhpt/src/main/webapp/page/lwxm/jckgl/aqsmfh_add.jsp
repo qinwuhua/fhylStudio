@@ -208,7 +208,11 @@ text-decoration:none;
 		+"&xmkaqsmfh.lxxp="+$("#lxxp").val()+"&xmkaqsmfh.doup="+$("#doup").val()+"&xmkaqsmfh.sjbl="+$("#sjbl").val()+"&xmkaqsmfh.lcxy="+$("#lcxy").val()+"&xmkaqsmfh.hjfz="+$("#hjfz").val()+"&xmkaqsmfh.xchbc="+$("#xchbc").val()
 		+"&xmkaqsmfh.csxsss="+$("#csxsss").val()+"&xmkaqsmfh.hul="+$("#hul").val()+"&xmkaqsmfh.bzbx="+$("#bzbx").val()+"&xmkaqsmfh.jshsxyd="+$("#jshsxyd").val()+"&xmkaqsmfh.aqssqt="+$("#aqssqt").val()+"&xmkaqsmfh.tjgc="+$("#tjgc").val()
 		+"&xmkaqsmfh.hjzz="+$("#hjzz").val()+"&xmkaqsmfh.bzbxcz="+$("#bzbxcz").val()+"&xmkaqsmfh.jckcz="+$("#jckcz").val()+"&xmkaqsmfh.jzhl="+$("#jzhl").val()+"&xmkaqsmfh.jshsxydcz="+$("#jshsxydcz").val()+"&xmkaqsmfh.aqssqtcz="+$("#aqssqtcz").val()
-		+"&xmkaqsmfh.jhnf="+$("#jhnf").combobox('getValue')+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.gpsqd="+qdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.gpszd="+zdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.tbbmbm="+$.cookie("unit")+"&xmkaqsmfh.xmklx="+$('#xmklx').combobox('getValue');
+		+"&xmkaqsmfh.yhlc="+$("#yhlc").val()+"&xmkaqsmfh.tzgs="+$("#tzgs").val()+"&xmkaqsmfh.tsdq="+$("#tsdq").html()+"&xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.gpsqd="+qdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.gpszd="+zdStr.replace(/\+/g,"%2B")+"&xmkaqsmfh.tbbmbm="+$.cookie("unit")+"&xmkaqsmfh.xmklx="+$('#xmklx').combobox('getValue')
+		+"&xmkaqsmfh.lxbm="+$("#roadcode").val()
+		+"&xmkaqsmfh.qdzh="+$("#roadstart").val().replace(/\+/g,".").replace(/\K/g,"").replace(/\k/g,"")
+		+"&xmkaqsmfh.zdzh="+$("#roadend").val().replace(/\+/g,".").replace(/\K/g,"").replace(/\k/g,"")
+		+"&xmkaqsmfh.xzqhdm="+$("#distcode").val();
 		if(jsdjmb==1){
 			data+="&xmkaqsmfh.jsdj="+$("#jsdj1").val()+"&xmkaqsmfh.fangx="+$("#fangx1").val()
 			+"&xmkaqsmfh.ldfl="+$("#ldfl1").val()+"&xmkaqsmfh.pcsj="+$("#pcsj1").val()+"&xmkaqsmfh.jtsgpcf="+$("#jtsgpcf").val()+"&xmkaqsmfh.jtsgfxdj="+$("#jtsgfxdj").val()+"&xmkaqsmfh.gltjpcf="+$("#gltjpcf").val()+"&xmkaqsmfh.glfxdj="+$("#glfxdj").val()+"&xmkaqsmfh.xbjyqx="+$("#xbjyqx").val()+"&xmkaqsmfh.jckbgf="+$("#jckbgf").val()+"&xmkaqsmfh.jtl="+$("#jtl").val()+"&xmkaqsmfh.gldj="+$("#gldj1").val();

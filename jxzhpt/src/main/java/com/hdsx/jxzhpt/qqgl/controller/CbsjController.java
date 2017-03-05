@@ -119,7 +119,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			jsjsdjHandle();
 			
 			cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
+			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
@@ -326,7 +326,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			xjsdjHandle();
 			jsjsdjHandle();
 			cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
+			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
@@ -416,7 +416,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		jsjsdjHandle();
 		ylxbhHandle();
 		cbsj.setLsxmlx(MyUtil.getQueryTJ(cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"lsxmbm"));
+		cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 		//System.out.println(cbsj.getLxmc());
 		cbsj.setLxmc(cbsj.getLxmc());
 		cbsj.setGhlxbm(cbsj.getGhlxbm());

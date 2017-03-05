@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -16,7 +17,10 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Xmkaqsmfh;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.XmkaqsmfhServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzsjServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -434,10 +438,36 @@ public class XmkaqsmfhController extends BaseActionSupport{
 	}
 	//添加生命防护基础库
 	public void insertAqsmfhxmk(){
+		Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+		z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+		z.setLxbm(xmkaqsmfh.getLxbm().substring(0, 4));//本项目的路线编码
+		z.setQdzh(xmkaqsmfh.getQdzh());//本项目起点
+		z.setZdzh(xmkaqsmfh.getZdzh());//本项目止点
+		z.setSfafsc("否");//是否安防审查，如果不是就是否
+		z.setXzqh(xmkaqsmfh.getXzqhdm());//设置行政区划
+		//调用方法，返回历史信息
+		JckwqgzsjServer jckwqgzsjServer=new JckwqgzsjServerImpl();
+		Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+		xmkaqsmfh.setLsjl(c.getLsjl());//设置值
+		xmkaqsmfh.setLsxmxx(c.getLsxmxx());//设置值
+		
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.insertAqsmfhxmk(xmkaqsmfh)+"");
 	}
 	//修改生命防护基础库
 	public void updateAqsmfhxmk(){
+		Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+		z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+		z.setLxbm(xmkaqsmfh.getLxbm().substring(0, 4));//本项目的路线编码
+		z.setQdzh(xmkaqsmfh.getQdzh());//本项目起点
+		z.setZdzh(xmkaqsmfh.getZdzh());//本项目止点
+		z.setSfafsc("否");//是否安防审查，如果不是就是否
+		z.setXzqh(xmkaqsmfh.getXzqhdm());//设置行政区划
+		//调用方法，返回历史信息
+		JckwqgzsjServer jckwqgzsjServer=new JckwqgzsjServerImpl();
+		Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+		xmkaqsmfh.setLsjl(c.getLsjl());//设置值
+		xmkaqsmfh.setLsxmxx(c.getLsxmxx());//设置值
+		
 		ResponseUtils.write(getresponse(), xmkaqsmfhServer.updateAqsmfhxmk(xmkaqsmfh)+"");
 	}
 	public void xgXmkAFSbzt(){

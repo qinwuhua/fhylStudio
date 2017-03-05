@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import com.google.common.base.Strings;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
@@ -28,9 +30,11 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
@@ -195,6 +199,18 @@ public class JckwqgzsjController extends BaseActionSupport{
 	}
 	
 	public void insertWqgz(){
+		
+		Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+		z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+		z.setLxbm(jckwqgzsj.getQlbh().substring(0, 4));//本项目的路线编码
+		z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目起点
+		z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目止点
+		z.setSfafsc("否");//是否安防审查，如果不是就是否
+		z.setXzqh(jckwqgzsj.getXzqhdm());//设置行政区划
+		//调用方法，返回历史信息
+		Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+		jckwqgzsj.setLsjl(c.getLsjl());//设置值
+		jckwqgzsj.setLsxmxx(c.getLsxmxx());//设置值
 		boolean b = jckwqgzsjServer.insertWqgz(jckwqgzsj);
 		if(b){
 			ResponseUtils.write(getresponse(), "true");
@@ -597,6 +613,17 @@ jckwqgzsj.setGydw("and (gydwbm='"+gydw+"'||'00' or gydwbm in(select id from xtgl
 	
 	public void updateWqgz(){
 		try {
+			Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+			z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+			z.setLxbm(jckwqgzsj.getQlbh().substring(0, 4));//本项目的路线编码
+			z.setQdzh(MyUtil.sub(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目起点
+			z.setZdzh(MyUtil.add(Double.parseDouble(jckwqgzsj.getQlzxzh()), MyUtil.div(Double.parseDouble(jckwqgzsj.getQlqc()), 2000, 3))+"");//本项目止点
+			z.setSfafsc("否");//是否安防审查，如果不是就是否
+			z.setXzqh(jckwqgzsj.getXzqhdm());//设置行政区划
+			//调用方法，返回历史信息
+			Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+			jckwqgzsj.setLsjl(c.getLsjl());//设置值
+			jckwqgzsj.setLsxmxx(c.getLsxmxx());//设置值
 			ResponseUtils.write(getresponse(), jckwqgzsjServer.updateWqgz(jckwqgzsj)+"");
 		} catch (Exception e) {
 			e.printStackTrace();

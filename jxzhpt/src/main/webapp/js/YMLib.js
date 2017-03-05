@@ -3878,3 +3878,19 @@ function lsxmnf(id){
 	
 }
 
+
+
+//弹出加载层 str为要显示的内容，默认“正在加载中，请稍候。。。”
+function loadjzt(str) {  
+	var name="正在加载，请稍候。。。";
+	if(str!=null&&str!='')
+		name=str;
+    $("<div class=\"datagrid-mask\"></div>").css({ display: "block", width: "100%", height: $(window).height() }).appendTo("body");  
+    $("<div class=\"datagrid-mask-msg\"></div>").html(name).appendTo("body").css({ display: "block", left: ($(document.body).outerWidth(true) - 190) / 2, top: ($(window).height() - 45) / 2 });  
+}  
+  
+//取消加载层  
+function disLoadjzt() {  
+    $(".datagrid-mask").remove();  
+    $(".datagrid-mask-msg").remove();  
+}

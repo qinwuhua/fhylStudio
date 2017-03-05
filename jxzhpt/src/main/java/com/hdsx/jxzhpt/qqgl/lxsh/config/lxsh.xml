@@ -16,31 +16,18 @@
 		where xmbm=#{xmbm}
 	</insert>
 	<update id="updateqqglsj" parameterType="lxsh">
-		<if test="sfbflx eq '是'.toString()">
-		update wnjh_sjgz set qqkzzt='部分开展' where id=#{wnid}
-		</if>
-		<if test="sfbflx eq '否'.toString()">
-		update wnjh_sjgz set qqkzzt='已开展' where id=#{wnid}
-		</if>
+		
+		update wnjh_sjgz set qqkzzt=#{sfbflx} where id=#{wnid}
 		
 	</update>
 	<update id="updateqqgllm" parameterType="lxsh">
+		update wnjh_lmgz set qqkzzt=#{sfbflx} where id=#{wnid}
 	
-	<if test="sfbflx eq '是'.toString()">
-		update wnjh_lmgz set qqkzzt='部分开展' where id=#{wnid}
-	</if>
-	<if test="sfbflx eq '否'.toString()">
-		update wnjh_lmgz set qqkzzt='已开展' where id=#{wnid}
-	</if>
 	</update>
 	<update id="updateqqglxj" parameterType="lxsh">
-	<if test="sfbflx eq '是'.toString()">
-		update wnjh_xj set qqkzzt='部分开展' where id=#{wnid}
-	</if>
-	<if test="sfbflx eq '否'.toString()">
-		update wnjh_xj set qqkzzt='已开展' where id=#{wnid}
-	</if>
-		
+	
+		update wnjh_xj set qqkzzt=#{sfbflx} where id=#{wnid}
+	
 	</update>
 	
 	<select id="loadjsdjcd" parameterType="lxsh" resultType="lxsh">

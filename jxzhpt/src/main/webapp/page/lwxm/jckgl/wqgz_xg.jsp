@@ -190,7 +190,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()+"&jckwqgzsj.pddj="+$("#pddj").combobox('getValue')+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()+"&jckwqgzsj.jsdj="+$("#jsdj").html()
 	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.xlxbm="+$("#xlxbm").val()+"&jckwqgzsj.xlxmc="+$("#xlxmc").val()+"&jckwqgzsj.xqlbm="+$("#xqlbm").val()+"&jckwqgzsj.xzxzh="+$("#xzxzh").val()+"&jckwqgzsj.xmklx="+$('#xmklx').combobox('getValue')
-	+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk=是";
+	+"&jckwqgzsj.qlbh="+$("#qlbh").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.ptx="+$("#jd").val()+"&jckwqgzsj.pty="+$("#wd").val()+"&jckwqgzsj.sfylrbwqk=是";
 	//alert(data);
 	$.ajax({
 		type:'post',

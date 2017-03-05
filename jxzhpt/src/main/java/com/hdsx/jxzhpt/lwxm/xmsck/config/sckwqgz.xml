@@ -152,8 +152,12 @@
 		xmkid=xmk_wqgz.id 
 		where 1=1 and t.SFYLRBWQK='是'
 		<if test="tsdq!='' and tsdq!= null ">
- 				${tsdq}
- 				</if>) t
+		${tsdq}
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+		and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>	
+ 				) t
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -200,6 +204,7 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_shzt desc,lrjh desc
@@ -210,8 +215,12 @@
 		xmkid=xmk_wqgz.id
 		where 1=1 and t.SFYLRBWQK='是'
 		<if test="tsdq!='' and tsdq!= null ">
- 				${tsdq}
- 				</if>) t
+		${tsdq}
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+		and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
+ 		) t
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">

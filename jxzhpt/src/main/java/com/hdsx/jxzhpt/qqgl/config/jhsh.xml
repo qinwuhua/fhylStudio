@@ -2399,22 +2399,20 @@
 		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
 	<select id="queryYlxnew" parameterType="lx" resultType="lx">
-		<![CDATA[select ylxbm ylxbm,(case when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then to_number(YQDZH)+${ghqdzh}-to_number(XQDZH)
-    when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yqdzh
-    when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then ${ghqdzh}-to_number(xqdzh)+to_number(yzdzh)
-    when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yzdzh end) qdzh,
-      (case when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then to_number(YZDZH)-to_number(XZDZH)+${ghzdzh}
-      when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then  yzdzh
-      when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then ${ghzdzh}-to_number(xzdzh)+to_number(yqdzh)
-      when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then yqdzh
-      end ) zdzh ,
-    substr(ylxbm,0,4) as lxbm,
-     (case when Xqdzh<${ghqdzh} then ${ghqdzh} else xqdzh end ) xqdzh,
-    (case when ${ghzdzh}<Xzdzh then ${ghzdzh} else xzdzh end) xzdzh 
-    from ghlx t where  t.xlxbm like #{ghlxbm} || '%' and 
-    t.Xqdzh<${ghzdzh} and t.Xzdzh>${ghqdzh}
-    
-    ]]>
+		<![CDATA[select ylxbm ylxbm,nvl((case when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then to_number(YQDZH)+${ghqdzh}-to_number(XQDZH)
+				when to_number(yqdzh)<to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yqdzh
+				when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)<${ghqdzh} then ${ghqdzh}-to_number(xqdzh)+to_number(yzdzh)
+				when to_number(yqdzh)>to_number(yzdzh) and to_number(Xqdzh)>${ghqdzh} then yzdzh end),0) qdzh,
+				nvl((case when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then to_number(YZDZH)-to_number(XZDZH)+${ghzdzh}
+				when to_number(yqdzh)<to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then  yzdzh
+				when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}<to_number(Xzdzh) then ${ghzdzh}-to_number(xzdzh)+to_number(yqdzh)
+				when to_number(yqdzh)>to_number(yzdzh) and ${ghzdzh}>to_number(Xzdzh) then yqdzh
+				end ),0) zdzh ,
+				substr(ylxbm,0,4) as lxbm,
+				nvl((case when Xqdzh<${ghqdzh} then ${ghqdzh} else xqdzh end ),0) xqdzh,
+				nvl((case when ${ghzdzh}<Xzdzh then ${ghzdzh} else xzdzh end),0) xzdzh 
+				from ghlx t where  t.xlxbm like #{ghlxbm} || '%' and 
+				t.Xqdzh<${ghzdzh} and t.Xzdzh>${ghqdzh}]]>
     <if test="xzqhdm!=null and xzqhdm !=''">
     	and ${xzqhdm}
     </if>
@@ -2488,9 +2486,9 @@
 		</if>
 		<if test="item.xmlx!=null and item.xmlx.indexOf('新建')!=-1 ">
 		select distinct l.xmid,j.xmmc,decode(cl.ghlxbm,null,l.lxbm,cl.ghlxbm) lxbm,decode(cl.ghlxmc,null,l.lxmc,cl.ghlxmc) lxmc,decode(cl.qcqd,null,l.qdzh,cl.qcqd) qdzh,decode(cl.qczd,null,l.zdzh,cl.qczd) zdzh,decode(cl.lxbm, null, l.lxbm, cl.lxbm) ylxbm,decode(cl.qdzh, null, l.qdzh, cl.qdzh) yqdzh,decode(cl.zdzh, null, l.zdzh, cl.zdzh) yzdzh,l.jsxz xjsdj,l.xjsdj yjsdj,decode(substr(l.xmid,11,1),'1',l.jsjsdj,l.xjsdj) jsjsdj from lx_clsd cl right join lxsh_lx l on cl.id=l.id right join jhsh_xj j on l.xmid=j.xmbm right join cbsj_xj c on j.xmbm=c.xmbm
-		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%' and 
+		where l.jdbs='2' and l.lxbm like '%'||#{item.lxbm}||'%'  and 
 		(
-			(to_number(l.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.qdzh)) 
+			(to_number(l.xjzdzh) > ${item.qdzh} and ${item.zdzh} > to_number(l.xjqdzh)) 
 			or
 			(to_number(cl.zdzh) > ${item.qdzh} and ${item.zdzh} > to_number(cl.qdzh)) 
 	    )
@@ -5618,8 +5616,15 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	<select id="querylxLsxxxmbm" parameterType="jhsh" resultType="string">
 		select lsxmid from lx_xmxx where xmbm=#{xmbm}
 	</select>
-	<select id="querylxLsxx" parameterType="String" resultType="lx">
-		select * from jhsh_lsjl where id in(${value}) order by xmbm
+	<select id="querylxLsxx" parameterType="jhsh" resultType="lx">
+		select * from jhsh_lsjl where id in(${lsxmbm}) 
+		<if test="lsxmnf != null and lsxmnf != ''">
+		 ${lsxmnf}
+		</if>
+		<if test="lsxmlx != null and lsxmlx != ''">
+		 ${lsxmnf}
+		</if>
+		order by xmbm
 	</select>
 	<select id="querywnxmxxxmbm" parameterType="jhsh" resultType="string">
 		select wnxmid from lx_xmxx where xmbm=#{xmbm}

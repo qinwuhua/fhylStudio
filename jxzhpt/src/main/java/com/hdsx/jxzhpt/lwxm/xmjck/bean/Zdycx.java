@@ -116,9 +116,35 @@ public class Zdycx {
 		private String xzdj;
 		private String jhpc;
 		
+		private String xzqh;//行政区划
+		private String lsxmxx;//历史项目信息
+		private String sfafsc;//是否安防审查
+		private String lsjl;//历史记录
 		
-		
-		
+		public String getLsjl() {
+			return lsjl;
+		}
+		public void setLsjl(String lsjl) {
+			this.lsjl = lsjl;
+		}
+		public String getSfafsc() {
+			return sfafsc;
+		}
+		public void setSfafsc(String sfafsc) {
+			this.sfafsc = sfafsc;
+		}
+		public String getLsxmxx() {
+			return lsxmxx;
+		}
+		public void setLsxmxx(String lsxmxx) {
+			this.lsxmxx = lsxmxx;
+		}
+		public String getXzqh() {
+			return xzqh;
+		}
+		public void setXzqh(String xzqh) {
+			this.xzqh = xzqh;
+		}
 		public String getGldj() {
 			return gldj;
 		}

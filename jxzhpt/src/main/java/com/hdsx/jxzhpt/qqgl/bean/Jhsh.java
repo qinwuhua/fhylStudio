@@ -161,8 +161,28 @@ public class Jhsh {
 	private String xmklx;//项目库类型
 	private String qdzh1;
 	private String zdzh1;
-
+	private String lsxmbm;
+	private String lsxmnf;
+	private String lsxmlx;
 	
+	public String getLsxmnf() {
+		return lsxmnf;
+	}
+	public void setLsxmnf(String lsxmnf) {
+		this.lsxmnf = lsxmnf;
+	}
+	public String getLsxmlx() {
+		return lsxmlx;
+	}
+	public void setLsxmlx(String lsxmlx) {
+		this.lsxmlx = lsxmlx;
+	}
+	public String getLsxmbm() {
+		return lsxmbm;
+	}
+	public void setLsxmbm(String lsxmbm) {
+		this.lsxmbm = lsxmbm;
+	}
 	public String getQdzh1() {
 		return qdzh1;
 	}

@@ -151,7 +151,21 @@ public class Jckwqgzsj implements Serializable{
 	private String nsqsjl;
 	private String xqlmc;
 	private String xmklx;//项目库类型
+	private String lsxmxx;//历史项目信息
+	private String lsjl;//历史记录
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getLsxmxx() {
+		return lsxmxx;
+	}
+	public void setLsxmxx(String lsxmxx) {
+		this.lsxmxx = lsxmxx;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

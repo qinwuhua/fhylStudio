@@ -396,7 +396,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setGhlxbm(xmsq.getGhlxbm());
 			xmsq.setGhlxmc(xmsq.getGhlxmc());
 			xmsq.setLsxmlx(MyUtil.getQueryTJ(xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"lsxmbm"));
+			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			
 			jsdjHandle();
 			String ylxbh = xmsq.getYlxbh();
@@ -548,7 +548,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
 			xmsq.setLsxmlx(MyUtil.getQueryTJ(xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"lsxmbm"));
+			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			if(xmsq.getXmlx()==4){
 				String gcfl = xmsq.getJsxz();
 				if(gcfl!=null && !gcfl.equals("")){
@@ -667,7 +667,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setGhlxbm(xmsq.getGhlxbm());
 		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		xmsq.setLsxmlx(MyUtil.getQueryTJ(xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"lsxmbm"));
+		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 		
 		jsdjHandle();
 	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
@@ -785,7 +785,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		jsdjHandle();
 		xmsq.setLsxmlx(MyUtil.getQueryTJ(xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"lsxmbm"));
+		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 		
 	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));

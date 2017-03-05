@@ -742,6 +742,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				}
 				sckwqgz.setAkjfl(tsdq);
 			}
+			//System.out.println(sckwqgz.getXmklx());
 			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzShCount(sckwqgz)+"");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +16,15 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzsjServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -157,6 +162,18 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void insertZhfz(){
+		Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+		z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+		z.setLxbm(jckzhfz.getLxbm().substring(0, 4));//本项目的路线编码
+		z.setQdzh(jckzhfz.getQdzh());//本项目起点
+		z.setZdzh(jckzhfz.getZdzh());//本项目止点
+		z.setSfafsc("否");//是否安防审查，如果不是就是否
+		z.setXzqh(jckzhfz.getXzqhdm());//设置行政区划
+		//调用方法，返回历史信息
+		JckwqgzsjServer jckwqgzsjServer=new JckwqgzsjServerImpl();
+		Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+		jckzhfz.setLsjl(c.getLsjl());//设置值
+		jckzhfz.setLsxmxx(c.getLsxmxx());//设置值
 		boolean b = zhfzServer.insertZhfz(jckzhfz);
 		if(b){
 			ResponseUtils.write(getresponse(), "true");
@@ -249,6 +266,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selectZhfzById(){
 		try {
+			
 			JsonUtils.write(zhfzServer.selectZhfzById(jckzhfz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,6 +274,18 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void updateZhfzById(){
 		try {
+			Zdycx z = new Zdycx();//定义一个类，接收查询补助历史的参数
+			z.setXmnf(Calendar.getInstance().get(Calendar.YEAR)+"");//本项目的年份
+			z.setLxbm(jckzhfz.getLxbm().substring(0, 4));//本项目的路线编码
+			z.setQdzh(jckzhfz.getQdzh());//本项目起点
+			z.setZdzh(jckzhfz.getZdzh());//本项目止点
+			z.setSfafsc("否");//是否安防审查，如果不是就是否
+			z.setXzqh(jckzhfz.getXzqhdm());//设置行政区划
+			//调用方法，返回历史信息
+			JckwqgzsjServer jckwqgzsjServer=new JckwqgzsjServerImpl();
+			Zdycx c = jckwqgzsjServer.queryLwLsxx(z);
+			jckzhfz.setLsjl(c.getLsjl());//设置值
+			jckzhfz.setLsxmxx(c.getLsxmxx());//设置值
 			JsonUtils.write(zhfzServer.updateZhfzById(jckzhfz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,12 +7,16 @@
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
 		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,
-		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh,xxcsj<if test="xqlmc != null">,xqlmc</if><if test="xmklx != null">,xmklx</if>) 
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk,xlxbm,xlxmc,xqlbm,xzxzh,xxcsj<if test="xqlmc != null">,xqlmc</if><if test="xmklx != null">,xmklx</if>
+		<if test="lsjl != null">,lsjl</if>
+		<if test="lsxmxx != null">,lsxmxx</if>) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
 		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},
-		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh},'是'<if test="xqlmc != null">,#{xqlmc}</if><if test="xmklx != null">,#{xmklx}</if>)
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk},#{xlxbm},#{xlxmc},#{xqlbm},#{xzxzh},'是'<if test="xqlmc != null">,#{xqlmc}</if><if test="xmklx != null">,#{xmklx}</if>
+		<if test="lsjl != null">,#{lsjl}</if>
+		<if test="lsxmxx != null">,#{lsxmxx}</if>)
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -446,6 +450,12 @@
  			<if test="xqlmc != null">,xqlmc=#{xqlmc}</if>
  			<if test="xmklx != null">
 			,xmklx=#{xmklx}
+			</if>
+			<if test="lsjl != null">
+			,lsjl=#{lsjl}
+			</if>
+			<if test="lsxmxx != null">
+			,lsxmxx=#{lsxmxx}
 			</if>
  			where id=#{id}
  		</update>
@@ -1121,5 +1131,19 @@
 	update xmk_wqgz set qqgzsj=#{qqgzsj} where id=#{id}
 	</update>
 	
+	<select id="queryAqsmfhLdByXmbm" parameterType="zdycx" resultType="zdycx">
+		select lxbm,xzqhdm xzqh,(case when sl.qdzh like 'K%' or sl.qdzh like 'k%'  then replace(substr(sl.qdzh,2),'+','.') else sl.qdzh end) qdzh,(case when sl.zdzh like 'K%' or sl.zdzh like 'k%' then replace(substr(sl.zdzh,2),'+','.') else sl.zdzh end) zdzh from SCK_AQSMFH_LD sl
+		where xmbm=#{xmbm} 
+		
+	</select>
+	<select id="queryLwLsxx" parameterType="zdycx" resultType="zdycx">
+	select
+	fun_lwbzls(#{xmnf},#{xzqh},substr(#{lxbm},0,4),LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
+	replace(WMSYS.WM_CONCAT(distinct to_char(xmnf||'的'||xmlx||'项目：'||xmmc)),',',',') lsxmxx
+	from 
+	(SELECT 
+	fun_lwbzls1(#{xmnf},#{xzqh},substr(#{lxbm},0,4),LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))).xmnf xmnf,fun_lwbzls1(#{xmnf},#{xzqh},substr(#{lxbm},0,4),LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))).xmlx xmlx,fun_lwbzls1(#{xmnf},#{xzqh},substr(#{lxbm},0,4),LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))).xmmc xmmc
+	FROM DUAL)
+	</select>
 </mapper>
 

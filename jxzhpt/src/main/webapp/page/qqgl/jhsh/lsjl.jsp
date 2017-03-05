@@ -17,10 +17,25 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			var lsxmnf='';
+			var lsxmlx='';
+			try {
+				lsxmnf=parent.$("#lsxmnf").combobox("getValues").join(",");
+				if(lsxmnf.substr(0,1)==',')
+					lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+				lsxmlx=parent.$("#lsxmlx").combobox("getValues").join(",");
+				if(lsxmlx.substr(0,1)==',')
+					lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			} 
+			catch (e) { 
+				//alert(e.name + ": " + e.message);
+				 lsxmnf='';lsxmlx='';
+			} 
+			//
 			$('#grid').datagrid({
 				//url:'../../../qqgl/queryLsxx.do',
 				url:'../../../qqgl/querylxLsxx.do',
-				queryParams: {xmbm: parent.YMLib.Var.xmbm},
+				queryParams: {xmbm: parent.YMLib.Var.xmbm,lsxmnf:lsxmnf,lsxmlx:lsxmlx},
 				height:$(window).height()-1,
 				fitColumns:true,
 				/* columns:[[
@@ -84,6 +99,8 @@
 			});
 		});
 		function msgxx(xmid){
+			//load();
+			//return;
 			parent.YMLib.Var.xmbm=xmid;
 			if(xmid.substring(10,11)=="1"){
 				parent.YMLib.UI.createWindow('lmsjxx','改建工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
@@ -97,6 +114,7 @@
 				parent.YMLib.UI.createWindow('shxmxx','灾毁重建','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
 			}
 		}
+		
 	</script>
 </head>
 <body style="overflow: auto;">
