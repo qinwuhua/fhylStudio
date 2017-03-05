@@ -1058,6 +1058,54 @@ public class TjfxController extends BaseActionSupport{
 				}
 				lkmxb.setLxbh("and lxbh in ("+str1+")");
 			}
+			if(lkmxb.getJsdj()!=null && !lkmxb.getJsdj().equals("")){
+				String[]  jsdjArr=lkmxb.getJsdj().split(",");
+				String jsdjStr="(";
+				for (int i = 0; i < jsdjArr.length; i++) {
+					if(i==jsdjArr.length-1) jsdjStr+="'"+jsdjArr[i]+"'";
+					else {
+						jsdjStr+="'"+jsdjArr[i]+"',";
+					}
+				}
+				jsdjStr+=")";
+				lkmxb.setJsdj(jsdjStr);
+			}
+			if(lkmxb.getLmlx()!=null && !lkmxb.getLmlx().equals("")){
+				String[]  lmlxArr=lkmxb.getLmlx().split(",");
+				String lmlxStr="(";
+				for (int i = 0; i < lmlxArr.length; i++) {
+					if(i==lmlxArr.length-1) lmlxStr+="'"+lmlxArr[i]+"'";
+					else {
+						lmlxStr+="'"+lmlxArr[i]+"',";
+					}
+				}
+				lmlxStr+=")";
+				lkmxb.setLmlx(lmlxStr);
+			}
+			if(lkmxb.getJcfx()!=null && !lkmxb.getJcfx().equals("")){
+				String[]  jcfxArr=lkmxb.getJcfx().split(",");
+				String jcfxStr="(";
+				for (int i = 0; i < jcfxArr.length; i++) {
+					if(i==jcfxArr.length-1) jcfxStr+="'"+jcfxArr[i]+"'";
+					else {
+						jcfxStr+="'"+jcfxArr[i]+"',";
+					}
+				}
+				jcfxStr+=")";
+				lkmxb.setJcfx(jcfxStr);
+			}
+			if(lkmxb.getMqi()!=null && !lkmxb.getMqi().equals("")){
+				String[]  mqiArr=lkmxb.getMqi().split(",");
+				String mqiStr="(";
+				for (int i = 0; i < mqiArr.length; i++) {
+					if(i==mqiArr.length-1) mqiStr+="'"+mqiArr[i]+"'";
+					else {
+						mqiStr+="'"+mqiArr[i]+"',";
+					}
+				}
+				mqiStr+=")";
+				lkmxb.setMqi(mqiStr);
+			}
 			jsonMap.put("total", tjfxServer.queryLkpdmxCount(lkmxb));
 			jsonMap.put("rows",tjfxServer.queryLkpdmx(page,rows,lkmxb));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
@@ -1071,7 +1119,6 @@ public class TjfxController extends BaseActionSupport{
 	 */
 	public void queryLkpdmxList(){
 		try{
-			
 			if(lkmxb.getLxbh()==null || lkmxb.getLxbh().equals("")){
 				lkmxb.setLxbh("");
 			}else if(lkmxb.getLxbh().indexOf(",")==-1){
@@ -1116,6 +1163,30 @@ public class TjfxController extends BaseActionSupport{
 		}
     
     public void queryLkbjfx(){
+    	if(lkmxb.getJsdj()!=null && !lkmxb.getJsdj().equals("")){
+			String[]  jsdjArr=lkmxb.getJsdj().split(",");
+			String jsdjStr="(";
+			for (int i = 0; i < jsdjArr.length; i++) {
+				if(i==jsdjArr.length-1) jsdjStr+="'"+jsdjArr[i]+"'";
+				else {
+					jsdjStr+="'"+jsdjArr[i]+"',";
+				}
+			}
+			jsdjStr+=")";
+			lkmxb.setJsdj(jsdjStr);
+		}
+    	if(lkmxb.getTbnf()!=null && !lkmxb.getTbnf().equals("")){
+			String[]  tbnfArr=lkmxb.getTbnf().split(",");
+			String tbnfStr="(";
+			for (int i = 0; i < tbnfArr.length; i++) {
+				if(i==tbnfArr.length-1) tbnfStr+="'"+tbnfArr[i]+"'";
+				else {
+					tbnfStr+="'"+tbnfArr[i]+"',";
+				}
+			}
+			tbnfStr+=")";
+			lkmxb.setTbnf(tbnfStr);
+		}
     	List<SjbbMessage> list = tjfxServer.queryLkbjfx(lkmxb);
 		try {
 				JsonUtils.write(list, this.getresponse().getWriter());
