@@ -11,7 +11,21 @@ public class Jckabgc implements Serializable{
 	private String gldj;
 	private String jsdj;
 	private String xmklx;
+	private String lsjl;
+	private String lsxmxx;
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getLsxmxx() {
+		return lsxmxx;
+	}
+	public void setLsxmxx(String lsxmxx) {
+		this.lsxmxx = lsxmxx;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

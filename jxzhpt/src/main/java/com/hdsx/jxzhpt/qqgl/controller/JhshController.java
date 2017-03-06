@@ -2510,7 +2510,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					}
 					jhsh.setXmlx1(tsdq);
 				}
-
+			
+			System.out.println(jhsh);
 			List<Excel_list> l = jhshServer.queryZhhf_dc(jhsh);
 			//l.add(new Excel_list());
 			

@@ -5141,29 +5141,25 @@
 	(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
 	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
 	 where 1=1
-	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+	 	<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
 			and ghlxbmtj like '%'||#{ghlxbh}||'%'
 		</if>
-<!-- 		<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
-<!-- 			and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
-<!-- 		</if> -->
+
 		<if test="lxmc !=null and lxmc !=''">
 			and ghlxmctj like '%'||#{lxmc}||'%'
 		</if>
-<!-- 		<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
-<!-- 			and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
-<!-- 		</if> -->
-<if test="ghxlxbm != null and ghxlxbm != ''">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
-				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
-				)
-			</if>
-			<if test="ghxlxmc != '' and ghxlxmc != null ">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
-				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
-				)
-			</if>
+
+		<if test="ghxlxbm != null and ghxlxbm != ''">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+			or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc != '' and ghxlxmc != null ">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+			or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
 		<if test="xmnf !=null and xmnf !=''">
 			and substr(j.xmbm,0,4) in (${xmnf})
 		</if>
@@ -5186,69 +5182,65 @@
 	)
 	union all
 	
-	select 
-	rownum v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
-	l.zlc v_4,
-	l.yilc v_5,l.erlc v_6,l.sanlc v_7,x.jsfa v_8,
-	j.jhkgsj v_9,
-	j.jhwgsj v_10,j.pfztz v_11,j.bbzzj v_12,xd.ztz v_13,xd.btz v_14,
-	xd.dftz v_15,'' v_16,c.sjpfwh v_17
-	from 	Jhxdsh   j
-	left join cbsj_sh c
-	on j.xmbm=c.xmbm
-	left join xmsq_sh x
-	on j.xmbm=x.xmbm
-	 left join
-	(select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
-	from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid) xd on j.xmbm=xd.xmid
-	left join (
-	select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
-	decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
-	(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
-	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
-	 where 1=1
-	 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-	<if test="ghlxbh!=null and ghlxbh!=''">
-		and ghlxbmtj like '%'||#{ghlxbh}||'%'
-	</if>
-<!-- 	<if test="ghxlxbm!=null and ghxlxbm!=''"> -->
-<!-- 		and ghxlxbmtj like '%'||#{ghxlxbm}||'%' -->
-<!-- 	</if> -->
-	<if test="lxmc !=null and lxmc !=''">
-		and ghlxmctj like '%'||#{lxmc}||'%'
-	</if>
-<!-- 	<if test="ghxlxmc !=null and ghxlxmc !=''"> -->
-<!-- 		and ghxlxmctj like '%'||#{ghxlxmc}||'%' -->
-<!-- 	</if> -->
-<if test="ghxlxbm != null and ghxlxbm != ''">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
-				or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
-				)
-			</if>
-			<if test="ghxlxmc != '' and ghxlxmc != null ">
-				and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
-				or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
-				)
-			</if>
-	<if test="xmnf !=null and xmnf !=''">
-		and substr(j.xmbm,0,4) in (${xmnf})
-	</if>
+		select 
+		rownum v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
+		l.zlc v_4,
+		l.yilc v_5,l.erlc v_6,l.sanlc v_7,x.jsfa v_8,
+		j.jhkgsj v_9,
+		j.jhwgsj v_10,j.pfztz v_11,j.bbzzj v_12,xd.ztz v_13,xd.btz v_14,
+		xd.dftz v_15,'' v_16,c.sjpfwh v_17
+		from 	Jhxdsh   j
+		left join cbsj_sh c
+		on j.xmbm=c.xmbm
+		left join xmsq_sh x
+		on j.xmbm=x.xmbm
+		 left join
+		(select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
+		from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid) xd on j.xmbm=xd.xmid
+		left join (
+		select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
+		decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
+		(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
+		 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
+		 where 1=1
+		 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and ghlxbmtj like '%'||#{ghlxbh}||'%'
+		</if>
 	
-	<if test="tsdq !=null and tsdq !=''">
-		${tsdq}
-	</if>
-	<if test="xzdj !=null and xzdj !=''">
-		and ${xzdj}
-	</if>
-	<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
-	<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
-	<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
-	<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
-	<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
-	<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
-	<if test="xdzttj !=null and xdzttj !=''">
-		${xdzttj}
-	</if>
+		<if test="lxmc !=null and lxmc !=''">
+			and ghlxmctj like '%'||#{lxmc}||'%'
+		</if>
+	
+		<if test="ghxlxbm != null and ghxlxbm != ''">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghxlxbm}||'%')
+			or j.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghxlxbm}||'%')
+			)
+		</if>
+		<if test="ghxlxmc != '' and ghxlxmc != null ">
+			and (j.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghxlxmc}||'%')
+			or j.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{ghxlxmc}||'%')
+			)
+		</if>
+		<if test="xmnf !=null and xmnf !=''">
+			and substr(j.xmbm,0,4) in (${xmnf})
+		</if>
+		
+		<if test="tsdq !=null and tsdq !=''">
+			${tsdq}
+		</if>
+		<if test="xzdj !=null and xzdj !=''">
+			and ${xzdj}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
+		<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
+		<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
+		<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
+		<if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if>
+		<if test="xdzttj !=null and xdzttj !=''">
+			${xdzttj}
+		</if>
 	</select>
 <!-- 下面是导出养护大中修汇总的sql -->
 	<select id="queryYhdzx_dcexcel" parameterType="jhsh" resultType="elist">
@@ -5601,7 +5593,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
-   order by xzqhdm
+   order by c.xzqhdm
 	</select>
 	
 	<select id="queryQTLx" parameterType="lx" resultType="lx">

@@ -1,3 +1,6 @@
+function cklsxmxx(str){
+	alert(str);
+}
 //基础库管理
 var gydwstr;
 var xzqhstr;
@@ -837,6 +840,14 @@ function jckshWqgz(){
 				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_wqgz") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
 				}
 			}},
+			{field:'sflsjl',title:'历史记录',width:80,align:'center',formatter:function(value,row,index){
+				//alert(row.lsjl);
+				if(row.lsjl=="是"){
+				return '<a href=javascript:cklsxmxx("'+row.lsxmxx+'") style="text-decoration:none;color:#3399CC; ">是</a>  ';
+				}else{
+				return '否  ';
+				}
+			}},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -1060,6 +1071,14 @@ function jckshAbgc(){
 				}else{
 				//return '<span style="color:grey;">已审核</span>';
 				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_abgc") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
+				}
+			}},
+			{field:'sflsjl',title:'历史记录',width:80,align:'center',formatter:function(value,row,index){
+				//alert(row.lsjl);
+				if(row.lsjl=="是"){
+				return '<a href=javascript:cklsxmxx("'+row.lsxmxx+'") style="text-decoration:none;color:#3399CC; ">是</a>  ';
+				}else{
+				return '否  ';
 				}
 			}},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -1318,6 +1337,14 @@ function jckshZhfz(){
 				}else{
 				//return '<span style="color:grey;">已审核</span>';
 				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_zhfz") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
+				}
+			}},
+			{field:'sflsjl',title:'历史记录',width:80,align:'center',formatter:function(value,row,index){
+				//alert(row.lsjl);
+				if(row.lsjl=="是"){
+				return '<a href=javascript:cklsxmxx("'+row.lsxmxx+'") style="text-decoration:none;color:#3399CC; ">是</a>  ';
+				}else{
+				return '否  ';
 				}
 			}},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},

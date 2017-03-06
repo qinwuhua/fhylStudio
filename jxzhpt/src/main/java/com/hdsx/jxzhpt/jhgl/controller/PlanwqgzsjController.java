@@ -1887,13 +1887,14 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		et.add(new Excel_tilte("总投资（万元）",1,1,11,11));
 		et.add(new Excel_tilte("中央投资（万元）",1,1,12,12));
 		et.add(new Excel_tilte("地方自筹资金（万元）",1,1,13,13));
-		et.add(new Excel_tilte("开工年",1,1,14,14));
-		et.add(new Excel_tilte("完工年",1,1,15,15));
-		et.add(new Excel_tilte("路线编码",1,1,16,16));
-		et.add(new Excel_tilte("路线名称",1,1,17,17));
-		et.add(new Excel_tilte("中心桩号",1,1,18,18));
-		et.add(new Excel_tilte("批复文号",1,1,19,19));
-		et.add(new Excel_tilte("备注",1,1,20,20));
+		et.add(new Excel_tilte("上报年份",1,1,14,14));
+		et.add(new Excel_tilte("开工年",1,1,15,15));
+		et.add(new Excel_tilte("完工年",1,1,16,16));
+		et.add(new Excel_tilte("路线编码",1,1,17,17));
+		et.add(new Excel_tilte("路线名称",1,1,18,18));
+		et.add(new Excel_tilte("中心桩号",1,1,19,19));
+		et.add(new Excel_tilte("批复文号",1,1,20,20));
+		et.add(new Excel_tilte("备注",1,1,21,21));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		

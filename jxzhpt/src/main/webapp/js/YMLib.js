@@ -1495,15 +1495,16 @@ function loadUnit(id, dwbm) {
 /*
  * 加载行政区划
  */
-function loadBmbm(id, name) {
+function loadBmbm(id, name,str) {
 	$('#' + id).combobox({
 		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
 				+ encodeURI(encodeURI(name)),
 		valueField : 'bmid',
 		textField : 'name',
 		panelHeight:'auto',
-		multiple:true
+		multiple:false
 	});
+	$('#' + id).combobox('setValue',str);
 }
 function loadBmbm2(id, name) {
 	$.ajax({
@@ -1523,7 +1524,8 @@ function loadBmbm2(id, name) {
 		}
 	});
 }
-function loadBmbm3(id, name) {
+function loadBmbm3(id, name,str) {
+	var arr=new Array();
 	$.ajax({
 		type:'post',
 		async:false,
@@ -1538,6 +1540,7 @@ function loadBmbm3(id, name) {
 				panelHeight:'auto',
 				multiple:true,
 				formatter:function(row){
+					alert(row);
 					var opts = $(this).combobox('options');
 					return '<input id="'+id+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
@@ -1579,6 +1582,11 @@ function loadBmbm3(id, name) {
 			});
 		}
 	});
+	if(str!=null && str!=''){
+		$('#' + id).combobox('setValue',str);
+		$('#'+id+id[1]).attr('checked', true);
+	}
+	
 }
 // 获取url中参数
 function getParam(paras) {

@@ -152,8 +152,21 @@ public class Jckwqgz implements Serializable{
 	private String gldj;
 	private String gydwlx;
 	private String xmklx;
+	private String lsjl;
+	private String lsxmxx;
 	
-	
+	public String getLsxmxx() {
+		return lsxmxx;
+	}
+	public void setLsxmxx(String lsxmxx) {
+		this.lsxmxx = lsxmxx;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

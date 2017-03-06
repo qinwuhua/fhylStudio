@@ -1102,8 +1102,8 @@
 	select 
 	    sc.scsqs v_1,sc.scxsq v_2,sc.scszxz v_3,sc.sck_qlbh v_4,xm.xqlbm v_5,xm.qlmc v_6,pl.jhqlqc v_7,pl.jhqlqk v_8,
 	    pl.jhjsxz v_9,pl.zyjsnr v_10,pl.pfztz v_11,decode(pl.sfylrbwqk,'否',pl.shengbz,pl.jhsybzje) v_12,
-	    pl.jhsydfzcje v_13,pl.jhkgsj v_14,pl.jhwgsj v_15,xm.lxbm v_16,xm.lxmc v_17,sc.sck_qlzxzh v_18,substr(xm.xzqhdm,0,4)||'00' v_30,
-	    pl.pfwh v_19,pl.bz v_20,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
+	    pl.jhsydfzcje v_13,pl.sbnf v_14,pl.jhkgsj v_15,pl.jhwgsj v_16,xm.lxbm v_17,xm.lxmc v_18,sc.sck_qlzxzh v_19,substr(xm.xzqhdm,0,4)||'00' v_30,
+	    pl.pfwh v_20,pl.bz v_21,substr(xm.xzqhdm,0,4)||'00' xzqhdm,(select name from xtgl_xzqh where id=substr(xm.xzqhdm,0,4)||'00') xzqhmc
 	    from plan_wqgz pl,sck_wqgz sc,xmk_wqgz xm 
 	    where pl.sckid=sc.sckid and sc.xmkid=xm.id and xm.gydwbm like '1%'
 		<if test="sbthcd>=4 ">

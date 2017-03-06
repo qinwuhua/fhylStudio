@@ -20,6 +20,9 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
+function cklsxmxx(str){
+	alert(str);
+}
 $(function(){
 	if($.cookie("unit2").length<11){
 		$("#shangBao").attr('style','display: none');
@@ -162,7 +165,14 @@ $("#grid").datagrid({
 			}
 			
 		}},
-
+		{field:'sflsjl',title:'历史记录',width:80,align:'center',formatter:function(value,row,index){
+			//alert(row.lsjl);
+			if(row.lsjl=="是"){
+			return '<a href=javascript:cklsxmxx("'+row.lsxmxx+'") style="text-decoration:none;color:#3399CC; ">是</a>  ';
+			}else{
+			return '否  ';
+			}
+		}},
 		//{field:'bzls',title:'补助历史',width:60,align:'center'},
         		{field:'roadcode',title:'公路编号',width:80,align:'center'},
 		        {field:'roadname',title:'路线名称',width:160,align:'center'},
