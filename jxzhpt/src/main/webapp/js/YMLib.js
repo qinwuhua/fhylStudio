@@ -1525,7 +1525,9 @@ function loadBmbm2(id, name) {
 	});
 }
 function loadBmbm3(id, name,str) {
-	var arr=new Array();
+	var arr1=new Array();
+	var arr2=new Array();
+	var i=0;
 	$.ajax({
 		type:'post',
 		async:false,
@@ -1540,7 +1542,9 @@ function loadBmbm3(id, name,str) {
 				panelHeight:'auto',
 				multiple:true,
 				formatter:function(row){
-					alert(row);
+					arr1[i]=row.id;
+					arr2[i]=row.bmid;
+					i++;
 					var opts = $(this).combobox('options');
 					return '<input id="'+id+row.id+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 				},
@@ -1584,9 +1588,20 @@ function loadBmbm3(id, name,str) {
 	});
 	if(str!=null && str!=''){
 		$('#' + id).combobox('setValue',str);
-		$('#'+id+id[1]).attr('checked', true);
-	}
+		$('#'+id+arr1[returnindex(arr2,str)]).attr('checked', true);
+	};
 	
+}
+
+function returnindex(arr,str){
+	var j=0;
+	for(var i=0;i<arr.length;i++){
+		if(arr[i]==str){
+		   j=i;
+		   break;
+		 }
+	}
+	return j;
 }
 // 获取url中参数
 function getParam(paras) {
@@ -3781,7 +3796,7 @@ function lsxmlx(id){
 	    multiple:true,
 	    formatter:function(row){
 			var opts = $(this).combobox('options');
-			return '<input id="id'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+			return '<input id="id'+id+row.text+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 		},
 		onSelect:function(record){
 			var opts = $(this).combobox('options');
@@ -3790,11 +3805,11 @@ function lsxmlx(id){
 				var datas = $('#' +id).combobox("getData");
 				$.each(datas,function(index,item){
 					values.push(item.value);
-					$('#id'+id+item.value).attr('checked', true);
+					$('#id'+id+item.text).attr('checked', true);
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
-				$('#'+id+record.value).attr('checked', true);
+				$('#'+id+record.text).attr('checked', true);
 			}
 		},
 		onUnselect:function(record){
@@ -3808,13 +3823,13 @@ function lsxmlx(id){
 				}
 				$.each(datas,function(index,item){
 					if(jQuery.inArray(""+item.value,values)<0){
-						$('#id'+id+item.value).attr('checked', false);
+						$('#id'+id+item.text).attr('checked', false);
 					}
 				});
 				$('#' +id).combobox("setValues",values);
 			}else{
 				$.each(datas,function(index,item){
-					$('#'+id+item.value).attr('checked', false);
+					$('#'+id+item.text).attr('checked', false);
 				});
 			}
 		}
@@ -3823,7 +3838,7 @@ function lsxmlx(id){
 	
 }
 
-//历史项目年份
+//历史计划年份
 function lsxmnf(id){
 	var years=[];
 	years.push({text:'全部',value:''});
@@ -3901,4 +3916,8 @@ function loadjzt(str) {
 function disLoadjzt() {  
     $(".datagrid-mask").remove();  
     $(".datagrid-mask-msg").remove();  
+}
+//设置光圈
+function szgq(str,id){
+	$('#'+id).attr('class',str);
 }

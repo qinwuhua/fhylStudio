@@ -1672,8 +1672,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryLsxx2new(){
 		try{
 			String xzqh=lx.getXzqh();
-			lx.setXzqh(getcxtj("l.xzqhdm",xzqh));
-			lx.setXzqhdm(getcxtj("t.xlxbm",xzqh));
+			//lx.setXzqh(getcxtj("l.xzqhdm",xzqh));
+			//lx.setXzqhdm(getcxtj("t.xlxbm",xzqh));
+			lx.setXzqhdm(getcxtj("xzqhdm2",xzqh));
+			lx.setJsxz(getcxtj("jsxz",lx.getXmlx()));
 			JsonUtils.write(jhshServer.queryLsxx2new(lx), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -2555,61 +2557,88 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	
 		//wdd导出养护大中修汇总表excel  start
 				public void exportJhshYhdzxExcel(){
-					String xmbm = jhsh.getXmnf();
-					System.out.println(xmbm+"************");
-					if(!xmbm.equals("")&&xmbm!=null){
-						if(xmbm.indexOf(",")>-1){
-							String[] xmnfArray = xmbm.split(",");
-							for (int i = 0; i < xmnfArray.length; i++) {
-								if(i==xmnfArray.length-1){
-									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
-								}else if(i==0){
-									xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-								}else{
-									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
-								}
-							}
-						}else{
-							xmbm = "j.xmbm like '" + xmbm + "%' ";
-						}
-					}
-					
-					jhsh.setXmbm(xmbm);
-					jsdjHandle();
+					xdwhHandle();
+					xzdjHandle();
 					jsjsdjHandle();
-					ylxbhHandle();
+					jsdjHandle1();
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					jsxzHandle();
 					zjlyHandle();
 					xdztHandle();
-					xdwhHandle();
-					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
-					if(jhsh.getXmlx1()!=null)
-						if(jhsh.getXmlx1().length()>0){
-							String[] tsdqs=jhsh.getXmlx1().split(",");
-							String tsdq="";
-							for (int i = 0; i < tsdqs.length; i++) {
-								if("全部".equals(tsdqs[i])){
-									tsdq="";
-									break;
-								}
-								if(i==0)
-									tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
-								else
-									tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
-							}
-							if(tsdq==""){
-								tsdq="";
-							}else{
-								tsdq+=")";
-							}
-							jhsh.setXmlx1(tsdq);
-						}
-
+					tsdqHandle();
+					
 					List<Excel_list> l = jhshServer.queryYhdzx_dc(jhsh);
 					for (int i = 0; i < l.size(); i++) {
 						if(i!=0)
 						l.get(i).setV_0(i+"");
 					}
-					System.out.println(l+"111");
+					//System.out.println(l+"111");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
+					eldata.setSheetName("汇总表");//设置sheeet名
+					eldata.setFileName("公路建设计划（养护大中修）汇总表");//设置文件名
+					
+					eldata.setEl(l);//将实体list放入类中
+					System.out.println(eldata+"实体list");
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("序号",1,3,0,0));
+					et.add(new Excel_tilte("设区市",1,3,1,1));
+					et.add(new Excel_tilte("里程（公里）",1,1,2,13));
+					et.add(new Excel_tilte("本次计划下达资金（万元）",1,1,14,25));
+					et.add(new Excel_tilte("总计",2,3,2,2));
+					et.add(new Excel_tilte("重建",2,3,3,3));
+					et.add(new Excel_tilte("改造",2,3,4,4));
+					et.add(new Excel_tilte("预防性养护",2,3,5,5));
+					et.add(new Excel_tilte("国道",2,2,6,9));
+					et.add(new Excel_tilte("省道",2,2,10,13));
+					et.add(new Excel_tilte("总计",2,3,14,14));
+					et.add(new Excel_tilte("重建",2,3,15,15));
+					et.add(new Excel_tilte("改造",2,3,16,16));
+					et.add(new Excel_tilte("预防性养护",2,3,17,17));
+					et.add(new Excel_tilte("国道",2,2,18,21));
+					et.add(new Excel_tilte("省道",2,2,22,25));
+					et.add(new Excel_tilte("小计",3,3,6,6));
+					et.add(new Excel_tilte("重建",3,3,7,7));
+					et.add(new Excel_tilte("改造",3,3,8,8));
+					et.add(new Excel_tilte("预防性养护",3,3,9,9));
+					et.add(new Excel_tilte("小计",3,3,10,10));
+					et.add(new Excel_tilte("重建",3,3,11,11));
+					et.add(new Excel_tilte("改造",3,3,12,12));
+					et.add(new Excel_tilte("预防性养护",3,3,13,13));
+					et.add(new Excel_tilte("小计",3,3,18,18));
+					et.add(new Excel_tilte("重建",3,3,19,19));
+					et.add(new Excel_tilte("改造",3,3,20,20));
+					et.add(new Excel_tilte("预防性养护",3,3,21,21));
+					et.add(new Excel_tilte("小计",3,3,22,22));
+					et.add(new Excel_tilte("重建",3,3,23,23));
+					et.add(new Excel_tilte("改造",3,3,24,24));
+					et.add(new Excel_tilte("预防性养护",3,3,25,25));
+					System.out.println(et+"list表头");		
+					eldata.setEt(et);//将表头内容设置到类里面
+					System.out.println(eldata+"实体listlast");
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					try {
+						Excel_export.excel_export(eldata,response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}  //wdd导出养护大中修汇总表excel  end
+				public void exportJhshYhdzxExcel1(){
+					xdwhHandle();
+					jsdjHandle1();
+					xzdjHandle();
+					tsdqHandle1();
+					jsxzHandle();
+					zjlyHandle();
+					xdztHandle();
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					
+					List<Excel_list> l = jhshServer.queryYhdzx_dc1(jhsh);
+					for (int i = 0; i < l.size(); i++) {
+						if(i!=0)
+						l.get(i).setV_0(i+"");
+					}
+					//System.out.println(l+"111");
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
 					eldata.setSheetName("汇总表");//设置sheeet名
@@ -2661,57 +2690,94 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					}
 				}  //wdd导出养护大中修汇总表excel  end
 				
+				
 				//wdd导出养护大中修明细表excel  start
 				public void exportJhshYhdzxDetailExcel(){
-					String xmbm = jhsh.getXmnf();
-					if(!xmbm.equals("")&&xmbm!=null){
-						if(xmbm.indexOf(",")>-1){
-							String[] xmnfArray = xmbm.split(",");
-							for (int i = 0; i < xmnfArray.length; i++) {
-								if(i==xmnfArray.length-1){
-									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
-								}else if(i==0){
-									xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
-								}else{
-									xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
-								}
-							}
-						}else{
-							xmbm = "j.xmbm like '" + xmbm + "%' ";
-						}
-					}
-					
-					jhsh.setXmbm(xmbm);
-					jsdjHandle();
+					xdwhHandle();
+					xzdjHandle();
 					jsjsdjHandle();
-					ylxbhHandle();
+					jsdjHandle1();
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					jsxzHandle();
 					zjlyHandle();
 					xdztHandle();
-					xdwhHandle();
-					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
-					if(jhsh.getXmlx1()!=null)
-						if(jhsh.getXmlx1().length()>0){
-							String[] tsdqs=jhsh.getXmlx1().split(",");
-							String tsdq="";
-							for (int i = 0; i < tsdqs.length; i++) {
-								if("全部".equals(tsdqs[i])){
-									tsdq="";
-									break;
-								}
-								if(i==0)
-									tsdq+=" and (j.xmlx1 like '%"+tsdqs[i]+"%'";
-								else
-									tsdq+=" or j.xmlx1 like '%"+tsdqs[i]+"%'";
-							}
-							if(tsdq==""){
-								tsdq="";
-							}else{
-								tsdq+=")";
-							}
-							jhsh.setXmlx1(tsdq);
-						}
-
+					tsdqHandle();
+					System.out.println("ssssssss"+jhsh.getScxdnf());
 					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc(jhsh);
+					for (int i = 0; i < l.size(); i++) {
+						l.get(i).setV_0((i+1)+"");
+					}
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
+					eldata.setSheetName("明细表");//设置sheeet名
+					eldata.setFileName("公路建设计划（养护大中修）明细表");//设置文件名
+					
+					eldata.setEl(l);//将实体list放入类中
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("序号",1,2,0,0));
+					et.add(new Excel_tilte("原路线编号",1,2,1,1));
+					et.add(new Excel_tilte("新路线编号",1,2,2,2));
+					et.add(new Excel_tilte("路线名称",1,2,3,3));
+					et.add(new Excel_tilte("起点桩号",1,2,4,4));
+					et.add(new Excel_tilte("讫点桩号",1,2,5,5));
+					et.add(new Excel_tilte("长度（公里）",1,2,6,6));
+					et.add(new Excel_tilte("等级",1,2,7,7));
+					et.add(new Excel_tilte("路面宽度（米）",1,2,8,8));
+					et.add(new Excel_tilte("工程分类",1,2,9,9));
+					et.add(new Excel_tilte("建设方案",1,2,10,10));
+					et.add(new Excel_tilte("总投资（万元）",1,2,11,11));
+					et.add(new Excel_tilte("",1,1,12,12));
+					et.add(new Excel_tilte("已安排的省级以上补助资金（万元）",1,2,13,13));
+					et.add(new Excel_tilte("本次下达计划补助资金（万元）",1,1,14,17));
+					et.add(new Excel_tilte("施工图批复文号",1,2,18,18));
+					et.add(new Excel_tilte("管养单位",1,2,19,19));
+					et.add(new Excel_tilte("备注",1,2,20,20));
+					et.add(new Excel_tilte("其中：省级以上补助资金（万元）",2,2,12,12));
+					et.add(new Excel_tilte("小计",2,2,14,14));
+					et.add(new Excel_tilte("拟争取部车购税补助资金",2,2,15,15));
+					et.add(new Excel_tilte("燃油税",2,2,16,16));
+					et.add(new Excel_tilte("银行贷款",2,2,17,17));
+					et.add(new Excel_tilte("1",3,3,0,0));
+					et.add(new Excel_tilte("2",3,3,1,1));
+					et.add(new Excel_tilte("3",3,3,2,2));
+					et.add(new Excel_tilte("4",3,3,3,3));
+					et.add(new Excel_tilte("5",3,3,4,4));
+					et.add(new Excel_tilte("6",3,3,5,5));
+					et.add(new Excel_tilte("7",3,3,6,6));
+					et.add(new Excel_tilte("8",3,3,7,7));
+					et.add(new Excel_tilte("9",3,3,8,8));
+					et.add(new Excel_tilte("10",3,3,9,9));
+					et.add(new Excel_tilte("11",3,3,10,10));
+					et.add(new Excel_tilte("12",3,3,11,11));
+					et.add(new Excel_tilte("13",3,3,12,12));
+					et.add(new Excel_tilte("14",3,3,13,13));
+					et.add(new Excel_tilte("15",3,3,14,14));
+					et.add(new Excel_tilte("16",3,3,15,15));
+					et.add(new Excel_tilte("17",3,3,16,16));
+					et.add(new Excel_tilte("18",3,3,17,17));
+					et.add(new Excel_tilte("19",3,3,18,18));
+					et.add(new Excel_tilte("20",3,3,19,19));
+					et.add(new Excel_tilte("21",3,3,20,20));
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					try {
+						Excel_export.excel_export(eldata,response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}  //wdd导出养护大中修明细表excel  end
+				
+				//wdd导出养护大中修明细表excel  start
+				public void exportJhshYhdzxDetailExcel1(){
+					xdwhHandle();
+					jsdjHandle1();
+					xzdjHandle();
+					tsdqHandle1();
+					jsxzHandle();
+					zjlyHandle();
+					xdztHandle();
+					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc1(jhsh);
 					for (int i = 0; i < l.size(); i++) {
 						l.get(i).setV_0((i+1)+"");
 					}

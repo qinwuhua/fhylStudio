@@ -26,7 +26,22 @@ public class Lxsh implements Serializable {
 	private String wnnfxz;
 	private String lsxmlx;
 	private String lsxmnf;
+	private String nwgxzdj;//拟完工性质等级
+	private String tjfl;//统计分类
 	
+	
+	public String getNwgxzdj() {
+		return nwgxzdj;
+	}
+	public void setNwgxzdj(String nwgxzdj) {
+		this.nwgxzdj = nwgxzdj;
+	}
+	public String getTjfl() {
+		return tjfl;
+	}
+	public void setTjfl(String tjfl) {
+		this.tjfl = tjfl;
+	}
 	public String getLsxmnf() {
 		return lsxmnf;
 	}

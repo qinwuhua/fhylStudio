@@ -2138,7 +2138,13 @@ public class Excel_export {
         style2.setFont(font);
 		cell.setCellValue(el.getTitleName());
 		cell.setCellStyle(style2); 
-
+		
+		HSSFPrintSetup ps = sheet.getPrintSetup(); 
+	     
+        
+        ps.setLandscape(true); // 打印方向，true：横向，false：纵向(默认)    
+        ps.setVResolution((short)600);    
+        ps.setPaperSize(HSSFPrintSetup.A3_PAPERSIZE); //纸张类型
 		List<Excel_tilte> et = el.getEt();
 		int maxy=0;
 		int maxx=0;
@@ -6342,11 +6348,18 @@ public class Excel_export {
 	        font.setFontHeightInPoints((short) 18);// 设置字体大小
 			font1.setFontName("宋体");
 	        font1.setFontHeightInPoints((short) 10);// 设置字体大小
+	        HSSFPrintSetup ps = sheet.getPrintSetup(); 
+	     
+           
+	        ps.setLandscape(true); // 打印方向，true：横向，false：纵向(默认)    
+            ps.setVResolution((short)600);    
+            ps.setPaperSize(HSSFPrintSetup.A3_PAPERSIZE); //纸张类型
+            
 	        style.setFont(font1);
 	        style2.setFont(font);
 			cell.setCellValue(el.getTitleName());
 			cell.setCellStyle(style2); 
-
+			
 			List<Excel_tilte> et = el.getEt();
 			int maxy=0;
 			int maxx=0;

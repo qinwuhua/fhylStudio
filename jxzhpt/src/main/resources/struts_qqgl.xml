@@ -302,6 +302,11 @@
 		<action name="ghksjfxXjAndGj" class="wnjhController" method="ghksjfxXjAndGj"/>
 		<action name="ghkfxSelect" class="wnjhController" method="ghkfxSelect"/>
 		<action name="getWninfobyid" class="wnjhController" method="getWninfobyid"/>
+		<!-- 查看原路网结构 -->
+		<action name="ckylwjg" class="wnjhController" method="ckylwjg"/>
+		<action name="ckxlwjg" class="wnjhController" method="ckxlwjg"/>
+		<action name="xljgbh" class="wnjhController" method="xljgbh"/>
+		<action name="selectGsdxzxm" class="wnjhController" method="selectGsdxzxm"/>
 		
 	<!-- rh -->
 	
@@ -321,7 +326,9 @@
 	    <action name="exportJhshxxgsdexcel" class="jhshController" method="exportJhshxxgsdexcel"></action>
 	    <action name="exportJhshShExcel" class="jhshController" method="exportJhshShExcel"></action>
 	    <action name="exportJhshYhdzxExcel" class="jhshController" method="exportJhshYhdzxExcel"></action>
+	    <action name="exportJhshYhdzxExcel1" class="jhshController" method="exportJhshYhdzxExcel1"></action>
 	    <action name="exportJhshYhdzxDetailExcel" class="jhshController" method="exportJhshYhdzxDetailExcel"></action>
+		<action name="exportJhshYhdzxDetailExcel1" class="jhshController" method="exportJhshYhdzxDetailExcel1"></action>
 	</package>
 </struts>
 

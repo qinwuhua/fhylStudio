@@ -1691,6 +1691,225 @@
 		update ${bz} set xmjd=#{xmjd} where id in (select wnid from ${bzcs} where xmbm in(${xmbm}))
 	</update>
 	
+	<select id="ckylwjgads" parameterType="lxsh" resultType="elist">
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(lc) v_1,sum(decode(jsdj,'一级公路',lc,0)) v_2,sum(decode(jsdj,'二级公路',lc,0)) v_3,sum(decode(jsdj,'三级公路',lc,0)) v_4,sum(decode(jsdj,'四级公路',lc,0)) v_5,sum(decode(jsdj,'等外公路',lc,0)) v_6, 
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,0))/sum(lc)*100),1)))||'%' v_7,
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,'三级公路',lc,0))/sum(lc)*100),1)))||'%' v_8
+	from nwggmgxgps where 1=1
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select to_char(min(xzqhdm)) xzqhdm,to_char(xzqh) v_0,sum(lc) v_1,sum(decode(jsdj,'一级公路',lc,0)) v_2,sum(decode(jsdj,'二级公路',lc,0)) v_3,sum(decode(jsdj,'三级公路',lc,0)) v_4,sum(decode(jsdj,'四级公路',lc,0)) v_5,sum(decode(jsdj,'等外公路',lc,0)) v_6, 
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,0))/sum(lc)*100),1)))||'%' v_7,
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,'三级公路',lc,0))/sum(lc)*100),1)))||'%' v_8
+	from nwggmgxgps where 1=1
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by xzqh)
+	order by xzqhdm
+	
+	
+	</select>
+	<select id="ckylwjgalx" parameterType="lxsh" resultType="elist">
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(lc) v_1,sum(decode(jsdj,'一级公路',lc,0)) v_2,sum(decode(jsdj,'二级公路',lc,0)) v_3,sum(decode(jsdj,'三级公路',lc,0)) v_4,sum(decode(jsdj,'四级公路',lc,0)) v_5,sum(decode(jsdj,'等外公路',lc,0)) v_6, 
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,0))/sum(lc)*100),1)))||'%' v_7,
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,'三级公路',lc,0))/sum(lc)*100),1)))||'%' v_8
+	from nwggmgxgps where 1=1
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select to_char(min(xzqhdm)) xzqhdm,to_char(lxbm) v_0,sum(lc) v_1,sum(decode(jsdj,'一级公路',lc,0)) v_2,sum(decode(jsdj,'二级公路',lc,0)) v_3,sum(decode(jsdj,'三级公路',lc,0)) v_4,sum(decode(jsdj,'四级公路',lc,0)) v_5,sum(decode(jsdj,'等外公路',lc,0)) v_6, 
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,0))/sum(lc)*100),1)))||'%' v_7,
+	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,'三级公路',lc,0))/sum(lc)*100),1)))||'%' v_8
+	from nwggmgxgps where 1=1
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by lxbm)
+	order by xzqhdm
+	
+	
+	</select>
+	
+	<select id="selectGsdxzxm" parameterType="lxsh" resultType="lxsh">
+		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
+		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,min(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,min(ghlxbm) ghlxbm,max(ghqdzh) ghqdzh,max(ghzdzh) ghzdzh
+		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
+		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
+		left join (select xmid,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+        from (select  xmid,jsxz,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+        when jsxz like '%新建%' then to_number(xjlc)
+        else to_number(lc)
+        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+		where 1=1 and (xmlx1='改建工程' or xmlx1='新建工程')
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf in (${xmnf})
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			${tsdq}
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="jsjsdj !='' and jsjsdj != null ">
+			${jsjsdj}
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl=#{lsjl}
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if>
+		<if test="xmmc !='' and xmmc != null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="ghlxbh !='' and ghlxbh != null ">
+			and ghlxbmtj like '%'||#{ghlxbh}||'%'
+		</if>
+		<if test="ghxlxbm !='' and ghxlxbm != null ">
+			and ghxlxbmtj like '%'||#{ghxlxbm}||'%'
+		</if>
+		<if test="lxmc !='' and lxmc != null ">
+			and ghlxmctj like '%'||#{lxmc}||'%'
+		</if>
+		<if test="ghxlxmc !='' and ghxlxmc != null ">
+			and ghxlxmctj like '%'||#{ghxlxmc}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
+		</if>
+		<if test="qqkzzt !='' and qqkzzt != null ">
+			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+			and xmklx like '%'||#{xmklx}||'%'
+		</if>
+		<if test="gydw!='36' and gydw!=null">
+			and znsjck is null
+		</if>
+		<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+		
+		order by xmnf
+
+	</select>
+	
+	
+	<select id="ckxlwjgads" parameterType="lxsh" resultType="elist">
+	
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,
+	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
+	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	union all
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
+	from nwggmgxgps
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select min(xzqhdm) xzqhdm,to_char(xzqh) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,
+	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
+	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	union all
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
+	from nwggmgxgps
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by xzqh
+	)
+	order by xzqhdm
+	</select>
+	<select id="ckxlwjgalx" parameterType="lxsh" resultType="elist">
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,
+	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
+	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	union all
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
+	from nwggmgxgps
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select min(xzqhdm) xzqhdm,to_char(lxbm) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6,
+	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
+	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	union all
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
+	from nwggmgxgps
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by lxbm
+	)
+	order by xzqhdm
+	
+	</select>
+	
+	<select id="xljgbhads" parameterType="lxsh" resultType="elist">
+	
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select min(xzqhdm) xzqhdm,to_char(xzqh) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by xzqh
+	)
+	order by xzqhdm
+	</select>
+	<select id="xljgbhalx" parameterType="lxsh" resultType="elist">
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	)
+	union all
+	(select min(xzqhdm) xzqhdm,to_char(lxbm) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+
+	from(
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	from nwggmgxwn where 1=1 and xmid in (${xmbm})
+	
+	) where 1=1 
+	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
+	group by lxbm
+	)
+	order by xzqhdm
+	
+	</select>
+	
 	
 </mapper>
 

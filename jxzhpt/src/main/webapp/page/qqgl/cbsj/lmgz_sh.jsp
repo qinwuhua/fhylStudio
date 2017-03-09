@@ -40,8 +40,8 @@
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
 			//xmnf("xmnf");
-			lsxmlx('lsxmlx');
-			lsxmnf('lsxmnf');
+			loadBmbm3('lsxmlx','历史项目类型');  
+			loadBmbm3('lsxmnf','历史项目年份');  
 			urlxmnf("xmnf",getUrlParame('id'));
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -468,7 +468,7 @@ text-decoration:none;
 								</td>
 								 </tr>
 	                             <tr height="32">
-								<td>历史项目年份：</td>
+								<td>历史计划年份：</td>
 								<td>
 									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>

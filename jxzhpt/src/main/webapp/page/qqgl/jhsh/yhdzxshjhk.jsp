@@ -232,7 +232,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+				jhxdwh='%25';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -245,7 +245,7 @@
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
-			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel.do?"+param;
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel1.do?"+param;
 		}
 		function exportJhshxx1(){
 			/* var xmlx=$("#xmlx").combobox("getValues").join(",");
@@ -277,7 +277,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+				jhxdwh='%25';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -290,7 +290,8 @@
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly;
-			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel.do?"+param;
+			
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel1.do?"+param;
 		}
 		function importJhsh(){
 			importExcelqwh("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");

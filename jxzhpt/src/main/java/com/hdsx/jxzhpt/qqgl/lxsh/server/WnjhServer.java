@@ -61,4 +61,8 @@ public interface WnjhServer {
 	Lxsh getWnlminfobyid(String xmbm);
 	Lxsh getWnxjinfobyid(String xmbm);
 	boolean updateWnxmjd(Lxsh lxsh);
+	List<Excel_list> ckylwjg(Lxsh lxsh);
+	List<Lxsh> selectGsdxzxm(Lxsh lxsh);
+	List<Excel_list> ckxlwjg(Lxsh lxsh);
+	List<Excel_list> xljgbh(Lxsh lxsh);
 }

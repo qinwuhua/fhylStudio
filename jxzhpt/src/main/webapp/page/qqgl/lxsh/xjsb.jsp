@@ -35,8 +35,8 @@
 			loadGldj('gldj');
 			//tsdqdx("tsdq");
 			urlxmnf("xmnf",getUrlParame('id'));
-			lsxmlx('lsxmlx');
-			lsxmnf('lsxmnf');
+			loadBmbm3('lsxmlx','历史项目类型');  
+			loadBmbm3('lsxmnf','历史项目年份');  
 			setTimeout("showAllxj()",'1700');
 		});
 		
@@ -275,7 +275,7 @@ text-decoration:none;
 									</select>
 								</td>
 
-        					<td>历史项目年份：</td>
+        					<td>历史计划年份：</td>
 								<td>
 									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>

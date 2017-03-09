@@ -75,6 +75,7 @@ import com.hdsx.jxzhpt.qqgl.server.impl.XmsqServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
@@ -1612,6 +1613,152 @@ public class WnjhController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void ckylwjg(){
+		try {
+			if("G".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("国道");
+			}else if("S".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("省道");
+			}else{
+				lxsh.setBz("国省道");
+			}
+			lxsh.setNwgxzdj(MyUtil.getQueryTJ(lxsh.getNwgxzdj(), "lxbm"));
+			
+			List<Excel_list> l=wnjhServer.ckylwjg(lxsh);
+			EasyUIPage<Excel_list> ep=new EasyUIPage<Excel_list>();
+			ep.setRows(l);
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void ckxlwjg(){
+		try {
+			if("G".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("国道");
+			}else if("S".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("省道");
+			}else{
+				lxsh.setBz("国省道");
+			}
+			lxsh.setNwgxzdj(MyUtil.getQueryTJ(lxsh.getNwgxzdj(), "lxbm"));
+			
+			List<Excel_list> l=wnjhServer.ckxlwjg(lxsh);
+			EasyUIPage<Excel_list> ep=new EasyUIPage<Excel_list>();
+			ep.setRows(l);
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void xljgbh(){
+		try {
+			if("G".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("国道");
+			}else if("S".equals(lxsh.getNwgxzdj())){
+				lxsh.setBz("省道");
+			}else{
+				lxsh.setBz("国省道");
+			}
+			lxsh.setNwgxzdj(MyUtil.getQueryTJ(lxsh.getNwgxzdj(), "lxbm"));
+			
+			List<Excel_list> l=wnjhServer.xljgbh(lxsh);
+			EasyUIPage<Excel_list> ep=new EasyUIPage<Excel_list>();
+			ep.setRows(l);
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void selectGsdxzxm(){
+		try {
+			
+			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
+			if(xmnf.indexOf(",")>-1){
+				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
+			}
+			lxsh.setXmnf(xmnf);
+			lxsh.setTsdq(tsdq);
+			String gldjtj="";
+			if((!"".equals(gldj))&&gldj!=null){
+				String[] jsdjs = gldj.split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						gldjtj=gldjtj+"and (ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
+					else
+						gldjtj=gldjtj+"or ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
+				}
+				gldjtj=gldjtj+")";
+			}
+			lxsh.setGldj(gldjtj);
+			String jsdjtj="";
+			if((!"".equals(jsdj))&&jsdj!=null){
+				String[] jsdjs = jsdj.split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsdjtj=jsdjtj+"and (xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsdjtj=jsdjtj+"or xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsdjtj=jsdjtj+")";
+			}
+			lxsh.setJsdj(jsdjtj);
+			String jsjsdj="";
+			if((!"".equals(jsdj))&&jsdj!=null){
+				String[] jsdjs = jsdj.split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsjsdj=jsjsdj+"or jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsjsdj=jsjsdj+")";
+			}
+			lxsh.setJsjsdj(jsjsdj);
+			if(lxsh.getTsdq().length()>0){
+				String[] tsdqs=lxsh.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				lxsh.setTsdq(tsdq);
+			}
+			setXmlx1(lxsh.getXmlx1());
+			
+		lxsh.setNwgxzdj(MyUtil.getQueryTJ(lxsh.getNwgxzdj(), "ghlxbmtj||ghxlxbmtj"));
+			
+		List<Lxsh> list=wnjhServer.selectGsdxzxm(lxsh);
+		
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	
 	
 }
 

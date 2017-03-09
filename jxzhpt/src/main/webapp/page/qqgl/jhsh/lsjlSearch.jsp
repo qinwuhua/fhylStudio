@@ -41,9 +41,6 @@
 			}
 			var lxbm=$('#lxbm').val();
 			var ghlxbm=$('#ghlxbm').val();
-			if(lxbm=='') lxbm='%';
-			if(lxbm=='%'&&ghlxbm=='') ghlxbm='%';
-			
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
@@ -52,10 +49,10 @@
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
 				columns:[[
-					{field:'xjsdj',title:'项目类型',width:100,align:'center'},
+					{field:'xmlx',title:'项目类型',width:100,align:'center'},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
-							var a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xjsdj+"'"+')" style="color:#0066CB;font-size:12px;">';
+							var a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';
 							a+=value+'</a>';
 							return a;
 						}
@@ -65,16 +62,32 @@
 							return value.substring(0,4);
 						}
 					},
-					{field:'lxbm',title:'规划路线编码',width:110,align:'center'},
-					{field:'jsjsdj',title:'规划技术等级',width:110,align:'center'},
-					{field:'qdzh',title:'规划起点桩号',width:110,align:'center'},
-					{field:'zdzh',title:'规划止点桩号',width:110,fixed:true,align:'center'},
-					{field:'ylxbm',title:'原路线编码',width:100,align:'center'},
-					{field:'xx',title:'原技术等级',width:100,align:'center',formatter:function(value,row,index){
-						return row .yjsdj;
-					}},
-					{field:'yqdzh',title:'原起点桩号',width:100,align:'center'},
-					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
+					{field:'ghlxbm',title:'规划路线编码',width:110,align:'center'},
+					{field:'jsjsdj',title:'规划技术等级',width:110,align:'center',
+						formatter:function(value,row,index){
+							if(value=='')
+							return row.xjsdj;
+							else return value;
+						}
+					},
+					{field:'ghqdzh',title:'规划起点桩号',width:110,align:'center'},
+					{field:'ghzdzh',title:'规划止点桩号',width:110,fixed:true,align:'center'},
+					{field:'lxbm',title:'原路线编码',width:100,align:'center'},
+					{field:'xjsdj',title:'原技术等级',width:100,align:'center'},
+					{field:'qdzh',title:'原起点桩号',width:100,align:'center',
+						formatter:function(value,row,index){
+							if(row.xmlx=='危桥改造')
+							return accDiv(accAdd(row.qdzh,row.zdzh),2);
+							else return value;
+						}
+					},
+					{field:'zdzh',title:'原止点桩号',width:100,align:'center',
+							formatter:function(value,row,index){
+								if(row.xmlx=='危桥改造')
+									return '';
+									else return value;
+							}
+					}
 					]]
 			});
 		}
@@ -120,6 +133,48 @@
 			$("#ghlxbm").val("");
 			$("#ghqdzh").val("");
 			$("#ghzdzh").val("");
+		}
+		
+		
+		//加法
+		function accAdd(arg1,arg2){  
+		    var r1,r2,m;  
+		    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  
+		    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}  
+		    m=Math.pow(10,Math.max(r1,r2));
+		    return (arg1*m+arg2*m)/m;  
+		}
+		//浮点数减法
+		function accSub(arg1,arg2){
+			 var r1,r2,m,n;
+			 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
+			try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
+			m=Math.pow(10,Math.max(r1,r2));
+			//last modify by deeka
+			//动态控制精度长度
+			n=(r1>=r2)?r1:r2;
+			return ((arg1*m-arg2*m)/m).toFixed(n);
+			}
+		//乘法
+		function accMul(arg1,arg2)  
+		{  
+		    var m=0,s1=arg1.toString(),s2=arg2.toString();  
+		    try{m+=s1.split(".")[1].length;}catch(e){
+		    }  
+		    try{m+=s2.split(".")[1].length;}catch(e){
+		    }  
+		    return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);  
+		}
+		//除法
+		function accDiv(arg1,arg2){  
+		    var t1=0,t2=0,r1,r2;  
+		    try{t1=arg1.toString().split(".")[1].length;}catch(e){}  
+		    try{t2=arg2.toString().split(".")[1].length;}catch(e){}  
+		    with(Math){  
+		        r1=Number(arg1.toString().replace(".",""));  
+		        r2=Number(arg2.toString().replace(".",""));  
+		        return (r1/r2)*pow(10,t2-t1);  
+		    }  
 		}
 	</script>
 </head>

@@ -317,6 +317,43 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		lxsh.setBzcs(tbname1);
 		return update("updateWnxmjd", lxsh)>0;
 	}
+	@Override
+	public List<Excel_list> ckylwjg(Lxsh lxsh) {
+		if("按地市".equals(lxsh.getTjfl())){
+			return queryList("ckylwjgads",lxsh);
+		}else{
+			return queryList("ckylwjgalx",lxsh);
+		}
+		
+		
+	}
+	@Override
+	public List<Excel_list> ckxlwjg(Lxsh lxsh) {
+		lxsh.setXmbm("'"+lxsh.getXmbm().replaceAll(",", "','")+"'");
+		if("按地市".equals(lxsh.getTjfl())){
+			return queryList("ckxlwjgads",lxsh);
+		}else{
+			return queryList("ckxlwjgalx",lxsh);
+		}
+		
+		
+	}
+	@Override
+	public List<Excel_list> xljgbh(Lxsh lxsh) {
+		lxsh.setXmbm("'"+lxsh.getXmbm().replaceAll(",", "','")+"'");
+		if("按地市".equals(lxsh.getTjfl())){
+			return queryList("xljgbhads",lxsh);
+		}else{
+			return queryList("xljgbhalx",lxsh);
+		}
+		
+		
+	}
+	
+	@Override
+	public List<Lxsh> selectGsdxzxm(Lxsh lxsh) {
+		return queryList("selectGsdxzxm", lxsh);
+	}
 	
 
 }

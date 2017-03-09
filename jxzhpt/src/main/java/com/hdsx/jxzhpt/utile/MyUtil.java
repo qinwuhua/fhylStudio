@@ -31,6 +31,52 @@ public class MyUtil implements Serializable{
 	}
 	
 	/**
+	 * 
+	 * @param bh 要处理的参数
+	 * @param bh1 要处理的参数1
+	 * @param name 要加条件的数据库字段
+	 * @return 拼好的条件
+	 */
+	public static String getQueryTJ(String bh,String bh1,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			if(bh1!=null&&!"".equals(bh1)){
+				String[] s = bh.split(",");
+				String[] s1 = bh1.split(",");
+				String[] lssz=new String[s.length*s1.length];
+				int k=0;
+				for (int i = 0; i < s.length; i++) {
+					for (int j = 0; j < s1.length; j++) {
+						lssz[k]=s[i]+s1[j];
+						k++;
+					}
+				}
+				for (int i = 0; i < lssz.length; i++) {
+					if(i==0)
+						result+=" and ("+name+" like '%"+lssz[i]+"%'";
+					else
+						result+=" or "+name+" like '%"+lssz[i]+"%'";
+				}
+				result+=")";
+			}else{
+				if(bh1!=null&&!"".equals(bh1)){
+				String[] s = bh1.split(",");
+				for (int i = 0; i < s.length; i++) {
+						if(i==0)
+							result+=" and ("+name+" like '%"+s[i]+"%'";
+						else
+							result+=" or "+name+" like '%"+s[i]+"%'";
+					}
+					result+=")";
+				}
+			}
+			
+		}
+		return result;
+	}
+	
+	
+	/**
 	* 提供精确的加法运算。
 	* @param v1 被加数
 	* @param v2 加数

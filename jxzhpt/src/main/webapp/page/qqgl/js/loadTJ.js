@@ -132,7 +132,7 @@ function xmnf2(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
-///加法
+//加法
 function accAdd(arg1,arg2){  
     var r1,r2,m;  
     try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  

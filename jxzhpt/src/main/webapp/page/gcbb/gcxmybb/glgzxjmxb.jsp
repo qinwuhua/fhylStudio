@@ -136,7 +136,7 @@
 			var xmnf=$("#jhxdnf").combobox("getValues");
 			if(xmnf.join(",").substr(0,1)==',')
 			xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
-			var xmlx=$("#xmlx").combobox("getText");
+			var xmlx=$("#xmlx").combobox("getValue");
 			if(xmnf==''){
 				alert("请选择年份");
 				return;
@@ -241,7 +241,7 @@
 		var xmnf=$("#jhxdnf").combobox("getValues");
 		if(xmnf.join(",").substr(0,1)==',')
 		xmnf=xmnf.join(",").substr(1,xmnf.join(",").length).split(',');
-		var xmlx=$("#xmlx").combobox("getText");
+		var xmlx=$("#xmlx").combobox("getValue");
 		if(xmnf==''){
 			alert("请选择年份");
 			return;
@@ -304,7 +304,7 @@ a:active {
         						<input type="text" id="jhxdnf"  style="width:80px;">
         						<span>项目类型：</span>
         						<select id="xmlx" style="width:80px;" class='easyui-combobox'>
-        							<option value="升级改造">升级改造</option>
+        							<option value="升级改造">改建</option>
         							<option value="路面改造">路面改造</option>
         							<option value="灾毁重建">灾毁重建</option>
         						</select>
@@ -312,7 +312,7 @@ a:active {
         						<input type="text" id="ybnf"  style="width:80px;">
         						<span>截至进展月份：</span>
         						<input type="text" id="ybyf"  style="width:80px;">	
-        						&&nbsp;&nbsp;&nbsp;&nbsp;
+        						&nbsp;&nbsp;&nbsp;&nbsp;
        							<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 								 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"

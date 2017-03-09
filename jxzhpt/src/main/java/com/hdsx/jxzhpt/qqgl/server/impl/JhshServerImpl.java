@@ -432,8 +432,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	
 	@Override
 	public List<Lx> queryLsxx2new(Lx lx) {
+		
 		List<Lx> result=new ArrayList<Lx>();
-		queryLsjlListnew(result, lx);
+		result=queryList("queryLsxx2new", lx);
+		//queryLsjlListnew(result, lx);
 		return result;
 	}
 	/**
@@ -940,6 +942,14 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	@Override
 	public List<Excel_list> queryYhdzxDetail_dc(Jhsh jhsh) {
 		return queryList("queryYhdzxDetail_dcexcel",jhsh);
+	}
+	@Override
+	public List<Excel_list> queryYhdzx_dc1(Jhsh jhsh) {
+		return queryList("queryYhdzx_dcexcel1",jhsh);
+	}
+	@Override
+	public List<Excel_list> queryYhdzxDetail_dc1(Jhsh jhsh) {
+		return queryList("queryYhdzxDetail_dcexcel1",jhsh);
 	}
 	@Override
 	public List<Lx> queryylxbxmbm(Jhsh jhsh) {

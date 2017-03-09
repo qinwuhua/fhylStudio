@@ -608,7 +608,7 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
@@ -801,7 +801,7 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
@@ -955,7 +955,7 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}*/
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
@@ -1153,7 +1153,7 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setSbthcd(sbthcd);
 			//lxsh.setTsdq(tsdq);
@@ -1497,8 +1497,8 @@ public class LxshController extends BaseActionSupport{
 		}
 		
 		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
-		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 		//lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
@@ -1601,7 +1601,7 @@ public class LxshController extends BaseActionSupport{
 			}
 		}
 		
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 
 		//lxsh.setTsdq(tsdq);
@@ -1705,7 +1705,7 @@ public class LxshController extends BaseActionSupport{
 				jsjsdj = "";
 			}
 		}
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 
 		//lxsh.setTsdq(tsdq);
@@ -1997,7 +1997,7 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setSbthcd(sbthcd);
 			//lxsh.setTsdq(tsdq);
