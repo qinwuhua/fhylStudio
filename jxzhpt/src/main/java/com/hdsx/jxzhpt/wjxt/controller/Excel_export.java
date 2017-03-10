@@ -2110,14 +2110,17 @@ public class Excel_export {
 	    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 	    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    style.setWrapText(true); 
 	    style1.setBorderTop(HSSFCellStyle.BORDER_THIN);
 	    style1.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	    style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 	    style1.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    style1.setWrapText(true); 
 	    style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
 	    style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	    style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 	    style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    style2.setWrapText(true); 
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -2131,9 +2134,9 @@ public class Excel_export {
 		HSSFFont font= wb.createFont();
 		HSSFFont font1= wb.createFont();
 		font.setFontName("楷体");
-        font.setFontHeightInPoints((short) 18);// 设置字体大小
+        font.setFontHeightInPoints((short) 15);// 设置字体大小
 		font1.setFontName("宋体");
-        font1.setFontHeightInPoints((short) 10);// 设置字体大小
+        font1.setFontHeightInPoints((short) 9);// 设置字体大小
         style.setFont(font1);
         style2.setFont(font);
 		cell.setCellValue(el.getTitleName());
@@ -2174,7 +2177,10 @@ public class Excel_export {
 			
 		}
 		for (int i = 0; i <=maxy ; i++) {
-			sheet.setColumnWidth(i, 32 * 150);//设置固定宽度150
+			if(i==0)sheet.setColumnWidth(i, 60 * 20);
+			else{
+				sheet.setColumnWidth(i, 60 * 30);
+			}//设置固定宽度150
 			//sheet.autoSizeColumn((short)i); 自动适应宽度
 		}
 		for (Excel_tilte excel_tilte : et){
@@ -6324,14 +6330,17 @@ public class Excel_export {
 		    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 		    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		    style.setWrapText(true);
 		    style1.setBorderTop(HSSFCellStyle.BORDER_THIN);
 		    style1.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		    style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 		    style1.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		    style1.setWrapText(true);
 		    style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
 		    style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		    style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 		    style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		    style2.setWrapText(true);
 			style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 			style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 			style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -6341,13 +6350,14 @@ public class Excel_export {
 			style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 			style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 			HSSFCell cell = row.createCell((short) 0);
+			
 			row.setHeightInPoints(30f);
 			HSSFFont font= wb.createFont();
 			HSSFFont font1= wb.createFont();
 			font.setFontName("楷体");
-	        font.setFontHeightInPoints((short) 18);// 设置字体大小
+	        font.setFontHeightInPoints((short) 13);// 设置字体大小
 			font1.setFontName("宋体");
-	        font1.setFontHeightInPoints((short) 10);// 设置字体大小
+	        font1.setFontHeightInPoints((short) 9);// 设置字体大小
 	        HSSFPrintSetup ps = sheet.getPrintSetup(); 
 	     
            
@@ -6367,7 +6377,7 @@ public class Excel_export {
 			row = sheet.createRow((int) 1);
 			for (Excel_tilte excel_tilte : et) {
 				
-				row.setHeightInPoints(20f);
+				row.setHeightInPoints(50f);
 				int x1=excel_tilte.getX1();
 				int x2=excel_tilte.getX2();
 				int y1=excel_tilte.getY1();
@@ -6386,11 +6396,16 @@ public class Excel_export {
 				cell.setCellValue(excel_tilte.getName());  
 				cell.setCellStyle(style1);
 				
-				
 			}
 			for (int i = 0; i <=maxy ; i++) {
-				sheet.setColumnWidth(i, 32 * 150);//设置固定宽度150
-				//sheet.autoSizeColumn((short)i); 自动适应宽度
+				if(i==0)sheet.setColumnWidth(i, 32 * 30);
+				else if(i==1)sheet.setColumnWidth(i, 32 * 50);
+				else if(i==3)sheet.setColumnWidth(i, 32 * 40);
+				else if(i==13)sheet.setColumnWidth(i, 32 * 40);
+				else{
+					sheet.setColumnWidth(i, 32 * 70);//设置固定宽度150
+				}
+//				sheet.autoSizeColumn((short)i); //自动适应宽度
 			}
 			for (Excel_tilte excel_tilte : et){
 				int x1=excel_tilte.getX1();
