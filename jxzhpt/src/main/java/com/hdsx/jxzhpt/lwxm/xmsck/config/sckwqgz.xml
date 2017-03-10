@@ -26,7 +26,10 @@
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='是'
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>) t where 
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
+ 				) t where 
 			sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -75,7 +78,9 @@
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='是'
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>) t where 
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>) t where 
 			sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

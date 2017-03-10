@@ -138,7 +138,8 @@ $("#grid").datagrid({
 		 	'xmkaqsmfh.throadname':$('#throadname').val(),
 		 	'xmkaqsmfh.gldj':gldj,
 		 	'xmkaqsmfh.bzls':$("#bzls").combobox("getValue"),
-		 	'xmkaqsmfh.tsdq':tsdq
+		 	'xmkaqsmfh.tsdq':tsdq,
+		 	'xmkaqsmfh.xmklx':$('#xmklx').combobox('getValue')
 		},
 	    striped:true,
 	    pagination:true,
@@ -232,7 +233,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+
 	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.tsdq="+tsdq+
-	"&xmkaqsmfh.gldj="+gldj;
+	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj;
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/aqsmfh/loadXmkaqsmfhshCount.do",
@@ -396,6 +397,15 @@ text-decoration:none;
 							  <td><input type="text" id="throadname"  style="width:100px;" /></td>
 							 	<td>调后路线编码：</td>
 							  <td><input type="text" id="throadcode"  style="width:100px;" /></td>
+                             <td>项目库类型：</td>
+								<td " style="background-color: #ffffff; height: 20px;" align="left">
+									<select class="easyui-combobox" id='xmklx'>
+										<option value="" selected>请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+										
+									</select>
+								</td>
                               <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;" />

@@ -45,6 +45,9 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
  		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
  </select>
@@ -80,6 +83,9 @@
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
+ 		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
  		</if>
  </select>
  <select id="selectJckzhfzById" parameterType="jckzhfz" resultType="jckzhfz">
@@ -177,6 +183,9 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
  		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -215,6 +224,9 @@
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
+ 		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
  		</if>
  </select>
  <sql id="zhfz_commonsql">

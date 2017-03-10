@@ -234,7 +234,17 @@ text-decoration:none;
                               	<td><select id="bzls" style="width:104px"class="easyui-combobox">
                               	</select></td>
                              </tr>
+                             
                             <tr height="32">
+                            <td>项目库类型：</td>
+								<td " style="background-color: #ffffff; height: 20px;" align="left">
+									<select class="easyui-combobox" id='xmklx'>
+										<option value="" selected>请选择</option>
+										<option value="部库">部库</option>
+										<option value="省库">省库</option>
+										
+									</select>
+								</td>
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglZhfz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />

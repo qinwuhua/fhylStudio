@@ -56,7 +56,9 @@
  		<if test="tsdq!='' and tsdq!= null and tsdq !='全部'">
  			${tsdq}
  		</if>
- 		
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  		
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
@@ -106,7 +108,9 @@
  		<if test="tsdq!='' and tsdq!= null and tsdq !='全部'">
  			${tsdq}
  		</if>
- 		
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  </select>
  <select id="selectWqgzCount1" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t 

@@ -21,7 +21,9 @@
  			where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  			) t where
  			sck_sbthcd &lt;=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
@@ -61,7 +63,9 @@
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  			) t where
  			sck_sbthcd &lt;=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
@@ -126,7 +130,9 @@
  		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>) t 
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
@@ -166,7 +172,9 @@
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>) t 
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
@@ -374,7 +382,9 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  	select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				${tsdq}
- 				</if>) t 
+ 				</if><if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">

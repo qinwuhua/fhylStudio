@@ -35,7 +35,14 @@ public class Sckbhsd implements Serializable{
 	private String sck_sbzt2;
 	private String lrjh;
 	private String zyjsnr;//主要建设内容
+private String xmklx;//项目库类型
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	private String sck_sddm;
 	private String sck_lxbm;
 	private String sck_sdzxzh;

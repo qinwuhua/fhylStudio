@@ -10,7 +10,14 @@ import java.util.Date;
 public class Sckabgc implements Serializable{
 	private String gldj;
 	private String jsdj;
+private String xmklx;//项目库类型
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getGldj() {
 		return gldj;
 	}
