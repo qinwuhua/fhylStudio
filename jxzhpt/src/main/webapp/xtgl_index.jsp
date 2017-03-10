@@ -23,6 +23,7 @@ $(function(){
 	selSes();
 	$("#index_user").html($.cookie("truename"));
 	$("#c1f").attr("src", "page/xtgl/Menu.jsp");
+	$(".header_content").css({"width":"100%"});
 });
 </script>
 </head>

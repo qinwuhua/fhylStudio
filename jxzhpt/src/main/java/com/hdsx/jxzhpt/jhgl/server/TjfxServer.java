@@ -42,4 +42,6 @@ public interface TjfxServer {
 	
 	List<SjbbMessage> queryLkpdfx(Lkmxb lkmxb);
 	List<SjbbMessage> queryLkbjfx(Lkmxb lkmxb);
+	
+	List<Lkmxb> getPdnf(Lkmxb lkmxb);
 }

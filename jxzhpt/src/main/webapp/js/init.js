@@ -148,7 +148,8 @@ $(function(){
             $("#c15f").attr("src", "page/newzjbf/Menu.jsp");
         }
     });
-    
+    $(".header_content").css({"width":"100%"});
+
 });
 
 function menuQx(){

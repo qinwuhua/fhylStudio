@@ -43,6 +43,7 @@ $(function(){
         }
     });
     menuQx();
+    $(".header_content").css({"width":"100%"});
 });
 
 function menuQx(){
