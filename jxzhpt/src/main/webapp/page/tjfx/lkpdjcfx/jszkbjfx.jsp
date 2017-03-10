@@ -28,8 +28,17 @@
 				textField : "text",
 				panelHeight:170
 			});
+			
+			$('#lkpdbb').combotree({		
+				url :"/jxzhpt/tjfx/getPdnf.do",
+				panelHeight:170,
+		        multiple:true,
+		        checkBox:true, 
+		    });
+			
 			loadBmbm3("jsdj","技术等级");
-			xmnf("lkpdbb");
+// 			xmnf("lkpdbb");
+			
 			$("#query").click(function(){
 				if($("#roadcode").combobox("getValue")==""){
 					alert("请先选择路段！");
@@ -43,9 +52,10 @@
 			var jsdj=$('#jsdj').combobox("getValues").join(",");
 			if(jsdj.substr(0,1)==',')
 				jsdj=jsdj.substr(1,jsdj.length);
-			var lkpdbb=$('#lkpdbb').combobox("getValues").join(",");
+			var lkpdbb=$('#lkpdbb').combotree("getValues").join(",");
 			if(lkpdbb.substr(0,1)==',')
 				lkpdbb=lkpdbb.substr(1,lkpdbb.length);
+			
 			$.ajax({
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkbjfx.do",

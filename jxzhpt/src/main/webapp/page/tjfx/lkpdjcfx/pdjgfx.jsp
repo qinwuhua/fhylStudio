@@ -229,6 +229,9 @@ function queryLkpd(){
 }
 
 function loadGrid(lxbh,qdzh,zdzh){
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',') xmnf=xmnf.substr(1,xmnf.length);
+	
 	$("#grid_lkpd").datagrid({  
 		    border:true,
 			pagination:true,
@@ -243,6 +246,7 @@ function loadGrid(lxbh,qdzh,zdzh){
 				 	'lkmxb.lxbh':lxbh,
 				 	'lkmxb.qdzh':qdzh,
 				 	'lkmxb.zdzh':zdzh,
+				 	'lkmxb.tbnf':xmnf,
 				},
 	    columns:[
 	      [
@@ -272,10 +276,13 @@ function loadGrid(lxbh,qdzh,zdzh){
 }
 
 function queryBar(lxbh,qdzh,zdzh){
+	var xmnf=$("#xmnf").combobox("getValues").join(",");
+	if(xmnf.substr(0,1)==',') xmnf=xmnf.substr(1,xmnf.length);
+	
 	$.ajax({
 		type:'post',
 		url:"/jxzhpt/tjfx/queryLkpdmxList.do",
-		data:"lkmxb.lxbh="+lxbh+"&lkmxb.qdzh="+qdzh+"&lkmxb.zdzh="+zdzh,
+		data:"lkmxb.lxbh="+lxbh+"&lkmxb.qdzh="+qdzh+"&lkmxb.zdzh="+zdzh+"&lkmxb.tbnf="+xmnf,
 		dataType:'json',
 		success:function(msg){
 			if(msg.length>0){
