@@ -2148,6 +2148,7 @@ public class Excel_export {
         ps.setLandscape(true); // 打印方向，true：横向，false：纵向(默认)    
         ps.setVResolution((short)600);    
         ps.setPaperSize(HSSFPrintSetup.A3_PAPERSIZE); //纸张类型
+        
 		List<Excel_tilte> et = el.getEt();
 		int maxy=0;
 		int maxx=0;
@@ -2176,12 +2177,11 @@ public class Excel_export {
 			
 			
 		}
+		Integer t=47355/maxy;
 		for (int i = 0; i <=maxy ; i++) {
-			if(i==0)sheet.setColumnWidth(i, 60 * 20);
-			else{
-				sheet.setColumnWidth(i, 60 * 30);
-			}//设置固定宽度150
-			//sheet.autoSizeColumn((short)i); 自动适应宽度
+				sheet.setColumnWidth(i, t);
+//			sheet.setDefaultRowHeight((short) i);
+//          sheet.autoSizeColumn((short)i); 自动适应宽度
 		}
 		for (Excel_tilte excel_tilte : et){
 			int x1=excel_tilte.getX1();
@@ -2204,6 +2204,7 @@ public class Excel_export {
 		for (int i = 0; i < el2.size(); i++)  
         {  
             row = sheet.createRow((int) i + maxx+1);  
+            row.setHeightInPoints(50f);
             Excel_list trqk1 = (Excel_list) el2.get(i);  
             // 第四步，创建单元格，并设置值  
          
