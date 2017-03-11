@@ -15,6 +15,7 @@ public class ConnectionUtil {
   *�ڷ����й̻����Ӳ���
   * @return  ��ݿ�����
   */
+	//获取数据库链接的，不用看
  public Connection getConnection(){
   Connection conn = null ;
   try{
@@ -36,7 +37,8 @@ public class ConnectionUtil {
   ConnectionUtil cu = new ConnectionUtil() ;
   PreparedStatement ps = null;  
   Connection conn = cu.getConnection();  
-  ResultSet rs = null;  
+  ResultSet rs = null; 
+  //就是我给你发的sql文件里面的sql语句。
   String sql=" select t2.value, t2.name, t1.co, t2.hight, t2.rowxh  from (select substr1 value, count(*) co  from aaa  where value in   ('41v_59', '41v_60', '41v_61', '41v_62', '41v_63', '41v_64',   '42v_69', '431v_70', '431v_71', '431v_72', '431v_73', '431v_74', '432v_75',  '432v_76', '433v_77', '44v_78', '45v_79', '46v_80', '47v_81')"+
 		  " group by substr1  union all select substr2 value, count(*) co  from aaa  where value in ('41v_59', '41v_60', '41v_61', '41v_62', '41v_63', '41v_64','42v_69', '431v_70',  '431v_71', '431v_72', '431v_73', '431v_74', '432v_75', '432v_76', '433v_77', '44v_78', '45v_79', '46v_80', '47v_81')"+
 		  " and substr2 is not null  group by substr2 union all select substr3 value, count(*) co from aaa where value in ('41v_59', '41v_60', '41v_61', '41v_62', '41v_63', '41v_64','42v_69', '431v_70', '431v_71', '431v_72', '431v_73', '431v_74', '432v_75','432v_76', '433v_77', '44v_78', '45v_79', '46v_80', '47v_81')"+
@@ -59,10 +61,11 @@ public class ConnectionUtil {
               }
               
       }
+      
+     //以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
       String html="<tr>";
       String rowxh="0";
       for(int i=0;i<list.size();i++){
-    	  System.out.println(list.get(i).getName());
     	  if(!rowxh.equals(list.get(i).getRowxh())){
     		  html=html+"</tr><tr>";
     		  rowxh=list.get(i).getRowxh();
@@ -70,6 +73,7 @@ public class ConnectionUtil {
     	  html=html+"<td rowspan='"+list.get(i).getHi()+"'  colspan='"+list.get(i).getCol()+"'>"+list.get(i).getName()+"</td>";
       }
       html=html+"</tr>";
+      //把拼接的内容复制到了html里面，查看效果
       System.out.println(html);
   } catch (SQLException e) {  
       // TODO Auto-generated catch block  
