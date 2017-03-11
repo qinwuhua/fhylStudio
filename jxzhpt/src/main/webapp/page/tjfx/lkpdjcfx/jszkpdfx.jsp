@@ -27,6 +27,21 @@
 				textField : "text",
 				panelHeight:170
 			});
+			
+			$('#lkpdbb').combobox({		
+				url :"/jxzhpt/tjfx/getPdnf.do",
+				valueField : "id",
+				textField : "text",
+				panelHeight:170,
+				onLoadSuccess: function () { //加载完成后,设置选中第一项  
+					var data = $('#lkpdbb').combobox('getData');  
+		            	 if (data.length > 0) {
+		                 	$('#lkpdbb').combobox('select', data[0].id);
+		          		}   
+		         }  
+				
+		    });
+			
 			loadBmbm2("jcfx","方向");
 			
 			$("#query").click(function(){
@@ -46,7 +61,7 @@
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkpdfx.do",
 				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue")+"&lkmxb.tbnf="+$("#lkpdbb").val(),
+				"&lkmxb.jcfx="+$('#jcfx').combobox("getValue")+"&lkmxb.tbnf="+$('#lkpdbb').combobox("getValue"),
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
@@ -287,12 +302,13 @@
         					<p style="margin:8px 0px 8px 20px;">
         						<span>路况评定版本：：</span>
         						<span>
-        						<select id="lkpdbb" style="width:70px">
-        						<option value="2014">2014年</option>
-        						<option value="2015">2015年</option>
-        						<option value="2016">2016年</option>
-        						<option value="2017">2017年</option>
-        						</select>
+        						<select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
+<!--         						<select id="lkpdbb" style="width:70px"> -->
+<!--         						<option value="2014">2014年</option> -->
+<!--         						<option value="2015">2015年</option> -->
+<!--         						<option value="2016">2016年</option> -->
+<!--         						<option value="2017">2017年</option> -->
+<!--         						</select> -->
         						</span>
         						<span>管辖路段：</span>
         						<span>

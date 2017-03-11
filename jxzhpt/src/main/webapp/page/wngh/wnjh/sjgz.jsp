@@ -79,6 +79,7 @@ a{
 text-decoration:none;
 }
 .abgc_td td{padding-right:5px;}
+
 </style>
 </head>
 <body>
@@ -93,64 +94,65 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td"  >
 							<tr height="32">
-        						<td>行政区划：</td>
-        						<td colspan="3" ><select id="xzqh" style="width:230px;"></select></td>
-        						<td>项目名称：</td>
-        						<td><input id='xmmc' type="text" /></td>
-        						<td>建设性质：</td>
-        						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
-        						<td>建设技术等级：</td>
-								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" ></select></td>
+        						<td align="right">行政区划：</td>
+        						<td ><select id="xzqh" style="width:105px;"></select></td>
+        						<td align="right">项目名称：</td>
+        						<td><input id='xmmc' type="text" style="width:105px;" /></td>
+        						<td align="right">建设性质：</td>
+        						<td><select name="xmlx" id="xmlx" style="width:85px" ></select></td>
+        						<td align="right">建设技术等级：</td>
+								<td><select name="jsjsdj" id="jsjsdj" style="width:105px" ></select></td>
+								<td align="right">现技术等级：</td>
+								<td ><select name="jsdj" id="jsdj" style="width:45px" ></select></td>
+        					</tr>
+        					<tr height="32">
+        						
 								
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width:105px"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:105px" ></select></td>       					
+								
+								<td align="right">原路线编码：</td>
+        						<td><input id='lxbm' type="text" style="width:85px" /></td>
+        						<td align="right">原路线名称：</td>
+        						<td><input id='lxmc' type="text" style="width:105px" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input id='ghxlxbm' type="text" style="width:45px" /></td>
         					</tr>
         					<tr height="32">
-        						<td>现技术等级：</td>
-								<td  width="65px;"><select name="jsdj" id="jsdj" style="width:65px;" ></select></td>
-								</select></td>
-								<td>项目年份：</td>
-        						<td><select id="xmnf" style="width:65px;">
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" ></select></td>       					
-								</select></td>
-								<td>原路线编码：</td>
-        						<td><input id='lxbm' type="text" /></td>
-        						<td>原路线名称：</td>
-        						<td><input id='lxmc' type="text" /></td>
-        					</tr>
-        					<tr height="32">
-        						<td>规划路线编码：</td>
-        						<td><input id='ghxlxbm' type="text" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input id='ghxlxmc' type="text" /></td>
-        						<td>是否有补助历史：</td>
-								<td  width="65px;"><select id="lsjl" style="width:65px;" class="easyui-combobox">
+        						
+        						<td align="right">规划路线名称：</td>
+        						<td><input id='ghxlxmc' type="text" style="width:105px" /></td>
+        						<td align="right">是否有补助历史：</td>
+								<td ><select id="lsjl" style="width:105px" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
-								</select></select></td>
-								</td>
-        						<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:125px;" >
-								<td>前期开展状态：</td>
-        						<td><select id="qqkzzt" style="width:65px;" class="easyui-combobox">
+								</select></td>
+							
+        						<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:85px" ></select></td>
+								<td align="right">前期开展状态：</td>
+        						<td><select id="qqkzzt" style="width:105px" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="已开展">已开展</option>
 									<option value="部分开展">部分开展</option>
 									<option value="未开展">未开展</option>
-								</select></select>
+								</select>
 								</td>
-        						
-        					</tr>
-        					<tr height="32">
-        						<td>项目库类型：</td>
+        						<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<select id='xmklx' class="easyui-combobox" style="width:45px">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
+        					</tr>
+        					<tr height="32">
+        						
 								</td>
                               <td colspan="10">
         						<img onclick="showAllgj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

@@ -124,7 +124,7 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq,xmklx:$('#xmklx').combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

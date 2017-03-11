@@ -660,7 +660,7 @@
 			${lkmxb.lxbh}
 		</if>
 		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
-		    and m.tbnf=#{lkmxb.tbnf} 
+		    and m.tbnf in ${lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
 			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
@@ -694,7 +694,7 @@
 			${lkmxb.lxbh}
 		</if>
 		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
-			 and m.tbnf=#{lkmxb.tbnf} 
+			 and m.tbnf in ${lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
 			and to_number(zdzh) >= to_number(#{lkmxb.qdzh})
@@ -725,7 +725,7 @@
 			${lkmxb.lxbh}
 		</if>
 		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
-		    and m.tbnf=#{lkmxb.tbnf} 
+		    and m.tbnf in ${lkmxb.tbnf} 
 		</if>
 		<if test="lkmxb.qdzh != null and  lkmxb.qdzh != ''">
 			and to_number(t.zdzh) >= to_number(#{lkmxb.qdzh})
@@ -892,4 +892,7 @@
         group by tbnf ) b 
 	</select>
 	
+	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">
+	select tbnf id,tbnf || '年' text from lkpd_mxb2014 t order by tbnf desc
+	</select>
 </mapper>

@@ -60,7 +60,7 @@
 		
 		//urlxmnf("ddlYear1",urlid);
 		
-		showAll();
+		//showAll();
 	});
 	function setjhxdnf1(id){
 		var myDate = new Date();
@@ -503,6 +503,14 @@
 		 });
 		//.success(function() {disLoadjzt();})
 	}	
+	
+	
+	
+	function wcmxb(){
+		YMLib.Var.flag='';
+		YMLib.UI.createWindow('zdybb','(报部)普通干线公路改造工程项目完成情况明细表字段选择','glgzxj_zd.jsp','zdybb','950','380');
+	}
+	
 	</script>
 </head>
 <body style="padding-right:1px">
@@ -510,7 +518,7 @@
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;公路改造工程新上、续建工程项目完成情况明细表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;(报部)普通干线公路改造工程项目完成情况明细表</div>
 					</div>
         	</tr>
         	<tr>
@@ -587,8 +595,7 @@
 								</select>
 							</p>
         					<p style="margin: 8px 0px 8px 20px;">
-        						
-        						<img onclick="showAll()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+        						<img onclick="wcmxb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
@@ -606,7 +613,7 @@
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="8000px">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 公路局<span id='nian' style="font-size: x-large;"></span>年公路改造工程项目完成情况表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"> (报部)普通干线公路改造工程项目完成情况明细表</caption>
 								<thead>
 									<tr>
 										<td colspan="36">一、 项 目 计 划</td>

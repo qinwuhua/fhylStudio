@@ -26,6 +26,20 @@ $(function(){
         checkBox:true,        
     });
 	
+	$('#lkpdbb').combobox({		
+		url :"/jxzhpt/tjfx/getPdnf.do",
+		valueField : "id",
+		textField : "text",
+		panelHeight:170,
+		onLoadSuccess: function () { //加载完成后,设置选中第一项  
+			var data = $('#lkpdbb').combobox('getData');  
+            	 if (data.length > 0) {
+                 	$('#lkpdbb').combobox('select', data[0].id);
+          		}   
+         }  
+		
+    });
+	
 	loadBmbm3("jsdj","技术等级");
 	loadBmbm3("lmlx","路面类型");
 	loadBmbm3("jcfx","方向");
@@ -63,7 +77,7 @@ function loadGrid(){
 				 	'lkmxb.jcfx':jcfx,
 				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
 				 	'lkmxb.mqi':mqi,
-				 	'lkmxb.tbnf':$('#lkpdbb').val(),
+				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue"),
 				},
 	    columns:[
 	      [
@@ -121,15 +135,16 @@ text-decoration:none;
 						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr  height="32">
 							  <td>管辖路段：</td>
-							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 220px;"></select></td>
+							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 200px;"></select></td>
 							  <td>路况评定版本：</td>
 							 <td>
-							 <select id="lkpdbb" style="width:70px">
-							    <option value="2014">2014年</option>
-        						<option value="2015">2015年</option>
-        						<option value="2016">2016年</option>
-        						<option value="2017">2017年</option>
-							 </select>
+							 <select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
+<!-- 							 <select id="lkpdbb" style="width:70px"> -->
+<!-- 							    <option value="2014">2014年</option> -->
+<!--         						<option value="2015">2015年</option> -->
+<!--         						<option value="2016">2016年</option> -->
+<!--         						<option value="2017">2017年</option> -->
+<!-- 							 </select> -->
 							 </td>
 							  <td>技术等级：</td>
 							  <td><select id="jsdj" style="width:100px"class="easyui-combobox"></select></td>
