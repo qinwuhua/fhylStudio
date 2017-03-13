@@ -40,9 +40,8 @@ public class ConnectionUtil {
   Connection conn = cu.getConnection();  
   ResultSet rs = null; 
   //就是我给你发的sql文件里面的sql语句。
-  String sql="select t2.value, t2.name, t1.co, t2.hight, t2.rowxh from (select substr1 value, count(*) co from zdybbbt where value in ('1v_0','1v_1','1v_2','1v_3','1v_4','1v_5','1v_6','1v_7','1v_8','1v_9','1v_10','1v_11','1v_12','1v_13','1v_14','1v_15','1v_16','1v_17','1v_18','1v_19','1v_20','1v_21','1v_22','1v_23','1v_24','1v_25','1v_26','1v_27','1v_28','15v_29','1v_30','1v_31','1v_32','1v_33','1v_34','1v_35','21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55') group by substr1 union all select substr2 value, count(*) co from zdybbbt where value in ('1v_0','1v_1','1v_2','1v_3','1v_4','1v_5','1v_6','1v_7','1v_8','1v_9','1v_10','1v_11','1v_12','1v_13','1v_14','1v_15','1v_16','1v_17','1v_18','1v_19','1v_20','1v_21','1v_22','1v_23','1v_24','1v_25','1v_26','1v_27','1v_28','15v_29','1v_30','1v_31','1v_32','1v_33','1v_34','1v_35','21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55') and substr2 is not null group by substr2 union all select substr3 value, count(*) co from zdybbbt where value in ('1v_0','1v_1','1v_2','1v_3','1v_4','1v_5','1v_6','1v_7','1v_8','1v_9','1v_10','1v_11','1v_12','1v_13','1v_14','1v_15','1v_16','1v_17','1v_18','1v_19','1v_20','1v_21','1v_22','1v_23','1v_24','1v_25','1v_26','1v_27','1v_28','15v_29','1v_30','1v_31','1v_32','1v_33','1v_34','1v_35','21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55') and substr3 is not null group by substr3 union all select value, count(*) co from zdybbbt where value in ('1v_0','1v_1','1v_2','1v_3','1v_4','1v_5','1v_6','1v_7','1v_8','1v_9','1v_10','1v_11','1v_12','1v_13','1v_14','1v_15','1v_16','1v_17','1v_18','1v_19','1v_20','1v_21','1v_22','1v_23','1v_24','1v_25','1v_26','1v_27','1v_28','15v_29','1v_30','1v_31','1v_32','1v_33','1v_34','1v_35','21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55') group by value) t1, zdybbbt t2 where t1.value = t2.value order by t2.xh ";
-		   
-		  //"select t2.value,t2.name,t1.co,t2.hight,t2.rowxh from(select substr1 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 group by substr1 union all select substr2 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 and substr2 is not null group by substr2 union all select substr3 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 and substr3 is not null group by substr3 union all select value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 group by value )t1,ZDYBBBT t2 where t1.value=t2.value order by t2.xh";
+  String sql="select t2.value, t2.name, t1.co, t2.hight, t2.rowxh from (select substr1 value, count(*) co from zdybbbt where value in ('21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55','3v_56','3v_57','3v_58','41v_59','41v_60','41v_61','41v_62','41v_63','41v_64','41v_65','41v_66','41v_67','41v_68','42v_69','431v_70','431v_71','431v_72','431v_73','431v_74','432v_75','432v_76','433v_77','44v_78','45v_79','46v_80','47v_81') group by substr1 union all select substr2 value, count(*) co from zdybbbt where value in ('21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55','3v_56','3v_57','3v_58','41v_59','41v_60','41v_61','41v_62','41v_63','41v_64','41v_65','41v_66','41v_67','41v_68','42v_69','431v_70','431v_71','431v_72','431v_73','431v_74','432v_75','432v_76','433v_77','44v_78','45v_79','46v_80','47v_81') and substr2 is not null group by substr2 union all select substr3 value, count(*) co from zdybbbt where value in ('21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55','3v_56','3v_57','3v_58','41v_59','41v_60','41v_61','41v_62','41v_63','41v_64','41v_65','41v_66','41v_67','41v_68','42v_69','431v_70','431v_71','431v_72','431v_73','431v_74','432v_75','432v_76','433v_77','44v_78','45v_79','46v_80','47v_81') and substr3 is not null group by substr3 union all select value, count(*) co from zdybbbt where value in ('21v_36','21v_37','21v_38','21v_39','21v_40','21v_41','21v_42','21v_43','21v_44','21v_45','22v_46','23v_47','241v_48','241v_49','241v_50','241v_51','241v_52','242v_53','242v_54','243v_55','3v_56','3v_57','3v_58','41v_59','41v_60','41v_61','41v_62','41v_63','41v_64','41v_65','41v_66','41v_67','41v_68','42v_69','431v_70','431v_71','431v_72','431v_73','431v_74','432v_75','432v_76','433v_77','44v_78','45v_79','46v_80','47v_81') group by value) t1, zdybbbt t2 where t1.value = t2.value order by t2.xh";
+  		//"select t2.value,t2.name,t1.co,t2.hight,t2.rowxh from(select substr1 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 group by substr1 union all select substr2 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 and substr2 is not null group by substr2 union all select substr3 value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 and substr3 is not null group by substr3 union all select value,count(*) co from ZDYBBBT where INSTR(value, 'v_', -1, 1)>0 group by value )t1,ZDYBBBT t2 where t1.value=t2.value order by t2.xh";
 
   try {  
       ps = conn.prepareStatement(sql);  
@@ -81,11 +80,15 @@ public class ConnectionUtil {
       for(int i=0;i<list.size();i++){
     	  if(rowxh!=list.get(i).getRowxh()-1){
     		  rowxh=list.get(i).getRowxh()-1;
+    		  System.out.println("rowxh:"+rowxh+":"+colint);
     		  col1=colint;
     		  flag=0;
     	  }
     	  list.get(i).setRow1(list.get(i).getRowxh()-1);
     	  list.get(i).setRow2(list.get(i).getRowxh()-1+list.get(i).getHi()-1);
+    	  while(a[rowxh][col1]!=0){
+    		  col1=col1+a[rowxh][col1];
+    	  }
     	  
     	  if(list.get(i).getHi()!=1){
     		  for(int j=1;j<list.get(i).getHi();j++){
@@ -98,9 +101,7 @@ public class ConnectionUtil {
     		  }
     	  }
     	  
-    	  while(a[rowxh][col1]!=0){
-    		  col1=col1+a[rowxh][col1];
-    	  }
+    	  
     	  list.get(i).setCol1(col1);
     	  col2=col1+list.get(i).getCol()-1;
     	  list.get(i).setCol2(col2);
