@@ -3501,4 +3501,36 @@
 	<select id="getsjssjzhzb" parameterType="string" resultType="hashmap">
 		select * from SJSSJZHZB t where xmnf = #{value}
 	</select>
+	<select id="getGlgzxjzd" parameterType="string" resultType="elist">
+	select t2.value, t2.name, t1.co, t2.hight, t2.rowxh
+	  from (select substr1 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${value})
+	         group by substr1
+	        union all
+	        select substr2 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${value})
+	           and substr2 is not null
+	         group by substr2
+	        union all
+	        select substr3 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${value})
+	           and substr3 is not null
+	         group by substr3
+	        union all
+	        select value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${value})
+	         group by value) t1,
+	       zdybbbt t2
+	 where t1.value = t2.value
+	 order by t2.xh
+	</select>
+	
 </mapper>

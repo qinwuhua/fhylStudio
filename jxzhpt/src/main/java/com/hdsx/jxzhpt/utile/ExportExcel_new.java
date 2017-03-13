@@ -198,6 +198,7 @@ public class ExportExcel_new<T> {
 						.replaceAll("</td><tdcolspan='", "C")
 						.replaceAll("</td><tdrowspan='", "R")
 						.replaceAll("<tr><tdcolspan='", "C")
+						.replaceAll("'colspan='", "C")
 						.replaceAll("</td></tr>", "");
 				a = a.replaceAll("<tr>", "").replaceAll("<td", "")
 						.replaceAll("</td>", "");

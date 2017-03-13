@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/tableExport.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.base64.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
@@ -61,6 +63,7 @@
 		//urlxmnf("ddlYear1",urlid);
 		
 		//showAll();
+		$("#biaotou").empty();
 	});
 	function setjhxdnf1(id){
 		var myDate = new Date();
@@ -457,7 +460,7 @@
 			}
 		});
 	}
-	function exportExcel(){
+	/* function exportExcel(){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
@@ -502,16 +505,151 @@
 			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
 		 });
 		//.success(function() {disLoadjzt();})
-	}	
+	}	 */
 	
 	
-	
+	function dcExcel(str1,str2){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var xzdj=$("#xzdj").combobox("getValues").join(',');
+		var lxmc=$("#lxmc").val();
+		var data="flag=1&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
+		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
+		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
+		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
+		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
+		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
+		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
+		//loadjzt();
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2},function(){
+			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
+		 });
+	}
 	function wcmxb(){
 		YMLib.Var.flag='';
 		YMLib.UI.createWindow('zdybb','(报部)普通干线公路改造工程项目完成情况明细表字段选择','glgzxj_zd.jsp','zdybb','950','380');
 	}
+	function exportExcel(){
+		
+		YMLib.Var.flag='flag';
+		YMLib.UI.createWindow('zdybb','(报部)普通干线公路改造工程项目完成情况明细表字段选择','glgzxj_zd.jsp','zdybb','950','380');
+	}
+	
+	
+	function showBb(ss){
+		
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var xzdj=$("#xzdj").combobox("getValues").join(',');
+		var lxmc=$("#lxmc").val();
+		var data="flag=0&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
+		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
+		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
+		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
+		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
+		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
+		+"&gcglabgc.bnjhtz="+$("#bnjhtz").combobox('getValues').join(',')
+		+"&gcglabgc.bndsslc="+$("#bndsslc").combobox('getValues').join(',');
+		alert(data);
+		var tbody = $("#abgclist");
+				tbody.empty();
+
+		loadjzt();
+		
+		$.ajax({
+			url:"/jxzhpt/gcybb/getGlgzxj.do",
+			data:data,
+			type:"post",
+			dataType:"JSON",
+			success:function(msg){
+				disLoadjzt();
+				if (msg != null) {
+					for ( var i = 0; i < msg.length; i++) {
+						var tr="<tr>";
+						for ( var j = 0; j < ss.length; j++) {
+							//alert(msg[i][ss[j]]+"    "+ss[j]);
+							
+							if(msg[i].v_0=='是'){
+								if(ss[j]=='v_0'){
+									tr+="<td>"+''+"</td>";
+								}else{
+									tr+="<td>"+msg[i][ss[j]]+"</td>";
+								}
+							}else{
+								tr+="<td>"+msg[i][ss[j]]+"</td>";
+							}
+							
+						}
+						tr+="</tr>";
+					
+						tbody.append(tr);
+					}
+				}
+			}
+		});
+	}
+	
 	
 	</script>
+	
+	
+
+	
 </head>
 <body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
@@ -614,7 +752,7 @@
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="8000px">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> (报部)普通干线公路改造工程项目完成情况明细表</caption>
-								<thead>
+								<tbody id='biaotou'>
 									<tr>
 										<td colspan="36">一、 项 目 计 划</td>
 										<td colspan="20">二、 本年元月至本月完成情况</td>
@@ -721,7 +859,7 @@
 										<td style="width: 100px;">沥青路</td>
 										<td style="width: 100px;">水泥砼</td>
 									</tr>
-								</thead>
+								</tbody>
 								<tbody id="abgclist"></tbody>
 							</table>
 							</div>

@@ -122,5 +122,7 @@ public interface GcybbServer {
 
 	List<Excel_list> getsjssjzhzb(String xmnf);
 
+	List<Excel_list> getGlgzxjzd(String tiaojian);
+
 	
 }

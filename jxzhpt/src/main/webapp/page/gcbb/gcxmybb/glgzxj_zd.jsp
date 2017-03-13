@@ -85,43 +85,87 @@ text-decoration:none;
 		var obj2=$("#tt2").tree('getChecked');
 		var obj3=$("#tt3").tree('getChecked');
 		var obj4=$("#tt4").tree('getChecked');
-		var str="";
+		var str="'";var str1="";
 		for(var i=0;i<obj.length;i++){
 			if(obj[i].id.indexOf('v_')!=-1){
-				str+=obj[i].id+",";
+				str+=obj[i].id+"','";
+				str1+=obj[i].id.substring(obj[i].id.indexOf('v_'))+",";
 			}
 		}
 		for(var i=0;i<obj1.length;i++){
 			if(obj1[i].id.indexOf('v_')!=-1){
-				str+=obj1[i].id+",";
+				str+=obj1[i].id+"','";
+				str1+=obj1[i].id.substring(obj1[i].id.indexOf('v_'))+",";
 			}
 		}
 		for(var i=0;i<obj2.length;i++){
 			if(obj2[i].id.indexOf('v_')!=-1){
-				str+=obj2[i].id+",";
+				str+=obj2[i].id+"','";
+				str1+=obj2[i].id.substring(obj2[i].id.indexOf('v_'))+",";
 			}
 		}
 		for(var i=0;i<obj3.length;i++){
 			if(obj3[i].id.indexOf('v_')!=-1){
-				str+=obj3[i].id+",";
+				str+=obj3[i].id+"','";
+				str1+=obj3[i].id.substring(obj3[i].id.indexOf('v_'))+",";
 			}
 		}
 		for(var i=0;i<obj4.length;i++){
 			if(obj4[i].id.indexOf('v_')!=-1){
-				str+=obj4[i].id+",";
+				str+=obj4[i].id+"','";
+				str1+=obj4[i].id.substring(obj4[i].id.indexOf('v_'))+",";
 			}
 		}
 		
-		if(str!='')
-		alert(str.substr(0,str.length-1));
-		
-		
-		
+		if(str!="'"){
+			str=str.substr(0,str.length-2);
+			str1=str1.substr(0,str1.length-1);
+		}else{
+			alert("请勾选字段");
+			return;
+		}
+		if(parent.YMLib.Var.flag=='flag'){
+			parent.dcExcel(str,str1);
+			alert();
+			close();
+			
+		}else{
+			$.ajax({
+				data:'tiaojian='+str,
+				type:'post',
+				dataType:'json',
+				url:'/jxzhpt/gcybb/getGlgzxjzd.do',
+				success:function(re){
+					parent.$("#biaotou").empty();
+					parent.$("#biaotou").html(re.col);
+					var ss=str1.split(",");
+					parent.showBb(ss);
+					close();
+				}
+			})
+		}
 		
 	}
 	function close(){
 		parent.$('#zdybb').window('destroy');
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 

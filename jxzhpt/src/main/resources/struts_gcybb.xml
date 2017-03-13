@@ -42,6 +42,6 @@
  	
  	<action name="getWqgzjsqk" class="gcybbController" method="getWqgzjsqk"/>
  	<action name="getAbjsqk" class="gcybbController" method="getAbjsqk"/>
- 	
+ 	<action name="getGlgzxjzd" class="gcybbController" method="getGlgzxjzd"/>
  </package>
 </struts>

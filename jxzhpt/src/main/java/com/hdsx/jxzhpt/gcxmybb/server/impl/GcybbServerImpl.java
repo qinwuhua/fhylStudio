@@ -1247,4 +1247,9 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		
 		return list;
 	}
+
+	@Override
+	public List<Excel_list> getGlgzxjzd(String tiaojian) {
+		return queryList("getGlgzxjzd", tiaojian);
+	}
 }
