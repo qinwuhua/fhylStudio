@@ -1,8 +1,8 @@
 package com.hdsx.jxzhpt.gcxmybb.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import oracle.net.aso.f;
-
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.components.If;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -2131,8 +2128,171 @@ public class GcybbController extends BaseActionSupport{
 				eldata.setTitleName("公路改造工程新上、续建工程项目完成情况明细表");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
 				eldata.setFileName("公路改造工程新上、续建工程项目完成情况明细表");//设置文件名
-				eldata.setEl(list1);//将实体list放入类中
+				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				
+				try {
+			    	  List<Excel_list> list=new ArrayList<Excel_list>();
+			    	  	HttpServletRequest request = ServletActionContext.getRequest();
+						HttpSession session = request.getSession();
+					    list=gcybbServer.getGlgzxjzd((String) session.getAttribute("nameValue"));
+					    String col=(String) session.getAttribute("colValue");
+			    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+				      String html="<tr>";
+				      String rowxh="1";
+				      List<Excel_list> l1=new ArrayList<Excel_list>();
+				      List<Excel_list> l2=new ArrayList<Excel_list>();
+				      List<Excel_list> l3=new ArrayList<Excel_list>();
+				      List<Excel_list> l4=new ArrayList<Excel_list>();
+				      int h1=10;int h2=10;int h3=10;
+				      for (Excel_list e : list) {
+				    	  if(h1>Integer.parseInt(e.getHight()))
+				    		  h1=Integer.parseInt(e.getHight());
+				    	  if(!rowxh.equals(e.getRowxh())){
+				    		 list.removeAll(l1); 
+				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
+				    		 break;
+				    	  }else{
+				    		  l1.add(e);
+				    	  }
+				      }
+				      for (Excel_list e : list) {
+				    	  if(h2>Integer.parseInt(e.getHight()))
+				    		  h2=Integer.parseInt(e.getHight());
+				    	  if(!rowxh.equals(e.getRowxh())){
+				    		 list.removeAll(l2); 
+				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
+				    		 break;
+				    	  }else{
+				    		  l2.add(e);
+				    	  }
+				      }
+				      for (Excel_list e : list) {
+				    	  if(h3>Integer.parseInt(e.getHight()))
+				    		  h3=Integer.parseInt(e.getHight());
+				    	  if(!rowxh.equals(e.getRowxh())){
+				    		 list.removeAll(l3); 
+				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
+				    		 break;
+				    	  }else{
+				    		  l3.add(e);
+				    	  }
+				      }
+				      for (Excel_list e : list) {
+				    	  
+				    	  if(!rowxh.equals(e.getRowxh())){
+				    		 list.removeAll(l4); 
+				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
+				    		 break;
+				    	  }else{
+				    		  l4.add(e);
+				    	  }
+				      }
+				      rowxh="1";
+				      System.out.println(l1.size()+"   "+l2.size()+"   "+l3.size()+"   "+l4.size());
+				      List<Integer> mx1=new ArrayList<Integer>();
+				      List<Integer> mx2=new ArrayList<Integer>();
+				      List<Integer> mx3=new ArrayList<Integer>();
+				      int miny=1;int minx=0;int minx1=0;
+				      for (int i=0;i<l1.size();i++) {
+				    	  if(h1==Integer.parseInt(l1.get(i).getHight())){
+				    		  for (int j = 0; j < Integer.parseInt(l1.get(i).getCo()); j++) {
+				    			  mx1.add(minx+j);
+							}
+				    	  }
+				    	  et.add(new Excel_tilte(l1.get(i).getName(),miny,miny+Integer.parseInt(l1.get(i).getHight())-1,minx,minx+Integer.parseInt(l1.get(i).getCo())-1));
+				    	  minx=minx+Integer.parseInt(l1.get(i).getCo());
+				    	  
+				      }
+				      miny=2;
+				      int k=0;
+				      for (int i=0;i<l2.size();i++) {
+				    	  minx=mx1.get(i)+k;
+				    	  if(h2==Integer.parseInt(l2.get(i).getHight())){
+				    		  for (int j = 0; j < Integer.parseInt(l2.get(i).getCo()); j++) {
+				    			  minx1=minx+j;
+				    			  mx2.add(minx1);
+							}
+				    	  }else{
+				    		  minx1=minx1+Integer.parseInt(l2.get(i).getCo());
+				    	  }
+				    	  et.add(new Excel_tilte(l2.get(i).getName(),miny,miny+Integer.parseInt(l2.get(i).getHight())-1,minx,minx+Integer.parseInt(l2.get(i).getCo())-1));
+				    	  if(Integer.parseInt(l2.get(i).getCo())>1)
+				    		  k=k+Integer.parseInt(l2.get(i).getCo())-1;
+				      }
+				      miny=3;
+				      k=0;
+				      System.out.println(mx2.size());
+				      for (Integer integer : mx2) {
+						System.out.println(integer);
+				      }
+				      for (int i=0;i<l3.size();i++) {
+				    	  minx=mx2.get(i)+k;
+				    	  if(h3==Integer.parseInt(l3.get(i).getHight())){
+				    		  for (int j = 0; j < Integer.parseInt(l3.get(i).getCo()); j++) {
+				    			  minx1=minx+j;
+				    			  mx3.add(minx1);
+							}
+				    	  }else{
+				    		  minx1=minx1+Integer.parseInt(l3.get(i).getCo());
+				    	  }
+				    	  et.add(new Excel_tilte(l3.get(i).getName(),miny,miny+Integer.parseInt(l3.get(i).getHight())-1,minx,minx+Integer.parseInt(l3.get(i).getCo())-1));
+				    	  if(Integer.parseInt(l3.get(i).getCo())>1)
+				    		  k=k+Integer.parseInt(l3.get(i).getCo())-1;
+				      }
+				      miny=4;
+				      for (int i=0;i<l4.size();i++) {
+				    	  minx=mx3.get(i);
+				    	  et.add(new Excel_tilte(l4.get(i).getName(),miny,miny+Integer.parseInt(l4.get(i).getHight())-1,minx,minx+Integer.parseInt(l4.get(i).getCo())-1));
+				    	  
+				      }
+				      
+				      
+				     
+				      String[] ls=col.split(",");
+				      List<Excel_list> elst=new ArrayList<Excel_list>();
+				      for (Excel_list els : list1) {
+				    	  Excel_list els1=new Excel_list(); 
+						for (int i = 0; i < ls.length; i++) {
+							 Field field1 = null; Field field2 = null; 
+							 field1 = els1.getClass().getDeclaredField("v_"+i); 
+							 field2 = els.getClass().getDeclaredField(ls[i]); 
+						     field1.set((Object) els1, field2.get(els));  //set方法
+							
+						}
+				    	elst.add(els1);  
+					}
+				      eldata.setEl(elst);//将实体list放入类中
+				      
+				      /*rowxh="0";
+				      int minH=0;
+				      int min=0;
+				      for(int i=0;i<list.size();i++){
+				    	  if(minH>Integer.parseInt(list.get(i).getHight())){
+				    		  min=minx;
+				    		  minH=Integer.parseInt(list.get(i).getHight());
+				    	  }
+				    	  if(!rowxh.equals(list.get(i).getRowxh())){
+				    		  html=html+"</tr><tr>";
+				    		  if(!"0".equals(rowxh))
+					    		  miny++;minx=min;minH++;
+				    		  rowxh=list.get(i).getRowxh();
+				    	  }
+				    	  et.add(new Excel_tilte(list.get(i).getName(),miny,miny+Integer.parseInt(list.get(i).getHight())-1,minx,minx+Integer.parseInt(list.get(i).getCo())-1));
+				    	  minx=minx+Integer.parseInt(list.get(i).getCo());
+				    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+				      }
+				      html=html+"</tr>";
+				      System.out.println(html);*/
+				      
+					
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
+				/*
+				
+				
 				et.add(new Excel_tilte("一、 项 目 计 划",1,1,0,35));
 				et.add(new Excel_tilte("二、 本年元月至本月完成情况",1,1,36,55));
 				et.add(new Excel_tilte("三、本月进展情况",1,1,56,58));
@@ -2232,7 +2392,7 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("三级",4,4,73,73));
 				et.add(new Excel_tilte("四级",4,4,74,74));
 				et.add(new Excel_tilte("沥青路",4,4,75,75));
-				et.add(new Excel_tilte("水泥砼",4,4,76,76));
+				et.add(new Excel_tilte("水泥砼",4,4,76,76));*/
 				//et.add(new Excel_tilte("",4,4,71,71));
 			
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -3442,5 +3602,32 @@ public class GcybbController extends BaseActionSupport{
 			}
 			return result;
 		}
+		
+	public void getGlgzxjzd(){
+		try {
+    	  List<Excel_list> list=new ArrayList<Excel_list>();
+		     list=gcybbServer.getGlgzxjzd(tiaojian);
+    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+	      String html="<tr>";
+	      String rowxh="0";
+	      for(int i=0;i<list.size();i++){
+	    	  if(!rowxh.equals(list.get(i).getRowxh())){
+	    		  html=html+"</tr><tr>";
+	    		  rowxh=list.get(i).getRowxh();
+	    	  }
+	    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+	      }
+	      html=html+"</tr>";
+	      System.out.println(html);
+	      Excel_list e=new Excel_list();
+	      e.setCol(html);
+		  JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		      
+	}
+		
 		
 }

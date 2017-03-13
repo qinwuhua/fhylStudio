@@ -8,15 +8,66 @@ import java.io.Serializable;
  *
  */
 public class Excel_list implements Serializable {
-	private String xh1;
-	private String xmlx;
-	private String xzqhmc;
-	private String hb;
-	private String gydw;
-	private String xmgs;
-	private String sl;
-	private String dllx;
 	
+	public String xh1;
+	public String xmlx;
+	public String xzqhmc;
+	public String hb;
+	public String gydw;
+	public String xmgs;
+	public String sl;
+	public String dllx;
+	public String value;
+	public String name;
+	public String col;
+	public String hi;
+	public String rowxh;
+	public String co;
+	public String hight;
+	
+	
+	public String getCo() {
+		return co;
+	}
+	public void setCo(String co) {
+		this.co = co;
+	}
+	public String getHight() {
+		return hight;
+	}
+	public void setHight(String hight) {
+		this.hight = hight;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCol() {
+		return col;
+	}
+	public void setCol(String col) {
+		this.col = col;
+	}
+	public String getHi() {
+		return hi;
+	}
+	public void setHi(String hi) {
+		this.hi = hi;
+	}
+	public String getRowxh() {
+		return rowxh;
+	}
+	public void setRowxh(String rowxh) {
+		this.rowxh = rowxh;
+	}
 	public String getDllx() {
 		return dllx;
 	}
@@ -68,110 +119,110 @@ public class Excel_list implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5979618537460526286L;
-	private String v_0 ="";
-	private String v_1 ="";
-	private String v_2 ="";
-	private String v_3 ="";
-	private String v_4 ="";
-	private String v_5 ="";
-	private String v_6 ="";
-	private String v_7 ="";
-	private String v_8 ="";
-	private String v_9 ="";
-	private String v_10="";
-	private String v_11="";
-	private String v_12="";
-	private String v_13="";
-	private String v_14="";
-	private String v_15="";
-	private String v_16="";
-	private String v_17="";
-	private String v_18="";
-	private String v_19="";
-	private String v_20="";
-	private String v_21="";
-	private String v_22="";
-	private String v_23="";
-	private String v_24="";
-	private String v_25="";
-	private String v_26="";
-	private String v_27="";
-	private String v_28="";
-	private String v_29="";
-	private String v_30="";
-	private String v_31="";
-	private String v_32="";
-	private String v_33="";
-	private String v_34="";
-	private String v_35="";
-	private String v_36="";
-	private String v_37="";
-	private String v_38="";
-	private String v_39="";
-	private String v_40="";
-	private String v_41="";
-	private String v_42="";
-	private String v_43="";
-	private String v_44="";
-	private String v_45="";
-	private String v_46="";
-	private String v_47="";
-	private String v_48="";
-	private String v_49="";
-	private String v_50="";
-	private String v_51="";
-	private String v_52="";
-	private String v_53="";
-	private String v_54="";
-	private String v_55="";
-	private String v_56="";
-	private String v_57="";
-	private String v_58="";
-	private String v_59="";
-	private String v_60="";
-	private String v_61="";
-	private String v_62="";
-	private String v_63="";
-	private String v_64="";
-	private String v_65="";
-	private String v_66="";
-	private String v_67="";
-	private String v_68="";
-	private String v_69="";
-	private String v_70="";
-	private String v_71="";
-	private String v_72="";
-	private String v_73="";
-	private String v_74="";
-	private String v_75="";
-	private String v_76="";
-	private String v_77="";
-	private String v_78="";
-	private String v_79="";
-	private String v_80="";
-	private String v_81="";
-	private String v_82="";
-	private String v_83="";
-	private String v_84="";
-	private String v_85="";
-	private String v_86="";
-	private String v_87="";
-	private String v_88="";
-	private String v_89="";
-	private String v_90="";
-	private String v_91="";
-	private String v_92="";
-	private String v_93="";
-	private String v_94="";
-	private String v_95="";
-	private String v_96="";
-	private String v_97="";
-	private String v_98="";
-	private String v_99="";
+	public static final long serialVersionUID = -5979618537460526286L;
+	public String v_0 ="";
+	public String v_1 ="";
+	public String v_2 ="";
+	public String v_3 ="";
+	public String v_4 ="";
+	public String v_5 ="";
+	public String v_6 ="";
+	public String v_7 ="";
+	public String v_8 ="";
+	public String v_9 ="";
+	public String v_10="";
+	public String v_11="";
+	public String v_12="";
+	public String v_13="";
+	public String v_14="";
+	public String v_15="";
+	public String v_16="";
+	public String v_17="";
+	public String v_18="";
+	public String v_19="";
+	public String v_20="";
+	public String v_21="";
+	public String v_22="";
+	public String v_23="";
+	public String v_24="";
+	public String v_25="";
+	public String v_26="";
+	public String v_27="";
+	public String v_28="";
+	public String v_29="";
+	public String v_30="";
+	public String v_31="";
+	public String v_32="";
+	public String v_33="";
+	public String v_34="";
+	public String v_35="";
+	public String v_36="";
+	public String v_37="";
+	public String v_38="";
+	public String v_39="";
+	public String v_40="";
+	public String v_41="";
+	public String v_42="";
+	public String v_43="";
+	public String v_44="";
+	public String v_45="";
+	public String v_46="";
+	public String v_47="";
+	public String v_48="";
+	public String v_49="";
+	public String v_50="";
+	public String v_51="";
+	public String v_52="";
+	public String v_53="";
+	public String v_54="";
+	public String v_55="";
+	public String v_56="";
+	public String v_57="";
+	public String v_58="";
+	public String v_59="";
+	public String v_60="";
+	public String v_61="";
+	public String v_62="";
+	public String v_63="";
+	public String v_64="";
+	public String v_65="";
+	public String v_66="";
+	public String v_67="";
+	public String v_68="";
+	public String v_69="";
+	public String v_70="";
+	public String v_71="";
+	public String v_72="";
+	public String v_73="";
+	public String v_74="";
+	public String v_75="";
+	public String v_76="";
+	public String v_77="";
+	public String v_78="";
+	public String v_79="";
+	public String v_80="";
+	public String v_81="";
+	public String v_82="";
+	public String v_83="";
+	public String v_84="";
+	public String v_85="";
+	public String v_86="";
+	public String v_87="";
+	public String v_88="";
+	public String v_89="";
+	public String v_90="";
+	public String v_91="";
+	public String v_92="";
+	public String v_93="";
+	public String v_94="";
+	public String v_95="";
+	public String v_96="";
+	public String v_97="";
+	public String v_98="";
+	public String v_99="";
 	
-	private String xzqh;
-	private String xzqhdm;
+	public String xzqh;
+	public String xzqhdm;
 	
 	public String getXzqh() {
 		return xzqh;

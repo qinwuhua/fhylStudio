@@ -4,15 +4,18 @@
     "state": "open",
     "iconCls":"icon-none",     
     "children": [{    
-        "id": "3v_56",    
+        "id": "3v_56",  
+        "value":"v_56",  
         "text": "新增资金到位（万元）",
         "iconCls":"icon-none"
     },{    
-        "id": "3v_57",    
+        "id": "3v_57", 
+        "value":"v_57",   
         "text": "新增完成工程量（公里）",
         "iconCls":"icon-none"   
     },{    
-        "id": "3v_58",    
+        "id": "3v_58", 
+        "value":"v_58",   
         "text": "新增项目完成投资（万元）",
         "iconCls":"icon-none" 
     }]    
