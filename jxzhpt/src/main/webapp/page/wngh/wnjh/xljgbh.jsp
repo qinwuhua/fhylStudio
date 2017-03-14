@@ -66,13 +66,13 @@
 					'lxsh.xmbm':xmbm
 				},
 			    columns:[[
-			        {field:'v_0',title:title,width:114,align:'center'},
-					{field:'v_1',title:'里程（公里）',width:114,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-					{field:'v_2',title:'一级公路',width:114,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
-			        {field:'v_3',title:'二级公路',width:114,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
-			        {field:'v_4',title:'三级公路',width:114,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
-				    {field:'v_5',title:'四级公路',width:114,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
-				    {field:'v_6',title:'等外公路',width:117,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}}
+			        {field:'v_0',title:title,width:110,align:'center'},
+					{field:'v_1',title:'总里程变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
+					{field:'v_2',title:'一级变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
+			        {field:'v_3',title:'二级变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
+			        {field:'v_4',title:'三级变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
+				    {field:'v_5',title:'四级变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}},
+				    {field:'v_6',title:'等外变化（公里）',width:115,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="-"){if(value.substring(1,2)=="."){return '-0'+value.substring(1,value.length);}else{return '-'+value.substring(1,value.length);}}else{if(value.substring(0,1)=="."){return '0'+value;}else{return ''+value;}}}}
 				   
 			    ]]
 				 

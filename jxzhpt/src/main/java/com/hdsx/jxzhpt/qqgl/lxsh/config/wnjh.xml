@@ -1809,7 +1809,7 @@
 	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
 	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	union all
 	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
@@ -1822,7 +1822,7 @@
 	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
 	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	union all
 	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
@@ -1838,7 +1838,7 @@
 	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
 	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	union all
 	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
@@ -1851,7 +1851,7 @@
 	to_char(round((sum(v_2)+sum(v_3))/sum(v_1)*100,1))||'%' v_7,
 	to_char(round((sum(v_2)+sum(v_3)+sum(v_4))/sum(v_1)*100,1))||'%' v_8
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	union all
 	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,lc v_1,decode(jsdj,'一级公路',lc,0) v_2,decode(jsdj,'二级公路',lc,0) v_3,decode(jsdj,'三级公路',lc,0) v_4,decode(jsdj,'四级公路',lc,0) v_5,decode(jsdj,'等外公路',lc,0) v_6
@@ -1866,18 +1866,18 @@
 	
 	<select id="xljgbhads" parameterType="lxsh" resultType="elist">
 	
-	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_2)+sum(v_3)+sum(v_4)+sum(v_5)+sum(v_6) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	
 	) where 1=1 
 	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
 	)
 	union all
-	(select min(xzqhdm) xzqhdm,to_char(xzqh) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	(select min(xzqhdm) xzqhdm,to_char(xzqh) v_0,sum(v_2)+sum(v_3)+sum(v_4)+sum(v_5)+sum(v_6) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0)-nvl(yi+er+san+si+dw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	) where 1=1 
 	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
@@ -1886,20 +1886,20 @@
 	order by xzqhdm
 	</select>
 	<select id="xljgbhalx" parameterType="lxsh" resultType="elist">
-	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(v_2)+sum(v_3)+sum(v_4)+sum(v_5)+sum(v_6) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
 
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	
 	) where 1=1 
 	<if test="nwgxzdj != null and nwgxzdj != ''">${nwgxzdj}</if>
 	)
 	union all
-	(select min(xzqhdm) xzqhdm,to_char(lxbm) v_0,sum(v_1) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
+	(select min(xzqhdm) xzqhdm,to_char(lxbm) v_0,sum(v_2)+sum(v_3)+sum(v_4)+sum(v_5)+sum(v_6) v_1,sum(v_2) v_2,sum(v_3) v_3,sum(v_4) v_4,sum(v_5) v_5,sum(v_6) v_6
 
 	from(
-	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,nvl(xyi+xer+xsan+xsi+xdw,0) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
+	select to_char(lxbm) lxbm,to_char(xzqhdm) xzqhdm,xzqh,decode(fun_sfylx(to_char(lxbm)||substr(to_char(xzqhdm),0,4)),'是',(nvl(xyi + xer + xsan + xsi + xdw, 0) -nvl(yi + er + san + si + dw, 0)),nvl(xyi + xer + xsan + xsi + xdw, 0)) v_1,bhyi v_2,bher v_3,bhsan v_4,bhsi v_5,bhdw v_6
 	from nwggmgxwn where 1=1 and xmid in (${xmbm})
 	
 	) where 1=1 
