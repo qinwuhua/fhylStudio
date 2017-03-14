@@ -104,9 +104,18 @@
 		function queryBar(years,tjfl){
 			
 			var lengData=[];
-			var value=[];
+			var value1=[]; var value2=[]; var value3=[];var value4=[];
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value.push('75.6');
+				value1.push(parseFloat(20.6)+parseFloat(i)-parseFloat(2000));
+			}
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
+				value2.push(parseFloat(80.6)+parseFloat(i)-parseFloat(2000));
+			}
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
+				value3.push(parseFloat(50.6)+parseFloat(i)-parseFloat(2000));
+			}
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
+				value4.push(parseFloat(10.3)+parseFloat(i)-parseFloat(2000));
 			}
 			if(tjfl=="1"){
 				lengData=['江西省','南昌市','景德镇','九江市'];
@@ -168,25 +177,25 @@
 							{
 								name:"江西省",
 							    type:'bar',
-							    data:value,
+							    data:value1,
 							    barWidth:30,
 							},
 							{
 								name:"南昌市",
 							    type:'bar',
-							    data:value,
+							    data:value2,
 							    barWidth:30,
 							},
 							{
 								name:"景德镇",
 							    type:'bar',
-							    data:value,
+							    data:value3,
 							    barWidth:30,
 							},
 							{
 								name:"九江市",
 							    type:'bar',
-							    data:value,
+							    data:value4,
 							    barWidth:30,
 							},
 	        		    ]
@@ -243,19 +252,19 @@
 							{
 								name:"G105",
 							    type:'bar',
-							    data:value,
+							    data:value1,
 							    barWidth:30,
 							},
 							{
 								name:"G320",
 							    type:'bar',
-							    data:value,
+							    data:value2,
 							    barWidth:30,
 							},
 							{
 								name:"S310",
 							    type:'bar',
-							    data:value,
+							    data:value3,
 							    barWidth:30,
 							}
 	        		    ]
