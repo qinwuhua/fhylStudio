@@ -108,26 +108,12 @@
 		
 		function queryBar(years,tjfl){
 			
-			var lengData=[];
-			var value1=[]; var value2=[]; var value3=[];var value4=[];
+			var value1=[]; var value2=[]; 
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value1.push(parseFloat(20.6)+parseFloat(i)-parseFloat(2000));
+				value1.push(parseFloat(250)+parseFloat(i)-parseFloat(2000));
 			}
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
 				value2.push(parseFloat(80.6)+parseFloat(i)-parseFloat(2000));
-			}
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value3.push(parseFloat(50.6)+parseFloat(i)-parseFloat(2000));
-			}
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value4.push(parseFloat(10.3)+parseFloat(i)-parseFloat(2000));
-			}
-			
-			if(tjfl=="1"){
-				lengData=['江西省','南昌市','景德镇','九江市'];
-			}
-			else{
-				lengData=['G105','G320','S310'];
 			}
 			
 			 var myChart = echarts.init(document.getElementById("anychart_div")); 
@@ -145,9 +131,9 @@
 	        		    },
 	        		    legend: {
 	        		    	show:true,
-	        		        data:lengData,
-	        		        x : 'center',
-	        		        y : 'bottom',
+	        		        data:['投入资金（万元）','优良路提升比例（%）'],
+	        		        x : 'left',
+	        		        y : 'top',
 	        		        orient: 'horizontal'
 	        		    },
 	        		    toolbox: {
@@ -162,7 +148,7 @@
 									}
 								},
 	        		            dataView : {show: true, readOnly: false},
-	        		            magicType : {show: true, type: ['line', 'bar']},
+	        		            magicType : {show: true, type: ['line']},
 	        		            restore : {show: true},
 	        		            saveAsImage : {show: true}
 	        		        }
@@ -175,39 +161,42 @@
 	        		        }
 	        		    ],
 	        		    yAxis : [
-	        		        {
-	        		            type : 'value'
-	        		        }
+	        		          {
+	                                 type: 'value',
+	                                 name: '投入资金',
+	                                 position: 'left',
+	                                    axisLabel: {
+	                                        formatter: '{value} （万元）'
+	                             }
+	                        },
+	                        {
+	                            type: 'value',
+	                            name: '优良路提升比例',
+	                            min: 0,
+	                            max: 500,
+	                            position: 'right',
+	                            axisLabel: {
+	                                formatter: '{value} （%）'
+	                            }
+	                        },
 	        		    ],
 	        		    series : [
-							{
-								name:"江西省",
-							    type:'bar',
-							    data:value1,
-							    barWidth:30,
-							},
-							{
-								name:"南昌市",
-							    type:'bar',
-							    data:value2,
-							    barWidth:30,
-							},
-							{
-								name:"景德镇",
-							    type:'bar',
-							    data:value3,
-							    barWidth:30,
-							},
-							{
-								name:"九江市",
-							    type:'bar',
-							    data:value4,
-							    barWidth:30,
-							},
+							 {
+			                    name:'投入资金（万元）',
+			                    type:'line',
+			                    barWidth: '20%',
+			                    data:value1
+			                },
+			                {
+			                    name:'优良路提升比例（%）',
+			                    type:'line',
+			                    barWidth: '20%',
+			                    data:value2
+			                }
 	        		    ]
 	        		};
 	            
-	            option2 = {
+	           /*  option2 = {
 	        		    title : {
 	        		        text: "各年份优良路提升比例图",
 	        		        x:'center',
@@ -274,12 +263,9 @@
 							    barWidth:30,
 							}
 	        		    ]
-	        		};
-	            if(tjfl=="1"){
+	        		}; */
+	        		
 	            	 myChart.setOption(option1);
-	            }else{
-	            	 myChart.setOption(option2);
-	            }
 	           
 		}
 		
