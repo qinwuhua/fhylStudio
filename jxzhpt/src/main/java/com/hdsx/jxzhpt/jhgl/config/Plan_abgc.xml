@@ -106,6 +106,9 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd
 	    		) t order by t.jhnf desc,t.jh_sbthcd
     		)
@@ -186,7 +189,7 @@
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
                		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc
-                	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
+                	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -232,13 +235,16 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd
 	    		) t order by t.jhnf desc,t.jh_sbthcd
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryAfgcCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
+		select count(*) from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -284,6 +290,9 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
+	 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	</select>
 	<!-- 此方法仅用在资金下达的Excel导出数据查询 -->
 	<select id="queryAbgcList2"  parameterType="java.util.Map"  resultMap="abgc_jh">
@@ -335,6 +344,9 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd) t order by t.jhnf desc ,t.jh_sbthcd
     		)
 	</select>
@@ -343,7 +355,7 @@
 			(
 				select rownum as num,t.* from 
 				(
-					select jh.*,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh from plan_af jh left join sck_aqsmfh lx on (jh.sckid=lx.id) left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
+					select jh.*,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh from plan_af jh left join sck_aqsmfh lx on (jh.sckid=lx.id) left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
 					where 1=1 
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -387,6 +399,9 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd) t order by t.jhnf desc ,t.jh_sbthcd
     		)
 	</select>
@@ -427,6 +442,9 @@
 		<if test="lx.tsdq!=null and lx.tsdq!=''">
 			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 		</if>
+		<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	    order by jh.jhnf,jh.jh_sbthcd
 	</select>
 	
@@ -466,6 +484,7 @@
 		<if test="lx.tsdq!=null and lx.tsdq!=''">
 			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 		</if>
+		
 	    order by jh.jhnf,jh.jh_sbthcd
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
@@ -521,6 +540,9 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
+	 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
 		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
@@ -826,13 +848,16 @@
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 						${lx.tsdq}
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 				 	group by jh.id)
 	</select>
 	<select id="querySumAfgc" resultMap="abgc_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
 	    sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(select count(*) as id,sum(lx.zdzh)-sum(lx.qdzh) as zlc,sum(lx.yhlc) as yhlc,
 	      sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
-	      from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
+	      from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
 	      where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -878,7 +903,11 @@
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 						${lx.tsdq}
-				 	</if> group by jh.id)
+				 	</if> 
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+				 	group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_abgc set lrjh='未列入'  where sckid=#{String}
@@ -1335,6 +1364,7 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
+				 	
 				 	 group by jh.id)
 	</select>
 	<select id="queryAbgcTzById"  parameterType="string"  resultType="plan_abgc">

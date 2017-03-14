@@ -2139,114 +2139,76 @@ public class GcybbController extends BaseActionSupport{
 					    String col=(String) session.getAttribute("colValue");
 			    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
 				      String html="<tr>";
-				      String rowxh="1";
-				      List<Excel_list> l1=new ArrayList<Excel_list>();
-				      List<Excel_list> l2=new ArrayList<Excel_list>();
-				      List<Excel_list> l3=new ArrayList<Excel_list>();
-				      List<Excel_list> l4=new ArrayList<Excel_list>();
-				      int h1=10;int h2=10;int h3=10;
-				      for (Excel_list e : list) {
-				    	  if(h1>Integer.parseInt(e.getHight()))
-				    		  h1=Integer.parseInt(e.getHight());
-				    	  if(!rowxh.equals(e.getRowxh())){
-				    		 list.removeAll(l1); 
-				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
-				    		 break;
-				    	  }else{
-				    		  l1.add(e);
+				     
+				     /* 
+				      
+				      int a[][]=new int[4][83];
+				      int rowxh=0,col1=0,col2=0;
+				      for(int i=0;i<list.size();i++){
+				    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
+				    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
+				    		  col1=0;
 				    	  }
-				      }
-				      for (Excel_list e : list) {
-				    	  if(h2>Integer.parseInt(e.getHight()))
-				    		  h2=Integer.parseInt(e.getHight());
-				    	  if(!rowxh.equals(e.getRowxh())){
-				    		 list.removeAll(l2); 
-				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
-				    		 break;
-				    	  }else{
-				    		  l2.add(e);
+				    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+				    	  if(Integer.parseInt(list.get(i).getHight())!=1){
+				    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
+				    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
+				    		  }
 				    	  }
-				      }
-				      for (Excel_list e : list) {
-				    	  if(h3>Integer.parseInt(e.getHight()))
-				    		  h3=Integer.parseInt(e.getHight());
-				    	  if(!rowxh.equals(e.getRowxh())){
-				    		 list.removeAll(l3); 
-				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
-				    		 break;
-				    	  }else{
-				    		  l3.add(e);
+				    	  while(a[rowxh][col1]!=0){
+				    		  col1=col1+a[rowxh][col1];
 				    	  }
+				    	  list.get(i).setCol1(col1);
+				    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
+				    	  list.get(i).setCol2(col2);
+				    	  col1=col1+Integer.parseInt(list.get(i).getCo());
 				      }
-				      for (Excel_list e : list) {
+				      for (Excel_list ex : list) {
+				    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
+				    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
+				      }
+				      */
+				      
+				      
+				      int rowxh=0,col1=0,col2=0;
+				      int colint=0;
+				      int a[][]=new int[4][83];
+				      int flag=0;
+				      for(int i=0;i<list.size();i++){
+				    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
+				    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
+				    		  col1=colint;
+				    		  flag=0;
+				    	  }
+				    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
 				    	  
-				    	  if(!rowxh.equals(e.getRowxh())){
-				    		 list.removeAll(l4); 
-				    		 rowxh=(Integer.parseInt(rowxh)+1)+"";
-				    		 break;
-				    	  }else{
-				    		  l4.add(e);
+				    	  while(a[rowxh][col1]!=0){
+				    		  col1=col1+a[rowxh][col1];
 				    	  }
-				      }
-				      rowxh="1";
-				      System.out.println(l1.size()+"   "+l2.size()+"   "+l3.size()+"   "+l4.size());
-				      List<Integer> mx1=new ArrayList<Integer>();
-				      List<Integer> mx2=new ArrayList<Integer>();
-				      List<Integer> mx3=new ArrayList<Integer>();
-				      int miny=1;int minx=0;int minx1=0;
-				      for (int i=0;i<l1.size();i++) {
-				    	  if(h1==Integer.parseInt(l1.get(i).getHight())){
-				    		  for (int j = 0; j < Integer.parseInt(l1.get(i).getCo()); j++) {
-				    			  mx1.add(minx+j);
-							}
-				    	  }
-				    	  et.add(new Excel_tilte(l1.get(i).getName(),miny,miny+Integer.parseInt(l1.get(i).getHight())-1,minx,minx+Integer.parseInt(l1.get(i).getCo())-1));
-				    	  minx=minx+Integer.parseInt(l1.get(i).getCo());
 				    	  
-				      }
-				      miny=2;
-				      int k=0;
-				      for (int i=0;i<l2.size();i++) {
-				    	  minx=mx1.get(i)+k;
-				    	  if(h2==Integer.parseInt(l2.get(i).getHight())){
-				    		  for (int j = 0; j < Integer.parseInt(l2.get(i).getCo()); j++) {
-				    			  minx1=minx+j;
-				    			  mx2.add(minx1);
-							}
+				    	  if(Integer.parseInt(list.get(i).getHight())!=1){
+				    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
+				    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
+				    		  }
 				    	  }else{
-				    		  minx1=minx1+Integer.parseInt(l2.get(i).getCo());
+				    		  if(flag==0){
+				    			  colint=col1;
+				    			  flag=1;
+				    		  }
 				    	  }
-				    	  et.add(new Excel_tilte(l2.get(i).getName(),miny,miny+Integer.parseInt(l2.get(i).getHight())-1,minx,minx+Integer.parseInt(l2.get(i).getCo())-1));
-				    	  if(Integer.parseInt(l2.get(i).getCo())>1)
-				    		  k=k+Integer.parseInt(l2.get(i).getCo())-1;
-				      }
-				      miny=3;
-				      k=0;
-				      System.out.println(mx2.size());
-				      for (Integer integer : mx2) {
-						System.out.println(integer);
-				      }
-				      for (int i=0;i<l3.size();i++) {
-				    	  minx=mx2.get(i)+k;
-				    	  if(h3==Integer.parseInt(l3.get(i).getHight())){
-				    		  for (int j = 0; j < Integer.parseInt(l3.get(i).getCo()); j++) {
-				    			  minx1=minx+j;
-				    			  mx3.add(minx1);
-							}
-				    	  }else{
-				    		  minx1=minx1+Integer.parseInt(l3.get(i).getCo());
-				    	  }
-				    	  et.add(new Excel_tilte(l3.get(i).getName(),miny,miny+Integer.parseInt(l3.get(i).getHight())-1,minx,minx+Integer.parseInt(l3.get(i).getCo())-1));
-				    	  if(Integer.parseInt(l3.get(i).getCo())>1)
-				    		  k=k+Integer.parseInt(l3.get(i).getCo())-1;
-				      }
-				      miny=4;
-				      for (int i=0;i<l4.size();i++) {
-				    	  minx=mx3.get(i);
-				    	  et.add(new Excel_tilte(l4.get(i).getName(),miny,miny+Integer.parseInt(l4.get(i).getHight())-1,minx,minx+Integer.parseInt(l4.get(i).getCo())-1));
 				    	  
+				    	  list.get(i).setCol1(col1);
+				    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
+				    	  list.get(i).setCol2(col2);
+				    	  col1=col1+Integer.parseInt(list.get(i).getCo());
 				      }
 				      
+				      for (Excel_list ex : list) {
+				    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
+				    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
+				      }
 				      
 				     
 				      String[] ls=col.split(",");

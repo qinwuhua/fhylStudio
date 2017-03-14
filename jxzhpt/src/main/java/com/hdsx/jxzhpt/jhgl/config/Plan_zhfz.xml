@@ -79,6 +79,9 @@
 	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 				 	order by jh.sbnf desc,jh.jh_sbthcd
 			 	) t order by t.sbnf desc,t.jh_sbthcd
 			)
@@ -123,6 +126,9 @@
 	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				 	</if>
+				 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
 				 	order by jh.jh_sbthcd,jh.sbnf
 			 	) t
 			)
@@ -187,6 +193,9 @@
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
+	 				</if>
+	 				<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
 	 				</if>
 	</select>
 	<select id="queryZhfzNfs"  resultType="treenode">
@@ -370,7 +379,11 @@
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
-	 				</if>group by jh.id)
+	 				</if>
+	 				<if test="lx.xmklx != null and lx.xmklx != ''">
+	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_zhfz set lrjh='未列入'  where sckid= (select z.sckid from plan_zhfz z where z.id=#{id})

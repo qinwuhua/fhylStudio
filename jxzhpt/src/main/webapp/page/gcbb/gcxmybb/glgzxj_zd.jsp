@@ -126,7 +126,7 @@ text-decoration:none;
 		}
 		if(parent.YMLib.Var.flag=='flag'){
 			parent.dcExcel(str,str1);
-			alert();
+			//alert();
 			close();
 			
 		}else{

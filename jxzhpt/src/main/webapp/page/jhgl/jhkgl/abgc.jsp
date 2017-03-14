@@ -75,7 +75,7 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:jsdj,lxbm:null,gldj:gldj,tsdq:tsdq,xmklx:$("#xmklx").combobox('getValue')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -184,6 +184,13 @@ text-decoration:none;
 									</select></td>
 									<td>路线编码：</td>
 	        						<td><input name="txtRoad" type="text" id="lxbm" style="width:100px;" /></td>
+	                              	<td> 项目库类型：</td>
+									<td>	
+											<select class="easyui-combobox" id='xmklx'>
+												<option value="" selected>请选择</option>
+												<option value="部库">部库</option>
+												<option value="省库">省库</option>
+											</select></td>
 	                              	<td colspan="10">
 	        						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/>

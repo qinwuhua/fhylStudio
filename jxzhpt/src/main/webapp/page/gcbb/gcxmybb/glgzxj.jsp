@@ -605,7 +605,7 @@
 		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
 		+"&gcglabgc.bnjhtz="+$("#bnjhtz").combobox('getValues').join(',')
 		+"&gcglabgc.bndsslc="+$("#bndsslc").combobox('getValues').join(',');
-		alert(data);
+		//alert(data);
 		var tbody = $("#abgclist");
 				tbody.empty();
 
