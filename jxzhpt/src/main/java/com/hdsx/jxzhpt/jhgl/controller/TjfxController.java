@@ -58,6 +58,7 @@ public class TjfxController extends BaseActionSupport{
 	private String xzqhdm;//行政区划代码
 	private String ftlName;
 	private Lkmxb lkmxb;
+	private String tjfl;//统计分类
 	private int page =1;
 	private int rows=10;
 	
@@ -1230,6 +1231,62 @@ public class TjfxController extends BaseActionSupport{
 			}
 		}
     
+    /**
+	 * 项目对路网影响
+	 */
+	public void queryXmtoLwyx(){
+		try{
+			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
+			
+			if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			
+			for (TreeNode item : xzqh) {
+				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
+				//查询到此行政区划的总计信息
+				List<Map<String,Object>> qs = tjfxServer.queryXzqhQsfx(xzqhdm,nf,end);
+				//返回数据对象
+				Map<String, String> index =new HashMap<String, String>();
+				index.put("xzqh", item.getName());
+				index.put("xzqhdm", item.getId());
+				for (Map<String, Object> map : qs) {
+					index.put(map.get("NF").toString()+"yyll", "88.9");
+					index.put(map.get("NF").toString()+"ztz", map.get("ZTZ").toString());
+					index.put(map.get("NF").toString()+"zbz", map.get("STZ").toString());
+					index.put(map.get("NF").toString()+"count", map.get("ZJ").toString());
+					index.put(map.get("NF").toString()+"lc", map.get("ZJ").toString());
+					index.put(map.get("NF").toString()+"tsbl", "75.6");
+				}
+				result.add(index);
+			}
+			getRequest().getSession().setAttribute("xzqhqsfx", result);
+			}
+			else{
+				List<String> lxbm=new ArrayList<String>();
+				lxbm.add("G105");lxbm.add("G320");lxbm.add("S310");
+				
+				for (int j = 0; j < lxbm.size(); j++) {
+					Map<String, String> index =new HashMap<String, String>();
+					index.put("lxbm", lxbm.get(j));
+					for (int i = Integer.valueOf(nf); i <= Integer.valueOf(end); i++) {
+						index.put(i+"yyll", "88.9");
+						index.put(i+"ztz", "970865.0275");
+						index.put(i+"zbz", "865.025");
+						index.put(i+"count", "528");
+						index.put(i+"lc", "555");
+						index.put(i+"tsbl", "75.6");
+					}
+					result.add(index);
+				}
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -1277,6 +1334,12 @@ public class TjfxController extends BaseActionSupport{
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getTjfl() {
+		return tjfl;
+	}
+	public void setTjfl(String tjfl) {
+		this.tjfl = tjfl;
 	}
 	
 }

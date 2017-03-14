@@ -40,5 +40,6 @@
 		<action name="queryLkbjfx" class="tjfxController" method="queryLkbjfx"></action>
 		<action name="queryLkpdmxList" class="tjfxController" method="queryLkpdmxList"></action>
 		<action name="getPdnf" class="tjfxController" method="getPdnf"></action>
+		<action name="queryXmtoLwyx" class="tjfxController" method="queryXmtoLwyx"></action>
 	</package>
 </struts>

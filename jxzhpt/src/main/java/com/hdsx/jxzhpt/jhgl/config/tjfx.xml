@@ -737,9 +737,13 @@
 	</select>
 	
 	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
-	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text 
-	from ghlx t where ylxbm is not null and ylxmc is not null and substr(ylxbm,0,1) in ('G','S')
-    order by substr(ylxbm,0,length(ylxbm)-6)
+<!-- 	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text  -->
+<!-- 	from ghlx t where ylxbm is not null and ylxmc is not null and substr(ylxbm,0,1) in ('G','S') -->
+<!--     order by substr(ylxbm,0,length(ylxbm)-6) -->
+    
+    select distinct substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6)||'['||t.roadname||']' text
+      from gpsroad t where  substr(roadcode,0,1) in ('G','S') and F114!='高速公路'
+      order by substr(roadcode,0,length(roadcode)-6)
 	</select>
 	
 	<select id="querylkpdfx" resultType="sjbb" parameterType="lkmxb">
@@ -889,7 +893,7 @@
 				 and m.tbnf in ${lkmxb.tbnf}  
 			  </if>
            ) a
-        group by tbnf ) b 
+        group by tbnf   order by tbnf desc) b 
 	</select>
 	
 	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">

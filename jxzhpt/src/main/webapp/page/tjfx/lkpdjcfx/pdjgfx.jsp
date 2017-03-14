@@ -42,7 +42,8 @@ $(function(){
 	}else{
 		loadBmbm2('sqzt','申请状态省');
 	}
-	urlxmnf("xmnf",'010112010202');
+// 	urlxmnf("xmnf",'010112010202');
+	xmnf("xmnf");
 	queryYhdzx();
 });
 
