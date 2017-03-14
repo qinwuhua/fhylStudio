@@ -145,7 +145,14 @@ public String getBfzj() {
 	private String thyy;
 	private String zgthyy;
 	private Date zgshtime;
+	private String xmklx;
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getZgshzt() {
 		return zgshzt;
 	}

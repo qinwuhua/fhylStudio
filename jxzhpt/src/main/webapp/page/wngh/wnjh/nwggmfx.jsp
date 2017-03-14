@@ -92,9 +92,21 @@
 			}
 			YMLib.UI.createWindow('lxxx','新老结构变化情况','xljgbh.jsp','lxxx',850,400);
 			
-			
 		}
-	
+		function dcdqy(){
+			var rows = $("#grid").datagrid("getRows"); 
+			var json_data = JSON.stringify(rows); 
+			var opts = $('#grid').datagrid('getColumnFields'); 
+			var colName=[];
+			for(var i=0;i<opts.length;i++){
+				var col = $('#grid').datagrid( "getColumnOption" , opts[i] );
+				colName.push(col.title);//把TITLEPUSH到数组里去
+			}
+			
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{nameValue:colName.join(","),colValue:json_data},function(){
+				window.location.href='/jxzhpt/qqgl/dclwjg.do';
+			 });
+		}
 	</script>
 	<style type="text/css">
 	TD {font-size: 12px;}
@@ -125,8 +137,8 @@
                               <td >
         						<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:ckylwjg()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查看原路网结构</a>
 				              	<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
-				                <a id='mybuttion3' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:ckyxbh()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">新老结构变化情况</a>
-            	
+				                <a id='mybuttion4' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:dcdqy()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导出当前页</a>
+            					<a id='mybuttion3' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:ckyxbh()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">新老结构变化情况</a>
 				              </td>
                             </tr></table>
         				</div>

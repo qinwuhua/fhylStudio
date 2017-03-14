@@ -80,7 +80,7 @@
 			//alert();
 			var params={'cbsj.xmlx':5,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val(),
+					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
 					'cbsj.xmmc':$('#xmmc').val(),
 					"cbsj.jdbs":2,
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
@@ -89,7 +89,7 @@
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
-					'ghlxbm':$("#ghlxbm").val(),
+					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'lsjl':$('#lsjl').combobox("getValue"),
@@ -294,9 +294,9 @@
 				xmnf=xmnf.substring(1,xmnf.length);
 			var lxmc = $("#txtlxmc").val();
 			var ghlxmc=$("#ghlxmc").val();
-			var ghlxbm=$("#ghlxbm").val();
+			var ghlxbm=$("#ghlxbm").val().toUpperCase();
 			var param='xmlx=5&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
-			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+yjsdj+
+			'&ghlxbh='+$('#txtlxbm').val().toUpperCase()+'&xjsdj='+yjsdj+
 			'&tsdq='+tsdq+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+gldj+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lxmc='+lxmc;
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;

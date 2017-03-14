@@ -173,7 +173,8 @@ function showAll(){
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
-	    	'gcglzhfz.ljbfzt':$("#ljbfzt").combobox('getValue')
+	    	'gcglzhfz.ljbfzt':$("#ljbfzt").combobox('getValue'),
+	    	'gcglzhfz.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

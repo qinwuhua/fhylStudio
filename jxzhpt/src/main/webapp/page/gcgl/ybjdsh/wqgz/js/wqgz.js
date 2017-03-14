@@ -199,7 +199,8 @@ function showAll(){
 	    	gydwtj:"and 1=1",
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText')
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 	    	
 		},
 	    columns:[[

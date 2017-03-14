@@ -214,6 +214,9 @@
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
+	<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 	order by t1.sbnf
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -257,6 +260,9 @@
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
+	<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 	 </select>
 	 
 	 
@@ -300,6 +306,9 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
+		<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 	 </select>
 	 
 	 
@@ -391,6 +400,9 @@
 					and c.tbyf is not null
 				</if>
 			</if>
+			<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 			order by t1.sbnf
 			) m
 					where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -455,6 +467,9 @@
 				<if test="tiaojian =='已拨付'">
 					and c.tbyf is not null
 				</if>
+			</if>
+			<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
 	 </select>
 	  <!-- 查询最进展大月份 -->

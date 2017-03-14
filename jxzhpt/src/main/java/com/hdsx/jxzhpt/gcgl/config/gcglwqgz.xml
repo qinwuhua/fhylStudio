@@ -253,6 +253,9 @@
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
+			<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 			order by t1.sbnf
 			) m
 					where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -312,6 +315,9 @@
 		 <if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>	
+		<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 	 </select>
 	 
 	  <select id="selectWqgzTj" parameterType="gcglwqgz" resultType="gcglwqgz">
@@ -380,7 +386,10 @@
 		</if>
 		<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-		</if>	
+		</if>
+		<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>	
 	 </select>
 	 
 	 
@@ -520,6 +529,9 @@
 					and c.tbyf is not null
 				</if>
 			</if>
+			<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 			order by t1.sbnf
 			) m
 					where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -591,7 +603,9 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-			
+			<if test="xmklx != null and  xmklx != ''">
+					and xmklx like '%'||trim(#{xmklx})||'%'
+			</if>
 	 </select>
 	 <!-- 查询每月的车购税 -->
 	 <select id="selectcgsyf" parameterType="gcglwqgz" resultType="gcglwqgz">

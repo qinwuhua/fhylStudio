@@ -109,6 +109,12 @@ a:active {
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select>
+								<span> 项目库类型：</span>
+								<select class="easyui-combobox" id='xmklx'>
+									<option value="" selected>请选择</option>
+									<option value="部库">部库</option>
+									<option value="省库">省库</option>
+								</select>
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
 </p>

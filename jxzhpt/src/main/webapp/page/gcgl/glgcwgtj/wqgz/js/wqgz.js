@@ -119,7 +119,8 @@ function showtj1(){
 	'&gcglwqgz.gldj='+$("#ddlGldj").combobox('getValue')+
 	'&gcglwqgz.tsdq='+$("#ddlTSDQ").combobox('getText')+
 	'&gcglwqgz.akjfl='+
-	'&gcglwqgz.jgys='+$("#jgys").combobox('getValue');
+	'&gcglwqgz.jgys='+$("#jgys").combobox('getValue')+
+	'&gcglwqgz.xmklx='+$("#xmklx").combobox('getValue');
 	
 	$.ajax({
 		data:data,
@@ -194,7 +195,8 @@ function showAll(){
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
-	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue')
+	    	'gcglwqgz.jgys':$("#jgys").combobox('getValue'),
+	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

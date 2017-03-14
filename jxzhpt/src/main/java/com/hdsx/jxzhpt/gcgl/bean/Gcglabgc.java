@@ -40,8 +40,14 @@ public class Gcglabgc implements Serializable {
 	private String bnwcgl;
 	private String wgnf;
 	private String tbman;
+	private String xmklx;
 	
-	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	public String getTbman() {
 		return tbman;
 	}

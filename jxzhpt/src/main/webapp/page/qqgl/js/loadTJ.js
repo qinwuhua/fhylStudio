@@ -256,7 +256,7 @@ function dclxshModule(str){
 		sbthcd=7;
 	}
 	var xmmc=$("#xmmc").val();
-	var ghlxbh=$("#lxbm").val();
+	var ghlxbh=$("#lxbm").val().toUpperCase();
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
 	if(xmnf=='')
 		xmnf=new Date().getFullYear();
@@ -281,7 +281,7 @@ function dclxshModule(str){
 			xmlx1=xmlx1.substring(1,xmlx1.length);
 	}
 	var ghlxmc=$("#ghlxmc").val();
-	var ghlxbm=$("#ghlxbm").val();
+	var ghlxbm=$("#ghlxbm").val().toUpperCase();
 	var tsdq="";
 	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&sbzt="+sbzt+
 			 "&lxsh.lsjl="+lsjl+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd+
@@ -348,9 +348,9 @@ function dclxshModule(str){
 				xmlx1=xmlx1.substr(1,xmlx1.length);
 		}
 		var lxmc=$("#lxmc").val();	
-		var ghlxbm=$("#ghlxbm").val();
+		var ghlxbm=$("#ghlxbm").val().toUpperCase();
 		var ghlxmc=$("#ghlxmc").val();
-		var ghlxbh=$("#lxbm").val();
+		var ghlxbh=$("#lxbm").val().toUpperCase();
 		if(str=="gsdgz"){
 			var jsjsdj=$("#jsjsdj").combobox("getValues").join(",");
 				if(jsjsdj.substr(0,1)==',')

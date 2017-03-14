@@ -136,7 +136,7 @@
 				xmnf='2011,2012,2013,2014,2015';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
 				xmnf='2016,2017,2018,2019,2020';
-			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
+			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val().toUpperCase(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val().toUpperCase(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
@@ -464,7 +464,7 @@
 					xmnf='2011,2012,2013,2014,2015';
 				if(getUrlParame('id').substr(0,10)=='0101130302')
 					xmnf='2016,2017,2018,2019,2020';
-			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
+			var params={'jhsh.xmlx':4,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').val().toUpperCase(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,'jhsh.ghxlxbm':$('#ghlxbm').val().toUpperCase(),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
 					'jhsh.xdzt':1,'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.gyfl':$('#gyfl').val(),'jhsh.sfsycgs':$('#sfsycgs').combobox('getValue'),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
@@ -580,7 +580,7 @@
 
 			
 			
-			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').val()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$('#ghlxbm').val()+'&jhsh.ghxlxmc='+$('#ghlxmc').val()+'&jhsh.lxmc='+$('#lxmc').val()+
+			var param='jhsh.xmlx=4&jhsh.xmlx1='+xmlx+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').val().toUpperCase()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$('#ghlxbm').val().toUpperCase()+'&jhsh.ghxlxmc='+$('#ghlxmc').val()+'&jhsh.lxmc='+$('#lxmc').val()+
 			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+$('#jhxdwh').val()+
 			'&jhsh.xdzt=1'+'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jhsh.scxdnf='+$('#scxdnf').combobox("getValues").join(',')+
 			'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.sfsycgs='+$('#sfsycgs').combobox('getValue')+'&jhsh.xmbm='+xmnf+'&jhsh.xdsj='+$('#xdsj').datebox('getValue');
@@ -632,7 +632,7 @@
 				xmnf='2016,2017,2018,2019,2020';
 			
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmlx1='+xmlx+
-			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
+			'&jhsh.ghlxbh='+$("#lxbm").val().toUpperCase()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$("#ghlxbm").val().toUpperCase()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+xmnf+'&jhsh.scxdnf='+scxdnf+
@@ -683,7 +683,7 @@
 				xmnf='2016,2017,2018,2019,2020';
 			
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.xmlx1='+xmlx+
-			'&jhsh.ghlxbh='+$("#lxbm").val()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$("#ghlxbm").val()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
+			'&jhsh.ghlxbh='+$("#lxbm").val().toUpperCase()+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.ghxlxbm='+$("#ghlxbm").val().toUpperCase()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh+
 			'&lsjl='+$('#lsjl').combobox("getValue")+'&jhsh.xmnf='+xmnf+'&jhsh.scxdnf='+scxdnf+

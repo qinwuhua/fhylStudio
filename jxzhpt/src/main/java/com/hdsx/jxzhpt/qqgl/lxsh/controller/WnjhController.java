@@ -1,24 +1,12 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,48 +16,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
-import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
-import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.impl.JckwqgzServerImpl;
-import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
-import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.LxshServerImpl;
-import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
-import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.XmsqServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -77,21 +44,11 @@ import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
-import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
-import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
-import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
-import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
-import com.ibm.icu.text.SimpleDateFormat;
 
 
 /**
@@ -392,12 +349,7 @@ public class WnjhController extends BaseActionSupport{
 	//------------------------------------------gj
 	public void selectGjwnjh(){
 		try {
-		String tiaojian2="";
-		if(xzqh.indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
-		}else{
-			tiaojian2="and xzqhdm in ("+xzqh+")";
-		}
+		
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -477,12 +429,7 @@ public class WnjhController extends BaseActionSupport{
 	
 	public void selectGsdwnjh(){
 		try {
-			String tiaojian2="";
-			if(xzqh.indexOf(",")==-1){
-				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
-			}else{
-				tiaojian2="and xzqhdm in ("+xzqh+")";
-			}
+			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -565,12 +512,7 @@ public class WnjhController extends BaseActionSupport{
 	
 	public void selectLmwnjh(){
 		try {
-			String tiaojian2="";
-			if(xzqh.indexOf(",")==-1){
-				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
-			}else{
-				tiaojian2="and xzqhdm in ("+xzqh+")";
-			}
+			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -649,13 +591,7 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void selectXjwnjh(){
 		try {
-			System.out.println(lxsh.getGydw());
-			String tiaojian2="";
-			if(xzqh.indexOf(",")==-1){
-				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
-			}else{
-				tiaojian2="and xzqhdm in ("+xzqh+")";
-			}
+			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -1101,7 +1037,7 @@ public class WnjhController extends BaseActionSupport{
 			e.printStackTrace();
 			try {
 				response.getWriter().print(fileuploadFileName+"导入失败，请检查路线编码、起点桩号、止点桩号和行政区划\r");
-			} catch (IOException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
@@ -1289,7 +1225,6 @@ public class WnjhController extends BaseActionSupport{
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1335,7 +1270,6 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			JsonUtils.write(json1+json+"]", getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -1357,7 +1291,6 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			JsonUtils.write(json1+json+"]", getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -1367,7 +1300,6 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1376,7 +1308,6 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1385,7 +1316,6 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1403,12 +1333,7 @@ public class WnjhController extends BaseActionSupport{
 	}
 	public void showgjtj(){
 	try {
-		String tiaojian2="";
-		if(xzqh.indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
-		}else{
-			tiaojian2="and xzqhdm in ("+xzqh+")";
-		}
+		
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -1758,7 +1683,33 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 
-	
+	public void dclwjg(){
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String nameValue = (String) session.getAttribute("nameValue");
+			String colValue = (String) session.getAttribute("colValue");
+			JSONArray ja = JSONArray.fromObject(colValue);
+			@SuppressWarnings("unchecked")
+			List<Excel_list> list = (List<Excel_list>) JSONArray.toList(ja,
+					new Excel_list(), new JsonConfig());
+			ExcelData eldata = new ExcelData();//创建一个类
+			eldata.setTitleName("拟完工规模分析");//设置第一行
+			eldata.setSheetName("sheet1");//设置sheeet名
+			eldata.setFileName("拟完工规模分析");//设置文件名
+			List<Excel_tilte> et = new ArrayList<Excel_tilte>();//创建一个list存放表头
+			String[] col = nameValue.split(",");
+			for (int i = 0; i < col.length; i++) {
+				et.add(new Excel_tilte(col[i], 1, 1, i, i));
+			}
+			eldata.setEl(list);//将实体list放入类中
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response = getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
 

@@ -68,6 +68,7 @@ function loadGldj(id) {
 		panelHeight:200,
 		multiple:true
 	});
+	
 }
 //年份
 function xmnf(id){

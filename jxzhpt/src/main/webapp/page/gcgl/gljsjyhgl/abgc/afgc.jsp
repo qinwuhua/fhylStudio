@@ -148,6 +148,12 @@ a:active {
         						</select>
 								</p>
 								<p style="margin: 1% 0% 1% 2%;">
+								<span> 项目库类型：</span>
+								<select class="easyui-combobox" id='xmklx'>
+									<option value="" selected>请选择</option>
+									<option value="部库">部库</option>
+									<option value="省库">省库</option>
+								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showafAll()"/>
         					 	<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
         						</p>

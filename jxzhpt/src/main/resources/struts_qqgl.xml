@@ -168,6 +168,7 @@
 	      <action name="updatewnjhsjlx" class="wnjhController" method="updatewnjhsjlx"/>
 	      <action name="deleteWnlx" class="wnjhController" method="deleteWnlx"/>
 	      <action name="showgjtj" class="wnjhController" method="showgjtj"/>
+	      <action name="dclwjg" class="wnjhController" method="dclwjg"/>
 	      
 	      
 	 <!-- qwh -->

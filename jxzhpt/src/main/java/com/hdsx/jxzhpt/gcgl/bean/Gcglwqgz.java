@@ -108,7 +108,14 @@ public class Gcglwqgz implements Serializable {
 	private String tbman;
 	private String colValue;
 	private String nameValue;
+	private String xmklx;
 	
+	public String getXmklx() {
+		return xmklx;
+	}
+	public void setXmklx(String xmklx) {
+		this.xmklx = xmklx;
+	}
 	
 	
 	

@@ -61,6 +61,7 @@
 		//urlxmnf("ddlYear1",urlid);
 		
 		//showAll();
+		
 		$("#biaotou").empty();
 	});
 	function setjhxdnf1(id){
@@ -546,10 +547,11 @@
 		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
 		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
 		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
-		//loadjzt();
-		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2},function(){
+		loadjzt();
+		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2},function(){
 			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
-		 });
+		 }); 
+		 setTimeout('disLoadjzt()',15000);
 	}
 	function wcmxb(){
 		YMLib.Var.flag='';
@@ -654,7 +656,7 @@
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;(报部)普通干线公路改造工程项目完成情况明细表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;生成报表>&nbsp;月报表>&nbsp;(报部)普通干线公路改造工程项目完成情况明细表</div>
 					</div>
         	</tr>
         	<tr>

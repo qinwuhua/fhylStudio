@@ -2125,9 +2125,9 @@ public class GcybbController extends BaseActionSupport{
 			if("1".equals(flag)){
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路改造工程新上、续建工程项目完成情况明细表");//设置第一行
+				eldata.setTitleName("(报部)普通干线公路改造工程项目完成情况明细表");//设置第一行
 				eldata.setSheetName("明细表");//设置sheeet名
-				eldata.setFileName("公路改造工程新上、续建工程项目完成情况明细表");//设置文件名
+				eldata.setFileName("(报部)普通干线公路改造工程项目完成情况明细表");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				

@@ -694,7 +694,8 @@ function showAll(){
 	    	gydwtj:'and 1=1',
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':xzdj,
-	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText').replace('全部','')
+	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText').replace('全部',''),
+	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

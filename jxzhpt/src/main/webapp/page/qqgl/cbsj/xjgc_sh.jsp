@@ -78,13 +78,13 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val(),
+					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
 					'cbsj.xmmc':$('#xmmc').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'tsdq':tsdq,
 					'cbsj.sbzt':sbzt,
-					'ghlxbm':$("#ghlxbm").val(),
+					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'cbsj.shzt':$('#shzt').combo("getValue"),
@@ -328,9 +328,9 @@
 				xmnf=xmnf.substring(1,xmnf.length);
 			var lxmc = $("#txtlxmc").val();
 			var ghlxmc=$("#ghlxmc").val();
-			var ghlxbm=$("#ghlxbm").val();
+			var ghlxbm=$("#ghlxbm").val().toUpperCase();
 			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
-			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
+			'&ghlxbh='+$('#txtlxbm').val().toUpperCase()+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+'&jsjsdj='+jsjsdj+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm;
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;

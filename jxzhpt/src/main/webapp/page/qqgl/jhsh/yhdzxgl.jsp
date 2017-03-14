@@ -89,7 +89,7 @@
 					//'gydwdm':getgydw('gydw'),
 					'xzqhdm':getxzqhdm('xzqh'),
 					'xmmc':$('#xmmc').val(),
-					'ghlxbh':$('#lxbm').val(),
+					'ghlxbh':$('#lxbm').val().toUpperCase(),
 					'lxmc':$('#lxmc').val(),
 					'tsdq':tsdq,
 					'jsdj':$('#jsdj').combobox("getValues").join(","),
@@ -98,7 +98,7 @@
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'wnxmk':$('#wnxmk').combobox("getValue"),
-					'ghlxbm':$("#ghlxbm").val(),
+					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
 					'ghlxmc':$("#ghlxmc").val(),
 					'jsxz':jsxz,
 					'xmbm':xmnf,
@@ -662,7 +662,7 @@
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
-			'&ghlxbh='+$("#lxbm").val()+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").val()+'&ghlxmc='+$("#ghlxmc").val();
+			'&ghlxbh='+$("#lxbm").val().toUpperCase()+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").val().toUpperCase()+'&ghlxmc='+$("#ghlxmc").val();
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
 		}
 		function importXmsq(){
