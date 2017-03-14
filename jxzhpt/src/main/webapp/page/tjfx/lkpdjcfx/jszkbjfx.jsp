@@ -33,11 +33,10 @@
 				url :"/jxzhpt/tjfx/getPdnf.do",
 				panelHeight:170,
 		        multiple:true,
-		        checkBox:true, 
+		        checkBox:true 
 		    });
 			
 			loadBmbm3("jsdj","技术等级");
-// 			xmnf("lkpdbb");
 			
 			$("#query").click(function(){
 				if($("#roadcode").combobox("getValue")==""){

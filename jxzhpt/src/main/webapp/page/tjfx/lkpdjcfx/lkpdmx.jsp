@@ -23,7 +23,7 @@ $(function(){
 		url :"/jxzhpt/tjfx/getLxldCombo.do",
 		panelHeight:170,
         multiple:true,
-        checkBox:true,        
+        checkBox:true
     });
 	
 	$('#lkpdbb').combobox({		
@@ -135,7 +135,7 @@ text-decoration:none;
 						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr  height="32">
 							  <td>管辖路段：</td>
-							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 200px;"></select></td>
+							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 180px;"></select></td>
 							  <td>路况评定版本：</td>
 							 <td>
 							 <select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
@@ -147,13 +147,13 @@ text-decoration:none;
 <!-- 							 </select> -->
 							 </td>
 							  <td>技术等级：</td>
-							  <td><select id="jsdj" style="width:100px"class="easyui-combobox"></select></td>
+							  <td><select id="jsdj" style="width:80px"class="easyui-combobox"></select></td>
 							  <td>路面类型：</td>
-							  <td><select id="lmlx" style="width:100px" class="easyui-combobox"></select></td>
+							  <td><select id="lmlx" style="width:80px" class="easyui-combobox"></select></td>
 							   <td>方向：</td>
 							  <td><select id="jcfx" style="width:70px"class="easyui-combobox"></select></td>
 							  <td>MQI等级：</td>
-							  <td><select id="mqi" style="width:100px"class="easyui-combobox"></select></td>
+							  <td><select id="mqi" style="width:80px"class="easyui-combobox"></select></td>
 							   <td colspan="10">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;" />
 							  </td>

@@ -2204,7 +2204,7 @@ public class Excel_export {
 		for (int i = 0; i < el2.size(); i++)  
         {  
             row = sheet.createRow((int) i + maxx+1);  
-            row.setHeightInPoints(50f);
+            row.setHeightInPoints(100f);
             Excel_list trqk1 = (Excel_list) el2.get(i);  
             // 第四步，创建单元格，并设置值  
          
