@@ -3502,7 +3502,7 @@
 		select * from SJSSJZHZB t where xmnf = #{value}
 	</select>
 	<select id="getGlgzxjzd" parameterType="string" resultType="elist">
-	select t2.value, t2.name, t1.co, t2.hight, t2.rowxh
+	select t2.value, t2.name, t1.co, t2.hight, t2.rowxh, t2.width
 	  from (select substr1 value, count(*) co
 	          from zdybbbt
 	         where value in

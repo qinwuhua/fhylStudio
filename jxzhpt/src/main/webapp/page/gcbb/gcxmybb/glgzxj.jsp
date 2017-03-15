@@ -305,209 +305,17 @@
 		});
 		
 	}
-	var flagi=1;
-	function showAll(){
-		if(flagi==0){
-			alert("数据正在响应，请您耐心等待。");
+	
+	var str1="";var str2="";var datalist;
+	
+	function dcExcel(){
+		if(str1==""||str2==""){
+			alert("请您先查询报表数据");
 			return;
-		}	
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
-		if(xmnf.substr(0,1)==',')
-			xmnf=xmnf.substr(1,xmnf.length);
+		}
 		
-		var gydw=$("#gydw").combotree("getValues");
-		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36')
-				gydwstr=36;
-			else gydwstr= $.cookie("unit2");
-		}else if(gydw.length==1){
-			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
- 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-			gydwstr=gydw[0] ;
-		}else{
-			gydwstr= gydw.join(',');
-		}
-	var xzqhdm=$("#xzqh").combotree("getValues");
-		if(xzqhdm.length==0){
-			xzqhstr= $.cookie("dist2");
-			
-		}else if(xzqhdm.length==1){
-			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		xzqhstr=xzqhdm[0] ;
-		}else{
-			xzqhstr= xzqhdm.join(',');
-		}
-		var xzdj=$("#xzdj").combobox("getValues").join(',');
-		var lxmc=$("#lxmc").val();
-		var data="flag=0&nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
-		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
-		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
-		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
-		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
-		+"&gcglabgc.bnjhtz="+$("#bnjhtz").combobox('getValues').join(',')
-		+"&gcglabgc.bndsslc="+$("#bndsslc").combobox('getValues').join(',');
-		//alert(data);
-		var tbody = $("#abgclist");
-				tbody.empty();
-		flagi=0;
+		var json_data = JSON.stringify(datalist); 
 		
-		loadjzt();
-		$.ajax({
-			url:"/jxzhpt/gcybb/getGlgzxj.do",
-			data:data,
-			type:"post",
-			dataType:"JSON",
-			success:function(msg){
-				disLoadjzt();
-				flagi=1;
-				$("#nian").text($("#ddlYear").val());
-				if (msg != null) {
-					for ( var i = 0; i < msg.length; i++) {
-						if(msg[i].v_0=='是'){
-							tbody.append("<tr><td>"+""+"</td><td>"+msg[i].v_1+"</td><td>"
-									+msg[i].v_2+"</td><td colspan='2'>"+msg[i].v_3+"</td><td>"
-									+msg[i].v_5+"</td><td>"
-									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-									+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-									+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-									+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-									+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-									+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-									+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-									+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-									+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-									+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-									+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-									+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
-									+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
-									+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
-									+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
-									+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
-									+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
-									+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
-									+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
-									+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
-									+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"
-									+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"
-									+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
-									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
-									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
-									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
-									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td><td>"
-									+msg[i].v_62+"</td><td>"+msg[i].v_63+"</td><td>"
-									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
-									+msg[i].v_66+"</td><td>"+msg[i].v_67+"</td><td>"
-									+msg[i].v_68+"</td><td>"+msg[i].v_69+"</td><td>"
-									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td><td>"
-									+msg[i].v_72+"</td><td>"+msg[i].v_73+"</td><td>"
-									+msg[i].v_74+"</td><td>"+msg[i].v_75+"</td><td>"
-									+msg[i].v_76+"</td><td>"+msg[i].v_77+"</td><td>"
-									+msg[i].v_78+"</td><td>"+msg[i].v_79+"</td><td>"
-									+msg[i].v_80+"</td><td>"+msg[i].v_81+"</td><td>"+msg[i].v_82+"</td></tr>"
-							);
-						}else{
-							tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-									+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-									+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-									+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-									+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-									+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-									+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-									+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-									+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-									+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-									+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-									+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-									+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-									+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-									+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-									+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
-									+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
-									+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
-									+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td><td>"
-									+msg[i].v_38+"</td><td>"+msg[i].v_39+"</td><td>"
-									+msg[i].v_40+"</td><td>"+msg[i].v_41+"</td><td>"
-									+msg[i].v_42+"</td><td>"+msg[i].v_43+"</td><td>"
-									+msg[i].v_44+"</td><td>"+msg[i].v_45+"</td><td>"
-									+msg[i].v_46+"</td><td>"+msg[i].v_47+"</td><td>"
-									+msg[i].v_48+"</td><td>"+msg[i].v_49+"</td><td>"
-									+msg[i].v_50+"</td><td>"+msg[i].v_51+"</td><td>"
-									+msg[i].v_52+"</td><td>"+msg[i].v_53+"</td><td>"
-									+msg[i].v_54+"</td><td>"+msg[i].v_55+"</td><td>"
-									+msg[i].v_56+"</td><td>"+msg[i].v_57+"</td><td>"
-									+msg[i].v_58+"</td><td>"+msg[i].v_59+"</td><td>"
-									+msg[i].v_60+"</td><td>"+msg[i].v_61+"</td><td>"
-									+msg[i].v_62+"</td><td>"+msg[i].v_63+"</td><td>"
-									+msg[i].v_64+"</td><td>"+msg[i].v_65+"</td><td>"
-									+msg[i].v_66+"</td><td>"+msg[i].v_67+"</td><td>"
-									+msg[i].v_68+"</td><td>"+msg[i].v_69+"</td><td>"
-									+msg[i].v_70+"</td><td>"+msg[i].v_71+"</td><td>"
-									+msg[i].v_72+"</td><td>"+msg[i].v_73+"</td><td>"
-									+msg[i].v_74+"</td><td>"+msg[i].v_75+"</td><td>"
-									+msg[i].v_76+"</td><td>"+msg[i].v_77+"</td><td>"
-									+msg[i].v_78+"</td><td>"+msg[i].v_79+"</td><td>"
-									+msg[i].v_80+"</td><td>"+msg[i].v_81+"</td><td>"+msg[i].v_82+"</td></tr>"
-							);
-						}
-					}
-				}
-			}
-		});
-	}
-	/* function exportExcel(){
-		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
-		if(xmnf.substr(0,1)==',')
-			xmnf=xmnf.substr(1,xmnf.length);
-		
-		var gydw=$("#gydw").combotree("getValues");
-		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36')
-				gydwstr=36;
-			else gydwstr= $.cookie("unit2");
-		}else if(gydw.length==1){
-			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
- 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-			gydwstr=gydw[0] ;
-		}else{
-			gydwstr= gydw.join(',');
-		}
-	var xzqhdm=$("#xzqh").combotree("getValues");
-		if(xzqhdm.length==0){
-			xzqhstr= $.cookie("dist2");
-			
-		}else if(xzqhdm.length==1){
-			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		xzqhstr=xzqhdm[0] ;
-		}else{
-			xzqhstr= xzqhdm.join(',');
-		}
-		var xzdj=$("#xzdj").combobox("getValues").join(',');
-		var lxmc=$("#lxmc").val();
-		var data="flag=1&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf
-		+"&gcglabgc.yjsdj="+$("#yjsdj").combobox('getValues').join(',')
-		+"&gcglabgc.jsjsdj="+$("#jsjsdj").combobox('getValues').join(',')
-		+"&gcglabgc.gljslx="+$("#gljslx").combobox('getValues').join(',')
-		+"&gcglabgc.jhnd="+$("#jhnd").combobox('getValues').join(',')
-		+"&gcglabgc.jzzt="+$("#jzzt").combobox('getValues').join(',')
-		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
-		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
-		//loadjzt();
-		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
-		 });
-		//.success(function() {disLoadjzt();})
-	}	 */
-	
-	
-	function dcExcel(str1,str2){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combobox("getValues").join(",");
@@ -548,10 +356,10 @@
 		+"&gcglabgc.bnjhtz="+$("#bnjhtz").val()
 		+"&gcglabgc.bndsslc="+$("#bndsslc").val();
 		loadjzt();
-		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2},function(){
+		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,nameValue:str1,colValue:str2,sql:json_data},function(){
 			window.location.href='/jxzhpt/gcybb/getGlgzxj.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',15000);
+		 setTimeout('disLoadjzt()',4000);
 	}
 	function wcmxb(){
 		YMLib.Var.flag='';
@@ -617,6 +425,7 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				datalist=msg;
 				disLoadjzt();
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
@@ -736,7 +545,7 @@
         						<img onclick="wcmxb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>

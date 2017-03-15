@@ -124,6 +124,8 @@ text-decoration:none;
 			alert("请勾选字段");
 			return;
 		}
+		parent.str1=str;
+		parent.str2=str1;
 		if(parent.YMLib.Var.flag=='flag'){
 			parent.dcExcel(str,str1);
 			//alert();

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -2078,51 +2081,7 @@ public class GcybbController extends BaseActionSupport{
 		
 		public void getGlgzxj(){
 			try {
-			String shijian=nf+"-"+yf;
-			gcglabgc.setSbyf(shijian);
-			String tiaojian1="";
-			String tiaojian2="";
-			String xzqhdm = "";
-			String gydwdm = "";
-			if("1".equals(flag)){
-				HttpServletRequest request = ServletActionContext.getRequest();
-				HttpSession session = request.getSession();
-				gydwdm=(String) session.getAttribute("gydwbb");	
-				xzqhdm=(String) session.getAttribute("xzqhbb");	
-			}else{
-			gydwdm = gydw;
-			xzqhdm	= xzqh;
-			}
-			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
-			}else{
-				tiaojian1=getcxtj("gydw",gydwdm);
-				//tiaojian1="and gydw in ("+gydwdm+")";
-			}
-			if(xzqhdm.indexOf(",")==-1){
-				tiaojian2="and xzqh like '%"+xzqhdm+"%'";
-			}else{
-				tiaojian2=getcxtj("xzqh",xzqhdm);
-				//tiaojian2="and xzqh in ("+xzqhdm+")";
-			}
-			gcglabgc.setGydw(tiaojian1);
-			gcglabgc.setLxmc(lxmc);
-			gcglabgc.setTiaojian(getcxtj("lxbm",xzdj));
-			gcglabgc.setXzqhdm(tiaojian2);
-			gcglabgc.setXmnf(xmnf);
-			gcglabgc.setXmmc(xmmc);
-			//查总合list
-			//getcxtj
-			gcglabgc.setYjsdj(getcxtj("v_11",gcglabgc.getYjsdj()));
-			gcglabgc.setJsjsdj(getcxtj("v_12",gcglabgc.getJsjsdj()));
-			gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
-			gcglabgc.setGljslx(getcxtj("v_13",gcglabgc.getGljslx()));
-			gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
-			gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
-			gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));
-			List<Excel_list> list1=gcybbServer.getGlgzxj(gcglabgc);
-			
-			if("1".equals(flag)){
+				if("1".equals(flag)){
 				
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("(报部)普通干线公路改造工程项目完成情况明细表");//设置第一行
@@ -2130,238 +2089,123 @@ public class GcybbController extends BaseActionSupport{
 				eldata.setFileName("(报部)普通干线公路改造工程项目完成情况明细表");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-				
-				try {
-			    	  List<Excel_list> list=new ArrayList<Excel_list>();
-			    	  	HttpServletRequest request = ServletActionContext.getRequest();
-						HttpSession session = request.getSession();
-					    list=gcybbServer.getGlgzxjzd((String) session.getAttribute("nameValue"));
-					    String col=(String) session.getAttribute("colValue");
-			    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
-				      String html="<tr>";
-				     
-				     /* 
-				      
-				      int a[][]=new int[4][83];
-				      int rowxh=0,col1=0,col2=0;
-				      for(int i=0;i<list.size();i++){
-				    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
-				    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
-				    		  col1=0;
-				    	  }
-				    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
-				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
-				    	  if(Integer.parseInt(list.get(i).getHight())!=1){
-				    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
-				    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
-				    		  }
-				    	  }
-				    	  while(a[rowxh][col1]!=0){
-				    		  col1=col1+a[rowxh][col1];
-				    	  }
-				    	  list.get(i).setCol1(col1);
-				    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
-				    	  list.get(i).setCol2(col2);
-				    	  col1=col1+Integer.parseInt(list.get(i).getCo());
-				      }
-				      for (Excel_list ex : list) {
-				    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
-				    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
-				      }
-				      */
-				      
-				      
-				      int rowxh=0,col1=0,col2=0;
-				      int colint=0;
-				      int a[][]=new int[4][83];
-				      int flag=0;
-				      for(int i=0;i<list.size();i++){
-				    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
-				    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
-				    		  col1=colint;
-				    		  flag=0;
-				    	  }
-				    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
-				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
-				    	  
-				    	  while(a[rowxh][col1]!=0){
-				    		  col1=col1+a[rowxh][col1];
-				    	  }
-				    	  
-				    	  if(Integer.parseInt(list.get(i).getHight())!=1){
-				    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
-				    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
-				    		  }
-				    	  }else{
-				    		  if(flag==0){
-				    			  colint=col1;
-				    			  flag=1;
-				    		  }
-				    	  }
-				    	  
-				    	  list.get(i).setCol1(col1);
-				    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
-				    	  list.get(i).setCol2(col2);
-				    	  col1=col1+Integer.parseInt(list.get(i).getCo());
-				      }
-				      
-				      for (Excel_list ex : list) {
-				    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
-				    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
-				      }
-				      
-				     
-				      String[] ls=col.split(",");
-				      List<Excel_list> elst=new ArrayList<Excel_list>();
-				      for (Excel_list els : list1) {
-				    	  Excel_list els1=new Excel_list(); 
-						for (int i = 0; i < ls.length; i++) {
-							 Field field1 = null; Field field2 = null; 
-							 field1 = els1.getClass().getDeclaredField("v_"+i); 
-							 field2 = els.getClass().getDeclaredField(ls[i]); 
-						     field1.set((Object) els1, field2.get(els));  //set方法
-							
-						}
-				    	elst.add(els1);  
-					}
-				      eldata.setEl(elst);//将实体list放入类中
-				      
-				      /*rowxh="0";
-				      int minH=0;
-				      int min=0;
-				      for(int i=0;i<list.size();i++){
-				    	  if(minH>Integer.parseInt(list.get(i).getHight())){
-				    		  min=minx;
-				    		  minH=Integer.parseInt(list.get(i).getHight());
-				    	  }
-				    	  if(!rowxh.equals(list.get(i).getRowxh())){
-				    		  html=html+"</tr><tr>";
-				    		  if(!"0".equals(rowxh))
-					    		  miny++;minx=min;minH++;
-				    		  rowxh=list.get(i).getRowxh();
-				    	  }
-				    	  et.add(new Excel_tilte(list.get(i).getName(),miny,miny+Integer.parseInt(list.get(i).getHight())-1,minx,minx+Integer.parseInt(list.get(i).getCo())-1));
-				    	  minx=minx+Integer.parseInt(list.get(i).getCo());
-				    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
-				      }
-				      html=html+"</tr>";
-				      System.out.println(html);*/
-				      
+				List<Excel_list> list=new ArrayList<Excel_list>();
+		    	  	HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+				    list=gcybbServer.getGlgzxjzd((String) session.getAttribute("nameValue"));
+				    String col=(String) session.getAttribute("colValue");
+				    String datalist=(String) session.getAttribute("sql");
+				    JSONArray ja = JSONArray.fromObject(datalist);  
+				    @SuppressWarnings("unchecked")
+					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
+							new Excel_list(), new JsonConfig());
+		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
 					
-					} catch (Exception e1) {
-						e1.printStackTrace();
+			      int rowxh=0,col1=0,col2=0;
+			      int colint=0;
+			      int a[][]=new int[4][83];
+			      int flag=0;
+			      for(int i=0;i<list.size();i++){
+			    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
+			    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
+			    		  col1=colint;
+			    		  flag=0;
+			    	  }
+			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+			    	  
+			    	  while(a[rowxh][col1]!=0){
+			    		  col1=col1+a[rowxh][col1];
+			    	  }
+			    	  
+			    	  if(Integer.parseInt(list.get(i).getHight())!=1){
+			    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
+			    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
+			    		  }
+			    	  }else{
+			    		  if(flag==0){
+			    			  colint=col1;
+			    			  flag=1;
+			    		  }
+			    	  }
+			    	  
+			    	  list.get(i).setCol1(col1);
+			    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
+			    	  list.get(i).setCol2(col2);
+			    	  col1=col1+Integer.parseInt(list.get(i).getCo());
+			      }
+			      
+			      for (Excel_list ex : list) {
+			    	  System.out.println(ex.getRow1()+"  "+ex.getRow2()+"   "+ex.getCol1()+"   "+ex.getCol2());
+			    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
+			      }
+			      
+			     
+			      String[] ls=col.split(",");
+			      List<Excel_list> elst=new ArrayList<Excel_list>();
+			      for (Excel_list els : list1) {
+			    	  Excel_list els1=new Excel_list(); 
+					for (int i = 0; i < ls.length; i++) {
+						 Field field1 = null; Field field2 = null; 
+						 field1 = els1.getClass().getDeclaredField("v_"+i); 
+						 field2 = els.getClass().getDeclaredField(ls[i]); 
+					     field1.set((Object) els1, field2.get(els));  //set方法
+						
 					}
-				
-				/*
-				
-				
-				et.add(new Excel_tilte("一、 项 目 计 划",1,1,0,35));
-				et.add(new Excel_tilte("二、 本年元月至本月完成情况",1,1,36,55));
-				et.add(new Excel_tilte("三、本月进展情况",1,1,56,58));
-				et.add(new Excel_tilte("四、 自开工至本月底累计完成情况",1,1,59,81));
-				et.add(new Excel_tilte("备注",1,4,82,82));
-				et.add(new Excel_tilte("序号",2,4,0,0));
-				et.add(new Excel_tilte("计划唯一编码",2,4,1,1));
-				et.add(new Excel_tilte("项目所在地市",2,4,2,2));
-				et.add(new Excel_tilte("项目所在县市",2,4,3,3));
-				et.add(new Excel_tilte("特殊区域",2,4,4,4));
-				et.add(new Excel_tilte("路线编码",2,4,5,5));
-				et.add(new Excel_tilte("项目名称",2,4,6,6));
-				et.add(new Excel_tilte("首次下达计划年度",2,4,7,7));
-				et.add(new Excel_tilte("行政等级",2,4,8,8));
-				et.add(new Excel_tilte("起点桩号",2,4,9,9));
-				et.add(new Excel_tilte("止点桩号",2,4,10,10));
-				et.add(new Excel_tilte("原技术等级",2,4,11,11));
-				et.add(new Excel_tilte("建设技术标准",2,4,12,12));
-				et.add(new Excel_tilte("公路建设类型",2,4,13,13));
-				et.add(new Excel_tilte("项目里程（公里）",2,4,14,14));
-				et.add(new Excel_tilte("施工图设计里程（公里）",2,4,15,15));
-				et.add(new Excel_tilte("施工图起点桩号",2,4,16,16));
-				et.add(new Excel_tilte("施工图止点桩号",2,4,17,17));
-				et.add(new Excel_tilte("总投资（万元）",2,4,18,18));
-				et.add(new Excel_tilte("车购税（万元）",2,4,19,19));
-				et.add(new Excel_tilte("国债（万元）",2,4,20,20));
-				et.add(new Excel_tilte("省债（万元）",2,4,21,21));
-				et.add(new Excel_tilte("债券（万元）",2,4,22,22));
-				et.add(new Excel_tilte("贷款（万元）",2,4,23,23));
-				et.add(new Excel_tilte("奖励（万元）",2,4,24,24));
-				et.add(new Excel_tilte("其他（万元）",2,4,25,25));
-				et.add(new Excel_tilte("地方自筹（万元）",2,4,26,26));
-				et.add(new Excel_tilte("银行贷款（万元）",2,4,27,27));
-				et.add(new Excel_tilte("本年度计划投资（万元）",2,4,28,28));
-				et.add(new Excel_tilte("",2,2,29,29));
-				et.add(new Excel_tilte("本年实施里程(公里)",2,4,30,30));
-				et.add(new Excel_tilte("项目在建个数（个）",2,4,31,31));
-				et.add(new Excel_tilte("项目完工个数（个）",2,4,32,32));
-				et.add(new Excel_tilte("项目未开工个数（个）",2,4,33,33));
-				et.add(new Excel_tilte("开工时间",2,4,34,34));
-				et.add(new Excel_tilte("完工时间",2,4,35,35));
-				et.add(new Excel_tilte("累计资金到位（万 元）",2,2,36,45));
-				et.add(new Excel_tilte("项目完成投资(万元)",2,4,46,46));
-				et.add(new Excel_tilte("占投资比例（%）",2,4,47,47));
-				et.add(new Excel_tilte("完 成 工 程 量（公里)",2,2,48,55));
-				et.add(new Excel_tilte("新增资金到位（万元）",2,4,56,56));
-				et.add(new Excel_tilte("新增完成工程量（公里）",2,4,57,57));
-				et.add(new Excel_tilte("新增项目完成投资（万元）",2,4,58,58));
-				et.add(new Excel_tilte("累计资金到位（万元）",2,2,59,68));
-				et.add(new Excel_tilte("项目完成投资（万元）",2,4,69,69));
-				et.add(new Excel_tilte("累 计 完 成 工 程 量 （ 公 里 )",2,2,70,77));
-				et.add(new Excel_tilte("项目未完工程量（公里）",2,4,78,78));
-				et.add(new Excel_tilte("完成工程量比例（%）",2,4,79,79));
-				et.add(new Excel_tilte("车购税到位比例（%）",2,4,80,80));
-				et.add(new Excel_tilte("完成投资比例（%）",2,4,81,81));
-				//et.add(new Excel_tilte("",2,2,82,82));
-				et.add(new Excel_tilte("其中中央车购税（万元）",3,4,29,29));
-				et.add(new Excel_tilte("总投资",3,4,36,36));
-				et.add(new Excel_tilte("车购税",3,4,37,37));
-				et.add(new Excel_tilte("国债",3,4,38,38));
-				et.add(new Excel_tilte("省债",3,4,39,39));
-				et.add(new Excel_tilte("债券",3,4,40,40));
-				et.add(new Excel_tilte("贷款",3,4,41,41));
-				et.add(new Excel_tilte("奖励",3,4,42,42));
-				et.add(new Excel_tilte("其他",3,4,43,43));
-				et.add(new Excel_tilte("地方自筹",3,4,44,44));
-				et.add(new Excel_tilte("银行贷款",3,4,45,45));
-				et.add(new Excel_tilte("按技术等级",3,3,48,52));
-				et.add(new Excel_tilte("按路面类型",3,3,53,54));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,55,55));
-				et.add(new Excel_tilte("总投资",3,4,59,59));
-				et.add(new Excel_tilte("车购税",3,4,60,60));
-				et.add(new Excel_tilte("国债",3,4,61,61));
-				et.add(new Excel_tilte("省债",3,4,62,62));
-				et.add(new Excel_tilte("债券",3,4,63,63));
-				et.add(new Excel_tilte("贷款",3,4,64,64));
-				et.add(new Excel_tilte("奖励",3,4,65,65));
-				et.add(new Excel_tilte("其他",3,4,66,66));
-				et.add(new Excel_tilte("地方自筹",3,4,67,67));
-				et.add(new Excel_tilte("银行贷款",3,4,68,68));
-				et.add(new Excel_tilte("按技术等级",3,3,70,74));
-				et.add(new Excel_tilte("按路面类型",3,3,75,76));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,77,77));
-				//et.add(new Excel_tilte("",3,3,71,71));
-				
-				et.add(new Excel_tilte("小计",4,4,48,48));
-				et.add(new Excel_tilte("一级",4,4,49,49));
-				et.add(new Excel_tilte("二级",4,4,50,50));
-				et.add(new Excel_tilte("三级",4,4,51,51));
-				et.add(new Excel_tilte("四级",4,4,52,52));
-				et.add(new Excel_tilte("沥青路",4,4,53,53));
-				et.add(new Excel_tilte("水泥砼",4,4,54,54));
-				
-				et.add(new Excel_tilte("小计",4,4,70,70));
-				et.add(new Excel_tilte("一级",4,4,71,71));
-				et.add(new Excel_tilte("二级",4,4,72,72));
-				et.add(new Excel_tilte("三级",4,4,73,73));
-				et.add(new Excel_tilte("四级",4,4,74,74));
-				et.add(new Excel_tilte("沥青路",4,4,75,75));
-				et.add(new Excel_tilte("水泥砼",4,4,76,76));*/
-				//et.add(new Excel_tilte("",4,4,71,71));
-			
+			    	elst.add(els1);  
+				}
+			      eldata.setEl(elst);//将实体list放入类中
+				    
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 				Excel_export.excel_exportGlgzxj(eldata,response);
 				
 			}else{
+				String shijian=nf+"-"+yf;
+				gcglabgc.setSbyf(shijian);
+				String tiaojian1="";
+				String tiaojian2="";
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("1".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					gydwdm=(String) session.getAttribute("gydwbb");	
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				gydwdm = gydw;
+				xzqhdm	= xzqh;
+				}
+				if(gydwdm.indexOf(",")==-1){
+					tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
+				}else{
+					tiaojian1=getcxtj("gydw",gydwdm);
+					//tiaojian1="and gydw in ("+gydwdm+")";
+				}
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2=getcxtj("xzqh",xzqhdm);
+					//tiaojian2="and xzqh in ("+xzqhdm+")";
+				}
+				gcglabgc.setGydw(tiaojian1);
+				gcglabgc.setLxmc(lxmc);
+				gcglabgc.setTiaojian(getcxtj("lxbm",xzdj));
+				gcglabgc.setXzqhdm(tiaojian2);
+				gcglabgc.setXmnf(xmnf);
+				gcglabgc.setXmmc(xmmc);
+				//查总合list
+				//getcxtj
+				gcglabgc.setYjsdj(getcxtj("v_11",gcglabgc.getYjsdj()));
+				gcglabgc.setJsjsdj(getcxtj("v_12",gcglabgc.getJsjsdj()));
+				gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
+				gcglabgc.setGljslx(getcxtj("v_13",gcglabgc.getGljslx()));
+				gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
+				gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
+				gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));
+				List<Excel_list> list1=gcybbServer.getGlgzxj(gcglabgc);
+				
+				
 				JsonUtils.write(list1, getresponse().getWriter());
                }                                                     
 			} catch (Exception e) {
@@ -3577,7 +3421,12 @@ public class GcybbController extends BaseActionSupport{
 	    		  html=html+"</tr><tr>";
 	    		  rowxh=list.get(i).getRowxh();
 	    	  }
-	    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+	    	  System.out.println(list.get(i).getWidth());
+	    	  if("".equals(list.get(i).getWidth())||list.get(i).getWidth()==null){
+		    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+	    	  }else{
+		    	  html=html+"<td  style='width:"+list.get(i).getWidth()+"px;' rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+	    	  }
 	      }
 	      html=html+"</tr>";
 	      System.out.println(html);

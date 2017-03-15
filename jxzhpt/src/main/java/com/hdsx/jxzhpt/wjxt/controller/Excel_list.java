@@ -25,7 +25,14 @@ public class Excel_list implements Serializable {
 	public String co;
 	public String hight;
 	int row1,row2,col1,col2;
+	public String width;
 	
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
 	public int getRow1() {
 		return row1;
 	}
