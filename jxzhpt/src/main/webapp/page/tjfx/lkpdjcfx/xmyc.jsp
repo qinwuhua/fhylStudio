@@ -23,38 +23,19 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			nf('endYear');
-			$('#endYear').combobox("setValue",new Date().getFullYear());
-			nf('startYear');
-			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-3);
 			loadgrid();
 		});
-		function nf(id){
-			var myDate = new Date();
-			var years=[];
-			var first;
-			for(var i=0;i<=10;i++){
-				if(i==0)
-					first=myDate.getFullYear()-i;
-				years.push({text:(myDate.getFullYear()-i)});
-			}
-			$('#'+id).combobox({    
-			    data:years,
-			    valueField:'text',    
-			    textField:'text'   
-			});
-			$('#'+id).combobox("setValue",first);
-		}
 		
 		function loadgrid(){
+			
 			var tjfl=$("#tjfl").val();
 			var zjtitle="";
-			var colYears =[],colZj=[];
+			
+			/*var colYears =[],colZj=[];
 			var col=[]; 
 			var years=[];
 			
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				var year ={title:i+'年',width:160,align:'center',colspan:5};
+				 var year ={title:i+'年',width:160,align:'center',colspan:5};
 				colYears.push(year);
 				var count={field:i+'count',title:'项目数量',width:90,align:'center'};
 				colZj.push(count);
@@ -66,20 +47,20 @@
 				colZj.push(lc);
 				var tsbl={field:i+'tsbl',title:'优良路率提升比例(%)',width:100,align:'center'};
 				colZj.push(tsbl);
-				years.push(i+'年');
-			} 
+				years.push(i+'年'); */
+			
 			if(tjfl=='1'){
-				zjtitle={field:'xzqh',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true};
+				zjtitle={field:'xzqh',title:'行政区划',width:200,align:'center',rowspan:3,fixed:true};
 			}else{
-				zjtitle={field:'lxbm',title:'路线编码',width:80,align:'center',rowspan:3,fixed:true};
+				zjtitle={field:'lxbm',title:'路线编码',width:200,align:'center',fixed:true};
 			}
 			 
 			
 			$('#grid').datagrid({
 			    url:'../../../tjfx/queryXmtoLwyx.do',
 			    queryParams:{
-			    	'nf':$('#startYear').combobox('getValue'),
-			    	'end':$('#endYear').combobox('getValue'),
+			    	'nf':'2017',
+			    	'end':'2017',
 			    	'tjfl':$("#tjfl").val()
 			    	},
 			    striped:true,
@@ -87,16 +68,21 @@
 			    rownumbers:false,
 			    pageNumber:1,
 			    pageSize:20,
-			    height:380,
-			    width:$('#grid').width(),
+			    height:$(window).height()-120,
+			    width:$(window).width()-20,
 			    columns:[
 							[
-                             zjtitle
-					    	],
-					    	colYears,colZj
+                             zjtitle,
+                             {field:'2017count',title:'项目数量',width:150,align:'center'},
+                             {field:'2017ztz',title:'总投资(万元)',width:150,align:'center'},
+                             {field:'2017zbz',title:'总补助(万元)',width:150,align:'center'},
+                             {field:'2017lc',title:'总里程',width:150,align:'center'},
+                             {field:'2017tsbl',title:'优良路率提升比例(%)',width:200,align:'center'}
+					    	]
+					    	
 						],
 			    onLoadSuccess:function(){
-			    	queryBar(years,tjfl);
+// 			    	queryBar(years,tjfl);
 			    }
 			});
 		}
@@ -294,24 +280,7 @@ function queryBar(years,tjfl){
 	        					 <option value="2">按路线</option>
 	        				</select>
 	        				</span>
-	        				<span>
-        						开始年份
-        						<select id="startYear" style="width:70px;">
-        							<option value="2011" selected="selected">2011年</option>
-        							<option value="2012">2012年</option>
-        							<option value="2013">2013年</option>
-        							<option value="2014">2014年</option>
-        							<option value="2015">2015年</option>
-        						</select>
-        						结束年份
-        						<select id="endYear" style="width:70px">
-        							<option value="2011">2011年</option>
-        							<option value="2012">2012年</option>
-        							<option value="2013">2013年</option>
-        							<option value="2014">2014年</option>
-        							<option value="2015" selected="selected">2015年</option>
-        						</select>
-        					</span>
+	        				
         						<img onclick="loadgrid()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					    <a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
         					</p>
@@ -326,7 +295,7 @@ function queryBar(years,tjfl){
             		</div>
             	</td>
         	</tr>
-        	<tr>
+        	<%-- <tr>
         		<td>
 	        		<div style="margin-left: 10px;margin-top: 10px;">
 	        			<div style="">
@@ -341,7 +310,7 @@ function queryBar(years,tjfl){
 	        			</div>
 	        		</div>
         		</td>
-        	</tr>
+        	</tr> --%>
 		</table>
 	</div>
 </body>
