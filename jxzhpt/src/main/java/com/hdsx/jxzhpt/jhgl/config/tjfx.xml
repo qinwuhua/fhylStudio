@@ -893,7 +893,7 @@
 				 and m.tbnf in ${lkmxb.tbnf}  
 			  </if>
            ) a
-        group by tbnf   order by tbnf desc) b 
+        group by tbnf   order by tbnf ) b 
 	</select>
 	
 	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">
