@@ -21,6 +21,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			
+			Query();
+			
 			$("#roadcode").combobox({
 				url :"/jxzhpt/tjfx/getLxldCombo.do",
 				valueField : "id",
@@ -45,10 +48,10 @@
 			loadBmbm2("jcfx","方向");
 			
 			$("#query").click(function(){
-				if($("#roadcode").combobox("getValue")==""){
-					alert("请先选择路段！");
-					return;
-				}
+// 				if($("#roadcode").combobox("getValue")==""){
+// 					alert("请先选择路段！");
+// 					return;
+// 				}
 				Query();
 			});
 		});

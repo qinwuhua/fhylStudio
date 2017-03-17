@@ -39,8 +39,8 @@
 			loadBmbm3("jsdj","技术等级");
 			
 			$("#query").click(function(){
-				if($("#roadcode").combobox("getValue")==""){
-					alert("请先选择路段！");
+				if($('#lkpdbb').combotree("getValues")==""){
+					alert("请先选择路况版本！");
 					return;
 				}
 				Query();
@@ -48,9 +48,9 @@
 		});
 		
 		function Query(){
-			var jsdj=$('#jsdj').combobox("getValues").join(",");
-			if(jsdj.substr(0,1)==',')
-				jsdj=jsdj.substr(1,jsdj.length);
+// 			var jsdj=$('#jsdj').combobox("getValues").join(",");
+// 			if(jsdj.substr(0,1)==',')
+// 				jsdj=jsdj.substr(1,jsdj.length);
 			var lkpdbb=$('#lkpdbb').combotree("getValues").join(",");
 			if(lkpdbb.substr(0,1)==',')
 				lkpdbb=lkpdbb.substr(1,lkpdbb.length);
@@ -58,19 +58,18 @@
 			$.ajax({
 				type:'post',
 				url:"/jxzhpt/tjfx/queryLkbjfx.do",
-				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+
-				"&lkmxb.jsdj="+jsdj+"&lkmxb.tbnf="+lkpdbb,
+				data:"lkmxb.lxbh="+$("#roadcode").combobox("getValue")+"&lkmxb.tbnf="+lkpdbb,
+// 				+"&lkmxb.qdzh="+$("#qdzh").val()+"&lkmxb.zdzh="+$("#zdzh").val()+"&lkmxb.jsdj="+jsdj
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){
 						$("#grid").html("");
 						var str="";
 						for(var i=0;i<msg.length;i++){
-							str+="<tr align='center' height='30'><td>"+msg[i].v_0+"</td><td>"+
+							str+="<tr align='center' height='30'><td colspan='2'>"+msg[i].v_0+"</td>"+
 							"<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td>"+"<td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"+
 							"<td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td>"+
-							"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td>"+"<td>"+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td>"+
-							"<td>"+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td>"+"<td>"+msg[i].v_28+"</td>"+
+							"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+
 							"</tr>";
 						}
 						$("#grid").html(str);
@@ -85,15 +84,13 @@
 		
 		function queryBar(msg){
 			$(".tjt").show();
-			var mqiArray= [];var pqiArray = [];var pciArray= [];var rqiArray= [];
+			var mqiArray= [];var pqiArray = [];
 			var sciArray= [];var bciArray= [];var tciArray= [];var blArray  = [];
 			
 		   $.each(msg,function(i,p){
 			        blArray.push(p.v_0);
 					mqiArray.push(p.v_1);
 					pqiArray.push(p.v_2);
-					pciArray.push(p.v_3);
-					rqiArray.push(p.v_4);
 					sciArray.push(p.v_5);
 					bciArray.push(p.v_6);
 					tciArray.push(p.v_7);
@@ -115,7 +112,7 @@
 	        		    },
 	        		    legend: {
 	        		    	show:true,
-	        		    	data:["MQI","PQI","PCI","RQI","SCI","BCI","TCI"],
+	        		    	data:["MQI","PQI","SCI","BCI","TCI"],
 	        		        x : 'right',
 	        		        y : 'center',
 	        		        orient: 'vertical'
@@ -169,26 +166,6 @@
 	        		           data:pqiArray,
 	        		           itemStyle: {
 	        		                normal: {color: '#32FC32'}
-	        		            },
-	        		        },
-	        		        {
-	        		        	name:"PCI",
-	        		            type:'bar',
-	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
-	        	　　　　　　　　　　barWidth:20,
-	        		           data:pciArray,
-	        		           itemStyle: {
-	        		                normal: {color: '#CBCBFB'}
-	        		            },
-	        		        },
-	        		        {
-	        		        	name:"RQI",
-	        		            type:'bar',
-	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
-	        	　　　　　　　　　　barWidth:20,
-	        		           data:rqiArray,
-	        		           itemStyle: {
-	        		                normal: {color: '#CBFDFD'}
 	        		            },
 	        		        },
 	        		        {
@@ -247,10 +224,10 @@
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
-        						<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
+<!--         						<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/> -->
         						</span>
-        						<span>技术等级：</span>
-        						<span><select id="jsdj" style="width:150px"class="easyui-combobox"></select></span>
+<!--         						<span>技术等级：</span> -->
+<!--         						<span><select id="jsdj" style="width:150px"class="easyui-combobox"></select></span> -->
         						
         						<img alt="查询" id="query" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
@@ -263,8 +240,8 @@
             		<div>
             			<table style="width:800px; margin-top: 15px;margin-left: 10px; font-size: 12px;"class="sjhz_bg"
 			border="1" cellpadding="3" cellspacing="1">
-						<tr align="center" height="30"><td  colspan="2">指标</td><td colspan="3">MQI</td><td  colspan="3">PQI</td><td colspan="3">PCI</td><td colspan="3">RQI</td><td colspan="3">SCI</td><td colspan="3">BCI</td><td colspan="3">TCI</td></tr>
-						<tr align="center" height="30"><td colspan="2">段落</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td></tr>
+						<tr align="center" height="30"><td  colspan="2">指标</td><td colspan="3">MQI</td><td  colspan="3">PQI</td><td colspan="3">SCI</td><td colspan="3">BCI</td><td colspan="3">TCI</td></tr>
+						<tr align="center" height="30"><td colspan="2">段落</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td></tr>
 						<tbody id="grid">
 						<tr align="center"><td style="color: red;" colspan="23">请选择路段后查询</td></tr>
 						</tbody>

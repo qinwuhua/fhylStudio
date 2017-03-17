@@ -753,7 +753,10 @@
     sum(decode(pd,'次',cd,'0')) v_5,sum(decode(pd,'差',cd,'0')) v_6,round(avg(MQI1),2) v_8 from(
       select 'MQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(mqi) pd,'1' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t        
               left join lkpd_mxb2014 m on t.mxb_id=m.id  
-              where lxbh = #{lkmxb.lxbh} and jsdj!='高速'
+              where jsdj!='高速'
+              <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+				and lxbh = #{lkmxb.lxbh} 
+			  </if>
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
@@ -770,7 +773,10 @@
       union all
       select 'PQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(pqi) pd,'2' b,SUM(pqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
                left join lkpd_mxb2014 m on t.mxb_id=m.id 
-              where lxbh = #{lkmxb.lxbh} and jsdj!='高速'
+              where  jsdj!='高速'
+              <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+				and lxbh = #{lkmxb.lxbh} 
+			  </if>
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
@@ -788,7 +794,10 @@
       union all
       select 'SCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(sci) pd,'3' b,SUM(sci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
                left join lkpd_mxb2014 m on t.mxb_id=m.id 
-               where lxbh = #{lkmxb.lxbh} and jsdj!='高速'
+               where  jsdj!='高速'
+               <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+				and lxbh = #{lkmxb.lxbh} 
+			  </if>
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
@@ -805,7 +814,10 @@
       union all
       select 'BCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(bci) pd,'4' b,SUM(bci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
                left join lkpd_mxb2014 m on t.mxb_id=m.id 
-               where lxbh = #{lkmxb.lxbh} and jsdj!='高速'
+               where  jsdj!='高速'
+               <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+				and lxbh = #{lkmxb.lxbh} 
+			  </if>
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
@@ -822,7 +834,10 @@
       union all
       select 'TCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(tci) pd,'5' b,SUM(tci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
               left join lkpd_mxb2014 m on t.mxb_id=m.id 
-               where lxbh = #{lkmxb.lxbh} and jsdj!='高速'
+               where  jsdj!='高速'
+               <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+				and lxbh = #{lkmxb.lxbh} 
+			  </if>
               <if test="lkmxb.jcfx != null and  lkmxb.jcfx != ''">
 				and jcfx = #{lkmxb.jcfx}
 			  </if> 
@@ -842,7 +857,7 @@
       ) c
 	</select>
 	
-	<select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
+	<!-- <select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
 	select tbnf || '年路况评定' v_0,round(mqi,2) v_1,round(pqi,2) v_2,round(pci,2) v_3,round(rqi,2) v_4,round(sci,2) v_5,round(bci,2) v_6,round(tci,2) v_7,
        round(mqi_sx/cd1_sx,2) v_8,round(mqi_up/cd1_up,2) v_9,round(mqi_down/cd1_down,2) v_10,
        round(pqi_sx/cd2_sx,2) v_11,round(pqi_up/cd2_up,2) v_12,round(pqi_down/cd2_down,2) v_13,
@@ -894,6 +909,26 @@
 			  </if>
            ) a
         group by tbnf   order by tbnf ) b 
+	</select> -->
+	
+	<select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
+	select t.tbnf || '路况评定' v_0,round(avg(mqi),2) v_1,round(avg(pqi),2) v_2,round(avg(sci),2) v_5,round(avg(bci),2) v_6,round(avg(tci),2) v_7,
+			sum(decode(qjfx,'上下行',mqi,0)) v_8,sum(decode(qjfx,'上行',mqi,0)) v_9,sum(decode(qjfx,'下行',mqi,0)) v_10,
+			sum(decode(qjfx,'上下行',pqi,0)) v_11,sum(decode(qjfx,'上行',pqi,0)) v_12,sum(decode(qjfx,'下行',pqi,0)) v_13,
+			sum(decode(qjfx,'上下行',sci,0)) v_14,sum(decode(qjfx,'上行',sci,0)) v_15,sum(decode(qjfx,'下行',sci,0)) v_16,
+			sum(decode(qjfx,'上下行',bci,0)) v_17,sum(decode(qjfx,'上行',bci,0)) v_18,sum(decode(qjfx,'下行',bci,0)) v_19,
+			sum(decode(qjfx,'上下行',tci,0)) v_20,sum(decode(qjfx,'上行',tci,0)) v_21,sum(decode(qjfx,'下行',tci,0)) v_22
+			from lkpd_lkhzb_data d left join lkpd_lkhzb t on t.id=d.hzb_id 
+			where 1=1
+
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			and d.lxbh=#{lkmxb.lxbh}  
+		</if>
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+			and t.tbnf in ${lkmxb.tbnf}  
+		</if>
+		group by d.lxbh,t.tbnf
+		order by t.tbnf
 	</select>
 	
 	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">

@@ -1215,14 +1215,17 @@ public class TjfxController extends BaseActionSupport{
 			String[]  tbnfArr=lkmxb.getTbnf().split(",");
 			String tbnfStr="(";
 			for (int i = 0; i < tbnfArr.length; i++) {
-				if(i==tbnfArr.length-1) tbnfStr+="'"+tbnfArr[i]+"'";
+				if(i==tbnfArr.length-1) tbnfStr+="'"+tbnfArr[i]+"年'";
 				else {
-					tbnfStr+="'"+tbnfArr[i]+"',";
+					tbnfStr+="'"+tbnfArr[i]+"年',";
 				}
 			}
 			tbnfStr+=")";
 			lkmxb.setTbnf(tbnfStr);
 		}
+    	if(lkmxb.getLxbh()==null || lkmxb.getLxbh().equals("")){
+    		lkmxb.setLxbh("合计");
+    	}
     	List<SjbbMessage> list = tjfxServer.queryLkbjfx(lkmxb);
 		try {
 				JsonUtils.write(list, this.getresponse().getWriter());
