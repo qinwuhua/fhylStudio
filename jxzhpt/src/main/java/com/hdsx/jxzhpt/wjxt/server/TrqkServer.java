@@ -123,5 +123,20 @@ public interface TrqkServer {
 	List<Lkmxb> getMxbDataList2(Lkmxb lkmxb);
 
 	Lkmxb getMxbDataList3(Lkmxb lkmxb);
+	
+	public List<Lkmxb> selectHzbList(Lkmxb lkmxb);
 
+	Lkmxb selectLkhzmxbdata(Lkmxb lkmxb1);
+
+	boolean insertLkhzmxb(Lkmxb lkmxb1);
+
+	boolean insertLkhzmxbdata(List<Map> data);
+	
+	Boolean deletehzb(Lkmxb lkmxb);
+	
+	List<Lkmxb> getHzmxbDataList(Lkmxb lkmxb);
+	
+	Lkmxb getHzbDataList(Lkmxb lkmxb);
+	
+	Wjgl downLkhzmxbFile(Lkmxb lkmxb);
 }

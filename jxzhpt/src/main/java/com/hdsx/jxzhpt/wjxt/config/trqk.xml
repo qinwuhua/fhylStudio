@@ -270,4 +270,47 @@
 	<select id="downjtqkhzbsdFile" parameterType="lkmxb" resultType="wjgl">
 		select * from JTLHZSD where id=#{id}
 	</select>
+	
+	<!-- zyy add 路况汇总表20170316 -->
+	
+	<select id="selectHzbList" parameterType="lkmxb" resultType="lkmxb">
+		select id,tbdw,tbnf,bw,bt1,bt2,bt3,bt4,bt5 from LKPD_LKHZB where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	
+	<select id="selectLkhzmxbdata" parameterType="lkmxb" resultType="lkmxb">
+		select * from lkpd_lkhzb where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
+	
+	<insert id="insertLkhzmxb" parameterType="lkmxb">
+		insert into LKPD_LKHZB(id,tbdw,tbnf,bw,wjfile,bt1,bt2,bt3,bt4,bt5)
+		values(#{id},#{tbdw},#{tbnf},#{bw},#{wjfile},#{bt1},#{bt2},#{bt3},#{bt4},#{bt5})
+	</insert>
+	
+	<insert id="insertLkhzmxbdata" parameterType="hashMap">
+		insert into LKPD_LKHZB_DATA
+		values(#{id},#{hzb_id},#{0},#{1},#{2},#{3},#{4},round(#{5},1),round(#{6},1),round(#{7},1),round(#{8},1),round(#{9},1),round(#{10},1),round(#{11}),round(#{12}),round(#{13},1),round(#{14},1),round(#{15},1),round(#{16},1))
+	</insert>
+	
+	<select id="downLkhzmxbFile" parameterType="lkmxb" resultType="wjgl">
+		select * from LKPD_LKHZB where id=#{id}
+	</select>
+	
+	<delete id="deletehzb1" parameterType="lkmxb" >
+		delete from LKPD_LKHZB_DATA  where hzb_id=#{id}
+	</delete>
+	<delete id="deletehzb2" parameterType="lkmxb" >
+		delete from LKPD_LKHZB where id=#{id}
+	</delete>
+	
+	<select id="getHzmxbDataList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_LKHZB_DATA  where hzb_id=#{id} order by to_number(id)
+	</select>
+	
+	<select id="getHzbDataList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_LKHZB where id=#{id}
+	</select>
 </mapper>

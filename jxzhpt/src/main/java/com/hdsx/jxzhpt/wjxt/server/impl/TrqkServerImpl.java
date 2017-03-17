@@ -378,4 +378,51 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		return insert("insertLqpdmxb1", lkmxb1)==1;
 	}
 
+	@Override
+	public List<Lkmxb> selectHzbList(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryList("selectHzbList",lkmxb);
+	}
+	
+	@Override
+	public Lkmxb selectLkhzmxbdata(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLkhzmxbdata", lkmxb);
+	}
+	
+	@Override
+	public boolean insertLkhzmxb(Lkmxb lkmxb1) {
+		return insert("insertLkhzmxb", lkmxb1)==1;
+	}
+	
+	@Override
+	public boolean insertLkhzmxbdata(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertLkhzmxbdata", data)==data.size();
+	}
+	
+	@Override
+	public Boolean deletehzb(Lkmxb lkmxb) {
+		if(delete("deletehzb1", lkmxb)>0 && delete("deletehzb2", lkmxb)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@Override
+	public List<Lkmxb> getHzmxbDataList(Lkmxb lkmxb) {
+		return queryList("getHzmxbDataList",lkmxb);
+	}
+	
+	@Override
+	public Lkmxb getHzbDataList(Lkmxb lkmxb) {
+		return queryOne("getHzbDataList", lkmxb);
+	}
+	
+	@Override
+	public Wjgl downLkhzmxbFile(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("downLkhzmxbFile", lkmxb);
+	}
 }

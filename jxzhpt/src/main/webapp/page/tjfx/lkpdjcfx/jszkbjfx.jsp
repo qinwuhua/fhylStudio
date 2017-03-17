@@ -99,15 +99,6 @@
 					tciArray.push(p.v_7);
 	              });
 		   
-// 		    blArray.push('2015年路况评定');
-// 			mqiArray.push('55');
-// 			pqiArray.push('55');
-// 			pciArray.push('55');
-// 			rqiArray.push('55');
-// 			sciArray.push('55');
-// 			bciArray.push('55');
-// 			tciArray.push('55');
-			
 	         var myChart = echarts.init(document.getElementById("anychart_div")); 
 	         var mqi_img="技术状况比较分析表";  
 	         
@@ -164,49 +155,71 @@
 	        		           type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:mqiArray
+	        		           data:mqiArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#CBFDFD'}
+	        		            },
+	        		           
 	        		        },
 	        		        {
 	        		        	name:"PQI",
 	        		           type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:pqiArray
+	        		           data:pqiArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#32FC32'}
+	        		            },
 	        		        },
 	        		        {
 	        		        	name:"PCI",
 	        		            type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:pciArray
+	        		           data:pciArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#CBCBFB'}
+	        		            },
 	        		        },
 	        		        {
 	        		        	name:"RQI",
 	        		            type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:rqiArray
+	        		           data:rqiArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#CBFDFD'}
+	        		            },
 	        		        },
 	        		        {
 	        		        	name:"SCI",
 	        		            type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:sciArray
+	        		           data:sciArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#A4DBA9'}
+	        		            },
 	        		        },
 	        		        {
 	        		        	name:"BCI",
 	        		            type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:bciArray
+	        		           data:bciArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#FCFC97'}
+	        		            },
 	        		        },
 	        		        {
 	        		        	name:"TCI",
 	        		            type:'bar',
 	        	　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
 	        	　　　　　　　　　　barWidth:20,
-	        		           data:tciArray
+	        		           data:tciArray,
+	        		           itemStyle: {
+	        		                normal: {color: '#D1CFA0'}
+	        		            },
 	        		        }
 	        		    ]
 	        		};
