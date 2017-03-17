@@ -120,21 +120,22 @@
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 40px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 40px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
+        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<table style="margin:7px; vertical-align:middle; " cellspacing="0" class="abgc_td" >
 							<tr height="32">
         						<td>行政等级：</td>
         						<td ><select id="nwgxzdj" style="width:100px;"></select></td>
         						<td>统计分类：</td>
         						<td ><select id="tjfl" style="width:100px;"></select></td>
         						
-        					
-                              <td >
+        					</tr>
+        					<tr>
+                              <td colspan="10" >
         						<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:ckylwjg()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查看原路网结构</a>
 				              	<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
 				                <a id='mybuttion4' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:dcdqy()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导出当前页</a>
