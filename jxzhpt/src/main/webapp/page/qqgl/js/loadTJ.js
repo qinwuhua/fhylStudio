@@ -32,10 +32,12 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 function loadGldj(id) {
 	$('#' + id).combotree({
 		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
-		panelHeight:200,
+		panelHeight:200,editable: true,
 		multiple:true
 	});
 }
+
+
 function tsdq(id){
 	$("#"+id).combobox({    
 		url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),

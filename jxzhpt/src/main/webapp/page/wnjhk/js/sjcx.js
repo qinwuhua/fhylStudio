@@ -65,7 +65,7 @@ function ckSckzhfz(ck_id){
 function loadGldj(id) {
 	$('#' + id).combotree({
 		url:'/jxzhpt/qqgl/loadGldj.do?xzqhdm='+$.cookie("dist2"),
-		panelHeight:200,
+		panelHeight:200,editable: true,
 		multiple:true
 	});
 	
