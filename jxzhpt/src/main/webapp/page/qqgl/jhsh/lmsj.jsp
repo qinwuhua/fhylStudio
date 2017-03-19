@@ -31,7 +31,7 @@
 			queryLmsj();
 			loadFileUpload();
 		});
-		function queryLmsj(){
+		function queryLmsj1(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),

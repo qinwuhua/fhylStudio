@@ -1161,5 +1161,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 			
 	}
+
+	@Override
+	public boolean qxxm(Lxsh lxsh) {
+		return insert("qxxm", lxsh.getBz())>0&&delete("qxxm", lxsh.getBzcs())>0;
+	}
 	
 }

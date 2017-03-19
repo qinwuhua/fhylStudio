@@ -5,6 +5,7 @@
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
 		 	<action name="qxxm" class="lxshController" method="qxxm"/>
+		 	<action name="hfxm" class="lxshController" method="hfxm"/>
 			<action name="qxxmth" class="lxshController" method="qxxmth"/>
 			
 		  <action name="thxmsqsh" class="lxshController" method="thxmsqsh"/>
@@ -202,6 +203,7 @@
 		
 		<action name="exportZjxdgsd" class="jhshController" method="exportZjxdgsd"></action>
 		<action name="queryJhshLjgsdgz" class="jhshController" method="queryJhshLjgsdgz"></action>
+		<action name="queryJhshLjgsdgz_qx" class="jhshController" method="queryJhshLjgsdgz_qx"></action>
 		<action name="exportJhshxxgsd" class="jhshController" method="exportJhshxxgsd"></action>
 		
 		<action name="plansh" class="jhshController" method="plansh"></action>
@@ -211,18 +213,23 @@
 		<action name="planxdhzadd" class="jhshController" method="planxdhzadd"></action>
 		<action name="queryjhxdyh" class="jhshController" method="queryjhxdyh"></action>
 		<action name="queryjhxdshbz" class="jhshController" method="queryjhxdshbz"></action>
+		<action name="queryjhxdsh_qxbz" class="jhshController" method="queryjhxdsh_qxbz"></action>
 		<action name="queryJhbzLj" class="jhshController" method="queryJhbzLj"></action>
 		<action name="queryjhxdsh" class="jhshController" method="queryjhxdsh"></action>
 		<action name="planxdAll" class="jhshController" method="planxdAll"></action>
+		<action name="planxdAll_qx" class="jhshController" method="planxdAll_qx"></action>
 		<action name="queryGsdgzxdbz" class="jhshController" method="queryGsdgzxdbz"></action>
+		<action name="queryGsdgzxd_qxbz" class="jhshController" method="queryGsdgzxd_qxbz"></action>
 		<action name="queryJhshLjgsdxd" class="jhshController" method="queryJhshLjgsdxd"></action>
 		<action name="queryGsdgzxd" class="jhshController" method="queryGsdgzxd"></action>
 		<action name="queryGsdgz" class="jhshController" method="queryGsdgz"></action>
+		<action name="queryGsdgz_qx" class="jhshController" method="queryGsdgz_qx"></action>
 		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
 		<action name="queryJhsh1" class="jhshController" method="queryJhsh1"></action>
 		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
 		<action name="queryLxshByXmbm" class="jhshController" method="queryLxshByXmbm"></action>
 		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
+		<action name="queryJhshxxqxByXmbm" class="jhshController" method="queryJhshxxqxByXmbm"></action>
 		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
 		<action name="exportJhshYhdzx" class="jhshController" method="exportJhshYhdzx"></action>
 		<action name="exportJhshSh" class="jhshController" method="exportJhshSh"></action>
@@ -231,6 +238,7 @@
 		<action name="importExcelJhxdSh" class="jhshController" method="importExcelJhxdSh"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
 		<action name="queryJhshLj" class="jhshController" method="queryJhshLj"></action>
+		<action name="queryJhshLj_qx" class="jhshController" method="queryJhshLj_qx"></action>
 		<action name="queryJhshLj1" class="jhshController" method="queryJhshLj1"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
@@ -264,6 +272,7 @@
 		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
+		<action name="queryJhsh2_qx" class="jhshController" method="queryJhsh2_qx"></action>
 		<action name="queryJhsh3" class="jhshController" method="queryJhsh3"></action>
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
 		<action name="queryJhshxxByXmbm2" class="jhshController" method="queryJhshxxByXmbm2"></action>

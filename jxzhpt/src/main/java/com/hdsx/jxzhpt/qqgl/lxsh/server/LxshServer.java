@@ -232,4 +232,6 @@ public interface LxshServer {
 	boolean thlxshsb(Lxsh lxsh);
 
 	boolean thlxshsbyhc(Lxsh lxsh);
+
+	boolean qxxm(Lxsh lxsh);
 }

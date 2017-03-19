@@ -3210,16 +3210,55 @@ public class LxshController extends BaseActionSupport{
 	
 	public void qxxm(){
 		boolean bl=false;
-		if(lxsh.getXmbm().substring(10,11).equals("1"))
-			bl=lxshServer.qxxmgj(lxsh);
-		if(lxsh.getXmbm().substring(10,11).equals("2"))
-			bl=lxshServer.qxxmlm(lxsh);
-		if(lxsh.getXmbm().substring(10,11).equals("3"))
-			bl=lxshServer.qxxmxj(lxsh);
-		if(lxsh.getXmbm().substring(10,11).equals("4"))
-			bl=lxshServer.qxxmyh(lxsh);
-		if(lxsh.getXmbm().substring(10,11).equals("5"))
-			bl=lxshServer.qxxmzh(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("1")){
+			lxsh.setBz("insert into jhsh_sjgz_qx select * from jhsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_sjgz where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("2")){
+			lxsh.setBz("insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("3")){
+			lxsh.setBz("insert into jhsh_xj_qx select * from jhsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_xj where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("4")){
+			lxsh.setBz("insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("5")){
+			lxsh.setBz("insert into jhsh_sh_qx select * from jhsh_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_sh where xmbm="+lxsh.getXmbm());
+		}
+			bl=lxshServer.qxxm(lxsh);
+		
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
+	public void hfxm(){
+		boolean bl=false;
+		if(lxsh.getXmbm().substring(10,11).equals("1")){
+			lxsh.setBz("insert into jhsh_sjgz select * from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("2")){
+			lxsh.setBz("insert into jhsh_lmgz select * from jhsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("3")){
+			lxsh.setBz("insert into jhsh_xj select * from jhsh_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_xj_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("4")){
+			lxsh.setBz("insert into jhsh_yhdzx select * from jhsh_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_yhdzx_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("5")){
+			lxsh.setBz("insert into jhsh_sh select * from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setBzcs("delete from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
+		}
+			bl=lxshServer.qxxm(lxsh);
+		
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	

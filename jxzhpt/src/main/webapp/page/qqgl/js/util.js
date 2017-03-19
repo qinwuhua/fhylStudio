@@ -239,6 +239,10 @@ function thwshjh(){
 
 function qxxm(str){
 	var xmbm=str+"";
+	if(!confirm("确认取消项目吗？")){
+		return;
+	}
+		
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/qxxm.do',
@@ -248,11 +252,11 @@ function qxxm(str){
 			if(msg){
 				alert("项目已成功取消");
 				if(xmbm.substr(10,1)=='1')
-				queryLmsj();
+					queryLmsj();
 				if(xmbm.substr(10,1)=='2')
-				queryLmgz();
+					queryLmsj();
 				if(xmbm.substr(10,1)=='3')
-					queryXj();
+					queryLmsj();
 				if(xmbm.substr(10,1)=='4')
 					queryYhdzx();
 				if(xmbm.substr(10,1)=='5')
@@ -262,6 +266,36 @@ function qxxm(str){
 		}
 	});
 }
+function qxxm(str){
+	var xmbm=str+"";
+	if(!confirm("确认恢复项目吗？")){
+		return;
+	}
+		
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/hfxm.do',
+		data:"lxsh.xmbm="+str,
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("项目已成功恢复");
+				if(xmbm.substr(10,1)=='1')
+					queryLmsj();
+				if(xmbm.substr(10,1)=='2')
+					queryLmsj();
+				if(xmbm.substr(10,1)=='3')
+					queryLmsj();
+				if(xmbm.substr(10,1)=='4')
+					queryYhdzx();
+				if(xmbm.substr(10,1)=='5')
+					queryShxm();
+			}
+				
+		}
+	});
+}
+
 function qxxm1(str){
 	var xmbm=str+"";
 	$.ajax({
@@ -273,9 +307,9 @@ function qxxm1(str){
 			if(msg){
 				alert("项目已成功退回");
 				if(xmbm.substr(10,1)=='1')
-					queryLmsj();
+						queryLmsj();
 					if(xmbm.substr(10,1)=='2')
-					queryLmgz();
+						queryLmgz();
 					if(xmbm.substr(10,1)=='3')
 						queryXj();
 					if(xmbm.substr(10,1)=='4')

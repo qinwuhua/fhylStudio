@@ -184,6 +184,32 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 
+	
+	public void queryGsdgz_qx() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try {
+			xdwhHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			xzdjHandle();
+			tsdqHandle();
+			jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			listData=jhshServer.queryGsdgz_qx(jhsh,jhsh.getPage(),jhsh.getRows());
+			total=jhshServer.queryGsdgz_qxCount(jhsh);
+			result.put("total", total);
+			result.put("rows", listData);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	
 	private void jsdjHandle_(String string) {
 		if(string.equals("jsjsdj")){
 			if(jhsh.getJsjsdj()!=null && !jhsh.getJsjsdj().equals("")){
@@ -250,6 +276,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			result = jhshServer.queryJhshLjgsdgz(jhsh);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryJhshLjgsdgz_qx(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			xdwhHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			xzdjHandle();
+			tsdqHandle();
+			jsxzHandle();
+			zjlyHandle();
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			result = jhshServer.queryJhshLjgsdgz_qx(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -405,6 +449,59 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	
+	public void queryJhshLj_qx(){
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			if(jhsh.getXmlx()==4){
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle1();
+				jsxzHandle();
+				zjlyHandle();
+				xdwhHandle();
+				xdztHandle();
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				result = jhshServer.queryJhshLjYhdzx_qx(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle1();
+				xdwhHandle();
+				xdztHandle();
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				result = jhshServer.queryJhshLjSh_qx(jhsh);
+			}else if(jhsh.getXmlx()==6){
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				ylxbhHandle();
+				jsdjHandle();
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				result = jhshServer.queryJhshLjYhzx(jhsh);
+			}
+			
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryJhshLj1(){
 		System.out.println(jhsh.getXmlx());
 		Map<String, String> result = new HashMap<String, String>();
@@ -518,6 +615,71 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	/**
+	 * 查询计划审核列表 养护和水毁
+	 * @throws Exception
+	 */
+	public void queryJhsh2_qx() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try{
+			int s = jhsh.getXmlx();//谁写的？有嘛用？
+			if(jhsh.getXmlx()==4){
+				xdwhHandle();
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle1();
+				jsxzHandle();
+				zjlyHandle();
+				xdztHandle();
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				//jhsh.setPage(page);
+				//jhsh.setRows(rows);
+				listData=jhshServer.queryJhshYhdzx_qx(jhsh);
+				total=jhshServer.queryJhshYhdzx_qxCount(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				jsdjHandle1();
+				xzdjHandle();
+				tsdqHandle1();
+				xdwhHandle();
+				xdztHandle();
+				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				//jhsh.setPage(page);
+				//jhsh.setRows(rows);
+				listData=jhshServer.queryJhshSh_qx(jhsh);
+				total=jhshServer.queryJhshSh_qxCount(jhsh);
+			}else if (jhsh.getXmlx()==6) {
+				String xmbm = jhsh.getXmbm();
+				if(xmbm.indexOf(",")>-1){
+					String[] xmnfArray = xmbm.split(",");
+					for (int i = 0; i < xmnfArray.length; i++) {
+						if(i==xmnfArray.length-1){
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%') ";
+						}else if(i==0){
+							xmbm = "(j.xmbm like '" + xmnfArray[i] + "%' ";
+						}else{
+							xmbm += " or j.xmbm like '" + xmnfArray[i] + "%' ";
+						}
+					}
+				}else{
+					xmbm = "j.xmbm like '" + xmbm + "%' ";
+				}
+				jhsh.setXmbm(xmbm);
+				jsdjHandle();
+				ylxbhHandle();
+				jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
+				listData=jhshServer.queryJhshYhzx(jhsh,jhsh.getPage(),jhsh.getRows());
+				total=jhshServer.queryJhshYhzxCount(jhsh);
+			}
+			result.put("rows", listData);
+			result.put("total", total);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryJhsh3() throws Exception{
 		List<Jhsh> listData=null;
 		int total=0;
@@ -896,6 +1058,27 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryJhshxxqxByXmbm() throws Exception{
+		try {
+			Jhsh obj=new Jhsh();
+			if(jhsh.getXmlx()==1){
+				obj=jhshServer.queryJhshxxLmsjqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				obj=jhshServer.queryJhshxxLmgzqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				obj=jhshServer.queryJhshxxXjqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==4){
+				obj = jhshServer.queryJhshxxYhdzxqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				obj = jhshServer.queryJhshxxShqxByXmbm(jhsh);
+			}
+			JsonUtils.write(obj, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	/**
 	 * 导出计划审核信息
 	 */
@@ -1970,6 +2153,29 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	
+	public void queryGsdgzxd_qxbz() throws Exception{
+		List<Jhsh> listData=null;
+		try {
+			
+			/*xzdjHandle();
+			jsjsdjHandle();
+			jsdjHandle1();
+			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			jsxzHandle();
+			zjlyHandle();
+			xdztHandle();
+			tsdqHandle();
+			xdwhHandle();*/
+			listData=jhshServer.queryGsdgzxd_qxbz(jhsh);
+
+			JsonUtils.write(listData, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void queryjhxdshbz() throws Exception{
 		List<Jhsh> listData=null;
 		try {
@@ -2004,7 +2210,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
-	
+	public void queryjhxdsh_qxbz() throws Exception{
+		List<Jhsh> listData=null;
+		try {
+			if(jhsh.getXmlx()==5){//灾毁恢复
+				
+				listData=jhshServer.queryshxd_qxbz(jhsh);
+			}
+			if(jhsh.getXmlx()==4){//养护大中修
+				
+				listData=jhshServer.queryyhxd_qxbz(jhsh);
+			}
+			
+			JsonUtils.write(listData, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	
 	
 	public void queryJhshLjgsdxd(){
@@ -2306,6 +2529,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 		}
 	}
+	
+	public void planxdAll_qx(){
+		
+		try {
+			JSONArray ja = JSONArray.fromObject(json_data);
+			List<Jhsh> list = (List<Jhsh>) JSONArray.toList(ja, new Jhsh(),new JsonConfig());
+			for (Jhsh jhsh : list) {
+				System.out.println(jhsh.getXmlx()+"     "+jhsh.getXmmc());
+			}
+			boolean bl = jhshServer.planxdAll_qx(list);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void planxdhzadd(){
 		JSONArray ja = JSONArray.fromObject(json_data);

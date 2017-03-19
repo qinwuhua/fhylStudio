@@ -26,10 +26,29 @@
 	var xmlx;
 	var sbzt;
 	function tz(id,lx){
+		if (!confirm("确认变更吗")) {
+			return;
+		}
+		$.ajax({
+			data:'lxsh.xmbm='+id+"&lxsh.tzxz=变更"+"&lxsh.xmlx="+lx+"&lxsh.jdbs="+2,
+			type:'post',
+			dataType:'json',
+			url:'/jxzhpt/qqgl/tzxm.do',
+			success:function(msg){
+				if(msg){
+					alert('变更成功');
+					$("#datagrid").datagrid('reload');
+				}
+					
+			}
+		})
+		
+		
 		xmbm=id;
 		xmlx=lx;
-		YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
+		//YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
 	}
+
 		$(function(){
 			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
@@ -213,7 +232,8 @@
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				
 				{field:'pfsj',title:'批复时间',width:100,align:'center'},
-				{field:'jaf',title:'建安费（万元）',width:100,align:'center'}]];
+				{field:'jaf',title:'建安费（万元）',width:100,align:'center'},
+				{field:'bz',title:'备注',width:100,align:'center'}]];
 			gridBind(grid);
 		}
 		/* function batchTh(){

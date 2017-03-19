@@ -64,13 +64,12 @@ text-decoration:none;
 		<table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:30%" align="right">请选择调整类别：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:30%" align="right">请选择变更类型：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="tzxz" class="easyui-combobox" data-options="panelHeight:'80'"  style="width: 152px">
 						<option value="请选择" selected>请选择</option>
 						<option value="取消" >取消</option>
-						<option value="规模变更">规模变更</option>
-						<option value="建设性质变更">建设性质变更</option>
+						<option value="变更">变更</option>
 					</select>
 				</td>
 			</tr>

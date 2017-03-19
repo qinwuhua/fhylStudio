@@ -544,159 +544,38 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 	@Override
 	public boolean tzxm(Lxsh lxsh) {
 		if("sjgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbsjkx", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmsjkx", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjsjkx", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgsjkx", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzsjkx",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("kxxyj_sjgz");
+			return update("tzxmgk", lxsh)>0;
 		}
-		
 		if("lmgz".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtblmkx", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmlmkx", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjlmkx", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxglmkx", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzlmkx",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("kxxyj_lmgz");
+			return update("tzxmgk", lxsh)>0;
+		}
+		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
+			lxsh.setBz("kxxyj_xj");
+			return update("tzxmgk", lxsh)>0;
 		}
 		
-		if("xj".equals(lxsh.getXmlx())&&"1".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbxjkx", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmxjkx", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjxjkx", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgxjkx", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzxjkx",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
-		}
 		//cbsj
 		if("sjgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbsjcb", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmsjcb", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjsjcb", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgsjcb", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzsjcb",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("cbsj_sjgz");
+			return update("tzxmgk", lxsh)>0;
 		}
 		if("lmgz".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtblmcb", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmlmcb", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjlmcb", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxglmcb", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzlmcb",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("cbsj_lmgz");
+			return update("tzxmgk", lxsh)>0;
 		}
 		if("xj".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbxjcb", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmxjcb", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjxjcb", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgxjcb", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzxjcb",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("cbsj_xj");
+			return update("tzxmgk", lxsh)>0;
 		}
 		if("sh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbshcb", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmshcb", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjshcb", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgshcb", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzshcb",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("cbsj_sh");
+			return update("tzxmgk", lxsh)>0;
 		}
 		if("yh".equals(lxsh.getXmlx())&&"2".equals(lxsh.getJdbs())){
-			int a=update("tzxzoldtbyhcb", lxsh);
-			int b=0;
-			Lxsh l=queryOne("querytzbyxmbmyhcb", lxsh);
-			 if(l==null){
-				 b=insert("tzxztjyhcb", lxsh);
-				 insert("tzxztjsjkxlx", lxsh);
-			 }else{
-				 b=update("tzxzxgyhcb", lxsh);
-			 }
-			if(a==1&&b==1){
-				if("取消".equals(lxsh.getTzxz())){
-					int c=delete("qxtzxzyhcb",lxsh);
-					return c==1;
-				}else{
-					return true;
-				}
-			}
+			lxsh.setBz("cbsj_yhdzx");
+			return update("tzxmcb", lxsh)>0;
 		}
 		
 		return false;

@@ -662,6 +662,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmid=xmid+x1.getLsxmid();
 			lsjl="是";
 		}
+		if(!"".equals(xmbm))
 		if(",".equals(xmbm.substring(xmbm.length()-1))){
 			xmbm=xmbm.substring(0, xmbm.length()-1);
 			xmid=xmid.substring(0, xmid.length()-1);
@@ -772,6 +773,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmid=xmid+x1.getLsxmid();
 			lsjl="是";
 		}
+		if(!"".equals(xmbm))
 		if(",".equals(xmbm.substring(xmbm.length()-1))){
 			xmbm=xmbm.substring(0, xmbm.length()-1);
 			xmid=xmid.substring(0, xmid.length()-1);
@@ -836,6 +838,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmid=xmid+x1.getLsxmid();
 			lsjl="是";
 		}
+		if(!"".equals(xmbm))
 		if(",".equals(xmbm.substring(xmbm.length()-1))){
 			xmbm=xmbm.substring(0, xmbm.length()-1);
 			xmid=xmid.substring(0, xmid.length()-1);

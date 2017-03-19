@@ -1768,5 +1768,10 @@
 		select sys_guid(),xmbm,xmmc,xzqh,qdzh,zdzh,kgny,wgny,gkpfwh from ${bz} 
 		where xmbm in(${xmbm})
 	</insert>
-	
+	<update id="tzxmgk" parameterType="lxsh">
+	update ${bz} set bz=(case when bz like '%'||gkpfwh||'%' then bz when bz is null or bz='' then gkpfwh else bz||','||gkpfwh end),TZXZ='变更' where xmbm=#{xmbm}
+	</update>
+	<update id="tzxmcb" parameterType="lxsh">
+	update ${bz} set bz=(case when bz like '%'||sjpfwh||'%' then bz when bz is null or bz='' then sjpfwh else bz||','||sjpfwh end),TZXZ='变更' where xmbm=#{xmbm}
+	</update>
 </mapper>

@@ -1782,5 +1782,9 @@
 		select * from ${bzcs} where xmbm in (${xmbm}) 
 	</select>
 	
+	<insert id="qxxm" parameterType="String">
+	${value}
+	</insert>
+	
 </mapper>
 

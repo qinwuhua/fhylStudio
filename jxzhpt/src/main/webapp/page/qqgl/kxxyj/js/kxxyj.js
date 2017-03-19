@@ -982,7 +982,6 @@ function showAllsjsh(){
 	        	var res ='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>';
 	        	return res+' <a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   <a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 	        
-	        
 	        }},
 		   
 	        {field:'c1',title:title,width:100,align:'center',formatter:function(value,row,index){
@@ -1040,7 +1039,8 @@ function showAllsjsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'bz',title : '备注',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -1222,9 +1222,27 @@ function showAllsjsh123(){
 var xmbm;
 var xmlx;
 function tz(id,lx){
+	if (!confirm("确认变更吗")) {
+		return;
+	}
+	$.ajax({
+		data:'lxsh.xmbm='+id+"&lxsh.tzxz=变更"+"&lxsh.xmlx="+lx+"&lxsh.jdbs="+1,
+		type:'post',
+		dataType:'json',
+		url:'/jxzhpt/qqgl/tzxm.do',
+		success:function(msg){
+			if(msg){
+				alert('变更成功');
+				$("#datagrid").datagrid('reload');
+			}
+				
+		}
+	})
+	
+	
 	xmbm=id;
 	xmlx=lx;
-	YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
+	//YMLib.UI.createWindow('wq_tz','项目变更',"xm_tz.jsp",'wq_tz',500,200);
 }
 
 function editSjlx(xmid,index){
@@ -1376,7 +1394,8 @@ function showAlllmsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'bz',title : '备注',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
 	       
@@ -1707,7 +1726,8 @@ function showAllxjsh(){
 		    {field : 'kgny',title : '开工年月',width : 80,align : 'center'},
 		    {field : 'wgny',title : '完工年月',width : 80,align : 'center'},
 		    {field : 'tzgs',title : '投资',width : 80,align : 'center'},
-		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}/*,
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'},
+		    {field : 'bz',title : '备注',width : 100,align : 'center'}/*,
 		    {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
         		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
 

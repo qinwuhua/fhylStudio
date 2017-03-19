@@ -134,12 +134,14 @@ public interface JhshServer {
 	 * @return 养护大中修计划审核集合
 	 */
 	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh);
+	public List<Jhsh> queryJhshYhdzx_qx(Jhsh jhsh);
 	/**
 	 * 计划审核总数量
 	 * @param jhsh2 养护大中修计划审核数量
 	 * @return 养护大中修计划审核数量
 	 */
 	public int queryJhshYhdzxCount(Jhsh jhsh);
+	public int queryJhshYhdzx_qxCount(Jhsh jhsh);
 	/**
 	 * 养护大中修计划审核信息
 	 * @param jhsh2 计划审核信息
@@ -172,12 +174,14 @@ public interface JhshServer {
 	 * @return
 	 */
 	public List<Jhsh> queryJhshSh(Jhsh jhsh);
+	public List<Jhsh> queryJhshSh_qx(Jhsh jhsh);
 	/**
 	 * 查询水毁计划审核信息数量
 	 * @param jhsh2 计划审核信息
 	 * @return 总数量
 	 */
 	public int queryJhshShCount(Jhsh jhsh);
+	public int queryJhshSh_qxCount(Jhsh jhsh);
 	/**
 	 * 添加养护大中修到计划审核
 	 * @param xmbm 项目编码
@@ -360,6 +364,7 @@ public interface JhshServer {
 	 * @return
 	 */
 	public Map<String, String> queryJhshLjgsdgz(Jhsh jhsh);
+	public Map<String, String> queryJhshLjgsdgz_qx(Jhsh jhsh);
 	/**
 	 * 计划累计路面改造
 	 * @param jhsh
@@ -378,12 +383,14 @@ public interface JhshServer {
 	 * @return
 	 */
 	public Map<String, String> queryJhshLjYhdzx(Jhsh jhsh);
+	public Map<String, String> queryJhshLjYhdzx_qx(Jhsh jhsh);
 	/**
 	 * 计划累计灾毁重建
 	 * @param jhsh
 	 * @return
 	 */
 	public Map<String, String> queryJhshLjSh(Jhsh jhsh);
+	public Map<String, String> queryJhshLjSh_qx(Jhsh jhsh);
 	public List<Lx> queryLsxx1(Jhsh jhsh);
 	/**
 	 * 查詢 計劃數據---養護中心
@@ -434,19 +441,25 @@ public interface JhshServer {
 	public int queryJhshShCount1(Jhsh jhsh);
 	public List<Jhsh> queryGsdgz(Jhsh jhsh, int page, int rows);
 	public int queryGsdgzCount(Jhsh jhsh);
+	public List<Jhsh> queryGsdgz_qx(Jhsh jhsh, int page, int rows);
+	public int queryGsdgz_qxCount(Jhsh jhsh);
 	public List<Jhsh> queryGsdgzxd(Jhsh jhsh, int page, int rows);
 	public int queryGsdgzxdCount(Jhsh jhsh);
 	public Map<String, String> queryJhshLjgsdxd(Jhsh jhsh);
 	public List<Jhsh> queryGsdgzxdbz(Jhsh jhsh);
+	public List<Jhsh> queryGsdgzxd_qxbz(Jhsh jhsh);
 	public boolean planxdAll(List<Jhsh> list);
+	public boolean planxdAll_qx(List<Jhsh> list);
 	public List<Jhsh> queryshxd(Jhsh jhsh, int page, int rows);
 	public int queryshxdCount(Jhsh jhsh);
 	public Map<String, String> queryJhbzshLj(Jhsh jhsh);
 	public List<Jhsh> queryshxdbz(Jhsh jhsh);
+	public List<Jhsh> queryshxd_qxbz(Jhsh jhsh);
 	public List<Jhsh> queryjhxdyh(Jhsh jhsh, int page, int rows);
 	public int queryjhxdyhCount(Jhsh jhsh);
 	public Map<String, String> queryJhbzyhLj(Jhsh jhsh);
 	public List<Jhsh> queryyhxdbz(Jhsh jhsh);
+	public List<Jhsh> queryyhxd_qxbz(Jhsh jhsh);
 	public boolean planxdhzadd(List<Jhsh> list);
 	public List<Map<String, String>> getbzyhhzb();
 	public boolean plansbgj(Jhsh jhsh);
@@ -479,4 +492,10 @@ public interface JhshServer {
 	public List<Lx> querylxLsxx(Jhsh jhsh);
 	public List<Lx> querywnxmxx(Jhsh jhsh);
 	public List<Lx> queryylxbxmbm(Jhsh jhsh);
+	public Jhsh queryJhshxxLmsjqxByXmbm(Jhsh jhsh);
+	public Jhsh queryJhshxxLmgzqxByXmbm(Jhsh jhsh);
+	public Jhsh queryJhshxxXjqxByXmbm(Jhsh jhsh);
+	public Jhsh queryJhshxxYhdzxqxByXmbm(Jhsh jhsh);
+	public Jhsh queryJhshxxShqxByXmbm(Jhsh jhsh);
+	
 }
