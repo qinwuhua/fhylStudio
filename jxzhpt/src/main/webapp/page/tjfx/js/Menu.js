@@ -108,14 +108,14 @@ $(function() {
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070405',
-		title:'项目对路网影响',
+		title:'项目对路况影响',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/lwyx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070406',
-		title:'项目预测',
+		title:'科学决策预测',
 		imgSrc:'../../images/lxtjqs.png',
 		renderTo:'left_menu4',
 		href:'./lkpdjcfx/xmyc.jsp'

@@ -21,6 +21,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./tjb.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_01030104',
+		title:'公路技术状况汇总明细表',
+		imgSrc:'../../images/menubutton/gljszkpdmxb.png',
+		renderTo:'left_menu1',
+		href:'./hzb.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

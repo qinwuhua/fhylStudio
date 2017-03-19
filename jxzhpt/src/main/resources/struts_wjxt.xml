@@ -103,5 +103,13 @@
  	<action name="delete_pdb" class="dbyhController" method="delete_pdb"/>
  	<action name="insertYLBData" class="dbyhController" method="insertYLBData"/>
  	<action name="delete_ylb" class="dbyhController" method="delete_ylb"/>
+ 	
+ 	<!-- zyy add lkhzb -->
+	<action name="selectHzbList" class="lkpdController" method="selectHzbList"/>
+	<action name="insertLkpdHzData" class="lkpdController" method="insertLkpdHzData"/>
+	<action name="downLkhzmxbFile" class="lkpdController" method="downLkhzmxbFile"/>
+	<action name="deletehzb" class="lkpdController" method="deletehzb"/>
+	<action name="getHzmxbDataList" class="lkpdController" method="getHzmxbDataList"/>
+	<action name="getHzbDataList" class="lkpdController" method="getHzbDataList"/>
  </package>
 </struts>

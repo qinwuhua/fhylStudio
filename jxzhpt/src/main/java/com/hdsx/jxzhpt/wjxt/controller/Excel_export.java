@@ -2155,7 +2155,6 @@ public class Excel_export {
 		int minx=1;
 		row = sheet.createRow((int) 1);
 		for (Excel_tilte excel_tilte : et) {
-			
 			row.setHeightInPoints(20f);
 			int x1=excel_tilte.getX1();
 			int x2=excel_tilte.getX2();
@@ -2177,11 +2176,15 @@ public class Excel_export {
 			
 			
 		}
-		Integer t=47355/maxy;
 		for (int i = 0; i <=maxy ; i++) {
-				sheet.setColumnWidth(i, t);
-//			sheet.setDefaultRowHeight((short) i);
-//          sheet.autoSizeColumn((short)i); 自动适应宽度
+			if(i==0){
+				sheet.setColumnWidth(i, 32 * 90);
+			}
+			else {
+				sheet.setColumnWidth(i, 32 * 150);
+//				sheet.autoSizeColumn((short)i); //自动适应宽度
+			}
+          
 		}
 		for (Excel_tilte excel_tilte : et){
 			int x1=excel_tilte.getX1();
@@ -2204,7 +2207,6 @@ public class Excel_export {
 		for (int i = 0; i < el2.size(); i++)  
         {  
             row = sheet.createRow((int) i + maxx+1);  
-            row.setHeightInPoints(100f);
             Excel_list trqk1 = (Excel_list) el2.get(i);  
             // 第四步，创建单元格，并设置值  
          
@@ -6378,7 +6380,7 @@ public class Excel_export {
 			row = sheet.createRow((int) 1);
 			for (Excel_tilte excel_tilte : et) {
 				
-				row.setHeightInPoints(50f);
+				row.setHeightInPoints(40f);
 				int x1=excel_tilte.getX1();
 				int x2=excel_tilte.getX2();
 				int y1=excel_tilte.getY1();
@@ -6401,10 +6403,10 @@ public class Excel_export {
 			for (int i = 0; i <=maxy ; i++) {
 				if(i==0)sheet.setColumnWidth(i, 32 * 30);
 				else if(i==1)sheet.setColumnWidth(i, 32 * 50);
-				else if(i==3)sheet.setColumnWidth(i, 32 * 40);
-				else if(i==13)sheet.setColumnWidth(i, 32 * 40);
+				else if(i==3)sheet.setColumnWidth(i, 32 * 50);
+				else if(i==13)sheet.setColumnWidth(i, 32 * 50);
 				else{
-					sheet.setColumnWidth(i, 32 * 70);//设置固定宽度150
+					sheet.setColumnWidth(i, 32 * 110);//设置固定宽度150
 				}
 //				sheet.autoSizeColumn((short)i); //自动适应宽度
 			}
