@@ -279,51 +279,51 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-								<td>行政区划：</td>
-        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
-        						<td>项目名称：</td>
-        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-        						<td>建设性质：</td>
-								<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
-								<td>建设技术等级：</td>
+								<td align="right">行政区划：</td>
+        						<td colspan="3" ><select id="xzqh" style="width:205px;"></select></td>
+        						<td align="right">项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:65px;" /></td>
+        						<td align="right">建设性质：</td>
+								<td><select name="xmlx" id="xmlx" style="width:65px;" ></select></td>
+								<td align="right">建设技术等级：</td>
 								<td>
-								<select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select>
+								<select name="jsjsdj" id="jsjsdj" style="width:45px;" class="easyui-combobox"></select>
 								</td>
-								<td>现技术等级：</td>
+								<td align="right">现技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 					</tr>
 					<tr height="32">
-								<td>项目年份：</td>
-        						<td><select id="xmnf" style="width:70px;">
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width:50px;">
 								</select></td>
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-								<td>原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:75px;" /></td>
-        						<td>原路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
-        						<td>规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:75px;" /></td>
-        						<td>规划路线名称：</td>
-        						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
+								<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
+								<td align="right">原路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:65px;" /></td>
+        						<td align="right">原路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:65px;" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:45px;" /></td>
+        						<td align="right">规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:65px;" /></td>
         			</tr>
         			<tr>
-                                <td>是否有补助历史：</td>
-        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
+                                <td align="right">是否有补助历史：</td>
+        						<td><select id="lsjl" style="width:50px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:80px;" >
 								</select></td>
-								<td>上报状态：</td>
-        						<td id='zt'><select id="sbzt" style="width:80px;" class="easyui-combobox">
+								<td align="right">上报状态：</td>
+        						<td id='zt'><select id="sbzt" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
-        						<td>项目库类型：</td>
+        						<td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
 										<option value="">请选择</option>
@@ -332,17 +332,18 @@ text-decoration:none;
 									</select>
 								</td>
 								<!-- 筛选历史条件 -->
-								<td>历史项目类型：</td>
+								<td align="right">历史项目类型：</td>
 								<td>
-									<select id='lsxmlx' class="easyui-combobox" style="width: 95px;">
+									<select id='lsxmlx' class="easyui-combobox" style="width: 45px;">
 									</select>
 								</td>
-								<td>历史计划年份：</td>
+								<td align="right">历史计划年份：</td>
 								<td>
-									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
+									<select id='lsxmnf' class="easyui-combobox" style="width: 65px;">
 									</select>
 								</td>
 								</tr>
+								
 							<tr height="32">
 							<td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
