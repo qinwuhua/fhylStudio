@@ -399,6 +399,15 @@
 			}
 		}
 	</script>
+			<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -406,7 +415,7 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top:10px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
@@ -414,26 +423,26 @@
        				<div>
        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
        						<tr height="32">
-       							<td>项目年份：</td>
-       							<td><select id="xmnf" style="width: 70px;"></select></td>
-       							<td>&nbsp;管养单位：</td>
-       							<td><select id="gydw" style="width:170px;"></select></td>
-       							<td>&nbsp;行政区划：</td>
+       							<td align="right">项目年份：</td>
+       							<td><select id="xmnf" style="width: 60px;"></select></td>
+       							<td align="right">管养单位：</td>
+       							<td><select id="gydw" style="width:150px;"></select></td>
+       							<td align="right">行政区划：</td>
        							<td><select id="xzqh" style="width:124px;"></select></td>
-       							<td>&nbsp;建设性质：</td>
+       							<td align="right">建设性质：</td>
        							<td><select name="jsxz" class="easyui-combobox" id="jsxz" style="width:81px;"></select></td>
-       							<td>&nbsp;级别：</td>
-	       						<td><select name="jb" class="easyui-combobox" id="jb" style="width:100px;"></select></td>
+       							<td align="right">级别：</td>
+	       						<td><select name="jb" class="easyui-combobox" id="jb" style="width:70px;"></select></td>
        						</tr>
        						<tr height="32">
-       							<td><span id="ztspan">上报状态</span>：</td>
-       							<td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>
-       							<td>&nbsp;项目名称：</td>
-       							<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
-       							<td>路线名称：</td>
-        						<td><input type="text" id="lxmc" style="width:95px;" /></td>
-        						<td>原道班名称：</td>
-        						<td><input type="text" id="ydbmc" style="width:95px;" /></td>
+       							<td align="right"><span id="ztspan">上报状态</span>：</td>
+       							<td><select id="sqzt" class="easyui-combobox" style="width: 60px;"></select></td>
+       							<td align="right">项目名称：</td>
+       							<td><input name="xmmc" id="xmmc" style="width:150px;" type="text"/></td>
+       							<td align="right">路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:124px;" /></td>
+        						<td align="right">原道班名称：</td>
+        						<td><input type="text" id="ydbmc" style="width:81px;" /></td>
        						</tr>
        						<tr>
        							<td colspan="8">
