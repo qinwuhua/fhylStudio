@@ -21,7 +21,7 @@
 // 			alert(parent.YMLib.Var.xmbm);
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryLxshByXmbm.do',
+				url:'../../../qqgl/queryLxshqxByXmbm.do',
 				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
@@ -30,7 +30,7 @@
 			});
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryKxxyjByXmbm.do',
+				url:'../../../qqgl/queryKxxyjqxByXmbm.do',
 				data:'xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
@@ -40,7 +40,7 @@
 			});
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryCbsjByXmbm.do',
+				url:'../../../qqgl/queryCbsjqxByXmbm.do',
 				data:'cbsj.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){

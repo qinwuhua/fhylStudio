@@ -266,7 +266,7 @@ function qxxm(str){
 		}
 	});
 }
-function qxxm(str){
+function hfxm(str){
 	var xmbm=str+"";
 	if(!confirm("确认恢复项目吗？")){
 		return;

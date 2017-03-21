@@ -308,5 +308,7 @@ public interface XmsqServer {
 	public Lx querysflsjldg(Xmsq xmsq);
 	public Lx querysfwnlsjl(Xmsq xmsq);
 	public Lx querysfwnlsjldg(Xmsq xmsq);
+	public Xmsq queryYhdzxqxByXmbm(Xmsq xmsq);
+	public Xmsq queryShqxByXmbm(Xmsq xmsq);
 	
 }

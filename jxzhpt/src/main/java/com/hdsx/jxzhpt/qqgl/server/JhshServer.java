@@ -497,5 +497,11 @@ public interface JhshServer {
 	public Jhsh queryJhshxxXjqxByXmbm(Jhsh jhsh);
 	public Jhsh queryJhshxxYhdzxqxByXmbm(Jhsh jhsh);
 	public Jhsh queryJhshxxShqxByXmbm(Jhsh jhsh);
+	public Lxsh queryLxshLmsjqxByXmbm(String xmbm);
+	public Lxsh queryLxshLmgzqxByXmbm(String xmbm);
+	public Lxsh queryLxshXjqxByXmbm(String xmbm);
+	public Kxxyj queryLmsjKxxyjqxByXmbm(Jhsh jhsh);
+	public Kxxyj queryLmgzKxxyjqxByXmbm(Jhsh jhsh);
+	public Kxxyj queryXjKxxyjqxByXmbm(Jhsh jhsh);
 	
 }

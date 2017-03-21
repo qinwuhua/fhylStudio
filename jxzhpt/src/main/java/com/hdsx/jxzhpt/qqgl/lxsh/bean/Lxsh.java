@@ -28,8 +28,63 @@ public class Lxsh implements Serializable {
 	private String lsxmnf;
 	private String nwgxzdj;//拟完工性质等级
 	private String tjfl;//统计分类
+	private String tj1;//统计分类
+	private String tj2;//统计分类
+	private String tj3;//统计分类
+	private String tj4;//统计分类
+	private String tj5;//统计分类
+	private String tj6;//统计分类
+	private String tj7;//统计分类
+	private String tj8;//统计分类
 	
-	
+	public String getTj6() {
+		return tj6;
+	}
+	public void setTj6(String tj6) {
+		this.tj6 = tj6;
+	}
+	public String getTj7() {
+		return tj7;
+	}
+	public void setTj7(String tj7) {
+		this.tj7 = tj7;
+	}
+	public String getTj8() {
+		return tj8;
+	}
+	public void setTj8(String tj8) {
+		this.tj8 = tj8;
+	}
+	public String getTj1() {
+		return tj1;
+	}
+	public void setTj1(String tj1) {
+		this.tj1 = tj1;
+	}
+	public String getTj2() {
+		return tj2;
+	}
+	public void setTj2(String tj2) {
+		this.tj2 = tj2;
+	}
+	public String getTj3() {
+		return tj3;
+	}
+	public void setTj3(String tj3) {
+		this.tj3 = tj3;
+	}
+	public String getTj4() {
+		return tj4;
+	}
+	public void setTj4(String tj4) {
+		this.tj4 = tj4;
+	}
+	public String getTj5() {
+		return tj5;
+	}
+	public void setTj5(String tj5) {
+		this.tj5 = tj5;
+	}
 	public String getNwgxzdj() {
 		return nwgxzdj;
 	}

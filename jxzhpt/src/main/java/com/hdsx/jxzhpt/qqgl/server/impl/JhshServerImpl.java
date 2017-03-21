@@ -160,6 +160,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryLxshXjByXmbm", params);
 	}
 	@Override
+	public Lxsh queryLxshLmsjqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshLmsjqxByXmbm", params);
+	}
+	@Override
+	public Lxsh queryLxshLmgzqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshLmgzqxByXmbm", params);
+	}
+	@Override
+	public Lxsh queryLxshXjqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshXjqxByXmbm", params);
+	}
+	@Override
 	public Jhsh queryJhshxxLmsjByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryJhshxxLmsjByXmbm", params);
@@ -572,12 +587,24 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		return queryOne("queryLmgzKxxyjByXmbm",jhsh);
 	}
 	@Override
+	public Kxxyj queryLmsjKxxyjqxByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmsjKxxyjqxByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryLmgzKxxyjqxByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmgzKxxyjqxByXmbm",jhsh);
+	}
+	@Override
 	public Kxxyj queryShKxxyjByXmbm(Jhsh jhsh) {
 		return queryOne("queryShKxxyjByXmbm",jhsh);
 	}
 	@Override
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
 		return queryOne("queryXjKxxyjByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryXjKxxyjqxByXmbm(Jhsh jhsh) {
+		return queryOne("queryXjKxxyjqxByXmbm",jhsh);
 	}
 	@Override
 	public boolean updateLx(List<Lx> lx) {

@@ -1105,6 +1105,24 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}
 	}
 	/**
+	 * 根据项目编码查询项目申请信息
+	 * @throws Exception
+	 */
+	public void queryXmsqqxByXmbm() throws Exception{
+		try{
+			Xmsq obj=new Xmsq();
+			if(xmsq.getXmlx()==4){
+				obj = xmsqServer.queryYhdzxqxByXmbm(xmsq);
+			}else if(xmsq.getXmlx()==5){
+				obj = xmsqServer.queryShqxByXmbm(xmsq);
+			}
+			JsonUtils.write(obj, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
 	 * 修改项目申请信息
 	 * @throws Exception 
 	 */
@@ -1536,6 +1554,76 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	
+	public void loadGhlx(){
+		try {
+			
+			List<TreeNode> resultList = new ArrayList<TreeNode>();
+			
+			List<Map<String, String>> gd = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			List<TreeNode> gChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : gd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				gChildren.add(lx);
+			}
+			TreeNode g = new TreeNode("G","国道",null,gChildren);
+			g.setState("closed");
+			resultList.add(g);
+			List<Map<String, String>> sd =  xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			List<TreeNode> sChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : sd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				sChildren.add(lx);
+			}
+			TreeNode s = new TreeNode("S","省道",null,sChildren);
+			s.setState("closed");
+			resultList.add(s);
+			
+			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadYlx(){
+		try {
+			
+			List<TreeNode> resultList = new ArrayList<TreeNode>();
+			
+			List<Map<String, String>> gd = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			List<TreeNode> gChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : gd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				gChildren.add(lx);
+			}
+			TreeNode g = new TreeNode("G","国道",null,gChildren);
+			g.setState("closed");
+			resultList.add(g);
+			List<Map<String, String>> sd =  xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			List<TreeNode> sChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : sd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				sChildren.add(lx);
+			}
+			TreeNode s = new TreeNode("S","省道",null,sChildren);
+			s.setState("closed");
+			resultList.add(s);
+			
+			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	//get set
 	public Xmsq getXmsq() {
 		return xmsq;

@@ -1164,7 +1164,33 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean qxxm(Lxsh lxsh) {
-		return insert("qxxm", lxsh.getBz())>0&&delete("qxxm", lxsh.getBzcs())>0;
+		if(lxsh.getXmbm().substring(10,11).equals("4")){
+			return  insert("qxxm", lxsh.getTj1())>0
+					&& insert("qxxm", lxsh.getTj2())>0
+					&& insert("qxxm", lxsh.getTj4())>0
+					&& delete("qxxm", lxsh.getTj5())>0
+					&& delete("qxxm", lxsh.getTj6())>0
+					&& delete("qxxm", lxsh.getTj8())>0;
+		}
+		else if(lxsh.getXmbm().substring(10,11).equals("5")){
+			return  insert("qxxm", lxsh.getTj1())>0
+					&& insert("qxxm", lxsh.getTj2())>0
+					&& insert("qxxm", lxsh.getTj4())>0
+					&& delete("qxxm", lxsh.getTj5())>0
+					&& delete("qxxm", lxsh.getTj6())>0
+					&& delete("qxxm", lxsh.getTj8())>0;
+		}
+		else{
+			return  insert("qxxm", lxsh.getTj1())>0
+			&& insert("qxxm", lxsh.getTj2())>0
+			&& insert("qxxm", lxsh.getTj3())>0
+			&& insert("qxxm", lxsh.getTj4())>0
+			&& delete("qxxm", lxsh.getTj5())>0
+			&& delete("qxxm", lxsh.getTj6())>0
+			&& delete("qxxm", lxsh.getTj7())>0
+			&& delete("qxxm", lxsh.getTj8())>0;
+		}
+		//return insert("qxxm", lxsh.getBz())>0&&delete("qxxm", lxsh.getBzcs())>0;
 	}
 	
 }

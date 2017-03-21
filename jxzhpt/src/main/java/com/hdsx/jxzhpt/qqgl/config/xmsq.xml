@@ -1087,11 +1087,22 @@
 		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj  
 		from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
+	<select id="queryYhdzxqxByXmbm" parameterType="xmsq" resultType="xmsq">
+		select x.*,decode(l.gpsqdzh,null,l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,l.gpszdzh) gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,
+		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
+		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
+		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj  
+		from xmsq_yhdzx_qx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
+	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
 		select x.*,decode(l.gpsqdzh,null,l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,l.gpszdzh) gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
 		from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='0'
 	</select>
-	
+	<select id="queryShqxByXmbm" parameterType="xmsq" resultType="xmsq">
+		select x.*,decode(l.gpsqdzh,null,l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,l.gpszdzh) gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
+		from xmsq_sh_qx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='0'
+	</select>
 	<update id="updateYhdzx" parameterType="xmsq">
 		update xmsq_yhdzx set 
 		<if test="xmbm!=null">xmbm=#{xmbm}</if>

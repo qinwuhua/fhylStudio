@@ -1039,6 +1039,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	/**
+	 * 根据项目编码查询立项审核信息
+	 * @throws Exception
+	 */
+	public void queryLxshqxByXmbm() throws Exception{
+		try {
+			Lxsh obj=null;
+			if(jhsh.getXmlx()==1)
+				obj=jhshServer.queryLxshLmsjqxByXmbm(jhsh.getXmbm());
+			else if(jhsh.getXmlx()==2)
+				obj=jhshServer.queryLxshLmgzqxByXmbm(jhsh.getXmbm());
+			else if(jhsh.getXmlx()==3)
+				obj=jhshServer.queryLxshXjqxByXmbm(jhsh.getXmbm());
+			JsonUtils.write(obj, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	/**
 	 * 根据项目编码查询计划审核信息
 	 * @throws Exception
 	 */
@@ -1883,6 +1903,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryKxxyjqxByXmbm() throws Exception{
+		try {
+			Kxxyj kxxyj=new Kxxyj();
+			if(jhsh.getXmlx()==1){
+				kxxyj = jhshServer.queryLmsjKxxyjqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				kxxyj = jhshServer.queryLmgzKxxyjqxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				kxxyj = jhshServer.queryXjKxxyjqxByXmbm(jhsh);
+			}
+			/*else if(jhsh.getXmlx()==5){
+				kxxyj = jhshServer.queryShKxxyjqxByXmbm(jhsh);
+			}*/
+			JsonUtils.write(kxxyj, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	public void zdyQuery(){
 		try {
 			List<Map<String, String>> resultlist = new ArrayList<Map<String,String>>();

@@ -590,6 +590,32 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
+	/**
+	 * 根据项目编码查询计划初步设计信息
+	 * @throws Exception
+	 */
+	public void queryCbsjqxByXmbm() throws Exception{
+		Cbsj object=new Cbsj();
+		try {
+			if(cbsj.getXmlx()==1){
+				object=cbsjServer.queryCbsjLmsjqxByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==2){
+				object = cbsjServer.queryCbsjLmgzqxByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==3){
+				object =cbsjServer.queryCbsjXjqxByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==4){
+				object =cbsjServer.queryCbsjYhdzxqxByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==5){
+				object =cbsjServer.queryCbsjShqxByXmbm(cbsj.getXmbm());
+			}
+			if(object!=null)
+				object.setXmlx(cbsj.getXmlx());
+			JsonUtils.write(object, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	
 	public void queryCbsjbgByXmbm() throws Exception{
 		Cbsj object=new Cbsj();

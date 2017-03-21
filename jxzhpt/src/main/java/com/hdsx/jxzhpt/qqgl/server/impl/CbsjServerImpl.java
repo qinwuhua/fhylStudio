@@ -52,6 +52,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryOne("queryCbsjLmgzByXmbm",params);
 	}
 	@Override
+	public Cbsj queryCbsjLmgzqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjLmgzqxByXmbm",params);
+	}
+	@Override
 	public Cbsj queryCbsjLmgzbgByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjLmgzbgByXmbm",params);
@@ -125,6 +130,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public Cbsj queryCbsjLmsjByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjLmsjByXmbm", params);
+	}
+	@Override
+	public Cbsj queryCbsjLmsjqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjLmsjqxByXmbm", params);
 	}
 	@Override
 	public Cbsj queryCbsjLmsjbgByXmbm(String xmbm) {
@@ -224,6 +234,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryOne("queryCbsjXjByXmbm", params);
 	}
 	@Override
+	public Cbsj queryCbsjXjqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjXjqxByXmbm", params);
+	}
+	@Override
 	public Cbsj queryCbsjXjbgByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjXjbgByXmbm", params);
@@ -271,6 +286,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public Cbsj queryCbsjYhdzxByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjYhdzxByXmbm", params);
+	}
+	@Override
+	public Cbsj queryCbsjYhdzxqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjYhdzxqxByXmbm", params);
 	}
 	@Override
 	public Cbsj queryCbsjYhdzxbgByXmbm(String xmbm) {
@@ -345,6 +365,11 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	public Cbsj queryCbsjShByXmbm(String xmbm) {
 		params.put("xmbm", xmbm);
 		return queryOne("queryCbsjShByXmbm",params);
+	}
+	@Override
+	public Cbsj queryCbsjShqxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjShqxByXmbm",params);
 	}
 	@Override
 	public Cbsj queryCbsjShbgByXmbm(String xmbm) {

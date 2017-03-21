@@ -22,7 +22,7 @@
 			loadBmbm2('jsdj','技术等级');
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryXmsqByXmbm.do',
+				url:'../../../qqgl/queryXmsqqxByXmbm.do',
 				data:'xmlx='+5+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
@@ -34,7 +34,7 @@
 			});
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryCbsjByXmbm.do',
+				url:'../../../qqgl/queryCbsjqxByXmbm.do',
 				data:'cbsj.xmlx='+5+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){

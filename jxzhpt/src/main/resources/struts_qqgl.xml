@@ -180,6 +180,7 @@
 		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
 		<action name="queryCbsjbg" class="cbsjController" method="queryCbsjbg"></action>
 		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
+		<action name="queryCbsjqxByXmbm" class="cbsjController" method="queryCbsjqxByXmbm"></action>
 		<action name="queryCbsjbgByXmbm" class="cbsjController" method="queryCbsjbgByXmbm"></action>
 		<action name="updateCbsj" class="cbsjController" method="updateCbsj"></action>
 		<action name="updatesgt" class="cbsjController" method="updatesgt"></action>
@@ -228,6 +229,7 @@
 		<action name="queryJhsh1" class="jhshController" method="queryJhsh1"></action>
 		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
 		<action name="queryLxshByXmbm" class="jhshController" method="queryLxshByXmbm"></action>
+		<action name="queryLxshqxByXmbm" class="jhshController" method="queryLxshqxByXmbm"></action>
 		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
 		<action name="queryJhshxxqxByXmbm" class="jhshController" method="queryJhshxxqxByXmbm"></action>
 		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
@@ -259,6 +261,7 @@
 		<action name="updateXmsqthSp" class="xmsqController" method="updateXmsqthSp"></action>
 		
 		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
+		<action name="queryXmsqqxByXmbm" class="xmsqController" method="queryXmsqqxByXmbm"></action>
 		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
 		<action name="exportExcelXmsq" class="xmsqController" method="exportExcelXmsq"></action>
 		<action name="exportExcelXmsq1" class="xmsqController" method="exportExcelXmsq1"></action>
@@ -270,6 +273,8 @@
 		<action name="queryLj" class="xmsqController" method="queryLj"></action>
 		<action name="queryLjbyyhc" class="xmsqController" method="queryLjbyyhc"></action>
 		<action name="loadGldj" class="xmsqController" method="loadGldj"></action>
+		<action name="loadGhlx" class="xmsqController" method="loadGhlx"></action>
+		<action name="loadYlx" class="xmsqController" method="loadYlx"></action>
 		
 		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
 		<action name="queryJhsh2_qx" class="jhshController" method="queryJhsh2_qx"></action>
@@ -292,6 +297,7 @@
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryLsxx2new" class="jhshController" method="queryLsxx2new"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
+		<action name="queryKxxyjqxByXmbm" class="jhshController" method="queryKxxyjqxByXmbm"></action>
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
 		<action name="updateLx" class="jhshController" method="updateLx"></action>
 		<action name="zdyQuery" class="jhshController" method="zdyQuery"></action>

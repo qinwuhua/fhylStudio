@@ -30,6 +30,8 @@ public interface CbsjServer {
 	 * @return 返回初步审核对象
 	 */
 	public Cbsj queryCbsjLmgzByXmbm(String xmbm);
+	public Cbsj queryCbsjLmgzqxByXmbm(String xmbm);
+
 	/**
 	 * 修改初步设计信息
 	 * @param cbsj 修改后的初步设计信息
@@ -88,6 +90,7 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public Cbsj queryCbsjLmsjByXmbm(String xmbm);
+	public Cbsj queryCbsjLmsjqxByXmbm(String xmbm);
 	/**
 	 * 修改升级项目
 	 * @param cbsj 升级项目对象
@@ -138,6 +141,8 @@ public interface CbsjServer {
 	 * @return 新建项目对象
 	 */
 	public Cbsj queryCbsjXjByXmbm(String xmbm);
+	public Cbsj queryCbsjXjqxByXmbm(String xmbm);
+
 	/**
 	 * 修改新建项目信息
 	 * @param cbsj 新建项目对象
@@ -164,6 +169,7 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public Cbsj queryCbsjYhdzxByXmbm(String xmbm);
+	public Cbsj queryCbsjYhdzxqxByXmbm(String xmbm);
 	/**
 	 * 查询养护大中修初步设计信息
 	 * @param cbsj 
@@ -217,6 +223,8 @@ public interface CbsjServer {
 	 * @return 灾毁恢复重建项目信息
 	 */
 	public Cbsj queryCbsjShByXmbm(String xmbm);
+	public Cbsj queryCbsjShqxByXmbm(String xmbm);
+
 	/**
 	 * 修改水毁初步设计ixnxi
 	 * @param cbsj 水毁初步设计信息

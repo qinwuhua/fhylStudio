@@ -3211,24 +3211,60 @@ public class LxshController extends BaseActionSupport{
 	public void qxxm(){
 		boolean bl=false;
 		if(lxsh.getXmbm().substring(10,11).equals("1")){
-			lxsh.setBz("insert into jhsh_sjgz_qx select * from jhsh_sjgz where xmbm="+lxsh.getXmbm());
-			lxsh.setBzcs("delete from jhsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_sjgz_qx select * from jhsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_sjgz_qx select * from lxsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_sjgz_qx select * from kxxyj_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_sjgz_qx select * from cbsj_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_sjgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_sjgz where xmbm="+lxsh.getXmbm());
 		}
 		if(lxsh.getXmbm().substring(10,11).equals("2")){
-			lxsh.setBz("insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm="+lxsh.getXmbm());
-			lxsh.setBzcs("delete from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			//lxsh.setBz("insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_lmgz_qx select * from lxsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_lmgz_qx select * from kxxyj_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_lmgz_qx select * from cbsj_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_lmgz where xmbm="+lxsh.getXmbm());
 		}
 		if(lxsh.getXmbm().substring(10,11).equals("3")){
-			lxsh.setBz("insert into jhsh_xj_qx select * from jhsh_xj where xmbm="+lxsh.getXmbm());
-			lxsh.setBzcs("delete from jhsh_xj where xmbm="+lxsh.getXmbm());
+			//lxsh.setBz("insert into jhsh_xj_qx select * from jhsh_xj where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_xj_qx select * from jhsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_xj_qx select * from lxsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_xj_qx select * from kxxyj_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_xj_qx select * from cbsj_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_xj where xmbm="+lxsh.getXmbm());
 		}
 		if(lxsh.getXmbm().substring(10,11).equals("4")){
-			lxsh.setBz("insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
-			lxsh.setBzcs("delete from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			//lxsh.setBz("insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into xmsq_yhdzx_qx select * from xmsq_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_yhdzx_qx select * from cbsj_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from xmsq_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_yhdzx where xmbm="+lxsh.getXmbm());
 		}
 		if(lxsh.getXmbm().substring(10,11).equals("5")){
-			lxsh.setBz("insert into jhsh_sh_qx select * from jhsh_sh where xmbm="+lxsh.getXmbm());
-			lxsh.setBzcs("delete from jhsh_sh where xmbm="+lxsh.getXmbm());
+			//lxsh.setBz("insert into jhsh_sh_qx select * from jhsh_sh where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_sh_qx select * from jhsh_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into xmsq_sh_qx select * from xmsq_sh where xmbm="+lxsh.getXmbm());
+			//lxsh.setTj3("insert into kxxyj_sh_qx select * from kxxyj_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_sh_qx select * from cbsj_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from xmsq_sh where xmbm="+lxsh.getXmbm());
+			//lxsh.setTj7("delete from kxxyj_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_sh where xmbm="+lxsh.getXmbm());
 		}
 			bl=lxshServer.qxxm(lxsh);
 		
@@ -3237,7 +3273,7 @@ public class LxshController extends BaseActionSupport{
 	
 	public void hfxm(){
 		boolean bl=false;
-		if(lxsh.getXmbm().substring(10,11).equals("1")){
+		/*if(lxsh.getXmbm().substring(10,11).equals("1")){
 			lxsh.setBz("insert into jhsh_sjgz select * from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
 			lxsh.setBzcs("delete from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
 		}
@@ -3256,8 +3292,65 @@ public class LxshController extends BaseActionSupport{
 		if(lxsh.getXmbm().substring(10,11).equals("5")){
 			lxsh.setBz("insert into jhsh_sh select * from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
 			lxsh.setBzcs("delete from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
+		}*/
+		
+		if(lxsh.getXmbm().substring(10,11).equals("1")){
+			lxsh.setTj1("insert into jhsh_sjgz select * from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_sjgz select * from lxsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_sjgz select * from kxxyj_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_sjgz select * from cbsj_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_sjgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_sjgz_qx where xmbm="+lxsh.getXmbm());
 		}
-			bl=lxshServer.qxxm(lxsh);
+		if(lxsh.getXmbm().substring(10,11).equals("2")){
+			//lxsh.setBz("insert into jhsh_lmgz_qx select * from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_lmgz where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_lmgz select * from jhsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_lmgz select * from lxsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_lmgz select * from kxxyj_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_lmgz select * from cbsj_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_lmgz_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_lmgz_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("3")){
+			//lxsh.setBz("insert into jhsh_xj_qx select * from jhsh_xj where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_xj where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_xj select * from jhsh_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into lxsh_xj select * from lxsh_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj3("insert into kxxyj_xj select * from kxxyj_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_xj select * from cbsj_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from lxsh_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj7("delete from kxxyj_xj_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_xj_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("4")){
+			//lxsh.setBz("insert into jhsh_yhdzx_qx select * from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_yhdzx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_yhdzx select * from jhsh_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into xmsq_yhdzx select * from xmsq_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_yhdzx select * from cbsj_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from xmsq_yhdzx_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_yhdzx_qx where xmbm="+lxsh.getXmbm());
+		}
+		if(lxsh.getXmbm().substring(10,11).equals("5")){
+			//lxsh.setBz("insert into jhsh_sh_qx select * from jhsh_sh where xmbm="+lxsh.getXmbm());
+			//lxsh.setBzcs("delete from jhsh_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj1("insert into jhsh_sh select * from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj2("insert into xmsq_sh select * from xmsq_sh_qx where xmbm="+lxsh.getXmbm());
+			//lxsh.setTj3("insert into kxxyj_sh_qx select * from kxxyj_sh_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj4("insert into cbsj_sh select * from cbsj_sh_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj5("delete from jhsh_sh_qx where xmbm="+lxsh.getXmbm());
+			lxsh.setTj6("delete from xmsq_sh_qx where xmbm="+lxsh.getXmbm());
+			//lxsh.setTj7("delete from kxxyj_sh where xmbm="+lxsh.getXmbm());
+			lxsh.setTj8("delete from cbsj_sh_qx where xmbm="+lxsh.getXmbm());
+		}
+		bl=lxshServer.qxxm(lxsh);
 		
 		ResponseUtils.write(getresponse(), bl+"");
 	}

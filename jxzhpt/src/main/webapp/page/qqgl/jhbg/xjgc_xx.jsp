@@ -20,7 +20,7 @@
 		$(function(){
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryLxshByXmbm.do',
+				url:'../../../qqgl/queryLxshqxByXmbm.do',
 				data:'jhsh.xmlx='+3+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
@@ -29,7 +29,7 @@
 			});
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryKxxyjByXmbm.do',
+				url:'../../../qqgl/queryKxxyjqxByXmbm.do',
 				data:'xmlx='+3+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
@@ -39,7 +39,7 @@
 			});
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryCbsjByXmbm.do',
+				url:'../../../qqgl/queryCbsjqxByXmbm.do',
 				data:'cbsj.xmlx='+3+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){

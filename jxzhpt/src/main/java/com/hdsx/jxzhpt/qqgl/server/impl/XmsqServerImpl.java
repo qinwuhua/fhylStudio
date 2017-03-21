@@ -194,6 +194,14 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		return queryOne("queryShByXmbm", xmsq);
 	}
 	@Override
+	public Xmsq queryYhdzxqxByXmbm(Xmsq xmsq) {
+		return queryOne("queryYhdzxqxByXmbm", xmsq);
+	}
+	@Override
+	public Xmsq queryShqxByXmbm(Xmsq xmsq) {
+		return queryOne("queryShqxByXmbm", xmsq);
+	}
+	@Override
 	public boolean updateYhdzx(Xmsq xmsq) {
 		return update("updateYhdzx", xmsq)>0;
 	}
