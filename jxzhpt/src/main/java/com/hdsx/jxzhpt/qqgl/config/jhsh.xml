@@ -3583,10 +3583,10 @@
 	<select id="queryJhshLjYhdzx_qx" parameterType="jhsh" resultType="java.util.Map">
 		select 
 		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz
+		count(*) sl,nvl(sum(yqdbcgs),0) cgs,nvl(sum(rys),0) rys,nvl(sum(dk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(ztz),0) tz,'0' sjl,'0' dftz,nvl(sum(hszj),0) hszj
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcrys),0) rys,nvl(sum(bcdk),0) dk,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(hszj),0) hszj
 		</if>
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
@@ -3803,10 +3803,10 @@
 	<select id="queryJhshLjSh_qx" parameterType="jhsh" resultType="java.util.Map">
 		select 
 		<if test="jhxdwh ==null or jhxdwh ==''">
-		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz
+		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,'0' dftz,nvl(sum(hszj),0) hszj
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(hszj),0) hszj
 		</if>
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.ntz tz,lxg.jsdj,cb.sjpfwh
@@ -4711,10 +4711,10 @@
 		<if test="jhxdwh ==null or jhxdwh ==''">
 		count(*) sl,nvl(sum(bbzzj),0) cgs,nvl((sum(jl)+sum(dk)),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(pfztz),0) tz,'0' sjl,
 <!-- 				nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(yhdk),0) dftz -->
-		nvl(sum(dfzc),0) dftz,nvl(sum(yhdk),0) yhdk
+		nvl(sum(dfzc),0) dftz,nvl(sum(yhdk),0) yhdk,nvl(sum(hszj),0) hszj
 		</if>
 		<if test="jhxdwh !=null and jhxdwh !=''">
-		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bccgs),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk
+		count(*) sl,nvl(sum(bccgs),0) cgs,nvl(sum(bccgs),0) bcxd,nvl(sum(bcstz),0) sbz,nvl(sum(jhlc),0) lc,nvl(sum(bcztz),0) tz,nvl(sum(bcjl),0) sjl,nvl(sum(bcdftz),0) dftz,nvl(sum(bcyhdk),0) yhdk,nvl(sum(hszj),0) hszj
 		</if>
 		 from (
 				select j.*,lx2.zjhlc jhlc,sl.zlc,sl.xmsl xmsl,lxg.tz,lxg.jsjsdj,lxg.xjsdj
@@ -5228,8 +5228,12 @@
 	</select>
 	
 	<insert id="planxdAll" parameterType="java.util.List">
-		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if><if test="bzrys != null">,rys</if><if test="bzyhdk != null">,yhdk</if><if test="bzdfzc != null">,dfzc</if><if test="zyjsnr != null">,zyjsnr</if><if test="xzscnl != null">,xzscnl</if>)
-		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
+		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if><if test="bzrys != null">,rys</if><if test="bzyhdk != null">,yhdk</if><if test="bzdfzc != null">,dfzc</if><if test="zyjsnr != null">,zyjsnr</if><if test="xzscnl != null">,xzscnl</if>
+		<if test="sfqx != null and sfqx !=''">,sfqx</if>
+		)
+		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>
+		<if test="sfqx != null and sfqx !=''">,#{sfqx}</if>
+		)
 	</insert>
 	
 	<insert id="planxdAllmc" parameterType="java.util.List">
@@ -5256,7 +5260,18 @@
 		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
 		 -->
 	</insert>
-	
+	<insert id="planxdAllcbwh_qx" parameterType="java.util.List">
+		update 	<if test="xmlx == 1">cbsj_sjgz_qx</if>
+				<if test="xmlx == 2">cbsj_lmgz_qx</if>
+				<if test="xmlx == 3">cbsj_xj_qx</if>
+				<if test="xmlx == 4">cbsj_yhdzx_qx</if>
+				<if test="xmlx == 5">cbsj_sh_qx</if>
+				set bz=#{sgtsjwh} where xmbm=#{xmbm}
+		<!-- 
+		insert into plan_zjxd(id<if test="xmbm != null">,xmid</if><if test="bzxdnf != null">,xdnf</if><if test="tbdw != null">,tbdw</if><if test="bztbsj != null">,tbtime</if><if test="bzcgs != null">,btzzj</if><if test="jhxdwh != null">,jhxdwh</if><if test="bzgz != null">,gz</if><if test="bzsz != null">,sz</if><if test="bzpfztz != null">,ztz</if><if test="bzdk != null">,dk</if><if test="bzzq != null">,zq</if><if test="bzqt != null">,qt</if><if test="bzjl != null">,jl</if><if test="bzrys != null">,rys</if><if test="bzyhdk != null">,yhdk</if><if test="bzdfzc != null">,dfzc</if><if test="zyjsnr != null">,zyjsnr</if><if test="xzscnl != null">,xzscnl</if>)
+		values(sys_guid()<if test="xmbm != null">,#{xmbm}</if><if test="bzxdnf != null">,#{bzxdnf}</if><if test="tbdw != null">,#{tbdw}</if><if test="bztbsj != null">,#{bztbsj}</if><if test="bzcgs != null">,#{bzcgs}</if><if test="jhxdwh != null">,#{jhxdwh}</if><if test="bzgz != null">,#{bzgz}</if><if test="bzsz != null">,#{bzsz}</if><if test="bzpfztz != null">,#{bzpfztz}</if><if test="bzdk != null">,#{bzdk}</if><if test="bzzq != null">,#{bzzq}</if><if test="bzqt != null">,#{bzqt}</if><if test="bzjl != null">,#{bzjl}</if><if test="bzrys != null">,#{bzrys}</if><if test="bzyhdk != null">,#{bzyhdk}</if><if test="bzdfzc != null">,to_number(#{bzdfzc})</if><if test="zyjsnr != null">,#{zyjsnr}</if><if test="xzscnl != null">,#{xzscnl}</if>)
+		 -->
+	</insert>
 	
 	<select id="queryshxd" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	

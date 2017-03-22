@@ -1415,6 +1415,12 @@
 		group by substr(roadcode,0,length(roadcode)-6) order by substr(roadcode,0,length(roadcode)-6)
 	</select>
 	
+	<select id="queryLxFromLxshlxByLevel" parameterType="java.util.Map" resultType="java.util.Map">
+		select distinct lxbm id,lxbm text from lxsh_lx 
+		where xzqhdm like #{xzqhdm}||'%' ${level}
+		order by lxbm
+	</select>
+	
 	<select id="queryYhzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (

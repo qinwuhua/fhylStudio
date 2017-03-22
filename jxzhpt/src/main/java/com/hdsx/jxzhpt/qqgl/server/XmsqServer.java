@@ -310,5 +310,7 @@ public interface XmsqServer {
 	public Lx querysfwnlsjldg(Xmsq xmsq);
 	public Xmsq queryYhdzxqxByXmbm(Xmsq xmsq);
 	public Xmsq queryShqxByXmbm(Xmsq xmsq);
+	public List<Map<String, String>> queryLxFromLxshlxByLevel(String string,
+			String xzqhdm);
 	
 }

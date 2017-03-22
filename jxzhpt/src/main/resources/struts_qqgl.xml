@@ -188,7 +188,7 @@
 		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
 		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
 		
-				
+		<action name="getWjbytype" class="cbsjController" method="getWjbytype"></action>	
 		<action name="getWjbyxmbm" class="cbsjController" method="getWjbyxmbm"></action>
 		<action name="queryFileByWh" class="cbsjController" method="queryFileByWh"></action>
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
@@ -327,6 +327,7 @@
 	<!-- rh -->
 	
 	    <action name="batchUploadJhxd" class="jhshController" method="batchUploadJhxd"></action>
+	    <action name="batchUploadJhwj" class="jhshController" method="batchUploadJhwj"></action>
 	
 		<action name="getghxx" class="xmsqController" method="getghxx"></action>
 		<action name="getghxxbyone" class="xmsqController" method="getghxxbyone"></action>

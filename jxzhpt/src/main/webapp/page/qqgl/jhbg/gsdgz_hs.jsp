@@ -25,6 +25,7 @@
 <%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script> --%>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/json2.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/datagrid-cellediting.js"></script>
+	
 	<script type="text/javascript">
 		$(function(){
 			//$('#bztbsj').datebox('setValue', formatDate(new Date()));
@@ -43,7 +44,7 @@
 			//queryxmList();
 			 showMxbAll();
 			
-			//loadFileUpload();
+			loadFileUpload();
 		});
 		//var flagi=0;//用来区分是否是第一次加载，0为第一次加载
 		function loadFileUpload(){
@@ -51,7 +52,7 @@
 			$("#uploadJhxd").uploadify({
 				/*注意前面需要书写path的代码*/
 				'uploader' : '../../../js/uploader/uploadify.swf',
-				'script' : '../../../qqgl/batchUploadJhxd.do',
+				'script' : '../../../qqgl/batchUploadJhwj.do',
 				'cancelImg' : '../../../js/uploader/cancel.png',
 				'queueID' : 'fileQueue',
 				'fileDataName' : 'uploadJhxd',
@@ -66,11 +67,47 @@
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {
-					'jhsh.xdwh':$("#bzxdwh").val()
+					'jhsh.xdwh':$("#bzxdwh").val(),'jhsh.xmlx':'1'
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
 					alert(response);
-					fileShowByWh($("#bzxdwh").val(),"计划下达文件");
+					ShowfileByWh('jhxdTable',$("#bzxdwh").val(),"计划取消文件");
+				},
+				onError : function(event, queueID, fileObj) {
+					alert("文件:" + fileObj.name + "上传失败");
+				},
+				onCancel : function(event, queueID, fileObj) {
+				},
+				onQueueFull : function(event, queueSizeLimit) {
+					alert("最多支持上传文件数为：" + queueSizeLimit);
+				}
+			});
+			
+			
+			
+			$("#uploadSgtxd").uploadify({
+				/*注意前面需要书写path的代码*/
+				'uploader' : '../../../js/uploader/uploadify.swf',
+				'script' : '../../../qqgl/batchUploadJhwj.do',
+				'cancelImg' : '../../../js/uploader/cancel.png',
+				'queueID' : 'fileQueue1',
+				'fileDataName' : 'uploadSgtxd',
+				'auto' : false,
+				'multi' : false,
+				'buttonImg': '../../../js/uploader/bdll.png',
+				'simUploadLimit' : 3,
+				'sizeLimit' : 100000000,
+				'queueSizeLimit' : 5,
+				'fileDesc' : '支持格式:xls',
+				'fileExt' : '',
+				'height' : 30,
+				'width' : 92,
+				'scriptData' : {
+					'jhsh.xdwh':$("#bzsjwh").val(),'jhsh.xmlx':'2'
+				},
+				onComplete : function(event, queueID, fileObj, response, data) {
+					alert(response);
+					ShowfileByWh('sjpfTable',$("#bzsjwh").val(),"施工图取消文件");
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");
@@ -90,6 +127,15 @@
 				alert("必须填写计划下达文号！");
 			}
 		}
+		function upload1(){
+			if($('#bzsjwh').val()!=""){
+				$("#uploadSgtxd").uploadifySettings('scriptData',{'jhsh.xdwh':$('#bzsjwh').val()});
+				$('#uploadSgtxd').uploadifyUpload();
+			}else{
+				alert("必须填写施工图变更文号！");
+			}
+		}
+		
 		var flag=false;
 		function cxym(str){
 			if(str==0 && flag==false){
@@ -163,7 +209,9 @@
 				alert("请勾选要下达的计划");
 				return;
 			}
-			var jhxdwh='';
+			$('#jhxd').dialog("open");
+			
+			/* var jhxdwh='';
 			var bztbsj=formatDate(new Date());
 			
 			for(var i=0;i<rows.length;i++){
@@ -185,56 +233,39 @@
 						showMxbAll();
 					}	
 				}
-			});
+			}); */
 		}
 		function planxdAll(){
-			if($("#zjgl").is(':checked')){//资金归0下达，即是不需要文件和文号下达
-				$('#grid').dialog("close");
-				var jhxdwh='';
-				var bztbsj=formatDate(new Date());
-				
-				var rows=$('#grid').datagrid('getSelections');
-				if(rows.length==0){
-					alert("请勾选要下达的计划");
+			
+				if($("#jhxdTable").html()==''){
+					alert("请上传计划下达文件。");
 					return;
 				}
-				for(var i=0;i<rows.length;i++){
-					rows[i].jhxdwh=jhxdwh;
-					rows[i].bztbsj=bztbsj;
-					//alert(rows[i].xmbm.substr(10,1));
-					rows[i].xmlx=rows[i].xmbm.substr(10,1);
-				}
-				var json_data = JSON.stringify(rows); 
-				$.ajax({
-					type:'post',
-					url:'/jxzhpt/qqgl/planxdAll.do',
-					data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
-					dataType:'json',
-					success:function(msg){
-						if(msg){
-							alert("下达成功");
-							queryxmList();
-							showMxbAll();
-						}	
-					}
-				});
-				
-				
-			}else{
 				if($("#sjpfTable").html()==''){
-					alert("请上传该文号对应的文件。");
+					alert("请上传施工图变更文件。");
 					return;
 				}
-				$('#grid').dialog("close");
+				
 				//alert($('#bzxdwh').val()+"     "+$('#bztbsj').datebox('getValue'));
 				var jhxdwh=$('#bzxdwh').val();
 				var bztbsj=$('#bztbsj').datebox('getValue');
-				if(jhxdwh==''||bztbsj==''){
-					alert("请填写计划下达文号或计划下达时间。");
+				var sgtsjwh=$('#bzsjwh').val();
+				//alert();
+				if(jhxdwh==''){
+					alert("请填写计划下达文号。");
 					return;
 				}
+				if(bztbsj==''){
+					alert("请填写计划下达时间。");
+					return;
+				}
+				if(sgtsjwh==''){
+					alert("请填写施工图变更文号。");
+					return;
+				}
+				$('#jhxd').dialog("close");
 				$('#bztbsj').datebox('setValue', formatDate(new Date()));
-				$('#bzxdwh').val("");
+				$('#bzxdwh').val("");$('#bzsjwh').val("");
 				var rows=$('#grid').datagrid('getSelections');
 				if(rows.length==0){
 					alert("请勾选要下达的计划");
@@ -243,25 +274,27 @@
 				for(var i=0;i<rows.length;i++){
 					rows[i].jhxdwh=jhxdwh;
 					rows[i].bztbsj=bztbsj;
+					rows[i].sgtsjwh=sgtsjwh;
+					rows[i].sfqx='是';
 					//alert(rows[i].xmbm.substr(10,1));
 					rows[i].xmlx=rows[i].xmbm.substr(10,1);
 				}
 				var json_data = JSON.stringify(rows); 
 				$.ajax({
 					type:'post',
-					url:'/jxzhpt/qqgl/planxdAll.do',
-					data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&json_data="+json_data,
+					url:'/jxzhpt/qqgl/planxdAll_qx.do',
+					data:"jhxdwh="+jhxdwh+"&bztbsj="+bztbsj+"&sgtsjwh="+sgtsjwh+"&json_data="+json_data,
 					dataType:'json',
 					success:function(msg){
 						if(msg){
 							alert("下达成功");
-							queryxmList();
+							//queryxmList();
 							showMxbAll();
 						}
 							
 					}
 				});
-			}
+			
 		}
 		
 		function showMxbAll(){
@@ -325,6 +358,7 @@
 			queryxmList();
 			 showMxbAll();
 		}
+		
 	</script>
 	<style type="text/css">
 		TD {font-size: 12px;}
@@ -341,7 +375,9 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div style="padding-left:5px;padding-top: 1px;padding-bottom: 1px;">
+        					<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:endEditing()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">编辑完成</a>
         					<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">下达</a>
+							
 						</div>
         			</fieldset>
         		</td>
@@ -355,7 +391,76 @@
             	</td>
         	</tr>
 		</table>
-		
+		<div id="jhxd" class="easyui-dialog" title="计划下达" style="width:500px;height:280px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+			<table width="98%" border="0" style="padding-left:5px; border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						计划下达文号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="bzxdwh" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						计划下达时间</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="bztbsj" type="text"  class="easyui-datebox" />
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						计划下达文件</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="jhxdTable"></tbody>
+						</table>
+						<table>
+							<tr>
+								<td colspan="2">待上传：<div id="fileQueue" ></div></td>
+							</tr>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('/jxzhpt/js/uploader/bdll.png');" name="uploadJhxd" id="uploadJhxd" /></td>
+								<td>
+									<img name="uploadFile" id="uploadFile" src="/jxzhpt/js/uploader/upload.png" onclick="upload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						施工图变更文号</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="bzsjwh" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						施工图变更文件</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="sjpfTable"></tbody>
+						</table>
+						<table>
+							<tr>
+								<td colspan="2">待上传：<div id="fileQueue1" ></div></td>
+							</tr>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('/jxzhpt/js/uploader/bdll.png');" name="uploadSgtxd" id="uploadSgtxd" /></td>
+								<td>
+									<img name="uploadFile1" id="uploadFile1" src="/jxzhpt/js/uploader/upload.png" onclick="upload1()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height: 30px;font-size: 10px;">
+					<td colspan="2" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 45%">
+        				<a id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">下达</a>
+					</td>
+				</tr>
+			</table>
+		</div>
 
 </body>
 </html>

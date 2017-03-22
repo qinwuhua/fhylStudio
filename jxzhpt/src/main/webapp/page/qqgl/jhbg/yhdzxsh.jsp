@@ -134,7 +134,19 @@
 				{field:'tsdq',title:'特殊地区',width:100,align:'center'},
 				{field:'sjpfwh',title:'施工图批复文号',width:100,align:'center'},
 				{field:'jhkgsj',title:'计划开工时间',width:70,align:'center'},
-				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'}/* , */
+				{field:'jhwgsj',title:'计划完工时间',width:70,align:'center'},
+				{field:'hszj',title:'回收资金',width:70,align:'center'},
+				{field:'sgtsjwh',title:'施工图文件',width:120,align:'center',
+					formatter: function(value,row,index){
+						return '<a href="javascript:downwj('+"'"+value+"','施工图取消文件'"+')" style="color:#3399CC;">'+value+'</a>';
+					}
+					
+				},
+				{field:'jhwj',title:'计划文件',width:120,align:'center',
+					formatter: function(value,row,index){
+						return '<a href="javascript:downwj('+"'"+value+"','计划取消文件'"+')" style="color:#3399CC;">'+value+'</a>';
+					}}
+				/* , */
 				/* {field:'xdwh',title:'计划下达文号',width:100,align:'center'},
 				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}, */
 				/* {field:'mc',title:'面层结构',width:300,align:'center',
@@ -178,11 +190,17 @@
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
+						 $("#hszj").html(msg.HSZJ);
 					}else{
-						$('#spanztz').html("0");
-						$('#spansbz').html("0");
-						$('#spanbcgs').html("0");
-						$('#spanlc').html("0");
+						$("#xmsl").html("0");
+						 $("#tz").html("0");
+						 $("#cgs").html("0");
+						 $("#rys").html("0");
+						 $("#dk").html("0");
+						 $("#sjl").html("0");
+						 $("#lc").html("0");
+						 $("#dftz").html("0");
+						 $("#hszj").html("0");
 					}
 					
 				}
@@ -435,7 +453,8 @@ text-decoration:none;
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
             		贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
+            		地方投资【<span id="dftz" style="color: red;">0</span>】万元,
+            		回收资金【<span id="hszj" style="color: red;">0</span>】万元。
             		</div>
            		<div><table id="grid"></table></div>
            	</td>

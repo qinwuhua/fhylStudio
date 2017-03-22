@@ -834,7 +834,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean planxdAll_qx(List<Jhsh> list) {
-		return insertBatch("planxdAll", list)==list.size() && updateBatch("planxdAllmc_qx", list)==list.size();
+		return insertBatch("planxdAll", list)==list.size() && updateBatch("planxdAllmc_qx", list)==list.size() && updateBatch("planxdAllcbwh_qx", list)==list.size();
 	}
 	
 	@Override

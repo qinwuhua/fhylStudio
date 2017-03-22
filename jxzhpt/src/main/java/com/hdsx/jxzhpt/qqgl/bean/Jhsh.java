@@ -164,7 +164,35 @@ public class Jhsh {
 	private String lsxmbm;
 	private String lsxmnf;
 	private String lsxmlx;
+	private String sgtsjwh;
+	private String sfqx="否";
+	private String hszj;
+	private String jhwj;
 	
+	public String getJhwj() {
+		return jhwj;
+	}
+	public void setJhwj(String jhwj) {
+		this.jhwj = jhwj;
+	}
+	public String getHszj() {
+		return hszj;
+	}
+	public void setHszj(String hszj) {
+		this.hszj = hszj;
+	}
+	public String getSgtsjwh() {
+		return sgtsjwh;
+	}
+	public void setSgtsjwh(String sgtsjwh) {
+		this.sgtsjwh = sgtsjwh;
+	}
+	public String getSfqx() {
+		return sfqx;
+	}
+	public void setSfqx(String sfqx) {
+		this.sfqx = sfqx;
+	}
 	public String getLsxmnf() {
 		return lsxmnf;
 	}
