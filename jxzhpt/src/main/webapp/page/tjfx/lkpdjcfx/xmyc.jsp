@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>项目预测</title>
+	<title>科学决策预测</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -22,47 +22,27 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/widget/echarts/echarts-all.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
-		$(function(){
+		 $(function(){
 			loadgrid();
-		});
-		
+		}); 
+		 var xmbm="";
 		function loadgrid(){
-			
+			var url='';
 			var tjfl=$("#tjfl").val();
 			var zjtitle="";
 			
-			/*var colYears =[],colZj=[];
-			var col=[]; 
-			var years=[];
-			
-				 var year ={title:i+'年',width:160,align:'center',colspan:5};
-				colYears.push(year);
-				var count={field:i+'count',title:'项目数量',width:90,align:'center'};
-				colZj.push(count);
-				var ztz={field:i+'ztz',title:'总投资(万元)',width:80,align:'center'};
-				colZj.push(ztz);
-				var zbz={field:i+'zbz',title:'总补助(万元)',width:80,align:'center'};
-				colZj.push(zbz);
-				var lc={field:i+'lc',title:'总里程',width:80,align:'center'};
-				colZj.push(lc);
-				var tsbl={field:i+'tsbl',title:'优良路率提升比例(%)',width:100,align:'center'};
-				colZj.push(tsbl);
-				years.push(i+'年'); */
-			
 			if(tjfl=='1'){
-				zjtitle={field:'xzqh',title:'行政区划',width:200,align:'center',rowspan:3,fixed:true};
+				zjtitle={field:'xzqh',title:'行政区划',width:200,align:'center',fixed:true};
 			}else{
 				zjtitle={field:'lxbm',title:'路线编码',width:200,align:'center',fixed:true};
 			}
 			 
-			
 			$('#grid').datagrid({
-			    url:'../../../tjfx/queryXmtoLwyx.do',
-			    queryParams:{
-			    	'nf':'2017',
-			    	'end':'2017',
-			    	'tjfl':$("#tjfl").val()
-			    	},
+// 			    url:'../../../tjfx/selectXmsqxm.do',
+// 			    queryParams:{
+// 			    	'tjfl':$("#tjfl").val(),
+// 			    	'xmsq.xmbm':xmbm
+// 			    	},
 			    striped:true,
 			    pagination:false,
 			    rownumbers:false,
@@ -73,21 +53,20 @@
 			    columns:[
 							[
                              zjtitle,
-                             {field:'2017count',title:'项目数量',width:150,align:'center'},
-                             {field:'2017ztz',title:'总投资(万元)',width:150,align:'center'},
-                             {field:'2017zbz',title:'总补助(万元)',width:150,align:'center'},
-                             {field:'2017lc',title:'总里程',width:150,align:'center'},
-                             {field:'2017tsbl',title:'优良路率提升比例(%)',width:200,align:'center'}
+                             {field:'count',title:'项目数量',width:150,align:'center'},
+                             {field:'ztz',title:'总投资(万元)',width:150,align:'center'},
+                             {field:'zbz',title:'总补助(万元)',width:150,align:'center'},
+                             {field:'lc',title:'总里程',width:150,align:'center'},
+                             {field:'tsbl',title:'优良路率提升比例(%)',width:200,align:'center'}
 					    	]
 					    	
 						],
 			    onLoadSuccess:function(){
-// 			    	queryBar(years,tjfl);
 			    }
 			});
 		}
 		
-function queryBar(years,tjfl){
+/* function queryBar(years,tjfl){
 			
 			var value1=[]; var value2=[]; 
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
@@ -177,78 +156,10 @@ function queryBar(years,tjfl){
 	        		    ]
 	        		};
 	            
-	           /*  option2 = {
-	        		    title : {
-	        		        text: "各年份优良路提升比例图",
-	        		        x:'center',
-	        		        textStyle:{
-	    			            fontSize: 18
-	    			        } 
-	        		    },
-	        		    tooltip : {
-	        		        trigger: 'axis'
-	        		    },
-	        		    legend: {
-	        		    	show:true,
-	        		        data:lengData,
-	        		        x : 'center',
-	        		        y : 'bottom',
-	        		        orient: 'horizontal'
-	        		    },
-	        		    toolbox: {
-	        		        show : true,
-	        		        feature : {
-	        		            mark : {show: true},
-	        		            dataZoom : {	//框选区域缩放
-									show : true,
-									title : {
-										dataZoom : '区域缩放',
-										dataZoomReset : '区域缩放后退'
-									}
-								},
-	        		            dataView : {show: true, readOnly: false},
-	        		            magicType : {show: true, type: ['line', 'bar']},
-	        		            restore : {show: true},
-	        		            saveAsImage : {show: true}
-	        		        }
-	        		    },
-	        		    calculable : true,
-	        		    xAxis : [
-	        		        {
-	        		            type : 'category',
-	        		            data : years
-	        		        }
-	        		    ],
-	        		    yAxis : [
-	        		        {
-	        		            type : 'value'
-	        		        }
-	        		    ],
-	        		    series : [
-							{
-								name:"G105",
-							    type:'bar',
-							    data:value1,
-							    barWidth:30,
-							},
-							{
-								name:"G320",
-							    type:'bar',
-							    data:value2,
-							    barWidth:30,
-							},
-							{
-								name:"S310",
-							    type:'bar',
-							    data:value3,
-							    barWidth:30,
-							}
-	        		    ]
-	        		}; */
 	        		
 	            	 myChart.setOption(option1);
 	           
-		}
+		} */
 		
 		function xzxm(){
 			YMLib.UI.createWindow('xmyc','选择项目','xuanzxm1.jsp','xmyc',850,400);
@@ -261,7 +172,7 @@ function queryBar(years,tjfl){
 			<tr>
 				<td>
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;项目预测</div>
+						<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;科学决策预测</div>
 					</div>
 	            </td>
         	</tr>
@@ -281,7 +192,7 @@ function queryBar(years,tjfl){
 	        				</select>
 	        				</span>
 	        				
-        						<img onclick="loadgrid()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+<%--         						<img onclick="loadgrid()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/> --%>
         					    <a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
         					</p>
         				</div>
@@ -291,7 +202,8 @@ function queryBar(years,tjfl){
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div style="width:99%;">
-            			<table id="grid" width="100%"></table>
+            			<table id="grid" width="100%">
+            			</table>
             		</div>
             	</td>
         	</tr>

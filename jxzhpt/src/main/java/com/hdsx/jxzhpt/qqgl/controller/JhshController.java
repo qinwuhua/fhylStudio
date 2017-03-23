@@ -63,7 +63,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private int rows = 10;
 	//上传文件对象参数
 	private File uploadJhxd;
+	private File uploadSgtxd;
 	private String uploadJhxdFileName;
+	private String uploadSgtxdFileName;
 	private File fileupload;
 	private String fileuploadFileName;
 	//数据访问对象
@@ -99,6 +101,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 
 	public void setJson_data(String json_data) {
 		this.json_data = json_data;
+	}
+
+	public File getUploadSgtxd() {
+		return uploadSgtxd;
+	}
+
+	public void setUploadSgtxd(File uploadSgtxd) {
+		this.uploadSgtxd = uploadSgtxd;
+	}
+
+	public String getUploadSgtxdFileName() {
+		return uploadSgtxdFileName;
+	}
+
+	public void setUploadSgtxdFileName(String uploadSgtxdFileName) {
+		this.uploadSgtxdFileName = uploadSgtxdFileName;
 	}
 
 	/**
@@ -887,6 +905,24 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		os.flush();
 		os.close();
 	}
+	private void uploadFile(File file,String fileName,File f) throws FileNotFoundException,
+			IOException {
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		InputStream is = new FileInputStream(f); 
+		File saveFile =new File(file, fileName);
+		OutputStream os = new FileOutputStream(saveFile);
+		//设置缓存  
+		byte[] buffer = new byte[1024]; 
+		int length = 0;
+		while((length= is.read(buffer))>0){
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.flush();
+		os.close();
+	}
 	//
 	public void batchUploadJhxd() throws IOException{
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -930,7 +966,75 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
-	
+	//
+	public void batchUploadJhwj() throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		boolean b = false;
+		try {
+			if(jhsh.getXmlx()==1){
+				String fileurl="E:\\江西综合平台上传文件\\jhqxwj\\";
+				File file =new File(fileurl);
+				if(uploadJhxd!=null){
+					CbsjServer cbsjServer = new CbsjServerImpl();
+					String fid=UUID.randomUUID().toString();
+					Plan_upload uploads =new Plan_upload(fid,uploadJhxdFileName, "计划取消文件", "计划取消文件", 
+							"E:\\江西综合平台上传文件/jhqxwj/"+uploadJhxdFileName, jhsh.getXdwh());
+					uploads.setFid(fid);
+					Plan_upload result = cbsjServer.queryFileByWh(uploads);
+					if(result==null && cbsjServer.insertFile(uploads)){
+						uploadFile(file,uploadJhxdFileName,uploadJhxd);
+					}
+
+					b = true;
+				}
+			}else{
+				
+				String fileurl="E:\\江西综合平台上传文件\\sgtqxwj\\";
+				File file =new File(fileurl);
+				if(uploadSgtxd!=null){
+					CbsjServer cbsjServer = new CbsjServerImpl();
+					String fid=UUID.randomUUID().toString();
+					Plan_upload uploads =new Plan_upload(fid,uploadSgtxdFileName, "施工图取消文件", "施工图取消文件", 
+							"E:\\江西综合平台上传文件/sgtqxwj/"+uploadSgtxdFileName, jhsh.getXdwh());
+					uploads.setFid(fid);
+					Plan_upload result = cbsjServer.queryFileByWh(uploads);
+					if(result==null && cbsjServer.insertFile(uploads)){
+						uploadFile(file,uploadSgtxdFileName,uploadSgtxd);
+					}
+
+					b = true;
+				
+			}
+			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				if(jhsh.getXmlx()==1){
+					response.getWriter().print(uploadJhxdFileName+"上传失败！");	
+				}else{
+					response.getWriter().print(uploadSgtxdFileName+"上传失败！");
+				}
+				
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}finally{
+			if(b){
+				if(jhsh.getXmlx()==1){
+					response.getWriter().print(uploadJhxdFileName+"上传成功！");	
+				}else{
+					response.getWriter().print(uploadSgtxdFileName+"上传成功！");
+				}
+			}else {
+				if(jhsh.getXmlx()==1){
+					response.getWriter().print(uploadJhxdFileName+"上传失败！");	
+				}else{
+					response.getWriter().print(uploadSgtxdFileName+"上传失败！");
+				}
+			}
+		}
+	}
 	
 	public void batchUploadJhsh() throws IOException{
 		HttpServletResponse response = ServletActionContext.getResponse();

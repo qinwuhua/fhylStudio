@@ -381,5 +381,7 @@ public interface CbsjServer {
 	public boolean thCbsjByXmbm(Cbsj cbsj);
 
 	public boolean thwshcbsj(Cbsj cbsj);
+
+	public List<Plan_upload> getWjbytype(Plan_upload file);
 	
 }

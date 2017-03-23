@@ -1,6 +1,8 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
 import java.io.IOException;
+import java.sql.PseudoColumnUsage;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
+
+import org.apache.bcel.generic.NEW;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -22,8 +26,12 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_yhdzxServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
 import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
+import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -61,7 +69,7 @@ public class TjfxController extends BaseActionSupport{
 	private String tjfl;//统计分类
 	private int page =1;
 	private int rows=10;
-	
+	private Xmsq xmsq=new Xmsq();
 	/**
 	 * 基础库行政区划统计
 	 */
@@ -1234,54 +1242,288 @@ public class TjfxController extends BaseActionSupport{
 			}
 		}
     
+    public void queryXzqh(){
+    	try {
+    		if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
+	    		TreeNode treenode=new TreeNode();
+	    		treenode.setId("36__00");
+	        	List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+	        	xzqh.remove(0);
+	        	JsonUtils.write(xzqh, getresponse().getWriter());
+    		}
+    		else{
+    			List<TreeNode> lx=tjfxServer.queryLx(null);
+    			JsonUtils.write(lx, getresponse().getWriter());
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    
     /**
-	 * 项目对路网影响
+	 * 项目对路况影响
 	 */
 	public void queryXmtoLwyx(){
 		try{
+			DecimalFormat df= new DecimalFormat("######0.00");   
 			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
-			
 			if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
 			TreeNode treenode=new TreeNode();
 			treenode.setId("36__00");
 			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
-			
+			xzqh.remove(0);
 			for (TreeNode item : xzqh) {
-				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
+//				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
+				xzqhdm = item.getId().substring(0,4);
 				//查询到此行政区划的总计信息
-				List<Map<String,Object>> qs = tjfxServer.queryXzqhQsfx(xzqhdm,nf,end);
+				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end);
+				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
+				
+				Double ydl=0.0; Double tsbl;
+				for (int j = 0; j < yllv.size(); j++) {
+					if (j==0) {yllv.get(j).put("TSBL", "--");}
+					else {
+						tsbl=(Double.valueOf(yllv.get(j).get("YDL").toString())-ydl)/Double.valueOf(yllv.get(j).get("CD").toString())*100;
+						yllv.get(j).put("TSBL", df.format(tsbl).toString());
+					}
+					ydl=Double.valueOf(yllv.get(j).get("YDL").toString());
+				}
+				
 				//返回数据对象
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("xzqh", item.getName());
 				index.put("xzqhdm", item.getId());
+				
 				for (Map<String, Object> map : qs) {
-					index.put(map.get("NF").toString()+"yyll", "88.9");
+					String nf=map.get("NF").toString();
+					int flag=0;
+					for (int i = 0; i < yllv.size(); i++) {
+						if (yllv.get(i).get("NF").equals(nf)) {
+							index.put(map.get("NF").toString()+"yyll", yllv.get(i).get("YDLV").toString());
+							index.put(map.get("NF").toString()+"tsbl", yllv.get(i).get("TSBL").toString());
+							flag++;
+						}
+					}
+					if(flag==0){
+						index.put(map.get("NF").toString()+"yyll","--");
+						index.put(map.get("NF").toString()+"tsbl", "--");
+						}
 					index.put(map.get("NF").toString()+"ztz", map.get("ZTZ").toString());
 					index.put(map.get("NF").toString()+"zbz", map.get("STZ").toString());
 					index.put(map.get("NF").toString()+"count", map.get("ZJ").toString());
-					index.put(map.get("NF").toString()+"lc", map.get("ZJ").toString());
-					index.put(map.get("NF").toString()+"tsbl", "75.6");
+					index.put(map.get("NF").toString()+"lc", map.get("LC").toString());
 				}
 				result.add(index);
 			}
 			getRequest().getSession().setAttribute("xzqhqsfx", result);
 			}
 			else{
-				List<String> lxbm=new ArrayList<String>();
-				lxbm.add("G105");lxbm.add("G320");lxbm.add("S310");
-				
-				for (int j = 0; j < lxbm.size(); j++) {
+				List<TreeNode> lx=tjfxServer.queryLx(null);
+				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end);
+				for (int j = 0; j < lx.size(); j++) {
 					Map<String, String> index =new HashMap<String, String>();
-					index.put("lxbm", lxbm.get(j));
-					for (int i = Integer.valueOf(nf); i <= Integer.valueOf(end); i++) {
-						index.put(i+"yyll", "88.9");
-						index.put(i+"ztz", "970865.0275");
-						index.put(i+"zbz", "865.025");
-						index.put(i+"count", "528");
-						index.put(i+"lc", "555");
-						index.put(i+"tsbl", "75.6");
+					index.put("lxbm", lx.get(j).getId());
+					int num=0; Double ydl=0.0; Double tsbl;
+					for (int l = 0; l < qs1.size(); l++) {
+					if (qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
+						if(num==0)
+							index.put(qs1.get(l).get("NF").toString()+"tsbl","--");
+						else{
+							tsbl=(Double.valueOf(qs1.get(l).get("YDL").toString())-ydl)/Double.valueOf(qs1.get(l).get("CD").toString())*100;
+							qs1.get(l).put("TSBL", df.format(tsbl).toString());
+							index.put(qs1.get(l).get("NF").toString()+"tsbl", qs1.get(l).get("TSBL").toString());
+						}
+						num++;
+						ydl=Double.valueOf(qs1.get(l).get("YDL").toString());
+						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
+						index.put(qs1.get(l).get("NF").toString()+"zbz", qs1.get(l).get("STZ").toString());
+						index.put(qs1.get(l).get("NF").toString()+"count", qs1.get(l).get("ZJ").toString());
+						index.put(qs1.get(l).get("NF").toString()+"lc", qs1.get(l).get("LC").toString());
+						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
 					}
+				}
 					result.add(index);
+			  }
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void queryXmtoLwyx1(){
+		try{
+			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
+			if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
+			TreeNode treenode=new TreeNode();
+			treenode.setId(xzqhdm);
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			TreeNode item =xzqh.get(0);
+				xzqhdm = item.getId().substring(0,4);
+				//查询到此行政区划的总计信息
+				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end);
+				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
+				
+				//返回数据对象
+				Map<String, String> index =new HashMap<String, String>();
+				index.put("xzqh", item.getName());
+				index.put("xzqhdm", item.getId());
+				
+				for (Map<String, Object> map : qs) {
+					String nf=map.get("NF").toString();
+					int flag=0;
+					for (int i = 0; i < yllv.size(); i++) {
+						if (yllv.get(i).get("NF").equals(nf)) {
+							index.put(map.get("NF").toString()+"yyll", yllv.get(i).get("YDLV").toString());
+							flag++;
+						}
+					}
+					if(flag==0){
+						index.put(map.get("NF").toString()+"yyll","0");
+						}
+					index.put(map.get("NF").toString()+"ztz", map.get("ZTZ").toString());
+				}
+				result.add(index);
+			
+			getRequest().getSession().setAttribute("xzqhqsfx", result);
+			}
+			else{
+				List<TreeNode> lx=tjfxServer.queryLx(xzqhdm);
+				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end);
+				for (int j = 0; j < lx.size(); j++) {
+					Map<String, String> index =new HashMap<String, String>();
+					index.put("lxbm", lx.get(j).getId());
+					for (int l = 0; l < qs1.size(); l++) {
+					if (qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
+						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
+						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
+					}
+				}
+					result.add(index);
+			  }
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public String xzqhBm(String bh,String name){
+		String result="";
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	
+	
+	public void selectXmsqxm(){
+		try {
+			String xmnf;
+			xmsq.setXzqh(xzqhBm(xmsq.getXzqh(), "xzqhdm"));
+			if(xmsq.getXmnf().indexOf(",")>-1){
+				xmnf = xmsq.getXmnf().substring(0,1).equals(",") ? xmsq.getXmnf().substring(1) : xmsq.getXmnf();
+				xmsq.setXmnf(xmnf);
+			}
+			String jsjsdj="";
+			if((!"".equals(xmsq.getJsdj()))&&xmsq.getJsdj()!=null){
+				String[] jsdjs = xmsq.getJsdj().split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsjsdj=jsjsdj+"and (jsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsjsdj=jsjsdj+"or jsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsjsdj=jsjsdj+")";
+			}
+			xmsq.setJsdj(jsjsdj);
+			
+		List<Xmsq> list=tjfxServer.queryXmsqs(xmsq);
+		
+		EasyUIPage<Xmsq> e=new EasyUIPage<Xmsq>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 科学决策预测
+	 */
+	public void queryKxjcyc(){
+		try{
+			DecimalFormat df= new DecimalFormat("######0.00");   
+			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
+			if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			xzqh.remove(0);
+			List<Map<String,Object>> qs = tjfxServer.queryKxjc_ds(tjfl,xmsq.getXmbm());
+			
+			for (TreeNode item : xzqh) {
+				xzqhdm = item.getId().substring(0,4);
+				//返回数据对象
+				Map<String, String> index =new HashMap<String, String>();
+				index.put("xzqh", item.getName());
+				index.put("xzqhdm", item.getId());
+				
+				for (Map<String, Object> map : qs) {
+					if(map.get("XZQHDM").toString().equals(xzqhdm)){
+					index.put("ztz", map.get("ZTZ").toString());
+					index.put("zbz", map.get("ZBZ").toString());
+					index.put("count", map.get("COUNT").toString());
+					index.put("lc", map.get("LC").toString());
+					index.put("ydlv", map.get("YDLV").toString());
+				}
+			  }
+				result.add(index);
+			 }
+			}
+			else{
+				List<TreeNode> lx=tjfxServer.queryLx(null);
+				List<Map<String,Object>> qs1 = tjfxServer.queryKxjc_ds(tjfl,xmsq.getXmbm());
+				for (TreeNode item : lx) {
+					Map<String, String> index =new HashMap<String, String>();
+					index.put("lxbm", item.getId());
+				for (Map<String, Object> map2 : qs1) {
+					if (map2.get("LXBM").toString().equals(item.getId())) {
+						if(map2.get("ZTZ")!=null)index.put("ztz", map2.get("ZTZ").toString());
+						else{index.put("ztz","");}
+						if(map2.get("ZBZ")!=null)index.put("zbz", map2.get("ZBZ").toString());
+						else{index.put("zbz","");}
+						if(map2.get("COUNT")!=null)index.put("count", map2.get("COUNT").toString());
+						else{index.put("count","");}
+						if(map2.get("LC")!=null)index.put("lc", map2.get("LC").toString());
+						else{index.put("lc","");}
+						if(map2.get("YDLV")!=null)index.put("ydlv", map2.get("YDLV").toString());
+						else{index.put("ydlv","");}
+					}
+			      }
+				result.add(index);
 				}
 			}
 			JsonUtils.write(result, getresponse().getWriter());
@@ -1343,6 +1585,12 @@ public class TjfxController extends BaseActionSupport{
 	}
 	public void setTjfl(String tjfl) {
 		this.tjfl = tjfl;
+	}
+	public Xmsq getXmsq() {
+		return xmsq;
+	}
+	public void setXmsq(Xmsq xmsq) {
+		this.xmsq = xmsq;
 	}
 	
 }

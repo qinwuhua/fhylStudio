@@ -544,6 +544,10 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return queryList("getWjbyxmbm",file);
 	}
 	@Override
+	public List<Plan_upload> getWjbytype(Plan_upload file) {
+		return queryList("getWjbytype",file);
+	}
+	@Override
 	public boolean shangbaoCbsj(Cbsj cbsj) {
 		if("1".equals(""+cbsj.getXmlx())){
 			cbsj.setBz("cbsj_sjgz");

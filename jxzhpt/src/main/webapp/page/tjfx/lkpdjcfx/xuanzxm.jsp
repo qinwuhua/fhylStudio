@@ -33,7 +33,6 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadBmbm3('xmlx','拟完工建设性质');
-			//gsdxmlx('xmlx');
 			loadGldj('gldj');
 			
 		});

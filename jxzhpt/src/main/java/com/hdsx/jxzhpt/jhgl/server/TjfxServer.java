@@ -3,8 +3,10 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 
 public interface TjfxServer {
@@ -44,4 +46,17 @@ public interface TjfxServer {
 	List<SjbbMessage> queryLkbjfx(Lkmxb lkmxb);
 	
 	List<Lkmxb> getPdnf(Lkmxb lkmxb);
+	
+	List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf, String end);
+	
+	List<Map<String, Object>> queryYllv(String xzqhdm);
+	
+	List<Map<String, Object>> queryXmtoLk_lx(String nf, String end);
+	
+	List<TreeNode> queryLx(String lxbm);
+	
+	List<Xmsq> queryXmsqs(Xmsq xmsq);
+	
+	List<Map<String, Object>> queryKxjc_ds(String tjfl,String xmbm);
+	
 }

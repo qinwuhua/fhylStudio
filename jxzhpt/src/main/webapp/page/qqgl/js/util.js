@@ -855,6 +855,65 @@ function fileShowByWh(xmbm,type){
 	});
 }
 
+/**
+ * 查询设计批复文件
+ * @param xmbm
+ */
+function ShowfileByWh(id,xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryFileByWh.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#"+id).empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+				'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>  |  ' +
+				"<a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFilewj('"+data[i].id+"','"+id+"','"+xmbm+"','"+type+"')>删除</a></td></tr>";
+				$("#"+id).append(tr);
+			}
+		}
+	});
+}
+function deleteFilewj(id,id1,xmbm,type){
+	if(confirm('确定删除所选数据？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/deleteFile2.do",
+			 dataType : 'json',
+			 data : 'uploads.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('删除成功！');
+					 ShowfileByWh(id1,xmbm,type);
+				 }else{
+					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+
+function downwj(name,type){
+	if(confirm("确认下载文件吗？"))
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/getWjbytype.do',
+		data:'file.filewh='+name+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			for ( var i = 0; i < data.length; i++) {
+				downFile(data[i].fileurl.replace(/\\/g,"%2F"),data[i].filename);
+			}
+		}
+	});
+}
+
+
 function getWj(index,type){
 	var xmbm=$("#grid").datagrid('getRows')[index].xmbm;
 	$("#wjTable").empty();

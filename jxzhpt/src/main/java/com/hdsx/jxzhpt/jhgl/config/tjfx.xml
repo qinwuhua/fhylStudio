@@ -934,4 +934,154 @@
 	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">
 	select tbnf id,tbnf || '年' text from lkpd_mxb2014 t order by tbnf desc
 	</select>
+	
+	<select id="queryXmtoLk" resultType="java.util.Map" parameterType="java.util.Map">
+		<![CDATA[select nf,nvl(sum(ztz),0) ztz,nvl(sum(stz)+sum(btz),0) stz,nvl(sum(zj),0) zj,nvl(sum(lc),0) lc  from (
+		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,sum(l.lc) lc
+		from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm 
+		where j.xmbm in (select xmid from plan_zjxd) and
+		l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
+		union all
+		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,sum(l.lc) lc
+		from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm 
+		where j.xmbm in (select xmid from plan_zjxd) and
+		l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
+		union all
+		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,sum(l.lc) lc
+		from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm 
+		where j.xmbm in (select xmid from plan_zjxd) and
+		l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
+		union all
+		select substr(j.xmbm,0,4) nf,sum(j.ztz) ztz,sum(j.sysbbzj-j.yqdbcgs) stz,sum(j.yqdbcgs) btz,count(j.xmbm) zj,sum(l.lc) lc
+		from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm 
+		where j.xmbm in (select xmid from plan_zjxd) and
+		l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
+		union all
+		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,sum(l.lc) lc
+		from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm 
+		where j.xmbm in (select xmid from plan_zjxd) and
+		l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
+		) group by nf order by nf]]>
+	</select>
+	
+	<select id="queryYllv" resultType="java.util.Map" parameterType="java.util.Map">
+	select * from lkpd_data_ds_yllv where xzqhdm=#{xzqhdm}
+	</select>
+	
+	<select id="queryLx" resultType="treeNode" parameterType="java.util.Map">
+	select lxbm id,lxbm name from ds_lkpd_data t where  1=1
+	<if test="lxbm != null and  lxbm != ''">
+			and lxbm=#{lxbm}
+	</if>
+	group by lxbm order by lxbm
+	</select>
+	
+	<select id="queryXmtoLk_lx" resultType="java.util.Map" parameterType="java.util.Map">
+		<![CDATA[select * from (
+    select nf,lxbm,nvl(sum(zj),0) zj,nvl(sum(ztz),0) ztz, nvl(sum(stz),0) stz,nvl(sum(lc),0) lc from(
+     select substr(j.xmbm,0,4) nf,l.lxbm,count(distinct(j.xmbm)) zj,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,
+     sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc 
+     from jhsh_lmgz j left join lxsh_lx l on l.xmid=j.xmbm
+    where  j.xmbm in (select xmid from plan_zjxd) and l.xjsdj!='高速' and substr(l.lxbm,0,1) in ('G','S')
+    and l.jdbs='2' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end}  
+    group by l.lxbm,substr(j.xmbm,0,4) 
+    
+    union all
+    select substr(j.xmbm,0,4) nf,l.lxbm,count(distinct(j.xmbm)) zj,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,
+     sum(l.jhyilc+l.jherlc+l.jhsanlc+l.jhsilc+l.jhdwlc+l.jhwllc) lc 
+     from jhsh_sjgz j left join lxsh_lx l on l.xmid=j.xmbm
+    where  j.xmbm in (select xmid from plan_zjxd) and l.xjsdj!='高速' and substr(l.lxbm,0,1) in ('G','S')
+    and l.jdbs='2' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end}  
+    group by l.lxbm,substr(j.xmbm,0,4) 
+    
+    union all
+    select substr(j.xmbm,0,4) nf,l.lxbm,count(distinct(j.xmbm)) zj,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,
+     sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc 
+     from jhsh_xj j left join lxsh_lx l on l.xmid=j.xmbm
+    where  j.xmbm in (select xmid from plan_zjxd) and l.xjsdj!='高速' and substr(l.lxbm,0,1) in ('G','S')
+    and l.jdbs='2' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end}   
+    group by l.lxbm,substr(j.xmbm,0,4) 
+   
+    union all
+     select substr(j.xmbm,0,4) nf,l.lxbm,count(distinct(j.xmbm)) zj,sum(distinct(j.ztz)) ztz,(sum(distinct(j.sysbbzj-j.yqdbcgs))+sum(distinct(j.yqdbcgs))) stz,
+     sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc 
+     from jhsh_yhdzx j left join lxsh_lx l on l.xmid=j.xmbm
+    where  j.xmbm in (select xmid from plan_zjxd) and l.xjsdj!='高速' and substr(l.lxbm,0,1) in ('G','S')
+    and l.jdbs='2' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end}   
+    group by l.lxbm,substr(j.xmbm,0,4) 
+    
+    union all
+     select substr(j.xmbm,0,4) nf,l.lxbm,count(distinct(j.xmbm)) zj,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,
+     sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc 
+     from jhsh_sh j left join lxsh_lx l on l.xmid=j.xmbm
+    where  j.xmbm in (select xmid from plan_zjxd) and l.xjsdj!='高速' and substr(l.lxbm,0,1) in ('G','S')
+    and l.jdbs='2' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end}   
+    group by l.lxbm,substr(j.xmbm,0,4) 
+   
+    ) group by nf,lxbm  order by lxbm,nf
+     ) x left join lkpd_data_lx_yllv y on x.nf=y.nf and x.lxbm=y.lxbh]]>
+	</select>
+	
+	<select id="queryXmsqs" resultType="xmsq" parameterType="xmsq">
+		select * from lkpd_xmsq_data
+		where 1=1
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf in (${xmnf})
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if>
+		<if test="xmmc !='' and xmmc != null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="lsxmlx !='' and lsxmlx != null ">
+			${lsxmlx}
+		</if>
+	</select>
+	
+	<select id="queryKxjc_dstj" parameterType="java.util.Map" resultType="java.util.Map">
+	select * from (
+	select substr(xzqhdm,0,4) xzqhdm,sum(tz) ztz,sum(zbz) zbz,count(xmbm) count,sum(zlc) lc from lkpd_xmsq_data t 
+	where xmbm in (${xmbm}) 
+	group by substr(xzqhdm,0,4)) a left join 
+	(select t.xzqh,round(t.ydl/x.cd,2)*100 ydlv from (
+	select sum(case when mqi&lt;80 then cd else 0 end) ydl, substr(xzqhdm,0,4) xzqh from(    
+	select(select round(avg(mqi),2) from lkpd_data_ds d 
+     where d.lxbh=lxbm and d.tbnf=(select max(tbnf) from lkpd_mxb2014)
+     and  to_number(d.qdzh) >= qdzh
+     and  to_number(d.zdzh) &lt;= zdzh) mqi,xzqhdm,lxbm,(zdzh-qdzh) cd
+     from  lkpd_lx_data where xmbm in (${xmbm}) ) group by substr(xzqhdm,0,4)
+     ) t left join
+     (
+    select to_char(substr(xzqhdm,0,4))xzqh,sum(cd) cd from lkpd_data_ds 
+    where tbnf=(select max(tbnf) from lkpd_mxb2014) and xzqhdm is not null
+    group  by to_char(substr(xzqhdm,0,4)) ) x on t.xzqh=x.xzqh) b on a.xzqhdm=b.xzqh
+	</select>
+	
+	<select id="queryKxjc_lxtj" parameterType="java.util.Map" resultType="java.util.Map">
+	select a.*,b.ydlv from (
+		select lxbm,count(xmbm) count,sum(ztz) ztz,sum(zbz) zbz,sum(zlc) lc from(
+		    select lxbm,xmbm,max(ztz) ztz ,max(zbz) zbz,sum(zlc) zlc from lkpd_lx_data 
+		    where xmbm in (${xmbm})  group by lxbm,xmbm 
+		    )group by lxbm
+		 )a left join 
+		   (select t.lxbm,round(t.ydl/x.cd,2)*100 ydlv from (
+				select sum(case when mqi&lt;80 then cd else 0 end) ydl, lxbm from(    
+				select(select round(avg(mqi),2) from lkpd_data_ds d 
+			     where d.lxbh=lxbm and d.tbnf=(select max(tbnf) from lkpd_mxb2014)
+			     and  to_number(d.qdzh) >= qdzh
+			     and  to_number(d.zdzh) &lt;= zdzh) mqi,xzqhdm,lxbm,(zdzh-qdzh) cd
+			     from  lkpd_lx_data where xmbm in (${xmbm}) ) group by lxbm
+			  ) t left join
+		     (
+		    select lxbh,sum(cd) cd from lkpd_data_ds 
+		    where tbnf=(select max(tbnf) from lkpd_mxb2014) and xzqhdm is not null
+		    group  by lxbh ) x on t.lxbm=x.lxbh
+		    ) b on a.lxbm=b.lxbm
+	</select>
+	
+	
 </mapper>

@@ -857,4 +857,11 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		//System.out.println(x1.getWnxmk());
 		return x1;
 	}
+	@Override
+	public List<Map<String, String>> queryLxFromLxshlxByLevel(String level,
+			String xzqhdm) {
+		params.put("level", level);
+		params.put("xzqhdm", xzqhdm);
+		return queryList("queryLxFromLxshlxByLevel", params);
+	}
 }

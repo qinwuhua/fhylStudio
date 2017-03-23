@@ -150,7 +150,18 @@
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
-				{field:'wgsj',title:'完工时间',width:100,align:'center'}]];
+				{field:'wgsj',title:'完工时间',width:100,align:'center'},
+				{field:'hszj',title:'回收资金',width:70,align:'center'},
+				{field:'sgtsjwh',title:'施工图文件',width:120,align:'center',
+					formatter: function(value,row,index){
+						return '<a href="javascript:downwj('+"'"+value+"','施工图取消文件'"+')" style="color:#3399CC;">'+value+'</a>';
+					}
+					
+				},
+				{field:'jhwj',title:'计划文件',width:120,align:'center',
+					formatter: function(value,row,index){
+						return '<a href="javascript:downwj('+"'"+value+"','计划取消文件'"+')" style="color:#3399CC;">'+value+'</a>';
+					}}]];
 			bindLxGrid();
 			gridBind(grid);
 		}
@@ -170,10 +181,17 @@
 						 $("#lc").html(msg.LC);
 						 $("#dftz").html(msg.DFTZ);
 						 $("#yhdk").html(msg.YHDK);
+						 $("#hszj").html(msg.HSZJ);
 					}else{
-						$('#spanbbz').html("0");
-						$('#spansbz').html("0");
-						$('#spanlc').html("0");
+						$("#xmsl").html("0");
+						 $("#tz").html("0");
+						 $("#cgs").html("0");
+						 $("#sbz").html("0");
+						 $("#sjl").html("0");
+						 $("#lc").html("0");
+						 $("#dftz").html("0");
+						 $("#yhdk").html("0");
+						 $("#hszj").html("0");
 					}
 				}
 			});
@@ -422,7 +440,8 @@ text-decoration:none;
             		省补资金【<span id="sbz" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元,
-            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元。
+            		银行贷款【<span id="yhdk" style="color: red;">0</span>】万元,
+            		回收资金【<span id="hszj" style="color: red;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

@@ -1594,7 +1594,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			
 			List<TreeNode> resultList = new ArrayList<TreeNode>();
 			
-			List<Map<String, String>> gd = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
+			List<Map<String, String>> gd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'G%'",xmsq.getXzqhdm());
 			List<TreeNode> gChildren = new ArrayList<TreeNode>();
 			for (Map<String, String> item : gd) {
 				TreeNode lx = new TreeNode();
@@ -1605,7 +1605,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			TreeNode g = new TreeNode("G","国道",null,gChildren);
 			g.setState("closed");
 			resultList.add(g);
-			List<Map<String, String>> sd =  xmsqServer.queryLxFromGpsroadByLevel("S",xmsq.getXzqhdm());
+			
+			//s
+			List<Map<String, String>> sd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'S%'",xmsq.getXzqhdm());
 			List<TreeNode> sChildren = new ArrayList<TreeNode>();
 			for (Map<String, String> item : sd) {
 				TreeNode lx = new TreeNode();
@@ -1614,8 +1616,70 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				sChildren.add(lx);
 			}
 			TreeNode s = new TreeNode("S","省道",null,sChildren);
-			s.setState("closed");
+			g.setState("closed");
 			resultList.add(s);
+			
+			//x
+			List<Map<String, String>> xd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'X%'",xmsq.getXzqhdm());
+			List<TreeNode> xChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : xd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				xChildren.add(lx);
+			}
+			TreeNode x = new TreeNode("X","县道",null,xChildren);
+			g.setState("closed");
+			resultList.add(x);
+			//y
+			List<Map<String, String>> yd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'Y%'",xmsq.getXzqhdm());
+			List<TreeNode> yChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : yd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				yChildren.add(lx);
+			}
+			TreeNode y = new TreeNode("Y","乡道",null,yChildren);
+			g.setState("closed");
+			resultList.add(y);
+			//c
+			List<Map<String, String>> cd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'C%'",xmsq.getXzqhdm());
+			List<TreeNode> cChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : cd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				cChildren.add(lx);
+			}
+			TreeNode c = new TreeNode("C","村道",null,cChildren);
+			g.setState("closed");
+			resultList.add(c);
+			//z
+			List<Map<String, String>> zd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'Z%'",xmsq.getXzqhdm());
+			List<TreeNode> zChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : zd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				zChildren.add(lx);
+			}
+			TreeNode z = new TreeNode("Z","专道",null,zChildren);
+			g.setState("closed");
+			resultList.add(z);
+			//其他
+			List<Map<String, String>> qtd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm not like 'G%' and lxbm not like 'S%' and lxbm not like 'X%' and lxbm not like 'Y%' and lxbm not like 'C%' and lxbm not like 'Z%'",xmsq.getXzqhdm());
+			List<TreeNode> qtChildren = new ArrayList<TreeNode>();
+			for (Map<String, String> item : qtd) {
+				TreeNode lx = new TreeNode();
+				lx.setId(item.get("ID"));
+				lx.setText(item.get("TEXT"));
+				qtChildren.add(lx);
+			}
+			TreeNode qt = new TreeNode("qt","其他",null,qtChildren);
+			g.setState("closed");
+			resultList.add(qt);
+			
 			
 			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
 		} catch (Exception e) {
