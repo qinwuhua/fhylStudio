@@ -191,9 +191,10 @@
 	        					 <option value="2">按路线</option>
 	        				</select>
 	        				</span>
-	        				
 <%--         						<img onclick="loadgrid()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/> --%>
         					    <a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
+        					&nbsp;&nbsp;
+        					<span style="color:red;">【请选择项目进行预测】</span>
         					</p>
         				</div>
         			</fieldset>

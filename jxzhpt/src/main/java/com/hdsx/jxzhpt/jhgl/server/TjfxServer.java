@@ -47,11 +47,11 @@ public interface TjfxServer {
 	
 	List<Lkmxb> getPdnf(Lkmxb lkmxb);
 	
-	List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf, String end);
+	List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf, String end,String xmbm);
 	
 	List<Map<String, Object>> queryYllv(String xzqhdm);
 	
-	List<Map<String, Object>> queryXmtoLk_lx(String nf, String end);
+	List<Map<String, Object>> queryXmtoLk_lx(String nf, String end,String xmbm);
 	
 	List<TreeNode> queryLx(String lxbm);
 	
@@ -59,4 +59,5 @@ public interface TjfxServer {
 	
 	List<Map<String, Object>> queryKxjc_ds(String tjfl,String xmbm);
 	
+	List<Xmsq> queryJhshs(Xmsq xmsq);
 }
