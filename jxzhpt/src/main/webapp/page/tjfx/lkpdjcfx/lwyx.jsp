@@ -31,6 +31,8 @@
 			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-3);
 			loadgrid();
 		});
+		var xmbm="";
+		
 		function nf(id){
 			var myDate = new Date();
 			var years=[];
@@ -104,7 +106,8 @@
 			    queryParams:{
 			    	'nf':$('#startYear').combobox('getValue'),
 			    	'end':$('#endYear').combobox('getValue'),
-			    	'tjfl':$("#tjfl").val()
+			    	'tjfl':$("#tjfl").val(),
+			    	'xmsq.xmbm':xmbm
 			    	},
 			    striped:true,
 			    pagination:false,
@@ -131,7 +134,7 @@
 				type:'post',
 				url:"../../../tjfx/queryXmtoLwyx1.do",
 				data:"nf="+$('#startYear').combobox('getValue')+"&end="+$('#endYear').combobox('getValue')+"&tjfl="+$("#tjfl").val()+
-				"&xzqhdm="+$('#selxzqh').combobox("getValue"),
+				"&xzqhdm="+$('#selxzqh').combobox("getValue")+"&xmsq.xmbm="+xmbm,
 				dataType:'json',
 				success:function(msg){
 					if(msg.length>0){

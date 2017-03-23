@@ -220,12 +220,13 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	}
 	
 	@Override
-	public List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf,String end) {
+	public List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf,String end,String xmbm) {
 		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("xzqhdm", xzqhdm);
 		params.put("start", nf);
 		params.put("end", end);
+		params.put("xmbm", xmbm);
 		result = queryList("queryXmtoLk", params);
 		return result;
 	}
@@ -240,11 +241,12 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	}
 	
 	@Override
-	public List<Map<String, Object>> queryXmtoLk_lx(String nf,String end) {
+	public List<Map<String, Object>> queryXmtoLk_lx(String nf,String end,String xmbm) {
 		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("start", nf);
 		params.put("end", end);
+		params.put("xmbm", xmbm);
 		result = queryList("queryXmtoLk_lx", params);
 		return result;
 	}
@@ -271,5 +273,9 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		  return queryList("queryKxjc_lxtj",params);
 		}
 	}
-	
+
+	@Override
+	public List<Xmsq> queryJhshs(Xmsq xmsq) {
+		return queryList("queryJhshs",xmsq);
+	}
 }

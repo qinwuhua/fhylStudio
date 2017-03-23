@@ -1277,7 +1277,7 @@ public class TjfxController extends BaseActionSupport{
 //				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 				xzqhdm = item.getId().substring(0,4);
 				//查询到此行政区划的总计信息
-				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end);
+				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end,xmsq.getXmbm());
 				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
 				
 				Double ydl=0.0; Double tsbl;
@@ -1320,7 +1320,7 @@ public class TjfxController extends BaseActionSupport{
 			}
 			else{
 				List<TreeNode> lx=tjfxServer.queryLx(null);
-				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end);
+				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end,xmsq.getXmbm());
 				for (int j = 0; j < lx.size(); j++) {
 					Map<String, String> index =new HashMap<String, String>();
 					index.put("lxbm", lx.get(j).getId());
@@ -1363,7 +1363,7 @@ public class TjfxController extends BaseActionSupport{
 			TreeNode item =xzqh.get(0);
 				xzqhdm = item.getId().substring(0,4);
 				//查询到此行政区划的总计信息
-				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end);
+				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end,xmsq.getXmbm());
 				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
 				
 				//返回数据对象
@@ -1391,7 +1391,7 @@ public class TjfxController extends BaseActionSupport{
 			}
 			else{
 				List<TreeNode> lx=tjfxServer.queryLx(xzqhdm);
-				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end);
+				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end,xmsq.getXmbm());
 				for (int j = 0; j < lx.size(); j++) {
 					Map<String, String> index =new HashMap<String, String>();
 					index.put("lxbm", lx.get(j).getId());
@@ -1529,6 +1529,39 @@ public class TjfxController extends BaseActionSupport{
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	
+	
+	public void selectJhshxm(){
+		try {
+			String xmnf;
+			xmsq.setXzqh(xzqhBm(xmsq.getXzqh(), "xzqhdm"));
+			if(xmsq.getXmnf().indexOf(",")>-1){
+				xmnf = xmsq.getXmnf().substring(0,1).equals(",") ? xmsq.getXmnf().substring(1) : xmsq.getXmnf();
+				xmsq.setXmnf(xmnf);
+			}
+			String jsjsdj="";
+			if((!"".equals(xmsq.getJsdj()))&&xmsq.getJsdj()!=null){
+				String[] jsdjs = xmsq.getJsdj().split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsjsdj=jsjsdj+"and (jsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsjsdj=jsjsdj+"or jsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsjsdj=jsjsdj+")";
+			}
+			xmsq.setJsdj(jsjsdj);
+			
+		List<Xmsq> list=tjfxServer.queryJhshs(xmsq);
+		
+		EasyUIPage<Xmsq> e=new EasyUIPage<Xmsq>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 	
