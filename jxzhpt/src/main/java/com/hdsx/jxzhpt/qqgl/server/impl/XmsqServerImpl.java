@@ -263,9 +263,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public List<Map<String, String>> queryLxFromGpsroadByLevel(String level,String xzqhdm) {
-		params.put("level", level);
-		params.put("xzqhdm", xzqhdm);
-		return queryList("queryLxFromGpsroadByLevel", params);
+		Map<String, Object> params1=new HashMap<String, Object>();
+		params1.put("level", level);
+		params1.put("xzqhdm", xzqhdm);
+		return queryList("queryLxFromGpsroadByLevel", params1);
 	}
 
 	@Override
@@ -860,8 +861,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public List<Map<String, String>> queryLxFromLxshlxByLevel(String level,
 			String xzqhdm) {
-		params.put("level", level);
-		params.put("xzqhdm", xzqhdm);
-		return queryList("queryLxFromLxshlxByLevel", params);
+		Map<String, Object> params1=new HashMap<String, Object>();
+		params1.put("level", level);
+		params1.put("xzqhdm", xzqhdm);
+		return queryList("queryLxFromLxshlxByLevel", params1);
 	}
 }

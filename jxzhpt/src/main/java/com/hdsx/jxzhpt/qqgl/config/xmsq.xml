@@ -1411,13 +1411,20 @@
 	<select id="queryLxFromGpsroadByLevel" parameterType="java.util.Map" resultType="java.util.Map">
 		select substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6) text
 		<!-- ,min(g.roadstart),max(g.roadends) --> from gpsroad g where g.roadcode like #{level}||'%' 
-		and substr(roadcode,length(roadcode)-5) like #{xzqhdm}||'%' and f114 not like '高速%'
+		<if test="xzqhdm !=null and xzqhdm !=''">
+		and substr(roadcode,length(roadcode)-5) like #{xzqhdm}||'%'
+		</if>
+		and f114 not like '高速%'
 		group by substr(roadcode,0,length(roadcode)-6) order by substr(roadcode,0,length(roadcode)-6)
 	</select>
 	
 	<select id="queryLxFromLxshlxByLevel" parameterType="java.util.Map" resultType="java.util.Map">
 		select distinct lxbm id,lxbm text from lxsh_lx 
-		where xzqhdm like #{xzqhdm}||'%' ${level}
+		where 1=1
+		<if test="xzqhdm !=null and xzqhdm !=''">
+		and xzqhdm like #{xzqhdm}||'%'
+		</if>
+		${level}
 		order by lxbm
 	</select>
 	
