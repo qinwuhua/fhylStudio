@@ -1273,50 +1273,36 @@ public class TjfxController extends BaseActionSupport{
 			treenode.setId("36__00");
 			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
 			xzqh.remove(0);
+			List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
+//			List<Map<String, Object>> yllv =tjfxServer.queryYllv(null);//各年份的优良路率
 			for (TreeNode item : xzqh) {
 //				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 				xzqhdm = item.getId().substring(0,4);
-				//查询到此行政区划的总计信息
-				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end,xmsq.getXmbm());
-				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
-				
-				Double ydl=0.0; Double tsbl;
-				for (int j = 0; j < yllv.size(); j++) {
-					if (j==0) {yllv.get(j).put("TSBL", "--");}
-					else {
-						tsbl=(Double.valueOf(yllv.get(j).get("YDL").toString())-ydl)/Double.valueOf(yllv.get(j).get("CD").toString())*100;
-						yllv.get(j).put("TSBL", df.format(tsbl).toString());
-					}
-					ydl=Double.valueOf(yllv.get(j).get("YDL").toString());
-				}
-				
 				//返回数据对象
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("xzqh", item.getName());
 				index.put("xzqhdm", item.getId());
-				
-				for (Map<String, Object> map : qs) {
-					String nf=map.get("NF").toString();
-					int flag=0;
-					for (int i = 0; i < yllv.size(); i++) {
-						if (yllv.get(i).get("NF").equals(nf)) {
-							index.put(map.get("NF").toString()+"yyll", yllv.get(i).get("YDLV").toString());
-							index.put(map.get("NF").toString()+"tsbl", yllv.get(i).get("TSBL").toString());
-							flag++;
+				int num=0; Double ydl=0.0; Double tsbl;
+				for (int i = 0; i < qs.size(); i++) {
+					if (qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
+						if(num==0)
+							index.put(qs.get(i).get("NF").toString()+"tsbl","--");
+						else{
+							tsbl=(Double.valueOf(qs.get(i).get("YDL").toString())-ydl)/Double.valueOf(qs.get(i).get("CD").toString())*100;
+							qs.get(i).put("TSBL", df.format(tsbl).toString());
+							index.put(qs.get(i).get("NF").toString()+"tsbl", qs.get(i).get("TSBL").toString());
 						}
+						num++;
+						ydl=Double.valueOf(qs.get(i).get("YDL").toString());
+						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
+						index.put(qs.get(i).get("NF").toString()+"zbz", qs.get(i).get("STZ").toString());
+						index.put(qs.get(i).get("NF").toString()+"count", qs.get(i).get("ZJ").toString());
+						index.put(qs.get(i).get("NF").toString()+"lc", qs.get(i).get("LC").toString());
+						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
 					}
-					if(flag==0){
-						index.put(map.get("NF").toString()+"yyll","--");
-						index.put(map.get("NF").toString()+"tsbl", "--");
-						}
-					index.put(map.get("NF").toString()+"ztz", map.get("ZTZ").toString());
-					index.put(map.get("NF").toString()+"zbz", map.get("STZ").toString());
-					index.put(map.get("NF").toString()+"count", map.get("ZJ").toString());
-					index.put(map.get("NF").toString()+"lc", map.get("LC").toString());
 				}
 				result.add(index);
 			}
-			getRequest().getSession().setAttribute("xzqhqsfx", result);
 			}
 			else{
 				List<TreeNode> lx=tjfxServer.queryLx(null);
@@ -1363,27 +1349,17 @@ public class TjfxController extends BaseActionSupport{
 			TreeNode item =xzqh.get(0);
 				xzqhdm = item.getId().substring(0,4);
 				//查询到此行政区划的总计信息
-				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(xzqhdm,nf,end,xmsq.getXmbm());
-				List<Map<String, Object>> yllv =tjfxServer.queryYllv(xzqhdm);//各年份的优良路率
-				
+				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
 				//返回数据对象
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("xzqh", item.getName());
 				index.put("xzqhdm", item.getId());
 				
-				for (Map<String, Object> map : qs) {
-					String nf=map.get("NF").toString();
-					int flag=0;
-					for (int i = 0; i < yllv.size(); i++) {
-						if (yllv.get(i).get("NF").equals(nf)) {
-							index.put(map.get("NF").toString()+"yyll", yllv.get(i).get("YDLV").toString());
-							flag++;
-						}
+				for (int i = 0; i < qs.size(); i++) {
+					if (qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
+						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
+						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
 					}
-					if(flag==0){
-						index.put(map.get("NF").toString()+"yyll","0");
-						}
-					index.put(map.get("NF").toString()+"ztz", map.get("ZTZ").toString());
 				}
 				result.add(index);
 			

@@ -936,6 +936,58 @@
 	</select>
 	
 	<select id="queryXmtoLk" resultType="java.util.Map" parameterType="java.util.Map">
+select * from (
+select xzqh,nf,nvl(sum(ztz),0) ztz,nvl(sum(stz),0) stz,nvl(sum(zj),0) zj,nvl(sum(lc),0) lc from (
+select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,count(distinct(j.xmbm)) zj,sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc
+    from jhsh_lmgz j left join lxsh_lmgz t  on j.xmbm=t.xmbm left join lxsh_lx l on j.xmbm=l.xmid 
+    where j.xmbm in (select xmid from plan_zjxd)  and l.jdbs='2'
+    and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)&lt;=${end} 
+		<if test="xmbm != null and  xmbm != ''">
+			and j.xmbm in (${xmbm})  
+		</if>
+    group by substr(l.xzqhdm,0,4),substr(j.xmbm,0,4) 
+   union all
+select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,count(distinct(j.xmbm)) zj,sum(l.jhyilc+l.jherlc+l.jhsanlc+l.jhsilc+l.jhdwlc+l.jhwllc) lc
+    from jhsh_sjgz j left join lxsh_sjgz t  on j.xmbm=t.xmbm left join lxsh_lx l on j.xmbm=l.xmid 
+    where j.xmbm in (select xmid from plan_zjxd)  and l.jdbs='2'
+    and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)&lt;=${end} 
+		<if test="xmbm != null and  xmbm != ''">
+			and j.xmbm in (${xmbm})  
+		</if> 
+    group by substr(l.xzqhdm,0,4),substr(j.xmbm,0,4) 
+    union all
+select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,count(distinct(j.xmbm)) zj,sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc
+    from jhsh_xj j left join lxsh_xj t  on j.xmbm=t.xmbm left join lxsh_lx l on j.xmbm=l.xmid 
+    where j.xmbm in (select xmid from plan_zjxd)  and l.jdbs='2'
+    and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)&lt;=${end} 
+		<if test="xmbm != null and  xmbm != ''">
+			and j.xmbm in (${xmbm})  
+		</if> 
+    group by substr(l.xzqhdm,0,4),substr(j.xmbm,0,4) 
+    union all
+   select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.ztz)) ztz,(sum(distinct(j.sysbbzj-j.yqdbcgs))+sum(distinct(j.yqdbcgs))) stz,
+   count(distinct(j.xmbm)) zj,sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc
+    from jhsh_yhdzx j left join xmsq_yhdzx t  on j.xmbm=t.xmbm left join lxsh_lx l on j.xmbm=l.xmid 
+    where j.xmbm in (select xmid from plan_zjxd)  and l.jdbs='2'
+    and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)&lt;=${end} 
+		<if test="xmbm != null and  xmbm != ''">
+			and j.xmbm in (${xmbm})  
+		</if> 
+    group by substr(l.xzqhdm,0,4),substr(j.xmbm,0,4)  
+    union all
+    select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) ztz,(sum(distinct(j.sbzzj))+sum(distinct(j.bbzzj))) stz,
+    count(distinct(j.xmbm)) zj,sum(l.yilc+l.erlc+l.sanlc+l.silc+l.dwlc+l.wllc) lc
+    from jhsh_sh j left join xmsq_sh t  on j.xmbm=t.xmbm left join lxsh_lx l on j.xmbm=l.xmid 
+    where j.xmbm in (select xmid from plan_zjxd)  and l.jdbs='2'
+   and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)&lt;=${end} 
+		<if test="xmbm != null and  xmbm != ''">
+			and j.xmbm in (${xmbm})  
+		</if>
+    group by substr(l.xzqhdm,0,4),substr(j.xmbm,0,4)
+ ) group by xzqh,nf order by xzqh,nf
+ ) a left join lkpd_data_ds_yllv b on a.nf=b.nf and a.xzqh=b.xzqhdm
+	</select>
+	<!-- <select id="queryXmtoLk" resultType="java.util.Map" parameterType="java.util.Map">
 	select nf,nvl(sum(ztz),0) ztz,nvl(sum(stz)+sum(btz),0) stz,nvl(sum(zj),0) zj,nvl(sum(lc),0) lc  from (
 		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,sum(l.lc) lc
 		from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm 
@@ -983,10 +1035,13 @@
 		</if>
 		group by substr(j.xmbm,0,4)
 		) group by nf order by nf
-	</select>
+	</select> -->
 	
 	<select id="queryYllv" resultType="java.util.Map" parameterType="java.util.Map">
-	select * from lkpd_data_ds_yllv where xzqhdm=#{xzqhdm}
+	select * from lkpd_data_ds_yllv where 1=1
+	<if test="xzqhdm != null and  xzqhdm != ''">
+	xzqhdm=#{xzqhdm}
+	</if>
 	</select>
 	
 	<select id="queryLx" resultType="treeNode" parameterType="java.util.Map">

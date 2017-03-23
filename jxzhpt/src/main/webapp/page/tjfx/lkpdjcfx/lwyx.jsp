@@ -261,8 +261,8 @@
 	        				<span>统计分类：</span>
 	        				<span>
 	        				<select id="tjfl" style="width:70px;">
-	        					 <option value="2">按路线</option>
 	        					  <option value="1">按地市</option>
+	        					  <option value="2">按路线</option>
 	        				</select>
 	        				</span>
 	        				<span>
