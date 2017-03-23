@@ -65,7 +65,7 @@
 			if(xmlx.substr(0,1)==',')
 				xmlx=xmlx.substr(1,xmlx.length);
 			$('#datagrid').datagrid({    
-			    url:'/jxzhpt/qqgl/selectGsdxzxm.do',
+			    url:'/jxzhpt/tjfx/selectXmsqxm.do',
 			    striped:true,
 			    pagination:false,
 			    rownumbers:true,
@@ -73,74 +73,31 @@
 			    height:$(window).height()-40,
 			    width:$(window).width()-20,
 			    queryParams: {
-			    	xzqh:xzqhstr,
-					xmnf:xmnf,
-					tsdq:tsdq,
-					jsdj:jsdj,
-					gldj:gldj,
-					'lxsh.lsjl':$("#lsjl").combobox('getValue'),
-					'lxsh.xmmc':$("#xmmc").val(),
-					'lxsh.ghlxbh':$("#lxbm").val(),
-					'lxsh.lxmc':$("#lxmc").val(),
-					'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-					'lxsh.ghxlxbm':$("#ghxlxbm").val(),
-					'lxsh.ghxlxmc':$("#ghxlxmc").val(),
-					'lxsh.xmlx1':xmlx,
-					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
-					'lxsh.xmklx':$("#xmklx").combotree('getValue'),
-					'lxsh.gydw':$.cookie("dist2"),
-// 					'lxsh.nwgxzdj':parent.$("#nwgxzdj").combobox('getValues').join(',')
+			    	'xmsq.xzqh':xzqhstr,
+					'xmsq.xmnf':xmnf,
+					'xmsq.jsdj':jsdj,
+					'xmsq.xmmc':$("#xmmc").val(),
+// 					'xmsq.ghlxbh':$("#lxbm").val(),
+// 					'xmsq.lxmc':$("#lxmc").val(),
+// 					'xmsq.jsjsdj':$("#jsjsdj").combotree('getText'),
+// 					'xmsq.ghxlxbm':$("#ghxlxbm").val(),
+// 					'xmsq.ghxlxmc':$("#ghxlxmc").val(),
+// 					'xmsq.xmlx1':xmlx,
+// 					'xmsq.qqkzzt':$("#qqkzzt").combobox('getValue'),
+// 					'xmsq.xmklx':$("#xmklx").combotree('getValue'),
+// 					'xmsq.gydw':$.cookie("dist2"),
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-			        
 					{field : 'xzqh',title : '行政区划',width : 105,align : 'center'},
 					{field : 'xmnf',title : '项目年份',width : 53,align : 'center'},
-			        {field : 'xmmc',title : '项目名称',width : 210,align : 'center',formatter:function(value,row,index){
-			        	if(row.sl>0)
-			        	return '<font color="red">'+row.xmmc+'</font>';
-			        	else return  row.xmmc;
-			        }},
-			        {field : 'zjhlc',title : '里程',width : 50,align : 'center'},
-			        {field:'xjsdj',title:'现技术等级',width:69,align:'center'},
-				    {field:'jsjsdj',title:'建设技术等级',width:79,align:'center'},
-				    {field:'ghlxbm',title:'规划路线编码',width:79,align:'center',formatter: function(value,row,index){if(row.xmlx1=="新建工程"){return row.xjlxbm;}else{return value;}}},
-				   
-				    {field : 'ghlxbhs',title : '原路线编码',width : 60,align : 'center',formatter:function(value,row,index){
-				    	if(row.ghlxbh=='')
-				    	return row.xjlxbm;
-				    	else
-				    		return row.ghlxbh;
-					}}
-				   
-				    
+					{field:  'xmbm',title:'项目编码',width:79,align:'center'},
+			        {field : 'xmmc',title : '项目名称',width : 210,align : 'center'},
+			        {field : 'zlc',title : '里程',width : 50,align : 'center'},
+			        {field:'jsdj',title:'现技术等级',width:69,align:'center'},
+				    {field:'ghlxbh',title:'规划路线编码',width:79,align:'center'},
+				    {field:'lsxmlx',title:'项目类型',width:79,align:'center'}
 			    ]],
-				view: detailview,
-				detailFormatter:function(index,row){  
-						return '<div style="padding:2px"><table id="table_lx' + row.id + '"></table></div>';   
-			    },
-			    onExpandRow: function(index,row){
-			    	parentindex=index;
-			    	if(row.sl!=0){
-			    		$('#table_lx'+row.id).datagrid({
-				    		url:'/jxzhpt/qqgl/selectwnSjlxList.do',
-				    		 queryParams: {
-				    			 'lxsh.xmbm':row.id,
-				    			 'lxsh.sffirst':'1'
-				    			},
-			    			columns:[[
-			    			    {field:'xzqh',title:'行政区划',width:120,align:'center'},
-			    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-			    			    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
-							    {field:'ghlxbh',title:'原路线编码',width:100,align:'center'},
-			    			     {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-			    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-			    			    {field:'jhlc',title:'里程',width:60,align:'center'}
-			    			]]
-				    	});
-			    	}
-			    	
-			    }   
 			}); 
 		}
 		
@@ -152,32 +109,28 @@
 				return;
 			}
 			
-		   /*  var xmbm="";
+		    var xmbm="";
 			for(var i=0;i<gr.length;i++){
 				xmbm+=gr[i].xmbm+',';
 			}
 			xmbm=xmbm.substring(0,xmbm.length-1);
 			
 			parent.xmbm=xmbm;
+			
 			var title='';
-			if(parent.$("#tjfl").combobox('getValue')=='按地市'){
-				title='地市';
+			if(parent.$("#tjfl").val()=='1'){
+				title={field:'xzqh',title:'行政区划',width:200,align:'center',fixed:true};
 			}else{
-				if(parent.$("#nwgxzdj").combobox('getValues').join(',')=='G'){
-					title='国道编号';
-				}else if(parent.$("#nwgxzdj").combobox('getValues').join(',')=='S'){
-					title='省道编号';
-				}else{
-					title='国省道编号';
-				}
+				title={field:'lxbm',title:'路线编码',width:200,align:'center',fixed:true};
 			}
 			
-			if(parent.$("#nwgxzdj").combobox('getValues').join(',')==''){
-				alert("请勾选行政等级");
-				return;
-			}
+// 			if(parent.$("#nwgxzdj").combobox('getValues').join(',')==''){
+// 				alert("请勾选行政等级");
+// 				return;
+// 			}
+			
 			parent.$('#grid').datagrid({    
-			    url:'/jxzhpt/qqgl/ckxlwjg.do',
+			    url:'/jxzhpt/tjfx/queryKxjcyc.do',
 			    striped:true,
 			    pagination:false,
 			    rownumbers:false,
@@ -187,23 +140,20 @@
 			    height:parent.y,
 			    width:parent.x,
 			    queryParams: {
-			    	'lxsh.nwgxzdj':parent.$("#nwgxzdj").combobox('getValues').join(','),
-					'lxsh.tjfl':parent.$("#tjfl").combobox('getValue'),
-					'lxsh.xmbm':xmbm
+// 			    	'xmsq.nwgxzdj':parent.$("#nwgxzdj").combobox('getValues').join(','),
+					'tjfl':parent.$("#tjfl").val(),
+					'xmsq.xmbm':xmbm
 				},
 			    columns:[[
-			        {field:'v_0',title:title,width:120,align:'center'},
-					{field:'v_1',title:'里程（公里）',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-					{field:'v_2',title:'一级公路',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-			        {field:'v_3',title:'二级公路',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-			        {field:'v_4',title:'三级公路',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-				    {field:'v_5',title:'四级公路',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-				    {field:'v_6',title:'等外公路',width:120,align:'center',formatter: function(value,row,index){if(value.substring(0,1)=="."){return '0'+value;}else{return value;}}},
-				    {field:'v_7',title:'二级以上占比',width:100,align:'center'},
-				    {field:'v_8',title:'三级以上占比',width:100,align:'center'}
+                    title,
+			        {field:'count',title:'项目数量',width:150,align:'center'},
+                    {field:'ztz',title:'总投资(万元)',width:150,align:'center'},
+                    {field:'zbz',title:'总补助(万元)',width:150,align:'center'},
+                    {field:'lc',title:'总里程',width:150,align:'center'},
+                    {field:'ydlv',title:'优良路率提升比例(%)',width:200,align:'center'}
 			    ]]
 				 
-			});   */ 
+			}); 
 			
 			parent.$('#xmyc').window('destroy');
 			
@@ -234,11 +184,11 @@
 							<tr height="42" >
         						<td style="width: 100px;">行政区划：</td>
         						<td style="width: 176px;"><select id="xzqh" style="width:170px;"></select></td>
-        						<td style="width: 100px;">项目库类型：</td>
+        						<td style="width: 100px;">项目类型：</td>
 								<td style="width: 176px;">
-									<select id='xmklx' class="easyui-combobox" style="width: 170px;">
+									<select id='xmlx' class="easyui-combobox" style="width: 170px;">
 										<option value="">请选择</option>
-										<option value="部库">部库</option>
+										<option value="部库"></option>
 										<option value="省库">省库</option>
 									</select>
 								</td>

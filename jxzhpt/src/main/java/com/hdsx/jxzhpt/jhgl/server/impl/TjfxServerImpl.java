@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	public TjfxServerImpl() {
@@ -216,4 +218,58 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	public List<Lkmxb> getPdnf(Lkmxb lkmxb) {
 		return queryList("getPdnf",lkmxb);
 	}
+	
+	@Override
+	public List<Map<String, Object>> queryXmtoLk(String xzqhdm, String nf,String end) {
+		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		params.put("start", nf);
+		params.put("end", end);
+		result = queryList("queryXmtoLk", params);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> queryYllv(String xzqhdm) {
+		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		result = queryList("queryYllv", params);
+		return result;
+	}
+	
+	@Override
+	public List<Map<String, Object>> queryXmtoLk_lx(String nf,String end) {
+		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("start", nf);
+		params.put("end", end);
+		result = queryList("queryXmtoLk_lx", params);
+		return result;
+	}
+	
+	@Override
+	public List<TreeNode> queryLx(String lxbm) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("lxbm", lxbm);
+		return queryList("queryLx",params);
+	}
+	
+	@Override
+	public List<Xmsq> queryXmsqs(Xmsq xmsq) {
+		return queryList("queryXmsqs",xmsq);
+	}
+	
+	@Override
+	public List<Map<String, Object>> queryKxjc_ds(String tjfl,String xmbm) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xmbm", xmbm);
+		if(tjfl.equals("1")){
+		  return queryList("queryKxjc_dstj",params);
+		}else{
+		  return queryList("queryKxjc_lxtj",params);
+		}
+	}
+	
 }

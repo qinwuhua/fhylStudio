@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>项目对路网影响</title>
+	<title>项目对路况影响</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -46,6 +46,25 @@
 			    textField:'text'   
 			});
 			$('#'+id).combobox("setValue",first);
+		}
+		
+		function loadxzqh(){
+			$('#selxzqh').combobox({
+				checkbox : true,
+				multiple:false,
+				width:120,
+				url : '/jxzhpt/tjfx/queryXzqh.do?tjfl='+$("#tjfl").val(),
+				valueField:'id',
+				textField:'name',
+				onLoadSuccess:function(){
+					var tjfl=$("#tjfl").val();
+					if(tjfl=='1'){$("#selxzqh").combobox('select','360100');}
+					else{$("#selxzqh").combobox('select','G105');}
+				},
+				onSelect:function(){
+					queryBar();
+				}
+			});
 		}
 		
 		function loadgrid(){
@@ -101,21 +120,37 @@
 					    	colYears,colZj
 						],
 			    onLoadSuccess:function(){
-			    	queryBar(years,tjfl);
+			    	loadxzqh();
 			    }
 			});
 		}
 		
-		function queryBar(years,tjfl){
+		function queryBar(){
 			
-			var value1=[]; var value2=[]; 
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value1.push(parseFloat(250)+parseFloat(i)-parseFloat(2000));
-			}
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value2.push(parseFloat(80.6)+parseFloat(i)-parseFloat(2000));
-			}
+			$.ajax({
+				type:'post',
+				url:"../../../tjfx/queryXmtoLwyx1.do",
+				data:"nf="+$('#startYear').combobox('getValue')+"&end="+$('#endYear').combobox('getValue')+"&tjfl="+$("#tjfl").val()+
+				"&xzqhdm="+$('#selxzqh').combobox("getValue"),
+				dataType:'json',
+				success:function(msg){
+					if(msg.length>0){
+						queryTrack(msg);
+					}
+				}
+			});
 			
+		}
+		function queryTrack(msg){
+			var years=[]; var ylld=[]; var zj=[];
+			
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
+				if(msg[0][(i+"yyll")]!=null){
+					years.push(i+'年');
+					ylld.push(msg[0][(i+"yyll")]);
+					zj.push(msg[0][(i+'ztz')]);
+				}
+			}
 			 var myChart = echarts.init(document.getElementById("anychart_div")); 
 	            
 	            option1 = {
@@ -131,7 +166,7 @@
 	        		    },
 	        		    legend: {
 	        		    	show:true,
-	        		        data:['投入资金（万元）','优良路提升比例（%）'],
+	        		        data:['投入资金（万元）','优良路率（%）'],
 	        		        x : 'left',
 	        		        y : 'top',
 	        		        orient: 'horizontal'
@@ -162,22 +197,16 @@
 	        		    ],
 	        		    yAxis : [
 	        		          {
-	                                 type: 'value',
-	                                 name: '投入资金',
-	                                 position: 'left',
-	                                    axisLabel: {
-	                                        formatter: '{value} （万元）'
-	                             }
+	                            type: 'value',
+	                            name: '投入资金（万元）',
+	                            max: 800000,
+	                            position: 'left',
 	                        },
 	                        {
 	                            type: 'value',
-	                            name: '优良路提升比例',
-	                            min: 0,
-	                            max: 500,
+	                            name: '优良路率（%）',
 	                            position: 'right',
-	                            axisLabel: {
-	                                formatter: '{value} （%）'
-	                            }
+	                            max: 150,
 	                        },
 	        		    ],
 	        		    series : [
@@ -185,85 +214,19 @@
 			                    name:'投入资金（万元）',
 			                    type:'line',
 			                    barWidth: '20%',
-			                    data:value1
+			                    yAxis: 1, 
+			                    data:zj
 			                },
 			                {
-			                    name:'优良路提升比例（%）',
+			                    name:'优良路率（%）',
 			                    type:'line',
 			                    barWidth: '20%',
-			                    data:value2
+			                    yAxisIndex: 1,
+			                    data:ylld
 			                }
 	        		    ]
 	        		};
 	            
-	           /*  option2 = {
-	        		    title : {
-	        		        text: "各年份优良路提升比例图",
-	        		        x:'center',
-	        		        textStyle:{
-	    			            fontSize: 18
-	    			        } 
-	        		    },
-	        		    tooltip : {
-	        		        trigger: 'axis'
-	        		    },
-	        		    legend: {
-	        		    	show:true,
-	        		        data:lengData,
-	        		        x : 'center',
-	        		        y : 'bottom',
-	        		        orient: 'horizontal'
-	        		    },
-	        		    toolbox: {
-	        		        show : true,
-	        		        feature : {
-	        		            mark : {show: true},
-	        		            dataZoom : {	//框选区域缩放
-									show : true,
-									title : {
-										dataZoom : '区域缩放',
-										dataZoomReset : '区域缩放后退'
-									}
-								},
-	        		            dataView : {show: true, readOnly: false},
-	        		            magicType : {show: true, type: ['line', 'bar']},
-	        		            restore : {show: true},
-	        		            saveAsImage : {show: true}
-	        		        }
-	        		    },
-	        		    calculable : true,
-	        		    xAxis : [
-	        		        {
-	        		            type : 'category',
-	        		            data : years
-	        		        }
-	        		    ],
-	        		    yAxis : [
-	        		        {
-	        		            type : 'value'
-	        		        }
-	        		    ],
-	        		    series : [
-							{
-								name:"G105",
-							    type:'bar',
-							    data:value1,
-							    barWidth:30,
-							},
-							{
-								name:"G320",
-							    type:'bar',
-							    data:value2,
-							    barWidth:30,
-							},
-							{
-								name:"S310",
-							    type:'bar',
-							    data:value3,
-							    barWidth:30,
-							}
-	        		    ]
-	        		}; */
 	        		
 	            	 myChart.setOption(option1);
 	           
@@ -280,7 +243,7 @@
 			<tr>
 				<td>
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;项目对路网影响</div>
+						<div id="p_top">统计分析>&nbsp;路况评定决策分析>&nbsp;项目对路况影响</div>
 					</div>
 	            </td>
         	</tr>
@@ -295,8 +258,8 @@
 	        				<span>统计分类：</span>
 	        				<span>
 	        				<select id="tjfl" style="width:70px;">
-	        					 <option value="1">按地市</option>
 	        					 <option value="2">按路线</option>
+	        					  <option value="1">按地市</option>
 	        				</select>
 	        				</span>
 	        				<span>
@@ -337,6 +300,9 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
+	        			<div>
+	       				<select id="selxzqh"></select>
+	       			    </div>
 	        			<div style="height: 500px;border: 1px #C0C0C0 solid;text-align: center;width:98%;">
 	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
 								<div>

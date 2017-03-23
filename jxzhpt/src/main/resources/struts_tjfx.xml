@@ -41,5 +41,9 @@
 		<action name="queryLkpdmxList" class="tjfxController" method="queryLkpdmxList"></action>
 		<action name="getPdnf" class="tjfxController" method="getPdnf"></action>
 		<action name="queryXmtoLwyx" class="tjfxController" method="queryXmtoLwyx"></action>
+		<action name="queryXzqh" class="tjfxController" method="queryXzqh"></action>
+		<action name="queryXmtoLwyx1" class="tjfxController" method="queryXmtoLwyx1"></action>
+		<action name="selectXmsqxm" class="tjfxController" method="selectXmsqxm"></action>
+		<action name="queryKxjcyc" class="tjfxController" method="queryKxjcyc"></action>
 	</package>
 </struts>
