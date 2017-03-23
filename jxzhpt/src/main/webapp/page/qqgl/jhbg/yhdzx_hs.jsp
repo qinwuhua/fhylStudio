@@ -179,7 +179,7 @@
 		    if ($('#grid').datagrid('validateRow', editIndex)) {
 		    	
 		        $('#grid').datagrid('endEdit', editIndex);
-		        $('#grid').datagrid('selectRow', editIndex);
+		        //$('#grid').datagrid('selectRow', editIndex);
 		        editIndex = undefined;
 		        
 		        return true;
@@ -367,7 +367,7 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div style="padding-left:5px;padding-top: 1px;padding-bottom: 1px;">
-        					<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:endEditing()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">编辑完成</a>
+<!--         					<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:endEditing()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">编辑完成</a> -->
         					<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:planxdwhAll()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">下达</a>
 						</div>
         			</fieldset>
