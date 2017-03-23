@@ -289,23 +289,23 @@ text-decoration:none;
 								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td> -->
-        						<td>行政区划：</td>
+        						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
-								<td>项目名称：</td>
-        						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
-        						<td>建设性质：</td>
-								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
-        						<td>建设技术等级：</td>
-								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
-								<td>现技术等级：</td>
+								<td align="right">项目名称：</td>
+        						<td><input name="xmmc" type="text" id="xmmc" style="width:75px;" /></td>
+        						<td align="right">建设性质：</td>
+								<td><select name="xmlx" id="xmlx" style="width:75px;" ></select></td>
+        						<td align="right">建设技术等级：</td>
+								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:80px;"></select></td>
+								<td align="right">现技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
 								
         					</tr>
         					<tr height="32">
-        					<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>资金来源：</td>
-        						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
+        					<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 150px;"></select></td>
+        						<td align="right">资金来源：</td>
+        						<td><input name="zjly" type="text" id="zjly" style="width:75px;" /></td>
         						<!-- <td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
@@ -320,28 +320,28 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td> -->
-								<td>重要度排序：</td>
-        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
+								<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:75px;">
 		                              	<option value="" selected>请选择</option>
 										<option value="升序">升序</option>
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        						<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
-								<td>原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
+        						<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
+								<td align="right">原路线编码：</td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:55px;" /></td>
         						
                             </tr>
                             <tr height="32">
-                            <td>原路线名称：</td>
-        						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						<td>规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
-								<td>规划路线名称：</td>
-        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-        						<td>是否有补助历史：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:55px;">
+                            <td align="right">原路线名称：</td>
+        						<td><input name="lxmc" type="text" id="lxmc" style="width:150px;" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:75px;" /></td>
+								<td align="right">规划路线名称：</td>
+        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:75px;" /></td>
+        						<td align="right">是否有补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
@@ -360,22 +360,22 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:104px;"></select></td>
+								<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:55px;"></select></td>
 								
                             </tr>
                             <tr height="32">
-                            <td>管养分类：</td>
-        						<td><input name="gyfl" type="text" id="gyfl" style="width:100px;" /></td>
-								<td>审核状态：</td>
-								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:55px;">
+                            <td align="right">管养分类：</td>
+        						<td><input name="gyfl" type="text" id="gyfl" style="width:150px;" /></td>
+								<td align="right">审核状态：</td>
+								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:75px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
-								<td>项目库类型：</td>
+								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 75px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
@@ -385,6 +385,8 @@ text-decoration:none;
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
                             	<td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td> -->
+        						</tr>
+        						<tr>
                             	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img id="shenpi" alt="审批" onclick="plansh()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>

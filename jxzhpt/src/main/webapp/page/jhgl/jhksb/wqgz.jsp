@@ -321,9 +321,9 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 								<tr height="32">
 	        						<td align="right">管养单位：</td>
-	        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:185px;"></select></td>
+	        						<td colspan="3" ><select id="gydw" style="width:185px;"></select></td>
 	        						<td align="right">行政区划：</td>
-	        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:200px;"></select></td>
+	        						<td colspan="3" ><select id="xzqh" style="width:200px;"></select></td>
 	        						<td align="right">路线名称：</td>
 	        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:70px;" /></td>
 	        						<td align="right">桥梁名称：</td>
@@ -339,16 +339,16 @@ text-decoration:none;
 										<option value="已上报">已上报</option>
 									</select></td>
 									<td align="right">特殊地区：</td>
-									<td><select name="ddlTSDQ" class="easyui-combobox" id="tsdq" style="width:80px;">
+									<td><select name="ddlTSDQ" class="easyui-combobox" id="tsdq" style="width:70px;">
 									</select></td>
 									<td align="right">技术等级：</td>
-									<td><select name="ddlPDDJ" class="easyui-combobox" id="jsdj" style="width:45px;">
+									<td><select name="ddlPDDJ" class="easyui-combobox" id="jsdj" style="width:57px;">
 									</select></td>
 									<td align="right">行政等级：</td>
-									<td><select name="ddlGldj" class="easyui-combobox" id="gldj" style="width:70px;">
+									<td><select name="ddlGldj" class="easyui-combobox" id="gldj" style="width:75px;">
 									</select></td>
 									<td align="right">跨径分类：</td>
-	        						<td><select name="ddlAKJFL" class="easyui-combobox" id="akjfl" style="width:70px;">
+	        						<td><select name="ddlAKJFL" class="easyui-combobox" id="akjfl" style="width:72px;">
 										<!-- <option selected="selected" value="">全部</option>
 										<option value="特大桥">特大桥</option>
 										<option value="大桥">大桥</option>
@@ -358,7 +358,7 @@ text-decoration:none;
 	        					</tr>
 								<tr height="32">
 									<td align="right">路线编码：</td>
-	        						<td><input name="txtRoad" type="text" id="lxbm" style="width:43px;" /></td>
+	        						<td><input name="txtRoad" type="text" id="lxbm" style="width:53px;" /></td>
 									<td align="right">建设性质：</td>
 	        						<td><select id="jsxz" class="easyui-combobox" style="width:55px;"data-options="panelHeight:'100'" onchange="setbz()">
 										<option value=""selected>全部</option>
@@ -367,16 +367,16 @@ text-decoration:none;
 	<!-- 									<option value="大修">大修</option> -->
 										</select></td>	
 									<td align="right">是否有补助历史：</td>
-									<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:80px;">
+									<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:70px;">
 										<option value="" selected="selected">全部</option>
 										<option value="无">否</option>
 										<option value="是">是</option>
 									</select> </td>
 									<td align="right">桥梁编码：</td>
-	        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:45px;" />
+	        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:55px;" />
 	                              	</td><td align="right"> 项目库类型：</td>
 									<td>	
-											<select class="easyui-combobox" id='xmklx'>
+											<select class="easyui-combobox" id='xmklx' style="width:75px;">
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
