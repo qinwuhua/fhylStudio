@@ -1045,7 +1045,11 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryLx" resultType="treeNode" parameterType="java.util.Map">
-	select lxbm id,lxbm name from ds_lkpd_data t where  1=1
+	select lxbm id,lxbm name from (select substr(roadcode,0,length(roadcode)-6) lxbm,to_number(roadends)-to_number(roadstart) lc,substr(roadcode,-6,4)||'00' xzqhdm,
+	(select name from xtgl_xzqh where id=substr(roadcode,-6,4)||'00') xzqh,f114 jsdj,
+	roadcode,roadstart,roadends
+	from gpsroad
+	where  (roadcode like 'G%' or roadcode like 'S%') and f114 not like '高速%') t where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and lxbm=#{lxbm}
 	</if>
