@@ -1457,6 +1457,18 @@ public class TjfxController extends BaseActionSupport{
 				jsjsdj=jsjsdj+")";
 			}
 			xmsq.setJsdj(jsjsdj);
+			String xmlx="";
+			if((!"".equals(xmsq.getLsxmlx()))&&xmsq.getLsxmlx()!=null){
+				String[] xmlxs = xmsq.getLsxmlx().split(",");
+				for (int i = 0; i < xmlxs.length; i++) {
+					if(i==0)
+						xmlx=xmlx+"and (lsxmlx like '%'||'"+xmlxs[i]+"'||'%' ";
+					else
+						xmlx=xmlx+"or lsxmlx like '%'||'"+xmlxs[i]+"'||'%' ";
+				}
+				xmlx=xmlx+")";
+			}
+			xmsq.setLsxmlx(xmlx);
 			
 		List<Xmsq> list=tjfxServer.queryXmsqs(xmsq);
 		
@@ -1553,7 +1565,18 @@ public class TjfxController extends BaseActionSupport{
 				jsjsdj=jsjsdj+")";
 			}
 			xmsq.setJsdj(jsjsdj);
-			
+			String xmlx="";
+			if((!"".equals(xmsq.getLsxmlx()))&&xmsq.getLsxmlx()!=null){
+				String[] xmlxs = xmsq.getLsxmlx().split(",");
+				for (int i = 0; i < xmlxs.length; i++) {
+					if(i==0)
+						xmlx=xmlx+"and (lsxmlx like '%'||'"+xmlxs[i]+"'||'%' ";
+					else
+						xmlx=xmlx+"or lsxmlx like '%'||'"+xmlxs[i]+"'||'%' ";
+				}
+				xmlx=xmlx+")";
+			}
+			xmsq.setLsxmlx(xmlx);
 		List<Xmsq> list=tjfxServer.queryJhshs(xmsq);
 		
 		EasyUIPage<Xmsq> e=new EasyUIPage<Xmsq>();
