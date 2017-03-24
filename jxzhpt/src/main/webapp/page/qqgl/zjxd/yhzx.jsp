@@ -140,7 +140,7 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
@@ -148,22 +148,24 @@
        				<div>
        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
        					<tr height="32">
-       						<td>项目年份：</td>
-       						<td><select id="xmnf" style="width: 70px;"></select></td>
+       						<td  align="right">项目年份：</td>
+       						<td><select id="xmnf" style="width: 90px;"></select></td>
        						<td align="right">行政区划：</td>
        						<td><select id="xzqh" style="width:124px;"></select></td>
-       						<td>&nbsp;建设性质：</td>
-       						<td><select name="jsxz" class="easyui-combobox" id="jsxz" style="width:81px;"></select></td>
-       						<td>&nbsp;级别：</td>
+       						<td  align="right">建设性质：</td>
+       						<td><select name="jsxz" class="easyui-combobox" id="jsxz" style="width:80px;"></select></td>
+       						<td  align="right">级别：</td>
 	       					<td><select name="jb" class="easyui-combobox" id="jb" style="width:100px;"></select></td>
        					</tr>
        					<tr height="32">
        						<td align="right">项目名称：</td>
-       						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
-       						<td>路线名称：</td>
-        					<td><input type="text" id="lxmc" style="width:95px;" /></td>
+       						<td><input name="xmmc" id="xmmc" style="width:90px;" type="text"/></td>
+       						<td  align="right">路线名称：</td>
+        					<td><input type="text" id="lxmc" style="width:124px;" /></td>
        						<td align="right">原道班名称：</td>
-       						<td><input name="yldbmc" id="yldbmc" style="width:120px;" type="text"/></td>
+       						<td><input name="yldbmc" id="yldbmc" style="width:80px;" type="text"/></td>
+       						</tr>
+       						<tr>
        						<td colspan="4">
        							<img onclick="queryYhzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

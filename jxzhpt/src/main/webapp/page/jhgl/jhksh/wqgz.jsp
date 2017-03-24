@@ -301,7 +301,7 @@
 		        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:53px;" /></td>
 										 <td align="right"> 项目库类型：</td>
 										 <td>
-											<select class="easyui-combobox" id='xmklx'>
+											<select class="easyui-combobox" id='xmklx' style="width:80px;">
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>

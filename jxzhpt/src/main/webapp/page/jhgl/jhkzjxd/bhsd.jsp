@@ -85,6 +85,11 @@
 		
 		
 	</script>
+	<style type="text/css">
+		TD {font-size: 12px;}
+		a{text-decoration:none;}
+		.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
@@ -98,22 +103,23 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select> 
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;隧道名称：</span>
-        						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
+        						<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="32">
+        						<td align="right">管养单位：</td>
+        						<td colspan="3" ><select id="gydw" style="width:197px;"></select> </td>
+        						<td align="right">行政区划：</td>
+        						<td colspan="3" ><select id="xzqh" style="width:214px;"></select></td>
+        						<td align="right">路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
+        						<td align="right">隧道名称：</td>
+        						<td><input name="sdmc" type="text" id="sdmc" style="width:90px;" /></td>
         						
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
-        						<span>计划年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
+        					</tr>
+        						<tr height="32">
+        						<td align="right">隧道代码：</td>
+        						<td><input name="sddm" type="text" id="sddm" style="width:60px;" /></td>
+        						<td align="right">计划年份：</td>
+        						<td><select id="sbnf" style="width: 60px;"></select></td>
 <!--         						<span>&nbsp;计划状态：</span> -->
 <!--         						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox"> -->
 <!-- 									<option selected="selected" value="">全部</option> -->
@@ -122,24 +128,25 @@
 <!-- 									<option value="未审核">未审核</option> -->
 <!-- 									<option value="已审核">已审核</option> -->
 <!-- 								</select> -->
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
-								</select>
-								<span style="vertical-align:middle;">&nbsp;建设状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px;vertical-align:middle;">
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
+								</select></td>
+								<td align="right">建设状态：</td>
+        						<td><select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
 									<option value="未开工">未开工</option>
 									<option value="在建">在建</option>
 									<option value="竣工">竣工</option>
-								</select>
-        					</p>
-							<p style="margin:8px 0px 4px 20px;">
+								</select></td>
+        					</tr>
+							<tr height="32">
 <!-- 								<span>是否有补助历史：</span> -->
 <!-- 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;"> -->
 <!-- 									<option value="" selected="selected">全部</option> -->
 <!-- 									<option value="无">否</option> -->
 <!-- 									<option value="是">是</option> -->
 <!-- 								</select> -->
+<td colspan="12">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/> --%>
@@ -147,7 +154,7 @@
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('bhsd','gl')"/>
 <%-- 				                <img onclick="shangB()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="th_jhkgl('bhsd_th.jsp','500','200');" style="border-width:0px;cursor: hand;vertical-align:middle;" /> -->
-							</p>
+							</td></tr></table>
         				</div>
         			</fieldset>
         		</td>
