@@ -150,7 +150,8 @@
 	        		    ],
 	        		    yAxis : [
 	        		        {
-	        		            type : 'value'
+	        		            type : 'value',
+	        		            name: '里程（公里）',
 	        		        }
 	        		    ],
 	        		    series : [

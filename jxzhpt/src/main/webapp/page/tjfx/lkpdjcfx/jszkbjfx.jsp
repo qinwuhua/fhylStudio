@@ -165,7 +165,7 @@
 	        	　　　　　　　　　　barWidth:20,
 	        		           data:pqiArray,
 	        		           itemStyle: {
-	        		                normal: {color: '#32FC32'}
+	        		                normal: {color: '#FF3030'}
 	        		            },
 	        		        },
 	        		        {
