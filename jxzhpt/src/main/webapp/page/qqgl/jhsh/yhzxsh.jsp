@@ -203,25 +203,26 @@ text-decoration:none;
        				<div>
        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 						<tr height="32">
-							<td>行政区划：</td>
+							<td align="right">行政区划：</td>
        						<td><select id="xzqh" style="width:134px;"></select></td>
-       						<td>项目名称：</td>
-       						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
-							<td>项目年份：</td>
-        					<td><select id="xmnf" style="width: 70px;"></select></td>
-							<td>&nbsp;建设性质：</td>
-       						<td><select name="jsxz" class="easyui-combobox" id="jsxz" style="width:81px;"></select></td>
-       						<td>&nbsp;级别：</td>
-	       					<td><select name="jb" class="easyui-combobox" id="jb" style="width:100px;"></select></td>
+       						<td align="right">项目名称：</td>
+       						<td><input name="xmmc" id="xmmc" style="width:100px;" type="text"/></td>
+							<td align="right">项目年份：</td>
+        					<td><select id="xmnf" style="width: 95px;"></select></td>
+							<td align="right">建设性质：</td>
+       						<td><select name="jsxz" class="easyui-combobox" id="jsxz" style="width:60px;"></select></td>
+       						
        					</tr>
        					<tr height="32">
-       					    <td>路线名称：</td>
-        					<td><input type="text" id="lxmc" style="width:95px;" /></td>
-        					<td>原道班名称：</td>
+       					<td align="right">级别：</td>
+	       					<td><select name="jb" class="easyui-combobox" id="jb" style="width:134px;"></select></td>
+       					    <td align="right">路线名称：</td>
+        					<td><input type="text" id="lxmc" style="width:100px;" /></td>
+        					<td align="right"> 原道班名称：</td>
         					<td><input type="text" id="ydbmc" style="width:95px;" /></td>
        						<td align="right">审核状态：</td>
 								<td>
-	       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
+	       							<select id="xdzt" class="easyui-combobox" style="width: 60px;">
 		       							<option value="-1" selected="selected">全部</option>
 		       							<option value="0">未审核</option>
 		       							<option value="1">已审核</option>

@@ -562,7 +562,7 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
@@ -584,11 +584,11 @@
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td> -->
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
-        						<td>项目名称：</td>
+        						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:110px;" /></td>
-        						<td>建设性质：</td>
+        						<td align="right">建设性质：</td>
 								<td><input type="text" id='xmlx' name='xmlx' style="width:114px;"></td>
-        						<td>技术等级：</td>
+        						<td align="right">技术等级：</td>
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
         						<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
@@ -607,17 +607,17 @@
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         					<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td> -->
-        						 <td>原路线编码：</td>
+        						 <td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
-        						<td>原路线名称：</td>
+        						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
-        						<td>规划路线编码：</td>
+        						<td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
-        						<td>规划路线名称：</td>
+        						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						</tr>
         					<tr height="32">
-        					<td>是否有补助历史：</td>
+        					<td align="right">是否有补助历史：</td>
         						<td>
         							<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:114px;">
 										<option value="" selected="selected">全部</option>
@@ -642,11 +642,11 @@
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         						<td>建设性质：</td>
 								<td><input type="text" id='xmlx' name='xmlx' style="width:114px;"></td> -->
-								<td>下达状态：</td>
+								<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
         						<td align="right">首次下达年份：</td>
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
-        						<td>前期完成：</td>
+        						<td align="right">前期完成：</td>
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
         					
         					</tr>
