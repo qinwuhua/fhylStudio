@@ -1172,8 +1172,9 @@ function createMenu(_xtype, _json) {// 左侧菜单生成
 		var html = "<div id='"+ id+ "' style='display:none;float:left;width:180px;heigth:52px;margin:5px 0 0 15px;'>" +
 				"<a  href='"
 				+ href
-				+ "' target='rightContent' style='text-decoration:none;'><div style='float:left; display:inline;margin-right:5px;'><img style='border:none;' src='"
-		+ imgSrc + "' alt='" + title + "' title='" + title+ "'/></div>" +
+				+ "' target='rightContent' style='text-decoration:none;'><div style='float:left; display:inline;margin-right:5px;'>"
+//				+"<img style='border:none;' src='"+ imgSrc + "' alt='" + title + "' title='" + title+ "'/>"
+				+"</div>" +
 				"<div style=' float:left; display:inline;width:127px;padding-top:15px; line-height:10px; '><span>" + title + "</span></div></a></div>";
 		
 		
@@ -3900,6 +3901,90 @@ function lsxmnf(id){
 	$('#'+id).combobox("setText",'全部');
 	
 }
+
+function loadGhlx(id) {
+	$("#"+id).combotree({
+		url: '/jxzhpt/qqgl/loadGhlx.do?xzqhdm='+$.cookie("dist2"),
+		//onLoadError: showError,
+		onClick: function (node) {
+			var user = {"refresh": "1"};
+			if (node.id != 0)  user.so_id = node.attributes.so_id;
+			$("#table").datagrid("clearSelections").datagrid("load", user);
+			$("#parentName").val(user.so_id);
+		},
+		panelHeight:'250',editable: true,multiple:true,
+		onLoadSuccess: function (node, data) {
+			$(this).tree('collapseAll');   //关闭树节点
+			var root = $(this).tree("getRoot");      //展开根节点
+			if (root != null) {
+				//$(this).tree("expand", root.target);
+				var childrens = $(this).tree("getChildren", root.target);
+				for (var i = 0; i < childrens.length; i++) {
+					if (childrens[i].attributes.so_id == '0') {
+						$(this).tree("expand", childrens[i].target);
+					}
+				}
+				var item = $("#"+id).tree("find", openid);    //展开并定位到指定节点
+				if (item != null) {
+					$(this).tree("expandTo", item.target);
+					$(this).tree("select", item.target);
+				}
+				var user = {"refresh": "1"};
+				user.so_id = openid;
+				$("#table").datagrid("clearSelections").datagrid("load", user);
+			}
+		}
+	});
+	
+	$(".combo-text").bind("input propertychange", function() {
+        $("#"+id).combotree('tree').tree("search",$(this).val());
+        if($(this).val()=="" || null==$(this).val()){
+            $("#"+id).combotree('tree').tree("expandAll");
+        }
+    	});
+} 
+
+function loadylx(id) {
+	$("#"+id).combotree({
+		url: '/jxzhpt/qqgl/loadYlx.do?xzqhdm='+$.cookie("dist2"),
+		//onLoadError: showError,
+		onClick: function (node) {
+			var user = {"refresh": "1"};
+			if (node.id != 0)  user.so_id = node.attributes.so_id;
+			$("#table").datagrid("clearSelections").datagrid("load", user);
+			$("#parentName").val(user.so_id);
+		},
+		panelHeight:'250',editable: true,multiple:true,
+		onLoadSuccess: function (node, data) {
+			$(this).tree('collapseAll');   //关闭树节点
+			var root = $(this).tree("getRoot");      //展开根节点
+			if (root != null) {
+				//$(this).tree("expand", root.target);
+				var childrens = $(this).tree("getChildren", root.target);
+				for (var i = 0; i < childrens.length; i++) {
+					if (childrens[i].attributes.so_id == '0') {
+						$(this).tree("expand", childrens[i].target);
+					}
+				}
+				var item = $("#"+id).tree("find", openid);    //展开并定位到指定节点
+				if (item != null) {
+					$(this).tree("expandTo", item.target);
+					$(this).tree("select", item.target);
+				}
+				var user = {"refresh": "1"};
+				user.so_id = openid;
+				$("#table").datagrid("clearSelections").datagrid("load", user);
+			}
+		}
+	});
+	
+	$(".combo-text").bind("input propertychange", function() {
+        $("#"+id).combotree('tree').tree("search",$(this).val());
+        if($(this).val()=="" || null==$(this).val()){
+            $("#"+id).combotree('tree').tree("expandAll");
+        }
+    	});
+} 
 
 
 
