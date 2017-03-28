@@ -150,7 +150,7 @@
 			var years=[]; var ylld=[]; var zj=[]; var zrsh=[];
 			
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				if(msg[0][(i+"yyll")]!=null){
+				if(msg[0][(i+"yyll")]!=null || msg[0][(i+"ztz")]!=null || msg[0][(i+"zrsh")]!=null){
 					years.push(i+'年');
 					ylld.push(msg[0][(i+"yyll")]);
 					zj.push(msg[0][(i+'ztz')]);

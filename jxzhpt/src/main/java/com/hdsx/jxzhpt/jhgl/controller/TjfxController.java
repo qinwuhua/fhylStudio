@@ -1275,12 +1275,18 @@ public class TjfxController extends BaseActionSupport{
 			xzqh.remove(0);
 			List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
 			List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
+			for (TreeNode node : xzqh) {
+				Map<String, Object> map =new HashMap<String, Object>();
+				map.put("NF",nf);
+				map.put("XZQHDM", node.getId().substring(0,4));
+				map.put("ZRSH","--");
+				zrshs.add(map);
+			}
 			for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
 				List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
 				if(zrsh.size()>0)
 				zrshs.addAll(zrsh);
 			}
-			System.out.println(zrshs);
 			for (TreeNode item : xzqh) {
 //				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 				xzqhdm = item.getId().substring(0,4);
@@ -1319,6 +1325,15 @@ public class TjfxController extends BaseActionSupport{
 				List<TreeNode> lx=tjfxServer.queryLx(null);
 				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end,xmsq.getXmbm());
 				List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
+				
+				for (TreeNode node : lx) {
+					Map<String, Object> map =new HashMap<String, Object>();
+					map.put("NF",nf);
+					map.put("LXBM", node.getId());
+					map.put("ZRSH","--");
+					zrshs.add(map);
+				}
+				
 				for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
 					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
 					if(zrsh.size()>0)
