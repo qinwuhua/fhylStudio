@@ -77,7 +77,7 @@
 			var years=[];
 			
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				var year ={title:i+'年',width:160,align:'center',colspan:6};
+				var year ={title:i+'年',width:160,align:'center',colspan:7};
 				colYears.push(year);
 				var ylll={field:i+'yyll',title:'优良路率(%)',width:90,align:'center'};
 				colZj.push(ylll);
@@ -91,6 +91,8 @@
 				colZj.push(lc);
 				var tsbl={field:i+'tsbl',title:'优良路率提升比例(%)',width:100,align:'center'};
 				colZj.push(tsbl);
+				var zrsh={field:i+'zrsh',title:'自然损耗(%)',width:100,align:'center'};
+				colZj.push(zrsh);
 				years.push(i+'年');
 			} 
 			
@@ -145,13 +147,14 @@
 			
 		}
 		function queryTrack(msg){
-			var years=[]; var ylld=[]; var zj=[];
+			var years=[]; var ylld=[]; var zj=[]; var zrsh=[];
 			
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
 				if(msg[0][(i+"yyll")]!=null){
 					years.push(i+'年');
 					ylld.push(msg[0][(i+"yyll")]);
 					zj.push(msg[0][(i+'ztz')]);
+					zrsh.push(msg[0][(i+'zrsh')]);
 				}
 			}
 			 var myChart = echarts.init(document.getElementById("anychart_div")); 
@@ -169,7 +172,7 @@
 	        		    },
 	        		    legend: {
 	        		    	show:true,
-	        		        data:['投入资金（万元）','优良路率（%）'],
+	        		        data:['投入资金（万元）','优良路率（%）','自然损耗（%）'],
 	        		        x : 'left',
 	        		        y : 'top',
 	        		        orient: 'horizontal'
@@ -209,7 +212,8 @@
 	                            type: 'value',
 	                            name: '优良路率（%）',
 	                            position: 'right',
-	                            max: 150,
+	                            max: 100,
+	                            min:-60
 	                        },
 	        		    ],
 	        		    series : [
@@ -226,6 +230,13 @@
 			                    barWidth: '20%',
 			                    yAxisIndex: 1,
 			                    data:ylld
+			                },
+			                {
+			                    name:'自然损耗（%）',
+			                    type:'line',
+			                    barWidth: '20%',
+			                    yAxisIndex: 1,
+			                    data:zrsh
 			                }
 	        		    ]
 	        		};

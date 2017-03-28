@@ -137,7 +137,8 @@
                     {field:'ztz',title:'总投资(万元)',width:150,align:'center'},
                     {field:'zbz',title:'总补助(万元)',width:150,align:'center'},
                     {field:'lc',title:'总里程',width:150,align:'center'},
-                    {field:'ydlv',title:'优良路率提升比例(%)',width:200,align:'center'}
+                    {field:'ydlv',title:'优良路率提升比例(%)',width:200,align:'center'},
+                    {field:'zrsh',title:'自然损耗(%)',width:200,align:'center'}
 			    ]]
 				 
 			}); 
