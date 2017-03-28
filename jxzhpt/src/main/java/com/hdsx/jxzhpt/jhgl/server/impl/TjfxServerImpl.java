@@ -278,4 +278,20 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	public List<Xmsq> queryJhshs(Xmsq xmsq) {
 		return queryList("queryJhshs",xmsq);
 	}
+
+	@Override
+	public List<Map<String, Object>> queryZrsh(String tjfl,int nf) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xmnf", nf);
+		if(tjfl.equals("1")){
+			  return queryList("queryZrsh_ds",params);
+			}else{
+			  return queryList("queryZrsh_lx",params);
+			}
+	}
+
+	@Override
+	public Map<String, Object> queryMaxNf() {
+		return queryOne("queryLkpdMaxNf", null);
+	}
 }

@@ -60,4 +60,8 @@ public interface TjfxServer {
 	List<Map<String, Object>> queryKxjc_ds(String tjfl,String xmbm);
 	
 	List<Xmsq> queryJhshs(Xmsq xmsq);
+	
+	List<Map<String, Object>> queryZrsh(String tjfl,int nf);
+	
+	Map<String, Object> queryMaxNf();
 }
