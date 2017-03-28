@@ -222,31 +222,31 @@ text-decoration:none;
         				<div>
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
-        						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
-        						<td>行政区划：</td>
-        						<td  colspan="3" style="width:230px;"><select id="xzqh" style="width:230px;"></select></td>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
-        						<td>桥梁名称：</td>
-        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
-        						<td>路线编码：</td>
-        						<td><input name="txtRoad" type="text" id="lxbm" style="width:90px;" /></td>
+        						<td align="right">管养单位：</td>
+        						<td  colspan="3" ><select id="gydw" style="width:175px;"></select></td>
+        						<td align="right">行政区划：</td>
+        						<td  colspan="3" ><select id="xzqh" style="width:185px;"></select></td>
+        						<td align="right">路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:65px;" /></td>
+        						<td align="right">桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:65px;" /></td>
+        						<td align="right">路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:50px;" /></td>
         						
         					</tr>
         					<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 80px;"></select></td>
-        						<td>计划状态：</td>
-        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
+        						<td align="right">上报年份：</td>
+        						<td><select id="sbnf" style="width: 55px;"></select></td>
+        						<td align="right">计划状态：</td>
+        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:45px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
 								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
+								<td align="right"> 特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:65px;" class="easyui-combobox">
 									<!-- <option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -255,22 +255,22 @@ text-decoration:none;
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option> -->
 								</select></td>
-								<td>技术等级：</td>
-								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox">
+								<td align="right">技术等级：</td>
+								<td><select name="jsdj" id="jsdj" style="width:45px;" class="easyui-combobox">
 								</select></td>
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:94px;" class="easyui-combobox">
+								<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:65px;" class="easyui-combobox">
 								</select></td>
-								<td>跨径分类：</td>
-        						<td><select name="akjfl" id="akjfl" style="width:94px;" class="easyui-combobox">
+								<td align="right">跨径分类：</td>
+        						<td><select name="akjfl" id="akjfl" style="width:65px;" class="easyui-combobox">
 									<!-- <option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option> -->
 								</select></td>
-								<td>建设性质：</td>
-        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()">
+								<td align="right">建设性质：</td>
+        						<td><select id="jsxz" class="easyui-combobox" data-options="panelHeight:'100'" onchange="setbz()" style="width:50px;">
 									<option value=""selected>全部</option>
 									<option value="加固改造">加固改造</option>
 									<option value="拆除重建">拆除重建</option>
@@ -278,22 +278,24 @@ text-decoration:none;
 									</select></td>	
         					</tr>
 								<tr height="32">
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+								<td align="right">是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:55px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select></td>
-								<td>桥梁编码：</td>
-        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:80px;" />
+								<td align="right">桥梁编码：</td>
+        						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:43px;" />
 								</td>
-									<td> 项目库类型：</td>
+									<td align="right"> 项目库类型：</td>
 									<td>	
-											<select class="easyui-combobox" id='xmklx'>
+											<select class="easyui-combobox" id='xmklx' style="width:65px;" >
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
 											</select></td>
+											</tr>
+											<tr>
                               <td colspan="12">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
