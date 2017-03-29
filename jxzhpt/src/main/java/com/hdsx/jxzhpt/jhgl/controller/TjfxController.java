@@ -1300,17 +1300,42 @@ public class TjfxController extends BaseActionSupport{
 						if(num==0)
 							index.put(qs.get(i).get("NF").toString()+"tsbl","--");
 						else{
+							if(qs.get(i).get("YDL")!=null && !qs.get(i).get("YDL").equals("")){
 							tsbl=(Double.valueOf(qs.get(i).get("YDL").toString())-ydl)/Double.valueOf(qs.get(i).get("CD").toString())*100;
 							qs.get(i).put("TSBL", df.format(tsbl).toString());
 							index.put(qs.get(i).get("NF").toString()+"tsbl", qs.get(i).get("TSBL").toString());
+							}else{
+								index.put(qs.get(i).get("NF").toString()+"tsbl", "--");
+							}
 						}
 						num++;
-						ydl=Double.valueOf(qs.get(i).get("YDL").toString());
+						if(qs.get(i).get("YDL")!=null && !qs.get(i).get("YDL").equals("")){
+						ydl=Double.valueOf(qs.get(i).get("YDL").toString());}
+						if(qs.get(i).get("ZTZ")!=null &&!qs.get(i).get("ZTZ").equals("")){
 						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
+						}else{
+							index.put(qs.get(i).get("NF").toString()+"ztz", "");
+						}
+						if(qs.get(i).get("STZ")!=null &&!qs.get(i).get("STZ").equals("")){
 						index.put(qs.get(i).get("NF").toString()+"zbz", qs.get(i).get("STZ").toString());
-						index.put(qs.get(i).get("NF").toString()+"count", qs.get(i).get("ZJ").toString());
+						}else{
+							index.put(qs.get(i).get("NF").toString()+"zbz", "");
+						}
+						if(qs.get(i).get("ZJ")!=null &&!qs.get(i).get("ZJ").equals("")){
+							index.put(qs.get(i).get("NF").toString()+"count", qs.get(i).get("ZJ").toString());
+						}else{
+							index.put(qs.get(i).get("NF").toString()+"count", "");
+						}
+						if(qs.get(i).get("LC")!=null &&!qs.get(i).get("LC").equals("")){
 						index.put(qs.get(i).get("NF").toString()+"lc", qs.get(i).get("LC").toString());
+						}else{
+							index.put(qs.get(i).get("NF").toString()+"lc", "");
+						}
+						if(qs.get(i).get("YDLV")!=null &&!qs.get(i).get("YDLV").equals("")){
 						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
+						}else{
+							index.put(qs.get(i).get("NF").toString()+"yyll", "");
+						}
 					}
 				}
 				for (int x = 0; x < zrshs.size(); x++) {
@@ -1348,17 +1373,43 @@ public class TjfxController extends BaseActionSupport{
 						if(num==0)
 							index.put(qs1.get(l).get("NF").toString()+"tsbl","--");
 						else{
+							if(qs1.get(l).get("YDL")!=null&&!qs1.get(l).get("YDL").equals("")){
 							tsbl=(Double.valueOf(qs1.get(l).get("YDL").toString())-ydl)/Double.valueOf(qs1.get(l).get("CD").toString())*100;
 							qs1.get(l).put("TSBL", df.format(tsbl).toString());
 							index.put(qs1.get(l).get("NF").toString()+"tsbl", qs1.get(l).get("TSBL").toString());
+							}else{
+								index.put(qs1.get(l).get("NF").toString()+"tsbl", "");
+							}
 						}
 						num++;
+						if(qs1.get(l).get("YDL")!=null&&!qs1.get(l).get("YDL").equals("")){
 						ydl=Double.valueOf(qs1.get(l).get("YDL").toString());
+						}
+						if(qs1.get(l).get("ZTZ")!=null&&!qs1.get(l).get("ZTZ").equals("")){
 						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
+						}else{
+							index.put(qs1.get(l).get("NF").toString()+"ztz", "");	
+						}
+						if(qs1.get(l).get("STZ")!=null&&!qs1.get(l).get("STZ").equals("")){
 						index.put(qs1.get(l).get("NF").toString()+"zbz", qs1.get(l).get("STZ").toString());
+						}else{
+							index.put(qs1.get(l).get("NF").toString()+"zbz", "");
+						}
+						if(qs1.get(l).get("ZJ")!=null&&!qs1.get(l).get("ZJ").equals("")){
 						index.put(qs1.get(l).get("NF").toString()+"count", qs1.get(l).get("ZJ").toString());
-						index.put(qs1.get(l).get("NF").toString()+"lc", qs1.get(l).get("LC").toString());
+						}else{
+							index.put(qs1.get(l).get("NF").toString()+"count", "");
+						}
+						if(qs1.get(l).get("LC")!=null&&!qs1.get(l).get("LC").equals("")){
+							index.put(qs1.get(l).get("NF").toString()+"lc", qs1.get(l).get("LC").toString());
+						}else{
+							index.put(qs1.get(l).get("NF").toString()+"lc", "");
+						}
+						if(qs1.get(l).get("YDLV")!=null&&!qs1.get(l).get("YDLV").equals("")){
 						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
+						}else{
+							index.put(qs1.get(l).get("NF").toString()+"yyll", "");
+						}
 					}
 				}
 					for (int x = 0; x < zrshs.size(); x++) {
