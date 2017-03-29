@@ -101,6 +101,13 @@ a:active {
  text-decoration: none;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body>
@@ -118,46 +125,49 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:150px;"></select>
-        						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 70px;">
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">管养单位：</td>
+        						<td colspan="3"><input id="gydw" style="width: 190px;"></td>
+        						<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:120px;"></select></td>
+        						<td align="right">开工状态：</td>
+        						<td><input id="kgzt" style="width: 75px;"></td>
+        						<td align="right">项目年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 55px;">
         						<option value="">全部</option>
-        						</select>
-        						
-        						  <p style="margin: 1% 0% 1% 2%;">
+        						</select></td>
+        						</tr>
+        						<tr height="32">
 								
-								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
-								<span style=" vertical-align:middle;">&nbsp;行政等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
-        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:100px; vertical-align:middle;">
-								</select>
-								<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 103px;">
-								<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px; vertical-align:middle;"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:60px; vertical-align:middle;"></select></td>
+        						<td align="right">特殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:120px; vertical-align:middle;">
+								</select></td>
+								<td align="right">路线名称：</td>
+        							<td><input type="text" id="lxmc" style="width: 75px;"></td>
+								<td align="right">月报状态：</td>
+        						<td><select id="ybzt" style="width: 55px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
-        						</select>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span> 项目库类型：</span>
-								<select class="easyui-combobox" id='xmklx'>
+        						</select></td>
+								</tr>
+								<tr height="32">
+								<td align="right"> 项目库类型</td>
+								<td><select class="easyui-combobox" id='xmklx' style="width:55px; ">
 									<option value="" selected>请选择</option>
 									<option value="部库">部库</option>
 									<option value="省库">省库</option>
-								</select>
+								</select></td></tr>
+								<tr height="32">
+								<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
         					 	<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
-        						</p>
+        						</td></tr></table>
         				</div>
         			</fieldset>
         		</td>
