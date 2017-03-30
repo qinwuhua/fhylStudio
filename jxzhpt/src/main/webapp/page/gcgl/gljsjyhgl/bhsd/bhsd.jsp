@@ -57,6 +57,13 @@ a:active {
  text-decoration: none;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body>
@@ -71,34 +78,37 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 4px 20px;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 150px;">
-        						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 60px;">
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 80px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">管养单位：</td>
+        						<td><input id="gydw" style="width: 150px;"></td>
+        						<td align="right">开工状态：</td>
+        						<td><input id="kgzt" style="width:102px;"></td>
+        						<td align="right">项目年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 60px;">
         						<option value="">全部</option>
-        						</select>
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 90px;">
+        						</select></td>
+        						<td align="right">月报状态：</td>
+        						<td><select id="ybzt" style="width: 60px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
-        						</select>
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc"  style="width: 100px;">
-        						</p>
-        						<p style="margin: 8px 0px 4px 20px;">
+        						</select></td>
         						
-        						<span>隧道名称：</span>
-        						<input type="text" id="sdmc" style="width: 100px;">
-        						<span>隧道代码：</span>
-        						<input type="text" id="sddm" style="width: 100px;">
-        						&nbsp;
+        						</tr>
+        								<tr height="32">
+        						<td align="right">路线名称：</td>
+        						<td>	<input type="text" id="lxmc"  style="width: 150px;"></td>
+        						<td align="right">隧道名称：</td>
+        						<td><input type="text" id="sdmc" style="width: 100px;"></td>
+        						<td align="right">隧道代码：</td>
+        						<td><input type="text" id="sddm" style="width: 60px;"></td>
+        						</tr>
+        								<tr height="32">
+        								<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -60%;" onclick="showAll()"/>        					
-                               </p>
+                            </td> </tr></table>  </p>
         				</div>
         			</fieldset>
         		</td>

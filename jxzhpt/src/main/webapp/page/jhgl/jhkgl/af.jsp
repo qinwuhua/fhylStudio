@@ -186,56 +186,57 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>管养单位：</td>
-        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
-        						<td>行政区划：</td>
-        						<td colspan="3" style="width:225px;"><select id="xzqh" style="width:225px;"></select></td>
-								</select>
-        						<td>路线名称：</td>
-        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
-        						<td>路线编码：</td>
-        						<td><input name="txtRoad" type="text" id="lxbm" style="width:100px;" /></td>
+        						<td  align="right">管养单位：</td>
+        						<td colspan="3" ><select id="gydw" style="width:180px;"></select></td>
+        						<td align="right">行政区划：</td>
+        						<td colspan="3" ><select id="xzqh" style="width:197px;"></select></td>
+							
+        						<td align="right">路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:80px;" /></td>
+        						<td align="right">路线编码：</td>
+        						<td><input name="txtRoad" type="text" id="lxbm" style="width:50px;" /></td>
         					</tr>
         					<tr height="32">
-        						<td>上报年份：</td>
-        						<td><select id="sbnf" style="width: 80px;"></select></td>
-        						<td>计划状态：</td>
-        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
+        						<td align="right">上报年份：</td>
+        						<td><select id="sbnf" style="width: 55px;"></select></td>
+        						<td align="right">计划状态：</td>
+        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:55px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
 								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox"></select></td>
-								<td>技术等级：</td>
-								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select></td>
-								<td>行政等级：</td>
-								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+								<td align="right">特殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:70px;" class="easyui-combobox"></select></td>
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px;" class="easyui-combobox"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:80px;" class="easyui-combobox"></select></td>
+								<td align="right">是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:52px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
 								</select></td>
         					</tr>
         					<tr height="32">
-        						<td> 项目库类型：</td>
+        						<td align="right"> 项目库类型：</td>
 									<td>	
-											<select class="easyui-combobox" id='xmklx'>
+											<select class="easyui-combobox" id='xmklx' style="width:55px;">
 												<option value="" selected>请选择</option>
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
 											</select></td>
+											</tr><tr>
                               <td colspan="10">
         						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>

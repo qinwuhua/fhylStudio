@@ -100,6 +100,15 @@
 		}
 		
 	</script>
+		<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -113,39 +122,41 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;隧道名称：</span>
-        						<input name="sdmc" type="text" id="sdmc" style="width:90px;" />
+        						<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">管养单位： </td>
+        						<td  colspan="3"><select id="gydw" style="width:187px;"></select> </td>
+        						<td align="right">行政区划： </td>
+        						<td  colspan="3"><select id="xzqh" style="width:184px;"></select> </td>
+        						<td align="right">路线名称： </td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:80px;" /> </td>
+        						<td align="right">隧道名称： </td>
+        						<td><input name="sdmc" type="text" id="sdmc" style="width:80px;" /> </td>
         						
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>&nbsp;隧道代码：</span>
-        						<input name="sddm" type="text" id="sddm" style="width:90px;" />
-        						<span>计划年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;审定状态：</span>
-        						<select name="ddlSDZT" class="easyui-combobox" id="ddlSDZT" style="width:70px;">
+        					</tr>
+        				<tr height="32">
+        						<td align="right">隧道代码： </td>
+        						<td><input name="sddm" type="text" id="sddm" style="width:55px;" /> </td>
+        						<td align="right">计划年份： </td>
+        						<td><select id="sbnf" style="width: 55px;"></select> </td>
+        						<td align="right">审定状态： </td>
+        						<td><select name="ddlSDZT" class="easyui-combobox" id="ddlSDZT" style="width:55px;">
 									<option selected="selected" value="">全部</option>
 									<option value="未审定">未审定</option>
 									<option value="已审定">已审定</option>
-								</select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
-								</select>
-								<span>&nbsp;调整类型：</span>
-								<select name="tzlx" class="easyui-combobox" id="tzlx" style="width:100px;">
-								</select>
-        					</p>
-							<p style="margin:8px 0px 4px 20px;">
+								</select> </td>
+								<td align="right">技术等级： </td>
+								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:55px;">
+								</select> </td>
+								<td >调整类型： </td>
+								<td><select name="tzlx" class="easyui-combobox" id="tzlx" style="width:80px;">
+								</select> </td>
+        					</tr>
+						<tr height="32">
+						 <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
         						<img alt="导出Excel" onclick="exportExceltz('bhsd','tz')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-							</p>
+							</td></tr></table>
         				</div>
         			</fieldset>
         		</td>
