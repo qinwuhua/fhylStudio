@@ -1296,7 +1296,8 @@ public class TjfxController extends BaseActionSupport{
 				index.put("xzqhdm", item.getId());
 				int num=0; Double ydl=0.0; Double tsbl;
 				for (int i = 0; i < qs.size(); i++) {
-					if (qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
+					if (qs.get(i).get("XZQHDM")!=null && !qs.get(i).get("XZQHDM").equals("")&&
+							qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
 						if(num==0)
 							index.put(qs.get(i).get("NF").toString()+"tsbl","--");
 						else{
@@ -1339,7 +1340,8 @@ public class TjfxController extends BaseActionSupport{
 					}
 				}
 				for (int x = 0; x < zrshs.size(); x++) {
-					if (zrshs.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
+					if (zrshs.get(x).get("XZQHDM")!=null && !zrshs.get(x).get("XZQHDM").equals("") &&
+							zrshs.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 					}
 				}
@@ -1369,7 +1371,8 @@ public class TjfxController extends BaseActionSupport{
 					index.put("lxbm", lx.get(j).getId());
 					int num=0; Double ydl=0.0; Double tsbl;
 					for (int l = 0; l < qs1.size(); l++) {
-					if (qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
+					if (qs1.get(l).get("LXBM")!=null&& !qs1.get(l).get("LXBM").equals("")&&
+							qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
 						if(num==0)
 							index.put(qs1.get(l).get("NF").toString()+"tsbl","--");
 						else{
@@ -1413,7 +1416,8 @@ public class TjfxController extends BaseActionSupport{
 					}
 				}
 					for (int x = 0; x < zrshs.size(); x++) {
-						if (zrshs.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
+						if (zrshs.get(x).get("LXBM")!=null &&!zrshs.get(x).get("LXBM").equals("")&&
+								zrshs.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
 							index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 						}
 					}
@@ -1450,13 +1454,15 @@ public class TjfxController extends BaseActionSupport{
 				index.put("xzqhdm", item.getId());
 				
 				for (int i = 0; i < qs.size(); i++) {
-					if (qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
+					if (qs.get(i).get("XZQHDM")!=null&&!qs.get(i).get("XZQHDM").equals("")&&
+							qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
 						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
 					}
 				}
 				for (int x = 0; x < zrshs.size(); x++) {
-					if (zrshs.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
+					if (zrshs.get(x).get("XZQHDM")!=null&&!zrshs.get(x).get("XZQHDM").equals("")&&
+							zrshs.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 					}
 				}
@@ -1477,13 +1483,15 @@ public class TjfxController extends BaseActionSupport{
 					Map<String, String> index =new HashMap<String, String>();
 					index.put("lxbm", lx.get(j).getId());
 					for (int l = 0; l < qs1.size(); l++) {
-					if (qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
+					if (qs1.get(l).get("LXBM")!=null&&!qs1.get(l).get("LXBM").equals("")&&
+							qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
 						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
 						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
 					     }
 				    }
 					for (int x = 0; x < zrshs.size(); x++) {
-						if (zrshs.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
+						if (zrshs.get(x).get("LXBM")!=null && !zrshs.get(x).get("LXBM").equals("")&&
+								zrshs.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
 							index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 						}
 					}
@@ -1591,7 +1599,8 @@ public class TjfxController extends BaseActionSupport{
 				index.put("xzqhdm", item.getId());
 				
 				for (Map<String, Object> map : qs) {
-					if(map.get("XZQHDM").toString().equals(xzqhdm)){
+					if(map.get("XZQHDM")!=null&&!map.get("XZQHDM").equals("")&&
+							map.get("XZQHDM").toString().equals(xzqhdm)){
 						if(map.get("ZTZ")!=null)index.put("ztz", map.get("ZTZ").toString());
 						else{index.put("ztz","");}
 						if(map.get("ZBZ")!=null)index.put("zbz", map.get("ZBZ").toString());
@@ -1605,7 +1614,8 @@ public class TjfxController extends BaseActionSupport{
 				   }
 			     }
 				for (int x = 0; x < zrsh.size(); x++) {
-					if (zrsh.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
+					if (zrsh.get(x).get("XZQHDM")!=null&&!zrsh.get(x).get("XZQHDM").equals("")&&
+							zrsh.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put("zrsh", zrsh.get(x).get("ZRSH").toString());	
 					}
 				}
@@ -1621,7 +1631,8 @@ public class TjfxController extends BaseActionSupport{
 					Map<String, String> index =new HashMap<String, String>();
 					index.put("lxbm", item.getId());
 				for (Map<String, Object> map2 : qs1) {
-					if (map2.get("LXBM").toString().equals(item.getId())) {
+					if (map2.get("LXBM")!=null&&!map2.get("LXBM").equals("")&&
+							map2.get("LXBM").toString().equals(item.getId())) {
 						if(map2.get("ZTZ")!=null)index.put("ztz", map2.get("ZTZ").toString());
 						else{index.put("ztz","");}
 						if(map2.get("ZBZ")!=null)index.put("zbz", map2.get("ZBZ").toString());
@@ -1635,7 +1646,8 @@ public class TjfxController extends BaseActionSupport{
 					}
 			      }
 				for (int x = 0; x < zrsh.size(); x++) {
-					if (zrsh.get(x).get("LXBM").toString().equals(item.getId())) {
+					if (zrsh.get(x).get("LXBM")!=null&&!zrsh.get(x).get("LXBM").equals("")&&
+							zrsh.get(x).get("LXBM").toString().equals(item.getId())) {
 						index.put("zrsh", zrsh.get(x).get("ZRSH").toString());	
 					}
 				}
