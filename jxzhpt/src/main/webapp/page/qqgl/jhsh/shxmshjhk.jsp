@@ -23,6 +23,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			xdzt('xdzt');
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
@@ -55,8 +57,8 @@
 			var params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
 					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
-					'jhsh.ghlxbh':$('#lxbm').val().toUpperCase(),'jhsh.lxmc':$('#lxmc').val(),
-					'jhsh.ghxlxbm':$('#ghlxbm').val().toUpperCase(),'jhsh.ghxlxmc':$('#ghlxmc').val(),
+					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
+					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.xdzttj':xdzt
 					};
 			
@@ -180,8 +182,8 @@
 				var param="jhsh.xmlx="+'5'+"&jhsh.xzqhdm="+getxzqhdm('xzqh')+"&jhsh.xmmc="+$("#xmmc").val()+
 				"&jhsh.xmnf="+xmnf+"&jhsh.jsdj="+$("#jsdj").combobox("getValues").join(",")+
 				"&jhsh.gldj="+$("#gldj").combobox("getValues").join(",")+"&jhsh.tsdq="+tsdq+
-				"&jhsh.ghlxbh="+$("#lxbm").val().toUpperCase()+"&jhsh.lxmc="+$("#lxmc").val()+
-				"&jhsh.ghxlxbm="+$("#ghlxbm").val().toUpperCase()+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
+				"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
+				"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh+'&jhsh.xdzttj='+xdzt;
 		window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}

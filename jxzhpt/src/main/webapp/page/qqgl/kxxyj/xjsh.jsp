@@ -49,7 +49,8 @@
 			loadGldj('gldj');
 			loadBmbm3('lsxmlx','历史项目类型');  
 			loadBmbm3('lsxmnf','历史项目年份');  
-			//xmnf("xmnf");
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			urlxmnf("xmnf",getUrlParame('id'));
 			//showAllxjsh();
 			setTimeout("showAllxjsh()",'1700');

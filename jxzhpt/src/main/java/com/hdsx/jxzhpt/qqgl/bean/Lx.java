@@ -26,7 +26,21 @@ public class Lx {
 	private String wnnfxz;
 	private String lsjl;
 	private String wnxmk;
+	private String tsdq;
+	private String xdnf;
 	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
 	public String getLsjl() {
 		return lsjl;
 	}

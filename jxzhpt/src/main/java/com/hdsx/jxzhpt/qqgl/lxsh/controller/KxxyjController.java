@@ -385,7 +385,9 @@ public class KxxyjController extends BaseActionSupport{
 			jsdjHandle();
 			lxsh.setJsdj(jsdj);
 			lxsh.setJsjsdj(jsjsdj);
-			lxsh.setGhlxbm(ghlxbm);
+			//lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
@@ -485,7 +487,8 @@ public class KxxyjController extends BaseActionSupport{
 			jsdjHandle();
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
-			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			lxsh.setJsjsdj(jsjsdj);
 			lxsh.setPage(page);
@@ -691,7 +694,8 @@ public class KxxyjController extends BaseActionSupport{
 		jsdjHandle();
 		lxsh.setJsdj(jsdj);
 		lxsh.setJsjsdj(jsjsdj);
-		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
@@ -855,7 +859,8 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		lxsh.setJsjsdj(jsjsdj);
-		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");

@@ -122,6 +122,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
+			cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
+			cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
+			
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
 			
@@ -330,7 +333,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
-			
+			cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
+			cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
 			Lxsh l=null;
 			if(cbsj.getXmlx()==1){
 				l=cbsjServer.loadsjcbsjTjxx(cbsj);
@@ -422,6 +426,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		cbsj.setGhlxbm(cbsj.getGhlxbm());
 		cbsj.setGhlxmc(cbsj.getGhlxmc());
 		cbsj.setLxmc(cbsj.getLxmc());
+		cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
+		cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
+		
 		cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 		if(cbsj.getTsdq().length()>0){
 			String[] tsdqs=cbsj.getTsdq().split(",");

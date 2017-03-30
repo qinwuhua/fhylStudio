@@ -24,7 +24,11 @@
 				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+				</if>
+				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+					)
 				</if>
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%2___')
@@ -40,14 +44,10 @@
 				</if> -->
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
 				<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
-				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
+				
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -111,9 +111,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
+				
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 				</if>
@@ -130,14 +128,16 @@
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+				</if>
 				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
 					)
 				</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -203,9 +203,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
+				
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%3___')
 				</if>
@@ -219,14 +217,16 @@
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+				</if>
 				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
 					)
 				</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -291,9 +291,7 @@
 				</if>
 				
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
+				
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%4___' and jdbs='2')
 				</if>
@@ -312,14 +310,16 @@
 				</if> -->
 				<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+				</if>
 				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
 					)
 				</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -380,9 +380,7 @@
 					and lx.lxmc=#{cbsj.lxmc}
 				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
+				
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
@@ -397,14 +395,16 @@
 					and c.sbzt=${cbsj.sbzt}
 				</if> -->
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+				</if>
 				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
 					)
 				</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -469,9 +469,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%2___')
 		</if>
@@ -487,22 +485,24 @@
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-					${cbsj.lsxmnf}
-				</if>
-				<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-					${cbsj.lsxmlx}
-				</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 	<select id="queryCbsjLmgzbgCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_lmgz_tz c left join lxsh_lmgz l on c.xmbm=l.xmbm 
@@ -552,9 +552,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -570,22 +568,24 @@
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-					${cbsj.lsxmnf}
-				</if>
-				<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-					${cbsj.lsxmlx}
-				</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 <select id="queryCbsjLmsjbgCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_sjgz_tz c left join lxsh_sjgz l on c.xmbm=l.xmbm
@@ -635,9 +635,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%3___')
 		</if>
@@ -653,22 +651,24 @@
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-					${cbsj.lsxmnf}
-				</if>
-				<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-					${cbsj.lsxmlx}
-				</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 	<select id="queryCbsjXjbgCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_xj_tz c left join lxsh_xj l on c.xmbm=l.xmbm
@@ -718,9 +718,7 @@
 			and lx.lxmc=#{cbsj.lxmc}
 		</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%4___' and jdbs='2')
 		</if>
@@ -736,22 +734,24 @@
 		</if> -->
 		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-					${cbsj.lsxmnf}
-				</if>
-				<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-					${cbsj.lsxmlx}
-				</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 	<select id="queryCbsjYhdzxbgCount" parameterType="java.util.Map" resultType="int">
 		select count(c.xmbm) from cbsj_yhdzx_tz c left join xmsq_yhdzx l on c.xmbm=l.xmbm where 1=1
@@ -1375,9 +1375,7 @@
 			and lx.lxmc=#{lxmc}
 		</if>
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-		<if test="ghlxbh!=null and ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%' and jdbs='2')
-		</if>
+		
 		<if test="ylxbh!=null and ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
 		</if>
@@ -1389,9 +1387,11 @@
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmlx1!=null and xmlx1!=''">${xmlx1}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
+		<if test="ghlxbh!=null and ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+		</if>
 		<if test="ghlxbm!=null and ghlxbm!=''">
-			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')
-			or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghlxbm}||'%')
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
 			)
 		</if>
 		<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -1445,9 +1445,7 @@
 					and lx.lxmc=#{lxmc}
 				</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
-				</if>
+				
 				<if test="ylxbh!=null and ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
@@ -1462,9 +1460,11 @@
 					and c.sbzt=${sbzt}
 				</if> -->
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
 				<if test="ghlxbm!=null and ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{ghlxbm}||'%')
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
 					)
 				</if>
 				<if test="ghlxmc!='' and ghlxmc!= null ">
@@ -1502,9 +1502,7 @@
 		where 1=1
 		
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -1529,6 +1527,13 @@
 			<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
 				${cbsj.lsxmlx}
 			</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
+		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
 	</select>
 	<select id="loadsjcbsjbgTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(l.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs from cbsj_sjgz_tz c left join lxsh_sjgz l on c.xmbm=l.xmbm
@@ -1560,9 +1565,7 @@
 		left join (select xmid, sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -1581,19 +1584,21 @@
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-				${cbsj.lsxmnf}
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+			<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+				and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+				)
 			</if>
+			<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
 			<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
 				${cbsj.lsxmlx}
 			</if>
@@ -1630,9 +1635,7 @@
 		from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -1651,14 +1654,16 @@
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -1872,9 +1877,7 @@
 		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join kxgsdgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		        left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
-		        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and lx.ghlxmc=#{cbsj.ghlxmc}
-				</if>
+		       
 <!-- 				<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null "> -->
 <!-- 					and lx.ghlxbm=#{cbsj.ghlxbm} -->
 <!-- 				</if> -->
@@ -1885,9 +1888,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-				</if>
+				
 				<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 				</if>
@@ -1904,14 +1905,16 @@
 				</if> -->
 				<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 				<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
-				<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
+				<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
+		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
 				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
 					)
 				</if>
 				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
@@ -1934,12 +1937,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
-        <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-			and lx.ghlxmc=#{cbsj.ghlxmc}
-		</if>
-<!-- 		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null "> -->
-<!-- 			and lx.ghlxbm=#{cbsj.ghlxbm} -->
-<!-- 		</if> -->
+       
 		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
 			and lx.lxmc=#{cbsj.lxmc}
 		</if>
@@ -1947,9 +1945,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -1965,22 +1961,24 @@
 		</if> -->
 		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-				${cbsj.lsxmnf}
-			</if>
-			<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-				${cbsj.lsxmlx}
-			</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 	<select id="loadgsdcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
 		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
@@ -1991,12 +1989,8 @@
 <!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
 		end) lc
 	   from lxsh_lx where jdbs='2'
-	   <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-			and ghlxmc=#{cbsj.ghlxmc}
-		</if>
-		<if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
-			and ghlxbm=#{cbsj.ghlxbm}
-		</if>
+	   
+		
 		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
 			and lxmc=#{cbsj.lxmc}
 		</if>) group by xmid) lx on c.xmbm=lx.xmid
@@ -2005,9 +1999,7 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{cbsj.ghlxbh}||'%')
-		</if>
+		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -2023,22 +2015,24 @@
 		</if> -->
 		<if test="cbsj.xmlx1 !=null and cbsj.xmlx1 !=''"> ${cbsj.xmlx1}</if>
 		<if test="cbsj.shzt>=0">and c.shzt=${cbsj.shzt}</if>
+		<if test="cbsj.ghlxbh!=null and cbsj.ghlxbh!=''">
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbh})
+		</if>
 		<if test="cbsj.ghlxbm!=null and cbsj.ghlxbm!=''">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxbm like '%'||#{cbsj.ghlxbm}||'%')
-					)
-				</if>
-				<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
-					and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					or c.xmbm in (select distinct xmid from lx_clsd where ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
-					)
-				</if>
-				<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
-				${cbsj.lsxmnf}
-			</if>
-			<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
-				${cbsj.lsxmlx}
-			</if>
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${cbsj.ghlxbm})
+			)
+		</if>
+		<if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
+			and (c.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{cbsj.ghlxmc}||'%')
+
+			)
+		</if>
+		<if test="cbsj.lsxmnf !='' and cbsj.lsxmnf != null ">
+			${cbsj.lsxmnf}
+		</if>
+		<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
+			${cbsj.lsxmlx}
+		</if>
 	</select>
 	
 	<select id="querygsdExcel" parameterType="cbsj" resultType="cbsj">

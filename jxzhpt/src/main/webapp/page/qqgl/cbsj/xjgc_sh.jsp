@@ -64,7 +64,8 @@
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
-			//xmnf("xmnf");
+			loadGhlx('ghlxbm');
+			loadylx('txtlxbm');
 			urlxmnf("xmnf",getUrlParame('id'));
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -97,13 +98,13 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
+					'cbsj.ghlxbh':$('#txtlxbm').combotree('getText'),
 					'cbsj.xmmc':$('#xmmc').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'tsdq':tsdq,
 					'cbsj.sbzt':sbzt,
-					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'cbsj.shzt':$('#shzt').combo("getValue"),

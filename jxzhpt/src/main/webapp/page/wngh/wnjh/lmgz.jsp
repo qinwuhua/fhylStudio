@@ -26,6 +26,8 @@
 		$(function(){
 			gsdxmlx('xmlx');
 			tsdqdx("tsdq");
+			loadGhlx('ghxlxbm');
+			loadylx('lxbm');
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');

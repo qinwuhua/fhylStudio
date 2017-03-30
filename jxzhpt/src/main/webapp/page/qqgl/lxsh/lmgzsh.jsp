@@ -26,6 +26,8 @@
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx("tsdq");
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');

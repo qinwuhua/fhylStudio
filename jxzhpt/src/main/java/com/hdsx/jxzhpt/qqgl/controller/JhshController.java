@@ -39,6 +39,7 @@ import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
@@ -191,6 +192,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			listData=jhshServer.queryGsdgz(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzCount(jhsh);
 			result.put("total", total);
@@ -215,6 +219,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsxzHandle();
 			zjlyHandle();
 			xdztHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			listData=jhshServer.queryGsdgz_qx(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgz_qxCount(jhsh);
@@ -293,6 +300,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsxzHandle();
 			zjlyHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			result = jhshServer.queryJhshLjgsdgz(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -310,6 +320,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			tsdqHandle();
 			jsxzHandle();
 			zjlyHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			result = jhshServer.queryJhshLjgsdgz_qx(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
@@ -427,6 +440,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				zjlyHandle();
 				xdwhHandle();
 				xdztHandle();
+				jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+				jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+				
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
@@ -435,6 +451,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle1();
 				xdwhHandle();
 				xdztHandle();
+				jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+				jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+				
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjSh(jhsh);
 			}else if(jhsh.getXmlx()==6){
@@ -479,6 +498,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				zjlyHandle();
 				xdwhHandle();
 				xdztHandle();
+				jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+				jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+				
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjYhdzx_qx(jhsh);
 			}else if(jhsh.getXmlx()==5){
@@ -487,6 +509,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				tsdqHandle1();
 				xdwhHandle();
 				xdztHandle();
+				jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+				jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+				
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 				result = jhshServer.queryJhshLjSh_qx(jhsh);
 			}else if(jhsh.getXmlx()==6){
@@ -542,6 +567,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setXmbm(xmbm);
 			ylxbhHandle();
 			jsdjHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx()==1){
 				result = jhshServer.queryJhshLjLmsj1(jhsh);
@@ -578,6 +606,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		int total=0;
 		try{
 			int s = jhsh.getXmlx();//谁写的？有嘛用？
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			if(jhsh.getXmlx()==4){
 				xdwhHandle();
 				jsdjHandle1();
@@ -642,6 +673,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		int total=0;
 		try{
 			int s = jhsh.getXmlx();//谁写的？有嘛用？
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			if(jhsh.getXmlx()==4){
 				xdwhHandle();
 				jsdjHandle1();
@@ -720,6 +754,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setXmbm(xmbm);
 			jsdjHandle();
 			ylxbhHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
 			if(jhsh.getXmlx()==4){
 				listData=jhshServer.queryJhshYhdzx1(jhsh,jhsh.getPage(),jhsh.getRows());
@@ -1265,6 +1302,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jhsh.setXmbm(xmbm);
 		jsdjHandle();
 		ylxbhHandle();
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+		
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
@@ -1366,6 +1406,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsjsdjHandle();
 				ylxbhHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+				jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+				jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+				
 				List<Object> excelData=new ArrayList<Object>();
 				if(jhsh.getXmlx1()!=null)
 					if(jhsh.getXmlx1().length()>0){
@@ -1439,6 +1482,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			jhsh.setPage(0);
 			jhsh.setRows(0);
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			excelData.addAll(jhshServer.queryJhshYhdzx_dc(jhsh));
 			fileName="计划下达表格（2015-49号）";
 		}
@@ -1589,6 +1635,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jsdjHandle1();
 		xzdjHandle();
 		tsdqHandle();
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
 		
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		List<Object> excelData=new ArrayList<Object>();
@@ -1683,6 +1731,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		jhsh.setXmbm(xmbm);
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+		
 		jsdjHandle();
 		ylxbhHandle();
 		List<Object> excelData=new ArrayList<Object>();
@@ -1779,6 +1830,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		List<Object> excelData=new ArrayList<Object>();
 		String titleName="";
 		String fileName="";
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+		
 		excelData.addAll(jhshServer.queryGsdgz_dc(jhsh, 0, 0));
 		titleName="国省道改造";
 		fileName="国省道改造-计划资金下达";
@@ -1982,6 +2036,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			//lx.setXzqh(getcxtj("l.xzqhdm",xzqh));
 			//lx.setXzqhdm(getcxtj("t.xlxbm",xzqh));
 			lx.setXzqhdm(getcxtj("xzqhdm2",xzqh));
+			lx.setXdnf(getcxtj("xdnf",lx.getXdnf()));
+			lx.setTsdq(getcxtj("tsdq",lx.getTsdq()));
 			lx.setJsxz(getcxtj("jsxz",lx.getXmlx()));
 			JsonUtils.write(jhshServer.queryLsxx2new(lx), getresponse().getWriter());
 		}catch(Exception e){
@@ -2216,6 +2272,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			listData=jhshServer.queryGsdgzxd(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzxdCount(jhsh);
 			result.put("total", total);
@@ -2239,6 +2298,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			//zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			listData=jhshServer.queryshxd(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryshxdCount(jhsh);
 			result.put("total", total);
@@ -2262,6 +2324,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			listData=jhshServer.queryjhxdyh(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryjhxdyhCount(jhsh);
 			result.put("total", total);
@@ -2289,6 +2354,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			xdztHandle();
 			tsdqHandle();
 			xdwhHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			listData=jhshServer.queryGsdgzxdbz(jhsh);
 
 			JsonUtils.write(listData, getresponse().getWriter());
@@ -2323,6 +2391,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryjhxdshbz() throws Exception{
 		List<Jhsh> listData=null;
 		try {
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			if(jhsh.getXmlx()==5){//灾毁恢复
 				xdwhHandle();
 				xzdjHandle();
@@ -2333,6 +2404,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				//zjlyHandle();
 				xdztHandle();
 				tsdqHandle();
+				
 				listData=jhshServer.queryshxdbz(jhsh);
 			}
 			if(jhsh.getXmlx()==4){//养护大中修
@@ -2386,6 +2458,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			zjlyHandle();
 			xdztHandle();
 			tsdqHandle();
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			result = jhshServer.queryJhshLjgsdxd(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -2395,6 +2470,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhbzLj(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			if(jhsh.getXmlx()==5){
 				xdwhHandle();
 				xzdjHandle();
@@ -2798,7 +2876,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				}
 				jhsh.setXmlx1(tsdq);
 			}
-
+		jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+		jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+		
 		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
 		
 		ExcelData eldata=new ExcelData();//创建一个类
@@ -2896,7 +2976,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jhsh.setXmlx1(tsdq);
 				}
 			
-			System.out.println(jhsh);
+			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+			jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+			
 			List<Excel_list> l = jhshServer.queryZhhf_dc(jhsh);
 			//l.add(new Excel_list());
 			
@@ -2949,6 +3031,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					zjlyHandle();
 					xdztHandle();
 					tsdqHandle();
+					jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+					jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
 					
 					List<Excel_list> l = jhshServer.queryYhdzx_dc(jhsh);
 					for (int i = 0; i < l.size(); i++) {
@@ -3015,6 +3099,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					zjlyHandle();
 					xdztHandle();
 					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+					jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
 					
 					List<Excel_list> l = jhshServer.queryYhdzx_dc1(jhsh);
 					for (int i = 0; i < l.size(); i++) {
@@ -3085,7 +3171,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					zjlyHandle();
 					xdztHandle();
 					tsdqHandle();
-					System.out.println("ssssssss"+jhsh.getScxdnf());
+					jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+					jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+					
 					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc(jhsh);
 					for (int i = 0; i < l.size(); i++) {
 						l.get(i).setV_0((i+1)+"");
@@ -3160,6 +3248,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					zjlyHandle();
 					xdztHandle();
 					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
+					jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
+					jhsh.setGhxlxbm(MyUtil.getQueryTJ(jhsh.getGhxlxbm(), "ghlxbm"));
+					
 					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc1(jhsh);
 					for (int i = 0; i < l.size(); i++) {
 						l.get(i).setV_0((i+1)+"");

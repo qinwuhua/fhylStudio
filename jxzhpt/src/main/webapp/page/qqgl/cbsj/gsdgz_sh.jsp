@@ -38,6 +38,8 @@
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
 			gsdxmlx('xmlx');
+			loadGhlx('ghlxbm');
+			loadylx('txtlxbm');
 			loadBmbm3('lsxmlx','历史项目类型');  
 			loadBmbm3('lsxmnf','历史项目年份');  
 			urlxmnf("xmnf",getUrlParame('id'));
@@ -75,7 +77,7 @@
 			var params={'cbsj.xmlx':11,
 					'cbsj.xmlx1':xmlx,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
+					'cbsj.ghlxbh':$('#txtlxbm').combotree('getText'),
 					'cbsj.xmmc':$('#xmmc').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
@@ -84,7 +86,7 @@
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
 					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
-					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'lsjl':$('#lsjl').combobox("getValue"),

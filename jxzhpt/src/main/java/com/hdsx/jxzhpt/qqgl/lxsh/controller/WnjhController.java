@@ -415,6 +415,8 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 		}
 		setXmlx1(lxsh.getXmlx1());
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+		lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 		
 		List<Lxsh> list=wnjhServer.selectGjwnjh(lxsh);
 		int count=wnjhServer.selectGjwnjhCount(lxsh);
@@ -495,7 +497,8 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			setXmlx1(lxsh.getXmlx1());
-			System.out.println(lxsh.getXmklx());
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 		List<Lxsh> list=wnjhServer.selectGsdwnjh(lxsh);
 		int count=wnjhServer.selectGsdwnjhCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -578,6 +581,8 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			setXmlx1(lxsh.getXmlx1());
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 		List<Lxsh> list=wnjhServer.selectLmwnjh(lxsh);
 		int count=wnjhServer.selectLmwnjhCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -657,6 +662,8 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			setXmlx1(lxsh.getXmlx1());
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 			List<Lxsh> list=wnjhServer.selectXjwnjh(lxsh);
 			int count=wnjhServer.selectXjwnjhCount(lxsh);
 			EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1399,7 +1406,8 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 		}
 		setXmlx1(lxsh.getXmlx1());
-		
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+		lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 		Lxsh l=new Lxsh();
 		if("gsdgz".equals(xmlx)){
 			l=wnjhServer.showgsdtj(lxsh);}
@@ -1669,7 +1677,8 @@ public class WnjhController extends BaseActionSupport{
 				lxsh.setTsdq(tsdq);
 			}
 			setXmlx1(lxsh.getXmlx1());
-			
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 		lxsh.setNwgxzdj(MyUtil.getQueryTJ(lxsh.getNwgxzdj(), "ghlxbmtj||ghxlxbmtj"));
 			
 		List<Lxsh> list=wnjhServer.selectGsdxzxm(lxsh);

@@ -26,7 +26,8 @@
 		$(function(){
 			gsdxmlx('xmlx');
 			tsdqdx('tsdq');
-			//loadUnit1("gydw",$.cookie("unit"));
+			loadGhlx('ghxlxbm');
+			loadylx('lxbm');
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
@@ -120,7 +121,7 @@ text-decoration:none;
         						<td align="right">原路线名称：</td>
         						<td><input id='lxmc' type="text" style="width:104px" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input id='ghxlxbm' type="text" style="width:45px" /></td>
+        						<td><input id='ghxlxbm' type="text" style="width:85px" /></td>
         					</tr>
         					<tr height="32">
         						

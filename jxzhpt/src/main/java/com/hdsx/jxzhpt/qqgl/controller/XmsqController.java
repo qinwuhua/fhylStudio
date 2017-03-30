@@ -413,9 +413,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			List<Xmsq> list=null;
 			int total=0;
-			//String sss = xmsq.getJsxz();
-			//String aaa = xmsq.getWnxmk();
-			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+			
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
@@ -541,9 +541,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}
 			List<Xmsq> list=null;
 			int total=0;
-			//String sss = xmsq.getJsxz();
-			//String aaa = xmsq.getWnxmk();
-			//xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+			
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 			xmsq.setJsxz(xmsq.getJsxz());
 			xmsq.setWnxmk(xmsq.getWnxmk());
@@ -674,6 +674,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
 		xmsq.setJsxz(xmsq.getJsxz());
 		xmsq.setWnxmk(xmsq.getWnxmk());
+		xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+		xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+		
 		Map<String, String> result = null;
 		if(xmsq.getXmlx()==4){
 			String gcfl = xmsq.getJsxz();
@@ -786,6 +789,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		jsdjHandle();
 		xmsq.setLsxmlx(MyUtil.getQueryTJ(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+		xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+		xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
 		
 	//	xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
@@ -1250,6 +1255,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmsq.setYlxbh(ylxbh);
 			}
 			jsdjHandle();
+			xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+			
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
@@ -1559,7 +1567,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try {
 			
 			List<TreeNode> resultList = new ArrayList<TreeNode>();
-			
+			List<TreeNode> resultList1 = new ArrayList<TreeNode>();
 			List<Map<String, String>> gd = xmsqServer.queryLxFromGpsroadByLevel("G",xmsq.getXzqhdm());
 			List<TreeNode> gChildren = new ArrayList<TreeNode>();
 			for (Map<String, String> item : gd) {
@@ -1583,7 +1591,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			s.setState("closed");
 			resultList.add(s);
 			
-			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
+			TreeNode qb = new TreeNode("","全部",null,resultList);
+			resultList1.add(qb);
+			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList1).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1593,7 +1603,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try {
 			
 			List<TreeNode> resultList = new ArrayList<TreeNode>();
-			
+			List<TreeNode> resultList1 = new ArrayList<TreeNode>();
 			List<Map<String, String>> gd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'G%'",xmsq.getXzqhdm());
 			List<TreeNode> gChildren = new ArrayList<TreeNode>();
 			for (Map<String, String> item : gd) {
@@ -1616,7 +1626,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				sChildren.add(lx);
 			}
 			TreeNode s = new TreeNode("S","省道",null,sChildren);
-			g.setState("closed");
+			s.setState("closed");
 			resultList.add(s);
 			
 			//x
@@ -1629,7 +1639,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xChildren.add(lx);
 			}
 			TreeNode x = new TreeNode("X","县道",null,xChildren);
-			g.setState("closed");
+			x.setState("closed");
 			resultList.add(x);
 			//y
 			List<Map<String, String>> yd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'Y%'",xmsq.getXzqhdm());
@@ -1641,7 +1651,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				yChildren.add(lx);
 			}
 			TreeNode y = new TreeNode("Y","乡道",null,yChildren);
-			g.setState("closed");
+			y.setState("closed");
 			resultList.add(y);
 			//c
 			List<Map<String, String>> cd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'C%'",xmsq.getXzqhdm());
@@ -1653,7 +1663,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				cChildren.add(lx);
 			}
 			TreeNode c = new TreeNode("C","村道",null,cChildren);
-			g.setState("closed");
+			c.setState("closed");
 			resultList.add(c);
 			//z
 			List<Map<String, String>> zd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm like 'Z%'",xmsq.getXzqhdm());
@@ -1665,7 +1675,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				zChildren.add(lx);
 			}
 			TreeNode z = new TreeNode("Z","专道",null,zChildren);
-			g.setState("closed");
+			z.setState("closed");
 			resultList.add(z);
 			//其他
 			List<Map<String, String>> qtd = xmsqServer.queryLxFromLxshlxByLevel("and lxbm not like 'G%' and lxbm not like 'S%' and lxbm not like 'X%' and lxbm not like 'Y%' and lxbm not like 'C%' and lxbm not like 'Z%'",xmsq.getXzqhdm());
@@ -1677,11 +1687,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				qtChildren.add(lx);
 			}
 			TreeNode qt = new TreeNode("qt","其他",null,qtChildren);
-			g.setState("closed");
+			qt.setState("closed");
 			resultList.add(qt);
+
+			TreeNode qb = new TreeNode("","全部",null,resultList);
+			resultList1.add(qb);
 			
-			
-			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList).toString());
+			ResponseUtils.write(getresponse(), JSONArray.fromObject(resultList1).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1766,6 +1778,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setYlxbh(ylxbh);
 		}
 		jsdjHandle();
+		xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+		xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+		
 		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 		if(xmsq.getXmlx()==4){

@@ -47,9 +47,8 @@
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('jsjsdj','技术等级');
 			loadGldj('gldj');
-			//tsdq("tsdq");
-			//xmnf("xmnf");
-			//loadBmbm3('lsxmlx','历史项目类型');  
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			loadBmbm3('lsxmnf','历史项目年份');  
 			loadBmbm3('lsxmlx','历史项目类型');
 			urlxmnf("xmnf",getUrlParame('id'));

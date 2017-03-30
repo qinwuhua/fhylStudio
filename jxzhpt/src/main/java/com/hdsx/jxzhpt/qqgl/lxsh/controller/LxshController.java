@@ -517,7 +517,9 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			lxsh.setGhlxbh(ghlxbh);
+			//lxsh.setGhlxbh(ghlxbh);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setLxmc(lxmc);
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -622,6 +624,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
 			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			if(lxsh.getXmlx1()!=null)
 				if(lxsh.getXmlx1().length()>0){
@@ -712,7 +716,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
-			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setLxmc(lxmc);
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -809,10 +814,11 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
-			lxsh.setGhlxbh(ghlxbh);
+			//lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
-			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			/*if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -930,10 +936,11 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
-			lxsh.setGhlxbh(ghlxbh);
+			//lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
-			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			/*if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -997,7 +1004,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setLxmc(lxmc);
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1063,7 +1071,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setLxmc(lxmc);
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1161,10 +1170,11 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			lxsh.setGhlxbh(ghlxbh);
+			//lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
-			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			/*if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1506,10 +1516,11 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		lxsh.setGhlxbh(ghlxbh);
+		//lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
 		lxsh.setJsjsdj(jsjsdj);
-		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
 		/*if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1610,10 +1621,11 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		lxsh.setGhlxbh(ghlxbh);
+		//lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
 		lxsh.setJsjsdj(jsjsdj);
-		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
 		/*if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1713,10 +1725,11 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		lxsh.setGhlxbh(ghlxbh);
+		//lxsh.setGhlxbh(ghlxbh);
 		lxsh.setLxmc(lxmc);
 		lxsh.setJsjsdj(jsjsdj);
-		lxsh.setGhlxbm(ghlxbm);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
 		/*if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1834,7 +1847,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
-		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 		lxsh.setLxmc(lxmc);
 		if(lxsh.getTsdq().length()>0){
 			String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1901,7 +1915,8 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			lxsh.setGhlxbh(ghlxbh);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setLxmc(lxmc);
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -2006,10 +2021,11 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
-			lxsh.setGhlxbh(ghlxbh);
+			//lxsh.setGhlxbh(ghlxbh);
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
-			lxsh.setGhlxbm(ghlxbm);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
 			/*if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -2241,6 +2257,8 @@ public class LxshController extends BaseActionSupport{
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "t.xzqhdm2"));
 			lxsh.setGydw(tiaojian1);
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
@@ -2412,7 +2430,8 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
-			
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
