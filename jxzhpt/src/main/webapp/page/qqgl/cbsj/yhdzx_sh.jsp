@@ -61,7 +61,8 @@
 			}
 			loadDist1("xzqh",$.cookie("dist"));
 			tsdqdx("tsdq");
-			//gsdxmlx('xmlx');
+			loadGhlx('ghlxbm');
+			loadylx('txtlxbm');
 			yhxmlx('xmlx');
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
@@ -122,7 +123,7 @@
 			var params={'cbsj.xmlx':4,
 					'cbsj.xmlx1':xmlx,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
+					'cbsj.ghlxbh':$('#txtlxbm').combotree('getText'),
 					'cbsj.xmmc':$('#xmmc').val(),
 					'cbsj.xjsdj':$('#yjsdj').combobox("getValues").join(","),
 					//'cbsj.jsjsdj':$('#gjhjsdj').combobox("getValues").join(","),
@@ -133,7 +134,7 @@
 					'lsjl':$('#lsjl').combobox("getValue")
 					,"jdbs":2,
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
-					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),

@@ -19,6 +19,8 @@
 	<script type="text/javascript">
 		$(function(){
 			bbxmlx1('xmlx');
+			tsdqdx("tsdq");
+			loadBmbm3("xdnf",'历史项目年份');
 			loadDist1("xzqh",$.cookie("dist"));
 		});
 		function search(){
@@ -41,10 +43,16 @@
 			}
 			var lxbm=$('#lxbm').val();
 			var ghlxbm=$('#ghlxbm').val();
+			var xdnf=$("#xdnf").combobox("getValues").join(",");
+			if(xdnf.substr(0,1)==',')
+				xdnf=xdnf.substr(1,xdnf.length);
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr},
+					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq},
 				fitColumns:true,
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
@@ -57,11 +65,12 @@
 							return a;
 						}
 					},
-					{field:'xmid',title:'计划年份',width:100,align:'center',
+					{field:'xmid',title:'项目年份',width:100,align:'center',
 						formatter:function(value,row,index){
 							return value.substring(0,4);
 						}
 					},
+					{field:'xdnf',title:'下达年份',width:180,align:'center'},
 					{field:'ghlxbm',title:'规划路线编码',width:110,align:'center'},
 					{field:'jsjsdj',title:'规划技术等级',width:110,align:'center',
 						formatter:function(value,row,index){
@@ -201,6 +210,8 @@
         						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目类型：</td>
         						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 180px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">下达年份：</td>
+        						<td style="text-align: left;"><input id="xdnf" type="text" style="width: 130px;margin-right: 10px;"/></td>
         					</tr>
         					<tr height="32">
 								<td style="text-align: right;">规划路线编码：</td>
@@ -211,10 +222,12 @@
         						<td style="text-align: left;"><input id="ghzdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">行政区划：</td>
         						<td style="text-align: left;"><input id="xzqh" type="text" style="width: 180px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">特殊地区：</td>
+        						<td style="text-align: left;"><input id="tsdq" type="text" style="width: 130px;margin-right: 10px;"/></td>
         					
         					</tr>
                             <tr height="32">
-                            	<td colspan="6">
+                            	<td colspan="8">
 								<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:search()" class="button button-tiny button-raised button-primary">查询</a>
                             	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:reset()" class="button button-tiny button-raised button-primary">重置</a>
                             	

@@ -27,6 +27,8 @@
 		$(function(){
 // 			if($.cookie('unit')=='36')
 // 				location.href='sjgzsh.jsp';
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));

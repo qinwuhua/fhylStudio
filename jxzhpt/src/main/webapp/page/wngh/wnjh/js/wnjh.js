@@ -627,10 +627,12 @@ function showgjtj(xmlx){
 	var xmlx1=$("#xmlx").combobox("getValues").join(",");
 	if(xmlx1.substr(0,1)==',')
 		xmlx1=xmlx1.substr(1,xmlx1.length);
+	var lxbm=$("#lxbm").combotree('getText');
+	var ghxlxbm=$("#ghxlxbm").combotree('getText');
 	var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
-	+'&lxsh.ghlxbh='+$("#lxbm").val()+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
+	+'&lxsh.ghlxbh='+lxbm+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
 	+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')
-	+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+$("#ghxlxbm").val()+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
+	+'&lxsh.gydw='+$.cookie("dist2")+'&lxsh.ghxlxbm='+ghxlxbm+'&lxsh.ghxlxmc='+$("#ghxlxmc").val()+'&lxsh.xmlx1='+xmlx1+'&lxsh.qqkzzt='+$("#qqkzzt").combobox('getValue');
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/showgjtj.do",
@@ -673,6 +675,8 @@ function showAllgj(){
 	var xmlx1=$("#xmlx").combobox("getValues").join(",");
 	if(xmlx1.substr(0,1)==',')
 		xmlx1=xmlx1.substr(1,xmlx1.length);
+	var lxbm=$("#lxbm").combotree('getText');
+	var ghxlxbm=$("#ghxlxbm").combotree('getText');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectGjwnjh.do',
 	    striped:true,
@@ -691,10 +695,10 @@ function showAllgj(){
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val(),
-			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.ghlxbh':lxbm,
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+			'lxsh.ghxlxbm':ghxlxbm,
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx1,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
@@ -807,6 +811,8 @@ function showAlllm(){
 	var xmlx=$("#xmlx").combobox("getValues").join(",");
 	if(xmlx.substr(0,1)==',')
 		xmlx=xmlx.substr(1,xmlx.length);
+	var lxbm=$("#lxbm").combotree('getText');
+	var ghxlxbm=$("#ghxlxbm").combotree('getText');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmwnjh.do',
 	    striped:true,
@@ -825,10 +831,10 @@ function showAlllm(){
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val(),
-			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.ghlxbh':lxbm,
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+			'lxsh.ghxlxbm':ghxlxbm,
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),
@@ -1074,6 +1080,8 @@ function showAllxj(){
 	var xmlx=$("#xmlx").combobox("getValues").join(",");
 	if(xmlx.substr(0,1)==',')
 		xmlx=xmlx.substr(1,xmlx.length);
+	var lxbm=$("#lxbm").combotree('getText');
+	var ghxlxbm=$("#ghxlxbm").combotree('getText');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectXjwnjh.do',
 	    striped:true,
@@ -1092,10 +1100,10 @@ function showAllxj(){
 			gldj:gldj,
 			'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 			'lxsh.xmmc':$("#xmmc").val(),
-			'lxsh.ghlxbh':$("#lxbm").val(),
+			'lxsh.ghlxbh':lxbm,
 			'lxsh.lxmc':$("#lxmc").val(),
 			'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-			'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+			'lxsh.ghxlxbm':ghxlxbm,
 			'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 			'lxsh.xmlx1':xmlx,
 			'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),

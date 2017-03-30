@@ -25,7 +25,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gsdxmlx('xmlx');
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
+			//gsdxmlx('xmlx');
 			loadBmbm3("xmnf",'全部项目年份',new Date().getFullYear());
 			tsdqdx('tsdq');
 			loadUnit1("gydw",$.cookie("unit"));
@@ -80,10 +82,10 @@
 					gldj:gldj,
 					'lxsh.lsjl':$("#lsjl").combobox('getValue'),
 					'lxsh.xmmc':$("#xmmc").val(),
-					'lxsh.ghlxbh':$("#lxbm").val(),
+					'lxsh.ghlxbh':$("#lxbm").combotree('getText'),
 					'lxsh.lxmc':$("#lxmc").val(),
 					'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-					'lxsh.ghxlxbm':$("#ghxlxbm").val(),
+					'lxsh.ghxlxbm':$("#ghxlxbm").combobox('getValue'),
 					'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 					'lxsh.xmlx1':xmlx,
 					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),

@@ -64,7 +64,8 @@
 			loadBmbm3('yjsdj','技术等级');
 			loadBmbm3('gjhjsdj','技术等级');
 			loadGldj('gldj');
-			//xmnf("xmnf");
+			loadGhlx('ghlxbm');
+			loadylx('txtlxbm');
 			urlxmnf("xmnf",getUrlParame('id'));
 			YMLib.Var.jdbs=2;
 			if($.cookie("dist")!="360000"){
@@ -99,7 +100,7 @@
 			//alert();
 			var params={'cbsj.xmlx':5,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
-					'cbsj.ghlxbh':$('#txtlxbm').val().toUpperCase(),
+					'cbsj.ghlxbh':$('#txtlxbm').combotree('getText'),
 					'cbsj.xmmc':$('#xmmc').val(),
 					"cbsj.jdbs":2,
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
@@ -108,7 +109,7 @@
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmbm':xmnf,
 					'tsdq':tsdq,
-					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),
 					'lsjl':$('#lsjl').combobox("getValue"),

@@ -12,7 +12,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/2.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 
 	
@@ -37,85 +36,18 @@
 	    function loadGhlx(id) {
 	    	$("#"+id).combotree({
 	    		url: '/jxzhpt/qqgl/loadGhlx.do?xzqhdm='+$.cookie("dist2"),
-	    		//onLoadError: showError,
-	    		onClick: function (node) {
-	    			var user = {"refresh": "1"};
-	    			if (node.id != 0)  user.so_id = node.attributes.so_id;
-	    			$("#table").datagrid("clearSelections").datagrid("load", user);
-	    			$("#parentName").val(user.so_id);
-	    		},
-	    		panelHeight:'250',editable: true,multiple:true,
-	    		onLoadSuccess: function (node, data) {
-	    			$(this).tree('collapseAll');   //关闭树节点
-	    			var root = $(this).tree("getRoot");      //展开根节点
-	    			if (root != null) {
-	    				//$(this).tree("expand", root.target);
-	    				var childrens = $(this).tree("getChildren", root.target);
-	    				for (var i = 0; i < childrens.length; i++) {
-	    					if (childrens[i].attributes.so_id == '0') {
-	    						$(this).tree("expand", childrens[i].target);
-	    					}
-	    				}
-	    				var item = $("#"+id).tree("find", openid);    //展开并定位到指定节点
-	    				if (item != null) {
-	    					$(this).tree("expandTo", item.target);
-	    					$(this).tree("select", item.target);
-	    				}
-	    				var user = {"refresh": "1"};
-	    				user.so_id = openid;
-	    				$("#table").datagrid("clearSelections").datagrid("load", user);
-	    			}
-	    		}
+	    		panelHeight:'250',editable: true,multiple:true
+	    		
 	    	});
 	    	
-	    	$(".combo-text").bind("input propertychange", function() {
-		        $("#"+id).combotree('tree').tree("search",$(this).val());
-		        if($(this).val()=="" || null==$(this).val()){
-		            $("#"+id).combotree('tree').tree("expandAll");
-		        }
-		    	});
 	    } 
 	    
 	    function loadylx(id) {
 	    	$("#"+id).combotree({
 	    		url: '/jxzhpt/qqgl/loadYlx.do?xzqhdm='+$.cookie("dist2"),
-	    		//onLoadError: showError,
-	    		onClick: function (node) {
-	    			var user = {"refresh": "1"};
-	    			if (node.id != 0)  user.so_id = node.attributes.so_id;
-	    			$("#table").datagrid("clearSelections").datagrid("load", user);
-	    			$("#parentName").val(user.so_id);
-	    		},
-	    		panelHeight:'250',editable: true,multiple:true,
-	    		onLoadSuccess: function (node, data) {
-	    			$(this).tree('collapseAll');   //关闭树节点
-	    			var root = $(this).tree("getRoot");      //展开根节点
-	    			if (root != null) {
-	    				//$(this).tree("expand", root.target);
-	    				var childrens = $(this).tree("getChildren", root.target);
-	    				for (var i = 0; i < childrens.length; i++) {
-	    					if (childrens[i].attributes.so_id == '0') {
-	    						$(this).tree("expand", childrens[i].target);
-	    					}
-	    				}
-	    				var item = $("#"+id).tree("find", openid);    //展开并定位到指定节点
-	    				if (item != null) {
-	    					$(this).tree("expandTo", item.target);
-	    					$(this).tree("select", item.target);
-	    				}
-	    				var user = {"refresh": "1"};
-	    				user.so_id = openid;
-	    				$("#table").datagrid("clearSelections").datagrid("load", user);
-	    			}
-	    		}
+	    		panelHeight:'250',editable: true,multiple:true
+	    		
 	    	});
-	    	
-	    	$(".combo-text").bind("input propertychange", function() {
-		        $("#"+id).combotree('tree').tree("search",$(this).val());
-		        if($(this).val()=="" || null==$(this).val()){
-		            $("#"+id).combotree('tree').tree("expandAll");
-		        }
-		    	});
 	    } 
 	    
 	    
@@ -133,8 +65,8 @@
 		
 		<tr>
 			<td>
-				<input type="text" class='easyui-combotree combo-text' id="ghlxbm" data-options="panelHeight:'auto'">
-				<input type="text" class='easyui-combotree combo-text' id="ylxbm" data-options="panelHeight:'auto'">
+				<input type="text" class='easyui-combotree' id="ghlxbm" data-options="panelHeight:'auto'">
+				<input type="text" class='easyui-combotree' id="ylxbm" data-options="panelHeight:'auto'">
 				<input type="button" onclick="ckxx()" value="打印">
 			</td>
 			

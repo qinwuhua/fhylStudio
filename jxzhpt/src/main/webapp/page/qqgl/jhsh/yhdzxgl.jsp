@@ -24,6 +24,8 @@
 	<script type="text/javascript">
 		var title='';
 		$(function(){
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			//根据用户等级展示按钮
 			if(userPanduan($.cookie("unit2"))=="省"){
 				title='审核状态';
@@ -89,7 +91,7 @@
 					//'gydwdm':getgydw('gydw'),
 					'xzqhdm':getxzqhdm('xzqh'),
 					'xmmc':$('#xmmc').val(),
-					'ghlxbh':$('#lxbm').val().toUpperCase(),
+					'ghlxbh':$('#lxbm').combotree('getText'),
 					'lxmc':$('#lxmc').val(),
 					'tsdq':tsdq,
 					'jsdj':$('#jsdj').combobox("getValues").join(","),
@@ -98,7 +100,7 @@
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'wnxmk':$('#wnxmk').combobox("getValue"),
-					'ghlxbm':$("#ghlxbm").val().toUpperCase(),
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'jsxz':jsxz,
 					'xmbm':xmnf,
@@ -662,7 +664,7 @@
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
-			'&ghlxbh='+$("#lxbm").val().toUpperCase()+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").val().toUpperCase()+'&ghlxmc='+$("#ghlxmc").val();
+			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+'&ghlxmc='+$("#ghlxmc").val();
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
 		}
 		function importXmsq(){

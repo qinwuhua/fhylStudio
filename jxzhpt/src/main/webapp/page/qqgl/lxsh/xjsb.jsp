@@ -28,6 +28,8 @@
 // 			if($.cookie('unit')=='36')
 // 				location.href='xjsh.jsp';
 			tsdqdx("tsdq");
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
