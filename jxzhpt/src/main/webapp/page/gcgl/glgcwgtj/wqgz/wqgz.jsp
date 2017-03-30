@@ -59,6 +59,13 @@ a:active {
  text-decoration: none;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body>
@@ -77,47 +84,51 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 150px;">
-        						<span style=" vertical-align:middle;">行政等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:102px; vertical-align:middle;"></select>
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 100px;">
-        						<span>桥梁名称：</span>
-        						<input type="text" id="qlmc" style="width: 100px;">
-        						</p>
-        						 <p style="margin: 1% 0% 1% 2%;">
-								<span>行政区划：</span>
-        						<select id="xzqh" style="width:150px;"></select>
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">管养单位：</td>
+        						<td><input id="gydw" style="width: 150px;"></td>
+        						<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:82px; vertical-align:middle;"></select></td>
+        						<td align="right">路线名称：</td>
+        							<td><input type="text" id="lxmc" style="width: 100px;"></td>
+        						<td align="right">桥梁名称：</td>
+        						<td><input type="text" id="qlmc" style="width: 100px;"></td>
+        						</tr>
+        						<tr height="32">
+								<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:150px;"></select></td>
 								
-        						<span style=" vertical-align:middle;">特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:102px; vertical-align:middle;">
-								</select>
+        						<td align="right">殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:82px; vertical-align:middle;">
+								</select></td>
 								
-        							<span>桥梁编码：</span>
-        						<input type="text" id="qlbm" style="width: 100px;">
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
+        						<td align="right">桥梁编码：</td>
+        						<td><input type="text" id="qlbm" style="width: 100px;"></td>
+        						<td align="right">项目年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 102px;">
         						<option value="">全部</option>
-        						</select>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span>是否交工验收：</span>
-								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
+        						</select></td>
+								</tr>
+							<tr height="32">
+								<td align="right">是否交工验收：</td>
+								<td><select id='jgys' class="easyui-combobox" style="width: 150px;" data-options="panelHeight:'90'">
 									<option value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
-								</select>
-								<span> 项目库类型：</span>
-								<select class="easyui-combobox" id='xmklx'>
+								</select></td>
+								<td align="right"> 项目库类型：</td>
+								<td><select class="easyui-combobox" id='xmklx ' style="width:80px;" >
 									<option value="" selected>请选择</option>
 									<option value="部库">部库</option>
 									<option value="省库">省库</option>
-								</select>
+								</select></td>
+								</tr>
+								<tr height="32">
+								<td colspan="10">
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
-</p>
+</td></tr></table>
         				</div>
         			</fieldset>
         		</td>
