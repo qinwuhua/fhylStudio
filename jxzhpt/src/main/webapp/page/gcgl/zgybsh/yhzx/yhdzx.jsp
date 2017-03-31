@@ -58,6 +58,13 @@ a:active {
  text-decoration: none;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body>
@@ -76,28 +83,32 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 208px;">
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 116px" >
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>行政区划：</td>
+        						<td><input id="xzqh" style="width: 180px;"></td>
+        						<td>路线名称：</td>
+        							<td><input type="text" id="lxmc" style="width: 100px" ></td>
+        						<td>项目年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 70px;">
         						<option value="">全部</option>
-        						</select>
-        					</p>
-								<p style="margin: 1% 0% 1% 2%;">
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 100px;">
+        						</select></td>
+        					</tr>
+								<tr height="32">
+        						<td>月报状态：</td>
+        						<td><select id="ybzt" style="width: 180px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
-        						</select>
-        						<span>项目名称：</span>
-        						<span><input type="text" id="xmmc" style="width:95px;" /></span>
+        						</select></td>
+        						<td>项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:100px;" /></td>
+        						</tr>
+        						<tr height="32">
+        						<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
-        				</div>
+        			</td>	</tr></table></div>
         			</fieldset>
         		</td>
         	</tr>

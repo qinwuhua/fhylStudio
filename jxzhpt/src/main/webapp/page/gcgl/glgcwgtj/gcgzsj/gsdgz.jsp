@@ -150,7 +150,15 @@ a:active {
  text-decoration: none;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
+
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
@@ -167,42 +175,45 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 208px;">
-        						<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 116px" >
-        						<span>项目年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 100px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td  align="right">行政区划：</td>
+        						<td colspan="3"><input id="xzqh" style="width: 185px;"></td>
+        						<td align="right">路线名称：</td>
+        							<td><input type="text" id="lxmc" style="width: 90px" ></td>
+        						<td align="right">项目年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 90px;">
         						<option value="">全部</option>
-        						</select>
-        						<span>路线编码：</span>
-        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
-        						</p>
-								   <p style="margin: 1% 0% 1% 2%;">
-								<span style=" vertical-align:middle;">技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
-								<span style=" vertical-align:middle;">行政等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
-        						<span style=" vertical-align:middle;">特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:120px; vertical-align:middle;">
-								</select>
-								<span>项目类型：</span>
-        						<span><select name="xmlx" id="xmlx" style="width:100px;" ></select></span>
-        						<span>项目名称：</span>
-        						<span><input type="text" id="xmmc" style="width:95px;" /></span>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-        						<span>是否交工验收：</span>
-								<select id='jgys' class="easyui-combobox" style="width: 100px;" data-options="panelHeight:'90'">
+        						</select></td>
+        						<td align="right">路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:90px;" /></td>
+        						</tr>
+								 <tr height="32">
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:55px; vertical-align:middle;"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:55px; vertical-align:middle;"></select></td>
+        						<td align="right">特殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:95px; vertical-align:middle;">
+								</select></td>
+								<td align="right">项目类型：</td>
+        						<td><select name="xmlx" id="xmlx" style="width:90px;" ></select></td>
+        						<td align="right">项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:90px;" /></td>
+								</tr>
+							<tr height="32">
+        						<td align="right">是否交工验收：</td>
+								<td><select id='jgys' class="easyui-combobox" style="width: 55px;" data-options="panelHeight:'90'">
 									<option value="">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
-								</select>
-								
+								</select></td>
+								</tr>
+								<tr height="32">
+								<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showGsd()"/>        					</p>
-        				</div>
+        		</td>	</tr></table>	</div>
         			</fieldset>
         		</td>
         	</tr>
