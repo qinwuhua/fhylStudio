@@ -1275,17 +1275,28 @@ public class TjfxController extends BaseActionSupport{
 			xzqh.remove(0);
 			List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
 			List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
-			for (TreeNode node : xzqh) {
-				Map<String, Object> map =new HashMap<String, Object>();
-				map.put("NF",nf);
-				map.put("XZQHDM", node.getId().substring(0,4));
-				map.put("ZRSH","--");
-				zrshs.add(map);
-			}
-			for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
-				List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-				if(zrsh.size()>0)
-				zrshs.addAll(zrsh);
+			if(Integer.valueOf(nf)<=2014){
+			  for(int  b= Integer.valueOf(nf); b <= 2014; b++){
+				 for (TreeNode node : xzqh) {
+					Map<String, Object> map =new HashMap<String, Object>();
+					map.put("NF",nf);
+					map.put("XZQHDM", node.getId().substring(0,4));
+					map.put("ZRSH","--");
+					zrshs.add(map);
+				      }
+					}
+			  for (int a =2015; a < Integer.valueOf(end); a++) {
+					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
+					if(zrsh.size()>0)
+					zrshs.addAll(zrsh);
+				}
+				}
+			else{
+				 for (int a =Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
+						List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
+						if(zrsh.size()>0)
+						zrshs.addAll(zrsh);
+					}
 			}
 			for (TreeNode item : xzqh) {
 //				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
@@ -1704,6 +1715,53 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	
+	public void selectKxjcLx(){
+		try {
+			if(lkmxb.getMqi()!=null && !lkmxb.getMqi().equals("")){
+				String[]  mqiArr=lkmxb.getMqi().split(",");
+				String mqiStr="(";
+				for (int i = 0; i < mqiArr.length; i++) {
+					if(i==mqiArr.length-1) mqiStr+="'"+mqiArr[i]+"'";
+					else {
+						mqiStr+="'"+mqiArr[i]+"',";
+					}
+				}
+				mqiStr+=")";
+				lkmxb.setMqi(mqiStr);
+			}
+		List<Map<String, Object>> list=tjfxServer.queryLx_kxjc(lkmxb);
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void queryKxjc_lx(){
+		try {
+			String lxbmStr="";
+			if(xmsq.getLxbm()!=null && !xmsq.getLxbm().equals("")){
+				String[]  lxbmArr=xmsq.getLxbm().split(",");
+				lxbmStr+="(";
+				for (int i = 0; i < lxbmArr.length; i++) {
+					if(i==lxbmArr.length-1) lxbmStr+="'"+lxbmArr[i]+"'";
+					else {
+						lxbmStr+="'"+lxbmArr[i]+"',";
+					}
+				}
+				lxbmStr+=")";
+			}
+		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr);
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	public String getXmlx() {
 		return xmlx;
 	}

@@ -46,5 +46,7 @@
 		<action name="selectXmsqxm" class="tjfxController" method="selectXmsqxm"></action>
 		<action name="queryKxjcyc" class="tjfxController" method="queryKxjcyc"></action>
 		<action name="selectJhshxm" class="tjfxController" method="selectJhshxm"></action>
+		<action name="selectKxjcLx" class="tjfxController" method="selectKxjcLx"></action>
+		<action name="queryKxjc_lx" class="tjfxController" method="queryKxjc_lx"></action>
 	</package>
 </struts>
