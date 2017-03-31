@@ -266,62 +266,71 @@ a:active {
 }
 #kdtb {
 	border-collapse:collapse;
+	color:#292929;
 }
 #kdtb thead tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
-  	border:1px solid black;
+  	border:1px solid #cde0f3;
   	padding:3px 7px 2px 7px;
+  	color:#292929;
 }
 #kdtb tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 /* 	font-weight:bold; */
-  	border:1px solid black;
+  	border:1px solid #cde0f3;
   	padding:3px 7px 2px 7px;
 }
 -->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;" >
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
-			<div id="righttop"  style="height: 30px">
+			<div id="righttop"  >
 						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;公路改造工程新上、续建工程项目完成情况汇总表</div>
 					</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%;height:40px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
-        						<span>下达年份：</span>
-        						<input type="text" id="jhxdnf"  style="width:80px;">
-        						<span>项目类型：</span>
-        						<select id="xmlx" style="width:80px;" class='easyui-combobox'>
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">下达年份：</td>
+        						<td><input type="text" id="jhxdnf"  style="width:80px;"></td>
+        						<td align="right">项目类型：</td>
+        						<td><select id="xmlx" style="width:80px;" class='easyui-combobox'>
         							<option value="升级改造">改建</option>
         							<option value="路面改造">路面改造</option>
         							<option value="灾毁重建">灾毁重建</option>
-        						</select>
-        						<span>截至进展年份：</span>
-        						<input type="text" id="ybnf"  style="width:80px;">
-        						<span>截至进展月份：</span>
-        						<input type="text" id="ybyf"  style="width:80px;">	
-        						&nbsp;&nbsp;&nbsp;&nbsp;
+        						</select></td>
+        						<td align="right">截至进展年份：</td>
+        						<td><input type="text" id="ybnf"  style="width:80px;"></td>
+        						<td align="right">截至进展月份：</td>
+        						<td><input type="text" id="ybyf"  style="width:80px;">	</td>
+        						</tr>
+        						<tr>
+        						<td colspan="10">
        							<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 								 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
-        					</p>
-        					<p style="margin: 8px 0px 8px 20px;">
-
-        						
-        					</p>         					
+        				</td>	</tr></table>
+        					      					
         				</div>
         			</fieldset>
         		</td>
@@ -331,7 +340,7 @@ a:active {
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height:400px" >
                 	<script type="text/javascript">
-                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-170)+'px');
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">

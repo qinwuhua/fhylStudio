@@ -186,6 +186,15 @@
 		    }  
 		}
 	</script>
+	<style>
+	TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
@@ -203,27 +212,27 @@
         				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="32">
 								<td style="text-align: right;">原路线编码：</td>
-        						<td style="text-align: left;"><input id="lxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="lxbm" type="text" style="width: 70px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">原起点桩号：</td>
-        						<td style="text-align: left;"><input id="qdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="qdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">原止点桩号：</td>
-        						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="zdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">项目类型：</td>
-        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 180px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 150px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">下达年份：</td>
-        						<td style="text-align: left;"><input id="xdnf" type="text" style="width: 130px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="xdnf" type="text" style="width: 100px;margin-right: 10px;"/></td>
         					</tr>
         					<tr height="32">
 								<td style="text-align: right;">规划路线编码：</td>
-        						<td style="text-align: left;"><input id="ghlxbm" type="text" style="width: 100px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="ghlxbm" type="text" style="width: 70px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">规划起点桩号：</td>
-        						<td style="text-align: left;"><input id="ghqdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="ghqdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
 								<td style="text-align: right;">规划止点桩号：</td>
-        						<td style="text-align: left;"><input id="ghzdzh" type="text" style="width: 80px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="ghzdzh" type="text" style="width: 60px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">行政区划：</td>
-        						<td style="text-align: left;"><input id="xzqh" type="text" style="width: 180px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="xzqh" type="text" style="width: 150px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">特殊地区：</td>
-        						<td style="text-align: left;"><input id="tsdq" type="text" style="width: 130px;margin-right: 10px;"/></td>
+        						<td style="text-align: left;"><input id="tsdq" type="text" style="width: 100px;margin-right: 10px;"/></td>
         					
         					</tr>
                             <tr height="32">

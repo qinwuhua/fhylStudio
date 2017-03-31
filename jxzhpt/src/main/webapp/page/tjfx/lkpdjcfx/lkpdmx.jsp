@@ -68,7 +68,7 @@ function loadGrid(){
 		    pageNumber:1,
 		    pageSize:10,
 		    fitColumns:true,
-		    height:$(window).height()-100,
+		    height:$(window).height()-150,
 			width:$(window).width()-10,
 			url:'/jxzhpt/tjfx/queryLkpdmx.do',
 			queryParams : {
@@ -133,10 +133,10 @@ text-decoration:none;
 				</legend>
 				<div>
 						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-							<tr  height="32">
-							  <td>管辖路段：</td>
+							<tr  height="28">
+							  <td align="right">管辖路段：</td>
 							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 180px;"></select></td>
-							  <td>路况评定版本：</td>
+							  <td align="right">路况评定版本：</td>
 							 <td>
 							 <select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
 <!-- 							 <select id="lkpdbb" style="width:70px"> -->
@@ -146,14 +146,18 @@ text-decoration:none;
 <!--         						<option value="2017">2017年</option> -->
 <!-- 							 </select> -->
 							 </td>
-							  <td>技术等级：</td>
+							  <td align="right">技术等级：</td>
 							  <td><select id="jsdj" style="width:80px"class="easyui-combobox"></select></td>
-							  <td>路面类型：</td>
-							  <td><select id="lmlx" style="width:80px" class="easyui-combobox"></select></td>
-							   <td>方向：</td>
-							  <td><select id="jcfx" style="width:70px"class="easyui-combobox"></select></td>
-							  <td>MQI等级：</td>
+							  </tr>
+							  <tr height="28">
+							  <td align="right">路面类型：</td>
+							  <td><select id="lmlx" style="width:180px" class="easyui-combobox"></select></td>
+							   <td align="right">方向：</td>
+							  <td><select id="jcfx" style="width:80px"class="easyui-combobox"></select></td>
+							  <td align="right">MQI等级：</td>
 							  <td><select id="mqi" style="width:80px"class="easyui-combobox"></select></td>
+							  </tr>
+							  <tr >
 							   <td colspan="10">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;" />
 							  </td>
