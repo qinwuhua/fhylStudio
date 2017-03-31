@@ -93,7 +93,7 @@
 					'lxmc':$('#lxmc').val(),
 					'tsdq':tsdq,
 					'jsdj':$('#jsdj').combobox("getValues").join(","),
-					'sqzt':-1,
+					'sqzt':7,
 					"jdbs":0,
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
@@ -103,12 +103,15 @@
 					'wnxmk':$('#wnxmk').combobox("getValue"),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf};
-			var sqzt = $('#sqzt').combobox("getValue");
-			if(userPanduan($.cookie("unit2"))!="省"){
-				params.sqzt=sqzt=='' ? -1 : sqzt;
-			}else{
-				params.sqzt=sqzt=='' ? -1 : sqzt;
+					'lsxmnf':lsxmnf,
+					'yhcsh':''};
+			var yhcsh = $('#sqzt').combobox("getText");
+			// var sqzt = $('#sqzt').combobox("getValue");
+			
+			if(yhcsh=="未审核"){
+				params.yhcsh='0';
+			}else if(yhcsh=="已审核"){
+				params.yhcsh='1';
 			}
 			loadLj(params);
 			grid.queryParams=params;

@@ -159,7 +159,7 @@ text-decoration:none;
 					$("#lxmc").html(item.lxmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
-					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+					selectTSDQ(item.ghlxbm,item.ghqdzh,item.ghzdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,(parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000,'升级改造工程项目');
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#jsjsdj").html(item.xjsdj);

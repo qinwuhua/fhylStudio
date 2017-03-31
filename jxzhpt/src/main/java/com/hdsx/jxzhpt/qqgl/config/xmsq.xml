@@ -621,6 +621,7 @@
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">and xmmc like '%'||#{xmsq.xmmc}||'%'</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">and ${xmsq.jsdj}</if>
 				<if test="xmsq.sqzt>=0">and sqzt=${xmsq.sqzt}</if>
+				<if test="xmsq.yhcsh !=null and xmsq.yhcsh !=''">and yhcsh=${xmsq.yhcsh}</if>
 				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">and ${xmsq.xmbm}</if>
 				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">and ${xmsq.gcfl}</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">${xmsq.tsdq}</if>
@@ -745,6 +746,7 @@
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
+				<if test="xmsq.yhcsh !=null and xmsq.yhcsh !=''">and yhcsh=${xmsq.yhcsh}</if>
 				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
 					and ${xmsq.xmbm}
 				</if>
@@ -854,6 +856,7 @@
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
+		<if test="yhcsh !=null and yhcsh !=''">and yhcsh=${yhcsh}</if>
 		<if test="xmbm!=null and xmbm!=''">
 			and ${xmbm}
 		</if>
@@ -957,6 +960,7 @@
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
+		<if test="yhcsh !=null and yhcsh !=''">and yhcsh=${yhcsh}</if>
 		<if test="xmbm!=null and xmbm!=''">
 			and ${xmbm}
 		</if>
@@ -1264,6 +1268,7 @@
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
+			<if test="yhcsh !=null and yhcsh !=''">and yhcsh=${yhcsh}</if>
 			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
@@ -1344,6 +1349,7 @@
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
+			<if test="yhcsh !=null and yhcsh !=''">and yhcsh=${yhcsh}</if>
 			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
@@ -2145,6 +2151,8 @@
  	and (case when to_number(g.yqdzh)&lt;to_number(g.yzdzh) then to_number(g.yzdzh) else to_number(g.yqdzh) end)>(case when to_number(#{qdzh})&lt;to_number(#{zdzh}) then to_number(#{qdzh}) else to_number(#{zdzh}) end) 
  
     )t order by (case when to_number(yzdzh)>to_number(yqdzh) AND to_number(zdzh)>to_number(qdzh) then '1' when to_number(yqdzh)>to_number(yzdzh) AND to_number(qdzh)>to_number(zdzh) then '2' else '3' end),decode(lc,null,0,lc) desc
+	
+	
 	</select>
 	<select id="getylxinfo" parameterType="xmsq" resultType="xmsq">
 		select * from ghlx where xlxbm like #{ylxbm}||'%'||#{xzqh}||'%' and to_number(xzdzh)>to_number(#{qdzh}) and to_number(#{zdzh})>to_number(xqdzh)

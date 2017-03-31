@@ -60,11 +60,7 @@
 			//gsdxmlx('xmlx');
 			yhxmlx('xmlx');
 			YMLib.Var.jdbs=1;
-			if(userPanduan($.cookie("unit2"))!="省"){
-				loadBmbm2('sqzt','申请状态地市');
-			}else{
-				loadBmbm2('sqzt','申请状态省');
-			}
+			loadBmbm2('sqzt','申请状态省');
 			queryYhdzx();
 		});
 		function queryYhdzx(){
@@ -96,7 +92,7 @@
 					'lxmc':$('#lxmc').val(),
 					'tsdq':tsdq,
 					'jsdj':$('#jsdj').combobox("getValues").join(","),
-					'sqzt':-1,
+					'sqzt':7,
 					"jdbs":1,
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
@@ -108,13 +104,15 @@
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf};
-			var sqzt = $('#sqzt').combobox("getValue");
+					'lsxmnf':lsxmnf,
+					'yhcsh':''};
+			var yhcsh = $('#sqzt').combobox("getText");
+			// var sqzt = $('#sqzt').combobox("getValue");
 			
-			if(userPanduan($.cookie("unit2"))!="省"){
-				params.sqzt=sqzt=='' ? -1 : sqzt;
-			}else{
-				params.sqzt=sqzt=='' ? -1 : sqzt;
+			if(yhcsh=="未审核"){
+				params.yhcsh='0';
+			}else if(yhcsh=="已审核"){
+				params.yhcsh='1';
 			}
 			loadLj(params);
 			grid.queryParams=params;

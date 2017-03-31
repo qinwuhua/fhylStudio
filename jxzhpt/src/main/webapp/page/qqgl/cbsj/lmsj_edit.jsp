@@ -122,9 +122,9 @@
 						$("#lxmc").val(item.lxmc);
 						$("#qdzh").val(parseFloat(item.qdzh));
 						$("#zdzh").val(parseFloat(item.zdzh));
-						selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+						selectTSDQ(item.ghlxbm,item.ghqdzh,item.ghzdzh);
 						var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));$("#lc").html(Math.abs(zlcs));
-						var lc=Math.abs(accSub(parseFloat(item.zdzh),parseFloat(item.qdzh)));
+						var lc=Math.abs(accSub(parseFloat(item.ghzdzh),parseFloat(item.ghqdzh)));
 						//$("#jsjsdj").val(item.xjsdj);
 						//$("#xjsdj").val(item.xjsdj);
 						//$("#qdmc").val(item.qdmc);
@@ -168,8 +168,8 @@
 						//getylxlminfo(item.ghlxbh,item.qdzh,item.zdzh);
 //	 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
 //	 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
-						cxqdmc($('#ylxbh').val(),$('#qdzh').val());
-						cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+						cxqdmc($('#ghlxbm').val(),$('#ghqdzh').val());
+						cxzdmc($('#ghlxbm').val(),$('#ghzdzh').val());
 						//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 					});
 		}
