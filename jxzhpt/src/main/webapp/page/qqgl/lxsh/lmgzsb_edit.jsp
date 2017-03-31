@@ -243,9 +243,9 @@ text-decoration:none;
 					$("#lxmc").val(item.lxmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
-					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+					selectTSDQ(item.ghlxbm,item.ghqdzh,item.ghzdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					$("#lc").val(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
+					$("#lc").val(Math.abs(accSub(parseFloat($("#ghzdzh").val()),parseFloat($("#ghqdzh").val()))));
 					//$("#qdmc").val(item.qdmc);
 					//$("#zdmc").val(item.zdmc);
 					/* qdStr=parseFloat(item.qdzh);
@@ -253,8 +253,8 @@ text-decoration:none;
 					$("#gpsqdzh").val(qdStr);
 					$("#gpszdzh").val(zdStr);
 					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
-					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+					cxqdmc($('#ghlxbm').val(),$('#ghqdzh').val());
+					cxzdmc($('#ghlxbm').val(),$('#ghzdzh').val());
 					/* if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
 						$('#span_qdzh').html(">="+item.qdzh);
 						$('#span_zdzh').html("<="+item.zdzh);
@@ -346,15 +346,15 @@ text-decoration:none;
 		} */
 		var zlc=Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 		$("#lc").val(zlc);
-		selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
-		//queryJsdjAndLc($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#ghlxbm").val(),$("#ghqdzh").val(),$("#ghzdzh").val());
+		//queryJsdjAndLc($("#ghlxbm").val(),$("#ghqdzh").val(),$("#ghzdzh").val());
 		getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 		//cesuan2();
 		//getbzcs($("#ylxbh").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
-		if($("#qdzh").val()!='')
-			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
-		if($("#zdzh").val()!='')
-			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		if($("#ghqdzh").val()!='')
+			cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
+		if($("#ghzdzh").val()!='')
+			cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 	}
 	
 </script>

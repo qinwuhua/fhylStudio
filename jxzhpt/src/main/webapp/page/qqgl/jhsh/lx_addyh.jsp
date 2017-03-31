@@ -86,15 +86,15 @@
 						$('#span_zdzh').html(">="+item.zdzh);
 					}
 					$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					cxqdmc($('#ylxbh').val(),$('#qdzh').val());
-					cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+					cxqdmc($('#ghlxbm').val(),$('#ghqdzh').val());
+					cxzdmc($('#ghlxbm').val(),$('#ghzdzh').val());
 					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
-					getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
+					getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 					else
-					getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+					getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
 					$.ajax({
 						type:'post',
 						url:'../../../qqgl/queryTsdq.do',
@@ -163,21 +163,21 @@
 				$("#zdzh").val(zdStr);
 			} */
 			var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
-			queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
+			queryJsdjAndLc($('#ghlxbm').val(),$("#ghqdzh").val(),$("#ghzdzh").val());
 			$("#lc").val(zlc);
 			
 			
-			if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
-			getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+			if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
+			getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 			else
-			getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+			getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
 
 			
-			//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
-			if($("#qdzh").val()!='')
-				cxqdmc($("#ylxbh").val(),$("#qdzh").val());
-			if($("#zdzh").val()!='')
-				cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+			//selectTSDQ($("#ghlxbm").val(),$("#ghqdzh").val(),$("#ghzdzh").val());
+			if($("#ghqdzh").val()!='')
+				cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
+			if($("#ghzdzh").val()!='')
+				cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 			getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 
 		}

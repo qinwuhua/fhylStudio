@@ -80,14 +80,14 @@ a{text-decoration:none;}
 			$("#zdzh").val(zdStr);
 		} */
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
-		queryJsdjAndLc($('#ylxbh').val(),$("#qdzh").val(),$("#zdzh").val());
+		queryJsdjAndLc($('#ghlxbm').val(),$("#ghqdzh").val(),$("#ghzdzh").val());
 		$("#lc").val(zlc);
 		cesuan();
-		//selectTSDQ($("#ylxbh").val(),$("#qdzh").val(),$("#zdzh").val());
-		if($("#qdzh").val()!='')
-			cxqdmc($("#ylxbh").val(),$("#qdzh").val());
-		if($("#zdzh").val()!='')
-			cxzdmc($("#ylxbh").val(),$("#zdzh").val());
+		//selectTSDQ($("#ghlxbm").val(),$("#ghqdzh").val(),$("#ghzdzh").val());
+		if($("#ghqdzh").val()!='')
+			cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
+		if($("#ghzdzh").val()!='')
+			cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 	}
 	function cesuan(){
 		var yi=0;

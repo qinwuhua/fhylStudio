@@ -139,16 +139,16 @@
 						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
 						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
 					}
-					$("#lc").val(Math.abs(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()))));
+					$("#lc").val(Math.abs(accSub(parseFloat($("#ghzdzh").val()),parseFloat($("#ghqdzh").val()))));
 					//$('#jsdj').val(item.xjsdj);
 					//$('#lmkd').val(item.lmkd);
 					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					if(parseFloat($('#qdzh').val())<parseFloat($('#zdzh').val()))
-					getylxlminfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+					if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
+					getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 					else
-					getylxlminfo($('#ylxbh').val(),$('#zdzh').val(),$('#qdzh').val());
+					getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
 					$.ajax({
 						type:'post',
 						url:'../../../qqgl/queryTsdq.do',

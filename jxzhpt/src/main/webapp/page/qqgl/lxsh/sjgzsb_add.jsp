@@ -222,7 +222,7 @@ text-decoration:none;
 					
 					//loadUnit3("gydw",item.gydwdm,$.cookie("unit"));
 					//loadDist3("xzqh",item.xzqhdm,$.cookie("dist"));
-					//selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+					//selectTSDQ(item.ghlxbm,item.ghqdzh,item.ghzdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
 					//$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#qdmc").val(item.qdmc);
@@ -376,24 +376,13 @@ text-decoration:none;
 		});
 	}
 	function changeZlc(){
-		/* if(parseFloat($("#qdzh").val())>parseFloat(zdStr)){
-			alert("起点桩号不能大于止点桩号");
-			$("#qdzh").val(qdStr);
-		}
-		if(parseFloat($("#zdzh").val())<parseFloat(qdStr)){
-			alert("止点桩号不能小于起点桩号");
-			$("#zdzh").val(zdStr);
-		} */
-		//var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
-		//$("#lc").html(zlc);
-		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
-		//queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		
 		getghlxinfo($('#lxbm').val(),$('#qdzh').val(),$('#zdzh').val());
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		if($("#qdzh").val()!='')
-		cxqdmc($("#lxbm").val(),$("#qdzh").val());
-		if($("#zdzh").val()!='')
-		cxzdmc($("#lxbm").val(),$("#zdzh").val());
+		if($("#ghqdzh").val()!='')
+		cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
+		if($("#ghzdzh").val()!='')
+		cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 	}
 	
 </script>

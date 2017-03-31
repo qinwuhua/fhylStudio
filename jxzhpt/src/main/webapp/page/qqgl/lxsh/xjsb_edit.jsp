@@ -248,9 +248,9 @@ text-decoration:none;
 		$("#lc").html(zlc);
 // 		selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
 // 		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
-// 		if($("#qdzh").val()!='')
+// 		if($("#ghqdzh").val()!='')
 // 			cxqdmc($("#lxbm").html(),$("#qdzh").val());
-// 		if($("#zdzh").val()!='')
+// 		if($("#ghzdzh").val()!='')
 // 			cxzdmc($("#lxbm").html(),$("#zdzh").val());
 	}
 	function changeZlc2(){
