@@ -101,13 +101,13 @@ function dcmb(){
 	    <div id="righttop" >
 			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;公路技术状况评定明细表</div>
 		</div>
-		<div  style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+		<div  style="padding-left: 10px; padding-right: 10px;padding-top: 4px;padding-bottom: 4px;">
+			<fieldset style="width:99%; text-align: left; vertical-align: middle; border:1px solid #cde0f3;">
  				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
  					
  				</legend>
  				<div>
- 					<p style="margin: 5px;">
+ 					<p style="margin: 5px; ">
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
  							<option value="">全部</option>

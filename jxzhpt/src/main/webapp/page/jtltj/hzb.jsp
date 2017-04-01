@@ -101,8 +101,8 @@ function dcmb(){
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;交通量统计>&nbsp;交通情况汇总表</div>
 		</div>
-		<div  style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+		<div  style="padding-left: 10px; padding-right: 10px;padding-top: 4px;">
+			<fieldset style="width:99%; text-align: left; vertical-align: middle;border:1px solid #cde0f3;">
  				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
  					
  				</legend>
