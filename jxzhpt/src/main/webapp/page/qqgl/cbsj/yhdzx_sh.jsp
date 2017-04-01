@@ -403,7 +403,7 @@ text-decoration:none;
         						<td  align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:75px;" ></select></td>
 								<td  align="right">原技术等级：</td>
-								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:55px;"></select></td>
+								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:80px;"></select></td>
 								<td  align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
         						
@@ -432,7 +432,7 @@ text-decoration:none;
         						<td align="right">原路线名称：</td>
         						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:75px;" /></td>
 								<td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:53px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
         						
@@ -461,7 +461,7 @@ text-decoration:none;
 								<!-- 筛选历史条件 -->
 								<td align="right">历史项目类型：</td>
 								<td>
-									<select id='lsxmlx' class="easyui-combobox" style="width: 55px;">
+									<select id='lsxmlx' class="easyui-combobox" style="width:80px;">
 									</select>
 								</td>
 								<td align="right">历史计划年份：</td>

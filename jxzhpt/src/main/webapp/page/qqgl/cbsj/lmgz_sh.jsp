@@ -416,11 +416,11 @@ text-decoration:none;
 									<td  align="right">行政区划：</td>
 	        						<td><select id="xzqh" style="width:160px;"></select></td>
 	        						<td  align="right">项目名称：</td>
-	        						<td><input type="text" id="xmmc" style="width:75px;" /></td>
+	        						<td><input type="text" id="xmmc" style="width:80px;" /></td>
 	        						<td  align="right">建设技术等级：</td>
 									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:75px;"></select></td>
 									<td  align="right">原技术等级：</td>
-									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:55px;"></select></td>
+									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:80px;"></select></td>
 									<td  align="right">项目年份：</td>
 	        						<td><select id="xmnf" style="width: 75px;"></select></td>
 	        						</tr>
@@ -443,11 +443,11 @@ text-decoration:none;
 										<option value="否">否</option>
 									</select></td> -->
 									<td  align="right">原路线编码：</td>
-	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:75px;" /></td>
+	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:80px;" /></td>
 	        						<td align="right">原路线名称：</td>
 	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:75px;" /></td>
 									<td align="right">规划路线编码：</td>
-	        						<td><input type="text" id="ghlxbm" style="width:53px;" /></td>
+	        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
 	        						<td align="right">规划路线名称：</td>
 	        						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
 	        						</tr>
@@ -459,7 +459,7 @@ text-decoration:none;
 										<option value="否">否</option>
 									</select></td> 
 									<td align="right">特殊地区：</td>
-									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:75px;"></select></td>
+									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select></td>
 								
 									<!-- <td>项目名称：</td>
 	        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
@@ -475,7 +475,7 @@ text-decoration:none;
 									</select></td>
 	                            	<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 55px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 80px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

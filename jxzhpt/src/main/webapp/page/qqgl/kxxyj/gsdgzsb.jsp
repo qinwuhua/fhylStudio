@@ -278,7 +278,7 @@ text-decoration:none;
 	        						<td align="right">建设技术等级：</td>
 									<td><select name="jsdj" id="jsdj" style="width:77px;" class="easyui-combobox"></select></td>
 									<td align="right">现技术等级：</td>
-									<td><select name="jsjsdj" id="jsjsdj" style="width:62px;" class="easyui-combobox"></select></td>
+									<td><select name="jsjsdj" id="jsjsdj" style="width:82px;" class="easyui-combobox"></select></td>
 									
 	        					</tr>
 	        					<tr height="32">
@@ -308,7 +308,7 @@ text-decoration:none;
 									<td align="right">原路线名称：</td>
 	        						<td><input type="text" id="lxmc" style="width:75px;" /></td>
 	        						<td align="right">规划路线编码：</td>
-	        						<td><input type="text" id="ghlxbm" style="width:60px;" /></td>
+	        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
 	        						
 	        					</tr>
 	        					<tr height="32">
@@ -340,7 +340,7 @@ text-decoration:none;
 										<option value="1">已审核</option> 
 									</select></td>
 									<td align="right">建设性质：</td>
-									<td><select name="xmlx" id="xmlx" style="width:62px;" ></select></td>
+									<td><select name="xmlx" id="xmlx" style="width:82px;" ></select></td>
 <!-- 									<td>管养单位：</td> -->
 <!-- 	        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
 	                            </tr>

@@ -106,7 +106,7 @@ text-decoration:none;
         						<td align="right">建设技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:104px" ></select></td>
 								<td align="right">现技术等级：</td>
-								<td ><select name="jsdj" id="jsdj" style="width:45px" ></select></td>
+								<td ><select name="jsdj" id="jsdj" style="width:85px" ></select></td>
         					</tr>
         					<tr height="32">
         						
@@ -146,7 +146,7 @@ text-decoration:none;
 								</td>
         						<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width:47px">
+									<select id='xmklx' class="easyui-combobox" style="width:85px">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

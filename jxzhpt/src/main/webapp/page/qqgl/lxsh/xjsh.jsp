@@ -182,11 +182,11 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
 								<td align="right">行政区划：</td>
-        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:215px;"></select></td>
+        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:255px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:70px;" /></td>
         						<td align="right">建设技术等级：</td>
-								<td><select name="jsjsdj" id="jsjsdj" style="width:45px;" class="easyui-combobox"></select></td>
+								<td><select name="jsjsdj" id="jsjsdj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">现技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td align="right">项目年份：</td>
@@ -227,11 +227,11 @@ text-decoration:none;
 								<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:40px;" /></td>
+        						<td><input type="text" id="lxbm" style="width:78px;" /></td>
 								<td align="right">原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
 								<td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:45px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
 								<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:65px;" /></td>
         						<td align="right">审核状态：</td>
@@ -253,7 +253,7 @@ text-decoration:none;
 								<!-- 筛选历史条件 -->
 								<td align="right">历史项目类型：</td>
 								<td>
-									<select id='lsxmlx' class="easyui-combobox" style="width: 43px;">
+									<select id='lsxmlx' class="easyui-combobox" style="width: 78px;">
 									</select>
 								</td>
 								<td>历史计划年份：</td>

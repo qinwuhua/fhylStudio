@@ -88,8 +88,8 @@ text-decoration:none;
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 130px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 130px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
+        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -105,7 +105,7 @@ text-decoration:none;
         						<td align="right">建设技术等级：</td>
 								<td><select name="jsjsdj" id="jsjsdj" style="width:105px"></select></td>
 									<td align="right">现技术等级：</td>
-								<td ><select name="jsdj" id="jsdj" style="width:45px" ></select></td>
+								<td ><select name="jsdj" id="jsdj" style="width:80px" ></select></td>
 								
         					</tr>
         					<tr height="32">
@@ -118,7 +118,7 @@ text-decoration:none;
         						<td align="right">原路线名称：</td>
         						<td><input id='lxmc' type="text" style="width:104px"/></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input id='ghxlxbm' type="text" style="width:45px"/></td>
+        						<td><input id='ghxlxbm' type="text" style="width:80px"/></td>
         					</tr>
         					<tr height="32">
 								<td align="right">规划路线名称：</td>
@@ -143,7 +143,7 @@ text-decoration:none;
 								</td>
         						<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox"  style="width: 47px;">
+									<select id='xmklx' class="easyui-combobox"  style="width: 80px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

@@ -328,11 +328,11 @@ text-decoration:none;
 								<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:75px;" /></td>
         						<td align="right">建设性质：</td>
-								<td><select name="xmlx" id="xmlx" style="width:55px;" ></select></td>
+								<td><select name="xmlx" id="xmlx" style="width:80px;" ></select></td>
 								<td align="right">技术等级：</td>
 								<td ><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:75px;"></select></td>
 								<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 55px;"></select></td>
+        						<td><select id="xmnf" style="width: 80px;"></select></td>
         						
         						
         					</tr>
@@ -362,11 +362,11 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td> -->
 								<td align="right">原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:53px;" /></td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:80px;" /></td>
         						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:75px;" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:55px;" /></td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:80px;" /></td>
         						
 								
                             </tr>
@@ -380,7 +380,7 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td>
                            <td align="right">是否使用车购税：</td>
-								<td><select name="sfsycgs" id="sfsycgs" class="easyui-combobox" style="width:55px;">
+								<td><select name="sfsycgs" id="sfsycgs" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
@@ -403,7 +403,7 @@ text-decoration:none;
 									<option value="0">未上报</option>
 								</select></td> -->
 								<td align="right">上报状态：</td>
-								<td><select name="sbzt" id="sbzt" class="easyui-combobox" style="width:55px;">
+								<td><select name="sbzt" id="sbzt" class="easyui-combobox" style="width:80px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已上报</option>
 									<option value="0">未上报</option>

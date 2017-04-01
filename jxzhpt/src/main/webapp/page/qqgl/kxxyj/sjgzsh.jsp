@@ -171,7 +171,7 @@ text-decoration:none;
         						<td align="right">建设技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:77px;" class="easyui-combobox"></select></td>
 								<td align="right">现技术等级：</td>
-								<td><select name="jsjsdj" id="jsjsdj" style="width:65px;" class="easyui-combobox"></select></td> 
+								<td><select name="jsjsdj" id="jsjsdj" style="width:80px;" class="easyui-combobox"></select></td> 
 								</tr>
         					<tr height="32">
         					<td align="right">项目年份：</td>
@@ -201,7 +201,7 @@ text-decoration:none;
 								<td align="right">原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:75px;" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:60px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
         						
         					</tr>
         					<tr height="32">
@@ -237,7 +237,7 @@ text-decoration:none;
 								</td>
 								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 80px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

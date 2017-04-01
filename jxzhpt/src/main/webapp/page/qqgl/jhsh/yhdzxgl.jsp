@@ -788,7 +788,7 @@ text-decoration:none;
        							<td align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:85px;" ></select></td>
 								<td align="right">技术等级：</td>
-       							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:50px;"></select></td>
+       							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:80px;"></select></td>
        							<td align="right">项目年份：</td>
        							<td><select id="xmnf" style="width: 85px;"></select></td>
        							
@@ -818,7 +818,7 @@ text-decoration:none;
        							<td align="right">原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:85px;" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:50px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:85px;" /></td>
         						
@@ -855,7 +855,7 @@ text-decoration:none;
        							<td align="right">特殊地区：</td>
        							<td><select name="tsdq" id="tsdq" style="width:85px;" class="easyui-combobox"></select></td>
        							<td align="right"><span id="ztspan">上报状态</span>：</td>
-       							<td><select id="sqzt" class="easyui-combobox" style="width: 50px;"></select></td>
+       							<td><select id="sqzt" class="easyui-combobox" style="width: 80px;"></select></td>
        							<!-- 筛选历史条件 -->
 								<td align="right">历史项目类型：</td>
 								<td>
