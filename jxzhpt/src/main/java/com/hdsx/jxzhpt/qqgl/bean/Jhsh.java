@@ -85,7 +85,7 @@ public class Jhsh {
 	private String xmlx1;
 	private String tsdq;//特殊地区
 	//养护和水毁的字段
-	private String ylxbh;//原路线编号
+	private String ylxbh;//原路线编码
 	private String gcfl;//工程分类
 	private String jhkgsj;//计划开工时间
 	private String jhwgsj;//计划完工时间

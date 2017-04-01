@@ -230,7 +230,7 @@ public class GcbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("项目名称",1,4,0,0));
 			et.add(new Excel_tilte("是否归口市局养护部门",1,4,1,1));
 			et.add(new Excel_tilte("建设地点",1,4,2,2));
-			et.add(new Excel_tilte("路线编号",1,4,3,3));
+			et.add(new Excel_tilte("路线编码",1,4,3,3));
 			et.add(new Excel_tilte("起讫点桩号",1,4,4,4));
 			et.add(new Excel_tilte("里程长度（km）",1,4,5,5));
 			et.add(new Excel_tilte("养护类别（KM）",1,1,6,8));
@@ -416,7 +416,7 @@ public class GcbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("项目名称",1,4,0,0));
 			et.add(new Excel_tilte("是否归口市局养护部门",1,4,1,1));
 			et.add(new Excel_tilte("建设地点",1,4,2,2));
-			et.add(new Excel_tilte("路线编号",1,4,3,3));
+			et.add(new Excel_tilte("路线编码",1,4,3,3));
 			et.add(new Excel_tilte("起讫点桩号",1,4,4,4));
 			et.add(new Excel_tilte("里程长度（km）",1,4,5,5));
 			et.add(new Excel_tilte("养护类别（KM）",1,1,6,8));
@@ -775,7 +775,7 @@ public class GcbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("项目名称",1,4,0,0));
 			et.add(new Excel_tilte("是否归口市局养护部门",1,4,1,1));
 			et.add(new Excel_tilte("建设地点",1,4,2,2));
-			et.add(new Excel_tilte("路线编号",1,4,3,3));
+			et.add(new Excel_tilte("路线编码",1,4,3,3));
 			et.add(new Excel_tilte("起讫点桩号",1,4,4,4));
 			et.add(new Excel_tilte("里程长度（km）",1,4,5,5));
 			et.add(new Excel_tilte("养护类别（KM）",1,1,6,8));

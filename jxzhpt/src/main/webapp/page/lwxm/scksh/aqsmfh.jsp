@@ -142,7 +142,7 @@ $("#grid").datagrid({
 		//{field:'bzls',title:'补助历史',width:60,align:'center'},
         {field:'gydw',title:'管养单位',width:160,align:'center'},
         {field:'xzqh',title:'行政区划',width:120,align:'center'},
-        {field:'lxbm',title:'路线编号',width:120,align:'center'},
+        {field:'lxbm',title:'路线编码',width:120,align:'center'},
         {field:'lxmc',title:'路线名称',width:120,align:'center'},
         {field:'qdzh',title:'起点桩号',width:140,align:'center'},
         {field:'zdzh',title:'止点桩号',width:140,align:'center'},

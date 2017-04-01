@@ -126,7 +126,7 @@
 			        },
 				    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 				    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
-				    {field : 'lxbh',title : '路线编号',width : 100,align : 'center'},
+				    {field : 'lxbh',title : '路线编码',width : 100,align : 'center'},
 				    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 				    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 				    {field : 'jszlc',title : '里程',width : 100,align : 'center'},

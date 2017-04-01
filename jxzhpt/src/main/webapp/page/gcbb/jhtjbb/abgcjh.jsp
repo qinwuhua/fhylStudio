@@ -291,7 +291,7 @@ a:active {
 																			
 									</tr>	
 									<tr>
-										<td style="width: 125px">路线编号</td>
+										<td style="width: 125px">路线编码</td>
 										<td style="width: 125px">项目名称</td>
 										<td style="width: 125px">起点桩号</td>
 										<td style="width: 125px">止点桩号</td>

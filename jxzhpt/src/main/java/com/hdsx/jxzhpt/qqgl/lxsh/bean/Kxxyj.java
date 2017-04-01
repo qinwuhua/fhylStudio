@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Kxxyj implements Serializable {
-	private String ghlxbm;//规划路线编号
-	private String ghlxmc;//规划路线编号
-	private String ghqdzh;//规划路线编号
-	private String ghzdzh;//规划路线编号
-	private String gxlxbm;//规划路线编号
-	private String gxqdzh;//规划路线编号
-	private String gxzdzh;//规划路线编号
+	private String ghlxbm;//规划路线编码
+	private String ghlxmc;//规划路线编码
+	private String ghqdzh;//规划路线编码
+	private String ghzdzh;//规划路线编码
+	private String gxlxbm;//规划路线编码
+	private String gxqdzh;//规划路线编码
+	private String gxzdzh;//规划路线编码
 	private String jszlc1;
 	private String thyy;
 	private String gcfl;

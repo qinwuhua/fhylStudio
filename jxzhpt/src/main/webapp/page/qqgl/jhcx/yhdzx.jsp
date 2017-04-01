@@ -100,7 +100,7 @@
        					<tr height="32">
        						<td align="right">&nbsp;行政区划：</td>
        						<td><select id="xzqh" style="width:124px;"></select></td>
-       						<td align="right">&nbsp;原路线编号：</td>
+       						<td align="right">&nbsp;原路线编码：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td>&nbsp;项目年份：</td>
        						<td><select id="xmnf" style="width: 70px;"></select></td>

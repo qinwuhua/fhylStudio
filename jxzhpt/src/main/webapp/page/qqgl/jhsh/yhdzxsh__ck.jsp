@@ -229,7 +229,7 @@ text-decoration:none;
        					<tr height="32">
        						<td align="right">特殊地区：</td>
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:134px;"></select></td>
-							<td>原路线编号：</td>
+							<td>原路线编码：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td>下达状态：</td>
        						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">

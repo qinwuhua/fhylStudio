@@ -458,7 +458,7 @@ public class DbyhController extends BaseActionSupport{
 		eldata.setFileName(nian+"年"+yue+"月"+"公路路线技术状况一览表");//设置文件名
 		eldata.setEl(list2);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-		et.add(new Excel_tilte("路线编号",1,2,0,0));
+		et.add(new Excel_tilte("路线编码",1,2,0,0));
 		et.add(new Excel_tilte("路线名称",1,2,1,1));
 		et.add(new Excel_tilte("养护单位",1,2,2,2));	
 		et.add(new Excel_tilte("起点桩号", 1, 2, 3, 3));

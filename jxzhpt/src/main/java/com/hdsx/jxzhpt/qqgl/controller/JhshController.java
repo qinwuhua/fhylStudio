@@ -1446,9 +1446,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		//设置表头、列与字段对应
 		String fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区号,fieid=xzqh>,<title=开工时间,fieid=kgsj>," +
 				"<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=下达文号,fieid=xdwh>,<title=下达时间,fieid=xdsj>," +
-				"<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=以确定部车购税,fieid=yqdbcgs>,<title=原路线编号,fieid=ylxbh>," +
+				"<title=总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=以确定部车购税,fieid=yqdbcgs>,<title=原路线编码,fieid=ylxbh>," +
 				"<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
-				"<title=规划路线编号,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编号,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,"
+				"<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,"
 				+"<title=里程,fieid=lc>,<title=面层路面类型,fieid=mclmlx>,<title=面层材料类型,fieid=mclx>,<title=面层数量,fieid=mcsl>," +
 				"<title=面层金额,fieid=mcje>,<title=基层材料类型,fieid=jclx>,<title=基层数量,fieid=jcsl>,<title=基层金额,fieid=jcje>," +
 				"<title=下封层数量,fieid=xfcsl>,<title=下封层金额,fieid=xfcje>,<title=标线数量,fieid=bxsl>,<title=标线金额,fieid=bxje>," +
@@ -1570,15 +1570,15 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[9]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)9), null,20);
 		title[10]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)10), null,20);
 		title[11]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)11), null,20);
-		title[12]=new ExcelTitleCell("原路线编号",false, new ExcelCoordinate(0, (short)12), null,20);
+		title[12]=new ExcelTitleCell("原路线编码",false, new ExcelCoordinate(0, (short)12), null,20);
 		title[13]=new ExcelTitleCell("原路线名称",false, new ExcelCoordinate(0, (short)13), null,20);
 		title[14]=new ExcelTitleCell("原起点桩号",false, new ExcelCoordinate(0, (short)14), null,20);
 		title[15]=new ExcelTitleCell("原止点桩号",false, new ExcelCoordinate(0, (short)15), null,20);
-		title[16]=new ExcelTitleCell("规划路线编号",false, new ExcelCoordinate(0, (short)16), null,20);
+		title[16]=new ExcelTitleCell("规划路线编码",false, new ExcelCoordinate(0, (short)16), null,20);
 		title[17]=new ExcelTitleCell("规划路线名称",false, new ExcelCoordinate(0, (short)17), null,20);
 		title[18]=new ExcelTitleCell("规划起点桩号",false, new ExcelCoordinate(0, (short)18), null,20);
 		title[19]=new ExcelTitleCell("规划止点桩号",false, new ExcelCoordinate(0, (short)19), null,20);
-		title[20]=new ExcelTitleCell("共线路线编号",false, new ExcelCoordinate(0, (short)20), null,20);
+		title[20]=new ExcelTitleCell("共线路线编码",false, new ExcelCoordinate(0, (short)20), null,20);
 		title[21]=new ExcelTitleCell("共线起点桩号",false, new ExcelCoordinate(0, (short)21), null,20);
 		title[22]=new ExcelTitleCell("共线止点桩号",false, new ExcelCoordinate(0, (short)22), null,20);
 		title[23]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)23), null,20);
@@ -3186,8 +3186,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					eldata.setEl(l);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,2,0,0));
-					et.add(new Excel_tilte("原路线编号",1,2,1,1));
-					et.add(new Excel_tilte("新路线编号",1,2,2,2));
+					et.add(new Excel_tilte("原路线编码",1,2,1,1));
+					et.add(new Excel_tilte("新路线编码",1,2,2,2));
 					et.add(new Excel_tilte("路线名称",1,2,3,3));
 					et.add(new Excel_tilte("起点桩号",1,2,4,4));
 					et.add(new Excel_tilte("讫点桩号",1,2,5,5));
@@ -3263,8 +3263,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					eldata.setEl(l);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,2,0,0));
-					et.add(new Excel_tilte("原路线编号",1,2,1,1));
-					et.add(new Excel_tilte("新路线编号",1,2,2,2));
+					et.add(new Excel_tilte("原路线编码",1,2,1,1));
+					et.add(new Excel_tilte("新路线编码",1,2,2,2));
 					et.add(new Excel_tilte("路线名称",1,2,3,3));
 					et.add(new Excel_tilte("起点桩号",1,2,4,4));
 					et.add(new Excel_tilte("讫点桩号",1,2,5,5));

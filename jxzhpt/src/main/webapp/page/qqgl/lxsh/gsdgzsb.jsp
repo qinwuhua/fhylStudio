@@ -29,6 +29,8 @@
 			// if($.cookie('unit')=='21101360000'||$.cookie('unit')=='36')
 				location.href='gsdgzsh.jsp?id='+getUrlParame('id'); 
 			tsdqdx('tsdq');
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			//loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
@@ -83,9 +85,9 @@
 				xmnf=xmnf.substr(1,xmnf.length);			
 			var sbzt=$("#sbzt").combobox('getValue');
 			var lsjl=$("#lsjl").combobox('getValue');
-			/* //var tsdq=$("#tsdq").combobox("getValues").join(",");
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
-				tsdq=tsdq.substr(1,tsdq.length); */
+				tsdq=tsdq.substr(1,tsdq.length); 
 			var jsdj=$("#jsdj").combobox('getValues').join(",");
 			var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 			var gldj=$("#gldj").combotree('getValues').join(",");
@@ -103,7 +105,7 @@
 					sbzt:sbzt,
 					//ghlxbh:$("#lxbm").val().toUpperCase(),
 					lxmc:$("#lxmc").val(),
-					//tsdq:tsdq,
+					tsdq:tsdq,
 					jsdj:jsdj,
 					gldj:gldj,
 					sbthcd:sbthcd,
@@ -184,7 +186,7 @@
 				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-				    {field : 'ghlxbh',title : '路线编号',width : 80,align : 'center'},
+				    {field : 'ghlxbh',title : '路线编码',width : 80,align : 'center'},
 				    {field : 'minqdzh',title : '起点桩号',width : 80,align : 'center'},
 				    {field : 'maxzdzh',title : '止点桩号',width : 80,align : 'center'},
 				    {field:'qdmc',title:'起点名称',width:120,align:'center'},

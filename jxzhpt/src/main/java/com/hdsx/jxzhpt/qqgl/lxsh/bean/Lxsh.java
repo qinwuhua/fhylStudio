@@ -9,7 +9,7 @@ public class Lxsh implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String ghxlxbm;//规划路线编号
+	private String ghxlxbm;//规划路线编码
 	private String ghxlxmc;//规划路线名称
 	private String xmklx;//项目库类型
 	private String qqkzzt;//前期开展状态
@@ -175,11 +175,11 @@ public class Lxsh implements Serializable {
 	public void setSfbflx(String sfbflx) {
 		this.sfbflx = sfbflx;
 	}
-	private String ghqdzh;//规划路线编号
-	private String ghzdzh;//规划路线编号
-	private String gxlxbm;//规划路线编号
-	private String gxqdzh;//规划路线编号
-	private String gxzdzh;//规划路线编号
+	private String ghqdzh;//规划路线编码
+	private String ghzdzh;//规划路线编码
+	private String gxlxbm;//规划路线编码
+	private String gxqdzh;//规划路线编码
+	private String gxzdzh;//规划路线编码
 	private String tzxz;
 	private String tzsj;
 	private String xmlx1;

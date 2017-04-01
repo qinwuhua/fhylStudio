@@ -26,6 +26,8 @@
 	<script type="text/javascript">
 		$(function(){
 			tsdqdx('tsdq');
+			loadGhlx('ghlxbm');
+			loadylx('lxbm');
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('jsdj','技术等级');
@@ -85,9 +87,9 @@
 			var sbzt=$("#sbzt").combobox('getValue');
 			var lsjl=$("#lsjl").combobox('getValue');
 			
-			/* //var tsdq=$("#tsdq").combobox("getValues").join(",");
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
-				tsdq=tsdq.substr(1,tsdq.length); */
+				tsdq=tsdq.substr(1,tsdq.length); 
 			var jsdj=$("#jsdj").combobox('getValues').join(",");
 			var jsjsdj=$("#jsjsdj").combobox('getValues').join(",");
 			var gldj=$("#gldj").combotree('getValues').join(",");
@@ -104,6 +106,8 @@
 			lsxmlx='';
 			if(lsxmlx.substr(0,1)==',')
 			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			
+			//alert(tsdq);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/queryLxshLjgsd.do',
@@ -115,7 +119,7 @@
 					sbzt:sbzt,
 					//ghlxbh:$("#lxbm").val().toUpperCase(),
 					lxmc:$("#lxmc").val(),
-					//tsdq:tsdq,
+					tsdq:tsdq,
 					jsdj:jsdj,
 					gldj:gldj,
 					sbthcd:sbthcd,
@@ -156,7 +160,7 @@
 			    	xmmc:xmmc,
 					xmnf:xmnf,
 					sbzt:sbzt,
-					//tsdq:tsdq,
+					tsdq:tsdq,
 					jsdj:jsdj,
 					gldj:gldj,
 					sbthcd:sbthcd,
@@ -210,7 +214,7 @@
 				    {field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
 				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
-				    {field : 'ghlxbh',title : '原路线编号',width : 80,align : 'center'},
+				    {field : 'ghlxbh',title : '原路线编码',width : 80,align : 'center'},
 				    {field : 'minqdzh',title : '原起点桩号',width : 80,align : 'center'},
 				    {field : 'maxzdzh',title : '原止点桩号',width : 80,align : 'center'},
 				    {field:'qdmc',title:'起点名称',width:100,align:'center'},

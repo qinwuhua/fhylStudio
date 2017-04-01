@@ -186,7 +186,7 @@
 				    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
 				    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
 				    {field : 'xmbm',title : '项目编码',width : 100,align : 'center'},
-				    {field : 'lxbh',title : '路线编号',width : 60,align : 'center'},
+				    {field : 'lxbh',title : '路线编码',width : 60,align : 'center'},
 				    {field : 'qdzh',title : '起点桩号',width : 80,align : 'center'},
 				    {field : 'zdzh',title : '止点桩号',width : 80,align : 'center'},
 				    {field : 'gkpfwh',title : '工可批复文号',width : 190,align : 'center'},

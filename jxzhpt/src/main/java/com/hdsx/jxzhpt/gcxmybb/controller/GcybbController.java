@@ -1968,7 +1968,7 @@ public class GcybbController extends BaseActionSupport{
 				et.add(new Excel_tilte("本年完成情况(总投资)",1,2,17,17));
 				et.add(new Excel_tilte("本年完成情况(省投资)",1,2,18,18));
 				et.add(new Excel_tilte("备注",1,2,19,19));
-				et.add(new Excel_tilte("路线编号",2,2,3,3));
+				et.add(new Excel_tilte("路线编码",2,2,3,3));
 				et.add(new Excel_tilte("项目名称",2,2,4,4));
 				et.add(new Excel_tilte("起点桩号",2,2,5,5));
 				et.add(new Excel_tilte("止点桩号",2,2,6,6));

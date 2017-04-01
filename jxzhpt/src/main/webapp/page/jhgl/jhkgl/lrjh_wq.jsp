@@ -101,7 +101,7 @@
 			        {field:'qlbh',title:'桥梁编号',width:140,align:'center'},
 			        {field:'qlmc',title:'桥梁名称',width:140,align:'center'},
 			        {field:'qlzxzh',title:'桥梁中心桩号',width:140,align:'center'},
-			        {field:'lxbm',title:'路线编号',width:120,align:'center'},
+			        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 			        {field:'pddj',title:'评定等级',width:140,align:'center'},
 			        {field:'xjgjnd',title:'改建/修建年度',width:140,align:'center'},

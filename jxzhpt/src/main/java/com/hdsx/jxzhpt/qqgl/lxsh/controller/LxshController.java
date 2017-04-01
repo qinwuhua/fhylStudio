@@ -610,11 +610,11 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
-			//lxsh.setTsdq(tsdq);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
@@ -806,11 +806,14 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			//System.out.println(lxsh.getLsxmlx());
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			//System.out.println(lxsh.getLsxmlx());
 			lxsh.setJsdj(jsdj);
 			lxsh.setSbthcd(sbthcd);
-		//	lxsh.setTsdq(tsdq);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
+			//System.out.println(lxsh.getTsdq());
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
@@ -820,26 +823,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
-			/*if(lxsh.getTsdq().length()>0){
-				String[] tsdqs=lxsh.getTsdq().split(",");
-				String tsdq="and(";
-				for (int i = 0; i < tsdqs.length; i++) {
-					if("全部".equals(tsdqs[i])){
-						tsdq="";
-						break;
-					}
-					if(i==0)
-						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
-					else
-						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
-				}
-				if(tsdq==""){
-					tsdq="";
-				}else{
-					tsdq+=")";
-				}
-				lxsh.setTsdq(tsdq);
-			}*/
+			
 			if(lxsh.getXmlx1()!=null)
 				if(lxsh.getXmlx1().length()>0){
 					String[] tsdqs=lxsh.getXmlx1().split(",");
@@ -932,7 +916,7 @@ public class LxshController extends BaseActionSupport{
 				}
 			}
 			lxsh.setSbthcd(sbthcd);
-			//lxsh.setTsdq(tsdq);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);
@@ -962,7 +946,7 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}*/
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			Map<String, String> result = lxshServer.queryLxshShLjLmsj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
@@ -1162,10 +1146,10 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setSbthcd(sbthcd);
-			//lxsh.setTsdq(tsdq);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setPage(page);
@@ -1508,9 +1492,9 @@ public class LxshController extends BaseActionSupport{
 		
 		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"lsxmbm"));
 		//System.out.println(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-		//lxsh.setTsdq(tsdq);
+		lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
@@ -1612,10 +1596,10 @@ public class LxshController extends BaseActionSupport{
 			}
 		}
 		
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 
-		//lxsh.setTsdq(tsdq);
+		lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
 		lxsh.setLsjl(lsjl);
@@ -1717,10 +1701,10 @@ public class LxshController extends BaseActionSupport{
 				jsjsdj = "";
 			}
 		}
-		lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 
-		//lxsh.setTsdq(tsdq);
+		lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
 		lxsh.setPage(page);
@@ -2012,10 +1996,10 @@ public class LxshController extends BaseActionSupport{
 					jsjsdj = "";
 				}
 			}
-			lxsh.setLsxmlx(MyUtil.getQueryTJ(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			lxsh.setSbthcd(sbthcd);
-			//lxsh.setTsdq(tsdq);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
 			lxsh.setLsjl(lsjl);

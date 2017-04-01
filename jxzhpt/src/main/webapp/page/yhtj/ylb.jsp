@@ -48,7 +48,7 @@ function showAll(){
 		striped : true,
 		singleSelect : false,
 		columns:[[
-				    {field:'V_0',title:'路线编号',width:150,rowspan:2,align:'center'},
+				    {field:'V_0',title:'路线编码',width:150,rowspan:2,align:'center'},
 					{field:'V_1',title:'路线名称',width:150,rowspan:2,align:'center'},
 					{field:'V_2',title:'养护单位',width:150,rowspan:2,align:'center'},
 					{field:'V_3',title:'起点桩号',width:100,rowspan:2,align:'center'},

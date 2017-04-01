@@ -40,7 +40,7 @@ public interface XmsqServer {
 	public Lx queryAutoList1(Xmsq xmsq);
 	/**
 	 * 查询是否有历史记录
-	 * @param ylxbh 路线编号
+	 * @param ylxbh 路线编码
 	 * @param qdzh 起点桩号
 	 * @param zdzh 止点桩号
 	 * @return 历史记录个数
@@ -54,7 +54,7 @@ public interface XmsqServer {
 	public boolean insertLx(Lx lx);
 	public boolean insertLx(Lx lx,Xmsq xmsq);
 	/**
-	 * 根据路线编号和起止点桩号查询特殊地区
+	 * 根据路线编码和起止点桩号查询特殊地区
 	 * @param xmsq 项目申请信息
 	 * @return 特殊地区集合
 	 */
