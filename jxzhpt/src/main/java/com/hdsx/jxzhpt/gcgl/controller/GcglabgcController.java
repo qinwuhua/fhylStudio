@@ -687,7 +687,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划编码",1,1,0,0));
 		et.add(new Excel_tilte("管养单位",1,1,1,1));
 		et.add(new Excel_tilte("行政区划",1,1,2,2));
-		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线编码",1,1,3,3));
 		et.add(new Excel_tilte("路线名称",1,1,4,4));
 		et.add(new Excel_tilte("起点桩号",1,1,5,5));
 		et.add(new Excel_tilte("止点桩号",1,1,6,6));
@@ -1395,7 +1395,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划编码",1,1,0,0));
 		et.add(new Excel_tilte("管养单位",1,1,1,1));
 		et.add(new Excel_tilte("行政区划",1,1,2,2));
-		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线编码",1,1,3,3));
 		et.add(new Excel_tilte("路线名称",1,1,4,4));
 		et.add(new Excel_tilte("起点桩号",1,1,5,5));
 		et.add(new Excel_tilte("止点桩号",1,1,6,6));

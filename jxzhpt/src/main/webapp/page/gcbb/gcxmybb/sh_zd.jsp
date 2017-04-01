@@ -301,7 +301,7 @@ text-decoration:none;
 							<td width="25%" style="background-color: #ffffff;" align="left">
 								<input  type="checkbox" value="jsdd" name="checkbox" class="part1"/>建设地点</td>
 							<td width="25%" style="background-color: #ffffff;" align="left">
-								<input  type="checkbox" value="lxbm" name="checkbox" class="part1"/>路线编号</td>
+								<input  type="checkbox" value="lxbm" name="checkbox" class="part1"/>路线编码</td>
 						
 						</tr>
 						

@@ -301,8 +301,8 @@ a{text-decoration:none;}
 						<td colspan="2" style="background-color: #ffffff;" align="center">
 							<table>
 								<tr>
-									<td><input type="checkbox" id="x.ylxbh" name="xmsq" value="x.ylxbh-路线编码"/>原路线编号</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="ghlxbh" name="xmsq" value="x.ghlxbh-路线编号"/>路线编号</td>
+									<td><input type="checkbox" id="x.ylxbh" name="xmsq" value="x.ylxbh-路线编码"/>原路线编码</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="ghlxbh" name="xmsq" value="x.ghlxbh-路线编码"/>路线编码</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="x.lmkd" name="xmsq" value="x.lmkd-路面宽度"/>路面宽度</td>
@@ -402,7 +402,7 @@ a{text-decoration:none;}
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="j.xdsj" name="jhsh" value="j.xdsj-计划下达时间"/>计划下达时间</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="j.ylxbh" name="jhsh" value="j.ylxbh-原路线编号"/>原路线编号</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="j.ylxbh" name="jhsh" value="j.ylxbh-原路线编码"/>原路线编码</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="j.qdzh" name="jhsh" value="j.qdzh-起点桩号"/>起点桩号</td>
@@ -448,7 +448,7 @@ a{text-decoration:none;}
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="j.sbzzj" name="jhsh" value="j.sbzzj-省补助资金"/>省补助资金</td>
-									<td style="padding-left: 10px;"><input type="checkbox" id="j.ylxbh" name="jhsh" value="j.ylxbh-原路线编号"/>原路线编号</td>
+									<td style="padding-left: 10px;"><input type="checkbox" id="j.ylxbh" name="jhsh" value="j.ylxbh-原路线编码"/>原路线编码</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" id="j.qdzh" name="jhsh" value="j.qdzh-起点桩号"/>起点桩号</td>

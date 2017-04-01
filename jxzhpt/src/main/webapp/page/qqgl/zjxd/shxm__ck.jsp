@@ -147,7 +147,7 @@
        						</td>
        						<td align="right">项目名称：</td>
        						<td><input name="xmmc" id="xmmc" style="width:120px;" type="text"/></td>
-       						<td align="right">原路线编号：</td>
+       						<td align="right">原路线编码：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td colspan="4">
        							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>

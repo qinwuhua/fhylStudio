@@ -110,7 +110,7 @@
        					<tr height="32">
        						<td align="right">&nbsp;特殊地区：</td>
        						<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:124px;"></select></td>
-       						<td align="right">&nbsp;原路线编号：</td>
+       						<td align="right">&nbsp;原路线编码：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:120px;" type="text"/></td>
        						<td>&nbsp;补助历史：</td>
        						<td>

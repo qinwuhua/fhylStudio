@@ -274,7 +274,7 @@ text-decoration:none;
 			</tr>
 			 <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					规划路线编号</td>
+					规划路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 					
@@ -292,7 +292,7 @@ text-decoration:none;
             </tr>
             <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					共线路线编号</td>
+					共线路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;" disabled="disabled"/>&nbsp;<span style="color: red;">*</span>
 					

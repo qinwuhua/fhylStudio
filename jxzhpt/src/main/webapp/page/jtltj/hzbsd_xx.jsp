@@ -128,7 +128,7 @@
                                     background-color: #4B4B4B">
                                     <tr style="background-color: #CCCCCC;">
                                         <td rowspan="3" style="width: 80px;">
-                                            路线编号
+                                            路线编码
                                         </td>
                                         <td rowspan="3" style="width: 200px;">
                                             路线名称

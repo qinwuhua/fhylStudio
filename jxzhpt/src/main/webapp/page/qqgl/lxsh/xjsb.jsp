@@ -282,6 +282,9 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 95px;">
 									</select>
 								</td>
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								</select></td>
                               <td colspan="10">
 								<!-- <td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>

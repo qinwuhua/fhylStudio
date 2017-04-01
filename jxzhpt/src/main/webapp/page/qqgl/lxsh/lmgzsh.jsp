@@ -277,6 +277,9 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 80px;">
 									</select>
 								</td>
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								</select></td>
 								</tr>
 							<tr height="32">
                               <td colspan="10">

@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/wngh/wnjh/js/wnjh.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadGhlx('ghlxbm');
+			loadGhlx('ghxlxbm');
 			loadylx('lxbm');
 			//gsdxmlx('xmlx');
 			loadBmbm3("xmnf",'全部项目年份',new Date().getFullYear());
@@ -85,7 +85,7 @@
 					'lxsh.ghlxbh':$("#lxbm").combotree('getText'),
 					'lxsh.lxmc':$("#lxmc").val(),
 					'lxsh.jsjsdj':$("#jsjsdj").combotree('getText'),
-					'lxsh.ghxlxbm':$("#ghxlxbm").combobox('getValue'),
+					'lxsh.ghxlxbm':$("#ghxlxbm").combotree('getText'),
 					'lxsh.ghxlxmc':$("#ghxlxmc").val(),
 					'lxsh.xmlx1':xmlx,
 					'lxsh.qqkzzt':$("#qqkzzt").combobox('getValue'),

@@ -37,7 +37,8 @@ public class MyUtil implements Serializable{
 	 * @param name 要加条件的数据库字段
 	 * @return 拼好的条件
 	 */
-	public static String getQueryTJ(String bh,String bh1,String name){
+	public static String getQueryTJ2(String bh,String bh1,String name){
+		
 		String result="";
 		if(bh!=null&&!"".equals(bh)){
 			if(bh1!=null&&!"".equals(bh1)){
@@ -71,6 +72,17 @@ public class MyUtil implements Serializable{
 				}
 			}
 			
+		}else{
+			if(bh1!=null&&!"".equals(bh1)){
+				String[] s = bh1.split(",");
+				for (int i = 0; i < s.length; i++) {
+						if(i==0)
+							result+=" and ("+name+" like '%"+s[i]+"%'";
+						else
+							result+=" or "+name+" like '%"+s[i]+"%'";
+					}
+					result+=")";
+				}
 		}
 		return result;
 	}
