@@ -29,6 +29,13 @@
 		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid black;padding:3px 7px 2px 7px;}
 		-->
+		TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
@@ -219,14 +226,15 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:150px;"></select>
-        						<span>月报年份：</span>
-		 						<select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select>
-		 						<span>月报月份：</span>
-		 						<select name="ddlMonth" id="ddlMonth" style="width: 60px;">
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td><select id="gydw" style="width:150px;"></select></td>
+        						<td>月报年份：</td>
+		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
+								</select></td>
+		 						<td>月报月份：</td>
+		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
 									<option id="yf1" value="1">01</option>
 									<option id="yf2" value="2">02</option>
 									<option id="yf3" value="3">03</option>
@@ -239,25 +247,30 @@
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select>
-		        				<span>项目名称：</span>
-		        				<input id="xmmc" type="text"  style="width: 100px">
-		        				<img onclick="zdybb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+								</select></td>
+		        				<td>项目名称：</td>
+		        				<td><input id="xmmc" type="text"  style="width: 100px"></td>
+		        				
+        					</tr>
+        				<tr height="32">
+        						<td>行政区划：</td>
+        						<td><select id="xzqh" style="width:150px;"></select></td>
+        						<td>项目年份：</td>
+        						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
+        						<td>行政等级：</td>
+        						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
+        						</select></td>
+        						<td>路线名称：</td>
+        						<td><input id="lxmc" type="text"  style="width: 100px"></td>
+        						</tr>
+        						<tr height="32">
+        						<td colspan="10">
+        						<img onclick="zdybb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
-        					</p>
-        					<p style="margin: 8px 0px 8px 20px;">
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:150px;"></select>
-        						<span>项目年份：</span>
-        						<select  id="ddlYear1" style="width: 80px;"></select>
-        						<span>行政等级：</span>
-        						<select id="xzdj" class="easyui-combobox" style="width:60px;">
-        						</select>
-        						<span>路线名称：</span>
-        						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
-        					</p>
+                                	</td>
+        					</tr></table>
         				</div>
         			</fieldset>
         		</td>
@@ -267,7 +280,7 @@
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:99%;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
+                			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-170)+'px');
                 		</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">

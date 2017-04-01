@@ -1199,15 +1199,15 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryZrsh_ds" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf}+1 nf,a.xzqhdm xzqhdm,b.ydlv-a.ydlv zrsh from (
+	select ${xmnf} nf,a.xzqhdm xzqhdm,b.ydlv-a.ydlv zrsh from (
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id not in(
 	select t.id
-	from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf}+1)t
+	from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf}-1)t
 	,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
 	and to_number(t.qdzh)>=to_number(l.qdzh) and to_number(t.zdzh) &lt;=to_number(l.zdzh)  
-	) and tbnf=${xmnf}+1 group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) a
+	) and tbnf=${xmnf}-1 group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) a
 	left join 
 	(
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
@@ -1248,5 +1248,46 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	
 	<select id="queryLkpdMaxNf" resultType="java.util.Map" >
 	  select max(tbnf)-1 nf from lkpd_mxb2014
+	</select>
+	
+	<select id="queryLx_kxjc" resultType="java.util.Map" parameterType="java.util.Map">
+	select lxbh,sum(decode(pd,'优',cd,0)) ydl,sum(decode(pd,'良',cd,0)) ldl,sum(decode(pd,'中',cd,0)) zdl,
+           sum(decode(pd,'次',cd,0)) cdl,sum(decode(pd,'差',cd,0)) cadl
+           from wh_lkpd_data_ds t where 1=1
+           <if test="lxbm !='' and lxbm != null ">
+			and lxbh like '%'||#{lxbm}||'%'
+		   </if>
+		   <if test="mqi != null and  mqi != ''">
+			and pd in ${mqi}
+		</if>
+           group by lxbh order by lxbh
+	</select>
+	
+	<select id="queryLxkxjc_ds" resultType="java.util.Map" parameterType="java.util.Map">
+	select t.xzqhdm,t.lc,round(t.zxbz+t.gdbz+t.sdbz,2) bzzj,l.name xzqh from
+	    (
+		  select xzqhdm,sum(cd) lc,sum(cd)*0.3*70 zxbz,
+		    sum(decode(gldj,'G',cd*lk,0))*0.7*26*0.7 gdbz,sum(decode(gldj,'S',cd*lk,0))*0.7*21*0.7 sdbz
+			from wh_lkpd_data_ds  where xzqhdm is not null
+			<if test="lxbm !='' and lxbm != null ">
+			and lxbh in ${lxbm}
+		    </if>
+			 group by xzqhdm order by xzqhdm
+		 ) t 
+		 left join xtgl_xzqh l on t.xzqhdm=l.id
+	</select>
+	
+	<select id="queryLxkxjc_lx" resultType="java.util.Map" parameterType="java.util.Map">
+	select t.lxbh lxbm,t.lc,round(t.zxbz+t.gdbz+t.sdbz,2) bzzj from 
+	    (
+		 select lxbh,sum(cd) lc,sum(cd)*0.3*70 zxbz,
+		  sum(decode(gldj,'G',cd*lk,0))*0.7*26*0.7 gdbz,sum(decode(gldj,'S',cd*lk,0))*0.7*21*0.7 sdbz
+		  from wh_lkpd_data_ds  
+		  where 1=1
+		  <if test="lxbm !='' and lxbm != null ">
+			and lxbh in ${lxbm}
+		  </if>
+		  group by lxbh order by lxbh
+		 ) t
 	</select>
 </mapper>

@@ -63,7 +63,7 @@ text-decoration:none;
 }
 .abgc_td td{padding-right:5px;}
 </style>
-</style>
+
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">

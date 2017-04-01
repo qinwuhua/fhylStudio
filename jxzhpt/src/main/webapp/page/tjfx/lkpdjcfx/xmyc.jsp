@@ -25,7 +25,7 @@
 		 $(function(){
 			loadgrid();
 		}); 
-		 var xmbm="";
+		 var xmbm="";var lxbm="";
 		function loadgrid(){
 			var url='';
 			var tjfl=$("#tjfl").val();
@@ -67,103 +67,11 @@
 			});
 		}
 		
-/* function queryBar(years,tjfl){
-			
-			var value1=[]; var value2=[]; 
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value1.push(parseFloat(250)+parseFloat(i)-parseFloat(2000));
-			}
-			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				value2.push(parseFloat(80.6)+parseFloat(i)-parseFloat(2000));
-			}
-			
-			 var myChart = echarts.init(document.getElementById("anychart_div")); 
-	            
-	            option1 = {
-	        		    title : {
-	        		        text: "各年份优良路提升比例趋势图",
-	        		        x:'center',
-	        		        textStyle:{
-	    			            fontSize: 18
-	    			        } 
-	        		    },
-	        		    tooltip : {
-	        		        trigger: 'axis'
-	        		    },
-	        		    legend: {
-	        		    	show:true,
-	        		        data:['投入资金（万元）','优良路提升比例（%）'],
-	        		        x : 'left',
-	        		        y : 'top',
-	        		        orient: 'horizontal'
-	        		    },
-	        		    toolbox: {
-	        		        show : true,
-	        		        feature : {
-	        		            mark : {show: true},
-	        		            dataZoom : {	//框选区域缩放
-									show : true,
-									title : {
-										dataZoom : '区域缩放',
-										dataZoomReset : '区域缩放后退'
-									}
-								},
-	        		            dataView : {show: true, readOnly: false},
-	        		            magicType : {show: true, type: ['line',]},
-	        		            restore : {show: true},
-	        		            saveAsImage : {show: true}
-	        		        }
-	        		    },
-	        		    calculable : true,
-	        		    xAxis : [
-	        		        {
-	        		            type : 'category',
-	        		            data : years
-	        		        }
-	        		    ],
-	        		    yAxis : [
-	        		          {
-	                                 type: 'value',
-	                                 name: '投入资金',
-	                                 position: 'left',
-	                                    axisLabel: {
-	                                        formatter: '{value} （万元）'
-	                             }
-	                        },
-	                        {
-	                            type: 'value',
-	                            name: '优良路提升比例',
-	                            min: 0,
-	                            max: 500,
-	                            position: 'right',
-	                            axisLabel: {
-	                                formatter: '{value} （%）'
-	                            }
-	                        },
-	        		    ],
-	        		    series : [
-							 {
-			                    name:'投入资金（万元）',
-			                    type:'line',
-			                    barWidth: '20%',
-			                    data:value1
-			                },
-			                {
-			                    name:'优良路提升比例（%）',
-			                    type:'line',
-			                    barWidth: '20%',
-			                    data:value2
-			                }
-	        		    ]
-	        		};
-	            
-	        		
-	            	 myChart.setOption(option1);
-	           
-		} */
-		
 		function xzxm(){
 			YMLib.UI.createWindow('xmyc','选择项目','xuanzxm1.jsp','xmyc',850,400);
+		}
+		function xzlx(){
+			YMLib.UI.createWindow('xmyc','选择路线','xuanzlx.jsp','xmyc',850,400);
 		}
 	</script>
 </head>
@@ -192,10 +100,10 @@
 	        					 <option value="2">按路线</option>
 	        				</select>
 	        				</span>
-<%--         						<img onclick="loadgrid()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/> --%>
         					    <a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
+        					     <a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzlx()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择路线</a>
         					&nbsp;&nbsp;
-        					<span style="color:red;">【请选择项目进行预测】</span>
+        					<span style="color:red;">【请选择项目或路线进行预测】</span>
         					</p>
         				</div>
         			</fieldset>
@@ -209,22 +117,6 @@
             		</div>
             	</td>
         	</tr>
-        	<%-- <tr>
-        		<td>
-	        		<div style="margin-left: 10px;margin-top: 10px;">
-	        			<div style="">
-	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
-	        			</div>
-	        			<div style="height: 500px;border: 1px #C0C0C0 solid;text-align: center;width:98%;">
-	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
-								<div>
-									<param name="wmode" value="transparent" />
-								</div>
-							</div>
-	        			</div>
-	        		</div>
-        		</td>
-        	</tr> --%>
 		</table>
 	</div>
 </body>

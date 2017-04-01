@@ -28,8 +28,8 @@
 		a:hover {text-decoration: none;}
 		a:active {text-decoration: none;}
 		#bbtable {border-collapse:collapse;}
-		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
-		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid black;padding:3px 7px 2px 7px;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
 		-->
 	</style>
 	<script type="text/javascript">
@@ -456,7 +456,30 @@
 	
 	</script>
 	
-	
+		<style type="text/css">
+<!--
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+ cursor: pointer;
+}
+a:active {
+ text-decoration: none;
+}
+-->
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 
 	
 </head>
@@ -475,14 +498,15 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:150px;"></select>
-        						<span>月报年份：</span>
-		 						<select name="ddlYear" id="ddlYear" style="width: 80px;">
-								</select>
-		 						<span>月报月份：</span>
-		 						<select name="ddlMonth" id="ddlMonth" style="width: 60px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td align="right">管养单位：</td>
+        						<td><select id="gydw" style="width:150px;"></select></td>
+        						<td align="right">月报年份：</td>
+		 						<td><select name="ddlYear" id="ddlYear" style="width: 80px;">
+								</select></td>
+		 						<td align="right">月报月份：</td>
+		 						<td><select name="ddlMonth" id="ddlMonth" style="width: 60px;">
 									<option id="yf1" value="1">01</option>
 									<option id="yf2" value="2">02</option>
 									<option id="yf3" value="3">03</option>
@@ -495,58 +519,59 @@
 									<option id="yf10" value="10">10</option>
 									<option id="yf11" value="11">11</option>
 									<option id="yf12" value="12">12</option>
-								</select>
-		        				<span>项目名称：</span>
-		        				<input id="xmmc" type="text"  style="width: 100px">
+								</select></td>
+		        				<td align="right">项目名称：</td>
+		        				<td><input id="xmmc" type="text"  style="width: 75px"></td>
 		        				
-		        				<span>原技术等级：</span>
-		        				<input id="yjsdj" type="text"  style="width: 100px">
-		        				</p>
-        					<p style="margin: 8px 0px 8px 20px;">
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:150px;"></select>
-        						<span>项目年份：</span>
-        						<select  id="ddlYear1" style="width: 80px;"></select>
-        						<span>行政等级：</span>
-        						<select id="xzdj" class="easyui-combobox" style="width:60px;">
-        						</select>
-        						<span>路线编码：</span>
-        						<input id="lxmc" type="text"  style="width: 100px">
-								<span>建设技术标准：</span>
-        						<input id="jsjsdj" type="text"  style="width: 88px">
+		        				<td align="right">原技术等级：</td>
+		        				<td><input id="yjsdj" type="text"  style="width: 54px"></td>
+		        				</tr>
+        							<tr height="32">
+        						<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:150px;"></select></td>
+        						<td align="right">项目年份：</td>
+        						<td><select  id="ddlYear1" style="width: 80px;"></select></td>
+        						<td align="right">行政等级：</td>
+        						<td><select id="xzdj" class="easyui-combobox" style="width:60px;">
+        						</select></td>
+        						<td align="right">路线编码：</td>
+        						<td><input id="lxmc" type="text"  style="width: 75px"></td>
+								<td align="right">建设技术标准：</td>
+        						<td><input id="jsjsdj" type="text"  style="width: 54px"></td>
         						
-							</p>
-							<p style="margin: 8px 0px 8px 20px;">
-        						<span>公路建设类型：</span>
-        						<input id="gljslx" type="text"  style="width: 126px">
-        						<span>计划年度：</span>
-		        				<input id="jhnd" type="text"  style="width: 80px">
-        						<span>项目进展状态：</span>
-        						<input id="jzzt" type="text"  style="width: 64px">
+							</tr>
+									<tr height="32">
+        						<td align="right">公路建设类型：</td>
+        						<td><input id="gljslx" type="text"  style="width: 150px"></td>
+        						<td align="right">计划年度：</td>
+		        				<td><input id="jhnd" type="text"  style="width: 80px"></td>
+        						<td align="right">项目进展状态：</td>
+        						<td><input id="jzzt" type="text"  style="width: 60px"></td>
         					<!-- 	<span>本年计划投资：</span>
         						<input id="bnjhtz" type="text"  style="width: 60px">
         						<span>本年度实施里程：</span>
         						<input id="bndsslc" type="text"  style="width: 60px">
         						</select> -->
-        						<span>本年计划投资：</span>
-        						<select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:54px;">
+        						<td align="right">本年计划投资：</td>
+        						<td><select name="bnjhtz" id="bnjhtz" class="easyui-combobox" style="width:76px;">
 									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
 									<option value="非0">非0</option> -->
-								</select>
-        						<span>本年度实施里程：</span>
-        						<select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:54px;">
+								</select></td>
+        						<td align="right">本年度实施里程：</td>
+        						<td><select name="bndsslc" id="bndsslc" class="easyui-combobox" style="width:54px;">
 									<!-- <option value="" selected="selected">全部</option>
 									<option value="0">0</option>
 									<option value="非0">非0</option> -->
-								</select>
-							</p>
-        					<p style="margin: 8px 0px 8px 20px;">
+								</select></td>
+							</tr>
+        							<tr height="32">
+        							<td colspan="10">
         						<img onclick="wcmxb()" alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"/>
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="dcExcel()" style="vertical-align: -50%;" />
-        					</p>
+        				</td>	</tr></table>
         				</div>
         			</fieldset>
         		</td>
@@ -555,7 +580,7 @@
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 380px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-190)+'px;');
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-200)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

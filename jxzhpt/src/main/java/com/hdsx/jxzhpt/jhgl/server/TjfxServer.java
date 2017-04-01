@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 
@@ -64,4 +65,8 @@ public interface TjfxServer {
 	List<Map<String, Object>> queryZrsh(String tjfl,int nf);
 	
 	Map<String, Object> queryMaxNf();
+	
+	List<Map<String, Object>> queryLx_kxjc(Lkmxb lkmxb);
+	
+	List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm);
 }
