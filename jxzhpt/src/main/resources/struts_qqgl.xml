@@ -323,7 +323,7 @@
 		<action name="ckxlwjg" class="wnjhController" method="ckxlwjg"/>
 		<action name="xljgbh" class="wnjhController" method="xljgbh"/>
 		<action name="selectGsdxzxm" class="wnjhController" method="selectGsdxzxm"/>
-		
+		<action name="selectGsdyxzxm" class="wnjhController" method="selectGsdyxzxm"/>
 	<!-- rh -->
 	
 	    <action name="batchUploadJhxd" class="jhshController" method="batchUploadJhxd"></action>

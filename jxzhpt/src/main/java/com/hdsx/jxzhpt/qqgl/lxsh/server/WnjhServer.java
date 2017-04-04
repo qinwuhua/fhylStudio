@@ -65,4 +65,5 @@ public interface WnjhServer {
 	List<Lxsh> selectGsdxzxm(Lxsh lxsh);
 	List<Excel_list> ckxlwjg(Lxsh lxsh);
 	List<Excel_list> xljgbh(Lxsh lxsh);
+	List<Lxsh> selectGsdyxzxm(Lxsh lxsh);
 }

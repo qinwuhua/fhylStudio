@@ -821,6 +821,7 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setGxlxbm(lxsh.getGxlxbm());
 			xmsq.setGxqdzh(lxsh.getGxqdzh());
 			xmsq.setGxzdzh(lxsh.getGxzdzh());
+			
 			xmsq.setBz("wnjh_lx where 1=1 and sffirst!='1'");
 			Lx x2 = xmsqServer.querysfwnlsjldg(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
@@ -1613,7 +1614,6 @@ public class WnjhController extends BaseActionSupport{
 	
 	public void selectGsdxzxm(){
 		try {
-			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -1692,6 +1692,21 @@ public class WnjhController extends BaseActionSupport{
 		}
 	}
 
+	public void selectGsdyxzxm(){
+		try {
+			lxsh.setXmbm(MyUtil.getQueryTJ(lxsh.getXmbm(), "xmbm"));
+		List<Lxsh> list=wnjhServer.selectGsdyxzxm(lxsh);
+		
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		
+		JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
 	public void dclwjg(){
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();

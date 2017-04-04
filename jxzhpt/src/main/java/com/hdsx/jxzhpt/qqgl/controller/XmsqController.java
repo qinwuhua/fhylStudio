@@ -1162,7 +1162,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				xmsq.setJdbs("1");
 			}
-			//System.out.println("11111111111111111111111");
+			String bz=xmsq.getBz();
+			
 			xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+xmsq.getJdbs()+"'");
 			
 			Lx x = xmsqServer.querysfwnxmkdg(xmsq);
@@ -1178,7 +1179,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setLsxmbm(x2.getLsxmbm());
 			xmsq.setLsxmid(x2.getLsxmid());
 			}
-			
+			xmsq.setBz(bz);
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
 			}else if(xmsq.getXmlx()==5){

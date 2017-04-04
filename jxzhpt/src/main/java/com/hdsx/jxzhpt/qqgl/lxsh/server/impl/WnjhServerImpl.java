@@ -354,6 +354,9 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	public List<Lxsh> selectGsdxzxm(Lxsh lxsh) {
 		return queryList("selectGsdxzxm", lxsh);
 	}
-	
+	@Override
+	public List<Lxsh> selectGsdyxzxm(Lxsh lxsh) {
+		return queryList("selectGsdyxzxm", lxsh);
+	}
 
 }

@@ -3027,6 +3027,7 @@ function zjly(id,lx){
 		years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
 	}*/
 	if(lx=='gsd'){
+		years.push({text:'车购税',value:'bbzzj'});
 		years.push({text:'国债',value:'gz'});
 		years.push({text:'省债',value:'sz'});
 		years.push({text:'债券',value:'zq'});

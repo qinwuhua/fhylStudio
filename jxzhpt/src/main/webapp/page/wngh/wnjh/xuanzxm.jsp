@@ -71,7 +71,7 @@
 			    striped:true,
 			    pagination:false,
 			    rownumbers:true,
-			   checkOnSelect:true,
+			    checkOnSelect:true,
 			    height:$(window).height()-40,
 			    width:$(window).width()-20,
 			    queryParams: {
@@ -144,7 +144,20 @@
 				    	});
 			    	}
 			    	
-			    }   
+			    },
+			    onLoadSuccess:function(data){
+			    	var rows=$('#datagrid').datagrid("getRows");
+			    	for (var i=0;i<rows.length;i++){
+			    		//alert(parent.xmbm);
+			    		//alert(parent.xmbm.indexOf(rows[i].xmbm));
+			    		if(parent.xmbm!=null)
+			    		if(parent.xmbm.indexOf(rows[i].xmbm)!=-1){
+			    			$('#datagrid').datagrid('selectRow',i);
+			    		}
+			    	}
+			    	
+				}
+
 			}); 
 		}
 		

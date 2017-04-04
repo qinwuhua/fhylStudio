@@ -1542,30 +1542,19 @@ public class KxxyjController extends BaseActionSupport{
 	
 	public void showkxxTjxx(){
 		try {
-			String tiaojian1="";
-			String tiaojian2="";
-			/*if(lxsh.getGydw().indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+lxsh.getGydw()+"%'";
-			}else{
-				tiaojian1="and gydwdm in ("+lxsh.getGydw()+")";
-			}*/
+			
 			String ss = lxsh.getXzqh();
-			if(lxsh.getXzqh().indexOf(",")==-1){
-				tiaojian2="and t.xzqhdm like '%"+lxsh.getXzqh()+"%'";
-			}else{
-				tiaojian2="and t.xzqhdm in ("+lxsh.getXzqh()+")";
-			}
+			
 			lxsh.setXzqh(xzqhBm(ss, "xzqhdm2"));
-			//lxsh.setGydw(tiaojian1);
 			String xmnf1 = lxsh.getXmnf();
 			if(xmnf1.indexOf(",")>-1){
 				xmnf = "t1.xmnf in ("+xmnf1+")";
 			}else{
 				xmnf = "t1.xmnf = '"+xmnf1+"'";
 			}
-		lxsh.setXmnf(xmnf);
-		lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
-		lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			lxsh.setXmnf(xmnf);
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			Lxsh l=null;
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1587,6 +1576,8 @@ public class KxxyjController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			if("gsdgz".equals(lxsh.getXmlx())){
 				if(lxsh.getXmlx1()!=null)
 					if(lxsh.getXmlx1().length()>0){

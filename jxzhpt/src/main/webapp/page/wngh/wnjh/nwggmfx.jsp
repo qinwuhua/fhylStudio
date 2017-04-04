@@ -107,6 +107,15 @@
 				window.location.href='/jxzhpt/qqgl/dclwjg.do';
 			 });
 		}
+		function ckyxzxm(){
+			if(xmbm==''){
+				alert("未查询到有已选中项目");
+				return;
+			}
+			YMLib.UI.createWindow('lxxx','已选中项目','yxzxm.jsp','lxxx',850,400);
+			
+		}
+		
 	</script>
 	<style type="text/css">
 	TD {font-size: 12px;}
@@ -140,6 +149,7 @@
 				              	<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:xzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">选择项目</a>
 				                <a id='mybuttion4' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:dcdqy()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导出当前页</a>
             					<a id='mybuttion3' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:ckyxbh()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">新老结构变化情况</a>
+            					<a id='mybuttion5' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:ckyxzxm()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">查看已选中项目</a>
 				              </td>
                             </tr></table>
         				</div>
