@@ -1,2 +1,2 @@
-rm --cached dao.properties
+git rm --cached dao.properties
 /dao.properties
