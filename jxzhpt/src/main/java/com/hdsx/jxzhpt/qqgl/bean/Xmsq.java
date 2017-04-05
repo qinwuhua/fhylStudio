@@ -9,7 +9,28 @@ public class Xmsq {
 	private String wnnfxz;
 	private String lsxmnf;
 	private String lsxmlx;
+	private String cfqd;
+	private String cfzd;
+	private String lmlx;
 	
+	public String getLmlx() {
+		return lmlx;
+	}
+	public void setLmlx(String lmlx) {
+		this.lmlx = lmlx;
+	}
+	public String getCfqd() {
+		return cfqd;
+	}
+	public void setCfqd(String cfqd) {
+		this.cfqd = cfqd;
+	}
+	public String getCfzd() {
+		return cfzd;
+	}
+	public void setCfzd(String cfzd) {
+		this.cfzd = cfzd;
+	}
 	public String getLsxmnf() {
 		return lsxmnf;
 	}

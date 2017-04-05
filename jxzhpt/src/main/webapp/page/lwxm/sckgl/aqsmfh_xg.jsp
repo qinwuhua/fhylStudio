@@ -722,16 +722,16 @@ function deleteFile(id){
 					<input type="text" name='bitian' id="scjsdj"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="qdzh" name='bitian' disabled="disabled"></td>
+					<input type="text" id="qdzh" name='bitian' readonly="readonly"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="zdzh" name='bitian' disabled="disabled"></td>
+					<input type="text" id="zdzh" name='bitian' readonly="readonly"></td>
 				
 			</tr>	
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
 				<td  style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="scyhlc" name='bitian' onchange="sfdyzlc()" disabled="disabled"></td>
+					<input type="text" id="scyhlc" name='bitian' onchange="sfdyzlc()" readonly="readonly"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">处置总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="czzlc" name='bitian' onchange="sfdyyhlc()" onblur="jsnsqbz()"></td>

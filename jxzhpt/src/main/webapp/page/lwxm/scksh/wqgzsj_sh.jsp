@@ -89,7 +89,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:30%" align="right">审核意见（同意）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:70%" align="left"  >
-					<input type="text" id="shyj1" style="width: 150px" value="同意" disabled="disabled"/></td>
+					<input type="text" id="shyj1" style="width: 150px" value="同意" readonly="readonly"/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="2" style="background-color: #ffffff; height: 35px;"

@@ -285,29 +285,7 @@
 	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
 		<form id="submit" action="../../../qqgl/updateXmsq.do" method="post">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
-             <tr style="height: 30px;">
-            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					原路线编码</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="ylxbh" name="ylxbh" onblur="jslckdgbbzzj()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
-					<input id="xmlx" name="xmlx" value="4" type="hidden"/>
-					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
-					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
-				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					原起点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="qdzh" name="qdzh" onblur="jslckdgbbzzj()" onchange="querymc('qdzh')" type="text" style="width: 123px;"/>
-					<span id="span_qdzh"></span>
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					原止点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="zdzh" name="zdzh" onblur="jslckdgbbzzj()" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>
-					<span id="span_zdzh"></span>
-				</td>
-            </tr>
-             <tr style="height: 30px;">
+            <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划路线编码</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
@@ -325,6 +303,29 @@
 					<input id="ghzdzh" name="ghzdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
 				</td>
             </tr>
+             <tr style="height: 30px;">
+            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					原路线编码</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input readonly="readonly" id="ylxbh" name="ylxbh" onblur="jslckdgbbzzj()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input id="xmlx" name="xmlx" value="4" type="hidden"/>
+					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					原起点桩号</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input readonly="readonly" id="qdzh" name="qdzh" onblur="jslckdgbbzzj()" onchange="querymc('qdzh')" type="text" style="width: 123px;"/>
+					<span id="span_qdzh"></span>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					原止点桩号</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input readonly="readonly" id="zdzh" name="zdzh" onblur="jslckdgbbzzj()" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>
+					<span id="span_zdzh"></span>
+				</td>
+            </tr>
+             
             <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					共线路线编码</td>
@@ -524,7 +525,7 @@
 						厚度：<input id='lqhntmchd' value='0' onchange="jsbzzj('lqhntmc')" name='lqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqhntmc' name='lqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqhntmc' name='lqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -541,7 +542,7 @@
 						厚度：<input id='gxlqhntmchd' value='0' onchange="jsbzzj('gxlqhntmc')" name='gxlqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='gxlqhntmc' name='gxlqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='gxlqhntmc' name='gxlqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
             	<tr >
@@ -558,7 +559,7 @@
 						厚度：<input id='snhntmchd' value='0' onchange="jsbzzj('snhntmc')" name='snhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmc' name='snhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmc' name='snhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -575,7 +576,7 @@
 						厚度：<input id='lqlmjdrzshd' value='0' onchange="jsbzzj('lqlmjdrzs')" name='lqlmjdrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmjdrzs' name='lqlmjdrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmjdrzs' name='lqlmjdrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -592,7 +593,7 @@
 						厚度：<input id='lqlmcbrzshd' value='0' onchange="jsbzzj('lqlmcbrzs')" name='lqlmcbrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcbrzs' name='lqlmcbrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcbrzs' name='lqlmcbrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -611,7 +612,7 @@
 						厚度：<input id='swjchd' value='0' onchange="jsbzzj('swjc')" name='swjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjc' name='swjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjc' name='swjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -628,7 +629,7 @@
 						厚度：<input id='lqlmpmlqjdlzshd' value='0' onchange="jsbzzj('lqlmpmlqjdlzs')" name='lqlmpmlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmpmlqjdlzs' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmpmlqjdlzs' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -645,7 +646,7 @@
 						厚度：<input id='lqlmrhlqjdlzshd' value='0' onchange="jsbzzj('lqlmrhlqjdlzs')" name='lqlmrhlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmrhlqjdlzs' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmrhlqjdlzs' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -662,7 +663,7 @@
 						厚度：<input id='lqlmcblzshd' value='0' onchange="jsbzzj('lqlmcblzs')" name='lqlmcblzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcblzs' name='lqlmcblzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcblzs' name='lqlmcblzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -679,7 +680,7 @@
 						厚度：<input id='xzrxjchd' value='0' onchange="jsbzzj('xzrxjc')" name='xzrxjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xzrxjc' name='xzrxjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xzrxjc' name='xzrxjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -696,7 +697,7 @@
 						厚度：<input id='swjclzshd' value='0' onchange="jsbzzj('swjclzs')" name='swjclzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjclzs' name='swjclzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjclzs' name='swjclzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -716,7 +717,7 @@
 						<input type="hidden" id='xfchd' name='xfchd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xfc' name='xfc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xfc' name='xfc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -735,7 +736,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcsnmb')" id='wcsnmbhd' name='wcsnmbhd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcsnmb' name='wcsnmb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcsnmb' name='wcsnmb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -752,7 +753,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcswjc')" id='wcswjchd' name='wcswjchd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcswjc' name='wcswjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcswjc' name='wcswjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -774,7 +775,7 @@
 						
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmchb' name='snhntmchb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmchb' name='snhntmchb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -796,7 +797,7 @@
 						
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='bx' name='bx' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='bx' name='bx' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -816,7 +817,7 @@
 						<input type="hidden" id='snhntmcsshhd' name='snhntmcsshhd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr style="height: 30px;">

@@ -833,7 +833,7 @@ text-decoration:none;
 					<input readonly="readonly" type="text" id="nsqbbz" style="width: 150px" onblur="checksfzq()"/>&nbsp;&nbsp;<span style="color: red" id='trzjdx'></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" style="width: 100px" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
+					<input type="text" style="width: 100px" id='nsqsjl' readonly="readonly"/><br><span id="trshengjl" style="color: red"></span></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>

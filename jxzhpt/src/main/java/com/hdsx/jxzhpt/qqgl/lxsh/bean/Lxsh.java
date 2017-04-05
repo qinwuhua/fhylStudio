@@ -36,7 +36,42 @@ public class Lxsh implements Serializable {
 	private String tj6;//统计分类
 	private String tj7;//统计分类
 	private String tj8;//统计分类
+	private String cfqd;
+	private String cfzd;
+	private String cfld;
+	private String lmlx;
+	private String lmkd;
 	
+	public String getLmkd() {
+		return lmkd;
+	}
+	public void setLmkd(String lmkd) {
+		this.lmkd = lmkd;
+	}
+	public String getLmlx() {
+		return lmlx;
+	}
+	public void setLmlx(String lmlx) {
+		this.lmlx = lmlx;
+	}
+	public String getCfqd() {
+		return cfqd;
+	}
+	public void setCfqd(String cfqd) {
+		this.cfqd = cfqd;
+	}
+	public String getCfzd() {
+		return cfzd;
+	}
+	public void setCfzd(String cfzd) {
+		this.cfzd = cfzd;
+	}
+	public String getCfld() {
+		return cfld;
+	}
+	public void setCfld(String cfld) {
+		this.cfld = cfld;
+	}
 	public String getTj6() {
 		return tj6;
 	}

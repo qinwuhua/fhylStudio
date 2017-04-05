@@ -545,8 +545,7 @@
 	
 	
 	<select id="wnjhGpsroad" parameterType="lxsh" resultType="lxsh">
-		
-		select distinct substr(ylxbm,0,4) ghlxbh,yqdzh qdzh,yzdzh zdzh,substr(xlxbm,0,4) xlxbm,substr(xlxbm,0,4) ghlxbm,xqdzh ghqdzh,xzdzh ghzdzh,xlxmc ghlxmc,ylxmc lxmc,cfld from ghlx where ylxbm like #{ghlxbh}||'%'||#{xzqh}||'%'
+		select distinct substr(ylxbm,0,4) ghlxbh,to_char(yqdzh,'FM9999990.000') qdzh,to_char(yzdzh,'FM9999990.000') zdzh,substr(xlxbm,0,4) xlxbm,substr(xlxbm,0,4) ghlxbm,to_char(xqdzh,'FM9999990.000') ghqdzh,to_char(xzdzh,'FM9999990.000') ghzdzh,xlxmc ghlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx where ylxbm like #{ghlxbh}||'%'||#{xzqh}||'%'
 		order by to_number(yqdzh)
 		
 	</select>

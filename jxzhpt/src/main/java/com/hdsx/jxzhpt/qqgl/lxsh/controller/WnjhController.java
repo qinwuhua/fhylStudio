@@ -679,8 +679,10 @@ public class WnjhController extends BaseActionSupport{
 		try {
 			lxsh.setGhlxbh(lxbm);
 			lxsh.setXzqh(xzqh);
-			List<Lxsh> list=wnjhServer.wnjhGpsroad(lxsh);
-			JsonUtils.write(list, getresponse().getWriter());
+			if(lxbm!=null && !"".equals(lxbm)){
+				List<Lxsh> list=wnjhServer.wnjhGpsroad(lxsh);
+				JsonUtils.write(list, getresponse().getWriter());
+			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -704,6 +706,8 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setGxqdzh(lxsh.getGxqdzh());
 			xmsq.setGxzdzh(lxsh.getGxzdzh());
 			xmsq.setZdzh(lxsh.getZdzh());
+			xmsq.setXzqhdm(lxsh.getXzqhdm());
+			xmsq.setXmnf(lxsh.getXmnf());
 			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
 			if("是".equals(x2.getLsjl())){

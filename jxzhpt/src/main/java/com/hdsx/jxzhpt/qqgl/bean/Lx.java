@@ -12,6 +12,37 @@ public class Lx {
 	public Lx(){
 		super();
 	};
+	
+	public String getCfqd() {
+		return cfqd;
+	}
+	public void setCfqd(String cfqd) {
+		this.cfqd = cfqd;
+	}
+	public String getCfzd() {
+		return cfzd;
+	}
+	public void setCfzd(String cfzd) {
+		this.cfzd = cfzd;
+	}
+	public String getCfld() {
+		return cfld;
+	}
+	public void setCfld(String cfld) {
+		this.cfld = cfld;
+	}
+	
+	public String getLmlx() {
+		return lmlx;
+	}
+	public void setLmlx(String lmlx) {
+		this.lmlx = lmlx;
+	}
+	
+	private String lmlx;
+	private String cfqd;
+	private String cfzd;
+	private String cfld;
 	private String jszlc;
 	private String xmlx;
 	private String snhntmchbmj;

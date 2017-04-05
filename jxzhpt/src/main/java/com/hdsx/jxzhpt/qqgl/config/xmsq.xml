@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xmsq">
 	<select id="queryAutoghList" parameterType="xmsq" resultType="lx">
-		select distinct ylxbm,yqdzh,yzdzh,substr(xlxbm,0,4) xlxbm,xqdzh,xzdzh,xlxmc,cfld,ylxmc lxmc from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
+		select distinct substr(ylxbm,0,4) ylxbm,to_char(yqdzh,'FM9999990.000') yqdzh,to_char(yzdzh,'FM9999990.000') yzdzh,substr(xlxbm,0,4) xlxbm,to_char(xqdzh,'FM9999990.000') xqdzh,to_char(xzdzh,'FM9999990.000') xzdzh,xlxmc xlxmc,ylxmc lxmc,cfld,cfqd,cfzd,lmkd,lmlx,xzqh from ghlx where xlxbm like #{ylxbh}||'%'||#{xzqhdm}||'%'
 		order by to_number(xqdzh)
 	</select>
 	<select id="querySjgzNextXmbm" resultType="string">

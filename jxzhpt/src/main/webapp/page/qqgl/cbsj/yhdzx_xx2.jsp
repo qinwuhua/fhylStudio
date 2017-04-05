@@ -273,7 +273,7 @@
 						项目编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
+						<input id="xmbm1" name="xmbm" style="width: 120px;" readonly="readonly" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>
@@ -484,7 +484,7 @@
 						项目编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
+						<input id="xmbm1" name="xmbm" style="width: 120px;" readonly="readonly" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>

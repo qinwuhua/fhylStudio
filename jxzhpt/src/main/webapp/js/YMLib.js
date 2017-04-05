@@ -3451,11 +3451,22 @@ function autoCompleteGHLXBM(){
 			$('#ghqdzh').val(item.xqdzh);
 			$('#ghzdzh').val(item.xzdzh);
 			$('#ghlxmc').val(item.xlxmc);
-			
 			$('#lxmc').val(item.lxmc);
-			getylxinfo(item.xlxbm,item.xqdzh,item.xzdzh);
-			getgxlxinfo(item.xlxbm,item.xqdzh,item.xzdzh);
+			$('#ylxbh').val(item.ylxbm);
+			$('#qdzh').val(item.yqdzh);
+			$('#zdzh').val(item.yzdzh);
+			$('#gxlxbm').val(item.cfld);
+			$('#gxqdzh').val(item.cfqd);
+			$('#gxzdzh').val(item.cfzd);
+			$("#lmkd").val(item.lmkd);	
+			$("#ylmlx").val(item.lmlx);	
+			//$("#xzqh").combobox('setValue',item.xzqh);
+			queryJsdjAndLc1(item.xlxbm,item.xqdzh,item.xzdzh);
+			cxqdmc1(item.xlxbm,item.xqdzh);
+			cxzdmc1(item.xlxbm,item.xzdzh);
 			selectTSDQ1(item.xlxbm,item.xqdzh,item.xzdzh);
+			$('#lc').val(accSub(parseFloat(item.xzdzh),parseFloat(item.xqdzh)));
+			$('#lc').html(accSub(parseFloat(item.xzdzh),parseFloat(item.xqdzh)));
 	});
 }
 
@@ -3487,30 +3498,48 @@ function querymcbygh(){
 
 function getylxinfo(lxbm,qdzh,zdzh){
 	$("#gxlxbm").val('');$("#gxqdzh").val('');$("#gxzdzh").val('');
+	queryJsdjAndLc1(lxbm,qdzh,zdzh);
+	selectTSDQ1(lxbm,qdzh,zdzh);
+	cxqdmc1(lxbm,qdzh);
+	cxzdmc1(lxbm,zdzh);
+	$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
+	$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 	$.ajax({
 		data:'xmsq.ylxbm='+lxbm+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.xzqh="+$.cookie("dist2"),
 		type:'post',
 		dataType:'json',
 		url:'/jxzhpt/qqgl/getylxinfo.do',
 		success:function(msg){
-			var qd='';var zd='';
+			
+			var qd='';var zd='';var cfqd='';var cfzd='';
 			if(parseFloat(msg.yqdzh)<parseFloat(msg.yzdzh)){
 				qd=accAdd(accSub(parseFloat(qdzh),parseFloat(msg.xqdzh)),parseFloat(msg.yqdzh));
 				zd=accSub(accAdd(parseFloat(qd),parseFloat(zdzh)),parseFloat(qdzh));
-				getylxlminfo(lxbm,qdzh,zdzh);
+				//getylxlminfo(lxbm,qdzh,zdzh);
 			}else{
 				qd=accSub(parseFloat(msg.yqdzh),accSub(parseFloat(qdzh),parseFloat(msg.xqdzh))); 
 				zd=accAdd(accSub(parseFloat(msg.xzdzh),parseFloat(zdzh)),parseFloat(msg.yzdzh));
-				getylxlminfo(lxbm,qdzh,zdzh);
+				//getylxlminfo(lxbm,qdzh,zdzh);
 			}
 			
+			if(parseFloat(msg.cfqd)<parseFloat(msg.cfzd)){
+				cfqd=accAdd(accSub(parseFloat(qdzh),parseFloat(msg.xqdzh)),parseFloat(msg.cfqd));
+				cfzd=accSub(accAdd(parseFloat(cfqd),parseFloat(zdzh)),parseFloat(qdzh));
+				//getylxlminfo(lxbm,qdzh,zdzh);
+			}else{
+				cfqd=accSub(parseFloat(msg.cfqd),accSub(parseFloat(qdzh),parseFloat(msg.xqdzh))); 
+				cfzd=accAdd(accSub(parseFloat(msg.xzdzh),parseFloat(zdzh)),parseFloat(msg.cfzd));
+				//getylxlminfo(lxbm,qdzh,zdzh);
+			}
 			
+			$("#lmkd").val(msg.lmkd);	
+			$("#ylmlx").val(msg.lmlx);
 			$("#ylxbh").val(msg.ylxbm.substr(0,4));
+			$("#gxlxbm").val(msg.cfld);$("#gxqdzh").val(cfqd);$("#gxzdzh").val(cfzd);
 			if(qd!='NaN'){
 				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#qdzh").val(qd);$("#zdzh").val(zd);
 				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#gpsqdzh").val(qd);$("#gpszdzh").val(zd);
-				cxqdmc1(lxbm,qdzh);
-				cxzdmc1(lxbm,zdzh);
+				
 				$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				
@@ -3523,7 +3552,7 @@ function getylxinfo(lxbm,qdzh,zdzh){
 					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.yzdzh);
 				}
 				
-				getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
+				//getgxlxinfo(lxbm,qdzh,zdzh,qd,zd);
 			}
 			
 		}

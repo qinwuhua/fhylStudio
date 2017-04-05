@@ -691,6 +691,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmsq.setGxqdzh("");
 		if(xmsq.getGxzdzh()==null)
 			xmsq.setGxzdzh("");
+		
 		List<Lx> x1=queryList("querysfwnlsjlxmbm", xmsq);
 		String lsxmid="";
 		String xmbm="";

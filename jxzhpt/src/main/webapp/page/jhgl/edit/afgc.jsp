@@ -467,7 +467,7 @@
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:150px" align="right">备注(批复文件路线编码及桩号如为老编码，需在备注栏说明)：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:180px" align="left">
-					<textarea id='bz' rows="2" style="width:99%" disabled="disabled"></textarea>
+					<textarea id='bz' rows="2" style="width:99%" readonly="readonly"></textarea>
 
 				</td>
 				

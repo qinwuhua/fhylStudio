@@ -888,7 +888,7 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请省奖励资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name='bitian' type="text" id='nsqsjl' disabled="disabled"/><br><span id="trshengjl" style="color: red"></span></td>
+					<input name='bitian' type="text" id='nsqsjl' readonly="readonly"/><br><span id="trshengjl" style="color: red"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">市级补助资金(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" class="easyui-numberbox" id='shijbz'>

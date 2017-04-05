@@ -180,34 +180,34 @@ text-decoration:none;
             	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					规划路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="ghqdzh" name="ghqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="ghqdzh" name="ghqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="ghzdzh" name="ghzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="ghzdzh" name="ghzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
             <tr style="height: 30px;">
             	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					共线路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="gxlxbm" name="gxlxbm" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					共线起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="gxqdzh" name="gxqdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					共线止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input disabled="disabled" id="gxzdzh" name="gxzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
+					<input readonly="readonly" id="gxzdzh" name="gxzdzh" type="text" style="width: 80px;"/>&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
 

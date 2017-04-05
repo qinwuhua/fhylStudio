@@ -391,7 +391,7 @@
 						厚度：<input id='lqhntmchd' value='0' onchange="jsbzzj('lqhntmc')" name='lqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqhntmc' name='lqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqhntmc' name='lqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -408,7 +408,7 @@
 						厚度：<input id='gxlqhntmchd' value='0' onchange="jsbzzj('gxlqhntmc')" name='gxlqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='gxlqhntmc' name='gxlqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='gxlqhntmc' name='gxlqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
             	<tr >
@@ -425,7 +425,7 @@
 						厚度：<input id='snhntmchd' value='0' onchange="jsbzzj('snhntmc')" name='snhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmc' name='snhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmc' name='snhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -442,7 +442,7 @@
 						厚度：<input id='lqlmjdrzshd' value='0' onchange="jsbzzj('lqlmjdrzs')" name='lqlmjdrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmjdrzs' name='lqlmjdrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmjdrzs' name='lqlmjdrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -459,7 +459,7 @@
 						厚度：<input id='lqlmcbrzshd' value='0' onchange="jsbzzj('lqlmcbrzs')" name='lqlmcbrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcbrzs' name='lqlmcbrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcbrzs' name='lqlmcbrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -478,7 +478,7 @@
 						厚度：<input id='swjchd' value='0' onchange="jsbzzj('swjc')" name='swjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjc' name='swjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjc' name='swjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -495,7 +495,7 @@
 						厚度：<input id='lqlmpmlqjdlzshd' value='0' onchange="jsbzzj('lqlmpmlqjdlzs')" name='lqlmpmlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmpmlqjdlzs' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmpmlqjdlzs' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -512,7 +512,7 @@
 						厚度：<input id='lqlmrhlqjdlzshd' value='0' onchange="jsbzzj('lqlmrhlqjdlzs')" name='lqlmrhlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmrhlqjdlzs' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmrhlqjdlzs' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -529,7 +529,7 @@
 						厚度：<input id='lqlmcblzshd' value='0' onchange="jsbzzj('lqlmcblzs')" name='lqlmcblzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcblzs' name='lqlmcblzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcblzs' name='lqlmcblzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -546,7 +546,7 @@
 						厚度：<input id='xzrxjchd' value='0' onchange="jsbzzj('xzrxjc')" name='xzrxjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xzrxjc' name='xzrxjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xzrxjc' name='xzrxjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -563,7 +563,7 @@
 						厚度：<input id='swjclzshd' value='0' onchange="jsbzzj('swjclzs')" name='swjclzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjclzs' name='swjclzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjclzs' name='swjclzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -583,7 +583,7 @@
 						<input type="hidden" id='xfchd' name='xfchd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xfc' name='xfc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xfc' name='xfc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -602,7 +602,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcsnmb')" id='wcsnmbhd' name='wcsnmbhd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcsnmb' name='wcsnmb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcsnmb' name='wcsnmb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -619,7 +619,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcswjc')" id='wcswjchd' name='wcswjchd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcswjc' name='wcswjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcswjc' name='wcswjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -639,7 +639,7 @@
 						<input type="hidden" id='snhntmchbhd' name='snhntmchbhd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmchb' name='snhntmchb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmchb' name='snhntmchb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -661,7 +661,7 @@
 						
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='bx' name='bx' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='bx' name='bx' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -681,7 +681,7 @@
 						<input type="hidden" id='snhntmcsshhd' name='snhntmcsshhd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr style="height: 30px;">
@@ -711,7 +711,7 @@
 						项目编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
+						<input id="xmbm1" name="xmbm" style="width: 120px;" readonly="readonly" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>
@@ -937,7 +937,7 @@
 						厚度：<input id='lqhntmchd1' value='0' onchange="jsbzzj('lqhntmc')" name='lqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqhntmc1' name='lqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqhntmc1' name='lqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -954,7 +954,7 @@
 						厚度：<input id='gxlqhntmchd1' value='0' onchange="jsbzzj('gxlqhntmc')" name='gxlqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='gxlqhntmc1' name='gxlqhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='gxlqhntmc1' name='gxlqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
             	<tr >
@@ -971,7 +971,7 @@
 						厚度：<input id='snhntmchd1' value='0' onchange="jsbzzj('snhntmc')" name='snhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmc1' name='snhntmc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmc1' name='snhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -988,7 +988,7 @@
 						厚度：<input id='lqlmjdrzshd1' value='0' onchange="jsbzzj('lqlmjdrzs')" name='lqlmjdrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmjdrzs1' name='lqlmjdrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmjdrzs1' name='lqlmjdrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1005,7 +1005,7 @@
 						厚度：<input id='lqlmcbrzshd1' value='0' onchange="jsbzzj('lqlmcbrzs')" name='lqlmcbrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcbrzs1' name='lqlmcbrzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcbrzs1' name='lqlmcbrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1024,7 +1024,7 @@
 						厚度：<input id='swjchd1' value='0' onchange="jsbzzj('swjc')" name='swjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjc1' name='swjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjc1' name='swjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1041,7 +1041,7 @@
 						厚度：<input id='lqlmpmlqjdlzshd1' value='0' onchange="jsbzzj('lqlmpmlqjdlzs')" name='lqlmpmlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmpmlqjdlzs1' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmpmlqjdlzs1' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1058,7 +1058,7 @@
 						厚度：<input id='lqlmrhlqjdlzshd1' value='0' onchange="jsbzzj('lqlmrhlqjdlzs')" name='lqlmrhlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmrhlqjdlzs1' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmrhlqjdlzs1' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1075,7 +1075,7 @@
 						厚度：<input id='lqlmcblzshd1' value='0' onchange="jsbzzj('lqlmcblzs')" name='lqlmcblzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='lqlmcblzs1' name='lqlmcblzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='lqlmcblzs1' name='lqlmcblzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1092,7 +1092,7 @@
 						厚度：<input id='xzrxjchd1' value='0' onchange="jsbzzj('xzrxjc')" name='xzrxjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xzrxjc1' name='xzrxjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xzrxjc1' name='xzrxjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1109,7 +1109,7 @@
 						厚度：<input id='swjclzshd1' value='0' onchange="jsbzzj('swjclzs')" name='swjclzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='swjclzs1' name='swjclzs' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='swjclzs1' name='swjclzs' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1129,7 +1129,7 @@
 						<input type="hidden" id='xfchd1' name='xfchd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='xfc1' name='xfc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='xfc1' name='xfc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1148,7 +1148,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcsnmb')" id='wcsnmbhd1' name='wcsnmbhd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcsnmb1' name='wcsnmb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcsnmb1' name='wcsnmb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr >
@@ -1165,7 +1165,7 @@
 						厚度：<input type="text" value='0' onchange="jsbzzj('wcswjc')" id='wcswjchd1' name='wcswjchd' class="easyui-numberbox" style="width:50px;"/>cm
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='wcswjc1' name='wcswjc' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='wcswjc1' name='wcswjc' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1185,7 +1185,7 @@
 						<input type="hidden" id='snhntmchbhd1' name='snhntmchbhd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmchb1' name='snhntmchb' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmchb1' name='snhntmchb' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1207,7 +1207,7 @@
 						
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='bx1' name='bx' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='bx1' name='bx' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr>
@@ -1227,7 +1227,7 @@
 						<input type="hidden" id='snhntmcsshhd1' name='snhntmcsshhd'>
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						补助：<input id='snhntmcssh1' name='snhntmcssh' type="text" style="width: 50px;" disabled="disabled"/>万元
+						补助：<input id='snhntmcssh1' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
 	            <tr style="height: 30px;">
