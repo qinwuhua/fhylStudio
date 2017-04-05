@@ -258,7 +258,7 @@ text-decoration:none;
 									</select>
 								</td>
 								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								<td><select name="tsdq" id="tsdq" style="width:65px;" >
 								</select></td>
 								</tr>
 								
