@@ -177,8 +177,8 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 125px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 125px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle; padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -197,12 +197,12 @@ text-decoration:none;
         						<td><select id="xmnf" style="width:70px;">
 								</select></td> -->
         						<td align="right">行政区划：</td>
-        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:243px;"></select></td>
+        						<td colspan="3"><select id="xzqh" style="width:315px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:70px;" /></td>
         						<td align="right">建设技术等级：</td>
 								<td>
-								<select name="jsjsdj" id="jsjsdj" style="width:80px;" class="easyui-combobox"></select>
+								<select name="jsjsdj" id="jsjsdj" style="width:118px;" class="easyui-combobox"></select>
 								</td>
 								<td align="right">现技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
@@ -212,13 +212,13 @@ text-decoration:none;
 								</tr>
         					<tr height="32">
 								<td align="right">行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
+								<td><select name="gldj" id="gldj" style="width:115px;" class="easyui-combobox"></select></td>
         						<td align="right">原路线编码：</td>
-        						<td><input type="text" id="lxbm" style="width:78px;" /></td>	
+        						<td><input type="text" id="lxbm" style="width:118px;" /></td>	
 								<td align="right">原路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
         						 <td align="right">规划路线编码：</td>
-        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
+        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:65px;" /></td>
                                	<td align="right">是否有补助历史：</td>
@@ -232,14 +232,14 @@ text-decoration:none;
         					
         					<tr height="32">
         					<td align="right">审核状态：</td>
-        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
+        						<td><select id="sbzt" style="width:115px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select></td>
         						<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 78px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
@@ -254,7 +254,7 @@ text-decoration:none;
 								</td>
 								<td>历史计划年份：</td>
 								<td>
-									<select id='lsxmnf' class="easyui-combobox" style="width: 80px;">
+									<select id='lsxmnf' class="easyui-combobox" style="width: 118px;">
 									</select>
 								</td>
 								<td>特殊地区：</td>
