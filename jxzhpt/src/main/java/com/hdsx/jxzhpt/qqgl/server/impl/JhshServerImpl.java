@@ -277,10 +277,39 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean updateLx(Lx lx) {
+		if("1".equals(lx.getSffirst())){
+			String id=queryOne("querylxshlxid", lx);
+			lx.setId(id);
+		}
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null&&!"".equals(lx.getId())&&lx.getId()!=null){
+			Lxsh lxsh=new Lxsh();
+			lxsh.setId(lx.getId());
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
+		
 		return update("updateLx",lx)>0;
 	}
 	@Override
 	public boolean updateLxqwh(Lx lx) {
+		
+			if("1".equals(lx.getSffirst())){
+				String id=queryOne("querylxshlxid", lx);
+				lx.setId(id);
+			}
+			if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null&&!"".equals(lx.getId())&&lx.getId()!=null){
+				Lxsh lxsh=new Lxsh();
+				lxsh.setId(lx.getId());
+				lxsh.setGhlxbm(lx.getGhlxbm());
+				lxsh.setGhqdzh(lx.getGhqdzh());
+				lxsh.setGhzdzh(lx.getGhzdzh());
+				MyUtil.insertMethd("deletelxcfld", lxsh);
+				MyUtil.insertMethd("insertlxcfld", lxsh);
+			}
+		
 		if(update("updateLxqwh",lx)>0)
 		{	update("updateLxqwhxmbm",lx);
 			return true;
@@ -289,13 +318,39 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean updateLx(Lx lx,Xmsq xmsq) {
+		if("1".equals(lx.getSffirst())){
+			String id=queryOne("querylxshlxid", lx);
+			lx.setId(id);
+		}
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null&&!"".equals(lx.getId())&&lx.getId()!=null){
+			Lxsh lxsh=new Lxsh();
+			lxsh.setId(lx.getId());
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
-		System.out.println(xmsq.getSnhntmchbmj());
+		//System.out.println(xmsq.getSnhntmchbmj());
 		return update("updateyhdzxLx",params)>0;
 	}
 	@Override
 	public boolean updateLxshm(Lx lx,Xmsq xmsq) {
+		if("1".equals(lx.getSffirst())){
+			String id=queryOne("querylxshlxid", lx);
+			lx.setId(id);
+		}
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null&&!"".equals(lx.getId())&&lx.getId()!=null){
+			Lxsh lxsh=new Lxsh();
+			lxsh.setId(lx.getId());
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
 		System.out.println(xmsq.getSnhntmchbmj());
@@ -307,6 +362,19 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean updateLx(Lx lx,Cbsj cbsj) {
+		if("1".equals(lx.getSffirst())){
+			String id=queryOne("querylxshlxid", lx);
+			lx.setId(id);
+		}
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null&&!"".equals(lx.getId())&&lx.getId()!=null){
+			Lxsh lxsh=new Lxsh();
+			lxsh.setId(lx.getId());
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		params.put("lx", lx);
 		params.put("cbsj", cbsj);
 		System.out.println(cbsj.getSnhntmchbmj());
@@ -314,6 +382,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public boolean insertLx(Lx lx) {
+		
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
+			Lxsh lxsh=new Lxsh();
+			String id=MyUtil.getUuid();
+			lxsh.setId(id);
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertLx",lx)>0;
 	}
 	@Override

@@ -610,7 +610,17 @@ function showsjgzAll(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 //lmgz
@@ -754,7 +764,17 @@ function showlmgzAll(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 //xj
@@ -896,7 +916,17 @@ function showxjAll(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 //升级审核
@@ -1084,7 +1114,17 @@ function showAllsjsh(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -1214,7 +1254,17 @@ function showAllsjsh123(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -1442,7 +1492,17 @@ function showAlllmsh(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -1579,7 +1639,17 @@ function showAlllmsh123(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -1759,7 +1829,17 @@ function showAllxjsh(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -1892,7 +1972,17 @@ function showAllxjsh123(){
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -2311,7 +2401,17 @@ function showAlllmsh__ck(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -2446,7 +2546,17 @@ function showAllsjsh__ck(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 
@@ -2574,7 +2684,17 @@ function showAllxjsh__ck(){
     			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].xmsl<=1){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}    
 	}); 
 }
 

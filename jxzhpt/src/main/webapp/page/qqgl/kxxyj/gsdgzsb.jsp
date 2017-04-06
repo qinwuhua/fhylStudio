@@ -229,7 +229,17 @@
 		    			    {field:'lc',title:'里程',width:60,align:'center'}
 		    			]]
 			    	});
-			    }   
+			    },
+			    onLoadSuccess: function(){
+		            var dg = $(this);
+		            var rows=dg.datagrid("getRows");
+			    	for (var i=0;i<rows.length;i++){
+			    		if(rows[i].xmsl<=1){
+			    			dg.datagrid('getExpander', i).hide();
+			    		}
+			    	}
+			    	
+				}    
 			}); 
 		}
 	</script>

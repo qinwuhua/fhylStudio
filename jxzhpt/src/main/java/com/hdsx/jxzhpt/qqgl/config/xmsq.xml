@@ -271,8 +271,8 @@
 		)
 	</insert>
 	<insert id="insertLx" parameterType="lx">
-		insert into lxsh_lx (
-		<if test="xmid!=null">xmid</if><if test="lxbm!=null">,lxbm</if><if test="lxmc!=null">,lxmc</if>
+		insert into lxsh_lx (id
+		<if test="xmid!=null">,xmid</if><if test="lxbm!=null">,lxbm</if><if test="lxmc!=null">,lxmc</if>
 		<if test="xzqh!=null">,xzqh</if><if test="xzqhdm!=null">,xzqhdm</if><if test="gydw!=null">,gydw</if>
 		<if test="gydwdm!=null">,gydwdm</if><if test="qdzh!=null">,qdzh</if><if test="zdzh!=null">,zdzh</if>
 		<if test="jsjsdj!=null">,jsjsdj</if><if test="lc!=null">,lc</if><if test="xjsdj!=null">,xjsdj</if>
@@ -283,7 +283,7 @@
 		<if test="silc!=null">,silc</if><if test="dwlc!=null">,dwlc</if><if test="wllc!=null">,wllc</if>
 		<if test="ghlxbm != null">,ghlxbm</if><if test="ghqdzh != null">,ghqdzh</if><if test="ghzdzh != null">,ghzdzh</if>
 		<if test="gxlxbm != null">,gxlxbm</if><if test="gxqdzh != null">,gxqdzh</if><if test="gxzdzh != null">,gxzdzh</if>)
-		values(<if test="xmid!=null">#{xmid}</if><if test="lxbm!=null">,#{lxbm}</if><if test="lxmc!=null">,#{lxmc}</if>
+		values(#{id}<if test="xmid!=null">,#{xmid}</if><if test="lxbm!=null">,#{lxbm}</if><if test="lxmc!=null">,#{lxmc}</if>
 		<if test="xzqh!=null">,#{xzqh}</if><if test="xzqhdm!=null">,#{xzqhdm}</if><if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if><if test="qdzh!=null">,#{qdzh}</if><if test="zdzh!=null">,#{zdzh}</if>
 		<if test="jsjsdj!=null">,#{jsjsdj}</if><if test="lc!=null">,#{lc}</if><if test="xjsdj!=null">,#{xjsdj}</if>
@@ -298,8 +298,8 @@
 	
 	
 	<insert id="insertYhdzxlx" parameterType="hashmap">
-		insert into lxsh_lx (
-		<if test="lx.xmid!=null">xmid</if><if test="lx.lxbm!=null">,lxbm</if><if test="lx.lxmc!=null">,lxmc</if>
+		insert into lxsh_lx (id
+		<if test="lx.xmid!=null">,xmid</if><if test="lx.lxbm!=null">,lxbm</if><if test="lx.lxmc!=null">,lxmc</if>
 		<if test="lx.xzqh!=null">,xzqh</if><if test="lx.xzqhdm!=null">,xzqhdm</if><if test="lx.gydw!=null">,gydw</if>
 		<if test="lx.gydwdm!=null">,gydwdm</if><if test="lx.qdzh!=null">,qdzh</if><if test="lx.zdzh!=null">,zdzh</if>
 		<if test="lx.jsjsdj!=null">,jsjsdj</if><if test="lx.lc!=null">,lc</if><if test="lx.xjsdj!=null">,xjsdj</if>
@@ -419,7 +419,7 @@
 	        ,snhntmchbmj
 	      </if>
 		)
-		values(<if test="lx.xmid!=null">#{lx.xmid}</if><if test="lx.lxbm!=null">,#{lx.lxbm}</if><if test="lx.lxmc!=null">,#{lx.lxmc}</if>
+		values(#{id},<if test="lx.xmid!=null">#{lx.xmid}</if><if test="lx.lxbm!=null">,#{lx.lxbm}</if><if test="lx.lxmc!=null">,#{lx.lxmc}</if>
 		<if test="lx.xzqh!=null">,#{lx.xzqh}</if><if test="lx.xzqhdm!=null">,#{lx.xzqhdm}</if><if test="lx.gydw!=null">,#{lx.gydw}</if>
 		<if test="lx.gydwdm!=null">,#{lx.gydwdm}</if><if test="lx.qdzh!=null">,#{lx.qdzh}</if><if test="lx.zdzh!=null">,#{lx.zdzh}</if>
 		<if test="lx.jsjsdj!=null">,#{lx.jsjsdj}</if><if test="lx.lc!=null">,#{lx.lc}</if><if test="lx.xjsdj!=null">,#{lx.xjsdj}</if>
@@ -2173,17 +2173,7 @@
 	</select>
 	
 	<select id="getgxlxinfo" parameterType="xmsq" resultType="xmsq">
-		select g.*,(to_number(xzdzh)-to_number(xqdzh)) lc from ghlx g where ylxbm = #{ylxbm} 
-		<if test="cfld != null">
-			and xlxbm=#{cfld}
-		</if>
-		and (
-		(to_number(yzdzh)>to_number(#{yqdzh}) and to_number(#{yzdzh})>to_number(yqdzh)) 
-		or
-		(to_number(yqdzh)>to_number(#{yqdzh}) and to_number(#{yzdzh})>to_number(yzdzh)) 
-		)
-		and to_number(xqdzh)!=to_number(#{xqdzh}) and to_number(xzdzh)!=to_number(#{xzdzh})
-		order by lc desc
+		select * from table(fun_cfld(#{ylxbm},${qdzh},${zdzh}))
 	</select>
 	
 	<select id="getylxinfo1" parameterType="xmsq" resultType="xmsq">

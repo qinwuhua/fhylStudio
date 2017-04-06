@@ -17,6 +17,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -320,6 +321,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean updateSjgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querylxshlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
 		Double lc=queryOne("queryMaxlc",lxsh);
 		if(lc!=null)
@@ -345,6 +352,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean updateLmgz(Lxsh lxsh) {
 		//System.out.println("备注："+lxsh.getBz());
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querylxshlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
 		Double lc=queryOne("queryMaxlc",lxsh);
 		if(lc!=null)
@@ -367,6 +380,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean updateXj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querylxshlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
 		Double lc=queryOne("queryMaxlc",lxsh);
 		if(lc!=null)
@@ -627,29 +646,13 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean insertLx(Lxsh lxsh) {
+		String id=MyUtil.getUuid();
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		if(insert("insertLx", lxsh)>0){
-			Double bzcs=queryOne("queryMaxbzcs",lxsh);
-			Double lc=queryOne("queryMaxlc",lxsh);
-			if(lc!=null)
-			lxsh.setLc(lc+"");
-			if(bzcs!=null)
-			lxsh.setBzys(bzcs+"");
-			if("0".equals(lxsh.getJdbs())){
-				if("sjgz".equals(lxsh.getXmlx())){
-					if(update("updatesjgz", lxsh)>0)
-						return true;
-				}
-				if("lmgz".equals(lxsh.getXmlx())){
-					if(update("updatelmgz", lxsh)>0)
-						return true;
-				}
-				if("xj".equals(lxsh.getXmlx())){
-					if(update("updatexj", lxsh)>0)
-						return true;
-				}
-			}else{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}

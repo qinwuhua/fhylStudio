@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -61,14 +62,34 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	}
 	@Override
 	public boolean insertGjwnjh(Lxsh lxsh) {
+		String id=MyUtil.getUuid();
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertGjwnjh", lxsh)==1&&insert("insertlx", lxsh)==1;
+	}
+	
+	@Override
+	public boolean insertMethd(String arg,Object obj){
+		return insert(arg, obj)>0;
 	}
 	@Override
 	public boolean insertLmwnjh(Lxsh lxsh) {
+		String id=MyUtil.getUuid();
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertLmwnjh", lxsh)==1&&insert("insertlx", lxsh)==1;
 	}
 	@Override
 	public boolean insertXjwnjh(Lxsh lxsh) {
+		String id=MyUtil.getUuid();
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertXjwnjh", lxsh)==1&&insert("insertlx", lxsh)==1;
 	}
 	@Override
@@ -156,6 +177,12 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhsj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querywnjhlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		if(update("updateSjgz", lxsh)>0){
 			return true;
 		}
@@ -165,6 +192,13 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhlm(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querywnjhlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
+		
 		if(update("updateLmgz", lxsh)>0){
 			return true;
 		}
@@ -174,6 +208,12 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 	@Override
 	public boolean updatewnjhxj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
+		String id=queryOne("querywnjhlxid", lxsh);
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		if(update("updateXj", lxsh)>0){
 			return true;
 		}
@@ -237,10 +277,19 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		if("是".equals(lxsh.getLsjl())){
 			update("updateGjlsjl", lxsh);
 		}
+		String id=MyUtil.getUuid();
+		lxsh.setId(id);
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertGjlxwnjh", lxsh)==1;
 	}
 	@Override
 	public boolean updatewnjhsjlx(Lxsh lxsh) {
+		if(!"".equals(lxsh.getGxlxbm())&&lxsh.getGxlxbm()!=null){
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return update("updatewnjhsjlx", lxsh)==1;
 	}
 	@Override

@@ -136,7 +136,7 @@
 		<if test="gxlxbm !=null">,gxlxbm</if>
 		<if test="gxqdzh !=null">,gxqdzh</if>
 		<if test="gxzdzh !=null">,gxzdzh</if>)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}
+		values(#{id},#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
 		<if test="xjzdzh!='' and xjzdzh!=null">,#{xjzdzh}</if>
@@ -326,6 +326,9 @@
 		update LXSH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj}<!-- ,bzcs=#{bzys} -->
 		where xmid=#{xmbm1} and sffirst='1' and jdbs=#{jdbs}
 	</update>
+	<select id="querylxshlxid" parameterType="lxsh" resultType="string">
+	select id from lxsh_lx where xmid=#{xmbm1} and sffirst='1' and jdbs=#{jdbs}
+	</select>
 	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
 		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
@@ -510,7 +513,6 @@
 		t.lsjl,t.ghlxbh,t.gydw,t.xzqh,t.tz,t.bzys,t.dfzc,t.tsdq ,lx.*,t.jhkgn,t.jhwgn,t.yhdk,t.bz,t.jsxz,t.lxmc,t.wnid,t.sfbflx from LXSH_XJ t left join 
 		(select xmid,qdzh minqdzh,zdzh maxzdzh,qdmc,zdmc,lc,xjsdj,jsjsdj,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,
 		jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='0' and sffirst='1'
-		<if test="ghlxmc!='' and ghlxmc!= null ">and ghlxmc=#{ghlxmc}</if>
 		) lx on t.xmbm=lx.xmid
 		left join ( select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 <if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
@@ -537,7 +539,6 @@
 		</if>
 		<if test="ghlxmc!='' and ghlxmc!= null ">
 			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
-			
 			)
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>

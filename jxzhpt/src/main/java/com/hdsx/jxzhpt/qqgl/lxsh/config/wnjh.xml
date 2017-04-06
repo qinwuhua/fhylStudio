@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.wnjh">
+	<insert id="insertlxcfld" parameterType="lxsh">
+		insert into lx_cfld(id,lxid,cfld,cfqd,cfzd)
+		select sys_guid(),#{id},lxbm,qdzh,zdzh from table(fun_cfld(#{ghlxbm},${ghqdzh},${ghzdzh}))
+	</insert>
+	<delete id="deletelxcfld" parameterType="lxsh">
+		delete from lx_cfld where lxid=#{id}
+	</delete>
 	<select id="selectimportXmbm" parameterType="String" resultType="String">
 		${value}
 	</select>
@@ -68,7 +75,7 @@
 		<if test="gxzdzh !=null">,gxzdzh</if>
 		
 		)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs},#{gpsqdzh},#{gpszdzh}
+		values(#{id},#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs},#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
 		<if test="xjzdzh!='' and xjzdzh!=null">,#{xjzdzh}</if>
@@ -119,7 +126,7 @@
 		<if test="gxqdzh !=null">,gxqdzh</if>
 		<if test="gxzdzh !=null">,gxzdzh</if>
 		)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},'0','0',#{gpsqdzh},#{gpszdzh}
+		values(#{id},#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},'0','0',#{gpsqdzh},#{gpszdzh}
 		<if test="xjlxbm!='' and xjlxbm!=null">,#{xjlxbm}</if>
 		<if test="xjqdzh!='' and xjqdzh!=null">,#{xjqdzh}</if>
 		<if test="xjzdzh!='' and xjzdzh!=null">,#{xjzdzh}</if>
@@ -668,6 +675,10 @@
 		<if test="gxzdzh !=null">,gxzdzh=#{gxzdzh}</if>
 		where xmid=#{xmbm} and sffirst='1' 
 	</update>
+	<select id="querywnjhlxid" parameterType="lxsh" resultType="string">
+	select id from wnjh_lx where xmid=#{xmbm} and sffirst='1'
+	</select>
+	
 	<update id="updatewnjhsjlx" parameterType="lxsh">
 		update WNJH_LX set lxbm=#{ghlxbh},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},xjsdj=#{xjsdj}
 		<if test="xzqh!='' and xzqh!=null">,xzqh=#{xzqh}</if>

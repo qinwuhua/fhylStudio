@@ -1088,15 +1088,8 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void queryLxshShLjXj(){
 		try {
-			//String tiaojian1="";
-			String tiaojian2="";
-			/*if(gydw.indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+gydw+"%'";
-			}else{
-				tiaojian1="and gydwdm in ("+gydw+")";
-			}*/
+			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -1158,28 +1151,9 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setLxmc(lxmc);
 			lxsh.setJsjsdj(jsjsdj);
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
-			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
+			lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "xjlxbm"));
 			lxsh.setGhlxmc(ghlxmc);
-			/*if(lxsh.getTsdq().length()>0){
-				String[] tsdqs=lxsh.getTsdq().split(",");
-				String tsdq="and(";
-				for (int i = 0; i < tsdqs.length; i++) {
-					if("全部".equals(tsdqs[i])){
-						tsdq="";
-						break;
-					}
-					if(i==0)
-						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
-					else
-						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
-				}
-				if(tsdq==""){
-					tsdq="";
-				}else{
-					tsdq+=")";
-				}
-				lxsh.setTsdq(tsdq);
-			}*/
+			
 			Map<String, String> result = lxshServer.queryLxshShLjXj(lxsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
@@ -1386,6 +1360,7 @@ public class LxshController extends BaseActionSupport{
 			lx.setGhlxmc(lxsh.getGhlxmc());
 			lx.setXmbm1(lxsh.getXmbm1());
 			jhshServer.updateLxqwh(lx);
+			
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -1643,15 +1618,8 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void selectXjshList(){
-		//String tiaojian1="";
-		String tiaojian2="";
-		/*if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydw+"%'";
-		}else{
-			tiaojian1="and gydwdm in ("+gydw+")";
-		}*/
+		
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
@@ -1713,28 +1681,8 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setLxmc(lxmc);
 		lxsh.setJsjsdj(jsjsdj);
 		lxsh.setGhlxbh(MyUtil.getQueryTJ(ghlxbh, "lxbm"));
-		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "ghlxbm"));
+		lxsh.setGhlxbm(MyUtil.getQueryTJ(ghlxbm, "xjlxbm"));
 		lxsh.setGhlxmc(ghlxmc);
-		/*if(lxsh.getTsdq().length()>0){
-			String[] tsdqs=lxsh.getTsdq().split(",");
-			String tsdq="and(";
-			for (int i = 0; i < tsdqs.length; i++) {
-				if("全部".equals(tsdqs[i])){
-					tsdq="";
-					break;
-				}
-				if(i==0)
-					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
-				else
-					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
-			}
-			if(tsdq==""){
-				tsdq="";
-			}else{
-				tsdq+=")";
-			}
-			lxsh.setTsdq(tsdq);
-		}*/
 		List<Lxsh> list=lxshServer.selectXjshList(lxsh);
 		int count=lxshServer.selectXjshListCount(lxsh);
 		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
@@ -1746,6 +1694,7 @@ public class LxshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
 	public void delSjgz(){
 		boolean bl=lxshServer.delSjgz(lxsh);
 		if(bl){

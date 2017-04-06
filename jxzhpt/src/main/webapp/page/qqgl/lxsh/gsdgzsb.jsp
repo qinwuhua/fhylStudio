@@ -232,7 +232,17 @@
 		    			    {field:'bzys',title:'补助测算',width:60,align:'center'}*/
 		    			]]
 			    	});
-			    }   
+			    },
+			    onLoadSuccess: function(){
+		            var dg = $(this);
+		            var rows=dg.datagrid("getRows");
+			    	for (var i=0;i<rows.length;i++){
+			    		if(rows[i].sl<=0){
+			    			dg.datagrid('getExpander', i).hide();
+			    		}
+			    	}
+			    	
+				}    
 			}); 
 		}
 	</script>

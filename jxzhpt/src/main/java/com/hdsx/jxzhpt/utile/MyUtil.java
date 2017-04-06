@@ -2,6 +2,11 @@ package com.hdsx.jxzhpt.utile;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.UUID;
+
+import org.junit.Test;
+
+import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 
 public class MyUtil implements Serializable{
 	
@@ -154,6 +159,25 @@ public class MyUtil implements Serializable{
 	    BigDecimal b = new BigDecimal(Double.toString(v));
 	    BigDecimal one = new BigDecimal("1");
 	    return b.divide(one,scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+	}
+	/**
+	 * @return String
+	 */
+	
+	public static String getUuid(){
+		UUID uuid = UUID.randomUUID();  
+        String str = uuid.toString();  
+        // 去掉"-"符号  
+        String temp = str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24);  
+        return temp;  
+	}
+	
+	public static boolean insertMethd(String arg,Object obj){
+		return new WnjhServerImpl().insertMethd(arg, obj);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getUuid());
 	}
 	
 }

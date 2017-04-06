@@ -781,7 +781,17 @@ function showAllgj(){
 		    	});
 	    	}
 	    	
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 function showAlllm(){
@@ -918,7 +928,17 @@ function showAlllm(){
 		    	});
 	    	}
 	    	
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 
@@ -1047,7 +1067,17 @@ function showAlllm123(){
 		    	});
 	    	}
 	    	
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 
@@ -1195,7 +1225,17 @@ function showAllxj(){
 	    			]]
 		    	});
 	    	}
-	    }   
+	    } ,
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}  
 	}); 
 }
 
@@ -1339,7 +1379,17 @@ function showAllxj123(){
 	    			]]
 		    	});
 	    	}
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 
@@ -1660,7 +1710,17 @@ function showAllgj__ck(){
 		    	});
 	    	}
 	    	
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 function showAlllm__ck(){
@@ -1788,7 +1848,17 @@ function showAlllm__ck(){
 		    	});
 	    	}
 	    	
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }
 function showAllxj__ck(){
@@ -1915,6 +1985,16 @@ function showAllxj__ck(){
 	    			]]
 		    	});
 	    	}
-	    }   
+	    },
+	    onLoadSuccess: function(){
+            var dg = $(this);
+            var rows=dg.datagrid("getRows");
+	    	for (var i=0;i<rows.length;i++){
+	    		if(rows[i].sl<=0){
+	    			dg.datagrid('getExpander', i).hide();
+	    		}
+	    	}
+	    	
+		}   
 	}); 
 }

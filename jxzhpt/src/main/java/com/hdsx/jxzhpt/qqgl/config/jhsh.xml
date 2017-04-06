@@ -1825,6 +1825,9 @@
 		<if test="sffirst==1">and sffirst=1</if>
 		<if test="id!=null and id!=''">and id=#{id}</if>
 	</update>
+	<select id="querylxshlxid" parameterType="lxsh" resultType="string">
+	select id from lxsh_lx where xmid=#{xmid}  and sffirst='1' and jdbs=#{jdbs}
+	</select>
 	
 	<update id="updateLxqwh" parameterType="lx">
 		update lxsh_lx l set 

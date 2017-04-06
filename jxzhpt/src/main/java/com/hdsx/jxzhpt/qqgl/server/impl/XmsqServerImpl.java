@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
@@ -75,10 +77,33 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public boolean insertLx(Lx lx) {
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
+			Lxsh lxsh=new Lxsh();
+			String id=MyUtil.getUuid();
+			lx.setId(id);
+			lxsh.setId(id);
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
 		return insert("insertLx", lx)>0;
 	}
 	@Override
 	public boolean insertLx(Lx lx,Xmsq xmsq) {
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
+			Lxsh lxsh=new Lxsh();
+			String id=MyUtil.getUuid();
+			lx.setId(id);
+			lxsh.setId(id);
+			lxsh.setGhlxbm(lx.getGhlxbm());
+			lxsh.setGhqdzh(lx.getGhqdzh());
+			lxsh.setGhzdzh(lx.getGhzdzh());
+			MyUtil.insertMethd("deletelxcfld", lxsh);
+			MyUtil.insertMethd("insertlxcfld", lxsh);
+		}
+		
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
 		return insert("insertYhdzxlx", params)>0;
@@ -524,15 +549,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public List<Xmsq> getgxlxinfo(Xmsq xmsq) {
 		try {
-			List<Xmsq> x = queryList("getylxinfo1", xmsq);
-			//List<Xmsq> ll = queryList("getgxlxinfo", x);
-			List<Xmsq> ll = new ArrayList<Xmsq>();
-			for (Xmsq xmsq2 : x) {
-				List<Xmsq> ll1 = queryList("getgxlxinfo", xmsq2);
-				ll.addAll(ll1);
-			}
-			//List<Xmsq> l = queryList("getgxlxinfo", x);
-			return ll;
+			
+				List<Xmsq> ll1 = queryList("getgxlxinfo", xmsq);
+				
+			return ll1;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
