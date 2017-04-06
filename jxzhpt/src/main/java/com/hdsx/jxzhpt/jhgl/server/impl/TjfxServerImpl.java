@@ -304,9 +304,11 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	}
 	
 	@Override
-	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm) {
+	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm,String mqiStr,String mqi) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("lxbm", lxbm);
+		params.put("mqiStr", mqiStr);
+		params.put("mqi", mqi);
 		if(tjfl.equals("1")){
 			  return queryList("queryLxkxjc_ds",params);
 			}else{

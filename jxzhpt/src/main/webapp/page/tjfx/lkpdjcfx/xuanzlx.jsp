@@ -42,7 +42,10 @@
 			    striped:true,
 			    pagination:false,
 			    rownumbers:true,
-			   checkOnSelect:true,
+// 			   checkOnSelect:true,
+			   checkOnSelect: false, 
+			   selectOnCheck: false,
+			   idField: 'LXBH', fit: false, fitColumns: true, singleSelect: true,
 			    height:$(window).height()-40,
 			    width:$(window).width()-20,
 			    queryParams: {
@@ -50,19 +53,288 @@
 					'lkmxb.mqi':mqi,
 				},
 			    columns:[[
-			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
+// 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
+                    {field: 'op11', title: '<input id=\"lxcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"LX\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
 					{field : 'LXBH',title : '路线编号',width : 110,align : 'center'},
+					{field: 'op12', title: '<input id=\"ydlcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"YDL\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
 					{field : 'YDL',title : '优等路(公里)',width : 110,align : 'center'},
+					{field: 'op13', title: '<input id=\"ldlcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"LDL\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
 					{field:  'LDL',title:'良等路(公里)',width:110,align:'center'},
+					{field: 'op14', title: '<input id=\"zdlcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"ZDL\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
 			        {field : 'ZDL',title : '中等路(公里)',width : 110,align : 'center'},
+			        {field: 'op15', title: '<input id=\"cdlcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"CDL\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
 			        {field : 'CDL',title : '次等路(公里)',width : 110,align : 'center'},
-			        {field:'CADL',title:'差等路(公里)',width:110,align:'center'},
+			        {field: 'op16', title: '<input id=\"cadlcheckbox\" type=\"checkbox\"  >', width: 30,
+					    formatter: function (value, rec, rowIndex) {
+						    return "<input type=\"checkbox\"  name=\"CADL\" value=\"" + rec.LXBH + "\" >";
+						}
+					},
+			        {field : 'CADL',title:'差等路(公里)',width:110,align:'center'},
 			    ]],
+			    onLoadSuccess: function () {
+			    	$("#lxcheckbox").unbind();
+	                $("#ydlcheckbox").unbind();
+	                $("#ldlcheckbox").unbind();
+	                $("#zdlcheckbox").unbind();
+	                $("#cdlcheckbox").unbind();
+	                $("#cadlcheckbox").unbind();
+	                
+	             //路线复选
+	             $("input[name='LX']").unbind().bind("click", function () {
+						//总记录数
+						var totolrows = $("input[name='LX']").length;
+						//选中的记录数
+						var checkrows = $("input[name='LX']:checked").length;
+						//全选
+						if (checkrows == totolrows) {
+						    $("#lxcheckbox").attr("checked", 'checked');
+						}
+						else {
+						    $("#lxcheckbox").removeAttr("checked");
+						}
+						
+						$("#lxlist").val("");
+						var items = $("input[name='LX']:checked");
+						var result = "";
+						$.each(items, function (index, item) {
+						    result += item.value+',';
+						});
+						$("#lxlist").val(result);
+				     });
+				
+					//全选
+				$("#lxcheckbox").click(function () {
+						if ($(this).attr('checked') == 'checked') {
+						    $("input[name='LX']").attr("checked", 'checked');
+						} else {
+						    $("input[name='LX']").removeAttr("checked");
+						}
+						$("#lxlist").val("");
+						var items = $("input[name='LX']:checked");
+						var result = "";
+						$.each(items, function (index, item) {
+						    result += item.value+',';
+						});
+						$("#lxlist").val(result);
+					   });   
+					
+			  //优等路复选		
+	           $("input[name='YDL']").unbind().bind("click", function () {
+					//总记录数
+					var totolrows = $("input[name='YDL']").length;
+					//选中的记录数
+					var checkrows = $("input[name='YDL']:checked").length;
+					//全选
+					if (checkrows == totolrows) {
+					    $("#ydlcheckbox").attr("checked", 'checked');
+					}
+					else {
+					    $("#ydlcheckbox").removeAttr("checked");
+					}
+					
+					$("#ydllist").val("");
+					var items = $("input[name='YDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#ydllist").val(result);
+			     });
+			
+			  $("#ydlcheckbox").click(function () {
+					if ($(this).attr('checked') == 'checked') {
+					    $("input[name='YDL']").attr("checked", 'checked');
+					} else {
+					    $("input[name='YDL']").removeAttr("checked");
+					}
+					$("#ydllist").val("");
+					var items = $("input[name='YDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#ydllist").val(result);
+				   }); 
+			  
+			//良等路复选		
+	           $("input[name='LDL']").unbind().bind("click", function () {
+					//总记录数
+					var totolrows = $("input[name='LDL']").length;
+					//选中的记录数
+					var checkrows = $("input[name='LDL']:checked").length;
+					//全选
+					if (checkrows == totolrows) {
+					    $("#ldlcheckbox").attr("checked", 'checked');
+					}
+					else {
+					    $("#ldlcheckbox").removeAttr("checked");
+					}
+					
+					$("#ldllist").val("");
+					var items = $("input[name='LDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#ldllist").val(result);
+			     });
+			
+			  $("#ldlcheckbox").click(function () {
+					if ($(this).attr('checked') == 'checked') {
+					    $("input[name='LDL']").attr("checked", 'checked');
+					} else {
+					    $("input[name='LDL']").removeAttr("checked");
+					}
+					$("#ldllist").val("");
+					var items = $("input[name='LDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#ldllist").val(result);
+				   }); 
+			  
+			//中等路复选		
+	           $("input[name='ZDL']").unbind().bind("click", function () {
+					//总记录数
+					var totolrows = $("input[name='ZDL']").length;
+					//选中的记录数
+					var checkrows = $("input[name='ZDL']:checked").length;
+					//全选
+					if (checkrows == totolrows) {
+					    $("#zdlcheckbox").attr("checked", 'checked');
+					}
+					else {
+					    $("#zdlcheckbox").removeAttr("checked");
+					}
+					
+					$("#zdllist").val("");
+					var items = $("input[name='ZDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#zdllist").val(result);
+			     });
+			
+			  $("#zdlcheckbox").click(function () {
+					if ($(this).attr('checked') == 'checked') {
+					    $("input[name='ZDL']").attr("checked", 'checked');
+					} else {
+					    $("input[name='ZDL']").removeAttr("checked");
+					}
+					$("#zdllist").val("");
+					var items = $("input[name='ZDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#zdllist").val(result);
+				   }); 
+			  
+			//次等路复选		
+	           $("input[name='CDL']").unbind().bind("click", function () {
+					//总记录数
+					var totolrows = $("input[name='CDL']").length;
+					//选中的记录数
+					var checkrows = $("input[name='CDL']:checked").length;
+					//全选
+					if (checkrows == totolrows) {
+					    $("#cdlcheckbox").attr("checked", 'checked');
+					}
+					else {
+					    $("#cdlcheckbox").removeAttr("checked");
+					}
+					
+					$("#cdllist").val("");
+					var items = $("input[name='CDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#cdllist").val(result);
+			     });
+			
+			  $("#cdlcheckbox").click(function () {
+					if ($(this).attr('checked') == 'checked') {
+					    $("input[name='CDL']").attr("checked", 'checked');
+					} else {
+					    $("input[name='CDL']").removeAttr("checked");
+					}
+					$("#cdllist").val("");
+					var items = $("input[name='CDL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#cdllist").val(result);
+				   }); 
+			  
+			  
+			//差等路复选		
+	           $("input[name='CADL']").unbind().bind("click", function () {
+					//总记录数
+					var totolrows = $("input[name='CADL']").length;
+					//选中的记录数
+					var checkrows = $("input[name='CADL']:checked").length;
+					//全选
+					if (checkrows == totolrows) {
+					    $("#cadlcheckbox").attr("checked", 'checked');
+					}
+					else {
+					    $("#cadlcheckbox").removeAttr("checked");
+					}
+					
+					$("#cadllist").val("");
+					var items = $("input[name='CADL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#cadllist").val(result);
+			     });
+			
+			  $("#cadlcheckbox").click(function () {
+					if ($(this).attr('checked') == 'checked') {
+					    $("input[name='CADL']").attr("checked", 'checked');
+					} else {
+					    $("input[name='CADL']").removeAttr("checked");
+					}
+					$("#cadllist").val("");
+					var items = $("input[name='CADL']:checked");
+					var result = "";
+					$.each(items, function (index, item) {
+						result += item.value+',';
+					});
+					$("#cadllist").val(result);
+				   }); 
+
+			    }
 			}); 
 		}
 		
 		function ckxlwjg(){
-			var gr=$("#datagrid").datagrid('getSelections');
+			/* var gr=$("#datagrid").datagrid('getSelections');
 			
 			if(gr.length==0){
 				alert("请勾选项目");
@@ -75,9 +347,10 @@
 			}
 			lxbm=lxbm.substring(0,lxbm.length-1);
 			
-			parent.lxbm=lxbm;
-			
-// 			alert(lxbm);
+			parent.lxbm=lxbm; */
+			var mqi=$('#mqi').combobox("getValues").join(",");
+			if(mqi.substr(0,1)==',')
+				mqi=mqi.substr(1,mqi.length);
 			
 			var title='';
 			if(parent.$("#tjfl").val()=='1'){
@@ -98,7 +371,13 @@
 			    width:parent.x,
 			    queryParams: {
 					'tjfl':parent.$("#tjfl").val(),
-					'xmsq.lxbm':lxbm
+					'xmsq.lxbm':$("#lxlist").val(),
+					'lkmxb.ydl':$("#ydllist").val(),
+					'lkmxb.ldl':$("#ldllist").val(),
+					'lkmxb.zdl':$("#zdllist").val(),
+					'lkmxb.cdl':$("#cdllist").val(),
+					'lkmxb.cadl':$("#cadllist").val(),
+					'lkmxb.mqi':mqi
 				},
 			    columns:[[
                     title,
@@ -158,7 +437,14 @@
             	<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:fhsxtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">返回筛选条件</a>
             	<a id='mybuttion3' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:ckxlwjg()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">查看项目预测</a>
             		<div style="padding-left: 5px;padding-top:5px; font-size:12px;">
-            			<table id="datagrid"></table>
+            			<table id="datagrid">
+            			<input type="hidden" id="lxlist" name="lxlist" value="">
+            			<input type="hidden" id="ydllist" name="ydllist" value="">
+            			<input type="hidden" id="ldllist" name="ldllist" value="">
+            			<input type="hidden" id="zdllist" name="zdllist" value="">
+            			<input type="hidden" id="cdllist" name="cdllist" value="">
+            			<input type="hidden" id="cadllist" name="cadllist" value="">
+            			</table>
             		</div>
             	</td>
         	</tr>

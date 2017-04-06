@@ -1742,6 +1742,8 @@ public class TjfxController extends BaseActionSupport{
 	public void queryKxjc_lx(){
 		try {
 			String lxbmStr="";
+			String mqiStr="";
+			String mqi="";
 			if(xmsq.getLxbm()!=null && !xmsq.getLxbm().equals("")){
 				String[]  lxbmArr=xmsq.getLxbm().split(",");
 				lxbmStr+="(";
@@ -1753,7 +1755,61 @@ public class TjfxController extends BaseActionSupport{
 				}
 				lxbmStr+=")";
 			}
-		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr);
+			if(lkmxb.getMqi()!=null && !lkmxb.getMqi().equals("")){
+				String[]  mqiArr=lkmxb.getMqi().split(",");
+				mqi="(";
+				for (int i = 0; i < mqiArr.length; i++) {
+					if(i==mqiArr.length-1) mqi+="'"+mqiArr[i]+"'";
+					else {
+						mqi+="'"+mqiArr[i]+"',";
+					}
+				}
+				mqi+=")";
+			}
+			if(lkmxb.getYdl()!=null&& !lkmxb.getYdl().equals("")){
+				String[] ydlArr=lkmxb.getYdl().split(","); 
+				String ydl="";
+				for (int i = 0; i < ydlArr.length; i++) {
+						ydl+="(lxbh='"+ydlArr[i]+"' and pd='优') or ";
+				}
+				mqiStr+=ydl;
+			}
+			if(lkmxb.getLdl()!=null&& !lkmxb.getLdl().equals("")){
+				String[] ldlArr=lkmxb.getLdl().split(","); 
+				String ldl="";
+				for (int i = 0; i < ldlArr.length; i++) {
+						ldl+="(lxbh='"+ldlArr[i]+"' and pd='良') or ";
+				}
+				mqiStr+=ldl;
+			}
+			if(lkmxb.getZdl()!=null&& !lkmxb.getZdl().equals("")){
+				String[] zdlArr=lkmxb.getZdl().split(","); 
+				String zdl="";
+				for (int i = 0; i < zdlArr.length; i++) {
+						zdl+="(lxbh='"+zdlArr[i]+"' and pd='中') or ";
+				}
+				mqiStr+=zdl;
+			}
+			if(lkmxb.getCdl()!=null&& !lkmxb.getCdl().equals("")){
+				String[] cdlArr=lkmxb.getCdl().split(","); 
+				String cdl="";
+				for (int i = 0; i < cdlArr.length; i++) {
+						cdl+="(lxbh='"+cdlArr[i]+"' and pd='次') or ";
+					}
+				mqiStr+=cdl;
+			}
+			if(lkmxb.getCadl()!=null&& !lkmxb.getCadl().equals("")){
+				String[] cadlArr=lkmxb.getCadl().split(","); 
+				String cadl="";
+				for (int i = 0; i < cadlArr.length; i++) {
+					cadl+="(lxbh='"+cadlArr[i]+"' and pd='差') or ";
+				}
+				mqiStr+=cadl;
+			}
+			if(!mqiStr.equals("")){
+				mqiStr=mqiStr.substring(0,mqiStr.length()-3);
+			}
+		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr,mqiStr,mqi);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		
