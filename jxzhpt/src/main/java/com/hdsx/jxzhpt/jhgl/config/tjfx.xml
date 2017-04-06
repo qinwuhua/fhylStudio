@@ -1203,20 +1203,20 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id not in(
-	select t.id
+	select distinct(t.id)
 	from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf}-1)t
 	,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
-	and to_number(t.qdzh)>=to_number(l.qdzh) and to_number(t.zdzh) &lt;=to_number(l.zdzh)  
+	and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
 	) and tbnf=${xmnf}-1 group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) a
 	left join 
 	(
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id not in(
-	select t.id
+	select distinct(t.id)
 	from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf})t
 	,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
-	and to_number(t.qdzh)>=to_number(l.qdzh) and to_number(t.zdzh) &lt;=to_number(l.zdzh)  
+	and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
 	) and tbnf=${xmnf} group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) b
 	on a.xzqhdm=b.xzqhdm
 	order by a.xzqhdm
@@ -1227,20 +1227,20 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
 	  from  WH_LKPD_DATA_DS  where id not in(
-	  select t.id
+	  select distinct(t.id)
 	  from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf}+1)t
 	  ,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
-	  and to_number(t.qdzh)>=to_number(l.qdzh) and to_number(t.zdzh) &lt;=to_number(l.zdzh)  
+	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
 	  ) and tbnf=${xmnf}+1 group by lxbh)) a
 	   join
 	  (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh
 	  from  WH_LKPD_DATA_DS  where id not in(
-	  select t.id
+	  select distinct(t.id)
 	  from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf})t
 	  ,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
-	  and to_number(t.qdzh)>=to_number(l.qdzh) and to_number(t.zdzh) &lt;=to_number(l.zdzh)  
+	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
 	  ) and tbnf=${xmnf} group by lxbh)) b
 	  on a.lxbh=b.lxbh
 	  order by a.lxbh
@@ -1272,6 +1272,12 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 			<if test="lxbm !='' and lxbm != null ">
 			and lxbh in ${lxbm}
 		    </if>
+		    <if test="mqiStr !='' and mqiStr != null ">
+			and (${mqiStr})
+		    </if>
+		    <if test="mqi != null and  mqi != ''">
+			and pd in ${mqi}
+		    </if>
 			 group by xzqhdm order by xzqhdm
 		 ) t 
 		 left join xtgl_xzqh l on t.xzqhdm=l.id
@@ -1286,6 +1292,12 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		  where 1=1
 		  <if test="lxbm !='' and lxbm != null ">
 			and lxbh in ${lxbm}
+		  </if>
+		  <if test="mqiStr !='' and mqiStr != null ">
+			and (${mqiStr})
+		  </if>
+		  <if test="mqi != null and  mqi != ''">
+			and pd in ${mqi}
 		  </if>
 		  group by lxbh order by lxbh
 		 ) t
