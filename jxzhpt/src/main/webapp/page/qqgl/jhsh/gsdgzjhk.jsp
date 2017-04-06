@@ -315,13 +315,13 @@ text-decoration:none;
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								<td align="right">项目名称：</td>
-        						<td><input name="xmmc" type="text" id="xmmc" style="width:75px;" /></td>
+        						<td><input name="xmmc" type="text" id="xmmc" style="width:116px;" /></td>
         						<td align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:75px;" ></select></td>
 								<td align="right">建设技术等级：</td>
 								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:80px;"></select></td>
 								<td align="right">现技术等级：</td>
-								<td><select name="xjsdj" class="easyui-combobox" id="jsdj" style="width:60px;"></select></td>
+								<td><select name="xjsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
 							
         					</tr>
         					<tr height="32">
@@ -339,14 +339,14 @@ text-decoration:none;
         						<td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td> -->
         						<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:75px;" /></td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:118px;" /></td>
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:75px;" /></td>
         						
         						<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:60px;" /></td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
         						
                             </tr>
                             <tr height="32">
@@ -367,7 +367,7 @@ text-decoration:none;
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td> -->
         						<td align="right">规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:75px;" /></td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
 								 <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:75px;" /></td>
         						 <td align="right">是否有补助历史：</td>
@@ -377,7 +377,7 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td>
 								<td align="right">特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:60px;"></select></td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
                             
         						</tr>
         						
@@ -385,7 +385,7 @@ text-decoration:none;
                            		<td align="right">管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:148px;" /></td>
         						<td align="right">下达状态：</td>
-        						<td><input name="xdzt" type="text" id="xdzt" style="width:75px;" /></td>
+        						<td><input name="xdzt" type="text" id="xdzt" style="width:118px;" /></td>
         					<td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width:75px;">
