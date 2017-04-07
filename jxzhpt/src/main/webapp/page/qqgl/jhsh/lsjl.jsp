@@ -31,7 +31,7 @@
 				//alert(e.name + ": " + e.message);
 				 lsxmnf='';lsxmlx='';
 			} 
-			//
+			
 			$('#grid').datagrid({
 				//url:'../../../qqgl/queryLsxx.do',
 				url:'../../../qqgl/querylxLsxx.do',

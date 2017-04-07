@@ -43,7 +43,9 @@ function save(){
 	});
 }
 $(function(){
+	//loadDistadd(id, dwbm)
 	loadDist2("xzqhdm","360000");
+	loadDistadd("xzqhdm","360000");
 	$("#id").val(parent.YMLib.Var.ID);
 	$("#name").val(parent.YMLib.Var.name);
 	var str="";

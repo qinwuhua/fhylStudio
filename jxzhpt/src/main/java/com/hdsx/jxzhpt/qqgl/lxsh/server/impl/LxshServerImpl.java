@@ -18,18 +18,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.WnjhServer;
 import com.hdsx.jxzhpt.utile.MyUtil;
-import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
-import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
-import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
-import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
-import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
-import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
-import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
-import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 
 @Service
 public class LxshServerImpl extends BaseOperate implements LxshServer {
