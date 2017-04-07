@@ -280,7 +280,7 @@ text-decoration:none;
 								<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:78px;" /></td>
         						<td align="right">技术等级：</td>
-								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:80px;"></select></td>
+								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
 								</tr>
@@ -301,7 +301,7 @@ text-decoration:none;
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td> -->
         						<td align="right">原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:80px;" /></td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
         						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:78px;" /></td>
         						
@@ -312,7 +312,7 @@ text-decoration:none;
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:78px;" /></td> 
         						<td align="right">是否有补助历史：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:80px;">
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:118px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
