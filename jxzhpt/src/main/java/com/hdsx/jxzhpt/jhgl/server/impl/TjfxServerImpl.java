@@ -315,4 +315,15 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 			  return queryList("queryLxkxjc_lx",params);
 			}
 	}
+	
+	@Override
+	public List<Map<String, Object>> queryTsbl(String tjfl,int nf) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xmnf", nf);
+		if(tjfl.equals("1")){
+			  return queryList("queryTsbl_ds",params);
+			}else{
+			  return queryList("queryTsbl_lx",params);
+			}
+	}
 }

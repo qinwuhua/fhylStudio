@@ -1199,7 +1199,7 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryZrsh_ds" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf} nf,a.xzqhdm xzqhdm,b.ydlv-a.ydlv zrsh from (
+	select ${xmnf} nf,a.xzqhdm xzqhdm,abs(a.ydlv-b.ydlv) zrsh from (
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id not in(
@@ -1223,15 +1223,15 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryZrsh_lx" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf}+1 nf,a.lxbh lxbm,b.ydlv-a.ydlv zrsh from (
+	select ${xmnf} nf,a.lxbh lxbm,abs(a.ydlv-b.ydlv) zrsh from (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
 	  from  WH_LKPD_DATA_DS  where id not in(
 	  select distinct(t.id)
-	  from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf}+1)t
+	  from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf}-1)t
 	  ,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
 	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
-	  ) and tbnf=${xmnf}+1 group by lxbh)) a
+	  ) and tbnf=${xmnf}-1 group by lxbh)) a
 	   join
 	  (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
@@ -1301,5 +1301,54 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		  </if>
 		  group by lxbh order by lxbh
 		 ) t
+	</select>
+	
+	
+	<select id="queryTsbl_ds" resultType="java.util.Map" parameterType="java.util.Map">
+	select ${xmnf} nf,a.xzqhdm xzqhdm,abs(b.ydlv-a.ydlv) tsbl from (
+	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
+	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
+	from  WH_LKPD_DATA_DS  where id  in(
+	select distinct(t.id)
+	from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf}-1)t
+	,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
+	and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+	) and tbnf=${xmnf}-1 group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) a
+	left join 
+	(
+	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
+	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
+	from  WH_LKPD_DATA_DS  where id  in(
+	select distinct(t.id)
+	from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf})t
+	,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
+	and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+	) and tbnf=${xmnf} group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null) b
+	on a.xzqhdm=b.xzqhdm
+	order by a.xzqhdm
+	</select>
+	
+	<select id="queryTsbl_lx" resultType="java.util.Map" parameterType="java.util.Map">
+	select ${xmnf} nf,a.lxbh lxbm,abs(b.ydlv-a.ydlv) tsbl from (
+	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
+	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
+	  from  WH_LKPD_DATA_DS  where id  in(
+	  select distinct(t.id)
+	  from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf}-1)t
+	  ,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
+	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+	  ) and tbnf=${xmnf}-1 group by lxbh)) a
+	   join
+	  (
+	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
+	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh
+	  from  WH_LKPD_DATA_DS  where id  in(
+	  select distinct(t.id)
+	  from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf})t
+	  ,(select lxbm,qdzh,zdzh from lkpd_jhsh_lx_data where xmnf=${xmnf} group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
+	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+	  ) and tbnf=${xmnf} group by lxbh)) b
+	  on a.lxbh=b.lxbh
+	  order by a.lxbh
 	</select>
 </mapper>

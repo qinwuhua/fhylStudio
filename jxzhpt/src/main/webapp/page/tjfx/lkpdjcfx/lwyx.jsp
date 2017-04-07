@@ -150,9 +150,9 @@
 			var years=[]; var ylld=[]; var zj=[]; var zrsh=[];
 			
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				if(msg[0][(i+"yyll")]!=null || msg[0][(i+"ztz")]!=null || msg[0][(i+"zrsh")]!=null){
+				if(msg[0][(i+"tsbl")]!=null || msg[0][(i+"ztz")]!=null || msg[0][(i+"zrsh")]!=null){
 					years.push(i+'年');
-					ylld.push(msg[0][(i+"yyll")]);
+					ylld.push(msg[0][(i+"tsbl")]);
 					zj.push(msg[0][(i+'ztz')]);
 					zrsh.push(msg[0][(i+'zrsh')]);
 				}
@@ -172,7 +172,7 @@
 	        		    },
 	        		    legend: {
 	        		    	show:true,
-	        		        data:['投入资金（万元）','优良路率（%）','自然损耗（%）'],
+	        		        data:['投入资金（万元）','优良路率提升比例（%）','自然损耗（%）'],
 	        		        x : 'left',
 	        		        y : 'top',
 	        		        orient: 'horizontal'
@@ -210,7 +210,7 @@
 	                        },
 	                        {
 	                            type: 'value',
-	                            name: '优良路率（%）',
+	                            name: '优良路率提升比例（%）',
 	                            position: 'right',
 	                            max: 100,
 	                            min:-60
@@ -225,7 +225,7 @@
 			                    data:zj
 			                },
 			                {
-			                    name:'优良路率（%）',
+			                    name:'优良路率提升比例（%）',
 			                    type:'line',
 			                    barWidth: '20%',
 			                    yAxisIndex: 1,
