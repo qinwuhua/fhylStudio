@@ -364,11 +364,11 @@ text-decoration:none;
 	        						<td align="right">项目名称：</td>
 	        						<td><input type="text" id="xmmc" style="width:70px;" /></td>
 	        						<td align="right">建设性质：</td>
-									<td><select name="xmlx" id="xmlx" style="width:80px;" ></select></td>
+									<td><select name="xmlx" id="xmlx" style="width:118px;" ></select></td>
 									<td align="right">建设技术等级：</td>
 									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 									<td align="right">原技术等级：</td>
-									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:80px;"></select></td>
+									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:118px;"></select></td>
 									
 	        					</tr>
 	        					<tr height="32">
@@ -392,11 +392,11 @@ text-decoration:none;
 										<option value="1">已审核</option>
 									</select></td> -->
 									<td align="right">原路线编码：</td>
-	        						<td ><input name="txtlxbm" type="text" id="txtlxbm" style="width:80px;" /></td>
+	        						<td ><input name="txtlxbm" type="text" id="txtlxbm" style="width:118px;" /></td>
 	        						<td align="right">原路线名称：</td>
 	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:70px;" /></td>
 									<td align="right">规划路线编码：</td>
-	        						<td><input type="text" id="ghlxbm" style="width:80px;" /></td>
+	        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
 	        						
 									
 								</tr>
@@ -411,7 +411,7 @@ text-decoration:none;
 										<option value="否">否</option>
 									</select></td>
 									<td align="right">特殊地区：</td>
-									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select></td>
+									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
 								<!-- 	<td align="right">项目年份：</td>
 	        						<td><select id="xmnf" style="width: 100px;"></select></td>
 	        						<td>建设技术等级：</td>
@@ -427,7 +427,7 @@ text-decoration:none;
 									</select></td>
 									<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 80px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>

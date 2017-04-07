@@ -318,7 +318,7 @@ text-decoration:none;
         						<td align="right">建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:80px;" ></select></td>
 								<td align="right">建设技术等级：</td>
-								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:80px;"></select></td>
+								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:118px;"></select></td>
 								<td align="right">现技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:75px;"></select></td>
 								
@@ -344,7 +344,7 @@ text-decoration:none;
         						<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:80px;" class="easyui-combobox"></select></td>
 								<td align="right">原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:80px;" /></td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
         						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:75px;" /></td>
 								
@@ -377,7 +377,7 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td>
 								<td align="right">特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select></td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
 								<td align="right">上报状态：</td>
 								<td><select name="sbzt" id="sbzt" class="easyui-combobox" style="width:75px;">
 									<option value="" selected="selected">全部</option>

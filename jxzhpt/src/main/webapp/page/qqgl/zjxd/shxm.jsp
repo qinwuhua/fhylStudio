@@ -587,11 +587,11 @@
         						<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td align="right">项目名称：</td>
-        						<td><input name="xmmc" type="text" id="xmmc" style="width:110px;" /></td>
+        						<td><input name="xmmc" type="text" id="xmmc" style="width:116px;" /></td>
         						<td align="right">建设性质：</td>
 								<td><input type="text" id='xmlx' name='xmlx' style="width:114px;"></td>
         						<td align="right">技术等级：</td>
-        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:114px;"></select></td>
+        						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
         						<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:114px;" /></td>
         						</tr>
@@ -610,11 +610,11 @@
         					<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td> -->
         						 <td align="right">原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:110px;" /></td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
         						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
         						<td align="right">规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:110px;" /></td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
         						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:110px;" /></td>
         						</tr>
@@ -628,7 +628,7 @@
 									</select>
         						</td>
         						<td align="right">特殊地区：</td>
-        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:114px;"></select></td>
+        						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
         					
         						<!-- <td align="right">历史记录：</td>
         						<td>
@@ -647,7 +647,7 @@
 								<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:114px;" /></td>
         						<td align="right">首次下达年份：</td>
-        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
+        						<td><input name="scxdnf" type="text" id="scxdnf" style="width:118px;" /></td>
         						<td align="right">前期完成：</td>
         						<td><input name="xdsj" type="text" id="xdsj" style="width:110px;" class='easyui-datebox'/></td>
         					
