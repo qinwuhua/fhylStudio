@@ -510,7 +510,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	
 	@Override
 	public List<Lx> querylxLsxx(Jhsh jhsh) {
-		
+		//System.out.println(jhsh.getLsxmlx());
 		String lsxmbm=queryOne("querylxLsxxxmbm", jhsh);
 		jhsh.setLsxmbm(lsxmbm);
 		jhsh.setLsxmlx(MyUtil.getQueryTJ(jhsh.getLsxmlx(), "xmlx"));

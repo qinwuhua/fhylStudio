@@ -1462,7 +1462,7 @@ function loadDist2(id, dwbm) {
 	$('#' + id).combotree({
 		checkbox : false,
 		multiple : true,
-		panelHeight:100,
+		panelHeight:200,
 		url : '/jxzhpt/xtgl/selAllXzqh.do?yhdw=' + dwbm,
 		onBeforeExpand : function(node, param) {
 			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="

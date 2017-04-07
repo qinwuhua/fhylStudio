@@ -77,10 +77,11 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public boolean insertLx(Lx lx) {
+		String id=MyUtil.getUuid();
+		lx.setId(id);
 		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
 			Lxsh lxsh=new Lxsh();
-			String id=MyUtil.getUuid();
-			lx.setId(id);
+			
 			lxsh.setId(id);
 			lxsh.setGhlxbm(lx.getGhlxbm());
 			lxsh.setGhqdzh(lx.getGhqdzh());
@@ -92,10 +93,10 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public boolean insertLx(Lx lx,Xmsq xmsq) {
-		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
-			Lxsh lxsh=new Lxsh();
 			String id=MyUtil.getUuid();
 			lx.setId(id);
+		if(!"".equals(lx.getGxlxbm())&&lx.getGxlxbm()!=null){
+			Lxsh lxsh=new Lxsh();
 			lxsh.setId(id);
 			lxsh.setGhlxbm(lx.getGhlxbm());
 			lxsh.setGhqdzh(lx.getGhqdzh());
@@ -106,6 +107,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
+		System.out.println(lx.getId()+"----------------------");
 		return insert("insertYhdzxlx", params)>0;
 	}
 	@Override

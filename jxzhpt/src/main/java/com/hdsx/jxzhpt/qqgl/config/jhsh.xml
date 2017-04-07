@@ -2821,7 +2821,7 @@
 		union all select xmbm,xmmc from xmsq_yhdzx) x 
 		where l.xmid=x.xmbm and l.lxbm like '%'||#{lxbm}||'%' 
 		
-		and GREATEST(to_number(l.zdzh),to_number(l.qdzh))>(${zdzh},${qdzh}) 
+		and GREATEST(to_number(l.zdzh),to_number(l.qdzh))>LEAST(${zdzh},${qdzh}) 
 		and GREATEST(${zdzh},${qdzh})>LEAST(to_number(l.zdzh),to_number(l.qdzh))
 		and l.xmid !=#{xmid}
 		and l.xmid like substr(#{xmid},0,4)||'%'
@@ -6974,7 +6974,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		 ${lsxmnf}
 		</if>
 		<if test="lsxmlx != null and lsxmlx != ''">
-		 ${lsxmnf}
+		 ${lsxmlx}
 		</if>
 		order by xmbm
 	</select>
