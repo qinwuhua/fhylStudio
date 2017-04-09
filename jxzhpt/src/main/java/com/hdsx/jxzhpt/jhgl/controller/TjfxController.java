@@ -1275,41 +1275,48 @@ public class TjfxController extends BaseActionSupport{
 			xzqh.remove(0);
 			List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
 			List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
+			List<Map<String,Object>> tsbls=new ArrayList<Map<String,Object>>();
 			if(Integer.valueOf(nf)<=2014){
 			  for(int  b= Integer.valueOf(nf); b <= 2014; b++){
 				 for (TreeNode node : xzqh) {
 					Map<String, Object> map =new HashMap<String, Object>();
+					Map<String, Object> tsbl =new HashMap<String, Object>();
 					map.put("NF",nf);
 					map.put("XZQHDM", node.getId().substring(0,4));
 					map.put("ZRSH","--");
+					tsbl.put("NF",nf);
+					tsbl.put("XZQHDM", node.getId().substring(0,4));
+					tsbl.put("TSBL","--");
 					zrshs.add(map);
+					tsbls.add(tsbl);
 				      }
 					}
 			  for (int a =2015; a < Integer.valueOf(end); a++) {
 					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-					if(zrsh.size()>0)
-					zrshs.addAll(zrsh);
+					List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+					if(zrsh.size()>0)zrshs.addAll(zrsh);
+					if(tsbl.size()>0)tsbls.addAll(tsbl);
 				}
 				}
 			else{
 				 for (int a =Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
 						List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-						if(zrsh.size()>0)
-						zrshs.addAll(zrsh);
+						List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+						if(zrsh.size()>0)zrshs.addAll(zrsh);
+						if(tsbl.size()>0)tsbls.addAll(tsbl);
 					}
-			}
+			  }
 			for (TreeNode item : xzqh) {
-//				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 				xzqhdm = item.getId().substring(0,4);
 				//返回数据对象
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("xzqh", item.getName());
 				index.put("xzqhdm", item.getId());
-				int num=0; Double ydl=0.0; Double tsbl;
+//				int num=0; Double ydl=0.0; Double tsbl;
 				for (int i = 0; i < qs.size(); i++) {
 					if (qs.get(i).get("XZQHDM")!=null && !qs.get(i).get("XZQHDM").equals("")&&
 							qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
-						if(num==0)
+						/*if(num==0)
 							index.put(qs.get(i).get("NF").toString()+"tsbl","--");
 						else{
 							if(qs.get(i).get("YDL")!=null && !qs.get(i).get("YDL").equals("")){
@@ -1322,7 +1329,7 @@ public class TjfxController extends BaseActionSupport{
 						}
 						num++;
 						if(qs.get(i).get("YDL")!=null && !qs.get(i).get("YDL").equals("")){
-						ydl=Double.valueOf(qs.get(i).get("YDL").toString());}
+						ydl=Double.valueOf(qs.get(i).get("YDL").toString());}*/
 						if(qs.get(i).get("ZTZ")!=null &&!qs.get(i).get("ZTZ").equals("")){
 						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
 						}else{
@@ -1356,6 +1363,12 @@ public class TjfxController extends BaseActionSupport{
 						index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 					}
 				}
+				for (int x = 0; x < tsbls.size(); x++) {
+					if (tsbls.get(x).get("XZQHDM")!=null && !tsbls.get(x).get("XZQHDM").equals("") &&
+							tsbls.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
+						index.put(tsbls.get(x).get("NF").toString()+"tsbl", tsbls.get(x).get("TSBL").toString());	
+					}
+				}
 				result.add(index);
 			}
 			}
@@ -1363,28 +1376,45 @@ public class TjfxController extends BaseActionSupport{
 				List<TreeNode> lx=tjfxServer.queryLx(null);
 				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end,xmsq.getXmbm());
 				List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
-				
-				for (TreeNode node : lx) {
-					Map<String, Object> map =new HashMap<String, Object>();
-					map.put("NF",nf);
-					map.put("LXBM", node.getId());
-					map.put("ZRSH","--");
-					zrshs.add(map);
-				}
-				
-				for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
-					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-					if(zrsh.size()>0)
-					zrshs.addAll(zrsh);
-				}
+				List<Map<String,Object>> tsbls=new ArrayList<Map<String,Object>>();
+				if(Integer.valueOf(nf)<=2014){
+				  for(int  b= Integer.valueOf(nf); b <= 2014; b++){
+					 for (TreeNode node : lx) {
+						Map<String, Object> map =new HashMap<String, Object>();
+						Map<String, Object> tsbl =new HashMap<String, Object>();
+						map.put("NF",nf);
+						map.put("LXBM", node.getId());
+						map.put("ZRSH","--");
+						tsbl.put("NF",nf);
+						tsbl.put("LXBM", node.getId());
+						tsbl.put("TSBL","--");
+						zrshs.add(map);
+						tsbls.add(tsbl);
+					      }
+						}
+				  for (int a =2015; a < Integer.valueOf(end); a++) {
+						List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
+						List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+						if(zrsh.size()>0)zrshs.addAll(zrsh);
+						if(tsbl.size()>0)tsbls.addAll(tsbl);
+					}
+					}
+				else{
+					 for (int a =Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
+							List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
+							List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+							if(zrsh.size()>0)zrshs.addAll(zrsh);
+							if(tsbl.size()>0)tsbls.addAll(tsbl);
+						}
+				  }
 				for (int j = 0; j < lx.size(); j++) {
 					Map<String, String> index =new HashMap<String, String>();
 					index.put("lxbm", lx.get(j).getId());
-					int num=0; Double ydl=0.0; Double tsbl;
+//					int num=0; Double ydl=0.0; Double tsbl;
 					for (int l = 0; l < qs1.size(); l++) {
 					if (qs1.get(l).get("LXBM")!=null&& !qs1.get(l).get("LXBM").equals("")&&
 							qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
-						if(num==0)
+						/*if(num==0)
 							index.put(qs1.get(l).get("NF").toString()+"tsbl","--");
 						else{
 							if(qs1.get(l).get("YDL")!=null&&!qs1.get(l).get("YDL").equals("")){
@@ -1398,7 +1428,7 @@ public class TjfxController extends BaseActionSupport{
 						num++;
 						if(qs1.get(l).get("YDL")!=null&&!qs1.get(l).get("YDL").equals("")){
 						ydl=Double.valueOf(qs1.get(l).get("YDL").toString());
-						}
+						}*/
 						if(qs1.get(l).get("ZTZ")!=null&&!qs1.get(l).get("ZTZ").equals("")){
 						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
 						}else{
@@ -1432,6 +1462,12 @@ public class TjfxController extends BaseActionSupport{
 							index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
 						}
 					}
+					for (int x = 0; x < tsbls.size(); x++) {
+						if (tsbls.get(x).get("LXBM")!=null &&!tsbls.get(x).get("LXBM").equals("")&&
+								tsbls.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
+							index.put(tsbls.get(x).get("NF").toString()+"tsbl", tsbls.get(x).get("TSBL").toString());	
+						}
+					}
 					result.add(index);
 			  }
 			}
@@ -1454,10 +1490,12 @@ public class TjfxController extends BaseActionSupport{
 				//查询到此行政区划的总计信息
 				List<Map<String,Object>> qs = tjfxServer.queryXmtoLk(null,nf,end,xmsq.getXmbm());
 				List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
+				List<Map<String,Object>> tsbls=new ArrayList<Map<String,Object>>();
 				for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
 					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-					if(zrsh.size()>0)
-					zrshs.addAll(zrsh);
+					List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+					if(zrsh.size()>0)zrshs.addAll(zrsh);
+					if(tsbl.size()>0)tsbls.addAll(tsbl);
 				}
 				//返回数据对象
 				Map<String, String> index =new HashMap<String, String>();
@@ -1468,13 +1506,19 @@ public class TjfxController extends BaseActionSupport{
 					if (qs.get(i).get("XZQHDM")!=null&&!qs.get(i).get("XZQHDM").equals("")&&
 							qs.get(i).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put(qs.get(i).get("NF").toString()+"ztz", qs.get(i).get("ZTZ").toString());
-						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
+//						index.put(qs.get(i).get("NF").toString()+"yyll", qs.get(i).get("YDLV").toString());
 					}
 				}
 				for (int x = 0; x < zrshs.size(); x++) {
 					if (zrshs.get(x).get("XZQHDM")!=null&&!zrshs.get(x).get("XZQHDM").equals("")&&
 							zrshs.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
 						index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
+					}
+				}
+				for (int x = 0; x < tsbls.size(); x++) {
+					if (tsbls.get(x).get("XZQHDM")!=null&&!tsbls.get(x).get("XZQHDM").equals("")&&
+							tsbls.get(x).get("XZQHDM").toString().equals(xzqhdm)) {
+						index.put(tsbls.get(x).get("NF").toString()+"tsbl", tsbls.get(x).get("TSBL").toString());	
 					}
 				}
 				result.add(index);
@@ -1485,10 +1529,12 @@ public class TjfxController extends BaseActionSupport{
 				List<TreeNode> lx=tjfxServer.queryLx(xzqhdm);
 				List<Map<String,Object>> qs1 = tjfxServer.queryXmtoLk_lx(nf,end,xmsq.getXmbm());
 				List<Map<String,Object>> zrshs=new ArrayList<Map<String,Object>>();
+				List<Map<String,Object>> tsbls=new ArrayList<Map<String,Object>>();
 				for (int a = Integer.valueOf(nf); a < Integer.valueOf(end); a++) {
 					List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, a);
-					if(zrsh.size()>0)
-					zrshs.addAll(zrsh);
+					List<Map<String,Object>> tsbl=tjfxServer.queryTsbl(tjfl, a);
+					if(zrsh.size()>0)zrshs.addAll(zrsh);
+					if(tsbl.size()>0)tsbls.addAll(tsbl);
 				}
 				for (int j = 0; j < lx.size(); j++) {
 					Map<String, String> index =new HashMap<String, String>();
@@ -1497,13 +1543,19 @@ public class TjfxController extends BaseActionSupport{
 					if (qs1.get(l).get("LXBM")!=null&&!qs1.get(l).get("LXBM").equals("")&&
 							qs1.get(l).get("LXBM").toString().equals(lx.get(j).getId())) {
 						index.put(qs1.get(l).get("NF").toString()+"ztz", qs1.get(l).get("ZTZ").toString());
-						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
+//						index.put(qs1.get(l).get("NF").toString()+"yyll", qs1.get(l).get("YDLV").toString());
 					     }
 				    }
 					for (int x = 0; x < zrshs.size(); x++) {
 						if (zrshs.get(x).get("LXBM")!=null && !zrshs.get(x).get("LXBM").equals("")&&
 								zrshs.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
 							index.put(zrshs.get(x).get("NF").toString()+"zrsh", zrshs.get(x).get("ZRSH").toString());	
+						}
+					}
+					for (int x = 0; x < tsbls.size(); x++) {
+						if (tsbls.get(x).get("LXBM")!=null && !tsbls.get(x).get("LXBM").equals("")&&
+								tsbls.get(x).get("LXBM").toString().equals(lx.get(j).getId())) {
+							index.put(tsbls.get(x).get("NF").toString()+"tsbl", tsbls.get(x).get("TSBL").toString());	
 						}
 					}
 					result.add(index);
