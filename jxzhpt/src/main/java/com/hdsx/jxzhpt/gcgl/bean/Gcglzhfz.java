@@ -9,19 +9,26 @@ public class Gcglzhfz implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private String jgys;
-private String xdzj;
-private String bfzj;
-
-public String getXdzj() {
-	return xdzj;
-}
-public void setXdzj(String xdzj) {
-	this.xdzj = xdzj;
-}
-public String getBfzj() {
-	return bfzj;
-}
+	private String jgys;
+	private String xdzj;
+	private String bfzj;
+	private String sbzt;
+	
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}

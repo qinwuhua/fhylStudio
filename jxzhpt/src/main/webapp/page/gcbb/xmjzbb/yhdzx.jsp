@@ -362,7 +362,7 @@ a:active {
 										<td style="width: 140px">3、省債</td>
 										<td style="width: 140px">4、债券</td>
 										<td style="width: 140px">5、燃油税</td>
-										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">6、厅贷款</td>
 										<td style="width: 140px">7、奖励</td>
 										<td style="width: 140px">8、其他</td>
 										<td style="width: 140px">1、车购税</td>
@@ -370,7 +370,7 @@ a:active {
 										<td style="width: 140px">3、省債</td>
 										<td style="width: 140px">4、债券</td>
 										<td style="width: 140px">5、燃油税</td>
-										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">6、厅贷款</td>
 										<td style="width: 140px">7、奖励</td>
 										<td style="width: 140px">8、其他</td>
 										<td style="width: 140px">1、车购税</td>
@@ -378,7 +378,7 @@ a:active {
 										<td style="width: 140px">3、省債</td>
 										<td style="width: 140px">4、债券</td>
 										<td style="width: 140px">5、燃油税</td>
-										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">6、厅贷款</td>
 										<td style="width: 140px">7、奖励</td>
 										<td style="width: 140px">8、其他</td>
 										<td style="width: 140px">1、车购税</td>
@@ -386,7 +386,7 @@ a:active {
 										<td style="width: 140px">3、省債</td>
 										<td style="width: 140px">4、债券</td>
 										<td style="width: 140px">5、燃油税</td>
-										<td style="width: 140px">6、贷款</td>
+										<td style="width: 140px">6、厅贷款</td>
 										<td style="width: 140px">7、奖励</td>
 										<td style="width: 140px">8、其他</td>
 									</tr>

@@ -3031,13 +3031,13 @@ function zjly(id,lx){
 		years.push({text:'国债',value:'gz'});
 		years.push({text:'省债',value:'sz'});
 		years.push({text:'债券',value:'zq'});
-		years.push({text:'贷款',value:'dk'});
+		years.push({text:'厅贷款',value:'dk'});
 		years.push({text:'奖励',value:'jl'});
 		years.push({text:'其他',value:'qt'});
 	}
 	if(lx=='yh'){
 		years.push({text:'燃油税',value:'rys'});
-		years.push({text:'贷款',value:'dk'});
+		years.push({text:'厅贷款',value:'dk'});
 		years.push({text:'其他',value:'qt'});
 	}
 	$('#'+id).combobox({
@@ -3907,4 +3907,69 @@ function disLoadjzt() {
 //设置光圈
 function szgq(str,id){
 	$('#'+id).attr('class',str);
+}
+//审核资金拨付
+var _zjbfjhid="";var _zjbfid="";
+function zjbf_sh(jhid,id){
+	//alert(jhid+"     "+id);
+	_zjbfjhid=jhid;_zjbfid=id;
+	YMLib.UI.createWindow('lxxx','资金拨付审核','/jxzhpt/page/gcgl/cgszjdw/zjbf_sh.jsp','lxxx',400,200);	
+}
+
+//退回下级资金拨付
+
+function zjbf_th(jhid,id){
+	//alert(jhid+"     "+id);
+	_zjbfjhid=jhid;_zjbfid=id;
+	YMLib.UI.createWindow('lxxx','资金拨付审核','/jxzhpt/page/gcgl/cgszjdw/zjbf_th.jsp','lxxx',400,200);	
+}
+
+//退回未审核资金拨付
+
+function zjbf_thwsh(jhid,id){
+	if(confirm('您确认退回吗？'))
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/gcgl/zjbf_sbshth.do",
+		 dataType : 'json',
+		 data : 'gcglabgc.jhid=' +jhid+"&gcglabgc.cscyj="+"&gcglabgc.thyy="+"&gcglabgc.id="+id+"&gcglabgc.sbzt="+1+"&gcglabgc.shzt=0",
+		 success : function(msg){
+			 if(msg){
+				 alert('退回成功！');
+				 $("#zjgrid").datagrid('reload');
+			 }else{
+				 YMLib.Tools.Show('退回失败！',3000);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
+//上报下级资金拨付
+function zjbf_sb(jhid,id){
+	if(confirm('您确认上报吗？'))
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/gcgl/zjbf_sbshth.do",
+		 dataType : 'json',
+		 data : 'gcglabgc.jhid=' +jhid+"&gcglabgc.cscyj="+"&gcglabgc.thyy="+"&gcglabgc.id="+id+"&gcglabgc.sbzt="+1+"&gcglabgc.shzt=0",
+		 success : function(msg){
+			 if(msg){
+				 alert('上报成功！');
+				 $("#zjgrid").datagrid('reload');
+			 }else{
+				 YMLib.Tools.Show('上报失败！',3000);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
+
+//显示字符串
+
+function showStr(str){
+	alert(str);
 }

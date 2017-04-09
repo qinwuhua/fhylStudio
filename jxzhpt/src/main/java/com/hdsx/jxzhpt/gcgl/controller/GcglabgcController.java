@@ -1743,4 +1743,15 @@ public class GcglabgcController extends BaseActionSupport{
 		}
 //wdd查询工程管理安保项目月报页面内的那行统计	end	
 	}
+	
+	
+	//资金拨付上报审核退回三合一
+	public void zjbf_sbshth(){
+		try {
+			ResponseUtils.write(getresponse(), ""+gcglabgcServer.zjbf_sbshth(gcglabgc));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

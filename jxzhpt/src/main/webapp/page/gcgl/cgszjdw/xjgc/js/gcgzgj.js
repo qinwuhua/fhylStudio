@@ -40,26 +40,27 @@ function wqxiangxi(index){
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzgjzjdw.jsp','wqxx1',900,500);
+	YMLib.UI.createWindow('wqxx1','资金到位情况','gcgzgjzjdw.jsp','wqxx1',900,500);
 	//window.open("gcgzgjzjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzgjzjdw__ck.jsp','wqxx1',900,500);
+	YMLib.UI.createWindow('wqxx1','资金到位情况','gcgzgjzjdw__ck.jsp','wqxx1',900,500);
 	//window.open("gcgzgjzjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzgjzjdwtj.jsp','wqxx',800,375);
+	YMLib.UI.createWindow('wqxx','资金到位添加','/jxzhpt/page/gcgl/cgszjdw/gcgzsj/gcgzsjzjdwtj.jsp','wqxx',800,375);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzgjzjdwxg.jsp','wqxx',800,375);
+	YMLib.UI.createWindow('wqxx','资金到位编辑','/jxzhpt/page/gcgl/cgszjdw/gcgzsj/gcgzsjzjdwxg.jsp','wqxx',800,375);
 }
+
 
 //添加车购税
 function tjgcgzgjcgs(){
@@ -88,7 +89,7 @@ function tjgcgzgjcgs(){
 				 parent.shezhi();
 				closes('wqxx');
 			}else{
-				alert('该月车购税可能已存在，保存失败！');
+				alert('该月资金可能已存在，保存失败！');
 			}
 		}
 	});	
@@ -331,6 +332,10 @@ function showAll__ck(){
 
 function showAllZJ(){
 	var jhid=parent.obj1.XMBM;
+	var sbzt="";
+	if($.cookie("unit2")=='_____36'){
+		sbzt="1";
+	}
 	$('#zjgrid').datagrid({    
 		url:'../../../../gcgl/selectXjCgsList.do',
 	    striped:true,
@@ -340,19 +345,43 @@ function showAllZJ(){
 	    pageSize:10,
 	    height:315,
 	    queryParams: {
-	    	jhid: jhid
+	    	jhid: jhid,
+	    	'gcglgcgzgj.sbzt': sbzt
 		},
 	    columns:[[
-				{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-					if(row.sbsj==""||row.sbyf>row.tbyf){
-		        		return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
-		        	}
-		        	else return '编辑   '+'删除';
+				{field:'c',title:'操作',width:230,align:'center',formatter:function(value,row,index){
+	        		if($.cookie("unit2")=='_____36'){
+	        			if(row.shzt==0){
+			        		return '<a href="#" onclick="editCgs('+index+')" style="color:#3399CC;">编辑</a>    '+'删除    '+'已上报    '+'<a href="javascript:zjbf_sh('+"'"+jhid+"','"+row.id+"'"+')" style="color:#3399CC;">未审核</a>    '+'<a href="javascript:zjbf_th('+"'"+jhid+"','"+row.id+"'"+')" style="color:#3399CC;">退回下级</a>    ';
+	        			}else{
+	        				return '编辑    '+'删除   '+'已上报    '+'已审核    '+'<a href="javascript:zjbf_thwsh('+"'"+jhid+"','"+row.id+"'"+')" style="color:#3399CC;">退回未审核</a>    ';
+	        			}
+	        		}else{
+	        			if(row.sbzt==0){
+	        				if(row.thyy==''||row.thyy==null)
+			        		return '<a href="#" onclick="editCgs('+index+')" style="color:#3399CC;">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')" style="color:#3399CC;">删除</a>   '+'<a href="javascript:zjbf_sb('+"'"+jhid+"','"+row.id+"'"+')" style="color:#3399CC;">未上报</a>    '+'未审核    '+'退回    ';
+	        				else return '<a href="#" onclick="editCgs('+index+')" style="color:#3399CC;">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')" style="color:#3399CC;">删除</a>   '+'<a href="javascript:zjbf_sb('+"'"+jhid+"','"+row.id+"'"+')" style="color:#3399CC;">未上报</a>    '+'未审核    '+'退回    '+'<a href="javascript:showStr('+"'"+row.thyy+"'"+')"  style="color:#3399CC;">退回原因</a>    ';
+
+	        			}else{
+	        				if(row.shzt==0){
+	        					return '编辑    '+'删除   '+'已上报    '+'未审核    '+'退回    ';
+	    	        		}else{
+	    	        			return '编辑    '+'删除   '+'已上报    '+'已审核    '+'退回    ';	    	        		}
+	        			}
+	        		}
+	        		
+					
 				}},
-				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
-				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
+				{field:'pfztz',title:'总投资(万元)',width:100,align:'center'},
+				{field:'cgsdwzj',title:'车购税(万元)',width:100,align:'center'},
 				{field:'gz',title:'国债(万元)',width:100,align:'center'},
 				{field:'sz',title:'省债(万元)',width:100,align:'center'},
+				{field:'zq',title:'债券(万元)',width:100,align:'center'},
+				{field:'dk',title:'厅贷款(万元)',width:100,align:'center'},
+				{field:'jl',title:'奖励(万元)',width:100,align:'center'},
+				{field:'qt',title:'其他(万元)',width:100,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:100,align:'center'},
+				{field:'yhdk',title:'银行贷款(万元)',width:100,align:'center'},
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},

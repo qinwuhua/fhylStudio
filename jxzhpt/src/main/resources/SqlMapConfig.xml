@@ -14,6 +14,7 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Dzdt" alias="dzdt"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.ProgBean" alias="pb"/>
      <!-- qwh begin -->
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.GcglXmjd" alias="gcglxmjd"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglbhsd" alias="gcglbhsd"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglabgc" alias="gcglabgc"/>
@@ -145,6 +146,7 @@
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/dzdt.xml"/>
 	<!-- qwh begin -->
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglxmjd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglbhsd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglwqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglabgc.xml"/>

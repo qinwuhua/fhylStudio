@@ -81,7 +81,7 @@ public class Plan_gcsj {
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
-	private String gndk;//国内贷款
+	private String gndk;//国内厅贷款
 	private String lywz;//利用外资
 	private String zyjsnr;//主要建设内容
 	private String xzscnl;//新增生产能力

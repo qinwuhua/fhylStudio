@@ -39,6 +39,8 @@
 	<action name="selectsfkwg" class="gcglwqgzController" method="selectsfkwg"/>
 	
 	<!-- abgc -->
+	
+	<action name="zjbf_sbshth" class="gcglabgcController" method="zjbf_sbshth"/>
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
 	<action name="selectAbgcYbByJhid" class="gcglabgcController" method="selectAbgcYbByJhid"/>
 	<action name="selectAbgcYbByJhid1" class="gcglabgcController" method="selectAbgcYbByJhid1"/>

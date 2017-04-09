@@ -20,7 +20,50 @@ public class Gcglgcgzgj implements Serializable {
 	private String sanji;//三级
 	private String siji;//四级
 	private String table;//四级
+	private String sbzt;
+	private String zq;
+	private String dk;
+	private String jl;
+	private String qt;
+	private String dfzc;
 	
+	
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
+	public String getZq() {
+		return zq;
+	}
+	public void setZq(String zq) {
+		this.zq = zq;
+	}
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getJl() {
+		return jl;
+	}
+	public void setJl(String jl) {
+		this.jl = jl;
+	}
+	public String getQt() {
+		return qt;
+	}
+	public void setQt(String qt) {
+		this.qt = qt;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
 	
 	public String getLqlmwcqk() {
 		return lqlmwcqk;

@@ -131,7 +131,7 @@
 				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},
-				{field:'dk',title:'贷款',width:100,align:'center'},
+				{field:'dk',title:'厅贷款',width:100,align:'center'},
 				/* {field:'bcztz',title:'总投资',width:100,align:'center',formatter:function(value,row,index){
 					return (parseFloat(row.sysbbzj)*100+parseFloat(row.dk)*100+parseFloat(row.rys)*100+parseFloat(row.yqdbcgs)*100)/100;
 				}},
@@ -485,7 +485,7 @@ text-decoration:none;
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
-            		贷款【<span id="dk" style="color: red;">0</span>】万元,
+            		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。
             		</div>

@@ -138,6 +138,9 @@
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
+		<if test="sbzt != null and  sbzt != ''">
+			and sbzt =#{sbzt}
+		</if>
 		order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -150,6 +153,9 @@
 		where 1=1
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
+		</if>
+		<if test="sbzt != null and  sbzt != ''">
+			and sbzt =#{sbzt}
 		</if>
 	</select>
 	<!-- 删除cgs -->

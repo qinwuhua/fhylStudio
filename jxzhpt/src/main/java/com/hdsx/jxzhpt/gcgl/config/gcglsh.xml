@@ -122,24 +122,38 @@
 	</update>
 	<!-- 添加车购税 -->
 	<insert id="insertShCgs" parameterType="gcglsh">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj
+		insert into GCGL_CGS(id
+		<if test="jhid != null">,jhid</if>
+		<if test="cgsdwzj != null">,cgsdwzj</if>
+		<if test="tbr != null">,tbr</if>
+		<if test="tbyf != null">,tbyf</if>
+		<if test="tbsj != null">,tbsj</if>
 		<if test="stz != null">,stz</if>
-		,cscyj<if test="sz != null">,sz</if>
+		<if test="sz != null">,sz</if>
 		<if test="gz != null">,gz</if>
-		<if test="yhdk != null">,yhdk</if>
+		<if test="dk != null">,dk</if>
 		<if test="pfztz != null">,pfztz</if>
 		<if test="zq != null">,zq</if>
 		<if test="jl != null">,jl</if>
+		<if test="sbzt != null">,sbzt</if>
+		<if test="shzt != null">,shzt</if>
 		<if test="qt != null">,qt</if>)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj}
+		values(sys_guid()
+		
+		<if test="jhid != null">,#{jhid}</if>
+		<if test="cgsdwzj != null">,#{cgsdwzj}</if>
+		<if test="tbr != null">,#{tbr}</if>
+		<if test="tbyf != null">,#{tbyf}</if>
+		<if test="tbsj != null">,#{tbsj}</if>
 		<if test="stz != null">,#{stz}</if>
-		,#{cscyj}
 		<if test="sz != null">,#{sz}</if>
 		<if test="gz != null">,#{gz}</if>
-		<if test="yhdk != null">,#{yhdk}</if>
+		<if test="dk != null">,#{dk}</if>
 		<if test="pfztz != null">,#{pfztz}</if>
 		<if test="zq != null">,#{zq}</if>
 		<if test="jl != null">,#{jl}</if>
+		<if test="sbzt != null">,#{sbzt}</if>
+		<if test="shzt != null">,#{shzt}</if>
 		<if test="qt != null">,#{qt}</if>)
 		</insert>
 	<select id="queryCGSByYf" parameterType="gcglsh" resultType="gcglsh">
@@ -174,12 +188,13 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateShCgs" parameterType="gcglsh">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},
-		cscyj=#{cscyj}
-		<if test="stz != null">,stz=#{stz}</if>
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		<if test="tbsj != null">,tbsj=#{tbsj}</if>
+		<if test="tbyf != null">,tbyf=#{tbyf}</if>
+		<if test="tbr != null">,tbr=#{tbr}</if>
 		<if test="sz != null">,sz=#{sz}</if>
 		<if test="gz != null">,gz=#{gz}</if>
-		<if test="yhdk != null">,yhdk=#{yhdk}</if>
+		<if test="dk != null">,dk=#{dk}</if>
 		<if test="pfztz != null">,pfztz=#{pfztz}</if>
 		<if test="zq != null">,zq=#{zq}</if>
 		<if test="jl != null">,jl=#{jl}</if>

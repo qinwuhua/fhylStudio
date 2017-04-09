@@ -4,9 +4,30 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Gcglgcgzsj implements Serializable {
-private String xmlx1;
-private String xmlxs;
-
+	private String xmlx1;
+	private String xmlxs;
+	private String sbzt;
+	private String dfzc;
+	private String dk;
+	
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
 	public String getXmlx1() {
 	return xmlx1;
 	}

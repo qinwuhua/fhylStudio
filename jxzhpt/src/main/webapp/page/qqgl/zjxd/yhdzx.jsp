@@ -219,7 +219,7 @@
 				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'ztz',title:'批复总投资',width:60,align:'center'},
 				{field:'rys',title:'燃油税',width:60,align:'center'},
-				{field:'dk',title:'贷款',width:60,align:'center'},
+				{field:'dk',title:'厅贷款',width:60,align:'center'},
 				{field:'qt',title:'其他',width:60,align:'center'},
 				{field:'jhxdwh',title:'计划下达文号',width:100,align:'center',
 					formatter: function(value,row,index){
@@ -503,7 +503,7 @@
 				{field:'bzxdnf',title:'下达年份',width:70,align:'center',editor:{type:'numberbox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzpfztz',title:'总投资',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzrys',title:'燃油税',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
-				{field:'bzdk',title:'贷款',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
+				{field:'bzdk',title:'厅贷款',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'bzqt',title:'其他',width:60,align:'center',editor:{type:'text',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				//{field:'bztbsj',title:'填报时间',width:70,align:'center',editor:{type:'datebox',options:{valueField:'xzqh',textField:'xzqh',required:false}}},
 				{field:'tbdw',title:'填报单位',width:100,align:'center',
@@ -844,7 +844,7 @@
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
-            		贷款【<span id="dk" style="color: red;">0</span>】万元,
+            		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方投资【<span id="dftz" style="color: red;">0</span>】万元。
             		</div>

@@ -351,7 +351,7 @@ a:active {
 									<tr>
 										<td rowspan="1" colspan="16">大中修规模（KM)</td>
 										<td rowspan="1" colspan="18">省统筹资金</td>
-										<td rowspan="1" colspan="18">贷款资金</td>
+										<td rowspan="1" colspan="18">厅贷款资金</td>
 										<td rowspan="1" colspan="10">本年完成工程量</td>
 										<td rowspan="1" colspan="10">累计完成工程量</td>
 										<td rowspan="3">本年完成投资（万元）</td>

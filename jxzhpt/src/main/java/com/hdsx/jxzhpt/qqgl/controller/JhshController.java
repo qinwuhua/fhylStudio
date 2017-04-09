@@ -1712,7 +1712,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		if(jhsh.getXmlx()<=3 || jhsh.getXmlx()==5){
 			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=批复总投资,fieid=pfztz>,<title=部补助资金,fieid=bbzzj>,<title=省补助资金,fieid=sbzzj>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=下达车购税,fieid=btzzj>,<title=下达省投资,fieid=stz>,<title=银行贷款,fieid=yhdk>,<title=国债,fieid=gz>,<title=国债债券,fieid=gzzq>,<title=省债,fieid=sz>,<title=省债债券,fieid=szzq>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}else if(jhsh.getXmlx()==4){
-			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=计划总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省统筹,fieid=stc>,<title=贷款,fieid=dk>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
+			fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=计划下达文号,fieid=xdwh>,<title=计划下达时间,fieid=xdsj>,<title=计划总投资,fieid=ztz>,<title=省以上补助资金,fieid=sysbbzj>,<title=已确定部车购税,fieid=yqdbcgs>,<title=下达年份,fieid=xdnf>,<title=总补助资金,fieid=xdzj>,<title=车购税资金,fieid=btzzj>,<title=省统筹,fieid=stc>,<title=厅贷款,fieid=dk>,<title=总投资,fieid=ztz>,<title=计划下达文号,fieid=jhxdwh>";
 		}
 		String xmbm = jhsh.getXmbm();
 		if(xmbm.indexOf(",")>-1){
@@ -2913,7 +2913,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		et.add(new Excel_tilte("合计",2,2,17,17));
 		et.add(new Excel_tilte("中央投资车购税",2,2,18,18));
 		et.add(new Excel_tilte("地方自筹",2,2,19,19));
-		et.add(new Excel_tilte("国内贷款",2,2,20,20));
+		et.add(new Excel_tilte("国内厅贷款",2,2,20,20));
 		et.add(new Excel_tilte("主要建设内容",2,2,21,21));
 		et.add(new Excel_tilte("新增能力",2,2,22,22));
 		et.add(new Excel_tilte("工可批复文号",2,2,23,23));

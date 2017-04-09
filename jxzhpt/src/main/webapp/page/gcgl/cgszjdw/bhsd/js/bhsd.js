@@ -21,25 +21,25 @@ function wqxiangxi1(index){
 function zjdw(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('bhxx1','车购税资金到位情况','bhsdzjdw.jsp','bhxx1',900,500);
+	YMLib.UI.createWindow('bhxx1','资金到位情况','bhsdzjdw.jsp','bhxx1',900,500);
 	//window.open("wqgzzjdw.jsp");
 }
 function zjdw__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw__ck.jsp','wqxx1',900,500);
+	YMLib.UI.createWindow('wqxx1','资金到位情况','wqgzzjdw__ck.jsp','wqxx1',900,500);
 	//window.open("wqgzzjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','bhsdzjdwtj.jsp','wqxx',700,250);
+	YMLib.UI.createWindow('wqxx','资金到位添加','bhsdzjdwtj.jsp','wqxx',700,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','wqgzzjdwxg.jsp','wqxx',700,250);
+	YMLib.UI.createWindow('wqxx','资金到位编辑','wqgzzjdwxg.jsp','wqxx',700,250);
 }
 //添加车购税
 function tjwqgzcgs(){
@@ -68,7 +68,7 @@ function tjwqgzcgs(){
 				parent.shezhi();
 				closes('wqxx');
 			}else{
-				alert('该月车购税可能已存在，保存失败！');
+				alert('该月资金可能已存在，保存失败！');
 			}
 		}
 	});	

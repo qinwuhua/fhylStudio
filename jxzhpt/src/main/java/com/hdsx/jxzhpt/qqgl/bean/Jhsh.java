@@ -19,7 +19,7 @@ public class Jhsh {
 	private String bzgz;//编制     国债
 	private String bzsz;//编制     省债
 	private String bzzq;//编制     债券
-	private String bzdk;//编制     贷款
+	private String bzdk;//编制     厅贷款
 	private String bzjl;//编制     奖励
 	private String bzqt;//编制     其他
 	private String bzdfzc;//编制     奖励

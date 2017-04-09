@@ -331,7 +331,7 @@
 				{field:'bzgz',title:'国债',width:50,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'bzsz',title:'省债',width:50,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'bzzq',title:'债券',width:50,align:'center',editor:{type:'text',options:{required:false}}},
-				{field:'bzdk',title:'贷款',width:50,align:'center',editor:{type:'text',options:{required:false}}},
+				{field:'bzdk',title:'厅贷款',width:50,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'bzjl',title:'奖励',width:50,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'bzqt',title:'其他',width:50,align:'center',editor:{type:'text',options:{required:false}}},
 				{field:'bzdfzc',title:'地方自筹',width:50,align:'center',editor:{type:'text',options:{required:false}}},

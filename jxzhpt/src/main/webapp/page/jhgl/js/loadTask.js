@@ -447,7 +447,7 @@ function importData_jh(flag){
 		alert(flag);
 		url="/jxzhpt/jhgl/importHsly_zjxd.do?gydwdm="+$.cookie("unit");
 	}
-	//YMLib.UI.createWindow('wqxx1','车购税资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
+	//YMLib.UI.createWindow('wqxx1','资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : '请选择EXCEL文档！',

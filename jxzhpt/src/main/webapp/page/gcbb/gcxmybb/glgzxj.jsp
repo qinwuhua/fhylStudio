@@ -618,7 +618,7 @@ text-decoration:none;
 										<td rowspan="3" style="width: 125px;">国债<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">省债<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">债券<br>(万元)</td>
-										<td rowspan="3" style="width: 125px;">贷款<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">厅贷款<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">奖励<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">其他<br>(万元)</td>
 										<td rowspan="3" style="width: 125px;">地方自筹<br>(万元)</td>
@@ -652,7 +652,7 @@ text-decoration:none;
 										<td rowspan="2" style="width: 125px;">国债</td>
 										<td rowspan="2" style="width: 125px;">省债</td>
 										<td rowspan="2" style="width: 125px;">债券</td>
-										<td rowspan="2" style="width: 125px;">贷款</td>
+										<td rowspan="2" style="width: 125px;">厅贷款</td>
 										<td rowspan="2" style="width: 125px;">奖励</td>
 										<td rowspan="2" style="width: 125px;">其他</td>
 										<td rowspan="2" style="width: 125px;">地方自筹</td>
@@ -665,7 +665,7 @@ text-decoration:none;
 										<td rowspan="2" style="width: 125px;">国债</td>
 										<td rowspan="2" style="width: 125px;">省债</td>
 										<td rowspan="2" style="width: 125px;">债券</td>
-										<td rowspan="2" style="width: 125px;">贷款</td>
+										<td rowspan="2" style="width: 125px;">厅贷款</td>
 										<td rowspan="2" style="width: 125px;">奖励</td>
 										<td rowspan="2" style="width: 125px;">其他</td>
 										<td rowspan="2" style="width: 125px;">地方自筹</td>

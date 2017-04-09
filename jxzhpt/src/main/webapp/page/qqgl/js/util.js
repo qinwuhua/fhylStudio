@@ -1115,7 +1115,7 @@ function queryZjxdyh(xmbm){
 		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stc',title : '省统筹',width : 150,align : 'center'}, 
-		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
 		{field : 'ztz',title : '总投资',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
@@ -1247,7 +1247,7 @@ function queryZjxdyhdzx(xmbm){
 		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'rys',title : '燃油税',width : 150,align : 'center'}, 
-		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
 		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '下达时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
@@ -1299,7 +1299,7 @@ function queryZjxdgsd(xmbm){
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
 		{field : 'zq',title : '债券',width : 150,align : 'center'}, 
-		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
 		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
 		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
@@ -1341,7 +1341,7 @@ function queryZjxdgsdzh(xmbm){
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
 		{field : 'zq',title : '债券',width : 150,align : 'center'}, 
-		{field : 'dk',title : '贷款',width : 150,align : 'center'}, 
+		{field : 'dk',title : '厅贷款',width : 150,align : 'center'}, 
 		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
 		

@@ -1821,19 +1821,24 @@
 		order by xzqhdm
 	 </select>
 	 <select id="queryAbxmYb" parameterType="String" resultType="gcglabgc">
- select  nvl(t2.jhyhlc,0) jhlc,nvl(t2.pfztz,0) ztz,nvl(t1.btz,0) btz,nvl(t1.stz,0) stz,nvl(t1.ztz,0) wcztz,nvl(t1.wcbtz,0) 
-wcbtz,nvl(t1.wcstz,0) wcstz,nvl(t1.bntz,0) bnztz,nvl(t1.wcyhlc,0) wcyhlc,nvl(t3.wcyhlc,0) bnwc
-from 
-plan_abgc t2
-left join
-(
-select  g.jhid, sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz) ztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz,
-sum(g.wc_btz)+sum(g.wc_stz) bntz,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g group by g.jhid) t1
-on  t2.id=t1.jhid
-left join(
-select g.jhid,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g   where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy') group by g.jhid
-) t3
-on  t2.id=t3.jhid
+ 		select  nvl(t2.jhyhlc,0) jhlc,nvl(t2.pfztz,0) ztz,nvl(t1.btz,0) btz,nvl(t1.stz,0) stz,nvl(t1.ztz,0) wcztz,nvl(t1.wcbtz,0) 
+		wcbtz,nvl(t1.wcstz,0) wcstz,nvl(t1.bntz,0) bnztz,nvl(t1.wcyhlc,0) wcyhlc,nvl(t3.wcyhlc,0) bnwc
+		from 
+		plan_abgc t2
+		left join
+		(
+		select  g.jhid, sum(g.zjdw_btz) btz,sum(g.zjdw_stz) stz,sum(g.zjdw_btz)+sum(g.zjdw_stz)+sum(g.zjdw_qttz) ztz,sum(g.wc_btz) wcbtz,sum(g.wc_stz) wcstz,
+		sum(g.wc_btz)+sum(g.wc_stz) bntz,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g group by g.jhid) t1
+		on  t2.id=t1.jhid
+		left join(
+		select g.jhid,sum(g.bywc_gl) wcyhlc from GCGL_ABGC g   where substr(g.sbyf,0,4)=to_char(sysdate,'yyyy') group by g.jhid
+		) t3
+		on  t2.id=t3.jhid
 		where t2.id=#{value}
 	 </select>
+	 
+	 <update id="zjbf_sbshth" parameterType="gcglabgc">
+	 	update gcgl_cgs set sbzt=#{sbzt},shzt=#{shzt},cscyj=#{cscyj},
+	 	thyy=#{thyy} where jhid=#{jhid} and id=#{id}
+	 </update>
 </mapper>

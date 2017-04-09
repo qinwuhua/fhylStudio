@@ -129,7 +129,7 @@
 				{field:'zdzh1',title:'原止点桩号',width:100,align:'center'},
 				{field:'ztz',title:'总投资',width:100,align:'center'},
 				{field:'rys',title:'燃油税',width:100,align:'center'},
-				{field:'dk',title:'贷款',width:100,align:'center'},
+				{field:'dk',title:'厅贷款',width:100,align:'center'},
 				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
 				//{field:'gq',title:'工期（月）',width:60,align:'center'},
 // 				{field:'tz',title:'总投资',width:60,align:'center'},
@@ -453,7 +453,7 @@ text-decoration:none;
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
-            		贷款【<span id="dk" style="color: red;">0</span>】万元,
+            		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
             		地方投资【<span id="dftz" style="color: red;">0</span>】万元,
             		回收资金【<span id="hszj" style="color: red;">0</span>】万元。

@@ -76,14 +76,14 @@ a:active {
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
                                 width: 25%;; padding-left: 10px;">
-                                车购税资金到位情况
+                                资金到位情况
                             </td>
                         </tr>
                         <tr style="height: 30px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                车购税资金到位
+                                资金到位
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"

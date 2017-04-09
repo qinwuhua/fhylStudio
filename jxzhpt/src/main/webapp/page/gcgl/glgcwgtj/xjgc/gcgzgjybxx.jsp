@@ -82,7 +82,7 @@ text-decoration: none;
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
                                 width: 25%;; padding-left: 10px;">
-                                车购税资金到位情况
+                                资金到位情况
                             </td>
                         </tr>
                       <tr style="height: 30px;">

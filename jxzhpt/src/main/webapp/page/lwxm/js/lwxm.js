@@ -314,7 +314,7 @@ function importData_sc(flag){
 	if(flag=='bhsd_sc'){
 		url="/jxzhpt/xmsck/importBhsd_sc.do";
 	}
-	//YMLib.UI.createWindow('wqxx1','车购税资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
+	//YMLib.UI.createWindow('wqxx1','资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : '请选择EXCEL文档！',

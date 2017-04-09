@@ -148,6 +148,9 @@
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
+		<if test="sbzt != null and  sbzt != ''">
+			and t1.sbzt =#{sbzt}
+		</if>
 		order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -161,6 +164,9 @@
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
+		<if test="sbzt != null and  sbzt != ''">
+			and sbzt =#{sbzt}
+		</if>
 	</select>
 	<!-- 删除cgs -->
 	<delete id="deleteGcgzgjCgs" parameterType="gcglgcgzgj">
@@ -168,7 +174,19 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzgjCgs" parameterType="gcglgcgzgj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbsj=#{tbsj},tbyf=#{tbyf},cscyj=#{cscyj}<if test="stz != null">,stz=#{stz}</if><if test="sz != null">,sz=#{sz}</if><if test="gz != null">,gz=#{gz}</if><if test="yhdk != null">,yhdk=#{yhdk}</if>
+		update GCGL_CGS set 
+		<if test="cgsdwzj != null">cgsdwzj=#{cgsdwzj}</if>
+		<if test="tbsj != null">,tbsj=#{tbsj}</if>
+		<if test="tbyf != null">,tbyf=#{tbyf}</if>
+		<if test="tbr != null">,tbr=#{tbr}</if>
+		<if test="sz != null">,sz=#{sz}</if>
+		<if test="gz != null">,gz=#{gz}</if>
+		<if test="zq != null">,zq=#{zq}</if>
+		<if test="dk != null">,dk=#{dk}</if>
+		<if test="jl != null">,jl=#{jl}</if>
+		<if test="qt != null">,qt=#{qt}</if>
+		<if test="dfzc != null">,dfzc=#{dfzc}</if>
+		<if test="yhdk != null">,yhdk=#{yhdk}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->

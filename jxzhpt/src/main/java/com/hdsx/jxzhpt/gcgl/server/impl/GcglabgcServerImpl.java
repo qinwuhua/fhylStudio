@@ -463,5 +463,10 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public List<Gcglabgc> selAbgcZgYbByJhid(Gcglabgc gcglabgc) {
 		return queryList("selAbgcZgYbByJhid", gcglabgc);
 	}
+
+	@Override
+	public boolean zjbf_sbshth(Gcglabgc gcglabgc) {
+		return update("zjbf_sbshth", gcglabgc)>0;
+	}
 	
 }

@@ -966,7 +966,7 @@ public class GcbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("合计",3,4,16,16));
 				et.add(new Excel_tilte("中央车购税",3,4,17,17));
 				et.add(new Excel_tilte("地方配套",3,4,18,19));
-				et.add(new Excel_tilte("省厅贴息(贷款)",3,4,20,20));
+				et.add(new Excel_tilte("省厅贴息(厅贷款)",3,4,20,20));
 				et.add(new Excel_tilte("其他资金",3,4,21,21));
 				et.add(new Excel_tilte("按技术等级",3,3,24,28));
 				et.add(new Excel_tilte("按路面类型",3,3,29,30));

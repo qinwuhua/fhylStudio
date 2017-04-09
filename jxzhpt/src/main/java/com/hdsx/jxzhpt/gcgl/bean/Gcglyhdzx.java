@@ -9,21 +9,35 @@ public class Gcglyhdzx implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private String jgys;
-private String xdzj;
-private String bfzj;
-
-
-
-public String getXdzj() {
-	return xdzj;
-}
-public void setXdzj(String xdzj) {
-	this.xdzj = xdzj;
-}
-public String getBfzj() {
-	return bfzj;
-}
+	private String jgys;
+	private String xdzj;
+	private String bfzj;
+	private String sbzt;
+	private String dk;
+	
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	
+	
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getBfzj() {
+		return bfzj;
+	}
 	public String getJgys() {
 		return jgys;
 	}
@@ -145,7 +159,7 @@ public String getBfzj() {
 	private String jhwgsj;
 	private String xdsj;
 	
-	//燃油税，贷款，其他
+	//燃油税，厅贷款，其他
 	private String rys;
 	private String yhdk;
 	private String qt;

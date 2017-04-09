@@ -414,16 +414,16 @@
 	 	and	to_date(sbyf,'yyyy-mm')&gt;to_date(#{sbyf},'yyyy-mm') 
 	 </select>	 
 	 <select id="selectwqzj1" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(cgsdwzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) zbfzj from gcgl_cgs where jhid=#{jhid}
+	 	select nvl(sum(cgsdwzj),0)+nvl(sum(stz),0)+nvl(sum(yhdk),0)+nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(dk),0)+nvl(sum(jl),0)+nvl(sum(qt),0)+nvl(sum(rys),0)+nvl(sum(dfzc),0) zbfzj from gcgl_cgs where jhid=#{jhid}
 	 </select>
 	  <select id="selectwqzj2" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(cgsdwzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) nbfzj from gcgl_cgs where jhid=#{jhid} and tbyf like #{nf}||'%'
+	 	select nvl(sum(cgsdwzj),0)+nvl(sum(stz),0)+nvl(sum(yhdk),0)+nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(dk),0)+nvl(sum(jl),0)+nvl(sum(qt),0)+nvl(sum(rys),0)+nvl(sum(dfzc),0) nbfzj from gcgl_cgs where jhid=#{jhid} and tbyf like #{nf}||'%'
 	 </select>
 	  <select id="selectwqzj3" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(btzzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) nxdzj from PLAN_ZJXD where xmid=#{id} and xdnf like #{nf}||'%'
+	 	select nvl(sum(btzzj),0)+nvl(sum(stz),0)+nvl(sum(yhdk),0)+nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(dk),0)+nvl(sum(jl),0)+nvl(sum(qt),0)+nvl(sum(rys),0)+nvl(sum(dfzc),0) nxdzj from PLAN_ZJXD where xmid=#{id} and xdnf like #{nf}||'%'
 	 </select>
 	 <select id="selectwqzj4" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(btzzj)+sum(stz)+sum(yhdk)+sum(gz)+sum(sz) zxdzj from PLAN_ZJXD where xmid=#{id}
+	 	select nvl(sum(btzzj),0)+nvl(sum(stz),0)+nvl(sum(yhdk),0)+nvl(sum(gz),0)+nvl(sum(sz),0)+nvl(sum(zq),0)+nvl(sum(dk),0)+nvl(sum(jl),0)+nvl(sum(qt),0)+nvl(sum(rys),0)+nvl(sum(dfzc),0) zxdzj from PLAN_ZJXD where xmid=#{id}
 	 </select>
 	 <select id="selectwqzj5" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,'0' yhdk,'0' gz,'0' sz from ${tablename} where jhid=#{id}

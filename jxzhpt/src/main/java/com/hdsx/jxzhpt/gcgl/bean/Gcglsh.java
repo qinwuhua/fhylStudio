@@ -18,7 +18,22 @@ public class Gcglsh implements Serializable {
 	private String erji;//二级
 	private String sanji;//三级
 	private String siji;//四级
+	private String sbzt;
+	private String dk;
 	
+	
+	public String getDk() {
+		return dk;
+	}
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
 	public String getLqlmwcqk() {
 		return lqlmwcqk;
 	}

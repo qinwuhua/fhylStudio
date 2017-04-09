@@ -132,7 +132,14 @@ public class Gcglbhsd implements Serializable {
 	private String thyy;
 	private String zgthyy;
 	private Date zgshtime;
+	private String sbzt;
 	
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
 	public String getZgshzt() {
 		return zgshzt;
 	}

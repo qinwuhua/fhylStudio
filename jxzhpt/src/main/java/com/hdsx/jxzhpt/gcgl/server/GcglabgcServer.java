@@ -116,6 +116,8 @@ public interface GcglabgcServer {
 	int selAbgcZgYbByJhidCount(Gcglabgc gcglabgc);
 
 	List<Gcglabgc> selAbgcZgYbByJhid(Gcglabgc gcglabgc);
+
+	boolean zjbf_sbshth(Gcglabgc gcglabgc);
 	
 
 }
