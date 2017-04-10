@@ -35,8 +35,11 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
+			var tbyf="";
+			if(m<=9){tbyf += y+"-0"+m;}
+			else{tbyf += y+"-"+m;}
 			$('#ddlMonth').simpleCanleder();
-			$('#ddlMonth').val(y+"-"+m);
+			$('#ddlMonth').val(tbyf);
 			//gcglxmnf("ddlYear");
 			var urlid=getUrlParame('id');
 			urlxmnf("ddlYear",urlid);

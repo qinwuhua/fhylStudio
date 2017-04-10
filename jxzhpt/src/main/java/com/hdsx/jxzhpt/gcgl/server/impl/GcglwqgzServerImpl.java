@@ -363,9 +363,7 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		Gcglwqgz gcglwqgz3 = queryOne("selectwqzj3", gcglwqgz);
 		Gcglwqgz gcglwqgz4 = queryOne("selectwqzj4", gcglwqgz);
 		Gcglwqgz gcglwqgz5=null;
-		if("gcgl_gcgzsj".equals(gcglwqgz.getTablename())){
-			gcglwqgz5 = queryOne("selectwqzj6", gcglwqgz);
-		}else if("gcgl_gcgzgj".equals(gcglwqgz.getTablename())||"gcgl_xj".equals(gcglwqgz.getTablename())||"gcgl_sh".equals(gcglwqgz.getTablename())){
+		if("gcgl_gcgzsj".equals(gcglwqgz.getTablename())||"gcgl_gcgzgj".equals(gcglwqgz.getTablename())||"gcgl_xj".equals(gcglwqgz.getTablename())||"gcgl_sh".equals(gcglwqgz.getTablename())){
 			gcglwqgz5 = queryOne("selectwqzj7", gcglwqgz);
 		}else{
 			gcglwqgz5 = queryOne("selectwqzj5", gcglwqgz);

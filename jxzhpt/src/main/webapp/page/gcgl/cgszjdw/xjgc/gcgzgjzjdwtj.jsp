@@ -22,12 +22,14 @@
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 		var d = myDate.getDate();
-		tbsj = y+"-"+m+"-"+d;
-		tbyf = y+"-"+m;
+		var tbsj="";var tbyf="";
+		if(m<=9){tbsj += y+"-0"+m;tbyf += y+"-0"+m;}
+		else{tbsj += y+"-"+m;tbyf += y+"-"+m;}
+		if(d<=9){tbsj+="-0"+d;}else{tbsj+="-"+d;}
 		$("#tj_tbr").text($.cookie("truename"));
 		$("#tj_tbsj").val(tbsj);
 		$('#tbyf').simpleCanleder();
-		$('#tbyf').val(y+"-"+m);
+		$('#tbyf').val(tbyf);
 	});
 	function checkZJ(str1){
 		var str=str1.value;

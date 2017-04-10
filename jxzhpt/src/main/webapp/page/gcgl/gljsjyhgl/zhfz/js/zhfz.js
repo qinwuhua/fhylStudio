@@ -48,13 +48,13 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb.jsp','wqxx1',950,467);
 	//window.open("zhfzyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb__ck.jsp','wqxx1',950,467);
 	//window.open("zhfzyb.jsp");
 }
 

@@ -90,7 +90,7 @@ public class GcglXmjd {
 
     private String tbsj;
 
-    private String tbyf;
+    private String ybyf;
 
     private String sbzt;
 
@@ -475,12 +475,12 @@ public class GcglXmjd {
 		this.tbsj = tbsj;
 	}
 
-	public String getTbyf() {
-		return tbyf;
+	public String getYbyf() {
+		return ybyf;
 	}
 
-	public void setTbyf(String tbyf) {
-		this.tbyf = tbyf;
+	public void setYbyf(String ybyf) {
+		this.ybyf = ybyf;
 	}
 
 	public String getSbzt() {
@@ -547,7 +547,7 @@ public class GcglXmjd {
 				+ ", erlc=" + erlc + ", sanlc=" + sanlc + ", silc=" + silc
 				+ ", lq=" + lq + ", sn=" + sn + ", bndsslc=" + bndsslc
 				+ ", ssdctc=" + ssdctc + ", wwcgcl=" + wwcgcl + ", qksm="
-				+ qksm + ", tbr=" + tbr + ", tbsj=" + tbsj + ", tbyf=" + tbyf
+				+ qksm + ", tbr=" + tbr + ", tbsj=" + tbsj + ", ybyf=" + ybyf
 				+ ", sbzt=" + sbzt + ", shzt=" + shzt + ", shyj=" + shyj
 				+ ", zgshzt=" + zgshzt + ", zgshyj=" + zgshyj + ", thyy="
 				+ thyy + "]";

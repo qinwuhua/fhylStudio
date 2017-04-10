@@ -91,25 +91,25 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb__ck.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function ybsb1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb1.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb1.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function ybsb1__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb1__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb1__ck.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){

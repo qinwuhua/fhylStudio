@@ -205,12 +205,12 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',950,467);
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb__ck.jsp','wqxx1',950,467);
 }
 function AddInfo(){
 	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',800,340);

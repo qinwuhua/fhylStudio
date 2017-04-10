@@ -76,13 +76,13 @@ function wangong(index,xmlx){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','月报信息','abgcyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','月报信息','abgcyb.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','安保工程月报信息','abgcyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','安保工程月报信息','abgcyb__ck.jsp','wqxx1',950,467);
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){

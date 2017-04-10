@@ -34,8 +34,12 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
+			var tbsj="";var tbyf="";
+			if(m<=9){tbsj += y+"-0"+m;tbyf += y+"-0"+m;}
+			else{tbsj += y+"-"+m;tbyf += y+"-"+m;}
+			if(d<=9){tbsj+="-0"+d;}else{tbsj+="-"+d;}
 			$('#ddlMonth').simpleCanleder();
-			$('#ddlMonth').val(y+"-"+m);
+			$('#ddlMonth').val(tbyf);
 			gcglxmnf("ddlYear");
 			showAll();
 		});

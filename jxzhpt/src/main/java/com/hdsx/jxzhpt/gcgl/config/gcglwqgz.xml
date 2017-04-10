@@ -429,7 +429,10 @@
 	 	select sum(wc_btz)+sum(wc_stz)+sum(wc_qttz) zwczj,sum(wc_btz) zwcbtz,sum(wc_stz) zwcstz,'0' yhdk,'0' gz,'0' sz from ${tablename} where jhid=#{id}
 	 </select>
 	 <select id="selectwqzj7" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select sum(wc_btz)+sum(wc_qttz)+sum(yhdk)+sum(gz)+sum(sz) zwczj,sum(wc_btz) zwcbtz,'0' zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}
+	 	select sum(nvl(wccgs,0))+sum(nvl(wcgz,0))+sum(nvl(wcsz,0))+sum(nvl(wczq,0))+sum(nvl(wcdk,0))+sum(nvl(wcjl,0))+sum(nvl(wcqt,0))+sum(nvl(wcyhdk,0))+sum(nvl(wcdfzc,0))+sum(nvl(wcrys,0)) zwczj,
+		sum(wccgs) zwcbtz,'0' zwcstz,sum(wcyhdk) yhdk,sum(wcgz) gz,sum(wcsz) sz
+		from gcgl_xmjd
+		where xmbm=#{id}
 	 </select>
 	 <select id="selectwqzj6" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sum(bywctze)+sum(yhdk)+sum(gz)+sum(sz) zwczj,'0' zwcbtz,'0' zwcstz,sum(yhdk) yhdk,sum(gz) gz,sum(sz) sz from ${tablename} where jhid=#{id}

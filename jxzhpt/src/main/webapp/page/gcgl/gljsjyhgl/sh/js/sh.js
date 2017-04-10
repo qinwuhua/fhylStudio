@@ -226,13 +226,13 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾毁重建项目月报上报','shyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','项目月报信息','/jxzhpt/page/gcgl/gljsjyhgl/gcjdyb.jsp','wqxx1',950,467);
 	//window.open("shyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾毁重建项目月报上报','shyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','灾毁重建项目月报上报','shyb__ck.jsp','wqxx1',950,467);
 	//window.open("shyb.jsp");
 }
 

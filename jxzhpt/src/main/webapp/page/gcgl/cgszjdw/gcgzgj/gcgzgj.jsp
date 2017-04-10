@@ -34,8 +34,12 @@
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
+			var tbsj="";var tbyf="";
+			if(m<=9){tbsj += y+"-0"+m;tbyf += y+"-0"+m;}
+			else{tbsj += y+"-"+m;tbyf += y+"-"+m;}
+			if(d<=9){tbsj+="-0"+d;}else{tbsj+="-"+d;}
 			$('#ddlMonth').simpleCanleder();
-			$('#ddlMonth').val(y+"-"+m);
+			$('#ddlMonth').val(tbyf);
 			gcglxmnf("ddlYear");
 			showAll();
 		});

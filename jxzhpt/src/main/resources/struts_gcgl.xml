@@ -3,7 +3,15 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
-
+	
+	
+	<action name="selectYbByxmbm" class="gcglxmjdController" method="selectYbByxmbm"/>
+	<action name="getbyzjdw" class="gcglxmjdController" method="getbyzjdw"/>
+	<action name="insertYb" class="gcglxmjdController" method="insertYb"/>
+	<action name="updateYb" class="gcglxmjdController" method="updateYb"/>
+	<action name="deleteYb" class="gcglxmjdController" method="deleteYb"/>
+	<action name="updateYbzt" class="gcglxmjdController" method="updateYbzt"/>
+	
 	<action name="queryGcglwqtjInYb" class="gcglwqgzController" method="queryGcglwqtjInYb"/>
 	<action name="ybyshbwsh" class="gcglwqgzController" method="ybyshbwsh"/>
 	<action name="zgybyshbwsh" class="gcglwqgzController" method="zgybyshbwsh"/>

@@ -49,7 +49,7 @@ function wwangong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','病害隧道月报信息','bhsdyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','病害隧道月报信息','bhsdyb.jsp','wqxx1',950,467);
 }
 function AddInfo(){
 	var unit=$.cookie("unit2").length;

@@ -92,13 +92,13 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb.jsp','wqxx1',950,467);
 	//window.open("gcgzgjyb.jsp");
 }
 function ybsb__ck(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb__ck.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb__ck.jsp','wqxx1',950,467);
 	//window.open("gcgzgjyb.jsp");
 }
 function AddInfo(index){

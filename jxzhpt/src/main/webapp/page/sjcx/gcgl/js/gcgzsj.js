@@ -92,7 +92,7 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','升级改造工程项目月报信息','gcgzsjyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','升级改造工程项目月报信息','gcgzsjyb.jsp','wqxx1',950,467);
 	//window.open("gcgzsjyb.jsp");
 }
 function AddInfo(){

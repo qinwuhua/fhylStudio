@@ -121,7 +121,7 @@
 				var $li = $("<li/>").append($inner).click(function(){
 					var year = canlederBox.find(_title_ul_li).eq(1).find("select").val();
 					var month = $(this).find("div.inner").text() * 1;
-					//month = month < 10 ? "0" + month : month;
+					month = month < 10 ? "0" + month : month;
 					canlederBox.data("box").val(year + "-" + month);
 					canlederBox.hide();
 				});
@@ -140,7 +140,7 @@
 			var $button_clear = $("<button/>").addClass("clear").click(function(){
 				canlederBox.data("box").val("");
 				canlederBox.hide();
-			}).text("clear");
+			}).text("清空");
 			var $bottom = $("<div/>").addClass("bottom").append($button_clear);
 			canlederBox.append($bottom);
 			
