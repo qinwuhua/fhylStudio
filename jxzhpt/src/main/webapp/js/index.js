@@ -29,6 +29,7 @@ function login(){
 			success : function(msg){
 				if(msg){
 		     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
+		     		$.cookie("name",msg.NAME, {expires: 1});//将用户名放入cookie中
 		     		$.cookie("unit",msg.UNIT, {expires: 1});
 		     		var unit2=msg.UNIT;
 		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);

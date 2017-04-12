@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
 	<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 	<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="../../../js/jquery-form.js"></script>
 	<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
@@ -58,10 +60,23 @@
 				data:'cbsj.xmlx='+4+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
-					$('#cbsj').form("load",data);
+					$('#cbsj1').form("load",data);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
-					$("#cbsj textarea[id='jsfa']").attr("disabled","disabled");
+					if(data.xfchd=='是'){
+						$("#xfcse1").attr('checked','checked');
+					}
+					if(data.snhntmchbhd=='是'){
+						$("#snhntmchbse1").attr('checked','checked');
+					}
+					if(data.bxhd=='是'){
+						$("#bxse1").attr('checked','checked');
+					}
+					if(data.snhntmcsshhd=='是'){
+						$("#snhntmcsshse1").attr('checked','checked');
+					}
+					$("#sbzj11").html(data.sbzj);
+					$("#sbzj1").val(data.sbzj);
 				}
 			});
 			$.ajax({
@@ -82,36 +97,40 @@
 			//
 			//getghxx(parent.YMLib.Var.xmbm);
 		});
-		function getghxx(xmid){
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/qqgl/getghxx.do',
-				data:"xmsq.xmbm="+xmid+"&xmsq.jsxz=jh",
-				dataType:'json',
-				success:function(msg){
-					$("#ghlx").html(msg.ghlxbm);
-					
+		function loadFileUpload(){
+			$("#uploadSjpf").uploadify({
+				/*注意前面需要书写path的代码*/
+				'uploader' : '../../../js/uploader/uploadify.swf',
+				'script' : '../../../qqgl/uploadSjpf.do',
+				'cancelImg' : '../../../js/uploader/cancel.png',
+				'queueID' : 'fileQueue',
+				'fileDataName' : 'uploadSjpf',
+				'auto' : false,
+				'multi' : false,
+				'buttonImg': '../../../js/uploader/bdll.png',
+				'simUploadLimit' : 3,
+				'sizeLimit' : 100000000,
+				'queueSizeLimit' : 5,
+				'fileDesc' : '支持格式:xls',
+				'fileExt' : '',
+				'height' : 30,
+				'width' : 92,
+				'scriptData' : {
+					'cbsj.xmbm':parent.YMLib.Var.xmbm
 				},
-				error : function(){
-				 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
-			 }
-			});	
-		}
-		function getghxxone(xmid,qdzh,zdzh){
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/qqgl/getghxxbyone.do',
-				data:"xmsq.xmbm="+xmid+"&xmsq.qdzh="+qdzh+"&xmsq.zdzh="+zdzh+"&xmsq.jsxz=jh",
-				dataType:'json',
-				success:function(msg){
-					$("#ghlxbm").val(msg.ghlxbm);
-					$("#ghqdzh").val(msg.ghqdzh);
-					$("#ghzdzh").val(msg.ghzdzh);
+				onComplete : function(event, queueID, fileObj, response, data) {
+					alert(response);
+					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 				},
-				error : function(){
-				 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
-			 }
-			});	
+				onError : function(event, queueID, fileObj) {
+					alert("文件:" + fileObj.name + "上传失败");
+				},
+				onCancel : function(event, queueID, fileObj) {
+				},
+				onQueueFull : function(event, queueSizeLimit) {
+					alert("最多支持上传文件数为：" + queueSizeLimit);
+				}
+			});
 		}
 	</script>
 </head>
@@ -653,7 +672,7 @@
             
 		</table>
 		</form>
-		<form id="cbsj" action="../../../qqgl/updateCbsj.do">
+		<form id="cbsj1" action="../../../qqgl/updateCbsj.do">
 			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
@@ -698,10 +717,10 @@
 						<input id="jsjsdj" name="jsjsdj" style="width: 120px;" type="text"/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						建设性质
+						路线编码
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jsxz" name="jsxz" style="width: 120px;" type="text"/>
+						<input id="ylxbh" name="ylxbh" type="text" style="width:120px;"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -709,17 +728,32 @@
 						起点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="qdzh" name="qdzh" style="width:120px;" type="text"/>
+						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="zdzh" name="zdzh" style="width: 120px;" type="text"/>
+						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						里程
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="lc" name="lc" onchange="querymc('zdzh')" style="width: 100px;" type="text"/>&nbsp; Km
+					</td>
+				</tr>
+				<tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						技术等级及里程
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						高速公路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -762,7 +796,7 @@
 						<input id="dc_lc" name="dc_lc" style="width:125px;" type="text"/>
 					</td>
 				</tr>
-				<tr style="height: 30px;">
+				<!-- <tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						开工时间
 					</td>
@@ -781,7 +815,7 @@
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="gq" name="gq" style="width:120px;" type="text"/>
 					</td>
-				</tr>
+				</tr> -->
 				<tr style="height: 30px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						设计单位
@@ -802,6 +836,46 @@
 						<input id="pfsj" name="pfsj" style="width:120px;" class="easyui-datebox" type="text"/>
 					</td>
 				</tr>
+				<tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设性质
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="jsxz" name="jsxz" style="width:120px;" type="text"/>
+					</td>
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						工期（月）
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="gq" name="gq" style="width:120px;" type="text"/>
+					</td>					
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						施工图预算(万元)
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="tz" name="tz" style="width:120px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 30px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						开工时间
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="kgsj" name="kgsj" style="width:125px;" class="easyui-datebox" type="text"/>
+					</td>
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+						完工时间
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="wgsj" name="wgsj" style="width: 125px;" class="easyui-datebox" type="text"/>
+					</td>
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+						建安费（万元）
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<input id="jaf" name="jaf" style="width:120px;" type="text"/>					
+					</td>
+				</tr> 
 				<tr style="height: 70px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						建设方案
@@ -810,16 +884,327 @@
 						<textarea id="jsfa" name="jsfa" style="width: 650px;height: 50px;"></textarea>
 					</td>
 				</tr>
-				<tr style="height: 30px;">
-					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						设计批复文件
+				<tbody id='bzsf'>
+	            <tr>
+	            	<td rowspan="5" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						面层</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青混凝土面层
 					</td>
-					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-							<tbody id="sjpfTable"></tbody>
-						</table>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqhntmcdj1">1150</span>元/立方米
 					</td>
-				</tr>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：70号重胶沥青
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqhntmchd1' value='0' onchange="jsbzzj('lqhntmc')" name='lqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqhntmc1' name='lqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						改性沥青混凝土面层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="gxlqhntmcdj1">1300</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：SBS
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='gxlqhntmchd1' value='0' onchange="jsbzzj('gxlqhntmc')" name='gxlqhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='gxlqhntmc1' name='gxlqhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+            	<tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						水泥混凝土面层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="snhntmcdj1">450</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='snhntmchd1' value='0' onchange="jsbzzj('snhntmc')" name='snhntmchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='snhntmc1' name='snhntmc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青路面就地热再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqlmjdrzsdj1">1250</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqlmjdrzshd1' value='0' onchange="jsbzzj('lqlmjdrzs')" name='lqlmjdrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqlmjdrzs1' name='lqlmjdrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青路面场拌热再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqlmcbrzsdj1">950</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqlmcbrzshd1' value='0' onchange="jsbzzj('lqlmcbrzs')" name='lqlmcbrzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqlmcbrzs1' name='lqlmcbrzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td rowspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						基层</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						水稳基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="swjcdj1">200</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：5MP
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='swjchd1' value='0' onchange="jsbzzj('swjc')" name='swjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='swjc1' name='swjc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青路面泡沫沥青就地冷再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqlmpmlqjdlzsdj1">600</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：作柔性基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqlmpmlqjdlzshd1' value='0' onchange="jsbzzj('lqlmpmlqjdlzs')" name='lqlmpmlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqlmpmlqjdlzs1' name='lqlmpmlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青路面乳化沥青就地冷再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqlmrhlqjdlzsdj1">700</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：作柔性基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqlmrhlqjdlzshd1' value='0' onchange="jsbzzj('lqlmrhlqjdlzs')" name='lqlmrhlqjdlzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqlmrhlqjdlzs1' name='lqlmrhlqjdlzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						沥青路面场拌冷再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="lqlmcblzsdj1">650</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：作柔性基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='lqlmcblzshd1' value='0' onchange="jsbzzj('lqlmcblzs')" name='lqlmcblzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='lqlmcblzs1' name='lqlmcblzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						新做柔性基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="xzrxjcdj1">800</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='xzrxjchd1' value='0' onchange="jsbzzj('xzrxjc')" name='xzrxjchd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='xzrxjc1' name='xzrxjc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						水稳基层冷再生
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="swjclzsdj1">170</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input id='swjclzshd1' value='0' onchange="jsbzzj('swjclzs')" name='swjclzshd' type="text" class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='swjclzs1' name='swjclzs' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						下封层</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						下封层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="xfcdj1">8</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：5MP
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='xfcse1' onclick="jsbzzj('xfc')" type="checkbox"/>
+						<input type="hidden" id='xfchd1' name='xfchd'>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='xfc1' name='xfc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td rowspan="2" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						挖除面层与基层</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						挖除水泥面板
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="wcsnmbdj1">100</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：5MP
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input type="text" value='0' onchange="jsbzzj('wcsnmb')" id='wcsnmbhd1' name='wcsnmbhd' class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='wcsnmb1' name='wcsnmb' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr >
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						挖除水稳基层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="wcswjcdj1">30</span>元/立方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						厚度：<input type="text" value='0' onchange="jsbzzj('wcswjc')" id='wcswjchd1' name='wcswjchd' class="easyui-numberbox" style="width:50px;"/>cm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='wcswjc1' name='wcswjc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						打板</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						水泥混凝土面层换板
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="snhntmchbdj1">160</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='snhntmchbse1' onclick="jsbzzj('snhntmchb')" type="checkbox"/>
+						<input type="hidden" id='snhntmchbhd1' name='snhntmchbhd'>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='snhntmchb1' name='snhntmchb' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						标线</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						标线
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：二级及以下  <span id="bxerdj1">10000</span>元/公里,一级<span id="bxyidj1">15000</span>元/公里
+						
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：中修打板不计
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bxse1' onclick="jsbzzj('bx')" type="checkbox"/>
+						<input type="hidden" id='bxhd1' name='bxhd'>
+						
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bx1' name='bx' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						碎石化</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						水泥混凝土面层碎石化
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="snhntmcsshdj1">8</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='snhntmcsshse1' onclick="jsbzzj('snhntmcssh')" type="checkbox"/>
+						<input type="hidden" id='snhntmcsshhd1' name='snhntmcsshhd'>
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='snhntmcssh1' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr style="height: 30px;">
+	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						省补资金</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<span id='sbzj11'></span>万元
+						<input type="hidden" id='sbzj1' name="sbzj">
+					</td>
+					
+	            </tr>
+	            
+            </tbody>
 			</table>
 		</form>
 		<form id="jhshForm" action="">

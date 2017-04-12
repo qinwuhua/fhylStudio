@@ -2161,7 +2161,12 @@ public class GcybbController extends BaseActionSupport{
 				Excel_export.excel_exportGlgzxj(eldata,response);
 				
 			}else{
-				String shijian=nf+"-"+yf;
+				String shijian="";
+				if(Integer.parseInt(yf)<=9){
+					shijian=nf+"-0"+yf;
+				}else{
+					shijian=nf+"-"+yf;
+				}
 				gcglabgc.setSbyf(shijian);
 				String tiaojian1="";
 				String tiaojian2="";
