@@ -1167,19 +1167,19 @@ function showAllxj(){
 	        {field : 'jhlc',title : '里程',width : 60,align : 'center'},
 	        {field:'xjsdj',title:'现技术等级',width:70,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
-		    {field : 'ghlxbhs',title : '路线编码',width : 60,align : 'center',formatter:function(value,row,index){
+		    {field : 'ghlxbhs',title : '规划路线编码',width : 60,align : 'center',formatter:function(value,row,index){
 		    	if(row.ghlxbh=='')
 		    	return row.xjlxbm;
 		    	else
 		    		return row.ghlxbh;
 			}},
-		    {field : 'minqdzhs',title : '起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+		    {field : 'minqdzhs',title : '规划起点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 		    	if(row.minqdzh=='')
 			    	return row.xjqdzh;
 			    	else
 			    		return row.minqdzh;
 				}},
-		    {field : 'maxzdzhs',title : '止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
+		    {field : 'maxzdzhs',title : '规划止点桩号',width : 60,align : 'center',formatter:function(value,row,index){
 		    	if(row.maxzdzh=='')
 			    	return row.xjzdzh;
 			    	else

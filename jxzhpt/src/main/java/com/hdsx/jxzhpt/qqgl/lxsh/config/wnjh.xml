@@ -167,7 +167,7 @@
 		,WMSYS.WM_CONCAT(to_char(gxzdzh)) gxzdzh
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -232,7 +232,7 @@
 		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
-		left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -298,7 +298,7 @@
 		,WMSYS.WM_CONCAT(to_char(ghzdzh)) ghzdzh,WMSYS.WM_CONCAT(to_char(ghlxmc)) ghlxmc
 		,WMSYS.WM_CONCAT(to_char(gxlxbm)) gxlxbm,WMSYS.WM_CONCAT(to_char(gxqdzh)) gxqdzh
 		,WMSYS.WM_CONCAT(to_char(gxzdzh)) gxzdzh from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -361,7 +361,7 @@
 		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
-		left join (select xmid,sum(lc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,sum(lc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -426,7 +426,7 @@
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
 		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -490,7 +490,7 @@
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
 		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
-		left join (select xmid,sum(xjlc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,sum(xjlc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -1090,7 +1090,7 @@
 	    sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
 	    from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 	    left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
-	    left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+	    left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0) lc,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -1154,7 +1154,7 @@
 		select rownum num ,t.lsjl,t.xmnf,t.gz,t.sz,t.jhkgn,t.jhwgn,t.jsxz,t.yhdk,t.bz,t.id,t.lxmc,t.shzt,t.xmmc,t.xmbm,t.gydw,t.xzqh,t.ghlxbh,t.qdmc,t.zdmc,t.xjsdj,t.jsjsdj,t.tz,t.bzys,t.dfzc,t.tsdq,lx.*,lx1.sl,lx2.jhlc  from wnjh_lmgz t left join 
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc from wnjh_lx where sffirst='1' group by xmid) lx on t.id=lx.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid 
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -1218,7 +1218,7 @@
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
 		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
 		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
@@ -1320,7 +1320,7 @@
 		select * from (
 		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
 		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,min(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,min(ghlxbm) ghlxbm,max(ghqdzh) ghqdzh,max(ghzdzh) ghzdzh
+		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,min(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,decode(min(jsxz), '新建', min(xjlxbm), min(ghlxbm)) ghlxbm,decode(min(jsxz), '新建', min(xjqdzh), min(ghqdzh)) ghqdzh, decode(min(jsxz), '新建', max(xjzdzh), max(ghzdzh)) ghzdzh
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
@@ -1545,7 +1545,7 @@
 		from WNJH_LX w) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
-		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
         replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
@@ -1668,7 +1668,7 @@
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
-		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
         replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
@@ -1742,7 +1742,7 @@
 		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
 		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
 		left join (select xmid,
-		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
         replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj

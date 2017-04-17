@@ -316,6 +316,7 @@ text-decoration:none;
         						<td><select id="xmlx" style="width:80px;" class='easyui-combobox'>
         							<option value="升级改造">改建</option>
         							<option value="路面改造">路面改造</option>
+        							<option value="新建">新建</option>
         							<option value="灾毁重建">灾毁重建</option>
         						</select></td>
         						<td align="right">截至进展年份：</td>

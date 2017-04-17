@@ -186,7 +186,7 @@
 			select rownum num,t.* from (
 				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc,k.kgny kgsj,k.wgny wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,c.tz,l.tsdq,k.gkpfwh,
 				c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk
-				,l.ghlxbh,l.lsjl,lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,sl.zlc,c.bz
+				,lx.xjlxbm ghlxbh,l.lsjl,lx.xjqdzh qdzh,lx.xjzdzh zdzh,lx.jsjsdj,lx.lc,sl.xmsl,sl.zlc,c.bz
 				from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join kxxyj_xj k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 				where lx.jdbs='2' and lx.sffirst='1'
@@ -1873,7 +1873,7 @@
 			select rownum num,t.* from (
 				select c.id, c.xmmc, c.xmbm, c.jsdw, c.xzqh, c.jsxz, c.lj, c.ql, c.hd, c.mc, c.jc, c.dc, c.sd, c.dq, c.sdmc,k.kgny kgsj,k.wgny wgsj, c.gq, c.sjdw, c.sjpfwh, c.pfsj, c.jaf,l.gydw,l.tz,l.tsdq,k.gkpfwh, 
 		        c.shzt, c.sbzt, ql_ym, hd_m, sd_ym, dq_cd, dq_dk, sd_sfcd, sd_lx, sfbj, mc_lc, jc_lc, dc_lc, c.dfzc, c.yhdk,l.ghlxbh,l.lsjl,
-		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,lx.ghlxbm,lx.ghlxmc,lx.ghqdzh,lx.ghzdzh,sl.zlc
+		        lx.qdzh,lx.zdzh,lx.jsjsdj,lx.lc,sl.xmsl,decode(substr(c.xmbm,11,1),'3',lx.xjlxbm,lx.ghlxbm) ghlxbm,lx.ghlxmc,decode(substr(c.xmbm,11,1),'3',lx.xjqdzh,lx.ghqdzh) ghqdzh,decode(substr(c.xmbm,11,1),'3',lx.xjzdzh,lx.ghzdzh) ghzdzh,sl.zlc
 		        from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join kxgsdgz k on c.xmbm=k.xmbm left join lxsh_lx lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		        left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='2' group by xmid) sl on c.xmbm=sl.xmid
 		        where lx.jdbs='2' and lx.sffirst='1'
