@@ -970,10 +970,10 @@ public class GcbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("其他资金",3,4,21,21));
 				et.add(new Excel_tilte("按技术等级",3,3,24,28));
 				et.add(new Excel_tilte("按路面类型",3,3,29,30));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,31,31));
+				et.add(new Excel_tilte("完成垫层里程",3,4,31,31));
 				et.add(new Excel_tilte("按技术等级",3,3,33,37));
 				et.add(new Excel_tilte("按路面类型",3,3,38,39));
-				et.add(new Excel_tilte("砂石垫层通车",3,4,40,40));
+				et.add(new Excel_tilte("完成垫层里程",3,4,40,40));
 				et.add(new Excel_tilte("小计",4,4,18,18));
 				et.add(new Excel_tilte("其中：银行贷款",4,4,19,19));
 				et.add(new Excel_tilte("小计",4,4,24,24));

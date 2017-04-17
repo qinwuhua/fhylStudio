@@ -659,7 +659,7 @@ text-decoration:none;
 										<td rowspan="2" style="width: 125px;">银行贷款</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
-										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
+										<td rowspan="2" style="width: 125px;">完成垫层里程</td>
 										<td rowspan="2" style="width: 125px;">总投资</td>
 										<td rowspan="2" style="width: 125px;">车购税</td>
 										<td rowspan="2" style="width: 125px;">国债</td>
@@ -672,7 +672,7 @@ text-decoration:none;
 										<td rowspan="2" style="width: 125px;">银行贷款</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
-										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
+										<td rowspan="2" style="width: 125px;">完成垫层里程</td>
 									</tr>
 									<tr>
 										<td style="width: 100px;">其中：中央车购税</td>

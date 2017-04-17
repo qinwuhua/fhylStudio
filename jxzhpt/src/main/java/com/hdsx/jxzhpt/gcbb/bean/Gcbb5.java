@@ -28,7 +28,7 @@ public class Gcbb5 {
 	private String bnwcgzl;//本年完成工作量
 	private String zjwctz;//总计完成投资
 	private String zjwcgzl;//总计完成工作量
-	private String ssdctc;//砂石垫层通车
+	private String ssdctc;//完成垫层里程
 	private String jsjsbz;//建设技术标注
 	private String jhjsdd;//计划建设地点
 	private String bnlqlmwcqk;//沥青路面完成情况

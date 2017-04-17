@@ -2203,41 +2203,23 @@
 		select distinct xmlx,xmmc,xmbm from jhsh_lsjl where id in(${lsxmid})
 	</select>
 	<select id="querysfwnxmkxmbm" parameterType="xmsq" resultType="lx">
-		select fun_wnxm(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmk,
-		fun_wnxm1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnnfxz,
-		fun_wnxm2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmbm,
-		fun_wnxm3(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})),#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) wnxmid
-		from dual
+		select decode(cfbm,null,'否','是') wnxmk,cfbm wnxmbm,cfid wnxmid,'' wnnfxz from  table(fun_xwnxm(substr(#{xmbm},5,4),#{ylxbh},#{qdzh},#{zdzh}))
+		union all
+		select decode(cfbm,null,'否','是') wnxmk,cfbm wnxmbm,cfid wnxmid,'' wnnfxz from  table(fun_cfld(#{ylxbh},#{qdzh},#{zdzh})) t1,table(fun_xwnxm(substr(#{xmbm},5,4),t1.lxbm,t1.qdzh,t1.zdzh)) t2
 	</select>
 	<select id="querysflsjlxmbm" parameterType="xmsq" resultType="lx">
-		select fun_bzls(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
-		fun_bzls2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,
-		fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
-		
-		from dual 
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_xbzls(#{xmbm},#{ylxbh},#{qdzh},#{zdzh}))
 		union all
-		select fun_bzls(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsjl,
-		fun_bzls2(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,
-		fun_bzls1(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm
-		
-		from dual 
-		
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_cfld(#{ylxbh},#{qdzh},#{zdzh})) t1,table(fun_xbzls(#{xmbm},t1.lxbm,t1.qdzh,t1.zdzh)) t2
+	
 	</select>
 	<select id="queryLxbyxmsq" parameterType="xmsq" resultType="lx">
 		select * from ${bz} and xmid=#{xmbm}
 	</select>
 	<select id="querysfwnlsjlxmbm" parameterType="xmsq" resultType="lx">
-		select fun_wnls(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsjl,
-		fun_wnls2(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,
-		fun_wnls1(#{xmnf},#{xzqhdm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm
-		
-		from dual 
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_xwnls(substr(#{xzqhdm},0,4),#{xmbm},#{ylxbh},#{qdzh},#{zdzh}))
 		union all
-		select fun_wnls(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsjl,
-		fun_wnls2(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,
-		fun_wnls1(#{xmnf},#{xzqhdm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm
-		
-		from dual 
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_cfld(#{ylxbh},#{qdzh},#{zdzh})) t1,table(fun_xwnls(substr(#{xzqhdm},0,4),#{xmbm},t1.lxbm,t1.qdzh,t1.zdzh)) t2
 	</select>
 	
 </mapper>

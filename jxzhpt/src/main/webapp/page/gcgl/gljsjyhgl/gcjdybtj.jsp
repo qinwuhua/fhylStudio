@@ -125,7 +125,7 @@ a:active {
                					
                             </td>
                         </tr>
-                         <tr style="height: 35px;">
+                         <tr style="height: 35px;display: none">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
@@ -168,14 +168,15 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
                					<table class='fyh'>
-               					 <tr>
-               					 	<td>车购税：</td><td><input id='wccgs' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>国债：</td><td><input id='wcgz' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>省债：</td><td><input id='wcsz' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>债券：</td><td><input id='wczq' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>厅贷款：</td><td><input id='wcdk' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					
+               					<tr>
+               					 	<td style="display: none;">车购税：</td><td><input id='wccgs' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					 	<td style="display: none;">国债：</td><td style="display: none;"><input id='wcgz' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					 	<td style="display: none;">省债：</td><td style="display: none;"><input id='wcsz' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					 	<td style="display: none;">债券：</td><td style="display: none;"><input id='wczq' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					 	<td style="display: none;">厅贷款：</td><td style="display: none;"><input id='wcdk' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
                					 </tr>
-               					 <tr>
+               					 <tr style="display: none;">
                						<td>奖励：</td><td><input id='wcjl' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
                					 	<td>其他：</td><td><input id='wcqt' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
                					 	<div class='zhhf'>
@@ -183,6 +184,7 @@ a:active {
 	               					 	<td>银行贷款：</td><td><input id='wcyhdk' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
                					 	</div>
                					 </tr>
+               					
                					</table>
                					<table class='yh'>
                					 <tr>
@@ -223,17 +225,17 @@ a:active {
                        <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
+                                padding-right: 5px;display: none;">
                                 <font color="#009ACD" style=" font-size: 12px">本年度实施里程(公里)：</font>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;display: none;">
                                 <input type="text" id="bndsslc" style="width: 50px;" class='easyui-numberbox' value='0'/><font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <font color="#009ACD" style=" font-size: 12px">砂石垫层通车(公里)：</font>
+                                <font color="#009ACD" style=" font-size: 12px">完成垫层里程(公里)：</font>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
@@ -247,6 +249,16 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <input type="text" id="wwcgcl"  style="width: 50px;" class="easyui-numberbox" value='0'/><font color="red">*</font>
+                            </td>
+                            
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                               
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+          
                             </td>
                         </tr>
                         <tr style="height: 35px;">

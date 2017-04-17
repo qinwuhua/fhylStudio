@@ -291,8 +291,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				lx.setJdbs("1");
 			}
 			if(xmsq.getXmlx()==4||xmsq.getXmlx()==5){
-				//lxserw=xmsqServer.queryLslistserw(xmsq);
-				Lx x = xmsqServer.querysfwnxmk(xmsq);
+				Xmsq xmsq3=new Xmsq();
+				xmsq3.setXmbm(xmsq.getXmbm());
+				xmsq3.setYlxbh(xmsq.getGhlxbm());
+				xmsq3.setQdzh(xmsq.getGhqdzh());
+				xmsq3.setZdzh(xmsq.getGhzdzh());
+				Lx x = xmsqServer.querysfwnxmk(xmsq3);
 				//List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
 				xmsq.setWnxmk(x.getWnxmk());
 				if("是".equals(x.getWnxmk())){
@@ -314,7 +318,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setWllc(xmsq.getWllc());
 			lx.setLmkd(xmsq.getLmkd());
 			List<Xmsq> list=new ArrayList<Xmsq>();
-			Lx x2 = xmsqServer.querysflsjl(xmsq);
+			Xmsq xmsq3=new Xmsq();
+			xmsq3.setXmbm(xmsq.getXmbm());
+			xmsq3.setYlxbh(xmsq.getGhlxbm());
+			xmsq3.setQdzh(xmsq.getGhqdzh());
+			xmsq3.setZdzh(xmsq.getGhzdzh());
+			Lx x2 = xmsqServer.querysflsjl(xmsq3);
 			xmsq.setLsjl(x2.getLsjl());
 			if("是".equals(x2.getLsjl())){
 			xmsq.setLsxmbm(x2.getLsxmbm());
@@ -1163,17 +1172,21 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmsq.setJdbs("1");
 			}
 			String bz=xmsq.getBz();
-			
-			xmsq.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+xmsq.getJdbs()+"'");
-			
-			Lx x = xmsqServer.querysfwnxmkdg(xmsq);
+			Xmsq xmsq3=new Xmsq();
+			xmsq3.setXmbm(xmsq.getXmbm());
+			xmsq3.setYlxbh(xmsq.getGhlxbm());
+			xmsq3.setQdzh(xmsq.getGhqdzh());
+			xmsq3.setZdzh(xmsq.getGhzdzh());
+			xmsq3.setBz("lxsh_lx where 1=1 and sffirst!='1' and jdbs='"+xmsq.getJdbs()+"'");
+			Lx x = xmsqServer.querysfwnxmkdg(xmsq3);
 			//List<Lx> l = xmsqServer.queryLslistwnxmk(xmsq);
 			xmsq.setWnxmk(x.getWnxmk());
 			if("是".equals(x.getWnxmk())){
 			xmsq.setWnnfxz(x.getWnnfxz());
 			xmsq.setWnxmbm(x.getWnxmbm());
 			xmsq.setWnxmid(x.getWnxmid());}
-			Lx x2 = xmsqServer.querysflsjldg(xmsq);
+			
+			Lx x2 = xmsqServer.querysflsjldg(xmsq3);
 			xmsq.setLsjl(x2.getLsjl());
 			if("是".equals(x2.getLsjl())){
 			xmsq.setLsxmbm(x2.getLsxmbm());

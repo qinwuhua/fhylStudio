@@ -210,7 +210,7 @@
 			//$("#xzqhdm").val($.cookie("dist"));
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			var result=true;
-			result = validateText('ylxbh',null,result);
+			//result = validateText('ylxbh',null,result);
 			//result = validateText('ghlxbm',null,result);
 			//result = validateText('lmkd','number',result);
 			//result = validateText('qdzh','number',result);
@@ -255,7 +255,7 @@
 			}else{
 				return true;
 			} */
-			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
+			/* var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
 			//alert(redqdzh+"  "+redzdzh);
 			if(parseFloat(qdStr) < parseFloat(zdStr)){
@@ -276,7 +276,7 @@
 					alert("原止点桩号不能小于"+redzdzh);
 					return false;
 				}
-			} 
+			}  */
 			return true;
 		}
 	</script>
