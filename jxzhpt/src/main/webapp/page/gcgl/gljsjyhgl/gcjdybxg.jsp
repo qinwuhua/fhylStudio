@@ -235,15 +235,15 @@ a:active {
                					<table>
                					 <tr>
                					 	<td>按技术等级：</td>
-               					 	<td>一级<input id='yilc' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>二级<input id='erlc' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>三级<input id='sanlc' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>四级<input id='silc' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               					 	<td>一级<input id='yilc' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
+               					 	<td>二级<input id='erlc' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
+               					 	<td>三级<input id='sanlc' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
+               					 	<td>四级<input id='silc' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
                					 </tr>
                					 <tr>
                						<td>按路面类型：</td>
-               						<td>沥青<input id='lq' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
-               					 	<td>水泥<input id='sn' type="text" class="easyui-numberbox" style="width: 50px;" value='0'></td>
+               						<td>沥青<input id='lq' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
+               					 	<td>水泥<input id='sn' type="text" class="easyui-numberbox" style="width: 50px;" data-options="precision:3" value='0'></td>
                					 	
                					 </tr>
                					</table>
@@ -267,7 +267,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input type="text" id="ssdctc"  style="width: 50px;" class="easyui-numberbox" value='0'/><font color="red">*</font>
+                                <input type="text" id="ssdctc"  style="width: 50px;" class="easyui-numberbox" data-options="precision:3" value='0'/><font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -276,7 +276,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input type="text" id="wwcgcl"  style="width: 50px;" class="easyui-numberbox" value='0'/><font color="red">*</font>
+                                <input type="text" id="wwcgcl"  style="width: 50px;" class="easyui-numberbox" data-options="precision:3" value='0'/><font color="red">*</font>
                             </td>
                             
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;

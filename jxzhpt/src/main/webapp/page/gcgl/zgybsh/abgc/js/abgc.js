@@ -176,7 +176,7 @@ function showAll(){
 	    	xmnf:xmnf,
 	    	xzqh:xzqhstr,
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.xmklx':$("#xmklx").combobox('getValue')
 		},
@@ -262,7 +262,7 @@ function showafAll(){
 	    	xmnf:xmnf,
 	    	xzqh:xzqhstr,
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.xmlx':'af',
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.xmklx':$("#xmklx").combobox('getValue')
@@ -350,14 +350,14 @@ function showAll__ck(){
 	    	xmnf:xmnf,
 	    	xzqh:xzqhstr,
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb__ck('+index+')">月报审核</a>    ';
 	  	     }},
-	  	   {field:'gydw',title:'管养单位',width:150,align:'center'},
+	  	    {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},

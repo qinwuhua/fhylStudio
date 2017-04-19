@@ -243,7 +243,7 @@
 		select m.*,rownum rn from (
 		select 
 		t1.*,t3.gydw,t3.xzqh xzqhmc,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.czzlc qzlc,t3.yhlc,t3.xjgjnd gjxjnd,t1.id jhid,t1.jhxdwh xdwh,t1.jhsybbzje jhsybzje,nvl(xd.xdzj,0) xdzj,nvl(bf.bfzj,0) bfzj,wcg.wcztz,wcg.wcbtz,wcg.wcstz
-		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh x on sl.xmkid=xm.id) t4 on t3.xmbm=t4.xmbm
+		from PLAN_AF t1 left join SCK_Aqsmfh  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid=xm.id group by xmbm) t4 on t3.xmbm=t4.xmbm
 		left join gcgl_jgys jg on t1.id=jg.jhid
 		left join (
 	    select jhid,nvl(sum(g.wc_btz),0) wcbtz,nvl(sum(g.wc_stz),0) wcstz,nvl(sum(g.wc_qttz),0)+nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0) wcztz  from gcgl_abgc g group by g.jhid
@@ -261,7 +261,7 @@
 					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
 			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
+					${gldj}
 			</if>
 			<if test="tsdq != null and  tsdq != ''">
 					and t3.tsdq like '%'||trim(#{tsdq})||'%'
@@ -400,7 +400,7 @@
 	 
 	  <select id="selectafTJ" parameterType="gcglabgc" resultType="gcglwqgz">
 	 	select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
-    	nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh x on sl.xmkid=xm.id) t4 on t3.xmbm=t4.xmbm left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
+    	nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid=xm.id group by xmbm) t4 on t3.xmbm=t4.xmbm left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
 	 	left join gcgl_jgys jg on t1.id=jg.jhid
 	 	where 1=1 and spzt='1'
 	 	<if test="jgys != null and  jgys != ''">
@@ -416,8 +416,8 @@
 				and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 		</if>
 		<if test="gldj != null and  gldj != ''">
-				and t3.lxbm like trim(#{gldj})||'%'
-		</if>
+					${gldj}
+			</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and t3.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
@@ -441,7 +441,7 @@
 			</if>
 	 </select>
 	  <select id="selectafjhListCount" parameterType="gcglabgc" resultType="int">
-	 	select count(*) from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh x on sl.xmkid=xm.id) t4 on t3.xmbm=t4.xmbm
+	 	select count(*) from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid=xm.id group by xmbm) t4 on t3.xmbm=t4.xmbm
 	 	left join gcgl_jgys jg on t1.id=jg.jhid
 	 	where 1=1 and spzt='1'
 	 	<if test="jgys != null and  jgys != ''">
@@ -457,7 +457,7 @@
 					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
 			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
+					${gldj}
 			</if>
 			<if test="tsdq != null and  tsdq != ''">
 					and t3.tsdq like '%'||trim(#{tsdq})||'%'

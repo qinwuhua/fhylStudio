@@ -74,7 +74,7 @@
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
+				lx.lxbm=$('#ddlGldj').combobox('getValues').join(',');
 			}
 			queryZjqf($('#sbnf').combobox("getValue"));
 			querySumZhfz(jh,lx);

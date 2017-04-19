@@ -179,7 +179,7 @@ function showAll(){
 	    	'gcglabgc.lxbm':$("#lxbm").val(),
 //	    	'gcglabgc.xdsj':$("#xdnf").val(),
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.ljbfzt':$("#ljbfzt").combobox('getValue'),
 	    	'gcglabgc.xmklx':$("#xmklx").combobox('getValue')
@@ -256,7 +256,7 @@ function showafAll(){
 	    	'gcglabgc.lxbm':$("#lxbm").val(),
 //	    	'gcglabgc.xdsj':$("#xdnf").val(),
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.xmlx':'af',
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.ljbfzt':$("#ljbfzt").combobox('getValue'),
@@ -335,7 +335,7 @@ function showAll__ck(){
 	    	'gcglabgc.lxbm':$("#lxbm").val(),
 //	    	'gcglabgc.xdsj':$("#xdnf").val(),
 	    	'gcglabgc.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglabgc.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglabgc.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglabgc.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},

@@ -326,7 +326,7 @@
 		from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
 		left join gcgl_jgys jg on t1.id=jg.jhid
 		where  t1.spzt='1' -->
-		select count(*) sl,nvl(sum(t1.JHQLQC),0) jhqc,nvl(sum(t1.pfztz),0) ztz,nvl(sum(t1.JHSYBZJE),0) btz, nvl(sum(t1.SHENGBZ),0) stz, nvl(sum(t1.sjjcqc),0) jcqc,
+		select count(*) sl,nvl(sum(t1.JHQLQC),0) jhqc,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.JHSYBZJE),0) btz, nvl(sum(t1.SHENGBZ),0) stz, nvl(sum(t1.sjjcqc),0) jcqc,nvl(sum(t1.jhsydfzcje),0) dftz,nvl(sum(zbz),0) zbz,nvl(sum(jg.nsqsjjlzj),0) jlzj,
 		nvl(sum(t4.wcztz),0) wcztz,nvl(sum(t4.wcbtz),0) wcbtz,nvl(sum(t4.wcstz),0) wcstz,nvl(sum(t5.bnwctz),0)  bnwctz   
   		from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join(select xmid,sum(xdzj) zbz from plan_zjxd  group by xmid) zj on t1.id=zj.xmid
 		left join gcgl_jgys jg on t1.id=jg.jhid
@@ -352,7 +352,7 @@
 			${xzqhdm}
 		</if>
 		<if test="gldj != null and  gldj != ''">
-			and t3.lxbm like trim(#{gldj})||'%'
+			and ${gldj}
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 			and t3.tsdq like '%'||trim(#{tsdq})||'%'

@@ -77,7 +77,7 @@
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
+				lx.lxbm=$('#ddlGldj').combobox('getValues').join(',');
 			}
 			if($('#ddlSHZT').combobox('getValue')=="未上报"){
 				if(roleName()=="县级"){

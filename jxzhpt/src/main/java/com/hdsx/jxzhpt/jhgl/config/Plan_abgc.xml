@@ -190,6 +190,7 @@
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,lx.bzls as sfylsjl,
                		lx.gydw,lx.xzqh xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.yhlc scyhlc,lx.yhlc jhyhlc
                 	from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(distinct xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(distinct xm.throadcode),',',';') thlxbm,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
+					and lx.gydwdm like '2%'
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -217,6 +218,7 @@
 				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 				 		and ${lx.gydwbm}
 				 	</if>
+				 	
 				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 				 		and ${lx.xzqhdm}
 				 	</if>
@@ -245,6 +247,7 @@
 	</select>
 	<select id="queryAfgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) where 1=1 
+		and lx.gydwdm like '2%'
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -356,7 +359,7 @@
 				select rownum as num,t.* from 
 				(
 					select jh.*,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh from plan_af jh left join sck_aqsmfh lx on (jh.sckid=lx.id) left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
-					where 1=1 
+					where 1=1 and lx.gydwdm like '2%'
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -450,7 +453,7 @@
 	
 	<select id="queryAfgcListByStatus" parameterType="java.util.Map" resultType="plan_abgc">
 		select * from plan_af jh left join sck_aqsmfh sc on (jh.sckid=sc.id) 
-		where 1=1 
+		where 1=1 and lx.gydwdm like '2%'
 		<if test="jh.jhnf!=null and jh.jhnf!=''">
 			and jh.jhnf=#{jh.jhnf}
 		</if>
@@ -858,7 +861,7 @@
 	    sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj,sum(bz) pfwh from(select count(*) as id,sum(lx.zdzh)-sum(lx.qdzh) as zlc,sum(lx.yhlc) as yhlc,
 	      sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj,decode(sum(xdzj),null,0,sum(xdzj)) bz
 	      from sck_aqsmfh lx left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq,replace(WMSYS.WM_CONCAT(xm.xmklx),',',';') xmklx from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id right join plan_af jh on (lx.id=jh.sckid) left join plan_zjxd zj on jh.id=zj.xmid
-	      where 1=1
+	      where 1=1 and lx.gydwdm like '2%'
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -1102,7 +1105,7 @@
 					select lx.lxbm,lx.lxmc,lx.gydw,lx.xzqh xzqhmc,lx.qdzh scqdzh,lx.zdzh sczdzh,lx.czzlc sczlc,lx.yhlc scyhlc,lx.fapgdw,lx.fascdw,lx.faspsj,lx.spwh,lx.cztzgs tzgs,lx.jsxz,lx.jsnr,lx.bz scbz,
 					jh.id,jh.sckid,jh.jhnf,jh.jhkgsj jhkgsj1,jh.jhwgsj jhwgsj1,jh.jhwc_c,jh.sjdw,jh.sjpfdw,jh.pfwh,jh.pfsj pfsj1,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,jh.ablbzsqwh,jh.remarks
 					from plan_af jh left join sck_aqsmfh lx on (jh.sckid=lx.id) left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id 
-					where 1=1
+					where 1=1 and lx.gydwdm like '2%'
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>

@@ -29,6 +29,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -447,6 +448,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		}else{
 			tiaojian2="and t3.xzqhdm in ("+gcglzhfz.getXzqh()+")";
 		}
+		gcglzhfz.setGldj(MyUtil.getQueryTJ(gcglzhfz.getGldj(), "substr(t3.lxbm,0,1)"));
 		gcglzhfz.setXzqhdm(tiaojian2);
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
@@ -491,6 +493,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		}else{
 			tiaojian2="and t3.xzqhdm in ("+gcglzhfz.getXzqh()+")";
 		}
+		gcglzhfz.setGldj(MyUtil.getQueryTJ(gcglzhfz.getGldj(), "substr(t3.lxbm,0,1)"));
 		gcglzhfz.setXzqhdm(tiaojian2);
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);

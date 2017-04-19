@@ -70,8 +70,8 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				<if test="lx.gldj!=null and lx.gldj!=''">
+	 					${lx.gldj}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
@@ -117,8 +117,8 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				<if test="lx.gldj!=null and lx.gldj!=''">
+	 					${lx.gldj}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
@@ -188,8 +188,8 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				<if test="lx.gldj!=null and lx.gldj!=''">
+	 					${lx.gldj}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
@@ -374,8 +374,8 @@
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
 	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				<if test="lx.gldj!=null and lx.gldj!=''">
+	 					${lx.gldj}
 	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}

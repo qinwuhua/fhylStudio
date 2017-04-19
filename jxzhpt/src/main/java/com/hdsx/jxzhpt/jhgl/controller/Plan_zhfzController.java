@@ -100,6 +100,27 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			if(lx.getGydwlx()!=null&&!"".equals(lx.getGydwlx())){
 				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
 			}
+			if(lx.getGldj()!=null)
+				if(lx.getGldj().length()>0){
+					String[] tsdqs=lx.getLxbm().split(",");
+					String tsdq="and substr(lxbm,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i]+"'";
+						else
+							tsdq+=",'"+tsdqs[i]+"'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lx.setGldj(tsdq);
+				}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
@@ -177,6 +198,27 @@ public class Plan_zhfzController  extends BaseActionSupport{
 				lx.setGydwbm(lx.getGydwbm()+"  and lx.gydwbm like '"+lx.getGydwlx()+"%'");
 			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			if(lx.getGldj()!=null)
+				if(lx.getGldj().length()>0){
+					String[] tsdqs=lx.getLxbm().split(",");
+					String tsdq="and substr(lxbm,0,1) in (";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="'"+tsdqs[i]+"'";
+						else
+							tsdq+=",'"+tsdqs[i]+"'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lx.setGldj(tsdq);
+				}
 			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
 			System.out.println("个数："+list.size());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();

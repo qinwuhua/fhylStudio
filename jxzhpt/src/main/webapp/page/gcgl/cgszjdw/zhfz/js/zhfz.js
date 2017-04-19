@@ -171,7 +171,7 @@ function showAll(){
 	    	'gcglzhfz.lxbm':$("#lxbm").val(),
 //	    	'gcglzhfz.xdsj':$("#xdnf").val(),
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglzhfz.ljbfzt':$("#ljbfzt").combobox('getValue'),
 	    	'gcglzhfz.xmklx':$("#xmklx").combobox('getValue')
@@ -248,7 +248,7 @@ function showAll__ck(){
 	    	'gcglzhfz.lxbm':$("#lxbm").val(),
 //	    	'gcglzhfz.xdsj':$("#xdnf").val(),
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglzhfz.ljbfzt':$("#ljbfzt").combobox('getValue')
 		},

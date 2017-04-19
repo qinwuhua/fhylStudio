@@ -168,7 +168,7 @@ function showAll(){
 	    	xmnf:xmnf,
 	    	'gcglzhfz.xzqh':xzqhstr,
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglzhfz.xmklx':$("#xmklx").combobox('getValue')
 		},
@@ -255,7 +255,7 @@ function showAll__ck(){
 	    	xmnf:xmnf,
 	    	'gcglzhfz.xzqh':xzqhstr,
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
-	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText')
 		},
 	    columns:[[

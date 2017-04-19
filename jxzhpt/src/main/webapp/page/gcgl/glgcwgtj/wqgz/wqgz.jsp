@@ -28,7 +28,7 @@
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlGldj','行政等级');
 			tsdq('ddlTSDQ');
-			//gcglxmnf("ddlYear");
+			
 			
 			var urlid=getUrlParame('id');
 			if(urlid==null){
@@ -99,7 +99,7 @@ text-decoration:none;
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								
-        						<td align="right">殊地区：</td>
+        						<td align="right">特殊地区：</td>
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:82px; vertical-align:middle;">
 								</select></td>
 								
@@ -118,7 +118,7 @@ text-decoration:none;
 									<option value="否">否</option>
 								</select></td>
 								<td align="right"> 项目库类型：</td>
-								<td><select class="easyui-combobox" id='xmklx ' style="width:80px;" >
+								<td><select class="easyui-combobox" id='xmklx' style="width:80px;" >
 									<option value="" selected>请选择</option>
 									<option value="部库">部库</option>
 									<option value="省库">省库</option>

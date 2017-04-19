@@ -194,7 +194,7 @@
 					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
 			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
+					${gldj}
 			</if>
 			<if test="tsdq != null and  tsdq != ''">
 					and t3.tsdq like '%'||trim(#{tsdq})||'%'
@@ -240,7 +240,7 @@
 					and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 			</if>
 			<if test="gldj != null and  gldj != ''">
-					and t3.lxbm like trim(#{gldj})||'%'
+					${gldj}
 			</if>
 			<if test="tsdq != null and  tsdq != ''">
 					and t3.tsdq like '%'||trim(#{tsdq})||'%'
@@ -286,8 +286,8 @@
 				and t3.lxjsdj like '%'||trim(#{jsdj})||'%'
 		</if>
 		<if test="gldj != null and  gldj != ''">
-				and t3.lxbm like trim(#{gldj})||'%'
-		</if>
+					${gldj}
+			</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and t3.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>

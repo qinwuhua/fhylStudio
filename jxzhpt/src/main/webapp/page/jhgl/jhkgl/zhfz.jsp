@@ -32,7 +32,7 @@
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','行政等级');
+			//loadBmbm2('ddlGldj','行政等级');
 			tsdq('tsdq');
 			
 			var urlid=getUrlParame('id');
@@ -94,7 +94,7 @@
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
+				lx.lxbm=$('#ddlGldj').combobox('getValues').join(',');
 			}
 			if($('#tsdq').combobox('getValue')!=''){
 				lx.tsdq=$('#tsdq').combobox('getValue');

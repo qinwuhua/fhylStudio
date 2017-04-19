@@ -576,6 +576,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglwqgz.setTiaojian("xjzt");
 			}
+			gcglwqgz.setGldj(getcxtj(gcglwqgz.getGldj(),"t3.lxbm"));
 			Gcglwqgz tj=gcglwqgzServer.selectWqgzTj(gcglwqgz);
 				JsonUtils.write(tj, getresponse().getWriter());
 			} catch (Exception e1) {

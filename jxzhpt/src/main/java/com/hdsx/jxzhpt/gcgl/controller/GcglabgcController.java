@@ -35,6 +35,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
@@ -522,6 +523,7 @@ public class GcglabgcController extends BaseActionSupport{
 			}else{
 				tiaojian2="and t3.xzqhdm in ("+xzqh+")";
 			}
+			gcglabgc.setGldj(MyUtil.getQueryTJ(gcglabgc.getGldj(), "substr(t3.lxbm,0,1)"));
 			gcglabgc.setXzqhdm(tiaojian2);	
 			gcglabgc.setPage(page);
 			gcglabgc.setRows(rows);
@@ -1699,6 +1701,8 @@ public class GcglabgcController extends BaseActionSupport{
 		}else{
 			tiaojian2="and t3.xzqhdm in ("+xzqh+")";
 		}
+		gcglabgc.setGldj(MyUtil.getQueryTJ(gcglabgc.getGldj(), "substr(t3.lxbm,0,1)"));
+
 		gcglabgc.setXzqhdm(tiaojian2);	
 		gcglabgc.setPage(page);
 		gcglabgc.setRows(rows);
