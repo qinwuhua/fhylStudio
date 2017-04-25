@@ -689,6 +689,7 @@
 		left join gcgl_jgys jg on t.xmbm=jg.jhid
 		left join (select xmid,sum(xdzj) xdzj from plan_zjxd group by xmid) xd on t.xmbm=xd.xmid
     	left join (select jhid,sum(cgsdwzj+stz+yhdk+gz+sz) bfzj from gcgl_cgs group by jhid) bf on t.xmbm=bf.jhid
+		left join (select replace(WMSYS.WM_CONCAT(distinct decode(l.sbzt,'0','未上报','1','已上报')),',',',') sbzt,replace(WMSYS.WM_CONCAT(distinct  decode(l.sbzt,'1',decode(l.shzt,'0','未审核','1','已审核'),'')),',',',') shzt,replace(WMSYS.WM_CONCAT(distinct decode(l.shzt,'1',decode(l.zgshzt,'0','未审核','1','已审核'),'')),',',',') zgshzt,xmbm from gcgl_xmjd l group by xmbm) jz on t.xmbm=jz.xmbm
 		where 1=1
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
@@ -703,7 +704,7 @@
 				and substr(t.xmbm,0,4) in (${sbnf})
 		</if>
 		<if test="shzt != null and  shzt != ''">
-				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+				and ${sbzt} ${shzt}
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'
@@ -738,6 +739,7 @@
 	</select>
 	<select id="queryGsdListCount" resultType="int" parameterType="gcglgcgzsj">
 		select count(*)  from gsdgz t left join gcgl_jgys jg on t.xmbm=jg.jhid
+		left join (select replace(WMSYS.WM_CONCAT(distinct decode(l.sbzt,'0','未上报','1','已上报')),',',',') sbzt,replace(WMSYS.WM_CONCAT(distinct  decode(l.sbzt,'1',decode(l.shzt,'0','未审核','1','已审核'),'')),',',',') shzt,replace(WMSYS.WM_CONCAT(distinct decode(l.shzt,'1',decode(l.zgshzt,'0','未审核','1','已审核'),'')),',',',') zgshzt,xmbm from gcgl_xmjd l group by xmbm) jz on t.xmbm=jz.xmbm
 		where 1=1
 		<if test="jgys != null and  jgys != ''">
 				and decode(jg.id,null,'否','是') = #{jgys}
@@ -752,7 +754,7 @@
 				and substr(t.xmbm,0,4) in (${sbnf})
 		</if>
 		<if test="shzt != null and  shzt != ''">
-				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+				and ${sbzt} ${shzt}
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and lxsh.tsdq like '%'||trim(#{tsdq})||'%'

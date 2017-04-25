@@ -434,12 +434,7 @@ public class GcglshController extends BaseActionSupport{
 	}
 	//查询jihua
 	public void selectShjhList(){
-		String tiaojian1="";
-		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
-		}else{
-			tiaojian1="and xzqhdm in ("+gydw+")";
-		}
+		
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		gcglsh.setJhid(jhid);
@@ -447,17 +442,17 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
-		gcglsh.setShzt(ybzt);
+		gcglsh.setShzt("");
+		if(ybzt.length()>1){
+		if("已".equals(ybzt.substring(0, 1))){
+			gcglsh.setShzt(" = '"+ybzt+"'");
+		}
+		if("未".equals(ybzt.substring(0, 1))){
+			gcglsh.setShzt(" like '%"+ybzt+"%'");
+		}
+		}
 		gcglsh.setSbnf(xmnf);
-		if(sfsj==7){
-			gcglsh.setTiaojian("sjsh");
-		}
-		if(sfsj==9){
-			gcglsh.setTiaojian("sjzt");
-		}
-		if(sfsj==11){
-			gcglsh.setTiaojian("xjzt");
-		}
+		
 		List<Map<String, Object>> list=gcglshServer.queryGcgjList(gcglsh);
 		int count=gcglshServer.queryGcgjListCount(gcglsh);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();

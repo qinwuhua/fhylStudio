@@ -76,7 +76,7 @@
 			var xmnf=$("#ddlYear").combobox('getValues').join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
-			var ybzt=$("#ybzt").val();
+			var ybzt=$("#ybzt").combobox('getValue');
 			$('#datagrid').datagrid({    
 			    url:'../../../../gcgl/selectgsdgzList.do',
 			    striped:true,
@@ -94,6 +94,7 @@
 			    	ybzt:ybzt,
 			    	sfsj:sfsj,
 			    	xmnf:xmnf,
+			    	'gcglgcgzsj.sbzt':'jz.sbzt',
 			    	'gcglgcgzsj.jsdj':$("#ddlPDDJ").combobox('getValue'),
 			    	'gcglgcgzsj.lxbm':$("#lxbm").val(),
 			    	'gcglgcgzsj.xmmc':$("#xmmc").val(),
@@ -232,8 +233,8 @@ text-decoration:none;
 								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:80px; vertical-align:middle;">
 								</select></td>
         						<td align="right">月报状态：</td>
-        						<td><select id="ybzt" style="width: 60px;">
-        							<option value="">全&nbsp;&nbsp;部</option>
+        						<td><select id="ybzt" class='easyui-combobox' style="width: 60px;">
+        							<option value="">全部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select></td>

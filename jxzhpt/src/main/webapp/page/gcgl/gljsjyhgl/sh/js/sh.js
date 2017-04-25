@@ -572,7 +572,7 @@ function showAll(){
 	var xmnf=$("#ddlYear").combobox('getValues').join(",");
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
-	var ybzt=$("#ybzt").val();
+	var ybzt=$("#ybzt").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectShjhList.do',
 	    striped:true,
@@ -590,6 +590,7 @@ function showAll(){
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
+	    	'gcglsh.sbzt':'jz.sbzt',
 	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglsh.lxbm':$("#lxbm").val(),
 	    	'gcglsh.xmmc':$("#xmmc").val(),

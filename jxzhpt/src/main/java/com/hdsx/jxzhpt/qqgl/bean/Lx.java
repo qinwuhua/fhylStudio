@@ -173,7 +173,7 @@ public class Lx {
 	public Lx(String xmid,String lxbm,String lxmc,String xzqh,
 			String xzqhdm, String gydw, String gydwdm, String qdzh,
 			String zdzh,String lc,String xjsdj,String jsxz,
-			String qdmc, String zdmc,String sffirst){
+			String qdmc, String zdmc,String sffirst,String xzqhdm2){
 		this.xmid=xmid;
 		this.lxbm=lxbm;
 		this.lxmc=lxmc;
@@ -189,6 +189,7 @@ public class Lx {
 		this.qdmc=qdmc;
 		this.zdmc=zdmc;
 		this.sffirst=sffirst;
+		this.xzqhdm2=xzqhdm2;
 	}
 	
 	public Lx(String id, String xmid, String lxbm, String lxmc, String xzqh,

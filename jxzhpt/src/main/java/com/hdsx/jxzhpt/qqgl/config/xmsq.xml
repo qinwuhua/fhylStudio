@@ -282,7 +282,7 @@
 		<if test="yilc!=null">,yilc</if><if test="erlc!=null">,erlc</if><if test="sanlc!=null">,sanlc</if>
 		<if test="silc!=null">,silc</if><if test="dwlc!=null">,dwlc</if><if test="wllc!=null">,wllc</if>
 		<if test="ghlxbm != null">,ghlxbm</if><if test="ghqdzh != null">,ghqdzh</if><if test="ghzdzh != null">,ghzdzh</if>
-		<if test="gxlxbm != null">,gxlxbm</if><if test="gxqdzh != null">,gxqdzh</if><if test="gxzdzh != null">,gxzdzh</if>)
+		<if test="gxlxbm != null">,gxlxbm</if><if test="gxqdzh != null">,gxqdzh</if><if test="gxzdzh != null">,gxzdzh</if><if test="xzqhdm2 != null">,xzqhdm2</if>)
 		values(#{id}<if test="xmid!=null">,#{xmid}</if><if test="lxbm!=null">,#{lxbm}</if><if test="lxmc!=null">,#{lxmc}</if>
 		<if test="xzqh!=null">,#{xzqh}</if><if test="xzqhdm!=null">,#{xzqhdm}</if><if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if><if test="qdzh!=null">,#{qdzh}</if><if test="zdzh!=null">,#{zdzh}</if>
@@ -293,7 +293,7 @@
 		<if test="yilc!=null">,#{yilc}</if><if test="erlc!=null">,#{erlc}</if><if test="sanlc!=null">,#{sanlc}</if>
 		<if test="silc!=null">,#{silc}</if><if test="dwlc!=null">,#{dwlc}</if><if test="wllc!=null">,#{wllc}</if>
 		<if test="ghlxbm != null">,#{ghlxbm}</if><if test="ghqdzh != null">,#{ghqdzh}</if><if test="ghzdzh != null">,#{ghzdzh}</if>
-		<if test="gxlxbm != null">,#{gxlxbm}</if><if test="gxqdzh != null">,#{gxqdzh}</if><if test="gxzdzh != null">,#{gxzdzh}</if>)
+		<if test="gxlxbm != null">,#{gxlxbm}</if><if test="gxqdzh != null">,#{gxqdzh}</if><if test="gxzdzh != null">,#{gxzdzh}</if><if test="xzqhdm2 != null">,#{xzqhdm2}</if>)
 	</insert>
 	
 	
@@ -418,6 +418,9 @@
 	      <if test="xmsq.snhntmchbmj != null">
 	        ,snhntmchbmj
 	      </if>
+	       <if test="xmsq.xzqhdm2 != null">
+	        ,xzqhdm2
+	      </if>
 		)
 		values(#{lx.id}<if test="lx.xmid!=null">,#{lx.xmid}</if><if test="lx.lxbm!=null">,#{lx.lxbm}</if><if test="lx.lxmc!=null">,#{lx.lxmc}</if>
 		<if test="lx.xzqh!=null">,#{lx.xzqh}</if><if test="lx.xzqhdm!=null">,#{lx.xzqhdm}</if><if test="lx.gydw!=null">,#{lx.gydw}</if>
@@ -538,6 +541,9 @@
 	       <if test="xmsq.snhntmchbmj != null">
 	        ,#{xmsq.snhntmchbmj}
 	      </if>
+	       <if test="xmsq.xzqhdm2 != null">
+	        ,#{xmsq.xzqhdm2}
+	      </if>
 		)
 	</insert>
 	
@@ -549,7 +555,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
 				left join (select xmid,count(xmid) xmsl,sum(sbzj) sbzj,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' 
@@ -610,7 +616,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh,  
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
 				left join (select xmid,count(xmid) xmsl,sum(sbzj) sbzj,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' 
@@ -662,7 +668,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='0' and l.sffirst='1' 
@@ -727,7 +733,7 @@
 		select * from (
 			select rownum num,t.* from (
 				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh, 
-				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,to_char(x.lc,'fm9999999990.000') lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
+				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
 				where l.jdbs='0' and l.sffirst='1' and x.sqzt='7' 

@@ -277,7 +277,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			boolean b=false;
 			Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1",xmsq.getXzqhdm2());
 			lx.setGhlxbm(xmsq.getGhlxbm());
 			lx.setGhqdzh(xmsq.getGhqdzh());
 			lx.setGhzdzh(xmsq.getGhzdzh());
@@ -1369,7 +1369,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmsq.setGpszdzh(xmsq.getZdzh());
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1",xmsq.getXzqhdm2());
 				lx.setJdbs("1");
 				lx.setJsjsdj(xmsq.getJsdj());
 				lx.setGpsqdzh(xmsq.getGpsqdzh());
@@ -1428,7 +1428,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmsq.setGpszdzh(xmsq.getZdzh());
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1",xmsq.getXzqhdm2());
 				lx.setJdbs("0");
 				lx.setJsjsdj(xmsq.getJsdj());
 				lx.setGpsqdzh(xmsq.getGpsqdzh());

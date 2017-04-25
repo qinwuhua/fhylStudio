@@ -295,7 +295,7 @@ function showAll(){
 		yhtype='省级';
 		sfsj=7;
 	}
-	var ybzt=$("#ybzt").val();
+	var ybzt=$("#ybzt").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectShjhList.do',
 	    striped:true,
@@ -313,6 +313,7 @@ function showAll(){
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
 	    	xmnf:xmnf,
+	    	'gcglsh.sbzt':'jz.shzt',
 	    	'gcglsh.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglsh.lxbm':$("#lxbm").val(),
 	    	'gcglsh.xmmc':$("#xmmc").val(),

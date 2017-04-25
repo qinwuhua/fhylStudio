@@ -488,12 +488,7 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	
 	//gsdgz
 	public void selectgsdgzList(){
-		String tiaojian1="";
-		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
-		}else{
-			tiaojian1="and xzqhdm in ("+gydw+")";
-		}
+		
 		gcglgcgzsj.setPage(page);
 		gcglgcgzsj.setRows(rows);
 		gcglgcgzsj.setJhid(jhid);
@@ -501,17 +496,16 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setKgzt(kgzt);
 		gcglgcgzsj.setLxmc(lxmc);
 		gcglgcgzsj.setJgzt(jgzt);
-		gcglgcgzsj.setShzt(ybzt);
+		gcglgcgzsj.setShzt("");
+		if(ybzt.length()>1){
+		if("已".equals(ybzt.substring(0, 1))){
+			gcglgcgzsj.setShzt(" = '"+ybzt+"'");
+		}
+		if("未".equals(ybzt.substring(0, 1))){
+			gcglgcgzsj.setShzt(" like '%"+ybzt+"%'");
+		}
+		}
 		gcglgcgzsj.setSbnf(xmnf);
-		if(sfsj==7){
-			gcglgcgzsj.setTiaojian("sjsh");
-		}
-		if(sfsj==9){
-			gcglgcgzsj.setTiaojian("sjzt");
-		}
-		if(sfsj==11){
-			gcglgcgzsj.setTiaojian("xjzt");
-		}
 		if(gcglgcgzsj.getXmlx1()!=null)
 			if(gcglgcgzsj.getXmlx1().length()>0){
 				String[] tsdqs=gcglgcgzsj.getXmlx1().split(",");
