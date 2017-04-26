@@ -138,12 +138,12 @@ text-decoration:none;
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<td align="left" style="padding-left:10px;padding-top: 5px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-				<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+				<table style=" margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
 					            <td align="right">管养单位：</td>
                               	<td colspan="3"><select id="gydw" style="width:210px">
@@ -187,11 +187,11 @@ text-decoration:none;
 			</td>
 		</tr>
 		<tr>
-                   <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
+                   <td style="text-align: left; padding-left: 20px; padding-top: 2px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="bhsd1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个病害隧道项目。</td>
         </tr>
         <tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:2px; font-size:12px;">
             			<table id="grid" width="100%" height="320px"></table>
             	</td>
        		 </tr>

@@ -685,7 +685,7 @@ function showAllgj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-220,
+	    height:$(window).height()-200,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
@@ -831,7 +831,7 @@ function showAlllm(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-220,
+	    height:$(window).height()-200,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,
@@ -1120,7 +1120,7 @@ function showAllxj(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-220,
+	    height:$(window).height()-200,
 	    width:$(window).width()-20,
 	    queryParams: {
 	    	xzqh:xzqhstr,

@@ -177,14 +177,14 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle; ">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="30">
         						<!-- <td>管养单位：</td>
         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
         						<!-- <td>行政区划：</td>
@@ -210,7 +210,7 @@ text-decoration:none;
         						<td><select id="xmnf" style="width:55px;">
 								</select></td>
 								</tr>
-        					<tr height="32">
+        					<tr height="30">
 								<td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:115px;" class="easyui-combobox"></select></td>
         						<td align="right">原路线编码：</td>
@@ -230,7 +230,7 @@ text-decoration:none;
 								
         					</tr>
         					
-        					<tr height="32">
+        					<tr height="30">
         					<td align="right">审核状态：</td>
         						<td><select id="sbzt" style="width:115px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
@@ -262,7 +262,7 @@ text-decoration:none;
 								</select></td>
 								</tr>
 								
-							<tr height="32">	
+							<tr height="30">	
         						<td colspan="10">
         						<img onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>

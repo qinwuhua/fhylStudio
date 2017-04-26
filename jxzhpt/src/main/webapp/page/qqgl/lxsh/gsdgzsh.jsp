@@ -289,13 +289,13 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
 								<td align="right">行政区划：</td>
         						<td colspan="3" ><select id="xzqh" style="width:240px;"></select></td>

@@ -342,13 +342,13 @@ text-decoration:none;
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<td align="left" style="padding-left:10px;padding-top: 5px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+					<table style=" margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="29">
 								<td align="right">管养单位：</td>
                               	<td colspan="3"><select id="gydw" style="width:235px">
                               	</select></td>
@@ -359,7 +359,7 @@ text-decoration:none;
         						<td align="right">路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:70px;" /></td>
 						</tr>
-                        <tr height="32">
+                        <tr height="29">
 							  <!-- <td>项目年份：</td>
                               	<td><select id="jhnf" style="width:70px">
                               	</select> -->
@@ -368,7 +368,7 @@ text-decoration:none;
                               		<option selected="selected" value="">全部</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
-                              	</select></td>
+                              	</select>
                                <td align="right">审核状态：</td>
                               <td>	<select id="sbzt" style="width:70px"class="easyui-combobox">
                              	 <option value="">全部</option>
@@ -389,7 +389,7 @@ text-decoration:none;
                               	 <td align="right">路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                              </tr>
-                            <tr height="32">
+                            <tr height="29">
                             	<td align="right">补助历史：</td>
                               	<td><select id="bzls" style="width:70px"class="easyui-combobox">
                               	</select></td>
@@ -406,7 +406,7 @@ text-decoration:none;
 										
 									</select>
 								</td></tr>
-								<tr>
+								<tr height="29">
                               <td colspan="8">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 	 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenpi();" style="border-width:0px;" />
@@ -419,13 +419,13 @@ text-decoration:none;
 			</td>
 		</tr>
 		<tr>
-                   <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
+                   <td style="text-align: left; padding-left: 20px; padding-top: 0px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个项目.
 <!--         					隐患里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里， -->
 <!--         					处置里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里。</td> -->
         </tr>
          <tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:0px; font-size:12px;">
             			<table id="grid" width="100%" height="320px"></table>
             	</td>
        		 </tr>
