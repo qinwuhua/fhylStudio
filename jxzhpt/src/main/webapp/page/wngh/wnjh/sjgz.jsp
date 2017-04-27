@@ -89,14 +89,14 @@ text-decoration:none;
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 130px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 130px; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;height: 130px;">
+        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle; ">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td"  >
-							<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td"  >
+							<tr height="28">
         						<td align="right">行政区划：</td>
         						<td ><select id="xzqh" style="width:119px;"></select></td>
         						<td align="right">项目名称：</td>
@@ -108,7 +108,7 @@ text-decoration:none;
 								<td align="right">现技术等级：</td>
 								<td ><select name="jsdj" id="jsdj" style="width:85px" ></select></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="28">
         						
 								
 								<td align="right">项目年份：</td>
@@ -123,7 +123,7 @@ text-decoration:none;
         						<td align="right">规划路线编码：</td>
         						<td><input id='ghxlxbm' type="text" style="width:85px" /></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="28">
         						
         						<td align="right">规划路线名称：</td>
         						<td><input id='ghxlxmc' type="text" style="width:118px" /></td>
@@ -152,9 +152,9 @@ text-decoration:none;
 										<option value="省库">省库</option>
 									</select>
         					</tr>
-        					<tr height="32">
+        					<tr height="28">
         						
-								</td>
+								
                               <td colspan="10">
         						<img onclick="showAllgj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addWNJH('sjgz_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
