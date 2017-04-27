@@ -283,6 +283,14 @@
 			$("#xzqhdm").val($.cookie("dist"));
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			$('#xzqh').val($('#xzqh1').combo("getText"));
+			if($('#xzqh1').combo("getValues").join(",")==""){
+				alert("请选择行政区划！");
+				return false;
+			}
+			if($('#gydw1').combo("getValues").join(',')==""){
+				alert("请选择管养单位！");
+				return false;
+			}
 			var result=true;
 			result = validateText('ylxbh',null,result);
 			//result = validateText('ghlxbm',null,result);
