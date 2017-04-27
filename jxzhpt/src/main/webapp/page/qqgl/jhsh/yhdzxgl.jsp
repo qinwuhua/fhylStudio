@@ -117,7 +117,7 @@
 			}
 			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-205;
+			grid.height=$(window).height()-225;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -752,14 +752,14 @@ text-decoration:none;
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px; padding-top: 5px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-       						<tr height="32">
+       					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       						<tr height="29">
        							
        							<!-- <td>&nbsp;管养单位：</td>
        							<td><select id="gydw" style="width:170px;"></select></td> -->
@@ -793,7 +793,7 @@ text-decoration:none;
        							<td><select id="xmnf" style="width: 85px;"></select></td>
        							
        						</tr>
-       						<tr height="32">
+       						<tr height="29">
        							<!-- <td>&nbsp;原路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:95px;" /></td>
        							<td>&nbsp;原路线名称：</td>
@@ -835,7 +835,7 @@ text-decoration:none;
 								<!-- <td>&nbsp;管养单位：</td>
        							<td><select id="gydw" style="width:170px;"></select></td> -->
        						</tr>
-       						<tr height="32">
+       						<tr height="29">
        						<td align="right">是否有补助历史：</td>
        							<td>
        								<select id="lsjl" class="easyui-combobox" style="width: 124px;">
@@ -864,14 +864,14 @@ text-decoration:none;
 								</td>
 								
        							</tr>
-       							<tr height="32">
+       							<tr height="29">
        							<td align="right">历史计划年份：</td>
 								<td>
 									<select id='lsxmnf' class="easyui-combobox" style="width: 124px;">
 									</select>
 								</td>
 								</tr>
-								<tr>
+								<tr height="29">
        							<td colspan="8">
        								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>

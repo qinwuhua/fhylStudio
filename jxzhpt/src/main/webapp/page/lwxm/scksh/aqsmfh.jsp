@@ -331,13 +331,13 @@ text-decoration:none;
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<td align="left" style="padding-left:10px;padding-top: 5px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+					<table style=" margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="29">
 								<td align="right">管养单位：</td>
                               	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
                               	</select></td>
@@ -349,7 +349,7 @@ text-decoration:none;
         						<td align="right">路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:70px;" /></td>
 						</tr>
-                        <tr height="32">
+                        <tr height="29">
 							  <td align="right">项目年份：</td>
                               	<td><select id="jhnf" style="width:70px">
                               	</select>
@@ -373,7 +373,7 @@ text-decoration:none;
 							 	<td align="right">调后路线编码：</td>
 							  <td><input type="text" id="throadcode"  style="width:70px;" /></td>
                              </tr>
-                            <tr height="32">
+                            <tr height="29">
                             	<td align="right">行政等级：</td>
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
@@ -389,7 +389,7 @@ text-decoration:none;
 										
 									</select>
 								</td>
-								</tr><tr>
+								</tr><tr height="29">
                               <td colspan="6">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="showAll();"style="border-width:0px;cursor: hand;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuihui();" style="border-width:0px;" />								
@@ -401,13 +401,13 @@ text-decoration:none;
 			</td>
 		</tr>
 		<tr>
-                   <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
+                   <td style="text-align: left; padding-left: 20px;  height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个项目，
         					隐患里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         					处置里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，总投资估算【&nbsp;<span id="abgc4" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，总拟申请部（省）补助【&nbsp;<span id="abgc5" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。</td>
         </tr>
          <tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px; font-size:12px;">
             			<table id="grid" width="100%" height="320px"></table>
             	</td>
        		 </tr>

@@ -115,7 +115,7 @@
 			}
 			loadLj(params);
 			grid.queryParams=params;
-			grid.height=$(window).height()-160;
+			grid.height=$(window).height()-190;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -548,14 +548,14 @@ text-decoration:none;
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 		<tr>
-        	<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top:10px;">
+        	<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top:5px;">
         		<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
 	       			<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 	       				<font style="color: #0866A0; font-weight: bold"></font>
 	      			</legend>
 	       			<div>
-	       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-       						<tr height="32">
+	       				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       						<tr height="29">
        							
 	       						<!-- <td>&nbsp;管养单位：</td>
 	       						<td><select id="gydw" style="width:170px;"></select></td> -->
@@ -581,7 +581,7 @@ text-decoration:none;
 								<td><select name="gldj" id="gldj" style="width:81px;" class="easyui-combobox"></select></td>
 								
 	       					</tr>
-	       					<tr height="32">
+	       					<tr height="29">
 	       						<!-- <td>&nbsp;技术等级:</td>
 	       						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
 	       						<td>规划路线编码：</td>
@@ -616,7 +616,7 @@ text-decoration:none;
 	       						</td>
 	       						
 	       					</tr>
-	       					<tr height="32">
+	       					<tr height="29">
 	       					<td  align="right">特殊地区：</td>
 	       						<td><select name="tsdq" id="tsdq" style="width:124px;" class="easyui-combobox"></select></td>
 	       						<td  align="right"><span id="ztspan">上报状态</span>：</td>
@@ -647,7 +647,7 @@ text-decoration:none;
 									</select>
 								</td>
        							</tr>
-       							<tr height="32">
+       							<tr height="29">
 	       						<td colspan="10">
 	       							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>
@@ -668,7 +668,7 @@ text-decoration:none;
         	</td>
         </tr>
         <tr>
-            <td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            <td style="padding-left: 10px;padding-top:0px; font-size:12px;">
             	<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,

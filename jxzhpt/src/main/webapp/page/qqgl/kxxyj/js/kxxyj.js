@@ -979,7 +979,7 @@ function showAllsjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-220,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -1351,7 +1351,7 @@ function showAlllmsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-220,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -1710,7 +1710,7 @@ function showAllxjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-160,
+	    height:$(window).height()-215,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	xzqh:xzqhstr,
