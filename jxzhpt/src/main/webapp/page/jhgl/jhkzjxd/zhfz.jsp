@@ -132,14 +132,14 @@
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 5px;">
         			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-							<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="28">
         						<td align="right">管养单位：</td>
         						<td colspan="3" ><select id="gydw" style="width:227px;"></select></td>
         						<td align="right">行政区划：</td>
@@ -147,7 +147,7 @@
         						<td align="right">路线名称：</td>
         						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="28">
         						<td align="right">上报年份：</td>
         						<td><select id="sbnf" style="width: 60px; vertical-align:middle;"></select></td>
 								<td align="right">特殊地区：</td>
@@ -166,7 +166,7 @@
 								<td align="right">行政等级：</td>
 								<td><select name="ddlGldj" id="ddlGldj" style="width:104px; vertical-align:middle;"></select></td>
 								</tr>
-								<tr height="32">
+								<tr height="28">
 								<td align="right">是否有补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:60px;">
 									<option value="" selected="selected">全部</option>
@@ -181,7 +181,7 @@
 												<option value="省库">省库</option>
 											</select></td>
 											</tr>
-											<tr height="32">
+											<tr height="28">
 												<td colspan="12">
         						<img onclick="searchZhfz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         						<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
@@ -194,7 +194,7 @@
         		</td>
         	</tr>
         	<tr>
-        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
+        		<td style="text-align: left;padding:0px 0px 5px 20px;font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
         			批复总投资【&nbsp;<span id="pfztz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
@@ -204,7 +204,7 @@
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:0px; font-size:12px;">
             		<div>
             			<table id="grid"></table>
             		</div>

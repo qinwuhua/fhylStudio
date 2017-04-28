@@ -178,14 +178,14 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 10px;">
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 3px;">
         			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-								<tr height="32">
+        					<table style="margin:3px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+								<tr height="28">
 	        						<td align="right">管养单位：</td>
 	        						<td colspan="3" ><select id="gydw" style="width:185px;"></select></td>
 	        						<td align="right">行政区划：</td>
@@ -195,7 +195,7 @@ text-decoration:none;
 	        						<td align="right">特殊地区：</td>
 									<td><select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select></td>
 	        					</tr>
-	        					<tr height="32">
+	        					<tr height="28">
 	        						<td align="right">上报年份：</td>
 	        						<td><select id="sbnf" style="width: 55px;"></select></td>
 	        						<td align="right">上报状态：</td>
@@ -216,7 +216,7 @@ text-decoration:none;
 										<option value="是">是</option>
 									</select></td>
 	        					</tr>
-	        					<tr height="32">
+	        					<tr height="28">
 	        					<td align="right"> 项目库类型：</td>
 									<td>	
 											<select class="easyui-combobox" id='xmklx' style="width: 55px;">
@@ -225,7 +225,7 @@ text-decoration:none;
 												<option value="省库">省库</option>
 											</select></td>
 											</tr>
-											<tr>
+											<tr height="28">
 	                              <td colspan="10">
 	        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchZhfz()" style="vertical-align:middle;padding-left: 8px;"/>
 	<%--         								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
@@ -238,7 +238,7 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-        		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        		<td style="text-align: left; padding-left: 20px; padding-top: 0px; height: 30px; font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个灾害防治项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，

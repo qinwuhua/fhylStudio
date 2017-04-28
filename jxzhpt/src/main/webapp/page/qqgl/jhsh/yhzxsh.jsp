@@ -195,13 +195,13 @@ text-decoration:none;
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px; padding-top: 5px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 						<tr height="32">
 							<td align="right">行政区划：</td>
        						<td><select id="xzqh" style="width:134px;"></select></td>
@@ -243,7 +243,7 @@ text-decoration:none;
        		</td>
        	</tr>
        	<tr>
-           	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+           	<td style="padding-left: 10px;padding-top:3px; font-size:12px;">
            		<div>总投资累计：<span id="spanztz" style="color: red;">0</span>万元; 省补助资金累计：<span id="spansbz" style="color: red;">0</span>万元;
            		</div>
            		<div><table id="grid"></table></div>

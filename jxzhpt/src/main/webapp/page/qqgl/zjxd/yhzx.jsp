@@ -140,14 +140,14 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 5px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-       					<tr height="32">
+       				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       					<tr height="29">
        						<td  align="right">项目年份：</td>
        						<td><select id="xmnf" style="width: 90px;"></select></td>
        						<td align="right">行政区划：</td>
@@ -157,7 +157,7 @@
        						<td  align="right">级别：</td>
 	       					<td><select name="jb" class="easyui-combobox" id="jb" style="width:100px;"></select></td>
        					</tr>
-       					<tr height="32">
+       					<tr height="29">
        						<td align="right">项目名称：</td>
        						<td><input name="xmmc" id="xmmc" style="width:90px;" type="text"/></td>
        						<td  align="right">路线名称：</td>

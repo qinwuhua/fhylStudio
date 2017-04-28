@@ -72,7 +72,7 @@ function zhfzxm(jh,lx){
 			"lx.gydwlx":lx.gydwlx,"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
 	
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-200,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -178,7 +178,7 @@ function zhfzxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.jhzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
 			"lx.lxbm":lx.lxbm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-195,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
@@ -354,7 +354,7 @@ function zhfzxm_zjxd(jh,lx){
 	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
 			"lx.lxbm":lx.lxbm,"lx.lxjsdj":lx.lxjsdj,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd,"lx.xmklx":lx.xmklx};
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-150,width:$('#searchField').width(),queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-190,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';

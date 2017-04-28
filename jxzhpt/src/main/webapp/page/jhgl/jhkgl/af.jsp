@@ -186,14 +186,14 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="29">
         						<td  align="right">管养单位：</td>
         						<td colspan="3" ><select id="gydw" style="width:180px;"></select></td>
         						<td align="right">行政区划：</td>
@@ -204,7 +204,7 @@ text-decoration:none;
         						<td align="right">路线编码：</td>
         						<td><input name="txtRoad" type="text" id="lxbm" style="width:50px;" /></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="29">
         						<td align="right">上报年份：</td>
         						<td><select id="sbnf" style="width: 55px;"></select></td>
         						<td align="right">计划状态：</td>
@@ -228,7 +228,7 @@ text-decoration:none;
 									<option value="是">是</option>
 								</select></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="29">
         						<td align="right"> 项目库类型：</td>
 									<td>	
 											<select class="easyui-combobox" id='xmklx' style="width:55px;">
@@ -236,7 +236,7 @@ text-decoration:none;
 												<option value="部库">部库</option>
 												<option value="省库">省库</option>
 											</select></td>
-											</tr><tr>
+											</tr><tr height="29">
                               <td colspan="10">
         						<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
@@ -251,7 +251,7 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
+        		<td style="text-align: left;padding:0px 0px 5px 20px;font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安防工程项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
@@ -261,7 +261,7 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:0px; font-size:12px;">
             		<div>
             			<table id="grid"></table>
             		</div>

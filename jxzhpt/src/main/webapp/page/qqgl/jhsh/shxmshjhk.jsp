@@ -257,14 +257,14 @@ text-decoration:none;
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 5px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-						<tr height="32">
+       				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+						<tr height="29">
 								<!-- <td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								<td align="right">项目名称：</td>
@@ -284,7 +284,7 @@ text-decoration:none;
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
 								</tr>
-        					<tr height="32">
+        					<tr height="29">
         					<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:150px;" /></td>
         						<td align="right">行政等级：</td>
@@ -306,7 +306,7 @@ text-decoration:none;
         						<td><input name="lxmc" type="text" id="lxmc" style="width:78px;" /></td>
         						
                             </tr>
-                           <tr height="32">
+                           <tr height="29">
                            <td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:150px;" /></td>
         						<td align="right">规划路线名称：</td>
@@ -330,11 +330,11 @@ text-decoration:none;
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:104px;" /></td> 
                            -->
                             </tr>
-       					<tr height="32">
+       					<tr height="29">
        							<td align="right">下达状态：</td>
         						<td><input name="xdzt" type="text" id="xdzt" style="width:150px;" /></td>
         						</tr>
-        						<tr>
+        						<tr height="29">
        						<td colspan="8">
        							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 <!-- 								<img onclick="plscbtn()" alt="批量上传计划下达文件" src="../../../images/plsc.png" style="vertical-align:middle;width: 90px;height: 23px;"> -->
@@ -348,7 +348,7 @@ text-decoration:none;
        		</td>
        	</tr>
        	<tr>
-           	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+           	<td style="padding-left: 10px; font-size:12px;">
            			<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
