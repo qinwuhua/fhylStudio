@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" href="../../HMap/dist/HMap.css" type="text/css">
  <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
@@ -20,6 +21,8 @@
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../2.x/OpenLayers.js"></script>
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
+<script type="text/javascript" src="../../HMap/dist/HMap.js"></script>
+<script src="http://13.124.37.254/cdn/scripts/openlayers/v3.0/ol.min.js"></script>
 <style>
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
@@ -33,7 +36,8 @@
         /**
          *地图服务地址
          **/
-        var mapServerUrl = "http://127.0.0.1:8989/hdmapserver";
+        //var mapServerUrl = "http://192.168.100.118:6080/arcgis/rest/services/JXGS_FOUR/MapServer";
+        var mapServerUrl = "http://171.34.40.68:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
         /**
          * 服务命名空间 不能随便填，请通过hdmapserver服务查看
          **/
@@ -42,7 +46,7 @@
             "jx_qlzadaoqiao", "jx_xianxiangtedaqiao", "jx_xianxiangzhongxiaoqiao"];
         var lxIQueryLayes = ["jx_gaosugonglu", "jx_guodao", "jx_shengdao", "jx_xiandao", "jx_xiangdao",
             "jx_cundao", "jx_zhuandao"];
-        var qlQueryLayer = "jx_2014_ql", lxQueryLaye = "jx_2014_lx";
+        var qlQueryLayer = "GIS_QL", lxQueryLayer = "GIS_XZQH";
 
         var pointClick = null, geometry = null;
          jQuery(document).ready(function () {
@@ -50,7 +54,7 @@
 			xmlxTj();
             OpenLayers.ProxyHost = "../../proxy.jsp?";
             initMap();
-            initDefaultStyle();
+            //initDefaultStyle();
             
         });
 		
@@ -108,7 +112,7 @@
         /**
          * 初始化地图
          */
-        function initMap() {
+       /* function initMap() {
             var options = {
                 controls: [],
                 maxExtent: bounds,
@@ -126,7 +130,7 @@
             //
             map = new OpenLayers.Map('map', options);
             baseLayers = new OpenLayers.Layer.WMS("Geoserver layers - Tiled",
-                    mapServerUrl + "/wms", {
+                    mapServerUrl , {
                         LAYERS: 'jx_map',
                         STYLES: '',
                         format: format,
@@ -146,57 +150,288 @@
                 position: new OpenLayers.Pixel(2, 15)
             }));
             map.events.register("click", map, onMapClick);
-        }
-
+        }*/
+        function initMap() {
+        	
+      	  var cor = [
+      	             {
+      	               "level": 0,
+      	               "resolution": 0.010986328383069278,
+      	               "scale": 4617150
+      	             },
+      	             {
+      	               "level": 1,
+      	               "resolution": 0.005493164191534639,
+      	               "scale": 2308575
+      	             },
+      	             {
+      	               "level": 2,
+      	               "resolution": 0.0027465809060368165,
+      	               "scale": 1154287
+      	             },
+      	             {
+      	               "level": 3,
+      	               "resolution": 0.0013732916427489112,
+      	               "scale": 577144
+      	             },
+      	             {
+      	               "level": 4,
+      	               "resolution": 6.866458213744556E-4,
+      	               "scale": 288572
+      	             },
+      	             {
+      	               "level": 5,
+      	               "resolution": 3.433229106872278E-4,
+      	               "scale": 144286
+      	             },
+      	             {
+      	               "level": 6,
+      	               "resolution": 1.716614553436139E-4,
+      	               "scale": 72143
+      	             },
+      	             {
+      	               "level": 7,
+      	               "resolution": 8.582953794130404E-5,
+      	               "scale": 36071
+      	             },
+      	             {
+      	               "level": 8,
+      	               "resolution": 4.291595870115493E-5,
+      	               "scale": 18036
+      	             },
+      	             {
+      	               "level": 9,
+      	               "resolution": 2.1457979350577466E-5,
+      	               "scale": 9018
+      	             },
+      	             {
+      	               "level": 10,
+      	               "resolution": 1.0728989675288733E-5,
+      	               "scale": 4509
+      	             },
+      	             {
+      	               "level": 11,
+      	               "resolution": 5.363305107141452E-6,
+      	               "scale": 2254
+      	             },
+      	             {
+      	               "level": 12,
+      	               "resolution": 2.681652553570726E-6,
+      	               "scale": 1127
+      	             }
+      	           ];
+      	           var resolutions = [];
+      	           for (var i = 0; i < cor.length; i++) {
+      	             resolutions.push(cor[i].resolution);
+      	           }
+      	           map = new HMap.Map();
+      	           map.initMap('map', {
+      	             interactions: {
+      	               altShiftDragRotate: true,
+      	               doubleClickZoom: true,
+      	               keyboard: true,
+      	               mouseWheelZoom: true,
+      	               shiftDragZoom: true,
+      	               dragPan: true,
+      	               pinchRotate: true,
+      	               pinchZoom: true,
+      	               zoomDelta: 1, // 缩放增量（默认一级）
+      	               zoomDuration: 500 // 缩放持续时间
+      	             },
+      	             controls: {
+      	               attribution: true,
+      	               attributionOptions: {
+      	                 className: 'ol-attribution', // Default
+      	                 target: 'attributionTarget',
+      	               },
+      	               rotate: true,
+      	               rotateOptions: {
+      	                 className: 'ol-rotate', // Default
+      	                 target: 'rotateTarget',
+      	               },
+      	               zoom: true,
+      	               zoomOptions: {
+      	                 className: 'ol-zoom', // Default
+      	                 target: 'zoomTarget',
+      	               },
+      	               overViewMapVisible: false,
+      	               scaleLineVisible: true
+      	             },
+      	             view: {
+      	               center: [115.92466595234826, 27.428038204473552],
+      	               resolutions: resolutions,
+      	               fullExtent: [109.72859368643232, 24.010266905347684, 121.13105988819079, 30.76693489432357],
+      	               tileSize: 256,
+      	               origin: [-400, 399.9999999999998],
+      	               // constrainRotation: false, // 旋转角度约束
+      	               enableRotation: true, // 是否允许旋转
+//      	               extent: [],
+//      	               maxResolution: 0, // 非必须参数
+//      	               minResolution: 0,
+//      	               maxZoom: 19,
+//      	               minZoom: 0,
+      	               projection: 'EPSG:4326',
+      	               rotation: 0,
+      	               zoom: 1, // resolution
+      	               zoomFactor: 2 // 用于约束分变率的缩放因子（高分辨率设备需要注意）
+      	             },
+      	             logo: {},
+      	             baseLayers: [  // 不传时默认加载OSM地图。
+      	               {
+      	                 layerName: 'vector',
+      	                 isDefault: true,
+      	                 layerType: 'TileXYZ',
+      	                 opaque: false, //图层是否不透明
+      	                 layerUrl: mapServerUrl,
+      	               }
+      	             ]
+      	           });
+      	         map.mapTools = {
+      	        	      addPoint: false, ljQuery: false,
+      	        	      iQuery: false, drawPlot: false,
+      	        	      addTextArea: false,
+      	        	      toolsType: {
+      	        	        addPoint: 'addPoint',
+      	        	        ljQuery: 'ljQuery',
+      	        	        iQuery: 'iQuery',
+      	        	        drawPlot: 'drawPlot',
+      	        	        addTextArea: 'addTextArea'
+      	        	      }
+      	        	    };
+      	         map.popupOverlay = null;
+      	         map.map.on("click", function (evt) {
+      	        	 onMapClick(evt);
+       	         })
+      	           console.log(map);
+      }
         //i查询，生成查询的范围
         function onMapClick(e) {
-            var resolution = map.getResolution();
+        	if(map.mapTools.iQuery){
+        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+    		        return feature;
+    		      });
+        		alert(e.pixel);
+        		if(feature) {
+        			showInfo(feature);
+        		}
+        		else {
+        			notGetInfo(feature);
+        		}
+        		map.mapTools.IQuery = false;
+        	}
+        	else{
+        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+    		        return feature;
+    		      });
+        		console.log(feature);
+        		if(feature) {
+        			onFeatureSelect(feature);
+        		}
+        		else {
+        			notGetInfo(feature);
+        		}
+        	}
+            /*var resolution = map.getResolution();
             var lonlat = map.getLonLatFromViewPortPx(e.xy);
+            alert(lonlat.lon);
             pointClick = new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat);
+            
             geometry = OpenLayers.Geometry.Polygon.createRegularPolygon(pointClick, 5 * resolution, 20, 0);
+            alert(lonlat.lon);*/
         }
         /**
          * 属性查询示例
          */
         function attrQuery(_roadcode) {
         	YMLib.Var.bm=_roadcode;
-        	clearGraphics();
+        	//clearGraphics();
             if(_roadcode.length<=10){
-            	wfsAttrQuery(lxQueryLaye, "ROADCODE", _roadcode);
+            	queryLoad("LX",_roadcode);
             }else{
-            	wfsAttrQuery(qlQueryLayer, "ROADBM", _roadcode);
+            	queryLoad("QL",_roadcode);
             }
+            
+        }
+        
+        /**
+         * 路线桥梁查询定位
+         */
+        function queryLoad(type,_roadcode){
+        	var feature;
+        	var lx_code;
+        	var xzqhbm;
+        	map.removeFeatureByLayerName('resultLayer');
+        	if(_roadcode){
+        		lx_code=_roadcode.substring(0,_roadcode.length - 6);
+        		xzqhbm=_roadcode.substring(_roadcode.length - 6);
+        	}
+        	var params;
+        	if(type=="LX"){
+        		params={params:'{"layerName":"GIS_XZQH","filter":"lxdm=\''+lx_code+'\' AND xzqhbm=\''+xzqhbm+'\'","pager":{}}'};
+        	} else if(type=="QL"){
+        		params={params:'{"layerName":"GIS_QL","filter":"qldm=\''+_roadcode +'\'","pager":{}}'};
+        	}
+        	        	       	
+        	$.ajax({  
+                url:"http://36.2.6.21:7001/geoserver-sde/rest/action/search",  
+                dataType:'json',  
+                data:params,  
+                jsonp:'callback',  
+                success:function(result) {
+                	if(result) {
+                		feature=result['data']['features'][0];
+                    	feature['attributes']['style'] = {
+    			        		stroke:{
+    			        			strokeWidth:4,
+    			        			strokeColor:'#EE0033'
+    			        		}
+    			        };
+    			        feature['attributes']['selectStyle'] = {
+    			        		stroke:{
+    			        			strokeWidth:6,
+    			        			strokeColor:'#E52929'
+    			        		}
+    			        };
+    			        var feat;
+    			        if(type=="LX") {
+    			        	feat = map.addPolyline(feature, {
+        			            layerName: 'resultLayer',
+        			            selectable: true
+        			          });
+    			        	let extent = feat.getGeometry().getExtent();
+        			        map.zoomToExtent(extent, true);
+        			        map.highLightFeature('',feat,'');
+    			        }
+    			        else if(type=="QL"){
+    			        	feat = map.addPoint(feature, {
+        			            layerName: 'resultLayer',
+        			            selectable: true
+        			          });
+    			        	map.map.getView().setCenter(feat.getGeometry().getCoordinates());
+    			        	map.highLightFeature('',feat,'');
+    			        }
+    			        
+                   	
+                	}
+                	                    
+        	},  
+                timeout:3000  
+            }); 
+
         }
         /**
          * I查询
          * */
         var infoControl = null;
         function IQuery() {
-            if (infoControl != null) {
-                infoControl.activate();
-                return;
-            }
-            infoControl = new OpenLayers.Control.WMSGetFeatureInfo({
-                url: mapServerUrl + '/wms',
-                layers: [baseLayers],
-                queryVisible: true,//查找可见图层
-                output: 'features',
-                infoFormat: 'application/json',
-                format: new OpenLayers.Format.JSON,
-                maxFeatures: 1000
-                //最大返回要素数目1000个
-            });
-            infoControl.events.register("getfeatureinfo", this, showInfo);
-            infoControl.events.register("nogetfeatureinfo", this, notGetInfo);
-            map.addControl(infoControl);
-            infoControl.activate();
+        	//queryLoad("QL","G35361128L0800");
         }
         /**
          * I查询查询到数据后的处理方法
          */
         var layersConfig = [];
         function showInfo(object) {
-            var features = object.features.features;
+            var features = object;
             var len = features.length;
             var tableNames = [];
             for (var i = 0; i < len; i++) {
@@ -291,7 +526,7 @@
                 /**
                  * 更复杂的逻辑条件请参考OpenLayers的API
                  * */
-                filter: new OpenLayers.Filter.Spatial({
+               filter: new OpenLayers.Filter.Spatial({
                     type: OpenLayers.Filter.Spatial.INTERSECTS,
                     value: geo,//
                     projection: 'EPSG:4326'
@@ -307,6 +542,30 @@
             });
             wfsProtocol.read();
         }
+        function showPopup (obj) {
+            let id = '';
+            if (map.popupOverlay && !obj['notClear']) {
+              map.map.removeOverlay(map.popupOverlay);
+              map.popupOverlay = null;
+            }
+            if (obj['id']) {
+              id = obj['id'] + 'overlay';
+            } else {
+              id = 'overlay' + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000 + 1);
+            }
+            let m = {
+              positioning: 'center-center',
+              id: id
+            };
+            if (offset) {
+              m.offset = offset;
+            }
+            obj = $.extend(obj, m);
+            map.popupOverlay = new ol.Overlay.Popup(obj);
+            map.map.addOverlay(map.popupOverlay);
+            map.popupOverlay.show(obj.coordinate, obj.content);
+            map.panIntoView_(map.popupOverlay, obj.coordinate, null)
+          };
         /**
          * I查询没有查询到数据的处理方法
          */
@@ -318,9 +577,11 @@
         var selectedFeature = null;
         function onFeatureSelect(feature) {
         	if(YMLib.Var.bm==undefined){
-        		if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
-        		else YMLib.Var.bm=feature.attributes.ROADBM;
+        		//if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
+        		//else YMLib.Var.bm=feature.attributes.ROADBM;
+        		YMLib.Var.bm=feature.getProperties()['LXDM']+feature.getProperties()['XZQHBM'];
         	}
+        	
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
         	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
