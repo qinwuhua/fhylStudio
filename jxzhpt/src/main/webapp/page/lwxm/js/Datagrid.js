@@ -2373,7 +2373,7 @@ function sckshWqgz(){
 		    rownumbers:true,
 		    pageNumber:1,
 		    pageSize:10,
-		    height:$(window).height()-185,
+		    height:$(window).height()-200,
 			width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
@@ -2606,7 +2606,7 @@ function sckshAbgc(){
 		    rownumbers:true,
 		    pageNumber:1,
 		    pageSize:50,
-		    height:$(window).height()-185,
+		    height:$(window).height()-200,
 			width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
@@ -2837,7 +2837,7 @@ function sckshZhfz(){
 		    rownumbers:true,
 		    pageNumber:1,
 		    pageSize:10,
-		    height:$(window).height()-185,
+		    height:$(window).height()-200,
 			width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         

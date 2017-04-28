@@ -295,14 +295,14 @@ text-decoration:none;
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
+        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 5px;">
         			<fieldset id="searchField" style="width:99.8%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-							<tr height="32">
+        				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="28">
 								<!-- <td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								<td>项目名称：</td>
@@ -323,7 +323,7 @@ text-decoration:none;
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:75px;"></select></td>
 								
         					</tr>
-        					<tr height="32">
+        					<tr height="28">
         					<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 140px;"></select></td>
         						<!-- <td align="right">行政等级：</td>
@@ -349,7 +349,7 @@ text-decoration:none;
         						<td><input name="lxmc" type="text" id="lxmc" style="width:75px;" /></td>
 								
                             </tr>
-                            <tr height="32">
+                            <tr height="28">
                             <td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:140px;" /></td>
 								<td align="right">规划路线名称：</td>
@@ -385,7 +385,7 @@ text-decoration:none;
 									<option value="0">未上报</option>
 								</select></td>
                             </tr>
-                            <tr height="32">
+                            <tr height="28">
                             <td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 140px;">
@@ -401,7 +401,7 @@ text-decoration:none;
                             	<td>规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td> -->
         						</tr>
-        						<tr>
+        						<tr height="28">
                             	<td colspan="8">
                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 									<img id="sb" name="dishi" alt="上报" onclick="plansb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>
