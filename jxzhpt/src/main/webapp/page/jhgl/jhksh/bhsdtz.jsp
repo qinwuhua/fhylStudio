@@ -122,8 +122,8 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        						<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        						<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="30">
         						<td align="right">管养单位： </td>
         						<td  colspan="3"><select id="gydw" style="width:187px;"></select> </td>
         						<td align="right">行政区划： </td>
@@ -134,7 +134,7 @@ text-decoration:none;
         						<td><input name="sdmc" type="text" id="sdmc" style="width:80px;" /> </td>
         						
         					</tr>
-        				<tr height="32">
+        				<tr height="30">
         						<td align="right">隧道代码： </td>
         						<td><input name="sddm" type="text" id="sddm" style="width:55px;" /> </td>
         						<td align="right">计划年份： </td>
@@ -152,7 +152,7 @@ text-decoration:none;
 								<td><select name="tzlx" class="easyui-combobox" id="tzlx" style="width:80px;">
 								</select> </td>
         					</tr>
-						<tr height="32">
+						<tr height="30">
 						 <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
         						<img alt="导出Excel" onclick="exportExceltz('bhsd','tz')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
@@ -162,7 +162,7 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr style="margin: 0px;">
-        		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
+        		<td style="text-align: left; padding:0px 0px 5px 20px; font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个病害隧道项目，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
