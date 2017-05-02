@@ -173,6 +173,7 @@ function showAll(){
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
+	
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,

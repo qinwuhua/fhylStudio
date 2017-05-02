@@ -10,7 +10,12 @@ public class Gcglgcgzgj implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String jgys;
-	
+	private String ghlxbm;
+	private String ghqdzh;
+	private String ghzdzh;
+	private String lxbm1;
+	private String qdzh1;
+	private String zdzh1;
 	private String xdzj;
 	private String bfzj;
 	private String lqlmwcqk;//沥青路面完成情况
@@ -28,6 +33,42 @@ public class Gcglgcgzgj implements Serializable {
 	private String dfzc;
 	
 	
+	public String getGhlxbm() {
+		return ghlxbm;
+	}
+	public void setGhlxbm(String ghlxbm) {
+		this.ghlxbm = ghlxbm;
+	}
+	public String getGhqdzh() {
+		return ghqdzh;
+	}
+	public void setGhqdzh(String ghqdzh) {
+		this.ghqdzh = ghqdzh;
+	}
+	public String getGhzdzh() {
+		return ghzdzh;
+	}
+	public void setGhzdzh(String ghzdzh) {
+		this.ghzdzh = ghzdzh;
+	}
+	public String getLxbm1() {
+		return lxbm1;
+	}
+	public void setLxbm1(String lxbm1) {
+		this.lxbm1 = lxbm1;
+	}
+	public String getQdzh1() {
+		return qdzh1;
+	}
+	public void setQdzh1(String qdzh1) {
+		this.qdzh1 = qdzh1;
+	}
+	public String getZdzh1() {
+		return zdzh1;
+	}
+	public void setZdzh1(String zdzh1) {
+		this.zdzh1 = zdzh1;
+	}
 	public String getDfzc() {
 		return dfzc;
 	}

@@ -40,6 +40,13 @@ public class Cbsj{
 		private String snhntmchb;  
 		private String bx;  
 		private String snhntmcssh;
+		private String fcbc30;
+		private String bc6;
+		private String bc25;
+		private String bc30;
+		private String bmc25;
+		private String wfc;
+		private String xjfc;
 		//厚度
 		private String lqhntmchd;
 		private String gxlqhntmchd;  
@@ -59,6 +66,13 @@ public class Cbsj{
 		private String snhntmchbhd;  
 		private String bxhd;  
 		private String snhntmcsshhd;
+		private String fcbc30hd;
+		private String bc6hd;
+		private String bc25hd;
+		private String bc30hd;
+		private String bmc25hd;
+		private String wfchd;
+		private String xjfchd;
 		//单价
 		private String lqhntmcdj;
 		private String gxlqhntmcdj;  
@@ -79,8 +93,141 @@ public class Cbsj{
 		private String bxerdj;
 		private String bxyidj;
 		private String snhntmcsshdj;
+		private String fcbc30dj;
+		private String bc6dj;
+		private String bc25dj;
+		private String bc30dj;
+		private String bmc25dj;
+		private String wfcdj;
+		private String xjfcdj;
 		private String sbzj;//省补资金
 		
+		public String getFcbc30() {
+			return fcbc30;
+		}
+		public void setFcbc30(String fcbc30) {
+			this.fcbc30 = fcbc30;
+		}
+		public String getBc6() {
+			return bc6;
+		}
+		public void setBc6(String bc6) {
+			this.bc6 = bc6;
+		}
+		public String getBc25() {
+			return bc25;
+		}
+		public void setBc25(String bc25) {
+			this.bc25 = bc25;
+		}
+		public String getBc30() {
+			return bc30;
+		}
+		public void setBc30(String bc30) {
+			this.bc30 = bc30;
+		}
+		public String getBmc25() {
+			return bmc25;
+		}
+		public void setBmc25(String bmc25) {
+			this.bmc25 = bmc25;
+		}
+		public String getWfc() {
+			return wfc;
+		}
+		public void setWfc(String wfc) {
+			this.wfc = wfc;
+		}
+		public String getXjfc() {
+			return xjfc;
+		}
+		public void setXjfc(String xjfc) {
+			this.xjfc = xjfc;
+		}
+		public String getFcbc30hd() {
+			return fcbc30hd;
+		}
+		public void setFcbc30hd(String fcbc30hd) {
+			this.fcbc30hd = fcbc30hd;
+		}
+		public String getBc6hd() {
+			return bc6hd;
+		}
+		public void setBc6hd(String bc6hd) {
+			this.bc6hd = bc6hd;
+		}
+		public String getBc25hd() {
+			return bc25hd;
+		}
+		public void setBc25hd(String bc25hd) {
+			this.bc25hd = bc25hd;
+		}
+		public String getBc30hd() {
+			return bc30hd;
+		}
+		public void setBc30hd(String bc30hd) {
+			this.bc30hd = bc30hd;
+		}
+		public String getBmc25hd() {
+			return bmc25hd;
+		}
+		public void setBmc25hd(String bmc25hd) {
+			this.bmc25hd = bmc25hd;
+		}
+		public String getWfchd() {
+			return wfchd;
+		}
+		public void setWfchd(String wfchd) {
+			this.wfchd = wfchd;
+		}
+		public String getXjfchd() {
+			return xjfchd;
+		}
+		public void setXjfchd(String xjfchd) {
+			this.xjfchd = xjfchd;
+		}
+		public String getFcbc30dj() {
+			return fcbc30dj;
+		}
+		public void setFcbc30dj(String fcbc30dj) {
+			this.fcbc30dj = fcbc30dj;
+		}
+		public String getBc6dj() {
+			return bc6dj;
+		}
+		public void setBc6dj(String bc6dj) {
+			this.bc6dj = bc6dj;
+		}
+		public String getBc25dj() {
+			return bc25dj;
+		}
+		public void setBc25dj(String bc25dj) {
+			this.bc25dj = bc25dj;
+		}
+		public String getBc30dj() {
+			return bc30dj;
+		}
+		public void setBc30dj(String bc30dj) {
+			this.bc30dj = bc30dj;
+		}
+		public String getBmc25dj() {
+			return bmc25dj;
+		}
+		public void setBmc25dj(String bmc25dj) {
+			this.bmc25dj = bmc25dj;
+		}
+		public String getWfcdj() {
+			return wfcdj;
+		}
+		public void setWfcdj(String wfcdj) {
+			this.wfcdj = wfcdj;
+		}
+		public String getXjfcdj() {
+			return xjfcdj;
+		}
+		public void setXjfcdj(String xjfcdj) {
+			this.xjfcdj = xjfcdj;
+		}
 		public String getXmklx() {
 			return xmklx;
 		}

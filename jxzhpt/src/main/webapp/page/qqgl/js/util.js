@@ -1,3 +1,5 @@
+
+
 //获取养护大中修算费单价
 function queryyhdzxsfdj(){
 			$.post('/jxzhpt/qqgl/queryyhdzxsfdj.do',{},
@@ -784,6 +786,30 @@ function validateText(id,type,result){
 	}
 	return result;
 }
+//
+function validateInput(id,idtype,type,result){
+	if(!result){
+		return result;
+	}
+	if(type!=null){
+		
+	}else{
+		if(idtype=='text'){
+			if($('#'+id).val()=='' || $('#'+id).val()==null){
+				alert($('#'+id).parent().prev().html()+"不能为空！");
+				return false;
+			}
+		}
+		if(idtype=='combo'){
+			if($('#'+id).combo('getValues')=='' || $('#'+id).combo('getValues')==null){
+				alert($('#'+id).parent().prev().html()+"不能为空！");
+				return false;
+			}
+		}
+		
+	}
+}
+
 /**
  * 加载特殊地区下拉列表
  * @param id 元素ID
@@ -1611,7 +1637,7 @@ var Rh={
     			    {field:'cz',title:'操作',width:150,align:'center',
     			    	formatter:function(value,row,index){
     			    		var result='<a href="javascript:updateLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">编辑</a>';
-    			    		result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		result +='&nbsp;<a href="javascript:('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
     			    		return result;
     			    	}
     			    },

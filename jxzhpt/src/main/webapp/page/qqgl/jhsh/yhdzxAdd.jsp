@@ -298,6 +298,7 @@
 			//result = validateText('qdzh','number',result);
 			//result = validateText('zdzh','number',result);
 			//result = validateText('lc','number',result);
+			
 			result = validateText('xmmc',null,result);
 			if($('#ntz').val()!="" && $('#ntz').val()!=null){
 				result = validateText('ntz','number',result);
