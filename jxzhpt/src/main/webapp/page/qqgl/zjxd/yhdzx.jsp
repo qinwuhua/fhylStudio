@@ -151,7 +151,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-280,
+			    height:$(window).height()-255,
 			    width:$(window).width()-20,
 			    queryParams: params,
 			    columns:[[
@@ -706,14 +706,14 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 5px;">
        			<fieldset id="searchField" style="width:99.9%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-       					<tr height="32">
+       				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+       					<tr height="29">
         						<!-- <td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td align="right">项目名称：</td>
@@ -738,7 +738,7 @@
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         						</tr>
         						
-        					<tr height="32">
+        					<tr height="29">
         						<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:118px;" /></td>
         						
@@ -763,7 +763,7 @@
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
         						
         					</tr>
-        					<tr height="32">
+        					<tr height="29">
         					<td align="right">规划路线编码：</td>
         						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:118px;" /></td>
         						
@@ -816,7 +816,7 @@
 									</select>
         						</td> 
         					</tr>-->
-       					<tr height="32">
+       					<tr height="29">
        						<td align="right">管养分类：</td>
         					<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         					
@@ -838,7 +838,7 @@
        		</td>
        	</tr>
        	<tr>
-           	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+           	<td style="padding-left: 10px; font-size:12px;">
            		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,
@@ -850,7 +850,7 @@
             		</div>
            		<div id="tt" border="false" class="easyui-tabs" style="">
             		<script type="text/javascript" >
-                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:'+($(window).height()*0.75)+'px;');
+                	$("#tt").attr('style','width:'+($(window).width()*0.99)+'px;height:'+($(window).height()*0.55)+'px;');
      				</script>
 	            		<div title="项目列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 					    	<table id="grid"></table>

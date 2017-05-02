@@ -60,7 +60,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-120,
+			    height:$(window).height()-130,
 			    width:$(window).width()-20,
 			    queryParams: {
 			    	'lxsh.nwgxzdj':$("#nwgxzdj").combobox('getValues').join(','),
@@ -129,8 +129,8 @@
 	</div>
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle; padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;">
+        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle; ">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>

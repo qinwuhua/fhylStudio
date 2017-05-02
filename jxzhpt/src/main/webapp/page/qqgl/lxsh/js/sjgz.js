@@ -1594,7 +1594,7 @@ function showAllsjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-209,
+	    height:$(window).height()-199,
 	    width:$(window).width()-30,
 	    queryParams: {
 	    	lsjl:lsjl,
@@ -3220,7 +3220,7 @@ function showAllxjsh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    checkOnSelect:true,
-	    height:$(window).height()-210,
+	    height:$(window).height()-200,
 	    width:$(window).width()-30,
 	    queryParams:{xzqh:xzqhstr,
 			//gydw:gydwstr,

@@ -88,7 +88,7 @@ function wqxm(jh,lx){
 	queryParams='lx.gydwlx='+lx.gydwlx+'&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&lx.gydwbm='+lx.gydwbm+
 	'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc+"&lx.lxbm"+lx.lxbm+"&lx.lxbm"+lx.lxbm+"&lx.qlmc"+lx.qlmc+"&lx.akjfl"+lx.akjfl+"&lx.xmklx="+lx.xmklx;
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+		    pageNumber:1,pageSize:10,height:$(window).height()-210,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -278,7 +278,7 @@ function wqxm_sh(jh,lx){
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx};
 
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+		    pageNumber:1,pageSize:10,height:$(window).height()-190,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a href="javascript:locationQl('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.qlzxzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -380,7 +380,7 @@ function wqxm_zjxd(jh,lx){
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq,"lx.xmklx":lx.xmklx};
 
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:$(window).height()-158,width:$('#searchField').width(),queryParams:params,
+		    pageNumber:1,pageSize:10,height:$(window).height()-190,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a href="javascript:locationQl('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';

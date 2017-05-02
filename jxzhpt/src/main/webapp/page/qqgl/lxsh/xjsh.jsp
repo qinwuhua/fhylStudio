@@ -173,14 +173,14 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;padding-bottom:10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 5px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="29">
 								<td align="right">行政区划：</td>
         						<td colspan="3" ><select id="xzqh" style="width:330px;"></select></td>
         						<td align="right">项目名称：</td>
@@ -205,7 +205,7 @@ text-decoration:none;
 								</select></td> -->
         						
         					</tr>
-        					<tr height="32">
+        					<tr height="29">
         						
 								<!-- <td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:88px;" >
@@ -241,7 +241,7 @@ text-decoration:none;
 									<option value="1">已审核</option>
 								</select></td>
         					</tr>
-        					<tr height="32">
+        					<tr height="29">
         					<td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
@@ -291,7 +291,7 @@ text-decoration:none;
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px; margin-bottom:5px;">
             		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,

@@ -144,13 +144,13 @@ text-decoration:none;
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<td align="left" style="padding-left:10px;padding-top: 5px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+					<table style=" margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="28">
 								<td align="right">管养单位：</td>
                               	 <td colspan="3" ><select id="gydw" style="width:230px">
                               	</select></td>
@@ -162,7 +162,7 @@ text-decoration:none;
         						<td align="right">路线编码：</td>
                               	<td><input type="text" id="lxbm"style="width:68px"/></td>
                        </tr>
-                       <tr height="32">
+                       <tr height="28">
 							  <!-- <td>项目年份：</td>
                               <td>	
                                 <select id="xmnf" style="width:70px"></select>
@@ -187,7 +187,7 @@ text-decoration:none;
                               	<td><select id="gldj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                         </tr>
-                         <tr height="32">
+                         <tr height="28">
                               <td align="right">桥梁名称：</td>
                               	<td><input type="text" id="qlmc"style="width:67px"/></td>
                               
@@ -212,12 +212,12 @@ text-decoration:none;
 			</td>
 		</tr>
 		<tr>
-                   <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
+                   <td style="text-align: left; padding-left: 20px; padding-top: 0px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目。</td>
         </tr>
         <tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            			<table id="grid" width="100%" height="320px"></table>
+            	<td style="padding-left: 10px;padding-top:0px; font-size:12px;">
+            			<table id="grid" width="100%" ></table>
             	</td>
        		 </tr>
 		</table>
