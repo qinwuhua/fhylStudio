@@ -74,8 +74,8 @@ text-decoration:none;
 		$("#gxqdzh").val(data.gxqdzh);
 		$("#gxzdzh").val(data.gxzdzh);
 		sfylx();
-		getghxx(data.id);
-		getghxxone(parent.obj.id,parent.obj.qdzh,parent.obj.zdzh);
+		//getghxx(data.id);
+		//getghxxone(parent.obj.id,parent.obj.qdzh,parent.obj.zdzh);
 	});
 	function getghxx(xmid){
 		$.ajax({

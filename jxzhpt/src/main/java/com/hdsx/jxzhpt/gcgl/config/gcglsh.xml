@@ -397,7 +397,6 @@
 				</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
-				
 				<if test="lxmc != null and  lxmc != ''">
 					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>

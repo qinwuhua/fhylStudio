@@ -48,7 +48,7 @@
 				}
 			});
 			
-			getghxx(parent.YMLib.Var.xmbm);
+			//getghxx(parent.YMLib.Var.xmbm);
 		});
 		function getghxx(xmid){
 			$.ajax({
