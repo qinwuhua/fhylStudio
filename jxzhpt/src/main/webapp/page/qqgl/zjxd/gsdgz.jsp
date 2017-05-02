@@ -142,7 +142,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-240,
+			    height:$(window).height()-280,
 			    width:$(window).width()-20,
 			    queryParams: params,
 			    columns:[[
@@ -720,14 +720,14 @@
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 5px;">
+        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
         			<fieldset id="searchField" style="width:99.9%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-        					<tr height="29">
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<tr height="32">
         						<!-- <td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:114px;"></select></td>
         						<td align="right">项目名称：</td>
@@ -752,7 +752,7 @@
         						<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:118px;"></select></td>
         						
         					</tr>
-        					<tr height="29">
+        					<tr height="32">
         					<td align="right">首次下达年份：</td>
         						<td><input name="scxdnf" type="text" id="scxdnf" style="width:114px;" /></td>
         						
@@ -776,7 +776,7 @@
 								<td align="right">原路线编码：</td>
         						<td><input name="lxbm" type="text" id="lxbm" style="width:118px;" /></td>
         						</tr>
-        					<tr height="29">
+        					<tr height="32">
         					<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:110px;" /></td>
         						<td align="right">规划路线编码：</td>
@@ -811,7 +811,7 @@
         						<td align="right">特殊地区：</td>
         						<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
         						</tr>
-        					<tr height="29">
+        					<tr height="32">
         					 <td align="right">管养分类：</td>
         						<td><input name="gyfl" type="text" id="gyfl" style="width:110px;" /></td>
         						<td align="right">下达状态：</td>
@@ -858,7 +858,7 @@
         		</td>
         	</tr> -->
         	<tr>
-            	<td style="padding-left: 10px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>项目【<span id="xmsl" style="color: red;">0</span>】个,
             		建设里程【<span id="lc" style="color: red;">0</span>】公里,
             		总投资【<span id="tz" style="color: red;">0</span>】万元,

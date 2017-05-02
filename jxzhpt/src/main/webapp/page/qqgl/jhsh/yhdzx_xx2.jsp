@@ -29,7 +29,7 @@
 					loadDist("xzqh1",msg.xzqhdm);
 					loadUnit("gydw1",msg.gydwdm);
 					$("#ylxbh").val(msg.ylxbh);
-					getghxxone(parent.YMLib.Var.xmbm,msg.qdzh,msg.zdzh);
+					//getghxxone(parent.YMLib.Var.xmbm,msg.qdzh,msg.zdzh);
 					$('#submit').form("load",msg);
 					$("#submit textarea[id='jsfa']").attr("disabled","disabled");
 				}
@@ -75,7 +75,7 @@
 				}
 			});
 			queryZjxdyhdzx(parent.YMLib.Var.xmbm);
-			getghxx(parent.YMLib.Var.xmbm);
+			//getghxx(parent.YMLib.Var.xmbm);
 		});
 		function getghxx(xmid){
 			$.ajax({

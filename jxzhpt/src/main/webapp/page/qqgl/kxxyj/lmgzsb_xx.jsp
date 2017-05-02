@@ -83,8 +83,8 @@ text-decoration:none;
 	$(function(){
 		load();
 		sfylx();
-		getghxx(parent.obj.xmbm);
-		getghxxone(parent.obj.xmbm,parent.obj.qdzh,parent.obj.zdzh);
+		//getghxx(parent.obj.xmbm);
+		//getghxxone(parent.obj.xmbm,parent.obj.qdzh,parent.obj.zdzh);
 	});
 	function getghxx(xmid){
 		$.ajax({

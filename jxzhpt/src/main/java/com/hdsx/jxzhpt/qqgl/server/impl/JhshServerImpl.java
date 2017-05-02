@@ -353,7 +353,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		}
 		params.put("lx", lx);
 		params.put("xmsq", xmsq);
-		System.out.println(xmsq.getSnhntmchbmj());
+		//System.out.println(xmsq.getSnhntmchbmj());
 		if(update("updateLxshm",params)>0)
 		{	update("updateLxqwhxmbm",lx);
 			return true;

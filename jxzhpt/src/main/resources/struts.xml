@@ -1,7 +1,7 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
     "/xsd/struts-2.1.7.dtd">
-<struts> 
+<struts>
 <include file="struts-default.xml"/>
 <constant name="struts.locale" value="zh_CN"></constant>
 <constant name="struts.i18n.encoding" value="UTF-8"></constant> 

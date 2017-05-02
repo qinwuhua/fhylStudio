@@ -96,13 +96,13 @@ text-decoration:none;
 		</div>
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" style="padding-left:10px;padding-top: 5px;">
+			<td align="left" style="padding-left:10px;padding-top: 10px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<table style=" margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="29">
+					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
 					           <td align="right">管养单位：</td>
                               	<td colspan="3" ><select id="gydw" style="width:210px">
                               	</select></td>
@@ -115,7 +115,7 @@ text-decoration:none;
                               <td>	<input id="sdmc" type="text" style="width:60px"/></td>
                               	
 						</tr>
-                       <tr height="29">
+                       <tr height="32">
 				  			<td  align="right">项目年份：</td>
                            	<td><select id="xmnf" style="width:70px">
                            	</select></td>
@@ -133,7 +133,7 @@ text-decoration:none;
                          	<td  align="right">路线编码：</td>
      						<td><input type="text" id="lxbm" style="width:62px;" /></td>
                           </tr>
-                     <tr height="29">
+                     <tr height="32">
                       <td colspan="10">
 							<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshBhsd();"style="border-width:0px;cursor: hand;" />
 							<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
