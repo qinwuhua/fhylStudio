@@ -80,8 +80,8 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        				<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="30">
         						<td align="right">行政区划：</td>
         						<td><input id="xzqh" style="width: 150px;"></td>
         						<td align="right">开工状态：</td>
@@ -94,7 +94,7 @@ text-decoration:none;
         						</select></td>
         						
         						</tr>
-								  	<tr height="32">
+								  	<tr height="30">
 								<td align="right">技术等级：</td>
 								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:150px; vertical-align:middle;"></select></td>
 								<td align="right">行政等级：</td>
@@ -109,13 +109,13 @@ text-decoration:none;
         							<option value="未上报">未上报</option>
         						</select></td>
 								</tr>
-								<tr height="32">
+								<tr height="30">
 								<td align="right">路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:148px;" /></td>
         						<td align="right">项目名称：</td>
         						<td><input type="text" id="xmmc" style="width:95px;" /></td>
         						</tr>
-        							<tr height="32">
+        							<tr height="30">
         								<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
