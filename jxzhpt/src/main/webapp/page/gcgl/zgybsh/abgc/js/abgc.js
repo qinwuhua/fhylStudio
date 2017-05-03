@@ -164,7 +164,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:50,
-	    height:$(window).height()-195,
+	    height:$(window).height()-185,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,
