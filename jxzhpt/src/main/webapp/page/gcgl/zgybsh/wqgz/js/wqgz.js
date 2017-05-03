@@ -178,6 +178,9 @@ function showAll(){
 		sfsj=7;
 	}
 	var ybzt=$("#ybzt").val();
+	var xzdj=$("#ddlGldj").combobox('getValues').join(",");
+	if(xzdj.substr(0,1)==',')
+		xzdj=xzdj.substr(1,xzdj.length);
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -200,7 +203,7 @@ function showAll(){
 	    	sfylrbwqk:'是',
 	    	gydwtj:"and 1=1",
 	    	'gcglwqgz.xzqh':xzqhstr,
-	    	'gcglwqgz.gldj':$("#ddlGldj").combobox('getValue'),
+	    	'gcglwqgz.gldj':xzdj,
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
 	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 	    	

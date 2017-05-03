@@ -3471,7 +3471,7 @@ function autoCompleteGHLXBM(){
 }
 
 function selectTSDQ1(lxbm,qdzh,zdzh){
-	$("#tsdq").text("");
+	$("#tsdq").text("");$("#tsdq1").text("");
 	var data="lxbm="+lxbm+"&qdzh="+qdzh+"&zdzh="+zdzh;
 	$.ajax({
 		type:'post',
@@ -3485,7 +3485,7 @@ function selectTSDQ1(lxbm,qdzh,zdzh){
 					tsdqstr=tsdqstr+msg[i]+"、";
 				}
 				tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
-				$("#tsdq").text(tsdqstr);
+				$("#tsdq").text(tsdqstr);$("#tsdq1").text(tsdqstr);
 			}
 		}
 	});	

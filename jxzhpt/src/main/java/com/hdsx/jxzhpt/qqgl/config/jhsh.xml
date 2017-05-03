@@ -2507,7 +2507,48 @@
 		<if test="cbsj.sbzj != null">
         sbzj = #{cbsj.sbzj},
       </if>
-		
+		<if test="cbsj.fcbc30 != null">
+	        fcbc30=#{cbsj.fcbc30},
+	      </if>
+	      <if test="cbsj.bc6 != null">
+	        bc6=#{cbsj.bc6},
+	      </if>
+	      <if test="cbsj.bc25 != null">
+	        bc25=#{cbsj.bc25},
+	      </if>
+	      <if test="cbsj.bc30 != null">
+	        bc30=#{cbsj.bc30},
+	      </if>
+	      <if test="cbsj.bmc25 != null">
+	        bmc25=#{cbsj.bmc25},
+	      </if>
+	      <if test="cbsj.wfc != null">
+	        wfc=#{cbsj.wfc},
+	      </if>
+	      <if test="cbsj.xjfc != null">
+	        xjfc=#{cbsj.xjfc},
+	      </if>
+	      <if test="cbsj.fcbc30hd != null">
+	        fcbc30hd=#{cbsj.fcbc30hd},
+	      </if>
+	      <if test="cbsj.bc6hd != null">
+	        bc6hd=#{cbsj.bc6hd},
+	      </if>
+	      <if test="cbsj.bc25hd != null">
+	        bc25hd=#{cbsj.bc25hd},
+	      </if>
+	      <if test="cbsj.bc30hd != null">
+	        bc30hd=#{cbsj.bc30hd},
+	      </if>
+	      <if test="cbsj.bmc25hd != null">
+	        bmc25hd=#{cbsj.bmc25hd},
+	      </if>
+	      <if test="cbsj.wfchd != null">
+	        wfchd=#{cbsj.wfchd},
+	      </if>
+	      <if test="cbsj.xjfchd != null">
+	        xjfchd=#{cbsj.xjfchd},
+	      </if>
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
 		l.xmid=#{lx.xmid} 
@@ -2858,16 +2899,16 @@
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="lx">
 		select distinct xmid,xmmc from LXSH_LX l,(
-		select xmbm,xmmc from lxsh_lmgz union all select xmbm,xmmc from lxsh_sjgz
-		union all select xmbm,xmmc from lxsh_xj
-		union all select xmbm,xmmc from xmsq_sh
-		union all select xmbm,xmmc from xmsq_yhdzx) x 
-		where l.xmid=x.xmbm and l.lxbm like '%'||#{lxbm}||'%' 
-		
-		and GREATEST(to_number(l.zdzh),to_number(l.qdzh))>LEAST(${zdzh},${qdzh}) 
-		and GREATEST(${zdzh},${qdzh})>LEAST(to_number(l.zdzh),to_number(l.qdzh))
-		and l.xmid !=#{xmid}
-		and l.xmid like substr(#{xmid},0,4)||'%'
+	    select xmbm,xmmc from lxsh_lmgz union all select xmbm,xmmc from lxsh_sjgz
+	    union all select xmbm,xmmc from lxsh_xj
+	    union all select xmbm,xmmc from xmsq_sh
+	    union all select xmbm,xmmc from xmsq_yhdzx) x 
+	    where l.xmid=x.xmbm and l.ghlxbm like '%'||#{ghlxbm}||'%' 
+	    and l.jdbs=fun_zdjdbs(l.xmid)
+	    and GREATEST(to_number(l.ghzdzh),to_number(l.ghqdzh))>LEAST(${ghzdzh},${ghqdzh}) 
+	    and GREATEST(${ghzdzh},${ghqdzh})>LEAST(to_number(l.ghzdzh),to_number(l.ghqdzh))
+	    and l.xmid !=#{xmid}
+	    and l.xmid like substr(#{xmid},0,4)||'%'
 	</select>
 	<select id="queryLxMaxJdbs" parameterType="lx" resultType="lx">
 		select * from lxsh_lx where xmid=#{xmid} and 

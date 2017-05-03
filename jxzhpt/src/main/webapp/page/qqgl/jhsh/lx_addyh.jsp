@@ -136,6 +136,14 @@
 					
 			
 			};
+			if($('#xzqh').combo("getValues").join(",")==""){
+				alert("请选择行政区划！");
+				return false;
+			}
+			if($('#gydw').combo("getValues").join(',')==""){
+				alert("请选择管养单位！");
+				return false;
+			}
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/insertLx.do',

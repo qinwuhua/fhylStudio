@@ -59,6 +59,30 @@
 					if(data.snhntmcsshhd=='是'){
 						$("#snhntmcsshse").attr('checked','checked');
 					}
+					if(data.xfchd=='是'){
+						$("#xfcse").attr('checked','checked');
+					}
+					if(data.fcbc30hd=='是'){
+						$("#fcbc30se").attr('checked','checked');
+					}
+					if(data.bc6hd=='是'){
+						$("#bc6se").attr('checked','checked');
+					}
+					if(data.bc25hd=='是'){
+						$("#bc25se").attr('checked','checked');
+					}
+					if(data.bc30hd=='是'){
+						$("#bc30se").attr('checked','checked');
+					}
+					if(data.bmc25hd=='是'){
+						$("#bmc25se").attr('checked','checked');
+					}
+					if(data.wfchd=='是'){
+						$("#wfcse").attr('checked','checked');
+					}
+					if(data.xjfchd=='是'){
+						$("#xjfcse").attr('checked','checked');
+					}
 					$("#sbzj1").html(data.sbzj);
 					$("#sbzj").val(data.sbzj);
 					/* $('#span_qdzh').html(data.gpsqdzh);
@@ -937,6 +961,135 @@
 						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
+	            <tr>
+	            	<td rowspan="7" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						封层</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						封层（透层）+30mm薄层罩面
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="fcbc30dj">50</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='fcbc30se' onclick="jsbzzj('fcbc30')" type="checkbox"/>
+						<input type="hidden" id='fcbc30hd' name='fcbc30hd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='fcbc30' name='fcbc30' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						6mm超薄层罩面
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc6dj">35</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc6se' onclick="jsbzzj('bc6')" type="checkbox"/>
+						<input type="hidden" id='bc6hd' name='bc6hd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc6' name='bc6' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						25mm薄层罩面
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc25dj">43</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc25se' onclick="jsbzzj('bc25')" type="checkbox"/>
+						<input type="hidden" id='bc25hd' name='bc25hd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc25' name='bc25' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						30mm薄层罩面
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc30dj">50</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc30se' onclick="jsbzzj('bc30')" type="checkbox"/>
+						<input type="hidden" id='bc30hd' name='bc30hd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc30' name='bc30' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						25mm超薄磨耗层
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bmc25dj">55</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bmc25se' onclick="jsbzzj('bmc25')" type="checkbox"/>
+						<input type="hidden" id='bmc25hd' name='bmc25hd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bmc25' name='bmc25' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						雾封层<2mm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="wfcdj">12</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='wfcse' onclick="jsbzzj('wfc')" type="checkbox"/>
+						<input type="hidden" id='wfchd' name='wfchd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='wfc' name='wfc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						稀浆封层 5mm
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="xjfcdj">15</span>元/平方米
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='xjfcse' onclick="jsbzzj('xjfc')" type="checkbox"/>
+						<input type="hidden" id='xjfchd' name='xjfchd' />
+					</td>
+					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='xjfc' name='xjfc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            
 	            <tr style="height: 30px;">
 	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						省补资金</td>

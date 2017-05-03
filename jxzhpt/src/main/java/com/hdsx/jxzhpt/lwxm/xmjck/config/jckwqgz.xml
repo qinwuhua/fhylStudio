@@ -565,7 +565,7 @@
  <select id="selectTSDQ" parameterType="jckwqgz" resultType="String">
  	select distinct x.name from xtgl_xzqhtsdq t,xtgl_tsdq x where t.xzqhdm in(
 	select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{lxbm}
-	and roadstart&lt;=#{zdzh} and roadends>=#{qdzh}) and x.id=t.parent 
+	and to_number(roadstart)&lt;=to_number(#{zdzh}) and to_number(roadends)>=to_number(#{qdzh})) and x.id=t.parent 
 </select>
   <select id="selectTSDQ1" parameterType="String" resultType="String">
  	select distinct x.name from xtgl_xzqhtsdq t left join xtgl_tsdq x on t.parent=x.id where t.xzqhdm = ${value}
