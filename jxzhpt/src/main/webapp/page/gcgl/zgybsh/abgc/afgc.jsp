@@ -122,8 +122,8 @@ text-decoration:none;
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="30">
         						<td  align="right">管养单位：</td>
         						<td><input id="gydw" style="width: 150px;"></td>
         						<td align="right">技术等级：</td>
@@ -136,7 +136,7 @@ text-decoration:none;
         						<option value="">全部</option>
         						</select></td>
         						</tr>
-        						 	<tr height="32">
+        						 	<tr height="30">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select>	</td>							
 								<td align="right">行政等级：</td>
@@ -150,7 +150,7 @@ text-decoration:none;
         							<option value="未上报">未上报</option>
         						</select></td>
 								</tr>
-									<tr height="32">
+									<tr height="30">
 								<td align="right"> 项目库类型：</td>
 								<td><select class="easyui-combobox" id='xmklx' style="width:150px;">
 									<option value="" selected>请选择</option>
@@ -158,7 +158,7 @@ text-decoration:none;
 									<option value="省库">省库</option>
 								</select></td>
 								</tr>
-									<tr height="32">
+									<tr height="30">
 									<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showafAll()"/>

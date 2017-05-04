@@ -79,14 +79,14 @@ text-decoration:none;
 	           
         	</tr>
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1%  0px 0px 0px;">
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top:5px;">
+        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+        					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="30">
         						<td align="right">管养单位：</td>
         						<td><input id="gydw" style="width: 150px;"></td>
         						<td align="right">行政等级：</td>
@@ -97,7 +97,7 @@ text-decoration:none;
         						<td><input type="text" id="qlmc" style="width:80px;"></td>
         						
         						</tr>
-        							<tr height="32">
+        							<tr height="30">
         							<td align="right">项目年份：</td>
         						<td><select name="ddlYear" id="ddlYear" style="width: 150px;">
         						<option value="">全部</option>
@@ -113,7 +113,7 @@ text-decoration:none;
         						<td><input type="text" id="qlbm" style="width: 80px;"></td>
         							
 								</tr>
-								<tr height="32">
+								<tr height="30">
 								<td align="right">月报状态：</td>
         						<td><select id="ybzt" style="width: 150px;">
         							<option value="">全&nbsp;&nbsp;部</option>
@@ -127,7 +127,7 @@ text-decoration:none;
 									<option value="省库">省库</option>
 								</select></td>
 								</tr>
-									<tr height="32">
+									<tr height="30">
 									<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
@@ -137,7 +137,7 @@ text-decoration:none;
         	</tr>
 
             <tr>
-                <td width="100%" style="padding-top: 1%;padding-left:10px;">
+                <td width="100%" style="padding-top: 7px;padding-left:10px;">
                     <div>
 						<table id="datagrid" >
 						</table>
