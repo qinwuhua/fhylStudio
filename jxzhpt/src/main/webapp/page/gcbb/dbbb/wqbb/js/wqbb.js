@@ -35,7 +35,7 @@ function showAlljc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 
 	    columns:[[
@@ -123,7 +123,7 @@ function showAllsc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 	    columns:[[
 	        {field:'qlbh',title:'桥梁编码',width:100,align:'center'},
@@ -200,7 +200,7 @@ function showAlljh(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 
 	    columns:[[

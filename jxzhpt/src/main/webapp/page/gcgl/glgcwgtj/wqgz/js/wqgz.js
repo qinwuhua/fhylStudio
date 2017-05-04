@@ -12,7 +12,6 @@ function thxm(index){
 				if(msg){
 					alert("退回成功");
 					$("#datagrid").datagrid('reload');
-				}else{
 					alert("退回失败");
 				}
 			}
@@ -181,7 +180,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-195,
+	    height:$(window).height()-205,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydwstr,

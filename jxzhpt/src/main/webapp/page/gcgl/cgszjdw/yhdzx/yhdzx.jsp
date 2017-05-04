@@ -109,6 +109,7 @@ a:active {
  text-decoration: none;
 }
 -->
+.abgc_td td{padding-right:5px;}
 </style>
 </head>
 <body>
@@ -126,52 +127,60 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 150px;">
-        						<span>下达年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 68px;">
+        				<table style="margin:4px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<tr height="29">
+        						<td align="right">行政区划：</td>
+        						<td><input id="xzqh" style="width: 150px;"></td>
+        						<td align="right">下达年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 68px;">
         						<option value="">全部</option>
-        						</select>
-        						<span>拨付月份：</span> <input name="ddlMonth"
-									id="ddlMonth" style="width: 60px;">
-								<span>拨付状态：</span> <select id=bfzt
-									style="width: 50px;">
+        						</select></td>
+        						<td align="right">拨付月份：</td>
+        						<td><input name="ddlMonth"
+									id="ddlMonth" style="width: 85px;"></td>
+								<td align="right">拨付状态：</td>
+								<td><select id=bfzt
+									style="width: 85px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
-								</select> 
-								<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 138px;">
-								</p>
-								   <p style="margin: 1% 0% 1% 2%;">
-								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
-								<span style=" vertical-align:middle;">&nbsp;行政等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
-        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:115px; vertical-align:middle;">
-								</select>
+								</select> </td>
 								
-        						<span>累计拨付状态：</span>
-        						<select id="ljbfzt" class="easyui-combobox" style="width:83px;">
+								</tr>
+								 <tr height="29">
+								 <td align="right">路线名称：</td>
+        						<td>	<input type="text" id="lxmc" style="width: 148px;"></td>
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:85px; vertical-align:middle;"></select></td>
+        						<td align="right">特殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;">
+								</select></td>
+								
+        					
+								</tr>
+							<tr height="29">
+								<td align="right">累计拨付状态：</td>
+        						<td><select id="ljbfzt" class="easyui-combobox" style="width:150px;">
 									<option value="" selected="selected">全部</option>
 									<option value="已全部拨付">已全部拨付</option>
 									<option value="未全部拨付">未全部拨付</option>
-								</select>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span>路线编码：</span>
-        						<span><input type="text" id="lxbm" style="width:95px;" /></span>
-        						<span>项目名称：</span>
-        						<span><input type="text" id="xmmc" style="width:95px;" /></span>
+								</select></td>
+								<td align="right">路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:68px;" /></td>
+        						<td align="right">项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:85px;" /></td>
 <!--         						<span>下达年份：</span> -->
 <!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
+								</tr>
+								<tr height="29">
+								<td colspan="8">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAllyh()"/>        					
                                   <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						 <img onclick="importData_yb('cgszjdw/yhdzx/yhdzx')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>      
-                                        </p>
+                                     </td>   </tr></table>
         				</div>
         			</fieldset>
         		</td>

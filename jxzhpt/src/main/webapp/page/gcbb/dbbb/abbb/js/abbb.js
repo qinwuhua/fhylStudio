@@ -35,7 +35,7 @@ function showAlljc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 	    columns:[[
 	         {field:'gydw',title:'管养单位',width:150,align:'center'},
@@ -111,7 +111,7 @@ function showAllsc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 	    columns:[[
 	              {field:'gydw',title:'管养单位',width:150,align:'center'},
@@ -194,7 +194,7 @@ function showAlljh(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:$(window).height()-140,
+	    height:$(window).height()-150,
 		width:$(window).width()-25,
 	    columns:[[
 	        {field:'gydw',title:'管养单位',width:110,align:'center'},
