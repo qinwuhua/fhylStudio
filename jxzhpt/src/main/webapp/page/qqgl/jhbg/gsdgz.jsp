@@ -68,7 +68,7 @@
 					};
 			grid.queryParams=params;
 			loadLj(params);
-			grid.height=$(window).height()-195;
+			grid.height=$(window).height()-225;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -291,14 +291,14 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
+        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 5px;">
         			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-							<tr height="32">
+        				<table style="margin:4px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="29">
 								<!-- <td>行政区划：</td>
         						<td><select id="xzqh" style="width:150px;"></select></td>
 								<td>项目名称：</td>
@@ -309,23 +309,23 @@ text-decoration:none;
 								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td> -->
-        						<td>行政区划：</td>
-        						<td><select id="xzqh" style="width:150px;"></select></td>
-								<td>项目名称：</td>
-        						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
-        						<td>建设性质：</td>
-								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
-        						<td>建设技术等级：</td>
-								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:104px;"></select></td>
-								<td>现技术等级：</td>
-								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:55px;"></select></td>
+        						<td  align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:140px;"></select></td>
+								<td  align="right">项目名称：</td>
+        						<td><input name="xmmc" type="text" id="xmmc" style="width:80px;" /></td>
+        						<td align="right">建设性质：</td>
+								<td><select name="xmlx" id="xmlx" style="width:82px;" ></select></td>
+        						<td align="right">建设技术等级：</td>
+								<td><select name="jsjsdj" class="easyui-combobox" id="jsjsdj" style="width:108px;"></select></td>
+								<td align="right">现技术等级：</td>
+								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:108px;"></select></td>
 								
         					</tr>
-        					<tr height="32">
-        					<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>资金来源：</td>
-        						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
+        					<tr height="29">
+        					<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 140px;"></select></td>
+        						<td align="right">资金来源：</td>
+        						<td><input name="zjly" type="text" id="zjly" style="width:82px;" /></td>
         						<!-- <td>行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
 								<td>原路线编码：</td>
@@ -340,28 +340,28 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td> -->
-								<td>重要度排序：</td>
-        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
+								<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:82px;">
 		                              	<option value="" selected>请选择</option>
 										<option value="升序">升序</option>
 										<option value="降序">降序</option>
 									</select>
         						</td>
-        						<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>
-								<td>原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
+        						<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:108px;" class="easyui-combobox"></select></td>
+								<td align="right">原路线编码：</td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:108px;" /></td>
         						
                             </tr>
-                            <tr height="32">
-                            <td>原路线名称：</td>
-        						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						<td>规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
-								<td>规划路线名称：</td>
-        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
-        						<td>是否有补助历史：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:55px;">
+                            <tr height="29">
+                            <td align="right">原路线名称：</td>
+        						<td><input name="lxmc" type="text" id="lxmc" style="width:138px;" /></td>
+        						<td align="right">规划路线编码：</td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:80px;" /></td>
+								<td align="right">规划路线名称：</td>
+        						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:80px;" /></td>
+        						<td align="right">是否有补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:108px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
@@ -380,31 +380,32 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:104px;"></select></td>
+								<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:108px;"></select></td>
 								
                             </tr>
-                            <tr height="32">
-                            <td>管养分类：</td>
-        						<td><input name="gyfl" type="text" id="gyfl" style="width:100px;" /></td>
-								<td>审核状态：</td>
-								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:55px;">
+                            <tr height="29">
+                            <td align="right">管养分类：</td>
+        						<td><input name="gyfl" type="text" id="gyfl" style="width:138px;" /></td>
+								<td align="right">审核状态：</td>
+								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:82px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
-								<td>项目库类型：</td>
+								<td align="right">项目库类型：</td>
 								<td>
-									<select id='xmklx' class="easyui-combobox" style="width: 65px;">
+									<select id='xmklx' class="easyui-combobox" style="width: 82px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
-								</td>
+								</td></tr>
                            		<!-- <td>建设性质：</td>
 								<td><select name="xmlx" id="xmlx" style="width:104px;" ></select></td>
                             	<td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td> -->
+        						<tr>
                             	<td colspan="8">
 <!--                             		<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/> -->
 									<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryLmsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>

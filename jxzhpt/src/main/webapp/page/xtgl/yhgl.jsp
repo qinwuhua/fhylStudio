@@ -135,8 +135,8 @@ $(function(){
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;用户信息管理</div>
 		</div>
-		<div  style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+		<div  style="padding-left: 10px; padding-right: 10px;padding-top:8px;">
+			<fieldset style="width:99%; text-align: left; vertical-align: middle;	border:1px solid #b0caf3;">
  				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
  					
  				</legend>
