@@ -68,7 +68,7 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 4px 20px;">
+        					<p style="margin: 5px 0px 4px 20px;">
         					    <span>管养单位：</span>
         						<input id="gydw" style="width: 150px;">
         						<span>路线名称：</span>

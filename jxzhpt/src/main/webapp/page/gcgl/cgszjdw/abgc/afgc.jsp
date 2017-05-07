@@ -119,6 +119,7 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+.abgc_td td{padding-right:5px;}
 -->
 </style>
 </head>
@@ -137,58 +138,65 @@ a:active {
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 150px;">
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:150px;"></select>
-        						<span>下达年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 65px;">
+        					<table style="margin:4px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<tr height="29">
+        						<td align="right">管养单位：</td>
+        						<td><input id="gydw" style="width: 140px;"></td>
+        						<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:140px;"></select></td>
+        						<td align="right">下达年份：</td>
+        						<td><select name="ddlYear" id="ddlYear" style="width: 65px;">
         						<option value="">全部</option>
-        						</select>
-        						<span>拨付月份：</span> <input name="ddlMonth"
-									id="ddlMonth"  style="width: 58px;">
-								<span>拨付状态：</span> <select id=bfzt
-									style="width: 55px;">
+        						</select></td>
+        						<td align="right">拨付月份：</td>
+        						<td><input name="ddlMonth"
+									id="ddlMonth"  style="width: 83px;"></td>
+								
+                                </tr>
+                                 	<tr height="29">
+								<td align="right">拨付状态：</td>
+								<td><select id=bfzt
+									style="width: 140px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>
-								</select> 
-                                </p>
-                                   <p style="margin: 1% 0% 1% 2%;">
+								</select> </td>
+								<td align="right">技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:140px; vertical-align:middle;"></select></td>
+								<td align="right">行政等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:65px; vertical-align:middle;"></select></td>
+        						<td align="right">特殊地区：</td>
+								<td><select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;">
+								</select></td>
 								
-								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:70px; vertical-align:middle;"></select>
-								<span style=" vertical-align:middle;">&nbsp;行政等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:70px; vertical-align:middle;"></select>
-        						<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:85px; vertical-align:middle;">
-								</select>
-								<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 138px;">
-        						<span>累计拨付状态：</span>
-        						<select id="ljbfzt" class="easyui-combobox" style="width:83px;">
+								</tr>
+									<tr height="29">
+									<td align="right">路线名称：</td>
+        						<td>	<input type="text" id="lxmc" style="width: 138px;"></td>
+        						<td align="right">累计拨付状态：</td>
+        						<td><select id="ljbfzt" class="easyui-combobox" style="width:140px;">
 									<option value="" selected="selected">全部</option>
 									<option value="已全部拨付">已全部拨付</option>
 									<option value="未全部拨付">未全部拨付</option>
-								</select>
-								</p>
-								<p style="margin: 1% 0% 1% 2%;">
-								<span>路线编码：</span>
-        							<input type="text" id="lxbm" style="width: 138px;">
-        						<span> 项目库类型：</span>
-								<select class="easyui-combobox" id='xmklx'>
+								</select></td>
+								<td align="right">路线编码：</td>
+        							<td><input type="text" id="lxbm" style="width: 63px;"></td>
+        					<td align="right"> 项目库类型：</td>
+								<td><select class="easyui-combobox" id='xmklx' style="width:85px;">
 									<option value="" selected>请选择</option>
 									<option value="部库">部库</option>
 									<option value="省库">省库</option>
-								</select>
+								</select></td>
+								</tr>
 <!--         						<span>下达年份：</span> -->
 <!--         							<input type="text" id="xdnf" style="width: 100px;"> -->
+        							<tr height="29">
+        							<td colspan="8">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="showafAll()"/>
                            		 <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						 <img onclick="importData_yb('cgszjdw/abgc/afgc')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-                                </p>
+                               </td> </tr></table>
         				</div>
         			</fieldset>
         		</td>

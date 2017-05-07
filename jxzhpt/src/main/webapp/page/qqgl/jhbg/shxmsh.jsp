@@ -59,7 +59,7 @@
 					};
 			grid.queryParams=params;
 			loadLj(params);
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-200;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -288,16 +288,16 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td> -->
-								<td>行政区划：</td>
-        						<td><select id="xzqh" style="width:150px;"></select></td>
-								<td>项目名称：</td>
-        						<td><input name="xmmc" type="text" id="xmmc" style="width:100px;" /></td>
-        						<td>技术等级：</td>
+								<td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:140px;"></select></td>
+								<td align="right">项目名称：</td>
+        						<td><input name="xmmc" type="text" id="xmmc" style="width:106px;" /></td>
+        						<td align="right">技术等级：</td>
 								<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:104px;"></select></td>
-								<td>项目年份：</td>
-        						<td><select id="xmnf" style="width: 104px;"></select></td>
-        						<td>重要度排序：</td>
-        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:104px;">
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 108px;"></select></td>
+        						<td align="right">重要度排序：</td>
+        						<td><select name="zydpx" id="zydpx" class="easyui-combobox" style="width:100px;">
 		                              	<option value="" selected>请选择</option>
 										<option value="升序">升序</option>
 										<option value="降序">降序</option>
@@ -320,27 +320,27 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td> -->
-								<td>行政等级：</td>
-								<td><select name="gldj" id="gldj" style="width:104px;" class="easyui-combobox"></select></td>
-								<td>原路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:100px;" /></td>
-        						<td>原路线名称：</td>
+								<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:140px;" class="easyui-combobox"></select></td>
+								<td align="right">原路线编码：</td>
+        						<td><input name="lxbm" type="text" id="lxbm" style="width:108px;" /></td>
+        						<td align="right">原路线名称：</td>
         						<td><input name="lxmc" type="text" id="lxmc" style="width:100px;" /></td>
-        						<td >规划路线编码：</td>
-        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:100px;" /></td>
-        						<td>规划路线名称：</td>
+        						<td  align="right">规划路线编码：</td>
+        						<td><input name="ghlxbm" type="text" id="ghlxbm" style="width:108px;" /></td>
+        						<td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
         						
                             </tr>
                             <tr height="32">
-                            <td>是否有补助历史：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:104px;">
+                            <td align="right">是否有补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:140px;">
 									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-								<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:150px;"></select></td> 
+								<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:108px;"></select></td> 
 								
         						<!-- <td align="right">规划路线名称：</td>
         						<td><input name="ghlxmc" type="text" id="ghlxmc" style="width:100px;" /></td>
@@ -350,7 +350,7 @@ text-decoration:none;
         						<td><input name="zydpx" type="text" class="easyui-numberbox" id="zydpx" style="width:100px;" /></td> -->
                           <!--   </tr>
        					<tr height="32"> -->
-       					<td>审核状态：</td>
+       					<td align="right">审核状态：</td>
 								<td><select name="shzt" id="shzt" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>

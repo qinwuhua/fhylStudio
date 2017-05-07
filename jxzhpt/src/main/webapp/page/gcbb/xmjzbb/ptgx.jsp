@@ -312,7 +312,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;height: 80px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -332,8 +332,7 @@ a:active {
         						<span>特殊地区：</span>
         						<input type="text" id="tsdq"  style="width:73px;">
         						&nbsp;&nbsp;
-        						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
+        						 
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         					<span>行政区划：</span>
@@ -355,7 +354,10 @@ a:active {
         							<option value="">全部</option>
         							<option value="and wbfzj=0">零</option>
         							<option value="and (wbfzj is null or wbfzj!=0)">非零</option>
-        						</select>
+        						</select></p>
+        					<p style="margin: 8px 0px 8px 20px;">	
+        					<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
         						&nbsp;&nbsp;
 <%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportPtgx()" style="vertical-align: -50%;" /> --%>

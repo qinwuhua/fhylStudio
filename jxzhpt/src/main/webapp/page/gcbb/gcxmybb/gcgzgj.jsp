@@ -279,7 +279,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:99%;height:400px">
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
+                			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-170)+'px');
                 		</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
