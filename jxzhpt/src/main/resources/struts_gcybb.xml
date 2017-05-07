@@ -3,7 +3,10 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="gcybb" extends="struts-default" namespace="/gcybb">
-
+	<action name="getGljsjhhzb" class="gcybbController" method="getGljsjhhzb"/>
+	
+	<action name="getZdyBbzd" class="gcybbController" method="getZdyBbzd"/>
+	<action name="createBtTree" class="gcybbController" method="createBtTree"/>
 	<action name="getsjssjzhzb" class="gcybbController" method="getsjssjzhzb"/>
 	<action name="getWqgzybb" class="gcybbController" method="getWqgzybb"/>
 	<action name="exportWqgzyb" class="gcybbController" method="exportWqgzyb"/>

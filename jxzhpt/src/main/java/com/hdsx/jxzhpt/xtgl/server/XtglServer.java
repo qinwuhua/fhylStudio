@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.xtgl.server;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
@@ -180,4 +181,6 @@ public interface XtglServer {
 	Param selectXmsx();
 
 	List<HashMap<String, String>> selBmbmList();
+
+	List<Plan_upload> downFileByWhAndType(Plan_upload p);
 }

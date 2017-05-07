@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
@@ -592,5 +593,10 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<HashMap<String, String>> selBmbmList() {
 		return queryList("selBmbmList");
+	}
+
+	@Override
+	public List<Plan_upload> downFileByWhAndType(Plan_upload p) {
+		return queryList("downFileByWhAndType", p);
 	}
 }

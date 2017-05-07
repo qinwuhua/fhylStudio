@@ -3506,31 +3506,144 @@
 	  from (select substr1 value, count(*) co
 	          from zdybbbt
 	         where value in
-	               (${value})
+	               (${value}) and ssbb='glgzxjmxb'
 	         group by substr1
 	        union all
 	        select substr2 value, count(*) co
 	          from zdybbbt
 	         where value in
-	               (${value})
+	               (${value}) and ssbb='glgzxjmxb'
 	           and substr2 is not null
 	         group by substr2
 	        union all
 	        select substr3 value, count(*) co
 	          from zdybbbt
 	         where value in
-	               (${value})
+	               (${value}) and ssbb='glgzxjmxb'
 	           and substr3 is not null
 	         group by substr3
 	        union all
 	        select value, count(*) co
 	          from zdybbbt
 	         where value in
-	               (${value})
+	               (${value}) and ssbb='glgzxjmxb'
 	         group by value) t1,
 	       zdybbbt t2
-	 where t1.value = t2.value
+	 where t1.value = t2.value and ssbb='glgzxjmxb'
 	 order by t2.xh
+	</select>
+	<select id="createBtTree" parameterType="elist" resultType="treenode">
+	select 
+	value id,text,state,(case when value not like '%v_%' then substr(id,0,length(id)-1)
+	else id
+	end) parent,id id1,xh
+	from(
+	select (case when value like '%v_%' then substr(value,0,instr(value,'v')-1) else value end) id,name text,'open' state,value,xh
+	from ZDYBBBT where ssbb=#{ssbb} and value like #{treeno}||'%' 
+	)
+	order by id1,xh
+	</select>
+	
+	<select id="getZdyBbzd" parameterType="elist" resultType="elist">
+		select t2.value, t2.name, t1.co, t2.hight, t2.rowxh, t2.width
+	  from (select substr1 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	         group by substr1
+	        union all
+	        select substr2 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	           and substr2 is not null
+	         group by substr2
+	        union all
+	        select substr3 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	           and substr3 is not null
+	         group by substr3
+	        union all
+	        select value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	         group by value) t1,
+	       zdybbbt t2
+	 where t1.value = t2.value and ssbb=#{ssbb}
+	 order by t2.xh
+	</select>
+	<select id="getGljsjhhzb1" parameterType="string" resultType="elist">
+		select '总计' v_0,'十三五计划累计' v_1,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
+		sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
+		sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
+		sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
+		sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
+		sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42,'1' nf
+		from gljsjhhzb 
+		where xzqh != '00' and xzqh !='360000'
+		union all
+		select '总计' v_0,xdnf v_1,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
+		sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
+		sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
+		sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
+		sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
+		sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42,xdnf nf
+		from gljsjhhzb 
+		where xzqh != '00' and xzqh !='360000'
+		group by xdnf order by nf
+	</select>
+	<select id="getGljsjhhzb2" parameterType="string" resultType="elist">
+	select xzqh,(select name from xtgl_xzqh where id=xzqh) v_0,'十三五计划累计' v_1,
+	sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+	sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
+	sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
+	sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
+	sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
+	sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
+	sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
+	sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
+	sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
+	sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
+	sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
+	sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42
+	from gljsjhhzb 
+	where xzqh != '00' and xzqh !='360000'
+	group by xzqh order by xzqh
+	</select>
+	<select id="getGljsjhhzb3" parameterType="string" resultType="elist">
+	select xzqh,(select name from xtgl_xzqh where id=xzqh) v_0,xdnf v_1,
+	sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+	sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
+	sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
+	sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
+	sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
+	sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
+	sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
+	sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
+	sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
+	sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
+	sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
+	sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42
+	from gljsjhhzb 
+	where xzqh != '00' and xzqh !='360000'
+	group by xzqh,xdnf order by xzqh,v_1
 	</select>
 	
 </mapper>

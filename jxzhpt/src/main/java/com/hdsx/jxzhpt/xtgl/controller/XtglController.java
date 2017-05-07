@@ -1,6 +1,10 @@
 package com.hdsx.jxzhpt.xtgl.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -14,6 +18,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
@@ -25,8 +30,10 @@ import org.springframework.stereotype.Controller;
 
 import sun.misc.BASE64Encoder;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -70,7 +77,21 @@ public class XtglController extends BaseActionSupport{
 	private String id;
 	private String yzm;
 	private String parent;
+	private String wh;
+	private String type;
 	
+	public String getWh() {
+		return wh;
+	}
+	public void setWh(String wh) {
+		this.wh = wh;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getParent() {
 		return parent;
 	}
@@ -1388,4 +1409,47 @@ public class XtglController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	//对外提供下载文件接口
+	public void downFileByWhAndType(){
+		try {
+			Plan_upload p = new Plan_upload();
+			
+			
+			
+			
+			System.out.println(MyUtil.getURLEncoderString(MyUtil.getBase64("赣路综规字[2015]88号")));
+			System.out.println(MyUtil.getURLEncoderString(MyUtil.getBase64("工可批复文件")));
+			p.setFilewh(MyUtil.getURLDecoderString(MyUtil.getFromBase64(wh)));
+			p.setFiletype(MyUtil.getURLDecoderString(MyUtil.getFromBase64(type)));
+			List<Plan_upload> list = xtglServer.downFileByWhAndType(p);
+			if (list.size() > 0) {
+				File file = new File(list.get(0).getFileurl());
+				HttpServletResponse response = getresponse();
+				OutputStream out = response.getOutputStream();
+				response.setContentType("application/x-download");
+				response.addHeader(
+						"Content-Disposition",
+						"attachment;filename="
+								+ new String(list.get(0).getFilename().getBytes(
+										"GBK"), "ISO-8859-1"));
+				byte[] buffer = new byte[1024];
+				InputStream is = new FileInputStream(file);
+				int length = 0;
+				while ((length = is.read(buffer)) > 0) {
+					out.write(buffer, 0, length);
+				}
+				out.write(buffer);
+				out.flush();
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+	
+	
 }

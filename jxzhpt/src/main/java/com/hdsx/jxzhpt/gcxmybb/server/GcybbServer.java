@@ -13,6 +13,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface GcybbServer {
 
@@ -123,6 +124,12 @@ public interface GcybbServer {
 	List<Excel_list> getsjssjzhzb(String xmnf);
 
 	List<Excel_list> getGlgzxjzd(String tiaojian);
+
+	List<TreeNode> createBtTree(Excel_list excel_list);
+
+	List<Excel_list> getZdyBbzd(Excel_list excel_list);
+
+	List<Excel_list> getGljsjhhzb();
 
 	
 }

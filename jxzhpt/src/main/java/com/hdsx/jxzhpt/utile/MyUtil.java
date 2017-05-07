@@ -1,15 +1,19 @@
 package com.hdsx.jxzhpt.utile;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.junit.Test;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
 import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
 
 public class MyUtil implements Serializable{
-	
+	private final static String ENCODE = "GBK"; 
 	private static final long serialVersionUID = 1692982234443300128L;
 	/**
 	 * 
@@ -180,4 +184,70 @@ public class MyUtil implements Serializable{
 		System.out.println(getUuid());
 	}
 	
+	// Base64加密  
+    public static String getBase64(String str) {  
+        byte[] b = null;  
+        String s = null;  
+        try {  
+            b = str.getBytes("utf-8");  
+        } catch (UnsupportedEncodingException e) {  
+            e.printStackTrace();  
+        }  
+        if (b != null) {  
+            s = new BASE64Encoder().encode(b);  
+        }  
+        return s;  
+    }  
+  
+    // Base64解密  
+    public static String getFromBase64(String s) {  
+        byte[] b = null;  
+        String result = null;  
+        if (s != null) {  
+            BASE64Decoder decoder = new BASE64Decoder();  
+            try {  
+                b = decoder.decodeBuffer(s);  
+                result = new String(b, "utf-8");  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        return result;  
+    }  
+	
+    /**
+     * URL 解码
+     * @return String
+     */
+    public static String getURLDecoderString(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLDecoder.decode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    /**
+     * URL 转码
+     * @return String
+     */
+    public static String getURLEncoderString(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLEncoder.encode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    
+
 }

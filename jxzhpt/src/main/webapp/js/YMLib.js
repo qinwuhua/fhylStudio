@@ -3973,3 +3973,21 @@ function zjbf_sb(jhid,id){
 function showStr(str){
 	alert(str);
 }
+
+//创建自定义表头树
+function createBtTree(id,treeno,ssbb){
+	$('#'+id).tree({    
+	    url: '/jxzhpt/gcybb/createBtTree.do?tiaojian='+treeno+'&flag='+ssbb, 
+	    checkbox: true, 
+	    loadFilter: function(data){    
+	        if (data.d){    
+	            return data.d;    
+	        } else {    
+	            return data;    
+	        }    
+	    }    
+	});  
+
+}
+
+

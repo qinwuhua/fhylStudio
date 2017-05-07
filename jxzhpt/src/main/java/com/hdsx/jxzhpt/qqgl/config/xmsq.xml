@@ -2140,10 +2140,10 @@
 	
 	<select id="queryYhdzxExport1" parameterType="xmsq" resultType="elist">
 	select rownum v_0,tb.* from (
-	select substr(x.ghlxbh,0,1) v_1,x.xmmc v_2,l.ylxbh v_3,l.lxmc v_4,l.qdzh v_5,l.zdzh v_6,
-	l.ghlxbm v_7,l.ghlxmc v_8,l.ghqdzh v_9,l.ghzdzh v_10,l.gxlxbm v_11,l.gxqdzh v_12,l.gxzdzh v_13,lx.lc v_14,x.jsdj v_15,
-	x.lmkd v_16,x.ylmlx v_17,x.ylmjg v_18,x.gcfl v_19,x.jsfa v_20,lx.sbzj v_21,x.ntz v_22,c.sjpfwh v_23,x.gydw v_24,
-	'' v_25,'' v_26,'' v_27,x.lmkd v_28,x.bz v_29,'' v_30
+	select substr(x.ghlxbh,0,1) v_1,x.xmbm v_2,x.xmmc v_3,l.ylxbh v_4,l.lxmc v_5,l.qdzh v_6,l.zdzh v_7,
+	l.ghlxbm v_8,l.ghlxmc v_9,l.ghqdzh v_10,l.ghzdzh v_11,l.gxlxbm v_12,l.gxqdzh v_13,l.gxzdzh v_14,lx.lc v_15,x.jsdj v_16,
+	x.lmkd v_17,x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,lx.sbzj v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
+	'' v_26,'' v_27,'' v_28,x.lmkd v_29,x.bz v_30,'' v_31
 	from xmsq_yhdzx x left join 
 	(
 	select xmid,nvl(sum(l.yilc),0)+nvl(sum(l.erlc),0)+nvl(sum(l.sanlc),0)+nvl(sum(l.silc),0)+nvl(sum(l.dwlc),0)+nvl(sum(l.wllc),0) lc,sum(l.sbzj) sbzj 

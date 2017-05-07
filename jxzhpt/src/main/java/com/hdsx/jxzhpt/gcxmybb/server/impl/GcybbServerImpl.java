@@ -20,6 +20,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 @Service
 public class GcybbServerImpl extends BaseOperate implements GcybbServer {
@@ -1226,5 +1227,35 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	@Override
 	public List<Excel_list> getGlgzxjzd(String tiaojian) {
 		return queryList("getGlgzxjzd", tiaojian);
+	}
+
+	@Override
+	public List<TreeNode> createBtTree(Excel_list excel_list) {
+		return queryList("createBtTree", excel_list);
+	}
+
+	@Override
+	public List<Excel_list> getZdyBbzd(Excel_list excel_list) {
+		return queryList("getZdyBbzd", excel_list);
+	}
+
+	@Override
+	public List<Excel_list> getGljsjhhzb() {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		//查询总的list
+		List<Excel_list> l1=queryList("getGljsjhhzb1");
+		//各个区划的合计
+		List<Excel_list> l2=queryList("getGljsjhhzb2");
+		//所以信息
+		List<Excel_list> l3=queryList("getGljsjhhzb3");
+		l.addAll(l1);
+		for (int i = 0; i < l2.size(); i++) {
+			l.add(l2.get(i));
+			for (int j = 0; j < l3.size(); j++) {
+				if(l2.get(i).getV_0().equals(l3.get(j).getV_0()))
+					l.add(l3.get(j));
+			}
+		}
+		return l;
 	}
 }

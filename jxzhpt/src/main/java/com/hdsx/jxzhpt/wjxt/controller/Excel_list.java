@@ -27,6 +27,21 @@ public class Excel_list implements Serializable {
 	int row1,row2,col1,col2;
 	public String width;
 	
+	private String ssbb;
+	private String treeno;
+	
+	public String getSsbb() {
+		return ssbb;
+	}
+	public void setSsbb(String ssbb) {
+		this.ssbb = ssbb;
+	}
+	public String getTreeno() {
+		return treeno;
+	}
+	public void setTreeno(String treeno) {
+		this.treeno = treeno;
+	}
 	public String getWidth() {
 		return width;
 	}

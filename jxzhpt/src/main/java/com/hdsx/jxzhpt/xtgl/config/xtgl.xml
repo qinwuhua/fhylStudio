@@ -380,4 +380,10 @@
 	<select id="selBmbmList"  resultType="hashmap">
 	select ID,NAME from xtgl_bmbm where LENGTH(ID)>2 order by id
     </select>
+    
+    <select id="downFileByWhAndType" parameterType="plan_upload" resultType="plan_upload">
+		select * from plan_upload u
+		where filewh = #{filewh} and filetype like '%'||#{filetype}||'%'
+	</select>
+    
 </mapper>

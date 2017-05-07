@@ -104,7 +104,7 @@
 	<action name="urllogin" class="xtglController" method="urllogin"></action>
 	<action name="insertxmsx" class="xtglController" method="insertxmsx"></action>
 	<action name="selectXmsx" class="xtglController" method="selectXmsx"></action>
-	
+	<action name="downFileByWhAndType" class="xtglController" method="downFileByWhAndType"></action>
 	
  </package>
 </struts>

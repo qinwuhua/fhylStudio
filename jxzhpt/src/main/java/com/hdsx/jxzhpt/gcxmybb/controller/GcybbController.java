@@ -27,12 +27,15 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -65,7 +68,16 @@ public class GcybbController extends BaseActionSupport{
 	private Gcglsh gcglsh=new Gcglsh();
 	private String flag;
 	private String sfylrbwqk;
+	private Excel_list excel_list =new Excel_list();
 	
+	public Excel_list getExcel_list() {
+		return excel_list;
+	}
+
+	public void setExcel_list(Excel_list excel_list) {
+		this.excel_list = excel_list;
+	}
+
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}
@@ -2120,7 +2132,7 @@ public class GcybbController extends BaseActionSupport{
 					
 			      int rowxh=0,col1=0,col2=0;
 			      int colint=0;
-			      int a[][]=new int[4][83];
+			      int a[][]=new int[4][85];
 			      int flag=0;
 			      for(int i=0;i<list.size();i++){
 			    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
@@ -2130,9 +2142,10 @@ public class GcybbController extends BaseActionSupport{
 			    	  }
 			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
 			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
-			    	  
+			    	 
+			    	 
 			    	  while(a[rowxh][col1]!=0){
-			    		  col1=col1+a[rowxh][col1];
+			    		 col1=col1+a[rowxh][col1];
 			    	  }
 			    	  
 			    	  if(Integer.parseInt(list.get(i).getHight())!=1){
@@ -3461,6 +3474,169 @@ public class GcybbController extends BaseActionSupport{
 		}
 		      
 	}
+	
+	public void createBtTree(){
+		excel_list.setTreeno(tiaojian);excel_list.setSsbb(flag);
+		List<TreeNode> l=gcybbServer.createBtTree(excel_list);
+		TreeNode root = returnRoot1(l,l.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(l.get(0));
+		List<TreeNode> children = root.getChildren();
+		children1.get(0).setChildren(children);
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+	}
+	private TreeNode returnRoot1(List<TreeNode> list, TreeNode zzjgTree){
+		for(TreeNode temp : list){
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					if(zzjgTree.getId().indexOf("v")!=-1){
+						zzjgTree.setState("close");
+					}
+					else{
+						zzjgTree.setState("open");
+					}
+					zzjgTree.getChildren().add(temp);
+					returnRoot1(list,temp);
+				}
+			}
+		}
+		return zzjgTree;
+	}
+	
+	//获取jsp页面自定义表头
+	public void getZdyBbzd(){
+		try {	
+			
+	    	  List<Excel_list> list=new ArrayList<Excel_list>();
+			     list=gcybbServer.getZdyBbzd(excel_list);
+	    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+		      String html="<tr>";
+		      String rowxh="0";
+		      for(int i=0;i<list.size();i++){
+		    	  if(!rowxh.equals(list.get(i).getRowxh())){
+		    		  html=html+"</tr><tr>";
+		    		  rowxh=list.get(i).getRowxh();
+		    	  }
+		    	
+		    	  if("".equals(list.get(i).getWidth())||list.get(i).getWidth()==null){
+			    	  html=html+"<td rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+		    	  }else{
+			    	  html=html+"<td style='width:"+list.get(i).getWidth()+"px;' rowspan='"+list.get(i).getHight()+"'  colspan='"+list.get(i).getCo()+"'>"+list.get(i).getName()+"</td>";
+		    	  }
+		      }
+		      html=html+"</tr>";
+		      System.out.println(html);
+		      Excel_list e=new Excel_list();
+		      e.setCol(html);
+			  JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				
+				e1.printStackTrace();
+			}
+	}
+	
+	public void getGljsjhhzb(){
+		try {
+			if ("1".equals(flag)) {
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("江西省“十三五”国省干线公路建设和养护计划汇总表");//设置第一行
+				eldata.setSheetName("汇总表");//设置sheeet名
+				eldata.setFileName("江西省“十三五”国省干线公路建设和养护计划汇总表");//设置文件名
+				
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				List<Excel_list> list=new ArrayList<Excel_list>();
+		    	  	HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					excel_list.setName((String) session.getAttribute("nameValue"));
+				    list=gcybbServer.getZdyBbzd(excel_list);
+				    
+				    String col=(String) session.getAttribute("colValue");
+				    String datalist=(String) session.getAttribute("sql");
+				    JSONArray ja = JSONArray.fromObject(datalist);  
+				    @SuppressWarnings("unchecked")
+					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
+							new Excel_list(), new JsonConfig());
+		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+					
+			      int rowxh=0,col1=0,col2=0;
+			      int colint=0;
+			      int a[][]=new int[4][85];
+			      int flag=0;
+			      for(int i=0;i<list.size();i++){
+			    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
+			    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
+			    		  col1=colint;
+			    		  flag=0;
+			    	  }
+			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+			    	 
+			    	 
+			    	  while(a[rowxh][col1]!=0){
+			    		 col1=col1+a[rowxh][col1];
+			    	  }
+			    	  
+			    	  if(Integer.parseInt(list.get(i).getHight())!=1){
+			    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
+			    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
+			    		  }
+			    	  }else{
+			    		  if(flag==0){
+			    			  colint=col1;
+			    			  flag=1;
+			    		  }
+			    	  }
+			    	  
+			    	  list.get(i).setCol1(col1);
+			    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
+			    	  list.get(i).setCol2(col2);
+			    	  col1=col1+Integer.parseInt(list.get(i).getCo());
+			      }
+			      
+			      for (Excel_list ex : list) {
+			    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
+			      }
+			      
+			     
+			      String[] ls=col.split(",");
+			      List<Excel_list> elst=new ArrayList<Excel_list>();
+			      boolean b=false;
+			      for (Excel_list els : list1) {
+			    	  Excel_list els1=new Excel_list(); 
+					for (int i = 0; i < ls.length; i++) {
+						if("v_0".equals(ls[i]))
+							b=true;
+						 Field field1 = null; Field field2 = null; 
+						 field1 = els1.getClass().getDeclaredField("v_"+i); 
+						 field2 = els.getClass().getDeclaredField(ls[i]); 
+					     field1.set((Object) els1, field2.get(els));  //set方法
+						
+					}
+			    	elst.add(els1);  
+				}
+			      eldata.setEl(elst);//将实体list放入类中
+				    
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				if(b)
+				Excel_export.excel_exportGljsjhhzb(eldata,response);	
+				else
+					Excel_export.excel_export(eldata,response);	
+				
+			} else {
+				List<Excel_list> l = gcybbServer.getGljsjhhzb();
+				JsonUtils.write(l, getresponse().getWriter());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 		
 }
