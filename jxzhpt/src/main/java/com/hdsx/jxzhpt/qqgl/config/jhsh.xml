@@ -1998,8 +1998,8 @@
 	
 	<update id="updateyhdzxLx" parameterType="hashmap">
 		update lxsh_lx l set 
-		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
-		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
+		<if test="lx.jsxz!=null">l.jsxz=#{lx.jsxz},</if>
+		<if test="lx.lxmc!=null">l.lxmc=#{lx.lxmc},</if>
 		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
 		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>
 		<if test="lx.yilc!=null and lx.yilc!=''">l.yilc=#{lx.yilc},</if>
@@ -2157,8 +2157,8 @@
 	</update>
 	<update id="updateLxshm" parameterType="hashmap">
 		update lxsh_lx l set 
-		<if test="jsxz!=null">l.jsxz=#{jsxz},</if>
-		<if test="lxmc!=null">l.lxmc=#{lxmc},</if>
+		<if test="lx.jsxz!=null">l.jsxz=#{lx.jsxz},</if>
+		<if test="lx.lxmc!=null">l.lxmc=#{lx.lxmc},</if>
 		<if test="lx.qdmc!=null">l.qdmc=#{lx.qdmc},</if>
 		<if test="lx.zdmc!=null">l.zdmc=#{lx.zdmc},</if>
 		<if test="lx.yilc!=null and lx.yilc!=''">l.yilc=#{lx.yilc},</if>
@@ -7093,6 +7093,11 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'min'))&lt;to_number(#{ghzdzh})
 		</if>
 	</select>
+	<select id="getgxlxbyzh" parameterType="lx" resultType="lx">
+		select * from table(fun_cfld(#{ghlxbm},${ghqdzh},${ghzdzh}))
+	</select>
+	
+	
 	
 	<select id="queryJhshxxLmsjqxByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sjgz_qx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
@@ -7108,5 +7113,9 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	</select>
 	<select id="queryJhshxxShqxByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh_qx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
+	</select>
+	
+	<select id="queryLxbyGhlxbm" parameterType="string" resultType="lx">
+	select DISTINCT LXBM from table(fun_cfld(#{value},0,9999))
 	</select>
 </mapper>

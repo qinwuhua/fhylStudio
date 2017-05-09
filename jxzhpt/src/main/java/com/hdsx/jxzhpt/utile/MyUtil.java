@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.utile;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -10,7 +11,10 @@ import org.junit.Test;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.impl.WnjhServerImpl;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 
 public class MyUtil implements Serializable{
 	private final static String ENCODE = "GBK"; 
@@ -38,6 +42,32 @@ public class MyUtil implements Serializable{
 		}
 		return result;
 	}
+	
+	public static String getQueryTJiN(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			
+			String[] s = bh.split(",");
+			JhshServer j=new JhshServerImpl();
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i]+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i]+"%'";
+				List<Lx> l=j.queryLxbyGhlxbm(s[i]);
+				if(l.size()>0)
+				for (Lx lx : l) {
+					result+=" or "+name+" like '%"+lx.getLxbm()+"%'";
+				}
+				
+			}
+			result+=")";
+			System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	
 	
 	/**
 	 * 

@@ -28,7 +28,9 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
+			//loadBmbm2('ddlGldj','行政等级');
 			loadBmbm2('ddlGldj','行政等级');
+			loadBmbm3('xmzt','进展状态');
 			tsdq('ddlTSDQ');
 			gsdxmlx('xmlx');
 			if(getParam("t")=='1'){
@@ -54,7 +56,7 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			var jgzt='0';
+			var jgzt='';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var yhjb=$.cookie("unit2").replace(/_/g,"");
@@ -229,6 +231,9 @@ text-decoration:none;
         						<td><input type="text" id="xmmc" style="width:70px;" /></td>
         						<td align="right">项目类型：</td>
         						<td><select name="xmlx" id="xmlx" style="width:122px;" ></select></td>
+        						<td align="right">项目状态：</td>
+        						<td><select name="xmzt" id="xmzt" style="width:122px;" ></select></td>
+        						
         						</tr>
         						<tr height="32">
         						<td colspan="10">

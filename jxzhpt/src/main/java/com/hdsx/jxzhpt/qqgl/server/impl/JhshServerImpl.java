@@ -544,7 +544,30 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Lx> queryLsxx2new(Lx lx) {
 		
 		List<Lx> result=new ArrayList<Lx>();
+		
+		
+		
 		result=queryList("queryLsxx2new", lx);
+		
+		if(!"".equals(lx.getGhlxbm())){
+			if("".equals(lx.getGhqdzh()))
+				lx.setGhqdzh("0");
+			if("".equals(lx.getGhzdzh()))
+				lx.setGhzdzh("9999");
+			List<Lx> l=queryList("getgxlxbyzh", lx);
+			if(l.size()>0)
+				for (Lx lx2 : l) {
+					lx.setLxbm(null);
+					lx.setQdzh(null);
+					lx.setZdzh(null);
+					lx.setGhlxbm(lx2.getLxbm());
+					lx.setGhqdzh(lx2.getQdzh());
+					lx.setGhzdzh(lx2.getZdzh());
+					List<Lx> l2 = queryList("queryLsxx2new", lx);
+					result.addAll(l2);
+				}
+		}
+		
 		//queryLsjlListnew(result, lx);
 		return result;
 	}
@@ -1144,6 +1167,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public Jhsh queryJhshxxShqxByXmbm(Jhsh jhsh) {
 
 		return queryOne("queryJhshxxShqxByXmbm", jhsh);
+	}
+	@Override
+	public List<Lx> queryLxbyGhlxbm(String string) {
+		return queryList("queryLxbyGhlxbm", string);
 	}
 	
 }

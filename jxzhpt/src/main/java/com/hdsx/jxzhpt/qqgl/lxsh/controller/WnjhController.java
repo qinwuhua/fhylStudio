@@ -749,6 +749,7 @@ public class WnjhController extends BaseActionSupport{
 			xmsq.setQdzh(lxsh.getXjqdzh());
 			xmsq.setZdzh(lxsh.getXjzdzh());
 			xmsq.setXmnf(lxsh.getXmnf());
+			xmsq.setXzqhdm(lxsh.getXzqhdm());
 			Lx x2 = xmsqServer.querysfwnlsjl(xmsq);
 			lxsh.setLsjl(x2.getLsjl());
 			if("是".equals(x2.getLsjl())){

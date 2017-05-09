@@ -131,7 +131,8 @@ function showgsdYBlist(){
 	    	'gcglxmjd.sbzt':sbzt
 		},
 	    columns:[
-	             [
+	             [	
+	              	{field:'allSel',title:'全选',width:60,align:'center',rowspan:3,checkbox:'true'},
 	              	{field:'c',title:'操作',width:300,align:'center',rowspan:3,formatter:function(value,row,index){
 	              		
 	              		if(yhjb.length<8&&yhjb.length>=2){

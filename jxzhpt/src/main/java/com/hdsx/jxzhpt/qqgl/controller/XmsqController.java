@@ -1145,6 +1145,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			boolean b=true;
 			//准备路线桩号信息
 			Lx lx=new Lx();
+			xmsq.setLxbm(xmsq.getYlxbh());
+			lx.setLxbm(xmsq.getYlxbh());
 			lx.setQdzh(xmsq.getQdzh());
 			lx.setZdzh(xmsq.getZdzh());
 			lx.setXmid(xmsq.getXmbm());

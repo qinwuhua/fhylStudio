@@ -8,6 +8,7 @@
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>	
@@ -60,6 +61,30 @@
 				}
 			});	
 		}
+		
+		function plshty(){
+			var rows=$('#ybgrid').datagrid('getSelections');
+			if(rows.length==0){
+				alert("请选择要审核的月报");
+				return;
+			}
+			var id=rows[0].id;
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].shzt=='1'){
+						alert("请选择未审核的项目！");
+						return;
+				}
+			}
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].id ;
+			}
+			obj.id=id;
+			YMLib.UI.createWindow('wqxx','项目月报审核','/jxzhpt/page/gcgl/ybjdsh/gcjdyb_sh.jsp','wqxx',400,200);
+			//alert($('#ybgrid').datagrid('getSelections').length);
+			
+		}
+		
+		
 	</script>
 	<style type="text/css">
 <!--
@@ -92,9 +117,15 @@ a:active {
                 </td>
             </tr>
             <tr>
+            <td>
+            <a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:plshty()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
+			
+            </td>
+            </tr>
+            <tr>
                 <td align="center">                
-                            <table id="ybgrid">           		
-                            </table>   
+                     <table id="ybgrid">           		
+                     </table>   
                 </td>
             </tr>
 

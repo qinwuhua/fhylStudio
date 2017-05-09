@@ -133,6 +133,7 @@ function showgsdYBlist(){
 		},
 	    columns:[
 	             [
+	              	{field:'allSel',title:'全选',width:60,align:'center',rowspan:3,checkbox:'true'},
 	              	{field:'c',title:'操作',width:300,align:'center',rowspan:3,formatter:function(value,row,index){
 	              		if(row.zgshzt==0)
           				return '<a href="#" onclick="ShowybInfo('+index+')" style="color:#3399CC;">详细</a>    '+'<a href="#" onclick="Edityb('+index+')" style="color:#3399CC;">编辑</a>   '+'已上报    '+'<a href="#" onclick="shenhyb('+index+')" style="color:#3399CC;">未审核    </a>'+'<a href="#" onclick="tuihyb('+index+')" style="color:#3399CC;">退回下级    </a>'+'退回未审核    ';

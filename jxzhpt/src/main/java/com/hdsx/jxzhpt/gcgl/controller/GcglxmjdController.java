@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.gcgl.bean.GcglXmjd;
 import com.hdsx.jxzhpt.gcgl.server.GcglxmjdServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -89,6 +90,8 @@ public class GcglxmjdController extends BaseActionSupport{
 	}
 	//修改月报状态
 	public void updateYbzt(){
+		
+		gcglxmjd.setId(MyUtil.getQueryTJ(gcglxmjd.getId(), "id"));
 		ResponseUtils.write(getresponse(), gcglxmjdServer.updateYbzt(gcglxmjd)+"");
 	}
 }

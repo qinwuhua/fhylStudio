@@ -276,6 +276,6 @@
         THYY = #{thyy},
       </if>
     </set>
-    where id=#{id} and xmbm=#{xmbm}
+    where 1=1 ${id} and xmbm=#{xmbm}
 	</update>
 </mapper>

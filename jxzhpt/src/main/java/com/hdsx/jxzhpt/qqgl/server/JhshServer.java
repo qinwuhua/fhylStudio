@@ -503,5 +503,6 @@ public interface JhshServer {
 	public Kxxyj queryLmsjKxxyjqxByXmbm(Jhsh jhsh);
 	public Kxxyj queryLmgzKxxyjqxByXmbm(Jhsh jhsh);
 	public Kxxyj queryXjKxxyjqxByXmbm(Jhsh jhsh);
+	public List<Lx> queryLxbyGhlxbm(String string);
 	
 }
