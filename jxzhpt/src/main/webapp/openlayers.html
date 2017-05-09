@@ -258,36 +258,45 @@
        	        	        addTextArea: 'addTextArea'
        	        	      }
        	        	    };
+       	      map.map.on("click", function (evt) {
+   	        	 onMapClick(evt);
+    	         })
        	         map.popupOverlay = null;
        }
          //i查询，生成查询的范围
-         function onMapClick(e) {
-         	if(map.mapTools.iQuery){
-         		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
-     		        return feature;
-     		      });
-         		alert(e.pixel);
-         		if(feature) {
-         			showInfo(feature);
-         		}
-         		else {
-         			notGetInfo(feature);
-         		}
-         		map.mapTools.IQuery = false;
-         	}
-         	else{
-         		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
-     		        return feature;
-     		      });
-         		console.log(feature);
-         		if(feature) {
-         			onFeatureSelect(feature);
-         		}
-         		else {
-         			notGetInfo(feature);
-         		}
-         	}
-         }
+        function onMapClick(e) {
+        	if(map.mapTools.iQuery){
+        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+    		        return feature;
+    		      });
+        		alert(e.pixel);
+        		if(feature) {
+        			showInfo(feature);
+        		}
+        		else {
+        			notGetInfo(feature);
+        		}
+        		map.mapTools.IQuery = false;
+        	}
+        	else{
+        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+    		        return feature;
+    		      });
+        		if(feature) {
+        			onFeatureSelect(feature);
+        		}
+        		else {
+        			notGetInfo(feature);
+        		}
+        	}
+            /*var resolution = map.getResolution();
+            var lonlat = map.getLonLatFromViewPortPx(e.xy);
+            alert(lonlat.lon);
+            pointClick = new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat);
+            
+            geometry = OpenLayers.Geometry.Polygon.createRegularPolygon(pointClick, 5 * resolution, 20, 0);
+            alert(lonlat.lon);*/
+        }
          /**
           * 属性查询示例
           */
@@ -309,7 +318,6 @@
          	var feature;
          	var lx_code;
          	var xzqhbm;
-         	map.removeFeatureByLayerName('test');
          	if(_roadcode){
          		lx_code=_roadcode.substring(0,_roadcode.length - 6);
          		xzqhbm=_roadcode.substring(_roadcode.length - 6);
@@ -514,7 +522,8 @@
          	if(YMLib.Var.bm==undefined){
          		//if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
          		//else YMLib.Var.bm=feature.attributes.ROADBM;
-         		YMLib.Var.bm=feature.getProperties()['LXDM']+feature.getProperties()['XZQHBM'];
+         		YMLib.Var.bm=feature.getProperties()['lxdm'];
+         		console.log(feature);
          	}
          	
          	YMLib.Var.feature=feature;
@@ -553,65 +562,49 @@
 
          //根据查询参数,获取路线图层的要素
          function getLXFeatures(param) {
-             /*var sortAttribute = "ROADSTART";
-             var wfsProtocol = new OpenLayers.Protocol.WFS({
-                 url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
-                 featureType: lxQueryLaye,
-                 featureNS: nameSpace,//正式环境代码：nameSpace
-                 maxFeatures: 2000,
-                 filter: generatorLXFilter(param),
-                 callback: function (req) {
-                     var features = req.features;
-                     if (features && features.length > 0) {
-                         features = features.sort(
-                                 function (a, b) {
-                                     return a.attributes[sortAttribute] - b.attributes[sortAttribute];
-                                 }
-                         );
-                         addLXGraphicToMap(param, features);
-                     } else {
-                         console.info("没有查询到数据 : " + param.BM);
-                     }
-                 }
-             });
-             wfsProtocol.read();*/
+             
         	 var params;
-             console.log(param);
+             var url = "http://36.2.6.21:7001/geoserver-sde/rest/action/search";
           	if(param['queryAttribute']=="ROADCODE"){
           		var lx_code=param.roadcode.substring(0,_roadcode.length - 6);
          		var xzqhbm=param.roadcode.substring(_roadcode.length - 6);
           		params={params:'{"layerName":"GIS_XZQH","filter":"lxdm=\''+lx_code+'\' AND xzqhbm=\''+xzqhbm+'\'","pager":{}}'};
           	} else if(param['queryAttribute']=="BM"){
-          		params={params:'{"layerName":"GIS_XZQH","filter":"lxdm=\''+param['BM']+'\'","pager":{}}'};
+          		url = "http://36.2.6.21:7001/geoserver-sde/rest/action/getSegment";
+          		params={params:'{"layerName":"GIS_LX","filter":"lxdm=\''+param['BM']+'\'","startPos":"' + param['ROADSTART'] + '","endPos":"'+param['ROADENDS'] + '"}'};
           	}
           	var feature;
         	 $.ajax({  
-                 url:"http://36.2.6.21:7001/geoserver-sde/rest/action/search",  
+                 url:url,  
                  dataType:'json',  
                  data:params,  
                  jsonp:'callback',  
                  success:function(result) {
-                 	var feature=result['data']['features'][0];
-                 	feature['attributes']['style'] = {
- 			        		stroke:{
- 			        			strokeWidth:4,
- 			        			strokeColor:'#EE0033'
- 			        		}
- 			        };
- 			        feature['attributes']['selectStyle'] = {
- 			        		stroke:{
- 			        			strokeWidth:6,
- 			        			strokeColor:'#E52929'
- 			        		}
- 			        };
- 			        var feat = map.addPolyline(feature, {
- 			            layerName: 'resultLayer',
- 			            selectable: true
- 			          });
- 			        let extent = feat.getGeometry().getExtent();
- 			        map.zoomToExtent(extent, true);
- 			        map.highLightFeature('',feat,'');
-                	
+                	 if(result) {
+	                 	var feature=result['data']['features'][0];
+	                 	console.log(feature);
+	                 	feature['attributes']['style'] = {
+	 			        		stroke:{
+	 			        			strokeWidth:4,
+	 			        			strokeColor:'#EE0033'
+	 			        		}
+	 			        };
+	 			        feature['attributes']['selectStyle'] = {
+	 			        		stroke:{
+	 			        			strokeWidth:6,
+	 			        			strokeColor:'#E52929'
+	 			        		}
+	 			        };
+	 			        feature['attributes']['id']=Date.now().toString(36);
+	 			        var feat = map.addPolyline(feature, {
+	 			            layerName: 'resultLayer',
+	 			            selectable: true
+	 			          });
+	 			        console.log(feat);
+	 			        let extent = feat.getGeometry().getExtent();
+	 			        map.zoomToExtent(extent, true);
+	 			        map.highLightFeature('',feat,'');
+                	 }
                      
          	},  
                  timeout:3000  
