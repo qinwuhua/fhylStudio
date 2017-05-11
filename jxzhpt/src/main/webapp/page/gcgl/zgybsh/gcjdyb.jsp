@@ -22,7 +22,7 @@
 			}else{
 				showgsdYBlist();
 			}
-			
+			$("#xmmc").html(parent.obj1.XMMC);
 			
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
@@ -120,6 +120,11 @@ a:active {
             <a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:plshty()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
 			
             </td>
+            </tr>
+            <tr>
+                <td align="left">                
+                          项目名称：<span id="xmmc" style="color: Red; font-weight: bold;"></span>
+                </td>
             </tr>
             <tr>
                 <td align="center">                

@@ -43,7 +43,14 @@ public class Gcglabgc implements Serializable {
 	private String xmklx;
 	
 	private String sbzt;
+	private String xmzt;
 	
+	public String getXmzt() {
+		return xmzt;
+	}
+	public void setXmzt(String xmzt) {
+		this.xmzt = xmzt;
+	}
 	public String getSbzt() {
 		return sbzt;
 	}

@@ -2,7 +2,21 @@ package com.hdsx.jxzhpt.qqgl.bean;
 
 public class Lx {
 	private String ylxmc;
+	private String xmknf;
+	private String sjlx;
 	
+	public String getXmknf() {
+		return xmknf;
+	}
+	public void setXmknf(String xmknf) {
+		this.xmknf = xmknf;
+	}
+	public String getSjlx() {
+		return sjlx;
+	}
+	public void setSjlx(String sjlx) {
+		this.sjlx = sjlx;
+	}
 	public String getYlxmc() {
 		return ylxmc;
 	}

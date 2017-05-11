@@ -13,7 +13,14 @@ public class Gcglzhfz implements Serializable {
 	private String xdzj;
 	private String bfzj;
 	private String sbzt;
+	private String xmzt;
 	
+	public String getXmzt() {
+		return xmzt;
+	}
+	public void setXmzt(String xmzt) {
+		this.xmzt = xmzt;
+	}
 	public String getSbzt() {
 		return sbzt;
 	}

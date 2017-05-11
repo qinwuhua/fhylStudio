@@ -2039,6 +2039,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			lx.setXdnf(getcxtj("xdnf",lx.getXdnf()));
 			lx.setTsdq(getcxtj("tsdq",lx.getTsdq()));
 			lx.setJsxz(getcxtj("jsxz",lx.getXmlx()));
+			lx.setXmknf(getcxtj("xmknf",lx.getXmknf()));
+			/*if(!"".equals(lx.getXmknf())&&!"".equals(lx.getXdnf()))
+				lx.setXdnf("("+lx.getXdnf()+"  or  "+lx.getXmknf()+")");
+			else
+				lx.setXdnf(lx.getXdnf()+" "+lx.getXmknf());*/
+			
+			lx.setSjlx(getcxtj("sjlx",lx.getSjlx()));
 			JsonUtils.write(jhshServer.queryLsxx2new(lx), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

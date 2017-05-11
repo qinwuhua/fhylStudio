@@ -21,6 +21,8 @@
 			bbxmlx1('xmlx');
 			tsdqdx("tsdq");
 			loadBmbm3("xdnf",'历史项目年份');
+			loadBmbm3("xmknf",'十三五项目年份');
+			loadBmbm3("sjlx",'综合查询数据类型');
 			loadDist1("xzqh",$.cookie("dist"));
 		});
 		function search(){
@@ -49,10 +51,18 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			var xmknf=$("#xmknf").combobox("getValues").join(",");
+			if(xmknf.substr(0,1)==',')
+				xmknf=xmknf.substr(1,xmknf.length);
+			var sjlx=$("#sjlx").combobox("getValues").join(",");
+			if(sjlx.substr(0,1)==',')
+				sjlx=sjlx.substr(1,sjlx.length);
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
-					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq},
+					'lx.ghlxbm': ghlxbm,'lx.ghqdzh':$('#ghqdzh').val(),'lx.ghzdzh':$('#ghzdzh').val(),'lx.xmlx':xmlx,'lx.xzqh':xzqhstr,'lx.xdnf':xdnf,'lx.tsdq':tsdq,
+					'lx.xmknf':xmknf,'lx.sjlx':sjlx
+				},
 				fitColumns:true,
 				height:$(window).height()-120,
 			    width:$(window).width()-20,
@@ -60,14 +70,21 @@
 					{field:'xmlx',title:'项目类型',width:100,align:'center'},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
-							var a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';
+							var a="";
+							if(row.sjlx=='补助历史')
+							a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';
+							else
+							a='<a href="javascript:msgxx1('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';	
 							a+=value+'</a>';
 							return a;
 						}
 					},
 					{field:'xmid',title:'项目年份',width:100,align:'center',
 						formatter:function(value,row,index){
+							if(row.sjlx=='补助历史')
 							return value.substring(0,4);
+							else
+							return row.xmknf;
 						}
 					},
 					{field:'xdnf',title:'下达年份',width:180,align:'center'},
@@ -135,6 +152,29 @@
 			
 		}
 		
+		function msgxx1(xmid,jsdj){
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/cxwnxmkbyxmbm.do',
+		        data:'lxsh.xmbm='+xmid,
+				dataType:'json',
+				success:function(msg){
+					obj=msg;
+					if(jsdj=='改建'){
+						YMLib.UI.createWindow('shxmxx','改建项目','/jxzhpt/page/wngh/wnjh/sjgz_xx.jsp','shxmxx',980,400);
+					}
+					if(jsdj=='路面改造'){
+						YMLib.UI.createWindow('shxmxx','路面改造项目','/jxzhpt/page/wngh/wnjh/lmgz_xx.jsp','shxmxx',980,400);
+					}
+					if(jsdj=='新建'){
+						YMLib.UI.createWindow('shxmxx','新建项目','/jxzhpt/page/wngh/wnjh/xj_xx.jsp','shxmxx',980,400);
+					}
+				}
+			});
+				
+		}
+		
+		
 		function reset(){
 			$("#lxbm").val("");
 			$("#qdzh").val("");
@@ -198,7 +238,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;补助历史查询</div>
+		<div id="p_top">统计分析>&nbsp;计划库统计分析>&nbsp;综合查询</div>
 	</div>
 	<form action="">
 	<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
@@ -221,6 +261,9 @@ text-decoration:none;
         						<td style="text-align: left;"><input id="xmlx" type="text" style="width: 150px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">下达年份：</td>
         						<td style="text-align: left;"><input id="xdnf" type="text" style="width: 100px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">项目库年份：</td>
+        						<td style="text-align: left;"><input id="xmknf" type="text" style="width: 100px;margin-right: 10px;"/></td>
+        					
         					</tr>
         					<tr height="32">
 								<td style="text-align: right;">规划路线编码：</td>
@@ -233,6 +276,8 @@ text-decoration:none;
         						<td style="text-align: left;"><input id="xzqh" type="text" style="width: 150px;margin-right: 10px;"/></td>
         						<td style="text-align: right;">特殊地区：</td>
         						<td style="text-align: left;"><input id="tsdq" type="text" style="width: 100px;margin-right: 10px;"/></td>
+        						<td style="text-align: right;">数据类型：</td>
+        						<td style="text-align: left;"><input id="sjlx" type="text" style="width: 100px;margin-right: 10px;"/></td>
         					
         					</tr>
                             <tr height="32">

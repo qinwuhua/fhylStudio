@@ -232,6 +232,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 		order by t1.jhnf
 		) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -287,6 +290,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 		order by t1.jhnf
 		) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -337,6 +343,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	 <select id="selectabTJ" parameterType="gcglabgc" resultType="gcglwqgz">
 	 	<!-- select count(*) sl,nvl(sum(t1.pfztz),0) pfztz,nvl(sum(t1.jhsybbzje),0) btz,nvl(sum(t1.jhsydfzczj),0) dftz,
@@ -395,6 +404,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	 
 	 
@@ -439,6 +451,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	  <select id="selectafjhListCount" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from PLAN_AF t1 left join SCK_AQSMFH  t3 on t1.SCKID=t3.ID  left join(select WMSYS.WM_CONCAT(xmklx) xmklx,xmbm from sck_aqsmfh_ld sl left join xmk_aqsmfh xm on sl.xmkid=xm.id group by xmbm) t4 on t3.xmbm=t4.xmbm
@@ -480,6 +495,9 @@
 	<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	 
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">

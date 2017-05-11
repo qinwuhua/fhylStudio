@@ -109,7 +109,14 @@ public class Gcglwqgz implements Serializable {
 	private String colValue;
 	private String nameValue;
 	private String xmklx;
+	private String xmzt;
 	
+	public String getXmzt() {
+		return xmzt;
+	}
+	public void setXmzt(String xmzt) {
+		this.xmzt = xmzt;
+	}
 	public String getXmklx() {
 		return xmklx;
 	}

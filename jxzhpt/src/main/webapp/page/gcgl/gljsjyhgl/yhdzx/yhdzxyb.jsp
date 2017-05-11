@@ -19,6 +19,7 @@
 			showYBlist();
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
+			$("#xmmc").html(parent.obj1.XMMC);
 		});
 		
 	</script>
@@ -52,6 +53,11 @@ a:active {
                     已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计完成【<span id="zwczj" style="color: Red; font-weight: bold;"></span>】万元,
                     其中部投资【<span id="zwcbtz" style="color: Red; font-weight: bold;"></span>】万元。
+                </td>
+            </tr>
+            <tr>
+                <td align="left">                
+                          项目名称：<span id="xmmc" style="color: Red; font-weight: bold;"></span>
                 </td>
             </tr>
             <tr>

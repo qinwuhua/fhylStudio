@@ -217,6 +217,9 @@
 	<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	order by t1.sbnf
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -263,6 +266,9 @@
 	<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	 
 	 
@@ -309,6 +315,9 @@
 		<if test="xmklx != null and  xmklx != ''">
 					and xmklx like '%'||trim(#{xmklx})||'%'
 			</if>
+			<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 	 </select>
 	 
 	 

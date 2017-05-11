@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.qqgl.lxsh.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -509,7 +510,13 @@ public class WnjhController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-
+	public void cxwnxmkbyxmbm(){
+		try {
+			JsonUtils.write(wnjhServer.cxwnxmkbyxmbm(lxsh), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

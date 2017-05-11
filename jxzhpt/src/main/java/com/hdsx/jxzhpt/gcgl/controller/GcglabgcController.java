@@ -543,6 +543,10 @@ public class GcglabgcController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglabgc.setTiaojian("xjzt");
 			}
+			
+			if(gcglabgc.getXmzt()!=null&&!"".equals(gcglabgc.getXmzt())){
+				gcglabgc.setXmzt(MyUtil.getQueryTJ(gcglabgc.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+			}
 			//System.out.println(gcglabgc.getJgys());
 			int count=0;
 			List<Gcglabgc> list=null;

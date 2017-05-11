@@ -34,6 +34,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -464,6 +465,10 @@ public class GcglyhdzxController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglyhdzx.setTiaojian("xjzt");
 		}
+		if(gcglyhdzx.getXmzt()!=null&&!"".equals(gcglyhdzx.getXmzt())){
+			gcglyhdzx.setXmzt(MyUtil.getQueryTJ(gcglyhdzx.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+		}
+		
 		List<Map<String, Object>> list=gcglyhdzxServer.queryGcgjList(gcglyhdzx);
 		int count=gcglyhdzxServer.queryGcgjListCount(gcglyhdzx);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();

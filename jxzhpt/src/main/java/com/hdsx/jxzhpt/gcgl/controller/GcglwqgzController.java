@@ -29,6 +29,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
@@ -515,6 +516,9 @@ public class GcglwqgzController extends BaseActionSupport{
 			//t3.Xlxbm
 			gcglwqgz.setGldj(getcxtj(gcglwqgz.getGldj(),"t3.lxbm"));
 			gcglwqgz.setTsdq(getcxtj(gcglwqgz.getTsdq(),"t3.tsdq"));
+			if(gcglwqgz.getXmzt()!=null&&!"".equals(gcglwqgz.getXmzt())){
+				gcglwqgz.setXmzt(MyUtil.getQueryTJ(gcglwqgz.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+			}
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}

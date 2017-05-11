@@ -39,6 +39,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -505,6 +506,10 @@ public class GcglgcgzsjController extends BaseActionSupport{
 			gcglgcgzsj.setShzt(" like '%"+ybzt+"%'");
 		}
 		}
+		if(gcglgcgzsj.getXmzt()!=null&&!"".equals(gcglgcgzsj.getXmzt())){
+			gcglgcgzsj.setXmzt(MyUtil.getQueryTJ(gcglgcgzsj.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+		}
+		
 		gcglgcgzsj.setSbnf(xmnf);
 		if(gcglgcgzsj.getXmlx1()!=null)
 			if(gcglgcgzsj.getXmlx1().length()>0){

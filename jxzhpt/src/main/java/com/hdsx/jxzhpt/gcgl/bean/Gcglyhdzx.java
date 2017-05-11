@@ -20,7 +20,14 @@ public class Gcglyhdzx implements Serializable {
 	private String lxbm1;
 	private String qdzh1;
 	private String zdzh1;
+	private String xmzt;
 	
+	public String getXmzt() {
+		return xmzt;
+	}
+	public void setXmzt(String xmzt) {
+		this.xmzt = xmzt;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}

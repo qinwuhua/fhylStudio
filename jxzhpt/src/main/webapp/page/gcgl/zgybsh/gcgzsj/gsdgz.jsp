@@ -29,6 +29,7 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','行政等级');
+			loadBmbm3('xmzt','进展状态');
 			tsdq('ddlTSDQ');
 			gsdxmlx('xmlx');
 			if(getParam("t")=='1'){
@@ -99,7 +100,8 @@
 			    	'gcglgcgzsj.lxmc':$("#lxmc").val(),
 			    	'gcglgcgzsj.xmlx1':xmlx,
 			    	'gcglgcgzsj.gldj':$("#ddlGldj").combobox('getValue'),
-			    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText')
+			    	'gcglgcgzsj.tsdq':$("#ddlTSDQ").combobox('getText'),
+			    	'gcglgcgzsj.xmzt':$("#xmzt").combobox('getText')
 				},
 			    columns:[[
 			        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -230,6 +232,9 @@ text-decoration:none;
         						<td><input type="text" id="xmmc" style="width:70px;" /></td>
         						<td align="right">项目类型：</td>
         						<td><select name="xmlx" id="xmlx" style="width:100px;" ></select></td>
+        						<td align="right">项目进度：</td>
+        						<td><select name="xmzt" id="xmzt" style="width:60px;" ></select></td>
+        						
         						</tr>
         						<tr height="30">
         						<td colspan="10">

@@ -468,6 +468,9 @@ public class GcglzhfzController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglzhfz.setTiaojian("xjzt");
 		}
+		if(gcglzhfz.getXmzt()!=null&&!"".equals(gcglzhfz.getXmzt())){
+			gcglzhfz.setXmzt(MyUtil.getQueryTJ(gcglzhfz.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+		}
 		int count=gcglzhfzServer.selectWqgzjhListCount(gcglzhfz);
 		List<Gcglzhfz> list=gcglzhfzServer.selectWqgzjhList(gcglzhfz);
 		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();

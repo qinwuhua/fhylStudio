@@ -371,10 +371,10 @@ text-decoration:none;
 					</div>
 				</td>
 			</tr>
-			<tr style="height: 35px;">
+			<!-- <tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">关闭</a></td>
-			</tr>
+			</tr> -->
 			</table>
 </body>
 </html>

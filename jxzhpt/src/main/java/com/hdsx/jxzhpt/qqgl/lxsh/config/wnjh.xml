@@ -635,7 +635,7 @@
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		) t1 
 	</select>
 	<select id="selectSjgzlxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from WNJH_LX where 1=1 and sffirst!='1'
@@ -1381,7 +1381,27 @@
 		from wnjh_lx l where substr(lxbm,0,1) in('S','G') and xzqhdm like #{xzqhdm}||'%') 
 		group by substr(lxbm,0,1)
 	</select>
-	
+	<select id="cxwnxmkbyxmbm" parameterType="lxsh" resultType="lxsh">
+		select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wngsdgz t left join
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
+		sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc,max(xjlxbm) xjlxbm,min(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,decode(min(jsxz), '新建', min(xjlxbm), min(ghlxbm)) ghlxbm,decode(min(jsxz), '新建', min(xjqdzh), min(ghqdzh)) ghqdzh, decode(min(jsxz), '新建', max(xjzdzh), max(ghzdzh)) ghzdzh
+		from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
+		left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
+		left join (select xmid,
+		sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+        from (select  xmid,jsxz,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+        when jsxz like '%新建%' then to_number(xjlc)
+        else to_number(lc)
+        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+		where 1=1 and t.xmbm=#{xmbm}
+	</select>
 	
 	
 	<select id="selectGsdwnjh" parameterType="lxsh" resultType="lxsh">

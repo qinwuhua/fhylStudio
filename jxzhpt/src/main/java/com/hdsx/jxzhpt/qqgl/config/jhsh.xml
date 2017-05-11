@@ -7092,6 +7092,10 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		<if test="ghzdzh != null and ghzdzh != ''">
 		and to_number(fun_zdzxz(ghqdzh,ghzdzh,'min'))&lt;to_number(#{ghzdzh})
 		</if>
+		<if test="xmknf != null and xmknf != ''">and ${xmknf}</if>
+		<if test="sjlx != null and sjlx != ''">
+		and ${sjlx}
+		</if>
 	</select>
 	<select id="getgxlxbyzh" parameterType="lx" resultType="lx">
 		select * from table(fun_cfld(#{ghlxbm},${ghqdzh},${ghzdzh}))

@@ -67,4 +67,5 @@ public interface WnjhServer {
 	List<Excel_list> xljgbh(Lxsh lxsh);
 	List<Lxsh> selectGsdyxzxm(Lxsh lxsh);
 	boolean insertMethd(String arg,Object obj);
+	Lxsh cxwnxmkbyxmbm(Lxsh lxsh);
 }

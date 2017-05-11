@@ -27,6 +27,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist")); 
 			loadBmbm2('ddlGldj','行政等级');
+			loadBmbm3('xmzt','进展状态');
 			tsdq('ddlTSDQ');
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
@@ -126,6 +127,9 @@ text-decoration:none;
 									<option value="部库">部库</option>
 									<option value="省库">省库</option>
 								</select></td>
+								<td align="right">项目进度：</td>
+        						<td><select name="xmzt" id="xmzt" style="width:60px;" ></select></td>
+        						
 								</tr>
 									<tr height="30">
 									<td colspan="10">

@@ -37,6 +37,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -452,6 +453,10 @@ public class GcglshController extends BaseActionSupport{
 		}
 		}
 		gcglsh.setSbnf(xmnf);
+		if(gcglsh.getXmzt()!=null&&!"".equals(gcglsh.getXmzt())){
+			gcglsh.setXmzt(MyUtil.getQueryTJ(gcglsh.getXmzt(), "(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '完工' end)"));
+		}
+		
 		
 		List<Map<String, Object>> list=gcglshServer.queryGcgjList(gcglsh);
 		int count=gcglshServer.queryGcgjListCount(gcglsh);

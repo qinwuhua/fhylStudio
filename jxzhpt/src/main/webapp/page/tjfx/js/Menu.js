@@ -34,7 +34,7 @@ $(function() {
 
 	createMenu('LeftMenu',{
 		id:'menu_0101070204',
-		title:'补助历史查询',
+		title:'综合查询',
 		imgSrc:'../../images/bzlscx.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/lsjlSearch.jsp'

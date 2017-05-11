@@ -719,6 +719,9 @@
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
+		<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
+		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				
@@ -768,6 +771,9 @@
 		</if>
 		<if test="gydw!='' and gydw!= null ">
 		${gydw}
+		</if>
+		<if test="xmzt != null and  xmzt != ''">
+				${xmzt}
 		</if>
 		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 

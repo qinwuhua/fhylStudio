@@ -158,7 +158,7 @@ function showAll(){
 		xzqhstr= xzqhdm.join(',');
 	}
 	var kgzt='';
-	var jgzt='0';
+	var jgzt='';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 	var yhjb=$.cookie("unit2").replace(/_/g,"");
@@ -203,6 +203,7 @@ function showAll(){
 	    	'gcglwqgz.xzqh':xzqhstr,
 	    	'gcglwqgz.gldj':xzdj,
 	    	'gcglwqgz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglwqgz.xmzt':$("#xmzt").combobox('getText'),
 	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 	    	
 		},

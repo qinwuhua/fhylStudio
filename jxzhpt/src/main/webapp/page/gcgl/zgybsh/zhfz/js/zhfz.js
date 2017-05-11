@@ -131,7 +131,7 @@ function showAll(){
 	}else{
 		xzqhstr= xzqhdm.join(',');
 	}
-	var jgzt='0';
+	var jgzt='';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	var yhjb=$.cookie("unit2").replace(/_/g,"");
@@ -170,6 +170,7 @@ function showAll(){
 	    	'gcglzhfz.jsdj':$("#ddlPDDJ").combobox('getValue'),
 	    	'gcglzhfz.gldj':$("#ddlGldj").combobox('getValues').join(','),
 	    	'gcglzhfz.tsdq':$("#ddlTSDQ").combobox('getText'),
+	    	'gcglzhfz.xmzt':$("#xmzt").combobox('getText'),
 	    	'gcglzhfz.xmklx':$("#xmklx").combobox('getValue')
 		},
 	    columns:[[
