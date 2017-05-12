@@ -131,5 +131,9 @@ public interface GcybbServer {
 
 	List<Excel_list> getGljsjhhzb();
 
+	List<TreeNode> createWhTree();
+
+	List<Excel_list> getGsgxsjgzjd(String sql2);
+
 	
 }

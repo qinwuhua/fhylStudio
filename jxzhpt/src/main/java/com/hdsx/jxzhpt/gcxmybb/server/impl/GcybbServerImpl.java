@@ -1258,4 +1258,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		}
 		return l;
 	}
+
+	@Override
+	public List<TreeNode> createWhTree() {
+		return queryList("createWhTree");
+	}
+
+	@Override
+	public List<Excel_list> getGsgxsjgzjd(String sql2) {
+		return queryList("getGsgxsjgzjd",sql2);
+	}
 }

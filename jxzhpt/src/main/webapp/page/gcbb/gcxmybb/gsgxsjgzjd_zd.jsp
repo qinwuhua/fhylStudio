@@ -36,10 +36,11 @@ text-decoration:none;
 			treeChecked(this,"tt4");
         }); 
 		
-		createBtTree('tt1','1','gljsjhhzb'); 
-		createBtTree('tt2','2','gljsjhhzb'); 
-		createBtTree('tt3','3','gljsjhhzb'); 
-		
+
+        createtree('tt','../js/gsgxsjgzjd1.json'); 
+        createWhTree('tt1'); 
+        createtree('tt2','../js/gsgxsjgzjd2.json'); 
+       
 	});
 	
 	//全选反选  
@@ -62,67 +63,117 @@ text-decoration:none;
 	
 	
 	
+	function createtree(id,url){
+		
+		$('#'+id).tree({    
+		    url: url, 
+		    checkbox: true, 
+		    loadFilter: function(data){    
+		        if (data.d){    
+		            return data.d;    
+		        } else {    
+		            return data;    
+		        }    
+		    }
+		});  
+
+	}
+	
+	
+	function createWhTree(id){
+		loadjzt();
+		$('#'+id).tree({    
+		    url: '/jxzhpt/gcybb/createWhTree.do', 
+		    checkbox: true, 
+		    loadFilter: function(data){    
+		        if (data.d){    
+		            return data.d;    
+		        } else {    
+		            return data;    
+		        }    
+		    },
+		    onLoadSuccess:function(){    
+		    	disLoadjzt();
+		    }    
+		});  
+
+	}
 	
 	
 	function search(){
-		var obj=$("#tt1").tree('getChecked');
-		var obj1=$("#tt2").tree('getChecked');
-		var obj2=$("#tt3").tree('getChecked');
+		var obj=$("#tt").tree('getChecked');
+		var obj1=$("#tt1").tree('getChecked');
+		var obj2=$("#tt2").tree('getChecked');
 		
-		var str="'";var str1="";
+		var str="";var strbt="";var str1="";var str2="";
 		for(var i=0;i<obj.length;i++){
 			if(obj[i].id.indexOf('v_')!=-1){
-				str+=obj[i].id+"','";
-				str1+=obj[i].id.substring(obj[i].id.indexOf('v_'))+",";
+				str+=obj[i].id+",";
+				strbt+=obj[i].text+",";
 			}
 		}
-		for(var i=0;i<obj1.length;i++){
-			if(obj1[i].id.indexOf('v_')!=-1){
-				str+=obj1[i].id+"','";
-				str1+=obj1[i].id.substring(obj1[i].id.indexOf('v_'))+",";
-			}
+		for(var i=1;i<obj1.length;i++){
+				str1+=obj1[i].id+",";
+				strbt+=obj1[i].text+",";
 		}
 		for(var i=0;i<obj2.length;i++){
 			if(obj2[i].id.indexOf('v_')!=-1){
-				str+=obj2[i].id+"','";
-				str1+=obj2[i].id.substring(obj2[i].id.indexOf('v_'))+",";
+				str2+=obj2[i].id+",";
+				strbt+=obj2[i].text+",";
 			}
 		}
-		
-		
-		if(str!="'"){
-			str=str.substr(0,str.length-2);
-			str1=str1.substr(0,str1.length-1);
-		}else{
+		if(strbt==""){
 			alert("请勾选字段");
 			return;
+		}else{
+			strbt=strbt.substr(0,strbt.length-1);
 		}
-		parent.str1=str;
-		parent.str2=str1;
-			$.ajax({
-				data:'excel_list.name='+str+"&excel_list.ssbb=gljsjhhzb",
-				type:'post',
-				dataType:'json',
-				url:'/jxzhpt/gcybb/getZdyBbzd.do',
-				success:function(re){
-					parent.$("#biaotou").empty();
-					parent.$("#biaotou").html(re.col);
-					var ss=str1.split(",");
-					var w=ss.length*80;
-					if(w>1000)
-					parent.$("#bbtable").attr('width',w+"px");
-					else
-					parent.$("#bbtable").attr('width',"1000px");
-					parent.showBb(ss);
-					close();
-				}
-			})
+		if(str!=""){
+			str=str.substr(0,str.length-1);
+		}
+		if(str1!=""){
+			str1=str1.substr(0,str1.length-1);
+		}
+		if(str2!=""){
+			str2=str2.substr(0,str2.length-1);
+		}
+		parent.str=str;
+		parent.strbt=strbt;
+		parent.str1=str1;
+		parent.str2=str2;
+		
+		$.ajax({
+			data:'excel_list.v_0='+strbt+'&excel_list.v_1='+str+'&excel_list.v_2='+str1+'&excel_list.v_3='+str2,
+			type:'post',
+			dataType:'json',
+			url:'/jxzhpt/gcybb/getGsgxsjgzjdzd.do',
+			success:function(re){
+				parent.$("#biaotou").empty();
+				parent.$("#biaotou").html(re.col);
+				//var ss=str1.split(",");
+				parent.showBb(str,strbt,str1,str2);
+				close();
+			}
+		})
 		
 		
 	}
 	function close(){
 		parent.$('#zdybb').window('destroy');
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -144,13 +195,22 @@ text-decoration:none;
 				<table border="0" style="margin-top: 0">
 					<tr>
 						<td valign="top">
-						<ul id="tt1"></ul>  
+<!-- 						<input  type="checkbox" value="一、 项 目 计 划" name="checkbox" class="part1"/>一、 项 目 计 划</td> -->
+						
+						<ul id="tt"></ul>  
+						
 						</td>
 						<td valign="top">
+<!-- 						<input  type="checkbox" value="一、 项 目 计 划" name="checkbox" class="part1"/>一、 项 目 计 划</td> -->
+						
+						<ul id="tt1" style="margin-top: 1px;"></ul>  
+						
+						</td>
+						<td valign="top">
+<!-- 						<input  type="checkbox" value="一、 项 目 计 划" name="checkbox" class="part1"/>一、 项 目 计 划</td> -->
+						
 						<ul id="tt2" style="margin-top: 1px;"></ul>  
-						</td>
-						<td valign="top">
-						<ul id="tt3" style="margin-top: 1px;"></ul>  
+						
 						</td>
 						
 					</tr>

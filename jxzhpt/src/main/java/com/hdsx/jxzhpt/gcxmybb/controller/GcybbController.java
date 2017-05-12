@@ -3491,6 +3491,25 @@ public class GcybbController extends BaseActionSupport{
 		}
 		
 	}
+	public void createWhTree(){
+		try{
+		List<TreeNode> l=gcybbServer.createWhTree();
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		
+		children1.add(new TreeNode());
+		children1.get(0).setText("全选");
+		children1.get(0).setId("全选");
+		children1.get(0).setState("open");
+		children1.get(0).setChildren(l);
+		String s=JSONArray.fromObject(children1).toString();
+	    System.out.println(s);
+        ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private TreeNode returnRoot1(List<TreeNode> list, TreeNode zzjgTree){
 		for(TreeNode temp : list){
 			if(temp!=zzjgTree){
@@ -3540,6 +3559,25 @@ public class GcybbController extends BaseActionSupport{
 				e1.printStackTrace();
 			}
 	}
+	public void getGsgxsjgzjdzd(){
+		try {
+		 String html="<tr>";
+		 String[] bt=excel_list.getV_0().split(",");
+		 for (int i = 0; i < bt.length; i++) {
+			 html=html+"<td width='80px;'>"+bt[i]+"</td>";
+		}
+		 html+="</tr>";
+		
+		 Excel_list e=new Excel_list();
+	      e.setCol(html);
+		  JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+	}
+	
+	
 	
 	public void getGljsjhhzb(){
 		try {
@@ -3639,4 +3677,138 @@ public class GcybbController extends BaseActionSupport{
 		
 	}
 		
+	public void getGsgxsjgzjd(){
+		try {
+			if ("1".equals(flag)) {
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("江西省国省干线升级改造项目进度报表");//设置第一行
+				eldata.setSheetName("进度表");//设置sheeet名
+				eldata.setFileName("江西省国省干线升级改造项目进度报表");//设置文件名
+				
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				List<Excel_list> list=new ArrayList<Excel_list>();
+		    	  	HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					String[] bt=((String) session.getAttribute("nameValue")).split(",");
+				   
+				    String datalist=(String) session.getAttribute("sql");
+				    JSONArray ja = JSONArray.fromObject(datalist);  
+				    @SuppressWarnings("unchecked")
+					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
+							new Excel_list(), new JsonConfig());
+		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+					for (int i = 0; i < bt.length; i++) {
+						et.add(new Excel_tilte(bt[i],1,1,i,i));
+					}
+			     
+			      eldata.setEl(list1);//将实体list放入类中
+				    
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);	
+				
+			} else {
+			String[] str1 = null;
+			String[] str2 = null;
+			String[] str3 = null;
+			String[] strbt = null;
+			if(!"".equals(excel_list.getV_1()))
+			str1=excel_list.getV_1().split(",");
+			if(!"".equals(excel_list.getV_2()))
+			str2=excel_list.getV_2().split(",");
+			if(!"".equals(excel_list.getV_3()))
+			str3=excel_list.getV_3().split(",");
+			if(!"".equals(excel_list.getV_0()))
+			strbt=excel_list.getV_0().split(",");
+			String sql1="(select xmid";
+			if(str2!=null)
+			for (int i = 0; i < str2.length; i++) {
+				sql1+=",sum(decode(jhxdwh,'"+str2[i]+"',cgs,0)) wh"+i;
+			}
+			sql1+=" from (select xmid,jhxdwh,sum(btzzj) cgs from plan_zjxd  where jhxdwh is not null and xmid in(select xmid from lxsh_lx where substr(xmid,11,1)=1 or substr(xmid,11,1)=3)  group by xmid,jhxdwh order by xmid,jhxdwh) group by xmid) wh";
+			String sql2="select ";
+			int zb=0;int zb1=0;boolean sfv_0=false;
+			if(str1!=null)
+			for (int i = 0; i < str1.length; i++) {
+				if("v_0".equals(str1[i])){
+					sfv_0=true;
+				}
+				sql2+=str1[i]+" v_"+i+",";
+				zb++;
+				zb1++;
+			}
+			if(str2!=null)
+			for (int i = 0; i < str2.length; i++) {
+				sql2+="wh"+i+" v_"+(zb+i)+",";
+				zb1++;
+			}
+			if(str3!=null)
+			for (int i = 0; i < str3.length; i++) {
+				sql2+=str3[i]+" v_"+(zb1+i)+",";
+			}
+			sql2+=" xzqh from gsgxsjgzjd order by xzqh";
+			String sql="create or replace view gsgxsjgzjd as "
+					+" select '' v_0,l.xmbm v_1,c.xmmc v_2,(select name from xtgl_xzqh where id=substr(l.xzqhdm,0,4)||'00') v_3,l.tsdq v_4,xd.jhnf v_5,"
+					+" decode(lx.gldj,null,'','升'||replace(substr(lx.gldj,2),'升','/升')) v_6,lx.qdzh v_7,lx.zdzh v_8,"
+					+" lx.lc v_9,c.tz v_10,j.bbzzj v_11,j.sjkgsj v_12,j.sjwgsj v_13,jd.bnwclc v_14,jd.zjwclc v_15,round(jd.zjwclc/lx.lc,2)*100 v_16,lx.lc-jd.zjwclc v_17,jd.wkglc v_18,"
+					+" jd.bnwczj v_19,jd.zjwczj v_20,round(jd.zjwczj/c.tz,2)*100 v_21,bf.ybf v_22,c.tz-bf.ybf v_23,(case when kgzt=0 then '未开工' when jgzt='1' then '完工' when kgzt=1 and jgzt=0 then '在建' end) v_24,jd.qksm v_25,substr(l.xzqhdm,0,4)||'00' xzqh,wh.* "
+					+" from lxsh_sjgz l,cbsj_sjgz c,jhsh_sjgz j,(select xmid,replace(WMSYS.WM_CONCAT(distinct xdnf),',',',') jhnf from ( select * from plan_zjxd order by xmid,xdnf) where jhxdwh is not null group by xmid) xd,"
+					+" (select xmid,replace(WMSYS.WM_CONCAT(distinct syi),',',',')||replace(WMSYS.WM_CONCAT(distinct ser),',',',')||replace(WMSYS.WM_CONCAT(distinct ssan),',',',')||replace(WMSYS.WM_CONCAT(distinct ssi),',',',') gldj, "
+					+" replace(WMSYS.WM_CONCAT(ghqdzh),',',',') qdzh,replace(WMSYS.WM_CONCAT(ghzdzh),',',',') zdzh,sum(lc) lc"
+					+" from (select xmid,"
+					+" (case when jhyilc>0 then '升一' end) syi,"
+					+" (case when jherlc>0 then '升二' end) ser,"
+					+" (case when jhsanlc>0 then '升三' end) ssan,"
+					+" (case when jhsilc>0 then '升四' end) ssi,"
+					+" ghqdzh,ghzdzh,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) lc"
+					+" from lxsh_lx where jdbs='2' and substr(xmid,11,1)=1) group by xmid) lx,"
+					+" (select xmbm,sum(decode(substr(ybyf,0,4),to_char(sysdate,'yyyy'),nvl(lq,0)+nvl(sn,0),0)) bnwclc,sum(nvl(lq,0)+nvl(sn,0)) zjwclc,sum(decode(ybyf,fun_zdjdyf(xmbm,to_char(sysdate,'yyyy-mm')),wwcgcl)) wkglc,"
+					+" sum(decode(substr(ybyf,0,4),to_char(sysdate,'yyyy'),nvl(wccgs,0),0)) bnwczj,sum(nvl(wccgs,0)) zjwczj,replace(WMSYS.WM_CONCAT(distinct qksm),',',',') qksm"
+					+" from gcgl_xmjd group by xmbm) jd,"
+					+" (select jhid,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(dk,0)+nvl(jl,0)+nvl(qt,0)+nvl(dfzc,0)+nvl(yhdk,0)) ybf"
+					+" from gcgl_cgs group by jhid) bf,"
+					+sql1
+					+" where l.xmbm=c.xmbm(+) and l.xmbm=j.xmbm(+) and l.xmbm=xd.xmid(+) and l.xmbm=lx.xmid(+) and l.xmbm=jd.xmbm(+) and l.xmbm=bf.jhid(+) and l.xmbm=wh.xmid(+) "
+					+" and l.xmbm in(select xmid from plan_zjxd where jhxdwh is not null) "
+					+"union all"
+					+" select '' v_0,l.xmbm v_1,c.xmmc v_2,(select name from xtgl_xzqh where id=substr(l.xzqhdm,0,4)||'00') v_3,l.tsdq v_4,xd.jhnf v_5,"
+					+" decode(lx.gldj,null,'','升'||replace(substr(lx.gldj,2),'升','/升')) v_6,lx.qdzh v_7,lx.zdzh v_8,"
+					+" lx.lc v_9,c.tz v_10,j.bbzzj v_11,j.sjkgsj v_12,j.sjwgsj v_13,jd.bnwclc v_14,jd.zjwclc v_15,round(jd.zjwclc/lx.lc,2)*100 v_16,lx.lc-jd.zjwclc v_17,jd.wkglc v_18,"
+					+" jd.bnwczj v_19,jd.zjwczj v_20,round(jd.zjwczj/c.tz,2)*100 v_21,bf.ybf v_22,c.tz-bf.ybf v_23,(case when kgzt=0 then '未开工' when jgzt='1' then '完工' when kgzt=1 and jgzt=0 then '在建' end) v_24,jd.qksm v_25,substr(l.xzqhdm,0,4)||'00' xzqh,wh.* "
+					+" from lxsh_xj l,cbsj_xj c,jhsh_xj j,(select xmid,replace(WMSYS.WM_CONCAT(distinct xdnf),',',',') jhnf from ( select * from plan_zjxd order by xmid,xdnf) where jhxdwh is not null group by xmid) xd,"
+					+" (select xmid,replace(WMSYS.WM_CONCAT(distinct syi),',',',')||replace(WMSYS.WM_CONCAT(distinct ser),',',',')||replace(WMSYS.WM_CONCAT(distinct ssan),',',',')||replace(WMSYS.WM_CONCAT(distinct ssi),',',',') gldj, "
+					+" replace(WMSYS.WM_CONCAT(ghqdzh),',',',') qdzh,replace(WMSYS.WM_CONCAT(ghzdzh),',',',') zdzh,sum(lc) lc"
+					+" from (select xmid,"
+					+" (case when yilc>0 then '升一' end) syi,"
+					+" (case when erlc>0 then '升二' end) ser,"
+					+" (case when sanlc>0 then '升三' end) ssan,"
+					+" (case when silc>0 then '升四' end) ssi,"
+					+" ghqdzh,ghzdzh,nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0) lc"
+					+" from lxsh_lx where jdbs='2' and substr(xmid,11,1)=3) group by xmid) lx,"
+					+" (select xmbm,sum(decode(substr(ybyf,0,4),to_char(sysdate,'yyyy'),nvl(lq,0)+nvl(sn,0),0)) bnwclc,sum(nvl(lq,0)+nvl(sn,0)) zjwclc,sum(decode(ybyf,fun_zdjdyf(xmbm,to_char(sysdate,'yyyy-mm')),wwcgcl)) wkglc,"
+					+" sum(decode(substr(ybyf,0,4),to_char(sysdate,'yyyy'),nvl(wccgs,0),0)) bnwczj,sum(nvl(wccgs,0)) zjwczj,replace(WMSYS.WM_CONCAT(distinct qksm),',',',') qksm"
+					+" from gcgl_xmjd group by xmbm) jd,"
+					+" (select jhid,sum(nvl(cgsdwzj,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(dk,0)+nvl(jl,0)+nvl(qt,0)+nvl(dfzc,0)+nvl(yhdk,0)) ybf"
+					+" from gcgl_cgs group by jhid) bf,"
+					+sql1
+					+" where l.xmbm=c.xmbm(+) and l.xmbm=j.xmbm(+) and l.xmbm=xd.xmid(+) and l.xmbm=lx.xmid(+) and l.xmbm=jd.xmbm(+) and l.xmbm=bf.jhid(+) and l.xmbm=wh.xmid(+) "
+					+" and l.xmbm in(select xmid from plan_zjxd where jhxdwh is not null) ";
+					gcybbServer.createybView(sql);
+					List<Excel_list> l=gcybbServer.getGsgxsjgzjd(sql2);
+					if(sfv_0){
+						for (int i = 0; i < l.size(); i++) {
+							l.get(i).setV_0(""+(i+1));
+						}
+					}
+				
+				JsonUtils.write(l, getresponse().getWriter());
+			}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		
+	}
+	
+	
+	
 }
