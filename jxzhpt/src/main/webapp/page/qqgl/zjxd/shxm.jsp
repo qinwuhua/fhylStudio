@@ -128,9 +128,12 @@
 				xmnf='2011,2012,2013,2014,2015';
 			if(getUrlParame('id').substr(0,10)=='0101130302')
 				xmnf='2016,2017,2018,2019,2020';
+			var scxdnf=$("#scxdnf").combobox("getValues").join(",");
+			if(scxdnf.substr(0,1)==',')
+				scxdnf=scxdnf.substr(1,scxdnf.length);
 			var params={'jhsh.xmlx':5,'jhsh.xmlx1':xmlx,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.xdzttj':xdzt,'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.xmmc':$('#xmmc').val(),'jhsh.tsdq':tsdq,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),'jhsh.jhxdwh':jhxdwh,
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':$('#scxdnf').combobox("getValues").join(','),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmnf':xmnf,'jhsh.scxdnf':scxdnf,
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.xdsj':$('#xdsj').datebox('getValue')};
 			loadLj(params);
 			$('#grid').datagrid({    
