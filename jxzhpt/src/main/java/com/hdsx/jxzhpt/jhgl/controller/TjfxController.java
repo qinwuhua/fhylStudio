@@ -70,6 +70,7 @@ public class TjfxController extends BaseActionSupport{
 	private int page =1;
 	private int rows=10;
 	private Xmsq xmsq=new Xmsq();
+	private String tbnf;
 	/**
 	 * 基础库行政区划统计
 	 */
@@ -1690,12 +1691,14 @@ public class TjfxController extends BaseActionSupport{
 				List<Map<String,Object>> qs1 = tjfxServer.queryKxjc_ds(tjfl,xmsq.getXmbm());
 				Map<String, Object> nf=tjfxServer.queryMaxNf();
 				List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, Integer.valueOf(nf.get("NF").toString()));
-				for (TreeNode item : lx) {
-					Map<String, String> index =new HashMap<String, String>();
-					index.put("lxbm", item.getId());
+//				for (TreeNode item : lx) {
+//					Map<String, String> index =new HashMap<String, String>();
+//					index.put("lxbm", item.getId());
 				for (Map<String, Object> map2 : qs1) {
-					if (map2.get("LXBM")!=null&&!map2.get("LXBM").equals("")&&
-							map2.get("LXBM").toString().equals(item.getId())) {
+//					if (map2.get("LXBM")!=null&&!map2.get("LXBM").equals("")&&
+//							map2.get("LXBM").toString().equals(item.getId())) {
+					    Map<String, String> index =new HashMap<String, String>();
+						index.put("lxbm", map2.get("LXBM").toString());
 						if(map2.get("ZTZ")!=null)index.put("ztz", map2.get("ZTZ").toString());
 						else{index.put("ztz","");}
 						if(map2.get("ZBZ")!=null)index.put("zbz", map2.get("ZBZ").toString());
@@ -1706,16 +1709,17 @@ public class TjfxController extends BaseActionSupport{
 						else{index.put("lc","");}
 						if(map2.get("YDLV")!=null)index.put("ydlv", map2.get("YDLV").toString());
 						else{index.put("ydlv","");}
-					}
+						
+						for (int x = 0; x < zrsh.size(); x++) {
+							if (zrsh.get(x).get("LXBM")!=null&&!zrsh.get(x).get("LXBM").equals("")&&
+									zrsh.get(x).get("LXBM").toString().equals(map2.get("LXBM").toString())) {
+								index.put("zrsh", zrsh.get(x).get("ZRSH").toString());	
+							}
+						}
+						result.add(index);
+//					}
 			      }
-				for (int x = 0; x < zrsh.size(); x++) {
-					if (zrsh.get(x).get("LXBM")!=null&&!zrsh.get(x).get("LXBM").equals("")&&
-							zrsh.get(x).get("LXBM").toString().equals(item.getId())) {
-						index.put("zrsh", zrsh.get(x).get("ZRSH").toString());	
-					}
-				}
-				result.add(index);
-				}
+//				}
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
@@ -1796,6 +1800,10 @@ public class TjfxController extends BaseActionSupport{
 			String lxbmStr="";
 			String mqiStr="";
 			String mqi="";
+			String xzdj="";
+			if(xmsq.getXzqh()!=null && !xmsq.getXzqh().equals("")){
+				xzdj=xmsq.getXzqh();
+			}
 			if(xmsq.getLxbm()!=null && !xmsq.getLxbm().equals("")){
 				String[]  lxbmArr=xmsq.getLxbm().split(",");
 				lxbmStr+="(";
@@ -1861,7 +1869,7 @@ public class TjfxController extends BaseActionSupport{
 			if(!mqiStr.equals("")){
 				mqiStr=mqiStr.substring(0,mqiStr.length()-3);
 			}
-		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr,mqiStr,mqi);
+		List<Map<String, Object>> list=tjfxServer.queryKxjc_lx(tjfl,lxbmStr,mqiStr,mqi,xzdj);
 		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		
@@ -1929,6 +1937,12 @@ public class TjfxController extends BaseActionSupport{
 	}
 	public void setXmsq(Xmsq xmsq) {
 		this.xmsq = xmsq;
+	}
+	public String getTbnf() {
+		return tbnf;
+	}
+	public void setTbnf(String tbnf) {
+		this.tbnf = tbnf;
 	}
 	
 }

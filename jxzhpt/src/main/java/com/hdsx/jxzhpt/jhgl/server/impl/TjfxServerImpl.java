@@ -199,7 +199,9 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	}
 	@Override
 	public List<Lkmxb> getLxldCombo(Lkmxb lkmxb) {
-		return queryList("getLxldCombo",lkmxb);
+		if(lkmxb!=null)params.put("tbnf", lkmxb.getTbnf());
+		else params.put("tbnf", "");
+		return queryList("getLxldCombo",params);
 	}
 
 	@Override
@@ -300,15 +302,17 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("lxbm", lkmxb.getLxbh());
 		params.put("mqi", lkmxb.getMqi());
+		params.put("xzdj", lkmxb.getXzdj());
 		return queryList("queryLx_kxjc",params);
 	}
 	
 	@Override
-	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm,String mqiStr,String mqi) {
+	public List<Map<String, Object>> queryKxjc_lx(String tjfl,String lxbm,String mqiStr,String mqi,String xzdj) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("lxbm", lxbm);
 		params.put("mqiStr", mqiStr);
 		params.put("mqi", mqi);
+		params.put("xzdj", xzdj);
 		if(tjfl.equals("1")){
 			  return queryList("queryLxkxjc_ds",params);
 			}else{

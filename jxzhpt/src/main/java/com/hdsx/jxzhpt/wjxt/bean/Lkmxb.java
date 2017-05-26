@@ -59,9 +59,17 @@ public class Lkmxb implements Serializable {
 	private String zh;//桩号
 	private String cd;//长度
 	private String text;//文本
+	private String xzdj;
+	
 	
 
 	
+	public String getXzdj() {
+		return xzdj;
+	}
+	public void setXzdj(String xzdj) {
+		this.xzdj = xzdj;
+	}
 	public String getText() {
 		return text;
 	}
