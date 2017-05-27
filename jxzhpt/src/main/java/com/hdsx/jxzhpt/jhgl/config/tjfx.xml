@@ -644,7 +644,7 @@
 			(
 				select rownum as num,t.* from 
 				(
-		select t.*,'K'||qdzh||'-K'||zdzh zh,(zdzh-qdzh)*1000 cd 
+		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd 
 		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 and jsdj!='高速'
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
@@ -736,14 +736,22 @@
 		order by lxbh,qdzh
 	</select>
 	
-	<select id="getLxldCombo" resultType="lkmxb" parameterType="lkmxb">
+	<select id="getLxldCombo" resultType="lkmxb" parameterType="java.util.Map">
 <!-- 	select distinct substr(ylxbm,0,length(ylxbm)-6) id,substr(ylxbm,0,length(ylxbm)-6)||'['||t.ylxmc||']' text  -->
 <!-- 	from ghlx t where ylxbm is not null and ylxmc is not null and substr(ylxbm,0,1) in ('G','S') -->
 <!--     order by substr(ylxbm,0,length(ylxbm)-6) -->
     
-    select distinct substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6)||'['||t.roadname||']' text
-      from gpsroad t where  substr(roadcode,0,1) in ('G','S') and F114!='高速公路'
-      order by substr(roadcode,0,length(roadcode)-6)
+<!--     select distinct substr(roadcode,0,length(roadcode)-6) id,substr(roadcode,0,length(roadcode)-6)||'['||t.roadname||']' text -->
+<!--       from gpsroad t where  substr(roadcode,0,1) in ('G','S') and F114!='高速公路' -->
+<!--       order by substr(roadcode,0,length(roadcode)-6) -->
+      
+      select distinct lxbh id,lxbh||'['||t.lxmc||']' text
+      from lkpd_mxb_data_2014 t left join lkpd_mxb2014 l on t.mxb_id=l.id  
+      where   jsdj!='高速' 
+        <if test="tbnf != null and  tbnf != ''">
+		    and l.tbnf=#{tbnf}
+		</if>
+      order by lxbh
 	</select>
 	
 	<select id="querylkpdfx" resultType="sjbb" parameterType="lkmxb">
@@ -753,7 +761,7 @@
     sum(decode(pd,'次',cd,'0')) v_5,sum(decode(pd,'差',cd,'0')) v_6,round(avg(MQI1),2) v_8 from(
       select 'MQI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(mqi) pd,'1' b,SUM(mqi*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t        
               left join lkpd_mxb2014 m on t.mxb_id=m.id  
-              where jsdj!='高速'
+              where jsdj!='高速' 
               <if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
 				and lxbh = #{lkmxb.lxbh} 
 			  </if>
@@ -768,6 +776,9 @@
 			  </if> 
 			  <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
+			  <if test="lkmxb.jcfx == null or lkmxb.jcfx == ''">
+			   and jcfx != '下行'
 			  </if>
               group by fn_ReturnFllx(mqi)
       union all
@@ -788,6 +799,9 @@
 			  </if> 
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
+			  <if test="lkmxb.jcfx == null or lkmxb.jcfx == ''">
+			   and jcfx != '下行'
 			  </if>
               group by fn_ReturnFllx(pqi)
       
@@ -810,6 +824,9 @@
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
 			  </if>
+              <if test="lkmxb.jcfx == null or lkmxb.jcfx == ''">
+			   and jcfx != '下行'
+			  </if>
               group by fn_ReturnFllx(sci)
       union all
       select 'BCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(bci) pd,'4' b,SUM(bci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
@@ -830,6 +847,9 @@
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
 			  </if>
+			  <if test="lkmxb.jcfx == null or lkmxb.jcfx == ''">
+			   and jcfx != '下行'
+			  </if>
               group by fn_ReturnFllx(bci)
       union all
       select 'TCI' a,sum(zdzh-qdzh) cd,fn_ReturnFllx(tci) pd,'5' b,SUM(tci*(zdzh-qdzh))/SUM((zdzh-qdzh)) MQI1 from LKPD_MXB_DATA_2014 t
@@ -849,6 +869,9 @@
 			  </if> 
 			   <if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
 				 and m.tbnf=#{lkmxb.tbnf} 
+			  </if>
+			  <if test="lkmxb.jcfx == null or lkmxb.jcfx == ''">
+			   and jcfx != '下行'
 			  </if>
               group by fn_ReturnFllx(tci)
       ) 
@@ -1199,7 +1222,7 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryZrsh_ds" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf} nf,a.xzqhdm xzqhdm,abs(a.ydlv-b.ydlv) zrsh from (
+	select ${xmnf} nf,a.xzqhdm xzqhdm,a.ydlv-b.ydlv zrsh from (
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id not in(
@@ -1223,7 +1246,7 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryZrsh_lx" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf} nf,a.lxbh lxbm,abs(a.ydlv-b.ydlv) zrsh from (
+	select ${xmnf} nf,a.lxbh lxbm,a.ydlv-b.ydlv zrsh from (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
 	  from  WH_LKPD_DATA_DS  where id not in(
@@ -1259,7 +1282,10 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		   </if>
 		   <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
-		</if>
+		   </if>
+		   <if test="xzdj !='' and xzdj != null ">
+			and gldj=#{xzdj}
+		    </if>
            group by lxbh order by lxbh
 	</select>
 	
@@ -1277,6 +1303,9 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		    </if>
 		    <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
+		    </if>
+		    <if test="xzdj !='' and xzdj != null ">
+			and gldj=#{xzdj}
 		    </if>
 			 group by xzqhdm order by xzqhdm
 		 ) t 
@@ -1299,13 +1328,16 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 		  <if test="mqi != null and  mqi != ''">
 			and pd in ${mqi}
 		  </if>
+		   <if test="xzdj !='' and xzdj != null ">
+			and gldj=#{xzdj}
+		    </if>
 		  group by lxbh order by lxbh
 		 ) t
 	</select>
 	
 	
 	<select id="queryTsbl_ds" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf} nf,a.xzqhdm xzqhdm,abs(b.ydlv-a.ydlv) tsbl from (
+	select ${xmnf} nf,a.xzqhdm xzqhdm,b.ydlv-a.ydlv tsbl from (
 	select xzqhdm,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,to_char(substr(xzqhdm,0,4)) xzqhdm
 	from  WH_LKPD_DATA_DS  where id  in(
@@ -1329,7 +1361,7 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	</select>
 	
 	<select id="queryTsbl_lx" resultType="java.util.Map" parameterType="java.util.Map">
-	select ${xmnf} nf,a.lxbh lxbm,abs(b.ydlv-a.ydlv) tsbl from (
+	select ${xmnf} nf,a.lxbh lxbm,b.ydlv-a.ydlv tsbl from (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
 	  select  sum(zdzh-qdzh) cd,sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
 	  from  WH_LKPD_DATA_DS  where id  in(

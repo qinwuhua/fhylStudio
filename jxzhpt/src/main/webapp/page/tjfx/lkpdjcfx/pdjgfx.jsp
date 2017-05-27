@@ -403,7 +403,7 @@ text-decoration:none;
 							  <td>管辖路段：</td>
 							  <td>
 							  <select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 220px;"></select>
-							  <input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
+							  起止点桩号：<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
 							  </td>
 							  <td><span id="ztspan">&nbsp;审核状态</span>：</td>
        						  <td><select id="sqzt" class="easyui-combobox" style="width: 70px;"></select></td>

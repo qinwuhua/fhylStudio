@@ -19,13 +19,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#roadcode').combotree({		
-		url :"/jxzhpt/tjfx/getLxldCombo.do",
-		panelHeight:170,
-        multiple:true,
-        checkBox:true
-    });
-	
+	var tbnf;
 	$('#lkpdbb').combobox({		
 		url :"/jxzhpt/tjfx/getPdnf.do",
 		valueField : "id",
@@ -35,8 +29,22 @@ $(function(){
 			var data = $('#lkpdbb').combobox('getData');  
             	 if (data.length > 0) {
                  	$('#lkpdbb').combobox('select', data[0].id);
+                 	$('#roadcode').combotree({		
+                		url :"/jxzhpt/tjfx/getLxldCombo.do?lkmxb.tbnf="+data[0].id,
+                		panelHeight:170,
+                        multiple:true,
+                        checkBox:true
+                    });
           		}   
-         }  
+         },
+         onChange: function (n,o) {
+        	 $('#roadcode').combotree({		
+        			url :"/jxzhpt/tjfx/getLxldCombo.do?lkmxb.tbnf="+n,
+        			panelHeight:170,
+        	        multiple:true,
+        	        checkBox:true
+        	    });
+         }
 		
     });
 	
@@ -46,6 +54,16 @@ $(function(){
 	loadBmbm3("mqi","MQI等级");
 	loadGrid();
 });
+
+function loadLd(){
+	var tbnf=$('#lkpdbb').combobox("getValue");
+	$('#roadcode').combotree({		
+		url :"/jxzhpt/tjfx/getLxldCombo.do?lkmxb.tbnf="+tbnf,
+		panelHeight:170,
+        multiple:true,
+        checkBox:true
+    });
+}
 
 function loadGrid(){
 	var jsdj=$('#jsdj').combobox("getValues").join(",");
@@ -134,18 +152,13 @@ text-decoration:none;
 				<div>
 						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr  height="28">
-							  <td align="right">管辖路段：</td>
-							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 180px;"></select></td>
-							  <td align="right">路况评定版本：</td>
+							 <td align="right">路况评定版本：</td>
 							 <td>
 							 <select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
-<!-- 							 <select id="lkpdbb" style="width:70px"> -->
-<!-- 							    <option value="2014">2014年</option> -->
-<!--         						<option value="2015">2015年</option> -->
-<!--         						<option value="2016">2016年</option> -->
-<!--         						<option value="2017">2017年</option> -->
-<!-- 							 </select> -->
 							 </td>
+							  <td align="right">管辖路段：</td>
+							 <td><select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 180px;"></select></td>
+							 
 							  <td align="right">技术等级：</td>
 							  <td><select id="jsdj" style="width:80px"class="easyui-combobox"></select></td>
 							  </tr>

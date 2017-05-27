@@ -67,9 +67,10 @@
 						var str="";
 						for(var i=0;i<msg.length;i++){
 							str+="<tr align='center' height='30'><td colspan='2'>"+msg[i].v_0+"</td>"+
-							"<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td>"+"<td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"+
+							 "<td>"+msg[i].v_1+"</td><td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_5+"</td><td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"+
+							/* "<td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td>"+"<td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"+
 							"<td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td>"+
-							"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+
+							"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+ */
 							"</tr>";
 						}
 						$("#grid").html(str);
@@ -240,8 +241,8 @@
             		<div>
             			<table style="width:800px; margin-top: 15px;margin-left: 10px; font-size: 12px;"class="sjhz_bg"
 			border="1" cellpadding="3" cellspacing="1">
-						<tr align="center" height="30"><td  colspan="2">指标</td><td colspan="3">MQI</td><td  colspan="3">PQI</td><td colspan="3">SCI</td><td colspan="3">BCI</td><td colspan="3">TCI</td></tr>
-						<tr align="center" height="30"><td colspan="2">段落</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td></tr>
+						<tr align="center" height="30"><td  colspan="2">指标</td><td>MQI</td><td>PQI</td><td>SCI</td><td>BCI</td><td>TCI</td></tr>
+<!-- 						<tr align="center" height="30"><td colspan="2">段落</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td><td>双向</td><td>上行</td><td>下行</td></tr> -->
 						<tbody id="grid">
 						<tr align="center"><td style="color: red;" colspan="23">请选择路段后查询</td></tr>
 						</tbody>
