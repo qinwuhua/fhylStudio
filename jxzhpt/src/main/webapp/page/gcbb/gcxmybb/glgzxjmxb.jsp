@@ -77,12 +77,9 @@
 			var id='jhxdnf';
 			var myDate = new Date();
 			var years=[];
-			var first;
 			years.push({text:'全部',value:''});
-			for(var i=0;i<=10;i++){
-				if(i==0)
-					first=myDate.getFullYear()-i;
-				years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+			for(var i=2011;i<=2020;i++){
+				years.push({text:(i),value:(i)});
 			}
 			$('#'+id).combobox({
 			    data:years,

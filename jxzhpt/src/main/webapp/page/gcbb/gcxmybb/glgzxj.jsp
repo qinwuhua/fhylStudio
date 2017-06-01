@@ -34,7 +34,7 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		setjhxdnf("ddlYear1");
+		setjhxdnf1("ddlYear1");
 		setjhxdnf1("jhnd");
 		loadUnit1("gydw",$.cookie("unit"));
 		loadDist1("xzqh",$.cookie("dist"));
@@ -65,80 +65,15 @@
 		$("#biaotou").empty();
 	});
 	function setjhxdnf1(id){
-		var myDate = new Date();
-		var years=[];
-		//var first;
-		years.push({text:'全部',value:''});
-		for(var i=0;i<=10;i++){
-			if(i==0)
-				first=myDate.getFullYear()-i;
-			years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-		}
-		$('#'+id).combobox({
-		    data:years,
-		    valueField:'value',
-		    textField:'text',
-		    multiple:true,
-		    formatter:function(row){
-				var opts = $(this).combobox('options');
-				return '<input id="name'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
-			},
-			onSelect:function(record){
-				var opts = $(this).combobox('options');
-				if(record[opts.valueField]==""){
-					var values =new Array();
-					var datas = $('#' +id).combobox("getData");
-					$.each(datas,function(index,item){
-						values.push(item.value);
-						$('#name'+item.value).attr('checked', true);
-					});
-					$('#' +id).combobox("setValues",values);
-				}else{
-					$('#name'+record.value).attr('checked', true);
-				}
-			},
-			onUnselect:function(record){
-				var opts = $(this).combobox('options');
-				var datas = $('#' +id).combobox("getData");
-				var values = $('#' +id).combobox("getValues");
-				$('#' +id).combobox("clear");
-				if(record[opts.valueField]!=""){
-					if(jQuery.inArray("",values)>=0){
-						values.splice(jQuery.inArray("",values),1);
-					}
-					$.each(datas,function(index,item){
-						if(jQuery.inArray(""+item.value,values)<0){
-							$('#name'+item.value).attr('checked', false);
-						}
-					});
-					$('#' +id).combobox("setValues",values);
-				}else{
-					$.each(datas,function(index,item){
-						$('#name'+item.value).attr('checked', false);
-					});
-				}
-			}
-		});
-		var arr1 = new Array(); 
-		for(var i=0;i<=10;i++){
-			arr1[i]=myDate.getFullYear()+5-i;
-			//if(i==0)
-			//	first=myDate.getFullYear()-i;
-			//years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-			$('#name'+(myDate.getFullYear()+5-i)).attr('checked', true);
-		}
-		$('#'+id).combobox("setValues",arr1);
 		
-	}
-	function setjhxdnf(id){
-		var myDate = new Date();
 		var years=[];
 		//var first;
 		years.push({text:'全部',value:''});
-		for(var i=0;i<=10;i++){
-			if(i==0)
-				first=myDate.getFullYear()-i;
-			years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
+		var myvalues=new Array();
+		
+		for(var i=2011;i<=2020;i++){
+			years.push({text:(i),value:(i)});
+			myvalues.push(i);
 		}
 		$('#'+id).combobox({
 		    data:years,
@@ -147,7 +82,7 @@
 		    multiple:true,
 		    formatter:function(row){
 				var opts = $(this).combobox('options');
-				return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+				return '<input id="name'+id+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
 			},
 			onSelect:function(record){
 				var opts = $(this).combobox('options');
@@ -156,11 +91,11 @@
 					var datas = $('#' +id).combobox("getData");
 					$.each(datas,function(index,item){
 						values.push(item.value);
-						$('#id'+item.value).attr('checked', true);
+						$('#name'+id+item.value).attr('checked', true);
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
-					$('#id'+record.value).attr('checked', true);
+					$('#name'+id+record.value).attr('checked', true);
 				}
 			},
 			onUnselect:function(record){
@@ -174,28 +109,21 @@
 					}
 					$.each(datas,function(index,item){
 						if(jQuery.inArray(""+item.value,values)<0){
-							$('#id'+item.value).attr('checked', false);
+							$('#name'+id+item.value).attr('checked', false);
 						}
 					});
 					$('#' +id).combobox("setValues",values);
 				}else{
 					$.each(datas,function(index,item){
-						$('#id'+item.value).attr('checked', false);
+						$('#name'+id+item.value).attr('checked', false);
 					});
 				}
 			}
-		});
-		var arr1 = new Array(); 
-		for(var i=0;i<=10;i++){
-			arr1[i]=myDate.getFullYear()+5-i;
-			//if(i==0)
-			//	first=myDate.getFullYear()-i;
-			//years.push({text:(myDate.getFullYear()+5-i),value:(myDate.getFullYear()+5-i)});
-			$('#id'+(myDate.getFullYear()+5-i)).attr('checked', true);
+		}); 
+		for(var i=0;i<myvalues.length;i++){
+			$('#name'+id+myvalues[i]).attr('checked', true);
 		}
-		$('#'+id).combobox("setValues",arr1);
-		//$('#'+id).combobox("setValue",myDate.getFullYear()+'');
-		//$('#id'+myDate.getFullYear()).attr('checked', true);
+		$('#'+id).combobox("setValues",myvalues);
 		
 	}
 	
