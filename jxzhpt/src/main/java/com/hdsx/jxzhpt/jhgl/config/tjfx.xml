@@ -934,7 +934,7 @@
         group by tbnf   order by tbnf ) b 
 	</select> -->
 	
-	<select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
+	<!-- <select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
 	select t.tbnf || '路况评定' v_0,round(avg(mqi),2) v_1,round(avg(pqi),2) v_2,round(avg(sci),2) v_5,round(avg(bci),2) v_6,round(avg(tci),2) v_7,
 			sum(decode(qjfx,'上下行',mqi,0)) v_8,sum(decode(qjfx,'上行',mqi,0)) v_9,sum(decode(qjfx,'下行',mqi,0)) v_10,
 			sum(decode(qjfx,'上下行',pqi,0)) v_11,sum(decode(qjfx,'上行',pqi,0)) v_12,sum(decode(qjfx,'下行',pqi,0)) v_13,
@@ -952,7 +952,28 @@
 		</if>
 		group by d.lxbh,t.tbnf
 		order by t.tbnf
-	</select>
+	</select> -->
+	
+ <select id="querylkbjfx" resultType="sjbb" parameterType="lkmxb">
+	select v_0,round(v_2/v_1,2) v_1,round(v_3/v_1,2) v_2,round(v_4/v_1,2) v_5,round(v_5/v_1,2) v_6,round(v_6/v_1,2) v_7 from (
+      select t.tbnf || '路况评定' v_0,sum(pdlc) v_1,
+       sum(decode(qjfx,'上下行',mqi*pdlc,0))+sum(decode(qjfx,'上行',mqi*pdlc,0))+sum(decode(qjfx,'下行',mqi*pdlc,0)) v_2,
+       sum(decode(qjfx,'上下行',pqi*pdlc,0))+sum(decode(qjfx,'上行',pqi*pdlc,0))+sum(decode(qjfx,'下行',pqi*pdlc,0)) v_3,
+       sum(decode(qjfx,'上下行',sci*pdlc,0))+sum(decode(qjfx,'上行',sci*pdlc,0))+sum(decode(qjfx,'下行',sci*pdlc,0)) v_4,
+       sum(decode(qjfx,'上下行',bci*pdlc,0))+sum(decode(qjfx,'上行',bci*pdlc,0))+sum(decode(qjfx,'下行',bci*pdlc,0)) v_5,
+       sum(decode(qjfx,'上下行',tci*pdlc,0))+sum(decode(qjfx,'上行',tci*pdlc,0))+sum(decode(qjfx,'下行',tci*pdlc,0)) v_6     
+      from lkpd_lkhzb_data d left join lkpd_lkhzb t on t.id=d.hzb_id 
+			where 1=1
+
+		<if test="lkmxb.lxbh != null and  lkmxb.lxbh != ''">
+			and d.lxbh=#{lkmxb.lxbh}  
+		</if>
+		<if test="lkmxb.tbnf != null and  lkmxb.tbnf != ''">
+			and t.tbnf in ${lkmxb.tbnf}  
+		</if>
+		group by d.lxbh,t.tbnf
+		order by t.tbnf)
+	</select> 
 	
 	<select id="getPdnf" resultType="lkmxb" parameterType="lkmxb">
 	select tbnf id,tbnf || '年' text from lkpd_mxb2014 t order by tbnf desc
