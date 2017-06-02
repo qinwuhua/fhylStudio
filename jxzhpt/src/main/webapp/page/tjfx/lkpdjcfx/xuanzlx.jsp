@@ -42,57 +42,35 @@
 			    striped:true,
 			    pagination:false,
 			    rownumbers:true,
-// 			   checkOnSelect:true,
-			   checkOnSelect: false, 
-			   selectOnCheck: false,
-			   idField: 'LXBH', fit: false, fitColumns: true, singleSelect: true,
+			   checkOnSelect:true,
+//  		   checkOnSelect: false, 
+// 			   selectOnCheck: false,
+// 			   idField: 'LXBH', 
+// 			   fit: false, 
+// 			   fitColumns: true, 
 			    height:$(window).height()-40,
 			    width:$(window).width()-20,
 			    queryParams: {
 			    	'lkmxb.lxbm':$("#lxbm").val(),
 					'lkmxb.mqi':mqi,
+					'lkmxb.xzdj':$("#xzdj").val()
 				},
 			    columns:[[
-// 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-                    {field: 'op11', title: '<input id=\"lxcheckbox\" type=\"checkbox\"  >', width: 30,
-					    formatter: function (value, rec, rowIndex) {
-						    return "<input type=\"checkbox\"  name=\"LX\" value=\"" + rec.LXBH + "\" >";
-						}
-					},
+			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 					{field : 'LXBH',title : '路线编号',width : 110,align : 'center'},
-					{field: 'op12', title: '<input id=\"ydlcheckbox\" type=\"checkbox\"  >', width: 30,
-					    formatter: function (value, rec, rowIndex) {
-						    return "<input type=\"checkbox\"  name=\"YDL\" value=\"" + rec.LXBH + "\" >";
-						}
-					},
 					{field : 'YDL',title : '优等路(公里)',width : 110,align : 'center'},
-					{field: 'op13', title: '<input id=\"ldlcheckbox\" type=\"checkbox\"  >', width: 30,
-					    formatter: function (value, rec, rowIndex) {
-						    return "<input type=\"checkbox\"  name=\"LDL\" value=\"" + rec.LXBH + "\" >";
-						}
-					},
 					{field:  'LDL',title:'良等路(公里)',width:110,align:'center'},
-					{field: 'op14', title: '<input id=\"zdlcheckbox\" type=\"checkbox\"  >', width: 30,
-					    formatter: function (value, rec, rowIndex) {
-						    return "<input type=\"checkbox\"  name=\"ZDL\" value=\"" + rec.LXBH + "\" >";
-						}
-					},
 			        {field : 'ZDL',title : '中等路(公里)',width : 110,align : 'center'},
-			        {field: 'op15', title: '<input id=\"cdlcheckbox\" type=\"checkbox\"  >', width: 30,
-					    formatter: function (value, rec, rowIndex) {
-						    return "<input type=\"checkbox\"  name=\"CDL\" value=\"" + rec.LXBH + "\" >";
-						}
-					},
 			        {field : 'CDL',title : '次等路(公里)',width : 110,align : 'center'},
-			        {field: 'op16', title: '<input id=\"cadlcheckbox\" type=\"checkbox\"  >', width: 30,
+/* 			        {field: 'op16', title: '<input id=\"cadlcheckbox\" type=\"checkbox\"  >', width: 30,
 					    formatter: function (value, rec, rowIndex) {
 						    return "<input type=\"checkbox\"  name=\"CADL\" value=\"" + rec.LXBH + "\" >";
 						}
 					},
-			        {field : 'CADL',title:'差等路(公里)',width:110,align:'center'},
+ */			        {field : 'CADL',title:'差等路(公里)',width:110,align:'center'},
 			    ]],
 			    onLoadSuccess: function () {
-			    	$("#lxcheckbox").unbind();
+			    	/* $("#lxcheckbox").unbind();
 	                $("#ydlcheckbox").unbind();
 	                $("#ldlcheckbox").unbind();
 	                $("#zdlcheckbox").unbind();
@@ -327,14 +305,14 @@
 						result += item.value+',';
 					});
 					$("#cadllist").val(result);
-				   }); 
+				   });  */
 
 			    }
 			}); 
 		}
 		
 		function ckxlwjg(){
-			/* var gr=$("#datagrid").datagrid('getSelections');
+			 var gr=$("#datagrid").datagrid('getSelections');
 			
 			if(gr.length==0){
 				alert("请勾选项目");
@@ -347,7 +325,8 @@
 			}
 			lxbm=lxbm.substring(0,lxbm.length-1);
 			
-			parent.lxbm=lxbm; */
+			parent.lxbm=lxbm; 
+			
 			var mqi=$('#mqi').combobox("getValues").join(",");
 			if(mqi.substr(0,1)==',')
 				mqi=mqi.substr(1,mqi.length);
@@ -371,13 +350,14 @@
 			    width:parent.x,
 			    queryParams: {
 					'tjfl':parent.$("#tjfl").val(),
-					'xmsq.lxbm':$("#lxlist").val(),
-					'lkmxb.ydl':$("#ydllist").val(),
+					'xmsq.lxbm':lxbm,
+					/* 'lkmxb.ydl':$("#ydllist").val(),
 					'lkmxb.ldl':$("#ldllist").val(),
 					'lkmxb.zdl':$("#zdllist").val(),
 					'lkmxb.cdl':$("#cdllist").val(),
-					'lkmxb.cadl':$("#cadllist").val(),
-					'lkmxb.mqi':mqi
+					'lkmxb.cadl':$("#cadllist").val(), */
+					'lkmxb.mqi':mqi,
+					'xmsq.xzqh':$("#xzdj").val()
 				},
 			    columns:[[
                     title,
@@ -414,6 +394,14 @@
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="42" >
+							<td style="width: 100px;">行政等级：</td>
+							<td style="width: 176px;">
+								<select id="xzdj" style="width:70px;">
+								<option value="">全部</option>
+								<option value="G">国道</option>
+								<option value="S">省道</option>
+								</select>
+							</td>
 							<td style="width: 100px;">路线编码：</td>
 							<td style="width: 176px;">
 								<input id='lxbm' type="text" />

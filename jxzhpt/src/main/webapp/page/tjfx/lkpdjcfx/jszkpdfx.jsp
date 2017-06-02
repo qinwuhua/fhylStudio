@@ -21,15 +21,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			
 			Query();
-			
-			$("#roadcode").combobox({
-				url :"/jxzhpt/tjfx/getLxldCombo.do",
-				valueField : "id",
-				textField : "text",
-				panelHeight:170
-			});
 			
 			$('#lkpdbb').combobox({		
 				url :"/jxzhpt/tjfx/getPdnf.do",
@@ -40,8 +32,22 @@
 					var data = $('#lkpdbb').combobox('getData');  
 		            	 if (data.length > 0) {
 		                 	$('#lkpdbb').combobox('select', data[0].id);
+		                 	$("#roadcode").combobox({
+		        				url :"/jxzhpt/tjfx/getLxldCombo.do?lkmxb.tbnf="+data[0].id,
+		        				valueField : "id",
+		        				textField : "text",
+		        				panelHeight:170
+		        			});
 		          		}   
-		         }  
+		         },
+		         onChange: function (n,o) {
+		        	 $("#roadcode").combobox({
+	        				url :"/jxzhpt/tjfx/getLxldCombo.do?lkmxb.tbnf="+n,
+	        				valueField : "id",
+	        				textField : "text",
+	        				panelHeight:170
+	        			});
+		         }
 				
 		    });
 			
@@ -91,8 +97,8 @@
 			var rateArray = [];//优良路率数据
 			var pdjgArray= [];//评定结果数据
 			
-			var mqi_img=$("#roadcode").combobox("getValue")+"线MQI状况表";
-			var pdjg_img=$("#roadcode").combobox("getValue")+"线技术状况各项指标评定结果";
+			var mqi_img=$("#roadcode").combobox("getValue")+"MQI状况表";
+			var pdjg_img=$("#roadcode").combobox("getValue")+"技术状况各项指标评定结果";
 			
 			$.each(msg,function(i,p){
 				 if(i==0){
@@ -307,17 +313,11 @@
         						<span>路况评定版本：：</span>
         						<span>
         						<select class="easyui-combobox" id="lkpdbb" panelHeight="auto" style="width: 80px;"></select>
-<!--         						<select id="lkpdbb" style="width:70px"> -->
-<!--         						<option value="2014">2014年</option> -->
-<!--         						<option value="2015">2015年</option> -->
-<!--         						<option value="2016">2016年</option> -->
-<!--         						<option value="2017">2017年</option> -->
-<!--         						</select> -->
         						</span>
         						<span>管辖路段：</span>
         						<span>
         						<select class="easyui-combobox" id="roadcode" panelHeight="auto" style="width: 160px;"></select>
-        						<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
+        						起止点桩号：<input id="qdzh" type="text" style="width: 50px;"/>--<input id="zdzh" type="text" style="width: 50px;"/>
         						</span>
         						<span>方向：</span>
         						<span><select id="jcfx" style="width:70px"class="easyui-combobox"></select></span>
@@ -335,7 +335,7 @@
             			<table style="width:800px; margin-top: 15px;margin-left: 10px; font-size: 12px;"class="sjhz_bg"
 			border="1" cellpadding="3" cellspacing="1">
 						<tr align="center" height="30"><td  rowspan="2">项目</td><td colspan="6">实际评定里程（公里）</td><td  rowspan="2">优良路率(%)</td><td colspan="2">评定结果</td></tr>
-						<tr align="center" height="30"><td>合计</td><td>优等路</td><td>良等路</td><td>中等路</td><td>次等路</td><td>差等路</td><td>分值</td><td>等级</td></tr>
+						<tr align="center" height="30"><td>合计</td><td>优</td><td>良</td><td>中</td><td>次</td><td>差</td><td>分值</td><td>等级</td></tr>
 						<tbody id="grid">
 						<tr align="center"><td style="color: red;" colspan="11">请选择路段后查询</td></tr>
 						</tbody>

@@ -3544,7 +3544,7 @@
 	select (case when value like '%v_%' then substr(value,0,instr(value,'v')-1) else value end) id,name text,'open' state,value,xh
 	from ZDYBBBT where ssbb=#{ssbb} and value like #{treeno}||'%' 
 	)
-	order by id1,xh
+	order by (case when id like '%v_%' then id1||'v_' else id end), to_number(substr(id,instr(id, 'v') + 2)), xh
 	</select>
 	<select id="createWhTree" resultType="treenode">
 		select distinct jhxdwh id,jhxdwh text,'close' state from plan_zjxd  where jhxdwh is not null and xmid in(select xmid from lxsh_lx where substr(xmid,11,1)=1 or substr(xmid,11,1)=3) order by jhxdwh
