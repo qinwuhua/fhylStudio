@@ -20,4 +20,6 @@ public interface DzdtServer {
 
 	int selectExistQlProgramListCount(Param param);
 	
+	List<ProgBean> selectNewLx(ProgBean param);
+	
 }

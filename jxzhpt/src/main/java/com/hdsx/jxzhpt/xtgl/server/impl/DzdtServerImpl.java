@@ -45,4 +45,9 @@ public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
 		return queryOne("selectExistQlProgramListCount", param);
 	}
 	
+	@Override
+	public List<ProgBean> selectNewLx(ProgBean param) {
+		return queryList("selectNewLx", param);
+	}
+	
 }

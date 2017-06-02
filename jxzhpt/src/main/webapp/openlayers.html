@@ -11,7 +11,7 @@
     <script src="./easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="./js/YMLib.js"></script>
     <script type="text/javascript" src="HMap/dist/HMap.js"></script>
-	<script src="http://13.124.37.254/cdn/scripts/openlayers/v3.0/ol.min.js"></script>
+	
     <style>
         html, body, #map {
             height: 100%;
@@ -41,7 +41,7 @@
              OpenLayers.ProxyHost = "../../proxy.jsp?";
              initMap();
              //initDefaultStyle();
-             console.log(parent.YMLib.Var);
+             console.log(parent.YMLib);
                          
              test(parent.YMLib.Var.bm,parent.YMLib.Var.type);
              
@@ -571,7 +571,32 @@
           		params={params:'{"layerName":"GIS_XZQH","filter":"lxdm=\''+lx_code+'\' AND xzqhbm=\''+xzqhbm+'\'","pager":{}}'};
           	} else if(param['queryAttribute']=="BM"){
           		url = "http://36.2.6.21:7001/geoserver-sde/rest/action/getSegment";
-          		params={params:'{"layerName":"GIS_LX","filter":"lxdm=\''+param['BM']+'\'","startPos":"' + param['ROADSTART'] + '","endPos":"'+param['ROADENDS'] + '"}'};
+          		var bm=param['BM'];
+          		var qdzh=param['ROADSTART'];
+          		var zdzh=param['ROADENDS'];
+          		$.ajax({
+    				type:'post',
+    				url:'/jxzhpt/qqgl/queryLsxx2new.do',
+    		        data:{'lx.lxbm': param['BM'],'lx.qdzh':param['ROADSTART'],'lx.zdzh':param['ROADENDS'],'lx.ghlxbm': '','lx.ghqdzh':'','lx.ghzdzh':'','lx.xzqh':'','lx.xdnf':'','lx.tsdq':'',
+    					'lx.xmknf':'','lx.sjlx':'','lx.xmlx':'改建,路面改造,新建,养护大中修,灾毁重建,路网结构工程'},
+    				dataType:'json',
+    				async:false,
+    				success:function(result){
+    					for(var o in result){
+    						if(bm==result[o]['lxbm'] && qdzh==result[o]['qdzh'] && zdzh==result[o]['zdzh']) {
+    							if(result[o]['ghlxbm']!='') {
+    								bm=result[o]['ghlxbm'];
+            						qdzh=result[o]['ghqdzh'];
+            						zdzh=result[o]['ghzdzh'];
+    							}
+        						break;
+    						}
+    						
+    					}
+    					
+    				}
+    			});
+          		params={params:'{"layerName":"GIS_LX","filter":"lxdm=\''+ bm +'\'","startPos":"' + qdzh + '","endPos":"'+ zdzh + '"}'};
           	}
           	var feature;
         	 $.ajax({  

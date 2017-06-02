@@ -75,6 +75,7 @@
 	<action name="selAnyChartXml" class="xtglController" method="selAnyChartXml"></action>
 	<action name="selectExistLxProgramList" class="dzdtController" method="selectExistLxProgramList"></action>
 	<action name="selectExistQlProgramList" class="dzdtController" method="selectExistQlProgramList"></action>
+	<action name="selectNewLx" class="dzdtController" method="selectNewLx"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>

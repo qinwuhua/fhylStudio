@@ -390,7 +390,7 @@ union all
 	<select id="selectExistQlProgramListCount" parameterType="param" resultType="pb">
 		
 	</select>
-	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
+	<!--<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
 		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(j.xmbm,0,4) nf,'路面改造工程' unit 
 		from jhsh_lmgz j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2' 
 		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
@@ -436,6 +436,10 @@ union all
 		zhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
 		and zhlx.gydwdm like rtrim(#{gydw},'0')||'%' 
 		<if test="xzqhmc!=null and xzqhmc!=''">and zhlx.xzqhdm like #{xzqhmc}</if>
+	</select>-->
+	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
+	select l.xmid id,l.jsxz unit,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(l.xmid,0,4) nf, from lxsh_lx l where id in (select id from zgb_zxlwzhtx_lxsh j 
+	where j.zxlwlxbm=#{roadcode} and to_number(j.zxlwqdzh)&gt;=to_number(#{roadstart}) and to_number(j.zxlwzdzh)&lt;=to_number(#{roadends}))
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
 		

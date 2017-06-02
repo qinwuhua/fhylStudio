@@ -126,6 +126,20 @@ public class DzdtController extends BaseActionSupport{
 		}
 	}
 	
+	public void selectNewLx() {
+		try {
+			if(pb.getRoadcode().length()>6){
+				pb.setRoadcode(pb.getRoadcode().substring(0,pb.getRoadcode().length()-6));
+			}
+			List<ProgBean> list=dzdtServer.selectNewLx(pb);
+			EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
+			ep.setRows(list);
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public Dzdt getDzdt() {
 		return dzdt;
 	}

@@ -22,7 +22,7 @@
 <script type="text/javascript" src="../../2.x/OpenLayers.js"></script>
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
 <script type="text/javascript" src="../../HMap/dist/HMap.js"></script>
-<script src="http://13.124.37.254/cdn/scripts/openlayers/v3.0/ol.min.js"></script>
+
 <style>
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
 .table_11 td{border:1px solid #bedaf5; text-align:center;}

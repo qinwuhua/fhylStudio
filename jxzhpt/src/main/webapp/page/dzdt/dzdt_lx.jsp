@@ -51,21 +51,24 @@ $(function(){
 		parent.YMLib.Var.bm=parent.YMLib.Var.xmbm;
 	}
 	var feature=parent.YMLib.Var.feature;
+	var lxdm,qdzh,zdzh;
 	var html = "";
-	console.log(feature);
 	for (var o in feature.getProperties()) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
 	   if(o=="LXDM" || o=="lxdm"){
+		    lxdm=feature.getProperties()[o];
 	    	html+="<tr><td>路线编码：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
 	    if(o=="LXMC" || o=="lxmc"){
 	    	html+="<tr><td>路线名称：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
 	    if(o=="QDZH" || o=="qdzh"){
-	    	html+="<tr><td>止点桩号：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
+	    	qdzh=parseFloat(feature.getProperties()[o]);
+	    	html+="<tr><td>止点桩号：</td><td style='padding-right:20px;'>"+qdzh+"</td></tr>";
 	    }
 	    if(o=="ZDZH" || o=="zdzh"){
-	    	html+="<tr><td>起点桩号：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
+	    	zdzh=parseFloat(feature.getProperties()[o]);
+	    	html+="<tr><td>起点桩号：</td><td style='padding-right:20px;'>"+zdzh+"</td></tr>";
 	    }
 	    if(o=="QDMC" || o=="qdmc"){
 	    	html+="<tr><td>起点名称：</td><td style='padding-right:20px;' >"+feature.getProperties()[o]+"</td></tr>";
@@ -80,11 +83,17 @@ $(function(){
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectExistLxProgramList.do',
+		/*url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
 			"pb.roadcode":parent.YMLib.Var.bm,
 			"pb.gydw":$.cookie("unit2"),
 			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
+		},*/
+		url:'../../xtgl/selectExistLxProgramList.do',
+		queryParams : {
+			"pb.roadcode":lxdm,
+			"pb.roadstart":qdzh,
+			"pb.roadends":zdzh
 		},
 		singleSelect : false,
 		striped : true,
