@@ -438,7 +438,11 @@ union all
 		<if test="xzqhmc!=null and xzqhmc!=''">and zhlx.xzqhdm like #{xzqhmc}</if>
 	</select>-->
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
-	select l.xmid id,l.jsxz unit,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(l.xmid,0,4) nf, from lxsh_lx l where id in (select id from zgb_zxlwzhtx_lxsh j 
+	select l.xmid id,l.jsxz unit,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(l.xmid,0,4) nf from lxsh_lx l where id in (select id from zgb_zxlwzhtx_lxsh j 
+	where j.zxlwlxbm=#{roadcode} and to_number(j.zxlwqdzh)&gt;=to_number(#{roadstart}) and to_number(j.zxlwzdzh)&lt;=to_number(#{roadends}))
+	</select>
+	<select id="selectNewLx" parameterType="pb" resultType="pb">
+	select l.xmid id,l.jsxz unit,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(l.xmid,0,4) nf from wnjh_lx l where id in (select id from zgb_zxlwzhtx_wnjh j 
 	where j.zxlwlxbm=#{roadcode} and to_number(j.zxlwqdzh)&gt;=to_number(#{roadstart}) and to_number(j.zxlwzdzh)&lt;=to_number(#{roadends}))
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
