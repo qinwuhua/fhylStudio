@@ -622,6 +622,8 @@
 	 			        		}
 	 			        };
 	 			        feature['attributes']['queryType']=param['TYPE'];
+	 			        feature['attributes']['qdzh']=qdzh;
+	 			        feature['attributes']['zdzh']=zdzh;
 	 			        feature['attributes']['id']=Date.now().toString(36);
 	 			        var feat = map.addPolyline(feature, {
 	 			            layerName: 'resultLayer',
