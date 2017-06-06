@@ -37,7 +37,7 @@
          *地图服务地址
          **/
         //var mapServerUrl = "http://192.168.100.118:6080/arcgis/rest/services/JXGS_FOUR/MapServer";
-        var mapServerUrl = "http://171.34.40.68:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
+        var mapServerUrl = "http://36.2.11.1:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
         /**
          * 服务命名空间 不能随便填，请通过hdmapserver服务查看
          **/
@@ -310,12 +310,12 @@
         		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
     		        return feature;
     		      });
-        		alert(e.pixel);
+        		alert(e);
         		if(feature) {
-        			showInfo(feature);
+        			showInfo(e.pixel);
         		}
         		else {
-        			notGetInfo(feature);
+        			notGetInfo(e.pixel);
         		}
         		map.mapTools.IQuery = false;
         	}
