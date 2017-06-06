@@ -94,4 +94,12 @@ public class GcglxmjdController extends BaseActionSupport{
 		gcglxmjd.setId(MyUtil.getQueryTJ(gcglxmjd.getId(), "id"));
 		ResponseUtils.write(getresponse(), gcglxmjdServer.updateYbzt(gcglxmjd)+"");
 	}
+	//修改月报状态批量
+	public void updateYbztpl(){
+		
+		gcglxmjd.setXmbm(MyUtil.getQueryTJ(gcglxmjd.getXmbm(), "xmbm"));
+		ResponseUtils.write(getresponse(), gcglxmjdServer.updateYbztpl(gcglxmjd)+"");
+	}
+	
+	
 }

@@ -121,7 +121,9 @@ text-decoration:none;
         						<tr height="30">
         							<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/> 
+                                        <img name="shenPi" id="shenPi" src="/jxzhpt/images/Button/sp1.jpg" onmouseover="this.src='/jxzhpt/images/Button/sp2.jpg'" onmouseout="this.src='/jxzhpt/images/Button/sp1.jpg'   " src="" onclick="plshyb('yhdzx');" style="border-width:0px;vertical-align:middle;"" />
+                                               					</p>
         			</td></tr></table>	</div>
         			</fieldset>
         		</td>

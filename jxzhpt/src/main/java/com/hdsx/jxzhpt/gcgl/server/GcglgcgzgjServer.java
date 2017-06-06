@@ -94,6 +94,8 @@ public interface GcglgcgzgjServer {
 
 	Boolean zgthYb(Gcglgcgzgj gcglgcgzgj);
 
+	Boolean zgshYbpl(Gcglgcgzgj gcglgcgzgj);
+
 
 
 }

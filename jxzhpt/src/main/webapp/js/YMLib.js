@@ -3996,4 +3996,111 @@ function createBtTree(id,treeno,ssbb){
 
 }
 
+	//批量审核月报
+	function plshyb(xmlx){
+		var rows;var _id="";
+		rows=$('#datagrid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请勾选记录！");
+			return;
+		}
+		
+		
+		if(xmlx=='gsdgz'){
+			_id=rows[0].XMBM;
+			for(var i=1;i<rows.length;i++){
+				_id+=","+rows[i].XMBM;
+			}
+			var data="gcglxmjd.xmbm="+_id+"&gcglxmjd.sbzt=1"+"&gcglxmjd.shzt=1"+"&gcglxmjd.zgshzt=1"+"&gcglxmjd.shyj="+'同意'+"&gcglxmjd.zgshyj="+'同意'+"&gcglxmjd.thyy=";
+
+			if(confirm("确认审核吗？")){
+				$.ajax({
+				 type:'post',
+				 url:'/jxzhpt/gcgl/updateYbztpl.do',
+				 dataType : 'json',
+				 data:data,
+				 success : function(msg){
+					 if(msg){
+						 alert('审核成功！');
+						 $("#datagrid").datagrid('reload');
+						
+					 }else{
+						 YMLib.Tools.Show('审核失败！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+			}
+		}
+		
+		//养护大中修
+		
+		if(xmlx=='yhdzx'||xmlx=='wqgz'||xmlx=='afgc'||xmlx=='zhfz'){
+			var table="";
+			if(xmlx=='yhdzx'){
+				_id=rows[0].XMBM;
+				for(var i=1;i<rows.length;i++){
+					_id+=","+rows[i].XMBM;
+				}
+				table='gcgl_yhdzx';
+			}
+			if(xmlx=='wqgz'){
+				_id=rows[0].id;
+				for(var i=1;i<rows.length;i++){
+					_id+=","+rows[i].id;
+				}
+				table='gcgl_wqgz';
+			}
+			if(xmlx=='afgc'){
+				_id=rows[0].id;
+				for(var i=1;i<rows.length;i++){
+					_id+=","+rows[i].id;
+				}
+				table='gcgl_abgc';
+			}
+			if(xmlx=='zhfz'){
+				_id=rows[0].id;
+				for(var i=1;i<rows.length;i++){
+					_id+=","+rows[i].id;
+				}
+				table='gcgl_zhfz';
+			}
+			
+			var data = "gcglgcgzgj.zgshyj="+'同意'
+			+"&gcglgcgzgj.zgshuser="+$.cookie('name')
+			+"&gcglgcgzgj.id="+_id
+			+"&gcglgcgzgj.table="+table;
+			//alert(data);
+			if(confirm("确认审核吗？"))
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/gcgl/zgshYbpl.do',
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						alert('审核成功！');
+						$("#datagrid").datagrid('reload');
+						
+					}else{
+						alert('审核失败！');
+					}
+				}
+			});	
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
+
 

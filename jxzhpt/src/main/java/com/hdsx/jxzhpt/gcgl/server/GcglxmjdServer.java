@@ -20,4 +20,6 @@ public interface GcglxmjdServer {
 
 	boolean updateYbzt(GcglXmjd gcglxmjd);
 
+	boolean updateYbztpl(GcglXmjd gcglxmjd);
+
 }

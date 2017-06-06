@@ -52,6 +52,12 @@ public class GcglxmjdServerImpl extends BaseOperate implements GcglxmjdServer {
 		return update("updateYbzt", gcglxmjd)==1;
 	}
 
+	@Override
+	public boolean updateYbztpl(GcglXmjd gcglxmjd) {
+		update("updateYbztpl", gcglxmjd);
+		return true;
+	}
+
 	
 
 }

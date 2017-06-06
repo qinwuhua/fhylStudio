@@ -209,7 +209,7 @@ function showAll(){
 	    	'gcglwqgz.xmklx':$("#xmklx").combobox('getValue')
 	    	
 		},
-	    columns:[[
+	    columns:[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
 	        }},
