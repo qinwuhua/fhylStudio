@@ -382,7 +382,7 @@ function showAllZJ(){
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
 				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
-				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+				{field:'cscyj',title:'审核意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -406,7 +406,7 @@ function showAllZJ__ck(){
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
 				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
-				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+				{field:'cscyj',title:'审核意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }

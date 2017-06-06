@@ -556,7 +556,7 @@ function showAllZJ(){
 				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 				{field:'tbr',title:'填报人 ',width:80,align:'center'},
-				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+				{field:'cscyj',title:'审核意见',width:100,align:'center'}
 				
 	    ]]    
 	}); 
@@ -583,7 +583,7 @@ function showAllZJ__ck(){
 {field:'tbyf',title:'填报月份 ',width:100,align:'center'},
 {field:'tbsj',title:'填报时间 ',width:120,align:'center'},
 {field:'tbr',title:'填报人 ',width:80,align:'center'},
-{field:'cscyj',title:'财审处意见',width:100,align:'center'}
+{field:'cscyj',title:'审核意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }

@@ -182,7 +182,7 @@ public class Gcglgcgzgj implements Serializable {
 	private String qksm;
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
-	private String cscyj;//财审处意见
+	private String cscyj;//审核意见
 	
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;

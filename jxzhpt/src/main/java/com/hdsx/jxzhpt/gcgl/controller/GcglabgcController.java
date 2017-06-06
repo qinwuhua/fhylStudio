@@ -702,7 +702,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划地方自筹(万元)",1,1,9,9));
 		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,10,10));
 		et.add(new Excel_tilte("拨付省投资(万元)",1,1,11,11));
-		et.add(new Excel_tilte("财审处意见",1,1,12,12));
+		et.add(new Excel_tilte("审核意见",1,1,12,12));
 		et.add(new Excel_tilte("填报月份",1,1,13,13));
 		et.add(new Excel_tilte("填报时间",1,1,14,14));
 		et.add(new Excel_tilte("填报人",1,1,15,15));
@@ -951,7 +951,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
 		et.add(new Excel_tilte("国债(万元)",1,1,9,9));
 		et.add(new Excel_tilte("省债(万元)",1,1,10,10));
-		et.add(new Excel_tilte("财审处意见",1,1,11,11));
+		et.add(new Excel_tilte("审核意见",1,1,11,11));
 		et.add(new Excel_tilte("填报月份",1,1,12,12));
 		et.add(new Excel_tilte("填报时间",1,1,13,13));
 		et.add(new Excel_tilte("填报人",1,1,14,14));
@@ -1012,7 +1012,7 @@ public class GcglabgcController extends BaseActionSupport{
 			et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
 			et.add(new Excel_tilte("国债(万元)",1,1,9,9));
 			et.add(new Excel_tilte("省债(万元)",1,1,10,10));
-			et.add(new Excel_tilte("财审处意见",1,1,11,11));
+			et.add(new Excel_tilte("审核意见",1,1,11,11));
 			et.add(new Excel_tilte("填报月份",1,1,12,12));
 			et.add(new Excel_tilte("填报时间",1,1,13,13));
 			et.add(new Excel_tilte("填报人",1,1,14,14));
@@ -1081,7 +1081,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
 		et.add(new Excel_tilte("国债(万元)",1,1,9,9));
 		et.add(new Excel_tilte("省债(万元)",1,1,10,10));
-		et.add(new Excel_tilte("财审处意见",1,1,11,11));
+		et.add(new Excel_tilte("审核意见",1,1,11,11));
 		et.add(new Excel_tilte("填报月份",1,1,12,12));
 		et.add(new Excel_tilte("填报时间",1,1,13,13));
 		et.add(new Excel_tilte("填报人",1,1,14,14));
@@ -1165,7 +1165,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
 		et.add(new Excel_tilte("国债(万元)",1,1,9,9));
 		et.add(new Excel_tilte("省债(万元)",1,1,10,10));
-		et.add(new Excel_tilte("财审处意见",1,1,11,11));
+		et.add(new Excel_tilte("审核意见",1,1,11,11));
 		et.add(new Excel_tilte("填报月份",1,1,12,12));
 		et.add(new Excel_tilte("填报时间",1,1,13,13));
 		et.add(new Excel_tilte("填报人",1,1,14,14));
@@ -1221,7 +1221,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划地方自筹(万元)",1,1,9,9));
 		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,10,10));
 		et.add(new Excel_tilte("拨付省投资(万元)",1,1,11,11));
-		et.add(new Excel_tilte("财审处意见",1,1,12,12));
+		et.add(new Excel_tilte("审核意见",1,1,12,12));
 		et.add(new Excel_tilte("填报月份",1,1,13,13));
 		et.add(new Excel_tilte("填报时间",1,1,14,14));
 		et.add(new Excel_tilte("填报人",1,1,15,15));
@@ -1282,7 +1282,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("银行贷款(万元)",1,1,8,8));
 		et.add(new Excel_tilte("国债(万元)",1,1,9,9));
 		et.add(new Excel_tilte("省债(万元)",1,1,10,10));
-		et.add(new Excel_tilte("财审处意见",1,1,11,11));
+		et.add(new Excel_tilte("审核意见",1,1,11,11));
 		et.add(new Excel_tilte("填报月份",1,1,12,12));
 		et.add(new Excel_tilte("填报时间",1,1,13,13));
 		et.add(new Excel_tilte("填报人",1,1,14,14));
@@ -1341,7 +1341,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
 		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,7,7));
 		et.add(new Excel_tilte("拨付省投资(万元)",1,1,8,8));
-		et.add(new Excel_tilte("财审处意见",1,1,9,9));
+		et.add(new Excel_tilte("审核意见",1,1,9,9));
 		et.add(new Excel_tilte("填报月份",1,1,10,10));
 		et.add(new Excel_tilte("填报时间",1,1,11,11));
 		et.add(new Excel_tilte("填报人",1,1,12,12));
@@ -1410,7 +1410,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划地方自筹(万元)",1,1,9,9));
 		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,10,10));
 		et.add(new Excel_tilte("拨付省投资(万元)",1,1,11,11));
-		et.add(new Excel_tilte("财审处意见",1,1,12,12));
+		et.add(new Excel_tilte("审核意见",1,1,12,12));
 		et.add(new Excel_tilte("填报月份",1,1,13,13));
 		et.add(new Excel_tilte("填报时间",1,1,14,14));
 		et.add(new Excel_tilte("填报人",1,1,15,15));
@@ -1480,7 +1480,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划地方自筹(万元)",1,1,9,9));
 		et.add(new Excel_tilte("拨付中央车购税(万元)",1,1,10,10));
 		et.add(new Excel_tilte("拨付省投资(万元)",1,1,11,11));
-		et.add(new Excel_tilte("财审处意见",1,1,12,12));
+		et.add(new Excel_tilte("审核意见",1,1,12,12));
 		et.add(new Excel_tilte("填报月份",1,1,13,13));
 		et.add(new Excel_tilte("填报时间",1,1,14,14));
 		et.add(new Excel_tilte("填报人",1,1,15,15));

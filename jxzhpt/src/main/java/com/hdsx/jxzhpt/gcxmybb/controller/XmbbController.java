@@ -352,7 +352,7 @@ public class XmbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("情况说明",1,1,23,23));
 			et.add(new Excel_tilte("计划下达文号",1,1,24,24));
 			et.add(new Excel_tilte("相关处室意见",1,1,25,25));
-			et.add(new Excel_tilte("财审处意见",1,1,26,26));
+			et.add(new Excel_tilte("审核意见",1,1,26,26));
 
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -448,7 +448,7 @@ public class XmbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("情况说明",1,2,21,21));
 				et.add(new Excel_tilte("计划下达文号",1,2,22,22));
 				et.add(new Excel_tilte("相关处室意见",1,2,23,23));
-				et.add(new Excel_tilte("财审处意见",1,2,24,24));
+				et.add(new Excel_tilte("审核意见",1,2,24,24));
 				et.add(new Excel_tilte("起点桩号",2,2,6,6));
 				et.add(new Excel_tilte("迄点桩号 ",2,2,7,7));
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -544,7 +544,7 @@ public class XmbbController extends BaseActionSupport{
 				et.add(new Excel_tilte("情况说明",1,2,19,19));
 				et.add(new Excel_tilte("计划下达文号",1,2,20,20));
 				et.add(new Excel_tilte("相关处室意见",1,2,21,21));
-				et.add(new Excel_tilte("财审处意见",1,2,22,22));
+				et.add(new Excel_tilte("审核意见",1,2,22,22));
 				et.add(new Excel_tilte("起点桩号或中心桩号",2,2,5,5));
 				et.add(new Excel_tilte("迄点桩号 ",2,2,6,6));
 				et.add(new Excel_tilte("桥长或隐患里程（延米）",2,2,7,7));
@@ -610,7 +610,7 @@ public class XmbbController extends BaseActionSupport{
 			et.add(new Excel_tilte("情况说明",1,1,23,23));
 			et.add(new Excel_tilte("计划下达文号",1,1,24,24));
 			et.add(new Excel_tilte("相关处室意见",1,1,25,25));
-			et.add(new Excel_tilte("财审处意见",1,1,26,26));
+			et.add(new Excel_tilte("审核意见",1,1,26,26));
 
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse

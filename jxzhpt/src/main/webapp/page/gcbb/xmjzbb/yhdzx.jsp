@@ -355,7 +355,7 @@ a:active {
 										<td rowspan="2" style="width: 140px"> 情况说明 </td>
 										<td rowspan="2" style="width: 140px"> 计划下达文号 </td>
 										<td rowspan="2" style="width: 140px"> 相关处室意见</td>
-										<td rowspan="2" style="width: 140px"> 财审处意见 </td>
+										<td rowspan="2" style="width: 140px"> 审核意见 </td>
 									</tr>
 									<tr>
 										<td style="width: 100px">起点桩号</td>
