@@ -50,9 +50,11 @@ $(function(){
 	if(parent.YMLib.Var.xmbm!=null){
 		parent.YMLib.Var.bm=parent.YMLib.Var.xmbm;
 	}
+	console.log(parent.YMLib.Var.feature);
 	var feature=parent.YMLib.Var.feature;
 	var lxdm,qdzh,zdzh;
 	var html = "";
+	var queryType;
 	for (var o in feature.getProperties()) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
 	   if(o=="LXDM" || o=="lxdm"){
@@ -76,8 +78,15 @@ $(function(){
 	    if(o=="ZDMC" || o=="zdmc"){
 	    	html+="<tr><td>止点名称：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
+	    if(o=="queryType") {
+	    	queryType=feature.getProperties()[o];
+	    }
 	}
 	$("#lxjcsj").html(html);
+	var url="../../xtgl/selectExistLxProgramList.do";
+	if(queryType=="wnjh") {
+		url="../../xtgl/selectNewLx.do"
+	}
 	$("#jsgl_table").datagrid({
 		border:true,
 		fit : true,
@@ -89,7 +98,7 @@ $(function(){
 			"pb.gydw":$.cookie("unit2"),
 			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
 		},*/
-		url:'../../xtgl/selectExistLxProgramList.do',
+		url:url,
 		queryParams : {
 			"pb.roadcode":lxdm,
 			"pb.roadstart":qdzh,

@@ -147,7 +147,7 @@ function dingwei(index){
 			data:"lxsh.xmbm="+data.id,
 			dataType:'json',
 			success:function(msg){
-				var lxbm="";
+				var lxbm="wnjh";
 				var qdzh="";
 				var zdzh="";
 				for(var i=0;i<msg.length;i++){

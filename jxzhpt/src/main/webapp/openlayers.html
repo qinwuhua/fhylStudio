@@ -36,6 +36,7 @@
          var qlQueryLayer = "GIS_QL", lxQueryLayer = "GIS_XZQH";
 
          var pointClick = null, geometry = null;
+         var queryType;
           jQuery(document).ready(function () {
           	$(".layout-button-right").click();
              OpenLayers.ProxyHost = "../../proxy.jsp?";
@@ -527,7 +528,7 @@
          	}
          	
          	YMLib.Var.feature=feature;
-         	//YMLib.Var.bm=parent.YMLib.Var.bm;
+         	YMLib.Var.queryType=queryType;
          	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
           	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,430);
          }
@@ -620,6 +621,9 @@
 	 			        			strokeColor:'#E52929'
 	 			        		}
 	 			        };
+	 			        feature['attributes']['queryType']=param['TYPE'];
+	 			        feature['attributes']['qdzh']=qdzh;
+	 			        feature['attributes']['zdzh']=zdzh;
 	 			        feature['attributes']['id']=Date.now().toString(36);
 	 			        var feat = map.addPolyline(feature, {
 	 			            layerName: 'resultLayer',
@@ -855,6 +859,7 @@
                  if (param.BM.length > 7) {
                      queryAttribute = "ROADCODE";
                  }
+                 queryType = listQueryParams[i]['type'];
                  param.queryAttribute = queryAttribute;
                  getLXFeatures(param);
              }

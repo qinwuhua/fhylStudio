@@ -1678,16 +1678,21 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 	YMLib.Var.xmbm=_roadcode+$.cookie("dist");
 	var data=new Array();
 	var jsonStr="";
+	var type="lxsh";
+	if(_roadcode.substring(0,4)=="wnjh") {
+		type="wnjh";
+		_roadcode=_roadcode.substring(4);
+	}
 	if(_roadcode.lastIndexOf("-")>-1){
 		var arr1=_roadcode.split("-");
 		var arr2=_roadstart.split("-");
 		var arr3=_roadends.split("-");
 		for(var i=0;i<arr1.length;i++){
-			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
+			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i],"TYPE":type};
 			data.push(jsonStr);
 		}
 	}else{
-		jsonStr={"BM": _roadcode,"ROADSTART": _roadstart,"ROADENDS": _roadends};
+		jsonStr={"BM": _roadcode,"ROADSTART": _roadstart,"ROADENDS": _roadends,"TYPE":type};
 		data.push(jsonStr);
 	}
 	YMLib.Var.bm=data;
