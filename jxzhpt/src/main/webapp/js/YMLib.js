@@ -1497,8 +1497,9 @@ function loadUnit(id, dwbm) {
  * 加载行政区划
  */
 function loadBmbm(id, name,str) {
+
 	$('#' + id).combobox({
-		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
+		url : '/jxzhpt/xtgl/getBmbmTreeByName.do?yhm='
 				+ encodeURI(encodeURI(name)),
 		valueField : 'bmid',
 		textField : 'name',

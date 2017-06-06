@@ -65,7 +65,7 @@ text-decoration:none;
 			border="0" cellpadding="3" cellspacing="1">
 			
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">财审处意见：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">审核意见：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"  >
 					<textarea rows="3"  id="cscyj" style="width: 98%" >同意</textarea>
 					

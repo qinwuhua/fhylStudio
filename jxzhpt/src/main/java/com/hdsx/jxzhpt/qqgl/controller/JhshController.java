@@ -38,6 +38,7 @@ import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
+import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -3321,4 +3322,90 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 						e.printStackTrace();
 					}
 				}  //wdd导出养护大中修明细表excel  end
+				
+				
+				
+	//水毁抢修
+	public void queryChildGydw(){
+		try {
+			List<Jhsh> list = jhshServer.queryChildGydw(jhsh);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//
+	public void queryZjByGydwdm(){
+		try {
+			List<Jhsh> list = jhshServer.queryZjByGydwdm(jhsh);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//
+	public void insertOrUpdateShqx(){
+		try {
+			String[] gydwdm = jhsh.getGydwdm().split(",");
+			String[] parent = jhsh.getParent().split(",");
+			String[] xdnf = jhsh.getXdnf().split(",");
+			String[] cgs = jhsh.getBtzzj().split(",");
+			String[] rys = jhsh.getRys().split(",");
+			String[] ttc = jhsh.getTtc().split(",");
+			String[] dfzc = jhsh.getDfzc().split(",");
+			String[] ztz = jhsh.getZtz().split(",");
+			String[] jhxdwh = jhsh.getJhxdwh().split(",");
+			
+			List<Jhsh> save = new ArrayList<Jhsh>();
+			List<Jhsh> update = new ArrayList<Jhsh>();
+			for (int i = 0; i < gydwdm.length; i++) {
+				Jhsh xm = new Jhsh();
+				xm.setGydwdm(gydwdm[i]);
+				xm.setParent(parent[i]);
+				xm.setXdnf(xdnf[i]);
+				xm.setBtzzj(cgs[i]);
+				xm.setRys(rys[i]);
+				xm.setTtc(ttc[i]);
+				xm.setDfzc(dfzc[i]);
+				xm.setZtz(ztz[i]);
+				xm.setJhxdwh(jhxdwh[i]);
+				if (jhshServer.queryShqxByOne(xm) == null) {
+					save.add(xm);
+				} else {
+					update.add(xm);
+				}
+			}
+			System.out.println("保存个数：" + save.size());
+			System.out.println("修改个数：" + update.size());
+			int a = 0;
+			if (save.size() > 0) {
+				a = jhshServer.insertShqx(save);
+			}
+			if (update.size() > 0) {
+				a = jhshServer.updateShqx(update);
+			}
+			ResponseUtils.write(getresponse(), (a>0)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//
+	public void queryXmlistshqx(){
+		jhsh.setGydw(MyUtil.getQueryTJ(jhsh.getGydw(), "gydwdm"));
+		
+		List<Jhsh> list=jhshServer.queryXmlistshqx(jhsh);
+		int count=jhshServer.queryXmlistshqxCount(jhsh);
+		EasyUIPage<Jhsh> e=new EasyUIPage<Jhsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
+				
 }

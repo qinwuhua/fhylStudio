@@ -1172,5 +1172,33 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public List<Lx> queryLxbyGhlxbm(String string) {
 		return queryList("queryLxbyGhlxbm", string);
 	}
+	@Override
+	public List<Jhsh> queryChildGydw(Jhsh jhsh) {
+		return queryList("queryChildGydw", jhsh);
+	}
+	@Override
+	public List<Jhsh> queryZjByGydwdm(Jhsh jhsh) {
+		return queryList("queryZjByGydwdm",jhsh);
+	}
+	@Override
+	public Jhsh queryShqxByOne(Jhsh xm) {
+		return queryOne("queryShqxByOne", xm);
+	}
+	@Override
+	public int insertShqx(List<Jhsh> save) {
+		return insertBatch("insertShqx", save);
+	}
+	@Override
+	public int updateShqx(List<Jhsh> update) {
+		return updateBatch("updateShqx", update);
+	}
+	@Override
+	public List<Jhsh> queryXmlistshqx(Jhsh jhsh) {
+		return queryList("queryXmlistshqx", jhsh);
+	}
+	@Override
+	public int queryXmlistshqxCount(Jhsh jhsh) {
+		return queryOne("queryXmlistshqxCount", jhsh);
+	}
 	
 }

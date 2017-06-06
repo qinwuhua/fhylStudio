@@ -7122,4 +7122,73 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	<select id="queryLxbyGhlxbm" parameterType="string" resultType="lx">
 	select DISTINCT LXBM from table(fun_cfld(#{value},0,9999))
 	</select>
+	
+	<select id="queryChildGydw"  parameterType="jhsh" resultType="jhsh">
+		select * from XTGL_DEPARTMENT t where t.parent=#{gydw} and (t.id not like '%000_' or t.id  like '%0000')  order by t.id
+	</select>
+	<select id="queryZjByGydwdm" parameterType="jhsh" resultType="jhsh">
+		select * from plan_zjxd z where xdnf=#{xdnf} and z.parent=#{gydwdm} order by gydwdm
+	</select> 
+	<select id="queryShqxByOne" parameterType="jhsh" resultType="jhsh">
+		select * from plan_zjxd where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+	</select>
+	<insert id="insertShqx" parameterType="jhsh">
+		insert into plan_zjxd
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	<if test="ztz != null and ztz != ''" >ztz,</if>
+	    	<if test="btzzj != null and btzzj != ''" >btzzj,</if>
+	    	<if test="rys != null and rys != ''" >rys,</if>
+	    	<if test="ttc != null and ttc != ''" >ttc,</if>
+	    	<if test="dfzc != null and dfzc != ''" >dfzc,</if>
+	    	<if test="xdnf != null and xdnf != ''" >xdnf,</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
+	    	<if test="parent != null and parent != ''" >parent,</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	  	</trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
+	    	<if test="btzzj != null and btzzj != ''" >#{btzzj},</if>
+	    	<if test="rys != null and rys != ''" >#{rys},</if>
+	    	<if test="ttc != null and ttc != ''" >#{ttc},</if>
+	    	<if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
+	    	<if test="xdnf != null and xdnf != ''" >#{xdnf},</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
+	    	<if test="parent != null and parent != ''" >#{parent},</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+		</trim>
+	</insert>
+	<update id="updateShqx" parameterType="jhsh">
+	 update plan_zjxd
+   	 <set>
+      <if test="ztz != null" >ztz = #{ztz},</if>
+      <if test="btzzj != null" >btzzj = #{btzzj},</if>
+      <if test="rys != null" >rys = #{rys},</if>
+      <if test="ttc != null" >ttc = #{ttc},</if>
+      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+      <if test="xdnf != null" >xdnf = #{xdnf},</if>
+      <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
+      <if test="parent != null" >parent = #{parent},</if>
+      <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
+	 </set>
+      where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+	</update>
+	
+	<select id="queryXmlistshqx" parameterType="jhsh" resultType="jhsh">
+		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from plan_zjxd t
+		where 1=1 and gydwdm is not null 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="xdnf !='' and xdnf != null">and xdnf like '%'||#{xdnf}||'%'</if>
+		order by xdnf,gydwdm
+		) t1 
+		)t2
+		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryXmlistshqxCount" parameterType="jhsh" resultType="int">
+		select count(*) from plan_zjxd t
+		where 1=1 and gydwdm is not null 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="xdnf !='' and xdnf != null">and xdnf like '%'||#{xdnf}||'%'</if>
+		
+	</select>
+	
 </mapper>

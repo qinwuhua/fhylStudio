@@ -348,6 +348,14 @@
 	    <action name="exportJhshYhdzxExcel1" class="jhshController" method="exportJhshYhdzxExcel1"></action>
 	    <action name="exportJhshYhdzxDetailExcel" class="jhshController" method="exportJhshYhdzxDetailExcel"></action>
 		<action name="exportJhshYhdzxDetailExcel1" class="jhshController" method="exportJhshYhdzxDetailExcel1"></action>
+	
+		<action name="queryChildGydw" class="jhshController" method="queryChildGydw"></action>
+		<action name="queryZjByGydwdm" class="jhshController" method="queryZjByGydwdm"></action>
+		<action name="insertOrUpdateShqx" class="jhshController" method="insertOrUpdateShqx"></action>
+		<action name="queryXmlistshqx" class="jhshController" method="queryXmlistshqx"></action>
+		
+		
+		
 	</package>
 </struts>
 

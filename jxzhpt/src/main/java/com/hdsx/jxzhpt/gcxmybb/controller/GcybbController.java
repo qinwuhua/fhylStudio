@@ -2234,7 +2234,7 @@ public class GcybbController extends BaseActionSupport{
 				gcglabgc.setYjsdj(getcxtj("v_11",gcglabgc.getYjsdj()));
 				gcglabgc.setJsjsdj(getcxtj("v_12",gcglabgc.getJsjsdj()));
 				gcglabgc.setJhnd(getcxtj("v_7",gcglabgc.getJhnd()));
-				gcglabgc.setGljslx(getcxtj("v_13",gcglabgc.getGljslx()));
+				gcglabgc.setGljslx(getcxtj("v_84",gcglabgc.getGljslx()));
 				gcglabgc.setJzzt(getcxtj("jzzt",gcglabgc.getJzzt()));
 				gcglabgc.setBnjhtz(getcxtj1("v_28",gcglabgc.getBnjhtz()));
 				gcglabgc.setBndsslc(getcxtj1("v_30",gcglabgc.getBndsslc()));
