@@ -44,9 +44,13 @@
 				setxzdj('ddlGldj',urlid);
 			}
 			gljjtj=getgljjtj(urlid);
-			
+			var lxbm;
+			if(urlid=='010113040203010203'||urlid=='01011304010302040203')
+				lxbm='X,Y,C,Z';
+			else
+				lxbm='G,S';
 			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh')};
+			var lx={gydwbm:getgydw("gydw"),lxbm:lxbm,gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}
