@@ -172,7 +172,21 @@ public class Jhsh {
 	private String ttc;
 	private String gydwdm;
 	private String parent;
+	private String wbc;
+	private String wbchd;
 	
+	public String getWbc() {
+		return wbc;
+	}
+	public void setWbc(String wbc) {
+		this.wbc = wbc;
+	}
+	public String getWbchd() {
+		return wbchd;
+	}
+	public void setWbchd(String wbchd) {
+		this.wbchd = wbchd;
+	}
 	public String getGydwdm() {
 		return gydwdm;
 	}

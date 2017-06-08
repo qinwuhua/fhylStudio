@@ -2347,7 +2347,12 @@
 	      <if test="xmsq.xjfchd != null">
 	        xjfchd=#{xmsq.xjfchd},
 	      </if>
-		
+		<if test="xmsq.wbchd != null">
+	        wbchd=#{xmsq.wbchd},
+	      </if>
+	      <if test="xmsq.wbc != null">
+	        wbc=#{xmsq.wbc},
+	      </if>
 		
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
@@ -2549,6 +2554,13 @@
 	      <if test="cbsj.xjfchd != null">
 	        xjfchd=#{cbsj.xjfchd},
 	      </if>
+	      <if test="cbsj.wbchd != null">
+	        wbchd=#{cbsj.wbchd},
+	      </if>
+	      <if test="cbsj.wbc != null">
+	        wbc=#{cbsj.wbc},
+	      </if>
+	      
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
 		l.xmid=#{lx.xmid} 
@@ -2874,7 +2886,7 @@
 	<select id="selectlxList" parameterType="lx" resultType="lx">
 		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj ,
 		decode(substr(xmid,11,1),1,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)),(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)))  lc,
-		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd   
+		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbchd,wbc   
 		from lxsh_lx
 		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>

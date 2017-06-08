@@ -2229,7 +2229,7 @@ function jsbzzj(flag){
 			$("#snhntmcssh").val('');
 		}
 	}
-	if(flag=='fcbc30'||flag=='bc6'||flag=='bc25'||flag=='bc30'||flag=='bmc25'||flag=='wfc'||flag=='xjfc'){
+	if(flag=='fcbc30'||flag=='bc6'||flag=='bc25'||flag=='bc30'||flag=='bmc25'||flag=='wfc'||flag=='xjfc'||flag=='wbc'){
 		if($("#lmkd").val()!=null && $("#lmkd").val()!=''){
 			var mj;
 			mj=accMul(parseFloat($("#lmkd").val()),parseFloat(zlc)*1000);
@@ -2284,7 +2284,7 @@ function jsbzzj(flag){
 	if($("#snhntmcssh").val()!='')
 	zj17=$("#snhntmcssh").val();
 	
-	var tt='fcbc30,bc6,bc25,bc30,bmc25,wfc,xjfc';
+	var tt='fcbc30,bc6,bc25,bc30,bmc25,wfc,xjfc,wbc';
 	var tt1=tt.split(",");
 	for(var i=0;i<tt1.length;i++){
 		if($("#"+tt1[i]).val()!='')
