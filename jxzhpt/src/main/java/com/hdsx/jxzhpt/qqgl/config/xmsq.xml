@@ -650,7 +650,7 @@
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
+				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,  
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
@@ -711,7 +711,7 @@
 	<select id="queryYhdzxXmsqbyyhc" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh,  
+				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh,  
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,sl.sbzj,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid 
 				
@@ -763,7 +763,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
+				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy, 
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
@@ -828,7 +828,7 @@
 	<select id="queryShXmsqbyyhc" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.xmbm, x.gcfl, x.ghlxbh, x.ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh, 
+				select x.xmbm, x.gcfl, l.ghlxbm ghlxbh, l.lxbm ylxbh, x.xzqh, x.xzqhdm, lmkd, jsdj, ntz, jhkgsj, jhwgsj, gq, tsdq,x.thyy,x.yhcsh, 
 				x.gydw, x.gydwdm, x.jsfa, lsjl, sqzt, xmmc, l.qdzh, l.zdzh, l.qdmc, l.zdmc, l.lxmc, bz,x.lc lc,sl.xmsl,sl.zlc,x.wnxmk,l.ghlxbm,l.ghlxmc,l.ghqdzh,l.ghzdzh
 				from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid 
 				left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='0' group by xmid) sl on x.xmbm=sl.xmid
@@ -2154,7 +2154,7 @@
 	select substr(x.ghlxbh,0,1) v_1,x.xmbm v_2,x.xmmc v_3,l.ylxbh v_4,l.lxmc v_5,l.qdzh v_6,l.zdzh v_7,
 	l.ghlxbm v_8,l.ghlxmc v_9,l.ghqdzh v_10,l.ghzdzh v_11,l.gxlxbm v_12,l.gxqdzh v_13,l.gxzdzh v_14,lx.lc v_15,x.jsdj v_16,
 	x.lmkd v_17,x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,lx.sbzj v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
-	'' v_26,'' v_27,'' v_28,x.lmkd v_29,x.bz v_30,'' v_31
+	'' v_26,'' v_27,'' v_28,x.lmkd v_29,x.bz v_30,(decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_31
 	from xmsq_yhdzx x left join 
 	(
 	select xmid,nvl(sum(l.yilc),0)+nvl(sum(l.erlc),0)+nvl(sum(l.sanlc),0)+nvl(sum(l.silc),0)+nvl(sum(l.dwlc),0)+nvl(sum(l.wllc),0) lc,sum(l.sbzj) sbzj 
@@ -2293,9 +2293,9 @@
 		
 	</select>
 	<select id="queryLsjlxxxmbm" parameterType="xmsq" resultType="xmsq">
-		select fun_bzls2(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmid,fun_bzls1(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh}))) lsxmbm,#{xmbm} xmbm from dual l where 1=1 and fun_bzls(#{xmbm},#{ylxbh},LEAST(to_number(#{qdzh}),to_number(#{zdzh})),GREATEST(to_number(#{qdzh}),to_number(#{zdzh})))='是'
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_xbzls(#{xmbm},#{ylxbh},#{qdzh},#{zdzh}))
 		union all
-		select fun_bzls2(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmid,fun_bzls1(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh}))) lsxmbm,#{xmbm} xmbm from dual l where 1=1 and fun_bzls(#{xmbm},#{gxlxbm},LEAST(to_number(#{gxqdzh}),to_number(#{gxzdzh})),GREATEST(to_number(#{gxqdzh}),to_number(#{gxzdzh})))='是'
+		select decode(cfbm,null,'否','是') lsjl,cfbm lsxmbm,cfid lsxmid from  table(fun_cfld(#{ylxbh},#{qdzh},#{zdzh})) t1,table(fun_xbzls(#{xmbm},t1.lxbm,t1.qdzh,t1.zdzh)) t2
 	</select>
 	<select id="queryLsjlxx" parameterType="xmsq" resultType="lx">
 		select distinct xmlx,xmmc,xmbm from jhsh_lsjl where id in(${lsxmid})
