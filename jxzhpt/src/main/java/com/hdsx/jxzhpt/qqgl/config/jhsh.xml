@@ -303,7 +303,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -536,7 +536,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				
 				<if test="tsdq !=null and tsdq !=''">
@@ -978,7 +978,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -1155,7 +1155,7 @@
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="xzdj !=null and xzdj !=''">
@@ -1563,42 +1563,42 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj,(nvl(l1.yilc,0)+nvl(l1.erlc,0)+nvl(l1.sanlc,0)+nvl(l1.silc,0)+nvl(l1.dwlc,0)+nvl(l1.wllc,0)) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		 from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
 		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
 		from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmsjqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc,l.jszlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		from lxsh_sjgz_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj,l.wnid,l.sfbflx,
 		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
 		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj,(nvl(l1.yilc,0)+nvl(l1.erlc,0)+nvl(l1.sanlc,0)+nvl(l1.silc,0)+nvl(l1.dwlc,0)+nvl(l1.wllc,0)) lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh
 		 from lxsh_lmgz_qx l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshXjqxByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select xmmc,xmklx, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
+		select xmmc,xmklx,l1.lxbm ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm,l.xzqhdm2,l.wnid,l.sfbflx,
 		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
 		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
 		decode(gpsqdzh,null,l1.qdzh,gpsqdzh) gpsqdzh,decode(gpszdzh,null,l1.zdzh,gpszdzh) gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc,l1.ghlxbm,l1.ghlxmc,l1.ghqdzh,l1.ghzdzh,l1.gxlxbm,l1.gxqdzh,l1.gxzdzh 
@@ -3633,7 +3633,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -3841,7 +3841,7 @@
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="xzdj !=null and xzdj !=''">
@@ -4151,7 +4151,7 @@
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
-					and substr(xmbm,0,4) in (${jhsh.xmnf})
+					and ${jhsh.scxdnf} in (${jhsh.xmnf})
 				</if>
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsdj}</if>
@@ -4476,7 +4476,7 @@
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
-					and substr(xmbm,0,4) in (${jhsh.xmnf})
+					and ${jhsh.scxdnf} in (${jhsh.xmnf})
 				</if>
 				<if test="jhsh.jsdj!=null and jhsh.jsdj!=''">and ${jhsh.jsdj}</if>
 				<if test="jhsh.jsjsdj!=null and jhsh.jsjsdj!=''">and ${jhsh.jsdj}</if>
@@ -4673,7 +4673,7 @@
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(xmbm,0,4) in (${xmnf})
+					and ${scxdnf} in (${xmnf})
 				</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsdj}</if>

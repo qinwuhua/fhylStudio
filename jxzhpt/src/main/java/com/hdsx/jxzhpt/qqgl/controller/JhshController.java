@@ -195,6 +195,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 			jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
+			if("1".equals(jhsh.getScxdnf())){
+				jhsh.setScxdnf("fun_scxdnf(xmbm)");
+			}else{
+				jhsh.setScxdnf("substr(xmbm,0,4)");
+			}
 			
 			listData=jhshServer.queryGsdgz(jhsh,jhsh.getPage(),jhsh.getRows());
 			total=jhshServer.queryGsdgzCount(jhsh);
@@ -303,7 +308,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 			jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
-			
+			if("1".equals(jhsh.getScxdnf())){
+				jhsh.setScxdnf("fun_scxdnf(xmbm)");
+			}else{
+				jhsh.setScxdnf("substr(xmbm,0,4)");
+			}
 			result = jhshServer.queryJhshLjgsdgz(jhsh);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -376,6 +385,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void queryJhshLj(){
 		Map<String, String> result = new HashMap<String, String>();
 		try {
+			if("1".equals(jhsh.getScxdnf())){
+				jhsh.setScxdnf("fun_scxdnf(j.xmbm)");
+			}else{
+				jhsh.setScxdnf("substr(j.xmbm,0,4)");
+			}
 			if(jhsh.getXmlx()==1){
 				String xmbm = jhsh.getXmbm();
 				if(xmbm.indexOf(",")>-1){
@@ -609,7 +623,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			int s = jhsh.getXmlx();//谁写的？有嘛用？
 			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 			jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
-			
+			if("1".equals(jhsh.getScxdnf())){
+				jhsh.setScxdnf("fun_scxdnf(j.xmbm)");
+			}else{
+				jhsh.setScxdnf("substr(j.xmbm,0,4)");
+			}
 			if(jhsh.getXmlx()==4){
 				xdwhHandle();
 				jsdjHandle1();

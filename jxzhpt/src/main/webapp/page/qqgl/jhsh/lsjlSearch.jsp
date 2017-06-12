@@ -43,8 +43,8 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			var lxbm=$('#lxbm').val();
-			var ghlxbm=$('#ghlxbm').val();
+			var lxbm=$('#lxbm').val().toUpperCase( );
+			var ghlxbm=$('#ghlxbm').val().toUpperCase( );
 			var xdnf=$("#xdnf").combobox("getValues").join(",");
 			if(xdnf.substr(0,1)==',')
 				xdnf=xdnf.substr(1,xdnf.length);
@@ -57,6 +57,7 @@
 			var sjlx=$("#sjlx").combobox("getValues").join(",");
 			if(sjlx.substr(0,1)==',')
 				sjlx=sjlx.substr(1,sjlx.length);
+		
 			$('#grid').datagrid({
 				url:'../../../qqgl/queryLsxx2new.do',
 				queryParams: {'lx.lxbm': lxbm,'lx.qdzh':$('#qdzh').val(),'lx.zdzh':$('#zdzh').val(),
