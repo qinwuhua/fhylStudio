@@ -40,6 +40,7 @@ import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -121,6 +122,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 					}
 					lx.setGldj(tsdq);
 				}
+			lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
@@ -219,6 +221,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 					}
 					lx.setGldj(tsdq);
 				}
+			
+			lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
+			
 			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
 			System.out.println("个数："+list.size());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();

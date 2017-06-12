@@ -9,9 +9,9 @@ public class Plan_zhfz {
 	private String id;//唯一ID
 	private String sckid;
 	private String sbnf;//计划年份
-	private Date jhkgsj;//计划开工时间
+	private String jhkgsj;//计划开工时间
 	private String jhkgsj1;//计划审核导入Excel
-	private Date jhwgsj;//计划完工时间
+	private String jhwgsj;//计划完工时间
 	private String jhwgsj1;//计划审核导入Excel
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
@@ -32,13 +32,13 @@ public class Plan_zhfz {
 	private String sbzt;//上报状态
 	private String sbbm;//上报部门
 	private Date sbsj;//上报时间
-	private Date xdsj;//计划下达时间
+	private String xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
 	private String gkbglj;//工可报告附件路径
 	private String sjsgtmc;//设计施工图名称
 	private String sjsgtlj;//设计施工图路径
-	private Date sjkgsj;//实际开工时间
-	private Date sjwgsj;//实际完工时间
+	private String sjkgsj;//实际开工时间
+	private String sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
 	private String jldw;//监理单位
 	private String htje;//合同金额
@@ -199,16 +199,17 @@ public class Plan_zhfz {
 	public void setSbnf(String sbnf) {
 		this.sbnf = sbnf;
 	}
-	public Date getJhkgsj() {
+	
+	public String getJhkgsj() {
 		return jhkgsj;
 	}
-	public void setJhkgsj(Date jhkgsj) {
+	public void setJhkgsj(String jhkgsj) {
 		this.jhkgsj = jhkgsj;
 	}
-	public Date getJhwgsj() {
+	public String getJhwgsj() {
 		return jhwgsj;
 	}
-	public void setJhwgsj(Date jhwgsj) {
+	public void setJhwgsj(String jhwgsj) {
 		this.jhwgsj = jhwgsj;
 	}
 	public String getSjdw() {
@@ -319,10 +320,11 @@ public class Plan_zhfz {
 	public void setSbsj(Date sbsj) {
 		this.sbsj = sbsj;
 	}
-	public Date getXdsj() {
+	
+	public String getXdsj() {
 		return xdsj;
 	}
-	public void setXdsj(Date xdsj) {
+	public void setXdsj(String xdsj) {
 		this.xdsj = xdsj;
 	}
 	public String getGkbgmc() {
@@ -349,16 +351,17 @@ public class Plan_zhfz {
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
 	}
-	public Date getSjkgsj() {
+	
+	public String getSjkgsj() {
 		return sjkgsj;
 	}
-	public void setSjkgsj(Date sjkgsj) {
+	public void setSjkgsj(String sjkgsj) {
 		this.sjkgsj = sjkgsj;
 	}
-	public Date getSjwgsj() {
+	public String getSjwgsj() {
 		return sjwgsj;
 	}
-	public void setSjwgsj(Date sjwgsj) {
+	public void setSjwgsj(String sjwgsj) {
 		this.sjwgsj = sjwgsj;
 	}
 	public String getSgdw() {

@@ -38,6 +38,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -287,6 +288,17 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	//综规审核月报
+	public void zgshYbpl(){
+		gcglgcgzgj.setId(MyUtil.getQueryTJ(gcglgcgzgj.getId(), "jhid"));
+		Boolean bl=gcglgcgzgjServer.zgshYbpl(gcglgcgzgj);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 	//添加车购税
 	public void insertGcgzgjCgs(){
 		Boolean bl=gcglgcgzgjServer.insertGcgzgjCgs(gcglgcgzgj);

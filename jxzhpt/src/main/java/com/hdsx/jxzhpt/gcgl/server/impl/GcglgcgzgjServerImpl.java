@@ -404,4 +404,10 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		}
 	}
 
+	@Override
+	public Boolean zgshYbpl(Gcglgcgzgj gcglgcgzgj) {
+		update("zgshYbpl", gcglgcgzgj);
+		return true;
+	}
+
 }

@@ -4,7 +4,21 @@ public class Lx {
 	private String ylxmc;
 	private String xmknf;
 	private String sjlx;
+	private String wbc;
+	private String wbchd;
 	
+	public String getWbc() {
+		return wbc;
+	}
+	public void setWbc(String wbc) {
+		this.wbc = wbc;
+	}
+	public String getWbchd() {
+		return wbchd;
+	}
+	public void setWbchd(String wbchd) {
+		this.wbchd = wbchd;
+	}
 	public String getXmknf() {
 		return xmknf;
 	}

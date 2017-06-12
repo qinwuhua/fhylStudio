@@ -37,9 +37,13 @@
 				setxmnf("sbnf",urlid);
 				setxzdj('ddlGldj',urlid);
 			}
-			
+			var lxbm;
+			if(urlid=='0101130301030203'||urlid=='0101130302030203')
+				lxbm='X,Y,C,Z';
+			else
+				lxbm='G,S';
 			var jh={jhnf:$('#sbnf').combobox('getValue'),jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
+			var lx={gydwbm:getgydw("gydw"),lxbm:lxbm,xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			zhfzxm_zjxd(jh,lx);
 		});

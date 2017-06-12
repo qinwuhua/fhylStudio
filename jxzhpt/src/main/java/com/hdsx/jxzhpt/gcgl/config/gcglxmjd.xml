@@ -278,4 +278,32 @@
     </set>
     where 1=1 ${id} and xmbm=#{xmbm}
 	</update>
+	
+	<update id="updateYbztpl" parameterType="gcglxmjd">
+		update GCGL_XMJD
+    <set >
+      <if test="sbzt != null" >
+        SBZT = #{sbzt},
+      </if>
+      <if test="shzt != null" >
+        SHZT = #{shzt},
+      </if>
+      <if test="shyj != null" >
+        SHYJ = #{shyj},
+      </if>
+      <if test="zgshzt != null" >
+        ZGSHZT = #{zgshzt},
+      </if>
+      <if test="zgshyj != null" >
+        ZGSHYJ = #{zgshyj},
+      </if>
+      <if test="thyy != null" >
+        THYY = #{thyy},
+      </if>
+    </set>
+    where 1=1 ${xmbm}
+	</update>
+	
+	
+	
 </mapper>

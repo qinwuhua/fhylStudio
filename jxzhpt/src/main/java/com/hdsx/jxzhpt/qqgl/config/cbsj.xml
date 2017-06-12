@@ -879,7 +879,7 @@
 		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
 		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
 		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
-		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd   
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbc,wbchd   
 		from cbsj_yhdzx c left join xmsq_yhdzx x on c.xmbm = x.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
@@ -890,7 +890,7 @@
 		lqhntmc,gxlqhntmc,snhntmc,lqlmjdrzs,lqlmcbrzs,swjc,lqlmpmlqjdlzs,lqlmrhlqjdlzs,lqlmcblzs,
 		xzrxjc,swjclzs,xfc,wcsnmb,wcswjc,snhntmchb,bx,snhntmcssh,
 		lqhntmchd,gxlqhntmchd,snhntmchd,lqlmjdrzshd,lqlmcbrzshd,swjchd,lqlmpmlqjdlzshd,lqlmrhlqjdlzshd,lqlmcblzshd,
-		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd   
+		xzrxjchd,swjclzshd,xfchd,wcsnmbhd,wcswjchd,snhntmchbhd,bxhd,snhntmcsshhd,sbzj,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbc,wbchd   
 		from cbsj_yhdzx_qx c left join xmsq_yhdzx_qx x on c.xmbm = x.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">

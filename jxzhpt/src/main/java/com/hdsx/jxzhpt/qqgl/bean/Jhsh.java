@@ -168,7 +168,49 @@ public class Jhsh {
 	private String sfqx="否";
 	private String hszj;
 	private String jhwj;
+	private String name;
+	private String ttc;
+	private String gydwdm;
+	private String parent;
+	private String wbc;
+	private String wbchd;
 	
+	public String getWbc() {
+		return wbc;
+	}
+	public void setWbc(String wbc) {
+		this.wbc = wbc;
+	}
+	public String getWbchd() {
+		return wbchd;
+	}
+	public void setWbchd(String wbchd) {
+		this.wbchd = wbchd;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTtc() {
+		return ttc;
+	}
+	public void setTtc(String ttc) {
+		this.ttc = ttc;
+	}
 	public String getJhwj() {
 		return jhwj;
 	}

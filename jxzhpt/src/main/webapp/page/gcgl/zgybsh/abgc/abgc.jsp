@@ -166,6 +166,7 @@ text-decoration:none;
 								<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showAll()"/>
+                                 <img name="shenPi" id="shenPi" src="/jxzhpt/images/Button/sp1.jpg" onmouseover="this.src='/jxzhpt/images/Button/sp2.jpg'" onmouseout="this.src='/jxzhpt/images/Button/sp1.jpg'   " src="" onclick="plshyb('afgc');" style="border-width:0px;vertical-align:middle;"" />       
                                  <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="dcExcel()"/>
         					</td>	</tr></table>
         				</div>

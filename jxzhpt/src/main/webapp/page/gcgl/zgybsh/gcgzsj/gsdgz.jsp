@@ -104,6 +104,7 @@
 			    	'gcglgcgzsj.xmzt':$("#xmzt").combobox('getText')
 				},
 			    columns:[[
+					{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 			        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 		 	        	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
 		 	        }},
@@ -239,7 +240,10 @@ text-decoration:none;
         						<tr height="30">
         						<td colspan="10">
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showGsd()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: middle;" onclick="showGsd()"/>        					
+        						<img name="shenPi" id="shenPi" src="/jxzhpt/images/Button/sp1.jpg" onmouseover="this.src='/jxzhpt/images/Button/sp2.jpg'" onmouseout="this.src='/jxzhpt/images/Button/sp1.jpg'   " src="" onclick="plshyb('gsdgz');" style="border-width:0px;vertical-align:middle;"" />
+								
+        			</p>
         			</td>	</tr></table></div>
         			</fieldset>
         		</td>

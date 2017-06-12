@@ -12,7 +12,22 @@ public class Xmsq {
 	private String cfqd;
 	private String cfzd;
 	private String lmlx;
+	private String wbc;
+	private String wbchd;
 	
+	
+	public String getWbc() {
+		return wbc;
+	}
+	public void setWbc(String wbc) {
+		this.wbc = wbc;
+	}
+	public String getWbchd() {
+		return wbchd;
+	}
+	public void setWbchd(String wbchd) {
+		this.wbchd = wbchd;
+	}
 	public String getLmlx() {
 		return lmlx;
 	}

@@ -101,7 +101,21 @@ public class Cbsj{
 		private String wfcdj;
 		private String xjfcdj;
 		private String sbzj;//省补资金
+		private String wbc;
+		private String wbchd;
 		
+		public String getWbc() {
+			return wbc;
+		}
+		public void setWbc(String wbc) {
+			this.wbc = wbc;
+		}
+		public String getWbchd() {
+			return wbchd;
+		}
+		public void setWbchd(String wbchd) {
+			this.wbchd = wbchd;
+		}
 		public String getFcbc30() {
 			return fcbc30;
 		}

@@ -1497,10 +1497,10 @@
 		v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,
 		v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30,
 		v_31,v_32,v_33,v_34,v_35,v_36,v_37,v_38,v_39,v_40,
-		v_41,v_42,v_43,v_44,v_45,v_46,decode(v_36,'0','0',null,'0',round(v_46 / v_36 * 100, 0))  v_47,v_48,v_49,v_50,
+		v_41,v_42,v_43,v_44,v_45,v_46,decode(v_18,'0','0',null,'0',round(v_46 / v_18 * 100, 0))  v_47,v_48,v_49,v_50,
 		v_51,v_52,(case when to_number(v_54)&lt;0 then v_48 else v_53 end) v_53,(case when to_number(v_54)&lt;0 then 0 else v_54 end) v_54,v_55,v_56,v_57,v_58,nvl(v_60,0)+nvl(v_61,0)+nvl(v_62,0)+nvl(v_63,0)+nvl(v_64,0)+nvl(v_65,0)+nvl(v_66,0)+nvl(v_67,0)+nvl(v_68,0) v_59,v_60,
 		v_61,v_62,v_63,v_64,v_65,v_66,v_67,v_68,v_69,v_70,
-		v_71,v_72,v_73,v_74,(case when to_number(v_76)&lt;0 then v_70 else v_75 end) v_75,(case when to_number(v_76)&lt;0 then 0 else v_76 end) v_76,v_77,v_78,decode(v_14,'0','0',null,'0',round(v_70 / v_14 * 100, 0)) v_79,decode(v_19,'0','0',null,'0',round(v_60 / v_19 * 100, 0)) v_80,
+		v_71,v_72,v_73,v_74,(case when to_number(v_76)&lt;0 then v_70 else v_75 end) v_75,(case when to_number(v_76)&lt;0 then 0 else v_76 end) v_76,v_77,v_14-v_70  v_78,decode(v_14,'0','0',null,'0',round(v_70 / v_14 * 100, 0)) v_79,decode(v_19,'0','0',null,'0',round(v_60 / v_19 * 100, 0)) v_80,
 		decode(v_18,'0','0',null,'0',round(v_69 / v_18 * 100, 0)) v_81,v_82,xzqhdm v_83,v_84 from GLGZXJMXB where 1=1
 			    <if test="xmnf != null and  xmnf != ''">
 		      and xmnf in (${xmnf})
@@ -1547,10 +1547,10 @@
 	select 
     '是' v_0,max(xzqhmc)||'合计' v_3,sum(v_14) v_14,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,
      sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,
-     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_36),'0','0',null,'0',round(sum(v_46) / sum(v_36) * 100, 0)) v_47,sum(v_48) v_48,
+     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_18),'0','0',null,'0',round(sum(v_46) / sum(v_18) * 100, 0)) v_47,sum(v_48) v_48,
      sum(v_49) v_49,sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,(case when to_number(sum(v_54))&lt;0 then sum(v_48) else sum(v_53) end) v_53,(case when to_number(sum(v_54))&lt;0 then 0 else sum(v_54) end) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,
      sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0))+sum(nvl(v_67,0))+sum(nvl(v_68,0)) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
-     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_78) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
+     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_14)-sum(v_70) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
      decode(sum(v_18),'0','0',null,'0',round(sum(v_69) / sum(v_18) * 100, 0)) v_81,min(xzqhdm) v_83,min(v_84) v_84
      
  from (select * from GLGZXJMXB where 1=1
@@ -1599,10 +1599,10 @@
 	select 
     '是' v_0,tb.v_84 v_3,sum(v_14) v_14,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,
      sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,
-     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_36),'0','0',null,'0',round(sum(v_46) / sum(v_36) * 100, 0)) v_47,sum(v_48) v_48,
+     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_18),'0','0',null,'0',round(sum(v_46) / sum(v_18) * 100, 0)) v_47,sum(v_48) v_48,
      sum(v_49) v_49,sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,(case when to_number(sum(v_54))&lt;0 then sum(v_48) else sum(v_53) end) v_53,(case when to_number(sum(v_54))&lt;0 then 0 else sum(v_54) end) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,
      sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0))+sum(nvl(v_67,0))+sum(nvl(v_68,0)) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
-     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_78) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
+     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_14)-sum(v_70) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
      decode(sum(v_18),'0','0',null,'0',round(sum(v_69) / sum(v_18) * 100, 0)) v_81,min(xzqhdm) v_83, v_84
  from (select * from GLGZXJMXB where 1=1
 			    <if test="xmnf != null and  xmnf != ''">
@@ -1651,10 +1651,10 @@
 	select 
     '是' v_0,'合计' v_3,sum(v_14) v_14,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,
      sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,
-     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_36),'0','0',null,'0',round(sum(v_46) / sum(v_36) * 100, 0)) v_47,sum(v_48) v_48,
+     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_18),'0','0',null,'0',round(sum(v_46) / sum(v_18) * 100, 0)) v_47,sum(v_48) v_48,
      sum(v_49) v_49,sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,(case when to_number(sum(v_54))&lt;0 then sum(v_48) else sum(v_53) end) v_53,(case when to_number(sum(v_54))&lt;0 then 0 else sum(v_54) end) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,
      sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0))+sum(nvl(v_67,0))+sum(nvl(v_68,0)) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
-     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_78) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
+     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_14)-sum(v_70) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
      decode(sum(v_18),'0','0',null,'0',round(sum(v_69) / sum(v_18) * 100, 0)) v_81
  from (select * from GLGZXJMXB where 1=1
 			    <if test="xmnf != null and  xmnf != ''">
@@ -1702,10 +1702,10 @@
 	select 
      '是' v_0,tb.v_84 v_3,sum(v_14) v_14,sum(v_18) v_18,sum(v_19) v_19,sum(v_20) v_20,sum(v_21) v_21,sum(v_22) v_22,sum(v_23) v_23,sum(v_24) v_24,sum(v_25) v_25,
      sum(v_26) v_26,sum(v_27) v_27,sum(v_28) v_28,sum(v_29) v_29,sum(v_30) v_30,sum(v_31) v_31,sum(v_32) v_32,sum(v_33) v_33,
-     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_36),'0','0',null,'0',round(sum(v_46) / sum(v_36) * 100, 0)) v_47,sum(v_48) v_48,
+     sum(v_36) v_36,sum(v_37) v_37,sum(v_38) v_38,sum(v_39) v_39,sum(v_40) v_40,sum(v_41) v_41,sum(v_42) v_42,sum(v_43) v_43,sum(v_44) v_44,sum(v_45) v_45,sum(v_46) v_46,decode(sum(v_18),'0','0',null,'0',round(sum(v_46) / sum(v_18) * 100, 0)) v_47,sum(v_48) v_48,
      sum(v_49) v_49,sum(v_50) v_50,sum(v_51) v_51,sum(v_52) v_52,(case when to_number(sum(v_54))&lt;0 then sum(v_48) else sum(v_53) end) v_53,(case when to_number(sum(v_54))&lt;0 then 0 else sum(v_54) end) v_54,sum(v_55) v_55,sum(v_56) v_56,sum(v_57) v_57,sum(v_58) v_58,
      sum(nvl(v_60,0))+sum(nvl(v_61,0))+sum(nvl(v_62,0))+sum(nvl(v_63,0))+sum(nvl(v_64,0))+sum(nvl(v_65,0))+sum(nvl(v_66,0))+sum(nvl(v_67,0))+sum(nvl(v_68,0)) v_59,sum(v_60) v_60,sum(v_61) v_61,sum(v_62) v_62,sum(v_63) v_63,sum(v_64) v_64,sum(v_65) v_65,sum(v_66) v_66,sum(v_67) v_67,sum(v_68) v_68,
-     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_78) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
+     sum(v_69) v_69,sum(v_70) v_70,sum(v_71) v_71,sum(v_72) v_72,sum(v_73) v_73,sum(v_74) v_74,(case when to_number(sum(v_76))&lt;0 then sum(v_70) else sum(v_75) end) v_75,(case when to_number(sum(v_76))&lt;0 then 0 else sum(v_76) end) v_76,sum(v_77) v_77,sum(v_14)-sum(v_70) v_78,decode(sum(v_14),'0','0',null,'0',round(sum(v_70) / sum(v_14) * 100, 0)) v_79,decode(sum(v_19),'0','0',null,'0',round(sum(v_60) / sum(v_19) * 100, 0)) v_80,
      decode(sum(v_18),'0','0',null,'0',round(sum(v_69) / sum(v_18) * 100, 0)) v_81, v_84
  from (select * from GLGZXJMXB where 1=1
 			    <if test="xmnf != null and  xmnf != ''">

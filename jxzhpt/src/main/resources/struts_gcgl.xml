@@ -11,6 +11,7 @@
 	<action name="updateYb" class="gcglxmjdController" method="updateYb"/>
 	<action name="deleteYb" class="gcglxmjdController" method="deleteYb"/>
 	<action name="updateYbzt" class="gcglxmjdController" method="updateYbzt"/>
+	<action name="updateYbztpl" class="gcglxmjdController" method="updateYbztpl"/>
 	
 	<action name="queryGcglwqtjInYb" class="gcglwqgzController" method="queryGcglwqtjInYb"/>
 	<action name="ybyshbwsh" class="gcglwqgzController" method="ybyshbwsh"/>
@@ -191,6 +192,7 @@
 	<action name="selectgcgzgjYbByJhid1" class="gcglgcgzgjController" method="selectgcgzgjYbByJhid1"/>
 	<action name="shgcgzgjYb" class="gcglgcgzgjController" method="shgcgzgjYb"/>
 	<action name="zgshYb" class="gcglgcgzgjController" method="zgshYb"/>
+	<action name="zgshYbpl" class="gcglgcgzgjController" method="zgshYbpl"/>
 	<action name="insertGcgzgjCgs" class="gcglgcgzgjController" method="insertGcgzgjCgs"/>
 	<action name="updateGcgzgjCgs" class="gcglgcgzgjController" method="updateGcgzgjCgs"/>
 	<action name="deleteGcgzgjCgs" class="gcglgcgzgjController" method="deleteGcgzgjCgs"/>

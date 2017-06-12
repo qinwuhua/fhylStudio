@@ -2347,7 +2347,12 @@
 	      <if test="xmsq.xjfchd != null">
 	        xjfchd=#{xmsq.xjfchd},
 	      </if>
-		
+		<if test="xmsq.wbchd != null">
+	        wbchd=#{xmsq.wbchd},
+	      </if>
+	      <if test="xmsq.wbc != null">
+	        wbc=#{xmsq.wbc},
+	      </if>
 		
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
@@ -2549,6 +2554,13 @@
 	      <if test="cbsj.xjfchd != null">
 	        xjfchd=#{cbsj.xjfchd},
 	      </if>
+	      <if test="cbsj.wbchd != null">
+	        wbchd=#{cbsj.wbchd},
+	      </if>
+	      <if test="cbsj.wbc != null">
+	        wbc=#{cbsj.wbc},
+	      </if>
+	      
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
 		l.xmid=#{lx.xmid} 
@@ -2874,7 +2886,7 @@
 	<select id="selectlxList" parameterType="lx" resultType="lx">
 		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj ,
 		decode(substr(xmid,11,1),1,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)),(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)))  lc,
-		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd   
+		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbchd,wbc   
 		from lxsh_lx
 		 where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
@@ -7122,4 +7134,73 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	<select id="queryLxbyGhlxbm" parameterType="string" resultType="lx">
 	select DISTINCT LXBM from table(fun_cfld(#{value},0,9999))
 	</select>
+	
+	<select id="queryChildGydw"  parameterType="jhsh" resultType="jhsh">
+		select * from XTGL_DEPARTMENT t where t.parent=#{gydw} and (t.id not like '%000_' or t.id  like '%0000')  order by t.id
+	</select>
+	<select id="queryZjByGydwdm" parameterType="jhsh" resultType="jhsh">
+		select * from plan_zjxd z where xdnf=#{xdnf} and z.parent=#{gydwdm} order by gydwdm
+	</select> 
+	<select id="queryShqxByOne" parameterType="jhsh" resultType="jhsh">
+		select * from plan_zjxd where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+	</select>
+	<insert id="insertShqx" parameterType="jhsh">
+		insert into plan_zjxd
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	<if test="ztz != null and ztz != ''" >ztz,</if>
+	    	<if test="btzzj != null and btzzj != ''" >btzzj,</if>
+	    	<if test="rys != null and rys != ''" >rys,</if>
+	    	<if test="ttc != null and ttc != ''" >ttc,</if>
+	    	<if test="dfzc != null and dfzc != ''" >dfzc,</if>
+	    	<if test="xdnf != null and xdnf != ''" >xdnf,</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
+	    	<if test="parent != null and parent != ''" >parent,</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	  	</trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
+	    	<if test="btzzj != null and btzzj != ''" >#{btzzj},</if>
+	    	<if test="rys != null and rys != ''" >#{rys},</if>
+	    	<if test="ttc != null and ttc != ''" >#{ttc},</if>
+	    	<if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
+	    	<if test="xdnf != null and xdnf != ''" >#{xdnf},</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
+	    	<if test="parent != null and parent != ''" >#{parent},</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+		</trim>
+	</insert>
+	<update id="updateShqx" parameterType="jhsh">
+	 update plan_zjxd
+   	 <set>
+      <if test="ztz != null" >ztz = #{ztz},</if>
+      <if test="btzzj != null" >btzzj = #{btzzj},</if>
+      <if test="rys != null" >rys = #{rys},</if>
+      <if test="ttc != null" >ttc = #{ttc},</if>
+      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+      <if test="xdnf != null" >xdnf = #{xdnf},</if>
+      <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
+      <if test="parent != null" >parent = #{parent},</if>
+      <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
+	 </set>
+      where 1=1 and gydwdm=#{gydwdm} and xdnf=#{xdnf}
+	</update>
+	
+	<select id="queryXmlistshqx" parameterType="jhsh" resultType="jhsh">
+		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from plan_zjxd t
+		where 1=1 and gydwdm is not null 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="xdnf !='' and xdnf != null">and xdnf like '%'||#{xdnf}||'%'</if>
+		order by xdnf,gydwdm
+		) t1 
+		)t2
+		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryXmlistshqxCount" parameterType="jhsh" resultType="int">
+		select count(*) from plan_zjxd t
+		where 1=1 and gydwdm is not null 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="xdnf !='' and xdnf != null">and xdnf like '%'||#{xdnf}||'%'</if>
+		
+	</select>
+	
 </mapper>

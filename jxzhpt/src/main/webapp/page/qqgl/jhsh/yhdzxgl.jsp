@@ -660,12 +660,16 @@
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
+			loadjzt();
+			
 			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
 			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+'&ghlxmc='+$("#ghlxmc").val();
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
+			setTimeout('disLoadjzt()',20000);
+			
 		}
 		function importXmsq(){
 			importExcelqwh("/jxzhpt/qqgl/importExcelYhdzx.do","yhlxsh");

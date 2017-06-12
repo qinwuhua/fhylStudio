@@ -130,7 +130,10 @@
 		,zgshyj=#{zgshyj},zgshzt='已审核'
 		where id=#{id} and jhid=#{jhid} and shzt='已审核'
 	</update>
-	
+	<update id="zgshYbpl" parameterType="gcglgcgzgj">
+		update ${table} set zgshuser=#{zgshuser},zgshyj=#{zgshyj},zgshzt='已审核'
+		where 1=1 ${id} and shzt='已审核'
+	</update>
 		<!-- 添加车购税 -->
 	<insert id="insertGcgzgjCgs" parameterType="gcglgcgzgj">
 		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj<if test="stz != null">,stz</if>,cscyj<if test="sz != null">,sz</if><if test="gz != null">,gz</if><if test="yhdk != null">,yhdk</if>)

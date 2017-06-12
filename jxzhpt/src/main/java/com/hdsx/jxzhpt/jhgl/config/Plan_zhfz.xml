@@ -73,6 +73,9 @@
 	 				<if test="lx.gldj!=null and lx.gldj!=''">
 	 					${lx.gldj}
 	 				</if>
+	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
+	 					${lx.lxbm}
+	 				</if>
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsdj}
 	 				</if>
@@ -128,6 +131,9 @@
 				 	</if>
 				 	<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
+	 					${lx.lxbm}
 	 				</if>
 				 	order by jh.jh_sbthcd,jh.sbnf
 			 	) t
@@ -196,6 +202,9 @@
 	 				</if>
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
+	 					${lx.lxbm}
 	 				</if>
 	</select>
 	<select id="queryZhfzNfs"  resultType="treenode">
@@ -267,6 +276,9 @@
 			<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				and lx.lxjsdj = #{lx.lxjsdj}
 			</if>
+			<if test="lx.lxbm !=null and lx.lxbm !=''">
+	 					${lx.lxbm}
+	 				</if>
 		order by jh.sbnf desc
 	</select>
 	<select id="queryZhfzById" parameterType="string" resultType="plan_zhfz">
@@ -382,6 +394,9 @@
 	 				</if>
 	 				<if test="lx.xmklx != null and lx.xmklx != ''">
 	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 				</if>
+	 				<if test="lx.lxbm !=null and lx.lxbm !=''">
+	 					${lx.lxbm}
 	 				</if>
 	 				group by jh.id)
 	</select>

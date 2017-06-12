@@ -504,5 +504,12 @@ public interface JhshServer {
 	public Kxxyj queryLmgzKxxyjqxByXmbm(Jhsh jhsh);
 	public Kxxyj queryXjKxxyjqxByXmbm(Jhsh jhsh);
 	public List<Lx> queryLxbyGhlxbm(String string);
+	public List<Jhsh> queryChildGydw(Jhsh jhsh);
+	public List<Jhsh> queryZjByGydwdm(Jhsh jhsh);
+	public Jhsh queryShqxByOne(Jhsh xm);
+	public int insertShqx(List<Jhsh> save);
+	public int updateShqx(List<Jhsh> update);
+	public List<Jhsh> queryXmlistshqx(Jhsh jhsh);
+	public int queryXmlistshqxCount(Jhsh jhsh);
 	
 }
