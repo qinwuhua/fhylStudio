@@ -34,33 +34,8 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		setjhxdnf("ddlYear1");
-		setjhxdnf1("jhnd");
-		loadUnit1("gydw",$.cookie("unit"));
-		loadDist1("xzqh",$.cookie("dist"));
-		//loadBmbm3("xzdj","行政等级");
-		loadBmbm3('yjsdj','技术等级');
-		loadBmbm3('jsjsdj','技术等级');
-		//loadBmbm3('jzzt','进展状态');
-		xzdjdx('xzdj');
-		xmjzzt("jzzt");
-		bbxmlx('gljslx');
-		setbnjhtz('bnjhtz');
-		setbndsslc('bndsslc');
-		//loadBmbm3('gljslx','项目类型2');
-		var myDate = new Date();
-		var y = myDate.getFullYear();
-		var m = myDate.getMonth()+1; 
-		for(var x=y;x>=2010;x--){
-			$("#ddlYear").append("<option value="+x+">"+x+"</option>");
-			//$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
-		}
-		$("#yf"+m).attr("selected","selected");
-		//var urlid=getUrlParame('id');
+	
 		
-		//urlxmnf("ddlYear1",urlid);
-		
-		//showAll();
 		
 		$("#biaotou").empty();
 	});
@@ -88,13 +63,36 @@
 		YMLib.UI.createWindow('zdybb','江西省“十三五”国省干线公路建设和养护计划汇总表字段选择','gljsjhhzb_zd.jsp','zdybb','650','380');
 	}
 
-	
+	function bubbleSort(array){
+	    /*给每个未确定的位置做循环*/
+	    for(var unfix=array.length-1; unfix>0; unfix--){
+	      /*给进度做个记录，比到未确定位置*/
+	      for(var i=0; i<unfix;i++){
+	        if(array[i]>array[i+1]){
+	          var temp = array[i];
+	          array.splice(i,1,array[i+1]);
+	          array.splice(i+1,1,temp);
+	        }
+	      }
+	    }
+	  }
 	function showBb(ss){
 		
 		var tbody = $("#abgclist");
 				tbody.empty();
 
 		loadjzt();
+		var ss1=new Array();
+		var ss2=new Array();
+		
+		for(var i=0;i<ss.length;i++){
+			ss1.push(parseInt(ss[i].substring(ss[i].indexOf('v_')+2,ss[i].length)));
+			
+		}
+		bubbleSort(ss1);
+		for(var i=0;i<ss1.length;i++){
+			ss2.push("v_"+ss1[i]);
+		}
 		
 		$.ajax({
 			url:"/jxzhpt/gcybb/getGljsjhhzb.do",
@@ -121,20 +119,20 @@
 					var d="";var e=0;
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr>";
-						for ( var j = 0; j < ss.length; j++) {
+						for ( var j = 0; j < ss2.length; j++) {
 							//alert(msg[i][ss[j]]+"    "+ss[j]);
 							if(ss[0]=='v_0'){
 								if(d!=msg[i].v_0){
-									tr+="<td rowspan='"+l[e]+"'>"+msg[i][ss[j]]+"</td>";
+									tr+="<td rowspan='"+l[e]+"'>"+msg[i][ss2[j]]+"</td>";
 									d=msg[i].v_0;
 									e++;
 								}
 								else{
-									if(ss[j]!='v_0')
-									tr+="<td>"+msg[i][ss[j]]+"</td>";
+									if(ss2[j]!='v_0')
+									tr+="<td>"+msg[i][ss2[j]]+"</td>";
 								}
 							}else{
-								tr+="<td>"+msg[i][ss[j]]+"</td>";
+								tr+="<td>"+msg[i][ss2[j]]+"</td>";
 							}
 							
 						}

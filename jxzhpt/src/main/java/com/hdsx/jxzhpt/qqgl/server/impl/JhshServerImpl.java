@@ -546,7 +546,6 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		List<Lx> result=new ArrayList<Lx>();
 		
 		
-		
 		result=queryList("queryLsxx2new", lx);
 		
 		if(!"".equals(lx.getGhlxbm())){

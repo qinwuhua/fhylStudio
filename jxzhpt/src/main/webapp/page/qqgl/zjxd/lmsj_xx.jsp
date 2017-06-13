@@ -25,6 +25,7 @@
 				data:'jhsh.xmlx='+parent.YMLib.Var.xmbm.substr(10,1)+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
+					//alert(data.lxbm);
 					$('#lxsh').form("load",data);
 				}
 			});
