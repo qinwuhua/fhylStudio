@@ -313,7 +313,7 @@
         		showInfo(e);
            	}
         	else{
-        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+        		var feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
     		        return feature;
     		      });
         		console.log(feature);
@@ -392,7 +392,7 @@
         			            layerName: 'resultLayer',
         			            selectable: true
         			          });
-    			        	let extent = feat.getGeometry().getExtent();
+    			        	var extent = feat.getGeometry().getExtent();
         			        map.zoomToExtent(extent, true);
         			        map.highLightFeature('',feat,'');
     			        }
@@ -474,7 +474,7 @@
     			            layerName: 'resultLayer',
     			            selectable: true
     			          });
-			        	let extent = feat.getGeometry().getExtent();
+			        	var extent = feat.getGeometry().getExtent();
     			        map.zoomToExtent(extent, true);
     			        map.highLightFeature('',feat,'');
                 	}
@@ -576,7 +576,7 @@
             wfsProtocol.read();
         }
         function showPopup (obj) {
-            let id = '';
+            var id = '';
             if (map.popupOverlay && !obj['notClear']) {
               map.map.removeOverlay(map.popupOverlay);
               map.popupOverlay = null;
@@ -586,7 +586,7 @@
             } else {
               id = 'overlay' + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000 + 1);
             }
-            let m = {
+            var m = {
               positioning: 'center-center',
               id: id
             };
