@@ -172,6 +172,7 @@ text-decoration:none;
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')
 		+"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val();
 		data+="&lx.xjlxbm="+$('#xjlxbh').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val();
+		data+="&lx.ghlxbm="+$('#xjlxbh').val()+"&lx.ghqdzh="+$('#xjqdzh').val()+"&lx.ghzdzh="+$('#xjzdzh').val();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()
 		+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.qdmc="+$('#qdmc').val()
 		+"&lx.zdmc="+$('#zdmc').val()+"&lx.xjlc="+$('#xjlc').val();

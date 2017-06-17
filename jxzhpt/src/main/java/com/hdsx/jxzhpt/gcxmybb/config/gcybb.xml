@@ -3584,70 +3584,70 @@
 	</select>
 	<select id="getGljsjhhzb1" parameterType="string" resultType="elist">
 		select '总计' v_0,'十三五计划累计' v_1,
-		sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
-		sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
-		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
-		sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
-		sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
-		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
-		sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
-		sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
-		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
-		sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
-		sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
-		sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42,'1' nf
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(qt) v_7,sum(zdxm) v_8,sum(zhxm) v_9,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_10,sum(dxxm) v_11,sum(zxxm) v_12,sum(yfxxm) v_13,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_14,
+		sum(bwq) v_15,sum(bab) v_16,sum(bzh) v_17,sum(swq) v_18,sum(sab) v_19,sum(szh) v_20,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_21,
+		sum(zysj) v_22,sum(dksj) v_23,sum(zywq)+sum(zyab)+sum(zyzh) v_24,sum(zywq) v_25,sum(zyab) v_26,sum(zyzh) v_27,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_28,sum(dkwq) v_29,sum(dkab) v_30,sum(dkzh) v_31,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_32,
+		sum(zylm) v_33,sum(zysh) v_34,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_35,
+		sum(dxrys) v_36,sum(zxrys) v_37,sum(yfxrys) v_38,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_39,
+		sum(dxdk) v_40,sum(zxdk) v_41,sum(yfxdk) v_42,sum(dfzc) v_43,'1' nf
 		from gljsjhhzb 
 		where xzqh != '00' and xzqh !='360000'
 		union all
 		select '总计' v_0,xdnf v_1,
-		sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
-		sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
-		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
-		sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
-		sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
-		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
-		sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
-		sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
-		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
-		sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
-		sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
-		sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42,xdnf nf
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(qt) v_7,sum(zdxm) v_8,sum(zhxm) v_9,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_10,sum(dxxm) v_11,sum(zxxm) v_12,sum(yfxxm) v_13,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_14,
+		sum(bwq) v_15,sum(bab) v_16,sum(bzh) v_17,sum(swq) v_18,sum(sab) v_19,sum(szh) v_20,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_21,
+		sum(zysj) v_22,sum(dksj) v_23,sum(zywq)+sum(zyab)+sum(zyzh) v_24,sum(zywq) v_25,sum(zyab) v_26,sum(zyzh) v_27,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_28,sum(dkwq) v_29,sum(dkab) v_30,sum(dkzh) v_31,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_32,
+		sum(zylm) v_33,sum(zysh) v_34,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_35,
+		sum(dxrys) v_36,sum(zxrys) v_37,sum(yfxrys) v_38,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_39,
+		sum(dxdk) v_40,sum(zxdk) v_41,sum(yfxdk) v_42,sum(dfzc) v_43,xdnf nf
 		from gljsjhhzb 
 		where xzqh != '00' and xzqh !='360000'
 		group by xdnf order by nf
 	</select>
 	<select id="getGljsjhhzb2" parameterType="string" resultType="elist">
 	select xzqh,(select name from xtgl_xzqh where id=xzqh) v_0,'十三五计划累计' v_1,
-	sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
-	sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
-	sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
-	sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
-	sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
-	sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
-	sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
-	sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
-	sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
-	sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
-	sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
-	sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42
+	sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(qt) v_7,sum(zdxm) v_8,sum(zhxm) v_9,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_10,sum(dxxm) v_11,sum(zxxm) v_12,sum(yfxxm) v_13,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_14,
+		sum(bwq) v_15,sum(bab) v_16,sum(bzh) v_17,sum(swq) v_18,sum(sab) v_19,sum(szh) v_20,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_21,
+		sum(zysj) v_22,sum(dksj) v_23,sum(zywq)+sum(zyab)+sum(zyzh) v_24,sum(zywq) v_25,sum(zyab) v_26,sum(zyzh) v_27,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_28,sum(dkwq) v_29,sum(dkab) v_30,sum(dkzh) v_31,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_32,
+		sum(zylm) v_33,sum(zysh) v_34,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_35,
+		sum(dxrys) v_36,sum(zxrys) v_37,sum(yfxrys) v_38,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_39,
+		sum(dxdk) v_40,sum(zxdk) v_41,sum(yfxdk) v_42,sum(dfzc) v_43
 	from gljsjhhzb 
 	where xzqh != '00' and xzqh !='360000'
 	group by xzqh order by xzqh
 	</select>
 	<select id="getGljsjhhzb3" parameterType="string" resultType="elist">
 	select xzqh,(select name from xtgl_xzqh where id=xzqh) v_0,xdnf v_1,
-	sum(gsyi)+sum(gser)+sum(ssyier)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
-	sum(gsyi)+sum(gser)+sum(ssyier) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(zdxm) v_7,sum(zhxm) v_8,
-	sum(dxxm)+sum(zxxm)+sum(yfxxm) v_9,sum(dxxm) v_10,sum(zxxm) v_11,sum(yfxxm) v_12,
-	sum(zdxm)+sum(zhxm)+sum(dxxm) v_13,
-	sum(bwq) v_14,sum(bab) v_15,sum(bzh) v_16,sum(swq) v_17,sum(sab) v_18,sum(szh) v_19,
-	sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_20,
-	sum(zysj) v_21,sum(dksj) v_22,sum(zywq)+sum(zyab)+sum(zyzh) v_23,sum(zywq) v_24,sum(zyab) v_25,sum(zyzh) v_26,
-	sum(dkwq)+sum(dkab)+sum(dkzh) v_27,sum(dkwq) v_28,sum(dkab) v_29,sum(dkzh) v_30,
-	sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_31,
-	sum(zylm) v_32,sum(zysh) v_33,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_34,
-	sum(dxrys) v_35,sum(zxrys) v_36,sum(yfxrys) v_37,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_38,
-	sum(dxdk) v_39,sum(zxdk) v_40,sum(yfxdk) v_41,sum(dfzc) v_42
+	sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt)+sum(zdxm)+sum(zhxm)+sum(dxxm)+sum(zxxm)+sum(yfxxm) v_2,
+		sum(gsyi)+sum(gser)+sum(ssyier)+sum(qt) v_3,sum(gsyi) v_4,sum(gser) v_5,sum(ssyier) v_6,sum(qt) v_7,sum(zdxm) v_8,sum(zhxm) v_9,
+		sum(dxxm)+sum(zxxm)+sum(yfxxm) v_10,sum(dxxm) v_11,sum(zxxm) v_12,sum(yfxxm) v_13,
+		sum(zdxm)+sum(zhxm)+sum(dxxm) v_14,
+		sum(bwq) v_15,sum(bab) v_16,sum(bzh) v_17,sum(swq) v_18,sum(sab) v_19,sum(szh) v_20,
+		sum(zysj)+sum(dksj)+sum(zywq)+sum(zyab)+sum(zyzh)+sum(dkwq)+sum(dkab)+sum(dkzh)+sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_21,
+		sum(zysj) v_22,sum(dksj) v_23,sum(zywq)+sum(zyab)+sum(zyzh) v_24,sum(zywq) v_25,sum(zyab) v_26,sum(zyzh) v_27,
+		sum(dkwq)+sum(dkab)+sum(dkzh) v_28,sum(dkwq) v_29,sum(dkab) v_30,sum(dkzh) v_31,
+		sum(zylm)+sum(zysh)+sum(dxrys)+sum(zxrys)+sum(yfxrys)+sum(dxdk)+sum(zxdk)+sum(yfxdk) v_32,
+		sum(zylm) v_33,sum(zysh) v_34,sum(dxrys)+sum(zxrys)+sum(yfxrys) v_35,
+		sum(dxrys) v_36,sum(zxrys) v_37,sum(yfxrys) v_38,sum(dxdk)+sum(zxdk)+sum(yfxdk) v_39,
+		sum(dxdk) v_40,sum(zxdk) v_41,sum(yfxdk) v_42,sum(dfzc) v_43
 	from gljsjhhzb 
 	where xzqh != '00' and xzqh !='360000'
 	group by xzqh,xdnf order by xzqh,v_1

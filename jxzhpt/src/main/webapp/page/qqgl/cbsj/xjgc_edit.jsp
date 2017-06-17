@@ -93,6 +93,9 @@
 			submit=validateText('sd_sfcd','number',submit); */
 			submit=validateText('jaf','number',submit);
 			$("#gydw").val($("#gydw1").combobox('getText'));
+			$("#ghlxbm").val($("#xjlxbm").val());
+			$("#ghqdzh").val($("#xjqdzh").val());
+			$("#ghzdzh").val($("#xjzdzh").val());
 			
 			$("#gydwdm").val($("#gydw1").combobox('getValues').join(','));
 			
@@ -143,6 +146,10 @@
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="xmbm1" name="xmbm1" style="width: 120px;" readonly="readonly" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
+						<input id="ghlxbm" name="ghlxbm" type="hidden">
+						<input id="ghqdzh" name="ghqdzh" type="hidden">
+						<input id="ghzdzh" name="ghzdzh" type="hidden">
+						
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="1" type="hidden"/>
 						<input id="sfbj" name="sfbj" value="1" type="hidden"/>

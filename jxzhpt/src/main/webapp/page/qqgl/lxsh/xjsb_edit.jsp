@@ -200,6 +200,7 @@ text-decoration:none;
 		+$("#gydw").combobox("getValues").join(',')+"&lxsh.xzqhdm="+$("#xmbm").html().substr(4,6)+"&lxsh.xzqhdm2="+$('#xzqh').combo("getValues").join(",")+"&lxsh.tsdq="+$("#tsdq").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
+		data+="&lx.ghlxbm="+$('#xjlxbm').val()+"&lx.ghqdzh="+$('#xjqdzh').val()+"&lx.ghzdzh="+$('#xjzdzh').val();
 		data+="&lx.xjlxbm="+$('#xjlxbm').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()
 		+"&lx.xjlc="+$('#xjlc').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+

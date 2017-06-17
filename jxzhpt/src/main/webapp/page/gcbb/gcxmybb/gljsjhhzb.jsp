@@ -51,9 +51,24 @@
 		
 		var json_data = JSON.stringify(datalist); 
 		
+		var ss=str2.split(',');
+		
+		var ss1=new Array();
+		var ss2=new Array();
+		
+		for(var i=0;i<ss.length;i++){
+			ss1.push(parseInt(ss[i].substring(ss[i].indexOf('v_')+2,ss[i].length)));
+			
+		}
+		bubbleSort(ss1);
+		for(var i=0;i<ss1.length;i++){
+			ss2.push("v_"+ss1[i]);
+		}
+		
+		
 		var data="flag=1&excel_list.ssbb=gljsjhhzb";
 		loadjzt();
-		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{nameValue:str1,colValue:str2,sql:json_data},function(){
+		 $.post('/jxzhpt/gcbb/exportbbsj_set.do',{nameValue:str1,colValue:ss2.join(','),sql:json_data},function(){
 			window.location.href='/jxzhpt/gcybb/getGljsjhhzb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);
