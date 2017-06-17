@@ -1697,7 +1697,7 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 	}
 	YMLib.Var.bm=data;
 	YMLib.Var.type="1";
-	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,400);
 }
 
 
