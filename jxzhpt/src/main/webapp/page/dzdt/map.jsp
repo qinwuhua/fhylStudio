@@ -512,18 +512,27 @@ list-style-type:none;
     			        			strokeColor:'#E52929'
     			        		}
     			        };
+    			        if(iQueryType == "luduan") {
+    			        	feature['attributes']['LXDM'] = feature['attributes']['LXBM'];
+    			        	feature['attributes']['QDMC'] = feature['attributes']['QDDM'];
+    			        	feature['attributes']['QDZH'] = feature['attributes']['ROADSTART'];
+    			        	feature['attributes']['ZDMC'] = feature['attributes']['ZDDM'];
+    			        	feature['attributes']['ZDZH'] = feature['attributes']['ROADENDS'];
+    			        	
+    			        }
     			        var feat;
     			        feat = map.addPolyline(feature, {
     			            layerName: 'resultLayer',
     			            selectable: true
     			          });
+    			        console.log(feat);
 			        	var extent = feat.getGeometry().getExtent();
     			        map.zoomToExtent(extent, true);
     			        map.highLightFeature('',feat,'');
                 	}
                 	                    
         	},  
-                timeout:3000  
+                timeout:10000  
             }); 
 
 
@@ -652,6 +661,7 @@ list-style-type:none;
         //构造弹出窗口的函数
         var selectedFeature = null;
         function onFeatureSelect(feature) {
+        	console.log(feature);
         	if(YMLib.Var.bm==undefined){
         		//if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
         		//else YMLib.Var.bm=feature.attributes.ROADBM;
