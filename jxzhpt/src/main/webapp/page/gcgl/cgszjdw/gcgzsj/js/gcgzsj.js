@@ -13,13 +13,13 @@ function dingwei(index){
 			var zdzh="";
 			for(var i=0;i<msg.length;i++){
 				if(i==msg.length-1){
-					lxbm=lxbm+msg[i].lxbm;
-					qdzh=qdzh+msg[i].qdzh;
-					zdzh=zdzh+msg[i].zdzh;
+					lxbm=lxbm+msg[i].ghlxbm;
+					qdzh=qdzh+msg[i].ghqdzh;
+					zdzh=zdzh+msg[i].ghzdzh;
 				}else{
-					lxbm=lxbm+msg[i].lxbm+"-";
-					qdzh=qdzh+msg[i].qdzh+"-";
-					zdzh=zdzh+msg[i].zdzh+"-";
+					lxbm=lxbm+msg[i].ghlxbm+"-";
+					qdzh=qdzh+msg[i].ghqdzh+"-";
+					zdzh=zdzh+msg[i].ghzdzh+"-";
 				}
 			}
 			locationXm1(lxbm,qdzh,zdzh);
