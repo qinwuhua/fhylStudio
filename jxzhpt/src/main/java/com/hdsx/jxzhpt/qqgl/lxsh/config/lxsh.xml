@@ -828,7 +828,7 @@
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_SJGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
-		and sbthcd &lt;=#{sbthcd}
+<!-- 		and sbthcd &lt;=#{sbthcd} -->
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -867,7 +867,7 @@
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_LMGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
-		and sbthcd &lt;=#{sbthcd}
+<!-- 		and sbthcd &lt;=#{sbthcd} -->
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -906,7 +906,7 @@
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from LXSH_XJ t,
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx  where 1=1 and t.xmbm(+)=lx.xmid
-		and sbthcd &lt;=#{sbthcd}
+<!-- 		and sbthcd &lt;=#{sbthcd} -->
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
