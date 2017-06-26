@@ -1082,7 +1082,7 @@ list-style-type:none;
 		</div>
     </div>
     
-    <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
+    <!-- <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
 	    	<table class="table_11"  id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" >
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
@@ -1091,6 +1091,6 @@ list-style-type:none;
 				</div>
 			</div>
 			
-	</div>
+	</div> -->
 </body>
 </html>
