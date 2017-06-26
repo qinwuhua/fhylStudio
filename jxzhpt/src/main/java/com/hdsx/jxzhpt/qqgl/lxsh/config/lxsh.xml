@@ -355,9 +355,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt=#{sbzt1}
-		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">and shzt=#{shzt}</if>
+		
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
 		<if test="jsjsdj!='' and jsjsdj!= null ">and ${jsjsdj}</if>
@@ -394,8 +394,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -441,8 +442,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -479,8 +481,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -519,8 +522,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -557,8 +561,9 @@
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1210,8 +1215,9 @@
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-			<if test="sbzt1!='' and sbzt1!= null ">
-				and shzt=#{sbzt1}
+			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+			<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1290,8 +1296,9 @@
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-			<if test="sbzt1!='' and sbzt1!= null ">
-				and to_char(sbzt) like '%'||#{sbzt1}||'%'
+			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+			<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1368,8 +1375,9 @@
 			<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 			<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-			<if test="sbzt1!='' and sbzt1!= null ">
-				and to_char(sbzt) like '%'||#{sbzt1}||'%'
+			<if test="sbzt1!='' and sbzt1!= null ">and sbzt=#{sbzt1}</if>
+			<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 			</if>
 			<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 			<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
