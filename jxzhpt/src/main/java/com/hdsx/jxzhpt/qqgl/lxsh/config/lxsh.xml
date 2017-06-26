@@ -824,7 +824,7 @@
 		select gpsqdzh qdzh,gpszdzh zdzh from  lxsh_lx where lxbm=#{ghlxbh} and xmid=#{xmbm} and jdbs='0' and sffirst='1'
 	</select>
 	<select id="selectlxbyxmid1" parameterType="lxsh" resultType="lxsh">
-		select lxbm,qdzh,zdzh from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs}
+		select * from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	
 	<select id="querylxshSjgz" parameterType="lxsh" resultType="elist">
