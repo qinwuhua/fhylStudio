@@ -34,7 +34,7 @@ var xzqh;
 		loadUnitadd("gydw",$.cookie("unit"));
 		loadDistadd("xzqh",$.cookie("dist"));
 		$('#xmbm').html(parent.YMLib.Var.Obj.xmbm);
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 		autoCompleteGHLXBM();
 	});
 	function autoCompleteLXBM(){
@@ -251,13 +251,13 @@ var xzqh;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" /><br/>
 					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly" type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly" type="text" name="zdzh" id="zdzh" style="width: 120px" /><br/>
 					<span id="span_zdzh" style="font-size: small;color: red;"></span>
 				</td>
 			</tr>

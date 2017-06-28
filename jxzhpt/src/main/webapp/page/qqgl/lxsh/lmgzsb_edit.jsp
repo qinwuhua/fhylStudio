@@ -73,7 +73,7 @@ text-decoration:none;
 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+qdStr);
 				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+zdStr); */
 				
-				if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+				/* if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
 					qdStr=accSub(parseFloat(item.qdzh),5);
 					if(qdStr<0){
 						qdStr=0;
@@ -85,7 +85,8 @@ text-decoration:none;
 					if(zdStr<0){
 						zdStr=0;
 					}
-				}
+				} */
+				qdStr=item.qdzh;zdStr=item.zdzh;
 				if(parseFloat(qdStr) > parseFloat(zdStr)){
 					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
 					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);

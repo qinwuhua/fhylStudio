@@ -39,7 +39,7 @@
 		loadDistedit("xzqh",$.cookie("dist"),parent.YMLib.Var.Obj.xzqhdm);
 		$("#xzqh").combotree('setValues',parent.YMLib.Var.Obj.xzqhdm.split(","));
 		
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 		autoCompleteGHLXBM();
 	});
 	
@@ -224,14 +224,14 @@
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly"type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/>
+					<input readonly="readonly"type="text" name="qdzh" id="qdzh" style="width: 120px" />
 					<span id="qd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly"type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly"type="text" name="zdzh"id="zdzh" style="width: 120px" /><br/>
 					<span id="zd"></span>
 				</td>
 				

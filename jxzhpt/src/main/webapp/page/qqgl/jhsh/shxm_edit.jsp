@@ -40,7 +40,7 @@
 					$('#submit').form("load",msg);
 					/* $('#span_qdzh').html(msg.gpsqdzh);
 					$('#span_zdzh').html(msg.gpszdzh); */
-					if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
+					/* if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
 						qdStr=accSub(parseFloat(msg.gpsqdzh),5);
 						if(qdStr<0){
 							qdStr=0;
@@ -52,7 +52,8 @@
 						if(zdStr<0){
 							zdStr=0;
 						}
-					}
+					} */
+					qdStr=msg.gpsqdzh;zdStr=msg.gpszdzh;
 					if(parseFloat(qdStr) > parseFloat(zdStr)){
 						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
 						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);

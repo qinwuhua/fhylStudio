@@ -117,7 +117,8 @@ text-decoration:none;
 			data:data1,
 			dataType:'json',
 			success:function(item){
-				if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
+				qdStr=item.qdzh;zdStr=item.zdzh;
+				/* if(parseFloat(item.qdzh) < parseFloat(item.zdzh)){
 					qdStr=accSub(parseFloat(item.qdzh),5);
 					if(qdStr<0){
 						qdStr=0;
@@ -129,7 +130,7 @@ text-decoration:none;
 					if(zdStr<0){
 						zdStr=0;
 					}
-				}
+				} */
 				if(parseFloat(qdStr) > parseFloat(zdStr)){
 					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
 					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
@@ -242,7 +243,7 @@ text-decoration:none;
 			}  */
 			saveLxsh();
 		});
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 		autoCompleteGHLXBM();
 	});
 	function autoCompleteLXBM(){
@@ -438,13 +439,13 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" /><br/>
 					<span id="span_qdzh"></span>
-				</td>
+				</td> 
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly" type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input readonly="readonly" type="text" name="zdzh" id="zdzh" style="width: 120px" /><br/>
 					<span id="span_zdzh"></span>
 				</td>
 			</tr>
