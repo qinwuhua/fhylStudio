@@ -787,7 +787,18 @@
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
 	<select id="qqglGpsroad" parameterType="hashmap" resultType="lxsh">
-		select t.*,ll.gpsqdzh,ll.gpszdzh,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh,ll.lc JSZLC,ll.xjlc from ${xmlx} t left join (select * from wnjh_lx l where sffirst=1) ll on t.id=ll.xmid where xmmc like '%'||#{xmmc}||'%' and xzqhdm2 like '%'||#{xzqh}||'%' and qqkzzt !='已开展' and znsjck is null
+		select t.*,ll.gpsqdzh,ll.gpszdzh,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh,ll.lc JSZLC,ll.xjlc 
+		from ${xmlx} t left join (select * from wnjh_lx l where sffirst=1) ll on t.id=ll.xmid 
+		where  qqkzzt !='已开展' and znsjck is null
+		<if test="xmmc!=null and xmmc!=''">
+		and xmmc like '%'||#{xmmc}||'%' 
+		</if>
+		<if test="xzqh!=null and xzqh!=''">
+		and xzqhdm2 like '%'||#{xzqh}||'%' 
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+		  and xmbm in (${xmbm})
+		</if>
 	</select>
 	<update id="updatesjgz" parameterType="lxsh">
 		update lxsh_sjgz set <!-- bzys=#{bzys}, -->lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}

@@ -1985,9 +1985,25 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void qqglGpsroad(){
+		if(xmmc!=null)
 		lxsh.setXmmc(xmmc);
+		if(xzqh!=null)
 		lxsh.setXzqh(xzqh);
+		if(xmlx!=null)
 		lxsh.setXmlx(xmlx);
+		if(xmbm!=null&&!xmbm.equals("")){
+			String xmbmVal="";
+			String[] val = xmbm.split(",");
+			for (int i = 0; i < val.length; i++) {
+				if(i==val.length-1){
+					xmbmVal+="'"+val[i]+"'";}
+				else{
+					xmbmVal+="'"+val[i]+"',";
+					}
+				
+			}
+			lxsh.setXmbm(xmbmVal);
+		}
 		List<Lxsh> list=lxshServer.qqglGpsroad(lxsh);
 		try {
 			JsonUtils.write(list, getresponse().getWriter());

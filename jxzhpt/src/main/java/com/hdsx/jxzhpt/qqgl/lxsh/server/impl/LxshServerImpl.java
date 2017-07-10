@@ -629,6 +629,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		hm.put("xmmc", lxsh.getXmmc());
 		hm.put("xzqh", lxsh.getXzqh());
 		hm.put("xmlx", lxsh.getXmlx());
+		hm.put("xmbm", lxsh.getXmbm());
 		return queryList("qqglGpsroad", hm);
 
 	}
