@@ -18,7 +18,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/js/loadTJ.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/kxxyj/js/kxxyj.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 
 <style type="text/css">
 	TD {font-size: 12px;}
@@ -34,86 +34,27 @@ var xzqh;
 		loadUnitadd("gydw",$.cookie("unit"));
 		loadDistadd("xzqh",$.cookie("dist"));
 		$('#xmbm').html(parent.YMLib.Var.Obj.xmbm);
-		autoCompleteLXBM();
 		autoCompleteGHLXBM();
 	});
-	function autoCompleteLXBM(){
-		var url = "/jxzhpt/qqgl/wnjhGpsroad.do";
-		$("#ylxbh").autocomplete(url, {
-			multiple : false,
-			minChars :4,
-			multipleSeparator : ' ',
-			mustMatch: true,
-	  		cacheLength : 0,
-	  		delay : 200,
-	  		max : 150,
-	  		extraParams : {
-	  			lxbm:function() {
-	  				var d = $("#ylxbh").val();
-	  				return d;
-	  			},
-	  			xzqh:function() {
-	  				var d = $.cookie("dist2");
-	  				return d;
-	  			}
-	  		},
-	  		dataType : 'json',// 返回类型
-	  		// 对返回的json对象进行解析函数，函数返回一个数组
-	  		parse : function(data) {
-	  			var aa = [];
-	  			aa = $.map(eval(data), function(row) {
-	  					return {
-	  						data : row,
-	  						value : row.ghlxbh.replace(/(\s*$)/g,""),
-	  						result : row.ghlxbh.replace(/(\s*$)/g,"")
-	  					};
-	  				});
-	  			return aa;
-	  		},
-	  		formatItem : function(row, i, max) {
-	  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
-	  		}
-	  	}).result(
-				function(e, item) {
-					xzqh=item.xzqh;
-					if(item==undefined) return ;
-					$("#xzqh,#qdzh,#zdzh,#lc,#jsdj,#gydw,#qd,#zd").attr("value",'');
-					$("#lxmc").val(item.lxmc);
-					$("#qdzh").val(parseFloat(item.qdzh));
-					$("#zdzh").val(parseFloat(item.zdzh));
-					selectTSDQ(item.ghlxbm,item.ghqdzh,item.ghzdzh);
-					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
-					//$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					//$("#qdmc").val(item.qdmc);
-					//$("#zdmc").val(item.zdmc);
-					qdStr=parseFloat(item.qdzh);
-					zdStr=parseFloat(item.zdzh);
-					$("#gpsqdzh").val(qdStr);
-					$("#gpszdzh").val(zdStr);
-					getghlxinfo(item.ghlxbh,item.qdzh,item.zdzh);
-					cxqdmc($('#ghlxbm').val(),$('#ghqdzh').val());
-					cxzdmc($('#ghlxbm').val(),$('#ghzdzh').val());
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-						$('#span_qdzh').html(">="+item.qdzh);
-						$('#span_zdzh').html("<="+item.zdzh);
-					}else{
-						$('#span_qdzh').html("<="+item.qdzh);
-						$('#span_zdzh').html(">="+item.zdzh);
-					}
-					//querymc('');
-					//querymc('zdzh');
-// 					$("#qd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.qdzh);
-// 					$("#zd").html("<font color='red' size='2'>*&nbsp;</font>"+"<font color='red' size='2'>"+item.zdzh);
-					//queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
-					cesuan2();
-				});
-	}
+	
 	function updateLx(){
 		if($("#xzqh").combobox("getValues").join(',')==''){
 			alert('请选择行政区划');
 			return;
 		}
-	
+		var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
+		var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
+		
+		 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
+			alert("对不起，起点桩号不能小于"+redqdzh+"！");
+			$("#ghqdzh").focus();
+			return false;
+		}
+		if(parseFloat($("#ghzdzh").val())*1000>redzdzh*1000){
+			alert("对不起，止点桩号不能大于"+redzdzh+"！");
+			$("#ghzdzh").focus();
+			return false;
+		} 
 		/*var params="lx.lxbm="+$('#lxbm').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.gydw="+$('#gydw').combotree("getText")
 		+"&lx.gydwdm="+$('#gydw').combotree("getValue")+"&lx.xzqh="+$('#xzqh').combotree("getText")+"&lx.xzqhdm="+$('#xzqh').combotree("getValue")
 		+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()+"&lx.jsxz="+$('#jsxz').val()+"&lx.qdzh="+$('#qdzh').val()
@@ -131,7 +72,7 @@ var xzqh;
 		+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValues").join(',')
 		+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#jsdj").val()+"&lxsh.xmnf="+$('#xmbm').html().substring(0,4)+"&lxsh.xmlx=lmgz"
-		+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
+		+"&lxsh.gpsqdzh="+$("#gpsqdzh").val()+"&lxsh.gpszdzh="+$("#gpszdzh").val();
 		
 		params+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
@@ -173,8 +114,7 @@ var xzqh;
 		} */
 		var zlcs=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));var zlc=Math.abs(zlcs);
 		$("#lc").val(zlc);
-		$("#lc").html(zlc);
-		//getbzcs($("#ylxbh").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		queryJsdjAndLc($('#ghlxbm').val(),$("#ghqdzh").val(),$("#ghzdzh").val());
 		selectTSDQ($("#ghlxbm").val(),$("#ghqdzh").val(),$("#ghzdzh").val());
 		if($("#ghqdzh").val()!='')
@@ -209,7 +149,7 @@ var xzqh;
 </script>
 	<form action="" id="lx">
 	<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
-		<tr style="height: 30px;">
+		 <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -220,11 +160,13 @@ var xzqh;
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_zdzh" style="font-size: small;color: red;"></span>
 				</td>
             </tr>
 			<tr style="height: 35px;">
@@ -239,13 +181,11 @@ var xzqh;
 					<font color='red' size='2'>*&nbsp;</font>原起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
-					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>原止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onchange="changeZlc()"/><br/>
-					<span id="zd"></span>
+					<input readonly="readonly" type="text" name="zdzh"id="zdzh" style="width: 120px" onchange="changeZlc()"/><br/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -271,7 +211,7 @@ var xzqh;
 					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/>
 				</td>
 			</tr>
-			 
+			
             <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					共线路线编码</td>

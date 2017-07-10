@@ -24,13 +24,31 @@
 		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj like #{jsdj}||'%'
 	</select>
 	<select id="selectGjwnjhcf" parameterType="lxsh" resultType="lxsh">
-		select * from wnjh_sjgz where ghlxbh=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh}))
+		select * from wnjh_sjgz where 
+		xmbm in(
+		select xmid from wnjh_lx where ghlxbm = #{ghlxbh} 
+		and (xzqhdm like rtrim(#{xzqh},'0')||'%' or xzqhdm2 like rtrim(#{xzqh},'0')||'%')
+		and ghqdzh&lt;#{zdzh} 
+		and ghzdzh>#{qdzh}
+		)
 	</select>
 	<select id="selectLmwnjhcf" parameterType="lxsh" resultType="lxsh">
-		select * from wnjh_lmgz where ghlxbh=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh}))
+		select * from wnjh_lmgz where 
+		xmbm in(
+		select xmid from wnjh_lx where ghlxbm = #{ghlxbh} 
+		and (xzqhdm like rtrim(#{xzqh},'0')||'%' or xzqhdm2 like rtrim(#{xzqh},'0')||'%')
+		and ghqdzh&lt;#{zdzh} 
+		and ghzdzh>#{qdzh}
+		)
 	</select>
 	<select id="selectXjwnjhcf" parameterType="lxsh" resultType="lxsh">
-		select * from wnjh_xj where ghlxbh=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh}))
+		select * from wnjh_xj where 
+		xmbm in(
+		select xmid from wnjh_lx where xjlxbm = #{ghlxbh} 
+		and (xzqhdm like rtrim(#{xzqh},'0')||'%' or xzqhdm2 like rtrim(#{xzqh},'0')||'%')
+		and xjqdzh&lt;#{zdzh} 
+		and xjzdzh>#{qdzh}
+		)
 	</select>
 	<insert id="insertGjwnjh" parameterType="lxsh">
 		insert into WNJH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,gz,sz,ghxlxbm,ghxlxmc,xmklx,qqkzzt<if test="xzqhdm2 != null">,xzqhdm2</if><if test="lsxmbm !=null">,lsxmbm</if>
@@ -741,6 +759,8 @@
 		<if test="gxlxbm !=null">,gxlxbm=#{gxlxbm}</if>
 		<if test="gxqdzh !=null">,gxqdzh=#{gxqdzh}</if>
 		<if test="gxzdzh !=null">,gxzdzh=#{gxzdzh}</if>
+		<if test="gpsqdzh !=null">,gpsqdzh=#{gpsqdzh}</if>
+		<if test="gpszdzh !=null">,gpszdzh=#{gpszdzh}</if>
 		where xmid=#{xmbm} and sffirst='1' 
 	</update>
 	<select id="querywnjhlxid" parameterType="lxsh" resultType="string">
@@ -776,6 +796,8 @@
 		<if test="gxlxbm !=null">,gxlxbm=#{gxlxbm}</if>
 		<if test="gxqdzh !=null">,gxqdzh=#{gxqdzh}</if>
 		<if test="gxzdzh !=null">,gxzdzh=#{gxzdzh}</if>
+		<if test="gpsqdzh !=null">,gpsqdzh=#{gpsqdzh}</if>
+		<if test="gpszdzh !=null">,gpszdzh=#{gpszdzh}</if>
 		where xmid=#{xmbm} and id=#{id} 
 	</update>
 	

@@ -1310,6 +1310,8 @@ public class LxshController extends BaseActionSupport{
 		lx.setGxzdzh(lxsh.getGxzdzh());
 		lx.setGhlxmc(lxsh.getGhlxmc());
 		lx.setXmbm1(lxsh.getXmbm1());
+		lx.setGpsqdzh(lxsh.getGpsqdzh());
+		lx.setGpszdzh(lxsh.getGpszdzh());
 		if(bl){
 			//jhshServer.updateLx(lx);
 			jhshServer.updateLxqwh(lx);
@@ -1353,6 +1355,8 @@ public class LxshController extends BaseActionSupport{
 			lx.setGxzdzh(lxsh.getGxzdzh());
 			lx.setGhlxmc(lxsh.getGhlxmc());
 			lx.setXmbm1(lxsh.getXmbm1());
+			lx.setGpsqdzh(lxsh.getGpsqdzh());
+			lx.setGpszdzh(lxsh.getGpszdzh());
 			jhshServer.updateLxqwh(lx);
 			
 			ResponseUtils.write(getresponse(), "true");

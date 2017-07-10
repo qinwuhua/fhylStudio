@@ -3460,8 +3460,16 @@ function autoCompleteGHLXBM(){
 			$('#ghlxmc').val(item.xlxmc);
 			$('#lxmc').val(item.lxmc);
 			$('#ylxbh').val(item.ylxbm);
-			$('#qdzh').val(item.yqdzh);
-			$('#zdzh').val(item.yzdzh);
+			
+			if(parseFloat(item.yqdzh)<parseFloat(item.yzdzh)){
+				$('#qdzh').val(item.yqdzh);
+				$('#zdzh').val(item.yzdzh);
+			}
+			else{
+				$('#qdzh').val(item.yzdzh);
+				$('#zdzh').val(item.yqdzh);
+			}
+			
 			//$('#gxlxbm').val(item.cfld);
 			//$('#gxqdzh').val(item.cfqd);
 			//$('#gxzdzh').val(item.cfzd);
@@ -3474,6 +3482,12 @@ function autoCompleteGHLXBM(){
 			selectTSDQ1(item.xlxbm,item.xqdzh,item.xzdzh);
 			$('#lc').val(accSub(parseFloat(item.xzdzh),parseFloat(item.xqdzh)));
 			$('#lc').html(accSub(parseFloat(item.xzdzh),parseFloat(item.xqdzh)));
+			$('#gpsqdzh').val(item.xqdzh);
+			$('#gpszdzh').val(item.xzdzh);
+			$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.xqdzh);
+			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.xzdzh);
+		
+			
 	});
 }
 
@@ -3500,7 +3514,6 @@ function selectTSDQ1(lxbm,qdzh,zdzh){
 
 function querymcbygh(){
 	getylxinfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
-	
 }
 
 function getylxinfo(lxbm,qdzh,zdzh){
@@ -3530,37 +3543,18 @@ function getylxinfo(lxbm,qdzh,zdzh){
 				//getylxlminfo(lxbm,qdzh,zdzh);
 			}
 			
-			if(parseFloat(msg.cfqd)<parseFloat(msg.cfzd)){
-				cfqd=accAdd(accSub(parseFloat(qdzh),parseFloat(msg.xqdzh)),parseFloat(msg.cfqd));
-				cfzd=accSub(accAdd(parseFloat(cfqd),parseFloat(zdzh)),parseFloat(qdzh));
-				//getylxlminfo(lxbm,qdzh,zdzh);
-			}else{
-				cfqd=accSub(parseFloat(msg.cfqd),accSub(parseFloat(qdzh),parseFloat(msg.xqdzh))); 
-				cfzd=accAdd(accSub(parseFloat(msg.xzdzh),parseFloat(zdzh)),parseFloat(msg.cfzd));
-				//getylxlminfo(lxbm,qdzh,zdzh);
-			}
-			
-			$("#lmkd").val(msg.lmkd);	
-			$("#ylmlx").val(msg.lmlx);
-			$("#ylxbh").val(msg.ylxbm.substr(0,4));
-			//$("#gxlxbm").val(msg.cfld);$("#gxqdzh").val(cfqd);$("#gxzdzh").val(cfzd);
 			if(qd!='NaN'){
-				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#qdzh").val(qd);$("#zdzh").val(zd);
-				$("#ylxbh").val(msg.ylxbm.substr(0,4));$("#gpsqdzh").val(qd);$("#gpszdzh").val(zd);
-				
+				$("#ylxbh").val(msg.ylxbm.substr(0,4));
+				if(parseFloat(msg.yqdzh)<parseFloat(msg.yzdzh)){
+					$("#qdzh").val(qd);$("#zdzh").val(zd);
+				}
+				else{
+					$("#qdzh").val(zd);$("#zdzh").val(qd);
+				}
+					
 				$('#lc').val(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				$('#lc').html(accSub(parseFloat(zdzh),parseFloat(qdzh)));
 				
-				
-				if(parseFloat(qd) > parseFloat(zd)){
-					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.yqdzh);
-					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.yzdzh);
-				}else{
-					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.yqdzh);
-					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.yzdzh);
-				}
-				
-				//
 			}
 			
 		}

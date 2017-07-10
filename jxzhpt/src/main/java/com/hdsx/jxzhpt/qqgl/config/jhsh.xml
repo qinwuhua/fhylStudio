@@ -1707,6 +1707,8 @@
 		<if test="gxlxbm != null">l.gxlxbm=#{gxlxbm},</if>
 		<if test="gxqdzh != null">l.gxqdzh=#{gxqdzh},</if>
 		<if test="gxzdzh != null">l.gxzdzh=#{gxzdzh},</if>
+		<if test="gpsqdzh != null">l.gpsqdzh=#{gpsqdzh},</if>
+		<if test="gpszdzh != null">l.gpszdzh=#{gpszdzh},</if>
 		<if test="lqhntmchd != null">
         LQHNTMCHD = #{lqhntmchd},
       </if>
@@ -1818,6 +1820,54 @@
 		<if test="snhntmchbmj != null">
         snhntmchbmj = #{snhntmchbmj},
       </if>
+      <if test="fcbc30 != null">
+	        fcbc30=#{fcbc30},
+	      </if>
+	      <if test="bc6 != null">
+	        bc6=#{bc6},
+	      </if>
+	      <if test="bc25 != null">
+	        bc25=#{bc25},
+	      </if>
+	      <if test="bc30 != null">
+	        bc30=#{bc30},
+	      </if>
+	      <if test="bmc25 != null">
+	        bmc25=#{bmc25},
+	      </if>
+	      <if test="wfc != null">
+	        wfc=#{wfc},
+	      </if>
+	      <if test="xjfc != null">
+	        xjfc=#{xjfc},
+	      </if>
+	      <if test="fcbc30hd != null">
+	        fcbc30hd=#{fcbc30hd},
+	      </if>
+	      <if test="bc6hd != null">
+	        bc6hd=#{bc6hd},
+	      </if>
+	      <if test="bc25hd != null">
+	        bc25hd=#{bc25hd},
+	      </if>
+	      <if test="bc30hd != null">
+	        bc30hd=#{bc30hd},
+	      </if>
+	      <if test="bmc25hd != null">
+	        bmc25hd=#{bmc25hd},
+	      </if>
+	      <if test="wfchd != null">
+	        wfchd=#{wfchd},
+	      </if>
+	      <if test="xjfchd != null">
+	        xjfchd=#{xjfchd},
+	      </if>
+		<if test="wbchd != null">
+	        wbchd=#{wbchd},
+	      </if>
+	      <if test="wbc != null">
+	        wbc=#{wbc},
+	      </if>
 		<if test="lc!=null and lc!=''">l.lc=#{lc},</if>
 		l.xmid=#{xmid} 
 		where l.xmid=#{xmid} 
@@ -1870,6 +1920,8 @@
 		<if test="gxlxbm != null">l.gxlxbm=#{gxlxbm},</if>
 		<if test="gxqdzh != null">l.gxqdzh=#{gxqdzh},</if>
 		<if test="gxzdzh != null">l.gxzdzh=#{gxzdzh},</if>
+		<if test="gpsqdzh != null">l.gpsqdzh=#{gpsqdzh},</if>
+		<if test="gpszdzh != null">l.gpszdzh=#{gpszdzh},</if>
 		<if test="lqhntmchd != null">
         LQHNTMCHD = #{lqhntmchd},
       </if>
@@ -1981,6 +2033,55 @@
 		<if test="snhntmchbmj != null">
         snhntmchbmj = #{snhntmchbmj},
       </if>
+      <if test="fcbc30 != null">
+	        fcbc30=#{fcbc30},
+	      </if>
+	      <if test="bc6 != null">
+	        bc6=#{bc6},
+	      </if>
+	      <if test="bc25 != null">
+	        bc25=#{bc25},
+	      </if>
+	      <if test="bc30 != null">
+	        bc30=#{bc30},
+	      </if>
+	      <if test="bmc25 != null">
+	        bmc25=#{bmc25},
+	      </if>
+	      <if test="wfc != null">
+	        wfc=#{wfc},
+	      </if>
+	      <if test="xjfc != null">
+	        xjfc=#{xjfc},
+	      </if>
+	      <if test="fcbc30hd != null">
+	        fcbc30hd=#{fcbc30hd},
+	      </if>
+	      <if test="bc6hd != null">
+	        bc6hd=#{bc6hd},
+	      </if>
+	      <if test="bc25hd != null">
+	        bc25hd=#{bc25hd},
+	      </if>
+	      <if test="bc30hd != null">
+	        bc30hd=#{bc30hd},
+	      </if>
+	      <if test="bmc25hd != null">
+	        bmc25hd=#{bmc25hd},
+	      </if>
+	      <if test="wfchd != null">
+	        wfchd=#{wfchd},
+	      </if>
+	      <if test="xjfchd != null">
+	        xjfchd=#{xjfchd},
+	      </if>
+		<if test="wbchd != null">
+	        wbchd=#{wbchd},
+	      </if>
+	      <if test="wbc != null">
+	        wbc=#{wbc},
+	      </if>
+      
 		<if test="lc!=null and lc!=''">l.lc=#{lc},</if>
 		l.xmid=#{xmid} 
 		where l.xmid=#{xmbm1} 
@@ -2146,7 +2247,54 @@
 		<if test="xmsq.sbzj != null">
         sbzj = #{xmsq.sbzj},
       </if>
-		
+		<if test="xmsq.fcbc30 != null">
+	        fcbc30=#{xmsq.fcbc30},
+	      </if>
+	      <if test="xmsq.bc6 != null">
+	        bc6=#{xmsq.bc6},
+	      </if>
+	      <if test="xmsq.bc25 != null">
+	        bc25=#{xmsq.bc25},
+	      </if>
+	      <if test="xmsq.bc30 != null">
+	        bc30=#{xmsq.bc30},
+	      </if>
+	      <if test="xmsq.bmc25 != null">
+	        bmc25=#{xmsq.bmc25},
+	      </if>
+	      <if test="xmsq.wfc != null">
+	        wfc=#{xmsq.wfc},
+	      </if>
+	      <if test="xmsq.xjfc != null">
+	        xjfc=#{xmsq.xjfc},
+	      </if>
+	      <if test="xmsq.fcbc30hd != null">
+	        fcbc30hd=#{xmsq.fcbc30hd},
+	      </if>
+	      <if test="xmsq.bc6hd != null">
+	        bc6hd=#{xmsq.bc6hd},
+	      </if>
+	      <if test="xmsq.bc25hd != null">
+	        bc25hd=#{xmsq.bc25hd},
+	      </if>
+	      <if test="xmsq.bc30hd != null">
+	        bc30hd=#{xmsq.bc30hd},
+	      </if>
+	      <if test="xmsq.bmc25hd != null">
+	        bmc25hd=#{xmsq.bmc25hd},
+	      </if>
+	      <if test="xmsq.wfchd != null">
+	        wfchd=#{xmsq.wfchd},
+	      </if>
+	      <if test="xmsq.xjfchd != null">
+	        xjfchd=#{xmsq.xjfchd},
+	      </if>
+		<if test="xmsq.wbchd != null">
+	        wbchd=#{xmsq.wbchd},
+	      </if>
+	      <if test="xmsq.wbc != null">
+	        wbc=#{xmsq.wbc},
+	      </if>
 		<if test="lx.lc!=null and lx.lc!=''">l.lc=#{lx.lc},</if>
 		
 		l.xmid=#{lx.xmid} 
@@ -2350,7 +2498,7 @@
 		<if test="xmsq.wbchd != null">
 	        wbchd=#{xmsq.wbchd},
 	      </if>
-	      <if test="xmsq.wbc != null">
+	      <if test="wbc != null">
 	        wbc=#{xmsq.wbc},
 	      </if>
 		
@@ -2718,6 +2866,55 @@
 	      <if test="snhntmchbmj != null">
 	        ,snhntmchbmj
 	      </if>
+	      <if test="fcbc30 != null">
+	        ,fcbc30
+	      </if>
+	      <if test="bc6 != null">
+	        ,bc6
+	      </if>
+	      <if test="bc25 != null">
+	        ,bc25
+	      </if>
+	      <if test="bc30 != null">
+	        ,bc30
+	      </if>
+	      <if test="bmc25 != null">
+	        ,bmc25
+	      </if>
+	      <if test="wfc != null">
+	        ,wfc
+	      </if>
+	      <if test="xjfc != null">
+	        ,xjfc
+	      </if>
+	      <if test="fcbc30hd != null">
+	        ,fcbc30hd
+	      </if>
+	      <if test="bc6hd != null">
+	        ,bc6hd
+	      </if>
+	      <if test="bc25hd != null">
+	        ,bc25hd
+	      </if>
+	      <if test="bc30hd != null">
+	        ,bc30hd
+	      </if>
+	      <if test="bmc25hd != null">
+	        ,bmc25hd
+	      </if>
+	      <if test="wfchd != null">
+	        ,wfchd
+	      </if>
+	      <if test="xjfchd != null">
+	        ,xjfchd
+	      </if>
+	      <if test="wbchd != null">
+	        ,wbchd
+	      </if>
+	      <if test="wbc != null">
+	        ,wbc
+	      </if>
+	      
 	     <if test="ghlxbm != null">,ghlxbm</if>
 		<if test="ghlxmc != null">,ghlxmc</if>
 		<if test="ghqdzh != null">,ghqdzh</if>
@@ -2871,6 +3068,54 @@
 	      <if test="snhntmchbmj != null">
 	        ,#{snhntmchbmj}
 	      </if>
+	      <if test="fcbc30 != null">
+	        ,#{fcbc30}
+	      </if>
+	      <if test="bc6 != null">
+	        ,#{bc6}
+	      </if>
+	      <if test="bc25 != null">
+	        ,#{bc25}
+	      </if>
+	      <if test="bc30 != null">
+	        ,#{bc30}
+	      </if>
+	      <if test="bmc25 != null">
+	        ,#{bmc25}
+	      </if>
+	      <if test="wfc != null">
+	        ,#{wfc}
+	      </if>
+	      <if test="xjfc != null">
+	        ,#{xjfc}
+	      </if>
+	      <if test="fcbc30hd != null">
+	        ,#{fcbc30hd}
+	      </if>
+	      <if test="bc6hd != null">
+	        ,#{bc6hd}
+	      </if>
+	      <if test="bc25hd != null">
+	        ,#{bc25hd}
+	      </if>
+	      <if test="bc30hd != null">
+	        ,#{bc30hd}
+	      </if>
+	      <if test="bmc25hd != null">
+	        ,#{bmc25hd}
+	      </if>
+	      <if test="wfchd != null">
+	        ,#{wfchd}
+	      </if>
+	      <if test="xjfchd != null">
+	        ,#{xjfchd}
+	      </if>
+	      <if test="wbchd != null">
+	        ,#{wbchd}
+	      </if>
+	      <if test="wbc != null">
+	         ,#{wbc}
+	      </if>
 	      <if test="ghlxbm != null">,#{ghlxbm}</if>
 		<if test="ghlxmc != null">,#{ghlxmc}</if>
 		<if test="ghqdzh != null">,#{ghqdzh}</if>
@@ -2884,7 +3129,7 @@
 		delete from lxsh_lx where id=#{id}
 	</delete>
 	<select id="selectlxList" parameterType="lx" resultType="lx">
-		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj ,
+		select id,xmid,lxbm,lxmc,xzqh,xzqhdm ,gydw,gydwdm ,qdzh,zdzh,jsjsdj, 
 		decode(substr(xmid,11,1),1,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)),(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)))  lc,
 		xjsdj  ,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc  ,silc,dwlc,wllc,jhyilc ,jherlc ,jhsanlc,jhsilc ,jhdwlc ,jhwllc ,xjlxbm ,xjqdzh ,xjzdzh ,xjlc,jhlc,ghlxbm ,ghlxmc ,lqhntmchd  ,lqhntmc,gxlqhntmchd,gxlqhntmc  ,snhntmchd  ,snhntmc,lqlmjdrzshd,lqlmjdrzs  ,lqlmcbrzshd,lqlmcbrzs  ,swjchd ,swjc,lqlmpmlqjdlzshd ,lqlmpmlqjdlzs,lqlmrhlqjdlzshd ,lqlmrhlqjdlzs,lqlmcblzshd,lqlmcblzs  ,xzrxjchd,xzrxjc ,swjclzshd  ,swjclzs,xfchd  ,xfc ,wcsnmbhd,wcsnmb ,wcswjchd,wcswjc ,snhntmchbhd,snhntmchb  ,bxhd,bx,snhntmcsshhd ,snhntmcssh ,sbzj,lxlmkd ,xzqhdm2,xzqhmc2,gxlxbm ,gxqdzh ,gxzdzh ,ghqdzh ,ghzdzh ,snhntmchbmj,fcbc30,bc6 ,bc25 ,bc30 ,bmc25 , wfc ,xjfc ,fcbc30hd ,bc6hd ,bc25hd ,bc30hd ,bmc25hd , wfchd ,xjfchd,wbchd,wbc   
 		from lxsh_lx

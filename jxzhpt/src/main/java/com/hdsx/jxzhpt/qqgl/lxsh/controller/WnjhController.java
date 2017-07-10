@@ -1322,8 +1322,8 @@ public class WnjhController extends BaseActionSupport{
 	}
 	
 	public void insertGjlxwnjh(){
-		XmsqServer xmsqServer=new XmsqServerImpl();
-		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
+		//XmsqServer xmsqServer=new XmsqServerImpl();
+		//lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmnf())>0 ? "是" : "否");
 		ResponseUtils.write(getresponse(), wnjhServer.insertGjlxwnjh(lxsh)+"");
 	}
 	public void updatewnjhsjlx(){

@@ -38,31 +38,11 @@
 					$("#gydw1").combotree('setValues',msg.gydwdm.split(","));
 					//loadUnit("gydw1",msg.gydwdm);
 					$('#submit').form("load",msg);
-					/* $('#span_qdzh').html(msg.gpsqdzh);
-					$('#span_zdzh').html(msg.gpszdzh); */
-					/* if(parseFloat(msg.gpsqdzh) < parseFloat(msg.gpszdzh)){
-						qdStr=accSub(parseFloat(msg.gpsqdzh),5);
-						if(qdStr<0){
-							qdStr=0;
-						}
-						zdStr=accAdd(parseFloat(msg.gpszdzh),5);
-					}else{
-						qdStr=accAdd(parseFloat(msg.gpsqdzh),5);
-						zdStr=accSub(parseFloat(msg.gpszdzh),5);
-						if(zdStr<0){
-							zdStr=0;
-						}
-					} */
-					qdStr=msg.gpsqdzh;zdStr=msg.gpszdzh;
-					if(parseFloat(qdStr) > parseFloat(zdStr)){
-						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+qdStr);
-						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+zdStr);
-					}else{
-						$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+qdStr);
-						$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+zdStr);
-					}
-					/* $('#xmbm1').val(msg.xmbm);
-					$('#xmbm1').attr("disabled","disabled"); */
+					qdStr=msg.gpsqdzh;
+					zdStr=msg.gpszdzh;
+					$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+msg.gpsqdzh);
+					$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+msg.gpszdzh);
+					
 					$('#xmbm').val(msg.xmbm);
 					$('#xmbm').attr("disabled","disabled");
 					$("#xmbm1").val(msg.xmbm);
@@ -84,11 +64,6 @@
 			$('#xzqhdm2').val($('#xzqh1').combo("getValues").join(","));
 			var result=true;
 			result = validateText('ylxbh',null,result);
-			//result = validateText('ghlxbm',null,result);
-			//result = validateText('lmkd','number',result);
-			//result = validateText('qdzh','number',result);
-			//result = validateText('zdzh','number',result);
-			//result = validateText('lc','number',result);
 			result = validateText('xmmc',null,result);
 			if(!result){
 				return;
@@ -115,38 +90,22 @@
 			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
 			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
 			//alert(redqdzh+"  "+redzdzh);
-			if(parseFloat(qdStr) < parseFloat(zdStr)){
-				if(parseFloat($("#qdzh").val()) < parseFloat(redqdzh)){
-					alert("原起点桩号不能小于"+redqdzh);
-					return false;
-				}
-				if(parseFloat($("#zdzh").val()) > parseFloat(redzdzh)){
-					alert("原止点桩号不能大于"+redzdzh);
-					return false;
-				}
-			}else{
-				if(parseFloat($("#qdzh").val()) > parseFloat(qdStr)){
-					alert("原起点桩号不能大于"+redqdzh);
-					return false;
-				}
-				if(parseFloat($("#zdzh").val()) < parseFloat(zdStr)){
-					alert("原止点桩号不能小于"+redzdzh);
-					return false;
-				}
+			 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
+				alert("对不起，起点桩号不能小于"+redqdzh+"！");
+				$("#ghqdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#ghzdzh").val())*1000>redzdzh*1000){
+				alert("对不起，止点桩号不能大于"+redzdzh+"！");
+				$("#ghzdzh").focus();
+				return false;
+			} 
+			 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
+				alert("对不起，起点桩号不能大于止点桩号！");
+				$("#ghqdzh").focus();
+				return false;
 			} 
 			return true;
-			/* if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
-				alert("起点桩号不能小于"+$('#span_qdzh').html());
-				return false;
-			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
-				alert("止点桩号不能大于"+$('#span_zdzh').html());
-				return false;
-			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
-				alert("止点桩号不能小于起点桩号");
-				return false;
-			}else{
-				return true;
-			} */
 		}
 	</script>
 </head>
@@ -165,11 +124,13 @@
 					规划起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_zdzh" style="font-size: small;color: red;"></span>
 				</td>
             </tr>
             <tr style="height: 30px;">
@@ -185,13 +146,13 @@
 					原起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input readonly="readonly" id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_qdzh" style="font-size: small;color: red;"></span>
+					
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					原止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input readonly="readonly" id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
-					<span id="span_zdzh" style="font-size: small;color: red;"></span>
+					
 				</td>
             </tr>
              

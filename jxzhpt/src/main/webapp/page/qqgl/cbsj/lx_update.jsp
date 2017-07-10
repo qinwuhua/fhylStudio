@@ -41,6 +41,30 @@
 			if(msg.snhntmcsshhd=='是'){
 				$("#snhntmcsshse").attr('checked','checked');
 			}
+			if(msg.xfchd=='是'){
+				$("#xfcse").attr('checked','checked');
+			}
+			if(msg.fcbc30hd=='是'){
+				$("#fcbc30se").attr('checked','checked');
+			}
+			if(msg.bc6hd=='是'){
+				$("#bc6se").attr('checked','checked');
+			}
+			if(msg.bc25hd=='是'){
+				$("#bc25se").attr('checked','checked');
+			}
+			if(msg.bc30hd=='是'){
+				$("#bc30se").attr('checked','checked');
+			}
+			if(msg.bmc25hd=='是'){
+				$("#bmc25se").attr('checked','checked');
+			}
+			if(msg.wfchd=='是'){
+				$("#wfcse").attr('checked','checked');
+			}
+			if(msg.xjfchd=='是'){
+				$("#xjfcse").attr('checked','checked');
+			}
 			$("#sbzj1").html(msg.sbzj);
 			$("#sbzj").val(msg.sbzj);
 			
@@ -51,84 +75,35 @@
 			$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
 			$("#ylxbh").val(parent.YMLib.Var.Obj.lxbm);
 			$("#jsdj").val(parent.YMLib.Var.Obj.xjsdj);
-			autoCompleteLXBM();
+			var item=parent.YMLib.Var.Obj;
+			
+			$('#gpsqdzh').val(item.gpsqdzh);
+			$('#gpszdzh').val(item.gpszdzh);
+			$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.gpsqdzh);
+			$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.gpszdzh);
+			
 			autoCompleteGHLXBM();
 		});
-		function autoCompleteLXBM(){
-			var url = "/jxzhpt/qqgl/queryAutoList.do";
-			$("#ylxbh").autocomplete(url, {
-				multiple : false,minChars :4,multipleSeparator : ' ',
-				mustMatch: true,cacheLength : 0,delay : 200,max : 150,
-		  		extraParams : {
-		  			'ylxbh':function() {
-		  				var d = $("#ylxbh").val();
-		  				return d;
-		  			},
-		  			'xzqhdm':function() {
-		  				var d = $.cookie("dist2");
-		  				return d;
-		  			}
-		  		},
-		  		dataType:'json',// 返回类型
-		  		// 对返回的json对象进行解析函数，函数返回一个数组
-		  		parse : function(data) {
-		  			var aa = [];
-		  			aa = $.map(eval(data), function(row) {
-		  					return {
-		  					data : row,
-		  					value : row.lxbm.replace(/(\s*$)/g,""),
-		  					result : row.lxbm.replace(/(\s*$)/g,"")
-		  				};
-		  			});
-		  			return aa;
-		  		},
-		  		formatItem : function(row, i, max) {
-		  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
-		  		}
-		  	}).result(
-				function(e, item) {
-					//$('#ylxbh').val(item.lxbm);
-					//$('#ghlxbh').val(item.lxbm);
-					
-					$('#lxmc').val(item.lxmc);
-					//$('#qdmc').val(item.qdmc);
-					//$('#zdmc').val(item.zdmc);
-					$('#qdzh').val(item.qdzh);
-					$('#gpsqdzh').val(item.qdzh);
-					
-					$('#zdzh').val(item.zdzh);
-					$('#gpszdzh').val(item.zdzh);
-					if(parseFloat(item.qdzh)<parseFloat(item.zdzh)){
-						$('#span_qdzh').html(">="+item.qdzh);
-						$('#span_zdzh').html("<="+item.zdzh);
-					}else{
-						$('#span_qdzh').html("<="+item.qdzh);
-						$('#span_zdzh').html(">="+item.zdzh);
-					}
-					$("#lc").val(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					cxqdmc($('#ghlxbm').val(),$('#ghqdzh').val());
-					cxzdmc($('#ghlxbm').val(),$('#ghzdzh').val());
-					getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					//queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					//queryylmlx($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
-					if(parseFloat($('#ghqdzh').val())<parseFloat($('#ghzdzh').val()))
-					getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
-					else
-					getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
-					$.ajax({
-						type:'post',
-						url:'../../../qqgl/queryTsdq.do',
-						data:'ylxbh='+$('#ylxbh').val()+'&qdzh='+$('#qdzh').val()+'&zdzh='+$('#zdzh').val(),
-						dataType:'json',
-						success:function(msg){
-							$('#tsdq1').html(msg.tsdq);
-							$('#tsdq').val(msg.tsdq);
-						}
-					});
-			});
-		}
 		
 		function updateLx(){
+			var redqdzh = $("#span_qdzh").text().substr(5,$("#span_qdzh").text().length);
+			var redzdzh = $("#span_zdzh").text().substr(5,$("#span_zdzh").text().length);
+			//alert(redqdzh+"  "+redzdzh);
+			 if(parseFloat($("#ghqdzh").val())*1000<redqdzh*1000){
+				alert("对不起，起点桩号不能小于"+redqdzh+"！");
+				$("#ghqdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#ghzdzh").val())*1000>redzdzh*1000){
+				alert("对不起，止点桩号不能大于"+redzdzh+"！");
+				$("#ghzdzh").focus();
+				return false;
+			} 
+			 if(parseFloat($("#ghqdzh").val())*1000>parseFloat($("#ghzdzh").val())*1000){
+				alert("对不起，起点桩号不能大于止点桩号！");
+				$("#ghqdzh").focus();
+				return false;
+			} 
 			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').html(),'lx.id':$('#id').val(),'lx.lxmc':$('#lxmc').val(),
 					'lx.lxbm':$('#lxbm').val(),'lx.zdzh':$('#zdzh').val(),'lx.qdzh':$('#qdzh').val(),
 					'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),
@@ -148,8 +123,17 @@
 					,'lx.lqlmpmlqjdlzshd':$('#lqlmpmlqjdlzshd').val(),'lx.lqlmrhlqjdlzshd':$('#lqlmrhlqjdlzshd').val(),'lx.lqlmcblzshd':$('#lqlmcblzshd').val()
 					,'lx.xzrxjchd':$('#xzrxjchd').val(),'lx.swjclzshd':$('#swjclzshd').val(),'lx.xfchd':$('#xfchd').val()
 					,'lx.wcsnmbhd':$('#wcsnmbhd').val(),'lx.wcswjchd':$('#wcswjchd').val(),'lx.snhntmchbhd':$('#snhntmchbhd').val(),'lx.snhntmchbmj':$('#snhntmchbmj').val()
+					,'lx.fcbc30':$('#fcbc30').val(),'lx.fcbc30hd':$('#fcbc30hd').val()
+					,'lx.bc6':$('#bc6').val(),'lx.bc6hd':$('#bc6hd').val()
+					,'lx.bc25':$('#bc25').val(),'lx.bc25hd':$('#bc25hd').val()
+					,'lx.bc30':$('#bc30').val(),'lx.bc30hd':$('#bc30hd').val()
+					,'lx.bmc25':$('#bmc25').val(),'lx.bmc25hd':$('#bmc25hd').val()
+					,'lx.wfc':$('#wfc').val(),'lx.wfchd':$('#wfchd').val()
+					,'lx.xjfc':$('#xjfc').val(),'lx.xjfchd':$('#xjfchd').val()
+					,'lx.wbc':$('#wbc').val(),'lx.wbchd':$('#wbchd').val()
 					,'lx.bxhd':$('#bxhd').val(),'lx.snhntmcsshhd':$('#snhntmcsshhd').val(),'lx.sbzj':$('#sbzj').val(),'lx.lmkd':$('#lmkd').val()
 					,"lx.ghlxmc":$('#ghlxmc').val(),"lx.ghlxbm":$('#ghlxbm').val(),"lx.ghqdzh":$('#ghqdzh').val(),"lx.ghzdzh":$('#ghzdzh').val()
+					,"lx.gpsqdzh":$('#gpsqdzh').val(),"lx.gpszdzh":$('#gpszdzh').val()
 					,"lx.gxlxbm":$('#gxlxbm').val(),"lx.gxqdzh":$('#gxqdzh').val(),"lx.gxzdzh":$('#gxzdzh').val()
 					};
 			$.ajax({
@@ -189,11 +173,12 @@
 			getylxlminfo($('#ghlxbm').val(),$('#ghqdzh').val(),$('#ghzdzh').val());
 			else
 			getylxlminfo($('#ghlxbm').val(),$('#ghzdzh').val(),$('#ghqdzh').val());
-			getghlxinfo($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
+	
 			if($("#ghqdzh").val()!='')
 				cxqdmc($("#ghlxbm").val(),$("#ghqdzh").val());
 			if($("#ghzdzh").val()!='')
 				cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
+
 		}
 		function removes(){
 			closeWindow(parent.YMLib.Var.id);
@@ -213,14 +198,37 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划起点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="ghqdzh" name="ghqdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_qdzh"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="ghzdzh" name="ghzdzh" onblur="jslckdgbbzzj()" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<input id="ghzdzh" name="ghzdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span id="span_zdzh"></span>
 				</td>
             </tr>
+            <tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input readonly="readonly" type="text" name="ylxbh" id="ylxbh" onblur="jslckdgbbzzj()" style="width: 120px" />
+					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>原起点桩号：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>原止点桩号：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input readonly="readonly" type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/><br/>
+				</td>
+				
+			</tr>
             <tr style="height: 30px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					共线路线编码</td>
@@ -240,28 +248,23 @@
 				</td>
             </tr>
 		<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xmbm"></span>
+					<input id="id" name="id" type="hidden"/>
+					<input id="jdbs" name="jdbs" type="hidden"/>
+				</td>
 				
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input readonly="readonly" type="text" name="ylxbh" id="ylxbh" onblur="jslckdgbbzzj()" style="width: 120px" />
-					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
-					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
+					<input name="lxmc" id="lxmc" type="text" style="width: 120px;">
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>原起点桩号：
+					<font color='red' size='2'>*&nbsp;</font>里程：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly" type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/>
-					<span id="qd"></span>
+					<input name="lc" id="lc" type="text" style="width: 100px;"/>&nbsp;公里
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>原止点桩号：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input readonly="readonly" type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="jslckdgbbzzj()" onchange="changeZlc()"/><br/>
-					<span id="zd"></span>
-				</td>
-				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -285,24 +288,7 @@
 					<input id="lmkd" name="lmkd" readonly="readonly" type="text" style="width: 80px;"/>&nbsp;米&nbsp;
 				</td>
 			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmbm"></span>
-					<input id="id" name="id" type="hidden"/>
-					<input id="jdbs" name="jdbs" type="hidden"/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>原路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input name="lxmc" id="lxmc" type="text" style="width: 120px;">
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					<font color='red' size='2'>*&nbsp;</font>里程：
-				</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input name="lc" id="lc" type="text" style="width: 100px;"/>&nbsp;公里
-				</td>
-			</tr>
+			
 			
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -672,6 +658,154 @@
 						补助：<input id='snhntmcssh' name='snhntmcssh' type="text" style="width: 50px;" readonly="readonly"/>万元
 					</td>
 	            </tr>
+	            <tr>
+	            	<td rowspan="8" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						预防性养护</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						封层（透层）+30mm薄层罩面
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="fcbc30dj">50</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='fcbc30se' onclick="jsbzzj('fcbc30')" type="checkbox"/>
+						<input type="hidden" id='fcbc30hd' name='fcbc30hd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='fcbc30' name='fcbc30' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						6mm超薄层罩面
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc6dj">35</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc6se' onclick="jsbzzj('bc6')" type="checkbox"/>
+						<input type="hidden" id='bc6hd' name='bc6hd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc6' name='bc6' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						25mm薄层罩面
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc25dj">45</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc25se' onclick="jsbzzj('bc25')" type="checkbox"/>
+						<input type="hidden" id='bc25hd' name='bc25hd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc25' name='bc25' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						30mm薄层罩面
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bc30dj">50</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bc30se' onclick="jsbzzj('bc30')" type="checkbox"/>
+						<input type="hidden" id='bc30hd' name='bc30hd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bc30' name='bc30' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            	<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						25mm超薄磨耗层
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="bmc25dj">55</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='bmc25se' onclick="jsbzzj('bmc25')" type="checkbox"/>
+						<input type="hidden" id='bmc25hd' name='bmc25hd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='bmc25' name='bmc25' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            						<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						雾封层<2mm
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="wfcdj">12</span>元/平方米
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='wfcse' onclick="jsbzzj('wfc')" type="checkbox"/>
+						<input type="hidden" id='wfchd' name='wfchd' />
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='wfc' name='wfc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            <tr>
+	            						<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						稀浆封层 5mm
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="xjfcdj">15</span>元/平方米
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='xjfcse' onclick="jsbzzj('xjfc')" type="checkbox"/>
+						<input type="hidden" id='xjfchd' name='xjfchd' />
+					</td>
+										<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='xjfc' name='xjfc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            
+	             <tr>
+	            	<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						10mm微表处
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						单价：<span id="wbcdj">22</span>元/平方米
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						备注：
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						选择：<input id='wbcse' onclick="jsbzzj('wbc')" type="checkbox"/>
+						<input type="hidden" id='wbchd' name='wbchd' />
+					</td>
+					<td style="background-color: #ffffff;border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						补助：<input id='wbc' name='wbc' type="text" style="width: 50px;" readonly="readonly"/>万元
+					</td>
+	            </tr>
+	            
 	            <tr style="height: 30px;">
 	            	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						省补资金</td>
