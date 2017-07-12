@@ -55,10 +55,29 @@ public class MyUtil implements Serializable{
 				else
 					result+=" or "+name+" like '%"+s[i]+"%'";
 				List<Lx> l=j.queryLxbyGhlxbm(s[i]);
-				if(l.size()>0)
-				for (Lx lx : l) {
-					result+=" or "+name+" like '%"+lx.getLxbm()+"%'";
+				if(l.size()>0){
+					String tj="";
+					for(int k = 0; k < l.size(); k++) {
+						if(k==0)
+							tj+=" and ((zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getQdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getZdzh()+" )";
+						else
+							tj+=" or (zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getQdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getZdzh()+" )";
+					}
+					tj+=")";
+					List<Lx> l2=j.queryLxidbyGhlxbm(tj);
+					for (Lx lx : l2) {
+						//result+="or gxlxbm like '%"+s[i]+"%' ";
+						
+						
+						result+="or lx.id like '%"+lx.getId()+"%' ";
+						
+//						result+=" or (id in(select id from zgb_zxlwzhtx_lxsh where zxlwlxbm like '%"+lx.getLxbm()+"%' and to_number(zxlwqdzh)<"+lx.getQdzh()+" and to_number(zxlwzdzh)>"+lx.getZdzh()+" ) )";
+//						result+=" or ("+name+" like '%"+lx.getLxbm()+"%' and to_number(decode(f_str_or_num(ghqdzh),1,0,ghqdzh))<"+lx.getQdzh()+" and to_number(decode(f_str_or_num(ghzdzh),1,0,ghzdzh))>"+lx.getZdzh()+")";
+					}
 				}
+				
+				
+				
 				
 			}
 			result+=")";

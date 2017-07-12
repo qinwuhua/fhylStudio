@@ -511,5 +511,6 @@ public interface JhshServer {
 	public int updateShqx(List<Jhsh> update);
 	public List<Jhsh> queryXmlistshqx(Jhsh jhsh);
 	public int queryXmlistshqxCount(Jhsh jhsh);
+	public List<Lx> queryLxidbyGhlxbm(String string);
 	
 }

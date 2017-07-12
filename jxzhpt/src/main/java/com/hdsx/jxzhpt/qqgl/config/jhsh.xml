@@ -7377,7 +7377,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	</select>
 	
 	<select id="queryLxbyGhlxbm" parameterType="string" resultType="lx">
-	select DISTINCT LXBM from table(fun_cfld(#{value},0,9999))
+	select DISTINCT LXBM,qdzh,zdzh from table(fun_cfld(#{value},0,9999))
 	</select>
 	
 	<select id="queryChildGydw"  parameterType="jhsh" resultType="jhsh">
@@ -7446,6 +7446,12 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="xdnf !='' and xdnf != null">and xdnf like '%'||#{xdnf}||'%'</if>
 		
+	</select>
+	
+	<select id="queryLxidbyGhlxbm" resultType="lx" parameterType="string">
+		select distinct id from zgb_zxlwzhtx_lxsh where 1=1 ${value}
+		union all 
+		select distinct id from zgb_zxlwzhtx_wnjh where 1=1 ${value}
 	</select>
 	
 </mapper>

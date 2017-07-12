@@ -1199,5 +1199,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public int queryXmlistshqxCount(Jhsh jhsh) {
 		return queryOne("queryXmlistshqxCount", jhsh);
 	}
+	@Override
+	public List<Lx> queryLxidbyGhlxbm(String string) {
+		return queryList("queryLxidbyGhlxbm", string);
+	}
 	
 }
