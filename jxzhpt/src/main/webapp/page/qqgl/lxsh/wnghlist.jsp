@@ -70,6 +70,7 @@
 				striped:true,
 				fitColumns:true,
 				columns:[[
+							
 				            {field : 'xmmc',title :'项目名称',width : 300,align : 'center'},
 						    {field : 'gydw',title :'管养单位',width : 150,align : 'center'},
 						    {field : 'xzqh',title :'行政区划',width : 180,align : 'center'},
@@ -78,7 +79,11 @@
 						    {field : 'ghzdzh',title :'规划止点桩号',width : 100,align : 'center'},
 						    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 						    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-						    {field : 'jszlc',title : '里程',width : 100,align : 'center'}
+						    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
+						    {field:'c',title:'操作',width:190,align:'center',formatter:function(value,row,index){
+								var re= '<a style="text-decoration:none;color:#3399CC;"  onclick="delXm('+index+')">删除</a>';
+								return re;
+						    }}
 						]]
 			}); 
 			parent.$('#wnghlist').window('destroy');

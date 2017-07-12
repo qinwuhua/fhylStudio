@@ -408,6 +408,43 @@ text-decoration:none;
 			}
 		});
 	}
+	
+	function delXm(index){
+		var data=$("#grid_wngh").datagrid('getRows')[index];
+		var xmbms=$("#xmbms").val();
+		var arr = xmbms.split(",");
+		for(var i=0;i<arr.length;i++){
+		if(arr[i]==data.id){arr.splice(i,1);}
+		}
+		if(arr.length>0){
+		$("#xmbms").val(arr.join(","));
+		$('#grid_wngh').datagrid({
+			url:'/jxzhpt/qqgl/qqglGpsroad.do',
+			queryParams: {xmbm: $("#xmbms").val(),xmlx:YMLib.Var.xmlx},
+			striped:true,
+			fitColumns:true,
+			columns:[[
+						
+			            {field : 'xmmc',title :'项目名称',width : 300,align : 'center'},
+					    {field : 'gydw',title :'管养单位',width : 150,align : 'center'},
+					    {field : 'xzqh',title :'行政区划',width : 180,align : 'center'},
+					    {field : 'ghlxbm',title :'规划路线编码',width : 180,align : 'center'},
+					    {field : 'ghqdzh',title :'规划起点桩号',width : 100,align : 'center'},
+					    {field : 'ghzdzh',title :'规划止点桩号',width : 100,align : 'center'},
+					    {field:'qdmc',title:'起点名称',width:150,align:'center'},
+					    {field:'zdmc',title:'止点名称',width:150,align:'center'},
+					    {field : 'jszlc',title : '里程',width : 100,align : 'center'},
+					    {field:'c',title:'操作',width:190,align:'center',formatter:function(value,row,index){
+							var re= '<a style="text-decoration:none;color:#3399CC;"  onclick="delXm('+index+')">删除</a>';
+							return re;
+					    }}
+					]]
+		});
+		}else{
+			$("#xmbms").val("");
+			$('#grid_wngh').datagrid('loadData', { total: 0, rows: [] });  
+		}
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -529,7 +566,7 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目库类型</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;" readonly="readonly"/>
+					<input id="xmklx" name="xmlkx" style="width: 120px;background-color: #EDEDED;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

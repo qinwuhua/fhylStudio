@@ -1218,7 +1218,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		l=list.get(0);
 		if (list.size()>1) {
 			Double tz = 0.0;Double yhdk=0.0;Double bzys=0.0;Double dfzc=0.0;
-			String bz="";String tsdq="";
+			String bz="";String tsdq="";String xzqhdm="";
 			for (int i = 0; i < list.size(); i++) {
 				Lxsh x=list.get(i);
 				if(x.getTz()!=null&&!x.getTz().equals(""))
@@ -1233,9 +1233,13 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				if (x.getTsdq()!=null&&!x.getTsdq().equals("")) {
 					tsdq+=x.getTsdq()+",";
 				}
+				xzqhdm+=x.getXzqhdm2()+",";
 			}
 			if (!tsdq.equals("")&&tsdq.substring(tsdq.length()-1,tsdq.length()).equals(",")) {
 				tsdq=tsdq.substring(0, tsdq.length()-1);
+			}
+			if(!xzqhdm.equals("")&&xzqhdm.substring(xzqhdm.length()-1, xzqhdm.length()).equals(",")){
+				xzqhdm=xzqhdm.substring(0, xzqhdm.length()-1);
 			}
 			l.setTz(tz.toString());
 			l.setYhdk(yhdk.toString());
@@ -1243,6 +1247,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			l.setDfzc(dfzc.toString());
 			l.setBz(bz);
 			l.setTsdq(tsdq);
+			l.setXzqhdm2(xzqhdm);
 		}
 		return l;
 	}
