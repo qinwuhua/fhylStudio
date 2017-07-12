@@ -13,6 +13,7 @@
 		  <action name="thlxshsb" class="lxshController" method="thlxshsb"/>
 		  <action name="thlxshsbyhc" class="lxshController" method="thlxshsbyhc"/>
 		  
+		   <action name="loadjsdj" class="lxshController" method="loadjsdj"/>
 		  <action name="loadjsdjcd" class="lxshController" method="loadjsdjcd"/>
 		  <action name="selectlxbyxmid" class="lxshController" method="selectlxbyxmid"/>
 		  <action name="qqglGpszh" class="lxshController" method="qqglGpszh"/>
@@ -68,7 +69,7 @@
 		  <action name="queryLxshLjXj" class="lxshController" method="queryLxshLjXj"/>
 		  <action name="queryLxshShLjXj" class="lxshController" method="queryLxshShLjXj"/>
 		  <action name="querygkxmXX" class="kxxyjController" method="querygkxmXX"/>
-		  
+		   <action name="hbxmSjgzlx" class="lxshController" method="hbxmSjgzlx"/>
 		  
 		  
 		  <action name="thwshkxxyj" class="kxxyjController" method="thwshkxxyj"/>

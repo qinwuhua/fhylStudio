@@ -74,6 +74,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if (insert("insertSjgz", lxsh) > 0) {
 			insert("insertqqgllx", lxsh);
 			update("updateqqgllx", lxsh);
+			update("updatesffirst", lxsh);
 			if("是".equals(lxsh.getSfbflx())){
 				lxsh.setSfbflx("部分开展");
 			}
@@ -81,9 +82,30 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				lxsh.setSfbflx("已开展");
 			}
 			update("updateqqglsj", lxsh);
+			//更新历史记录数据
+			List<Lxsh> lsjls=queryList("querywnlsjl", lxsh);
 			lxsh.setBz("lxsh_sjgz");
 			lxsh.setBzcs("wnjh_sjgz");
-			update("updateqqglls", lxsh);
+			String lsxmbm="";String lsxmid="";
+			Integer num=0;
+			for (int i = 0; i < lsjls.size(); i++) {
+				Lxsh ls=lsjls.get(i);
+				if (ls.getLsjl().equals("是")) {
+					num++;
+					lsxmbm+=ls.getLsxmbm()+",";
+					lsxmid+=ls.getLsxmid()+",";
+				}
+			}
+			if(num>0)lxsh.setLsjl("是");
+			else lxsh.setLsjl("否");
+			if(!lsxmbm.equals("")&&lsxmbm.substring(lsxmbm.length()-1, lsxmbm.length()).equals(","))
+				lsxmbm=lsxmbm.substring(0, lsxmbm.length()-1);
+			if(!lsxmid.equals("")&&lsxmid.substring(lsxmid.length()-1, lsxmid.length()).equals(","))
+				lsxmid=lsxmid.substring(0, lsxmid.length()-1);
+			lxsh.setLsxmbm(lsxmbm);
+			lxsh.setLsxmid(lsxmid);
+			update("updatesjgzls", lxsh);
+			
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmjd("项目立项");
 			lxsh.setXmlx("1");
@@ -411,11 +433,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < ids.length; i++) {
 			hm=new HashMap<String, Object>();
-			update("delwnsjgz", ids[i]);
 			hm.put("xmbm", ids[i]);
 			lm.add(hm);
 		}
 		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0){ 
+			update("delwnsjgz", lxsh);
 			WnjhServer w=new WnjhServerImpl();
 			lxsh.setXmlx("1");
 			lxsh.setXmjd("五年项目库");
@@ -1186,4 +1208,47 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		//return insert("qxxm", lxsh.getBz())>0&&delete("qxxm", lxsh.getBzcs())>0;
 	}
 	
+	@Override
+	public Lxsh hbxmSjgzlx(Lxsh lxsh) {
+		hm = new HashMap<String, Object>();
+		hm.put("xmlx", lxsh.getXmlx());
+		hm.put("xmbm", lxsh.getXmbm());
+		List<Lxsh> list=queryList("qqglGpsroad", hm);
+		Lxsh l=new Lxsh();
+		l=list.get(0);
+		if (list.size()>1) {
+			Double tz = 0.0;Double yhdk=0.0;Double bzys=0.0;Double dfzc=0.0;
+			String bz="";String tsdq="";
+			for (int i = 0; i < list.size(); i++) {
+				Lxsh x=list.get(i);
+				if(x.getTz()!=null&&!x.getTz().equals(""))
+				tz=tz+Double.valueOf(x.getTz());
+				if(x.getYhdk()!=null&&!x.getYhdk().equals(""))
+				yhdk=yhdk+Double.valueOf(x.getYhdk());
+				if(x.getBzys()!=null&&!x.getBzys().equals(""))
+				bzys=bzys+Double.valueOf(x.getBzys());
+				if(x.getDfzc()!=null&&!x.getDfzc().equals(""))
+				dfzc=dfzc+Double.valueOf(x.getDfzc());
+				bz+=x.getBz();
+				if (x.getTsdq()!=null&&!x.getTsdq().equals("")) {
+					tsdq+=x.getTsdq()+",";
+				}
+			}
+			if (!tsdq.equals("")&&tsdq.substring(tsdq.length()-1,tsdq.length()).equals(",")) {
+				tsdq=tsdq.substring(0, tsdq.length()-1);
+			}
+			l.setTz(tz.toString());
+			l.setYhdk(yhdk.toString());
+			l.setBzys(bzys.toString());
+			l.setDfzc(dfzc.toString());
+			l.setBz(bz);
+			l.setTsdq(tsdq);
+		}
+		return l;
+	}
+	
+	@Override
+	public Lxsh loadjsdj(Lxsh lxsh) {
+		return queryOne("loadjsdj", lxsh);
+	}
 }

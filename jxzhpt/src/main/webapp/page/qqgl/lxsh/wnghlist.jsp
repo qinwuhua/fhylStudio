@@ -52,7 +52,12 @@
 				alert("请选择要立项的项目！");
 				return;
 			}
-			var id=parent.$("#xmbms").val()+","+rows[0].id;
+			var id;
+			if(parent.$("#xmbms").val()!=""){
+			    id=parent.$("#xmbms").val()+","+rows[0].id;
+			}else{
+				id=rows[0].id;
+			}
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
 			}

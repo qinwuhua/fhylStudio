@@ -3,21 +3,38 @@
 <mapper namespace="com.hdsx.jxzhpt.lxsh">
 	<insert id="insertqqgllx" parameterType="lxsh">
 		insert into lxsh_lx (id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa ,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh)
-		select id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh,jsfa ,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
-		from wnjh_lx  where xmid=#{wnid}
+		select id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,'0',jdbs,gpsqdzh,gpszdzh,jsfa ,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,xjlxbm,xjqdzh,xjzdzh,xjlc,jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh 
+		from wnjh_lx  where  xmid in (${wnid})
+<!-- 		xmid=#{wnid} -->
 	</insert>
 	<insert id="updateqqgllx" parameterType="lxsh">
-		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid=#{wnid}
+		update lxsh_lx set xmid=#{xmbm},jdbs='0',gpsqdzh=qdzh,gpszdzh=zdzh where xmid in (${wnid})
+<!-- 		xmid=#{wnid} -->
 	</insert>
+	
+	<update id="updatesffirst" parameterType="lxsh">
+	update lxsh_lx set sffirst='1' where id=#{lxid}
+	</update>
+	
 	<insert id="updateqqglls" parameterType="lxsh">
 		update ${bz} l set lsjl=(select lsjl from ${bzcs} w where id=#{wnid} ),
 		lsxmbm=(select lsxmbm from ${bzcs} w where id=#{wnid} ),
 		lsxmid=(select lsxmid from ${bzcs} w where id=#{wnid} )
 		where xmbm=#{xmbm}
 	</insert>
+	
+	<select id="querywnlsjl" parameterType="lxsh" resultType="lxsh">
+		select lsjl,lsxmbm,lsxmid from wnjh_sjgz w  where id in (${wnid})
+	</select>
+	
+	<update id="updatesjgzls" parameterType="lxsh">
+		update lxsh_sjgz l set lsjl=#{lsjl},lsxmbm=#{lsxmbm},lsxmid=#{lsxmid} where xmbm=#{xmbm}
+	</update>
+	
 	<update id="updateqqglsj" parameterType="lxsh">
 		
-		update wnjh_sjgz set qqkzzt=#{sfbflx} where id=#{wnid}
+		update wnjh_sjgz set qqkzzt=#{sfbflx} where  id in (${wnid})
+<!-- 		id=#{wnid} -->
 		
 	</update>
 	<update id="updateqqgllm" parameterType="lxsh">
@@ -36,6 +53,13 @@
         max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh     
        from wnjh_lx t where t.xmid=#{id} group by t.xmid
      </select>
+     
+     <select id="loadjsdj" parameterType="lxsh" resultType="lxsh">
+		select sum(t.yilc) yilc,sum(t.erlc) erlc,sum(t.sanlc) sanlc,sum(t.silc) silc,sum(t.dwlc) dwlc,sum(t.wllc) wllc,
+       sum(t.jhyilc) jhyilc,sum(t.jherlc) jherlc,sum(t.jhsanlc) jhsanlc,sum(t.jhsilc) jhsilc,sum(t.jhdwlc) jhdwlc,sum(t.jhwllc) jhwllc     
+       from wnjh_lx t where t.xmid in (${xmbm})
+     </select>
+     
 	<select id="selectimportXmbm" parameterType="String" resultType="String">
 		${value}
 	</select>
@@ -64,8 +88,8 @@
 		select * from LXSH_XJ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
-		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk,jszlc<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
-		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl},#{bz},#{yhdk},#{jszlc}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if><if test="xmklx != null">,#{xmklx}</if>)
+		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,bz,yhdk,jszlc<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{bz},#{yhdk},#{jszlc}<if test="xzqhdm2 != null">,#{xzqhdm2}</if><if test="sfbflx != null">,#{sfbflx}</if><if test="wnid != null">,#{wnid}</if><if test="xmklx != null">,#{xmklx}</if>)
 	</insert>
 	<insert id="insertLmgz" parameterType="lxsh">
 		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl,bz,yhdk<if test="xzqhdm2 != null">,xzqhdm2</if><if test="sfbflx != null">,sfbflx</if><if test="wnid != null">,wnid</if><if test="xmklx != null">,xmklx</if>)
@@ -592,8 +616,9 @@
 	<delete id="delSjgz" parameterType="hashmap">
 		delete from LXSH_SJGZ where xmbm=#{xmbm}
 	</delete>
-	<update id="delwnsjgz" parameterType="String">
-		update wnjh_sjgz set QQKZZT = '未开展' where id=(select wnid from LXSH_SJGZ where xmbm=#{xmbm})
+	<update id="delwnsjgz" parameterType="lxsh">
+		update wnjh_sjgz set QQKZZT = '未开展' where id in (${wnid})
+<!-- 		id=(select wnid from LXSH_SJGZ where xmbm=#{xmbm}) -->
 	</update>
 	<delete id="delLmgz" parameterType="hashmap">
 		delete from LXSH_LMGZ where xmbm=#{xmbm}
@@ -787,7 +812,7 @@
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
 	<select id="qqglGpsroad" parameterType="hashmap" resultType="lxsh">
-		select t.*,ll.gpsqdzh,ll.gpszdzh,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh,ll.lc JSZLC,ll.xjlc 
+		select t.*,ll.gpsqdzh,ll.gpszdzh,ll.ghlxbm,ll.ghlxmc,ll.ghqdzh,ll.ghzdzh,ll.gxlxbm,ll.gxqdzh,ll.gxzdzh,ll.lc JSZLC,ll.xjlc,ll.id lxid 
 		from ${xmlx} t left join (select * from wnjh_lx l where sffirst=1) ll on t.id=ll.xmid 
 		where  qqkzzt !='已开展' and znsjck is null
 		<if test="xmmc!=null and xmmc!=''">
