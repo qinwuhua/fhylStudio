@@ -405,12 +405,25 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertSjgz(){
 		try {
+			if(lxsh.getWnid()!=null&&!lxsh.getWnid().equals("")){
+				String xmbmVal="";
+				String[] val = lxsh.getWnid().split(",");
+				for (int i = 0; i < val.length; i++) {
+					if(i==val.length-1){
+						xmbmVal+="'"+val[i]+"'";}
+					else{
+						xmbmVal+="'"+val[i]+"',";
+						}
+					
+				}
+				lxsh.setWnid(xmbmVal);
+			}
 			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
-			lx.setLxbm(lxsh.getGhlxbh());
-			lx.setQdzh(lxsh.getQdzh());
-			lx.setZdzh(lxsh.getZdzh());
+			lx.setGhlxbm(lxsh.getGhlxbh());
+			lx.setGhqdzh(lxsh.getGhqdzh());
+			lx.setGhzdzh(lxsh.getGhzdzh());
 			JhshServer jhshServer=new JhshServerImpl();
 			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
@@ -1985,9 +1998,25 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void qqglGpsroad(){
+		if(xmmc!=null)
 		lxsh.setXmmc(xmmc);
+		if(xzqh!=null)
 		lxsh.setXzqh(xzqh);
+		if(xmlx!=null)
 		lxsh.setXmlx(xmlx);
+		if(xmbm!=null&&!xmbm.equals("")){
+			String xmbmVal="";
+			String[] val = xmbm.split(",");
+			for (int i = 0; i < val.length; i++) {
+				if(i==val.length-1){
+					xmbmVal+="'"+val[i]+"'";}
+				else{
+					xmbmVal+="'"+val[i]+"',";
+					}
+				
+			}
+			lxsh.setXmbm(xmbmVal);
+		}
 		List<Lxsh> list=lxshServer.qqglGpsroad(lxsh);
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
@@ -1996,6 +2025,51 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	
+	public void hbxmSjgzlx(){
+		if(xmlx!=null)
+		lxsh.setXmlx(xmlx);
+		if(xmbm!=null&&!xmbm.equals("")){
+			String xmbmVal="";
+			String[] val = xmbm.split(",");
+			for (int i = 0; i < val.length; i++) {
+				if(i==val.length-1){
+					xmbmVal+="'"+val[i]+"'";}
+				else{
+					xmbmVal+="'"+val[i]+"',";
+					}
+				
+			}
+			lxsh.setXmbm(xmbmVal);
+		}
+		Lxsh l=lxshServer.hbxmSjgzlx(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void loadjsdj(){
+		if(xmbm!=null&&!xmbm.equals("")){
+			String xmbmVal="";
+			String[] val = xmbm.split(",");
+			for (int i = 0; i < val.length; i++) {
+				if(i==val.length-1){
+					xmbmVal+="'"+val[i]+"'";}
+				else{
+					xmbmVal+="'"+val[i]+"',";
+					}
+				
+			}
+			lxsh.setXmbm(xmbmVal);
+		}
+		try {
+			JsonUtils.write(lxshServer.loadjsdj(lxsh), getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void selectSFCFLX(){
 		boolean bl=lxshServer.selectSFCFLX(lxsh);
 		if(bl){

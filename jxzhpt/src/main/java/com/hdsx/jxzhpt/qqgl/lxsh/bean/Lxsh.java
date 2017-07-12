@@ -426,7 +426,15 @@ public class Lxsh implements Serializable {
 	private String wgny;
 	private String ghlxbm;
 	private String ghlxmc;
+	private String lxid;//路线id
 	
+	
+	public String getLxid() {
+		return lxid;
+	}
+	public void setLxid(String lxid) {
+		this.lxid = lxid;
+	}
 	public String getGhlxbm() {
 		return ghlxbm;
 	}

@@ -45,6 +45,11 @@ text-decoration:none;
 		    }
 		});*/
 		$("#save_button").click(function(){
+			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+				alert("请填写项目名称！");
+				$("#xmmc").focus();
+				return false;
+			}
 			/* if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
@@ -152,7 +157,7 @@ text-decoration:none;
 			});*/
 				
 		});
-		autoCompleteLXBM();
+// 		autoCompleteLXBM();
 	});
 	var wnobj=new Object();
 	function autoCompleteLXBM(){
@@ -235,8 +240,8 @@ text-decoration:none;
 	function loadjsdjcd(){
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/loadjsdjcd.do',
-	        data:'lxsh.id='+wnobj.id,
+			url:'/jxzhpt/qqgl/loadjsdj.do',
+	        data:'xmbm='+$("#xmbms").val(),
 			dataType:'json',
 			success:function(msg){
 				$("#yilc").val(msg.yilc);
@@ -318,10 +323,12 @@ text-decoration:none;
 		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
 		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
 		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val()+
-		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val()+"&lxsh.jszlc="+$('#jszlc').val()
 		+"&lxsh.ghlxmc="+$('#ghlxmc').val()+"&lxsh.ghlxbm="+$('#ghlxbm').val()+"&lxsh.ghqdzh="+$('#ghqdzh').val()+"&lxsh.ghzdzh="+$('#ghzdzh').val()
 		+"&lxsh.gxlxbm="+$('#gxlxbm').val()+"&lxsh.gxqdzh="+$('#gxqdzh').val()+"&lxsh.gxzdzh="+$('#gxzdzh').val()
-		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+"&lxsh.xmklx="+$('#xmklx').val();
+		+"&lxsh.sfbflx="+$('#sfbflx').combobox('getValue')+"&lxsh.xmklx="+$('#xmklx').val()
+// 		+"&lxsh.wnid="+wnobj.id+"&lxsh.lsjl="+wnobj.lsjl;
+		+"&lxsh.wnid="+$("#xmbms").val()+"&lxsh.lxid="+wnobj.lxid;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertSjgz.do',
@@ -350,17 +357,78 @@ text-decoration:none;
 		cxzdmc($("#ghlxbm").val(),$("#ghzdzh").val());
 	}
 	
+	function openWnghList(){
+		YMLib.Var.xmmc=$("#xmmc").val();
+		YMLib.Var.xzqh=$.cookie("dist2");
+		YMLib.Var.xmlx='wnjh_sjgz';
+		YMLib.UI.createWindow('wnghlist','五年规划项目选择','/jxzhpt/page/qqgl/lxsh/wnghlist.jsp','wnghlist',800,380);
+	}
+	
+	function hbxm(){
+		var id=$("#xmbms").val();
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/hbxmSjgzlx.do',
+	        data:'xmbm='+id+"&xmlx="+YMLib.Var.xmlx,
+			dataType:'json',
+			success:function(item){
+				wnobj=item;
+				xmbm('xmbm',$.cookie("dist"),item.xmnf,'1');
+				
+				$("#lxmc").html(item.lxmc);$("#lxbm").val(item.ghlxbh);
+				$("#xjsdj").val(item.xjsdj);$("#jsjsdj").val(item.jsjsdj);
+				$("#tsdq").html(item.tsdq);$("#xmnf").combobox('setValue',item.xmnf);
+				$("#jhkgn").combobox('setValue',item.jhkgn);
+				$("#jhwgn").combobox('setValue',item.jhwgn);
+			
+				$("#qdzh").val(parseFloat(item.qdzh));
+				$("#zdzh").val(parseFloat(item.zdzh));
+				$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
+				$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
+				$("#xmklx").val(item.xmklx);
+				loadUnitedit("gydw",'36',item.gydwdm);
+				$("#gydw").combotree('setValues',item.gydwdm.split(","));
+				loadDistedit("xzqh",'36',item.xzqhdm2);
+				$("#xzqh").combotree('setValues',item.xzqhdm2.split(","));
+				$("#qdmc").val(item.qdmc);
+				$("#zdmc").val(item.zdmc);
+				$("#ghlxmc").val(item.ghlxmc);
+				$("#ghlxbm").val(item.ghlxbm);
+				$("#ghqdzh").val(item.ghqdzh);
+				$("#ghzdzh").val(item.ghzdzh);
+				$("#gxlxbm").val(item.gxlxbm);
+				$("#gxqdzh").val(item.gxqdzh);
+				$("#gxzdzh").val(item.gxzdzh);
+				qdStr=item.gpsqdzh;
+				zdStr=item.gpszdzh;
+				$("#span_qdzh").html("<font color='red' size='2'>*&nbsp;不能<</font>"+"<font color='red' size='2'>"+item.gpsqdzh);
+				$("#span_zdzh").html("<font color='red' size='2'>*&nbsp;不能></font>"+"<font color='red' size='2'>"+item.gpszdzh);
+				
+				loadjsdjcd();
+			}
+		});
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
-			<tr style="height: 35px;">
+       <tr style="height: 35px;">
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xmmc" style="width: 120px"/>
-
+				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
+					<input type="text" id="xmmc" style="width: 120px" />
+                    <img onclick="openWnghList()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+				    <img onclick="hbxm()" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src=""  style="border-width:0px;vertical-align:middle;"/>
 				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+		</tr>
+</table>
+<div id="wnghxm" style="padding:2px; display: none;">
+<input id="xmbms" style="display: none;"/>
+<table id="grid_wngh" ></table>
+</div>
+<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
+			border="0" cellpadding="3" cellspacing="1">
+			<tr>
+			<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					规划路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="ghlxbm" name="ghlxbm" type="text" style="width: 120px;"/>&nbsp;
@@ -371,8 +439,6 @@ text-decoration:none;
 					<input id="ghqdzh" name="ghqdzh" onchange="querymcbygh()" type="text" style="width: 120px;"/>&nbsp;<br/>
 					<span id="span_qdzh"></span>
 				</td>
-			</tr>
-			<tr style="height: 35px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划止点桩号</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -380,6 +446,8 @@ text-decoration:none;
 					<span id="span_zdzh"></span>
 				</td>
 				
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -389,6 +457,10 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="zdmc" name="zdmc" style="width: 120px;"/>
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+				</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				</td>
 			</tr>
 			<tr style="height: 30px;">

@@ -318,7 +318,8 @@ function del(index){
 		return;
 	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
-	var data="lxsh.xmbm="+data1.xmbm;
+	var data="lxsh.xmbm="+data1.xmbm+"&lxsh.wnid="+data1.wnid;
+	alert(data);
 	if(confirm('您确定删除该项目？')){
 	$.ajax({
 		 type : "POST",

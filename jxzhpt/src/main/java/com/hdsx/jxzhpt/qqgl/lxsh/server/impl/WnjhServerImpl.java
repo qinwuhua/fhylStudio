@@ -353,18 +353,24 @@ public class WnjhServerImpl extends BaseOperate implements WnjhServer {
 		if("1".equals(lxsh.getXmlx())){
 			tbname="wnjh_sjgz";
 			tbname1="lxsh_sjgz";
+			lxsh.setBz(tbname);
+			lxsh.setBzcs(tbname1);
+			return update("updateWnxmjd_sjgz", lxsh)>0;
 		}
-		if("2".equals(lxsh.getXmlx())){
+		else {
+			if("2".equals(lxsh.getXmlx())){
 			tbname="wnjh_lmgz";
 			tbname1="lxsh_lmgz";
-		}
-		if("3".equals(lxsh.getXmlx())){
+			}
+		    if("3".equals(lxsh.getXmlx())){
 			tbname="wnjh_xj";
 			tbname1="lxsh_xj";
-		}
+			}
 		lxsh.setBz(tbname);
 		lxsh.setBzcs(tbname1);
 		return update("updateWnxmjd", lxsh)>0;
+		}
+		
 	}
 	@Override
 	public List<Excel_list> ckylwjg(Lxsh lxsh) {

@@ -1734,6 +1734,10 @@
 		update ${bz} set xmjd=#{xmjd} where id in (select wnid from ${bzcs} where xmbm in(${xmbm}))
 	</update>
 	
+	<update id="updateWnxmjd_sjgz" parameterType="lxsh">
+		update ${bz} set xmjd=#{xmjd} where id in (${wnid})
+	</update>
+	
 	<select id="ckylwjgads" parameterType="lxsh" resultType="elist">
 	(select to_char('1') xzqhdm,#{bz}||'小计' v_0,sum(lc) v_1,sum(decode(jsdj,'一级公路',lc,0)) v_2,sum(decode(jsdj,'二级公路',lc,0)) v_3,sum(decode(jsdj,'三级公路',lc,0)) v_4,sum(decode(jsdj,'四级公路',lc,0)) v_5,sum(decode(jsdj,'等外公路',lc,0)) v_6, 
 	to_char(decode(sum(lc),0,0,round((sum(decode(jsdj,'一级公路',lc,'二级公路',lc,0))/sum(lc)*100),1)))||'%' v_7,

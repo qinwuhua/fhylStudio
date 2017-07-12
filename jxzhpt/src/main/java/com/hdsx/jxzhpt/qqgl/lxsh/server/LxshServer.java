@@ -234,4 +234,8 @@ public interface LxshServer {
 	boolean thlxshsbyhc(Lxsh lxsh);
 
 	boolean qxxm(Lxsh lxsh);
+	
+	Lxsh hbxmSjgzlx(Lxsh lxsh);
+	
+	Lxsh loadjsdj(Lxsh lxsh);
 }

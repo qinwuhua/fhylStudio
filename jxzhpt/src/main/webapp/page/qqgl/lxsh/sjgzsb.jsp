@@ -150,12 +150,14 @@
 				}
 			}
 			var id=rows[0].xmbm;
+			var wnid=rows[0].wnid;
 			
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].xmbm ;
+				wnid+=","+rows[i].wnid;
 			}
 			
-			var data="lxsh.xmbm="+id;
+			var data="lxsh.xmbm="+id+"&lxsh.wnid="+wnid;
 			if(confirm('您确定删除该项目？')){
 					$.ajax({
 						 type : "POST",
