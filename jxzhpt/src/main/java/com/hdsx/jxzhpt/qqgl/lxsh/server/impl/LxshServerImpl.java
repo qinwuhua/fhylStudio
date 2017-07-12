@@ -1241,6 +1241,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			}
 			if (!tsdq.equals("")&&tsdq.substring(tsdq.length()-1,tsdq.length()).equals(",")) {
 				tsdq=tsdq.substring(0, tsdq.length()-1);
+				//特殊地区去重
 				String[] arrTsdq = tsdq.split(",");  
 		        Set<String> set = new HashSet<String>();  
 		        for(int i=0;i<arrTsdq.length;i++){  
@@ -1251,6 +1252,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			}
 			if(!xzqhdm.equals("")&&xzqhdm.substring(xzqhdm.length()-1, xzqhdm.length()).equals(",")){
 				xzqhdm=xzqhdm.substring(0, xzqhdm.length()-1);
+				//行政区划去重
 				String[] arrXzqh = xzqhdm.split(",");  
 		        Set<String> set = new HashSet<String>();  
 		        for(int i=0;i<arrXzqh.length;i++){  
