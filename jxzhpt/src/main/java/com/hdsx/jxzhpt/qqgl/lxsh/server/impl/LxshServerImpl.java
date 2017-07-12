@@ -4,11 +4,15 @@ package com.hdsx.jxzhpt.qqgl.lxsh.server.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -1237,10 +1241,25 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			}
 			if (!tsdq.equals("")&&tsdq.substring(tsdq.length()-1,tsdq.length()).equals(",")) {
 				tsdq=tsdq.substring(0, tsdq.length()-1);
+				String[] arrTsdq = tsdq.split(",");  
+		        Set<String> set = new HashSet<String>();  
+		        for(int i=0;i<arrTsdq.length;i++){  
+		            set.add(arrTsdq[i]);  
+		        }  
+		        String[] arrayResult = (String[]) set.toArray(new String[set.size()]);  
+		        tsdq=StringUtils.join(arrayResult, ",");
 			}
 			if(!xzqhdm.equals("")&&xzqhdm.substring(xzqhdm.length()-1, xzqhdm.length()).equals(",")){
 				xzqhdm=xzqhdm.substring(0, xzqhdm.length()-1);
+				String[] arrXzqh = xzqhdm.split(",");  
+		        Set<String> set = new HashSet<String>();  
+		        for(int i=0;i<arrXzqh.length;i++){  
+		            set.add(arrXzqh[i]);  
+		        }  
+		        String[] arrayResult = (String[]) set.toArray(new String[set.size()]);  
+		        xzqhdm=StringUtils.join(arrayResult, ",");
 			}
+			 
 			l.setTz(tz.toString());
 			l.setYhdk(yhdk.toString());
 			l.setBzys(bzys.toString());
