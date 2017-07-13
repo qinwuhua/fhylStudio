@@ -863,6 +863,27 @@ function fileShow(xmbm,type){
  * 查询设计批复文件
  * @param xmbm
  */
+function fileShow_jhcx(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#sjpfTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'>" +
+				'<a href="javascript:downFile('+"'"+data[i].fileurl.replace(/\\/g,"%2F")+"',"+"'"+data[i].filename+"'"+')" style="text-decoration:none;color:#3399CC;">下载</a>' ;
+				$("#sjpfTable").append(tr);
+			}
+		}
+	});
+}
+
+/**
+ * 查询设计批复文件
+ * @param xmbm
+ */
 function fileShowByWh(xmbm,type){
 	$.ajax({
 		type:'post',
