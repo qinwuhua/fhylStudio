@@ -352,6 +352,7 @@
 		select truename from xtgl_master where 1=1
 		<if test="value != null and  value != ''">
 		and truename like '%'||trim(#{value})||'%'
+		and truename not like '%养护'
 		</if>
 	</select>
 	<select id="createMenu" parameterType="unit" resultType="treenode">

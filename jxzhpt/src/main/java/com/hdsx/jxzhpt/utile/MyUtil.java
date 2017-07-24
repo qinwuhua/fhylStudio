@@ -59,9 +59,9 @@ public class MyUtil implements Serializable{
 					String tj="";
 					for(int k = 0; k < l.size(); k++) {
 						if(k==0)
-							tj+=" and ((zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getQdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getZdzh()+" )";
+							tj+=" and ((zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getZdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getQdzh()+" )";
 						else
-							tj+=" or (zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getQdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getZdzh()+" )";
+							tj+=" or (zxlwlxbm like '%"+l.get(k).getLxbm()+"%' and to_number(zxlwqdzh)<"+l.get(k).getZdzh()+" and to_number(zxlwzdzh)>"+l.get(k).getQdzh()+" )";
 					}
 					tj+=")";
 					List<Lx> l2=j.queryLxidbyGhlxbm(tj);

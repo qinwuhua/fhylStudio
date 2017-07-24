@@ -1658,7 +1658,7 @@ var Rh={
     			    {field:'cz',title:'操作',width:150,align:'center',
     			    	formatter:function(value,row,index){
     			    		var result='<a href="javascript:updateLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">编辑</a>';
-    			    		result +='&nbsp;<a href="javascript:('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
     			    		return result;
     			    	}
     			    },
