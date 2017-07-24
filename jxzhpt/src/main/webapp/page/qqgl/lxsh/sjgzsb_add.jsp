@@ -383,8 +383,11 @@ text-decoration:none;
 			
 				$("#qdzh").val(parseFloat(item.qdzh));
 				$("#zdzh").val(parseFloat(item.zdzh));
-				$("#tz").val(parseFloat(item.tz));$("#bzcs").val(parseFloat(item.bzys));$("#dfzc").html(parseFloat(item.dfzc));
-				$("#yhdk").val(item.yhdk);$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
+				$("#tz").val(parseFloat(item.tz).toFixed(2));
+				$("#bzcs").val(parseFloat(item.bzys).toFixed(2));
+				$("#dfzc").html(parseFloat(item.dfzc).toFixed(2));
+				$("#yhdk").val(parseFloat(item.yhdk).toFixed(2));
+				$("#bz").val(item.bz);$("#xzqhdm").val(item.xzqhdm);$("#gydwdm").val(item.gydwdm);
 				$("#xmklx").val(item.xmklx);
 				loadUnitedit("gydw",'36',item.gydwdm);
 				$("#gydw").combotree('setValues',item.gydwdm.split(","));
