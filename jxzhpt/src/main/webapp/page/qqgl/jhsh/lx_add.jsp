@@ -35,6 +35,15 @@
 			$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
 		});
 		function updateLx(){
+			if($('#xzqh').combo("getValues").join(",")==""){
+				alert("请选择行政区划！");
+				return false;
+			}
+			if($('#gydw').combo("getValues").join(',')==""){
+				alert("请选择管养单位！");
+				return false;
+			}
+			
 			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').html(),'lx.id':$('#id').val(),'lx.lxmc':$('#lxmc').val(),
 					'lx.lxbm':$('#ylxbh').val(),'lx.zdzh':$('#zdzh').val(),'lx.qdzh':$('#qdzh').val(),
 					'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),
