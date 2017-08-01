@@ -3155,17 +3155,18 @@
 	
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="lx">
-		select distinct xmid,xmmc from LXSH_LX l,(
+		select distinct xmid,xmmc from zgb_zxlwzhtx_lxsh z,LXSH_LX l,(
 	    select xmbm,xmmc from lxsh_lmgz union all select xmbm,xmmc from lxsh_sjgz
 	    union all select xmbm,xmmc from lxsh_xj
 	    union all select xmbm,xmmc from xmsq_sh
 	    union all select xmbm,xmmc from xmsq_yhdzx) x 
-	    where l.xmid=x.xmbm and l.ghlxbm like '%'||#{ghlxbm}||'%' 
+	    where l.xmid=x.xmbm and z.zxlwlxbm like '%'||#{ghlxbm}||'%' and z.id=l.id 
 	    and l.jdbs=fun_zdjdbs(l.xmid)
-	    and GREATEST(to_number(l.ghzdzh),to_number(l.ghqdzh))>LEAST(${ghzdzh},${ghqdzh}) 
-	    and GREATEST(${ghzdzh},${ghqdzh})>LEAST(to_number(l.ghzdzh),to_number(l.ghqdzh))
+	    and GREATEST(to_number(z.zxlwzdzh),to_number(z.zxlwqdzh))>LEAST(${ghzdzh},${ghqdzh}) 
+	    and GREATEST(${ghzdzh},${ghqdzh})>LEAST(to_number(z.zxlwzdzh),to_number(z.zxlwqdzh))
 	    and l.xmid !=#{xmid}
 	    and l.xmid like substr(#{xmid},0,4)||'%'
+	    and (select count(*) from plan_zjxd p where p.xmid=l.xmid)=0
 	</select>
 	<select id="queryLxMaxJdbs" parameterType="lx" resultType="lx">
 		select * from lxsh_lx where xmid=#{xmid} and 
@@ -6319,7 +6320,7 @@
 					sum(v_6)||'' v_6,sum(v_7)||'' v_7,sum(v_8)||'' v_8,null v_9,
 					null v_10,null v_11,null v_12,sum(v_13)||'' v_13,sum(v_14)||'' v_14,sum(v_15) v_15,
 					sum(v_16) v_16,sum(v_17) v_17,sum(v_18) v_18,sum(v_19) v_19,
-					sum(v_20) v_20,null v_21,null v_22,null v_23,null v_24
+					sum(v_20) v_20,null v_21,null v_22,null v_23,null v_24,null v_50
 					from (
 					select 
 					rownum v_0,j.xzqh v_1,j.xmmc v_2,l.jsxz v_3,
@@ -6372,7 +6373,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(xmbm,0,4) in (${xmnf})
+					and fun_scxdnf(xmbm) in (${xmnf})
 				</if>
 				<if test="scxdnf !=null and scxdnf !=''">
 					and scxdnf in (${scxdnf})
@@ -6402,16 +6403,16 @@
 					)
 					union all
 					select 
-					rownum v_0,j.xzqh v_1,j.xmmc v_2,l.jsxz v_3,
+					'' v_0,j.xzqh v_1,j.xmmc v_2,l.jsxz v_3,
 <!-- 					nvl(decode(cb.sd_ym,'无','0',cb.sd_ym),0)+nvl(decode(cb.dq_cd,'无','0',cb.dq_cd),0)+ -->
 					to_char(zlc,'fm9999999990.000') v_4,to_char(yilc,'fm9999999990.000') v_5,to_char(erlc,'fm9999999990.000') v_6,to_char(sanlc,'fm9999999990.000') v_7,to_char(silc,'fm9999999990.000') v_8,
 <!-- 					nvl(decode(cb.dq_cd,'无','0',cb.dq_cd),0)  -->
 					'' v_9,
 <!-- 					nvl(decode(cb.sd_ym,'无','0',cb.sd_ym),0)  -->
-					'' v_10,j.kgsj v_11,j.wgsj v_12,j.pfztz v_13,j.bbzzj v_14,
-					wc14.ztz14 v_15,wc14.btz14 v_16,jh15.ztz v_17,jh15.btz v_18,
-					jh15.dfzc v_19,jh15.yhdk v_20,j.zyjsnr v_21,j.xzscnl v_22,
-					kx.gkpfwh v_23,cb.sjpfwh v_24
+					'' v_10,j.kgsj v_11,j.wgsj v_12,decode(l.sffirst,'1',j.pfztz,'') v_13,decode(l.sffirst,'1',j.bbzzj,'') v_14,
+					decode(l.sffirst,'1',wc14.ztz14,'') v_15,decode(l.sffirst,'1',wc14.btz14,'') v_16,decode(l.sffirst,'1',jh15.ztz,'') v_17,decode(l.sffirst,'1',jh15.btz,'') v_18,
+					decode(l.sffirst,'1',jh15.dfzc,'') v_19,decode(l.sffirst,'1',jh15.yhdk,'') v_20,j.zyjsnr v_21,j.xzscnl v_22,
+					kx.gkpfwh v_23,cb.sjpfwh v_24,l.sffirst v_50
 					from gsdgz j
 					left join cbgsdgz cb
 					on j.xmbm=cb.xmbm
@@ -6420,10 +6421,40 @@
 					
 					 left join
 					
-					(select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
-					decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
-					(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
-					from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid 
+					(select xmid,decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
+                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
+                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
+                         (nvl(yilc, 0) + nvl(erlc, 0) +
+                         nvl(sanlc, 0) + nvl(silc, 0) +
+                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jhyilc, 0)),
+                         (nvl(yilc, 0))) yilc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jherlc, 0)),
+                         (nvl(erlc, 0))) erlc,
+                  (nvl(jhsanlc, 0)),
+                  (nvl(sanlc, 0)) sanlc,
+                  (nvl(jhsilc, 0)),
+                  (nvl(silc, 0)) silc,
+                  jsxz jsxz,
+                  xzqhdm xzqhdm,
+                  gydw gydw,
+                  lxbm lxbm,
+                  ghlxmc lxmc,
+                  jsjsdj jsjsdj,
+                  sffirst,
+                  ghlxbm,
+                  ghqdzh,
+                  ghzdzh,
+                  lxlmkd,
+                  jsfa
+             from lxsh_lx
+            where jdbs = '2' order by xmid,sffirst desc) l on j.xmbm=l.xmid 
 					left join (
 					select jhid,sum(nvl(lm.wc_btz,0))+sum(nvl(lm.wc_stz,0))+sum(nvl(lm.wc_qttz,0)) ztz14,sum(nvl(lm.wc_btz,0)) btz14 from gcgl_gcgzgj lm where substr(lm.sbyf,0,4)&lt;=to_char(to_number(substr(#{xmnf},0,4))-1) group by lm.jhid
 					union all
@@ -6452,7 +6483,7 @@
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(xmbm,0,4) in (${xmnf})
+					and fun_scxdnf(xmbm) in (${xmnf})
 				</if>
 				<if test="scxdnf !=null and scxdnf !=''">
 					and scxdnf in (${scxdnf})
@@ -6487,7 +6518,7 @@
 		null v_0,null v_1,'全省汇总' v_2,count(*)||'' v_3,sum(v_4) v_4,sum(v_5) v_5,
 		sum(v_6) v_6,sum(v_7) v_7,null v_8,null v_9,
 		null v_10,sum(v_11)||'' v_11,sum(v_12)||'' v_12,sum(v_13) v_13,
-		sum(v_14) v_14,sum(v_15) v_15,null v_16,null v_17
+		sum(v_14) v_14,sum(v_15) v_15,null v_16,null v_17,null v_50
 	from(
 	
 	select 
@@ -6509,7 +6540,7 @@
 	select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
 	decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
 	(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
-	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
+	 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid left join xmsq_sh lxg on j.xmbm=lxg.xmbm
 	 where 1=1
 	 	<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		
@@ -6530,7 +6561,7 @@
 			)
 		</if>
 		<if test="xmnf !=null and xmnf !=''">
-			and substr(j.xmbm,0,4) in (${xmnf})
+			and fun_scxdnf(j.xmbm) in (${xmnf})
 		</if>
 		
 		<if test="tsdq !=null and tsdq !=''">
@@ -6552,12 +6583,12 @@
 	union all
 	
 		select 
-		rownum v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
-		l.zlc v_4,
-		l.yilc v_5,l.erlc v_6,l.sanlc v_7,x.jsfa v_8,
+		'' v_0, j.xzqh v_1, j.xmmc v_2,l.jsxz v_3,
+		to_number(l.zlc) v_4,
+		to_number(l.yilc) v_5,to_number(l.erlc) v_6,to_number(l.sanlc) v_7,x.jsfa v_8,
 		j.jhkgsj v_9,
-		j.jhwgsj v_10,j.pfztz v_11,j.bbzzj v_12,xd.ztz v_13,xd.btz v_14,
-		xd.dftz v_15,'' v_16,c.sjpfwh v_17
+		j.jhwgsj v_10,decode(l.sffirst,'1',j.pfztz,'') v_11,decode(l.sffirst,'1',j.bbzzj,'') v_12,decode(l.sffirst,'1',xd.ztz,'') v_13,decode(l.sffirst,'1',xd.btz,'') v_14,
+		decode(l.sffirst,'1',xd.dftz,'') v_15,'' v_16,c.sjpfwh v_17,l.sffirst v_50
 		from 	Jhxdsh   j
 		left join cbsj_sh c
 		on j.xmbm=c.xmbm
@@ -6567,10 +6598,40 @@
 		(select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
 		from plan_zjxd p where p.xdnf=#{xmnf} group by p.xmid) xd on j.xmbm=xd.xmid
 		left join (
-		select xmid,decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0))),(sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)))) zlc, 
-		decode(substr(xmid,11,1),'1',(sum(nvl(jhyilc,0))),(sum(nvl(yilc,0)))) yilc,decode(substr(xmid,11,1),'1',(sum(nvl(jherlc,0))),(sum(nvl(erlc,0)))) erlc,
-		(sum(nvl(jhsanlc,0))),(sum(nvl(sanlc,0))) sanlc,(sum(nvl(jhsilc,0))),(sum(nvl(silc,0))) silc,min(jsxz) jsxz,min(xzqhdm) xzqhdm,min(gydw) gydw
-		 from lxsh_lx where jdbs='2' group by xmid) l on j.xmbm=l.xmid
+		select xmid,decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
+                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
+                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
+                         (nvl(yilc, 0) + nvl(erlc, 0) +
+                         nvl(sanlc, 0) + nvl(silc, 0) +
+                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jhyilc, 0)),
+                         (nvl(yilc, 0))) yilc,
+                  decode(substr(xmid, 11, 1),
+                         '1',
+                         (nvl(jherlc, 0)),
+                         (nvl(erlc, 0))) erlc,
+                  (nvl(jhsanlc, 0)),
+                  (nvl(sanlc, 0)) sanlc,
+                  (nvl(jhsilc, 0)),
+                  (nvl(silc, 0)) silc,
+                  jsxz jsxz,
+                  xzqhdm xzqhdm,
+                  gydw gydw,
+                  lxbm lxbm,
+                  ghlxmc lxmc,
+                  jsjsdj jsjsdj,
+                  sffirst,
+                  ghlxbm,
+                  ghqdzh,
+                  ghzdzh,
+                  lxlmkd,
+                  jsfa
+             from lxsh_lx
+            where jdbs = '2' order by xmid,sffirst desc) l on j.xmbm=l.xmid  left join xmsq_sh lxg on j.xmbm=lxg.xmbm
 		 where 1=1
 		 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		
@@ -6590,7 +6651,7 @@
 			)
 		</if>
 		<if test="xmnf !=null and xmnf !=''">
-			and substr(j.xmbm,0,4) in (${xmnf})
+			and fun_scxdnf(j.xmbm) in (${xmnf})
 		</if>
 		
 		<if test="tsdq !=null and tsdq !=''">
@@ -7032,7 +7093,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
              from lxsh_lx
             where jdbs = '2'
             group by xmid)  l
-            on j.XMBM=l.xmid
+            on j.XMBM=l.xmid left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm
    where 1=1
    <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
@@ -7051,7 +7112,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and fun_scxdnf(j.xmbm) in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -7148,7 +7209,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
              from lxsh_lx
             where jdbs = '2'
             group by xmid)  l
-            on j.XMBM=l.xmid
+            on j.XMBM=l.xmid  left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm
    where 1=1
   <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				
@@ -7167,7 +7228,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and fun_scxdnf(j.xmbm) in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -7202,10 +7263,10 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	</select>
 	<!-- 下面是导出计划查询养护大中修明细的sql -->
 	<select id="queryYhdzxDetail_dcexcel1" parameterType="jhsh" resultType="elist">
-	select j.YLXBH v_1,j.GHLXBH v_2,l.lxmc v_3,j.QDZH v_4,j.ZDZH v_5,l.zlc v_6,l.jsjsdj v_7,x.lmkd v_8,l.jsxz v_9,x.jsfa v_10,
-j.ZTZ v_11,j.RYS+j.DK v_12,null v_13,xd.ztz v_14,null v_15,xd.rys v_16,xd.dk v_17,c.sjpfwh v_18,x.gydw v_19,x.bz v_20
+	select l.lxbm v_1,l.ghlxbm v_2,l.lxmc v_3,l.ghqdzh v_4,l.ghZDZH v_5,l.zlc v_6,l.jsjsdj v_7,l.lxlmkd v_8,l.jsxz v_9,l.jsfa v_10,
+decode(l.sffirst,'1',j.ZTZ,'') v_11,decode(l.sffirst,'1',j.RYS+j.DK,'') v_12,null v_13,decode(l.sffirst,'1',xd.ztz,'') v_14,null v_15,decode(l.sffirst,'1',xd.rys,'') v_16,decode(l.sffirst,'1',xd.dk,'') v_17,c.sjpfwh v_18,x.gydw v_19,decode(substr(x.bz,0,3),'lxs','',x.bz) v_20,l.sffirst v_50
 
-from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on j.xmbm=c.xmbm
+from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on j.xmbm=c.xmbm left join xmsq_yhdzx lxg on j.xmbm=lxg.xmbm
 	left join ( select p.xmid,
        sum(p.ztz) ztz,
        sum(p.rys) rys,
@@ -7220,33 +7281,39 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	left  join(
            select xmid,decode(substr(xmid, 11, 1),
                          '1',
-                         (sum(nvl(jhyilc, 0)) + sum(nvl(jherlc, 0)) +
-                         sum(nvl(jhsanlc, 0)) + sum(nvl(jhsilc, 0)) +
-                         sum(nvl(jhdwlc, 0)) + sum(nvl(jhwllc, 0))),
-                         (sum(nvl(yilc, 0)) + sum(nvl(erlc, 0)) +
-                         sum(nvl(sanlc, 0)) + sum(nvl(silc, 0)) +
-                         sum(nvl(dwlc, 0)) + sum(nvl(wllc, 0)))) zlc,
+                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
+                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
+                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
+                         (nvl(yilc, 0) + nvl(erlc, 0) +
+                         nvl(sanlc, 0) + nvl(silc, 0) +
+                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc,
                   decode(substr(xmid, 11, 1),
                          '1',
-                         (sum(nvl(jhyilc, 0))),
-                         (sum(nvl(yilc, 0)))) yilc,
+                         (nvl(jhyilc, 0)),
+                         (nvl(yilc, 0))) yilc,
                   decode(substr(xmid, 11, 1),
                          '1',
-                         (sum(nvl(jherlc, 0))),
-                         (sum(nvl(erlc, 0)))) erlc,
-                  (sum(nvl(jhsanlc, 0))),
-                  (sum(nvl(sanlc, 0))) sanlc,
-                  (sum(nvl(jhsilc, 0))),
-                  (sum(nvl(silc, 0))) silc,
-                  min(jsxz) jsxz,
-                  min(xzqhdm) xzqhdm,
-                  min(gydw) gydw,
-                  min(lxbm) lxbm,
-                  min(lxmc) lxmc,
-                  min(jsjsdj) jsjsdj
+                         (nvl(jherlc, 0)),
+                         (nvl(erlc, 0))) erlc,
+                  (nvl(jhsanlc, 0)),
+                  (nvl(sanlc, 0)) sanlc,
+                  (nvl(jhsilc, 0)),
+                  (nvl(silc, 0)) silc,
+                  jsxz jsxz,
+                  xzqhdm xzqhdm,
+                  gydw gydw,
+                  lxbm lxbm,
+                  ghlxmc lxmc,
+                  jsjsdj jsjsdj,
+                  sffirst,
+                  ghlxbm,
+                  ghqdzh,
+                  ghzdzh,
+                  lxlmkd,
+                  jsfa
              from lxsh_lx
             where jdbs = '2'
-            group by xmid)  l
+            )  l
             on j.XMBM=l.xmid
    where 1=1
    			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -7266,7 +7333,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				)
 			</if>
 				<if test="xmnf !=null and xmnf !=''">
-					and substr(j.xmbm,0,4) in (${xmnf})
+					and fun_scxdnf(j.xmbm) in (${xmnf})
 				</if>
 				<if test="tsdq !=null and tsdq !=''">
 					${tsdq}
@@ -7293,7 +7360,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
-   order by c.xzqhdm
+   order by c.xzqhdm,j.xmbm,sffirst desc
 	</select>
 	
 	<!--  -->

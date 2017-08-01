@@ -221,7 +221,7 @@
 				zjly=zjly.substr(1,zjly.length);
 			  var param='jhsh.xmbm='+xmnf+'&jhsh.xmlx1='+xmlx
 				+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#lxbm').combotree('getText')+'&jhsh.scxdnf='+xmnf
-				+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",")
+				+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combobox("getValues").join(",").replace(/\+/g,"%2B")
 				+'&jhsh.xdzt=1'+'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&lsjl='+$('#lsjl').combobox("getValue")
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
 				+'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1; 
@@ -230,6 +230,8 @@
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
+		
+		
 		
 		function loadFileUpload(){
 			$("#uploadJhxd").uploadify({

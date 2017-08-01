@@ -2877,6 +2877,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 		xdwhHandle();
 		jhsh.setXmbm(xmbm);
+		tsdqHandle();
 		jsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
@@ -2906,7 +2907,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
 		
 		List<Excel_list> l = jhshServer.queryGsdgz_dc(jhsh);
-		
+		int k=1;
+		for (Excel_list e : l) {
+			if("1".equals(e.getV_50())) {
+				e.setV_0(""+k);k++;
+			}
+		}
 		ExcelData eldata=new ExcelData();//创建一个类
 		eldata.setTitleName("公路建设计划（国省道改造项目）");//设置第一行
 		eldata.setSheetName("国省道改造");//设置sheeet名
@@ -2979,6 +2985,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsjsdjHandle();
 			ylxbhHandle();
 			xdztHandle();
+			tsdqHandle1();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx1()!=null)
 				if(jhsh.getXmlx1().length()>0){
@@ -3007,6 +3014,14 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			
 			List<Excel_list> l = jhshServer.queryZhhf_dc(jhsh);
 			//l.add(new Excel_list());
+			int k=1;
+			for (Excel_list e : l) {
+				if("1".equals(e.getV_50())) {
+					e.setV_0(""+k);
+					k++;
+				}
+			}
+			
 			
 			ExcelData eldata=new ExcelData();//创建一个类
 			eldata.setTitleName("公路建设计划（灾毁恢复重建项目）");//设置第一行
@@ -3278,8 +3293,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
 					
 					List<Excel_list> l = jhshServer.queryYhdzxDetail_dc1(jhsh);
+					int k=1;
 					for (int i = 0; i < l.size(); i++) {
-						l.get(i).setV_0((i+1)+"");
+						if("1".equals(l.get(i).getV_50())) {
+							l.get(i).setV_0(k+"");
+							k++;
+						}
+						
 					}
 					ExcelData eldata=new ExcelData();//创建一个类
 					eldata.setTitleName("公路建设计划（养护大中修）");//设置第一行
