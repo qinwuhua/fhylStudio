@@ -30,6 +30,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
+import com.hdsx.jxzhpt.utile.InitServlet;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -1647,14 +1648,15 @@ public class TjfxController extends BaseActionSupport{
 		try{
 			DecimalFormat df= new DecimalFormat("######0.00");   
 			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
-			if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
+			String zrshbl=InitServlet.sysYear;
+		if(tjfl!=null && !tjfl.equals("") && tjfl.equals("1")){
 			TreeNode treenode=new TreeNode();
 			treenode.setId("36__00");
 			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
 			xzqh.remove(0);
 			List<Map<String,Object>> qs = tjfxServer.queryKxjc_ds(tjfl,xmsq.getXmbm());
 			Map<String, Object> nf=tjfxServer.queryMaxNf();
-			List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, Integer.valueOf(nf.get("NF").toString()));
+			List<Map<String,Object>> zrsh=tjfxServer.queryKxjcZrsh(tjfl, Integer.valueOf(nf.get("NF").toString()),zrshbl);
 			for (TreeNode item : xzqh) {
 				xzqhdm = item.getId().substring(0,4);
 				//返回数据对象
@@ -1690,7 +1692,7 @@ public class TjfxController extends BaseActionSupport{
 				List<TreeNode> lx=tjfxServer.queryLx(null);
 				List<Map<String,Object>> qs1 = tjfxServer.queryKxjc_ds(tjfl,xmsq.getXmbm());
 				Map<String, Object> nf=tjfxServer.queryMaxNf();
-				List<Map<String,Object>> zrsh=tjfxServer.queryZrsh(tjfl, Integer.valueOf(nf.get("NF").toString()));
+				List<Map<String,Object>> zrsh=tjfxServer.queryKxjcZrsh(tjfl, Integer.valueOf(nf.get("NF").toString()),zrshbl);
 //				for (TreeNode item : lx) {
 //					Map<String, String> index =new HashMap<String, String>();
 //					index.put("lxbm", item.getId());
