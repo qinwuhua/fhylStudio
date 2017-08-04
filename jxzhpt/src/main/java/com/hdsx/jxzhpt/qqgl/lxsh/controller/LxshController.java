@@ -2235,7 +2235,7 @@ public class LxshController extends BaseActionSupport{
 					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
 				}
 			}
-			if(!lxsh.getTsdq().equals("")&&lxsh.getTsdq()!=null){
+			/*if(!lxsh.getTsdq().equals("")&&lxsh.getTsdq()!=null){
 				if(lxsh.getTsdq().length()>0){
 					String[] tsdqs=lxsh.getTsdq().split(",");
 					String tsdq="and(";
@@ -2256,10 +2256,11 @@ public class LxshController extends BaseActionSupport{
 					}
 					lxsh.setTsdq(tsdq);
 				}
-			}
+			}*/
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "t.xzqhdm2"));
 			lxsh.setGydw(tiaojian1);
+			lxsh.setTsdq(MyUtil.getQueryTJ(java.net.URLDecoder.decode(lxsh.getTsdq(),"UTF-8"),"tsdq"));
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			String xmbt="";
