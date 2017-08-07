@@ -2159,7 +2159,8 @@ public class LxshController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			gydw=(String) session.getAttribute("gydwbb");	
-			xzqh=(String) session.getAttribute("xzqhbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");
+			tsdq=(String) session.getAttribute("tsdq");
 			String tiaojian1="";
 			String tiaojian2="";
 			if(!gydw.equals("")&&gydw!=null){
@@ -2260,9 +2261,11 @@ public class LxshController extends BaseActionSupport{
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "t.xzqhdm2"));
 			lxsh.setGydw(tiaojian1);
-			lxsh.setTsdq(MyUtil.getQueryTJ(java.net.URLDecoder.decode(lxsh.getTsdq(),"UTF-8"),"tsdq"));
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
