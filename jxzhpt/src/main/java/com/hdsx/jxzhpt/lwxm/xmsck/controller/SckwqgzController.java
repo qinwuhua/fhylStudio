@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -218,6 +220,12 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void exportExcel_wqgz_scsh(){
 		try {
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String tsdqS=(String) session.getAttribute("tsdq");
+			sckwqgz.setTsdq(tsdqS);
+			
 			if(sckwqgz.getGydw().indexOf(",")==-1){
 				sckwqgz.setGydw("and scbmbm like '%'||substr("+sckwqgz.getGydw()+",0,4)||'_'||substr("+sckwqgz.getGydw()+",6)||'%'");
 			}else{
@@ -227,6 +235,66 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				sckwqgz.setXzqhdm("and xzqhdm like '%"+sckwqgz.getXzqhdm()+"%'");
 			}else{
 				sckwqgz.setXzqhdm("and xzqhdm in ("+sckwqgz.getXzqhdm()+")");
+			}
+			if(sckwqgz.getTsdq().length()>0){
+				String[] tsdqs=sckwqgz.getTsdq().split(",");
+				String tsdq="and(";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckwqgz.setTsdq(tsdq);
+			}
+			if(sckwqgz.getGldj().length()>0){
+				String[] tsdqs=sckwqgz.getGldj().split(",");
+				String tsdq="and substr(qlbh,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i]+"'";
+					else
+						tsdq+=",'"+tsdqs[i]+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckwqgz.setGldj(tsdq);
+			}
+			if(sckwqgz.getJsdj().length()>0){
+				String[] tsdqs=sckwqgz.getJsdj().split(",");
+				String tsdq="and substr(jsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1).replaceAll("等", "五")+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckwqgz.setJsdj(tsdq);
 			}
 			if(sckwqgz.getAkjfl().length()>0){
 				String[] tsdqs=sckwqgz.getAkjfl().split(",");
@@ -248,6 +316,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				}
 				sckwqgz.setAkjfl(tsdq);
 			}
+			
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scsh(sckwqgz);
 			//导出设置

@@ -998,7 +998,9 @@
 		t.sd_m v_31,t.sd v_32,t.kgny v_33,t.wgny v_34,t.bzdw v_35,decode(lx.sffirst,'1',t.tzgs,'') v_36,decode(lx.sffirst,'1',t.dfzc,'') v_37,
 		decode(lx.sffirst,'1',t.yhdk,'') v_38,decode(lx.sffirst,'1',t.gkpfwh,'') v_39,decode(lx.sffirst,'1',t.pfsj,'') v_40 
 		
-		from KXXYJ_SJGZ t right join
+		from KXXYJ_SJGZ t 
+		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_sjgz) t1 on t.xmbm=t1.xmbh
+		right join
 		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1013,7 +1015,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1026,6 +1028,9 @@
 			
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		order by t.xmbm, lx.sffirst desc
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">

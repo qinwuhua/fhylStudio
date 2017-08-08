@@ -158,25 +158,45 @@ function exportExcel_wqgz_scsh1(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
-	var akjfl="";
-	akjfl=$("#akjfl").combobox("getValues").join(',');
-		if(akjfl.substring(0,1)==','){
-			akjfl=akjfl.substring(1,akjfl.length);
-		}
+		
+		var xmnf=$("#xmnf").combobox("getValues").join(",");
+		if(xmnf.substr(0,1)==',')
+			xmnf=xmnf.substr(1,xmnf.length);
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var akjfl="";
+		akjfl=$("#akjfl").combobox("getValues").join(',');
+			if(akjfl.substring(0,1)==','){
+				akjfl=akjfl.substring(1,akjfl.length);
+			}
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&xmnf='+xmnf+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&jsdj='+jsdj+
+ 	'&gldj='+gldj+
  	'&akjfl='+akjfl+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
  	'&qlbh='+$("#qlbh").val()+
- 	'&bzls='+$("#bzls").combobox("getValue")+
- 	'&sck_sbthcd='+cd;
+ 	'&tsdq='+tsdq+
+ 	'&sck_sbthcd='+cd+
+ 	'&xmklx='+$('#xmklx').combobox('getValue');
 	//特殊地区 条件	
-	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
+	
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
+		window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
+	 });
+	
 }
 
 </script>

@@ -412,6 +412,18 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+		${tsdq}
+		</if>
+		<if test="xmklx !='' and xmklx != null ">
+		and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>	
+ 		 <if test="jsdj!='' and jsdj!= null ">
+			${jsdj}
+		</if> 
+		<if test="gldj!='' and gldj!= null ">
+			${gldj}
+		</if> 
 	</select>
 	<select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
 		select
