@@ -2475,15 +2475,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
@@ -2645,15 +2645,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
@@ -2698,15 +2698,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
