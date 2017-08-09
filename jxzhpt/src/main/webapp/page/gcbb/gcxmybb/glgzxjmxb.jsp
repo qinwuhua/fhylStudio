@@ -295,7 +295,7 @@ text-decoration:none;
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  >
-						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>>&nbsp;公路改造工程新上、续建工程项目完成情况汇总表</div>
+						<div id="p_top">当前位置>&nbsp;进度报表>&nbsp;<span id="astext">生成报表</span>>&nbsp;<span id="bstext"></span>&nbsp;(报部)普通干线公路改造工程项目完成情况汇总表</div>
 					</div>
         	</tr>
         	<tr>
@@ -343,7 +343,7 @@ text-decoration:none;
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id="kdtb" width="6000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路改造工程新上、续建工程项目完成情况明细表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">(报部)普通干线公路改造工程项目完成情况汇总表</caption>
 								<thead id="biaotou">
 									<!-- <tr>
 										<td rowspan="3" style="width: 100px;">序号</td>

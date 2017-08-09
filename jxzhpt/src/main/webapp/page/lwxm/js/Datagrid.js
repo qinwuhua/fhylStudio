@@ -1593,8 +1593,8 @@ function sckglWqgz(){
 				}else{
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					//'<span style="color:grey;">编辑</span>  '+
-					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<span style="color:grey;">编辑</span>  '+
+//					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<span style="color:grey;">删除</span>';
 				}
 			}},    
@@ -1853,8 +1853,8 @@ function sckglAbgc(){
 				}else{
 					return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-					//'<span style="color:grey;">编辑</span>  '+
+//					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
 				}
 			}},    
@@ -2119,8 +2119,8 @@ function sckglZhfz(){
 				}else{
 					return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					//'<span style="color:grey;">编辑</span>  '+
-					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<span style="color:grey;">编辑</span>  '+
+//					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<span style="color:grey;">删除</span>';
 				}
 			}},    

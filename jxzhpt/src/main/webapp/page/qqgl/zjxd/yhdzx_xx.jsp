@@ -26,8 +26,8 @@
 				data:'xmlx='+4+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
-					loadDist("xzqh1",msg.xzqhdm);
-					loadUnit("gydw1",msg.gydwdm);
+// 					loadDist("xzqh1",msg.xzqhdm);
+// 					loadUnit("gydw1",msg.gydwdm);
 					$("#ylxbh").val(msg.ylxbh);
 					$('#submit').form("load",msg);
 					$("#submit textarea[id='jsfa']").attr("disabled","disabled");
@@ -251,12 +251,12 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					行政区划</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="xzqh1" name="xzqh" type="text" style="width: 124px;"/>
+					<input id="xzqh" name="xzqh" type="text" style="width: 124px;"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					管养单位</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="gydw1" name="gydw" type="text" style="width: 120px;"/>
+					<input id="gydw" name="gydw" type="text" style="width: 120px;"/>
 				</td>
             </tr>
             <tr style="height: 30px;">

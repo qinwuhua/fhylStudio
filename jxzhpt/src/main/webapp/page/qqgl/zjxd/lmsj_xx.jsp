@@ -103,7 +103,7 @@
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="zdzh" style="width: 120px;" type="text"/></td>
+						<input id="zdzh" style="width: 120px;" type="text"/></td>
 				</tr>
 				<tr style="height: 30px;">
             	<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">

@@ -130,10 +130,10 @@
 						<input id="qdzh" name="qdzh" type="text" style="width:120px;"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原止点桩号：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="zdzh" style="width: 120px;" type="text"/></td>
+						<input id="zdzh" style="width: 120px;" type="text"/></td>
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
-						<input name="lc" type="text" style="font-size: 14px;width: 120px;"/>&nbsp;公里</td>
+						<input name='lc' id="lc" type="text" style="font-size: 14px;width: 120px;"/>&nbsp;公里</td>
 				</tr>
 				<tr style="height: 35px;">
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">

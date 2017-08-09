@@ -73,9 +73,9 @@
 						formatter:function(value,row,index){
 							var a="";
 							if(row.sjlx=='补助历史')
-							a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';
+							a='<a href="javascript:msgxx('+"'"+row.xmid+"','"+row.xmlx+"','"+row.ghqdzh+"','"+row.ghzdzh+"','"+row.qdzh+"','"+row.zdzh+"'"+')" style="color:#0066CB;font-size:12px;">';
 							else
-							a='<a href="javascript:msgxx1('+"'"+row.xmid+"','"+row.xmlx+"'"+')" style="color:#0066CB;font-size:12px;">';	
+							a='<a href="javascript:msgxx1('+"'"+row.xmid+"','"+row.xmlx+"','"+row.ghqdzh+"','"+row.ghzdzh+"','"+row.qdzh+"','"+row.zdzh+"'"+')" style="color:#0066CB;font-size:12px;">';	
 							a+=value+'</a>';
 							return a;
 						}
@@ -119,8 +119,12 @@
 			});
 		}
 		var obj;
-		function msgxx(xmid,jsdj){
-		
+		function msgxx(xmid,jsdj,ghqdzh,ghzdzh,qdzh,zdzh){
+			
+			YMLib.Var.ghqdzh=ghqdzh;
+			YMLib.Var.ghzdzh=ghzdzh;
+			YMLib.Var.qdzh=qdzh;
+			YMLib.Var.zdzh=zdzh;
 			YMLib.Var.xmbm=xmid;
 			if(jsdj=='安防工程'||jsdj=='危桥改造'||jsdj=='灾害防治'){
 				obj=xmid.substr(4,xmid.length);
@@ -138,22 +142,26 @@
 				
 			}else{
 				if(xmid.substring(10,11)=="1"){
-					YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+					YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx_zhcx.jsp','lmsjxx',980,400);
 				}else if(xmid.substring(10,11)=="2"){
-					YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
+					YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx_zhcx.jsp','lmgzxx',980,400);
 				}else if(xmid.substring(10,11)=="3"){
-					YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
+					YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx_zhcx.jsp','xjgcxx',980,400);
 				}else if(xmid.substring(10,11)=="4"){
-					YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
+					YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx_zhcx.jsp','yhdzxxx',980,400);
 				}else if(xmid.substring(10,11)=="5"){
-					YMLib.UI.createWindow('shxmxx','灾毁恢复重建项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+					YMLib.UI.createWindow('shxmxx','灾毁恢复重建项目','/jxzhpt/page/qqgl/zjxd/shxm_xx_zhcx.jsp','shxmxx',980,400);
 				}
 			}
 			
 			
 		}
 		
-		function msgxx1(xmid,jsdj){
+		function msgxx1(xmid,jsdj,ghqdzh,ghzdzh,qdzh,zdzh){
+			YMLib.Var.ghqdzh=ghqdzh;
+			YMLib.Var.ghzdzh=ghzdzh;
+			YMLib.Var.qdzh=qdzh;
+			YMLib.Var.zdzh=zdzh;
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/qqgl/cxwnxmkbyxmbm.do',
@@ -162,13 +170,13 @@
 				success:function(msg){
 					obj=msg;
 					if(jsdj=='改建'){
-						YMLib.UI.createWindow('shxmxx','改建项目','/jxzhpt/page/wngh/wnjh/sjgz_xx.jsp','shxmxx',980,400);
+						YMLib.UI.createWindow('shxmxx','改建项目','/jxzhpt/page/wngh/wnjh/sjgz_xx_zhcx.jsp','shxmxx',980,400);
 					}
 					if(jsdj=='路面改造'){
-						YMLib.UI.createWindow('shxmxx','路面改造项目','/jxzhpt/page/wngh/wnjh/lmgz_xx.jsp','shxmxx',980,400);
+						YMLib.UI.createWindow('shxmxx','路面改造项目','/jxzhpt/page/wngh/wnjh/lmgz_xx_zhcx.jsp','shxmxx',980,400);
 					}
 					if(jsdj=='新建'){
-						YMLib.UI.createWindow('shxmxx','新建项目','/jxzhpt/page/wngh/wnjh/xj_xx.jsp','shxmxx',980,400);
+						YMLib.UI.createWindow('shxmxx','新建项目','/jxzhpt/page/wngh/wnjh/xj_xx_zhcx.jsp','shxmxx',980,400);
 					}
 				}
 			});

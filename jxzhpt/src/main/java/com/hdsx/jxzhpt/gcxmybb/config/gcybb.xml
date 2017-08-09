@@ -1515,7 +1515,7 @@
 		        and lxmc like '%'||trim(#{lxmc})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
-		        and xmmc like '%'||trim(#{xmmc})||'%'
+		        and v_6 like '%'||trim(#{xmmc})||'%'
 		    </if>
 		    <if test="tiaojian != null and  tiaojian != ''">
 		        ${tiaojian}
@@ -1567,7 +1567,7 @@
 		        and lxmc like '%'||trim(#{lxmc})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
-		        and xmmc like '%'||trim(#{xmmc})||'%'
+		        and v_6 like '%'||trim(#{xmmc})||'%'
 		    </if>
 		    <if test="tiaojian != null and  tiaojian != ''">
 		        ${tiaojian}
@@ -1618,7 +1618,7 @@
 		        and lxmc like '%'||trim(#{lxmc})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
-		        and xmmc like '%'||trim(#{xmmc})||'%'
+		        and v_6 like '%'||trim(#{xmmc})||'%'
 		    </if>
 		    <if test="tiaojian != null and  tiaojian != ''">
 		        ${tiaojian}
@@ -1670,7 +1670,7 @@
 		        and lxmc like '%'||trim(#{lxmc})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
-		        and xmmc like '%'||trim(#{xmmc})||'%'
+		        and v_6 like '%'||trim(#{xmmc})||'%'
 		    </if>
 		    <if test="tiaojian != null and  tiaojian != ''">
 		        ${tiaojian}
@@ -1721,7 +1721,7 @@
 		        and lxmc like '%'||trim(#{lxmc})||'%'
 		    </if>
 		    <if test="xmmc != null and  xmmc != ''">
-		        and xmmc like '%'||trim(#{xmmc})||'%'
+		        and v_6 like '%'||trim(#{xmmc})||'%'
 		    </if>
 		    <if test="tiaojian != null and  tiaojian != ''">
 		        ${tiaojian}
