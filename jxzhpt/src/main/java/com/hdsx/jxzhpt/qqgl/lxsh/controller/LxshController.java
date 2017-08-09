@@ -2410,6 +2410,7 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setXmnf(xmnf1);
 			}
+			
 			if(lxsh.getGldj()!=null && !lxsh.getGldj().equals("")){
 				String[] split1 = lxsh.getGldj().split(",");
 				String g="";

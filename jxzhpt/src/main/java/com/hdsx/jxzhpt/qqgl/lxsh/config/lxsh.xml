@@ -1034,6 +1034,9 @@
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
+		</if>
 		order by t.xmbm, lx.sffirst desc
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
@@ -1083,6 +1086,9 @@
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
+		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
@@ -1130,6 +1136,9 @@
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
@@ -1793,6 +1802,9 @@
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and to_char(t.sbzt) like '%'||#{sbzt}||'%' 
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
