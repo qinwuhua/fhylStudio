@@ -714,20 +714,25 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("1");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("ZJWCZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("ZJWCZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("ZJWCZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("ZJWCZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("ZJWCZ").toString());
+						el.setV_5(map.get("ZJWCZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("ZJWCZ").toString());
+						el.setV_6(map.get("ZJWCZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("ZJWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("ZJWCZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("ZJWCZ").toString());
+					
 					
 				}
 				list.add(el);
@@ -736,12 +741,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("2");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("ZJWCYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("ZJWCYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("ZJWCYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("ZJWCYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("ZJWCYM").toString());
 					/*if("4".equals(map.get("XH").toString()))
 						el.setV_8(map.get("ZJWCYM").toString());
 					if("5".equals(map.get("XH").toString()))
@@ -758,21 +765,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("3");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("ZJWCZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("ZJWCZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("ZJWCZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("ZJWCZTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("ZJWCZTZ").toString());
+						el.setV_5(map.get("ZJWCZTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("ZJWCZTZ").toString());
+						el.setV_6(map.get("ZJWCZTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCZTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCZTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("ZJWCZTZ").toString());
-					
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("ZJWCZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("ZJWCZTZ").toString());
 				}
 				list.add(el);
 			}
@@ -780,20 +790,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("总计");el.setV_1("总计");el.setV_2("完成投资（万元）");el.setV_3("中央投资");el.setV_4("4");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("ZJWCBTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("ZJWCBTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("ZJWCBTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("ZJWCBTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("ZJWCBTZ").toString());
+						el.setV_5(map.get("ZJWCBTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("ZJWCBTZ").toString());
+						el.setV_6(map.get("ZJWCBTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("ZJWCBTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("ZJWCBTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("ZJWCBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("ZJWCBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("ZJWCBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("ZJWCBTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("ZJWCBTZ").toString());
 					
 				}
 				list.add(el);
@@ -802,20 +816,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达工程量");el.setV_3("单位1");el.setV_4("5");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPXDZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPXDZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPXDZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPXDZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPXDZ").toString());
+						el.setV_5(map.get("BAPXDZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPXDZ").toString());
+						el.setV_6(map.get("BAPXDZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPXDZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPXDZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPXDZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPXDZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPXDZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPXDZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPXDZ").toString());
 					
 				}list.add(el);
 			}
@@ -823,12 +841,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达工程量");el.setV_3("单位2");el.setV_4("6");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPXDYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPXDYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPXDYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPXDYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPXDYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPXDYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPXDYM").toString());
 					/*if("4".equals(map.get("XH").toString()))
 						el.setV_8(map.get("BAPXDYM").toString());
 					if("5".equals(map.get("XH").toString()))
@@ -844,20 +864,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("7");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCZ").toString());
+						el.setV_5(map.get("BAPWCZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCZ").toString());
+						el.setV_6(map.get("BAPWCZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -865,12 +889,14 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("8");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCYM").toString());
 					/*if("4".equals(map.get("XH").toString()))
 						el.setV_8(map.get("BAPWCYM").toString());
 					if("5".equals(map.get("XH").toString()))
@@ -886,20 +912,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("总投资");el.setV_4("9");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPZTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPZTZ").toString());
+						el.setV_5(map.get("BAPZTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPZTZ").toString());
+						el.setV_6(map.get("BAPZTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPZTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPZTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPZTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -907,20 +937,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("中央投资");el.setV_4("10");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPBTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPBTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPBTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPBTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPBTZ").toString());
+						el.setV_5(map.get("BAPBTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPBTZ").toString());
+						el.setV_6(map.get("BAPBTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPBTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPBTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPBTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPBTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -928,20 +962,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("计划下达资金量（万元）");el.setV_3("地方自筹");el.setV_4("11");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPDFZC").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPDFZC").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPDFZC").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPDFZC").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPDFZC").toString());
+						el.setV_5(map.get("BAPDFZC").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPDFZC").toString());
+						el.setV_6(map.get("BAPDFZC").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPDFZC").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPDFZC").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPDFZC").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPDFZC").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPDFZC").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPDFZC").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPDFZC").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -949,20 +987,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("12");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCZTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCZTZ").toString());
+						el.setV_5(map.get("BAPWCZTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCZTZ").toString());
+						el.setV_6(map.get("BAPWCZTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCZTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCZTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCZTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -970,20 +1012,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("部投资");el.setV_4("13");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCBTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCBTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCBTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCBTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCBTZ").toString());
+						el.setV_5(map.get("BAPWCBTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCBTZ").toString());
+						el.setV_6(map.get("BAPWCBTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCBTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCBTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCBTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCBTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -991,20 +1037,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1("其中："+xmnf+"年计划安排");el.setV_2("完成投资（万元）");el.setV_3("地方自筹");el.setV_4("14");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCDFZC").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCDFZC").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCDFZC").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCDFZC").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCDFZC").toString());
+						el.setV_5(map.get("BAPWCDFZC").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCDFZC").toString());
+						el.setV_6(map.get("BAPWCDFZC").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCDFZC").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCDFZC").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCDFZC").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCDFZC").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCDFZC").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCDFZC").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCDFZC").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -1012,20 +1062,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("15");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCKNZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCKNZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCKNZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCKNZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCKNZ").toString());
+						el.setV_5(map.get("BAPWCKNZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCKNZ").toString());
+						el.setV_6(map.get("BAPWCKNZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCKNZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCKNZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCKNZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -1033,13 +1087,15 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("16");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCKNYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCKNYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCKNYM").toString());
-					/*if("4".equals(map.get("XH").toString()))
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("BAPWCKNYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCKNYM").toString());
+					/*if("8".equals(map.get("XH").toString()))
 						el.setV_8(map.get("BAPWCKNYM").toString());
 					if("5".equals(map.get("XH").toString()))
 						el.setV_9(map.get("BAPWCKNYM").toString());
@@ -1054,20 +1110,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成投资（万元）");el.setV_3("总投资");el.setV_4("17");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCKNZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCKNZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCKNZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCKNZTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCKNZTZ").toString());
+						el.setV_5(map.get("BAPWCKNZTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCKNZTZ").toString());
+						el.setV_6(map.get("BAPWCKNZTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNZTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNZTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCKNZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCKNZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCKNZTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -1075,20 +1135,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("车购税安排项目");el.setV_1(xmnf+"年完成的跨年度计划项目");el.setV_2("完成投资（万元）");el.setV_3("中央投资");el.setV_4("18");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("BAPWCKNBTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("BAPWCKNBTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("BAPWCKNBTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("BAPWCKNBTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("BAPWCKNBTZ").toString());
+						el.setV_5(map.get("BAPWCKNBTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("BAPWCKNBTZ").toString());
+						el.setV_6(map.get("BAPWCKNBTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("BAPWCKNBTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("BAPWCKNBTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("BAPWCKNBTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("BAPWCKNBTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("BAPWCKNBTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("BAPWCKNBTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("BAPWCKNBTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -1096,20 +1160,24 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("19");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("SAPWCZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("SAPWCZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("SAPWCZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("SAPWCZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("SAPWCZ").toString());
+						el.setV_5(map.get("SAPWCZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("SAPWCZ").toString());
+						el.setV_6(map.get("SAPWCZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("SAPWCZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("SAPWCZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("SAPWCZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
@@ -1117,13 +1185,15 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("20");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("SAPWCYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("SAPWCYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("SAPWCYM").toString());
-					/*if("4".equals(map.get("XH").toString()))
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("SAPWCYM").toString());
+					/*if("8".equals(map.get("XH").toString()))
 						el.setV_8(map.get("SAPWCYM").toString());
 					if("5".equals(map.get("XH").toString()))
 						el.setV_9(map.get("SAPWCYM").toString());
@@ -1138,54 +1208,65 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 				Excel_list el=new Excel_list();
 				el.setV_0("省内自行安排");el.setV_1("其中："+xmnf+"年投资项目");el.setV_2("完成投资（万元）");el.setV_3("完成投资（万元）");el.setV_4("21");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
+					if("5".equals(map.get("XH").toString()))
 						el.setV_5(map.get("SAPWCZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
+					if("6".equals(map.get("XH").toString()))
 						el.setV_6(map.get("SAPWCZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
+					if("7".equals(map.get("XH").toString()))
 						el.setV_7(map.get("SAPWCZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
+					if("8".equals(map.get("XH").toString()))
 						el.setV_8(map.get("SAPWCZTZ").toString());
-					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("SAPWCZTZ").toString());
-					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("SAPWCZTZ").toString());
-					if("7".equals(map.get("XH").toString()))
-						el.setV_11(map.get("SAPWCZTZ").toString());
-					//list.add(el);
-				}list.add(el);
-			}
-			if(i==20){
-				Excel_list el=new Excel_list();
-				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("22");
-				for (Map<String, Object> map : l) {
 					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("SAPWCKNZ").toString());
+						el.setV_9(map.get("SAPWCZTZ").toString());
 					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("SAPWCKNZ").toString());
+						el.setV_10(map.get("SAPWCZTZ").toString());
 					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("SAPWCKNZ").toString());
+						el.setV_11(map.get("SAPWCZTZ").toString());
 					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("SAPWCKNZ").toString());
-					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("SAPWCKNZ").toString());
-					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("SAPWCKNZ").toString());
-					if("7".equals(map.get("XH").toString()))
-						el.setV_11(map.get("SAPWCKNZ").toString());
+						el.setV_12(map.get("SAPWCZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("SAPWCZTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
 			if(i==21){
 				Excel_list el=new Excel_list();
+				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成工程量");el.setV_3("单位1");el.setV_4("22");
+				for (Map<String, Object> map : l) {
+					if("5".equals(map.get("XH").toString()))
+						el.setV_5(map.get("SAPWCKNZ").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_6(map.get("SAPWCKNZ").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCKNZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCKNZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNZ").toString());
+					if("3".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCKNZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("SAPWCKNZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("SAPWCKNZ").toString());
+					//list.add(el);
+				}list.add(el);
+			}
+			if(i==22){
+				Excel_list el=new Excel_list();
 				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成工程量");el.setV_3("单位2");el.setV_4("23");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("SAPWCKNYM").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("SAPWCKNYM").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("SAPWCKNYM").toString());
+					if("5".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNYM").toString());
+					if("6".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNYM").toString());
+					if("7".equals(map.get("XH").toString()))
+						el.setV_11(map.get("SAPWCKNYM").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_12(map.get("SAPWCKNYM").toString());
+					
 					/*if("4".equals(map.get("XH").toString()))
 						el.setV_8(map.get("SAPWCKNYM").toString());
 					if("5".equals(map.get("XH").toString()))
@@ -1197,24 +1278,28 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 					//list.add(el);
 				}list.add(el);
 			}
-			if(i==22){
+			if(i==23){
 				Excel_list el=new Excel_list();
 				el.setV_0("省内自行安排");el.setV_1(xmnf+"年完成的跨年度项目");el.setV_2("完成投资（万元）");el.setV_3("完成投资（万元）");el.setV_4("24");
 				for (Map<String, Object> map : l) {
-					if("1".equals(map.get("XH").toString()))
-						el.setV_5(map.get("SAPWCKNZTZ").toString());
-					if("2".equals(map.get("XH").toString()))
-						el.setV_6(map.get("SAPWCKNZTZ").toString());
-					if("3".equals(map.get("XH").toString()))
-						el.setV_7(map.get("SAPWCKNZTZ").toString());
-					if("4".equals(map.get("XH").toString()))
-						el.setV_8(map.get("SAPWCKNZTZ").toString());
 					if("5".equals(map.get("XH").toString()))
-						el.setV_9(map.get("SAPWCKNZTZ").toString());
+						el.setV_5(map.get("SAPWCKNZTZ").toString());
 					if("6".equals(map.get("XH").toString()))
-						el.setV_10(map.get("SAPWCKNZTZ").toString());
+						el.setV_6(map.get("SAPWCKNZTZ").toString());
 					if("7".equals(map.get("XH").toString()))
+						el.setV_7(map.get("SAPWCKNZTZ").toString());
+					if("8".equals(map.get("XH").toString()))
+						el.setV_8(map.get("SAPWCKNZTZ").toString());
+					if("1".equals(map.get("XH").toString()))
+						el.setV_9(map.get("SAPWCKNZTZ").toString());
+					if("2".equals(map.get("XH").toString()))
+						el.setV_10(map.get("SAPWCKNZTZ").toString());
+					if("3".equals(map.get("XH").toString()))
 						el.setV_11(map.get("SAPWCKNZTZ").toString());
+					if("4".equals(map.get("XH").toString()))
+						el.setV_12(map.get("SAPWCKNZTZ").toString());
+					if("9".equals(map.get("XH").toString()))
+						el.setV_13(map.get("SAPWCKNZTZ").toString());
 					//list.add(el);
 				}list.add(el);
 			}
