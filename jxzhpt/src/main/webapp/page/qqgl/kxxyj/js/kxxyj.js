@@ -172,6 +172,8 @@ function showkxxTjxx(xmlx){
 	'&lxsh.lxmc='+$("#lxmc").val()+
 	'&lxsh.xmlx='+xmlx+
 	'&lxsh.xmklx='+$("#xmklx").combobox('getValue')+'&lxsh.lsxmnf='+lsxmnf+'&lxsh.lsxmlx='+lsxmlx;
+	
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{jsdj:jsdj,jsjsdj:jsjsdj,gldj:gldj,tsdq:tsdq},function(){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/showkxxTjxx.do',
@@ -197,6 +199,7 @@ function showkxxTjxx(xmlx){
 			}
 			
 		}
+	});
 	});
 }
 

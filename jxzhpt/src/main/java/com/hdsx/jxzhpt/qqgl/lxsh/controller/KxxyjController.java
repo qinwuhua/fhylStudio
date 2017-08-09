@@ -13,7 +13,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -1542,6 +1544,13 @@ public class KxxyjController extends BaseActionSupport{
 	
 	public void showkxxTjxx(){
 		try {
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			lxsh.setJsdj((String) session.getAttribute("jsdj"));	
+			lxsh.setJsjsdj((String) session.getAttribute("jsjsdj"));
+			lxsh.setGldj((String) session.getAttribute("gldj"));
+			lxsh.setTsdq((String) session.getAttribute("tsdq"));
 			
 			String ss = lxsh.getXzqh();
 			
