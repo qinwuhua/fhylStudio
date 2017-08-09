@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -121,6 +123,12 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void exportExcel_abgc_scsh(){
 		try {
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String tsdqS=(String) session.getAttribute("tsdq");
+			sckabgc.setTsdq(tsdqS);
+			
 			if(sckabgc.getGydw().indexOf(",")==-1){
 				sckabgc.setGydw("and scbmbm like '%'||substr("+sckabgc.getGydw()+",0,4)||'_'||substr("+sckabgc.getGydw()+",6)||'%'");
 			}else{
@@ -131,9 +139,29 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			}else{
 				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
 			}
-			if(sckabgc.getLxjsdj().length()>0){
-				String[] tsdqs=sckabgc.getLxjsdj().split(",");
-				String tsdq="and lxjsdj in (";
+			if(sckabgc.getTsdq().length()>0){
+				String[] tsdqs=sckabgc.getTsdq().split(",");
+				String tsdq="and (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setTsdq(tsdq);
+			}
+			if(sckabgc.getGldj().length()>0){
+				String[] tsdqs=sckabgc.getGldj().split(",");
+				String tsdq="and substr(lxbm,0,1) in (";
 				for (int i = 0; i < tsdqs.length; i++) {
 					if("全部".equals(tsdqs[i])){
 						tsdq="";
@@ -149,7 +177,27 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 				}else{
 					tsdq+=")";
 				}
-				sckabgc.setLxjsdj(tsdq);
+				sckabgc.setGldj(tsdq);
+			}
+			if(sckabgc.getJsdj().length()>0){
+				String[] tsdqs=sckabgc.getJsdj().split(",");
+				String tsdq="and substr(lxjsdj,0,1) in (";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+					else
+						tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				sckabgc.setJsdj(tsdq);
 			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=abgcServer.exportExcel_abgc_scsh(sckabgc);

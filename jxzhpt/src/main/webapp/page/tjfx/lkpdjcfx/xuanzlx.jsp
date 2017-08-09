@@ -377,7 +377,6 @@
 		}
 	</script>
 	<style type="text/css">
-	TD {font-size: 8px;}
 	a{text-decoration:none;}
 	
 	</style>

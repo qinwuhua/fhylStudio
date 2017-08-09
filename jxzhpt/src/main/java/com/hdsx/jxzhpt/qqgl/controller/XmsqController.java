@@ -9,12 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 
 import org.apache.commons.beanutils.BeanComparator;
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -1236,13 +1239,19 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void exportExcelXmsq(){
 		try{
 			//设置列与字段对应
-			String fileTitle="<title=项目名称,fieid=xmmc>,<title=行政区划代码,fieid=xzqhdm>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路面宽度,fieid=lmkd>,<title=技术等级,fieid=jsdj>,<title=项目年份,fieid=xmnf>,<title=工程分类,fieid=gcfl>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=工期（月）,fieid=gq>,<title=总投资,fieid=ntz>,<title=建设方案,fieid=jsfa,width=60>,<title=备注,fieid=bz,width=20>,<title=项目编码,fieid=xmbm,hidden=true>";
+			String fileTitle="<title=项目编码,fieid=xmbm>,<title=项目名称,fieid=xmmc>,<title=行政区划代码,fieid=xzqhdm>,<title=行政区划,fieid=xzqh>,<title=管养单位,fieid=gydw>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=起点名称,fieid=qdmc>,<title=止点名称,fieid=zdmc>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路面宽度,fieid=lmkd>,<title=技术等级,fieid=jsdj>,<title=项目年份,fieid=xmnf>,<title=工程分类,fieid=gcfl>,<title=计划开工时间,fieid=jhkgsj>,<title=计划完工时间,fieid=jhwgsj>,<title=工期（月）,fieid=gq>,<title=总投资,fieid=ntz>,<title=建设方案,fieid=jsfa,width=60>,<title=备注,fieid=bz,width=20>,<title=项目编码,fieid=xmbm,hidden=true>";
 			//数据
 			List<Object> excelData=new ArrayList<Object>();
 			//设置标题、文件名称
 			String titleName="";
 			String fileName="";
 			String xmbm = xmsq.getXmbm();
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String tsdqS=(String) session.getAttribute("tsdq");
+			xmsq.setTsdq(tsdqS);
+			
 			if(xmbm.indexOf(",")>-1){
 				String[] xmnfArray = xmbm.split(",");
 				for (int i = 0; i < xmnfArray.length; i++) {
@@ -1275,7 +1284,13 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
 			
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
-			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+//			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+			xmsq.setWnxmk(xmsq.getWnxmk());
+			xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			
 			if(xmsq.getXmlx()==4){
 				titleName="立项审核";
 				fileName="养护大中修立项审核";
@@ -1764,6 +1779,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	
 	
 	public void exportExcelXmsq1(){
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		String tsdqS=(String) session.getAttribute("tsdq");
+		xmsq.setTsdq(tsdqS);
+		
 		List<Excel_list>  l=new ArrayList<Excel_list>();
 		String xmbm = xmsq.getXmbm();
 		if(xmbm.indexOf(",")>-1){
@@ -1797,9 +1818,33 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
 		xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
 		
-		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
-		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+//		xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+//		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+		
+		xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+		xmsq.setWnxmk(xmsq.getWnxmk());
+		xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+		xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+		
 		if(xmsq.getXmlx()==4){
+			String gcfl = xmsq.getJsxz();
+			if(gcfl!=null && !gcfl.equals("")){
+				if(gcfl.indexOf(",")>-1){
+					String[] gcflArray = gcfl.split(",");
+					for (int i = 0; i < gcflArray.length; i++) {
+						if(i==0){
+							gcfl = "(x.gcfl like '%"+gcflArray[i]+"%'";
+						}else if(i==gcflArray.length-1){
+							gcfl += " or x.gcfl like '%"+ gcflArray[i] +"%' )";
+						}else{
+							gcfl += " or x.gcfl like '%" + gcflArray[i] + "%'";
+						}
+					}
+				}else{
+					gcfl = "x.gcfl like '%" + gcfl + "%'";
+				}
+				xmsq.setGcfl(gcfl);
+			}
 			if(xmsq.getTsdq().length()>0){
 				String[] tsdqs=xmsq.getTsdq().split(",");
 				String tsdq="and(";

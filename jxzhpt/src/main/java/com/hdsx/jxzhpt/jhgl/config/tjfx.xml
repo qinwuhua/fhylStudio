@@ -1266,6 +1266,21 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	order by a.xzqhdm
 	</select>
 	
+	<select id="queryZrsh_ds_kxjc" resultType="java.util.Map" parameterType="java.util.Map">
+	select xzqhdm,trunc((yd+ld)*${zrshbl},2) zrsh from (
+	  select  sum(decode(pd,'优',cd,'0')) yd ,sum(decode(pd,'良',cd,'0')) ld
+	  ,to_char(substr(xzqhdm,0,4)) xzqhdm
+	  from  WH_LKPD_DATA_DS  where id not in(
+	  select distinct(t.id)
+	  from (select * from  WH_LKPD_DATA_DS   where tbnf=${xmnf})t
+	  ,(select lxbm,qdzh,zdzh  from  lkpd_lx_data 
+	  where xmbm in (${xmbm}) 
+	  group by lxbm,qdzh,zdzh) l 
+	  where t.lxbh=l.lxbm 
+	  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+	  ) and tbnf=${xmnf} group by to_char(substr(xzqhdm,0,4))) where xzqhdm is not null
+	</select>
+	
 	<select id="queryZrsh_lx" resultType="java.util.Map" parameterType="java.util.Map">
 	select ${xmnf} nf,a.lxbh lxbm,a.ydlv-b.ydlv zrsh from (
 	  select lxbh,round((yd+ld)/cd,2)*100 ydlv,yd+ld from (
@@ -1290,8 +1305,21 @@ select substr(l.xzqhdm,0,4) xzqh,substr(j.xmbm,0,4) nf,sum(distinct(j.pfztz)) zt
 	  order by a.lxbh
 	</select>
 	
+	<select id="queryZrsh_lx_kxjc" resultType="java.util.Map" parameterType="java.util.Map">
+	  select lxbh lxbm,trunc((yd+ld)*${zrshbl},2) zrsh from (
+	  select  sum(decode(pd,'优',cd,'0')) yd,sum(decode(pd,'良',cd,'0')) ld,lxbh 
+	  from  WH_LKPD_DATA_DS  where id not in(
+	  select distinct(t.id)
+	  from (select * from WH_LKPD_DATA_DS   where tbnf=${xmnf})t
+	  ,(select lxbm,qdzh,zdzh from  lkpd_lx_data 
+	  where xmbm in (${xmbm}) 
+	  group by lxbm,qdzh,zdzh) l where t.lxbh=l.lxbm 
+		  and to_number(t.qdzh)&lt;=to_number(l.zdzh) and to_number(t.zdzh) >=to_number(l.qdzh)  
+		  ) and tbnf=${xmnf} group by lxbh)
+	</select>
+	
 	<select id="queryLkpdMaxNf" resultType="java.util.Map" >
-	  select max(tbnf)-1 nf from lkpd_mxb2014
+	  select max(tbnf) nf from lkpd_mxb2014
 	</select>
 	
 	<select id="queryLx_kxjc" resultType="java.util.Map" parameterType="java.util.Map">

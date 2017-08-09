@@ -2159,7 +2159,8 @@ public class LxshController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			gydw=(String) session.getAttribute("gydwbb");	
-			xzqh=(String) session.getAttribute("xzqhbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");
+			tsdq=(String) session.getAttribute("tsdq");
 			String tiaojian1="";
 			String tiaojian2="";
 			if(!gydw.equals("")&&gydw!=null){
@@ -2235,7 +2236,7 @@ public class LxshController extends BaseActionSupport{
 					lxsh.setGldj("lxbm = '" + lxsh.getGldj() + "'");
 				}
 			}
-			if(!lxsh.getTsdq().equals("")&&lxsh.getTsdq()!=null){
+			/*if(!lxsh.getTsdq().equals("")&&lxsh.getTsdq()!=null){
 				if(lxsh.getTsdq().length()>0){
 					String[] tsdqs=lxsh.getTsdq().split(",");
 					String tsdq="and(";
@@ -2256,12 +2257,15 @@ public class LxshController extends BaseActionSupport{
 					}
 					lxsh.setTsdq(tsdq);
 				}
-			}
+			}*/
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "t.xzqhdm2"));
 			lxsh.setGydw(tiaojian1);
+			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			String xmbt="";
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
@@ -2349,7 +2353,10 @@ public class LxshController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			gydw=(String) session.getAttribute("gydwbb");	
-			xzqh=(String) session.getAttribute("xzqhbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");
+			tsdq=(String)session.getAttribute("tsdq");
+			lxsh.setTsdq(tsdq);
+			
 			String tiaojian1="";
 			String tiaojian2="";
 			if(!gydw.equals("")&&gydw!=null){
@@ -2435,7 +2442,8 @@ public class LxshController extends BaseActionSupport{
 			}
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
-			
+			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			
@@ -2467,15 +2475,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
@@ -2531,15 +2539,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
@@ -2637,15 +2645,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}
@@ -2690,15 +2698,15 @@ public class LxshController extends BaseActionSupport{
 						String[] jsdj2 = lxsh.getJsjsdj().split(",");
 						for (int i = 0; i < jsdj2.length; i++) {
 							if(i==0){
-								jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}else if(i==jsdj2.length-1){
-								jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
 							}else{
-								jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
 							}
 						}
 					}else{
-						jsdj1 = "jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
+						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
 					}
 					lxsh.setJsjsdj(jsdj1);
 				}

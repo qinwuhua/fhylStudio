@@ -1283,6 +1283,13 @@
 				<if test="ghlxmc!=null and ghlxmc!=''">
 					and l.ghlxmc like '%'||#{ghlxmc}||'%' 
 				</if>
+				<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
 				
 				order by x.sqzt desc,x.xmbm desc,l.sffirst desc) t ) t2
 	</select>
@@ -1317,6 +1324,12 @@
 					and l.ghlxmc like '%'||#{ghlxmc}||'%'
 				</if>
 				<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
 				order by x.sqzt desc,x.xmbm desc ,l.sffirst desc
 
 	</select>
@@ -2187,6 +2200,13 @@
 
 					)
 				</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
+				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 		order by x.xmbm,substr(x.ghlxbh,0,1),to_number(v_10)
 	) tb
 	

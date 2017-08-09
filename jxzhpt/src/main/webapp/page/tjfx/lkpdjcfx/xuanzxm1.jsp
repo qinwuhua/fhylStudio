@@ -138,7 +138,7 @@
                     {field:'zbz',title:'总补助(万元)',width:150,align:'center'},
                     {field:'lc',title:'总里程',width:150,align:'center'},
                     {field:'ydlv',title:'优良路率提升比例(%)',width:200,align:'center'},
-                    {field:'zrsh',title:'自然损耗(%)',width:200,align:'center'}
+                    {field:'zrsh',title:'自然损耗(公里)',width:200,align:'center'}
 			    ]]
 				 
 			}); 
@@ -153,22 +153,21 @@
 		}
 	</script>
 	<style type="text/css">
-	TD {font-size: 8px;}
 	a{text-decoration:none;}
 	
 	</style>
 </head>
 <body >
-	
-		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<div style="text-align: left; font-size: 12px; margin: 0px;">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr id='cxtj'>
         		<td align="left" style="padding-left: 5px; padding-top: 10px;height: 330px;">
-        			<fieldset id="searchField" style="width:99.3%; text-align: left; vertical-align: middle;height: 330px; padding-bottom:10px;">
-        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+        			<fieldset  style="width:99%; text-align: left; vertical-align: middle;height: 330px; padding-bottom:10px;">
+        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 20px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0"  >
 							<tr height="42" >
         						<td style="width: 100px;">行政区划：</td>
         						<td style="width: 176px;"><select id="xzqh" style="width:170px;"></select></td>
@@ -216,5 +215,6 @@
             	</td>
         	</tr>
 		</table>
+		</div>
 </body>
 </html>

@@ -290,7 +290,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  </select>
   <select id="exportExcel_zhfz_scsh" parameterType="sckzhfz" resultType="sjbb">
  	select
-	sbzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,qzlc v_8,yhlc v_9,gjxjnd v_10,xmnf v_11,jsxz v_12
+	sbzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.sczlc v_8,t.scyhlc v_9,gjxjnd v_10,xmnf v_11,jsxz v_12
  	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id 
  	where 1=1 and sck_sbthcd=7
  	and sck_sbthcd >=#{sck_sbthcd}
@@ -312,8 +312,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="shzt!='' and shzt!= null ">
  			and shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			${lxjsdj}
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			${jsdj}
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
@@ -323,6 +323,15 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and sck_lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 				${tsdq}
+ 	    </if>
+ 	    <if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
+ 		<if test="gldj!='' and gldj!= null ">
+ 			${gldj}
  		</if>
  </select>
  <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">

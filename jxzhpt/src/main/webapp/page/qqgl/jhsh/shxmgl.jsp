@@ -584,20 +584,42 @@
 			}
 		}
 		function exportXmsq(){
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
-			if(tsdq.substr(0,1)==',')
-				tsdq=tsdq.substr(1,tsdq.length);
+			
 			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
-			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&xmbm='+xmnf+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
-			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&lxmc="+$("#lxmc").val()+"&ghlxbh="+$("#lxbm").combotree('getText')+"&ghlxbm="+$("#ghlxbm").combotree('getText')+"&ghlxmc="+$("#ghlxmc").val();
-			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
+			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&lxmc="+$("#lxmc").val()+
+			"&ghlxbh="+$("#lxbm").combotree('getText')+"&ghlxbm="+$("#ghlxbm").combotree('getText')+
+			"&ghlxmc="+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+
+			"&wnxmk="+$('#wnxmk').combobox("getValue");
+			
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
+				window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
+			 });
+			
 		}
 		function importXmsq(){
 			importExcel("/jxzhpt/qqgl/importExcelSh.do","shlxsh");

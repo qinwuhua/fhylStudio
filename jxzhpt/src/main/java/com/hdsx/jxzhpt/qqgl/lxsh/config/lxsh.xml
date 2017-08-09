@@ -886,7 +886,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -900,7 +900,9 @@
 			)
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
-		order by t.xmbm desc
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
 		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
@@ -925,7 +927,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -939,7 +941,9 @@
 			)
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
-		order by t.xmbm desc
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		order by t.xmbm,lx.sffirst desc
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
 		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.ghlxbm v_6,lx.ghlxmc v_7,lx.ghqdzh v_8,lx.ghzdzh v_9,
@@ -964,7 +968,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -978,7 +982,9 @@
 			)
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
-		order by t.xmbm desc
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		order by t.xmbm,lx.sffirst desc
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
@@ -992,7 +998,9 @@
 		t.sd_m v_31,t.sd v_32,t.kgny v_33,t.wgny v_34,t.bzdw v_35,decode(lx.sffirst,'1',t.tzgs,'') v_36,decode(lx.sffirst,'1',t.dfzc,'') v_37,
 		decode(lx.sffirst,'1',t.yhdk,'') v_38,decode(lx.sffirst,'1',t.gkpfwh,'') v_39,decode(lx.sffirst,'1',t.pfsj,'') v_40 
 		
-		from KXXYJ_SJGZ t right join
+		from KXXYJ_SJGZ t 
+		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_sjgz) t1 on t.xmbm=t1.xmbh
+		right join
 		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1007,7 +1015,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1020,7 +1028,13 @@
 			
 			)
 		</if>
-		order by t.xmbm desc, lx.sffirst desc
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
+		order by t.xmbm, lx.sffirst desc
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
 		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,
@@ -1032,7 +1046,9 @@
 		lx.jsxz v_27,t.dq_m v_28,t.dq v_29,t.jsjsdj v_30,
 		t.sd_m v_31,t.sd v_32,t.kgny v_33,t.wgny v_34,t.bzdw v_35,decode(lx.sffirst,'1',t.tzgs,'') v_36,decode(lx.sffirst,'1',t.dfzc,'') v_37,
 		decode(lx.sffirst,'1',t.yhdk,'') v_38,decode(lx.sffirst,'1',t.gkpfwh,'') v_39,decode(lx.sffirst,'1',t.pfsj,'') v_40 
-		from KXXYJ_LMGZ t right join (select * from lxsh_lx where 1=1 and jdbs='1') lx on t.xmbm=lx.xmid where 1=1
+		from KXXYJ_LMGZ t 
+		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_lmgz) t1 on t.xmbm=t1.xmbh
+		right join (select * from lxsh_lx where 1=1 and jdbs='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
@@ -1048,7 +1064,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1061,13 +1077,21 @@
 			
 			)
 		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
 		select decode(lx.sffirst,'1',t.xmbm,'') v_0,decode(lx.sffirst,'1',t.xmmc,'') v_1,lx.xzqh v_2,lx.lxbm v_3,lx.qdzh v_4,lx.zdzh v_5,lx.lc v_6,lx.xjlxbm v_7,lx.xjqdzh v_8,lx.xjzdzh v_9,lx.xjlc v_10,
 		lx.yilc v_11,lx.erlc v_12,lx.sanlc v_13,lx.silc v_14,lx.dwlc v_15,lx.wllc v_16,'新建' v_17,t.dq_m v_18,t.dq v_19,t.jsjsdj v_20,t.sd_m v_21,t.sd v_22,
 		t.kgny v_23,t.wgny v_24,t.bzdw v_25,decode(lx.sffirst,'1',t.tzgs,'') v_26,decode(lx.sffirst,'1',t.dfzc,'') v_27,decode(lx.sffirst,'1',t.yhdk,'') v_28,decode(lx.sffirst,'1',t.gkpfwh,'') v_29,decode(lx.sffirst,'1',t.pfsj,'') v_30 
-		from KXXYJ_XJ t right join
+		from KXXYJ_XJ t 
+		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxsh_xj) t1 on t.xmbm=t1.xmbh
+		right join
 		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1088,7 +1112,7 @@
 			and lxmc like '%'||#{lxmc}||'%'
 		</if>
 		<if test="jsjsdj !='' and jsjsdj !=null">
-			${jsjsdj}
+			and ${jsjsdj}
 		</if>
 		<if test="ghlxbh !='' and ghlxbh != null ">
 			and xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
@@ -1100,6 +1124,12 @@
 			and (t.xmbm in (select distinct xmid from lxsh_lx lx where lx.ghlxmc like '%'||#{ghlxmc}||'%')
 			
 			)
+		</if>
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
@@ -1730,7 +1760,9 @@
 		lx.jsxz v_27,t.dq_m v_28,t.dq v_29,t.jsjsdj v_30,
 		t.sd_m v_31,t.sd v_32,t.kgny v_33,t.wgny v_34,t.bzdw v_35,decode(lx.sffirst,'1',t.tzgs,'') v_36,decode(lx.sffirst,'1',t.dfzc,'') v_37,
 		decode(lx.sffirst,'1',t.yhdk,'') v_38,decode(lx.sffirst,'1',t.gkpfwh,'') v_39,decode(lx.sffirst,'1',t.pfsj,'') v_40 
-		from kxgsdgz t right join
+		from kxgsdgz t 
+		Left join (select xmbm xmbh,lsjl,xmklx,tsdq,lsxmbm from lxgsdgz) t1 on t.xmbm=t1.xmbh
+		right join
 		(select * from lxsh_lx where 1=1 and jdbs='1' ) lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
@@ -1756,7 +1788,12 @@
 		<if test="ghlxmc !='' and ghlxmc != null ">
 			and lx.ghlxmc like '%'||#{ghlxmc}||'%'
 		</if>
-		
+		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
+		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="shzt!='' and shzt!= null ">
+			and to_char(t.shzt) like '%'||#{shzt}||'%'
+		</if>
 		order by t.xmbm desc,lx.sffirst desc
 	</select>
 	<select id="selectWqjlbz" resultType="wqbzbz">

@@ -651,23 +651,44 @@
 		
 		
 		function exportXmsq(){
+			
+			var tsdq=$("#tsdq").combobox("getValues").join(",");
+			if(tsdq.substr(0,1)==',')
+				tsdq=tsdq.substr(1,tsdq.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
+			if(lsxmnf=='')
+			lsxmnf='';
+			if(lsxmnf.substr(0,1)==',')
+			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
+			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
+			if(lsxmlx=='')
+			lsxmlx='';
+			if(lsxmlx.substr(0,1)==',')
+			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
+			
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}else{
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
-			var tsdq=$("#tsdq").combobox("getValues").join(",");
-			if(tsdq.substr(0,1)==',')
-				tsdq=tsdq.substr(1,tsdq.length);
+			
 			loadjzt();
 			
 			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
 			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
-			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+'&ghlxmc='+$("#ghlxmc").val();
-			window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
+			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+
+			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",");;
+			
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
+				window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
+			 });
+			
 			setTimeout('disLoadjzt()',20000);
 			
 		}
@@ -752,7 +773,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;<span id="spantitle">项目立项</span>>&nbsp;<span id='bstext'></span>>&nbsp;养护大中修项目</div>
+		<div id="p_top">前期管理11>&nbsp;<span id="spantitle">项目立项</span>>&nbsp;<span id='bstext'></span>>&nbsp;养护大中修项目</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>

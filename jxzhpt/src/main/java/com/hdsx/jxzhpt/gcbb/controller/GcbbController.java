@@ -45,6 +45,14 @@ public class GcbbController extends BaseActionSupport{
 	private Xmbb xmbb;
 	private String nameValue;
 	private String colValue;
+	private String tsdq;
+	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getcxtj(String id,String param){
 		String tj="";
 		if(param!=null&&!"".equals(param)){
@@ -1081,6 +1089,7 @@ public class GcbbController extends BaseActionSupport{
 		session.setAttribute("sql", sql);
 		session.setAttribute("nameValue", nameValue);
 		session.setAttribute("colValue", colValue);
+		session.setAttribute("tsdq", tsdq);
 		
 		JsonUtils.write(session, getresponse().getWriter());
 	}
