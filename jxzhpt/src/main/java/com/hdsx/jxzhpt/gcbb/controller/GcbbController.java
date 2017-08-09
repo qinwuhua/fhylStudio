@@ -46,7 +46,29 @@ public class GcbbController extends BaseActionSupport{
 	private String nameValue;
 	private String colValue;
 	private String tsdq;
+	private String jsdj;
+	private String jsjsdj;
+	private String gldj;
 	
+	
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getJsjsdj() {
+		return jsjsdj;
+	}
+	public void setJsjsdj(String jsjsdj) {
+		this.jsjsdj = jsjsdj;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
 	public String getTsdq() {
 		return tsdq;
 	}
@@ -1090,6 +1112,9 @@ public class GcbbController extends BaseActionSupport{
 		session.setAttribute("nameValue", nameValue);
 		session.setAttribute("colValue", colValue);
 		session.setAttribute("tsdq", tsdq);
+		session.setAttribute("jsdj", jsdj);
+		session.setAttribute("jsjsdj", jsjsdj);
+		session.setAttribute("gldj", gldj);
 		
 		JsonUtils.write(session, getresponse().getWriter());
 	}

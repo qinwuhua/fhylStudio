@@ -2163,13 +2163,18 @@
 	</select>
 	
 	<select id="queryYhdzxExport1" parameterType="xmsq" resultType="elist">
-	select rownum v_0,tb.* from (
-	select substr(x.ghlxbh,0,1) v_1,x.xmbm v_2,x.xmmc v_3,lx.lxbm v_4,lx.lxmc v_5,lx.qdzh v_6,lx.zdzh v_7,
+	
+	select '' v_0,tb.* from (
+	select substr(x.ghlxbh,0,1) v_1,x.xmbm v_2,x.xmmc v_3
+	,lx.lxbm v_4,lx.lxmc v_5,lx.qdzh v_6,lx.zdzh v_7,
 	  lx.ghlxbm v_8,lx.ghlxmc v_9,lx.ghqdzh v_10,lx.ghzdzh v_11,lx.gxlxbm v_12,lx.gxqdzh v_13,lx.gxzdzh v_14,lx.lcs v_15,x.jsdj v_16,
 	  x.lmkd v_17,x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,lx.sbzj v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
-	  '' v_26,'' v_27,'' v_28,x.lmkd v_29,x.bz v_30,(decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_31
+	  '' v_26,'' v_27,'' v_28,x.lmkd v_29,x.bz v_30,
+	  (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_31,
+	  lx.sffirst v_50
 	  from xmsq_yhdzx x 
-	  left join (select sjpfwh,xmbm from cbsj_yhdzx ) c on x.xmbm=c.xmbm left join (select l.*,nvl(l.yilc,0)+nvl(l.erlc,0)+nvl(l.sanlc,0)+nvl(l.silc,0)+nvl(l.dwlc,0)+nvl(l.wllc,0) lcs from lxsh_lx l where jdbs='1' ) lx on x.xmbm=lx.xmid
+	  left join (select sjpfwh,xmbm from cbsj_yhdzx ) c on x.xmbm=c.xmbm 
+	  left join (select l.*,nvl(l.yilc,0)+nvl(l.erlc,0)+nvl(l.sanlc,0)+nvl(l.silc,0)+nvl(l.dwlc,0)+nvl(l.wllc,0) lcs from lxsh_lx l where jdbs='1' ) lx on x.xmbm=lx.xmid
         where 1=1
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
@@ -2207,7 +2212,7 @@
 					${lsxmlx}
 				</if>
 				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
-		order by x.xmbm,substr(x.ghlxbh,0,1),to_number(v_10)
+		order by x.xmbm,substr(x.ghlxbh,0,1),lx.sffirst desc,to_number(v_10)
 	) tb
 	
 	
