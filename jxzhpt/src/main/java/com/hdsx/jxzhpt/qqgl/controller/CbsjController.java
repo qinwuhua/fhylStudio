@@ -14,7 +14,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -92,7 +94,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	public void queryCbsj() throws Exception{
 		try {
-			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
+			
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -124,7 +126,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			cbsj.setGhlxbm(cbsj.getGhlxbm());
 			cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
 			cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
-			
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
 			cbsj.setGhlxmc(cbsj.getGhlxmc());
 			cbsj.setLxmc(cbsj.getLxmc());
 			
@@ -955,10 +957,23 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void exportExcelCbsj(){
 		try {
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			cbsj.setTsdq((String) session.getAttribute("tsdq"));
+			
 			xmbmHandle();
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
+			cbsj.setLsxmlx(MyUtil.getQueryTJ2(cbsj.getLsxmnf(),cbsj.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			cbsj.setLsxmnf(MyUtil.getQueryTJ(cbsj.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			
+			cbsj.setGhlxbm(cbsj.getGhlxbm());
+			cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
+			cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
+			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
+			
 			String fileTitle="";
 			if(cbsj.getXmlx()==1){
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=建设后一级公路,fieid=jhyilc>,<title=建设后二级公路,fieid=jherlc>,<title=建设后三级公路,fieid=jhsanlc>,<title=建设后四级公路,fieid=jhsilc>,<title=建设后等外公路,fieid=jhdwlc>,<title=建设后无路,fieid=jhwllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费（万元）,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
@@ -971,7 +986,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else{
 				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建设方案,fieid=jsfa>";
 			}
-			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
+			
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";

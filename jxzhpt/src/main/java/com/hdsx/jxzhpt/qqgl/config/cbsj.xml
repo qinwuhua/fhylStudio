@@ -1177,7 +1177,11 @@
 					and ${xzqhdm}
 				</if>
 				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+					)
 				</if>
 				<if test="ylxbh!=null and ylxbh!=''">and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
 				</if>
@@ -1187,13 +1191,19 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
-				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 				
 				<!-- <if test="sbzt>=0">
 					and c.sbzt=${sbzt}
 				</if> -->
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>
@@ -1244,9 +1254,6 @@
 			left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 			where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
-				</if>
 				<if test="ylxbh!=null and ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
 				</if>
@@ -1256,10 +1263,24 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
-				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 				
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				
+				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+					)
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
@@ -1274,9 +1295,6 @@
 				left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 				 where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
-				</if>
 				<if test="ylxbh!=null and ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___' and jdbs='2')
 				</if>
@@ -1286,10 +1304,24 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
-				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
+				
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 				
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+					)
+				</if>
+				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
@@ -1304,9 +1336,6 @@
 				left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 				where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
-				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
-				</if>
 				<if test="ylxbh!=null and ylxbh!=''">
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%3___' and jdbs='2')
 				</if>
@@ -1315,10 +1344,23 @@
 				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
-				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 		
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
+				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+					)
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>
@@ -2048,10 +2090,8 @@
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>
-				<if test="ghlxbh!=null and ghlxbh!=''">
-					and c.xmbm in (select distinct xmid from lxsh_lx lx where lx.lxbm like '%'||#{ghlxbh}||'%')
-				</if>
-				<if test="ylxbh!=null and ylxbh!=''">and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
+				<if test="ylxbh!=null and ylxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___')
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
@@ -2063,8 +2103,21 @@
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
-				<if test="ghlxbm!=null and ghlxbm!=''">and  lx.ghlxbm like '%'||#{ghlxbm}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
+				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+					)
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc ) t 
 		)
 	</select>
