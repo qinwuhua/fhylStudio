@@ -371,7 +371,7 @@
 			if(lsxmlx.substr(0,1)==',')
 			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			
-			var param='xmlx=1&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			var param='xmlx=1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
