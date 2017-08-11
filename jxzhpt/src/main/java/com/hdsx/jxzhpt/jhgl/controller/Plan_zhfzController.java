@@ -140,6 +140,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void exportExcel_jh_zhfz(){
 		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+		lx.setLxbm(MyUtil.getQueryTJ(lx.getLxbm(), "lxbm"));
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
 		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 

@@ -270,15 +270,15 @@
 			<if test="lx.lxmc!=null and lx.lxmc!=''">
 				and lx.lxmc like '%'||#{lx.lxmc}||'%'
 			</if>
-			<if test="lx.lxbm!=null and lx.lxbm!=''">
-				and lx.lxbm like #{lx.lxbm}||'%'
-			</if>
+<!-- 			<if test="lx.lxbm!=null and lx.lxbm!=''"> -->
+<!-- 				and lx.lxbm like #{lx.lxbm}||'%' -->
+<!-- 			</if> -->
 			<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				and lx.lxjsdj = #{lx.lxjsdj}
 			</if>
 			<if test="lx.lxbm !=null and lx.lxbm !=''">
 	 					${lx.lxbm}
-	 				</if>
+	 		</if>
 		order by jh.sbnf desc
 	</select>
 	<select id="queryZhfzById" parameterType="string" resultType="plan_zhfz">
