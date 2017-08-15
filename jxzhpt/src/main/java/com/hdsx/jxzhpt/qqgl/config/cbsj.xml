@@ -1427,7 +1427,7 @@
 		<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 		
 		<if test="ylxbh!=null and ylxbh!=''">
-			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___' and jdbs='2')
+			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
 		</if>
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
@@ -1452,6 +1452,8 @@
 		
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
+		<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+		<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 	</select>
 	<select id="queryCbsjbgLjYhdzx" parameterType="cbsj" resultType="java.util.Map">
 		select sum(l.ntz) ntz,sum(l1.lc) lc from cbsj_yhdzx_tz c left join 
