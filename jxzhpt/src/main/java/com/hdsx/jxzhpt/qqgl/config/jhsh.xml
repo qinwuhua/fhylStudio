@@ -7264,24 +7264,11 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	
 	<select id="queryYhdzxDetail_dcexcel1" parameterType="jhsh" resultType="elist">
 	select '' v_1,'' v_2,'' v_3,'合计' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
-       nvl(to_char(sum(l.zlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
+       nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
       '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
-  left  join(
-           select xmid,decode(substr(xmid, 11, 1),
-                         '1',
-                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
-                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
-                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
-                         (nvl(yilc, 0) + nvl(erlc, 0) +
-                         nvl(sanlc, 0) + nvl(silc, 0) +
-                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc
-             from lxsh_lx
-            where jdbs = '2'
-            )  l
-            on j.XMBM=l.xmid
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
 	            replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
 	            replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -7340,24 +7327,11 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    union all
    
    select '' v_1,'' v_2,'' v_3,'大修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
-      nvl(to_char(sum(l.zlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
+      nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
       '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
-  left  join(
-           select xmid,decode(substr(xmid, 11, 1),
-                         '1',
-                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
-                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
-                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
-                         (nvl(yilc, 0) + nvl(erlc, 0) +
-                         nvl(sanlc, 0) + nvl(silc, 0) +
-                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc
-             from lxsh_lx
-            where jdbs = '2'
-            )  l
-            on j.XMBM=l.xmid
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
               replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
               replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -7415,24 +7389,11 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    union all
    
    select '' v_1,'' v_2,'' v_3,'中修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
-      nvl(to_char(sum(l.zlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
+      nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
       '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
-  left  join(
-           select xmid,decode(substr(xmid, 11, 1),
-                         '1',
-                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
-                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
-                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
-                         (nvl(yilc, 0) + nvl(erlc, 0) +
-                         nvl(sanlc, 0) + nvl(silc, 0) +
-                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc
-             from lxsh_lx
-            where jdbs = '2'
-            )  l
-            on j.XMBM=l.xmid
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
               replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
               replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -7490,24 +7451,11 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    union all
    
 select '' v_1,'' v_2,'' v_3,'预防性' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
-      nvl(to_char(sum(l.zlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
-      nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
+      nvl(to_char(sum(lx2.zjhlc),'fm999990.09999'), 0) v_9,'' v_10, '' v_11,'' v_12,'' v_13,'' v_14,'' v_15,
+       nvl(sum(j.ZTZ),0) v_16,nvl(sum(j.RYS),0) v_17,nvl(sum(j.DK),0) v_18,
       '' v_19,'' v_20,'' v_21,'' v_22,'' v_23,'' v_50
  from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm 
 left join cbsj_yhdzx c on j.xmbm=c.xmbm 
-  left  join(
-           select xmid,decode(substr(xmid, 11, 1),
-                         '1',
-                         (nvl(jhyilc, 0) + nvl(jherlc, 0) +
-                         nvl(jhsanlc, 0) + nvl(jhsilc, 0) +
-                         nvl(jhdwlc, 0) + nvl(jhwllc, 0)),
-                         (nvl(yilc, 0) + nvl(erlc, 0) +
-                         nvl(sanlc, 0) + nvl(silc, 0) +
-                         nvl(dwlc, 0) + nvl(wllc, 0))) zlc
-             from lxsh_lx
-            where jdbs = '2'
-            )  l
-            on j.XMBM=l.xmid
             left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
               replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
               replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
@@ -7563,12 +7511,11 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 					${xdzttj}
 				</if>
    
-   
    union all
   select * from (
 select 
-to_char(max(j.ds)) v_1,WMSYS.WM_CONCAT(l.ghlxbm) v_2,WMSYS.WM_CONCAT(l.lxbm) v_3,max(c.xmmc) v_4,
-WMSYS.WM_CONCAT(l.qdzh) v_5,WMSYS.WM_CONCAT(l.zdzh) v_6,WMSYS.WM_CONCAT(l.ghqdzh)v_7,WMSYS.WM_CONCAT(l.ghzdzh) v_8,
+to_char(max(j.ds)) v_1,max(lx2.ghlxbm) v_2,max(lx2.ylxbm) v_3,max(c.xmmc) v_4,
+max(lx2.qdzh) v_5,max(lx2.zdzh) v_6,max(lx2.ghqdzh)v_7,max(lx2.ghzdzh) v_8,
 to_char(sum(l.zlc),'fm999990.09999') v_9,RemoveSameStr(replace(WMSYS.WM_CONCAT(distinct(l.xjsdj)),'、',','),',') v_10 ,
 decode(WMSYS.WM_CONCAT(distinct(l.lxlmkd)),null,max(x.lmkd),0,max(x.lmkd),WMSYS.WM_CONCAT(distinct(l.lxlmkd))) v_11,
 WMSYS.WM_CONCAT(distinct(x.ylmlx)) v_12,WMSYS.WM_CONCAT(distinct(x.ylmjg)) v_13,max(j.jsxz) v_14,
@@ -7622,21 +7569,28 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
                   lxlmkd,
                   jsfa,qdzh,zdzh,xjsdj
              from lxsh_lx
-            where jdbs = '2'
+            where jdbs = '2' 
             )  l
             on j.XMBM=l.xmid
              left join (select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
               replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
               replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+              replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+             max(qdzh) qdzh,max(zdzh) zdzh,max(ghqdzh) ghqdzh,max(ghzdzh) ghzdzh,max(ghlxbm) ghlxbm,max(ylxbm) ylxbm
               from (select  xmid,jsxz,
               (case when substr(xmid,11,1)=1 then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
               
               else to_char(nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0))
               end) jhlc,lxbm,lxmc,(case when substr(xmid,11,1)=3 then xjlxbm 
               else ''
-              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj
-              from LXSH_LX  where jdbs='2' ) group by xmid) lx2 on j.xmbm=lx2.xmid
+              end) ghxlxbm,'' ghxlxmc,jsjsdj,xjsdj,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT(qdzh)over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT(zdzh)over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT(ghqdzh)over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT(ghzdzh)over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
+              from LXSH_LX  where jdbs='2') group by xmid) lx2 on j.xmbm=lx2.xmid
    where 1=1
             <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">

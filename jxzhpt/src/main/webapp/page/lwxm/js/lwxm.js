@@ -585,17 +585,33 @@ function exportExcel_zhfz_sh(){
 		}else{
 			xzqhstr= xzqhdm.join(',');
 		}
+		
+		var jsdj=$("#jsdj").combobox("getValues").join(",");
+		if(jsdj.substr(0,1)==',')
+			jsdj=jsdj.substr(1,jsdj.length);
+		var gldj=$("#gldj").combobox("getValues").join(",");
+		if(gldj.substr(0,1)==',')
+			gldj=gldj.substr(1,gldj.length);
+		var tsdq=$("#tsdq").combobox("getValues").join(",");
+		if(tsdq.substr(0,1)==',')
+			tsdq=tsdq.substr(1,tsdq.length);
+		
 	var param='gydw='+gydwstr+
  	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
 // 	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
- 	'&lxjsdj='+$("#jsdj").combobox("getValue")+
+ 	'&jsdj='+jsdj+
  	'&lxbm='+$("#lxbm").val()+
 // 	'&bz='+$("#bz").combobox("getValue")+
- 	'&sbthcd='+cd;
-	//特殊地区 条件	
+ 	'&sbthcd='+cd+
+ 	'&gldj='+gldj+
+ 	'&tsdq='+tsdq+//特殊地区 条件	
+ 	'&xmklx='+$('#xmklx').combobox('getValue');
+	
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz_sh.do?"+param;
+	});
 }
 //危桥改造审查库管理excel导出
 function exportExcel_wqgz_scgl(){

@@ -1054,6 +1054,27 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==4){
 				titleName="养护大中修";
 				fileName="养护大中修初步设计或施工图设计";
+				if(cbsj.getXmlx1()!=null)
+					if(cbsj.getXmlx1().length()>0){
+						String[] tsdqs=cbsj.getXmlx1().split(",");
+						String tsdq="";
+						for (int i = 0; i < tsdqs.length; i++) {
+							if("全部".equals(tsdqs[i])){
+								tsdq="";
+								break;
+							}
+							if(i==0)
+								tsdq+="and(l.gcfl like '%"+tsdqs[i]+"%'";
+							else
+								tsdq+="or l.gcfl like '%"+tsdqs[i]+"%'";
+						}
+						if(tsdq==""){
+							tsdq="";
+						}else{
+							tsdq+=")";
+						}
+						cbsj.setXmlx1(tsdq);
+					}
 				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				excelData = cbsjServer.queryYhdzxExcel(cbsj);
 			}else if(cbsj.getXmlx()==5){

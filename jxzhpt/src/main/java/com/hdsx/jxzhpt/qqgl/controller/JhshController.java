@@ -451,7 +451,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle1();
-				jsxzHandle();
+				jsxzHandle2();
 				zjlyHandle();
 				xdwhHandle();
 				xdztHandle();
@@ -633,7 +633,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jsdjHandle1();
 				xzdjHandle();
 				tsdqHandle1();
-				jsxzHandle();
+				jsxzHandle2();
 				zjlyHandle();
 				xdztHandle();
 				jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
@@ -2670,6 +2670,31 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				jhsh.setXmlx1(tsdq);
 			}
 	}
+	
+	private void jsxzHandle2(){
+		if(jhsh.getXmlx1()!=null)
+			if(jhsh.getXmlx1().length()>0){
+				String[] tsdqs=jhsh.getXmlx1().split(",");
+				String tsdq="";
+				for (int i = 0; i < tsdqs.length; i++) {
+					if("全部".equals(tsdqs[i])){
+						tsdq="";
+						break;
+					}
+					if(i==0)
+						tsdq+=" and (j.jsxz like '%"+tsdqs[i]+"%'";
+					else
+						tsdq+=" or j.jsxz like '%"+tsdqs[i]+"%'";
+				}
+				if(tsdq==""){
+					tsdq="";
+				}else{
+					tsdq+=")";
+				}
+				jhsh.setXmlx1(tsdq);
+			}
+	}
+	
 	private void xzdjHandle() {
 		String ylxbh = jhsh.getXzdj()==null ? "" : jhsh.getXzdj();
 		if(ylxbh!=null && !ylxbh.equals("")){
@@ -3308,7 +3333,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					jsdjHandle1();
 					xzdjHandle();
 					tsdqHandle2();
-					jsxzHandle();
+					jsxzHandle2();
 					zjlyHandle();
 					xdztHandle();
 					jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));

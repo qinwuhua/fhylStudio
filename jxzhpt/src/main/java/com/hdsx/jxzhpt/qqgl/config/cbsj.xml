@@ -1241,6 +1241,14 @@
 				<if test="shzt>=0">
 					and c.shzt=${shzt}
 				</if>
+				<if test="xmlx1 !=null and xmlx1 !=''"> ${xmlx1}</if>
+				<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
 				order by c.shzt,c.xmbm desc,lx.sffirst desc) t 
 		)
 	</select>

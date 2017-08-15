@@ -464,8 +464,8 @@ public class WnjhController extends BaseActionSupport{
 			}
 			lxsh.setJsdj(jsdjtj);
 			String jsjsdj="";
-			if((!"".equals(jsdj))&&jsdj!=null){
-				String[] jsdjs = jsdj.split(",");
+			if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+				String[] jsdjs = lxsh.getJsjsdj().split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
 						jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
@@ -554,8 +554,8 @@ public class WnjhController extends BaseActionSupport{
 			}
 			lxsh.setJsdj(jsdjtj);
 			String jsjsdj="";
-			if((!"".equals(jsdj))&&jsdj!=null){
-				String[] jsdjs = jsdj.split(",");
+			if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+				String[] jsdjs = lxsh.getJsjsdj().split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
 						jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
@@ -635,8 +635,8 @@ public class WnjhController extends BaseActionSupport{
 			}
 			lxsh.setJsdj(jsdjtj);
 			String jsjsdj="";
-			if((!"".equals(jsdj))&&jsdj!=null){
-				String[] jsdjs = jsdj.split(",");
+			if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+				String[] jsdjs = lxsh.getJsjsdj().split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
 						jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
@@ -1088,7 +1088,9 @@ public class WnjhController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			gydw=(String) session.getAttribute("gydwbb");	
-			xzqh=(String) session.getAttribute("xzqhbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");
+			lxsh.setTsdq((String) session.getAttribute("tsdq"));
+			
 			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
@@ -1108,9 +1110,9 @@ public class WnjhController extends BaseActionSupport{
 				String[] jsdjs = lxsh.getGldj().split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
-						gldjtj=gldjtj+"and (ghlxbh like '"+jsdjs[i]+"'||'%' ";
+						gldjtj=gldjtj+"and (ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
 					else
-						gldjtj=gldjtj+"or ghlxbh like '"+jsdjs[i]+"'||'%' ";
+						gldjtj=gldjtj+"or ghlxbmtj like '"+jsdjs[i]+"'||'%' ";
 				}
 				gldjtj=gldjtj+")";
 			}
@@ -1120,14 +1122,28 @@ public class WnjhController extends BaseActionSupport{
 				String[] jsdjs = lxsh.getJsdj().split(",");
 				for (int i = 0; i < jsdjs.length; i++) {
 					if(i==0)
-						jsdjtj=jsdjtj+"and (xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+						jsdjtj=jsdjtj+"and (xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
 					else
-						jsdjtj=jsdjtj+"or xjsdj like '%'||'"+jsdjs[i]+"'||'%' ";
+						jsdjtj=jsdjtj+"or xjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
 				}
 				jsdjtj=jsdjtj+")";
 			}
 			
 			lxsh.setJsdj(jsdjtj);
+			
+			String jsjsdj="";
+			if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+				String[] jsdjs = lxsh.getJsjsdj().split(",");
+				for (int i = 0; i < jsdjs.length; i++) {
+					if(i==0)
+						jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+					else
+						jsjsdj=jsjsdj+"or jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
+				}
+				jsjsdj=jsjsdj+")";
+			}
+			lxsh.setJsjsdj(jsjsdj);
+			
 			String xmbt="";
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");
@@ -1149,6 +1165,10 @@ public class WnjhController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
+			
+			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
+			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
+			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
 				if(lxsh.getXmlx1()!=null)
@@ -1366,8 +1386,8 @@ public class WnjhController extends BaseActionSupport{
 		}
 		lxsh.setJsdj(jsdjtj);
 		String jsjsdj="";
-		if((!"".equals(jsdj))&&jsdj!=null){
-			String[] jsdjs = jsdj.split(",");
+		if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+			String[] jsdjs = lxsh.getJsjsdj().split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
 					jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
