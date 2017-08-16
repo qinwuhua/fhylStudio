@@ -3383,6 +3383,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					et.add(new Excel_tilte("计划下达文号",1,2,21,21));
 					et.add(new Excel_tilte("项目编码",1,2,22,22));
 					et.add(new Excel_tilte("备注",1,2,23,23));
+					et.add(new Excel_tilte("特殊地区",1,2,24,24));
 					et.add(new Excel_tilte("起点桩号",2,2,5,5));
 					et.add(new Excel_tilte("讫点桩号",2,2,6,6));
 					et.add(new Excel_tilte("起点桩号",2,2,7,7));
