@@ -7044,16 +7044,21 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then l.zlc else 0 end),0) sdcj,
   decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then l.zlc else 0 end),0) sdgz,
   decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then l.zlc else 0 end),0) sdyfx,
-  (case when j.jsxz = '大修'  then to_number(j.ztz) else 0 end) cjtz,
-  (case when j.jsxz = '中修'  then to_number(j.ztz) else 0 end) gztz,
-  (case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end) yfxtz,
-  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '大修'  then to_number(j.ztz) else 0 end),0) gdcjtz,
-  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '中修'  then to_number(j.ztz) else 0 end),0) gdgztz,
-  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end),0) gdyfxtz,
-  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then to_number(j.ztz) else 0 end),0) sdcjtz,
-  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(j.ztz) else 0 end),0) sdgztz,
-  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
+  (case when j.jsxz = '大修'  then to_number(xd.ztz) else 0 end) cjtz,
+  (case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end) gztz,
+  (case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end) yfxtz,
+  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '大修'  then to_number(xd.ztz) else 0 end),0) gdcjtz,
+  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) gdgztz,
+  decode(substr(lxbm,0,1),'G',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) gdyfxtz,
+  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then to_number(xd.ztz) else 0 end),0) sdcjtz,
+  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) sdgztz,
+  decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
   from jhxdyh j
+   left join ( select p.xmid,
+       nvl(sum(p.btzzj),0)+nvl(sum(p.rys),0)+nvl(sum(p.dk),0)+nvl(sum(p.jl),0) ztz
+    from plan_zjxd p
+   where p.xdnf = #{xmnf}
+   group by p.xmid )  xd  on  j.xmbm=xd.xmid
   left  join(
            select xmid,decode(substr(xmid, 11, 1),
                          '1',
@@ -7147,16 +7152,21 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then l.zlc else 0 end),0) sdcj,
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then l.zlc else 0 end),0) sdgz,
 	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then l.zlc else 0 end),0) sdyfx,
-	(case when j.jsxz = '大修' then to_number(j.ztz) else 0 end) cjtz,
-	(case when j.jsxz = '中修' then to_number(j.ztz) else 0 end) gztz,
-	(case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end) yfxtz,
-	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '大修'  then to_number(j.ztz) else 0 end),0) gdcjtz,
-	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '中修'  then to_number(j.ztz) else 0 end),0) gdgztz,
-	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end),0) gdyfxtz,
-	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then to_number(j.ztz) else 0 end),0) sdcjtz,
-	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(j.ztz) else 0 end),0) sdgztz,
-	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(j.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
+	(case when j.jsxz = '大修' then to_number(xd.ztz) else 0 end) cjtz,
+	(case when j.jsxz = '中修' then to_number(xd.ztz) else 0 end) gztz,
+	(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end) yfxtz,
+	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '大修'  then to_number(xd.ztz) else 0 end),0) gdcjtz,
+	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) gdgztz,
+	decode(substr(lxbm,0,1),'G',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) gdyfxtz,
+	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '大修'  then to_number(xd.ztz) else 0 end),0) sdcjtz,
+	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '中修'  then to_number(xd.ztz) else 0 end),0) sdgztz,
+	decode(substr(lxbm,0,1),'S',(case when j.jsxz = '预防性' then to_number(xd.ztz) else 0 end),0) sdyfxtz,l.xzqhdm xzqh
 	from jhxdyh j
+	 left join ( select p.xmid,
+       nvl(sum(p.btzzj),0)+nvl(sum(p.rys),0)+nvl(sum(p.dk),0)+nvl(sum(p.jl),0) ztz
+    from plan_zjxd p
+   where p.xdnf = #{xmnf}
+   group by p.xmid )  xd  on  j.xmbm=xd.xmid
 	left  join(
            select xmid,decode(substr(xmid, 11, 1),
                          '1',
@@ -7490,10 +7500,13 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
    union all
   select * from (
 select 
-to_char(max(j.ds)) v_1,max(lx2.ghlxbm) v_2,max(lx2.ylxbm) v_3,max(c.xmmc) v_4,
+to_char(max(j.ds)) v_1,
+decode(instr(RemoveSameStr(max(lx2.ghlxbm),','),','),0,RemoveSameStr(max(lx2.ghlxbm),','),max(lx2.ghlxbm)) v_2,
+decode(instr(RemoveSameStr(max(lx2.ylxbm),','),','),0,RemoveSameStr(max(lx2.ylxbm),','),max(lx2.ylxbm)) v_3,
+max(c.xmmc) v_4,
 max(lx2.qdzh) v_5,max(lx2.zdzh) v_6,max(lx2.ghqdzh)v_7,max(lx2.ghzdzh) v_8,
 to_char(sum(l.zlc),'fm999990.09999') v_9,RemoveSameStr(replace(WMSYS.WM_CONCAT(distinct(l.xjsdj)),'、',','),',') v_10 ,
-decode(WMSYS.WM_CONCAT(distinct(l.lxlmkd)),null,max(x.lmkd),0,max(x.lmkd),WMSYS.WM_CONCAT(distinct(l.lxlmkd))) v_11,
+RemoveSameStr(decode(WMSYS.WM_CONCAT(distinct(l.lxlmkd)),null,max(x.lmkd),0,max(x.lmkd),WMSYS.WM_CONCAT(distinct(l.lxlmkd))),',') v_11,
 WMSYS.WM_CONCAT(distinct(x.ylmlx)) v_12,WMSYS.WM_CONCAT(distinct(x.ylmjg)) v_13,max(j.jsxz) v_14,
 max(c.jsfa) v_15,decode(max(j.ztz),null,0,max(j.ztz)) v_16,decode(max(j.rys),null,0,max(j.rys)) v_17,decode(max(j.dk),null,0,max(j.dk)) v_18,WMSYS.WM_CONCAT(distinct(c.sjpfwh)) v_19,WMSYS.WM_CONCAT(distinct(x.gydw)) v_20,
 max(j.jhxdwh) v_21,j.xmbm v_22,max(decode(substr(x.bz,0,3),'lxs','',x.bz)) v_23,max(x.tsdq) v_24,max(l.sffirst) v_50

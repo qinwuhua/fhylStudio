@@ -3198,9 +3198,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					}
 					//System.out.println(l+"111");
 					ExcelData eldata=new ExcelData();//创建一个类
-					eldata.setTitleName("全省普通国省道第一批养护大中修工程建议计划汇总表");//设置第一行
+					eldata.setTitleName("全省普通国省道养护大中修工程建议计划汇总表");//设置第一行
 					eldata.setSheetName("汇总表");//设置sheeet名
-					eldata.setFileName("全省普通国省道第一批养护大中修工程建议计划汇总表");//设置文件名
+					eldata.setFileName("全省普通国省道养护大中修工程建议计划汇总表");//设置文件名
 					
 					eldata.setEl(l);//将实体list放入类中
 					System.out.println(eldata+"实体list");
