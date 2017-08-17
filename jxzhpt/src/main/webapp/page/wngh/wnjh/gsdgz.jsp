@@ -67,6 +67,7 @@
 				xmlx1=xmlx1.substr(1,xmlx1.length);
 			var lxbm=$("#lxbm").combotree('getText');
 			var ghxlxbm=$("#ghxlxbm").combotree('getText');
+			
 			var data="xzqh="+xzqhstr+"&xmnf="+xmnf+"&tsdq="+tsdq+"&jsdj="+jsdj+"&gldj="+gldj+'&lxsh.xmmc='+$("#xmmc").val()
 			+'&lxsh.ghlxbh='+lxbm+'&lxsh.lxmc='+$("#lxmc").val()+"&xmlx="+xmlx
 			+'&lxsh.lsjl='+$("#lsjl").combobox('getValue')+'&lxsh.jsjsdj='+$("#jsjsdj").combotree('getText')+'&lxsh.xmklx='+$("#xmklx").combotree('getValue')

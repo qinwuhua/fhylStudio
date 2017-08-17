@@ -100,7 +100,7 @@
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
 			var jh={jhnf:xmnf,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,jsdj:jsdj,gldj:gldj,lxbm:$('#lxbm').val(),qlmc:null,qlbh:null,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -978,6 +978,14 @@ text-decoration:none;
 								</select></td>
 								<td align="right">桥梁编码：</td>
         						<td><input name="txtRoad" type="text" id="txtqlbm" style="width:50px;" /></td>
+        						<td align="right">跨径分类：</td>
+        						<td><select name="akjfl" id="akjfl" style="width:65px;" class="easyui-combobox">
+									<!-- <option selected="selected" value="">全部</option>
+									<option value="特大桥">特大桥</option>
+									<option value="大桥">大桥</option>
+									<option value="中桥">中桥</option>
+									<option value="小桥">小桥</option> -->
+								</select></td>
         						<td align="right">项目类型：</td>
         						<td><select class="easyui-combobox" id='xmlx' style="width:70px;">
         							<option value="危桥改造" selected="selected">危桥改造</option>

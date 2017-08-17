@@ -334,8 +334,8 @@
 			var param='xmlx=5&shzt='+$('#shzt').combo("getValue")+'&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+
 			'&tsdq='+tsdq+'&lsjl='+$('#lsjl').combobox("getValue")+'&ylxbh='+gldj+
-			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lxmc='+lxmc+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue");
+			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lxmc='+lxmc+'&lsxmnf='+lsxmnf+
+			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt;
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
