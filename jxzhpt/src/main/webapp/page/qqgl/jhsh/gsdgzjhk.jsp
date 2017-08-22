@@ -226,12 +226,7 @@
 				+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+'&jhsh.ghxlxmc='+$("#ghlxmc").val()+'&jhsh.jsjsdj='+$("#jsjsdj").combobox("getValues").join(",")+'&jhsh.jhxdwh='+jhxdwh
 				+'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1; 
 			  
-			  if(xmnf==''||xmnf.indexOf(',')>0){
-				  alert("项目年份请单选！");
-			  }
-			  else{
 			window.location.href="/jxzhpt/qqgl/exportJhshxxgsdexcel.do?"+param;
-			  }
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -334,7 +329,7 @@ text-decoration:none;
         					</tr>
         					<tr height="28">
         						
-        					<td>项目年份：</td>
+        					<td>首次下达年份：</td>
         						<td><select id="xmnf" style="width: 150px;"></select></td>
         						<!-- <td align="right">行政等级：</td>
 								<td><select name="gldj" id="gldj" style="width:150px;" class="easyui-combobox"></select></td>

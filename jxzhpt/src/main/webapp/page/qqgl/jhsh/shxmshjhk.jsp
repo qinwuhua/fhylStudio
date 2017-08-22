@@ -179,13 +179,15 @@
 				var xdzt=$("#xdzt").combobox("getValues").join(",");
 				if(xdzt.substr(0,1)==',')
 					xdzt=xdzt.substr(1,xdzt.length);
+				
 				var param="jhsh.xmlx="+'5'+"&jhsh.xzqhdm="+getxzqhdm('xzqh')+"&jhsh.xmmc="+$("#xmmc").val()+
 				"&jhsh.xmnf="+xmnf+"&jhsh.jsdj="+$("#jsdj").combobox("getValues").join(",")+
 				"&jhsh.gldj="+$("#gldj").combobox("getValues").join(",")+"&jhsh.tsdq="+tsdq.replace(/\+/g,"%2B")+
 				"&jhsh.ghlxbh="+$("#lxbm").combotree('getText')+"&jhsh.lxmc="+$("#lxmc").val()+
 				"&jhsh.ghxlxbm="+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+
 				"&jhsh.lsjl="+$("#lsjl").combobox("getValue")+"&jhsh.jhxdwh="+jhxdwh+'&jhsh.xdzttj='+xdzt+'&jhsh.scxdnf='+1;
-		window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
+				
+		         window.location.href="/jxzhpt/qqgl/exportJhshShExcel.do?"+param;
 		}
 		function importJhsh(){
 			importExcel("/jxzhpt/qqgl/importExcelJhxdSh.do","shjhxd");

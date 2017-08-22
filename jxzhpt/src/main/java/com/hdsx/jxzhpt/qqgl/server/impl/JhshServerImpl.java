@@ -1120,7 +1120,7 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public List<Excel_list> queryZhhf_dc(Jhsh jhsh) {
-		return queryList("queryZhhf_dcexcel",jhsh);
+		return queryList("queryZhhf_dcexcel1",jhsh);
 	}
 	@Override
 	public List<Excel_list> queryYhdzx_dc(Jhsh jhsh) {

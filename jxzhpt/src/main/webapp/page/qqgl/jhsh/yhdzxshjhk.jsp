@@ -252,11 +252,7 @@
 			'&jhsh.gyfl='+$('#gyfl').val();
 			
 			
-			if(xmnf==''||xmnf.indexOf(',')>0){
-					alert("项目年份请单选！");
-			}else{
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel1.do?"+param;
-			}
 		}
 		function exportJhshxx1(){
 			/* var xmlx=$("#xmlx").combobox("getValues").join(",");

@@ -322,7 +322,7 @@ text-decoration:none;
 								
         					</tr>
         					<tr height="29">
-        					<td align="right">项目年份：</td>
+        					<td align="right">首次下达年份：</td>
         						<td><select id="xmnf" style="width: 140px;"></select></td>
         						<td align="right">资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:82px;" /></td>
