@@ -229,43 +229,43 @@
 	  select  distinct x.id , x.name text from xtgl_resource x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
 	</select>
 	<select id="selectJsById" parameterType="param" resultType="param">
-		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource where  roleid=t.roleid) sourceid from xtgl_role t
+		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource where  roleid=t.roleid and sourceid not like '010112010208' and sourceid not like '010112010108') sourceid from xtgl_role t
 		where roleid=#{roleid}
 	</select>
 	<update id="updateJs" parameterType="param">
 		update xtgl_role set rolename=#{rolename},desr=#{desr} where roleid=#{id}
 	</update>
 	<select id="selQxByUser" parameterType="param" resultType="param">
-		select sourceid id from xtgl_role_resource t where roleid=#{roleid}
+		select sourceid id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,12) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,12) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,14) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,16) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,18) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,18) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,20) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,20) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 	</select>
 	<select id="selQxByUser1" parameterType="param" resultType="param">
-		select sourceid id from xtgl_role_resource t where roleid=#{roleid}
+		select sourceid id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,4) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		union
-		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid}
+		select substr(sourceid,1,10) id from xtgl_role_resource t where roleid=#{roleid} and sourceid not like '010112010208' and sourceid not like '010112010108'
 		
 	</select>
 	
@@ -356,7 +356,7 @@
 		</if>
 	</select>
 	<select id="createMenu" parameterType="unit" resultType="treenode">
-		select * from (select t.*,t.name text,url attributes from xtgl_resource t where t.id like #{parent}||'%') where id in (${id}) order by id
+		select * from (select t.*,t.name text,url attributes from xtgl_resource t where t.id like #{parent}||'%' ) where id in (${id}) and id not like '010112010208' and id not like '010112010108' order by id
 	</select>
 	<update id="insertxmsx" parameterType="param">
 		update XTGL_XMSS
