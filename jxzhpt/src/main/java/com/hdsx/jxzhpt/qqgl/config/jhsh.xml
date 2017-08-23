@@ -6364,16 +6364,16 @@
           select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p
           where 1=1
           <if test="jhxdwh !=null and jhxdwh !=''">
-           and p.xdnf&lt;= (select min(j.xdnf) from plan_zjxd j where 1=1 ${jhxdwh})
+           and p.xdnf&lt; (select min(j.xdnf) from plan_zjxd j where 1=1 ${jhxdwh})
           </if>
           group by p.xmid 
-          ) jh15 on j.xmbm=jh15.xmid
+          ) jhlj on j.xmbm=jhlj.xmid
           left join(
           select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk from plan_zjxd j 
           where 1=1
           <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
           group by j.xmid 
-          ) jhlj on j.xmbm=jhlj.xmid
+          ) jh15 on j.xmbm=jh15.xmid
                where 1=1
                 <if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="lxmc !=null and lxmc !=''">
@@ -6627,14 +6627,14 @@
   l.qdzh v_8,l.zdzh v_9,
   j.jsxz v_10, l.zjhlc v_11,l.yilc v_12,l.erlc v_13,l.sanlc v_14,l.silc v_15,nvl('',0) v_16,nvl('',0) v_17,x.jsfa v_18,
   substr(j.jhkgsj,0,4) v_19,substr(j.jhwgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(xd.ztz,0) v_22,nvl(xd.btz,0) v_23,
-  nvl(xd.dftz,0) v_24,'' v_25,c.sjpfwh v_26,j.jhxdwh v_27,j.xmbm v_28,j.tsdqzcg v_29
+  nvl(xd.dfzc,0) v_24,'' v_25,c.sjpfwh v_26,j.jhxdwh v_27,j.xmbm v_28,j.tsdqzcg v_29
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,(sum(j.ztz)-sum(j.btzzj)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
   from plan_zjxd j where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (
