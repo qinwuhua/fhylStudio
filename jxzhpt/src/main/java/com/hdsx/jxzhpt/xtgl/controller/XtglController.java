@@ -189,6 +189,7 @@ public class XtglController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
+			session.setAttribute("name", bl.get("NAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -211,6 +212,7 @@ public class XtglController extends BaseActionSupport{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
+			session.setAttribute("name", bl.get("NAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -253,6 +255,7 @@ public class XtglController extends BaseActionSupport{
 		HttpSession session = request.getSession();
 		if(session.getAttribute("truename") != null){
 			session.setAttribute("truename",null);
+			session.setAttribute("name", null);
 		}
 		ResponseUtils.write(getresponse(), "true");
 	}
@@ -1382,6 +1385,7 @@ public class XtglController extends BaseActionSupport{
 					HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
 					session.setAttribute("truename", bl.get("TRUENAME"));
+					session.setAttribute("name", bl.get("NAME"));
 					try {
 						JsonUtils.write(bl, getresponse().getWriter());
 					} catch (Exception e1) {
