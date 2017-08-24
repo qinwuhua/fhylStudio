@@ -6315,7 +6315,7 @@
 	
 	<select id="queryGsdgz_dcexcel1" parameterType="jhsh" resultType="elist">
 	select 
-          rownum v_0,'江西省' v_1,j.ds v_2,j.xzqh v_3,j.xmmc v_4,
+           rownum v_0,'江西省' v_1,j.ds v_2,j.xzqh v_3,j.xmmc v_4,
           decode(instr(RemoveSameStr(l.ghlxbm,','),','),0,RemoveSameStr(l.ghlxbm,','),l.ghlxbm) v_5,
           l.ghqdzh v_6,l.ghzdzh v_7,
           decode(instr(RemoveSameStr(l.ylxbm,','),','),0,RemoveSameStr(l.ylxbm,','),l.ylxbm) v_8,
@@ -6324,10 +6324,12 @@
           to_char(erlc,'fm9999999990.000') v_14,to_char(sanlc,'fm9999999990.000') v_15,
           to_char(silc,'fm9999999990.000') v_16,
           nvl(decode(cb.ql_ym,'无','0',cb.ql_ym),0)  v_17,nvl(decode(cb.sd_ym,'无','0',cb.sd_ym),0) v_18,
-          substr(j.kgsj,0,4) v_19,substr(j.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(j.bbzzj,0) v_22,nvl(jhxd.btz,0) v_23,
-          nvl(jhlj.ztz,0) v_24,nvl(jhlj.btz,0) v_25,nvl(jh15.ztz,0) v_26,nvl(jh15.btz,0) v_27,
-          nvl(jh15.dfzc,0) v_28,j.zyjsnr v_29,j.xzscnl v_30,j.jhxdwh v_31,
-          kx.gkpfwh v_32,cb.sjpfwh v_33,j.xmbm v_34,j.bz v_35,j.tsdq v_36
+          substr(j.kgsj,0,4) v_19,substr(j.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(j.bbzzj,0) v_22,
+          nvl(jhxd.btz,0) v_23,nvl(jhxd.dk,0) v_24,nvl(jhxd.jl,0) v_25,
+          nvl(jhlj.ztz,0) v_26,nvl(jhlj.btz,0) v_27,nvl(jhlj.dk,0) v_28,nvl(jhlj.jl,0) v_29,
+          nvl(jh15.ztz,0) v_30,nvl(jh15.btz,0) v_31,nvl(jh15.dk,0) v_32,nvl(jh15.jl,0) v_33,
+          nvl(jh15.dfzc,0) v_34,nvl(jh15.yhdk,0) v_35,j.zyjsnr v_36,j.xzscnl v_37,j.jhxdwh v_38,
+          kx.gkpfwh v_39,cb.sjpfwh v_40,j.xmbm v_41,j.bz v_42,j.tsdq v_43
           from gsdgz j
           left join cbgsdgz cb
           on j.xmbm=cb.xmbm
@@ -6357,11 +6359,11 @@
                WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh
               from LXSH_LX  where jdbs='2') group by xmid) l on j.xmbm=l.xmid 
           left join(
-          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p 
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(dk) dk,sum(jl) jl from plan_zjxd p 
            group by p.xmid 
           ) jhxd on j.xmbm=jhxd.xmid
           left join(
-          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk from plan_zjxd p
+          select p.xmid,sum(p.ztz) ztz,sum(p.btzzj) btz,sum(p.dfzc) dfzc,sum(p.yhdk) yhdk,sum(p.dk) dk,sum(p.jl) jl from plan_zjxd p
           where 1=1
           <if test="jhxdwh !=null and jhxdwh !=''">
            and p.xdnf&lt; (select min(j.xdnf) from plan_zjxd j where 1=1 ${jhxdwh})
@@ -6369,7 +6371,9 @@
           group by p.xmid 
           ) jhlj on j.xmbm=jhlj.xmid
           left join(
-          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk from plan_zjxd j 
+          select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dfzc) dfzc,sum(j.yhdk) yhdk,sum(j.dk) dk,sum(j.jl) jl,
+          replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr, replace(WMSYS.WM_CONCAT(j.xzscnl),',',',') xzscnl
+          from plan_zjxd j 
           where 1=1
           <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
           group by j.xmid 
@@ -6625,16 +6629,17 @@
   l.ghqdzh v_5,l.ghzdzh v_6,
   decode(instr(RemoveSameStr(l.ylxbm,','),','),0,RemoveSameStr(l.ylxbm,','),l.ylxbm) v_7,
   l.qdzh v_8,l.zdzh v_9,
-  j.jsxz v_10, l.zjhlc v_11,l.yilc v_12,l.erlc v_13,l.sanlc v_14,l.silc v_15,nvl('',0) v_16,nvl('',0) v_17,x.jsfa v_18,
-  substr(j.jhkgsj,0,4) v_19,substr(j.jhwgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(xd.ztz,0) v_22,nvl(xd.btz,0) v_23,
-  nvl(xd.dfzc,0) v_24,'' v_25,c.sjpfwh v_26,j.jhxdwh v_27,j.xmbm v_28,j.tsdqzcg v_29
+  j.jsxz v_10, l.zjhlc v_11,l.yilc v_12,l.erlc v_13,l.sanlc v_14,l.silc v_15,nvl('',0) v_16,nvl('',0) v_17,c.jsfa v_18,
+  substr(c.kgsj,0,4) v_19,substr(c.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(xd.ztz,0) v_22,nvl(xd.btz,0) v_23,
+  nvl(xd.dfzc,0) v_24,xd.zyjsnr v_25,c.sjpfwh v_26,j.jhxdwh v_27,j.xmbm v_28,j.tsdqzcg v_29
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,(sum(j.ztz)-sum(j.btzzj)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz 
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,(sum(j.ztz)-sum(j.btzzj)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
+   replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
   from plan_zjxd j where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (

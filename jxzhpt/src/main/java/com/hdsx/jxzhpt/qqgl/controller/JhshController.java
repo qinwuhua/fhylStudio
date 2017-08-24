@@ -2981,13 +2981,15 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		et.add(new Excel_tilte("总投资（万元）",1,2,21,21));
 		et.add(new Excel_tilte("中央车购税投资（万元）",1,2,22,22));
 		et.add(new Excel_tilte("已下达车购税资金（万元）",1,2,23,23));
-		et.add(new Excel_tilte("上年底累计完成投资（万元）",1,1,24,25));
-		et.add(new Excel_tilte("建议计划（万元）",1,1,26,30));
-		et.add(new Excel_tilte("计划下达文号",1,2,31,31));
-		et.add(new Excel_tilte("前期工作情况",1,1,32,33));
-		et.add(new Excel_tilte("项目编码",1,2,34,34));
-		et.add(new Excel_tilte("备注",1,2,35,35));
-		et.add(new Excel_tilte("特殊地区",1,2,36,36));
+		et.add(new Excel_tilte("已下达厅贷款（万元）",1,2,24,24));
+		et.add(new Excel_tilte("已下达奖励（万元）",1,2,25,25));
+		et.add(new Excel_tilte("上年底累计完成投资（万元）",1,1,26,29));
+		et.add(new Excel_tilte("建议计划（万元）",1,1,30,37));
+		et.add(new Excel_tilte("计划下达文号",1,2,38,38));
+		et.add(new Excel_tilte("前期工作情况",1,1,39,40));
+		et.add(new Excel_tilte("项目编码",1,2,41,41));
+		et.add(new Excel_tilte("备注",1,2,42,42));
+		et.add(new Excel_tilte("特殊地区",1,2,43,43));
 		et.add(new Excel_tilte("路线编码",2,2,5,5));
 		et.add(new Excel_tilte("起点桩号",2,2,6,6));
 		et.add(new Excel_tilte("止点桩号",2,2,7,7));
@@ -3003,15 +3005,20 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		et.add(new Excel_tilte("隧道",2,2,18,18));
 		et.add(new Excel_tilte("开工年",2,2,19,19));
 		et.add(new Excel_tilte("完工年",2,2,20,20));
-		et.add(new Excel_tilte("合计",2,2,24,24));
-		et.add(new Excel_tilte("内：中央车购税",2,2,25,25));
 		et.add(new Excel_tilte("合计",2,2,26,26));
-		et.add(new Excel_tilte("中央车购税",2,2,27,27));
-		et.add(new Excel_tilte("地方自筹",2,2,28,28));
-		et.add(new Excel_tilte("主要建设内容",2,2,29,29));
-		et.add(new Excel_tilte("新增生产能力",2,2,30,30));
-		et.add(new Excel_tilte("工可批复文号",2,2,32,32));
-		et.add(new Excel_tilte("设计批复文号",2,2,33,33));
+		et.add(new Excel_tilte("内：中央车购税",2,2,27,27));
+		et.add(new Excel_tilte("内：厅贷款",2,2,28,28));
+		et.add(new Excel_tilte("内：奖励",2,2,29,29));
+		et.add(new Excel_tilte("合计",2,2,30,30));
+		et.add(new Excel_tilte("中央车购税投资",2,2,31,31));
+		et.add(new Excel_tilte("厅贷款",2,2,32,32));
+		et.add(new Excel_tilte("奖励",2,2,33,33));
+		et.add(new Excel_tilte("地方自筹",2,2,34,34));
+		et.add(new Excel_tilte("银行贷款",2,2,35,35));
+		et.add(new Excel_tilte("主要建设内容",2,2,36,36));
+		et.add(new Excel_tilte("新增生产能力",2,2,37,37));
+		et.add(new Excel_tilte("工可批复文号",2,2,39,39));
+		et.add(new Excel_tilte("设计批复文号",2,2,40,40));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
