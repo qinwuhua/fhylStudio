@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zhfzServer {
@@ -62,7 +63,7 @@ public interface Plan_zhfzServer {
 	 * @param jck
 	 * @return
 	 */
-	List<SjbbMessage> exportExcel_jh(Plan_zhfz jh,Jckzhfz lx);
+	List<Excel_list> exportExcel_jh(Plan_zhfz jh,Jckzhfz lx);
 	/**
 	 * 根据ID删除信息
 	 * @param id

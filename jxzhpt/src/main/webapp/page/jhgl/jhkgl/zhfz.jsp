@@ -58,13 +58,13 @@
 			zhfzxm(jh,lx);
 		});
 		function searchZhfz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,xmklx:$("#xmklx").combobox('getValue')};
+			var jh={jhnf:'',sbzt:'',spzt:'',sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:'',lxjsdj:'',lxbm:'',xmklx:$("#xmklx").combobox('getValue'),tsdq:''};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+				jh.jhnf=$('#sbnf').combobox('getValues').join(',');
 			}
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");

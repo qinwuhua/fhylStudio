@@ -369,7 +369,7 @@ function exportExcel(flag,mode){
 			lx.lxmc=$('#txtRoad').val();
 		}
 		if($('#sbnf').combobox('getText')!=""){
-			jh.jhnf=$('#sbnf').combobox('getValue');
+			jh.jhnf=$('#sbnf').combobox('getValues').join(',');
 		}
 		if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 			var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
@@ -406,7 +406,7 @@ function exportExcel(flag,mode){
 			lx.lxbm=$('#ddlGldj').combobox('getValues').join(',');
 		}
 		if($('#tsdq').combobox('getValue')!=''){
-			lx.tsdq=$('#tsdq').combobox('getValue');
+			lx.tsdq=$('#tsdq').combobox('getValue').replace(/\+/g,"%2B");
 		}
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+lx.lxmc+
 				"&jh.sbnf="+jh.jhnf+"&lx.lxjsdj="+lx.lxjsdj+
