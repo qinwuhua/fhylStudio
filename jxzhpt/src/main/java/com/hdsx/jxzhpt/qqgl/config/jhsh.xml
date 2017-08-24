@@ -330,6 +330,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 				
 			) t 
@@ -554,6 +555,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 		) 
@@ -1005,6 +1007,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -1192,6 +1195,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 	</select>
@@ -3906,6 +3910,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -4119,6 +4124,7 @@
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				order by j.xdzt,j.xmbm desc
 			) t 
 		
@@ -4438,6 +4444,9 @@
 				</if>
 				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
 					and xmklx like '%'||#{jhsh.xmklx}||'%'
+				</if>
+				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
+					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
 				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
@@ -4764,6 +4773,9 @@
 				<if test="jhsh.xmklx !=null and jhsh.xmklx !=''">
 					and xmklx like '%'||#{jhsh.xmklx}||'%'
 				</if>
+				<if test="jhsh.xmbm !=null and jhsh.xmbm !=''">
+					and j.xmbm like '%'||#{jhsh.xmbm}||'%'
+				</if>
 				order by <if test="jhsh.zydpx =='升序'">j.zydpx,</if><if test="jhsh.zydpx =='降序'">j.zydpx desc,</if>j.xdzt,j.xmbm desc
 			) t 
 
@@ -4960,6 +4972,9 @@
 				</if>
 				<if test="xmklx !=null and xmklx !=''">
 					and xmklx like '%'||#{xmklx}||'%'
+				</if>
+				<if test="xmbm !=null and xmbm !=''">
+					and j.xmbm like '%'||#{xmbm}||'%'
 				</if>
 				order <if test="zydpx=='升序'">j.zydpx,</if><if test="zydpx=='降序'">j.zydpx desc,</if>by j.xdzt,j.xmbm desc
 			) t 
@@ -6420,6 +6435,7 @@
 				<if test="gyfl !=null and gyfl !=''">
 					
 				</if> 
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 	</select> 
 	
 	<select id="queryGsdgz_dcexcel" parameterType="jhsh" resultType="elist">
@@ -6695,6 +6711,7 @@
 		<if test="xdzttj !=null and xdzttj !=''">
 			${xdzttj}
 		</if>
+		<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 </select>
 
 	<select id="queryZhhf_dcexcel" parameterType="jhsh" resultType="elist">
@@ -7315,6 +7332,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
  ) t 
   union all
@@ -7425,6 +7443,7 @@ from jhxdyh j left join xmsq_yhdzx x on j.xmbm=x.xmbm left join cbsj_yhdzx c on 
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
 ) t group by t.xzqh order by xzqh
 
@@ -7493,6 +7512,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
    union all
    
@@ -7556,6 +7576,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    union all
    
    select '' v_1,'' v_2,'' v_3,'中修' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
@@ -7618,6 +7639,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    union all
    
 select '' v_1,'' v_2,'' v_3,'预防性' v_4, '' v_5,'' v_6,'' v_7,'' v_8,
@@ -7680,6 +7702,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    
    union all
   select * from (
@@ -7806,6 +7829,7 @@ left join cbsj_yhdzx c on j.xmbm=c.xmbm
 				<if test="xdzttj !=null and xdzttj !=''">
 					${xdzttj}
 				</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
    group by j.xmbm order by j.xmbm desc) a 
 	
 	</select>

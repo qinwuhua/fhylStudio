@@ -67,7 +67,7 @@
 					'jhsh.xzdj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,'jhsh.gyfl':$('#gyfl').val(),
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText').toUpperCase( ),'jhsh.lxmc':$('#lxmc').val(),'jhsh.xdzttj':xdzt,'jhsh.zjly':zjly,
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText').toUpperCase( ),'jhsh.ghxlxmc':$('#ghlxmc').val(),
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.scxdnf':1};
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.jhxdwh':jhxdwh,'jhsh.scxdnf':1,'jhsh.xmbm':$('#xmbm').val()};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-220;
@@ -244,12 +244,12 @@
 			
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq.replace(/\+/g,"%2B")+
-			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+
 			'&jhsh.sfsycgs='+$('#sfsycgs').combobox("getValue")+'&jhsh.xmlx1='+xmlx+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val();
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val();
 			
 			
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxExcel1.do?"+param;
@@ -293,12 +293,12 @@
 				zjly=zjly.substr(1,zjly.length);
 			var param='jhsh.xmlx=4&jhsh.xzqhdm='+getxzqhdm('xzqh')+
 			'&jhsh.ghlxbh='+$("#lxbm").combotree('getText')+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+tsdq.replace(/\+/g,"%2B")+
-			'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValues").join(',')+
+			'&jhsh.lsjl='+$('#lsjl').combobox("getValue")+
 			'&jhsh.jsdj='+$('#jsdj').combobox("getValues").join(",")+'&ylxbh='+$('#gldj').combobox("getValues").join(',')+
 			'&jhsh.lxmc='+$("#lxmc").val()+'&jhsh.ghxlxbm='+$("#ghlxbm").combotree('getText')+"&jhsh.ghxlxmc="+$("#ghlxmc").val()+'&jhsh.jhxdwh='+jhxdwh+
 			'&jhsh.xmnf='+xmnf+'&jhsh.xdzttj='+xdzt+'&jhsh.zjly='+zjly+'&jhsh.scxdnf='+1+
 			'&jhsh.sfsycgs='+$('#sfsycgs').combobox("getValue")+'&jhsh.xmlx1='+xmlx+'&jhsh.xzdj='+$('#gldj').combobox("getValues").join(',')+
-			'&jhsh.gyfl='+$('#gyfl').val();
+			'&jhsh.gyfl='+$('#gyfl').val()+'&jhsh.xmbm='+$('#xmbm').val();
 			
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzxDetailExcel1.do?"+param;
 		}
@@ -469,6 +469,10 @@ text-decoration:none;
         					<td><input name="gyfl" type="text" id="gyfl" style="width:150px;" /></td>
         					<td align="right">下达状态：</td>
         					<td><input name="xdzt" type="text" id="xdzt" style="width:75px;" /></td>
+        					<td align="right">项目编码：</td>
+								<td>
+									<input name="xmbm" type="text" id="xmbm" style="width:118px;" />
+								</td>
         					</tr><tr height="29">
        						<td colspan="8">
        							

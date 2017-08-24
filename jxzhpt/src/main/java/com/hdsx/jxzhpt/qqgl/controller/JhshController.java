@@ -2906,7 +2906,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	//qwh导出国省道excel
 	public void exportJhshxxgsdexcel(){
-		String xmbm = jhsh.getXmbm();
+		/*String xmbm = jhsh.getXmnf();
 		if(!xmbm.equals("")&&xmbm!=null){
 			if(xmbm.indexOf(",")>-1){
 				String[] xmnfArray = xmbm.split(",");
@@ -2923,8 +2923,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 				xmbm = "j.xmbm like '" + xmbm + "%' ";
 			}
 		}
+		jhsh.setXmbm(xmbm);*/
 		xdwhHandle();
-		jhsh.setXmbm(xmbm);
 		tsdqHandle();
 		jsdjHandle();
 		jsjsdjHandle();
@@ -3031,7 +3031,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	//wdd导出灾毁恢复excel  start
 		public void exportJhshShExcel(){
-			String xmbm = jhsh.getXmnf();
+			/*String xmbm = jhsh.getXmnf();
 			if(!xmbm.equals("")&&xmbm!=null){
 				if(xmbm.indexOf(",")>-1){
 					String[] xmnfArray = xmbm.split(",");
@@ -3048,8 +3048,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 					xmbm = "j.xmbm like '" + xmbm + "%' ";
 				}
 			}
+			jhsh.setXmbm(xmbm);*/
 			xdwhHandle();
-			jhsh.setXmbm(xmbm);
 			jsdjHandle();
 			jsjsdjHandle();
 			ylxbhHandle();
