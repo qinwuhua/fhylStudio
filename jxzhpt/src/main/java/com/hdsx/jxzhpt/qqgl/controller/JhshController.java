@@ -3054,7 +3054,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			jsjsdjHandle();
 			ylxbhHandle();
 			xdztHandle();
-			tsdqHandle1();
+			tsdqHandle2();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			if(jhsh.getXmlx1()!=null)
 				if(jhsh.getXmlx1().length()>0){

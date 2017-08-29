@@ -873,6 +873,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'
@@ -914,6 +915,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'
@@ -955,6 +957,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'
@@ -1627,6 +1630,7 @@
 			${xmlx1}
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm desc,sbzt1 
 	</select>
@@ -1666,6 +1670,7 @@
 		<if test="lsxmnf!='' and lsxmnf!= null ">${lsxmnf}</if>
 		<if test="lsxmlx!='' and lsxmlx!= null ">${lsxmlx}</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 	</select>
 	<select id="queryLxshLjgsd" resultType="java.util.Map" parameterType="lxsh">
     	select count(xmbm) xmsl,nvl(sum(tz),0) tz,nvl(sum(lc),0) lc,nvl(sum(bzcs),0) bzcs,(sum(tz)-sum(bzcs)) dftz,'0' sbz,'0' sjl from(
@@ -1711,6 +1716,7 @@
 			)
 		</if>
 		<if test="xmklx!='' and xmklx!= null ">and xmklx like '%'||#{xmklx}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 			group by xmbm,tz
 		)
 	</select>
@@ -1726,6 +1732,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(sbzt) like '%'||#{sbzt1}||'%'

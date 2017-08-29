@@ -1866,12 +1866,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				xmsq.setTsdq(tsdq);
 			}
 			l= xmsqServer.queryYhdzxExport1(xmsq);
-			int k=1;
-			for (Excel_list e : l) {
-				if("1".equals(e.getV_50())) {
-					e.setV_0(""+k);k++;
-				}
-			}
+//			int k=1;
+//			for (Excel_list e : l) {
+//				if("1".equals(e.getV_50())) {
+//					e.setV_0(""+k);k++;
+//				}
+//			}
 		}
 		
 		ExcelData eldata=new ExcelData();//创建一个类

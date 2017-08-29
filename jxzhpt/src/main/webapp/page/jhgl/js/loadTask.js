@@ -364,7 +364,7 @@ function exportExcel(flag,mode){
 	}
 	if(flag=='zhfz'){
 		var jh={jhnf:"",sbzt:"",spzt:"",sfylsjl:$('#sfylsjl').combo("getValue")};
-		var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:"",lxjsdj:"",lxbm:"",xmklx:$("#xmklx").combobox('getValue')};
+		var lx={gydwbm:getgydw("gydw"),gydwlx:gljjtj,xzqhdm:getxzqhdm('xzqh'),lxmc:"",lxjsdj:"",lxbm:"",xmklx:$("#xmklx").combobox('getValue'),tsdq:""};
 		if($('#txtRoad').val()!=""){
 			lx.lxmc=$('#txtRoad').val();
 		}
@@ -411,6 +411,7 @@ function exportExcel(flag,mode){
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+lx.lxmc+
 				"&jh.sbnf="+jh.jhnf+"&lx.lxjsdj="+lx.lxjsdj+
 				"&lx.lxbm="+lx.lxbm+"&lx.tsdq="+lx.tsdq;
+//		alert(params);
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}
 	if(flag=='bhsd'){
