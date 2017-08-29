@@ -852,27 +852,27 @@
 	</select>
 	
 	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_lmgz c left join lxsh_lmgz t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_lmgz c left join lxsh_lmgz t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmgzqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_lmgz_qx c left join lxsh_lmgz_qx t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_lmgz_qx c left join lxsh_lmgz_qx t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh
+		select c.*,nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0) jszlc,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh
 		from cbsj_sjgz c left join lxsh_sjgz t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh
+		select c.*,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh
 		from cbsj_sjgz_qx c left join lxsh_sjgz_qx t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj c left join lxsh_xj t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj c left join lxsh_xj t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,xmklx,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj_qx c left join lxsh_xj_qx t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,xmklx,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh, l.gpsqdzh) gpsqdzh,l.qdmc,l.zdmc,decode(l.gpszdzh,null,l.qdzh, l.gpszdzh) gpszdzh,l.lc,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_xj_qx c left join lxsh_xj_qx t on c.xmbm=t.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,
 		decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,
 		l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,
 		l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh,l.lxlmkd,decode(l.lxlmkd,null,x.lmkd,l.lxlmkd) lmkd,
@@ -883,7 +883,7 @@
 		from cbsj_yhdzx c left join xmsq_yhdzx x on c.xmbm = x.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,
 		decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,
 		l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,
 		l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh,l.lxlmkd,decode(l.lxlmkd,null,x.lmkd,l.lxlmkd) lmkd,
@@ -894,27 +894,27 @@
 		from cbsj_yhdzx_qx c left join xmsq_yhdzx_qx x on c.xmbm = x.xmbm left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShqxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh_qx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.lxbm,decode(l.gpsqdzh,null,l.qdzh,'0',l.qdzh,l.gpsqdzh) gpsqdzh,decode(l.gpszdzh,null,l.zdzh,'0',l.zdzh,l.gpszdzh) gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.ghlxbm,l.ghlxmc,l.gxlxbm,l.gxqdzh,l.gxzdzh,l.ghqdzh,l.ghzdzh,l.lxbm ylxbh from cbsj_sh_qx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	
 	<select id="queryCbsjLmgzbgByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_lmgz_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.lxbm,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_lmgz_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjbgByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
+		select c.*,l.lxbm as ghlxbh,l.lxbm,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
 		from cbsj_sjgz_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjbgByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.lxbm,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxbgByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx_t c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.lxbm,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx_t c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShbgByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.lxbm,l.gpsqdzh,l.gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh_tz c left join lxsh_lx_tz l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<update id="updateCbsjLmgz" parameterType="cbsj">
 		update cbsj_lmgz c set c.xmmc=#{xmmc},

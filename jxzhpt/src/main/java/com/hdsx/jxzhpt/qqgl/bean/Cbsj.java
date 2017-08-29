@@ -103,7 +103,14 @@ public class Cbsj{
 		private String sbzj;//省补资金
 		private String wbc;
 		private String wbchd;
+		private String lxbm;
 		
+		public String getLxbm() {
+			return lxbm;
+		}
+		public void setLxbm(String lxbm) {
+			this.lxbm = lxbm;
+		}
 		public String getWbc() {
 			return wbc;
 		}
