@@ -351,12 +351,14 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")>-1){
 				xmnf = "t1.xmnf in ("+xmnf+")";
 			}else{
 				xmnf = "t1.xmnf = '"+xmnf+"'";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -443,6 +445,7 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 			String newXmnf = null;
 			//int ss = xmnf.indexOf(",");
 			if(xmnf.indexOf(",")==0){
@@ -456,8 +459,8 @@ public class KxxyjController extends BaseActionSupport{
 			}else{
 				xmnf = "t1.xmnf = '"+newXmnf+"'";
 			}
-			
-			
+			lxsh.setXmnf(xmnf);
+			}
 			//技术等级
 			if(jsjsdj.indexOf(",")>-1){
 				String[] split = jsjsdj.split(",");
@@ -479,7 +482,7 @@ public class KxxyjController extends BaseActionSupport{
 			}
 			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
-			lxsh.setXmnf(xmnf);
+			
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -655,12 +658,14 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 		if(xmnf.indexOf(",")>-1){
 			xmnf = "t1.xmnf in ("+xmnf+")";
 		}else{
 			xmnf = "t1.xmnf = '"+xmnf+"'";
 		}
 		lxsh.setXmnf(xmnf);
+		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -818,12 +823,14 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 		if(xmnf.indexOf(",")>-1){
 			xmnf = "t1.xmnf in ("+xmnf+")";
 		}else{
 			xmnf = "t1.xmnf = '"+xmnf+"'";
 		}
 		lxsh.setXmnf(xmnf);
+		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -1555,6 +1562,7 @@ public class KxxyjController extends BaseActionSupport{
 			String ss = lxsh.getXzqh();
 			
 			lxsh.setXzqh(xzqhBm(ss, "xzqhdm2"));
+			if(!lxsh.getXmnf().equals("")){
 			String xmnf1 = lxsh.getXmnf();
 			if(xmnf1.indexOf(",")>-1){
 				xmnf = "t1.xmnf in ("+xmnf1+")";
@@ -1562,6 +1570,7 @@ public class KxxyjController extends BaseActionSupport{
 				xmnf = "t1.xmnf = '"+xmnf1+"'";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
 			Lxsh l=null;
