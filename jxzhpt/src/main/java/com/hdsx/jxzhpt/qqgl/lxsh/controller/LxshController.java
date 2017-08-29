@@ -576,6 +576,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")==-1){
 				xmnf=" xmnf = '"+xmnf+"'";
 			}else{
@@ -583,6 +584,7 @@ public class LxshController extends BaseActionSupport{
 				xmnf=" xmnf in ("+xmnf+")";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -772,6 +774,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")==-1){
 				xmnf=" xmnf = '"+xmnf+"'";
 			}else{
@@ -779,6 +782,7 @@ public class LxshController extends BaseActionSupport{
 				xmnf=" xmnf in ("+xmnf+")";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -880,6 +884,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")==-1){
 				xmnf=" xmnf = '"+xmnf+"'";
 			}else{
@@ -887,6 +892,7 @@ public class LxshController extends BaseActionSupport{
 				xmnf=" xmnf in ("+xmnf+")";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -1104,6 +1110,7 @@ public class LxshController extends BaseActionSupport{
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 				xmnf= "xmnf in ("+xmnf+")";
@@ -1111,6 +1118,7 @@ public class LxshController extends BaseActionSupport{
 				xmnf= "xmnf ='"+xmnf+"'";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -1425,6 +1433,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			xmnf = "xmnf in ("+xmnf+")";
@@ -1432,6 +1441,7 @@ public class LxshController extends BaseActionSupport{
 			xmnf = "xmnf ='"+xmnf+"'";
 		}
 		lxsh.setXmnf(xmnf);
+		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -1533,6 +1543,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		//lxsh.setGydw(tiaojian1);
 		lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			xmnf ="xmnf in ("+xmnf+")";
@@ -1540,6 +1551,7 @@ public class LxshController extends BaseActionSupport{
 			xmnf = "xmnf ='"+xmnf+"'";
 		}
 		lxsh.setXmnf(xmnf);
+		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -1630,6 +1642,7 @@ public class LxshController extends BaseActionSupport{
 		
 		lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 		lxsh.setXmmc(xmmc);
+		if(!xmnf.equals("")){
 		if(xmnf.indexOf(",")>-1){
 			xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 			xmnf = "xmnf in ("+xmnf+")";
@@ -1637,6 +1650,7 @@ public class LxshController extends BaseActionSupport{
 			xmnf = "xmnf = '"+xmnf+"'";
 		}
 		lxsh.setXmnf(xmnf);
+		}
 		if(!"".equals(sbzt)){
 			lxsh.setSbzt1(sbzt);
 		}
@@ -1907,6 +1921,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
 			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
+			if(!xmnf.equals("")){
 			if(xmnf.indexOf(",")>-1){
 				xmnf = xmnf.substring(0,1).equals(",") ? xmnf.substring(1) : xmnf;
 				xmnf = "xmnf in ("+xmnf+")";
@@ -1914,6 +1929,7 @@ public class LxshController extends BaseActionSupport{
 				xmnf = "xmnf = '"+xmnf+"'";
 			}
 			lxsh.setXmnf(xmnf);
+			}
 			if(!"".equals(sbzt)){
 				lxsh.setSbzt1(sbzt);
 			}
@@ -2176,10 +2192,12 @@ public class LxshController extends BaseActionSupport{
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
+			if(!lxsh.getXmnf().equals("")){
 			if(lxsh.getXmnf().indexOf(",")>-1){
 				lxsh.setXmnf("xmnf in ("+lxsh.getXmnf()+")");
 			}else{
 				lxsh.setXmnf("xmnf = '"+lxsh.getXmnf()+"'");
+			}
 			}
 			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
 				String xjsdj ="";

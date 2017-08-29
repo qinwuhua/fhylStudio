@@ -2166,7 +2166,7 @@
 	
  select rownum v_0,tb.* from (
     select 
-    substr(x.ghlxbh,0,1) v_1,
+   RemoveSameStr(func_splitstr(lx.ghlxbm, ','),',') v_1,
     x.xmbm v_2,x.xmmc v_3,
     decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_4,
     decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_5,

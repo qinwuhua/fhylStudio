@@ -780,6 +780,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width:80px;">
 									</select>
 								</td>
+<!-- 								<td align="right">项目编码：</td> -->
+<!-- 								<td><input type="text" id="xmbm" style="width:150px;" /></td> -->
        							</tr>
        							<tr height="30">
 	       						<td colspan="10">

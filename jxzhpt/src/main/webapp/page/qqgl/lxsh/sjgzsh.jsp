@@ -260,6 +260,8 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:65px;" >
 								</select></td>
+								<td align="right">项目编码：</td>
+        				        <td><input type="text" id="xmbm" style="width:100px;" /></td>
 								</tr>
 								
 							<tr height="32">	
