@@ -3109,11 +3109,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			et.add(new Excel_tilte("主要恢复重建工程量",1,2,18,18));
 			et.add(new Excel_tilte("建设年限",1,1,19,20));
 			et.add(new Excel_tilte("总投资",1,2,21,21));
-			et.add(new Excel_tilte("建设计划（万元）",1,1,22,25));
-			et.add(new Excel_tilte("前期工作批复文号",1,2,26,26));
-			et.add(new Excel_tilte("计划下达文号",1,2,27,27));
-			et.add(new Excel_tilte("项目编码",1,2,28,28));
-			et.add(new Excel_tilte("特殊地区",1,2,29,29));
+			et.add(new Excel_tilte("建设计划（万元）",1,1,22,26));
+			et.add(new Excel_tilte("前期工作批复文号",1,2,27,27));
+			et.add(new Excel_tilte("计划下达文号",1,2,28,28));
+			et.add(new Excel_tilte("项目编码",1,2,29,29));
+			et.add(new Excel_tilte("特殊地区",1,2,30,30));
 			et.add(new Excel_tilte("路线编码",2,2,4,4));
 			et.add(new Excel_tilte("起点桩号",2,2,5,5));
 			et.add(new Excel_tilte("讫点桩号",2,2,6,6));
@@ -3131,8 +3131,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			et.add(new Excel_tilte("完工年",2,2,20,20));
 			et.add(new Excel_tilte("合计",2,2,22,22));
 			et.add(new Excel_tilte("中央投资车购税",2,2,23,23));
-			et.add(new Excel_tilte("自筹",2,2,24,24));
-			et.add(new Excel_tilte("主要建设内容",2,2,25,25));
+			et.add(new Excel_tilte("省级补助",2,2,24,24));
+			et.add(new Excel_tilte("自筹",2,2,25,25));
+			et.add(new Excel_tilte("主要建设内容",2,2,26,26));
 			
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
