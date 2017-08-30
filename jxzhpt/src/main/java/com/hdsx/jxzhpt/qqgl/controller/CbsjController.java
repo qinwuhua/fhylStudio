@@ -115,7 +115,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				}
 				cbsj.setTsdq(tsdq);
 			}
-			xmbmHandle();
+			xmnfHandle();
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
@@ -962,7 +962,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			HttpSession session = request.getSession();
 			cbsj.setTsdq((String) session.getAttribute("tsdq"));
 			
-			xmbmHandle();
+			xmnfHandle();
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
@@ -1358,6 +1358,25 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			xmbm = "c.xmbm like '" + xmbm + "%' ";
 		}
 		cbsj.setXmbm(xmbm);
+	}
+	
+	private void xmnfHandle() {
+		String xmnf = cbsj.getXmnf();
+		if(xmnf.indexOf(",")>-1){
+			String[] xmnfArray = xmnf.split(",");
+			for (int i = 0; i < xmnfArray.length; i++) {
+				if(i==xmnfArray.length-1){
+					xmnf += "or c.xmbm like '" + xmnfArray[i] + "%') ";
+				}else if(i==0){
+					xmnf = "(c.xmbm like '" + xmnfArray[i] + "%' ";
+				}else{
+					xmnf += "or c.xmbm like '" + xmnfArray[i] + "%' ";
+				}
+			}
+		}else{
+			xmnf = "c.xmbm like '" + xmnf + "%' ";
+		}
+		cbsj.setXmnf(xmnf);
 	}
 	private void ylxbhHandle() {
 		String ylxbh = cbsj.getYlxbh()==null ? "" : cbsj.getYlxbh();

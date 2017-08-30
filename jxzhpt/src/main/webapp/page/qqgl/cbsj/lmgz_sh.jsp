@@ -106,7 +106,7 @@
 					'cbsj.sbzt':sbzt,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
@@ -114,7 +114,9 @@
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()		
+			};
 			loadcbsjTjxx(params);
 			grid.queryParams=params;
 			grid.height=$(window).height()-215;
@@ -373,11 +375,12 @@
 			if(lsxmlx.substr(0,1)==',')
 			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 			
-			var param='xmlx=2&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			var param='xmlx=2&xzqhdm='+getxzqhdm('xzqh')+'&xmnf='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
 			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
+			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue")+
+			'&xmbm='+$("#xmbm").val();
 // 			alert(param);
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
@@ -511,6 +514,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 160px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:125px;" /></td>
 	                           </tr>
 	                           <tr height="28">
 	                            	<td colspan="8">

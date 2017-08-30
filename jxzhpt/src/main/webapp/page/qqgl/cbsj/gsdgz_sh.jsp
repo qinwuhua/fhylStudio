@@ -84,7 +84,7 @@
 					'cbsj.sbzt':1,
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
 					'tsdq':tsdq,
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
@@ -92,7 +92,9 @@
 					'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()
+					};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-$('#searchField').height()-65;
@@ -296,8 +298,8 @@
 			var ghlxmc=$("#ghlxmc").val();
 			var ghlxbm=$("#ghlxbm").combotree('getText');
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
 			var yjsdj="";
@@ -319,11 +321,12 @@
 				if(lsxmlx.substr(0,1)==',')
 				lsxmlx=lsxmlx.substr(1,lsxmlx.length);	
 				
-			var param='xmlx=11&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			var param='xmlx=11&xzqhdm='+getxzqhdm('xzqh')+'&xmnf='+xmnf+
 			'&ghlxbh='+$('#txtlxbm').combotree('getText')+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
 			'&tsdq='+tsdq+'&xmlx1='+xmlx+'&ylxbh='+gldj+
 			'&lxmc='+lxmc+'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt=1'+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
+			'&lsxmlx='+lsxmlx+'&sbzt=1'+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue")+
+			'&xmbm='+$("#xmbm").val();
 			
 // 			alert(param);
 			
@@ -465,6 +468,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 70px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:125px;" /></td>
 								</tr><tr height="29">
 									<td colspan="10">
 										<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
