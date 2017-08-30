@@ -50,9 +50,6 @@
 	}
 
 		$(function(){
-			if(getQxfromSession('rolename')!="省局综规处"){
-				window.location.href='/jxzhpt/page/qqgl/cbsj/xjgc_sh2.jsp?&id=01011203010101';
-			};
 			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
 				title='上报状态';
@@ -133,9 +130,9 @@
 						//if(row.shzt==0){
 							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
-							/* 	else 
+								else */
 							result+='&nbsp;<a href="javascript:openWindow1('+"'xjgcedit'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd2('+"'xjgc','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>'; */
+								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd2('+"'xjgc','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}
@@ -152,16 +149,14 @@
 		        				return '已上报';
 		        			}
 	        			}else{
-	        				return '未上报';
-	        				/* if(row.thyy!=''&&row.thyy!=null)
+	        				if(row.thyy!=''&&row.thyy!=null)
 	        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>'+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
 	        				else
-		        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>'; */
+		        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>';
 	        			}
 		        	}else{
 		        		if(row.shzt=='0'){
-		        			return '未审核';
-// 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
 		        		}else if(row.shzt=='1'){
 			        		return '已审核';
 		        		}
@@ -354,28 +349,12 @@
 				xmnf=xmnf.substring(1,xmnf.length);
 			var lxmc = $("#txtlxmc").val();
 			var ghlxmc=$("#ghlxmc").val();
-			var ghlxbm=$("#ghlxbm").val().combotree('getText');
-			
-			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
-			if(lsxmnf=='')
-			lsxmnf='';
-			if(lsxmnf.substr(0,1)==',')
-			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
-			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
-			if(lsxmlx=='')
-			lsxmlx='';
-			if(lsxmlx.substr(0,1)==',')
-			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
-			var param='xmlx=3&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
-			'&ghlxbh='+$('#txtlxbm').combotree('getText');+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
-			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
-			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
-			
-			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
-				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
-			 });
-			
+			var ghlxbm=$("#ghlxbm").val().toUpperCase();
+			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			'&ghlxbh='+$('#txtlxbm').val().toUpperCase()+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
+			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+'&jsjsdj='+jsjsdj+
+			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm;
+			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		function importXmsq(){
 			importExcel("/jxzhpt/qqgl/importExcelXjCbsj.do","xjcbsj");
@@ -507,12 +486,11 @@ text-decoration:none;
 	                            
 			                            <td colspan="8">
 											<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+											<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 											<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-											<!-- <img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-											
 											<img id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoCbsj()" style="border-width:0px;vertical-align:middle;" />
 											<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="cbjsrollback();" style="border-width:0px;vertical-align:middle;" />
-											<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshcbsj();" style="border-width:0px;vertical-align:middle;" /> -->
+											<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshcbsj();" style="border-width:0px;vertical-align:middle;" />
 											<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
 <!-- 											<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
 		        						</td>

@@ -30,7 +30,7 @@
 			return;
 		}
 		$.ajax({
-			data:'lxsh.xmbm='+id+"&lxsh.tzxz=变更"+"&lxsh.xmlx="+lx+"&lxsh.jdbs="+1,
+			data:'lxsh.xmbm='+id+"&lxsh.tzxz=变更"+"&lxsh.xmlx="+lx+"&lxsh.jdbs="+2,
 			type:'post',
 			dataType:'json',
 			url:'/jxzhpt/qqgl/tzxm.do',
@@ -50,9 +50,6 @@
 	}
 
 		$(function(){
-			if(getQxfromSession('rolename')!="省局综规处"){
-				window.location.href='/jxzhpt/page/qqgl/cbsj/xjgc_sh2.jsp?&id=01011203010101';
-			};
 			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
 				title='上报状态';
@@ -62,24 +59,25 @@
 				sbzt='1';
 				$("#shangbao").attr('style','display:none');
 			}
-			loadDist1("xzqh",$.cookie("dist"));
-			tsdqdx("tsdq");
-			loadBmbm3('yjsdj','技术等级');
-			loadBmbm3('gjhjsdj','技术等级');
-			loadGldj('gldj');
-			loadGhlx('ghlxbm');
-			loadylx('txtlxbm');
-			urlxmnf("xmnf",getUrlParame('id'));
-			YMLib.Var.jdbs=2;
+				loadDist1("xzqh",$.cookie("dist"));
+				tsdqdx("tsdq");
+				loadBmbm3('yjsdj','技术等级');
+				loadBmbm3('gjhjsdj','技术等级');
+				loadGldj('gldj');
+				loadGhlx('ghlxbm');
+				loadylx('txtlxbm');
+				urlxmnf("xmnf",getUrlParame('id'));
+				YMLib.Var.jdbs=2;
+			
 			if($.cookie("dist")!="360000"){
 				$('#btnShangbao').hide();
 				//$('#drExcel').hide();
 			}
 			loadBmbm3('lsxmlx','历史项目类型');  
 			loadBmbm3('lsxmnf','历史项目年份');  
-			queryXj();
+			queryLmsj();
 		});
-		function queryXj(){
+		function queryLmsj(){
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
@@ -99,26 +97,27 @@
 
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':3,
+			var params={'cbsj.xmlx':1,
 					'cbsj.xzqhdm':getxzqhdm('xzqh'),
 					'cbsj.ghlxbh':$('#txtlxbm').combotree('getText'),
 					'cbsj.xmmc':$('#xmmc').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValues").join(","),
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
-					'tsdq':tsdq,
 					'cbsj.sbzt':sbzt,
-					'ghlxbm':$("#ghlxbm").combotree('getText'),
-					'ghlxmc':$("#ghlxmc").val(),
-					'lxmc':$("#txtlxmc").val(),
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
 					'cbsj.xmbm':xmnf,
+					'tsdq':tsdq,
+					'ghlxbm':$("#ghlxbm").combotree('getText'),
+					'ghlxmc':$("#ghlxmc").val(),
+					'lxmc':$("#txtlxmc").val(),
+					'lsjl':$('#lsjl').combobox("getValue"),
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
 					'lsxmlx':lsxmlx};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
-			grid.height=$(window).height()-215;
+			grid.height=$(window).height()-$('#searchField').height()-65;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -127,15 +126,15 @@
 				{field:'cz',title:'操作',width:200,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result+='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow1('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
+						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjxx'"+','+"'改建工程项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
 							/* if($.cookie("unit2").length!=7)
 								result+='&nbsp;编辑';
-							/* 	else 
-							result+='&nbsp;<a href="javascript:openWindow1('+"'xjgcedit'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd2('+"'xjgc','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','xj'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>'; */
+								else */
+							result+='&nbsp;<a href="javascript:openWindow1('+"'lmsjedit'"+','+"'改建工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>&nbsp;<a href="javascript:openLxAdd2('+"'lmsj','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>&nbsp;<a href="javascript:tz('+"'"+row.xmbm+"','sjgz'"+')" style="text-decoration:none;color:#3399CC; ">变更</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';
 						//}
@@ -152,16 +151,14 @@
 		        				return '已上报';
 		        			}
 	        			}else{
-	        				return '未上报';
-	        				/* if(row.thyy!=''&&row.thyy!=null)
+	        				if(row.thyy!=''&&row.thyy!=null)
 	        				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>'+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ckthyy('+index+')">退回原因</a>';
 	        				else
-		        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>'; */
+		        			return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangbaoCbsj('+index+')">未上报</a>';
 	        			}
 		        	}else{
 		        		if(row.shzt=='0'){
-		        			return '未审核';
-// 			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
+			        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="batchSb('+index+')">未审核</a>';
 		        		}else if(row.shzt=='1'){
 			        		return '已审核';
 		        		}
@@ -173,7 +170,7 @@
 						if($.cookie("unit2").length!=7)
 							result = row.shzt==0 ? '未审核' : '已审核';
 						else
-						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
+						result=row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
 						return result;
 					}
 				}, */
@@ -205,9 +202,12 @@
 				
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
-				{field:'ghlxbh',title:'规划路线编码',width:60,align:'center'},
-				{field:'qdzh',title:'规划起点桩号',width:80,align:'center'},
-				{field:'zdzh',title:'规划止点桩号',width:80,align:'center'},
+				{field:'ghlxbm',title:'规划路线编码',width:80,align:'center'},
+			    {field:'ghqdzh',title:'规划起点桩号',width:80,align:'center'},
+			    {field:'ghzdzh',title:'规划止点桩号',width:80,align:'center'},
+				{field:'ghlxbh',title:'原路线编码',width:60,align:'center'},
+				{field:'qdzh',title:'原起点桩号',width:80,align:'center'},
+				{field:'zdzh',title:'原止点桩号',width:80,align:'center'},
 				{field:'zlc',title:'里程',width:80,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
 				{field:'gkpfwh',title:'工可批复文号',width:100,align:'center'},
@@ -264,13 +264,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("退回成功!");
-							queryXj();
+							queryLmsj();
 						}
 					}
 				});
@@ -278,17 +278,19 @@
 				alert("请选择要退回的信息！");
 			}
 		} */
+		
+		
 		function sh(xmbm){
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/shCbsjByXmbm.do',
-				data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+1+'&shzt1='+1+'&jdbs='+YMLib.Var.jdbs,
+				data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+1+'&shzt1='+1+'&jdbs='+YMLib.Var.jdbs,
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
 						selArray.splice(0,selArray.length);
 						alert("审核成功!");
-						queryXj();
+						queryLmsj();
 					}
 				}
 			});
@@ -320,13 +322,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt+'&jdbs='+YMLib.Var.jdbs,
+					data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("审核成功!");
-							queryXj();
+							queryLmsj();
 						}
 					}
 				});
@@ -354,31 +356,19 @@
 				xmnf=xmnf.substring(1,xmnf.length);
 			var lxmc = $("#txtlxmc").val();
 			var ghlxmc=$("#ghlxmc").val();
-			var ghlxbm=$("#ghlxbm").val().combotree('getText');
-			
-			var lsxmnf=$("#lsxmnf").combobox('getValues').join(",");
-			if(lsxmnf=='')
-			lsxmnf='';
-			if(lsxmnf.substr(0,1)==',')
-			lsxmnf=lsxmnf.substr(1,lsxmnf.length);
-			var lsxmlx=$("#lsxmlx").combobox('getValues').join(",");
-			if(lsxmlx=='')
-			lsxmlx='';
-			if(lsxmlx.substr(0,1)==',')
-			lsxmlx=lsxmlx.substr(1,lsxmlx.length);
-			var param='xmlx=3&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
-			'&ghlxbh='+$('#txtlxbm').combotree('getText');+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
-			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+
-			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm+'&lsjl='+$('#lsjl').combobox("getValue")+'&lsxmnf='+lsxmnf+
-			'&lsxmlx='+lsxmlx+'&sbzt='+sbzt+'&shzt='+$('#shzt').combo("getValue")+'&xmklx='+$('#xmklx').combo("getValue");
-			
-			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
-				window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
-			 });
-			
+			var ghlxbm=$("#ghlxbm").val().toUpperCase();
+			var param='xmlx=1&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+xmnf+
+			'&ghlxbh='+$('#txtlxbm').val().toUpperCase()+'&xjsdj='+yjsdj+'&jsjsdj='+jsjsdj+
+			'&tsdq='+tsdq+'&ylxbh='+gldj+'&lxmc='+lxmc+'&jsjsdj='+jsjsdj+
+			'&ghlxmc='+ghlxmc+'&ghlxbm='+ghlxbm;
+			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
+		
+		
+		
+		
 		function importXmsq(){
-			importExcel("/jxzhpt/qqgl/importExcelXjCbsj.do","xjcbsj");
+			importExcel("/jxzhpt/qqgl/importExcelLmsjCbsj.do","sjcbsj");
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -396,7 +386,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;工程初步设计>&nbsp;<span id="bstext"></span>>&nbsp;新建工程项目</div>
+		<div id="p_top">前期管理>&nbsp;工程初步设计>&nbsp;<span id="bstext"></span>>&nbsp;改建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -407,116 +397,116 @@ text-decoration:none;
         				</legend>
         				<div>
         					<table style="margin:5px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-								<tr height="28">
-	        						<!-- <td>行政区划：</td>
-	        						<td><select id="xzqh" style="width:160px;"></select></td>
-	        						<td>原路线编码：</td>
-	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-	        						<td>原路线名称：</td>
-	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
-									<td>原技术等级：</td>
-									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-									<td>补助历史：</td>
-									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
-										<option value="" selected="selected">全部</option>
-										<option value="是">是</option>
-										<option value="否">否</option>
-									</select></td> -->
-									<td  align="right">行政区划：</td>
-	        						<td><select id="xzqh" style="width:160px;"></select></td>
-	        						<td align="right">项目名称：</td>
-	        						<td><input type="text" id="xmmc" style="width:115px;" /></td>
-	        						<td align="right">建设技术等级：</td>
-									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:75px;"></select></td>
-									<td align="right">原技术等级：</td>
-									<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:118px;"></select></td>
-									<td align="right">项目年份：</td>
-	        						<td><select id="xmnf" style="width: 75px;"></select></td>
-	        						</tr>
-	        					<tr height="28">
-	        						<!-- <td>特殊地区：</td>
-									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-	        						<td>项目名称：</td>
-	        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
-	        						<td align="right">项目年份：</td>
-	        						<td><select id="xmnf" style="width: 100px;"></select></td>
-	        						<td>建设技术等级：</td>
-									<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-									<td>审核状态：</td>
-	        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
-										<option selected="selected" value="-1">全部</option>
-										<option value="0">未审核</option>
-										<option value="1">已审核</option>
-									</select></td> -->
-									 <td align="right">行政等级：</td>
-									<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
-	        					
-									<td align="right">原路线编码：</td>
-	        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:118px;" /></td>
-	        						<td align="right">原路线名称：</td>
-	        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:75px;" /></td>
-									<td align="right">规划路线编码：</td>
-	        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
-	                            	<td align="right">规划路线名称：</td>
-		        					<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
-		        					</tr>
-								<tr height="28">
-								<td align="right">是否有补助历史：</td>
-									<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
-										<option value="" selected="selected">全部</option>
-										<option value="是">是</option>
-										<option value="否">否</option>
-									</select></td>
-									<td align="right">特殊地区：</td>
-									<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
-								
-									<!-- <td>&nbsp;行政等级：</td>
-									<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
-	        						<td>规划路线编码：</td>
-	        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
-	                            	<td>规划路线名称：</td>
-		        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td> -->
-		        						<td align="right">审核状态：</td>
-	        						<td><select id="shzt" style="width:75px;" class="easyui-combobox">
-										<option selected="selected" value="-1">全部</option>
-										<option value="0">未审核</option>
-										<option value="1">已审核</option>
-									</select></td>
-									<td align="right">项目库类型：</td>
+							<tr height="28">
+        						<!-- <td>行政区划：</td>
+        						<td><select id="xzqh" style="width:160px;"></select></td>
+        						<td>原路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+        						<td>原路线名称：</td>
+        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:100px;" /></td>
+								<td>原技术等级：</td>
+								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
+								<td>审核状态：</td>
+        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
+									<option selected="selected" value="-1">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
+								</select></td> -->
+								 <td align="right">行政区划：</td>
+        						<td><select id="xzqh" style="width:160px;"></select></td>
+        						 <td align="right">项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:115px;" /></td>
+        						<td align="right">建设技术等级：</td>
+								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:75px;"></select></td>
+								<td align="right">原技术等级：</td>
+								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:118px;"></select></td>
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 75px;"></select></td>
+        						</tr>
+        					<tr height="28">
+        					<td align="right">行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:160px;" class="easyui-combobox"></select></td>
+        					
+        					<!-- 	<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+        						<td>&nbsp;行政等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
+								<td>建设技术等级：</td>
+								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
+								<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+									<option value="" selected="selected">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select></td> -->
+								<td align="right">原路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:118px;" /></td>
+        						<td align="right">原路线名称：</td>
+        						<td><input name="txtlxmc" type="text" id="txtlxmc" style="width:75px;" /></td>
+								<td align="right">规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:118px;" /></td>
+        						<td align="right">规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:75px;" /></td>
+        						</tr>
+							<tr height="28">
+							<td align="right">是否有补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:160px;">
+									<option value="" selected="selected">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select></td>
+								<td align="right">特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:118px;"></select></td>
+							
+								<!-- <td>项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+        						<td>规划路线编码：</td>
+        						<td><input type="text" id="ghlxbm" style="width:95px;" /></td>
+        						<td>规划路线名称：</td>
+        						<td><input type="text" id="ghlxmc" style="width:95px;" /></td> -->
+        						<td align="right">审核状态：</td>
+        						<td><select id="shzt" style="width:75px;" class="easyui-combobox">
+									<option selected="selected" value="-1">全部</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
+								</select></td>
+								<td align="right">项目库类型：</td>
 								<td>
 									<select id='xmklx' class="easyui-combobox" style="width: 118px;">
 										<option value="">请选择</option>
 										<option value="部库">部库</option>
 										<option value="省库">省库</option>
 									</select>
-									<!-- 筛选历史条件 -->
+								</td>
+								<!-- 筛选历史条件 -->
 								<td align="right">历史项目类型：</td>
 								<td>
 									<select id='lsxmlx' class="easyui-combobox" style="width: 75px;">
 									</select>
 								</td>
 								</tr>
-									<tr height="28">
+                            <tr height="28">
 								<td align="right">历史计划年份：</td>
 								<td>
 									<select id='lsxmnf' class="easyui-combobox" style="width: 160px;">
 									</select>
 								</td>
-							</tr>
-							<tr height="28">
-	                            
-			                            <td colspan="8">
-											<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-											<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-											<!-- <img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-											
-											<img id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoCbsj()" style="border-width:0px;vertical-align:middle;" />
-											<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="cbjsrollback();" style="border-width:0px;vertical-align:middle;" />
-											<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshcbsj();" style="border-width:0px;vertical-align:middle;" /> -->
-											<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
-<!-- 											<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> -->
-		        						</td>
-	        						</tr>
+								</tr>
+								<tr height="28">
+                            
+                            	<td colspan="10">
+									<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+									<img id="shangbao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangbaoCbsj()" style="border-width:0px;vertical-align:middle;" />
+									<img name="bxs" onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+									<img name="bxs" onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+									<img id="thxj" src="../../../images/thxj1.jpg" onmouseover="this.src='../../../images/thxj2.jpg'" onmouseout="this.src='../../../images/thxj1.jpg'   " src=""  onclick="cbjsrollback();" style="border-width:0px;vertical-align:middle;" />
+									<img id="thwsh" src="../../../images/thwsh1.jpg" onmouseover="this.src='../../../images/thwsh2.jpg'" onmouseout="this.src='../../../images/thwsh1.jpg'   " src=""  onclick="thwshcbsj();" style="border-width:0px;vertical-align:middle;" />
+<!-- 									<img onclick="batchTh()" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/>--> 
+<!-- 							<img name="bxs" id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> --> 
+        						</td>
+                            </tr>
                             </table>
         				</div>
         			</fieldset>
