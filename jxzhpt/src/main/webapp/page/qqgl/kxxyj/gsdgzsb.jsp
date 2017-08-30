@@ -121,7 +121,8 @@
 					'lxsh.lxmc':$("#lxmc").val(),
 					'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 					'lxsh.lsxmnf':lsxmnf,
-					'lxsh.lsxmlx':lsxmlx
+					'lxsh.lsxmlx':lsxmlx,
+					'lxsh.xmbm':$("#xmbm").val()
 				},
 			    columns:[[
 			        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -374,6 +375,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 118px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:100px;" /></td>
 								</tr><tr height="29">
 	                            	<td colspan="10">
 	        						<img onclick="showAllgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>

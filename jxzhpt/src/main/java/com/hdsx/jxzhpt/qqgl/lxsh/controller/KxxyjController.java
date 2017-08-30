@@ -443,14 +443,11 @@ public class KxxyjController extends BaseActionSupport{
 				tiaojian2="and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-			//lxsh.setGydw(tiaojian1);
 			lxsh.setXmmc(xmmc);
 		if(!xmnf.equals("")){
 			String newXmnf = null;
-			//int ss = xmnf.indexOf(",");
 			if(xmnf.indexOf(",")==0){
 				newXmnf = xmnf.substring(1);
-				//System.out.println("sssssssssssss"+newXmnf);
 			}else{
 				newXmnf = xmnf;
 			}

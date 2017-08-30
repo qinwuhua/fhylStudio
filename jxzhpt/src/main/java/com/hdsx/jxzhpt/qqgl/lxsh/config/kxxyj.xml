@@ -12,6 +12,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
@@ -53,6 +54,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null "> 
  			and to_char(t.sbzt) like '%'||#{sbzt1}||'%' 
@@ -152,6 +154,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%' 
@@ -195,6 +198,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null "> -->
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%' 
@@ -295,6 +299,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
  		<if test="sbzt1!='' and sbzt1!= null "> 
  			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
@@ -336,6 +341,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
@@ -898,6 +904,9 @@
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!='' and xmbm!= null ">
+			and t.xmbm like '%'||#{xmbm}||'%'
+		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and ${xmnf}
 		</if>
@@ -955,6 +964,9 @@
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!='' and xmbm!= null ">
+			and t.xmbm like '%'||#{xmbm}||'%'
+		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and ${xmnf}
 		</if>
@@ -1011,6 +1023,9 @@
 		</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmbm!='' and xmbm!= null ">
+			and t.xmbm like '%'||#{xmbm}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and ${xmnf}
@@ -1393,6 +1408,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
@@ -1438,6 +1454,7 @@
 		<if test="gydw!='' and gydw!= null ">${gydw}</if>
 		<if test="xzqh!='' and xzqh!= null ">${xzqh}</if>
 		<if test="xmmc!='' and xmmc!= null ">and t.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
@@ -1497,6 +1514,9 @@
 		</if>
 		<if test="xmmc!='' and xmmc!= null ">
 			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmbm!='' and xmbm!= null ">
+			and t.xmbm like '%'||#{xmbm}||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
 			and ${xmnf}

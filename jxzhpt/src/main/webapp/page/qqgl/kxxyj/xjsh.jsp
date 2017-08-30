@@ -325,7 +325,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 70px;">
 									</select>
 								</td>
-								
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:110px;" /></td>
 	        					<!-- <td>管养单位：</td>
         						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td> -->
         						</tr>
