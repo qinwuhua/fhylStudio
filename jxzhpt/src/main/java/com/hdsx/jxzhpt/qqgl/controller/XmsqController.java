@@ -511,13 +511,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	
 	public void queryXmsq(){
 		try {
-			String xmbm = xmsq.getXmbm();
 			
-			if(!xmbm.equals("")){
-				if(xmbm.indexOf(",")>-1){
-					/*if(xmbm.indexOf(",") == 0){
+			if(!xmsq.getXmnf().equals("")){
+				/*if(xmbm.indexOf(",")>-1){
+					if(xmbm.indexOf(",") == 0){
 						xmbm = xmbm.substring(0);
-					}*/
+					}
 					String[] xmnfArray = xmbm.split(",");
 					for (int i = 1; i < xmnfArray.length; i++) {
 						if(i==xmnfArray.length-1){
@@ -530,10 +529,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					}
 				}else{
 					xmbm = "x.xmbm like '" + xmbm + "%' ";
-				}
+				}*/
 				
-				//xmsq.setXmbm(xmbm);
-				xmsq.setXmbm("substr(x.xmbm,0,4) in ("+xmsq.getXmbm()+")");
+				//xmsq.setXmnf(xmbm);
+				xmsq.setXmnf("substr(x.xmbm,0,4) in ("+xmsq.getXmnf()+")");
 				
 			}
 			xmsq.setGhlxbm(xmsq.getGhlxbm());
@@ -660,7 +659,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void queryLj(){
 		try {
-		String xmbm = xmsq.getXmbm();
+		String xmbm = xmsq.getXmnf();
 		if(xmbm.indexOf(",")>-1){
 			String[] xmnfArray = xmbm.split(",");
 			for (int i = 0; i < xmnfArray.length; i++) {
@@ -675,7 +674,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}else{
 			xmbm = "x.xmbm like '" + xmbm + "%' ";
 		}
-		xmsq.setXmbm(xmbm);
+		xmsq.setXmnf(xmbm);
 		xmsq.setGhlxbm(xmsq.getGhlxbm());
 		xmsq.setGhlxmc(xmsq.getGhlxmc());
 		xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
@@ -1245,7 +1244,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			//设置标题、文件名称
 			String titleName="";
 			String fileName="";
-			String xmbm = xmsq.getXmbm();
+			String xmbm = xmsq.getXmnf();
 			
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
@@ -1266,7 +1265,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			}else{
 				xmbm = "x.xmbm like '" + xmbm + "%' ";
 			}
-			xmsq.setXmbm(xmbm);
+			xmsq.setXmnf(xmbm);
 			String ylxbh = xmsq.getYlxbh();
 			if(ylxbh!=null && !ylxbh.equals("")){
 				String[] split1 = ylxbh.split(",");
@@ -1786,7 +1785,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		xmsq.setTsdq(tsdqS);
 		
 		List<Excel_list>  l=new ArrayList<Excel_list>();
-		String xmbm = xmsq.getXmbm();
+		String xmbm = xmsq.getXmnf();
 		if(xmbm.indexOf(",")>-1){
 			String[] xmnfArray = xmbm.split(",");
 			for (int i = 0; i < xmnfArray.length; i++) {
@@ -1801,7 +1800,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}else{
 			xmbm = "x.xmbm like '" + xmbm + "%' ";
 		}
-		xmsq.setXmbm(xmbm);
+		xmsq.setXmnf(xmbm);
 		String ylxbh = xmsq.getYlxbh();
 		if(ylxbh!=null && !ylxbh.equals("")){
 			String[] split1 = ylxbh.split(",");

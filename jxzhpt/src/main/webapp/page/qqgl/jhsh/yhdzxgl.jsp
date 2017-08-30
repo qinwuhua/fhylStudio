@@ -103,11 +103,12 @@
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'jsxz':jsxz,
-					'xmbm':xmnf,
+					'xmnf':xmnf,
 					//'gcfl':$('#gcfl').combobox("getValues").join(","),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf};
+					'lsxmnf':lsxmnf,
+					'xmbm':$("#xmbm").val()};
 			var sqzt = $('#sqzt').combobox("getValue");
 			
 			if(userPanduan($.cookie("unit2"))!="省"){
@@ -679,11 +680,12 @@
 			loadjzt();
 			
 			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
-			'&xmbm='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+
 			'&ghlxbh='+$("#lxbm").combotree('getText')+'&lxmc='+$("#lxmc").val()+'&ghlxbm='+$("#ghlxbm").combotree('getText')+
-			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",");;
+			'&ghlxmc='+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+"&jsxz="+$("#xmlx").combobox("getValues").join(",")+
+			'&xmbm='+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsq1.do?"+param;
@@ -887,7 +889,6 @@ text-decoration:none;
 									<select id='lsxmlx' class="easyui-combobox" style="width: 85px;">
 									</select>
 								</td>
-								
        							</tr>
        							<tr height="29">
        							<td align="right">历史计划年份：</td>
@@ -895,6 +896,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 124px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+								<td><input type="text" id="xmbm" style="width:115px;" /></td>
 								</tr>
 								<tr height="29">
        							<td colspan="8">

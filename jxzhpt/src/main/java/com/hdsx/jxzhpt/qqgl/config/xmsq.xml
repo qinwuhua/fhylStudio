@@ -660,9 +660,10 @@
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">and ${xmsq.gydwdm}</if>
 				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">and ${xmsq.xzqhdm}</if>
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">and xmmc like '%'||#{xmsq.xmmc}||'%'</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">and x.xmbm like '%'||#{xmsq.xmbm}||'%'</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">and ${xmsq.jsdj}</if>
 				<if test="xmsq.sqzt>=0">and sqzt=${xmsq.sqzt}</if>
-				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">and ${xmsq.xmbm}</if>
+				<if test="xmsq.xmnf!=null and xmsq.xmnf!=''">and ${xmsq.xmnf}</if>
 				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">and ${xmsq.gcfl}</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">${xmsq.tsdq}</if>
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">and x.lsjl=#{xmsq.lsjl}</if>
@@ -777,14 +778,17 @@
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
 					and xmmc like '%'||#{xmsq.xmmc}||'%'
 				</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
+					and x.xmbm like '%'||#{xmsq.xmbm}||'%'
+				</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
 					and ${xmsq.jsdj}
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
-				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
-					and ${xmsq.xmbm}
+				<if test="xmsq.xmnf!=null and xmsq.xmnf!=''">
+					and ${xmsq.xmnf}
 				</if>
 				<if test="xmsq.gcfl!=null and xmsq.gcfl!=''">
 					and ${xmsq.gcfl}
@@ -903,14 +907,17 @@
 		<if test="xmmc!=null and xmmc!=''">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and xmbm like '%'||#{xmbm}||'%'
+		</if>
 		<if test="jsdj!=null and jsdj!=''">
 			and ${jsdj}
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
-		<if test="xmbm!=null and xmbm!=''">
-			and ${xmbm}
+		<if test="xmnf!=null and xmnf!=''">
+			and ${xmnf}
 		</if>
 		<if test="gcfl!=null and gcfl!=''">
 			and ${gcfl}
@@ -1005,14 +1012,17 @@
 		<if test="xmmc!=null and xmmc!=''">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and xmbm like '%'||#{xmbm}||'%'
+		</if>
 		<if test="jsdj!=null and jsdj!=''">
 			and ${jsdj}
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
-		<if test="xmbm!=null and xmbm!=''">
-			and ${xmbm}
+		<if test="xmnf!=null and xmnf!=''">
+			and ${xmnf}
 		</if>
 		<if test="gcfl!=null and gcfl!=''">
 			and ${gcfl}
@@ -1303,9 +1313,10 @@
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and (jsdj=#{jsdj})</if>
 				<if test="sqzt>=0">and sqzt=${sqzt}</if>
-				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 				<if test="ylxbh!=null and ylxbh!=''">
@@ -1346,9 +1357,10 @@
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
-			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+			<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
@@ -1419,9 +1431,10 @@
 			<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 			<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 			<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
 			<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 			<if test="sqzt>=0">and sqzt=${sqzt}</if>
-			<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+			<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 			<if test="gcfl!=null and gcfl!=''">and ${gcfl}</if>
 			<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 			<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
@@ -1530,14 +1543,17 @@
 				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
 					and xmmc like '%'||'${xmsq.xmmc}'||'%'
 				</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
+					and xmbm like '%'||'${xmsq.xmbm}'||'%'
+				</if>
 				<if test="xmsq.jb!=null and xmsq.jb!=''">
 					and jb like '%'||${xmsq.jb}||'%'
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
-				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
-					and ${xmsq.xmbm}
+				<if test="xmsq.xmnf!=null and xmsq.xmnf!=''">
+					and ${xmsq.xmnf}
 				</if>
 				<if test="xmsq.jsxz!=null and xmsq.jsxz!=''">
 					and jsxz like '%'||${xmsq.jsxz}||'%'
@@ -1564,14 +1580,17 @@
 		<if test="xmmc!=null and xmmc!=''">
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and xmbm like '%'||#{xmbm}||'%'
+		</if>
 		<if test="jb!=null and jb!=''">
 			and jb like '%'||#{jb}||'%'
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
-		<if test="xmbm!=null and xmbm!=''">
-			and ${xmbm}
+		<if test="xmnf!=null and xmnf!=''">
+			and ${xmnf}
 		</if>
 		<if test="jsxz!=null and jsxz!=''">
 			and jsxz like '%'||#{jsxz}||'%'
@@ -1680,14 +1699,17 @@
 				<if test="xmmc!=null and xmmc!=''">
 					and xmmc like '%'||#{xmmc}||'%'
 				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and xmbm like '%'||#{xmbm}||'%'
+				</if>
 				<if test="jb!=null and jb!=''">
 					and jb like '%'||#{jb}||'%'
 				</if>
 				<if test="sqzt>=0">
 					and sqzt=${sqzt}
 				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and ${xmbm}
+				<if test="xmnf!=null and xmnf!=''">
+					and ${xmnf}
 				</if>
 				<if test="jsxz!=null and jsxz!=''">
 					and jsxz like '%'||#{jsxz}||'%'
@@ -1720,14 +1742,17 @@
 				<if test="xmmc!=null and xmmc!=''">
 					and xmmc like '%'||#{xmmc}||'%'
 				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and xmbm like '%'||#{xmbm}||'%'
+				</if>
 				<if test="jb!=null and jb!=''">
 					and jb like '%'||#{jb}||'%'
 				</if>
 				<if test="sqzt>=0">
 					and sqzt=${sqzt}
 				</if>
-				<if test="xmbm!=null and xmbm!=''">
-					and ${xmbm}
+				<if test="xmnf!=null and xmnf!=''">
+					and ${xmnf}
 				</if>
 				<if test="jsxz!=null and jsxz!=''">
 					and jsxz like '%'||#{jsxz}||'%'
@@ -2219,9 +2244,10 @@
 				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="sqzt>=0">and sqzt=${sqzt}</if>
-				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
 				<if test="ylxbh!=null and ylxbh!=''">

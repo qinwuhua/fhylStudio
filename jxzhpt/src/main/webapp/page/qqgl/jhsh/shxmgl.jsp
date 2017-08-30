@@ -98,13 +98,14 @@
 					"jdbs":0,
 					'jdbs':YMLib.Var.jdbs,
 					'lsjl':$('#lsjl').combobox("getValue"),
-					'xmbm':xmnf,
+					'xmnf':xmnf,
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'wnxmk':$('#wnxmk').combobox("getValue"),
 					"ylxbh":$('#gldj').combobox("getValues").join(","),
 					'lsxmlx':lsxmlx,
-					'lsxmnf':lsxmnf
+					'lsxmnf':lsxmnf,
+					'xmbm':$("#xmbm").val()
 					
 			};
 			var sqzt = $('#sqzt').combobox("getValue");
@@ -609,12 +610,12 @@
 			}
 			
 			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
-			'&xmbm='+xmnf+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
+			'&xmnf='+xmnf+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&lxmc="+$("#lxmc").val()+
 			"&ghlxbh="+$("#lxbm").combotree('getText')+"&ghlxbm="+$("#ghlxbm").combotree('getText')+
 			"&ghlxmc="+$("#ghlxmc").val()+"&lsxmlx="+lsxmlx+"&lsxmnf="+lsxmnf+"&jdbs="+YMLib.Var.jdbs+
-			"&wnxmk="+$('#wnxmk').combobox("getValue");
+			"&wnxmk="+$('#wnxmk').combobox("getValue")+"&xmbm="+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
 				window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
@@ -780,8 +781,10 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width:80px;">
 									</select>
 								</td>
-<!-- 								<td align="right">项目编码：</td> -->
-<!-- 								<td><input type="text" id="xmbm" style="width:150px;" /></td> -->
+       							</tr>
+       							<tr height="30">
+       							<td align="right">项目编码：</td>
+								<td><input type="text" id="xmbm" style="width:100px;" /></td>
        							</tr>
        							<tr height="30">
 	       						<td colspan="10">
