@@ -85,10 +85,10 @@
 								result+='&nbsp;编辑';
 							else
 								result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+								"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,250,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 						}else{
 							result+='&nbsp;<a href="javascript:openWindow1('+"'jhxd'"+','+"'编辑'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,400,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
+							"'/jxzhpt/page/qqgl/jhsh/jhxd2.jsp'"+",900,250,'"+row.xmbm+"'"+')" style="color:#3399CC;">编辑</a>';
 						}	
 						
 						return result;

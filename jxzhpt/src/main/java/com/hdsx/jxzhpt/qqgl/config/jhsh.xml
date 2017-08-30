@@ -1562,6 +1562,7 @@
 		<if test="dk != null">c.dk=#{dk},</if>
 		<if test="jl != null">c.jl=#{jl},</if>
 		<if test="qt != null">c.qt=#{qt},</if>
+		<if test="dfzc != null">c.dfzc=#{dfzc},</if>
 		<if test="zydpx != null">c.zydpx=#{zydpx},</if>
 		xdzt='0' where c.xmbm=#{xmbm}
 	</update>
