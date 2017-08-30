@@ -6753,16 +6753,16 @@
   to_char(sum(l.erlc) ,'fm9999999990.000') v_13,to_char(sum(l.sanlc),'fm9999999990.000') v_14,
   to_char(sum(l.silc),'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,'' v_18,
   '' v_19,'' v_20,to_char(nvl(sum(j.pfztz),0)) v_21,nvl(sum(xd.ztz),0) v_22,nvl(sum(xd.btz),0) v_23,
-  nvl(sum(xd.dfzc),0) v_24,'' v_25,'' v_26,'' v_27,'' v_28,'' v_29
+  nvl(sum(xd.stz),0) v_24,nvl(sum(xd.dfzc),0) v_25,'' v_26,'' v_27,'' v_28,'' v_29,'' v_30
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,(sum(j.ztz)-sum(j.btzzj)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.stz) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.stz),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
-  from plan_zjxd j 
+  from plan_zjxd j
   where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (
@@ -6832,16 +6832,16 @@
   to_char(l.erlc ,'fm9999999990.000') v_13,to_char(l.sanlc,'fm9999999990.000') v_14,
   to_char(l.silc,'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,c.jsfa v_18,
   substr(c.kgsj,0,4) v_19,substr(c.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,nvl(xd.ztz,0) v_22,nvl(xd.btz,0) v_23,
-  nvl(xd.dfzc,0) v_24,xd.zyjsnr v_25,c.sjpfwh v_26,j.jhxdwh v_27,j.xmbm v_28,j.tsdqzcg v_29
+  nvl(xd.stz,0) v_24,nvl(xd.dfzc,0) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,j.tsdqzcg v_30
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,(sum(j.ztz)-sum(j.btzzj)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.stz) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.stz),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
-  from plan_zjxd j where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+  from plan_zjxd j <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (
  select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
