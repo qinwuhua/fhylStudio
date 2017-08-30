@@ -190,6 +190,7 @@ public class XtglController extends BaseActionSupport{
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
 			session.setAttribute("name", bl.get("NAME"));
+			session.setAttribute("rolename", bl.get("ROLENAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -213,6 +214,7 @@ public class XtglController extends BaseActionSupport{
 			HttpSession session = request.getSession();
 			session.setAttribute("truename", bl.get("TRUENAME"));
 			session.setAttribute("name", bl.get("NAME"));
+			session.setAttribute("rolename", bl.get("ROLENAME"));
 			try {
 				JsonUtils.write(bl, getresponse().getWriter());
 			} catch (Exception e1) {
@@ -1386,6 +1388,7 @@ public class XtglController extends BaseActionSupport{
 					HttpSession session = request.getSession();
 					session.setAttribute("truename", bl.get("TRUENAME"));
 					session.setAttribute("name", bl.get("NAME"));
+					session.setAttribute("rolename", bl.get("ROLENAME"));
 					try {
 						JsonUtils.write(bl, getresponse().getWriter());
 					} catch (Exception e1) {
