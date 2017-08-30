@@ -1445,11 +1445,12 @@
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%4___' and jdbs='2')
 		</if>
 		<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-		<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+		<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 		<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
 		<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 		<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 		<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="xmbm !=null and xmbm !=''">and c.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmlx1!=null and xmlx1!=''">${xmlx1}</if>
 		<if test="shzt>=0">and c.shzt=${shzt}</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -1519,10 +1520,11 @@
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
-				<if test="xmbm!=null and xmbm!=''">and ${xmbm}</if>
+				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="xmmc !=null and xmmc !=''">and c.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm !=null and xmbm !=''">and c.xmbm like '%'||#{xmbm}||'%'</if>
 				<!-- <if test="sbzt>=0">
 					and c.sbzt=${sbzt}
 				</if> -->

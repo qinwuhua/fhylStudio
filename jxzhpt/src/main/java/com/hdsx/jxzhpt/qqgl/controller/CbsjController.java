@@ -417,7 +417,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	
 	public void queryCbsjLj(){
-		xmbmHandle();
+		xmnfHandle();
 		xjsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
