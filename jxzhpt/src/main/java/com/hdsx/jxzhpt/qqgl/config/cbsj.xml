@@ -1208,7 +1208,7 @@
 					and c.sbzt=${sbzt}
 				</if> -->
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
-				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+<!-- 				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if> -->
 				<if test="lsxmnf !='' and lsxmnf != null ">
 					${lsxmnf}
 				</if>
@@ -1288,7 +1288,7 @@
 				
 				<if test="shzt>=0">and c.shzt=${shzt}</if>
 				
-				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+<!-- 				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if> -->
 				<if test="lsxmnf !='' and lsxmnf != null ">
 					${lsxmnf}
 				</if>
@@ -1337,7 +1337,7 @@
 					and (c.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
 					)
 				</if>
-				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+<!-- 				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if> -->
 				<if test="lsxmnf !='' and lsxmnf != null ">
 					${lsxmnf}
 				</if>
@@ -1564,7 +1564,7 @@
 	</select>
 	
 	<select id="loadsjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
+		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(lx.bzcs),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
 		
@@ -1577,13 +1577,14 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.xmnf!=null and cbsj.xmnf!=''">and ${cbsj.xmnf}</if>
 		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="cbsj.xmbm !=null and cbsj.xmbm !=''">and c.xmbm like '%'||#{cbsj.xmbm}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
@@ -1628,7 +1629,7 @@
 	</select>
 	
 	<select id="loadlmcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(lx.bzcs),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
@@ -1640,13 +1641,14 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.xmnf!=null and cbsj.xmnf!=''">and ${cbsj.xmnf}</if>
 		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="cbsj.xmbm !=null and cbsj.xmbm !=''">and c.xmbm like '%'||#{cbsj.xmbm}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
@@ -1696,7 +1698,7 @@
 	</select>
 	
 	<select id="loadxjcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(lx.bzcs),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz 
+		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(lx.bzcs),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz 
 		from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		left join (select xmid, sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs 
 		from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid
@@ -1710,13 +1712,14 @@
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.xmnf!=null and cbsj.xmnf!=''">and ${cbsj.xmnf}</if>
 		<if test="cbsj.sbzt!=null and cbsj.sbzt!=''">and c.sbzt=#{cbsj.sbzt}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="cbsj.xmbm !=null and cbsj.xmbm !=''">and c.xmbm like '%'||#{cbsj.xmbm}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
@@ -2050,7 +2053,7 @@
 		</if>
 	</select>
 	<select id="loadgsdcbsjTjxx" parameterType="java.util.Map" resultType="lxsh">
-		select count(*) sl,nvl(sum(c.tz),0) tz,nvl(sum(lx.lc),0) lc,nvl(sum(l.bzys),0) bzcs,'0' sbz,'0' sjl,nvl((sum(c.tz)-sum(bzys)),0) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
+		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(l.bzys),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz from cbgsdgz c left join lxgsdgz l on c.xmbm=l.xmbm left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		left join (select xmid,sum(lc) lc,min(xjsdj) xjsdj,min(jsjsdj) jsjsdj,min(lxbm) lxbm,sum(bzcs) bzcs from (select  xmid,jsxz,xjsdj,jsjsdj,lxbm,bzcs,
 		(case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
 		when jsxz like '%新建%' then to_number(xjlc)
@@ -2073,12 +2076,13 @@
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">and ${cbsj.xjsdj}</if>
-		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">and ${cbsj.xmbm}</if>
+		<if test="cbsj.xmnf!=null and cbsj.xmnf!=''">and ${cbsj.xmnf}</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">and ${cbsj.jsjsdj}</if>
 		<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 			${cbsj.tsdq}
 		</if>
 		<if test="cbsj.xmmc !=null and cbsj.xmmc !=''">and c.xmmc like '%'||#{cbsj.xmmc}||'%'</if>
+		<if test="cbsj.xmbm !=null and cbsj.xmbm !=''">and c.xmbm like '%'||#{cbsj.xmbm}||'%'</if>
 		<!-- <if test="cbsj.sbzt>=0">
 			and c.sbzt=${cbsj.sbzt}
 		</if> -->
@@ -2131,7 +2135,7 @@
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
-				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if>
+<!-- 				<if test="sbzt!=null and sbzt!=''">and c.sbzt=#{sbzt}</if> -->
 				<if test="lsxmnf !='' and lsxmnf != null ">
 					${lsxmnf}
 				</if>

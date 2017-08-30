@@ -326,7 +326,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				}
 				cbsj.setTsdq(tsdq);
 			}
-			xmbmHandle();
+			xmnfHandle();
 			ylxbhHandle();
 			xjsdjHandle();
 			jsjsdjHandle();
