@@ -6770,7 +6770,7 @@
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.stz) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.stz),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dk) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.dk),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
   from plan_zjxd j
   where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
@@ -6849,7 +6849,7 @@
   left join xmsq_sh x
   on j.xmbm=x.xmbm
    left join
-  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.stz) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.stz),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
+  (select j.xmid,sum(j.ztz) ztz,sum(j.btzzj) btz,sum(j.dk) stz,(nvl(sum(j.ztz),0)-nvl(sum(j.btzzj),0)-nvl(sum(j.dk),0)) dfzc,sum(j.yhdk) yhdk,sum(gz)+sum(sz)+sum(zq) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
   from plan_zjxd j <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid

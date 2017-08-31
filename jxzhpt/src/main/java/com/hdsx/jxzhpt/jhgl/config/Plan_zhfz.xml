@@ -251,10 +251,14 @@
 		select rownum v_0,(select name from xtgl_xzqh where id=substr(lx.xzqhdm,0,4)||'00') v_1,lx.xzqhmc v_2,
         '' v_3,'' v_4,'' v_5,'' v_6,lx.lxbm v_7,lx.lxmc v_8,jh.jhqdzh v_9,jh.jhzdzh v_10,jh.jhzlc v_11,jh.jhyhlc v_12,
        nvl(jh.pfztz,0) v_13,nvl(jh.jhsybzje,0) v_14,nvl(jh.jhsydfzcje,0) v_15,sc.jsxz v_16,sc.jsnr v_17,jh.pfwh v_18,jh.sbnf v_19,
-       lx.gydw v_20,jh.bz v_21,lx.tsdq v_22
+       lx.gydw v_20,jh.bz v_21,t.tsdq v_22
     from plan_zhfz jh
     left join sck_zhfz sc on (jh.sckid = sc.sckid)
-    left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
+    left join xmk_zhfz lx on (sc.xmkid = lx.id) 
+    left join (select  replace(WMSYS.WM_CONCAT(distinct(to_char(t.name))),',',',') tsdq,x.xzqhdm 
+                from xtgl_xzqhtsdq x left join xtgl_tsdq t on x.parent=t.id  group by x.xzqhdm) t 
+               on lx.xzqhdm=t.xzqhdm
+    where 1=1
 		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
 			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
