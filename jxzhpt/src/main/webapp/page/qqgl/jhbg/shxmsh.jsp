@@ -55,7 +55,8 @@
 					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),'jhsh.sbzt':1,
-					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.shzt':$('#shzt').combobox("getValue")
+					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.shzt':$('#shzt').combobox("getValue"),
+					'jhsh.xmbm':$("#xmbm").val()
 					};
 			grid.queryParams=params;
 			loadLj(params);
@@ -356,6 +357,8 @@ text-decoration:none;
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
 								</select></td>
+								<td align="right">项目编码：</td>
+        						<td><input name="xmbm" type="text" id="xmbm" style="width:108px;" /></td>
 								</tr>
 								<tr height="32">
        						<td colspan="8">

@@ -411,6 +411,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -633,6 +634,7 @@
 					and ${xzdj}
 				</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
@@ -1080,6 +1082,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -1237,6 +1240,7 @@
 	              where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4001,6 +4005,7 @@
 				<if test="shzt!=null and shzt!=''">and j.xdzt=${shzt}</if>
 				<if test="sbzt!=null and sbzt!=''">and j.sbzt=${sbzt}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsdj!=null and jsdj!=''">and ${jsdj}</if>
 				<if test="lsjl!=null and lsjl!=''">and j.lsjl=#{lsjl}</if>
 				<if test="xmlx1 !=null and xmlx1 !=''">${xmlx1}</if>
@@ -4183,6 +4188,7 @@
 	              where 1=1 
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(j.xmbm,0,4) in (${xmnf})
 				</if>
@@ -4500,6 +4506,7 @@
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and j.xmbm like '%'||#{jhsh.xmbm}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -4824,6 +4831,7 @@
 	            where 1=1
 				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">and ${jhsh.xzqhdm}</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">and j.xmmc like '%'||#{jhsh.xmmc}||'%'</if>
+				<if test="jhsh.xmbm!=null and jhsh.xmbm!=''">and j.xmbm like '%'||#{jhsh.xmbm}||'%'</if>
 				<if test="jhsh.xmnf !=null and jhsh.xmnf !=''">
 					and substr(xmbm,0,4) in (${jhsh.xmnf})
 				</if>
@@ -5039,6 +5047,7 @@
 	            where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
 				<if test="xmmc!=null and xmmc!=''">and j.xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and j.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="xmnf !=null and xmnf !=''">
 					and substr(xmbm,0,4) in (${xmnf})
 				</if>

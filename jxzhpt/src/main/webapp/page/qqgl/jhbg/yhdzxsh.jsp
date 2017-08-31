@@ -67,7 +67,7 @@
 					'jhsh.ghlxbh':$('#lxbm').combotree('getText'),'jhsh.lxmc':$('#lxmc').val(),
 					'jhsh.ghxlxbm':$('#ghlxbm').combotree('getText'),'jhsh.ghxlxmc':$('#ghlxmc').val(),'jhsh.zydpx':$('#zydpx').combobox('getValue'),
 					'jhsh.lsjl':$('#lsjl').combobox("getValue"),'jhsh.sbzt':1,'jhsh.shzt':$('#shzt').combobox("getValue"),
-					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly};
+					'jhsh.gyfl':$('#gyfl').val(),'jhsh.zjly':zjly,'jhsh.xmbm':$("#xmbm").val()};
 			grid.queryParams=params;
 			loadLj(params);
 			grid.height=$(window).height()-220;
@@ -422,7 +422,10 @@ text-decoration:none;
 									<option value="" selected="selected">全部</option>
 									<option value="1">已审核</option>
 									<option value="0">未审核</option>
-								</select></td></tr>
+								</select></td>
+						<td align="right">项目编码：</td>
+        						<td><input name="xmbm" type="text" id="xmbm" style="width:108px;" /></td>		
+						</tr>
        						<!-- <td>资金来源：</td>
         						<td><input name="zjly" type="text" id="zjly" style="width:104px;" /></td>
        						<td>是否使用车购税：</td>
