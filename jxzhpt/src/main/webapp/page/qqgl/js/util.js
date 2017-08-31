@@ -1383,7 +1383,7 @@ function queryZjxdgsdzh(xmbm){
 			}
 		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'gz',title : '国债',width : 150,align : 'center'}, 
 		{field : 'sz',title : '省债',width : 150,align : 'center'}, 
@@ -1419,11 +1419,9 @@ function queryZjxdzh(xmbm){
 			}
 		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'zbz',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
-		
 		{field : 'dk',title : '厅统筹',width : 150,align : 'center'}, 
-		{field : 'jl',title : '奖励',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
 		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
 		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
