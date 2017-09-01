@@ -1474,7 +1474,6 @@ function queryZjxd1sh(xmbm){
 			}
 		},*/
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
 		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center',
 			formatter: function(value,row,index){
 				var result=(row.btzzj*1000+row.dk*1000)/1000;
