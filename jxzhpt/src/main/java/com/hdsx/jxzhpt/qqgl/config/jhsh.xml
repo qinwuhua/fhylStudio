@@ -6845,7 +6845,7 @@
   to_char(l.silc,'fm9999999990.000') v_15,nvl('',0) v_16,nvl('',0) v_17,c.jsfa v_18,
   substr(c.kgsj,0,4) v_19,substr(c.wgsj,0,4) v_20,nvl(j.pfztz,0) v_21,
   decode(xd.stz,0,j.pfztz,xd.btz+xd.stz+xd.dfzc) v_22,nvl(xd.btz,0) v_23,
-  nvl(xd.stz,0) v_24,nvl(decode(xd.stz,0,(j.pfztz-xd.stz),xd.dfzc),0) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,j.tsdqzcg v_30
+  nvl(xd.stz,0) v_24,decode(xd.stz,0,(j.pfztz-xd.btz),xd.dfzc) v_25,xd.zyjsnr v_26,c.sjpfwh v_27,j.jhxdwh v_28,j.xmbm v_29,j.tsdqzcg v_30
   from   Jhxdsh   j
   left join cbsj_sh c
   on j.xmbm=c.xmbm
