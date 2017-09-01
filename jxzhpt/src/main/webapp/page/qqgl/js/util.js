@@ -1419,9 +1419,13 @@ function queryZjxdzh(xmbm){
 			}
 		},
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center',
+			formatter: function(value,row,index){
+				var result=(row.btzzj*1000+row.dk*1000)/1000;
+				return result;
+			}},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
-		{field : 'dk',title : '厅统筹',width : 150,align : 'center'}, 
+		{field : 'dk',title : '省补助',width : 150,align : 'center'}, 
 		{field : 'qt',title : '其他',width : 150,align : 'center'}, 
 		{field : 'dfzc',title : '地方自筹',width : 150,align : 'center'}, 
 		{field : 'jhxdwh',title : '下达文号',width : 150,align : 'center'}, 
@@ -1470,7 +1474,12 @@ function queryZjxd1sh(xmbm){
 			}
 		},*/
 		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
-		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center'},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '总补助资金',width : 150,align : 'center',
+			formatter: function(value,row,index){
+				var result=(row.btzzj*1000+row.dk*1000)/1000;
+				return result;
+			}},
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stz',title : '省补助',width : 150,align : 'center',
 			formatter : function(value, row, index) {
