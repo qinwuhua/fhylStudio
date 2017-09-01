@@ -249,8 +249,11 @@
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="elist">
 		select rownum v_0,(select name from xtgl_xzqh where id=substr(lx.xzqhdm,0,4)||'00') v_1,lx.xzqhmc v_2,
-        '' v_3,'' v_4,'' v_5,'' v_6,lx.lxbm v_7,lx.lxmc v_8,jh.jhqdzh v_9,jh.jhzdzh v_10,jh.jhzlc v_11,jh.jhyhlc v_12,
-       nvl(jh.pfztz,0) v_13,nvl(jh.jhsybzje,0) v_14,nvl(jh.jhsydfzcje,0) v_15,sc.jsxz v_16,sc.jsnr v_17,jh.pfwh v_18,jh.sbnf v_19,
+        '' v_3,'' v_4,'' v_5,'' v_6,lx.lxbm v_7,lx.lxmc v_8, 
+        to_char(jh.jhqdzh,'fm9999999990.000') v_9,to_char(jh.jhzdzh,'fm9999999990.000') v_10,
+        to_char(sc.sczlc,'fm9999999990.000') v_11,to_char(sc.scyhlc,'fm9999999990.000') v_12,
+       nvl(jh.pfztz,0) v_13,nvl(jh.jhsybzje,0) v_14,nvl(jh.jhsydfzcje,0) v_15,sc.jsxz v_16,
+       sc.jsnr v_17,jh.pfwh v_18,jh.sbnf v_19,
        lx.gydw v_20,jh.bz v_21,t.tsdq v_22
     from plan_zhfz jh
     left join sck_zhfz sc on (jh.sckid = sc.sckid)
