@@ -308,7 +308,7 @@ function exportExcel(flag,mode){
 		if(tsdq.substr(0,1)==',')
 			tsdq=tsdq.substr(1,tsdq.length);
 		var jh={jhnf:xmnf,sbzt:"",spzt:"",sfylsjl:$('#sfylsjl').combobox("getValue")};
-		var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxbm:"",lxmc:"",jsdj:jsdj,gldj:gldj,qlmc:"",qlbh:"",akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq};
+		var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxbm:"",lxmc:"",jsdj:jsdj,gldj:gldj,qlmc:"",qlbh:"",akjfl:akjfl,jsxz:$("#jsxz").combobox('getValue'),tsdq:tsdq.replace(/\+/g,"%2B")};
 		if($('#txtRoad').val()!=""){
 			lx.lxmc=$('#txtRoad').val();
 		}
@@ -349,17 +349,13 @@ function exportExcel(flag,mode){
 				jh.jh_sbthcd=6;
 			}
 		}
-//		var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
-//				'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
-//				"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
-//				"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,"lx.jsxz":lx.jsxz,"lx.lxbm":lx.lxbm,"lx.jsdj":lx.jsdj,"lx.gldj":lx.gldj,"lx.tsdq":lx.tsdq};
 		var jh_sbthcd=jh.jh_sbthcd==undefined?"":jh.jh_sbthcd;
 		var jhkgsj=jh.jhkgsj==undefined?"":jh.jhkgsj;
 		var params="&jh.sbzt="+jh.sbzt+"&jh.spzt="+jh.spzt+"&jh.sbnf="+jh.jhnf+"&jh.jhkgsj="+jhkgsj
 				+"&jh.sfylsjl="+jh.sfylsjl+"&jh.jh_sbthcd="+jh_sbthcd
 				+"&lx.gydwbm="+lx.gydwbm+"&lx.xzqhdm="+lx.xzqhdm+"&lx.lxmc="+lx.lxmc
-				+"&lx.qlmc="+lx.qlmc+"&lx.akjfl="+lx.akjfl+"&lx.jsxz="+lx.jsxz+"&lx.lxbm="+lx.lxbm+"&lx.jsdj="+lx.jsdj+"&lx.gldj="+lx.gldj+"&lx.tsdq="+lx.tsdq;
-		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
+				+"&lx.qlmc="+lx.qlmc+"&lx.akjfl="+lx.akjfl+"&lx.jsxz="+lx.jsxz+"&lx.lxbm="+lx.lxbm+
+				"&lx.jsdj="+lx.jsdj+"&lx.gldj="+lx.gldj+"&lx.tsdq="+lx.tsdq;
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_wqgz.do?flag="+flag+params;
 	}
 	if(flag=='zhfz'){

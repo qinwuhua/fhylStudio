@@ -6774,8 +6774,8 @@
   (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
    ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
-  from plan_zjxd j
-  where 1=1 <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
+  from plan_zjxd j where 1=1 
+  <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (
  select xmid,sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
@@ -6855,7 +6855,7 @@
   (select j.xmid,nvl(sum(j.ztz),0) ztz,nvl(sum(j.btzzj),0) btz,nvl(sum(j.dk),0) stz,nvl(sum(j.dfzc),0) dfzc
    ,nvl(sum(j.yhdk),0) yhdk,nvl(sum(gz)+sum(sz)+sum(zq),0) dftz,
    replace(WMSYS.WM_CONCAT(j.zyjsnr),',',',') zyjsnr
-  from plan_zjxd j
+  from plan_zjxd j where 1=1
    <if test="jhxdwh !=null and jhxdwh !=''">${jhxdwh}</if> 
   group by j.xmid) xd on j.xmbm=xd.xmid
   left join (
