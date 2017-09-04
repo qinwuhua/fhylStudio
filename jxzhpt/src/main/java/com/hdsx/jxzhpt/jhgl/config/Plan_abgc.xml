@@ -598,11 +598,17 @@
 	    </if>
 	    order by v_0
 	</select>
-	<select id="exportExcel_jh" parameterType="hashMap" resultType="sjbb">
-		select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
-		 from plan_abgc jh
-  		left join sck_abgc sc on (jh.sckid = sc.sckid)
-  		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1 
+	<select id="exportExcel_jh" parameterType="hashMap" resultType="elist">
+		select rownum v_0,
+       (select name from xtgl_xzqh where id=substr(lx.xzqhdm,0,4)||'00') v_1,lx.xzqhmc v_2,
+        '' v_3,'' v_4,'' v_5,lx.lxbm v_6,sc.scqdzh v_7,sc.sczdzh v_8,sc.jsxz v_9,
+        to_char(sc.sczlc,'fm9999999990.000') v_10,to_char(sc.scyhlc,'fm9999999990.000') v_11,
+       nvl(jh.pfztz,0) v_12,nvl(jh.JHSYBBZJE,0) v_13,nvl(jh.JHSYDFZCZJ,0) v_14,
+       sc.jsnr v_15,sc.spwh v_16,lx.gydw v_17,jh.remarks v_18,lx.tsdq v_19
+	    from plan_abgc jh
+	    left join sck_abgc sc on (jh.sckid = sc.sckid)
+	    left join xmk_abgc lx on (sc.xmkid = lx.id) 
+	    where 1=1 
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -648,13 +654,26 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
-		order by v_5,jh.jhnf desc
 	</select>
-	<select id="exportExcel_jh1" parameterType="hashMap" resultType="sjbb">
-		select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqh v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
+	<select id="exportExcel_jh1" parameterType="hashMap" resultType="elist">
+		<!-- select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqh v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
 		 from plan_af jh
-  		left join sck_aqsmfh lx on (jh.sckid = lx.id) left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
-  		where 1=1 
+  		left join sck_aqsmfh lx on (jh.sckid = lx.id) 
+  		left join (select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
+  		where 1=1  -->
+  		select  rownum v_0,lx.town v_1,lx.county v_2,'' v_3,'' v_4,'' v_5,
+	        lx.lxbm v_6,lx.qdzh v_7,lx.zdzh v_8,
+	        decode(lx.jsxz,'1','中修','2','大修',lx.jsxz) v_9,
+	        lx.czzlc v_10,lx.yhlc v_11,
+	       nvl(jh.pfztz,0) v_12,nvl(jh.JHSYBBZJE,0) v_13,nvl(jh.JHSYDFZCZJ,0) v_14,lx.jsnr v_15,lx.spwh v_16,
+	       lx.gydw v_17,jh.remarks v_18,ts.tsdq v_19
+      from plan_af jh
+      left join sck_aqsmfh lx on (jh.sckid = lx.id) 
+      left join (
+      select t.id,replace(WMSYS.WM_CONCAT(xm.tsdq),',',';') tsdq 
+      from SCK_AQSMFH t left join sck_aqsmfh_ld ld on t.xmbm=ld.xmbm 
+      left join xmk_aqsmfh xm on ld.xmkid=xm.id group by t.id) ts on lx.id=ts.id
+      where 1=1 and lx.gydwdm like '2%'
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -700,7 +719,6 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
-		order by v_5,jh.jhnf desc
 	</select>
 	
 	<delete id="dropAbgcById" parameterType="string">

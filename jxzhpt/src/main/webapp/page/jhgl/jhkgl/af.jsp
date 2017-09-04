@@ -42,6 +42,7 @@
 				setxzdj('ddlGldj',urlid);
 			}
 			gljjtj=getgljjtj(urlid);
+			$("#gljjtj").val(gljjtj);
 			
 			jsdjdx('ddlPDDJ');
 			tsdqdx('ddlTSDQ');
@@ -186,6 +187,7 @@ text-decoration:none;
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
+        	<input type="text" id="gljjtj" style="display: none"></input>
         		<td align="left" style="padding-left: 10px; padding-top: 5px;">
         			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
