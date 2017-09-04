@@ -1169,29 +1169,30 @@ public class WnjhController extends BaseActionSupport{
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "ghlxbmtj"));
 			lxsh.setGhxlxbm(MyUtil.getQueryTJ(lxsh.getGhxlxbm(), "ghxlxbmtj"));
 			
+			if(lxsh.getXmlx1()!=null)
+				if(lxsh.getXmlx1().length()>0){
+					String[] tsdqs=lxsh.getXmlx1().split(",");
+					String tsdq="";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					lxsh.setXmlx1(tsdq);
+				}
+			
 			List<Excel_list> elist=new ArrayList<Excel_list>();
 			if("gsdgz".equals(lxsh.getXmlx())){
-				if(lxsh.getXmlx1()!=null)
-					if(lxsh.getXmlx1().length()>0){
-						String[] tsdqs=lxsh.getXmlx1().split(",");
-						String tsdq="";
-						for (int i = 0; i < tsdqs.length; i++) {
-							if("全部".equals(tsdqs[i])){
-								tsdq="";
-								break;
-							}
-							if(i==0)
-								tsdq+="and(xmlx1 like '%"+tsdqs[i]+"%'";
-							else
-								tsdq+="or xmlx1 like '%"+tsdqs[i]+"%'";
-						}
-						if(tsdq==""){
-							tsdq="";
-						}else{
-							tsdq+=")";
-						}
-						lxsh.setXmlx1(tsdq);
-					}
 				xmbt="国省道改造";
 				elist=wnjhServer.querywnjhGsdgz(lxsh);
 			}

@@ -387,7 +387,7 @@
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'路面改造工程' xmlx1 
     	from WNJH_LX group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
@@ -450,7 +450,7 @@
 		left join (select xmid,sum(lc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'路面改造工程' xmlx1 
     	from WNJH_LX group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
@@ -516,7 +516,7 @@
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
@@ -580,7 +580,7 @@
 		left join (select xmid,sum(xjlc) jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
@@ -940,7 +940,7 @@
 		replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1
         from (select  xmid,jsxz,
         (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 					  when jsxz like '%新建%' then xjlc
@@ -999,6 +999,9 @@
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
 		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
@@ -1020,7 +1023,7 @@
 		replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
         replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
         replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'路面改造工程' xmlx1
         from (select  xmid,jsxz,
         (case when jsxz like '%改建%' then to_char(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0))
 					  when jsxz like '%新建%' then xjlc
@@ -1079,6 +1082,9 @@
 		</if>
 		<if test="qqkzzt !='' and qqkzzt != null ">
 			and qqkzzt like '%'||#{qqkzzt}||'%'
+		</if>
+		<if test="xmlx1 !='' and xmlx1 != null ">
+			${xmlx1}
 		</if>
 		order by t.id desc,lx.sffirst desc
 	</select>
@@ -1101,7 +1107,7 @@
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1 
 		<if test="xzqh!='' and xzqh!= null ">
@@ -1334,7 +1340,7 @@
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'路面改造工程' xmlx1 
     	from WNJH_LX group by xmid) lx2 on t.id=lx2.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
@@ -1398,7 +1404,7 @@
 		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
    		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'改建工程' xmlx1 
+    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
 		where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
