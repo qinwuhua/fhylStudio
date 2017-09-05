@@ -791,16 +791,16 @@ public class LxshController extends BaseActionSupport{
 				String[] split = jsdj.split(",");
 				for (int i = 0; i < split.length; i++) {
 					if(i==0){
-						jsdj = "(xjsdj like '%"+split[i]+"%'";
+						jsdj = "(lx.xjsdj like '%"+split[i]+"%'";
 					}else if(i==split.length-1){
-						jsdj += " or xjsdj like '%"+split[i]+"%')";
+						jsdj += " or lx.xjsdj like '%"+split[i]+"%')";
 					}else{
-						jsdj += " or xjsdj like '%"+split[i]+"%'";
+						jsdj += " or lx.xjsdj like '%"+split[i]+"%'";
 					}
 				}
 			}else{
 				if(!"".equals(jsdj)||jsdj==null)
-				jsdj = "xjsdj like '%"+jsdj+"%'";
+				jsdj = "lx.xjsdj like '%"+jsdj+"%'";
 				else{
 					jsdj = "";
 				}
@@ -2356,6 +2356,7 @@ public class LxshController extends BaseActionSupport{
 			et.add(new Excel_tilte("计划完工年",1,1,23,23));
 			et.add(new Excel_tilte("投资(万元)",1,1,24,24));
 			et.add(new Excel_tilte("补助测算(万元)",1,1,25,25));
+			et.add(new Excel_tilte("计划核对结果",1,1,26,26));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);

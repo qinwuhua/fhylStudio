@@ -497,7 +497,7 @@ text-decoration:none;
             		其中车购税【<span id="cgs" style="color: red;">0</span>】万元,
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
             		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
-            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
+            		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元。
 <!--             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。 -->
             		</div>
            		<div><table id="grid"></table></div>
