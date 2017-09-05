@@ -1350,6 +1350,132 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportExcelXmsqZhcj(){
+		
+			List<Excel_list>  l=new ArrayList<Excel_list>();
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			String tsdqS=(String) session.getAttribute("tsdq");
+			xmsq.setTsdq(tsdqS);
+			
+			String xmbm = xmsq.getXmnf();
+			if(xmbm.indexOf(",")>-1){
+				String[] xmnfArray = xmbm.split(",");
+				for (int i = 0; i < xmnfArray.length; i++) {
+					if(i==xmnfArray.length-1){
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%') ";
+					}else if(i==0){
+						xmbm = "(x.xmbm like '" + xmnfArray[i] + "%' ";
+					}else{
+						xmbm += "or x.xmbm like '" + xmnfArray[i] + "%' ";
+					}
+				}
+			}else{
+				xmbm = "x.xmbm like '" + xmbm + "%' ";
+			}
+			xmsq.setXmnf(xmbm);
+			String ylxbh = xmsq.getYlxbh();
+			if(ylxbh!=null && !ylxbh.equals("")){
+				String[] split1 = ylxbh.split(",");
+				ylxbh="";
+				for (int i = 0; i < split1.length; i++) {
+					ylxbh+=i==split1.length-1 ? "lxbm like '"+split1[i]+"%'" : "lxbm like '"+split1[i]+"%' or ";
+				}
+				if(ylxbh!=null && ylxbh.equals("")){
+					ylxbh = "("+ylxbh+")";
+				}
+				xmsq.setYlxbh(ylxbh);
+			}
+			jsdjHandle();
+			xmsq.setGhlxbh(MyUtil.getQueryTJ(xmsq.getGhlxbh(), "lxbm"));
+			xmsq.setGhlxbm(MyUtil.getQueryTJ(xmsq.getGhlxbm(), "ghlxbm"));
+			
+			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm2"));
+			xmsq.setWnxmk(xmsq.getWnxmk());
+			xmsq.setLsxmlx(MyUtil.getQueryTJ2(xmsq.getLsxmnf(),xmsq.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
+			xmsq.setLsxmnf(MyUtil.getQueryTJ(xmsq.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			
+		 if(xmsq.getXmlx()==5){
+				if(xmsq.getTsdq().length()>0){
+					String[] tsdqs=xmsq.getTsdq().split(",");
+					String tsdq="and(";
+					for (int i = 0; i < tsdqs.length; i++) {
+						if("全部".equals(tsdqs[i])){
+							tsdq="";
+							break;
+						}
+						if(i==0)
+							tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+						else
+							tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+					}
+					if(tsdq==""){
+						tsdq="";
+					}else{
+						tsdq+=")";
+					}
+					xmsq.setTsdq(tsdq);
+				}
+				
+				l = xmsqServer.queryZhcjExport(xmsq);
+			}
+		 
+		    ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("灾毁恢复重建建议计划表");//设置第一行
+			eldata.setSheetName("灾毁恢复重建");//设置sheeet名
+			eldata.setFileName("灾毁恢复重建建议计划表");//设置文件名
+			
+			eldata.setEl(l);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("项目编码",1,1,1,1));
+			et.add(new Excel_tilte("项目名称",1,1,2,2));
+			et.add(new Excel_tilte("行政区划代码",1,1,3,3));
+			et.add(new Excel_tilte("行政区划",1,1,4,4));
+			et.add(new Excel_tilte("管养单位",1,1,5,5));
+			et.add(new Excel_tilte("原路线编码",1,1,6,6));
+			et.add(new Excel_tilte("原路线名称",1,1,7,7));
+			et.add(new Excel_tilte("原起点桩号",1,1,8,8));
+			et.add(new Excel_tilte("原止点桩号",1,1,9,9));
+			et.add(new Excel_tilte("规划路线编码",1,1,10,10));
+			et.add(new Excel_tilte("规划路线名称",1,1,11,11));
+			et.add(new Excel_tilte("规划起点桩号",1,1,12,12));
+			et.add(new Excel_tilte("规划止点桩号",1,1,13,13));
+			et.add(new Excel_tilte("共线路线编码",1,1,14,14));
+			et.add(new Excel_tilte("共线起点桩号",1,1,15,15));
+			et.add(new Excel_tilte("共线止点桩号",1,1,16,16));
+			et.add(new Excel_tilte("起点名称",1,1,17,17));
+			et.add(new Excel_tilte("止点名称",1,1,18,18));
+			et.add(new Excel_tilte("里程",1,1,19,19));
+			et.add(new Excel_tilte("一级公路",1,1,20,20));
+			et.add(new Excel_tilte("二级公路",1,1,21,21));
+			et.add(new Excel_tilte("三级公路",1,1,22,22));
+			et.add(new Excel_tilte("四级公路",1,1,23,23));
+			et.add(new Excel_tilte("等外公路",1,1,24,24));
+			et.add(new Excel_tilte("无路",1,1,25,25));
+			et.add(new Excel_tilte("路面宽度",1,1,26,26));
+			et.add(new Excel_tilte("技术等级",1,1,27,27));
+			et.add(new Excel_tilte("项目年份",1,1,28,28));
+			et.add(new Excel_tilte("工程分类",1,1,29,29));
+			et.add(new Excel_tilte("计划开工时间",1,1,30,30));
+			et.add(new Excel_tilte("计划完工时间",1,1,31,31));
+			et.add(new Excel_tilte("工期（月）",1,1,32,32));
+			et.add(new Excel_tilte("总投资",1,1,33,33));
+			et.add(new Excel_tilte("建设方案",1,1,34,34));
+			et.add(new Excel_tilte("备注",1,1,35,35));
+			et.add(new Excel_tilte("计划核对结果",1,1,36,36));
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			try {
+				Excel_export.excel_export(eldata,response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	
 	/**
 	 * 导入养护大中修Excel
 	 */
@@ -1906,12 +2032,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		et.add(new Excel_tilte("总投资（万元）",1,1,23,23));
 		et.add(new Excel_tilte("立项文号或施工图批复文号",1,1,24,24));
 		et.add(new Excel_tilte("管养单位",1,1,25,25));
-		et.add(new Excel_tilte("最近建设时间",1,1,26,26));
-		et.add(new Excel_tilte("为在建高速公路损坏普通国省道路段",1,1,27,27));
-		et.add(new Excel_tilte("通过村镇、街道路段",1,1,28,28));
-		et.add(new Excel_tilte("电子地图路面宽度",1,1,29,29));
-		et.add(new Excel_tilte("备注",1,1,30,30));
-		et.add(new Excel_tilte("计划核对结果",1,1,31,31));
+//		et.add(new Excel_tilte("最近建设时间",1,1,26,26));
+//		et.add(new Excel_tilte("为在建高速公路损坏普通国省道路段",1,1,27,27));
+//		et.add(new Excel_tilte("通过村镇、街道路段",1,1,28,28));
+		et.add(new Excel_tilte("电子地图路面宽度",1,1,26,26));
+		et.add(new Excel_tilte("备注",1,1,27,27));
+		et.add(new Excel_tilte("计划核对结果",1,1,28,28));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		try {

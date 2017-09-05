@@ -1344,6 +1344,47 @@
 				order by x.sqzt desc,x.xmbm desc ,l.sffirst desc
 
 	</select>
+	
+	<select id="queryZhcjExport"  parameterType="xmsq" resultType="elist">
+
+				select decode(l.sffirst,'1',substr(x.xmbm,0,4),substr(x.xmbm,0,4)) xmnf,decode(l.sffirst,'1',x.xmbm,'') xmbm,decode(l.sffirst,'1',x.xmmc,'') xmmc,decode(l.sffirst,'1',x.xzqh,x.xzqh) xzqh,
+				decode(l.sffirst,'1',x.xzqhdm,x.xzqhdm)  xzqhdm,decode(l.sffirst,'1',x.gydw,x.gydw) gydw,
+				decode(l.sffirst,'1',x.lmkd,x.lmkd)  lmkd,decode(l.sffirst,'1',x.jsdj,x.jsdj)  jsdj,decode(l.sffirst,'1',x.ntz,x.ntz)  ntz,decode(l.sffirst,'1',x.jhkgsj,x.jhkgsj)  jhkgsj,decode(l.sffirst,'1',x.jhwgsj,x.jhwgsj)  jhwgsj,decode(l.sffirst,'1',x.gq,x.gq)  gq,decode(l.sffirst,'1',x.gcfl,x.gcfl)  gcfl,decode(l.sffirst,'1',x.jsfa,x.jsfa)  jsfa,l.*
+		        from xmsq_sh x,(select * from lxsh_lx where jdbs='0'   ) l where 1=1 and x.xmbm(+)=l.xmid
+				<if test="gydwdm!=null and gydwdm!=''">and ${gydwdm}</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">and ${xzqhdm}</if>
+				<if test="xmmc!=null and xmmc!=''">and xmmc like '%'||#{xmmc}||'%'</if>
+				<if test="xmbm!=null and xmbm!=''">and x.xmbm like '%'||#{xmbm}||'%'</if>
+				<if test="jsdj!=null and jsdj!=''">and (jsdj=#{jsdj})</if>
+				<if test="sqzt>=0">and sqzt=${sqzt}</if>
+				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
+				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
+				<if test="lsjl!=null and lsjl!=''">and x.lsjl=#{lsjl}</if>
+				<if test="ylxbh!=null and ylxbh!=''">
+					and x.xmbm in (select xmid from lxsh_lx lx where ${ylxbh} and xmid like '%5___')
+				</if>
+				<if test="lxmc!=null and lxmc!=''">
+					and l.lxmc like '%'||#{lxmc}||'%'
+				</if>
+				<if test="ghlxbh!=null and ghlxbh!=''">
+					and x.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbh})
+				</if>
+				<if test="ghlxbm!=null and ghlxbm!=''">
+					and x.xmbm in (select distinct xmid from lxsh_lx lx where 1=1 ${ghlxbm})
+				</if>
+				<if test="ghlxmc!=null and ghlxmc!=''">
+					and l.ghlxmc like '%'||#{ghlxmc}||'%'
+				</if>
+				<if test="wnxmk!=null and wnxmk!=''">and x.wnxmk=#{wnxmk}</if>
+				<if test="lsxmnf !='' and lsxmnf != null ">
+					${lsxmnf}
+				</if>
+				<if test="lsxmlx !='' and lsxmlx != null ">
+					${lsxmlx}
+				</if>
+				order by x.sqzt desc,x.xmbm desc ,l.sffirst desc
+
+	</select>
 	<select id="queryAllXzqh" parameterType="string" resultType="treenode">
 		select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
 	</select>
@@ -2204,9 +2245,9 @@
      RemoveSameStr(replace(xjsdjtj,'、',','),',') v_16,
      RemoveSameStr(decode(lx.lxlmkd,null,x.lmkd,0,x.lmkd,lx.lxlmkd),',') v_17,
      x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,
-     to_char(lx.sbzj,'fm999990.09999') v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,'' v_26,'' v_27,'' v_28,
-    RemoveSameStr(decode(lx.lxlmkd,null,x.lmkd,0,x.lmkd,lx.lxlmkd),',') v_29, x.bz v_30,
-    (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_31
+     to_char(lx.sbzj,'fm999990.09999') v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
+    RemoveSameStr(decode(lx.lxlmkd,null,x.lmkd,0,x.lmkd,lx.lxlmkd),',') v_26, x.bz v_27,
+    (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_28
     
     from xmsq_yhdzx x 
     left join (select sjpfwh,xmbm from cbsj_yhdzx ) c on x.xmbm=c.xmbm 

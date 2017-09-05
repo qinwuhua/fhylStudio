@@ -179,6 +179,7 @@ public interface XmsqServer {
 	 * @return 返回集合
 	 */
 	public List<Object> queryShExport(Xmsq xmsq);
+	public List<Excel_list> queryZhcjExport(Xmsq xmsq);
 	/**
 	 * 批量添加路线
 	 * @param lxlist 路线集合

@@ -618,7 +618,7 @@
 			"&wnxmk="+$('#wnxmk').combobox("getValue")+"&xmbm="+$("#xmbm").val();
 			
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{tsdq:tsdq},function(){
-				window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
+				window.location.href="/jxzhpt/qqgl/exportExcelXmsqZhcj.do?"+param;
 			 });
 			
 		}
