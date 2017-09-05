@@ -193,7 +193,7 @@
 						 $("#dk").html(msg.DK);
 						 $("#sjl").html(msg.SJL);
 						 $("#lc").html(msg.LC);
-						 $("#dftz").html(msg.DFTZ);
+// 						 $("#dftz").html(msg.DFTZ);
 					}else{
 						$('#spanztz').html("0");
 						$('#spansbz').html("0");
@@ -498,7 +498,7 @@ text-decoration:none;
             		燃油税【<span id="rys" style="color: red;">0</span>】万元,
             		厅贷款【<span id="dk" style="color: red;">0</span>】万元,
             		省奖励资金【<span id="sjl" style="color: red;">0</span>】万元,
-            		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。
+<!--             		地方自筹【<span id="dftz" style="color: red;">0</span>】万元。 -->
             		</div>
            		<div><table id="grid"></table></div>
            	</td>
