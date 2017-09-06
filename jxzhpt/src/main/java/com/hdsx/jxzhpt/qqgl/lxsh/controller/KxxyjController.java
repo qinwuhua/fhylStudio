@@ -626,15 +626,15 @@ public class KxxyjController extends BaseActionSupport{
 				String[] split = jsdj.split(",");
 				for (int i = 0; i < split.length; i++) {
 					if(i==0){
-						jsdj = "(t.jsjsdj like '"+split[i]+"'";
+						jsdj = "(t.jsjsdj like '%"+split[i]+"%'";
 					}else if(i==split.length-1){
-						jsdj += " or t.jsjsdj like '"+split[i]+"')";
+						jsdj += " or t.jsjsdj like '%"+split[i]+"%')";
 					}else{
-						jsdj += " or t.jsjsdj like '"+split[i]+"'";
+						jsdj += " or t.jsjsdj like '%"+split[i]+"%'";
 					}
 				}
 			}else{
-				jsdj = "t.jsjsdj like '"+jsdj+"'";
+				jsdj = "t.jsjsdj like '%"+jsdj+"%'";
 			}
 			lxsh.setJsdj(jsdj);
 		}
@@ -1568,8 +1568,44 @@ public class KxxyjController extends BaseActionSupport{
 			}
 			lxsh.setXmnf(xmnf);
 			}
+			if(!lxsh.getJsdj().equals("") && lxsh.getJsdj()!=null){
+				String jsdj1 ="";
+				if(lxsh.getJsdj().indexOf(",")>-1){
+					String[] jsdj2 = lxsh.getJsdj().split(",");
+					for (int i = 0; i < jsdj2.length; i++) {
+						if(i==0){
+							jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+						}else if(i==jsdj2.length-1){
+							jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+						}else{
+							jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+						}
+					}
+				}else{
+					jsdj1 = "jsjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(jsdj1);
+			}
 			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
 			lxsh.setLsxmnf(MyUtil.getQueryTJ(lxsh.getLsxmnf(),"fun_lsxmnf(lsxmbm)"));
+			if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+				String jsdj1 ="";
+				if(lxsh.getJsjsdj().indexOf(",")>-1){
+					String[] jsdj2 = lxsh.getJsjsdj().split(",");
+					for (int i = 0; i < jsdj2.length; i++) {
+						if(i==0){
+							jsdj1 = "(xjsdj like '%"+jsdj2[i]+"%'";
+						}else if(i==jsdj2.length-1){
+							jsdj1 += " or xjsdj like '%"+jsdj2[i]+"%')";
+						}else{
+							jsdj1 = " or xjsdj like '%"+jsdj2[i]+"%'";
+						}
+					}
+				}else{
+					jsdj1 = "xjsdj like '%"+lxsh.getJsjsdj()+"%'";
+				}
+				lxsh.setJsjsdj(jsdj1);
+			}
 			Lxsh l=null;
 			if(lxsh.getTsdq().length()>0){
 				String[] tsdqs=lxsh.getTsdq().split(",");

@@ -2400,6 +2400,24 @@ public class LxshController extends BaseActionSupport{
 					String[] jsdj2 = lxsh.getJsdj().split(",");
 					for (int i = 0; i < jsdj2.length; i++) {
 						if(i==0){
+							jsdj1 = "(jsjsdj like '%"+jsdj2[i]+"%'";
+						}else if(i==jsdj2.length-1){
+							jsdj1 += " or jsjsdj like '%"+jsdj2[i]+"%')";
+						}else{
+							jsdj1 = " or jsjsdj like '%"+jsdj2[i]+"%'";
+						}
+					}
+				}else{
+					jsdj1 = "jsjsdj like '%"+lxsh.getJsdj()+"%'";
+				}
+				lxsh.setJsdj(jsdj1);
+			}
+			if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
+				String jsdj1 ="";
+				if(lxsh.getJsjsdj().indexOf(",")>-1){
+					String[] jsdj2 = lxsh.getJsjsdj().split(",");
+					for (int i = 0; i < jsdj2.length; i++) {
+						if(i==0){
 							jsdj1 = "(xjsdj like '%"+jsdj2[i]+"%'";
 						}else if(i==jsdj2.length-1){
 							jsdj1 += " or xjsdj like '%"+jsdj2[i]+"%')";
@@ -2408,9 +2426,9 @@ public class LxshController extends BaseActionSupport{
 						}
 					}
 				}else{
-					jsdj1 = "xjsdj like '%"+lxsh.getJsdj()+"%'";
+					jsdj1 = "xjsdj like '%"+lxsh.getJsjsdj()+"%'";
 				}
-				lxsh.setJsdj(jsdj1);
+				lxsh.setJsjsdj(jsdj1);
 			}
 			if(!lxsh.getXmnf().equals("") && lxsh.getXmnf()!=null){
 				String xmnf1 ="";
@@ -2461,6 +2479,7 @@ public class LxshController extends BaseActionSupport{
 				}
 				lxsh.setTsdq(tsdq);
 			}
+			
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));
 			lxsh.setLsxmlx(MyUtil.getQueryTJ2(lxsh.getLsxmnf(),lxsh.getLsxmlx(),"fun_lsxmlx(lsxmbm)"));
@@ -2490,247 +2509,190 @@ public class LxshController extends BaseActionSupport{
 						}
 						lxsh.setXmlx1(tsdq);
 					}
-				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
-					String jsdj1 ="";
-					if(lxsh.getJsjsdj().indexOf(",")>-1){
-						String[] jsdj2 = lxsh.getJsjsdj().split(",");
-						for (int i = 0; i < jsdj2.length; i++) {
-							if(i==0){
-								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}else if(i==jsdj2.length-1){
-								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
-							}else{
-								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}
-						}
-					}else{
-						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
-					}
-					lxsh.setJsjsdj(jsdj1);
-				}
+				
 				xmbt="国省道";
 				elist=lxshServer.querykxxgsd(lxsh);
 				et.clear();
-				et.add(new Excel_tilte("项目编码",1,1,0,0));
-				et.add(new Excel_tilte("项目名称",1,1,1,1));
-				et.add(new Excel_tilte("行政区划",1,1,2,2));
-				et.add(new Excel_tilte("原路线编码",1,1,3,3));
-				et.add(new Excel_tilte("原路线名称",1,1,4,4));
-				et.add(new Excel_tilte("原起点桩号",1,1,5,5));
-				et.add(new Excel_tilte("原止点桩号",1,1,6,6));
-				et.add(new Excel_tilte("规划路线编码",1,1,7,7));
-				et.add(new Excel_tilte("规划路线名称",1,1,8,8));
-				et.add(new Excel_tilte("规划起点桩号",1,1,9,9));
-				et.add(new Excel_tilte("规划止点桩号",1,1,10,10));
-				et.add(new Excel_tilte("共线路线编码",1,1,11,11));
-				et.add(new Excel_tilte("共线起点桩号",1,1,12,12));
-				et.add(new Excel_tilte("共线止点桩号",1,1,13,13));
-				et.add(new Excel_tilte("里程",1,1,14,14));
-				et.add(new Excel_tilte("一级公路",1,1,15,15));
-				et.add(new Excel_tilte("二级公路",1,1,16,16));
-				et.add(new Excel_tilte("三级公路",1,1,17,17));
-				et.add(new Excel_tilte("四级公路",1,1,18,18));
-				et.add(new Excel_tilte("等外公路",1,1,19,19));
-				et.add(new Excel_tilte("无路",1,1,20,20));
-				et.add(new Excel_tilte("建设后一级公路",1,1,21,21));
-				et.add(new Excel_tilte("建设后二级公路",1,1,22,22));
-				et.add(new Excel_tilte("建设后三级公路",1,1,23,23));
-				et.add(new Excel_tilte("建设后四级公路",1,1,24,24));
-				et.add(new Excel_tilte("建设后等外公路",1,1,25,25));
-				et.add(new Excel_tilte("建设后无路",1,1,26,26));
-				et.add(new Excel_tilte("建设性质",1,1,27,27));
-				et.add(new Excel_tilte("特大桥(米)",1,1,28,28));
-				et.add(new Excel_tilte("特大桥(座)",1,1,29,29));
-				et.add(new Excel_tilte("建设技术等级",1,1,30,30));
-				et.add(new Excel_tilte("隧道(米)",1,1,31,31));		
-				et.add(new Excel_tilte("隧道(座)",1,1,32,32));
-				et.add(new Excel_tilte("开工年月",1,1,33,33));
-				et.add(new Excel_tilte("完工年月",1,1,34,34));
-				et.add(new Excel_tilte("编制单位",1,1,35,35));
-				et.add(new Excel_tilte("投资估算",1,1,36,36));
-				et.add(new Excel_tilte("地方自筹",1,1,37,37));
-				et.add(new Excel_tilte("银行贷款",1,1,38,38));
-				et.add(new Excel_tilte("工可批复文号",1,1,39,39));
-				et.add(new Excel_tilte("批复时间",1,1,40,40));
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目编码",1,1,1,1));
+				et.add(new Excel_tilte("项目名称",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("原路线编码",1,1,4,4));
+				et.add(new Excel_tilte("原路线名称",1,1,5,5));
+				et.add(new Excel_tilte("原起点桩号",1,1,6,6));
+				et.add(new Excel_tilte("原止点桩号",1,1,7,7));
+				et.add(new Excel_tilte("规划路线编码",1,1,8,8));
+				et.add(new Excel_tilte("规划路线名称",1,1,9,9));
+				et.add(new Excel_tilte("规划起点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划止点桩号",1,1,11,11));
+				et.add(new Excel_tilte("共线路线编码",1,1,12,12));
+				et.add(new Excel_tilte("共线起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("共线止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("里程",1,1,15,15));
+				et.add(new Excel_tilte("一级公路",1,1,16,16));
+				et.add(new Excel_tilte("二级公路",1,1,17,17));
+				et.add(new Excel_tilte("三级公路",1,1,18,18));
+				et.add(new Excel_tilte("四级公路",1,1,19,19));
+				et.add(new Excel_tilte("等外公路",1,1,20,20));
+				et.add(new Excel_tilte("无路",1,1,21,21));
+				et.add(new Excel_tilte("建设后一级公路",1,1,22,22));
+				et.add(new Excel_tilte("建设后二级公路",1,1,23,23));
+				et.add(new Excel_tilte("建设后三级公路",1,1,24,24));
+				et.add(new Excel_tilte("建设后四级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后等外公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后无路",1,1,27,27));
+				et.add(new Excel_tilte("建设性质",1,1,28,28));
+				et.add(new Excel_tilte("特大桥(米)",1,1,29,29));
+				et.add(new Excel_tilte("特大桥(座)",1,1,30,30));
+				et.add(new Excel_tilte("建设技术等级",1,1,31,31));
+				et.add(new Excel_tilte("隧道(米)",1,1,32,32));		
+				et.add(new Excel_tilte("隧道(座)",1,1,33,33));
+				et.add(new Excel_tilte("开工年月",1,1,34,34));
+				et.add(new Excel_tilte("完工年月",1,1,35,35));
+				et.add(new Excel_tilte("编制单位",1,1,36,36));
+				et.add(new Excel_tilte("投资估算",1,1,37,37));
+				et.add(new Excel_tilte("地方自筹",1,1,38,38));
+				et.add(new Excel_tilte("银行贷款",1,1,39,39));
+				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
+				et.add(new Excel_tilte("批复时间",1,1,41,41));
 			}
 			if("sjgz".equals(lxsh.getXmlx())){
-				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
-					String jsdj1 ="";
-					if(lxsh.getJsjsdj().indexOf(",")>-1){
-						String[] jsdj2 = lxsh.getJsjsdj().split(",");
-						for (int i = 0; i < jsdj2.length; i++) {
-							if(i==0){
-								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}else if(i==jsdj2.length-1){
-								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
-							}else{
-								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}
-						}
-					}else{
-						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
-					}
-					lxsh.setJsjsdj(jsdj1);
-				}
 				xmbt="改建";
 				elist=lxshServer.querykxxSjgz(lxsh);
 				et.clear();
-				et.add(new Excel_tilte("项目编码",1,1,0,0));
-				et.add(new Excel_tilte("项目名称",1,1,1,1));
-				et.add(new Excel_tilte("行政区划",1,1,2,2));
-				et.add(new Excel_tilte("原路线编码",1,1,3,3));
-				et.add(new Excel_tilte("原路线名称",1,1,4,4));
-				et.add(new Excel_tilte("原起点桩号",1,1,5,5));
-				et.add(new Excel_tilte("原止点桩号",1,1,6,6));
-				et.add(new Excel_tilte("规划路线编码",1,1,7,7));
-				et.add(new Excel_tilte("规划路线名称",1,1,8,8));
-				et.add(new Excel_tilte("规划起点桩号",1,1,9,9));
-				et.add(new Excel_tilte("规划止点桩号",1,1,10,10));
-				et.add(new Excel_tilte("共线路线编码",1,1,11,11));
-				et.add(new Excel_tilte("共线起点桩号",1,1,12,12));
-				et.add(new Excel_tilte("共线止点桩号",1,1,13,13));
-				et.add(new Excel_tilte("里程",1,1,14,14));
-				et.add(new Excel_tilte("一级公路",1,1,15,15));
-				et.add(new Excel_tilte("二级公路",1,1,16,16));
-				et.add(new Excel_tilte("三级公路",1,1,17,17));
-				et.add(new Excel_tilte("四级公路",1,1,18,18));
-				et.add(new Excel_tilte("等外公路",1,1,19,19));
-				et.add(new Excel_tilte("无路",1,1,20,20));
-				et.add(new Excel_tilte("建设后一级公路",1,1,21,21));
-				et.add(new Excel_tilte("建设后二级公路",1,1,22,22));
-				et.add(new Excel_tilte("建设后三级公路",1,1,23,23));
-				et.add(new Excel_tilte("建设后四级公路",1,1,24,24));
-				et.add(new Excel_tilte("建设后等外公路",1,1,25,25));
-				et.add(new Excel_tilte("建设后无路",1,1,26,26));
-				et.add(new Excel_tilte("建设性质",1,1,27,27));
-				et.add(new Excel_tilte("特大桥(米)",1,1,28,28));
-				et.add(new Excel_tilte("特大桥(座)",1,1,29,29));
-				et.add(new Excel_tilte("建设技术等级",1,1,30,30));
-				et.add(new Excel_tilte("隧道(米)",1,1,31,31));		
-				et.add(new Excel_tilte("隧道(座)",1,1,32,32));
-				et.add(new Excel_tilte("开工年月",1,1,33,33));
-				et.add(new Excel_tilte("完工年月",1,1,34,34));
-				et.add(new Excel_tilte("编制单位",1,1,35,35));
-				et.add(new Excel_tilte("投资估算",1,1,36,36));
-				et.add(new Excel_tilte("地方自筹",1,1,37,37));
-				et.add(new Excel_tilte("银行贷款",1,1,38,38));
-				et.add(new Excel_tilte("工可批复文号",1,1,39,39));
-				et.add(new Excel_tilte("批复时间",1,1,40,40));
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目编码",1,1,1,1));
+				et.add(new Excel_tilte("项目名称",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("原路线编码",1,1,4,4));
+				et.add(new Excel_tilte("原路线名称",1,1,5,5));
+				et.add(new Excel_tilte("原起点桩号",1,1,6,6));
+				et.add(new Excel_tilte("原止点桩号",1,1,7,7));
+				et.add(new Excel_tilte("规划路线编码",1,1,8,8));
+				et.add(new Excel_tilte("规划路线名称",1,1,9,9));
+				et.add(new Excel_tilte("规划起点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划止点桩号",1,1,11,11));
+				et.add(new Excel_tilte("共线路线编码",1,1,12,12));
+				et.add(new Excel_tilte("共线起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("共线止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("里程",1,1,15,15));
+				et.add(new Excel_tilte("一级公路",1,1,16,16));
+				et.add(new Excel_tilte("二级公路",1,1,17,17));
+				et.add(new Excel_tilte("三级公路",1,1,18,18));
+				et.add(new Excel_tilte("四级公路",1,1,19,19));
+				et.add(new Excel_tilte("等外公路",1,1,20,20));
+				et.add(new Excel_tilte("无路",1,1,21,21));
+				et.add(new Excel_tilte("建设后一级公路",1,1,22,22));
+				et.add(new Excel_tilte("建设后二级公路",1,1,23,23));
+				et.add(new Excel_tilte("建设后三级公路",1,1,24,24));
+				et.add(new Excel_tilte("建设后四级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后等外公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后无路",1,1,27,27));
+				et.add(new Excel_tilte("建设性质",1,1,28,28));
+				et.add(new Excel_tilte("特大桥(米)",1,1,29,29));
+				et.add(new Excel_tilte("特大桥(座)",1,1,30,30));
+				et.add(new Excel_tilte("建设技术等级",1,1,31,31));
+				et.add(new Excel_tilte("隧道(米)",1,1,32,32));		
+				et.add(new Excel_tilte("隧道(座)",1,1,33,33));
+				et.add(new Excel_tilte("开工年月",1,1,34,34));
+				et.add(new Excel_tilte("完工年月",1,1,35,35));
+				et.add(new Excel_tilte("编制单位",1,1,36,36));
+				et.add(new Excel_tilte("投资估算",1,1,37,37));
+				et.add(new Excel_tilte("地方自筹",1,1,38,38));
+				et.add(new Excel_tilte("银行贷款",1,1,39,39));
+				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
+				et.add(new Excel_tilte("批复时间",1,1,41,41));
 			}
 			if("lmgz".equals(lxsh.getXmlx())){
-				et.add(new Excel_tilte("项目编码",1,1,0,0));
-				et.add(new Excel_tilte("项目名称",1,1,1,1));
-				et.add(new Excel_tilte("行政区划",1,1,2,2));
-				et.add(new Excel_tilte("原路线编码",1,1,3,3));
-				et.add(new Excel_tilte("原路线名称",1,1,4,4));
-				et.add(new Excel_tilte("原起点桩号",1,1,5,5));
-				et.add(new Excel_tilte("原止点桩号",1,1,6,6));
-				et.add(new Excel_tilte("规划路线编码",1,1,7,7));
-				et.add(new Excel_tilte("规划路线名称",1,1,8,8));
-				et.add(new Excel_tilte("规划起点桩号",1,1,9,9));
-				et.add(new Excel_tilte("规划止点桩号",1,1,10,10));
-				et.add(new Excel_tilte("共线路线编码",1,1,11,11));
-				et.add(new Excel_tilte("共线起点桩号",1,1,12,12));
-				et.add(new Excel_tilte("共线止点桩号",1,1,13,13));
-				et.add(new Excel_tilte("里程",1,1,14,14));
-				et.add(new Excel_tilte("一级公路",1,1,15,15));
-				et.add(new Excel_tilte("二级公路",1,1,16,16));
-				et.add(new Excel_tilte("三级公路",1,1,17,17));
-				et.add(new Excel_tilte("四级公路",1,1,18,18));
-				et.add(new Excel_tilte("等外公路",1,1,19,19));
-				et.add(new Excel_tilte("无路",1,1,20,20));
-				et.add(new Excel_tilte("建设后一级公路",1,1,21,21));
-				et.add(new Excel_tilte("建设后二级公路",1,1,22,22));
-				et.add(new Excel_tilte("建设后三级公路",1,1,23,23));
-				et.add(new Excel_tilte("建设后四级公路",1,1,24,24));
-				et.add(new Excel_tilte("建设后等外公路",1,1,25,25));
-				et.add(new Excel_tilte("建设后无路",1,1,26,26));
-				et.add(new Excel_tilte("建设性质",1,1,27,27));
-				et.add(new Excel_tilte("特大桥(米)",1,1,28,28));
-				et.add(new Excel_tilte("特大桥(座)",1,1,29,29));
-				et.add(new Excel_tilte("建设技术等级",1,1,30,30));
-				et.add(new Excel_tilte("隧道(米)",1,1,31,31));		
-				et.add(new Excel_tilte("隧道(座)",1,1,32,32));
-				et.add(new Excel_tilte("开工年月",1,1,33,33));
-				et.add(new Excel_tilte("完工年月",1,1,34,34));
-				et.add(new Excel_tilte("编制单位",1,1,35,35));
-				et.add(new Excel_tilte("投资估算",1,1,36,36));
-				et.add(new Excel_tilte("地方自筹",1,1,37,37));
-				et.add(new Excel_tilte("银行贷款",1,1,38,38));
-				et.add(new Excel_tilte("工可批复文号",1,1,39,39));
-				et.add(new Excel_tilte("批复时间",1,1,40,40));
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目编码",1,1,1,1));
+				et.add(new Excel_tilte("项目名称",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("原路线编码",1,1,4,4));
+				et.add(new Excel_tilte("原路线名称",1,1,5,5));
+				et.add(new Excel_tilte("原起点桩号",1,1,6,6));
+				et.add(new Excel_tilte("原止点桩号",1,1,7,7));
+				et.add(new Excel_tilte("规划路线编码",1,1,8,8));
+				et.add(new Excel_tilte("规划路线名称",1,1,9,9));
+				et.add(new Excel_tilte("规划起点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划止点桩号",1,1,11,11));
+				et.add(new Excel_tilte("共线路线编码",1,1,12,12));
+				et.add(new Excel_tilte("共线起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("共线止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("里程",1,1,15,15));
+				et.add(new Excel_tilte("一级公路",1,1,16,16));
+				et.add(new Excel_tilte("二级公路",1,1,17,17));
+				et.add(new Excel_tilte("三级公路",1,1,18,18));
+				et.add(new Excel_tilte("四级公路",1,1,19,19));
+				et.add(new Excel_tilte("等外公路",1,1,20,20));
+				et.add(new Excel_tilte("无路",1,1,21,21));
+				et.add(new Excel_tilte("建设后一级公路",1,1,22,22));
+				et.add(new Excel_tilte("建设后二级公路",1,1,23,23));
+				et.add(new Excel_tilte("建设后三级公路",1,1,24,24));
+				et.add(new Excel_tilte("建设后四级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后等外公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后无路",1,1,27,27));
+				et.add(new Excel_tilte("建设性质",1,1,28,28));
+				et.add(new Excel_tilte("特大桥(米)",1,1,29,29));
+				et.add(new Excel_tilte("特大桥(座)",1,1,30,30));
+				et.add(new Excel_tilte("建设技术等级",1,1,31,31));
+				et.add(new Excel_tilte("隧道(米)",1,1,32,32));		
+				et.add(new Excel_tilte("隧道(座)",1,1,33,33));
+				et.add(new Excel_tilte("开工年月",1,1,34,34));
+				et.add(new Excel_tilte("完工年月",1,1,35,35));
+				et.add(new Excel_tilte("编制单位",1,1,36,36));
+				et.add(new Excel_tilte("投资估算",1,1,37,37));
+				et.add(new Excel_tilte("地方自筹",1,1,38,38));
+				et.add(new Excel_tilte("银行贷款",1,1,39,39));
+				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
+				et.add(new Excel_tilte("批复时间",1,1,41,41));
 				xmbt="路面改造";
-				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
-					String jsdj1 ="";
-					if(lxsh.getJsjsdj().indexOf(",")>-1){
-						String[] jsdj2 = lxsh.getJsjsdj().split(",");
-						for (int i = 0; i < jsdj2.length; i++) {
-							if(i==0){
-								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}else if(i==jsdj2.length-1){
-								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
-							}else{
-								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}
-						}
-					}else{
-						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
-					}
-					lxsh.setJsjsdj(jsdj1);
-				}
 				elist=lxshServer.querykxxLmgz(lxsh);
 			}
 			if("xj".equals(lxsh.getXmlx())){
-				et.add(new Excel_tilte("项目编码",1,1,0,0));
-				et.add(new Excel_tilte("项目名称",1,1,1,1));
-				et.add(new Excel_tilte("行政区划",1,1,2,2));
-				et.add(new Excel_tilte("路线编码",1,1,3,3));
-				et.add(new Excel_tilte("起点桩号",1,1,4,4));
-				et.add(new Excel_tilte("止点桩号",1,1,5,5));
-				et.add(new Excel_tilte("里程",1,1,6,6));
-				et.add(new Excel_tilte("新建路线编码",1,1,7,7));
-				et.add(new Excel_tilte("新建起点桩号",1,1,8,8));
-				et.add(new Excel_tilte("新建止点桩号",1,1,9,9));
-				et.add(new Excel_tilte("新建里程",1,1,10,10));
-				et.add(new Excel_tilte("一级公路",1,1,11,11));
-				et.add(new Excel_tilte("二级公路",1,1,12,12));
-				et.add(new Excel_tilte("三级公路",1,1,13,13));
-				et.add(new Excel_tilte("四级公路",1,1,14,14));
-				et.add(new Excel_tilte("等外公路",1,1,15,15));
-				et.add(new Excel_tilte("无路",1,1,16,16));
-				et.add(new Excel_tilte("建设性质",1,1,17,17));
-				et.add(new Excel_tilte("特大桥(米)",1,1,18,18));
-				et.add(new Excel_tilte("特大桥(座)",1,1,19,19));
-				et.add(new Excel_tilte("建设技术等级",1,1,20,20));
-				et.add(new Excel_tilte("隧道(米)",1,1,21,21));		
-				et.add(new Excel_tilte("隧道(座)",1,1,22,22));
-				et.add(new Excel_tilte("开工年月",1,1,23,23));
-				et.add(new Excel_tilte("完工年月",1,1,24,24));
-				et.add(new Excel_tilte("编制单位",1,1,25,25));
-				et.add(new Excel_tilte("投资估算",1,1,26,26));
-				et.add(new Excel_tilte("地方自筹",1,1,27,27));
-				et.add(new Excel_tilte("银行贷款",1,1,28,28));
-				et.add(new Excel_tilte("工可批复文号",1,1,29,29));
-				et.add(new Excel_tilte("批复时间",1,1,30,30));
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目编码",1,1,1,1));
+				et.add(new Excel_tilte("项目名称",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("原路线编码",1,1,4,4));
+				et.add(new Excel_tilte("原路线名称",1,1,5,5));
+				et.add(new Excel_tilte("原起点桩号",1,1,6,6));
+				et.add(new Excel_tilte("原止点桩号",1,1,7,7));
+				et.add(new Excel_tilte("规划路线编码",1,1,8,8));
+				et.add(new Excel_tilte("规划路线名称",1,1,9,9));
+				et.add(new Excel_tilte("规划起点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划止点桩号",1,1,11,11));
+				et.add(new Excel_tilte("共线路线编码",1,1,12,12));
+				et.add(new Excel_tilte("共线起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("共线止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("里程",1,1,15,15));
+				et.add(new Excel_tilte("一级公路",1,1,16,16));
+				et.add(new Excel_tilte("二级公路",1,1,17,17));
+				et.add(new Excel_tilte("三级公路",1,1,18,18));
+				et.add(new Excel_tilte("四级公路",1,1,19,19));
+				et.add(new Excel_tilte("等外公路",1,1,20,20));
+				et.add(new Excel_tilte("无路",1,1,21,21));
+				et.add(new Excel_tilte("建设后一级公路",1,1,22,22));
+				et.add(new Excel_tilte("建设后二级公路",1,1,23,23));
+				et.add(new Excel_tilte("建设后三级公路",1,1,24,24));
+				et.add(new Excel_tilte("建设后四级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后等外公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后无路",1,1,27,27));
+				et.add(new Excel_tilte("建设性质",1,1,28,28));
+				et.add(new Excel_tilte("特大桥(米)",1,1,29,29));
+				et.add(new Excel_tilte("特大桥(座)",1,1,30,30));
+				et.add(new Excel_tilte("建设技术等级",1,1,31,31));
+				et.add(new Excel_tilte("隧道(米)",1,1,32,32));		
+				et.add(new Excel_tilte("隧道(座)",1,1,33,33));
+				et.add(new Excel_tilte("开工年月",1,1,34,34));
+				et.add(new Excel_tilte("完工年月",1,1,35,35));
+				et.add(new Excel_tilte("编制单位",1,1,36,36));
+				et.add(new Excel_tilte("投资估算",1,1,37,37));
+				et.add(new Excel_tilte("地方自筹",1,1,38,38));
+				et.add(new Excel_tilte("银行贷款",1,1,39,39));
+				et.add(new Excel_tilte("工可批复文号",1,1,40,40));
+				et.add(new Excel_tilte("批复时间",1,1,41,41));
 				xmbt="新建";
-				if(!lxsh.getJsjsdj().equals("") && lxsh.getJsjsdj()!=null){
-					String jsdj1 ="";
-					if(lxsh.getJsjsdj().indexOf(",")>-1){
-						String[] jsdj2 = lxsh.getJsjsdj().split(",");
-						for (int i = 0; i < jsdj2.length; i++) {
-							if(i==0){
-								jsdj1 = "(t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}else if(i==jsdj2.length-1){
-								jsdj1 += " or t.jsjsdj like '%"+jsdj2[i]+"%')";
-							}else{
-								jsdj1 = " or t.jsjsdj like '%"+jsdj2[i]+"%'";
-							}
-						}
-					}else{
-						jsdj1 = "t.jsjsdj like '%"+lxsh.getJsjsdj()+"%'";
-					}
-					lxsh.setJsjsdj(jsdj1);
-				}
 				elist=lxshServer.querykxxXj(lxsh);
 			}
 			

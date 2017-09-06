@@ -21,10 +21,8 @@
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -63,7 +61,8 @@
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -165,10 +164,8 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		<if test="ghlxbh!=null and ghlxbh!=''">
@@ -207,7 +204,8 @@
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%2___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		
@@ -308,10 +306,8 @@
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		
 		<if test="lxmc !='' and lxmc != null ">
@@ -350,7 +346,8 @@
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%3___' and ${gldj})</if>
 		
 		<if test="lxmc !='' and lxmc != null ">
@@ -919,12 +916,8 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -979,12 +972,8 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -1039,12 +1028,8 @@
 		<if test="tsdq!='' and tsdq!= null ">
 			${tsdq}
 		</if>
-		<if test="jsdj!='' and jsdj!= null ">
-			and t.jsjsdj like '%'||#{jsdj}||'%'
-		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
@@ -1411,10 +1396,8 @@
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
 			and to_char(t.sbzt) like '%'||#{sbzt1}||'%'
 		</if>
@@ -1463,10 +1446,8 @@
 		<if test="shzt!='' and shzt!= null ">
 			and to_char(t.shzt) like '%'||#{shzt}||'%'
 		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
-		<if test="jsdj!='' and jsdj!= null ">and ${jsdj}</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx t where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">and t.xmbm in (select xmid from lxsh_lx where jdbs='1' and xmid like '%1___' and ${gldj})</if>
 		<if test="lsjl!='' and lsjl!= null ">and t1.lsjl like '%'||#{lsjl}||'%'</if>
 		
@@ -1533,12 +1514,8 @@
 	<!-- 	<if test="jsdj!='' and jsdj!= null ">
 			and lx.jsdj like '%'||#{jsdj}||'%'
 		</if> -->
-		<if test="jsdj!='' and jsdj!= null ">
-			and ${jsdj}
-		</if>
-		<if test="jsjsdj!='' and jsjsdj!= null ">
-			and ${jsjsdj}
-		</if>
+		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1'and ${jsdj})</if>
+		<if test="jsjsdj!='' and jsjsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx  where jdbs='1' and ${jsjsdj})</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
