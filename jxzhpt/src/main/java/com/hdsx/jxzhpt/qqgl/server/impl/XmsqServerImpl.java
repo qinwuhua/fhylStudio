@@ -262,7 +262,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	}
 	@Override
 	public List<Excel_list> queryZhcjExport(Xmsq xmsq) {
-		return queryList("queryShExport",xmsq);
+		return queryList("queryZhcjExport",xmsq);
 	}
 	@Override
 	public boolean insertLx(List<Lx> lxlist) {

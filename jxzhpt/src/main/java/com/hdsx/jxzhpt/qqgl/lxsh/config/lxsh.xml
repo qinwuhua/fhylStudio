@@ -876,23 +876,23 @@
 		from LXSH_SJGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
  		and sbthcd &lt;=#{sbthcd} -->
- select 
-    t.xmbm v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_3,
-    lx.qdzh v_4,lx.zdzh v_5,
-    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_7,
-    lx.ghqdzh v_8,lx.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_10,
-     lx.gxqdzh v_11,lx.gxzdzh v_12,
-     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_13,
-     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_14,
-     lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,
-     t.tsdq v_18,RemoveSameStr(lx.jsjsdjtj,',') v_19,RemoveSameStr(lx.xjsdjtj,',') v_20,
-    substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
-    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_26
-    from LXSH_SJGZ t 
+  select  rownum v_0,	
+    t.xmbm v_1,t.xmmc v_2,	
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,	
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,	
+    lx.qdzh v_5,lx.zdzh v_6,	
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,	
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,	
+    lx.ghqdzh v_9,lx.ghzdzh v_10,	
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,	
+     lx.gxqdzh v_12,lx.gxzdzh v_13,	
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,	
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,	
+     lx.jsxz v_16,lx.gydw v_17,lx.xzqh v_18,	
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,	
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,	
+    (decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_27	
+    from  LXSH_SJGZ t
     left join (
     select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
               replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
@@ -964,23 +964,23 @@
 		from LXSH_LMGZ t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx on t.xmbm=lx.xmid where 1=1
  		and sbthcd &lt;=#{sbthcd} -->
-select 
-    t.xmbm v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_3,
-    lx.qdzh v_4,lx.zdzh v_5,
-    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_7,
-    lx.ghqdzh v_8,lx.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_10,
-     lx.gxqdzh v_11,lx.gxzdzh v_12,
-     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_13,
-     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_14,
-     lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,
-     t.tsdq v_18,RemoveSameStr(lx.jsjsdjtj,',') v_19,RemoveSameStr(lx.xjsdjtj,',') v_20,
-    substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
-    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_26
-    from LXSH_LMGZ t 
+ select  rownum v_0,		
+    t.xmbm v_1,t.xmmc v_2,		
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,		
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,		
+    lx.qdzh v_5,lx.zdzh v_6,		
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,		
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,		
+    lx.ghqdzh v_9,lx.ghzdzh v_10,		
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,		
+     lx.gxqdzh v_12,lx.gxzdzh v_13,		
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,		
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,		
+     lx.jsxz v_16,lx.gydw v_17,lx.xzqh v_18,		
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,		
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,		
+    (decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_27		
+    from  	LXSH_LMGZ	t
     left join (
     select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
               replace(WMSYS.WM_CONCAT(distinct(lxlmkd)),',',',') lxlmkd,replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
@@ -1052,22 +1052,22 @@ select
 		from LXSH_XJ t,
 		(select * from lxsh_lx where 1=1 and jdbs='0' order by sffirst desc) lx  where 1=1 and t.xmbm(+)=lx.xmid
  		and sbthcd &lt;=#{sbthcd} -->
- select 
-    t.xmbm v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_3,
-    lx.qdzh v_4,lx.zdzh v_5,
-    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_7,
-    lx.ghqdzh v_8,lx.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_10,
-     lx.gxqdzh v_11,lx.gxzdzh v_12,
-     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_13,
-     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_14,
-     lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,
-     t.tsdq v_18,RemoveSameStr(lx.jsjsdjtj,',') v_19,RemoveSameStr(lx.xjsdjtj,',') v_20,
-    substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
-    ,(decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_26
+  select  rownum v_0,
+    t.xmbm v_1,t.xmmc v_2,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,
+    lx.qdzh v_5,lx.zdzh v_6,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,
+    lx.ghqdzh v_9,lx.ghzdzh v_10,
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,
+     lx.gxqdzh v_12,lx.gxzdzh v_13,
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,
+     lx.jsxz v_16,lx.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,
+    (decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_27
     from LXSH_XJ t 
     left join (
     select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
@@ -1876,22 +1876,22 @@ select
 		lx.xjsdj v_20,substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25
 		from lxgsdgz t right join
 		(select * from lxsh_lx where 1=1 and jdbs='0' ) lx on t.xmbm=lx.xmid where 1=1 -->
-   select 
-    t.xmbm v_0,t.xmmc v_1,
-    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_2,
-    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_3,
-    lx.qdzh v_4,lx.zdzh v_5,
-    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_6,
-    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_7,
-    lx.ghqdzh v_8,lx.ghzdzh v_9,
-     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_10,
-     lx.gxqdzh v_11,lx.gxzdzh v_12,
-     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_13,
-     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_14,
-     lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,
-     t.tsdq v_18,RemoveSameStr(lx.jsjsdjtj,',') v_19,RemoveSameStr(lx.xjsdjtj,',') v_20,
-    substr(t.xmbm,0,4) v_21,t.jhkgn v_22,t.jhwgn v_23,t.tz v_24,lx.bzcs v_25,
-    (decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_26
+   select  rownum v_0,
+    t.xmbm v_1,t.xmmc v_2,
+    decode(instr(RemoveSameStr(lx.ylxbm,','),','),0,RemoveSameStr(lx.ylxbm,','),lx.ylxbm) v_3,
+    decode(instr(RemoveSameStr(lx.ylxmc,','),','),0,RemoveSameStr(lx.ylxmc,','),lx.ylxmc) v_4,
+    lx.qdzh v_5,lx.zdzh v_6,
+    decode(instr(RemoveSameStr(lx.ghlxbm,','),','),0,RemoveSameStr(lx.ghlxbm,','),lx.ghlxbm)  v_7,
+    decode(instr(RemoveSameStr(lx.ghlxmc,','),','),0,RemoveSameStr(lx.ghlxmc,','),lx.ghlxmc) v_8,
+    lx.ghqdzh v_9,lx.ghzdzh v_10,
+     decode(instr(RemoveSameStr(lx.gxlxbm,','),','),0,RemoveSameStr(lx.gxlxbm,','),lx.gxlxbm) v_11,
+     lx.gxqdzh v_12,lx.gxzdzh v_13,
+     decode(instr(RemoveSameStr(lx.qdmc,','),','),0,RemoveSameStr(lx.qdmc,','),lx.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx.zdmc,','),','),0,RemoveSameStr(lx.zdmc,','),lx.zdmc) v_15,
+     lx.jsxz v_16,lx.gydw v_17,lx.xzqh v_18,
+     t.tsdq v_19,RemoveSameStr(lx.jsjsdjtj,',') v_20,RemoveSameStr(lx.xjsdjtj,',') v_21,
+    substr(t.xmbm,0,4) v_22,t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx.bzcs v_26,
+    (decode(t.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and t.lsxmbm like '%'||xmbm||'%'),' ')) v_27
     from lxgsdgz t 
     left join (
     select xmid,sum(jhlc) zjhlc,sum(sbzj) sbzj,sum(bzcs) bzcs,
