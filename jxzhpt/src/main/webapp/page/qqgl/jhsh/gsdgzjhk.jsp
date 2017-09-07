@@ -53,8 +53,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -155,7 +155,7 @@
 				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'bcxd',title:'本次下达',width:100,align:'center'},
-				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+				{field:'bcstz',title:'省补助资金',width:100,align:'center'},
 				{field:'jhxdwh',title:'计划下达文号',width:120,align:'center',
 					formatter: function(value,row,index){
 						if($.cookie('unit2').length==7)
@@ -212,8 +212,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);

@@ -52,8 +52,8 @@
 				xdzt=xdzt.substr(1,xdzt.length);
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+			/* if(jhxdwh==null||jhxdwh=='')
+				jhxdwh='%'; */
 			var params={'jhsh.xmlx':5,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.xmmc':$('#xmmc').val(),
 					'jhsh.xmnf':xmnf,'jhsh.jsdj':$('#jsdj').combobox("getValues").join(","),
 					'jhsh.gldj':$('#gldj').combobox("getValues").join(','),'jhsh.tsdq':tsdq,

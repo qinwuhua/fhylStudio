@@ -52,8 +52,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -233,8 +233,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%25';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);
@@ -283,8 +283,8 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			if(jhxdwh==null||jhxdwh=='')
-				jhxdwh='%25';
+// 			if(jhxdwh==null||jhxdwh=='')
+// 				jhxdwh='%';
 			var xdzt=$("#xdzt").combobox("getValues").join(",");
 			if(xdzt.substr(0,1)==',')
 				xdzt=xdzt.substr(1,xdzt.length);

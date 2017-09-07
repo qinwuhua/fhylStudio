@@ -305,6 +305,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			tsdqHandle();
 			jsxzHandle();
 			zjlyHandle();
+			xdztHandle();
 			jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 			jhsh.setGhlxbh(MyUtil.getQueryTJ(jhsh.getGhlxbh(), "lxbm"));
 			jhsh.setGhxlxbm(MyUtil.getQueryTJiN(jhsh.getGhxlxbm(), "ghlxbm"));
@@ -2929,6 +2930,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		jsdjHandle();
 		jsjsdjHandle();
 		ylxbhHandle();
+		xdztHandle();
 		jhsh.setXzqhdm(xzqhBm2(jhsh.getXzqhdm(),"xzqhdm2"));
 		if(jhsh.getXmlx1()!=null)
 			if(jhsh.getXmlx1().length()>0){
