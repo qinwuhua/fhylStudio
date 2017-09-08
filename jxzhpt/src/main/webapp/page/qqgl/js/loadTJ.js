@@ -303,7 +303,7 @@ function dclxshModule(str){
 			 "&lxsh.lsjl="+lsjl+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd+
 			 "&lxsh.ghlxbh="+ghlxbh+"&lxsh.jsjsdj="+jsjsdj+"&lxsh.lxmc="+lxmc+"&lxsh.ghlxmc="+ghlxmc+"&lxsh.ghlxbm="+ghlxbm
 			 +"&lxsh.tsdq="+encodeURI(encodeURI(tsdq))+"&lxsh.lsxmnf="+lsxmnf+"&lxsh.lsxmlx="+lsxmlx+"&lxsh.xmbm="+$("#xmbm").val();
-	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr,tsdq:tsdq},function(){
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr,tsdq:tsdq},function(){
 		window.location.href='/jxzhpt/qqgl/dcModule.do?'+data;
 	 });
 }

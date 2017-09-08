@@ -679,7 +679,7 @@
 			
 			loadjzt();
 			
-			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
+			var param='xmlx=4&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+
 			'&xmnf='+$('#xmnf').combobox("getValues").join(',')+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&wnxmk="+$("#wnxmk").combobox("getValue")+

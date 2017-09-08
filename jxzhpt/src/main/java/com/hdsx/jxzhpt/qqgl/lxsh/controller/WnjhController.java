@@ -1087,24 +1087,25 @@ public class WnjhController extends BaseActionSupport{
 			System.out.println(lxsh.getXmklx());
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
-			gydw=(String) session.getAttribute("gydwbb");	
+//			gydw=(String) session.getAttribute("gydwbb");	
 			xzqh=(String) session.getAttribute("xzqhbb");
 			lxsh.setTsdq((String) session.getAttribute("tsdq"));
 			
-			String tiaojian1="";
 			String tiaojian2="";
-			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
-			}else{
-				tiaojian1=" and t.gydwdm in ("+gydw+")";
-			}
+//			if(gydw.indexOf(",")==-1){
+//				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
+//			}else{
+//				tiaojian1=" and t.gydwdm in ("+gydw+")";
+//			}
+//			lxsh.setGydw(tiaojian1);
+			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
 				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(xzqhBm(xzqh, "xzqhdm2"));
-			lxsh.setGydw(tiaojian1);
+			
 			String gldjtj="";
 			if((!"".equals(lxsh.getGldj()))&&lxsh.getGldj()!=null){
 				String[] jsdjs = lxsh.getGldj().split(",");

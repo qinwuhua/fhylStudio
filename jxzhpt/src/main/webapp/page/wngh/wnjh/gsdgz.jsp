@@ -55,8 +55,8 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);
@@ -103,8 +103,8 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xmnf=$("#xmnf").combobox('getValues').join(",");
-			if(xmnf=='')
-				xmnf=new Date().getFullYear();
+// 			if(xmnf=='')
+// 				xmnf=new Date().getFullYear();
 			var tsdq=$("#tsdq").combobox("getValues").join(",");
 			if(tsdq.substr(0,1)==',')
 				tsdq=tsdq.substr(1,tsdq.length);

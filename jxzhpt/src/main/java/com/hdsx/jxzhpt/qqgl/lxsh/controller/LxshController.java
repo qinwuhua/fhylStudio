@@ -2174,18 +2174,17 @@ public class LxshController extends BaseActionSupport{
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
-			gydw=(String) session.getAttribute("gydwbb");	
 			xzqh=(String) session.getAttribute("xzqhbb");
 			tsdq=(String) session.getAttribute("tsdq");
 			String tiaojian1="";
 			String tiaojian2="";
-			if(!gydw.equals("")&&gydw!=null){
-				if(gydw.indexOf(",")==-1){
-					tiaojian1="and t.gydwdm like '%"+gydw+"%'";
-				}else{
-					tiaojian1=" and t.gydwdm in ("+gydw+")";
-				}
-			}
+//			if(!gydw.equals("")&&gydw!=null){
+//				if(gydw.indexOf(",")==-1){
+//					tiaojian1="and t.gydwdm like '%"+gydw+"%'";
+//				}else{
+//					tiaojian1=" and t.gydwdm in ("+gydw+")";
+//				}
+//			}
 			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
