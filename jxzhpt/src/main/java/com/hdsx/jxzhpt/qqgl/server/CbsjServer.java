@@ -7,6 +7,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface CbsjServer {
 	/**
@@ -249,31 +250,31 @@ public interface CbsjServer {
 	 * @param cbsj 查询条件
 	 * @return 返回集合
 	 */
-	public List<Object> queryLmgzExcel(Cbsj cbsj);
+	public List<Excel_list> queryLmgzExcel(Cbsj cbsj);
 	/**
 	 * 导出养护大中修
 	 * @param cbsj 查询条件
 	 * @return 返回集合
 	 */
-	public List<Object> queryYhdzxExcel(Cbsj cbsj);
+	public List<Excel_list> queryYhdzxExcel(Cbsj cbsj);
 	/**
 	 * 导出灾毁重建
 	 * @param cbsj 查询条件
 	 * @return 返回集合
 	 */
-	public List<Object> queryShExcel(Cbsj cbsj);
+	public List<Excel_list> queryShExcel(Cbsj cbsj);
 	/**
 	 * 导出路面升级
 	 * @param cbsj 查询条件
 	 * @return 返回集合
 	 */
-	public List<Object> queryLmsjExcel(Cbsj cbsj);
+	public List<Excel_list> queryLmsjExcel(Cbsj cbsj);
 	/**
 	 * 导出新建
 	 * @param cbsj 查询条件
 	 * @return 返回集合
 	 */
-	public List<Object> queryXjExcel(Cbsj cbsj);
+	public List<Excel_list> queryXjExcel(Cbsj cbsj);
 	/**
 	 * 修改新建项目初步设计
 	 * @param list
@@ -370,7 +371,7 @@ public interface CbsjServer {
 
 	public Lxsh loadgsdcbsjTjxx(Cbsj cbsj);
 
-	public List<Object> querygsdExcel(Cbsj cbsj);
+	public List<Excel_list> querygsdExcel(Cbsj cbsj);
 
 	public List<Plan_upload> queryxdFileByWh(Plan_upload file);
 

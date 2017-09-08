@@ -36,6 +36,10 @@ import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -973,20 +977,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			cbsj.setGhlxbh(MyUtil.getQueryTJ(cbsj.getGhlxbh(), "lxbm"));
 			cbsj.setGhlxbm(MyUtil.getQueryTJ(cbsj.getGhlxbm(), "ghlxbm"));
 			cbsj.setXzqhdm(xzqhBm2(cbsj.getXzqhdm(),"xzqhdm2"));
-			
-			String fileTitle="";
-			if(cbsj.getXmlx()==1){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=建设后一级公路,fieid=jhyilc>,<title=建设后二级公路,fieid=jherlc>,<title=建设后三级公路,fieid=jhsanlc>,<title=建设后四级公路,fieid=jhsilc>,<title=建设后等外公路,fieid=jhdwlc>,<title=建设后无路,fieid=jhwllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费（万元）,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
-			}else if(cbsj.getXmlx()==11){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费（万元）,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
-			}else if(cbsj.getXmlx()==2){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费（万元）,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
-			}else if(cbsj.getXmlx()==3){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费（万元）,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
-			}else{
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=原路线编码,fieid=ylxbh>,<title=原路线名称,fieid=lxmc>,<title=原起点桩号,fieid=qdzh>,<title=原止点桩号,fieid=zdzh>,<title=规划路线编码,fieid=ghlxbm>,<title=规划路线名称,fieid=ghlxmc>,<title=规划起点桩号,fieid=ghqdzh>,<title=规划止点桩号,fieid=ghzdzh>,<title=共线路线编码,fieid=gxlxbm>,<title=共线起点桩号,fieid=gxqdzh>,<title=共线止点桩号,fieid=gxzdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期（月）,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建设方案,fieid=jsfa>";
-			}
-			
 			if(cbsj.getTsdq().length()>0){
 				String[] tsdqs=cbsj.getTsdq().split(",");
 				String tsdq="and(";
@@ -1010,14 +1000,82 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			if(",".equals(cbsj.getJsjsdj()))
 				cbsj.setJsjsdj("");
 			//数据
-			List<Object> excelData=new ArrayList<Object>();
+			List<Excel_list> excelData=new ArrayList<Excel_list>();
 			//设置标题、文件名称
 			String titleName="";
 			String fileName="";
 			if(cbsj.getXmlx()==1){
-				titleName="改建工程项目";
-				fileName="改建工程项目初步设计或施工图设计";
+				
 				excelData = cbsjServer.queryLmsjExcel(cbsj);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("改建工程项目");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("改建工程项目初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("建设后一级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后二级公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后三级公路",1,1,27,27));
+				et.add(new Excel_tilte("建设后四级公路",1,1,28,28));
+				et.add(new Excel_tilte("建设后等外公路",1,1,29,29));
+				et.add(new Excel_tilte("建设后无路",1,1,30,30));
+				et.add(new Excel_tilte("路基(m3)",1,1,31,31));
+				et.add(new Excel_tilte("桥梁（座）",1,1,32,32));
+				et.add(new Excel_tilte("桥梁（延米）",1,1,33,33));
+				et.add(new Excel_tilte("涵洞（座）",1,1,34,34));
+				et.add(new Excel_tilte("涵洞（米）",1,1,35,35));
+				et.add(new Excel_tilte("隧道（座）",1,1,36,36));
+				et.add(new Excel_tilte("隧道（延米）",1,1,37,37));
+				et.add(new Excel_tilte("面层类型",1,1,38,38));
+				et.add(new Excel_tilte("面层里程",1,1,39,39));
+				et.add(new Excel_tilte("基层类型",1,1,40,40));
+				et.add(new Excel_tilte("基层里程",1,1,41,41));
+				et.add(new Excel_tilte("垫层类别",1,1,42,42));
+				et.add(new Excel_tilte("垫层里程",1,1,43,43));
+				et.add(new Excel_tilte("大桥名称",1,1,44,44));
+				et.add(new Excel_tilte("大桥长度",1,1,45,45));
+				et.add(new Excel_tilte("大桥单跨",1,1,46,46));
+				et.add(new Excel_tilte("隧道名称",1,1,47,47));
+				et.add(new Excel_tilte("隧道双幅长度",1,1,48,48));
+				et.add(new Excel_tilte("隧道类型",1,1,49,49));
+				et.add(new Excel_tilte("开工时间",1,1,50,50));
+				et.add(new Excel_tilte("完工时间",1,1,51,51));
+				et.add(new Excel_tilte("工期（月）",1,1,52,52));
+				et.add(new Excel_tilte("设计单位",1,1,53,53));
+				et.add(new Excel_tilte("设计批复文号",1,1,54,54));
+				et.add(new Excel_tilte("批复时间",1,1,55,55));
+				et.add(new Excel_tilte("建安费（万元）",1,1,56,56));
+				et.add(new Excel_tilte("地方自筹",1,1,57,57));
+				et.add(new Excel_tilte("银行贷款",1,1,58,58));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}else if(cbsj.getXmlx()==11){
 				if(cbsj.getXmlx1()!=null)
 					if(cbsj.getXmlx1().length()>0){
@@ -1040,20 +1098,218 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 						}
 						cbsj.setXmlx1(tsdq);
 					}
-				titleName="国省道改造";
-				fileName="国省道改造初步设计或施工图设计";
 				excelData = cbsjServer.querygsdExcel(cbsj);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("国省道改造");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("国省道改造初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("建设后一级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后二级公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后三级公路",1,1,27,27));
+				et.add(new Excel_tilte("建设后四级公路",1,1,28,28));
+				et.add(new Excel_tilte("建设后等外公路",1,1,29,29));
+				et.add(new Excel_tilte("建设后无路",1,1,30,30));
+				et.add(new Excel_tilte("路基(m3)",1,1,31,31));
+				et.add(new Excel_tilte("桥梁（座）",1,1,32,32));
+				et.add(new Excel_tilte("桥梁（延米）",1,1,33,33));
+				et.add(new Excel_tilte("涵洞（座）",1,1,34,34));
+				et.add(new Excel_tilte("涵洞（米）",1,1,35,35));
+				et.add(new Excel_tilte("隧道（座）",1,1,36,36));
+				et.add(new Excel_tilte("隧道（延米）",1,1,37,37));
+				et.add(new Excel_tilte("面层类型",1,1,38,38));
+				et.add(new Excel_tilte("面层里程",1,1,39,39));
+				et.add(new Excel_tilte("基层类型",1,1,40,40));
+				et.add(new Excel_tilte("基层里程",1,1,41,41));
+				et.add(new Excel_tilte("垫层类别",1,1,42,42));
+				et.add(new Excel_tilte("垫层里程",1,1,43,43));
+				et.add(new Excel_tilte("大桥名称",1,1,44,44));
+				et.add(new Excel_tilte("大桥长度",1,1,45,45));
+				et.add(new Excel_tilte("大桥单跨",1,1,46,46));
+				et.add(new Excel_tilte("隧道名称",1,1,47,47));
+				et.add(new Excel_tilte("隧道双幅长度",1,1,48,48));
+				et.add(new Excel_tilte("隧道类型",1,1,49,49));
+				et.add(new Excel_tilte("开工时间",1,1,50,50));
+				et.add(new Excel_tilte("完工时间",1,1,51,51));
+				et.add(new Excel_tilte("工期（月）",1,1,52,52));
+				et.add(new Excel_tilte("设计单位",1,1,53,53));
+				et.add(new Excel_tilte("设计批复文号",1,1,54,54));
+				et.add(new Excel_tilte("批复时间",1,1,55,55));
+				et.add(new Excel_tilte("建安费（万元）",1,1,56,56));
+				et.add(new Excel_tilte("地方自筹",1,1,57,57));
+				et.add(new Excel_tilte("银行贷款",1,1,58,58));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}else if(cbsj.getXmlx()==2){
-				titleName="路面改造工程";
-				fileName="路面改造初步设计或施工图设计";
 				excelData = cbsjServer.queryLmgzExcel(cbsj);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("路面改造工程");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("路面改造初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("建设后一级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后二级公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后三级公路",1,1,27,27));
+				et.add(new Excel_tilte("建设后四级公路",1,1,28,28));
+				et.add(new Excel_tilte("建设后等外公路",1,1,29,29));
+				et.add(new Excel_tilte("建设后无路",1,1,30,30));
+				et.add(new Excel_tilte("路基(m3)",1,1,31,31));
+				et.add(new Excel_tilte("桥梁（座）",1,1,32,32));
+				et.add(new Excel_tilte("桥梁（延米）",1,1,33,33));
+				et.add(new Excel_tilte("涵洞（座）",1,1,34,34));
+				et.add(new Excel_tilte("涵洞（米）",1,1,35,35));
+				et.add(new Excel_tilte("隧道（座）",1,1,36,36));
+				et.add(new Excel_tilte("隧道（延米）",1,1,37,37));
+				et.add(new Excel_tilte("面层类型",1,1,38,38));
+				et.add(new Excel_tilte("面层里程",1,1,39,39));
+				et.add(new Excel_tilte("基层类型",1,1,40,40));
+				et.add(new Excel_tilte("基层里程",1,1,41,41));
+				et.add(new Excel_tilte("垫层类别",1,1,42,42));
+				et.add(new Excel_tilte("垫层里程",1,1,43,43));
+				et.add(new Excel_tilte("大桥名称",1,1,44,44));
+				et.add(new Excel_tilte("大桥长度",1,1,45,45));
+				et.add(new Excel_tilte("大桥单跨",1,1,46,46));
+				et.add(new Excel_tilte("隧道名称",1,1,47,47));
+				et.add(new Excel_tilte("隧道双幅长度",1,1,48,48));
+				et.add(new Excel_tilte("隧道类型",1,1,49,49));
+				et.add(new Excel_tilte("开工时间",1,1,50,50));
+				et.add(new Excel_tilte("完工时间",1,1,51,51));
+				et.add(new Excel_tilte("工期（月）",1,1,52,52));
+				et.add(new Excel_tilte("设计单位",1,1,53,53));
+				et.add(new Excel_tilte("设计批复文号",1,1,54,54));
+				et.add(new Excel_tilte("批复时间",1,1,55,55));
+				et.add(new Excel_tilte("建安费（万元）",1,1,56,56));
+				et.add(new Excel_tilte("地方自筹",1,1,57,57));
+				et.add(new Excel_tilte("银行贷款",1,1,58,58));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}else if(cbsj.getXmlx()==3){
-				titleName="新建工程";
-				fileName="新建初步设计或施工图设计";
 				excelData = cbsjServer.queryXjExcel(cbsj);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("新建工程");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("新建初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("建设后一级公路",1,1,25,25));
+				et.add(new Excel_tilte("建设后二级公路",1,1,26,26));
+				et.add(new Excel_tilte("建设后三级公路",1,1,27,27));
+				et.add(new Excel_tilte("建设后四级公路",1,1,28,28));
+				et.add(new Excel_tilte("建设后等外公路",1,1,29,29));
+				et.add(new Excel_tilte("建设后无路",1,1,30,30));
+				et.add(new Excel_tilte("路基(m3)",1,1,31,31));
+				et.add(new Excel_tilte("桥梁（座）",1,1,32,32));
+				et.add(new Excel_tilte("桥梁（延米）",1,1,33,33));
+				et.add(new Excel_tilte("涵洞（座）",1,1,34,34));
+				et.add(new Excel_tilte("涵洞（米）",1,1,35,35));
+				et.add(new Excel_tilte("隧道（座）",1,1,36,36));
+				et.add(new Excel_tilte("隧道（延米）",1,1,37,37));
+				et.add(new Excel_tilte("面层类型",1,1,38,38));
+				et.add(new Excel_tilte("面层里程",1,1,39,39));
+				et.add(new Excel_tilte("基层类型",1,1,40,40));
+				et.add(new Excel_tilte("基层里程",1,1,41,41));
+				et.add(new Excel_tilte("垫层类别",1,1,42,42));
+				et.add(new Excel_tilte("垫层里程",1,1,43,43));
+				et.add(new Excel_tilte("大桥名称",1,1,44,44));
+				et.add(new Excel_tilte("大桥长度",1,1,45,45));
+				et.add(new Excel_tilte("大桥单跨",1,1,46,46));
+				et.add(new Excel_tilte("隧道名称",1,1,47,47));
+				et.add(new Excel_tilte("隧道双幅长度",1,1,48,48));
+				et.add(new Excel_tilte("隧道类型",1,1,49,49));
+				et.add(new Excel_tilte("开工时间",1,1,50,50));
+				et.add(new Excel_tilte("完工时间",1,1,51,51));
+				et.add(new Excel_tilte("工期（月）",1,1,52,52));
+				et.add(new Excel_tilte("设计单位",1,1,53,53));
+				et.add(new Excel_tilte("设计批复文号",1,1,54,54));
+				et.add(new Excel_tilte("批复时间",1,1,55,55));
+				et.add(new Excel_tilte("建安费（万元）",1,1,56,56));
+				et.add(new Excel_tilte("地方自筹",1,1,57,57));
+				et.add(new Excel_tilte("银行贷款",1,1,58,58));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}else if(cbsj.getXmlx()==4){
-				titleName="养护大中修";
-				fileName="养护大中修初步设计或施工图设计";
 				if(cbsj.getXmlx1()!=null)
 					if(cbsj.getXmlx1().length()>0){
 						String[] tsdqs=cbsj.getXmlx1().split(",");
@@ -1077,13 +1333,106 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 					}
 				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				excelData = cbsjServer.queryYhdzxExcel(cbsj);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("养护大中修");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("养护大中修初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("面层类型",1,1,25,25));
+				et.add(new Excel_tilte("面层里程",1,1,26,26));
+				et.add(new Excel_tilte("基层类型",1,1,27,27));
+				et.add(new Excel_tilte("基层里程",1,1,28,28));
+				et.add(new Excel_tilte("垫层类别",1,1,29,29));
+				et.add(new Excel_tilte("垫层里程",1,1,30,30));
+				et.add(new Excel_tilte("开工时间",1,1,31,31));
+				et.add(new Excel_tilte("完工时间",1,1,32,32));
+				et.add(new Excel_tilte("工期（月）",1,1,33,33));
+				et.add(new Excel_tilte("设计单位",1,1,34,34));
+				et.add(new Excel_tilte("设计批复文号",1,1,35,35));
+				et.add(new Excel_tilte("批复时间",1,1,36,36));
+				et.add(new Excel_tilte("建设方案",1,1,37,37));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}else if(cbsj.getXmlx()==5){
-				titleName="灾毁重建";
-				fileName="灾毁重建初步设计或施工图设计";
 				cbsj.setXjsdj(cbsj.getXjsdj().replaceAll("xjsdj", "jsdj"));
 				excelData = cbsjServer.queryShExcel(cbsj);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("灾毁重建");//设置第一行 
+				eldata.setSheetName("工程初步设计");//设置sheeet名
+				eldata.setFileName("灾毁重建初步设计或施工图设计");//设置文件名
+				eldata.setEl(excelData);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,1,0,0));
+				et.add(new Excel_tilte("项目名称",1,1,1,1));
+				et.add(new Excel_tilte("项目编码",1,1,2,2));
+				et.add(new Excel_tilte("行政区划",1,1,3,3));
+				et.add(new Excel_tilte("建设单位",1,1,4,4));
+				et.add(new Excel_tilte("建设技术等级",1,1,5,5));
+				et.add(new Excel_tilte("建设性质",1,1,6,6));
+				et.add(new Excel_tilte("原路线编码",1,1,7,7));
+				et.add(new Excel_tilte("原路线名称",1,1,8,8));
+				et.add(new Excel_tilte("原起点桩号",1,1,9,9));
+				et.add(new Excel_tilte("原止点桩号",1,1,10,10));
+				et.add(new Excel_tilte("规划路线编码",1,1,11,11));
+				et.add(new Excel_tilte("规划路线名称",1,1,12,12));
+				et.add(new Excel_tilte("规划起点桩号",1,1,13,13));
+				et.add(new Excel_tilte("规划止点桩号",1,1,14,14));
+				et.add(new Excel_tilte("共线路线编码",1,1,15,15));
+				et.add(new Excel_tilte("共线起点桩号",1,1,16,16));
+				et.add(new Excel_tilte("共线止点桩号",1,1,17,17));		
+				et.add(new Excel_tilte("里程",1,1,18,18));
+				et.add(new Excel_tilte("一级公路",1,1,19,19));
+				et.add(new Excel_tilte("二级公路",1,1,20,20));
+				et.add(new Excel_tilte("三级公路",1,1,21,21));
+				et.add(new Excel_tilte("四级公路",1,1,22,22));
+				et.add(new Excel_tilte("等外公路",1,1,23,23));
+				et.add(new Excel_tilte("无路",1,1,24,24));
+				et.add(new Excel_tilte("面层类型",1,1,25,25));
+				et.add(new Excel_tilte("面层里程",1,1,26,26));
+				et.add(new Excel_tilte("基层类型",1,1,27,27));
+				et.add(new Excel_tilte("基层里程",1,1,28,28));
+				et.add(new Excel_tilte("垫层类别",1,1,29,29));
+				et.add(new Excel_tilte("垫层里程",1,1,30,30));
+				et.add(new Excel_tilte("开工时间",1,1,31,31));
+				et.add(new Excel_tilte("完工时间",1,1,32,32));
+				et.add(new Excel_tilte("工期（月）",1,1,33,33));
+				et.add(new Excel_tilte("设计单位",1,1,34,34));
+				et.add(new Excel_tilte("设计批复文号",1,1,35,35));
+				et.add(new Excel_tilte("批复时间",1,1,36,36));
+				et.add(new Excel_tilte("建设方案",1,1,37,37));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
 			}
-			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

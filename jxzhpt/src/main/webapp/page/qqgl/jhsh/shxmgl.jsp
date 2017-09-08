@@ -609,7 +609,7 @@
 				sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			
-			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+""+
+			var param='xmlx=5&sqzt='+sqzt+'&xzqhdm='+getxzqhdm('xzqh')+
 			'&xmnf='+xmnf+'&jsdj='+$('#jsdj').combobox("getValues").join(",")+
 			'&tsdq='+tsdq+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue")+
 			'&ylxbh='+$('#gldj').combobox("getValues").join(",")+"&lxmc="+$("#lxmc").val()+

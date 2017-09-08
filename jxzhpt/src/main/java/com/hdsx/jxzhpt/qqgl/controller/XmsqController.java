@@ -2023,7 +2023,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		et.add(new Excel_tilte("共线止点桩号",1,1,14,14));
 		et.add(new Excel_tilte("实施里程（km）",1,1,15,15));
 		et.add(new Excel_tilte("技术等级",1,1,16,16));
-		et.add(new Excel_tilte("路面宽度",1,1,17,17));
+		et.add(new Excel_tilte("电子地图路面宽度",1,1,17,17));
 		et.add(new Excel_tilte("原路面类型",1,1,18,18));
 		et.add(new Excel_tilte("原路面结构",1,1,19,19));
 		et.add(new Excel_tilte("建设性质（大修、中修、预防性）",1,1,20,20));
@@ -2035,9 +2035,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 //		et.add(new Excel_tilte("最近建设时间",1,1,26,26));
 //		et.add(new Excel_tilte("为在建高速公路损坏普通国省道路段",1,1,27,27));
 //		et.add(new Excel_tilte("通过村镇、街道路段",1,1,28,28));
-		et.add(new Excel_tilte("电子地图路面宽度",1,1,26,26));
-		et.add(new Excel_tilte("备注",1,1,27,27));
-		et.add(new Excel_tilte("计划核对结果",1,1,28,28));
+		et.add(new Excel_tilte("备注",1,1,26,26));
+		et.add(new Excel_tilte("计划核对结果",1,1,27,27));
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		try {

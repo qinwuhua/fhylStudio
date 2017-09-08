@@ -2293,8 +2293,8 @@
      RemoveSameStr(decode(lx.lxlmkd,null,x.lmkd,0,x.lmkd,lx.lxlmkd),',') v_17,
      x.ylmlx v_18,x.ylmjg v_19,x.gcfl v_20,x.jsfa v_21,
      to_char(lx.sbzj,'fm999990.09999') v_22,x.ntz v_23,c.sjpfwh v_24,x.gydw v_25,
-    RemoveSameStr(decode(lx.lxlmkd,null,x.lmkd,0,x.lmkd,lx.lxlmkd),',') v_26, x.bz v_27,
-    (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_28
+     x.bz v_26,
+    (decode(x.lsjl,'是',( select replace(WMSYS.WM_CONCAT(distinct decode(substr(xmbm,11,1),4,xdnf||xmlx,xdnf||xmmc)),',',',') from all_lsjl where 1=1 and length(xmbm)=14 and x.lsxmbm like '%'||xmbm||'%'),' ')) v_27
     
     from xmsq_yhdzx x 
     left join (select sjpfwh,xmbm from cbsj_yhdzx ) c on x.xmbm=c.xmbm 
