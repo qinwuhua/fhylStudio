@@ -1404,7 +1404,7 @@ function loadUnitadd(id, dwbm) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					//$('#' + id).combotree('setValue', dwbm);
 				}
@@ -1418,7 +1418,7 @@ function loadUnitedit(id, dwbm,dwbm2) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxzhpt/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValues', dwbm2.split(","));
 				},
