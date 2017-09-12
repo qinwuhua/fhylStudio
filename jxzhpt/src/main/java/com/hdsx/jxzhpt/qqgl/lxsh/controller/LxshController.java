@@ -2185,6 +2185,7 @@ public class LxshController extends BaseActionSupport{
 //					tiaojian1=" and t.gydwdm in ("+gydw+")";
 //				}
 //			}
+//			lxsh.setGydw(tiaojian1);
 			
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
@@ -2277,7 +2278,7 @@ public class LxshController extends BaseActionSupport{
 			}*/
 			
 			lxsh.setXzqh(xzqhBm(xzqh, "t.xzqhdm2"));
-			lxsh.setGydw(tiaojian1);
+			
 			lxsh.setTsdq(MyUtil.getQueryTJ(tsdq,"tsdq"));
 			lxsh.setGhlxbh(MyUtil.getQueryTJ(lxsh.getGhlxbh(), "lxbm"));
 			lxsh.setGhlxbm(MyUtil.getQueryTJ(lxsh.getGhlxbm(), "ghlxbm"));

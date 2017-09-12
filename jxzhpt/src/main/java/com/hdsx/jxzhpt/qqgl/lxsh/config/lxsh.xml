@@ -931,8 +931,12 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and to_char(sbzt) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
@@ -1019,8 +1023,9 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
@@ -1108,8 +1113,9 @@
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="jsdj!='' and jsdj!= null "> and t.xmbm in (select distinct xmid  from lxsh_lx lx where jdbs='0'and ${jsdj})</if>
@@ -2090,8 +2096,9 @@ select rownum v_0,t.xmbm v_1,t.xmmc v_2,t1.xzqh v_3,
 		<if test="xmmc!='' and xmmc!= null ">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="xmbm!='' and xmbm!= null ">and t.xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmnf!='' and xmnf!= null ">and ${xmnf}</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and to_char(sbzt) like '%'||#{sbzt1}||'%'
+		<if test="sbzt!='' and sbzt!= null ">and sbzt=#{sbzt}</if>
+		<if test="shzt!='' and shzt!= null ">
+				and shzt=#{shzt}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">${tsdq}</if>
 		<if test="gldj!='' and gldj!= null ">and xmbm in (select xmid from lxsh_lx where xmid like '%1___' and ${gldj})</if>
