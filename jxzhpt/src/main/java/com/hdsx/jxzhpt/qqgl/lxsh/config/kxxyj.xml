@@ -5,7 +5,7 @@
 		select * from (
 		select rownum num ,t.*,t1.xmklx,t1.lsjl,t1.ghlxbh lxbh,gydwdm1 gydwdm,gydw1 gydw,t1.tsdq,t1.tz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SJGZ t Left join 
 		lxsh_sjgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
-		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
+		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,(nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)) jhlc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		) lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 
@@ -144,7 +144,7 @@
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
 		select rownum num ,t.*,t1.xmklx,t1.lsjl,t1.ghlxbh lxbh,gydwdm1 gydwdm,gydw1 gydw,t1.tsdq,t1.tz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_LMGZ t Left join lxsh_lmgz t1 
-		on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,dwlc,wllc,qdmc,zdmc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx 
+		on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,dwlc,wllc,qdmc,zdmc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx 
 		where jdbs='1' and jdbs='1' and sffirst='1'
 		
 		) lx on t.xmbm=lx.xmid 
@@ -1386,7 +1386,7 @@
 		select * from (
 		select rownum num ,t.*,xmklx,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.tz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from kxgsdgz t Left join 
 		lxgsdgz t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
-		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1'
+		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='1' and sffirst='1'
 		) lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(xmid) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
 		where 1=1 
@@ -1552,7 +1552,7 @@
 		t.id,t.xmmc,t.xmbm,t.jsdw,t.xzqh,t.qdzh,t.zdzh,t.dq,t.sd,t.kgny,t.wgny,t.jsdj,t.jsxz,t.gkpfwh,t.pfsj,t.tzgs,t.bzdw,t.xzqhdm,t.shzt,t.sbzt,t.dq_m,t.sd_m,t.tbbmbm,t.dfzc,t.yhdk,t.jszlc,t.tzxz,t.tzsj,t.thyy,
 		t1.lsjl,lx.lxbm lxbh,t1.gydwdm,t1.gydw,t1.tsdq,t1.ntz, t.shzt sbzt1,t.sbzt sbzts,lx.*,sl.xmsl,sl.zlc jszlc1 from KXXYJ_SH t Left join 
 		xmsq_sh t1 on t.xmbm=t1.xmbm left join (select qdzh minqdzh,zdzh maxzdzh,xmid,lc,yilc,erlc,sanlc,silc,qdmc,zdmc,
-		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,lxbm,ghlxbm,ghlxmc,ghqdzh,ghzdzh from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
+		dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc,lxbm,ghlxbm,ghlxmc,ghqdzh,ghzdzh,gxlxbm,gxqdzh,gxzdzh from lxsh_lx where jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid 
 		left join (select xmid,count(*) xmsl,decode(substr(xmid,11,1),1,(nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0)),(nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(dwlc),0)+nvl(sum(wllc),0))) zlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') lxbmtj,replace(WMSYS.WM_CONCAT(lxmc),',',',') lxmctj,
 		replace(WMSYS.WM_CONCAT(ghlxbm),',',',') ghlxbm,replace(WMSYS.WM_CONCAT(ghlxmc),',',',') ghlxmc,replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsdjtj
   		from lxsh_lx where jdbs='1' group by xmid) sl on t.xmbm=sl.xmid
