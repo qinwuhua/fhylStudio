@@ -379,6 +379,9 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
  		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
+ 		</if>
  </select>
  <select id="selZhfzShCount" parameterType="jckabgc" resultType="jckzhfz">
 	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbthcd=7
@@ -415,6 +418,9 @@
  		</if>
  		<if test="tsdq!='' and tsdq!= null ">
  			${tsdq}
+ 		</if>
+ 		<if test="xmklx !='' and xmklx != null ">
+ 			and xmklx like '%'||(#{xmklx})||'%'
  		</if>
  </select>
 </mapper>
