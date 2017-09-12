@@ -102,6 +102,8 @@ function loadGrid(){
 			{field:'lxbh',title:'路线编码',width:80,align:'center',rowspan:2},
 	        {field:'zh',title:'桩号',width:160,align:'center',rowspan:2},
 	        {field:'cd',title:'长度',width:120,align:'center',rowspan:2},
+	        {field:'ylxbm',title:'原路线编码',width:80,align:'center',rowspan:2},
+	        {field:'yzh',title:'原桩号',width:160,align:'center',rowspan:2},
 	        {field:'jcfx',title:'检查方向',width:120,align:'center',rowspan:2},
 	        {field:'jsdj',title:'技术等级',width:120,align:'center',rowspan:2},
 	        {field:'lmlx',title:'路面类型',width:120,align:'center',rowspan:2},

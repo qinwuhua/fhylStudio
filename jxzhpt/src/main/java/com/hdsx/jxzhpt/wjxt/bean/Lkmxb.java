@@ -60,10 +60,24 @@ public class Lkmxb implements Serializable {
 	private String cd;//长度
 	private String text;//文本
 	private String xzdj;
+	private String ylxbm;//原路线编码
+	private String yzh;//原桩号
 	
 	
 
 	
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYzh() {
+		return yzh;
+	}
+	public void setYzh(String yzh) {
+		this.yzh = yzh;
+	}
 	public String getXzdj() {
 		return xzdj;
 	}

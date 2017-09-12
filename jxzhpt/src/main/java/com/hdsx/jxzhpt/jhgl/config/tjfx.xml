@@ -644,7 +644,7 @@
 			(
 				select rownum as num,t.* from 
 				(
-		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd 
+		select t.*,qdzh||'-'||zdzh zh,(zdzh-qdzh)*1000 cd,decode(yqdzh||'-'||yzdzh,'-','',yqdzh||'-'||yzdzh) yzh
 		from LKPD_MXB_DATA_2014  t left join lkpd_mxb2014 m on t.mxb_id=m.id
 		where 1=1 and jsdj!='高速'
 		<if test="lkmxb.jsdj != null and  lkmxb.jsdj != ''">
