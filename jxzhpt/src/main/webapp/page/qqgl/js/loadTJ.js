@@ -299,7 +299,7 @@ function dclxshModule(str){
 	}
 	var ghlxmc=$("#ghlxmc").val();
 	var ghlxbm=$("#ghlxbm").val().toUpperCase();
-	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&sbzt="+sbzt+
+	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.shzt="+sbzt+'&lxsh.sbzt=1'+
 			 "&lxsh.lsjl="+lsjl+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd+
 			 "&lxsh.ghlxbh="+ghlxbh+"&lxsh.jsjsdj="+jsjsdj+"&lxsh.lxmc="+lxmc+"&lxsh.ghlxmc="+ghlxmc+"&lxsh.ghlxbm="+ghlxbm
 			 +"&lxsh.tsdq="+encodeURI(encodeURI(tsdq))+"&lxsh.lsxmnf="+lsxmnf+"&lxsh.lsxmlx="+lsxmlx+"&lxsh.xmbm="+$("#xmbm").val();
