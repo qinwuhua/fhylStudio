@@ -924,7 +924,7 @@
 	</select>
 	
 	<select id="querywnjhSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
+		<!-- select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
 		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
 		lx.qdmc v_13,lx.zdmc v_14,lx.jsxz v_15,lx.gydw v_16,lx.xzqh v_17,t.tsdq v_18,lx.jsjsdj v_19,lx.xjsdj v_20,t.xmnf v_21,t.jhkgn v_22,t.jhwgn v_23,decode(lx.sffirst,'1',t.tz,'') v_24,decode(lx.sffirst,'1',lx.bzcs,'') v_25,t.xmklx v_26,t.bz v_27
@@ -949,7 +949,59 @@
         else ghxlxbm
         end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,ghlxbm
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
-		where 1=1
+		where 1=1 -->
+		
+		
+    select rownum v_0,t.xmmc v_1,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
+    lx2.qdzh v_4,lx2.zdzh v_5,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
+    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
+     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
+     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
+     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    from WNJH_SJGZ t 
+    left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
+        replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
+        replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+        replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+        replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+        replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,
+        replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+        replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+        max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,
+        max(qdmc) qdmc,max(zdmc) zdmc
+        from (select  xmid,jsxz,lxmc,lxbm,bzcs,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+            when jsxz like '%新建%' then to_number(xjlc)
+            else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)
+        end) jhlc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -1003,10 +1055,10 @@
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
-		order by t.id desc,lx.sffirst desc
+<!-- 		order by t.id desc,lx.sffirst desc -->
 	</select>
 	<select id="querywnjhLmgz" parameterType="lxsh" resultType="elist">
-		select 
+		<!-- select 
 		t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
 		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
@@ -1032,7 +1084,58 @@
         else ghxlxbm
         end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,ghlxbm
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
-		where 1=1
+		where 1=1 -->
+		
+    select rownum v_0,t.xmmc v_1,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
+    lx2.qdzh v_4,lx2.zdzh v_5,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
+    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
+     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
+     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
+     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    from WNJH_LMGZ t 
+    left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
+        replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
+        replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+        replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+        replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+        replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,
+        replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+        replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+        max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,
+        max(qdmc) qdmc,max(zdmc) zdmc
+        from (select  xmid,jsxz,lxmc,lxbm,bzcs,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+            when jsxz like '%新建%' then to_number(xjlc)
+            else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)
+        end) jhlc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+    where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -1086,10 +1189,10 @@
 		<if test="xmlx1 !='' and xmlx1 != null ">
 			${xmlx1}
 		</if>
-		order by t.id desc,lx.sffirst desc
+<!-- 		order by t.id desc,lx.sffirst desc -->
 	</select>
 	<select id="querywnjhXj" parameterType="lxsh" resultType="elist">
-		select 
+		<!-- select 
 			t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
 		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
@@ -1109,7 +1212,58 @@
    		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
     	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
     	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
-		where 1=1 
+		where 1=1  -->
+		
+    select rownum v_0,t.xmmc v_1,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
+    lx2.qdzh v_4,lx2.zdzh v_5,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
+    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
+     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
+     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
+     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    from WNJH_XJ t 
+    left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
+        replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
+        replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+        replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+        replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+        replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,
+        replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+        replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+        max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,
+        max(qdmc) qdmc,max(zdmc) zdmc
+        from (select  xmid,jsxz,lxmc,lxbm,bzcs,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+            when jsxz like '%新建%' then to_number(xjlc)
+            else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)
+        end) jhlc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+    where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
@@ -1159,7 +1313,7 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
-		order by t.id desc,lx.sffirst desc	
+<!-- 		order by t.id desc,lx.sffirst desc	 -->
 	</select>
 
 	<insert id="importsjgzwnjh" parameterType="hashMap">
@@ -1396,17 +1550,26 @@
 		) t1
 	</select>
 	<select id="showxjtj" parameterType="lxsh" resultType="lxsh">
-		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(jhlc) lc,(sum(tz)-sum(bzys)) dftz,'0' sbz,'0' sjl  from (
-		select rownum num ,t.*,tt.bzys1,lx1.*,lx2.sl,lx3.jhlc from WNJH_XJ t left join (select xmid,sum(bzcs) bzys1 from wnjh_lx where sffirst='1' group by xmid) tt on t.id=tt.xmid left join 
-		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
-		sum(dwlc) dwlc,sum(wllc) wllc,max(xjlxbm) xjlxbm,max(xjqdzh) xjqdzh,max(xjzdzh) xjzdzh,max(xjlc) xjlc
-		from wnjh_lx where sffirst='1' group by xmid) lx1 on t.id=lx1.xmid left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx2 on t.id=lx2.xmid
-		left join (select xmid,decode(min(jsxz),'改建',nvl(sum(jhyilc),0)+nvl(sum(jherlc),0)+nvl(sum(jhsanlc),0)+nvl(sum(jhsilc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0),nvl(sum(yilc),0)+nvl(sum(erlc),0)+nvl(sum(sanlc),0)+nvl(sum(silc),0)+nvl(sum(jhdwlc),0)+nvl(sum(jhwllc),0))  jhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
-   		replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
-   		replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
-    	replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,'新建工程' xmlx1 
-    	from WNJH_LX group by xmid) lx3 on t.id=lx3.xmid
-		where 1=1
+		select count(*) sl,sum(tz) tz,sum(bzys) bzys,sum(zjhlc) lc,'0' cgs,'0' sbz,'0' sjl,(sum(tz)-sum(bzys)) dftz  from (
+    select rownum num ,t.*,lx.*,decode(lx1.sl,null,'0',lx1.sl) sl,lx2.zjhlc from wnjh_xj t left join
+    (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,
+    sum(dwlc) dwlc,sum(wllc) wllc,sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc,sum(jhlc) jhlc
+    from WNJH_LX where sffirst='1' group by xmid) lx on t.id=lx.xmid 
+    left join (select xmid,count(*) sl from WNJH_LX where sffirst!=1 group by xmid) lx1 on t.id=lx1.xmid
+    left join (select xmid,
+    sum(jhlc) zjhlc,replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,replace(WMSYS.WM_CONCAT(ghxlxbm),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),',',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),',',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj
+        from (select  xmid,jsxz,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+        when jsxz like '%新建%' then to_number(xjlc)
+        else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)
+        end) jhlc,lxbm,lxmc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+    where 1=1
 		<if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
@@ -1736,7 +1899,7 @@
 		) t1
 	</select>
 	<select id="querywnjhGsdgz" parameterType="lxsh" resultType="elist">
-		select * from (
+		<!-- select * from (
 		select t.xmmc v_0,lx.lxbm v_1,lx.lxmc v_2,lx.qdzh v_3,lx.zdzh v_4,
 		lx.ghlxbm v_5,lx.ghlxmc v_6,lx.ghqdzh v_7,lx.ghzdzh v_8,
 		lx.gxlxbm v_9,lx.gxqdzh v_10,lx.gxzdzh v_11,lx.wlc v_12,
@@ -1761,7 +1924,58 @@
         else ghxlxbm
         end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,ghlxbm
         from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
-		where 1=1
+		where 1=1 -->
+
+    select rownum v_0,t.xmmc v_1,
+    decode(instr(RemoveSameStr(lx2.ylxbm,','),','),0,RemoveSameStr(lx2.ylxbm,','),lx2.ylxbm) v_2,
+    decode(instr(RemoveSameStr(lx2.ylxmc,','),','),0,RemoveSameStr(lx2.ylxmc,','),lx2.ylxmc) v_3,
+    lx2.qdzh v_4,lx2.zdzh v_5,
+    decode(instr(RemoveSameStr(lx2.ghlxbm,','),','),0,RemoveSameStr(lx2.ghlxbm,','),lx2.ghlxbm)  v_6,
+    decode(instr(RemoveSameStr(lx2.ghlxmc,','),','),0,RemoveSameStr(lx2.ghlxmc,','),lx2.ghlxmc) v_7,
+    lx2.ghqdzh v_8,lx2.ghzdzh v_9,
+     decode(instr(RemoveSameStr(lx2.gxlxbm,','),','),0,RemoveSameStr(lx2.gxlxbm,','),lx2.gxlxbm) v_10,
+     lx2.gxqdzh v_11,lx2.gxzdzh v_12,to_char(lx2.zjhlc,'fm9999999990.000') v_13,
+     decode(instr(RemoveSameStr(lx2.qdmc,','),','),0,RemoveSameStr(lx2.qdmc,','),lx2.qdmc) v_14,
+     decode(instr(RemoveSameStr(lx2.zdmc,','),','),0,RemoveSameStr(lx2.zdmc,','),lx2.zdmc) v_15,
+     lx2.jsxz v_16,t.gydw v_17,t.xzqh v_18,t.tsdq v_19,
+     RemoveSameStr(lx2.jsjsdjtj,',') v_20,RemoveSameStr(lx2.xjsdjtj,',') v_21,t.xmnf v_22,
+     t.jhkgn v_23,t.jhwgn v_24,t.tz v_25,lx2.bzcs v_26,t.xmklx v_27,t.bz v_28
+    from wngsdgz t 
+    left join (select xmid,sum(jhlc) zjhlc,sum(bzcs) bzcs,
+        replace(WMSYS.WM_CONCAT(lxbm),',',',') ghlxbmtj,
+        replace(WMSYS.WM_CONCAT(decode(jsxz,'新建',xjlxbm,ghlxbm)),',',',') ghxlxbmtj,
+        replace(WMSYS.WM_CONCAT(jsjsdj),'、',',') jsjsdjtj,
+        replace(WMSYS.WM_CONCAT(xjsdj),'、',',') xjsdjtj,
+        replace(WMSYS.WM_CONCAT(lxmc),',',',') ghlxmctj,
+        replace(WMSYS.WM_CONCAT(ghxlxmc),',',',') ghxlxmctj,
+        replace(WMSYS.WM_CONCAT(distinct(jsxz)),',',',') jsxz,
+        replace(max(qdzh), ',.', ',0.') qdzh,replace(max(zdzh), ',.', ',0.') zdzh,
+        replace(max(ghqdzh), ',.', ',0.') ghqdzh,replace(max(ghzdzh), ',.', ',0.') ghzdzh,
+        replace(max(gxqdzh), ',.', ',0.') gxqdzh,replace(max(gxzdzh), ',.', ',0.') gxzdzh,
+        max(ghlxbm) ghlxbm,max(ylxbm) ylxbm,max(ghlxmc) ghlxmc,max(ylxmc) ylxmc,max(gxlxbm) gxlxbm,
+        max(qdmc) qdmc,max(zdmc) zdmc
+        from (select  xmid,jsxz,lxmc,lxbm,bzcs,
+        (case when jsxz like '%改建%' then nvl(jhyilc,0)+nvl(jherlc,0)+nvl(jhsanlc,0)+nvl(jhsilc,0)+nvl(jhdwlc,0)+nvl(jhwllc,0)
+            when jsxz like '%新建%' then to_number(xjlc)
+            else nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)
+        end) jhlc,(case when jsxz like '%新建%' then xjlxbm 
+        else ghxlxbm
+        end) ghxlxbm,ghxlxmc,jsjsdj,xjsdj,xjlxbm,
+               WMSYS.WM_CONCAT(ghlxmc)over( PARTITION BY xmid ORDER BY id,ghlxmc) ghlxmc,
+               WMSYS.WM_CONCAT(lxmc)over( PARTITION BY xmid ORDER BY id,lxmc) ylxmc,
+               WMSYS.WM_CONCAT(ghlxbm)over( PARTITION BY xmid ORDER BY id,ghlxbm) ghlxbm,
+               WMSYS.WM_CONCAT(lxbm)over( PARTITION BY xmid ORDER BY id,lxbm) ylxbm,
+               WMSYS.WM_CONCAT((case when qdzh like '.%' then 0||qdzh when qdzh like '%,.%' then replace(qdzh, ',.', ',0.') else qdzh end ))over( PARTITION BY xmid ORDER BY id,qdzh) qdzh,
+               WMSYS.WM_CONCAT((case when zdzh like '.%' then 0||zdzh when zdzh like '%,.%' then replace(zdzh, ',.', ',0.') else zdzh end ))over( PARTITION BY xmid ORDER BY id,zdzh) zdzh,
+               WMSYS.WM_CONCAT((case when ghqdzh like '.%' then 0||ghqdzh when ghqdzh like '%,.%' then replace(ghqdzh, ',.', ',0.') else ghqdzh end ))over( PARTITION BY xmid ORDER BY id,ghqdzh) ghqdzh,
+               WMSYS.WM_CONCAT((case when ghzdzh like '.%' then 0||ghzdzh when ghzdzh like '%,.%' then replace(ghzdzh, ',.', ',0.') else ghzdzh end ))over( PARTITION BY xmid ORDER BY id,ghzdzh) ghzdzh,
+               WMSYS.WM_CONCAT(gxlxbm)over( PARTITION BY xmid ORDER BY id,gxlxbm) gxlxbm,
+               WMSYS.WM_CONCAT((case when gxqdzh like '.%' then 0||gxqdzh when gxqdzh like '%,.%' then replace(gxqdzh, ',.', ',0.') else gxqdzh end ))over( PARTITION BY xmid ORDER BY id,gxqdzh) gxqdzh,
+               WMSYS.WM_CONCAT((case when gxzdzh like '.%' then 0||gxzdzh when gxzdzh like '%,.%' then replace(gxzdzh, ',.', ',0.') else gxzdzh end ))over( PARTITION BY xmid ORDER BY id,gxzdzh) gxzdzh,
+               WMSYS.WM_CONCAT(qdmc)over( PARTITION BY xmid ORDER BY id,qdmc) qdmc,
+               WMSYS.WM_CONCAT(zdmc)over( PARTITION BY xmid ORDER BY id,zdmc) zdmc
+        from WNJH_LX ) group by xmid) lx2 on t.id=lx2.xmid
+    where 1=1		
 		<if test="xzqh!='' and xzqh!= null ">
 			${xzqh}
 		</if>
@@ -1812,8 +2026,8 @@
 		<if test="gydw!='36' and gydw!=null">
 			and znsjck is null
 		</if>
-		order by t.id,lx.sffirst desc
-		) t1
+<!-- 		order by t.id,lx.sffirst desc -->
+<!-- 		) t1 -->
 	</select>
 	
 	
