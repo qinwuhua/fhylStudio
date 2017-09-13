@@ -335,20 +335,20 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xlxbm" ></span> </td>
-					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新路线名称：</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xlxmc" ></span> </td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新桥梁编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xqlbm" ></span>
 					</td>
 				
 			</tr>
 			<tr style="height: 35px;">
-			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新中心桩号：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">原中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xzxzh" ></span>
 				</td>
