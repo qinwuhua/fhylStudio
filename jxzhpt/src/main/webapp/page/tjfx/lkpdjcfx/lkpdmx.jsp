@@ -144,7 +144,7 @@ function dcLkmxExcel(){
 	'&lkmxb.lxbh='+$('#roadcode').combotree("getValues").join(",")+'&lkmxb.mqi='+mqi+
  	'&lkmxb.tbnf='+$('#lkpdbb').combobox("getValue");
 	
-	alert(param);
+// 	alert(param);
 
 	window.location.href="/jxzhpt/tjfx/exportLkpdmx.do?"+param;
 }
