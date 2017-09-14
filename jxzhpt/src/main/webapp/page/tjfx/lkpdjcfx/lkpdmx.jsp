@@ -95,7 +95,7 @@ function loadGrid(){
 				 	'lkmxb.jcfx':jcfx,
 				 	'lkmxb.lxbh':$('#roadcode').combotree("getValues").join(","),
 				 	'lkmxb.mqi':mqi,
-				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue"),
+				 	'lkmxb.tbnf':$('#lkpdbb').combobox("getValue")
 				},
 	    columns:[
 	      [
@@ -123,9 +123,31 @@ function loadGrid(){
 	    ]  
 	]		
 	});  
-	
 }
 
+function dcLkmxExcel(){
+	
+	var jsdj=$('#jsdj').combobox("getValues").join(",");
+	if(jsdj.substr(0,1)==',')
+		jsdj=jsdj.substr(1,jsdj.length);
+	var lmlx=$('#lmlx').combobox("getValues").join(",");
+	if(lmlx.substr(0,1)==',')
+		lmlx=lmlx.substr(1,lmlx.length);
+	var jcfx=$('#jcfx').combobox("getValues").join(",");
+	if(jcfx.substr(0,1)==',')
+		jcfx=jcfx.substr(1,jcfx.length);
+	var mqi=$('#mqi').combobox("getValues").join(",");
+	if(mqi.substr(0,1)==',')
+		mqi=mqi.substr(1,mqi.length);
+	
+	var param='lkmxb.jsdj='+jsdj+'&lkmxb.lmlx='+lmlx+'&lkmxb.jcfx='+jcfx+
+	'&lkmxb.lxbh='+$('#roadcode').combotree("getValues").join(",")+'&lkmxb.mqi='+mqi+
+ 	'&lkmxb.tbnf='+$('#lkpdbb').combobox("getValue");
+	
+	alert(param);
+
+	window.location.href="/jxzhpt/tjfx/exportLkpdmx.do?"+param;
+}
 </script>
 <style type="text/css">
 TD {
@@ -174,7 +196,8 @@ text-decoration:none;
 							  </tr>
 							  <tr >
 							   <td colspan="10">
-							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;" />
+							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="loadGrid();"style="border-width:0px;cursor: hand;vertical-align:middle;" />
+							    <img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dcLkmxExcel();" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>
 							</tr>
 							</table>

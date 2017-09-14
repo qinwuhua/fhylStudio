@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 
@@ -39,6 +41,8 @@ public interface TjfxServer {
 	List<Lkmxb> queryLkpdmx(int page, int rows,Lkmxb lkmxb);
 	Integer queryLkpdmxCount(Lkmxb lkmxb);
 	
+	List<Excel_list> exportLkpdmx(Lkmxb lkmxb);
+		
 	List<Lkmxb> queryLkpdmxList(Lkmxb lkmxb);
 	
 	List<Lkmxb> getLxldCombo(Lkmxb lkmxb);

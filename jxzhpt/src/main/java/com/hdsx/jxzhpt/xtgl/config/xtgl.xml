@@ -102,7 +102,10 @@
 		where id=#{id}
 	</update>
 	<select id="selectJsList" parameterType="param" resultType="param">
-		select * from xtgl_role
+		select * from xtgl_role where 1=1
+			<if test="name != null and  name != ''">
+			 and rolename like '%'||#{name}||'%' 
+		</if>
 	</select>
 	<insert id="insertJs" parameterType="param">
 		insert into xtgl_role(roleid,rolename,desr) values (#{roleid},#{rolename},#{desr})

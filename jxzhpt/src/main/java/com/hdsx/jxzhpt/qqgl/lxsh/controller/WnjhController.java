@@ -382,8 +382,8 @@ public class WnjhController extends BaseActionSupport{
 		}
 		lxsh.setJsdj(jsdjtj);
 		String jsjsdj="";
-		if((!"".equals(jsdj))&&jsdj!=null){
-			String[] jsdjs = jsdj.split(",");
+		if((!"".equals(lxsh.getJsjsdj()))&&lxsh.getJsjsdj()!=null){
+			String[] jsdjs = lxsh.getJsjsdj().split(",");
 			for (int i = 0; i < jsdjs.length; i++) {
 				if(i==0)
 					jsjsdj=jsjsdj+"and (jsjsdjtj like '%'||'"+jsdjs[i]+"'||'%' ";
