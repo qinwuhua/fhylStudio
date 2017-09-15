@@ -28,6 +28,16 @@ public class Master implements Serializable {
 	private int rows;
 	private int max;
 	private int min;
+	
+	private String zt;
+	
+	
+	public String getZt() {
+		return zt;
+	}
+	public void setZt(String zt) {
+		this.zt = zt;
+	}
 	public String getId() {
 		return id;
 	}
