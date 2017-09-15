@@ -146,7 +146,7 @@ function startSearch(){
  			</fieldset>
         </div>
     </div>
-    <div style="height:400px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:350px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" >
     	</table>
     </div>
