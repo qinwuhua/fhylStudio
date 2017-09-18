@@ -299,10 +299,11 @@ function dclxshModule(str){
 	}
 	var ghlxmc=$("#ghlxmc").val();
 	var ghlxbm=$("#ghlxbm").val().toUpperCase();
-	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.shzt="+sbzt+'&lxsh.sbzt=1'+
+	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.shzt="+sbzt+'&lxsh.sbzt='+sbzt+
 			 "&lxsh.lsjl="+lsjl+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd+
 			 "&lxsh.ghlxbh="+ghlxbh+"&lxsh.jsjsdj="+jsjsdj+"&lxsh.lxmc="+lxmc+"&lxsh.ghlxmc="+ghlxmc+"&lxsh.ghlxbm="+ghlxbm
-			 +"&lxsh.tsdq="+encodeURI(encodeURI(tsdq))+"&lxsh.lsxmnf="+lsxmnf+"&lxsh.lsxmlx="+lsxmlx+"&lxsh.xmbm="+$("#xmbm").val();
+			 +"&lxsh.tsdq="+encodeURI(encodeURI(tsdq))+"&lxsh.lsxmnf="+lsxmnf+"&lxsh.lsxmlx="+lsxmlx+
+			 "&lxsh.xmbm="+$("#xmbm").val()+'&lxsh.xmklx='+$("#xmklx").combobox('getValue');
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{xzqh:xzqhstr,tsdq:tsdq},function(){
 		window.location.href='/jxzhpt/qqgl/dcModule.do?'+data;
 	 });

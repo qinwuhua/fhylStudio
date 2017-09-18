@@ -955,8 +955,8 @@ function showAll(){
 	
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
-	if(xmnf=='')
-		xmnf=new Date().getFullYear();
+//	if(xmnf=='')
+//		xmnf=new Date().getFullYear();
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
 	var sbzt=$("#sbzt").combobox('getValue');
@@ -1001,7 +1001,9 @@ function showAll(){
 			gldj:gldj,
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx},
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()	
+		},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -1040,7 +1042,8 @@ function showAll(){
 			lxmc:$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1550,8 +1553,8 @@ function showAlllmgz(){
 
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
-	if(xmnf=='')
-		xmnf=new Date().getFullYear();
+//	if(xmnf=='')
+//		xmnf=new Date().getFullYear();
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
 	var sbzt=$("#sbzt").combobox('getValue');
@@ -1583,7 +1586,9 @@ function showAlllmgz(){
 			gldj:gldj,
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx},
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
+		},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -1624,7 +1629,8 @@ function showAlllmgz(){
 			lxmc:$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
@@ -1986,8 +1992,8 @@ function showAllxj(){
 	lsxmlx=lsxmlx.substr(1,lsxmlx.length);
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getValues').join(",");
-	if(xmnf=='')
-		xmnf=new Date().getFullYear();
+//	if(xmnf=='')
+//		xmnf=new Date().getFullYear();
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
 	var sbzt=$("#sbzt").combobox('getValue');
@@ -2017,7 +2023,8 @@ function showAllxj(){
 			gldj:gldj,
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx},
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()},
 		dataType:'json',
 		success:function(msg){
 			$("#xmsl").html(msg.XMSL);
@@ -2058,7 +2065,8 @@ function showAllxj(){
 			lxmc:$("#lxmc").val(),
 			'lxsh.xmklx':$("#xmklx").combobox('getValue'),
 			'lxsh.lsxmnf':lsxmnf,
-			'lxsh.lsxmlx':lsxmlx
+			'lxsh.lsxmlx':lsxmlx,
+			'lxsh.xmbm':$("#xmbm").val()
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
