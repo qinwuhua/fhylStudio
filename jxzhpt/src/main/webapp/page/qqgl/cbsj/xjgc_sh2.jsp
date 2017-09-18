@@ -109,10 +109,12 @@
 					'lxmc':$("#txtlxmc").val(),
 					'cbsj.shzt':$('#shzt').combo("getValue"),
 					'cbsj.xmklx':$('#xmklx').combo("getValue"),
-					'cbsj.xmbm':xmnf,
+					'cbsj.xmnf':xmnf,
 					'ylxbh':$('#gldj').combobox("getValues").join(','),
 					'lsxmnf':lsxmnf,
-					'lsxmlx':lsxmlx};
+					'lsxmlx':lsxmlx,
+					'cbsj.xmbm':$("#xmbm").val()		
+			};
 			grid.queryParams=params;
 			loadcbsjTjxx(params);
 			grid.height=$(window).height()-215;
@@ -481,6 +483,8 @@ text-decoration:none;
 									<select id='lsxmnf' class="easyui-combobox" style="width: 160px;">
 									</select>
 								</td>
+								<td align="right">项目编码：</td>
+	        					<td><input type="text" id="xmbm" style="width:125px;" /></td>
 							</tr>
 							<tr height="28">
 	                            
