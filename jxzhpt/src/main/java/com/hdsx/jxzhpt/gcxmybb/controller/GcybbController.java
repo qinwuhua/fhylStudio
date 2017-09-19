@@ -3329,12 +3329,18 @@ public class GcybbController extends BaseActionSupport{
 		//三件实事进展汇总表
 		public void getsjssjzhzb(){
 			try {
-				List<Excel_list> list=gcybbServer.getsjssjzhzb(xmnf);
+				
 				if("flag".equals(flag)){
+					String j=(String) getRequest().getSession().getAttribute("sql");
+					JSONArray ja = JSONArray.fromObject(j);
+					@SuppressWarnings("unchecked")
+					List<Excel_list> list = (List<Excel_list>) JSONArray.toList(ja,
+							new Excel_list(), new JsonConfig());
+					
 					ExcelData eldata=new ExcelData();//创建一个类
-					eldata.setTitleName(xmnf+"年危桥改造等三件实事进展情况汇总表");//设置第一行
+					eldata.setTitleName(excel_list.getNf()+"年危桥改造等三件实事进展情况汇总表");//设置第一行
 					eldata.setSheetName("三件实事");//设置sheeet名
-					eldata.setFileName(xmnf+"年危桥改造等三件实事进展情况汇总表");//设置文件名
+					eldata.setFileName(excel_list.getNf()+"年危桥改造等三件实事进展情况汇总表");//设置文件名
 					eldata.setEl(list);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("项目",1,3,0,4));
@@ -3364,6 +3370,7 @@ public class GcybbController extends BaseActionSupport{
 					Excel_export.excel_exportsjss(eldata,response);
 					
 				}else{
+					List<Excel_list> list=gcybbServer.getsjssjzhzbnew(excel_list);
 					JsonUtils.write(list, getresponse().getWriter());
 				}
 			}catch (Exception e) {
@@ -3814,5 +3821,20 @@ public class GcybbController extends BaseActionSupport{
 	}
 	
 	
+	
+	
+	public void insertOrUpdatesjss() {
+		try {
+			JSONArray ja = JSONArray.fromObject(flag);
+			@SuppressWarnings("unchecked")
+			List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
+					new Excel_list(), new JsonConfig());
+			boolean bl = gcybbServer.insertOrUpdatesjss(list1);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
