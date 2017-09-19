@@ -1263,7 +1263,7 @@
 				<if test="ylxbh!=null and ylxbh!=''">and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%2___' and jdbs='2')
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="lsjl!=null and lsjl!=''">and t1.lsjl=#{lsjl}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="xmbm!=null and xmbm!=''">and c.xmbm like '%'||#{xmbm}||'%'</if>
@@ -1521,7 +1521,7 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___' and jdbs='2')
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="lsjl!=null and lsjl!=''">and t1.lsjl=#{lsjl}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
@@ -1625,6 +1625,7 @@
 				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="xmbm!=null and xmbm!=''">and c.xmbm like '%'||#{xmbm}||'%'</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
+				<if test="lsjl!=null and lsjl!=''">and t1.lsjl=#{lsjl}</if>
 				<if test="lxmc!=null and lxmc!=''">and lx.lxmc like '%'||#{lxmc}||'%'</if>
 				<if test="ghlxmc!=null and ghlxmc!=''">and lx.ghlxmc like '%'||#{ghlxmc}||'%'</if>
 		
@@ -2443,7 +2444,7 @@
 					and c.xmbm in (select distinct xmid from lxsh_lx lx where ${ylxbh} and xmid like '%1___')
 				</if>
 				<if test="xjsdj!=null and xjsdj!=''">and ${xjsdj}</if>
-				<if test="lsjl!=null and lsjl!=''">and l.lsjl=#{lsjl}</if>
+				<if test="lsjl!=null and lsjl!=''">and t1.lsjl=#{lsjl}</if>
 				<if test="tsdq!=null and tsdq!=''">${tsdq}</if>
 				<if test="xmnf!=null and xmnf!=''">and ${xmnf}</if>
 				<if test="jsjsdj!=null and jsjsdj!=''">and ${jsjsdj}</if>
