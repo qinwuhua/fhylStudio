@@ -104,6 +104,7 @@
 					'cbsj.jsjsdj':$('#gjhjsdj').combo("getValues").join(","),
 					'tsdq':tsdq,
 					'cbsj.sbzt':sbzt,
+					'lsjl':$('#lsjl').combobox("getValue"),
 					'ghlxbm':$("#ghlxbm").combotree('getText'),
 					'ghlxmc':$("#ghlxmc").val(),
 					'lxmc':$("#txtlxmc").val(),

@@ -238,6 +238,7 @@
 				<if test="cbsj.lsxmlx !='' and cbsj.lsxmlx != null ">
 					${cbsj.lsxmlx}
 				</if>
+				<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
@@ -461,6 +462,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
+        <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
         <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 			and lx.ghlxmc=#{cbsj.ghlxmc}
 		</if>
@@ -551,6 +553,7 @@
 		<!-- <if test="cbsj.ghlxbm!='' and cbsj.ghlxbm!= null ">
 			and lx.ghlxbm=#{cbsj.ghlxbm}
 		</if> -->
+		<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
 			and lx.lxmc=#{cbsj.lxmc}
 		</if>
@@ -629,6 +632,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
+        <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
         <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 			and lx.ghlxmc=#{cbsj.ghlxmc}
 		</if>
@@ -716,6 +720,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
+        <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
         <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 			and lx.ghlxmc=#{cbsj.ghlxmc}
 		</if>
@@ -795,6 +800,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
+        <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
         <if test="cbsj.ghlxmc!='' and cbsj.ghlxmc!= null ">
 			and lx.ghlxmc=#{cbsj.ghlxmc}
 		</if>
@@ -1820,7 +1826,7 @@
 		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(lx.bzcs),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(jhyilc,0))+sum(nvl(jherlc,0))+sum(nvl(jhsanlc,0))+sum(nvl(jhsilc,0))+sum(nvl(jhdwlc,0))+sum(nvl(jhwllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
-		
+	    <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
 		
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
@@ -1885,8 +1891,9 @@
 		select count(*) sl,round(nvl(sum(c.tz),0),3) tz,round(nvl(sum(lx.lc),0),3) lc,round(nvl(sum(lx.bzcs),0),3) bzcs,'0' sbz,'0' sjl,round(nvl((sum(c.tz)-sum(bzys)),0),3) dftz from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		left join (select xmid, sum(nvl(yilc,0))+sum(nvl(erlc,0))+sum(nvl(sanlc,0))+sum(nvl(silc,0))+sum(nvl(dwlc,0))+sum(nvl(wllc,0)) lc, min(xjsdj) xjsdj, min(jsjsdj) jsjsdj, min(lxbm) lxbm, min(bzcs) bzcs from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid left join (select xmid,WMSYS.WM_CONCAT(distinct to_char(decode(xzqhdm2,null,xzqhdm,xzqhdm2))) xzqhdm2 from lxsh_lx group by xmid) myxz on c.xmbm=myxz.xmid
 		where 1=1
+		<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		
+		<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -1957,7 +1964,7 @@
 		from lxsh_lx where jdbs = '2' group by xmid ) lx on c.xmbm=lx.xmid
 		where 1=1
 		<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">and ${cbsj.xzqhdm}</if>
-		
+		<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.ylxbh!=null and cbsj.ylxbh!=''">
 			and c.xmbm in (select distinct xmid from lxsh_lx lx where ${cbsj.ylxbh} and xmid like '%1___')
 		</if>
@@ -2261,7 +2268,7 @@
 		                              on c.xmbm = sl.xmid
 		where 1 = 1 and lx.jdbs = '2'
                    and lx.sffirst = '1'
-       
+       <if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
 			and lx.lxmc=#{cbsj.lxmc}
 		</if>
@@ -2314,12 +2321,11 @@
 <!-- 		nvl(yilc,0)+nvl(erlc,0)+nvl(sanlc,0)+nvl(silc,0)+nvl(dwlc,0)+nvl(wllc,0)  -->
 		end) lc
 	   from lxsh_lx where jdbs='2'
-	   
-		
 		<if test="cbsj.lxmc!='' and cbsj.lxmc!= null ">
 			and lxmc=#{cbsj.lxmc}
 		</if>) group by xmid) lx on c.xmbm=lx.xmid
 		where 1=1
+		<if test="cbsj.lsjl!=null and cbsj.lsjl!=''">and l.lsjl=#{cbsj.lsjl}</if>
 		<if test="cbsj.xmklx!='' and cbsj.xmklx!= null ">
 					and xmklx like '%'||#{cbsj.xmklx}||'%'
 				</if>
