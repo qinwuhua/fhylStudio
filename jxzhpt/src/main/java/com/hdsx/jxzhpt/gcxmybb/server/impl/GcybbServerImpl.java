@@ -1353,4 +1353,18 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getGsgxsjgzjd(String sql2) {
 		return queryList("getGsgxsjgzjd",sql2);
 	}
+
+	@Override
+	public boolean insertOrUpdatesjss(List<Excel_list> list1) {
+		deleteBatch("deletesjss", list1);
+		insertBatch("insertOrUpdatesjss", list1);
+		return true;
+	}
+
+	@Override
+	public List<Excel_list> getsjssjzhzbnew(Excel_list excel_list) {
+		return queryList("getsjssjzhzbnew",excel_list);
+	}
+	
+	
 }
