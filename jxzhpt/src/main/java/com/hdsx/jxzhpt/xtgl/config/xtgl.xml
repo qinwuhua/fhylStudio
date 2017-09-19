@@ -18,7 +18,7 @@
 	select PASSWORD from xtgl_master M WHERE M.truename=#{value}
 	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
-	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select rolename from xtgl_role x where x.roleid=m.roleid) rolename  from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select rolename from xtgl_role x where x.roleid=m.roleid) rolename  from xtgl_master M WHERE M.zt='启用' and M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
 	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select rolename from xtgl_role x where x.roleid=m.roleid) rolename  from xtgl_master M WHERE M.truename=#{truename}
@@ -32,7 +32,9 @@
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
 		select m.*,rownum rn from (
-			select id,truename,name,(select distinct min(name) from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
+			select id,truename,name,(select distinct min(name) from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,
+			(select rolename from xtgl_role where roleid=t.roleid) roleid,zt
+			 from xtgl_master t
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
 		and truename like #{yhm}||'%'
@@ -65,7 +67,7 @@
 		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard})
 	</insert>
 	<update id="updatezt" parameterType="hashmap">
-		update master set zt=#{zt} where id=#{id}
+		update xtgl_master set zt=#{zt} where id=#{id}
 	</update>
 	<update id="mimareset" parameterType="hashmap">
 		update xtgl_master set password=#{password} where id=#{id}
@@ -102,7 +104,10 @@
 		where id=#{id}
 	</update>
 	<select id="selectJsList" parameterType="param" resultType="param">
-		select * from xtgl_role
+		select * from xtgl_role where 1=1
+			<if test="name != null and  name != ''">
+			 and rolename like '%'||#{name}||'%' 
+		</if>
 	</select>
 	<insert id="insertJs" parameterType="param">
 		insert into xtgl_role(roleid,rolename,desr) values (#{roleid},#{rolename},#{desr})
@@ -356,6 +361,7 @@
 		and truename not like '省局养护处'
 		and truename not like '省局领导'
 		and truename not like '省局财审处'
+		and zt='启用'
 		</if>
 	</select>
 	<select id="createMenu" parameterType="unit" resultType="treenode">

@@ -237,9 +237,12 @@
 				 	<if test="lx.gldj!=null and lx.gldj!=''">
 				 		${lx.gldj}
 				 	</if>
-				 	<if test="lx.xmklx != null and lx.xmklx != ''">
-	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
-	 				</if>
+                    <if test="lx.xmklx != null and lx.xmklx != ''">
+				 		and lx.xmbm in (
+			                select distinct(t.xmbm) from sck_aqsmfh_ld t 
+			                left join xmk_aqsmfh x on t.xmkid=x.id 
+			                where x.xmklx like '%'||#{lx.xmklx}||'%')
+	 	            </if>
 	    			order by jh.jhnf desc,jh.jh_sbthcd
 	    		) t order by t.jhnf desc,t.jh_sbthcd
     		)
@@ -294,8 +297,11 @@
 	 		${lx.gldj}
 	 	</if>
 	 	<if test="lx.xmklx != null and lx.xmklx != ''">
-	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
-	 				</if>
+	 		and lx.xmbm in (
+                select distinct(t.xmbm) from sck_aqsmfh_ld t 
+                left join xmk_aqsmfh x on t.xmkid=x.id 
+                where x.xmklx like '%'||#{lx.xmklx}||'%')
+	 	</if>
 	</select>
 	<!-- 此方法仅用在资金下达的Excel导出数据查询 -->
 	<select id="queryAbgcList2"  parameterType="java.util.Map"  resultMap="abgc_jh">
@@ -654,6 +660,9 @@
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
 	 	</if>
+	 	<if test="lx.xmklx != null and lx.xmklx != ''">
+	 		and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 	</if>
 	</select>
 	<select id="exportExcel_jh1" parameterType="hashMap" resultType="elist">
 		<!-- select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,jh.jhkgsj v_2,jh.jhwgsj v_3,lx.gydw v_4,lx.xzqh v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
@@ -718,6 +727,12 @@
 	 	</if>
 	 	<if test="lx.gldj!=null and lx.gldj!=''">
 	 		${lx.gldj}
+	 	</if>
+	 	<if test="lx.xmklx != null and lx.xmklx != ''">
+		and lx.xmbm in (
+			  select distinct(t.xmbm) from sck_aqsmfh_ld t 
+			      left join xmk_aqsmfh x on t.xmkid=x.id 
+			   where x.xmklx like '%'||#{lx.xmklx}||'%')
 	 	</if>
 	</select>
 	
@@ -926,7 +941,10 @@
 						${lx.tsdq}
 				 	</if> 
 				 	<if test="lx.xmklx != null and lx.xmklx != ''">
-	 					and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 					and lx.xmbm in (
+                               select distinct(t.xmbm) from sck_aqsmfh_ld t left join xmk_aqsmfh x 
+                               on t.xmkid=x.id 
+                               where x.xmklx like '%'||#{lx.xmklx}||'%')
 	 				</if>
 				 	group by jh.id)
 	</select>

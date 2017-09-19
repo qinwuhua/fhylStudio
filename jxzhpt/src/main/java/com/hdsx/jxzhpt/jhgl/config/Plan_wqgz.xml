@@ -507,6 +507,9 @@
 	 	<if test="lx.jsxz!=null and lx.jsxz!=''">
 			and sc.jsxz like '%'||#{lx.jsxz}||'%'
 		</if>
+		<if test="lx.xmklx != null and lx.xmklx != ''">
+	 		and lx.xmklx like '%'||#{lx.xmklx}||'%'
+	 	</if>
 	</select>
 	
 	<delete id="dropWqgzById" parameterType="string">

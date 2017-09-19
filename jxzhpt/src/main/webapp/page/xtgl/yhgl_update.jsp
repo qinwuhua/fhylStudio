@@ -26,6 +26,7 @@ function selQxList(){
 			for (var i=0;i<msg.length;i++){
 				$("#roleid").append("<option value='"+msg[i].ROLEID+"'>"+msg[i].ROLENAME+"</option>");
 			}
+			formTable();
 		}
 	});
 }
@@ -93,7 +94,7 @@ function formTable(){
 
 $(function(){
 	selQxList();
-	formTable();
+// 	formTable();
 	$("#yhgl_btn_Save").click(function(){
 		save();
 	});

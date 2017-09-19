@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class TjfxServerImpl extends BaseOperate implements TjfxServer {
@@ -190,6 +191,12 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 	public Integer queryLkpdmxCount(Lkmxb lkmxb) {
 		params.put("lkmxb", lkmxb);
 		return queryOne("queryLkpdmxCount", params);
+	}
+	
+	@Override
+	public List<Excel_list> exportLkpdmx(Lkmxb lkmxb){
+		params.put("lkmxb", lkmxb);
+		return queryList("exportLkpdmx",params);
 	}
 
 	@Override

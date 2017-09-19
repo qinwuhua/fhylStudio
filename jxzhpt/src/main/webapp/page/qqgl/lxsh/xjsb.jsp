@@ -285,7 +285,8 @@ text-decoration:none;
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:88px;" >
 								</select></td>
-                              <td colspan="10">
+								<td align="right">项目编码：</td>
+        				        <td ><input type="text" id="xmbm" style="width:100px;" /></td>
 								<!-- <td>规划路线名称：</td>
         						<td><input type="text" id="ghlxmc" style="width:95px;" /></td>
                                 <td>规划路线编码：</td>

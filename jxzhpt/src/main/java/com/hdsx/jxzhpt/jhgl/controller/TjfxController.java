@@ -12,8 +12,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.bcel.generic.NEW;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -36,6 +40,10 @@ import com.hdsx.jxzhpt.utile.MyUtil;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -1137,6 +1145,124 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	
+	/**
+	 * 导出路况明细list
+	 */
+		public void exportLkpdmx(){
+			try {
+				if(lkmxb.getLxbh()==null || lkmxb.getLxbh().equals("")){
+					lkmxb.setLxbh("");
+				}else if(lkmxb.getLxbh().indexOf(",")==-1){
+					lkmxb.setLxbh("and lxbh='"+lkmxb.getLxbh()+"'");
+				}else{
+					String[] str=lkmxb.getLxbh().split(",");
+					String str1="";
+					for (int i = 0; i < str.length; i++) {
+						if(i==0){
+							str1="'"+str[i]+"'";
+						}else{
+							str1+=",'"+str[i]+"'";					
+						}
+					}
+					lkmxb.setLxbh("and lxbh in ("+str1+")");
+				}
+				if(lkmxb.getJsdj()!=null && !lkmxb.getJsdj().equals("")){
+					String[]  jsdjArr=lkmxb.getJsdj().split(",");
+					String jsdjStr="(";
+					for (int i = 0; i < jsdjArr.length; i++) {
+						if(i==jsdjArr.length-1) jsdjStr+="'"+jsdjArr[i]+"'";
+						else {
+							jsdjStr+="'"+jsdjArr[i]+"',";
+						}
+					}
+					jsdjStr+=")";
+					lkmxb.setJsdj(jsdjStr);
+				}
+				if(lkmxb.getLmlx()!=null && !lkmxb.getLmlx().equals("")){
+					String[]  lmlxArr=lkmxb.getLmlx().split(",");
+					String lmlxStr="(";
+					for (int i = 0; i < lmlxArr.length; i++) {
+						if(i==lmlxArr.length-1) lmlxStr+="'"+lmlxArr[i]+"'";
+						else {
+							lmlxStr+="'"+lmlxArr[i]+"',";
+						}
+					}
+					lmlxStr+=")";
+					lkmxb.setLmlx(lmlxStr);
+				}
+				if(lkmxb.getJcfx()!=null && !lkmxb.getJcfx().equals("")){
+					String[]  jcfxArr=lkmxb.getJcfx().split(",");
+					String jcfxStr="(";
+					for (int i = 0; i < jcfxArr.length; i++) {
+						if(i==jcfxArr.length-1) jcfxStr+="'"+jcfxArr[i]+"'";
+						else {
+							jcfxStr+="'"+jcfxArr[i]+"',";
+						}
+					}
+					jcfxStr+=")";
+					lkmxb.setJcfx(jcfxStr);
+				}
+				if(lkmxb.getMqi()!=null && !lkmxb.getMqi().equals("")){
+					String[]  mqiArr=lkmxb.getMqi().split(",");
+					String mqiStr="(";
+					for (int i = 0; i < mqiArr.length; i++) {
+						if(i==mqiArr.length-1) mqiStr+="'"+mqiArr[i]+"'";
+						else {
+							mqiStr+="'"+mqiArr[i]+"',";
+						}
+					}
+					mqiStr+=")";
+					lkmxb.setMqi(mqiStr);
+				}
+				if(lkmxb.getTbnf()!=null && !lkmxb.getTbnf().equals("")){
+					String[]  tbnfArr=lkmxb.getTbnf().split(",");
+					String tbnfStr="(";
+					for (int i = 0; i < tbnfArr.length; i++) {
+						if(i==tbnfArr.length-1) tbnfStr+="'"+tbnfArr[i]+"'";
+						else {
+							tbnfStr+="'"+tbnfArr[i]+"',";
+						}
+					}
+					tbnfStr+=")";
+					lkmxb.setTbnf(tbnfStr);
+				}
+				List<Excel_list> elist=new ArrayList<Excel_list>();
+				elist=tjfxServer.exportLkpdmx(lkmxb);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("路况评定明细");//设置第一行 
+				eldata.setSheetName("路况评定明细");//设置sheeet名
+				eldata.setFileName("路况评定明细");//设置文件名
+				eldata.setEl(elist);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("序号",1,2,0,0));
+				et.add(new Excel_tilte("路线编码",1,2,1,1));
+				et.add(new Excel_tilte("桩号",1,2,2,2));
+				et.add(new Excel_tilte("长度",1,2,3,3));
+				et.add(new Excel_tilte("原路线编号",1,2,4,4));
+				et.add(new Excel_tilte("原桩号",1,2,5,5));
+				et.add(new Excel_tilte("检查方向",1,2,6,6));
+				et.add(new Excel_tilte("技术等级",1,2,7,7));
+				et.add(new Excel_tilte("路面类型",1,2,8,8));
+				et.add(new Excel_tilte("MQI",1,2,9,9));
+				et.add(new Excel_tilte("路面PQI",1,2,10,10));
+				et.add(new Excel_tilte("路面分项指标",1,1,11,15));
+				et.add(new Excel_tilte("路基SCI",1,2,16,16));
+				et.add(new Excel_tilte("桥隧构造物BCI",1,2,17,17));
+				et.add(new Excel_tilte("沿线设施TCI",1,2,18,18));
+				et.add(new Excel_tilte("PCI",2,2,11,11));
+				et.add(new Excel_tilte("RQI",2,2,12,12));
+				et.add(new Excel_tilte("RDI",2,2,13,13));		
+				et.add(new Excel_tilte("SRI",2,2,14,14));
+				et.add(new Excel_tilte("PSSI",2,2,15,15));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	/**
 	 * 路况评定明细
 	 */
