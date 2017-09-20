@@ -62,9 +62,9 @@
 		select roleid,rolename from xtgl_role order by roleid
 	</select>
 	<insert id="insertYh" parameterType="master">
-		insert into xtgl_master (id,truename,password,tel,phone,unit,name,sex,roleid,czsj,idcard) 
+		insert into xtgl_master (id,truename,password,tel,phone,unit,name,sex,roleid,czsj,idcard,zt) 
 		values (SYS_GUID(),#{truename},#{password}
-		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard})
+		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard},'启用')
 	</insert>
 	<update id="updatezt" parameterType="hashmap">
 		update xtgl_master set zt=#{zt} where id=#{id}
