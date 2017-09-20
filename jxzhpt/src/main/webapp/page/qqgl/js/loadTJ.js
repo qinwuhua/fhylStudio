@@ -221,7 +221,7 @@ function openLsjl(xmbm){
 	YMLib.UI.createWindow('lsjlxx','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp','lsjlxx',980,380);
 }
 
-function dclxshModule(str){
+function dclxshModule(str,flag){
 	var gydwstr="";
 //	var gydw=$("#gydw").combotree("getValues");
 //	if(gydw.length==0){
@@ -276,7 +276,14 @@ function dclxshModule(str){
 //		xmnf=new Date().getFullYear();
 	if(xmnf.substr(0,1)==',')
 		xmnf=xmnf.substr(1,xmnf.length);
-	var sbzt=$("#sbzt").combobox('getValue');
+	var sbzt='';var shzt='';
+	if(flag=='sb'){
+		sbzt=$("#sbzt").combobox('getValue');
+	}
+	else if(flag='sh'){
+		sbzt='1';
+		shzt=$("#sbzt").combobox('getValue');
+	}
 	var lsjl="";
 	if(str!='xj'){
 		lsjl=$("#lsjl").combobox('getValue');
@@ -299,7 +306,7 @@ function dclxshModule(str){
 	}
 	var ghlxmc=$("#ghlxmc").val();
 	var ghlxbm=$("#ghlxbm").val().toUpperCase();
-	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.shzt="+sbzt+'&lxsh.sbzt='+sbzt+
+	var data="lxsh.xmlx="+str+"&lxsh.xmlx1="+xmlx1+"&lxsh.xmmc="+xmmc+"&lxsh.xmnf="+xmnf+"&lxsh.shzt="+shzt+'&lxsh.sbzt='+sbzt+
 			 "&lxsh.lsjl="+lsjl+"&lxsh.jsdj="+jsdj+"&lxsh.gldj="+gldj+"&lxsh.sbthcd="+sbthcd+
 			 "&lxsh.ghlxbh="+ghlxbh+"&lxsh.jsjsdj="+jsjsdj+"&lxsh.lxmc="+lxmc+"&lxsh.ghlxmc="+ghlxmc+"&lxsh.ghlxbm="+ghlxbm
 			 +"&lxsh.tsdq="+encodeURI(encodeURI(tsdq))+"&lxsh.lsxmnf="+lsxmnf+"&lxsh.lsxmlx="+lsxmlx+

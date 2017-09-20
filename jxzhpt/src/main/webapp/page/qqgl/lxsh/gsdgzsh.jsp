@@ -114,7 +114,8 @@
 					//gydw:gydwstr,
 					xmmc:xmmc,
 					xmnf:xmnf,
-					sbzt:sbzt,
+					sbzt:'1',
+					'lxsh.shzt':sbzt,
 					//ghlxbh:$("#lxbm").val().toUpperCase(),
 					lxmc:$("#lxmc").val(),
 					tsdq:tsdq,
@@ -158,7 +159,8 @@
 			    	//gydw:gydwstr,
 			    	xmmc:xmmc,
 					xmnf:xmnf,
-					sbzt:sbzt,
+					sbzt:'1',
+					'lxsh.shzt':sbzt,
 					tsdq:tsdq,
 					jsdj:jsdj,
 					jsjsdj:jsjsdj,
@@ -369,7 +371,7 @@ text-decoration:none;
 							<tr height="32">
 							<td colspan="10">
         						<img onclick="showgsd()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+				                <img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="dclxshModule('gsdgz','sh');" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 							  </td>
                         </tr>
                         </tr>
