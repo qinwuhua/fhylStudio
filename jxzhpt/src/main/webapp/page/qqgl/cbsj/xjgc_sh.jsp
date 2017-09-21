@@ -50,9 +50,9 @@
 	}
 
 		$(function(){
-			/* if(getQxfromSession('rolename')!="省局综规处"){
+			 if(getQxfromSession('rolename')!="省局综规处"){
 				window.location.href='/jxzhpt/page/qqgl/cbsj/xjgc_sh2.jsp?&id='+getUrlParame('id');
-			}; */
+			}; 
 			if($.cookie("unit2").length!=7){
 				$("img[name='bxs']").attr('style','display:none');
 				title='上报状态';
