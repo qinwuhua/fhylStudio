@@ -333,7 +333,8 @@
 				}
 			});
 		}
-		function deleteSh(){
+function deleteSh(){
+	if(confirm('您确定删除该项目？')){
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;
 			$.each(selRow,function(index,item){
@@ -367,6 +368,7 @@
 			}else{
 				alert("请选择要删除的信息！");
 			}
+	      }
 		}
 		function sb(xmbm){
 			$.ajax({

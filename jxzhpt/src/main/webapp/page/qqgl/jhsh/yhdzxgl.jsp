@@ -337,7 +337,8 @@
 				}
 			});
 		}
-		function deleteYhdzx(){
+  function deleteYhdzx(){
+		if(confirm('您确定删除该项目？')){
 			var selRow = $('#grid').datagrid("getSelections");
 			
 			var y=true;
@@ -346,9 +347,8 @@
 					y=false;
 					return;
 				}
-			}
+			});
 			
-			);
 			if(!y){
 				alert("只能删除未申请的信息！");
 				return;
@@ -376,6 +376,7 @@
 			}else{
 				alert("请选择要删除的信息！");
 			}
+		 }
 		}
 		function sb(xmbm){
 			$.ajax({

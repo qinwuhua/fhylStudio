@@ -1032,7 +1032,66 @@ public class XmkaqsmfhController extends BaseActionSupport{
 		}else{
 			xmkaqsmfh.setXzqhdm("and xzqhdm in ("+xzqhs+")");
 		}
-		
+		if(xmkaqsmfh.getTsdq().length()>0){
+			String[] tsdqs=xmkaqsmfh.getTsdq().split(",");
+			String tsdq="and(";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="tsdq like '%"+tsdqs[i]+"%'";
+				else
+					tsdq+="or tsdq like '%"+tsdqs[i]+"%'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			xmkaqsmfh.setTsdq(tsdq);
+		}
+		if(xmkaqsmfh.getGldj().length()>0){
+			String[] tsdqs=xmkaqsmfh.getGldj().split(",");
+			String tsdq="and substr(sc.lxbm,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i]+"'";
+				else
+					tsdq+=",'"+tsdqs[i]+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			xmkaqsmfh.setGldj(tsdq);
+		}
+		if(xmkaqsmfh.getJsdj().length()>0){
+			String[] tsdqs=xmkaqsmfh.getJsdj().split(",");
+			String tsdq="and substr(jsdj,0,1) in (";
+			for (int i = 0; i < tsdqs.length; i++) {
+				if("全部".equals(tsdqs[i])){
+					tsdq="";
+					break;
+				}
+				if(i==0)
+					tsdq+="'"+tsdqs[i].substring(0, 1)+"'";
+				else
+					tsdq+=",'"+tsdqs[i].substring(0, 1)+"'";
+			}
+			if(tsdq==""){
+				tsdq="";
+			}else{
+				tsdq+=")";
+			}
+			xmkaqsmfh.setJsdj(tsdq);
+		}
 		List<Excel_list> l = xmkaqsmfhServer.dcaqsmfhsckshExcel(xmkaqsmfh);
 
 		ExcelData eldata=new ExcelData();//创建一个类

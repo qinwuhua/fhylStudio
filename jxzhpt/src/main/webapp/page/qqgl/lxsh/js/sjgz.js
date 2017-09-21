@@ -319,8 +319,8 @@ function del(index){
 	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm+"&lxsh.wnid="+data1.wnid;
-	alert(data);
-	if(confirm('您确定删除该项目？')){
+//	alert(data);
+if(confirm('您确定删除该项目？')){
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/delSjgz.do",
@@ -831,7 +831,7 @@ function del1(index){
 	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
-	if(confirm('您确定删除该项目？')){
+if(confirm('您确定删除该项目？')){
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/qqgl/delLmgz.do",
@@ -2460,6 +2460,7 @@ function delsjlx(xmid,index){
 }
 
 function dellmlx(index1,index){
+	if(confirm('您确定删除吗？')){
 	var data=$("#table_lx"+index1).datagrid('getRows')[index];
 	//alert(data.xmbm+"--"+data.id);
 	$.ajax({
@@ -2477,8 +2478,10 @@ function dellmlx(index1,index){
 			}
 		}
 	});
+	}
 }
 function delxjlx(index1,index){
+	if(confirm('您确定删除吗？')){
 	var data=$("#table_lx"+index1).datagrid('getRows')[index];
 	//alert(data.xmbm+"--"+data.id);
 	$.ajax({
@@ -2496,6 +2499,7 @@ function delxjlx(index1,index){
 			}
 		}
 	});
+	}
 }
 
 function cxqdmc(lxbm,qdzh){

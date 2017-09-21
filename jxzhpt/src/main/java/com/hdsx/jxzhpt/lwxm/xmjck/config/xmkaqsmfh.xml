@@ -1821,7 +1821,7 @@
 	 			and lxmc like '%'||(#{lxmc})||'%'
 	 		</if>
 	 		<if test="jhnf!='' and jhnf!= null ">
-	 			and sc.jhnf like '%'||(#{jhnf})||'%'
+	 			and sc.jhnf in (${jhnf})
 	 		</if>
 	 		<if test="sbzt!='' and sbzt!= null ">
 	 			<if test="sbzt == '未审核'">
@@ -1832,16 +1832,16 @@
 				</if>
 	 		</if>
 	 		<if test="jsdj!='' and jsdj!= null ">
- 				and jsdj like '%'||(#{jsdj})||'%'
+ 				${jsdj}
  			</if> 
  			<if test="gldj!='' and gldj!= null ">
- 				and lxbm like '%'||(#{gldj})||'%'
+ 				${gldj}
  			</if> 
 	 		<if test="lxbm!='' and lxbm!= null ">
 	 			and lxbm like '%'||(#{lxbm})||'%'
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
-	 			and tsdq like '%'||(#{tsdq})||'%'
+	 			${tsdq}
 	 		</if>
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
