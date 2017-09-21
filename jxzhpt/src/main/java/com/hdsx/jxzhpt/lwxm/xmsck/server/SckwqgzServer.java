@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface SckwqgzServer {
 		boolean insertSckwqgz(Sckwqgz wqgz);
@@ -19,8 +20,8 @@ public interface SckwqgzServer {
 		int selectWqgzShCount(Sckwqgz wqgz);
 		boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz,String tbbmbm,String nf);
 		boolean bzWqgz(Sckwqgz wqgz);
-		List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz);
-		List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz);
+		List<Excel_list> exportExcel_wqgz_scgl(Sckwqgz wqgz);
+		List<Excel_list> exportExcel_wqgz_scsh(Sckwqgz wqgz);
 		List<SjbbMessage> insertToSheet(Map map);
 		boolean importWqgz_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 		boolean lrjhSckwqgz(String delstr,String nf,String jh_sbthcd);
