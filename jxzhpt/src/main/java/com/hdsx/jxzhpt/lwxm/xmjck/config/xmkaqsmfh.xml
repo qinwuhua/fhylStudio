@@ -1757,7 +1757,7 @@
 			 from SCK_AQSMFH t where id=#{id}
  		</insert>
  		<select id="dcaqsmfhsckExcel" parameterType="xmkaqsmfh" resultType="elist">
- 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+ 			<!-- select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
 		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
 		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
 		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
@@ -1766,8 +1766,26 @@
 		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
 		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
 	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
-			  <if test="gydw!='' and gydw!= null ">
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null -->
+  select * from(   
+	  select '' v_0,decode(ld.id,ld1.mid,1,0) v_50 ,ld.xzqhdm v_1,ld.xzqh v_2,ld.lxbm v_3,sc.lxmc v_4,ld.qdzh v_5,ld.zdzh v_6,
+          to_char(ld.zlc,'fm9999999990.000') v_7,to_char(ld.yhlc,'fm9999999990.000') v_8,sc.xjgjnd v_9,sc.fapgdw v_10,sc.fascdw v_11,sc.faspsj v_12,sc.spwh v_13,sc.cztzgs v_14,
+          sc.jsxz v_15,sc.jsnr v_16,sc.jhnf v_17,sc.bz v_18,sc.xmbm v_30
+          from sck_aqsmfh sc 
+           left join 
+           (select ld.id,ld.gydwdm, ld.xmbm, ld.xzqhdm,ld.xzqh,ld.lxbm,ld.qdzh,ld.zdzh,ld.yhlc,ld.yhlc zlc           
+           from sck_aqsmfh_ld ld ) ld 
+           on ld.xmbm=sc.xmbm
+           left join 
+           (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,
+       WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,
+       WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld 
+       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld 
+       on sc.xmbm=xmld.xmbm
+       left join 
+       (select min(id) mid,xmbm from sck_aqsmfh_ld group by xmbm) ld1 on ld1.xmbm=sc.xmbm
+       where 1=1 and sc.jhnf is not null
+			<if test="gydw!='' and gydw!= null ">
 				${gydw}
 			</if>
 			<if test="xzqhdm!='' and xzqhdm!= null ">
@@ -1797,11 +1815,11 @@
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
-	 		order by ld.xmbm,ld.xuh
+	 		) order by v_30,v_50 desc
  		</select>
  		
  		<select id="dcaqsmfhsckshExcel" parameterType="xmkaqsmfh" resultType="elist">
- 			select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
+ 			<!-- select ld.xuh v_0,ld.province v_1,ld.town v_2,ld.county v_3,ld.lxbm v_4,
 		      decode(ld.xuh,ld1.xuh,ld.gydw,'') v_5,decode(ld.xuh,ld1.xuh,ld.xzqhdm,'') v_6,decode(ld.xuh,ld1.xuh,sc.lxmc,'') v_7,
 		      decode(ld.xuh,ld1.xuh,sc.jsdj,'') v_8,decode(ld.xuh,ld1.xuh,sc.qdzh,'') v_9,decode(ld.xuh,ld1.xuh,sc.zdzh,'') v_10,
 		      decode(ld.xuh,ld1.xuh,sc.yhlc,'') v_11,decode(ld.xuh,ld1.xuh,sc.czzlc,'') v_12,decode(ld.xuh,ld1.xuh,sc.xjgjnd,'') v_13,
@@ -1810,7 +1828,26 @@
 		      decode(ld.xuh,ld1.xuh,sc.ablbzsqwh,'') v_21,decode(ld.xuh,ld1.xuh,sc.jsxz,'') v_22,decode(ld.xuh,ld1.xuh,sc.jsnr,'') v_23,
 		      decode(ld.xuh,ld1.xuh,sc.bz,'') v_24
 	        from sck_aqsmfh_ld ld,xmk_aqsmfh xm,SCK_AQSMFH sc,(select min(xuh) xuh,xmbm from sck_aqsmfh_ld group by xmbm) ld1 
-	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null
+	        where ld.xmkid=xm.id and ld.xmbm=sc.xmbm and ld.xmbm=ld1.xmbm(+)and sc.jhnf is not null -->
+	        
+	        select * from (  
+          select '' v_0,decode(ld.id,ld1.mid,1,0) v_50 ,ld.xzqhdm v_1,ld.xzqh v_2,ld.lxbm v_3,sc.lxmc v_4,ld.qdzh v_5,ld.zdzh v_6,
+          to_char(ld.zlc,'fm9999999990.000') v_7,to_char(ld.yhlc,'fm9999999990.000') v_8,sc.xjgjnd v_9,sc.fapgdw v_10,sc.fascdw v_11,sc.faspsj v_12,sc.spwh v_13,sc.cztzgs v_14,
+          sc.jsxz v_15,sc.jsnr v_16,sc.jhnf v_17,sc.bz v_18,sc.xmbm v_30
+          from sck_aqsmfh sc 
+           left join 
+           (select ld.id, ld.gydwdm,ld.xmbm, ld.xzqhdm,ld.xzqh,ld.lxbm,ld.qdzh,ld.zdzh,ld.yhlc,ld.yhlc zlc           
+           from sck_aqsmfh_ld ld ) ld 
+           on ld.xmbm=sc.xmbm
+           left join 
+           (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,
+       WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,
+       WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld 
+       left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld 
+       on sc.xmbm=xmld.xmbm
+       left join 
+       (select min(id) mid,xmbm from sck_aqsmfh_ld group by xmbm) ld1 on ld1.xmbm=sc.xmbm
+       where  1=1 and sc.jhnf is not null
 			  and  (to_number(sbthbmcd) &lt;=7)
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -1847,7 +1884,7 @@
 	 		<if test="bzls!='' and bzls!= null ">
 	 			and bzls like '%'||(#{bzls})||'%'
 	 		</if>
-	 		order by ld.xmbm,ld.xuh
+	 		 ) order by v_30,v_50 desc  
  		</select>
  		
  		<select id="sfcfbntj" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">

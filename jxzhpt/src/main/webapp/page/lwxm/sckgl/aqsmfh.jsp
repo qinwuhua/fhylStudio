@@ -492,7 +492,7 @@ function dcExcel(){
 	var data=ata="xmkaqsmfh.sbthbmcd="+sbthcd+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+
 	"&xmkaqsmfh.jhnf="+xmnf+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
 	"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.bzls="+$("#bzls").combobox("getValue")+
-	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq;
+	"&xmkaqsmfh.gldj="+gldj+"&xmkaqsmfh.tsdq="+tsdq.replace(/\+/g,"%2B");
 	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 		window.location.href='/jxzhpt/aqsmfh/dcaqsmfhsckExcel.do?'+data;
 	 });
