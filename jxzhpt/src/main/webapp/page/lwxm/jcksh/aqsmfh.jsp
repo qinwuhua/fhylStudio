@@ -232,7 +232,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
 		}else  sbthcd=$.cookie("unit2").length;
 	var data="xmkaqsmfh.sbthcd="+sbthcd+"&xmkaqsmfh.unitcode="+gydwstr+"&xmkaqsmfh.distcode="+xzqhstr+"&xmkaqsmfh.lxmc="+$('#lxmc').val()+'&xmkaqsmfh.throadname=' + $('#throadname').val()+'&xmkaqsmfh.throadcode=' + $('#throadcode').val()+
 	"&xmkaqsmfh.jhnf="+"&xmkaqsmfh.sbzt="+$("#sbzt").combobox("getValue")+
-	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.tsdq="+tsdq+
+	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+"&xmkaqsmfh.jsdj="+jsdj+"&xmkaqsmfh.lxbm="+$("#lxbm").val()+"&xmkaqsmfh.tsdq="+tsdq.replace(/\+/g,"%2B")+
 	'&xmkaqsmfh.xmklx='+$('#xmklx').combobox('getValue')+"&xmkaqsmfh.gldj="+gldj;
 	$.ajax({
 		 type : "POST",
@@ -320,7 +320,7 @@ var xzqhdm=$("#xzqhmc").combotree("getValues");
  	'&xmkaqsmfh.roadcode='+$("#lxbm").val()+
  	'&xmkaqsmfh.gldj='+gldj+
  	'&xmkaqsmfh.bzls='+$("#bzls").combobox("getValue")+
- 	'&xmkaqsmfh.tsdq='+tsdq;
+ 	'&xmkaqsmfh.tsdq='+tsdq.replace(/\+/g,"%2B");
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/aqsmfh/shaqsmfhDoExcel.do?"+param;
 	//wdd导出项目审核里的安全生命防护工程 end	
