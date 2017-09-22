@@ -232,7 +232,7 @@ function exportExcel_wqgz_scgl1(){
  	'&qlbh='+$("#qlbh").val()+
  	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd+
- 	'&tsdq='+tsdq+
+ 	'&tsdq='+tsdq.replace(/\+/g,"%2B")+
  	'&gldj='+gldj;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scgl.do?"+param;
