@@ -3380,6 +3380,16 @@ public class GcybbController extends BaseActionSupport{
 			}
 		}
 		
+		public void getinsertorupdate() {
+			try {
+				List<Excel_list> list = gcybbServer.getinsertorupdate(excel_list);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		public String getcxtj(String id,String param){
 			String tj="";
 			if(param!=null&&!"".equals(param)){

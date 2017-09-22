@@ -47,7 +47,7 @@
        		
     	}
     	var json_data = JSON.stringify(list_map); 
-    	
+    	loadjzt();
     	$.ajax({
 			type:'post',
 			url:'/jxzhpt/gcybb/insertOrUpdatesjss.do',
@@ -55,6 +55,7 @@
 			dataType:'json',
 			success:function(data){
 				alert("保存成功！");
+				disLoadjzt();
 				parent.$('#lxxx').window('destroy');
 			}
 		});
@@ -63,6 +64,8 @@
     
     $(function(){
 		setnf();setyf();
+		
+		getinsertorupdate();
     })
     
     function setnf(){
@@ -75,7 +78,10 @@
 		$('#'+id).combobox({    
 		    data:years,
 		    valueField:'text',    
-		    textField:'text'   
+		    textField:'text',
+		    onSelect:function(record){
+		    	getinsertorupdate();
+			}
 		});
 		$('#'+id).combobox("setValue",new Date().getFullYear());
 	}
@@ -89,10 +95,66 @@
 		$('#'+id).combobox({    
 		    data:years,
 		    valueField:'text',    
-		    textField:'text'   
+		    textField:'text',
+		    onSelect:function(record){
+		    	getinsertorupdate();
+			}  
 		});
 		$('#'+id).combobox("setValue",new Date().getMonth());
 	}
+	
+	
+	function getinsertorupdate(){
+	
+		loadjzt();
+		var data="excel_list.nf="+$("#nf").combo('getValue')+"&excel_list.gydw="+$.cookie('unit2')+"&excel_list.yf="+$("#yf").combo('getValue');
+    	$.ajax({
+			type:'post',
+			url:'/jxzhpt/gcybb/getinsertorupdate.do',
+			data:data,
+			dataType:'json',
+			success:function(data){
+				
+				disLoadjzt();
+				
+				if(data.length==24)
+				for(var i=0;i<data.length;i++){
+		    		var obj=$("#tr"+(i+1)+" input");
+		   			$(obj[0]).val(data[i].v_0);
+		   			$(obj[1]).val(data[i].v_1);
+		   			$(obj[2]).val(data[i].v_2);
+		   			$(obj[3]).val(data[i].v_3);
+		   			$(obj[4]).val(data[i].v_4);
+		   			$(obj[5]).val(data[i].v_5);
+		   			$(obj[6]).val(data[i].v_6);
+		   			$(obj[7]).val(data[i].v_7);
+		   			$(obj[8]).val(data[i].v_8);
+		   			$(obj[9]).val(data[i].v_9);
+		   			$(obj[10]).val(data[i].v_10);
+		   			$(obj[11]).val(data[i].v_11);
+		   			$(obj[12]).val(data[i].v_12);
+		   			$(obj[13]).val(data[i].v_13);
+		    	}
+				else{
+					for(var i=0;i<24;i++){
+						var obj=$("#tr"+(i+1)+" input");
+						$(obj[5]).val(0);
+			   			$(obj[6]).val(0);
+			   			$(obj[7]).val(0);
+			   			$(obj[8]).val(0);
+			   			$(obj[9]).val(0);
+			   			$(obj[10]).val(0);
+			   			$(obj[11]).val(0);
+			   			$(obj[12]).val(0);
+			   			$(obj[13]).val(0);
+					}
+					
+				}
+				
+			}
+		});
+	}
+	
   </script>
   <style type="text/css">
 <!--

@@ -3714,4 +3714,10 @@
 		<if test="yf != null"> ${yf}</if>
 		group by v_4 order by to_number(v_4)
 	</select>
+	
+	<select id="getinsertorupdate" parameterType="elist" resultType="elist">
+		select * from SJSSBB where 1=1 and gydw like '%'||#{gydw}||'%'
+		and nf=#{nf} and yf=#{yf}
+		order by to_number(v_4)
+	</select>
 </mapper>
