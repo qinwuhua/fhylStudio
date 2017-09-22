@@ -968,7 +968,8 @@
  		<!-- 审查库 -->
  		<select id="selectSckaqsmfh" parameterType="xmkaqsmfh" resultType="xmkaqsmfh">
 		select * from (
-	 		select rownum num ,t.*,decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) sbzt2 from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
+	 		select rownum num ,t.*,decode(sbthbmcd,'7','已上报',#{sbthbmcd},'未上报',sbzt) sbzt2 
+	 		from (select sc.*,xmld.tsdq,xmld.xmklx,xmld.throadname,xmld.throadcode from SCK_AQSMFH sc left join (select ld.xmbm,WMSYS.WM_CONCAT( distinct xm.xmklx) xmklx,WMSYS.WM_CONCAT( distinct xm.tsdq) tsdq,WMSYS.WM_CONCAT(xm.throadcode) throadcode,WMSYS.WM_CONCAT(xm.roadname) throadname from sck_aqsmfh_ld ld left join xmk_aqsmfh xm on ld.xmkid=xm.id group by ld.xmbm) xmld on sc.xmbm=xmld.xmbm) t where 1=1 
 	 			and  to_number(sbthbmcd) &lt;=to_number(#{sbthbmcd}) 
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}

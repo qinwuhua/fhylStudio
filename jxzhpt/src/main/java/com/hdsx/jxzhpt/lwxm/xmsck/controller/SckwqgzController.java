@@ -25,6 +25,10 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
@@ -194,25 +198,35 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				sckwqgz.setGldj(tsdq);
 			}
 			//先得到导出的数据集
-			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scgl(sckwqgz);
+			List <Excel_list> list=wqgzServer.exportExcel_wqgz_scgl(sckwqgz);
 			//导出设置
-			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td><td>建设性质</td></tr>";
-			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-			SheetBean sheetb = new SheetBean();
-			sheetb.setTableName("危桥改造项目");
-			sheetb.setFooter(null);
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("危桥");
-			sheetb.setList(list);
-			sheetb.setColnum((short)12);
-			sheetBeans.add(sheetb);
-			String stylefileName="module.xls";
-			String tableName="危桥改造项目";//excel 文件的名字
-			//导出excel
-			ExportExcel_new ee = new ExportExcel_new();
-			ee.initStyle(ee.workbook, stylefileName);
-			HttpServletResponse response= getresponse();
-			ee.makeExcel(tableName, sheetBeans, response);
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("危桥改造项目");//设置第一行 
+			eldata.setSheetName("危桥");//设置sheeet名
+			eldata.setFileName("危桥改造项目");//设置文件名
+			eldata.setEl(list);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("行政区划",1,1,1,1));
+			et.add(new Excel_tilte("原桥梁编码",1,1,2,2));
+			et.add(new Excel_tilte("原桥梁名称",1,1,3,3));
+			et.add(new Excel_tilte("原桥梁中心桩号",1,1,4,4));
+			et.add(new Excel_tilte("原路线编码",1,1,5,5));
+			et.add(new Excel_tilte("原路线名称",1,1,6,6));
+			et.add(new Excel_tilte("桥梁全长",1,1,7,7));
+			et.add(new Excel_tilte("桥梁全宽",1,1,8,8));
+			et.add(new Excel_tilte("方案评估单位",1,1,9,9));
+			et.add(new Excel_tilte("方案审查单位",1,1,10,10));
+			et.add(new Excel_tilte("方案审批时间",1,1,11,11));
+			et.add(new Excel_tilte("审批文号",1,1,12,12));
+			et.add(new Excel_tilte("投资估算（万元）",1,1,13,13));
+			et.add(new Excel_tilte("建设性质",1,1,14,14));
+			et.add(new Excel_tilte("建设内容",1,1,15,15));
+			et.add(new Excel_tilte("项目年份",1,1,16,16));
+			et.add(new Excel_tilte("备注",1,1,17,17));
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
 			e.printStackTrace();
@@ -318,25 +332,36 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			}
 			
 			//先得到导出的数据集
-			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_scsh(sckwqgz);
+			List <Excel_list> list=wqgzServer.exportExcel_wqgz_scsh(sckwqgz);
 			//导出设置
-			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>评定等级</td><td>修建/改建年度</td><td>项目年份</td><td>建设性质</td></tr>";
-			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-			SheetBean sheetb = new SheetBean();
-			sheetb.setTableName("危桥改造项目");
-			sheetb.setFooter(null);
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("危桥");
-			sheetb.setList(list);
-			sheetb.setColnum((short)12);
-			sheetBeans.add(sheetb);
-			String stylefileName="module.xls";
-			String tableName="危桥改造项目";//excel 文件的名字
-			//导出excel
-			ExportExcel_new ee = new ExportExcel_new();
-			ee.initStyle(ee.workbook, stylefileName);
-			HttpServletResponse response= getresponse();
-			ee.makeExcel(tableName, sheetBeans, response);
+			
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("危桥改造项目");//设置第一行 
+			eldata.setSheetName("危桥");//设置sheeet名
+			eldata.setFileName("危桥改造项目");//设置文件名
+			eldata.setEl(list);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("行政区划",1,1,1,1));
+			et.add(new Excel_tilte("原桥梁编码",1,1,2,2));
+			et.add(new Excel_tilte("原桥梁名称",1,1,3,3));
+			et.add(new Excel_tilte("原桥梁中心桩号",1,1,4,4));
+			et.add(new Excel_tilte("原路线编码",1,1,5,5));
+			et.add(new Excel_tilte("原路线名称",1,1,6,6));
+			et.add(new Excel_tilte("桥梁全长",1,1,7,7));
+			et.add(new Excel_tilte("桥梁全宽",1,1,8,8));
+			et.add(new Excel_tilte("方案评估单位",1,1,9,9));
+			et.add(new Excel_tilte("方案审查单位",1,1,10,10));
+			et.add(new Excel_tilte("方案审批时间",1,1,11,11));
+			et.add(new Excel_tilte("审批文号",1,1,12,12));
+			et.add(new Excel_tilte("投资估算（万元）",1,1,13,13));
+			et.add(new Excel_tilte("建设性质",1,1,14,14));
+			et.add(new Excel_tilte("建设内容",1,1,15,15));
+			et.add(new Excel_tilte("项目年份",1,1,16,16));
+			et.add(new Excel_tilte("备注",1,1,17,17));		
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
 			e.printStackTrace();

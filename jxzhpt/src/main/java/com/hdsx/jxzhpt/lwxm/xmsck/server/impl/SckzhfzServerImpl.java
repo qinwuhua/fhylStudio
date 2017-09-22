@@ -13,6 +13,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	private Map<String, Object> hm;
@@ -122,11 +123,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public List<SjbbMessage> exportExcel_zhfz_scgl(Sckzhfz zhfz) {
+	public List<Excel_list> exportExcel_zhfz_scgl(Sckzhfz zhfz) {
 		return this.queryList("exportExcel_zhfz_scgl",zhfz);
 	}
 	@Override
-	public List<SjbbMessage> exportExcel_zhfz_scsh(Sckzhfz zhfz) {
+	public List<Excel_list> exportExcel_zhfz_scsh(Sckzhfz zhfz) {
 		return this.queryList("exportExcel_zhfz_scsh",zhfz);
 	}
 
