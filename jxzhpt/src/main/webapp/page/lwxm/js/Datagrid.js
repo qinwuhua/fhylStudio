@@ -614,7 +614,7 @@ var xzqhstr;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&xmnf="+
 	 	xmnf+"&sbzt="+$("#sbzt").combobox("getValue")+
-	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&jsdj="+jsdj+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj+"&tsdq="+tsdq;
+	 	'&xmklx='+$('#xmklx').combobox('getValue')+"&jsdj="+jsdj+"&lxbm="+$("#lxbm").val()+"&gldj="+gldj+"&tsdq="+tsdq.replace(/\+/g,"%2B");
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selZhfzCount.do",
