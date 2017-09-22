@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	private Map<String, Object> hm;
@@ -122,11 +123,11 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc) {
+	public List<Excel_list> exportExcel_abgc_scgl(Sckabgc abgc) {
 		return this.queryList("exportExcel_abgc_scgl",abgc);
 	}
 	@Override
-	public List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc) {
+	public List<Excel_list> exportExcel_abgc_scsh(Sckabgc abgc) {
 		return this.queryList("exportExcel_abgc_scsh",abgc);
 	}
 
